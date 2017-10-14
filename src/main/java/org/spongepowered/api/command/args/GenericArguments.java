@@ -242,6 +242,11 @@ public final class GenericArguments {
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
             return Collections.emptyList();
         }
+
+        @Override
+        public Text getUsage(CommandSource src) {
+            return Text.EMPTY;
+        }
     }
 
     /**

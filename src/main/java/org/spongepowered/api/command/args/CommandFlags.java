@@ -182,8 +182,9 @@ public final class CommandFlags extends CommandElement {
         for (Map.Entry<List<String>, CommandElement> arg : this.usageFlags.entrySet()) {
             builder.add("[");
             for (Iterator<String> it = arg.getKey().iterator(); it.hasNext();) {
-                builder.add("-");
-                builder.add(it.next());
+                String flag = it.next();
+                builder.add(flag.length() > 1 ? "--" : "-");
+                builder.add(flag);
                 if (it.hasNext()) {
                     builder.add("|");
                 }
