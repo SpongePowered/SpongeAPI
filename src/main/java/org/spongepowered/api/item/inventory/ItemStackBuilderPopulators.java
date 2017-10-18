@@ -639,7 +639,7 @@ public final class ItemStackBuilderPopulators {
         checkNotNull(amount, "VariableAmount cannot be null!");
         final WeightedTable<Function<Random, ItemEnchantment>> suppliers = new WeightedTable<>(amount);
         for (Tuple<Enchantment, VariableAmount> enchantment : enchantments) {
-            suppliers.add(random -> new ItemEnchantment(enchantment.getFirst(), enchantment.getSecond().getFlooredAmount(random)), 1);
+            suppliers.add(random -> ItemEnchantment.of(enchantment.getFirst(), enchantment.getSecond().getFlooredAmount(random)), 1);
         }
         return listValueSuppliers(Keys.ITEM_ENCHANTMENTS, suppliers);
     }

@@ -45,6 +45,18 @@ public final class ItemEnchantment implements DataSerializable {
     private final int level;
 
     /**
+     * Creates a new {@code ItemEnchantment} with the provided
+     * enchantment and level.
+     *
+     * @param enchantment The enchantment
+     * @param level The level
+     * @return The {@code ItemEnchantment}
+     */
+    public static ItemEnchantment of(final Enchantment enchantment, final int level) {
+        return new ItemEnchantment(enchantment, level);
+    }
+
+    /**
      * Creates a new {@link ItemEnchantment} with the provided
      * {@link Enchantment} and level.
      *
