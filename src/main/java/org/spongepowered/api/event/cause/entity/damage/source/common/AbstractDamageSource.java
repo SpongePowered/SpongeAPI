@@ -56,7 +56,13 @@ public abstract class AbstractDamageSource implements DamageSource {
         this.explosive = builder.explosion;
         this.magic = builder.magical;
         this.creative = builder.creative;
-        this.exhaustion = builder.exhaustion;
+        if (builder.exhaustion != null) {
+            this.exhaustion = builder.exhaustion;
+        } else if (this.absolute || this.bypassesArmor) {
+            this.exhaustion = 0.0;
+        } else {
+            this.exhaustion = 0.1;
+        }
     }
 
     @Override

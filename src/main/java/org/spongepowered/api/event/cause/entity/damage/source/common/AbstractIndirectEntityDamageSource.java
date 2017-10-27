@@ -51,7 +51,13 @@ public abstract class AbstractIndirectEntityDamageSource implements IndirectEnti
         this.explosive = builder.explosion;
         this.magic = builder.magical;
         this.creative = builder.creative;
-        this.exhaustion = builder.exhaustion;
+        if (builder.exhaustion != null) {
+            this.exhaustion = builder.exhaustion;
+        } else if (this.absolute || this.bypassesArmor) {
+            this.exhaustion = 0.0;
+        } else {
+            this.exhaustion = 0.1;
+        }
         this.source = checkNotNull(builder.sourceEntity, "Entity source cannot be null!");
         this.indirect = checkNotNull(builder.indirect, "Indirect source cannot be null!");
     }

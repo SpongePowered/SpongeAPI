@@ -29,6 +29,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 
+import javax.annotation.Nullable;
+
 @SuppressWarnings("unchecked")
 public abstract class AbstractDamageSourceBuilder<T extends DamageSource, B extends DamageSource.DamageSourceBuilder<T, B>>
     implements DamageSource.DamageSourceBuilder<T, B> {
@@ -39,7 +41,7 @@ public abstract class AbstractDamageSourceBuilder<T extends DamageSource, B exte
     protected boolean absolute = false;
     protected boolean magical = false;
     protected boolean creative = false;
-    protected double exhaustion = 0.1;
+    @Nullable protected Double exhaustion = null;
     protected DamageType damageType = null;
 
     @Override
@@ -106,6 +108,14 @@ public abstract class AbstractDamageSourceBuilder<T extends DamageSource, B exte
 
     @Override
     public B reset() {
+        this.scales = false;
+        this.bypasses = false;
+        this.explosion = false;
+        this.absolute = false;
+        this.magical = false;
+        this.creative = false;
+        this.exhaustion = null;
+        this.damageType = null;
         return (B) this;
     }
 }
