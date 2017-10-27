@@ -108,24 +108,99 @@ public interface DamageSource {
      */
     boolean doesAffectCreative();
 
+    /**
+     * Gets the amount of exhaustion this {@link DamageSource} will
+     * add to the entity, generally only to players.
+     *
+     * <p>In vanilla this is generally set to 0.1 by default and
+     * overridden and set to 0 if the damage is set to be absolute.</p>
+     *
+     * @return The increase in exhaustion
+     */
+    double getExhaustion();
+
     interface Builder extends DamageSourceBuilder<DamageSource, Builder> { }
 
     interface DamageSourceBuilder<T extends DamageSource, B extends DamageSourceBuilder<T, B>> extends ResettableBuilder<T, B> {
 
+        /**
+         * Sets this {@link DamageSource}'s damage to be scaled
+         * by {@link Difficulty}.
+         *
+         * @return This builder
+         */
         B scalesWithDifficulty();
 
+        /**
+         * Sets this {@link DamageSource} as dealing damage that
+         * bypasses armor.
+         *
+         * @return This builder
+         */
         B bypassesArmor();
 
+        /**
+         * Sets whether this {@link DamageSource} as an explosion.
+         *
+         * @return This builder
+         */
         B explosion();
 
+
+        /**
+         * Sets this {@link DamageSource} as not being able to be modified
+         * with damage that is absolute.
+         *
+         * @return This builder
+         */
         B absolute();
 
+        /**
+         * Sets this {@link DamageSource} as considered to be magical
+         * damage. An example is potions.
+         *
+         * @return This builder
+         */
         B magical();
 
+        /**
+         * Sets this {@link DamageSource} as considered to damage creative, or
+         * otherwise "normally unharmable" players.
+         *
+         * @return This builder
+         */
         B creative();
 
+        /**
+         * Sets the amount of exhaustion this {@link DamageSource} will
+         * add to the entity, generally only to players.
+         *
+         * <p>In vanilla this defaults .1 in vanilla, and turns to 0 if the
+         * damage is absolute. This builder generally defaults to it to 0.1
+         * and is not overridden if you set the damage as absolute.</p>
+         *
+         * @param exhaustion The amount of exhaustion to add to the entity
+         * @return This builder
+         */
+        B exhaustion(double exhaustion);
+
+        /**
+         * Sets the {@link DamageType} of this source.
+         *
+         * <p>This is often required to be set.</p>
+         *
+         * @param damageType The desired damage type
+         * @return This builder
+         */
         B type(DamageType damageType);
 
+        /**
+         * Builds an instance of this damage source, based on
+         * the values you inputted into the builder.
+         *
+         * @return The resulting damage source
+         * @throws IllegalStateException If a value required to be set is not set
+         */
         T build() throws IllegalStateException;
 
     }
