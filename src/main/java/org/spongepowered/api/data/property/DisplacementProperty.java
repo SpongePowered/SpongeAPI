@@ -33,6 +33,11 @@ import java.util.Set;
 
 import javax.annotation.Nullable;
 
+/**
+ * @deprecated As of API 7, intended for removal in API 8, with no alternative
+ *     due to accidental existence in the API
+ */
+@Deprecated
 public class DisplacementProperty extends AbstractProperty<String, Set<BlockType>> {
 
     /**
