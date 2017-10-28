@@ -153,6 +153,35 @@ public interface Viewer {
     void playSound(SoundType sound, SoundCategory category, Vector3d position, double volume, double pitch, double minVolume);
 
     /**
+     * Stops all the sounds.
+     */
+    void stopSounds();
+
+    /**
+     * Stops all the sounds of the given {@link SoundType}.
+     *
+     * @param sound The sound type
+     */
+    void stopSounds(SoundType sound);
+
+    /**
+     * Stops all the sounds that are played in the
+     * given {@link SoundCategory}.
+     *
+     * @param category The sound category
+     */
+    void stopSounds(SoundCategory category);
+
+    /**
+     * Stops all the sounds of the given {@link SoundType} that
+     * are played in the given {@link SoundCategory}.
+     *
+     * @param sound The sound type
+     * @param category The sound category
+     */
+    void stopSounds(SoundType sound, SoundCategory category);
+
+    /**
      * Plays the given {@link RecordType} at the given position. The benefit of playing
      * {@link RecordType} instead of a {@link SoundType} allows you to stop them through
      * the {@link #stopRecord(Vector3i)}. Playing a new {@link RecordType} at the same
