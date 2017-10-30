@@ -41,7 +41,17 @@ import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 public interface Event {
 
     /**
-     * Gets the cause for the event.
+     * Gets the cause for the event.  The Cause of the event
+     * is an object which implements the Iterable interface.
+     * So, when investigating the Cause of the event a common
+     * idiom is to use operations (functions) on the result
+     * of getCause as follows:
+     *
+     * Use-case: Getting the Player (if any) responsible:
+     * Optional<Player> optPlayer = event.getCause().first(Player.class);
+     *
+     * In general the event.getCause() exposes access to the
+     * Iterable<Object> interface of a Cause reference.
      *
      * @return The cause
      */
