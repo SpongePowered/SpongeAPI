@@ -270,6 +270,21 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
     boolean setTransform(Transform<World> transform);
 
     /**
+     * Sets the transformation of this entity using a safe location from
+     * {@link TeleportHelper#getSafeLocation(Location)}.
+     *
+     * @param transform The transform to set
+     * @return True if the transform was set successfully, or false if either
+     *     the transform couldn't be set as no safe location was found or
+     *     {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
+     *     was cancelled
+     */
+    default boolean setTransformSafely(Transform<World> transform) {
+        checkNotNull(transform, "The transform cannot be null!");
+        return setLocationAndRotationSafely(transform.getLocation(), transform.getRotation());
+    }
+
+    /**
      * Sets the {@link Location} of this entity to the {@link World}'s spawn
      * point.
      *
