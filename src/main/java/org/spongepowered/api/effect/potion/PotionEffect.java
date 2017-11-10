@@ -52,11 +52,11 @@ public interface PotionEffect extends DataSerializable, PropertyHolder {
     /**
      * Creates a new {@link PotionEffect} with the provided
      * {@link PotionEffectType}, the provided amplifier, and the provided
-     * duration.
+     * duration in ticks.
      *
      * @param type The potion type
      * @param amplifier The amplifier
-     * @param duration The duration
+     * @param duration The duration in ticks
      * @return The potion effect
      */
     static PotionEffect of(PotionEffectType type, int amplifier, int duration) {
@@ -72,7 +72,7 @@ public interface PotionEffect extends DataSerializable, PropertyHolder {
     PotionEffectType getType();
 
     /**
-     * Gets the duration for which this potion effect
+     * Gets the duration in ticks for which this potion effect
      * will apply for.
      *
      * @return The duration.
@@ -119,9 +119,9 @@ public interface PotionEffect extends DataSerializable, PropertyHolder {
         Builder potionType(PotionEffectType potionEffectType);
 
         /**
-         * Sets the duration of the potion effect.
+         * Sets the duration in ticks of the potion effect.
          *
-         * @param duration The duration of this effect
+         * @param duration The duration in ticks of this effect
          * @return This builder, for chaining
          */
         Builder duration(int duration);
