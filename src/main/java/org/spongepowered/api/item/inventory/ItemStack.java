@@ -205,8 +205,16 @@ public interface ItemStack extends DataHolder, Translatable {
          * @param value The value to apply
          * @param <E> The type of value
          * @return This builder, for chaining
+         *
+         * @deprecated As of API 7 due to being a duplicate method.
+         *     Accomplishes the same thing as {@link #add(Key, Object)}, so is
+         *     not needed alongside that, expected for removal in API 8 or 9.
+         *     Use {@link #add(Key, Object)} instead
          */
-        <E> Builder keyValue(Key<? extends BaseValue<E>> key, E value);
+        @Deprecated
+        default <E> Builder keyValue(Key<? extends BaseValue<E>> key, E value) {
+            return add(key, value);
+        }
 
         /**
          * Sets the {@link DataManipulator} to add to the {@link ItemStack}.
@@ -229,7 +237,12 @@ public interface ItemStack extends DataHolder, Translatable {
         Builder itemData(ImmutableDataManipulator<?, ?> itemData) throws IllegalArgumentException;
 
         /**
-         * Adds the given {@link Key} with the given value.
+         * Adds a {@link Key} and related {@link Object} value to apply to the
+         * resulting {@link ItemStack}. Note that the resulting
+         * {@link ItemStack} may not actually accept the provided {@code Key}
+         * for various reasons due to support or simply that the value itself
+         * is not supported. Offering custom data is not supported through this,
+         * use {@link #itemData(DataManipulator)} instead.
          *
          * @param key The key to assign the value with
          * @param value The value to assign with the key
