@@ -50,6 +50,8 @@ public interface SetAttackTargetEvent extends TargetAgentEvent, Cancellable {
      *
      * <p>This target is set after the event when it is not cancelled.</p>
      *
+     * <p>Setting a {@code null} target removes the target.</p>
+     *
      * @param target The target
      */
     void setTarget(@Nullable Entity target);
