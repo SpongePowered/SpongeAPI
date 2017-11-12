@@ -71,6 +71,20 @@ public interface ValueContainer<C extends ValueContainer<C>> {
     <E> Optional<E> get(Key<? extends BaseValue<E>> key);
 
     /**
+     * Attempts to get the default value for a provided {@link Key}
+     * as returned by {@link BaseValue#getDefault()}, regardless of whether
+     * or not an actual value is currently stored under the provided {@link Key}
+     * If the {@link Key} is no supported, {@link Optional#empty()} is returned.
+     * It is important to check for support of a {@link Key} by either calling
+     * {@link #supports(BaseValue)} or {@link #supports(Key)}.
+     *
+     * @param key The key linking the
+     * @param <E> The type of value
+     * @return The value, if available
+     */
+    <E> Optional<E> getDefault(Key<? extends BaseValue<E>> key);
+
+    /**
      * Attempts to get the underlying value backed by a {@link BaseValue}
      * linked to the provided {@link Key}.
      *
@@ -134,6 +148,26 @@ public interface ValueContainer<C extends ValueContainer<C>> {
      * @return The value, if available
      */
     <E, V extends BaseValue<E>> Optional<V> getValue(Key<V> key);
+
+    /**
+     * Gets a {@link BaseValue} for the given {@link Key}
+     * with its underlying value set to {@link BaseValue#getDefault()},
+     * regardless of whethe or not an actual value is currently stored
+     * under the provided {@link Key}.
+     *
+     * If the {@link Key} is no supported, {@link Optional#empty()} is returned.
+     * It is important to check for support of a {@link Key} by either calling
+     * {@link #supports(BaseValue)} or {@link #supports(Key)}.
+     *
+     * <p>This method most useful for getting an instance of a value
+     * with additional data, such as {@link BoundedValue}</p>
+     *
+     * @param key The key linked to the {@link BaseValue}
+     * @param <E> The type of the return type
+     * @param <V> The type of value
+     * @return The value, if available
+     */
+    <E, V extends BaseValue<E>> Optional<V> getDefaultValue(Key<V> key);
 
     /**
      * Checks if the given {@link Key} is supported by this

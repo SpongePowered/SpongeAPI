@@ -816,6 +816,11 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     @Override
+    public <E> Optional<E> getDefault(Key<? extends BaseValue<E>> key) {
+        return getExtent().getDefault(getBlockPosition(), key);
+    }
+
+    @Override
     public <T extends DataManipulator<?, ?>> Optional<T> getOrCreate(Class<T> containerClass) {
         return getExtent().getOrCreate(getBlockPosition(), containerClass);
     }
@@ -888,6 +893,11 @@ public final class Location<E extends Extent> implements DataHolder {
     @Override
     public <T, V extends BaseValue<T>> Optional<V> getValue(Key<V> key) {
         return getExtent().getValue(getBlockPosition(), key);
+    }
+
+    @Override
+    public <E, V extends BaseValue<E>> Optional<V> getDefaultValue(Key<V> key) {
+        return getExtent().getDefaultValue(getBlockPosition(), key);
     }
 
     @Override
