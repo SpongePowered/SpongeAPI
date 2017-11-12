@@ -42,6 +42,7 @@ import org.spongepowered.api.util.ResettableBuilder;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -206,6 +207,12 @@ public final class DataTransactionResult {
         return builder().result(Type.ERROR).reject(value).build();
     }
 
+    public enum DataCategory {
+        SUCCESSFUL,
+        REJECTED,
+        REPLACED
+    }
+
     /**
      * The type of transaction result.
      */
@@ -320,6 +327,23 @@ public final class DataTransactionResult {
      */
     public List<ImmutableValue<?>> getReplacedData() {
         return this.replaced;
+    }
+
+    public List<ImmutableValue<?>> getData(DataCategory category) {
+        switch (category) {
+            case SUCCESSFUL:
+                return this.success;
+            case REJECTED:
+                return this.rejected;
+            case REPLACED:
+                return this.replaced;
+        }
+        throw new IllegalStateException("Unhandled DataCategory " + category);
+    }
+
+    @SuppressWarnings("unchecked")
+    public Optional<ImmutableValue<?>> get(DataCategory category, Key<?> key) {
+        return this.getData(category).stream().filter(v -> v.getKey().equals(key)).findFirst();
     }
 
     /**

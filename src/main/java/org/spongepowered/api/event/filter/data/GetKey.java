@@ -24,42 +24,15 @@
  */
 package org.spongepowered.api.event.filter.data;
 
-import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.DataTransactionResult;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+public @interface GetKey {
 
-/**
- * Filters out events where the annotated parameter does not have the specified
- * data manipulator type.
- *
- * <p>The annotated parameter type <strong>MUST</strong> extend
- * {@link DataHolder}.</p>
- *
- * @see DataHolder#get(Class)+
- *
- */
-@Target(ElementType.PARAMETER)
-@Retention(RetentionPolicy.RUNTIME)
-public @interface Has {
+    String key();
 
-    /**
-     * Gets the {@link DataManipulator} type to test for.
-     *
-     * @return The manipulator type
-     */
-    Class<? extends DataManipulator<?, ?>> value();
+    DataTransactionResult.DataCategory [] from() default {DataTransactionResult.DataCategory.SUCCESSFUL};
 
-    /**
-     * If true the standard behavior of this filter is reversed and events where
-     * the annotated parameter <string>does have</strong> the specified data
-     * manipulator type are filtered out.
-     *
-     * @return If the behavior should be reversed
-     */
-    boolean inverse() default false;
+    boolean delayed() default false;
+
 
 }

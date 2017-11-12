@@ -24,10 +24,17 @@
  */
 package org.spongepowered.api.data;
 
+import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.merge.MergeFunction;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.property.PropertyHolder;
+import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.mutable.CompositeValueStore;
+import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.data.ChangeDataHolderEvent;
+
+import java.util.Optional;
 
 /**
  * A data holder object allows the access of additional data on the object
@@ -66,4 +73,10 @@ public interface DataHolder extends DataSerializable, PropertyHolder, CompositeV
      *     data that this holder will refuse
      */
     void setRawData(DataView container) throws InvalidDataException;
+
+    //<E> void offerWithEvent(Key<? extends BaseValue<E>> key, E value, Cause cause);
+
+    //void offerWithEvent(DataManipulator<?, ?> manipulator, MergeFunction function, Cause cause);
+
+    <E> Optional<ChangeDataHolderEvent.ValueChange> offerWithEvent(Key<? extends BaseValue<E>> key, E value, Cause cause);
 }
