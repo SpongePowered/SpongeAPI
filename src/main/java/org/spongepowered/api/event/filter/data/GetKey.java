@@ -49,7 +49,7 @@ import java.lang.annotation.Target;
  *     it can be left at the default of "".
  *
  *    For the purposes of the second case, the {@link ChangeDataHolderEvent.ValueChange} event can be considered
- *    to always have a tag. This means that if you use {@link GetKey} in an event listener for {@link ChangeDataHolderEvent.ValueChange},
+ *    to always have a tag of "". This means that if you use {@link GetKey} in an event listener for {@link ChangeDataHolderEvent.ValueChange},
  *    ond use any other annotated parameters, you will need to explictly set {@link #tag()}
  */
 @Target(ElementType.PARAMETER)

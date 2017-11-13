@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.filter.cause;
 
 import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.filter.data.GetKey;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -53,12 +54,12 @@ public @interface After {
      * If specified the possible type for the returned object (normally
      * specified by the type of the annotated parameter) is restricted
      * to only the specified types.
-     * 
+     *
      * <p> For exampled annotating a parameter of type Monster would
      * normally accept all entities extending Monster, however with the
      * includes specified as Enderman and Zombie the possible Monsters returned
      * would be restricted to entities extending either Enderman and Zombie.</p>
-     * 
+     *
      * @return The included classes, if empty then the type is not restricted
      */
     Class<?>[] typeFilter() default {};
@@ -66,9 +67,16 @@ public @interface After {
     /**
      * If true then the behavior of the typeFilter is reversed and the
      * specified types are excluded rather than included.
-     * 
+     *
      * @return If the type filter is reversed
      */
     boolean inverse() default false;
+
+    /**
+     * The tag to use to associate this parameter with a {@link GetKey} parameter
+     *
+     * @return The tag
+     */
+    String tag() default "";
 
 }
