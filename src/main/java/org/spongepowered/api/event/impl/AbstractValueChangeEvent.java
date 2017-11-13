@@ -33,15 +33,9 @@ public abstract class AbstractValueChangeEvent implements ChangeDataHolderEvent.
     @UseField
     protected DataTransactionResult originalChanges;
     @UseField
-    protected DataTransactionResult endResult;
+    protected DataTransactionResult changes;
 
     protected void init() {
-        this.endResult = this.originalChanges;
-    }
-
-    @Override
-    public ValueChange proposeChanges(DataTransactionResult result) {
-        this.endResult = result;
-        return this;
+        this.changes = this.originalChanges;
     }
 }

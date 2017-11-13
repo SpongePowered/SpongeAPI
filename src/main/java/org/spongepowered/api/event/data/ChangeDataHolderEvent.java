@@ -73,7 +73,7 @@ public interface ChangeDataHolderEvent extends Event, Cancellable {
          * @param result The resulting offer
          * @return This event, for chaining
          */
-        ValueChange proposeChanges(DataTransactionResult result);
+        void setChanges(DataTransactionResult result);
 
         /**
          * Gets the ending resulting {@link DataTransactionResult} that will be
@@ -82,6 +82,6 @@ public interface ChangeDataHolderEvent extends Event, Cancellable {
          * @return The final transaction details to be submitted
          */
         @PropertySettings(requiredParameter = false)
-        DataTransactionResult getEndResult();
+        DataTransactionResult getChanges();
     }
 }

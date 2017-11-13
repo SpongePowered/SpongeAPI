@@ -271,6 +271,10 @@ public class TypeTokens {
 
     public static final TypeToken<Value<OcelotType>> OCELOT_VALUE_TOKEN = new TypeToken<Value<OcelotType>>() {private static final long serialVersionUID = -1;};
 
+    public static final TypeToken<Optional<Integer>> OPTIONAL_INTEGER_TOKEN = new TypeToken<Optional<Integer>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<OptionalValue<Integer>> OPTIONAL_INTEGER_VALUE_TOKEN = new TypeToken<OptionalValue<Integer>>() {private static final long serialVersionUID = -1;};
+
     public static final TypeToken<Optional<PotionEffectType>> OPTIONAL_POTION_TOKEN = new TypeToken<Optional<PotionEffectType>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<OptionalValue<PotionEffectType>> OPTIONAL_POTION_VALUE_TOKEN = new TypeToken<OptionalValue<PotionEffectType>>() {private static final long serialVersionUID = -1;};

@@ -69,8 +69,8 @@ public class SpongeAbstractEventTest {
 
         assertThat(event.getOriginalChanges(), is(equalTo(original)));
 
-        event.proposeChanges(modified);
-        assertThat(event.getEndResult(), is(equalTo(modified)));
+        event.setChanges(modified);
+        assertThat(event.getChanges(), is(equalTo(modified)));
     }
 
     @SuppressWarnings("unchecked")
