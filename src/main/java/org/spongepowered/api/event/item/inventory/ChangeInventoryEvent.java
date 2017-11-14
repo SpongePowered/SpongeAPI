@@ -24,24 +24,34 @@
  */
 package org.spongepowered.api.event.item.inventory;
 
+import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.entity.item.TargetItemEvent;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
+
+import java.util.List;
+import java.util.Optional;
 
 public interface ChangeInventoryEvent extends TargetInventoryEvent, AffectSlotEvent {
 
     /**
      * Fired when a {@link Living} changes it's equipment.
      */
-    interface Equipment extends ChangeInventoryEvent {}
+    interface Equipment extends ChangeInventoryEvent {
+
+    }
 
     /**
      * Fired when a {@link Living} changes it's held {@link ItemStack}.
      */
-    interface Held extends ChangeInventoryEvent {}
+    interface Held extends ChangeInventoryEvent {
+
+    }
 
     /**
      * Fired when an {@link Inventory} transfers items into another.
@@ -79,9 +89,59 @@ public interface ChangeInventoryEvent extends TargetInventoryEvent, AffectSlotEv
         /**
          * Fires after an {@link Inventory} transferred an item.
          */
-        interface Post extends Transfer {}
+        interface Post extends Transfer {
+
+        }
 
     }
 
-    interface Pickup extends ChangeInventoryEvent, TargetItemEvent {}
+    /**
+     * Fires after an {@link Item} has been picked up.
+     */
+    @GenerateFactoryMethod
+    interface Pickup extends ChangeInventoryEvent {
+
+        /**
+         * Fires before an {@link Item} is picked up.
+         *
+         * <p>Modifying the picked up items causes this event to be automatically canceled if the inventory does not fit the entire list.</p>
+         */
+        interface Pre extends TargetInventoryEvent, TargetItemEvent, Cancellable {
+
+            /**
+             * Returns the original picked up {@link ItemStackSnapshot} to add to the inventory.
+             *
+             * @return The original picked up item
+             */
+            default ItemStackSnapshot getOriginalStack() {
+                return this.getTargetEntity().item().get();
+            }
+
+            /**
+             * Returns the custom set list of items to add to the inventory or {@link Optional#empty()} if not set.
+             *
+             * @return The custom set list
+             */
+            Optional<List<ItemStackSnapshot>> getCustom();
+
+            /**
+             * Sets the items to add to the inventory.
+             *
+             * <p>If all items do not fit the inventory this event will be automatically canceled.</p>
+             *
+             * @param items The items to add to the inventory
+             */
+            void setCustom(List<ItemStackSnapshot> items);
+
+            /**
+             * Returns the proposed final list of items to add to the inventory.
+             *
+             * <p>If a custom list was set all items have to fit the inventory or this event will be automatically canceled.</p>
+             *
+             * @return The proposed final list
+             */
+            List<ItemStackSnapshot> getFinal();
+
+        }
+    }
 }
