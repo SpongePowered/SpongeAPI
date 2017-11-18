@@ -28,6 +28,7 @@ import static org.objectweb.asm.Opcodes.CHECKCAST;
 import static org.objectweb.asm.Opcodes.INVOKESTATIC;
 import static org.objectweb.asm.Opcodes.INVOKEVIRTUAL;
 
+import com.google.common.base.Preconditions;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Type;
 
@@ -112,6 +113,29 @@ public final class GeneratorUtils {
         } else {
             mv.visitTypeInsn(CHECKCAST, type.getInternalName());
         }
+    }
+
+    public static Class<?> boxClass(Class<?> clazz) {
+        Preconditions.checkArgument(clazz.isPrimitive(), "Class %s must be primitive", clazz);
+
+        if (clazz.equals(boolean.class)) {
+            return Boolean.class;
+        } else if (clazz.equals(int.class)) {
+            return Integer.class;
+        } else if (clazz.equals(byte.class)) {
+            return Byte.class;
+        } else if (clazz.equals(short.class)) {
+            return Short.class;
+        } else if (clazz.equals(long.class)) {
+            return Long.class;
+        } else if (clazz.equals(float.class)) {
+            return Float.class;
+        } else if (clazz.equals(double.class)) {
+            return Double.class;
+        } else if (clazz.equals(char.class)) {
+            return Character.class;
+        }
+        throw new IllegalStateException("Unreachable");
     }
 
 
