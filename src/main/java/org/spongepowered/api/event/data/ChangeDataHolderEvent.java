@@ -61,17 +61,12 @@ public interface ChangeDataHolderEvent extends Event, Cancellable {
         DataTransactionResult getOriginalChanges();
 
         /**
-         * Submits a new {@link DataTransactionResult} as a proposal of various
+         * Sets a new {@link DataTransactionResult} as a proposal of various
          * {@link Value}s to be successfully offered/changed on the original
          * {@link DataHolder}.
          *
-         * <p>If the proposed {@link DataTransactionResult} provides additional
-         * values that were not changed in the {@link #getOriginalChanges()},
-         * the provided changes suggested to be successfully offered will be
-         * re-offered </p>
          *
          * @param result The resulting offer
-         * @return This event, for chaining
          */
         void setChanges(DataTransactionResult result);
 

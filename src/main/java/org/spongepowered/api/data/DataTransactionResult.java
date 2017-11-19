@@ -207,9 +207,21 @@ public final class DataTransactionResult {
         return builder().result(Type.ERROR).reject(value).build();
     }
 
+    /**
+     * Represents the possible states of a value in this data transaction result
+     */
     public enum DataCategory {
+        /**
+         * Represents values that were successfully offered to the {@link DataHolder}
+         */
         SUCCESSFUL,
+        /**
+         * Represents values that were rejected by the {@link DataHolder}
+         */
         REJECTED,
+        /**
+         * Represents values from the {@link DataHolder} that were replaced
+         */
         REPLACED
     }
 
@@ -329,6 +341,12 @@ public final class DataTransactionResult {
         return this.replaced;
     }
 
+    /**
+     * Gets the {@link ImmutableValue}s associated with the provided {@link DataCategory}
+     * @param category The data category
+     *
+     * @return The {@link ImmutableValue}s for the category
+     */
     public List<ImmutableValue<?>> getData(DataCategory category) {
         switch (category) {
             case SUCCESSFUL:
@@ -341,6 +359,14 @@ public final class DataTransactionResult {
         throw new IllegalStateException("Unhandled DataCategory " + category);
     }
 
+    /**
+     * Returns the value with the provided {@link Key} in the provided {@link DataCategory},
+     * if available. Otherwise, {@link Optional#empty()} is returned.
+     *
+     * @param category The category to lookup the provided {@param key} in
+     * @param key The {@link Key} to lookup
+     * @return The corresponding {@link ImmutableValue}, if available
+     */
     @SuppressWarnings("unchecked")
     public Optional<ImmutableValue<?>> get(DataCategory category, Key<?> key) {
         return this.getData(category).stream().filter(v -> v.getKey().equals(key)).findFirst();
