@@ -74,9 +74,19 @@ public interface DataHolder extends DataSerializable, PropertyHolder, CompositeV
      */
     void setRawData(DataView container) throws InvalidDataException;
 
-    //<E> void offerWithEvent(Key<? extends BaseValue<E>> key, E value, Cause cause);
-
-    //void offerWithEvent(DataManipulator<?, ?> manipulator, MergeFunction function, Cause cause);
-
+    /**
+     * Offers the given {@code value} as defined by the provided {@link Key}.
+     * A {@link ChangeDataHolderEvent.ValueChange} event is thrown,
+     * using this DataHolder and the provided value.
+     *
+     * <p>If the provided {@link Key} is supported by this DataHolder,
+     * the fired {@link ChangeDataHolderEvent.ValueChange} event is thrown.
+     * Otherwise, {@link Optional#empty()} is returned.</p>
+     *
+     * @param key The key to the value to set
+     * @param value The value to set
+     * @param <E> The type of value
+     * @return The created event, if available
+     */
     <E> Optional<ChangeDataHolderEvent.ValueChange> offerWithEvent(Key<? extends BaseValue<E>> key, E value, Cause cause);
 }

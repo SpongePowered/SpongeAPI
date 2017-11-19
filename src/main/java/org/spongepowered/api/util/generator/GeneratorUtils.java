@@ -115,30 +115,6 @@ public final class GeneratorUtils {
         }
     }
 
-    public static Class<?> boxClass(Class<?> clazz) {
-        Preconditions.checkArgument(clazz.isPrimitive(), "Class %s must be primitive", clazz);
-
-        if (clazz.equals(boolean.class)) {
-            return Boolean.class;
-        } else if (clazz.equals(int.class)) {
-            return Integer.class;
-        } else if (clazz.equals(byte.class)) {
-            return Byte.class;
-        } else if (clazz.equals(short.class)) {
-            return Short.class;
-        } else if (clazz.equals(long.class)) {
-            return Long.class;
-        } else if (clazz.equals(float.class)) {
-            return Float.class;
-        } else if (clazz.equals(double.class)) {
-            return Double.class;
-        } else if (clazz.equals(char.class)) {
-            return Character.class;
-        }
-        throw new IllegalStateException("Unreachable");
-    }
-
-
     public static class LocalClassLoader extends ClassLoader {
 
         /**

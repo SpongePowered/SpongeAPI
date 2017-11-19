@@ -35,12 +35,11 @@ import java.lang.annotation.Target;
 /**
  * Filters out events where the annotated parameter does not have the specified
  * data manipulator type.
- *
+ * 
  * <p>The annotated parameter type <strong>MUST</strong> extend
  * {@link DataHolder}.</p>
- *
- * @see DataHolder#get(Class)+
- *
+ * 
+ * @see DataHolder#get(Class)
  */
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
@@ -48,7 +47,7 @@ public @interface Has {
 
     /**
      * Gets the {@link DataManipulator} type to test for.
-     *
+     * 
      * @return The manipulator type
      */
     Class<? extends DataManipulator<?, ?>> value();
@@ -57,7 +56,7 @@ public @interface Has {
      * If true the standard behavior of this filter is reversed and events where
      * the annotated parameter <string>does have</strong> the specified data
      * manipulator type are filtered out.
-     *
+     * 
      * @return If the behavior should be reversed
      */
     boolean inverse() default false;
