@@ -27,6 +27,7 @@ package org.spongepowered.api.block.tileentity.carrier;
 import org.spongepowered.api.item.inventory.Inventory;
 
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * Represents a Chest.
@@ -43,5 +44,12 @@ public interface Chest extends TileEntityCarrier {
      * @return The combined inventory, if available
      */
     Optional<Inventory> getDoubleChestInventory();
+
+    /**
+     * Returns the connected {@link Chest}s, if available.
+     *
+     * @return The connected Chests, if available
+     */
+    Set<Chest> getConnectedChests();
 
 }
