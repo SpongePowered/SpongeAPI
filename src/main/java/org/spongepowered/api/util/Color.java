@@ -77,6 +77,8 @@ public final class Color implements DataSerializable {
 
     public static final Color PINK = ofRgb(0xFF00AA);
 
+    public static final Color ORANGE = ofRgb(0xFFA500);
+
     /**
      * Gets a new {@link Color} based on the hexadecimal value
      * for a combined {@code red}, {@code green}, and {@code blue}
