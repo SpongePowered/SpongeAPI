@@ -34,9 +34,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Fires before the attack target of an {@link Agent} is set.
+ * Fires before the target of an {@link Agent} is set.
  */
-public interface SetAttackTargetEvent extends TargetAgentEvent, Cancellable {
+public interface SetAITargetEvent extends TargetAgentEvent, Cancellable {
 
     /**
      * Gets the {@link Agent}s new target {@link Entity}.
