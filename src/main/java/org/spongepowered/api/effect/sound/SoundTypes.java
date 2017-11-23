@@ -1138,6 +1138,12 @@ public final class SoundTypes {
 
     public static final SoundType UI_BUTTON_CLICK = DummyObjectProvider.createFor(SoundType.class, "UI_BUTTON_CLICK");
 
+    public static final SoundType UI_TOAST_CHALLENGE_COMPLETE = DummyObjectProvider.createFor(SoundType.class, "UI_TOAST_CHALLENGE_COMPLETE");
+
+    public static final SoundType UI_TOAST_IN = DummyObjectProvider.createFor(SoundType.class, "UI_TOAST_IN");
+
+    public static final SoundType UI_TOAST_OUT = DummyObjectProvider.createFor(SoundType.class, "UI_TOAST_OUT");
+
     public static final SoundType WEATHER_RAIN = DummyObjectProvider.createFor(SoundType.class, "WEATHER_RAIN");
 
     public static final SoundType WEATHER_RAIN_ABOVE = DummyObjectProvider.createFor(SoundType.class, "WEATHER_RAIN_ABOVE");
