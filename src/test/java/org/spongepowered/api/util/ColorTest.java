@@ -47,12 +47,6 @@ public class ColorTest {
     }
 
     @Test
-    public void testOfJavaColor() {
-        final Color blue = Color.of(java.awt.Color.WHITE);
-        assertTrue(blue.equals(Color.WHITE));
-    }
-
-    @Test
     public void testOfVector3i() {
         final Vector3i vecDarkAqua = new Vector3i(0, 170, 170);
         final Color darkAqua = Color.of(vecDarkAqua);
@@ -76,10 +70,23 @@ public class ColorTest {
     }
 
     @Test
+    public void testOfJavaColor() {
+        final Color blue = Color.of(java.awt.Color.WHITE);
+        assertTrue(blue.equals(Color.WHITE));
+    }
+
+    @Test
     public void testMixColors() {
         final Color blackAndYellow = Color.ofRgb(128, 128, 43);
         final Color mix = Color.YELLOW.mixWithColors(Color.BLACK);
         assertTrue(blackAndYellow.equals(mix));
+    }
+
+    @Test
+    public void testGetHex() {
+        final int hex = 0x123456;
+        final Color color = Color.ofHex(hex);
+        assertTrue(hex == color.getHex());
     }
 
     @Test
@@ -88,15 +95,20 @@ public class ColorTest {
     }
 
     @Test
-    public void testWithRed() {
-        final Color purple = Color.PURPLE;
-        final Color merged = purple.withRed(0xFF);
-        assertTrue(purple.equals(merged));
+    public void testGetGreen() {
+        assertTrue(0xFF == Color.GREEN.getGreen());
     }
 
     @Test
-    public void testGetGreen() {
-        assertTrue(0xFF == Color.GREEN.getGreen());
+    public void testGetBlue() {
+        assertTrue(0xFF == Color.BLUE.getBlue());
+    }
+
+    @Test
+    public void testWithRed() {
+        final Color purple = Color.LIGHT_PURPLE;
+        final Color merged = purple.withRed(0xFF);
+        assertTrue(purple.equals(merged));
     }
 
     @Test
@@ -107,15 +119,17 @@ public class ColorTest {
     }
 
     @Test
-    public void testGetBlue() {
-        assertTrue(0xFF == Color.BLUE.getBlue());
-    }
-
-    @Test
     public void testWithBlue() {
         final Color darkPurple= Color.DARK_PURPLE;
         final Color merged = darkPurple.withBlue(0x55);
         assertTrue(merged.getHex() == 0xAA0055);
+    }
+
+    @Test
+    public void testAsVector3i() {
+        final Vector3i vec = new Vector3i(7, 42, 101);
+        final Color color = Color.of(vec);
+        assertTrue(vec.equals(color.asVector3i()));
     }
 
     @Test
@@ -128,10 +142,10 @@ public class ColorTest {
     }
 
     @Test
-    public void testGetHex() {
-        final int hex = 0x123456;
-        final Color color = Color.ofHex(hex);
-        assertTrue(hex == color.getHex());
+    public void testEquals() {
+        assertTrue(Color.DARK_GREEN.equals(Color.ofHex(0x00AA00)));
+        assertTrue(!Color.GRAY.equals(Color.YELLOW));
+        assertTrue(Color.YELLOW.hashCode() == Color.ofRgb(255, 255, 85).hashCode());
     }
 
     @Test
@@ -141,12 +155,6 @@ public class ColorTest {
         final DataContainer container = darkGray.toContainer();
         final Color deserialized = builder.build(container).get();
         assertTrue(darkGray.equals(deserialized));
-    }
-
-    @Test
-    public void testEquals() {
-        assertTrue(Color.DARK_GREEN.equals(Color.ofHex(0x00AA00)));
-        assertTrue(!Color.GRAY.equals(Color.YELLOW));
     }
 
 }

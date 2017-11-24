@@ -42,37 +42,41 @@ import static com.google.common.base.Preconditions.checkArgument;
 
 public final class Color implements DataSerializable {
 
-    public static final Color AQUA = Color.ofHex(0x55FFFF);
+    // SORTFIELDS: ON
 
-    public static final Color BLACK = Color.ofHex(0x000000);
+    public static final Color AQUA = ofHex(0x55FFFF);
 
-    public static final Color BLUE = Color.ofHex(0x5555FF);
+    public static final Color BLACK = ofHex(0x000000);
 
-    public static final Color DARK_AQUA = Color.ofHex(0x00AAAA);
+    public static final Color BLUE = ofHex(0x5555FF);
 
-    public static final Color DARK_BLUE = Color.ofHex(0x0000AA);
+    public static final Color DARK_AQUA = ofHex(0x00AAAA);
 
-    public static final Color DARK_GRAY = Color.ofHex(0x555555);
+    public static final Color DARK_BLUE = ofHex(0x0000AA);
 
-    public static final Color DARK_GREEN = Color.ofHex(0x00AA00);
+    public static final Color DARK_GRAY = ofHex(0x555555);
 
-    public static final Color DARK_PURPLE = Color.ofHex(0xAA00AA);
+    public static final Color DARK_GREEN = ofHex(0x00AA00);
 
-    public static final Color DARK_RED = Color.ofHex(0xAA0000);
+    public static final Color DARK_PURPLE = ofHex(0xAA00AA);
 
-    public static final Color GOLD = Color.ofHex(0xFFAA00);
+    public static final Color DARK_RED = ofHex(0xAA0000);
 
-    public static final Color GRAY = Color.ofHex(0xAAAAAA);
+    public static final Color GOLD = ofHex(0xFFAA00);
 
-    public static final Color GREEN = Color.ofHex(0x55FF55);
+    public static final Color GRAY = ofHex(0xAAAAAA);
 
-    public static final Color PURPLE = Color.ofHex(0xFF55FF);
+    public static final Color GREEN = ofHex(0x55FF55);
 
-    public static final Color RED = Color.ofHex(0xFF5555);
+    public static final Color LIGHT_PURPLE = ofHex(0xFF55FF);
 
-    public static final Color YELLOW = Color.ofHex(0xFFFF55);
+    public static final Color RED = ofHex(0xFF5555);
 
-    public static final Color WHITE = Color.ofHex(0xFFFFFF);
+    public static final Color YELLOW = ofHex(0xFFFF55);
+
+    public static final Color WHITE = ofHex(0xFFFFFF);
+
+    // SORTFIELDS: OFF
 
     /**
      * Gets a new {@link Color} based on the hexadecimal value
@@ -83,7 +87,7 @@ public final class Color implements DataSerializable {
      * @return The color object
      */
     public static Color ofHex(int hex) {
-        checkArgument(0 <= hex && hex <= 0xFFFFFF, "hex (" + hex + ") must be in range 0 to 0xFFFFFF");
+        checkArgument(0 <= hex && hex <= 0xFFFFFF, "hex (%s) must be in range 0 to 0xFFFFFF", hex);
         return new Color(hex, (hex >> 16) & 0xFF, (hex >> 8) & 0xFF, hex & 0xFF);
     }
 
@@ -97,7 +101,7 @@ public final class Color implements DataSerializable {
      */
     @Deprecated
     public static Color ofRgb(int hex) {
-        return Color.ofHex(hex);
+        return ofHex(hex);
     }
 
     /**
@@ -105,9 +109,9 @@ public final class Color implements DataSerializable {
      * for a combined {@code red}, {@code green}, and {@code blue}
      * color. Note that colors do not utilize an alpha modifier
      *
-     * @param red   The red value
+     * @param red The red value
      * @param green The green value
-     * @param blue  The blue value
+     * @param blue The blue value
      * @return The color object
      */
     public static Color ofRgb(int red, int green, int blue) {
@@ -118,24 +122,13 @@ public final class Color implements DataSerializable {
     }
 
     /**
-     * Converts the provided {@link java.awt.Color} object into a valid
-     * {@link Color} object to be used throughout the API.
-     *
-     * @param color The java color object
-     * @return The converted color object
-     */
-    public static Color of(java.awt.Color color) {
-        return Color.ofRgb(color.getRed(), color.getGreen(), color.getBlue());
-    }
-
-    /**
      * Converts the provided {@link Vector3i} into a {@link Color} object.
      *
      * @param vector3i The vector of three integers representing color
      * @return The color object
      */
     public static Color of(Vector3i vector3i) {
-        return Color.ofRgb(vector3i.getX(), vector3i.getY(), vector3i.getZ());
+        return ofRgb(vector3i.getX(), vector3i.getY(), vector3i.getZ());
     }
 
     /**
@@ -146,7 +139,7 @@ public final class Color implements DataSerializable {
      */
     @Deprecated
     public static Color of(Vector3f vector3f) {
-        return Color.of(vector3f.round().toInt());
+        return of(vector3f.round().toInt());
     }
 
     /**
@@ -158,7 +151,18 @@ public final class Color implements DataSerializable {
      */
     @Deprecated
     public static Color of(Vector3d vector3d) {
-        return Color.of(vector3d.round().toInt());
+        return of(vector3d.round().toInt());
+    }
+
+    /**
+     * Converts the provided {@link java.awt.Color} object into a valid
+     * {@link Color} object to be used throughout the API.
+     *
+     * @param color The java color object
+     * @return The converted color object
+     */
+    public static Color of(java.awt.Color color) {
+        return ofRgb(color.getRed(), color.getGreen(), color.getBlue());
     }
 
     //TODO: Use same formula for mixing a dyeing? https://minecraft.gamepedia.com/Dye#Dyeing_armor
@@ -232,6 +236,17 @@ public final class Color implements DataSerializable {
     }
 
     /**
+     * Gets the {@code red green blue} representation of this color in
+     * a "hexadecimal" format.
+     *
+     * @return The current color value in a hexadecimal format
+     */
+    @Deprecated
+    public int getRgb() {
+        return this.hex;
+    }
+
+    /**
      * Gets the {@code red} value of this {@link Color}.
      *
      * @return The red value
@@ -241,36 +256,12 @@ public final class Color implements DataSerializable {
     }
 
     /**
-     * Creates a new {@link Color} by using the provided
-     * {@code red} color, while retaining the current {@link #getGreen()}
-     * and {@link #getBlue()} values.
-     *
-     * @param red The red value to use
-     * @return The new color object
-     */
-    public Color withRed(int red) {
-        return Color.ofRgb(red, this.getGreen(), this.getBlue());
-    }
-
-    /**
      * Gets the {@code red} value of this {@link Color}.
      *
      * @return The red value
      */
     public int getGreen() {
         return this.green;
-    }
-
-    /**
-     * Creates a new {@link Color} by using the provided
-     * {@code green} color, while retaining the current {@link #getRed()}
-     * and {@link #getBlue()} values.
-     *
-     * @param green The green value to use
-     * @return The new color object
-     */
-    public Color withGreen(int green) {
-        return Color.ofRgb(this.getRed(), green, this.getBlue());
     }
 
     /**
@@ -284,6 +275,30 @@ public final class Color implements DataSerializable {
 
     /**
      * Creates a new {@link Color} by using the provided
+     * {@code red} color, while retaining the current {@link #getGreen()}
+     * and {@link #getBlue()} values.
+     *
+     * @param red The red value to use
+     * @return The new color object
+     */
+    public Color withRed(int red) {
+        return ofRgb(red, this.green, this.blue);
+    }
+
+    /**
+     * Creates a new {@link Color} by using the provided
+     * {@code green} color, while retaining the current {@link #getRed()}
+     * and {@link #getBlue()} values.
+     *
+     * @param green The green value to use
+     * @return The new color object
+     */
+    public Color withGreen(int green) {
+        return ofRgb(this.red, green, this.blue);
+    }
+
+    /**
+     * Creates a new {@link Color} by using the provided
      * {@code blue} color, while retaining the current {@link #getGreen()}
      * and {@link #getRed()} ()} values.
      *
@@ -291,7 +306,17 @@ public final class Color implements DataSerializable {
      * @return The new color object
      */
     public Color withBlue(int blue) {
-        return ofRgb(getRed(), getGreen(), blue);
+        return ofRgb(this.blue, this.green, blue);
+    }
+
+    /**
+     * Converts this {@link Color} into a {@link Vector3i} object. The x, y, and
+     * z components refer to red, green, and blue values respectively.
+     *
+     * @return The vector rgb color
+     */
+    public Vector3i asVector3i() {
+        return new Vector3i(this.red, this.green, this.blue);
     }
 
     /**
@@ -302,17 +327,6 @@ public final class Color implements DataSerializable {
      */
     public java.awt.Color asJavaColor() {
         return new java.awt.Color(hex);
-    }
-
-    /**
-     * Gets the {@code red green blue} representation of this color in
-     * a "hexadecimal" format.
-     *
-     * @return The current color value in a hexadecimal format
-     */
-    @Deprecated
-    public int getRgb() {
-        return this.hex;
     }
 
     /**
@@ -397,7 +411,7 @@ public final class Color implements DataSerializable {
                 final int red = container.getInt(Queries.COLOR_RED).get();
                 final int green = container.getInt(Queries.COLOR_GREEN).get();
                 final int blue = container.getInt(Queries.COLOR_BLUE).get();
-                return Optional.of(Color.ofRgb(red, green, blue));
+                return Optional.of(ofRgb(red, green, blue));
             } catch (Exception e) {
                 throw new InvalidDataException("Could not parse some data.", e);
             }
