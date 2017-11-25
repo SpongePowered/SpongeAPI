@@ -56,20 +56,20 @@ public abstract class AbstractModifierEvent<T extends ModifierFunction<M>, M> ex
     protected ImmutableList<T> init(double originalValue, List<T> originalFunctions) {
         final ImmutableList.Builder<Tuple<M, Double>> modifierMapBuilder = ImmutableList.builder();
         final ImmutableList.Builder<T> functionListBuilder = ImmutableList.builder();
-        final ImmutableMap.Builder<M, Double> mapBuilder = ImmutableMap.builder();
+        final Map<M, Double> mapBuilder = new LinkedHashMap<>();
         double finalDamage = originalValue;
         for (T tuple : originalFunctions) {
             this.modifierFunctions.add(convertTuple(tuple.getModifier(), tuple.getFunction()));
             double tempDamage = checkNotNull(tuple.getFunction().applyAsDouble(finalDamage));
             finalDamage += tempDamage;
             modifierMapBuilder.add(new Tuple<>(tuple.getModifier(), tempDamage));
-            mapBuilder.put(tuple.getModifier(), tempDamage);
+            mapBuilder.merge(tuple.getModifier(), tempDamage, Double::sum);
             this.modifiers.put(tuple.getModifier(), tempDamage);
             functionListBuilder.add(convertTuple(tuple.getModifier(), tuple.getFunction()));
         }
         this.originalFinalAmount = finalDamage;
         this.originalModifiers = modifierMapBuilder.build();
-        this.originalModifierMap = mapBuilder.build();
+        this.originalModifierMap = ImmutableMap.copyOf(mapBuilder);
         return functionListBuilder.build();
     }
 
