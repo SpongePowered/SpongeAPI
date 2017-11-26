@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.item.inventory.crafting;
 
-import org.spongepowered.api.item.inventory.type.GridInventory;
+import org.spongepowered.api.item.inventory.type.OrderedInventory;
 import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
 import org.spongepowered.api.world.World;
 
@@ -34,7 +34,7 @@ import java.util.Optional;
  * A CraftingInventory represents the inventory of something that can craft
  * items.
  */
-public interface CraftingInventory extends GridInventory {
+public interface CraftingInventory extends OrderedInventory {
 
     /**
      * Gets the crafting matrix of this CraftingInventory.
