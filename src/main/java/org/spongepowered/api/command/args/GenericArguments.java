@@ -2190,7 +2190,11 @@ public final class GenericArguments {
                         s = s.replace("D", "DT");
                     }
                 } else {
-                    s = "T" + s;
+                    if (s.startsWith("P")) {
+                        s = "PT" + s.substring(1);
+                    } else {
+                        s = "T" + s;
+                    }
                 }
             }
             if (!s.startsWith("P")) {
