@@ -42,41 +42,62 @@ import static com.google.common.base.Preconditions.checkArgument;
 
 public final class Color implements DataSerializable {
 
-    // SORTFIELDS: ON
-
-    public static final Color AQUA = ofHex(0x55FFFF);
-
-    public static final Color BLACK = ofHex(0x000000);
-
-    public static final Color BLUE = ofHex(0x5555FF);
-
-    public static final Color DARK_AQUA = ofHex(0x00AAAA);
-
-    public static final Color DARK_BLUE = ofHex(0x0000AA);
-
-    public static final Color DARK_GRAY = ofHex(0x555555);
-
-    public static final Color DARK_GREEN = ofHex(0x00AA00);
-
-    public static final Color DARK_PURPLE = ofHex(0xAA00AA);
-
-    public static final Color DARK_RED = ofHex(0xAA0000);
-
-    public static final Color GOLD = ofHex(0xFFAA00);
-
-    public static final Color GRAY = ofHex(0xAAAAAA);
-
-    public static final Color GREEN = ofHex(0x55FF55);
-
-    public static final Color LIGHT_PURPLE = ofHex(0xFF55FF);
-
-    public static final Color RED = ofHex(0xFF5555);
-
-    public static final Color YELLOW = ofHex(0xFFFF55);
+    //16 HTML web colors and CSS orange
 
     public static final Color WHITE = ofHex(0xFFFFFF);
 
-    // SORTFIELDS: OFF
+    public static final Color SILVER = ofHex(0xC0C0C0);
+
+    public static final Color GRAY = ofHex(0x808080);
+
+    public static final Color BLACK = ofHex(0x000000);
+
+    public static final Color RED = ofHex(0xFF0000);
+
+    public static final Color MAROON = ofHex(0x800000);
+
+    public static final Color ORANGE = ofHex(0xFFA500);
+
+    public static final Color YELLOW = ofHex(0xFFFF00);
+
+    public static final Color OLIVE = ofHex(0x808000);
+
+    public static final Color LIME = ofHex(0x00FF00);
+
+    public static final Color GREEN = ofHex(0x008000);
+
+    public static final Color AQUA = ofHex(0x00FFFF);
+
+    public static final Color TEAL = ofHex(0x008080);
+
+    public static final Color BLUE = ofHex(0x0000FF);
+
+    public static final Color NAVY = ofHex(0x000080);
+
+    public static final Color FUCHSIA = ofHex(0xFF00FF);
+
+    public static final Color PURPLE = ofHex(0x800080);
+
+    //Old purple = 0xAA00FF, new purple = 0x800080
+    //public static final Color OLD_PURPLE = ofHex(0xAA00FF);
+
+    @Deprecated
+    public static final Color MAGENTA = ofHex(0xFF00FF);
+
+    @Deprecated
+    public static final Color DARK_CYAN = ofHex(0x008B8B);
+
+    @Deprecated
+    public static final Color DARK_GREEN = ofHex(0x006400);
+
+    @Deprecated
+    public static final Color DARK_MAGENTA = ofHex(0x8B008B);
+
+    @Deprecated
+    public static final Color CYAN = ofHex(0x00FFFF);
+
+    @Deprecated
+    public static final Color PINK = ofHex(0xFF00AA);
 
     /**
      * Gets a new {@link Color} based on the hexadecimal value
@@ -87,7 +108,7 @@ public final class Color implements DataSerializable {
      * @return The color object
      */
     public static Color ofHex(int hex) {
-        checkArgument(0 <= hex && hex <= 0xFFFFFF, "hex (%s) must be in range 0 to 0xFFFFFF", hex);
+        checkArgument(0 <= hex && hex <= 0xFFFFFF, "hex value [%s] must be in range 0 to 0xFFFFFF (16777215)", hex);
         return new Color(hex, (hex >> 16) & 0xFF, (hex >> 8) & 0xFF, hex & 0xFF);
     }
 
@@ -115,9 +136,9 @@ public final class Color implements DataSerializable {
      * @return The color object
      */
     public static Color ofRgb(int red, int green, int blue) {
-        checkArgument(0 <= red && red <= 0xFF, "red (%s) must be in range 0 to 255", red);
-        checkArgument(0 <= green && green <= 0xFF, "green (%s) must be in range 0 to 255", green);
-        checkArgument(0 <= blue && blue <= 0xFF, "blue (%s) must be in range 0 to 255", blue);
+        checkArgument(0 <= red && red <= 0xFF, "red value %s (%s) must be in range 0 to 0xFF (255)", Integer.toHexString(red), red);
+        checkArgument(0 <= green && green <= 0xFF, "green value %s (%s) must be in range 0 to 0xFF (255)", Integer.toHexString(green), green);
+        checkArgument(0 <= blue && blue <= 0xFF, "blue value %s (%) must be in range 0 to 0xFF (255)", Integer.toHexString(blue), blue);
         return new Color((red << 16) | (green << 8) | blue, red, green, blue);
     }
 

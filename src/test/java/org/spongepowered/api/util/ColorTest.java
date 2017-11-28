@@ -36,48 +36,49 @@ public class ColorTest {
 
     @Test
     public void testOfHex() {
-        final Color gray = Color.ofHex(0xAAAAAA);
-        assertTrue(Color.GRAY.equals(gray));
+        final Color orange = Color.ofHex(0xFFA500);
+        assertTrue(Color.ORANGE.equals(orange));
     }
 
     @Test
     public void testOfRgb() {
-        final Color gold = Color.ofRgb(255, 170, 0);
-        assertTrue(Color.GOLD.equals(gold));
+        final Color silver = Color.ofRgb(192, 192, 192);
+        assertTrue(Color.SILVER.equals(silver));
     }
 
     @Test
     public void testOfVector3i() {
-        final Vector3i vecDarkAqua = new Vector3i(0, 170, 170);
-        final Color darkAqua = Color.of(vecDarkAqua);
-        assertTrue(Color.DARK_AQUA.equals(darkAqua));
+        final Vector3i vecTeal = new Vector3i(0, 128, 128);
+        final Color teal = Color.of(vecTeal);
+        assertTrue(Color.TEAL.equals(teal));
     }
 
     @Test
     @Deprecated
     public void testOfVector3f() {
-        final Vector3f vecDarkBlue = new Vector3f(0, 0.01, 170 + 0.25);
-        final Color DarkBlue = Color.of(vecDarkBlue);
-        assertTrue(Color.DARK_BLUE.equals(DarkBlue));
+        final Vector3f vecGreen = new Vector3f(0.0, 128.4, -0.1);
+        final Color green = Color.of(vecGreen);
+        assertTrue(Color.GREEN.equals(green));
     }
 
     @Test
     @Deprecated
     public void testOfVector3d() {
-        final Vector3d vecDarkRed = new Vector3d(170.4, -0.392, 0.117);
-        final Color darkRed = Color.of(vecDarkRed);
-        assertTrue(Color.DARK_RED.equals(darkRed));
+        final Vector3d vecPurple = new Vector3d(127 + 4/7D, 0.414, 128.08);
+        final Color purple = Color.of(vecPurple);
+        System.out.println(purple.toString());
+        assertTrue(Color.PURPLE.equals(purple));
     }
 
     @Test
     public void testOfJavaColor() {
-        final Color blue = Color.of(java.awt.Color.WHITE);
-        assertTrue(blue.equals(Color.WHITE));
+        final Color white = Color.of(java.awt.Color.WHITE);
+        assertTrue(Color.WHITE.equals(white));
     }
 
     @Test
     public void testMixColors() {
-        final Color blackAndYellow = Color.ofRgb(128, 128, 43);
+        final Color blackAndYellow = Color.ofRgb(128, 128, 0);
         final Color mix = Color.YELLOW.mixWithColors(Color.BLACK);
         assertTrue(blackAndYellow.equals(mix));
     }
@@ -96,33 +97,33 @@ public class ColorTest {
 
     @Test
     public void testGetGreen() {
-        assertTrue(0xFF == Color.GREEN.getGreen());
+        assertTrue(0x00 == Color.FUCHSIA.getGreen());
     }
 
     @Test
     public void testGetBlue() {
-        assertTrue(0xFF == Color.BLUE.getBlue());
+        assertTrue(0x80 == Color.NAVY.getBlue());
     }
 
     @Test
     public void testWithRed() {
-        final Color purple = Color.LIGHT_PURPLE;
-        final Color merged = purple.withRed(0xFF);
-        assertTrue(purple.equals(merged));
+        final int red = 0xFF;
+        final Color withRed = Color.GRAY.withRed(red);
+        assertTrue(red == withRed.getRed());
     }
 
     @Test
     public void testWithGreen() {
-        final Color purple = Color.AQUA;
-        final Color merged = purple.withGreen(0x00);
-        assertTrue(merged.getHex() == 0x5500FF);
+        final int green = 0x00;
+        final Color withGreen = Color.OLIVE.withGreen(green);
+        assertTrue(green == withGreen.getGreen());
     }
 
     @Test
     public void testWithBlue() {
-        final Color darkPurple= Color.DARK_PURPLE;
-        final Color merged = darkPurple.withBlue(0x55);
-        assertTrue(merged.getHex() == 0xAA0055);
+        final int blue = 0x80;
+        final Color withBlue = Color.MAROON.withBlue(blue);
+        assertTrue(blue == withBlue.getBlue());
     }
 
     @Test
@@ -135,26 +136,23 @@ public class ColorTest {
     @Test
     public void testAsJavaColor() {
         final int color = 0xFF00FF;
+        final java.awt.Color javaColor = new java.awt.Color(color);
         final Color apiColor = Color.ofHex(color);
-        final java.awt.Color javaColor = apiColor.asJavaColor();
-        final java.awt.Color testColor = new java.awt.Color(color);
-        assertTrue(javaColor.equals(testColor));
+        assertTrue(javaColor.equals(apiColor.asJavaColor()));
     }
 
     @Test
     public void testEquals() {
-        assertTrue(Color.DARK_GREEN.equals(Color.ofHex(0x00AA00)));
-        assertTrue(!Color.GRAY.equals(Color.YELLOW));
-        assertTrue(Color.YELLOW.hashCode() == Color.ofRgb(255, 255, 85).hashCode());
+        assertTrue(Color.LIME.equals(Color.ofHex(0x00FF00)));
+        assertTrue(Color.BLUE.hashCode() == Color.ofRgb(0, 0, 255).hashCode());
     }
 
     @Test
     public void testToContainer() {
-        final Color darkGray = Color.DARK_GRAY;
-        final Color.Builder builder = new Color.Builder();
-        final DataContainer container = darkGray.toContainer();
-        final Color deserialized = builder.build(container).get();
-        assertTrue(darkGray.equals(deserialized));
+        final Color aqua = Color.AQUA;
+        final DataContainer container = aqua.toContainer();
+        final Color deserialized = new Color.Builder().build(container).get();
+        assertTrue(aqua.equals(deserialized));
     }
 
 }

@@ -45,6 +45,13 @@ public interface TextColor extends CatalogType, TextElement {
      */
     Color getColor();
 
+    /**
+     * Returns the background {@link Color} for this {@link TextColor}.
+     *
+     * @return the RGB background color of this text color
+     */
+    Color getBackgroundColor();
+
     @Override
     default void applyTo(Text.Builder builder) {
         builder.color(this);

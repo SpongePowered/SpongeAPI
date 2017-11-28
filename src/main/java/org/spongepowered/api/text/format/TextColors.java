@@ -33,9 +33,6 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
  */
 public final class TextColors {
 
-    private TextColors() {
-    }
-
     /**
      * Represents a base color that is used as default if no color is specified.
      * This will result in either the default color of the receiver or inherit
@@ -43,21 +40,24 @@ public final class TextColors {
      */
     public static final TextColor NONE = new TextColor() {
 
-        private final Color color = Color.BLACK;
+        @Override
+        public String getId() {
+            return "NONE";
+        }
 
         @Override
         public String getName() {
-            return "NONE";
+            return getId();
         }
 
         @Override
         public Color getColor() {
-            return this.color;
+            return Color.BLACK;
         }
 
         @Override
-        public String getId() {
-            return "NONE";
+        public Color getBackgroundColor() {
+            return Color.BLACK;
         }
 
         @Override
@@ -108,5 +108,7 @@ public final class TextColors {
     public static final TextColor YELLOW = DummyObjectProvider.createFor(TextColor.class, "YELLOW");
 
     // SORTFIELDS:OFF
+
+    private TextColors() {}
 
 }
