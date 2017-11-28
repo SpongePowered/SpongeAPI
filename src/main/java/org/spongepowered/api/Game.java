@@ -25,7 +25,6 @@
 package org.spongepowered.api;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
-import org.spongepowered.api.asset.AssetManager;
 import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.data.persistence.DataBuilder;
@@ -161,13 +160,6 @@ public interface Game extends RegistryHolder {
     EventManager eventManager();
 
     /**
-     * Gets the {@link AssetManager}.
-     *
-     * @return The asset manager
-     */
-    AssetManager assetManager();
-
-    /**
      * Gets the {@link ConfigManager} used to load and manage configuration files
      * for plugins.
      *
@@ -197,7 +189,7 @@ public interface Game extends RegistryHolder {
      * @return The {@link SqlManager} instance.
      */
     SqlManager sqlManager();
-    
+
     /**
      * Gets the {@link ServiceProvider.GameScoped}, used to provide Sponge
      * services that plugins may provide. Services provided here are

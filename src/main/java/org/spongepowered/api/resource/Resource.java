@@ -22,38 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.asset;
+package org.spongepowered.api.resource;
 
-import org.spongepowered.plugin.PluginContainer;
+import org.spongepowered.api.util.annotation.DoNotStore;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Optional;
 
 /**
- * The AssetManager offers a convenient way to easily retrieve resources from
- * Sponge {@link PluginContainer plugins}. The asset manager will attempt to find the
- * asset of the specified name at: <code>assets/&lt;plugin_id&gt;</code>
+ * A resource can represent any kind of loaded data. It can be a file on the
+ * filesystem, a network location, or even generated at runtime. Use
+ * {@link #inputStream()} to retrieve the data.
  */
-public interface AssetManager {
+@DoNotStore
+public interface Resource extends AutoCloseable {
 
     /**
-     * Returns the {@link Asset} of the specified name for the specified
-     * {@link PluginContainer plugin} instance.
-     *
-     * @param plugin Plugin instance
-     * @param name Name of resource to retrieve
-     * @return Asset if present, empty otherwise
+     * @return The {@link ResourcePath path}
      */
-    Optional<Asset> asset(PluginContainer plugin, String name);
+    ResourcePath path();
 
     /**
-     * Returns the {@link Asset} of the specified name within the domain of the
-     * implementation. This method will typically call
-     * {@link #asset(PluginContainer, String)} using a dummy
-     * {@link PluginContainer} for the SpongeAPI implementation.
+     * Returns the {@link InputStream} of this resource. Multiple calls to this
+     * method will not return a new object. To get a new object, get a new
+     * resource.
      *
-     * @param name Name of resource to retrieve
-     * @return Asset if present, empty otherwise
+     * @return The input stream
      */
-    Optional<Asset> asset(String name);
+    InputStream inputStream();
+
+    @Override
+    void close() throws IOException;
 
 }

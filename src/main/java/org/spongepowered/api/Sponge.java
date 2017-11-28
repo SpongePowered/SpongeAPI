@@ -26,7 +26,6 @@ package org.spongepowered.api;
 
 import com.google.inject.Inject;
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.asset.AssetManager;
 import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.event.EventManager;
@@ -94,15 +93,6 @@ public final class Sponge {
      */
     public static EventManager eventManager() {
         return Sponge.game().eventManager();
-    }
-
-    /**
-     * Gets the {@link AssetManager} instance.
-     *
-     * @return The asset manager instance
-     */
-    public static AssetManager assetManager() {
-        return Sponge.game().assetManager();
     }
 
     /**

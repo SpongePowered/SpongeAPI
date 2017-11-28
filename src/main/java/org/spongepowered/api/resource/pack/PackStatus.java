@@ -22,5 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
-package org.spongepowered.api.asset;
+package org.spongepowered.api.resource.pack;
+
+import org.spongepowered.api.Sponge;
+
+public interface PackStatus {
+
+    static PackStatus compatible() {
+        return Sponge.game().factoryProvider().provide(Factory.class).compatible();
+    }
+
+    static PackStatus newer() {
+        return Sponge.game().factoryProvider().provide(Factory.class).newer();
+    }
+
+    static PackStatus older() {
+        return Sponge.game().factoryProvider().provide(Factory.class).older();
+    }
+
+    interface Factory {
+
+        PackStatus compatible();
+
+        PackStatus newer();
+
+        PackStatus older();
+    }
+}
