@@ -34,6 +34,7 @@ import java.lang.annotation.Target;
 /**
  * Provides an injection for {@link Asset}s in plugins.
  */
+@Deprecated
 @BindingAnnotation
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD, ElementType.PARAMETER})

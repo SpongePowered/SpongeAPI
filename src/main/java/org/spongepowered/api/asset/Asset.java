@@ -41,6 +41,7 @@ import java.util.List;
 /**
  * Represents an {@link Asset} within Sponge that belongs to a {@link Plugin}.
  */
+@Deprecated
 public interface Asset {
 
     /**
