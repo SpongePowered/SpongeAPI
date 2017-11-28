@@ -35,6 +35,7 @@ import org.spongepowered.api.data.property.store.PropertyStore;
 import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.network.ChannelRegistrar;
+import org.spongepowered.api.resource.ResourceManager;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.scheduler.Scheduler;
 import org.spongepowered.api.service.ServiceManager;
@@ -168,8 +169,18 @@ public interface Game {
      *
      * @return The asset manager
      */
+    @Deprecated
     default AssetManager getAssetManager() {
         return Sponge.getAssetManager();
+    }
+
+    /**
+     * Gets the {@link ResourceManager}.
+     *
+     * @return The resource manager
+     */
+    default ResourceManager getResourceManager() {
+        return Sponge.getResourceManager();
     }
 
     /**

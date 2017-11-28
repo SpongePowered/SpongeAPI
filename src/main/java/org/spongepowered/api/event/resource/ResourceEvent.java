@@ -22,30 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.asset;
+package org.spongepowered.api.event.resource;
 
-import com.google.inject.BindingAnnotation;
+import org.spongepowered.api.event.Event;
+import org.spongepowered.api.resource.ResourceManager;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
-/**
- * Provides an injection for {@link Asset}s in plugins.
- */
-@Deprecated
-@BindingAnnotation
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.FIELD, ElementType.PARAMETER})
-public @interface AssetId {
+public interface ResourceEvent extends Event {
 
     /**
-     * The path to the {@link Asset} in the asset folder of the plugin.
+     * Gets the {@link ResourceManager} which caused this event.
      *
-     * @return The path to the asset
-     * @see AssetManager#getAsset(String)
+     * @return The resource manager
      */
-    String value();
+    ResourceManager getResourceManager();
 
 }

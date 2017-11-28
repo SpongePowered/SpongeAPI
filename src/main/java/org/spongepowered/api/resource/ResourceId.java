@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.asset;
+package org.spongepowered.api.resource;
 
 import com.google.inject.BindingAnnotation;
 
@@ -32,20 +32,31 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Provides an injection for {@link Asset}s in plugins.
+ * Annotation for injecting resources into a plugin instance.
+ *
+ * The type this should be used on is {@code Optional<Resource>}. When applied
+ * to a method, the {@link Resource} will be automatically updated when the
+ * {@link ResourceManager} is reloaded.
+ *
+ * @see ResourceManager#getResource(ResourcePath)
  */
-@Deprecated
 @BindingAnnotation
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.FIELD, ElementType.PARAMETER})
-public @interface AssetId {
+@Target({ElementType.PARAMETER, ElementType.FIELD})
+public @interface ResourceId {
 
     /**
-     * The path to the {@link Asset} in the asset folder of the plugin.
+     * The namespace of the {@link Resource}. If not provided, it will default
+     * to the owner's plugin id.
      *
-     * @return The path to the asset
-     * @see AssetManager#getAsset(String)
+     * @see ResourcePath#getNamespace()
+     */
+    String namespace() default "";
+
+    /**
+     * The path to the {@link Resource}.
+     *
+     * @see ResourcePath#getPath()
      */
     String value();
-
 }

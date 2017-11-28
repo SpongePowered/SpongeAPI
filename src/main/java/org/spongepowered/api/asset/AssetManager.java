@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.asset;
 
+import org.spongepowered.api.resource.ResourceManager;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.plugin.PluginContainer;
 
@@ -33,7 +34,15 @@ import java.util.Optional;
  * The AssetManager offers a convenient way to easily retrieve resources from
  * Sponge {@link Plugin}s. The asset manager will attempt to find the
  * asset of the specified name at: <code>assets/&lt;plugin_id&gt;</code>
+ *
+ * @deprecated The asset manager was unable to provide assets which are not on
+ * the classpath. Additionally, it was limited to providing the URL to an
+ * asset, which might not have been useful in some situations.
+ *
+ * <p>Use the more powerful {@link ResourceManager} instead. It allows you to
+ * add resources from local files as well as on-the-fly generation.</p>
  */
+@Deprecated
 public interface AssetManager {
 
     /**

@@ -22,30 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.asset;
+package org.spongepowered.api.event.resource;
 
-import com.google.inject.BindingAnnotation;
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import org.spongepowered.api.resource.Resource;
+import org.spongepowered.api.resource.ResourceManager;
 
 /**
- * Provides an injection for {@link Asset}s in plugins.
+ * Base interface for resource reloading events.
  */
-@Deprecated
-@BindingAnnotation
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.FIELD, ElementType.PARAMETER})
-public @interface AssetId {
+public interface ResourceReloadEvent extends ResourceEvent {
 
     /**
-     * The path to the {@link Asset} in the asset folder of the plugin.
-     *
-     * @return The path to the asset
-     * @see AssetManager#getAsset(String)
+     * Called before the {@link ResourceManager} is reloaded. At this point,
+     * the {@link ResourceManager#getActivePacks() active packs} can be added
+     * or removed from.
      */
-    String value();
+    interface Pre extends ResourceReloadEvent {
 
+    }
+
+    /**
+     * Called after the {@link ResourceManager} is reloaded. When a
+     * {@link Resource} is reloaded, this event should be used to obtain the new
+     * file.
+     */
+    interface Post extends ResourceReloadEvent {
+    }
 }
