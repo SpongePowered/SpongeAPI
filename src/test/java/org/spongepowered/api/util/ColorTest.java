@@ -36,13 +36,13 @@ public class ColorTest {
 
     @Test
     public void testOfHex() {
-        final Color orange = Color.ofHex(0xFFA500);
+        final Color orange = Color.of(0xFFA500);
         assertTrue(Color.ORANGE.equals(orange));
     }
 
     @Test
     public void testOfRgb() {
-        final Color silver = Color.ofRgb(192, 192, 192);
+        final Color silver = Color.of(192, 192, 192);
         assertTrue(Color.SILVER.equals(silver));
     }
 
@@ -78,7 +78,7 @@ public class ColorTest {
 
     @Test
     public void testMixColors() {
-        final Color blackAndYellow = Color.ofRgb(128, 128, 0);
+        final Color blackAndYellow = Color.of(128, 128, 0);
         final Color mix = Color.YELLOW.mixWithColors(Color.BLACK);
         assertTrue(blackAndYellow.equals(mix));
     }
@@ -86,8 +86,8 @@ public class ColorTest {
     @Test
     public void testGetHex() {
         final int hex = 0x123456;
-        final Color color = Color.ofHex(hex);
-        assertTrue(hex == color.getHex());
+        final Color color = Color.of(hex);
+        assertTrue(hex == color.getRgb());
     }
 
     @Test
@@ -137,14 +137,14 @@ public class ColorTest {
     public void testAsJavaColor() {
         final int color = 0xFF00FF;
         final java.awt.Color javaColor = new java.awt.Color(color);
-        final Color apiColor = Color.ofHex(color);
+        final Color apiColor = Color.of(color);
         assertTrue(javaColor.equals(apiColor.asJavaColor()));
     }
 
     @Test
     public void testEquals() {
-        assertTrue(Color.LIME.equals(Color.ofHex(0x00FF00)));
-        assertTrue(Color.BLUE.hashCode() == Color.ofRgb(0, 0, 255).hashCode());
+        assertTrue(Color.LIME.equals(Color.of(0x00FF00)));
+        assertTrue(Color.BLUE.hashCode() == Color.of(0, 0, 255).hashCode());
     }
 
     @Test
