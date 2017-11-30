@@ -38,6 +38,7 @@ dependencies {
     compile 'com.google.errorprone:error_prone_annotations:2.0.15'
     compile 'com.google.code.gson:gson:2.8.0'
     compile 'org.apache.commons:commons-lang3:3.5'
+    compile 'it.unimi.dsi:fastutil:7.1.0'
     // Only included in server
     compile 'com.google.code.findbugs:jsr305:3.0.1'
 
