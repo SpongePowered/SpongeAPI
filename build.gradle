@@ -182,7 +182,7 @@ sortClassFields {
     add 'main', 'org.spongepowered.api.event.cause.entity.spawn.SpawnTypes'
     add 'main', 'org.spongepowered.api.event.cause.entity.teleport.TeleportTypes'
     add 'main', 'org.spongepowered.api.extra.fluid.FluidTypes'
-    add 'main', 'org.spongepowered.api.item.Enchantments'
+    add 'main', 'org.spongepowered.api.item.enchantment.EnchantmentTypes'
     add 'main', 'org.spongepowered.api.item.FireworkShapes'
     add 'main', 'org.spongepowered.api.item.ItemTypes'
     add 'main', 'org.spongepowered.api.item.inventory.equipment.EquipmentTypes'

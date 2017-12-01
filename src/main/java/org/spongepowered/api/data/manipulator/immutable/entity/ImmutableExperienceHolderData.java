@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.ExperienceHolderData;
-import org.spongepowered.api.data.meta.ItemEnchantment;
+import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -35,8 +35,8 @@ import org.spongepowered.api.item.inventory.ItemStack;
 /**
  * An {@link ImmutableDataManipulator} handling the "experience" held by a
  * {@link DataHolder}. Usually the mechanics of "experience" is that it is
- * accumilated by a {@link Humanoid} and can be spent on creating
- * {@link ItemEnchantment}s or renaming {@link ItemStack}s.
+ * accumulated by a {@link Humanoid} and can be spent on creating
+ * {@link Enchantment}s or renaming {@link ItemStack}s.
  */
 public interface ImmutableExperienceHolderData extends ImmutableDataManipulator<ImmutableExperienceHolderData, ExperienceHolderData> {
 

@@ -35,12 +35,12 @@ import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.meta.ItemEnchantment;
+import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.data.value.mutable.SetValue;
 import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.item.Enchantment;
+import org.spongepowered.api.item.enchantment.EnchantmentType;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.util.Tuple;
 import org.spongepowered.api.util.weighted.VariableAmount;
@@ -318,7 +318,7 @@ public final class ItemStackBuilderPopulators {
      * elements for a particular key'ed {@link ListValue}.
      *
      * <p>An example usage of this can be for generating a randomized list
-     * of {@link ItemEnchantment}s with varying enchantment levels.</p>
+     * of {@link Enchantment}s with varying enchantment levels.</p>
      *
      * <p>Note that custom data is not supported through this method, use
      * {@link #data(Collection)} or any variant thereof for applying custom data.</p>
@@ -545,76 +545,76 @@ public final class ItemStackBuilderPopulators {
 
     /**
      * Creates a new {@link BiConsumer} that takes the provided
-     * {@link Enchantment} and applies it to the generated {@link ItemStack}.
-     * The enchantment level is varied based on vanilla mechanics.
+     * {@link EnchantmentType} and applies it to the generated {@link ItemStack}.
+     * The enchantmentType level is varied based on vanilla mechanics.
      *
-     * @param enchantment The singular enchantment to add
+     * @param enchantmentType The singular enchantmentType to add
      * @return The new biconsumer to apply to an itemstack builder
      */
-    public static BiConsumer<ItemStack.Builder, Random> enchantment(Enchantment enchantment) {
-        return enchantment(fixed(1), enchantment);
+    public static BiConsumer<ItemStack.Builder, Random> enchantment(EnchantmentType enchantmentType) {
+        return enchantment(fixed(1), enchantmentType);
     }
 
     /**
      * Creates a new {@link BiConsumer} that takes the provided
-     * {@link Enchantment} and applies it to the generated {@link ItemStack}.
-     * The enchantment level is defined by the variable amount provided.
+     * {@link EnchantmentType} and applies it to the generated {@link ItemStack}.
+     * The enchantmentType level is defined by the variable amount provided.
      *
-     * @param level The variance in enchantment level
-     * @param enchantment The enchantment to add
+     * @param level The variance in enchantmentType level
+     * @param enchantmentType The enchantmentType to add
      * @return The new biconsumer to apply to an itemstack builder
      */
-    public static BiConsumer<ItemStack.Builder, Random> enchantment(VariableAmount level, Enchantment enchantment) {
+    public static BiConsumer<ItemStack.Builder, Random> enchantment(VariableAmount level, EnchantmentType enchantmentType) {
         checkNotNull(level, "VariableAmount cannot be null!");
-        checkNotNull(enchantment, "Enchantment cannot be null!");
-        return enchantments(fixed(1), ImmutableList.of(new Tuple<>(enchantment, level)));
+        checkNotNull(enchantmentType, "EnchantmentType cannot be null!");
+        return enchantments(fixed(1), ImmutableList.of(new Tuple<>(enchantmentType, level)));
     }
 
     /**
      * Creates a new {@link BiConsumer} that takes the provided
-     * {@link Collection} of {@link Enchantment}s and applies a
-     * singular {@link Enchantment} with varying levels to the generated
+     * {@link Collection} of {@link EnchantmentType}s and applies a
+     * singular {@link EnchantmentType} with varying levels to the generated
      * {@link ItemStack}.
      *
-     * @param enchantments The enchantment pool to choose from
+     * @param enchantmentTypes The enchantment pool to choose from
      * @return The new biconsumer to apply to an itemstack builder
      */
-    public static BiConsumer<ItemStack.Builder, Random> enchantmentsWithVanillaLevelVariance(Collection<Enchantment> enchantments) {
-        return enchantmentsWithVanillaLevelVariance(fixed(1), ImmutableList.copyOf(enchantments));
+    public static BiConsumer<ItemStack.Builder, Random> enchantmentsWithVanillaLevelVariance(Collection<EnchantmentType> enchantmentTypes) {
+        return enchantmentsWithVanillaLevelVariance(fixed(1), ImmutableList.copyOf(enchantmentTypes));
     }
 
     /**
      * Creates a new {@link BiConsumer} that takes the provided
-     * {@link Enchantment}s and applies a variable amount of enchantments
+     * {@link EnchantmentType}s and applies a variable amount of enchantmentTypes
      * with varying levels to the generated {@link ItemStack}.
      *
-     * @param amount The variable amount of enchantments to use
-     * @param enchantment The first enchantment to add
-     * @param enchantments The additional enchantments to use
+     * @param amount The variable amount of enchantmentTypes to use
+     * @param enchantmentType The first enchantmentType to add
+     * @param enchantmentTypes The additional enchantmentTypes to use
      * @return The new biconsumer to apply to an itemstack builder
      */
-    public static BiConsumer<ItemStack.Builder, Random> enchantmentsWithVanillaLevelVariance(VariableAmount amount, Enchantment enchantment,
-            Enchantment... enchantments) {
+    public static BiConsumer<ItemStack.Builder, Random> enchantmentsWithVanillaLevelVariance(VariableAmount amount, EnchantmentType enchantmentType,
+            EnchantmentType... enchantmentTypes) {
         return enchantmentsWithVanillaLevelVariance(amount,
-                ImmutableList.<Enchantment>builder().add(enchantment).addAll(Arrays.asList(enchantments)).build());
+                ImmutableList.<EnchantmentType>builder().add(enchantmentType).addAll(Arrays.asList(enchantmentTypes)).build());
     }
 
     /**
      * Creates a new {@link BiConsumer} that takes the provided
-     * {@link Collection} of {@link Enchantment}s and applies a varying amount
+     * {@link Collection} of {@link EnchantmentType}s and applies a varying amount
      * of generated enchantments to the generated {@link ItemStack}.
      *
      * @param amount The varying amount of enchantments to use
-     * @param itemEnchantments The enchantment pool to use
+     * @param itemEnchantmentTypes The enchantment pool to use
      * @return The new biconsumer to apply to an itemstack builder
      */
     public static BiConsumer<ItemStack.Builder, Random> enchantmentsWithVanillaLevelVariance(VariableAmount amount,
-            Collection<Enchantment> itemEnchantments) {
+            Collection<EnchantmentType> itemEnchantmentTypes) {
         checkNotNull(amount, "Variable amount cannot be null!");
-        checkNotNull(itemEnchantments, "Enchantment collection cannot be null!");
-        List<Tuple<Enchantment, VariableAmount>> list = itemEnchantments.stream()
+        checkNotNull(itemEnchantmentTypes, "EnchantmentType collection cannot be null!");
+        List<Tuple<EnchantmentType, VariableAmount>> list = itemEnchantmentTypes.stream()
                 .map(enchantment -> {
-                    checkNotNull(enchantment, "Enchantment cannot be null!");
+                    checkNotNull(enchantment, "EnchantmentType cannot be null!");
                     final int minimum = enchantment.getMinimumLevel();
                     final int maximum = enchantment.getMaximumLevel();
                     return new Tuple<>(enchantment, baseWithRandomAddition(minimum, maximum - minimum));
@@ -625,7 +625,7 @@ public final class ItemStackBuilderPopulators {
 
     /**
      * Creates a new {@link BiConsumer} that takes the provided
-     * {@link Collection} of coupled {@link Enchantment} and
+     * {@link Collection} of coupled {@link EnchantmentType} and
      * {@link VariableAmount} to apply varying enchantments of varying amounts
      * to the generated {@link ItemStack}.
      *
@@ -635,11 +635,11 @@ public final class ItemStackBuilderPopulators {
      * @return The new biconsumer to apply to an itemstack builder
      */
     public static BiConsumer<ItemStack.Builder, Random> enchantments(VariableAmount amount,
-            Collection<Tuple<Enchantment, VariableAmount>> enchantments) {
+            Collection<Tuple<EnchantmentType, VariableAmount>> enchantments) {
         checkNotNull(amount, "VariableAmount cannot be null!");
-        final WeightedTable<Function<Random, ItemEnchantment>> suppliers = new WeightedTable<>(amount);
-        for (Tuple<Enchantment, VariableAmount> enchantment : enchantments) {
-            suppliers.add(random -> ItemEnchantment.of(enchantment.getFirst(), enchantment.getSecond().getFlooredAmount(random)), 1);
+        final WeightedTable<Function<Random, Enchantment>> suppliers = new WeightedTable<>(amount);
+        for (Tuple<EnchantmentType, VariableAmount> enchantment : enchantments) {
+            suppliers.add(random -> Enchantment.builder().type(enchantment.getFirst()).level(enchantment.getSecond().getFlooredAmount(random)).build(), 1);
         }
         return listValueSuppliers(Keys.ITEM_ENCHANTMENTS, suppliers);
     }

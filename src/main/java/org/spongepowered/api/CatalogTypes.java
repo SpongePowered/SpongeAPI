@@ -49,7 +49,7 @@ import org.spongepowered.api.event.cause.entity.health.HealthModifierType;
 import org.spongepowered.api.event.cause.entity.spawn.SpawnType;
 import org.spongepowered.api.event.cause.entity.teleport.TeleportType;
 import org.spongepowered.api.extra.fluid.FluidType;
-import org.spongepowered.api.item.Enchantment;
+import org.spongepowered.api.item.enchantment.EnchantmentType;
 import org.spongepowered.api.item.FireworkShape;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.InventoryArchetype;
@@ -165,7 +165,7 @@ public final class CatalogTypes {
 
     public static final Class<DyeColor> DYE_COLOR = DyeColor.class;
 
-    public static final Class<Enchantment> ENCHANTMENT = Enchantment.class;
+    public static final Class<EnchantmentType> ENCHANTMENT = EnchantmentType.class;
 
     public static final Class<EntityType> ENTITY_TYPE = EntityType.class;
 

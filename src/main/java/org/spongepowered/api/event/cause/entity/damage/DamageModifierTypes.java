@@ -24,14 +24,14 @@
  */
 package org.spongepowered.api.event.cause.entity.damage;
 
-import org.spongepowered.api.data.meta.ItemEnchantment;
+import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.effect.potion.PotionEffectTypes;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.cause.entity.damage.source.FallingBlockDamageSource;
-import org.spongepowered.api.item.Enchantment;
+import org.spongepowered.api.item.enchantment.EnchantmentType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
@@ -57,12 +57,12 @@ public final class DamageModifierTypes {
 
     /**
      * Represents a {@link DamageModifier} that will reduce damage based on
-     * the {@link Enchantment}s applicable to an {@link ItemStack} that is
+     * the {@link EnchantmentType}s applicable to an {@link ItemStack} that is
      * considered to be "armor" currently equipped on the owner.
      *
      * <p>Usually, within the {@link DamageModifier#getCause()} will reside
-     * an {@link ItemStackSnapshot} and an {@link ItemEnchantment} signifying
-     * that the {@link Enchantment} of the {@link ItemStack} is modifying the
+     * an {@link ItemStackSnapshot} and an {@link Enchantment} signifying
+     * that the {@link EnchantmentType} of the {@link ItemStack} is modifying the
      * incoming/outgoing damage. There can be multiple {@link DamageModifier}s
      * of this type in a single event due to the variety of possibilities in
      * customization of armor handling.</p>
@@ -106,8 +106,8 @@ public final class DamageModifierTypes {
      * a {@link FallingBlockDamageSource}.
      *
      * <p>Usually, within the {@link DamageModifier#getCause()} will reside
-     * an {@link ItemStackSnapshot} and an {@link ItemEnchantment} signifying
-     * that the {@link Enchantment} of the {@link ItemStack} is modifying the
+     * an {@link ItemStackSnapshot} and an {@link Enchantment} signifying
+     * that the {@link EnchantmentType} of the {@link ItemStack} is modifying the
      * incoming/outgoing damage.</p>
      */
     public static final DamageModifierType HARD_HAT = DummyObjectProvider.createFor(DamageModifierType.class, "HARD_HAT");
@@ -158,11 +158,11 @@ public final class DamageModifierTypes {
 
     /**
      * Represents the {@link DamageModifier} that will modify damage from
-     * an {@link Enchantment} on an equipped {@link ItemStack}.
+     * an {@link EnchantmentType} on an equipped {@link ItemStack}.
      *
      * <p>Usually, within the {@link DamageModifier#getCause()} will reside
-     * an {@link ItemStackSnapshot} and an {@link ItemEnchantment} signifying
-     * that the {@link Enchantment} of the {@link ItemStack} is modifying the
+     * an {@link ItemStackSnapshot} and an {@link Enchantment} signifying
+     * that the {@link EnchantmentType} of the {@link ItemStack} is modifying the
      * incoming/outgoing damage.</p>
      */
     public static final DamageModifierType WEAPON_ENCHANTMENT = DummyObjectProvider.createFor(DamageModifierType.class, "WEAPON_ENCHANTMENT");

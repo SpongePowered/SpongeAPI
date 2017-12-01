@@ -22,9 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item;
+package org.spongepowered.api.item.enchantment;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.block.tileentity.EnchantmentTable;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -32,50 +33,40 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 /**
  * Represents a modifier on an item that has various effects.
  */
-@CatalogedBy(Enchantments.class)
-public interface Enchantment extends CatalogType, Translatable {
+@CatalogedBy(EnchantmentTypes.class)
+public interface EnchantmentType extends CatalogType, Translatable {
 
     /**
-     * Gets the id of this enchantment.
-     *
-     * <p>Ex. Minecraft registers Efficiency as
-     * "minecraft:efficiency".</p>
-     *
-     * @return The id
-     */
-    @Override
-    String getName();
-
-    /**
-     * Gets the weight of the enchantment.
+     * Gets the weight of this enchantment type.
      *
      * <p>Higher values are more common. This value is also used in the repair
      * cost calculation.</p>
      *
-     * @return The weight
+     * @return The weight of this enchantment type
      */
     int getWeight();
 
     /**
-     * Gets the minimum level of this enchantment allowed where it is present.
+     * Gets the minimum level of this enchantment type allowed where
+     * it is present.
      *
      * @return The minimum level
      */
     int getMinimumLevel();
 
     /**
-     * Gets the maximum level of this enchantment normally allowed.
+     * Gets the maximum level of this enchantment type normally allowed.
      *
      * @return The maximum level
      */
     int getMaximumLevel();
 
     /**
-     * Gets the minimum item enchantibility for this level to be normally added
+     * Gets the minimum item enchantability for this level to be normally added
      * by enchanting tables.
      *
-     * @param level Enchantment level
-     * @return Minimum enchantability
+     * @param level The enchantment type level
+     * @return The minimum enchantability
      */
     int getMinimumEnchantabilityForLevel(int level);
 
@@ -83,44 +74,54 @@ public interface Enchantment extends CatalogType, Translatable {
      * Gets the maximum item enchantability for this level to be normally added
      * by enchanting tables.
      *
-     * @param level Enchantment level
-     * @return Maximum enchantability
+     * @param level The enchantment type level
+     * @return The maximum enchantability
      */
     int getMaximumEnchantabilityForLevel(int level);
 
     /**
-     * Test if this enchantment can be applied to an ItemStack.
+     * Test if this enchantment type can be applied to an {@link ItemStack}.
      *
-     * @param stack ItemStack to check
-     * @return Whether this enchantment can be applied
+     * @param stack The item stack to check
+     * @return Whether this enchantment type can be applied
      */
     boolean canBeAppliedToStack(ItemStack stack);
 
     /**
-     * Test if this enchantment can be applied to an ItemStack by the Enchanting
-     * Table.
+     * Test if this enchantment type can be applied to an {@link ItemStack} by
+     * the {@link EnchantmentTable};
      *
-     * @param stack ItemStack to check
-     * @return Whether this enchantment can be applied by the Enchanting Table
+     * @param stack Te item stack to check
+     * @return Whether this enchantment type can be applied by the
+     *     enchantment table
      */
     boolean canBeAppliedByTable(ItemStack stack);
 
     /**
-     * Test if this enchantment can be applied along with another enchantment.
+     * Test if this enchantment type can be applied along with
+     * another enchantment type.
      *
-     * @param ench Enchantment to test compatibility with
-     * @return Whether these enchantments are compatible
+     * @param enchantmentType The enchantment type to test compatibility with
+     * @return Whether these enchantment types are compatible
      */
-    boolean isCompatibleWith(Enchantment ench);
+    boolean isCompatibleWith(EnchantmentType enchantmentType);
 
     /**
-     * Gets whether or not this enchantment is considered a "treasure"
+     * Gets whether or not this enchantment type is considered a "treasure"
      * enchantment.
      *
      * <p>These do not occur naturally in enchantment tables.</p>
      *
-     * @return If this is a treasure enchantment
+     * @return Whether this enchantment type is a treasure enchantment type
      */
     boolean isTreasure();
+
+    /**
+     * Gets whether or not this enchantment type is considered a "curse"
+     * enchantment.
+     *
+     * @return Whether this enchantment type is a curse enchantment type
+     */
+    boolean isCurse();
 
 }
