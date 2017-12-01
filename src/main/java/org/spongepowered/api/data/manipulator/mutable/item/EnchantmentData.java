@@ -27,25 +27,26 @@ package org.spongepowered.api.data.manipulator.mutable.item;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.item.ImmutableEnchantmentData;
 import org.spongepowered.api.data.manipulator.mutable.ListData;
-import org.spongepowered.api.data.meta.ItemEnchantment;
+import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.data.value.mutable.ListValue;
-import org.spongepowered.api.item.Enchantment;
+import org.spongepowered.api.item.enchantment.EnchantmentType;
 
 /**
- * Represents item data related to an item having active {@link Enchantment}s.
+ * Represents item data related to an item having active {@link Enchantment}s
+ * with an {@link EnchantmentType} and level.
  *
  * <p>Some enchantments are not compatible with some item types, so checking
  * on the enchantment before setting is recommended.</p>
  */
-public interface EnchantmentData extends ListData<ItemEnchantment, EnchantmentData, ImmutableEnchantmentData> {
+public interface EnchantmentData extends ListData<Enchantment, EnchantmentData, ImmutableEnchantmentData> {
 
     /**
-     * Gets the {@link ListValue} for the {@link ItemEnchantment}s.
+     * Gets the {@link ListValue} of {@link Enchantment}s on item stacks.
      *
-     * @return The list value for item enchantments
+     * @return The list value of enchantments
      * @see Keys#ITEM_ENCHANTMENTS
      */
-    default ListValue<ItemEnchantment> enchantments() {
+    default ListValue<Enchantment> enchantments() {
         return getListValue();
     }
 

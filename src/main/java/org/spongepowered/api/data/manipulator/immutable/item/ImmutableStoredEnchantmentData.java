@@ -27,26 +27,26 @@ package org.spongepowered.api.data.manipulator.immutable.item;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableListData;
 import org.spongepowered.api.data.manipulator.mutable.item.StoredEnchantmentData;
-import org.spongepowered.api.data.meta.ItemEnchantment;
+import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.data.value.immutable.ImmutableListValue;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
  * An {@link ImmutableDataManipulator} handling "stored"
- * {@link ItemEnchantment}s. Usually, stored {@link ItemEnchantment}s can be
+ * {@link Enchantment}s. Usually, stored {@link Enchantment}s can be
  * "transferred" to other {@link ItemStack}s. Examples include
  * {@link ItemTypes#ENCHANTED_BOOK}s storing enchantments to apply to weapons.
  */
-public interface ImmutableStoredEnchantmentData extends ImmutableListData<ItemEnchantment, ImmutableStoredEnchantmentData, StoredEnchantmentData> {
+public interface ImmutableStoredEnchantmentData extends ImmutableListData<Enchantment, ImmutableStoredEnchantmentData, StoredEnchantmentData> {
 
     /**
-     * Gets the {@link ImmutableListValue} of {@link ItemEnchantment}s stored
+     * Gets the {@link ImmutableListValue} of {@link Enchantment}s stored
      * such that it can be applied to an {@link ItemStack}.
      *
      * @return The immutable list value of item enchantments
      */
-    default ImmutableListValue<ItemEnchantment> enchantments() {
+    default ImmutableListValue<Enchantment> enchantments() {
         return getListValue();
     }
 

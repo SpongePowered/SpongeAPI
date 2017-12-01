@@ -29,7 +29,7 @@ import static com.google.common.base.Preconditions.checkState;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
-import org.spongepowered.api.data.meta.ItemEnchantment;
+import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.item.ItemTypes;
@@ -79,7 +79,7 @@ public interface DamageModifier {
      * Gets the contributing {@link ItemStackSnapshot} that provided the
      * "reason" for this {@link DamageModifier} to exist. An example of a
      * contributing {@link ItemStack} is if an {@link ItemTypes#DIAMOND_SWORD}
-     * provided an {@link ItemEnchantment} that provided a
+     * provided an {@link Enchantment} that provided a
      * {@link DamageModifierTypes#WEAPON_ENCHANTMENT}, this modifier would have
      * the {@link ItemStackSnapshot} for the weapon used. Some modifiers however,
      * do not require an {@link ItemStack} to be the contributing factor for

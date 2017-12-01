@@ -22,12 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.tileentity;
-
-import org.spongepowered.api.item.enchantment.Enchantment;
-
-/**
- * Represents an {@link Enchantment} table.
- */
-public interface EnchantmentTable extends TileEntity {
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.item.enchantment;

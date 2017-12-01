@@ -29,7 +29,7 @@ import com.flowpowered.math.vector.Vector3i;
 import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.data.meta.ItemEnchantment;
+import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.data.meta.PatternLayer;
 import org.spongepowered.api.data.type.*;
 import org.spongepowered.api.data.value.mutable.ListValue;
@@ -213,9 +213,9 @@ public class TypeTokens {
 
     public static final TypeToken<List<FireworkEffect>> LIST_FIREWORK_TOKEN = new TypeToken<List<FireworkEffect>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<List<ItemEnchantment>> LIST_ITEM_ENCHANTMENT_TOKEN = new TypeToken<List<ItemEnchantment>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<List<Enchantment>> LIST_ENCHANTMENT_TOKEN = new TypeToken<List<Enchantment>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<ListValue<ItemEnchantment>> LIST_ITEM_ENCHANTMENT_VALUE_TOKEN = new TypeToken<ListValue<ItemEnchantment>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<ListValue<Enchantment>> LIST_ENCHANTMENT_VALUE_TOKEN = new TypeToken<ListValue<Enchantment>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<List<PatternLayer>> LIST_PATTERN_TOKEN = new TypeToken<List<PatternLayer>>() {private static final long serialVersionUID = -1;};
 

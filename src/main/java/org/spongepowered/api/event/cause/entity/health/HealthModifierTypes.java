@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.event.cause.entity.health;
 
-import org.spongepowered.api.data.meta.ItemEnchantment;
+import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.effect.potion.PotionEffectTypes;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.item.Enchantment;
+import org.spongepowered.api.item.enchantment.EnchantmentType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
@@ -80,11 +80,11 @@ public final class HealthModifierTypes {
 
     /**
      * Represents the {@link HealthModifier} that will modify heal amount from
-     * an {@link Enchantment} on an equipped {@link ItemStack}.
+     * an {@link EnchantmentType} on an equipped {@link ItemStack}.
      *
      * <p>Usually, within the {@link HealthModifier#getCause()} will reside
-     * an {@link ItemStackSnapshot} and an {@link ItemEnchantment} signifying
-     * that the {@link Enchantment} of the {@link ItemStack} is modifying the
+     * an {@link ItemStackSnapshot} and an {@link Enchantment} signifying
+     * that the {@link EnchantmentType} of the {@link ItemStack} is modifying the
      * incoming/outgoing heal amount.</p>
      */
     public static final HealthModifierType WEAPON_ENCHANTMENT = DummyObjectProvider.createFor(HealthModifierType.class, "WEAPON_ENCHANTMENT");

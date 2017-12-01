@@ -36,7 +36,7 @@ import org.spongepowered.api.data.manipulator.mutable.block.*;
 import org.spongepowered.api.data.manipulator.mutable.entity.*;
 import org.spongepowered.api.data.manipulator.mutable.item.*;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.*;
-import org.spongepowered.api.data.meta.ItemEnchantment;
+import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.data.property.entity.DominantHandProperty;
 import org.spongepowered.api.data.type.*;
 import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
@@ -1259,11 +1259,11 @@ public final class Keys {
      * tools. Enchantments that are only stored on an item stack in order to
      * be transferred to another item (like on
      * {@link ItemTypes#ENCHANTED_BOOK}s) use the {@link #STORED_ENCHANTMENTS}
-     * key instead.</p>
+     * key instead.)</p>
      *
      * @see EnchantmentData#enchantments()
      */
-    public static final Key<ListValue<ItemEnchantment>> ITEM_ENCHANTMENTS = KeyFactory.fake("ITEM_ENCHANTMENTS");
+    public static final Key<ListValue<Enchantment>> ITEM_ENCHANTMENTS = KeyFactory.fake("ITEM_ENCHANTMENTS");
 
     /**
      * Represents the {@link Key} for the displayed decrption ("lore") text of
@@ -1945,7 +1945,7 @@ public final class Keys {
      *
      * @see StoredEnchantmentData#enchantments()
      */
-    public static final Key<ListValue<ItemEnchantment>> STORED_ENCHANTMENTS = KeyFactory.fake("STORED_ENCHANTMENTS");
+    public static final Key<ListValue<Enchantment>> STORED_ENCHANTMENTS = KeyFactory.fake("STORED_ENCHANTMENTS");
 
     /**
      * Represents the {@link Key} for representing the mode of a {@link Structure}.
