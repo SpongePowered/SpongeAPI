@@ -50,7 +50,9 @@ public interface TextColor extends CatalogType, TextElement {
      *
      * @return the RGB background color of this text color
      */
-    Color getBackgroundColor();
+    default Color getBackgroundColor() {
+        return Color.of(getColor().toVector3i().div(4));
+    }
 
     @Override
     default void applyTo(Text.Builder builder) {

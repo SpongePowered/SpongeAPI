@@ -56,11 +56,6 @@ public final class TextColors {
         }
 
         @Override
-        public Color getBackgroundColor() {
-            return Color.BLACK;
-        }
-
-        @Override
         public String toString() {
             return getId();
         }
