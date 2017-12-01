@@ -1113,6 +1113,17 @@ public final class Keys {
     public static final Key<Value<Boolean>> INVISIBLE = KeyFactory.fake("INVISIBLE");
 
     /**
+     * Represents the {@link Key} for representing if an {@link Entity}
+     * is invulnerable or not.
+     *
+     * <p>This does not protect from the void, players in creative mode,
+     * and manual killing like the /kill command.</p>
+     *
+     * @see InvulnerabilityData#invulnerable()
+     */
+    public static final Key<Value<Boolean>> INVULNERABLE = KeyFactory.fake("INVULNERABLE");
+
+    /**
      * Represents the {@link Key} for the amount of ticks an {@link Entity}
      * will remain invulnerable for.
      *
