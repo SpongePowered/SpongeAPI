@@ -354,4 +354,13 @@ public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMe
      * @param cause The cause of the border's change
      */
     void setWorldBorder(@Nullable WorldBorder border, Cause cause);
+
+    /**
+     * Gets the {@link CooldownTracker} for this player, allowing control
+     * over the player's item cooldowns.
+     *
+     * @return This player's cooldown tracker
+     */
+    CooldownTracker getCooldownTracker();
+
 }
