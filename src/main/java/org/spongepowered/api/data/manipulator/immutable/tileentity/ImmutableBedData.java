@@ -26,6 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.tileentity;
 
 import org.spongepowered.api.block.tileentity.Bed;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableDyeableData;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.BedData;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
@@ -33,7 +34,10 @@ import org.spongepowered.api.data.value.immutable.ImmutableValue;
 /**
  * An {@link ImmutableDataManipulator} handling the various data of a
  * {@link Bed}.
+ *
+ * @deprecated Use {@link ImmutableDyeableData} instead
  */
+@Deprecated
 public interface ImmutableBedData extends ImmutableDataManipulator<ImmutableBedData, BedData> {
 
     /**
