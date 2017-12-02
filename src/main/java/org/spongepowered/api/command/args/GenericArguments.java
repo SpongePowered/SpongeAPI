@@ -33,7 +33,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.hocon.HoconConfigurationLoader;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
@@ -1720,7 +1719,7 @@ public final class GenericArguments {
 
             Object state = args.getState();
             try {
-                List<Entity> entities = Lists.newArrayList((Iterable<Entity>) super.parseValue(source, args));
+                Iterable<Entity> entities = (Iterable<Entity>) super.parseValue(source, args);
                 for (Entity entity : entities) {
                     if (!this.checkEntity(entity)) {
                         Text name = Sponge.getRegistry().getAllOf(EntityType.class).stream()
@@ -2323,7 +2322,7 @@ public final class GenericArguments {
         protected FilteredSuggestionsElement(CommandElement wrapped, Predicate<String> predicate) {
             super(wrapped.getKey());
             this.wrapped = wrapped;
-            this.predicate = predicate.negate();
+            this.predicate = predicate;
         }
 
         @Nullable
@@ -2334,9 +2333,7 @@ public final class GenericArguments {
 
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            List<String> ret = this.wrapped.complete(src, args, context);
-            ret.removeIf(this.predicate);
-            return ret;
+            return this.wrapped.complete(src, args, context).stream().filter(predicate).collect(ImmutableList.toImmutableList());
         }
 
     }
