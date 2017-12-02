@@ -22,5 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.scoreboard.critieria;
+package org.spongepowered.api.scoreboard.criteria;
+
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
+
+/**
+ * Represents a set of behaviours for an objective, which may cause it to be
+ * automatically updated.
+ */
+@CatalogedBy(Criteria.class)
+public interface Criterion extends CatalogType {
+
+    /**
+     * Gets the name of this criterion.
+     *
+     * @return The name of this criterion
+     */
+    @Override
+    String getName();
+
+}

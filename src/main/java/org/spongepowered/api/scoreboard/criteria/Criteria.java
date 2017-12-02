@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.scoreboard.critieria;
+package org.spongepowered.api.scoreboard.criteria;
 
 import org.spongepowered.api.effect.potion.PotionEffectTypes;
 import org.spongepowered.api.scoreboard.objective.Objective;
