@@ -33,6 +33,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.hocon.HoconConfigurationLoader;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
@@ -1705,6 +1706,7 @@ public final class GenericArguments {
             this.type = type;
         }
 
+        @SuppressWarnings("unchecked")
         @Override
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
             if (!args.hasNext()) {
@@ -1718,15 +1720,17 @@ public final class GenericArguments {
 
             Object state = args.getState();
             try {
-                Entity entity = (Entity) super.parseValue(source, args);
-                if (!this.checkEntity(entity)) {
-                    Text name = Sponge.getRegistry().getAllOf(EntityType.class).stream()
-                            .filter(t -> t.getEntityClass().equals(this.type)).findFirst()
-                            .map(EntityType::getTranslation).<Text>map(Text::of)
-                            .orElse(Text.of(this.type.getSimpleName()));
-                    throw args.createError(Text.of("The entity is not of the required type! (", name, ")"));
+                List<Entity> entities = Lists.newArrayList((Iterable<Entity>) super.parseValue(source, args));
+                for (Entity entity : entities) {
+                    if (!this.checkEntity(entity)) {
+                        Text name = Sponge.getRegistry().getAllOf(EntityType.class).stream()
+                                .filter(t -> t.getEntityClass().equals(this.type)).findFirst()
+                                .map(EntityType::getTranslation).<Text>map(Text::of)
+                                .orElse(Text.of(this.type.getSimpleName()));
+                        throw args.createError(Text.of("The entity is not of the required type! (", name, ")"));
+                    }
                 }
-                return entity;
+                return entities;
             } catch (ArgumentParseException ex) {
                 if (this.returnSource) {
                     args.setState(state);
