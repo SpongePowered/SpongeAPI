@@ -88,6 +88,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
@@ -1738,7 +1739,7 @@ public final class GenericArguments {
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
             Set<Iterable<Entity>> worldEntities = Sponge.getServer().getWorlds().stream().map(World::getEntities).collect(Collectors.toSet());
-            return Iterables.transform(Iterables.concat(worldEntities), input -> {
+            return Iterables.filter(Iterables.transform(Iterables.concat(worldEntities), input -> {
                 if (input == null) {
                     return null;
                 }
@@ -1749,7 +1750,7 @@ public final class GenericArguments {
                     return ((Player)input).getName();
                 }
                 return input.getUniqueId().toString();
-            });
+            }), Objects::nonNull);
         }
 
         @Override
