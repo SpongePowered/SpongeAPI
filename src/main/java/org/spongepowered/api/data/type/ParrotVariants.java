@@ -27,7 +27,7 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * An enumeration of known vanilla {@link OcelotType}s.
+ * An enumeration of known vanilla {@link ParrotVariant}s.
  */
 public final class ParrotVariants {
 

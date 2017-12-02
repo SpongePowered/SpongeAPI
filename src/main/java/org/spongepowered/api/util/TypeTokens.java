@@ -287,6 +287,10 @@ public class TypeTokens {
 
     public static final TypeToken<OptionalValue<UUID>> OPTIONAL_UUID_VALUE_TOKEN = new TypeToken<OptionalValue<UUID>>() {private static final long serialVersionUID = -1;};
 
+    public static final TypeToken<ParrotVariant> PARROT_VARIANT_TOKEN = new TypeToken<ParrotVariant>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Value<ParrotVariant>> PARROT_VARIANT_VALUE_TOKEN = new TypeToken<Value<ParrotVariant>>() {private static final long serialVersionUID = -1;};
+
     public static final TypeToken<ParticleType> PARTICLE_TYPE_TOKEN = new TypeToken<ParticleType>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<ParticleType>> PARTICLE_TYPE_VALUE_TOKEN = new TypeToken<Value<ParticleType>>() {private static final long serialVersionUID = -1;};
