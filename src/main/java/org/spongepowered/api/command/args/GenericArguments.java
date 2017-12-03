@@ -1613,7 +1613,7 @@ public final class GenericArguments {
      * @return the argument
      */
     public static CommandElement entity(Text key) {
-        return new EntityCommandElement(key, false, false, null);
+        return new EntityCommandElement(key, false, false, (EntityType) null);
     }
 
     /**
@@ -1625,18 +1625,18 @@ public final class GenericArguments {
      * @return the argument
      */
     public static CommandElement entityOrSource(Text key) {
-        return new EntityCommandElement(key, true, false, null);
+        return new EntityCommandElement(key, true, false, (EntityType) null);
     }
 
     /**
      * Expect an argument to represent an {@link Entity} of the specified type.
      *
      * @param key The key to store under
-     * @param type The type which the entity must subclass
+     * @param clazz The type which the entity must subclass
      * @return the argument
      */
-    public static CommandElement entity(Text key, Class<? extends Entity> type) {
-        return new EntityCommandElement(key, false, false, type);
+    public static CommandElement entity(Text key, Class<? extends Entity> clazz) {
+        return new EntityCommandElement(key, false, false, clazz);
     }
 
     /**
@@ -1648,7 +1648,7 @@ public final class GenericArguments {
      * @return the argument
      */
     public static CommandElement entity(Text key, EntityType type) {
-        return new EntityCommandElement(key, false, false, type.getEntityClass());
+        return new EntityCommandElement(key, false, false, type);
     }
 
     /**
@@ -1660,7 +1660,7 @@ public final class GenericArguments {
      * @return the argument
      */
     public static CommandElement entityOrTarget(Text key) {
-        return new EntityCommandElement(key, false, true, null);
+        return new EntityCommandElement(key, false, true, (EntityType) null);
     }
 
     /**
@@ -1669,11 +1669,11 @@ public final class GenericArguments {
      * looking at an applicable entity, return that entity.
      *
      * @param key The key to store under
-     * @param type The type which the entity must subclass
+     * @param clazz The type which the entity must subclass
      * @return the argument
      */
-    public static CommandElement entityOrTarget(Text key, Class<? extends Entity> type) {
-        return new EntityCommandElement(key, false, true, type);
+    public static CommandElement entityOrTarget(Text key, Class<? extends Entity> clazz) {
+        return new EntityCommandElement(key, false, true, clazz);
     }
 
     /**
@@ -1687,7 +1687,7 @@ public final class GenericArguments {
      * @return the argument
      */
     public static CommandElement entityOrTarget(Text key, EntityType type) {
-        return new EntityCommandElement(key, false, true, type.getEntityClass());
+        return new EntityCommandElement(key, false, true, type);
     }
 
     private static class EntityCommandElement extends SelectorCommandElement {
@@ -1695,13 +1695,25 @@ public final class GenericArguments {
         private final boolean returnTarget;
         private final boolean returnSource;
         @Nullable
-        private final Class<? extends Entity> type;
+        private final Class<? extends Entity> clazz;
+        @Nullable
+        private final EntityType type;
 
         protected EntityCommandElement(Text key, boolean returnSource, boolean returnTarget,
-                                       @Nullable Class<? extends Entity> type) {
+                                       @Nullable Class<? extends Entity> clazz) {
             super(key);
             this.returnSource = returnSource;
             this.returnTarget = returnTarget;
+            this.clazz = clazz;
+            this.type = null;
+        }
+
+        protected EntityCommandElement(Text key, boolean returnSource, boolean returnTarget,
+                                       @Nullable EntityType type) {
+            super(key);
+            this.returnSource = returnSource;
+            this.returnTarget = returnTarget;
+            this.clazz = null;
             this.type = type;
         }
 
@@ -1710,10 +1722,10 @@ public final class GenericArguments {
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
             if (!args.hasNext()) {
                 if (this.returnSource) {
-                    return tryReturnSource(source, args);
+                    return tryReturnSource(source, args, true);
                 }
                 if (this.returnTarget) {
-                    return tryReturnTarget(source, args, this.type == null ? Entity.class : this.type);
+                    return tryReturnTarget(source, args);
                 }
             }
 
@@ -1722,10 +1734,15 @@ public final class GenericArguments {
                 Iterable<Entity> entities = (Iterable<Entity>) super.parseValue(source, args);
                 for (Entity entity : entities) {
                     if (!this.checkEntity(entity)) {
-                        Text name = Sponge.getRegistry().getAllOf(EntityType.class).stream()
-                                .filter(t -> t.getEntityClass().equals(this.type)).findFirst()
-                                .map(EntityType::getTranslation).<Text>map(Text::of)
-                                .orElse(Text.of(this.type.getSimpleName()));
+                        Text name;
+                        if (this.type == null) {
+                            name = Sponge.getRegistry().getAllOf(EntityType.class).stream()
+                                    .filter(t -> t.getEntityClass().equals(this.clazz)).findFirst()
+                                    .map(EntityType::getTranslation).<Text>map(Text::of)
+                                    .orElse(Text.of(this.clazz.getSimpleName()));
+                        } else {
+                            name = Text.of(this.type);
+                        }
                         throw args.createError(Text.of("The entity is not of the required type! (", name, ")"));
                     }
                 }
@@ -1733,7 +1750,7 @@ public final class GenericArguments {
             } catch (ArgumentParseException ex) {
                 if (this.returnSource) {
                     args.setState(state);
-                    return tryReturnSource(source, args);
+                    return tryReturnSource(source, args, true);
                 }
                 throw ex;
             }
@@ -1776,21 +1793,21 @@ public final class GenericArguments {
             throw new IllegalArgumentException("Input value " + choice + " was not an entity");
         }
 
-        private Entity tryReturnSource(CommandSource source, CommandArgs args) throws ArgumentParseException {
-            if (source instanceof Entity && this.checkEntity((Entity) source)) {
+        private Entity tryReturnSource(CommandSource source, CommandArgs args, boolean check) throws ArgumentParseException {
+            if (source instanceof Entity && (!check || this.checkEntity((Entity) source))) {
                 return (Entity) source;
             }
             if (source instanceof ProxySource) {
                 CommandSource proxy = ((ProxySource) source).getOriginalSource();
-                if (proxy instanceof Entity && this.checkEntity((Entity) proxy)) {
+                if (proxy instanceof Entity && (!check || this.checkEntity((Entity) proxy))) {
                     return (Entity) proxy;
                 }
             }
             throw args.createError(t("No entities matched and source was not an entity!"));
         }
 
-        private Entity tryReturnTarget(CommandSource source, CommandArgs args, Class<? extends Entity> type) throws ArgumentParseException {
-            Entity entity = tryReturnSource(source, args);
+        private Entity tryReturnTarget(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            Entity entity = tryReturnSource(source, args, false);
             return entity.getWorld().getIntersectingEntities(entity, 10).stream()
                     .filter(e -> !e.getEntity().equals(entity)).map(EntityUniverse.EntityHit::getEntity)
                     .filter(this::checkEntity).findFirst()
@@ -1798,7 +1815,13 @@ public final class GenericArguments {
         }
 
         private boolean checkEntity(Entity entity) {
-            return this.type == null || this.type.isAssignableFrom(entity.getClass());
+            if (this.clazz == null && this.type == null) {
+                return true;
+            } else if (this.clazz == null) {
+                return entity.getType().equals(this.type);
+            } else {
+                return this.clazz.isAssignableFrom(entity.getClass());
+            }
         }
 
         @Override
