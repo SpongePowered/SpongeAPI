@@ -388,7 +388,7 @@ public final class CatalogEntityData {
     /**
      * Represents the scoreboard tags applied to an {@link Entity}.
      */
-    public static final Class<TagsData> TAGS_DATA = TagsData.class;
+    public static final Class<TagData> TAGS_DATA = TagData.class;
     /**
      * Signifies that an entity is "tamed" and has an owner. Usually applicable
      * to {@link RideableHorse}s, {@link Ocelot}s, and {@link Wolf} entities.

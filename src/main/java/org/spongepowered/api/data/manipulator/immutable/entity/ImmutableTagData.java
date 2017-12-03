@@ -25,7 +25,7 @@
 package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.entity.TagsData;
+import org.spongepowered.api.data.manipulator.mutable.entity.TagData;
 import org.spongepowered.api.data.value.immutable.ImmutableSetValue;
 import org.spongepowered.api.entity.Entity;
 
@@ -36,7 +36,7 @@ import org.spongepowered.api.entity.Entity;
  * @see <a href="https://minecraft.gamepedia.com/Scoreboard#Tags">
  *     https://minecraft.gamepedia.com/Scoreboard#Tags</a>
  */
-public interface ImmutableTagsData extends ImmutableDataManipulator<ImmutableTagsData, TagsData> {
+public interface ImmutableTagData extends ImmutableDataManipulator<ImmutableTagData, TagData> {
 
     /**
      * Gets the {@link ImmutableSetValue} of the scoreboard tags applied to

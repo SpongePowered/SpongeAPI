@@ -2081,7 +2081,7 @@ public final class Keys {
      *
      * @see <a href="https://minecraft.gamepedia.com/Scoreboard#Tags">
      *     https://minecraft.gamepedia.com/Scoreboard#Tags</a>
-     * @see TagsData#tags()
+     * @see TagData#tags()
      */
     public static final Key<SetValue<String>> TAGS = KeyFactory.fake("TAGS");
 
