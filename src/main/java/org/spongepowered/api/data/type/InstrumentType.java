@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -33,4 +34,11 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 @CatalogedBy(InstrumentTypes.class)
 public interface InstrumentType extends CatalogType {
 
+    /**
+     * Gets the {@link SoundType} that is used by
+     * this {@link InstrumentType}.
+     *
+     * @return The sound
+     */
+    SoundType getSound();
 }

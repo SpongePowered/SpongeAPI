@@ -22,43 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.tileentity;
+package org.spongepowered.api.data.property.block;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.tileentity.NoteData;
-import org.spongepowered.api.data.type.NotePitch;
-import org.spongepowered.api.data.value.mutable.Value;
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.Property;
+import org.spongepowered.api.data.property.AbstractProperty;
+import org.spongepowered.api.data.type.InstrumentType;
 
 /**
- * Represents a note block.
- *
- * <p>A {@link Note} will always have a valid {@link NoteData} to play.</p>
+ * A {@link InstrumentProperty} provides the {@link InstrumentType} that will be
+ * used for the target block if a {@link BlockTypes#NOTEBLOCK} is placed on top of it.
  */
-public interface Note extends TileEntity {
+public final class InstrumentProperty extends AbstractProperty<String, InstrumentType> {
 
     /**
-     * Attempts to play the currently stored {@link NotePitch} from this
-     * {@link Note} tile entity.
-     */
-    void playNote();
-
-    /**
-     * Retrieves the {@link NoteData} for this note block.
+     * Constructs a new {@link InstrumentProperty} with the
+     * specified {@link InstrumentType}.
      *
-     * @return the note data
+     * @param instrument The instrument type
      */
-    default NoteData getNoteData() {
-        return get(NoteData.class).get();
+    public InstrumentProperty(InstrumentType instrument) {
+        super(checkNotNull(instrument, "instrument"));
     }
 
-    /**
-     * Gets the {@link Value} for the {@link NotePitch}.
-     *
-     * @return The value for the note pitch
-     * @see Keys#NOTE_PITCH
-     */
-    default Value<NotePitch> note() {
-        return getValue(Keys.NOTE_PITCH).get();
+    @Override
+    public int compareTo(Property<?, ?> o) {
+        if (!(o instanceof InstrumentProperty)) {
+            return -1;
+        }
+        return getValue().getId().compareTo(((InstrumentProperty) o).getValue().getId());
     }
-
 }
