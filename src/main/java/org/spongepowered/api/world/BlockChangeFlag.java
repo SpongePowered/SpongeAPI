@@ -24,37 +24,16 @@
  */
 package org.spongepowered.api.world;
 
-import com.google.common.base.MoreObjects;
+import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * A flag of sorts that determines whether a block change will perform various
  * interactions, such as notifying neighboring blocks, performing block physics
  * on placement, etc.
  */
-public enum BlockChangeFlag {
-
-    ALL(Flags.NEIGHBOR_MASK | Flags.PHYSICS_MASK),
-    NEIGHBOR(Flags.NEIGHBOR_MASK),
-    PHYSICS(Flags.PHYSICS_MASK),
-    NEIGHBOR_PHYSICS(Flags.NEIGHBOR_MASK | Flags.PHYSICS_MASK),
-    NONE()
-    ;
-
-    private final boolean updateNeighbors;
-    private final boolean performBlockPhysics;
-    private final int rawFlag;
-
-    BlockChangeFlag() {
-        this.updateNeighbors = false;
-        this.performBlockPhysics = false;
-        this.rawFlag = 0;
-    }
-
-    BlockChangeFlag(int flag) {
-        this.updateNeighbors = (flag & Flags.NEIGHBOR_MASK) != 0;
-        this.performBlockPhysics = (flag & Flags.PHYSICS_MASK) != 0;
-        this.rawFlag = flag;
-    }
+@CatalogedBy(BlockChangeFlags.class)
+public interface BlockChangeFlag {
 
     /**
      * Gets whether this flag defines that a block change should
@@ -62,9 +41,7 @@ public enum BlockChangeFlag {
      *
      * @return True if this is set to notify neighboring blocks
      */
-    public boolean updateNeighbors() {
-        return this.updateNeighbors;
-    }
+    boolean updateNeighbors();
 
     /**
      * Gets whether this flag defines that a block change should
@@ -73,9 +50,18 @@ public enum BlockChangeFlag {
      *
      * @return True if this is set to perform block physics on placement
      */
-    public boolean performBlockPhysics() {
-        return this.performBlockPhysics;
-    }
+    boolean performBlockPhysics();
+
+    /**
+     * Gets whether this flag will update observer blocks, different
+     * from notifying neighbors in that neighbor notifications
+     * can cause further block notification loops (like redstone),
+     * whereas this focuses on {@link BlockTypes#OBSERVER} blocks
+     * being told of updates.
+     *
+     * @return True if this is set to update observers.
+     */
+    boolean notifyObservers();
 
 
     /**
@@ -86,19 +72,7 @@ public enum BlockChangeFlag {
      * @param updateNeighbors Whether to update neighboring blocks
      * @return The relative flag with the desired update neighbors
      */
-    public BlockChangeFlag setUpdateNeighbors(boolean updateNeighbors) {
-        if (this.updateNeighbors == updateNeighbors) {
-            return this;
-        }
-        final int maskedFlag = (updateNeighbors ? Flags.NEIGHBOR_MASK : 0)
-                               | (this.performBlockPhysics ? Flags.PHYSICS_MASK : 0);
-        for (BlockChangeFlag blockChangeFlag : values()) {
-            if (blockChangeFlag.rawFlag == maskedFlag) {
-                return blockChangeFlag;
-            }
-        }
-        return this;
-    }
+    BlockChangeFlag withUpdateNeighbors(boolean updateNeighbors);
 
     /**
      * Gets the equivalent {@link BlockChangeFlag} of this flag
@@ -108,34 +82,70 @@ public enum BlockChangeFlag {
      * @param performBlockPhysics Whether to perform block physics
      * @return The relative flag with the desired block physics
      */
-    public BlockChangeFlag setPerformBlockPhysics(boolean performBlockPhysics) {
-        if (this.performBlockPhysics == performBlockPhysics) {
-            return this;
-        }
-        final int maskedFlag = (this.updateNeighbors ? Flags.NEIGHBOR_MASK : 0)
-                               | (performBlockPhysics ? Flags.PHYSICS_MASK : 0);
+    BlockChangeFlag withPhysics(boolean performBlockPhysics);
 
-        for (BlockChangeFlag blockChangeFlag : values()) {
-            if (blockChangeFlag.rawFlag == maskedFlag) {
-                return blockChangeFlag;
-            }
-        }
-        return this;
-    }
+    /**
+     * Gets the equivalent {@link BlockChangeFlag} of this flag with all
+     * other flags while having the desired {@code notifyObservers}
+     * as defined by the parameter.
+     *
+     * @param notifyObservers Whether to update observer blocks
+     * @return The relative flag with the desired notify observers
+     */
+    BlockChangeFlag withNotifyObservers(boolean notifyObservers);
 
-    @Override
-    public String toString() {
-        return MoreObjects.toStringHelper(this)
-                .add("updateNeighbors", this.updateNeighbors)
-                .add("performBlockPhysics", this.performBlockPhysics)
-                .toString();
-    }
+    /**
+     * Gets the inverted {@link BlockChangeFlag} of this flag.
+     * Normally, this may cancel out certain interactions, such
+     * as physics, neighbor notifications, or even observer
+     * notifications. In certain circumstances, some flags may
+     * even require clients to rejoin the world or restart their
+     * connections to the server.
+     *
+     * @return The inverted flag
+     */
+    BlockChangeFlag inverse();
 
-    static final class Flags {
-        private static final int NEIGHBOR_MASK = 0b010;
-        private static final int PHYSICS_MASK = 0b100;
-    }
+    /**
+     * Gets the equivalent {@link BlockChangeFlag} of this flag
+     * with the {@code true}s set for this flag and the provided
+     * {@code flag}, such that only if both flags have the same
+     * {@code true} flags set will persist.
+     *
+     * <p>For example, if this flag has {@link #notifyObservers()}
+     * and the incoming flag has {@link #notifyObservers()} returning
+     * {@code true}, the resulting flag will have
+     * {@link #notifyObservers()} return {@code true} as well. The
+     * inverse is also true. If either has differing flags for any
+     * of the above methods, the resulting flag will have a
+     * {@code false} value.</p>
+     *
+     * @param flag The incoming flag to and with this flag
+     * @return The resulting flag with matched values
+     */
+    BlockChangeFlag andFlag(BlockChangeFlag flag);
 
+    /**
+     * Gets the equivalent {@link BlockChangeFlag} of this flag
+     * with the {@code true}s set for this flag and the provided
+     * {@code flag}, such that only if both flags have the same
+     * {@code true} flags set will persist.
+     *
+     * <p>For example, if this flag has {@link #notifyObservers()}
+     * and the incoming flag has {@link #notifyObservers()} returning
+     * {@code true}, the resulting flag will have
+     * {@link #notifyObservers()} return {@code true} as well. The
+     * inverse is also true. If either has differing flags for any
+     * of the above methods, the resulting flag will have a
+     * {@code false} value.</p>
+     *
+     * @param flag The incoming flag to and with this flag
+     * @return The resulting flag with matched values
+     */
+    BlockChangeFlag andNotFlag(BlockChangeFlag flag);
 
+    BlockChangeFlag orFlag(BlockChangeFlag flag);
+
+    BlockChangeFlag exclusiveOrFlag(BlockChangeFlag flag);
 
 }

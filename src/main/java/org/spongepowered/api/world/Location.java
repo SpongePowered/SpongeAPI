@@ -622,7 +622,7 @@ public final class Location<E extends Extent> implements DataHolder {
      * @return True if the block change was successful
      */
     public boolean removeBlock() {
-        return getExtent().setBlockType(getBlockPosition(), BlockTypes.AIR, BlockChangeFlag.ALL);
+        return getExtent().setBlockType(getBlockPosition(), BlockTypes.AIR, BlockChangeFlags.ALL);
     }
 
     /**
