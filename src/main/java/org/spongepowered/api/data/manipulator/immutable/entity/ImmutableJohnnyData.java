@@ -22,23 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.monster;
+package org.spongepowered.api.data.manipulator.immutable.entity;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.item.ItemTypes;
+import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.manipulator.mutable.entity.JohnnyData;
+import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.entity.living.monster.Vindicator;
 
-public interface Vindicator extends Monster {
+/**
+ * Immutable data which represents if a mob is exhibiting "johnny" behavior.
+ *
+ * <p>In vanilla this currently only applies to {@link Vindicator}s.</p>
+ *
+ * @see <a href="https://minecraft.gamepedia.com/Vindicator#Behavior">
+ *     The Minecraft Wiki</a> for more information about "johnny" behavior
+ *     relating to vindicators
+ */
+public interface ImmutableJohnnyData extends ImmutableDataManipulator<ImmutableJohnnyData, JohnnyData> {
 
     /**
-     * Gets the {@link Value} for whether this vindicator is considered a
-     * "johnny" vindicator. "Johnny" vindicators will deal more damage and
-     * often times carry an {@link ItemTypes#IRON_AXE} of sorts.
+     * Gets the {@link ImmutableValue} for whether this mob is exhibiting
+     * "johnny" behavior.
      *
-     * @return Whether this is a johnny vindicator
+     * @return The immutable value for whether this mob is exhibiting
+     *     "johnny" behavior
      */
-    default Value<Boolean> johnny() {
-        return getValue(Keys.IS_JOHNNY).get();
-    }
+    ImmutableValue<Boolean> johnny();
 
 }

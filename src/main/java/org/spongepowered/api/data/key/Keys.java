@@ -1169,6 +1169,19 @@ public final class Keys {
     public static final Key<Value<Boolean>> IS_FLYING = KeyFactory.fake("IS_FLYING");
 
     /**
+     * Gets the {@link Value} for whether this mob is exhibiting
+     * "johnny" behavior.
+     *
+     * <p>In vanilla this currently only applies to {@link Vindicator}s.</p>
+     *
+     * @see <a href="https://minecraft.gamepedia.com/Vindicator#Behavior">
+     *     The Minecraft Wiki</a> for more information about "johnny" behavior
+     *     relating to vindicators
+     * @see JohnnyData#johnny()
+     */
+    public static final Key<Value<Boolean>> IS_JOHNNY = KeyFactory.fake("IS_JOHNNY");
+
+    /**
      * Represents the {@link Key} for whether a {@link Villager} is playing.
      *
      * <p>In Vanilla, this only applies to villagers that are considered
@@ -1288,7 +1301,17 @@ public final class Keys {
      */
     public static final Key<ListValue<Text>> ITEM_LORE = KeyFactory.fake("ITEM_LORE");
 
-    public static final Key<Value<Boolean>> JOHNNY_VINDICATOR = KeyFactory.fake("JOHNNY_VINDICATOR");
+    /**
+     * Gets the {@link Value} for whether this vindicator is considered a
+     * "johnny" vindicator. "Johnny" vindicators will deal more damage and
+     * often times carry an {@link ItemTypes#IRON_AXE} of sorts.
+     *
+     * @deprecated In favor of {@link Keys#IS_JOHNNY} to match with the rest of
+     *     API and in-case other mobs ever support "johnny" mode in
+     *     any implementation. Will be removed in API 8
+     */
+    @Deprecated
+    public static final Key<Value<Boolean>> JOHNNY_VINDICATOR = KeyFactory.fake("JOHNNY_VINDICATOR");;
 
     /**
      * Represents the {@link Key} for the knockback strength applied by an
