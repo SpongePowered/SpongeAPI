@@ -30,8 +30,6 @@ import org.spongepowered.api.advancement.criteria.trigger.Trigger;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-import java.util.Collection;
-import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -45,26 +43,6 @@ public interface AdvancementCriterion {
      * unlock a {@link Advancement}.
      */
     AdvancementCriterion EMPTY = DummyObjectProvider.createFor(AdvancementCriterion.class, "EMPTY");
-
-    /**
-     * Attempts to build a new AND operation with the given {@link AdvancementCriterion}s.
-     *
-     * @param criteria The other criteria
-     * @return The and operation
-     */
-    static AdvancementCriterion buildAnd(AdvancementCriterion... criteria) {
-        return EMPTY.and(criteria);
-    }
-
-    /**
-     * Attempts to build a new OR operation with the given {@link AdvancementCriterion}s.
-     *
-     * @param criteria The other criteria
-     * @return The or operation
-     */
-    static AdvancementCriterion buildOr(AdvancementCriterion... criteria) {
-        return EMPTY.or(criteria);
-    }
 
     /**
      * Creates a new {@link Builder} to create {@link AdvancementCriterion}s.
@@ -83,37 +61,10 @@ public interface AdvancementCriterion {
     String getName();
 
     /**
-     * Gets the {@link AdvancementCriterion}s. This gets the direct child
-     * {@link AdvancementCriterion}s that are used in AND or OR operations.
-     * <p>
-     * This {@link Set} will be empty when this method is called for
-     * {@link #EMPTY}. Only one element will be present when called
-     * for a regular criterion and multiple ones for {@link Or} or
-     * {@link And} criteria.
-     *
-     * @return The criteria
-     */
-    Set<AdvancementCriterion> getCriteria();
-
-    /**
-     * Gets the leaf {@link AdvancementCriterion}s. This means that
-     * there won't be any AND or OR operations present in this list,
-     * but all their children will be present.
-     * <p>
-     * This {@link Set} will be empty when this method is called for
-     * {@link #EMPTY}. Only one element will be present when called
-     * for a regular criterion and multiple ones for {@link Or} or
-     * {@link And} criteria.
-     *
-     * @return The leaf criteria
-     */
-    Set<AdvancementCriterion> getLeafCriteria();
-
-    /**
      * Combines this {@link AdvancementCriterion} with the other criteria
      * to create an AND operation.
      * <p>
-     * There is no guarantee that the returned extends {@link And}, this depends
+     * There is no guarantee that the returned extends {@link AndCriterion}, this depends
      * on if there are duplicate criteria, {@link #EMPTY} is present or when no
      * extra criteria are provided.
      *
@@ -126,7 +77,7 @@ public interface AdvancementCriterion {
      * Combines this {@link AdvancementCriterion} with the other criteria
      * to create an OR operation.
      * <p>
-     * There is no guarantee that the returned extends {@link Or}, this depends
+     * There is no guarantee that the returned extends {@link OrCriterion}, this depends
      * on if there are duplicate criteria, {@link #EMPTY} is present or when no
      * extra criteria are provided.
      *
@@ -136,46 +87,12 @@ public interface AdvancementCriterion {
     AdvancementCriterion or(AdvancementCriterion... criteria);
 
     /**
-     * Attempts to find all the {@link AdvancementCriterion}s with the
-     * specified name.
-     *
-     * @param name The name
-     * @return The criteria
-     */
-    Collection<AdvancementCriterion> find(String name);
-
-    /**
-     * Attempts to find  the first {@link AdvancementCriterion} with the
-     * specified name.
-     *
-     * @param name The name
-     * @return The criterion
-     */
-    Optional<AdvancementCriterion> findFirst(String name);
-
-    /**
      * Gets the {@link Trigger}s of this {@link AdvancementCriterion}. The
      * {@link Set} can be empty.
      *
      * @return The triggers
      */
     Set<Trigger> getTriggers();
-
-    /**
-     * Creates a {@link AdvancementCriterion} with an AND operation. All the criteria
-     * should be {@code true} in order for the final result to be {@code true}.
-     */
-    interface And extends AdvancementCriterion {
-
-    }
-
-    /**
-     * Creates a {@link AdvancementCriterion} with an OR operation. One the criteria
-     * should be {@code true} in order for the final result to be {@code true}.
-     */
-    interface Or extends AdvancementCriterion {
-
-    }
 
     /**
      * A builder to create {@link AdvancementCriterion}s.

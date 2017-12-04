@@ -22,19 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.advancement.criteria.trigger;
-
-import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
+package org.spongepowered.api.advancement.criteria;
 
 /**
- * Represents a source that can trigger a {@link AdvancementCriterion}.
+ * A {@link AdvancementCriterion} that represents an AND operation. All the criteria
+ * should be {@code true} in order for the final result to be {@code true}.
  */
-public interface Trigger {
+public interface AndCriterion extends OperatorCriterion {
 
     /**
-     * Gets the {@link TriggerType}.
+     * Attempts to build a new AND operation with the given {@link AdvancementCriterion}s.
+     * <p>
+     * There is no guarantee that the returned extends {@link AndCriterion}, this depends
+     * on if there are duplicate criteria, {@link #EMPTY} is present or when no
+     * extra criteria are provided.
      *
-     * @return The type
+     * @param criteria The other criteria
+     * @return The AND operation
      */
-    TriggerType getType();
+    static AdvancementCriterion build(AdvancementCriterion... criteria) {
+        return EMPTY.and(criteria);
+    }
 }

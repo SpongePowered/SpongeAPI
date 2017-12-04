@@ -22,19 +22,47 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.advancement.criteria.trigger;
+package org.spongepowered.api.advancement.criteria;
 
-import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
+import java.util.Collection;
+import java.util.Optional;
+import java.util.Set;
 
-/**
- * Represents a source that can trigger a {@link AdvancementCriterion}.
- */
-public interface Trigger {
+public interface OperatorCriterion extends AdvancementCriterion {
 
     /**
-     * Gets the {@link TriggerType}.
+     * Attempts to find all the children {@link AdvancementCriterion}s
+     * with the specified name. The children will be checked recursively.
      *
-     * @return The type
+     * @param name The name
+     * @return The criteria
      */
-    TriggerType getType();
+    Collection<AdvancementCriterion> find(String name);
+
+    /**
+     * Attempts to find the first child {@link AdvancementCriterion} with
+     * the specified name. The children will be checked recursively, but
+     * direct children are prioritized.
+     *
+     * @param name The name
+     * @return The criterion
+     */
+    Optional<AdvancementCriterion> findFirst(String name);
+
+    /**
+     * Gets the children {@link AdvancementCriterion}s of this
+     * {@link OperatorCriterion}. May contain
+     * {@link OperatorCriterion}s.
+     *
+     * @return The criteria
+     */
+    Set<AdvancementCriterion> getCriteria();
+
+    /**
+     * Gets the leaf {@link AdvancementCriterion}s. This means that there will
+     * never be any {@link OperatorCriterion}s in this list.
+     *
+     * @return The leaf criteria
+     */
+    Set<AdvancementCriterion> getLeafCriteria();
 }
