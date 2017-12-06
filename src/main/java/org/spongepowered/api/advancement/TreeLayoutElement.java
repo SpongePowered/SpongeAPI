@@ -24,30 +24,36 @@
  */
 package org.spongepowered.api.advancement;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import com.flowpowered.math.vector.Vector2d;
 
-/**
- * Changes the frame around the {@link Advancement} icon and
- * also the appearance in the notifications.
- */
-@CatalogedBy(AdvancementTypes.class)
-public interface AdvancementType extends CatalogType {
+public interface TreeLayoutElement {
 
     /**
-     * Formats the given {@link Advancement} for this type.
+     * Gets the {@link Advancement}.
      *
-     * @param advancement The advancement
-     * @return The formatted text, may contain {@link Text#NEW_LINE}s
+     * @return The advancement
      */
-    Text format(Advancement advancement);
+    Advancement getAdvancement();
 
     /**
-     * Formats the given title {@link Text} for this advancement type.
+     * Gets the position of the {@link Advancement}.
      *
-     * @param title The title
-     * @return The formatted text, may contain {@link Text#NEW_LINE}s
+     * @return The position
      */
-    Text format(Text title);
+    Vector2d getPosition();
+
+    /**
+     * Sets the position of the {@link Advancement}.
+     *
+     * @param position The position
+     */
+    void setPosition(Vector2d position);
+
+    /**
+     * Sets the position of the {@link Advancement}.
+     *
+     * @param x The x coordinate
+     * @param y The y coordinate
+     */
+    void setPosition(double x, double y);
 }

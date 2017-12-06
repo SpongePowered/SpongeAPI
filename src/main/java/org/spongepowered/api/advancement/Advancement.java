@@ -24,8 +24,10 @@
  */
 package org.spongepowered.api.advancement;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
+import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +35,7 @@ import java.util.Optional;
 /**
  * An advancement.
  */
-public interface Advancement extends AdvancementStyle {
+public interface Advancement extends CatalogType {
 
     /**
      * Creates a new {@link Builder} to create {@link Advancement}s.
@@ -43,13 +45,6 @@ public interface Advancement extends AdvancementStyle {
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
-
-    /**
-     * Gets the {@link AdvancementType}.
-     *
-     * @return The advancement type
-     */
-    AdvancementType getType();
 
     /**
      * Gets all the children {@link Advancement}s.
@@ -71,42 +66,23 @@ public interface Advancement extends AdvancementStyle {
     AdvancementCriterion getCriterion();
 
     /**
-     * Gets the parent {@link Advancement} if present.
+     * Gets the parent {@link Advancement}, if present.
      *
      * @return The parent advancement, if present
      */
     Optional<Advancement> getParent();
 
     /**
-     * Gets whether a toast should be shown. This is the notification
-     * that will be displayed in the top right corner.
+     * Gets the {@link DisplayInfo} of this advancement, if present.
      *
-     * @return Show toast
+     * @return The display info, if present
      */
-    boolean doesShowToast();
-
-    /**
-     * Gets whether a notification should be shown in the global chat.
-     *
-     * @return Announce to chat
-     */
-    boolean doesAnnounceToChat();
-
-    /**
-     * Gets whether this advancement is hidden.
-     * <p>
-     * Hidden advancements will only appear in the tree once they
-     * are unlocked. The lines that connect them to other advancements
-     * are still present.
-     *
-     * @return Is hidden
-     */
-    boolean isHidden();
+    Optional<DisplayInfo> getDisplayInfo();
 
     /**
      * A builder to create {@link Advancement}s.
      */
-    interface Builder extends AdvancementStyle.Builder<Advancement, Builder> {
+    interface Builder extends ResettableBuilder<Advancement, Builder> {
 
         /**
          * Sets the parent {@link Advancement}.
@@ -115,27 +91,6 @@ public interface Advancement extends AdvancementStyle {
          * @return This builder, for chaining
          */
         Builder parent(Advancement parent);
-
-        /**
-         * Sets the {@link AdvancementType}.
-         *
-         * @param frameType The frame type
-         * @return This builder, for chaining
-         */
-        Builder type(AdvancementType frameType);
-
-        /**
-         * Sets the {@link AdvancementType} that should be
-         * used for the frame around the icon.
-         * <p>
-         * Defaults to the {@link AdvancementType} provided
-         * by {@link #type(AdvancementType)}.
-         *
-         * @param frameType The frame type
-         * @return This builder, for chaining
-         */
-        @Override
-        Builder frameType(AdvancementType frameType);
 
         /**
          * Sets the {@link AdvancementCriterion} that should be used
@@ -147,37 +102,12 @@ public interface Advancement extends AdvancementStyle {
         Builder criterion(AdvancementCriterion criterion);
 
         /**
-         * Sets whether a toast should be shown. This is the notification
-         * that will be displayed in the top right corner.
-         * <p>
-         * Defaults to {@code true}.
+         * Sets the {@link DisplayInfo}. Defaults to {code null}.
          *
-         * @param showToast Whether a toast should be shown
+         * @param displayInfo The display info
          * @return This builder, for chaining
          */
-        Builder showToast(boolean showToast);
-
-        /**
-         * Sets whether a notification should be shown in the global chat.
-         * <p>
-         * Defaults to {@code true}.
-         *
-         * @param announceToChat Whether a notification should be shown in the chat
-         * @return This builder, for chaining
-         */
-        Builder announceToChat(boolean announceToChat);
-
-        /**
-         * Sets whether the {@link Advancement} should be hidden.
-         * <p>
-         * Hidden advancements will only appear in the tree once they
-         * are unlocked. The lines that connect them to other advancements
-         * are still present.
-         *
-         * @param hidden Is hidden
-         * @return This builder, for chaining
-         */
-        Builder hidden(boolean hidden);
+        Builder displayInfo(DisplayInfo displayInfo);
 
         /**
          * Builds the {@link Advancement} with the specified

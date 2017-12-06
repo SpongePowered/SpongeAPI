@@ -44,8 +44,8 @@ public interface Advancer {
     AdvancementProgress getProgress(Advancement advancement);
 
     /**
-     * Gets all the {@link AdvancementTree}s
-     * this {@link Advancer} can watch.
+     * Gets all the {@link AdvancementTree}s that this
+     * advancer already unlocked.
      *
      * @return The advancement trees
      */

@@ -24,21 +24,22 @@
  */
 package org.spongepowered.api.advancement;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.TextRepresentable;
 import org.spongepowered.api.util.ResettableBuilder;
 
-/**
- * Some that has a style within a advancement tree. Either an
- * {@link AdvancementTree} or an {@link Advancement}.
- */
-public interface AdvancementStyle extends CatalogType, TextRepresentable {
+public interface DisplayInfo {
+
+    /**
+     * Gets the {@link AdvancementType}.
+     *
+     * @return The advancement type
+     */
+    AdvancementType getType();
 
     /**
      * Gets the description.
@@ -55,14 +56,6 @@ public interface AdvancementStyle extends CatalogType, TextRepresentable {
     ItemStackSnapshot getIcon();
 
     /**
-     * Gets the {@link AdvancementType} that should be
-     * used for the frame around the icon.
-     *
-     * @return The frame type
-     */
-    AdvancementType getFrameType();
-
-    /**
      * Gets the title.
      *
      * @return The title
@@ -70,9 +63,40 @@ public interface AdvancementStyle extends CatalogType, TextRepresentable {
     Text getTitle();
 
     /**
-     * The base interface to create {@link AdvancementStyle} objects.
+     * Gets whether a toast should be shown. This is the notification
+     * that will be displayed in the top right corner.
+     *
+     * @return Show toast
      */
-    interface Builder<T extends AdvancementStyle, B extends Builder<T, B>> extends ResettableBuilder<T, B> {
+    boolean doesShowToast();
+
+    /**
+     * Gets whether a notification should be shown in the global chat.
+     *
+     * @return Announce to chat
+     */
+    boolean doesAnnounceToChat();
+
+    /**
+     * Gets whether this advancement is hidden.
+     * <p>
+     * Hidden advancements will only appear in the tree once they
+     * are unlocked. The lines that connect them to other advancements
+     * are still present.
+     *
+     * @return Is hidden
+     */
+    boolean isHidden();
+
+    interface Builder extends ResettableBuilder<DisplayInfo, Builder> {
+
+        /**
+         * Sets the {@link AdvancementType}.
+         *
+         * @param advancementType The advancement type
+         * @return This builder, for chaining
+         */
+        Builder type(AdvancementType advancementType);
 
         /**
          * Sets the description. Defaults to {@link Text#EMPTY}.
@@ -80,7 +104,7 @@ public interface AdvancementStyle extends CatalogType, TextRepresentable {
          * @param description The description
          * @return This builder, for chaining
          */
-        B description(Text description);
+        Builder description(Text description);
 
         /**
          * Sets the title.
@@ -88,18 +112,7 @@ public interface AdvancementStyle extends CatalogType, TextRepresentable {
          * @param title The title
          * @return This builder, for chaining
          */
-        B title(Text title);
-
-        /**
-         * Sets the {@link AdvancementType} that should be
-         * used for the frame around the icon.
-         * <p>
-         * Defaults to {@link AdvancementTypes#TASK}.
-         *
-         * @param frameType The frame type
-         * @return This builder, for chaining
-         */
-        B frameType(AdvancementType frameType);
+        Builder title(Text title);
 
         /**
          * Sets the icon of the advancement with the
@@ -108,7 +121,7 @@ public interface AdvancementStyle extends CatalogType, TextRepresentable {
          * @param itemType The item type
          * @return This builder, for chaining
          */
-        default B icon(ItemType itemType) {
+        default Builder icon(ItemType itemType) {
             return icon(ItemStack.of(itemType, 1));
         }
 
@@ -119,7 +132,7 @@ public interface AdvancementStyle extends CatalogType, TextRepresentable {
          * @param itemStack The item stack
          * @return This builder, for chaining
          */
-        default B icon(ItemStack itemStack) {
+        default Builder icon(ItemStack itemStack) {
             return icon(itemStack.createSnapshot());
         }
 
@@ -130,7 +143,7 @@ public interface AdvancementStyle extends CatalogType, TextRepresentable {
          * @param itemStackSnapshot The item stack snapshot
          * @return This builder, for chaining
          */
-        B icon(ItemStackSnapshot itemStackSnapshot);
+        Builder icon(ItemStackSnapshot itemStackSnapshot);
 
         /**
          * Sets the icon of the advancement with the
@@ -139,7 +152,7 @@ public interface AdvancementStyle extends CatalogType, TextRepresentable {
          * @param blockType The block type
          * @return This builder, for chaining
          */
-        default B icon(BlockType blockType) {
+        default Builder icon(BlockType blockType) {
             return icon(blockType.getDefaultState());
         }
 
@@ -150,6 +163,46 @@ public interface AdvancementStyle extends CatalogType, TextRepresentable {
          * @param blockState The block state
          * @return This builder, for chaining
          */
-        B icon(BlockState blockState);
+        Builder icon(BlockState blockState);
+
+        /**
+         * Sets whether a toast should be shown. This is the notification
+         * that will be displayed in the top right corner.
+         * <p>
+         * Defaults to {@code true}.
+         *
+         * @param showToast Whether a toast should be shown
+         * @return This builder, for chaining
+         */
+        Builder showToast(boolean showToast);
+
+        /**
+         * Sets whether a notification should be shown in the global chat.
+         * <p>
+         * Defaults to {@code true}.
+         *
+         * @param announceToChat Whether a notification should be shown in the chat
+         * @return This builder, for chaining
+         */
+        Builder announceToChat(boolean announceToChat);
+
+        /**
+         * Sets whether the {@link Advancement} should be hidden.
+         * <p>
+         * Hidden advancements will only appear in the tree once they
+         * are unlocked. The lines that connect them to other advancements
+         * are still present.
+         *
+         * @param hidden Is hidden
+         * @return This builder, for chaining
+         */
+        Builder hidden(boolean hidden);
+
+        /**
+         * Builds the {@link DisplayInfo}.
+         *
+         * @return The display info
+         */
+        DisplayInfo build();
     }
 }

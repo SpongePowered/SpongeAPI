@@ -24,19 +24,14 @@
  */
 package org.spongepowered.api.advancement;
 
-import com.flowpowered.math.vector.Vector2d;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.living.player.Player;
-
-import java.util.List;
-import java.util.Optional;
-
-import javax.annotation.Nullable;
+import org.spongepowered.api.util.ResettableBuilder;
 
 /**
- * An advancement tree.
+ * Represents a {@link Advancement} tree or tab menu. The tree will become visible to
+ * an {@link Advancer} once the root {@link Advancement} gets achieved.
  */
-public interface AdvancementTree extends AdvancementStyle {
+public interface AdvancementTree {
 
     /**
      * Creates a new {@link Builder} to create {@link AdvancementTree}s.
@@ -48,87 +43,41 @@ public interface AdvancementTree extends AdvancementStyle {
     }
 
     /**
-     * Gets all the {@link Player}s with access
-     * to this {@link AdvancementTree}.
+     * Gets the root {@link Advancement}.
      *
-     * @return The players
+     * @return The root advancement
      */
-    List<Player> getPlayers();
-
-    /**
-     * Adds a new {@link Player} to track this
-     * {@link AdvancementTree}.
-     *
-     * @param player The player
-     */
-    void addPlayer(Player player);
-
-    /**
-     * Removes the {@link Player}.
-     *
-     * @param player The player
-     */
-    void removePlayer(Player player);
-
-    /**
-     * Gets the root {@link Advancement} if present.
-     *
-     * @return The root advancement, if present
-     */
-    Optional<Advancement> getRootAdvancement();
+    Advancement getRootAdvancement();
 
     /**
      * Gets the background texture of this tree.
      *
      * @return The background texture
      */
+    // TODO: Use ResourcePath, or something similar?
     String getBackground();
 
     /**
-     * Adds the {@link Advancement} to this tree at the specified x
-     * and y coordinates.
-     * <p>
-     * Positive and negative values can be used as coordinates. The
-     * x and y coordinates origin in in the top left corner.
+     * Gets the {@link TreeLayout} of this tree.
      *
-     * @param x The x coordinate
-     * @param y The y coordinate
-     * @param advancement The advancement
+     * @return The layout
      */
-    void addAdvancement(double x, double y, Advancement advancement);
-
-    /**
-     * Removes the specified {@link Advancement}.
-     *
-     * @param advancement The advancement
-     */
-    void removeAdvancement(Advancement advancement);
+    TreeLayout getLayout();
 
     /**
      * A builder to create {@link AdvancementTree}s.
      */
-    interface Builder extends AdvancementStyle.Builder<AdvancementTree, Builder> {
+    interface Builder extends ResettableBuilder<AdvancementTree, Builder> {
 
         /**
-         * Sets the root {@link Advancement}.
-         * <p>
-         * If this isn't specified ({@code null}), then it is required to provide at least a title,
-         * with optionally a icon and description.
+         * Sets the root {@link Advancement}. The root advancement MUST have
+         * {@link DisplayInfo} present.
          *
          * @param rootAdvancement The root advancement
          * @return This builder, for chaining
+         * @throws IllegalArgumentException If the display info is missing
          */
-        Builder rootAdvancement(@Nullable Advancement rootAdvancement);
-
-        /**
-         * Sets the position of the root advancement or icon.
-         * <p>
-         * Defaults to {@link Vector2d#ZERO}.
-         *
-         * @param position The position
-         * @return This builder, for chaining
-         */
-        Builder rootPosition(Vector2d position);
+        Builder rootAdvancement(Advancement rootAdvancement);
 
         /**
          * Sets the background of {@link AdvancementTree}.
@@ -139,6 +88,7 @@ public interface AdvancementTree extends AdvancementStyle {
          * @param background The background
          * @return This builder, for chaining
          */
+        // TODO: Use ResourcePath, or something similar?
         Builder background(String background);
 
         /**

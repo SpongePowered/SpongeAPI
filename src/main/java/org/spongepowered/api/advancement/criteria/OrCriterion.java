@@ -38,7 +38,7 @@ public interface OrCriterion extends OperatorCriterion {
      * extra criteria are provided.
      *
      * @param criteria The other criteria
-     * @return The AND operation
+     * @return The OR operation
      */
     static AdvancementCriterion build(AdvancementCriterion... criteria) {
         return EMPTY.or(criteria);

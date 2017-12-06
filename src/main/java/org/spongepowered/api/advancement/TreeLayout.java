@@ -24,30 +24,27 @@
  */
 package org.spongepowered.api.advancement;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import java.util.Optional;
 
-/**
- * Changes the frame around the {@link Advancement} icon and
- * also the appearance in the notifications.
- */
-@CatalogedBy(AdvancementTypes.class)
-public interface AdvancementType extends CatalogType {
+public interface TreeLayout {
 
     /**
-     * Formats the given {@link Advancement} for this type.
+     * Gets the {@link TreeLayoutElement} for the specified {@link Advancement},
+     * {@link Optional#empty()} will be returned if the advancement is not present
+     * in the tree or if there is no {@link DisplayInfo} present.
      *
      * @param advancement The advancement
-     * @return The formatted text, may contain {@link Text#NEW_LINE}s
+     * @return The tree layout element
      */
-    Text format(Advancement advancement);
+    Optional<TreeLayoutElement> getElement(Advancement advancement);
 
     /**
-     * Formats the given title {@link Text} for this advancement type.
+     * Adds a transformer to this {@link TreeLayout} to rearrange the
+     * {@link TreeLayoutElement} positions when tree is updated. The complete
+     * tree positions will be updated to the automatic generated ones before
+     * the transformer is called.
      *
-     * @param title The title
-     * @return The formatted text, may contain {@link Text#NEW_LINE}s
+     * @param transformer The transformer
      */
-    Text format(Text title);
+    void addTransformer(Runnable transformer);
 }
