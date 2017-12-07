@@ -32,6 +32,8 @@ import org.spongepowered.api.util.ResettableBuilder;
 import java.util.List;
 import java.util.Optional;
 
+import javax.annotation.Nullable;
+
 /**
  * An advancement.
  */
@@ -45,6 +47,15 @@ public interface Advancement extends CatalogType {
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
+
+    /**
+     * Gets the {@link AdvancementTree} this advancement is located in,
+     * will only be present if the root advancement was used to create
+     * a {@link AdvancementTree}.
+     *
+     * @return The advancement tree
+     */
+    Optional<AdvancementTree> getTree();
 
     /**
      * Gets all the children {@link Advancement}s.
@@ -85,12 +96,12 @@ public interface Advancement extends CatalogType {
     interface Builder extends ResettableBuilder<Advancement, Builder> {
 
         /**
-         * Sets the parent {@link Advancement}.
+         * Sets the parent {@link Advancement}. Defaults to {code null}.
          *
          * @param parent The parent advancement
          * @return This builder, for chaining
          */
-        Builder parent(Advancement parent);
+        Builder parent(@Nullable Advancement parent);
 
         /**
          * Sets the {@link AdvancementCriterion} that should be used
@@ -107,7 +118,7 @@ public interface Advancement extends CatalogType {
          * @param displayInfo The display info
          * @return This builder, for chaining
          */
-        Builder displayInfo(DisplayInfo displayInfo);
+        Builder displayInfo(@Nullable DisplayInfo displayInfo);
 
         /**
          * Builds the {@link Advancement} with the specified

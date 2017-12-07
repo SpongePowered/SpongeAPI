@@ -75,6 +75,19 @@ public interface AdvancementCriterion {
 
     /**
      * Combines this {@link AdvancementCriterion} with the other criteria
+     * to create an AND operation.
+     * <p>
+     * There is no guarantee that the returned extends {@link AndCriterion}, this depends
+     * on if there are duplicate criteria, {@link #EMPTY} is present or when no
+     * extra criteria are provided.
+     *
+     * @param criteria The criteria
+     * @return The and operation
+     */
+    AdvancementCriterion and(Iterable<AdvancementCriterion> criteria);
+
+    /**
+     * Combines this {@link AdvancementCriterion} with the other criteria
      * to create an OR operation.
      * <p>
      * There is no guarantee that the returned extends {@link OrCriterion}, this depends
@@ -85,6 +98,19 @@ public interface AdvancementCriterion {
      * @return The or operation
      */
     AdvancementCriterion or(AdvancementCriterion... criteria);
+
+    /**
+     * Combines this {@link AdvancementCriterion} with the other criteria
+     * to create an OR operation.
+     * <p>
+     * There is no guarantee that the returned extends {@link OrCriterion}, this depends
+     * on if there are duplicate criteria, {@link #EMPTY} is present or when no
+     * extra criteria are provided.
+     *
+     * @param criteria The criteria
+     * @return The or operation
+     */
+    AdvancementCriterion or(Iterable<AdvancementCriterion> criteria);
 
     /**
      * Gets the {@link Trigger}s of this {@link AdvancementCriterion}. The

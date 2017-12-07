@@ -43,4 +43,18 @@ public interface OrCriterion extends OperatorCriterion {
     static AdvancementCriterion build(AdvancementCriterion... criteria) {
         return EMPTY.or(criteria);
     }
+
+    /**
+     * Attempts to build a new OR operation with the given {@link AdvancementCriterion}s.
+     * <p>
+     * There is no guarantee that the returned extends {@link OrCriterion}, this depends
+     * on if there are duplicate criteria, {@link #EMPTY} is present or when no
+     * extra criteria are provided.
+     *
+     * @param criteria The other criteria
+     * @return The OR operation
+     */
+    static AdvancementCriterion build(Iterable<AdvancementCriterion> criteria) {
+        return EMPTY.or(criteria);
+    }
 }

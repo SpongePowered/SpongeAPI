@@ -24,8 +24,7 @@
  */
 package org.spongepowered.api.advancement;
 
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
@@ -33,6 +32,15 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.ResettableBuilder;
 
 public interface DisplayInfo {
+
+    /**
+     * Creates a new {@link Builder} to create {@link DisplayInfo}s.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Gets the {@link AdvancementType}.
@@ -88,6 +96,9 @@ public interface DisplayInfo {
      */
     boolean isHidden();
 
+    /**
+     * A builder to create {@link DisplayInfo}s.
+     */
     interface Builder extends ResettableBuilder<DisplayInfo, Builder> {
 
         /**
@@ -144,26 +155,6 @@ public interface DisplayInfo {
          * @return This builder, for chaining
          */
         Builder icon(ItemStackSnapshot itemStackSnapshot);
-
-        /**
-         * Sets the icon of the advancement with the
-         * specified {@link BlockType}.
-         *
-         * @param blockType The block type
-         * @return This builder, for chaining
-         */
-        default Builder icon(BlockType blockType) {
-            return icon(blockType.getDefaultState());
-        }
-
-        /**
-         * Sets the icon of the advancement with the
-         * specified {@link BlockState}.
-         *
-         * @param blockState The block state
-         * @return This builder, for chaining
-         */
-        Builder icon(BlockState blockState);
 
         /**
          * Sets whether a toast should be shown. This is the notification

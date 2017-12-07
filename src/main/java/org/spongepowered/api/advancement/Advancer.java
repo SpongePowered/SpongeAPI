@@ -49,5 +49,5 @@ public interface Advancer {
      *
      * @return The advancement trees
      */
-    Set<AdvancementTree> getAdvancementTrees();
+    Set<AdvancementTree> getUnlockedAdvancementTrees();
 }
