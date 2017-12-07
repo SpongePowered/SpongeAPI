@@ -34,6 +34,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.variant.VarietyQueryable;
 
 import java.util.Optional;
 
@@ -41,7 +42,7 @@ import java.util.Optional;
  * A type of item.
  */
 @CatalogedBy(ItemTypes.class)
-public interface ItemType extends CatalogType, Translatable, GameDictionary.Entry {
+public interface ItemType extends CatalogType, Translatable, GameDictionary.Entry, VarietyQueryable {
 
     /**
      * Gets the corresponding {@link BlockType} of this item if one exists.
@@ -82,8 +83,23 @@ public interface ItemType extends CatalogType, Translatable, GameDictionary.Entr
      * @param propertyClass The item property class
      * @param <T> The type of item property
      * @return The item property, if available
+     * @deprecated Use {@link #getProperty(Class)} instead
      */
+    @Deprecated
     <T extends Property<?, ?>> Optional<T> getDefaultProperty(Class<T> propertyClass);
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>While item stacks do have properties, generally, there is an
+     * intrinsic default property for many item types. However, it should be
+     * considered that when mods are introducing their own custom items, they
+     * too could introduce different item properties based on various data on
+     * the item stack. The default properties retrieved from here should merely
+     * be considered as a default, not as a definitive property.</p>
+     */
+    @Override
+    <T extends Property<?, ?>> Optional<T> getProperty(Class<T> propertyClass);
     
     @Override
     default ItemType getType() {
