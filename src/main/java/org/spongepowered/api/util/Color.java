@@ -30,6 +30,7 @@ import com.flowpowered.math.vector.Vector3i;
 import org.apache.commons.lang3.Validate;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.type.DyeColor;
 
 public interface Color extends DataSerializable {
@@ -366,7 +367,7 @@ public interface Color extends DataSerializable {
         return mixColors(newColorArray);
     }
 
-    interface Builder extends ResettableBuilder<Color, Builder> {
+    interface Builder extends DataBuilder<Color> {
 
         /**
          * Sets the rgb value for this color. An alpha value will be stripped.
