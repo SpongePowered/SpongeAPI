@@ -30,7 +30,7 @@ import org.spongepowered.api.advancement.criteria.trigger.Trigger;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-import java.util.Set;
+import java.util.Collection;
 
 /**
  * Represents a criterion that should be acquired
@@ -69,7 +69,7 @@ public interface AdvancementCriterion {
      * extra criteria are provided.
      *
      * @param criteria The criteria
-     * @return The and operation
+     * @return The AND operation
      */
     AdvancementCriterion and(AdvancementCriterion... criteria);
 
@@ -82,7 +82,7 @@ public interface AdvancementCriterion {
      * extra criteria are provided.
      *
      * @param criteria The criteria
-     * @return The and operation
+     * @return The AND operation
      */
     AdvancementCriterion and(Iterable<AdvancementCriterion> criteria);
 
@@ -95,7 +95,7 @@ public interface AdvancementCriterion {
      * extra criteria are provided.
      *
      * @param criteria The criteria
-     * @return The or operation
+     * @return The OR operation
      */
     AdvancementCriterion or(AdvancementCriterion... criteria);
 
@@ -108,17 +108,17 @@ public interface AdvancementCriterion {
      * extra criteria are provided.
      *
      * @param criteria The criteria
-     * @return The or operation
+     * @return The OR operation
      */
     AdvancementCriterion or(Iterable<AdvancementCriterion> criteria);
 
     /**
      * Gets the {@link Trigger}s of this {@link AdvancementCriterion}. The
-     * {@link Set} can be empty.
+     * {@link Collection} can be empty.
      *
      * @return The triggers
      */
-    Set<Trigger> getTriggers();
+    Collection<Trigger> getTriggers();
 
     /**
      * A builder to create {@link AdvancementCriterion}s.

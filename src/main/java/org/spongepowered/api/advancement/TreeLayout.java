@@ -24,9 +24,28 @@
  */
 package org.spongepowered.api.advancement;
 
+import java.util.Collection;
 import java.util.Optional;
 
+/**
+ * Represents the tree (tab) layout of a {@link AdvancementTree}.
+ */
 public interface TreeLayout {
+
+    /**
+     * Gets the {@link AdvancementTree} this layout is assigned to.
+     *
+     * @return The tree
+     */
+    AdvancementTree getTree();
+
+    /**
+     * Gets all the {@link TreeLayoutElement}s that are
+     * present in this layout.
+     *
+     * @return The tree layout elements
+     */
+    Collection<TreeLayoutElement> getElements();
 
     /**
      * Gets the {@link TreeLayoutElement} for the specified {@link Advancement},
@@ -38,13 +57,4 @@ public interface TreeLayout {
      */
     Optional<TreeLayoutElement> getElement(Advancement advancement);
 
-    /**
-     * Adds a transformer to this {@link TreeLayout} to rearrange the
-     * {@link TreeLayoutElement} positions when tree is updated. The complete
-     * tree positions will be updated to the automatic generated ones before
-     * the transformer is called.
-     *
-     * @param transformer The transformer
-     */
-    void addTransformer(Runnable transformer);
 }

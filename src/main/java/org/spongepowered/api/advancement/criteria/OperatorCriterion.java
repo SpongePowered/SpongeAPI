@@ -26,7 +26,6 @@ package org.spongepowered.api.advancement.criteria;
 
 import java.util.Collection;
 import java.util.Optional;
-import java.util.Set;
 
 public interface OperatorCriterion extends AdvancementCriterion {
 
@@ -56,7 +55,7 @@ public interface OperatorCriterion extends AdvancementCriterion {
      *
      * @return The criteria
      */
-    Set<AdvancementCriterion> getCriteria();
+    Collection<AdvancementCriterion> getCriteria();
 
     /**
      * Gets the leaf {@link AdvancementCriterion}s. This means that there will
@@ -64,5 +63,5 @@ public interface OperatorCriterion extends AdvancementCriterion {
      *
      * @return The leaf criteria
      */
-    Set<AdvancementCriterion> getLeafCriteria();
+    Collection<AdvancementCriterion> getLeafCriteria();
 }

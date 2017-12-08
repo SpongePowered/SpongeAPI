@@ -59,13 +59,6 @@ public interface AdvancementTree extends CatalogType {
     String getBackground();
 
     /**
-     * Gets the {@link TreeLayout} of this tree.
-     *
-     * @return The layout
-     */
-    TreeLayout getLayout();
-
-    /**
      * A builder to create {@link AdvancementTree}s.
      */
     interface Builder extends ResettableBuilder<AdvancementTree, Builder> {

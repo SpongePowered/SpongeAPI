@@ -24,50 +24,35 @@
  */
 package org.spongepowered.api.event.advancement;
 
-import org.spongepowered.api.advancement.criteria.ScoreAdvancementCriterion;
-import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.advancement.AdvancementTree;
+import org.spongepowered.api.advancement.TreeLayout;
+import org.spongepowered.api.event.Event;
 
-public interface ScoreCriterionChangeEvent extends CriterionEvent, Cancellable {
-
-    @Override
-    ScoreAdvancementCriterion getCriterion();
-
-    /**
-     * Gets the previous score.
-     *
-     * @return The previous score
-     */
-    int getPreviousScore();
+/**
+ * A base interface for all the {@link AdvancementTree} events.
+ */
+public interface AdvancementTreeEvent extends Event {
 
     /**
-     * Gets the new score.
+     * Gets the {@link AdvancementTree}.
      *
-     * @return The new score
+     * @return The advancement tree
      */
-    int getNewScore();
+    AdvancementTree getTree();
 
     /**
-     * Sets the new score.
-     *
-     * @param score The score
+     * Is called when the layout of a {@link AdvancementTree} gets
+     * updated, this is done after the vanilla game generates the
+     * layout. You can safely move elements in the {@link TreeLayout}
+     * within this event.
      */
-    void setNewScore(int score);
+    interface GenerateLayout extends AdvancementTreeEvent {
 
-    /**
-     * Gets whether the {@link ScoreAdvancementCriterion} was met
-     * before the event was thrown.
-     *
-     * @return Was met before
-     */
-    boolean wasMetBefore();
-
-    /**
-     * Gets whether the {@link ScoreAdvancementCriterion} is
-     * met after this event is processed.
-     *
-     * @return Is met
-     */
-    default boolean isMet() {
-        return getNewScore() >= getCriterion().getGoal();
+        /**
+         * Gets the {@link TreeLayout} that got generated.
+         *
+         * @return The tree layout
+         */
+        TreeLayout getLayout();
     }
 }

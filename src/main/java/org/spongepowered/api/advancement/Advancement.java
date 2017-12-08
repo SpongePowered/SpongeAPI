@@ -29,7 +29,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
 import org.spongepowered.api.util.ResettableBuilder;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Optional;
 
 import javax.annotation.Nullable;
@@ -62,7 +62,7 @@ public interface Advancement extends CatalogType {
      *
      * @return The children advancements
      */
-    List<Advancement> getChildren();
+    Collection<Advancement> getChildren();
 
     /**
      * Gets all the {@link AdvancementCriterion} that should be achieved

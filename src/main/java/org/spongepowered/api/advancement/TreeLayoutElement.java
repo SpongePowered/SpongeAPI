@@ -26,6 +26,9 @@ package org.spongepowered.api.advancement;
 
 import com.flowpowered.math.vector.Vector2d;
 
+/**
+ * Represents a element in the {@link TreeLayout}.
+ */
 public interface TreeLayoutElement {
 
     /**
@@ -47,7 +50,9 @@ public interface TreeLayoutElement {
      *
      * @param position The position
      */
-    void setPosition(Vector2d position);
+    default void setPosition(Vector2d position) {
+        setPosition(position.getX(), position.getY());
+    }
 
     /**
      * Sets the position of the {@link Advancement}.

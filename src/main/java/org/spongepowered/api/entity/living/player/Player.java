@@ -25,7 +25,9 @@
 package org.spongepowered.api.entity.living.player;
 
 import org.spongepowered.api.Server;
-import org.spongepowered.api.advancement.Advancer;
+import org.spongepowered.api.advancement.Advancement;
+import org.spongepowered.api.advancement.AdvancementProgress;
+import org.spongepowered.api.advancement.AdvancementTree;
 import org.spongepowered.api.block.tileentity.EnderChest;
 import org.spongepowered.api.command.CommandManager;
 import org.spongepowered.api.command.CommandSource;
@@ -57,6 +59,7 @@ import org.spongepowered.api.text.chat.ChatVisibility;
 import org.spongepowered.api.world.WorldBorder;
 
 import java.time.Instant;
+import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 
@@ -70,7 +73,7 @@ import javax.annotation.Nullable;
  * <p>Any methods called on Player that are not on User do not store any data
  * that persists across server restarts.</p>
  */
-public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMessageReceiver, Advancer {
+public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMessageReceiver {
 
     /**
      * Returns whether this player has an open inventory at the moment
@@ -364,4 +367,20 @@ public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMe
      */
     CooldownTracker getCooldownTracker();
 
+    /**
+     * Gets the {@link AdvancementProgress} for the
+     * specified {@link Advancement}.
+     *
+     * @param advancement The advancement
+     * @return The advancement progress
+     */
+    AdvancementProgress getProgress(Advancement advancement);
+
+    /**
+     * Gets all the {@link AdvancementTree}s that this
+     * advancer already unlocked.
+     *
+     * @return The advancement trees
+     */
+    Collection<AdvancementTree> getUnlockedAdvancementTrees();
 }

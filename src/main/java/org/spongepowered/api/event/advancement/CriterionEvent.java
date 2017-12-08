@@ -25,7 +25,17 @@
 package org.spongepowered.api.event.advancement;
 
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
+import org.spongepowered.api.advancement.criteria.ScoreAdvancementCriterion;
+import org.spongepowered.api.advancement.criteria.trigger.Trigger;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 
+import java.time.Instant;
+
+/**
+ * A base event for {@link AdvancementCriterion} related events.
+ */
 public interface CriterionEvent extends AdvancementEvent {
 
     /**
@@ -34,4 +44,81 @@ public interface CriterionEvent extends AdvancementEvent {
      * @return The criterion
      */
     AdvancementCriterion getCriterion();
+
+    /**
+     * Is called when a {@link AdvancementCriterion} is granted/unlocked.
+     * <p>The {@link Cause} in vanilla minecraft may contain the {@link Trigger}
+     * that caused this event to happen, other methods to trigger the event
+     * are through commands or the api.
+     */
+    interface Grant extends CriterionEvent, Cancellable {
+
+        /**
+         * Gets the {@link Instant} at which the {@link AdvancementCriterion}
+         * was unlocked.
+         *
+         * @return The time instant
+         */
+        Instant getTime();
+    }
+
+    /**
+     * Is called when a {@link AdvancementCriterion} is revoked.
+     */
+    interface Revoke extends CriterionEvent, Cancellable {
+    }
+
+    /**
+     * Is called when the score of a {@link ScoreAdvancementCriterion}
+     * changes. This is done before any {@link CriterionEvent.Grant}
+     * or {@link CriterionEvent.Revoke} events are called.
+     */
+    interface ScoreChange extends CriterionEvent, Cancellable {
+
+        @Override
+        ScoreAdvancementCriterion getCriterion();
+
+        /**
+         * Gets the previous score.
+         *
+         * @return The previous score
+         */
+        int getPreviousScore();
+
+        /**
+         * Gets the new score.
+         *
+         * @return The new score
+         */
+        int getNewScore();
+
+        /**
+         * Sets the new score.
+         *
+         * @param score The score
+         */
+        void setNewScore(int score);
+
+        /**
+         * Gets whether the {@link ScoreAdvancementCriterion} was granted
+         * before the event was thrown.
+         *
+         * @return Was granted before
+         */
+        @PropertySettings(generateMethods = false, requiredParameter = false)
+        default boolean wasGrantedBefore() {
+            return getPreviousScore() >= getCriterion().getGoal();
+        }
+
+        /**
+         * Gets whether the {@link ScoreAdvancementCriterion} is
+         * granted after this event is processed.
+         *
+         * @return Is granted
+         */
+        @PropertySettings(generateMethods = false, requiredParameter = false)
+        default boolean isGranted() {
+            return getNewScore() >= getCriterion().getGoal();
+        }
+    }
 }

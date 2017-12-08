@@ -25,8 +25,15 @@
 package org.spongepowered.api.event.advancement;
 
 import org.spongepowered.api.advancement.Advancement;
+import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
 import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
+import org.spongepowered.api.event.message.MessageChannelEvent;
 
+import java.time.Instant;
+
+/**
+ * A base event for {@link Advancement} related events.
+ */
 public interface AdvancementEvent extends TargetPlayerEvent {
 
     /**
@@ -35,4 +42,32 @@ public interface AdvancementEvent extends TargetPlayerEvent {
      * @return The advancement
      */
     Advancement getAdvancement();
+
+    /**
+     * Is called when a {@link Advancement} is granted/unlocked.
+     * <p>
+     * This event cannot be canceled, you have to cancel the
+     * {@link CriterionEvent.Grant}s of the underlying {@link CriterionEvent}s
+     * to prevent unlocking the {@link Advancement}.
+     */
+    interface Grant extends AdvancementEvent, MessageChannelEvent {
+
+        /**
+         * Gets the {@link Instant} at which the {@link Advancement}
+         * was unlocked.
+         *
+         * @return The time instant
+         */
+        Instant getTime();
+    }
+
+    /**
+     * Is called when a {@link AdvancementCriterion} is revoked.
+     * <p>
+     * This event cannot be canceled, you have to cancel the
+     * {@link CriterionEvent.Grant}s of the underlying {@link CriterionEvent}s
+     * to prevent revoking the {@link Advancement}.
+     */
+    interface Revoke extends AdvancementEvent {
+    }
 }

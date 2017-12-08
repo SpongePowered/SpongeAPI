@@ -40,7 +40,7 @@ public interface OrCriterion extends OperatorCriterion {
      * @param criteria The other criteria
      * @return The OR operation
      */
-    static AdvancementCriterion build(AdvancementCriterion... criteria) {
+    static AdvancementCriterion of(AdvancementCriterion... criteria) {
         return EMPTY.or(criteria);
     }
 
@@ -54,7 +54,7 @@ public interface OrCriterion extends OperatorCriterion {
      * @param criteria The other criteria
      * @return The OR operation
      */
-    static AdvancementCriterion build(Iterable<AdvancementCriterion> criteria) {
+    static AdvancementCriterion of(Iterable<AdvancementCriterion> criteria) {
         return EMPTY.or(criteria);
     }
 }
