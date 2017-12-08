@@ -54,6 +54,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.net.InetSocketAddress;
 import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -233,6 +234,8 @@ public class SpongeEventFactoryTest {
             return Text.of();
         } else if (paramType == Duration.class) {
             return Duration.ZERO;
+        } else if (paramType == Instant.class) {
+            return Instant.now();
         } else {
             return mock(paramType, withSettings().defaultAnswer(EVENT_MOCKING_ANSWER));
         }
