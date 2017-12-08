@@ -37,60 +37,60 @@ public interface Color extends DataSerializable {
 
     //16 HTML web colors and CSS orange
 
-    Color WHITE = of(0xFFFFFF);
+    Color WHITE = ofRgb(0xFFFFFF);
 
-    Color SILVER = of(0xC0C0C0);
+    Color SILVER = ofRgb(0xC0C0C0);
 
-    Color GRAY = of(0x808080);
+    Color GRAY = ofRgb(0x808080);
 
-    Color BLACK = of(0x000000);
+    Color BLACK = ofRgb(0x000000);
 
-    Color RED = of(0xFF0000);
+    Color RED = ofRgb(0xFF0000);
 
-    Color MAROON = of(0x800000);
+    Color MAROON = ofRgb(0x800000);
 
-    Color ORANGE = of(0xFFA500);
+    Color ORANGE = ofRgb(0xFFA500);
 
-    Color YELLOW = of(0xFFFF00);
+    Color YELLOW = ofRgb(0xFFFF00);
 
-    Color OLIVE = of(0x808000);
+    Color OLIVE = ofRgb(0x808000);
 
-    Color LIME = of(0x00FF00);
+    Color LIME = ofRgb(0x00FF00);
 
-    Color GREEN = of(0x008000);
+    Color GREEN = ofRgb(0x008000);
 
-    Color AQUA = of(0x00FFFF);
+    Color AQUA = ofRgb(0x00FFFF);
 
-    Color TEAL = of(0x008080);
+    Color TEAL = ofRgb(0x008080);
 
-    Color BLUE = of(0x0000FF);
+    Color BLUE = ofRgb(0x0000FF);
 
-    Color NAVY = of(0x000080);
+    Color NAVY = ofRgb(0x000080);
 
-    Color FUCHSIA = of(0xFF00FF);
+    Color FUCHSIA = ofRgb(0xFF00FF);
 
-    Color PURPLE = of(0x800080);
+    Color PURPLE = ofRgb(0x800080);
 
     //Old purple = 0xAA00FF, new purple = 0x800080
-    //Color OLD_PURPLE = of(0xAA00FF);
+    //Color OLD_PURPLE = ofRgb(0xAA00FF);
 
     @Deprecated
-    Color MAGENTA = of(0xFF00FF);
+    Color MAGENTA = ofRgb(0xFF00FF);
 
     @Deprecated
-    Color DARK_CYAN = of(0x008B8B);
+    Color DARK_CYAN = ofRgb(0x008B8B);
 
     @Deprecated
-    Color DARK_GREEN = of(0x006400);
+    Color DARK_GREEN = ofRgb(0x006400);
 
     @Deprecated
-    Color DARK_MAGENTA = of(0x8B008B);
+    Color DARK_MAGENTA = ofRgb(0x8B008B);
 
     @Deprecated
-    Color CYAN = of(0x00FFFF);
+    Color CYAN = ofRgb(0x00FFFF);
 
     @Deprecated
-    Color PINK = of(0xFF00AA);
+    Color PINK = ofRgb(0xFF00AA);
 
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
@@ -103,24 +103,11 @@ public interface Color extends DataSerializable {
      * @param rgb The red-green-blue value
      * @return The color object
      */
-    static Color of(int rgb) {
+    static Color ofRgb(int rgb) {
         return builder().rgb(rgb).build();
     }
 
     /**
-     * Creates a new {@link Color} based on the red-green-blue (rgb) value for
-     * the color. Colors do not utilize an alpha modifier.
-     *
-     * @param rgb The red-green-blue value
-     * @return The color object
-     * @deprecated in favor of {@link #of(int)}
-     */
-    @Deprecated
-    static Color ofRgb(int rgb) {
-        return of(rgb);
-    }
-
-    /**
      * Creates a new {@link Color} based on the red, green, and blue values.
      *
      * @param red The red value
@@ -128,22 +115,8 @@ public interface Color extends DataSerializable {
      * @param blue The blue value
      * @return The color object
      */
-    static Color of(int red, int green, int blue) {
-        return builder().rgb(red, green, blue).build();
-    }
-
-    /**
-     * Creates a new {@link Color} based on the red, green, and blue values.
-     *
-     * @param red The red value
-     * @param green The green value
-     * @param blue The blue value
-     * @return The color object
-     * @deprecated in favor of {@link #of(int, int, int)}
-     */
-    @Deprecated
     static Color ofRgb(int red, int green, int blue) {
-        return of(red, green, blue);
+        return builder().rgb(red, green, blue).build();
     }
 
     /**
@@ -153,8 +126,21 @@ public interface Color extends DataSerializable {
      * @param vector3i The vector of three integers representing color
      * @return The color object
      */
+    static Color ofRgb(Vector3i vector3i) {
+        return ofRgb(vector3i.getX(), vector3i.getY(), vector3i.getZ());
+    }
+
+    /**
+     * Creates a new {@link Color} based on the x (red), y (green), and z (blue)
+     * values of the vector.
+     *
+     * @param vector3i The vector of three integers representing color
+     * @return The color object
+     * @deprecated In favor of {@link #ofRgb(Vector3i)}
+     */
+    @Deprecated
     static Color of(Vector3i vector3i) {
-        return of(vector3i.getX(), vector3i.getY(), vector3i.getZ());
+        return ofRgb(vector3i);
     }
 
     /**
@@ -163,11 +149,11 @@ public interface Color extends DataSerializable {
      *
      * @param vector3f The vector of three floats representing color
      * @return The color object
-     * @deprecated Use {@code #of(vector3f.round().toInt())}
+     * @deprecated In favor of {@code Color.ofRgb(vector3f.round().toInt())}
      */
     @Deprecated
     static Color of(Vector3f vector3f) {
-        return of(vector3f.round().toInt());
+        return ofRgb(vector3f.round().toInt());
     }
 
     /**
@@ -176,11 +162,11 @@ public interface Color extends DataSerializable {
      *
      * @param vector3d The vector of three doubles representing color
      * @return The color object
-     * @deprecated Use {@code #of(vector3d.round().toInt())}
+     * @deprecated In favor of {@code Color.ofRgb(vector3f.round().toInt())}
      */
     @Deprecated
     static Color of(Vector3d vector3d) {
-        return of(vector3d.round().toInt());
+        return ofRgb(vector3d.round().toInt());
     }
 
     /**
@@ -190,8 +176,21 @@ public interface Color extends DataSerializable {
      * @param color The java color object
      * @return The converted color object
      */
+    static Color ofColor(java.awt.Color color) {
+        return ofRgb(color.getRed(), color.getGreen(), color.getBlue());
+    }
+
+    /**
+     * Creates a new {@link Color} from a {@link java.awt.Color} for use in the
+     * Sponge API.
+     *
+     * @param color The java color object
+     * @return The converted color object
+     * @deprecated In favor of {@link #ofColor(java.awt.Color)}
+     */
+    @Deprecated
     static Color of(java.awt.Color color) {
-        return of(color.getRed(), color.getGreen(), color.getBlue());
+        return ofColor(color);
     }
 
     /**
@@ -276,7 +275,7 @@ public interface Color extends DataSerializable {
      * @return The new color object
      */
     default Color withRed(int red) {
-        return of(red, getGreen(), getBlue());
+        return ofRgb(red, getGreen(), getBlue());
     }
 
     /**
@@ -287,7 +286,7 @@ public interface Color extends DataSerializable {
      * @return The new color object
      */
     default Color withGreen(int green) {
-        return of(getRed(), green, getBlue());
+        return ofRgb(getRed(), green, getBlue());
     }
 
     /**
@@ -298,7 +297,7 @@ public interface Color extends DataSerializable {
      * @return The new color object
      */
     default Color withBlue(int blue) {
-        return of(getRed(), getGreen(), blue);
+        return ofRgb(getRed(), getGreen(), blue);
     }
 
     /**
