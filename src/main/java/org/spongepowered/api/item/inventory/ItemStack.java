@@ -42,6 +42,7 @@ import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.variant.VarietyQueryable;
 
 import java.util.Map;
 import java.util.Set;
@@ -56,7 +57,7 @@ import java.util.function.Predicate;
  * use {@link DataHolder#get(Class)} in order to retrieve information regarding
  * this item stack.</p>
  */
-public interface ItemStack extends DataHolder, Translatable {
+public interface ItemStack extends DataHolder, Translatable, VarietyQueryable {
 
     /**
      * Creates a new {@link Builder} to build an {@link ItemStack}.

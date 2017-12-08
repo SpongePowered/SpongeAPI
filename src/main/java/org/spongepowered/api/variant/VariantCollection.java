@@ -24,9 +24,12 @@
  */
 package org.spongepowered.api.variant;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Property;
+import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Optional;
 
 /**
@@ -35,7 +38,40 @@ import java.util.Optional;
  *
  * @param <T> The variety queryable object type
  */
+@SuppressWarnings("unchecked")
 public interface VariantCollection<T extends VarietyQueryable> {
+
+    /**
+     * Creates a {@link Builder}.
+     *
+     * @param <T> The variety queryable type
+     * @return The builder
+     */
+    static <T extends VarietyQueryable> Builder<T> builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    /**
+     * Creates a {@link VariantCollection} for the given {@link Iterable}.
+     *
+     * @param iterable The iterable
+     * @param <T> The variety queryable type
+     * @return The variant collection
+     */
+    static <T extends VarietyQueryable> VariantCollection<T> of(Iterable<T> iterable) {
+        return VariantCollection.<T>builder().addAll(iterable).build();
+    }
+
+    /**
+     * Creates a {@link VariantCollection} for the given {@link Iterable}.
+     *
+     * @param queryables The queryables
+     * @param <T> The variety queryable type
+     * @return The variant collection
+     */
+    static <T extends VarietyQueryable> VariantCollection<T> of(T... queryables) {
+        return VariantCollection.<T>builder().add(queryables).build();
+    }
 
     /**
      * Gets a {@link VariantCollection} with all
@@ -53,7 +89,22 @@ public interface VariantCollection<T extends VarietyQueryable> {
      * @param variety The variety
      * @return A new variant collection with the matches
      */
-    VariantCollection<T> query(Variety variety);
+    default VariantCollection<T> query(Variety variety) {
+        return query(VarietyQuery.of(variety));
+    }
+
+    /**
+     * Gets a {@link VariantCollection} with all
+     * the {@link T}s that match the {@link Variety} with
+     * the specific {@link MatchOperator}.
+     *
+     * @param variety The variety
+     * @param operator The operator
+     * @return A new variant collection with the matches
+     */
+    default VariantCollection<T> query(Variety variety, MatchOperator operator) {
+        return query(VarietyQuery.of(variety, operator));
+    }
 
     /**
      * Gets a {@link VariantCollection} with all
@@ -62,14 +113,16 @@ public interface VariantCollection<T extends VarietyQueryable> {
      * @param property The property
      * @return A new variant collection with the matches
      */
-    VariantCollection<T> query(Property<?, ?> property);
+    default VariantCollection<T> query(Property<?, ?> property) {
+        return query(VarietyQuery.of(property));
+    }
 
     /**
      * Gets the first {@link T} that matches
      * the {@link VarietyQuery}.
      *
      * @param query The variety query
-     * @return The catalog type, if present
+     * @return The matched type, if present
      */
     Optional<T> queryFirst(VarietyQuery query);
 
@@ -78,30 +131,93 @@ public interface VariantCollection<T extends VarietyQueryable> {
      * the {@link Variety}.
      *
      * @param variety The variety
-     * @return The catalog type, if present
+     * @return The matched type, if present
      */
-    Optional<T> queryFirst(Variety variety);
+    default Optional<T> queryFirst(Variety variety) {
+        return queryFirst(VarietyQuery.of(variety));
+    }
+
+    /**
+     * Gets the first {@link T} that matches the {@link Variety}
+     * with the specific {@link MatchOperator}.
+     *
+     * @param variety The variety
+     * @param operator The operator
+     * @return The matched type, if present
+     */
+    default Optional<T> queryFirst(Variety variety, MatchOperator operator) {
+        return queryFirst(VarietyQuery.of(variety, operator));
+    }
 
     /**
      * Gets the first {@link T} that matches
      * the {@link Property}.
      *
      * @param property The property
-     * @return The catalog type, if present
+     * @return The matched type, if present
      */
-    Optional<T> queryFirst(Property<?, ?> property);
+    default Optional<T> queryFirst(Property<?, ?> property) {
+        return queryFirst(VarietyQuery.of(property));
+    }
 
     /**
      * Gets the first {@link T} within this collection.
      *
-     * @return The first catalog type, if present
+     * @return The first matched type, if present
      */
     Optional<T> first();
 
     /**
      * Gets all the {@link T} within this collection.
      *
-     * @return The collection with all the catalog types
+     * @return The collection with all the matched types
      */
     Collection<T> all();
+
+    /**
+     * A builder to create {@link VariantCollection}s.
+     *
+     * @param <T> The type of the variety queryable
+     */
+    interface Builder<T extends VarietyQueryable> extends ResettableBuilder<VariantCollection<T>, Builder<T>> {
+
+        /**
+         * Adds the {@link VarietyQueryable} object.
+         *
+         * @param queryable The queryable
+         * @return This builder, for chaining
+         */
+        Builder<T> add(T queryable);
+
+        /**
+         * Adds the {@link VarietyQueryable} objects.
+         *
+         * @param queryables The queryables
+         * @return This builder, for chaining
+         */
+        Builder<T> add(T... queryables);
+
+        /**
+         * Adds the {@link VarietyQueryable} objects.
+         *
+         * @param iterable The queryables iterable
+         * @return This builder, for chaining
+         */
+        Builder<T> addAll(Iterable<T> iterable);
+
+        /**
+         * Adds the {@link VarietyQueryable} objects.
+         *
+         * @param iterator The queryables iterator
+         * @return This builder, for chaining
+         */
+        Builder<T> addAll(Iterator<T> iterator);
+
+        /**
+         * Builds the {@link VariantCollection}.
+         *
+         * @return The variant collection
+         */
+        VariantCollection<T> build();
+    }
 }

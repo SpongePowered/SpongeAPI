@@ -24,32 +24,24 @@
  */
 package org.spongepowered.api.variant;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.data.Property;
-import org.spongepowered.api.data.property.PropertyHolder;
-import org.spongepowered.api.data.property.common.TreeTypeProperty;
-import org.spongepowered.api.data.type.TreeTypes;
-
-import java.util.Collection;
-
 /**
- * A variety is a kind of marker that can be used to group
- * {@link VarietyQueryable}s. For example grouping all the
- * stair {@link BlockType}s that are available.
- * <p>Some varieties may also contain {@link Property}s which
- * can also be used to match the queryables. For example,
- * the {@link Varieties#BIRCH} will contain a {@link TreeTypeProperty}
- * with the tree type {@link TreeTypes#BIRCH}. This property
- * can also be used to query for a block with a specific tree type.
+ * A {@link Variety} that will be matched
+ * with a specific {@link MatchOperator}.
  */
-public interface Variety extends CatalogType, PropertyHolder {
+// TODO: Better name?, or use tuple instead?
+public interface VarietyQueryEntry {
 
     /**
-     * Gets a {@link Collection} with all the {@link VarietyQueryable}
-     * types this variety supports.
+     * Gets the {@link Variety} that will be matched.
      *
-     * @return The collection
+     * @return The variety
      */
-    Collection<Class<? extends VarietyQueryable>> getSupportedTypes();
+    Variety getVariety();
+
+    /**
+     * Gets the {@link MatchOperator} of this entry.
+     *
+     * @return The operator
+     */
+    MatchOperator getOperator();
 }

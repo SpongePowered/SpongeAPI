@@ -24,11 +24,10 @@
  */
 package org.spongepowered.api.variant;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.data.property.PropertyHolder;
 
 /**
- * Represents a {@link CatalogType} that can be filtered in a {@link VariantCollection}.
+ * Represents something that can be filtered in a {@link VariantCollection}.
  */
 // TODO: Better name?
 public interface VarietyQueryable extends PropertyHolder {

@@ -57,6 +57,8 @@ import org.spongepowered.api.text.serializer.TextSerializers;
 import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.rotation.Rotation;
+import org.spongepowered.api.variant.VarietyQuery;
+import org.spongepowered.api.variant.VarietyQueryable;
 import org.spongepowered.api.world.extent.ExtentBufferFactory;
 
 import java.awt.image.BufferedImage;
@@ -113,6 +115,36 @@ public interface GameRegistry {
      * @return A collection of all known types of the requested catalog type
      */
     <T extends CatalogType> Collection<T> getAllOf(Class<T> typeClass);
+
+    /**
+     * Attempts to retrieve the first specific type of {@link CatalogType} based on
+     * the given type and {@link VarietyQuery}.
+     *
+     * <p>Some types may not be available for various reasons including but not
+     * restricted to: mods adding custom types, plugins providing custom types,
+     * game version changes.</p>
+     *
+     * @param typeClass The class of the type of {@link CatalogType}
+     * @param <T> The type of catalog type
+     * @return The found catalog type, if available
+     * @see CatalogType
+     */
+    <T extends CatalogType & VarietyQueryable> Optional<T> getFirst(Class<T> typeClass, VarietyQuery query);
+
+    /**
+     * Gets a collection of all available found specific types of
+     * {@link CatalogType} requested that match the {@link VarietyQuery}.
+     *
+     * <p>The presented {@link CatalogType}s may not exist in default catalogs
+     * due to various reasons including but not restricted to: mods, plugins,
+     * game changes.</p>
+     *
+     * @param typeClass The class of {@link CatalogType}
+     * @param query The variety query
+     * @param <T> The type of {@link CatalogType}
+     * @return A collection of all known types of the requested catalog type
+     */
+    <T extends CatalogType & VarietyQueryable> Collection<T> getAllOf(Class<T> typeClass, VarietyQuery query);
 
     /**
      * Gets a collection of all available found specific types of

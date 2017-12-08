@@ -28,6 +28,9 @@ import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
+/**
+ * An enumeration of default {@link Variety}s.
+ */
 public final class Varieties {
 
     // SORTFIELDS:ON

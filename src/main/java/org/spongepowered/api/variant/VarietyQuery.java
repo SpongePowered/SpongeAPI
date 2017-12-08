@@ -30,20 +30,60 @@ import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Collection;
 
-// TODO: Better name?
+/**
+ * A variety query will be used to match a set of specific
+ * {@link Variety varieties} and {@link Property properties} on
+ * a {@link VarietyQueryable}.
+ */
 public interface VarietyQuery {
 
+    /**
+     * Creates a {@link Builder} to create {@link VarietyQuery variety queries}.
+     *
+     * @return The builder
+     */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
     /**
-     * Gets the {@link Variety varieties} that
-     * will be matched.
+     * Creates a {@link VarietyQuery} from the provided {@link Variety}.
      *
-     * @return The varieties
+     * @param variety The variety
+     * @return The variety query
      */
-    Collection<Variety> getVarieties();
+    static VarietyQuery of(Variety variety) {
+        return builder().variety(variety).build();
+    }
+
+    /**
+     * Creates a {@link VarietyQuery} from the provided {@link Variety}
+     * and the specific {@link MatchOperator}.
+     *
+     * @param variety The variety
+     * @return The variety query
+     */
+    static VarietyQuery of(Variety variety, MatchOperator operator) {
+        return builder().variety(variety, operator).build();
+    }
+
+    /**
+     * Creates a {@link VarietyQuery} from the provided
+     * {@link Property properties}.
+     *
+     * @param properties The properties
+     * @return The variety query
+     */
+    static VarietyQuery of(Property<?,?>... properties) {
+        return builder().properties(properties).build();
+    }
+
+    /**
+     * Gets the {@link VarietyQueryEntry} that will be matched.
+     *
+     * @return The variety entries
+     */
+    Collection<VarietyQueryEntry> getVarietyEntries();
 
     /**
      * Gets the {@link Property properties} that
@@ -53,20 +93,89 @@ public interface VarietyQuery {
      */
     Collection<Property<?,?>> getProperties();
 
+    /**
+     * A builder to create {@link VarietyQuery variety queries}.
+     */
     interface Builder extends ResettableBuilder<VarietyQuery, Builder> {
 
-        Builder variety(Variety variety);
+        /**
+         * Adds the {@link Variety varieties}.
+         *
+         * @param varieties The varieties
+         * @return This builder, for chaining
+         */
+        default Builder varieties(Variety... varieties) {
+            for (Variety variety : varieties) {
+                variety(variety);
+            }
+            return this;
+        }
 
-        Builder varieties(Variety... varieties);
+        /**
+         * Adds the {@link Variety varieties}.
+         *
+         * @param varieties The varieties
+         * @return This builder, for chaining
+         */
+        default Builder varieties(Iterable<Variety> varieties) {
+            for (Variety variety : varieties) {
+                variety(variety);
+            }
+            return this;
+        }
 
-        Builder varieties(Iterable<Variety> varieties);
+        /**
+         * Adds the {@link Variety}.
+         *
+         * @param variety The variety
+         * @return This builder, for chaining
+         */
+        default Builder variety(Variety variety) {
+            return variety(variety, MatchOperator.EQUAL);
+        }
 
+        /**
+         * Adds the {@link Variety} with a specific
+         * {@link MatchOperator}.
+         *
+         * @param variety The variety
+         * @param operator The operator
+         * @return This builder, for chaining
+         */
+        Builder variety(Variety variety, MatchOperator operator);
+
+        /**
+         * Adds the {@link Property} that should
+         * be matched.
+         *
+         * @param property The property
+         * @return This builder, for chaining
+         */
         Builder property(Property<?,?> property);
 
+        /**
+         * Adds the {@link Property properties} that should
+         * be matched.
+         *
+         * @param properties The properties
+         * @return This builder, for chaining
+         */
         Builder properties(Property<?,?>... properties);
 
-        Builder properties(Property<?,?> properties);
+        /**
+         * Adds the {@link Property properties} that should
+         * be matched.
+         *
+         * @param properties The properties
+         * @return This builder, for chaining
+         */
+        Builder properties(Iterable<Property<?,?>> properties);
 
+        /**
+         * Builds the {@link VarietyQuery}.
+         *
+         * @return The variety query
+         */
         VarietyQuery build();
     }
 }

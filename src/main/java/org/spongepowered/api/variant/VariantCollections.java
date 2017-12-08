@@ -24,24 +24,33 @@
  */
 package org.spongepowered.api.variant;
 
+import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
+/**
+ * An enumeration of default {@link VariantCollection}s.
+ */
 @SuppressWarnings("unchecked")
 public final class VariantCollections {
 
     // SORTFIELDS:ON
 
     /**
-     * A collection with all the available {@link ItemType}s.
-     */
-    public static final VariantCollection<ItemType> ITEMS = DummyObjectProvider.createFor(VariantCollection.class, "ITEMS");
-
-    /**
      * A collection with all the available {@link BlockType}s.
      */
     public static final VariantCollection<BlockType> BLOCKS = DummyObjectProvider.createFor(VariantCollection.class, "BLOCKS");
+
+    /**
+     * A collection with all the available {@link BlockState}s.
+     */
+    public static final VariantCollection<BlockType> BLOCK_STATES = DummyObjectProvider.createFor(VariantCollection.class, "BLOCK_STATES");
+
+    /**
+     * A collection with all the available {@link ItemType}s.
+     */
+    public static final VariantCollection<ItemType> ITEMS = DummyObjectProvider.createFor(VariantCollection.class, "ITEMS");
 
     // SORTFIELDS:OFF
 
