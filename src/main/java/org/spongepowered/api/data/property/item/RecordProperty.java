@@ -24,10 +24,8 @@
  */
 package org.spongepowered.api.data.property.item;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.spongepowered.api.data.Property;
-import org.spongepowered.api.data.property.AbstractProperty;
+import org.spongepowered.api.data.property.NonnullAbstractProperty;
 import org.spongepowered.api.effect.sound.record.RecordType;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -36,10 +34,10 @@ import org.spongepowered.api.item.inventory.ItemStack;
  * A {@link RecordProperty} used to retrieve a {@link RecordType}
  * from a {@link ItemType} or {@link ItemStack}.
  */
-public final class RecordProperty extends AbstractProperty<String, RecordType> {
+public final class RecordProperty extends NonnullAbstractProperty<String, RecordType> {
 
     public RecordProperty(RecordType instrument) {
-        super(checkNotNull(instrument, "instrument"));
+        super(instrument);
     }
 
     @Override

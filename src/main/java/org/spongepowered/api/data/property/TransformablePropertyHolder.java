@@ -49,5 +49,5 @@ public interface TransformablePropertyHolder<T extends TransformablePropertyHold
      * @param property The property
      * @return The transformed property holder, if successful
      */
-    Optional<T> transform(Property<?, ?> property);
+    Optional<T> transformWith(Property<?, ?> property);
 }
