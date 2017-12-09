@@ -33,7 +33,7 @@ import org.spongepowered.api.util.Coerce;
  * Represents an item property that has an integer value. Examples may include
  * {@link FoodRestorationProperty}, {@link SaturationProperty} etc.
  */
-public class BooleanProperty extends AbstractProperty<String, Boolean> {
+public class BooleanProperty extends NonnullAbstractProperty<String, Boolean> {
 
     /**
      * Create a new integer property with the specified value.

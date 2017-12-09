@@ -25,50 +25,29 @@
 package org.spongepowered.api.data.property;
 
 import org.spongepowered.api.data.Property;
-import org.spongepowered.api.util.Coerce;
+import org.spongepowered.api.data.property.item.CookedProperty;
+import org.spongepowered.api.item.ItemTypes;
+
+import java.util.Optional;
 
 /**
- * Represents an block property that has an integer value. Examples may include
+ * Represents a {@link PropertyHolder} that can be transformed into another
+ * {@link PropertyHolder} by modifying supported {@link Property}s.
+ *
+ * @param <T> The property holder type
  */
-public class IntProperty extends NonnullAbstractProperty<String, Integer> {
+public interface TransformablePropertyHolder<T extends TransformablePropertyHolder<T>> extends PropertyHolder {
 
     /**
-     * Create a new integer property with the specified value.
+     * Transforms this property holder with the given {@link Property}. The
+     * transformed property holder will be returned if the {@link Property}
+     * and property value are supported.
+     * <p>For example, this can be used to transform a {@link ItemTypes#BEEF}
+     * into a {@link ItemTypes#COOKED_BEEF} when applying the
+     * {@link CookedProperty} with a {@code true} value.
      *
-     * @param value value to match
+     * @param property The property
+     * @return The transformed property holder, if successful
      */
-    public IntProperty(int value) {
-        super(Coerce.toInteger(value));
-    }
-
-    /**
-     * Create a new integer property with the specified value and logical
-     * operator.
-     *
-     * @param value value to match
-     * @param operator logical operator to use when comparing to other
-     *      properties
-     */
-    public IntProperty(int value, Operator operator) {
-        super(value, operator);
-    }
-
-    /**
-     * Create a new integer property with the specified value and logical
-     * operator.
-     *
-     * @param value value to match
-     * @param operator logical operator to use when comparing to other
-     *      properties
-     */
-    public IntProperty(Object value, Operator operator) {
-        super(Coerce.toInteger(value), operator);
-    }
-
-    @Override
-    public int compareTo(Property<?, ?> other) {
-        return this.getValue().compareTo(other == null ? 1 : Coerce.toInteger(other.getValue()));
-    }
-
-
+    Optional<T> transform(Property<?, ?> property);
 }

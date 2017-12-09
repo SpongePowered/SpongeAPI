@@ -26,9 +26,18 @@ package org.spongepowered.api.data.property;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.spongepowered.api.data.Property;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+/**
+ * A base class for {@link Property}s where the value
+ * will never be {@code null}.
+ *
+ * @param <K> The key type
+ * @param <V> The value type
+ */
 public abstract class NonnullAbstractProperty<K, V> extends AbstractProperty<K, V> {
 
     /**

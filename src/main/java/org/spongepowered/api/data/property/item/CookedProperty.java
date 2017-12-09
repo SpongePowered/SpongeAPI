@@ -22,53 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.property;
+package org.spongepowered.api.data.property.item;
 
-import org.spongepowered.api.data.Property;
-import org.spongepowered.api.util.Coerce;
+import org.spongepowered.api.data.property.BooleanProperty;
+import org.spongepowered.api.data.property.common.TreeTypeProperty;
+import org.spongepowered.api.item.ItemTypes;
 
 /**
- * Represents an block property that has an integer value. Examples may include
+ * Represents the state that something is cooked, this is usually
+ * food. For example, {@link ItemTypes#BEEF} is uncooked and
+ * {@link ItemTypes#COOKED_BEEF} is cooked. This property will
+ * only be supported by objects that support both states.
  */
-public class IntProperty extends NonnullAbstractProperty<String, Integer> {
+public final class CookedProperty extends BooleanProperty {
 
     /**
-     * Create a new integer property with the specified value.
+     * Constructs a new {@link CookedProperty} with
+     * the specified cooked state.
      *
-     * @param value value to match
+     * @param value The cooked state
      */
-    public IntProperty(int value) {
-        super(Coerce.toInteger(value));
+    public CookedProperty(boolean value) {
+        super(value);
     }
 
     /**
-     * Create a new integer property with the specified value and logical
-     * operator.
+     * Constructs a new {@link TreeTypeProperty} with
+     * the specified cooked state and {@link Operator}.
      *
-     * @param value value to match
-     * @param operator logical operator to use when comparing to other
-     *      properties
+     * @param value The cooked state
+     * @param operator The operator
      */
-    public IntProperty(int value, Operator operator) {
+    public CookedProperty(boolean value, Operator operator) {
         super(value, operator);
     }
-
-    /**
-     * Create a new integer property with the specified value and logical
-     * operator.
-     *
-     * @param value value to match
-     * @param operator logical operator to use when comparing to other
-     *      properties
-     */
-    public IntProperty(Object value, Operator operator) {
-        super(Coerce.toInteger(value), operator);
-    }
-
-    @Override
-    public int compareTo(Property<?, ?> other) {
-        return this.getValue().compareTo(other == null ? 1 : Coerce.toInteger(other.getValue()));
-    }
-
-
 }

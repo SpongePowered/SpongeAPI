@@ -30,6 +30,7 @@ import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.GameDictionary;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.Property;
+import org.spongepowered.api.data.property.TransformablePropertyHolder;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.text.translation.Translatable;
@@ -42,7 +43,8 @@ import java.util.Optional;
  * A type of item.
  */
 @CatalogedBy(ItemTypes.class)
-public interface ItemType extends CatalogType, Translatable, GameDictionary.Entry, VarietyQueryable {
+public interface ItemType extends CatalogType, Translatable, GameDictionary.Entry, VarietyQueryable,
+        TransformablePropertyHolder<ItemType> {
 
     /**
      * Gets the corresponding {@link BlockType} of this item if one exists.

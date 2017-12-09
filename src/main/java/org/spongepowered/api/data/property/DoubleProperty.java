@@ -33,7 +33,7 @@ import org.spongepowered.api.util.Coerce;
  * Represents an item property that has an integer value. Examples may include
  * {@link FoodRestorationProperty}, {@link SaturationProperty} etc.
  */
-public class DoubleProperty extends AbstractProperty<String, Double> {
+public class DoubleProperty extends NonnullAbstractProperty<String, Double> {
 
     /**
      * Create a new integer property with the specified value.
