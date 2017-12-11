@@ -29,29 +29,30 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableDamageableData;
 import org.spongepowered.api.data.value.mutable.OptionalValue;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.living.Living;
 
 import java.util.Optional;
 
 /**
  * A {@link DataManipulator} for retaining the last known "attacker" for an
- * {@link Entity}. Usually, the last attacker is known, however, due to
- * the lifetime of the game, the last attacker may "expire" or die, in which
- * case, the {@link #lastAttacker()} may have an {@link Optional#empty()}
- * value.
+ * {@link Entity}. If there is no known last attacker, the {@link #lastAttacker()}
+ * may have an {@link Optional#EMPTY} value.
  */
 public interface DamageableData extends DataManipulator<DamageableData, ImmutableDamageableData> {
 
     /**
      * Gets the {@link OptionalValue} for the last attacker.
      *
+     * <p>This will usually be an entity snapshot of a {@link Living}.</p>
+     *
      * @return The last attacker as an optional value
      * @see Keys#LAST_ATTACKER
      */
-    OptionalValue<Living> lastAttacker();
+    OptionalValue<EntitySnapshot> lastAttacker();
 
     /**
-     * Gets the last amount of damage dealt as an optional value.
+     * Gets the last amount of damage taken by this entity as an optional value.
      *
      * @return The last damage dealt as an optional value
      * @see Keys#LAST_DAMAGE

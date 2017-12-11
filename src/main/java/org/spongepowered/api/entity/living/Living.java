@@ -34,6 +34,7 @@ import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 import org.spongepowered.api.data.value.mutable.OptionalValue;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 import org.spongepowered.api.scoreboard.TeamMember;
 
@@ -89,16 +90,18 @@ public interface Living extends Entity, ProjectileSource, TeamMember {
      *
      * @return A copy of the current damageable data
      */
-    default DamageableData getMortalData() {
+    default DamageableData getDamageableData() {
         return get(DamageableData.class).get();
     }
 
     /**
      * Gets the {@link OptionalValue} for the last attacker.
      *
+     * <p>This is generally an entity snapshot of a {@link Living}.</p>
+     *
      * @return The last attacker as an optional value
      */
-    default OptionalValue<Living> lastAttacker() {
+    default OptionalValue<EntitySnapshot> lastAttacker() {
         return getValue(Keys.LAST_ATTACKER).get();
     }
 

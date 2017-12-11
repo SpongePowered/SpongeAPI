@@ -203,8 +203,10 @@ public class TypeTokens {
 
     public static final TypeToken<Value<ItemStackSnapshot>> ITEM_SNAPSHOT_VALUE_TOKEN = new TypeToken<Value<ItemStackSnapshot>>() {private static final long serialVersionUID = -1;};
 
+    @Deprecated
     public static final TypeToken<Optional<Living>> LAST_ATTACKER_TOKEN = new TypeToken<Optional<Living>>() {private static final long serialVersionUID = -1;};
 
+    @Deprecated
     public static final TypeToken<OptionalValue<Living>> LAST_ATTACKER_VALUE_TOKEN = new TypeToken<OptionalValue<Living>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<List<DyeColor>> LIST_DYE_COLOR_TOKEN = new TypeToken<List<DyeColor>>() {private static final long serialVersionUID = -1;};
@@ -270,6 +272,14 @@ public class TypeTokens {
     public static final TypeToken<OcelotType> OCELOT_TOKEN = new TypeToken<OcelotType>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<OcelotType>> OCELOT_VALUE_TOKEN = new TypeToken<Value<OcelotType>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Optional<Double>> OPTIONAL_DOUBLE_TOKEN = new TypeToken<Optional<Double>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<OptionalValue<Double>> OPTIONAL_DOUBLE_VALUE_TOKEN = new TypeToken<OptionalValue<Double>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Optional<EntitySnapshot>> OPTIONAL_ENTITY_SNAPSHOT_TOKEN = new TypeToken<Optional<EntitySnapshot>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<OptionalValue<EntitySnapshot>> OPTIONAL_ENTITY_SNAPSHOT_VALUE_TOKEN = new TypeToken<OptionalValue<EntitySnapshot>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Optional<PotionEffectType>> OPTIONAL_POTION_TOKEN = new TypeToken<Optional<PotionEffectType>>() {private static final long serialVersionUID = -1;};
 

@@ -1304,9 +1304,11 @@ public final class Keys {
     /**
      * Represents the {@link Key} for who last attacked an {@link Entity}.
      *
+     * <p>This will usually be an entity snapshot of a {@link Living}.</p>
+     *
      * @see DamageableData#lastAttacker()
      */
-    public static final Key<OptionalValue<Living>> LAST_ATTACKER = KeyFactory.fake("LAST_ATTACKER");
+    public static final Key<OptionalValue<EntitySnapshot>> LAST_ATTACKER = KeyFactory.fake("LAST_ATTACKER");
 
     /**
      * Represents the {@link Key} for the output yielded by the last command of
