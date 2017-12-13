@@ -26,15 +26,33 @@ package org.spongepowered.api.world;
 
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-public class BlockChangeFlags {
+/**
+ * An enumeration of the possible {@link BlockChangeFlag}s.
+ */
+public final class BlockChangeFlags {
+
+    // SORTFIELDS:ON
 
     public static final BlockChangeFlag ALL = DummyObjectProvider.createFor(BlockChangeFlag.class, "ALL");
+
     public static final BlockChangeFlag NEIGHBOR = DummyObjectProvider.createFor(BlockChangeFlag.class, "NEIGHBOR");
-    public static final BlockChangeFlag PHYSICS = DummyObjectProvider.createFor(BlockChangeFlag.class, "PHYSICS");
-    public static final BlockChangeFlag OBSERVER = DummyObjectProvider.createFor(BlockChangeFlag.class, "OBSERVER");
-    public static final BlockChangeFlag NEIGHBOR_PHYSICS = DummyObjectProvider.createFor(BlockChangeFlag.class, "NEIGHBOR_PHSYICS");
+
     public static final BlockChangeFlag NEIGHBOR_OBSERVER = DummyObjectProvider.createFor(BlockChangeFlag.class, "NEIGHBOR_OBSERVER");
+
+    public static final BlockChangeFlag NEIGHBOR_PHYSICS = DummyObjectProvider.createFor(BlockChangeFlag.class, "NEIGHBOR_PHSYICS");
+
     public static final BlockChangeFlag NEIGHBOR_PHYSICS_OBSERVER = DummyObjectProvider.createFor(BlockChangeFlag.class, "NEIGHBOR_PHYSICS_OBSERVER");
-    public static final BlockChangeFlag PHYSICS_OBSERVER = DummyObjectProvider.createFor(BlockChangeFlag.class, "PHYSICS_OBSERVER");
+
     public static final BlockChangeFlag NONE = DummyObjectProvider.createFor(BlockChangeFlag.class, "NONE");
+
+    public static final BlockChangeFlag OBSERVER = DummyObjectProvider.createFor(BlockChangeFlag.class, "OBSERVER");
+
+    public static final BlockChangeFlag PHYSICS = DummyObjectProvider.createFor(BlockChangeFlag.class, "PHYSICS");
+
+    public static final BlockChangeFlag PHYSICS_OBSERVER = DummyObjectProvider.createFor(BlockChangeFlag.class, "PHYSICS_OBSERVER");
+
+    // SORTFIELDS:OFF
+
+    private BlockChangeFlags() {
+    }
 }
