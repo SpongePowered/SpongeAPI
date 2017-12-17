@@ -28,10 +28,12 @@ import static org.spongepowered.api.command.CommandMessageFormatting.error;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Multimaps;
 import org.spongepowered.api.command.CommandCallable;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandMapping;
+import org.spongepowered.api.command.CommandMessageFormatting;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.dispatcher.SimpleDispatcher;
@@ -42,19 +44,22 @@ import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import javax.activation.CommandMap;
 import javax.annotation.Nullable;
 
 public class ChildCommandElementExecutor extends CommandElement implements CommandExecutor {
     private static final AtomicInteger COUNTER = new AtomicInteger();
 
-    @Nullable
-    private final CommandExecutor fallbackExecutor;
+    @Nullable private final CommandExecutor fallbackExecutor;
+    @Nullable private final CommandElement fallbackElements;
     private final SimpleDispatcher dispatcher = new SimpleDispatcher(SimpleDispatcher.FIRST_DISAMBIGUATOR);
+    private final boolean fallbackOnFail;
 
     /**
      * Create a new combined argument element and executor to handle the
@@ -63,10 +68,34 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
      * @param fallbackExecutor The executor to execute if the child command
      *     has been marked optional (Generally when this is wrapped in a
      *     {@link GenericArguments#optional(CommandElement)}
+     * @deprecated Use the other constructor instead. Note: this entire system
+     *     will be replaced in API 8.
      */
+    @Deprecated
     public ChildCommandElementExecutor(@Nullable CommandExecutor fallbackExecutor) {
+        this(fallbackExecutor, null, true);
+    }
+
+    /**
+     * Create a new combined argument element and executor to handle the
+     * parsing and execution of child commands.
+     *
+     * @param fallbackExecutor The executor to execute if the child command
+     *     has been marked optional (Generally when this is wrapped in a
+     *     {@link GenericArguments#optional(CommandElement)}
+     * @param fallbackElements The alternate {@link CommandElement}s that should
+     *     be parsed if a child element fails to be parsed
+     * @param fallbackOnFail If true, then if a child command cannot parse the
+     *     elements, the exception is discarded and the parent command attempts
+     *     to parse the elements. If false, a child command will not pass
+     *     control back to the parent, displaying its own exception message
+     */
+    public ChildCommandElementExecutor(@Nullable CommandExecutor fallbackExecutor, @Nullable CommandElement fallbackElements,
+            boolean fallbackOnFail) {
         super(Text.of("child" + COUNTER.getAndIncrement()));
         this.fallbackExecutor = fallbackExecutor;
+        this.fallbackElements = fallbackElements;
+        this.fallbackOnFail = fallbackOnFail;
     }
 
     /**
@@ -93,6 +122,13 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
 
     @Override
     public List<String> complete(final CommandSource src, CommandArgs args, CommandContext context) {
+        List<String> completions = Lists.newArrayList();
+        if (this.fallbackElements != null) {
+            Object state = args.getState();
+            completions.addAll(this.fallbackElements.complete(src, args, context));
+            args.setState(state);
+        }
+
         final Optional<String> commandComponent = args.nextIfPresent();
         if (!commandComponent.isPresent()) {
             return ImmutableList.copyOf(filterCommands(src));
@@ -122,9 +158,10 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
                 return ImmutableList.of();
             }
         }
-        return filterCommands(src).stream()
+        completions.addAll(filterCommands(src).stream()
                 .filter(new StartsWithPredicate(commandComponent.get()))
-                .collect(ImmutableList.toImmutableList());
+                .collect(ImmutableList.toImmutableList()));
+        return completions;
     }
 
     private Set<String> filterCommands(final CommandSource src) {
@@ -138,32 +175,61 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
 
     @Override
     public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
-        super.parse(source, args, context);
-        final CommandMapping mapping = context.<CommandMapping>getOne(getUntranslatedKey()).get();
-        if ((mapping.getCallable() instanceof CommandSpec)) {
-            CommandSpec spec = ((CommandSpec) mapping.getCallable());
-            spec.populateContext(source, args, context);
-        } else {
-            if (args.hasNext()) {
-                args.next();
-            }
+        Object state = args.getState();
+        final String key = args.next();
+        Optional<CommandMapping> optionalCommandMapping = this.dispatcher.get(key, source);
+        if (optionalCommandMapping.isPresent()) {
+            final CommandMapping mapping = optionalCommandMapping.get();
+            try {
+                if ((mapping.getCallable() instanceof CommandSpec)) {
+                    CommandSpec spec = ((CommandSpec) mapping.getCallable());
+                    spec.populateContext(source, args, context);
+                } else {
+                    if (args.hasNext()) {
+                        args.next();
+                    }
 
-            context.putArg(getUntranslatedKey() + "_args", args.getRaw().substring(args.getRawPosition()));
-            while (args.hasNext()) {
+                    context.putArg(getUntranslatedKey() + "_args", args.getRaw().substring(args.getRawPosition()));
+                    while (args.hasNext()) {
+                        args.next();
+                    }
+                }
+
+                // Success, add to context now so that we don't execute the wrong executor in the first place.
+                context.putArg(getUntranslatedKey(), mapping);
+            } catch (ArgumentParseException ex) {
+                // If we get here, fallback to the elements, if they exist.
+                args.setState(state);
+                if (this.fallbackOnFail && this.fallbackElements != null) {
+                    this.fallbackElements.parse(source, args, context);
+                    return;
+                }
+
+                // Get the usage
                 args.next();
+                if (ex instanceof ArgumentParseException.WithUsage) {
+                    // This indicates a previous child failed, so we just prepend our child
+                    throw new ArgumentParseException.WithUsage(ex, Text.of(key, " ", ((ArgumentParseException.WithUsage) ex).getUsage()));
+                }
+
+                throw new ArgumentParseException.WithUsage(ex, Text.of(key, " ", mapping.getCallable().getUsage(source)));
+            }
+        } else {
+            // Not a child, so let's continue with the fallback.
+            if (this.fallbackExecutor != null && this.fallbackElements != null) {
+                args.setState(state);
+                this.fallbackElements.parse(source, args, context);
+            } else {
+                // If we have no elements to parse, then we throw this error - this is the only element
+                // so specifying it implicity means we have a child command to execute.
+                throw args.createError(t("Input command %s was not a valid subcommand!", key));
             }
         }
     }
 
     @Override
     protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
-        final String key = args.next();
-        final Optional<CommandMapping> mapping = this.dispatcher.get(key, source);
-        if (!mapping.isPresent()) {
-            throw args.createError(t("Input command %s was not a valid subcommand!", key));
-        }
-
-        return mapping.get();
+        return null;
     }
 
     @Override
@@ -186,6 +252,16 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
 
     @Override
     public Text getUsage(CommandSource src) {
-        return this.dispatcher.getUsage(src);
+        Text usage = this.dispatcher.getUsage(src);
+        if (this.fallbackElements == null) {
+            return usage;
+        }
+
+        Text elementUsage = this.fallbackElements.getUsage(src);
+        if (elementUsage.isEmpty()) {
+            return usage;
+        }
+
+        return Text.of(usage, CommandMessageFormatting.PIPE_TEXT, elementUsage);
     }
 }

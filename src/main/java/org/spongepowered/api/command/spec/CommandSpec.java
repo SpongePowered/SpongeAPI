@@ -104,6 +104,7 @@ public final class CommandSpec implements CommandCallable {
         private CommandExecutor executor;
         @Nullable
         private Map<List<String>, CommandCallable> childCommandMap;
+        private boolean childCommandFallback = true;
         private InputTokenizer argumentParser = InputTokenizer.quotedStrings(false);
 
         Builder() {}
@@ -209,6 +210,31 @@ public final class CommandSpec implements CommandCallable {
         }
 
         /**
+         * If a child command is selected but fails to parse arguments passed to
+         * it, this determines the behavior:
+         *
+         * <ul>
+         *     <li>If this is set to <strong>false</strong>, this command (the
+         *     parent) will not attempt to parse the command, and will send back
+         *     the error from the child.</li>
+         *     <li>If this is set to <strong>true</strong>, the error from the
+         *     child will simply be discarded, and the parent command will
+         *     execute.</li>
+         * </ul>
+         *
+         * <p>The default for this is <strong>true</strong>, which emulates the
+         * behavior from previous API revisions.</p>
+         *
+         * @param childCommandFallback Whether to fallback on argument parse
+         *      failure
+         * @return this
+         */
+        public Builder childArgumentParseExceptionFallback(boolean childCommandFallback) {
+            this.childCommandFallback = childCommandFallback;
+            return this;
+        }
+
+        /**
          * Sets the argument specification for this command. Generally, for a
          * multi-argument command the {@link GenericArguments#seq(CommandElement...)}
          * method is used to parse a sequence of args.
@@ -262,25 +288,31 @@ public final class CommandSpec implements CommandCallable {
             if (this.childCommandMap == null) {
                 checkNotNull(this.executor, "An executor is required");
             } else {
-                ChildCommandElementExecutor childDispatcher = new ChildCommandElementExecutor(this.executor);
-                for (Map.Entry<List<String>, ? extends CommandCallable> spec : this.childCommandMap.entrySet()) {
-                    childDispatcher.register(spec.getValue(), spec.getKey());
-                }
-
                 if (this.args == DEFAULT_ARG) {
+                    ChildCommandElementExecutor childDispatcher =
+                            registerInDispatcher(new ChildCommandElementExecutor(this.executor, null, false));
                     arguments(this.executor == null ? childDispatcher : optional(childDispatcher));
                 } else {
                     if (this.executor == null) {
-                        arguments(this.args, childDispatcher);
+                        arguments(this.args, registerInDispatcher(new ChildCommandElementExecutor(null, null, false)));
                     } else {
-                        arguments(firstParsing(childDispatcher, this.args));
+                        arguments(registerInDispatcher(new ChildCommandElementExecutor(this.executor, this.args, this.childCommandFallback)));
                     }
                 }
-                executor(childDispatcher);
             }
 
             return new CommandSpec(this.args, this.executor, this.description, this.extendedDescription, this.permission,
                     this.argumentParser);
+        }
+
+        @SuppressWarnings({"ConstantConditions"})
+        private ChildCommandElementExecutor registerInDispatcher(ChildCommandElementExecutor childDispatcher) {
+            for (Map.Entry<List<String>, ? extends CommandCallable> spec : this.childCommandMap.entrySet()) {
+                childDispatcher.register(spec.getValue(), spec.getKey());
+            }
+
+            executor(childDispatcher);
+            return childDispatcher;
         }
     }
 

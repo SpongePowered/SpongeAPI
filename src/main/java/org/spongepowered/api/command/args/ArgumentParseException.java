@@ -27,6 +27,7 @@ package org.spongepowered.api.command.args;
 import com.google.common.base.Strings;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.annotation.NonnullByDefault;
 
 /**
  * Exception thrown when an error occurs while parsing arguments.
@@ -76,6 +77,10 @@ public class ArgumentParseException extends CommandException {
         }
     }
 
+    private Text getSuperText() {
+        return super.getText();
+    }
+
     /**
      * Return a string pointing to the position of the arguments when this
      * exception occurs.
@@ -120,4 +125,29 @@ public class ArgumentParseException extends CommandException {
     public String getSourceString() {
         return this.source;
     }
+
+    /**
+     * An {@link ArgumentParseException} where the usage is already specified.
+     */
+    public static class WithUsage extends ArgumentParseException {
+        private static final long serialVersionUID = -786214501012293475L;
+
+        private final Text usage;
+
+        WithUsage(ArgumentParseException wrapped, Text usage) {
+            super(wrapped.getSuperText(), wrapped.getCause(), wrapped.getSourceString(), wrapped.getPosition());
+            this.usage = usage;
+        }
+
+        /**
+         * Gets the usage associated with this exception
+         *
+         * @return The usage
+         */
+        public Text getUsage() {
+            return this.usage;
+        }
+
+    }
+
 }

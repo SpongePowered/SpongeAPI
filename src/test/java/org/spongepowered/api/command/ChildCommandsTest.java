@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.command;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -33,12 +35,15 @@ import com.google.common.collect.ImmutableMap;
 import org.junit.Before;
 import org.junit.Test;
 import org.spongepowered.api.Game;
+import org.spongepowered.api.command.args.ArgumentParseException;
 import org.spongepowered.api.command.args.CommandContext;
+import org.spongepowered.api.command.args.GenericArguments;
 import org.spongepowered.api.command.dispatcher.SimpleDispatcher;
 import org.spongepowered.api.command.spec.CommandExecutor;
 import org.spongepowered.api.command.spec.CommandSpec;
 import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.text.TestPlainTextSerializer;
+import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.test.TestHooks;
 
 import java.util.List;
@@ -84,4 +89,100 @@ public class ChildCommandsTest {
 
         assertTrue(childExecuted.get());
     }
+
+    @Test
+    public void testSimpleChildCommandIsSuppressedOnError() throws CommandException {
+        final AtomicBoolean parentExecuted = new AtomicBoolean();
+        final AtomicBoolean childExecuted = new AtomicBoolean();
+        final CommandSpec spec = CommandSpec.builder()
+                .children(ImmutableMap.<List<String>, CommandSpec>of(ImmutableList.of("child"), CommandSpec.builder()
+                        .arguments(GenericArguments.literal(Text.of("test"), "test"))
+                        .executor((src, args) -> {
+                            childExecuted.set(true);
+                            return CommandResult.builder().successCount(1).build();
+                        })
+                        .build()))
+                .arguments(GenericArguments.literal(Text.of("t"), "child"))
+                .executor((src, args) -> {
+                    parentExecuted.set(true);
+                    return CommandResult.success();
+                })
+                .build();
+        final SimpleDispatcher execute = new SimpleDispatcher();
+        execute.register(spec, "parent");
+        execute.process(mock(CommandSource.class), "parent child");
+
+        assertFalse(childExecuted.get());
+        assertTrue(parentExecuted.get());
+    }
+
+    @Test
+    public void testSimpleChildCommandIsThrownOnErrorWhenSelected() throws CommandException {
+        final AtomicBoolean parentExecuted = new AtomicBoolean();
+        final AtomicBoolean childExecuted = new AtomicBoolean();
+        final CommandSpec spec = CommandSpec.builder()
+                .children(ImmutableMap.<List<String>, CommandSpec>of(ImmutableList.of("child"), CommandSpec.builder()
+                        .arguments(GenericArguments.literal(Text.of("test"), "test"))
+                        .executor((src, args) -> {
+                            childExecuted.set(true);
+                            return CommandResult.builder().successCount(1).build();
+                        })
+                        .build()))
+                .arguments(GenericArguments.literal(Text.of("t"), "child"))
+                .executor((src, args) -> {
+                    parentExecuted.set(true);
+                    return CommandResult.success();
+                })
+                .childArgumentParseExceptionFallback(false)
+                .build();
+        final SimpleDispatcher execute = new SimpleDispatcher();
+        execute.register(spec, "parent");
+
+        try {
+            execute.process(mock(CommandSource.class), "parent child");
+        } catch (ArgumentParseException ex) {
+            // ignored - we check this with the booleans
+        }
+
+        assertFalse(childExecuted.get());
+        assertFalse(parentExecuted.get());
+    }
+
+    @Test
+    public void testErrorOnNonExistentChildWithNoExecutor() throws CommandException {
+        final CommandSpec spec = CommandSpec.builder()
+                .children(ImmutableMap.<List<String>, CommandSpec>of(ImmutableList.of("child"), CommandSpec.builder()
+                        .executor((src, args) -> CommandResult.builder().successCount(1).build())
+                        .build()))
+                .childArgumentParseExceptionFallback(false)
+                .build();
+        final SimpleDispatcher execute = new SimpleDispatcher();
+        execute.register(spec, "parent");
+
+        try {
+            execute.process(mock(CommandSource.class), "parent wrong");
+        } catch (ArgumentParseException ex) {
+            assertEquals("Input command wrong was not a valid subcommand!\nwrong\n^", ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testErrorOnNonExistentChildWithNoOtherParameters() throws CommandException {
+        final CommandSpec spec = CommandSpec.builder()
+                .children(ImmutableMap.<List<String>, CommandSpec>of(ImmutableList.of("child"), CommandSpec.builder()
+                        .executor((src, args) -> CommandResult.builder().successCount(1).build())
+                        .build()))
+                .childArgumentParseExceptionFallback(false)
+                .executor((src, args) -> CommandResult.success())
+                .build();
+        final SimpleDispatcher execute = new SimpleDispatcher();
+        execute.register(spec, "parent");
+
+        try {
+            execute.process(mock(CommandSource.class), "parent wrong");
+        } catch (ArgumentParseException ex) {
+            assertEquals("Input command wrong was not a valid subcommand!\nwrong\n^", ex.getMessage());
+        }
+    }
+
 }
