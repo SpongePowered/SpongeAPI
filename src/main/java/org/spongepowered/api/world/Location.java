@@ -674,16 +674,16 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Similar to {@link #spawnEntity(Entity, Cause)} except where multiple
+     * Similar to {@link #spawnEntity(Entity)} except where multiple
      * entities can be attempted to be spawned with a customary {@link Cause}.
      * The recommended use is to easily process the entity spawns without
      * interference with the cause tracking system.
      *
-     * @param entities The entities to be spawned
+     * @param entities The entities which spawned correctly, or empty if none
      * @return True if any of the entities were successfully spawned
-     * @see EntityUniverse#spawnEntities(Iterable, Cause)
+     * @see EntityUniverse#spawnEntities(Iterable)
      */
-    public boolean spawnEntities(Iterable<? extends Entity> entities) {
+    public Collection<Entity> spawnEntities(Iterable<? extends Entity> entities) {
         return this.getExtent().spawnEntities(entities);
     }
 
