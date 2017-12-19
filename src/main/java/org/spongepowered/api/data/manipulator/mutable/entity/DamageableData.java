@@ -38,6 +38,9 @@ import java.util.Optional;
  * A {@link DataManipulator} for retaining the last known "attacker" for an
  * {@link Entity}. If there is no known last attacker, the {@link #lastAttacker()}
  * may have an {@link Optional#EMPTY} value.
+ *
+ * <p>This data will usually only stay around for 100 ticks, which is generally
+ * around 5 or so seconds.</p>
  */
 public interface DamageableData extends DataManipulator<DamageableData, ImmutableDamageableData> {
 
@@ -46,6 +49,9 @@ public interface DamageableData extends DataManipulator<DamageableData, Immutabl
      *
      * <p>This will usually be an entity snapshot of a {@link Living}.</p>
      *
+     * <p>This data will usually only be present within 100 ticks of the attack
+     * occurring.</p>
+     *
      * @return The last attacker as an optional value
      * @see Keys#LAST_ATTACKER
      */
@@ -53,6 +59,9 @@ public interface DamageableData extends DataManipulator<DamageableData, Immutabl
 
     /**
      * Gets the last amount of damage taken by this entity as an optional value.
+     *
+     * <p>This data will usually only be present within 100 ticks of the attack
+     * occurring.</p>
      *
      * @return The last damage dealt as an optional value
      * @see Keys#LAST_DAMAGE
