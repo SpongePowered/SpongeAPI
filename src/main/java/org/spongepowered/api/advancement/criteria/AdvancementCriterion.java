@@ -45,6 +45,11 @@ public interface AdvancementCriterion {
     AdvancementCriterion EMPTY = DummyObjectProvider.createFor(AdvancementCriterion.class, "EMPTY");
 
     /**
+     * Represents a dummy criterion, this will never be triggered by vanilla minecraft.
+     */
+    AdvancementCriterion DUMMY = DummyObjectProvider.createFor(AdvancementCriterion.class, "DUMMY");
+
+    /**
      * Creates a new {@link Builder} to create {@link AdvancementCriterion}s.
      *
      * @return The new builder

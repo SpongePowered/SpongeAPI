@@ -102,7 +102,8 @@ public interface DisplayInfo {
     interface Builder extends ResettableBuilder<DisplayInfo, Builder> {
 
         /**
-         * Sets the {@link AdvancementType}.
+         * Sets the {@link AdvancementType}. Defaults
+         * to {@link AdvancementTypes#TASK}.
          *
          * @param advancementType The advancement type
          * @return This builder, for chaining

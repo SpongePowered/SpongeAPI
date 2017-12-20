@@ -26,11 +26,12 @@ package org.spongepowered.api.advancement;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.util.ResettableBuilder;
 
 /**
  * Represents a {@link Advancement} tree or tab menu. The tree will become visible to
- * an {@link Advancer} once the root {@link Advancement} gets achieved.
+ * a {@link Player} once the root {@link Advancement} gets achieved.
  */
 public interface AdvancementTree extends CatalogType {
 

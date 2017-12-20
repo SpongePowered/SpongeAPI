@@ -33,17 +33,17 @@ public final class TriggerTypes {
 
     // SORTFIELDS:ON
 
-    public static final TriggerType ARBITRARY_PLAYER_TICK = DummyObjectProvider.createFor(TriggerType.class, "ARBITRARY_PLAYER_TICK");
-
     public static final TriggerType BRED_ANIMALS = DummyObjectProvider.createFor(TriggerType.class, "BRED_ANIMALS");
 
     public static final TriggerType BREWED_POTION = DummyObjectProvider.createFor(TriggerType.class, "BREWED_POTION");
+
+    public static final TriggerType CHANGED_DIMENSION = DummyObjectProvider.createFor(TriggerType.class, "CHANGED_DIMENSION");
 
     public static final TriggerType CONSTRUCT_BEACON = DummyObjectProvider.createFor(TriggerType.class, "CONSTRUCT_BEACON");
 
     public static final TriggerType CONSUME_ITEM = DummyObjectProvider.createFor(TriggerType.class, "CONSUME_ITEM");
 
-    public static final TriggerType CURSE_ZOMBIE_VILLAGER = DummyObjectProvider.createFor(TriggerType.class, "CONSUME_ITEM");
+    public static final TriggerType CURED_ZOMBIE_VILLAGER = DummyObjectProvider.createFor(TriggerType.class, "CURED_ZOMBIE_VILLAGER");
 
     public static final TriggerType ENCHANTED_ITEM = DummyObjectProvider.createFor(TriggerType.class, "ENCHANTED_ITEM");
 
@@ -59,7 +59,11 @@ public final class TriggerTypes {
 
     public static final TriggerType ITEM_DURABILITY_CHANGED = DummyObjectProvider.createFor(TriggerType.class, "ITEM_DURABILITY_CHANGED");
 
+    public static final TriggerType LEVITATION = DummyObjectProvider.createFor(TriggerType.class, "LEVITATION");
+
     public static final TriggerType LOCATION = DummyObjectProvider.createFor(TriggerType.class, "LOCATION");
+
+    public static final TriggerType NETHER_TRAVEL = DummyObjectProvider.createFor(TriggerType.class, "NETHER_TRAVEL");
 
     public static final TriggerType PLACED_BLOCK = DummyObjectProvider.createFor(TriggerType.class, "PLACED_BLOCK");
 
@@ -79,9 +83,9 @@ public final class TriggerTypes {
 
     public static final TriggerType USED_ENDER_EYE = DummyObjectProvider.createFor(TriggerType.class, "USED_ENDER_EYE");
 
-    public static final TriggerType VILLAGER_TRADE = DummyObjectProvider.createFor(TriggerType.class, "VILLAGER_TRADE");
+    public static final TriggerType USED_TOTEM = DummyObjectProvider.createFor(TriggerType.class, "USED_TOTEM");
 
-    public static final TriggerType CHANGED_DIMENSION = DummyObjectProvider.createFor(TriggerType.class, "CHANGED_DIMENSION");
+    public static final TriggerType VILLAGER_TRADE = DummyObjectProvider.createFor(TriggerType.class, "VILLAGER_TRADE");
 
     // SORTFIELDS:OFF
 
