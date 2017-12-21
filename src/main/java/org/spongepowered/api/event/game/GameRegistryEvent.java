@@ -27,8 +27,10 @@ package org.spongepowered.api.event.game;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.GenericEvent;
+import org.spongepowered.api.event.impl.AbstractGameRegistryRegisterEvent;
 import org.spongepowered.api.registry.CatalogRegistryModule;
 import org.spongepowered.api.registry.CatalogTypeAlreadyRegisteredException;
+import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
 
 /**
  * A base event for registry related events.
@@ -41,6 +43,7 @@ public interface GameRegistryEvent extends Event {
      *
      * @param <T> The type of the catalog type
      */
+    @ImplementedBy(AbstractGameRegistryRegisterEvent.class)
     interface Register<T extends CatalogType> extends GameRegistryEvent, GenericEvent<T> {
 
         /**
