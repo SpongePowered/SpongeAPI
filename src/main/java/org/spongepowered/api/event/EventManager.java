@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.event;
 
+import com.google.common.reflect.TypeToken;
+
 /**
  * Manages the registration of event listeners and the dispatching of events.
  */
@@ -59,6 +61,21 @@ public interface EventManager {
     <T extends Event> void registerListener(Object plugin, Class<T> eventClass, EventListener<? super T> listener);
 
     /**
+     * Registers an event listener for a specific event {@link TypeToken}.
+     *
+     * <p>Normally, the annotation-based way in
+     * {@link #registerListeners(Object, Object)} should be preferred over this way. This
+     * method exists primarily to support dynamic event registration like needed
+     * in scripting plugins.</p>
+     *
+     * @param plugin The plugin instance
+     * @param eventType The event to listen to
+     * @param listener The listener to receive the events
+     * @param <T> The type of the event
+     */
+    <T extends Event> void registerListener(Object plugin, TypeToken<T> eventType, EventListener<? super T> listener);
+
+    /**
      * Registers an event listener with the specified order for a specific event
      * class.
      *
@@ -74,6 +91,23 @@ public interface EventManager {
      * @param <T> The type of the event
      */
     <T extends Event> void registerListener(Object plugin, Class<T> eventClass, Order order, EventListener<? super T> listener);
+
+    /**
+     * Registers an event listener with the specified order for a specific event
+     * {@link TypeToken}.
+     *
+     * <p>Normally, the annotation-based way in
+     * {@link #registerListeners(Object, Object)} should be preferred over this way. This
+     * method exists primarily to support dynamic event registration like needed
+     * in scripting plugins.</p>
+     *
+     * @param plugin The plugin instance
+     * @param eventType The event to listen to
+     * @param order The order the listener will get called at
+     * @param listener The listener to receive the events
+     * @param <T> The type of the event
+     */
+    <T extends Event> void registerListener(Object plugin, TypeToken<T> eventType, Order order, EventListener<? super T> listener);
 
     /**
      * Registers an event listener with the specified order for a specific event
@@ -93,7 +127,27 @@ public interface EventManager {
      * @param <T> The type of the event
      */
     <T extends Event> void registerListener(Object plugin, Class<T> eventClass, Order order, boolean beforeModifications,
-                                    EventListener<? super T> listener);
+            EventListener<? super T> listener);
+
+    /**
+     * Registers an event listener with the specified order for a specific event
+     * class.
+     *
+     * <p>Normally, the annotation-based way in
+     * {@link #registerListeners(Object, Object)} should be preferred over this way. This
+     * method exists primarily to support dynamic event registration like needed
+     * in scripting plugins.</p>
+     *
+     * @param plugin The plugin instance
+     * @param eventType The event to listen to
+     * @param order The order the listener will get called at
+     * @param beforeModifications Whether to call the listener before other
+     *      server modifications
+     * @param listener The listener to receive the events
+     * @param <T> The type of the event
+     */
+    <T extends Event> void registerListener(Object plugin, TypeToken<T> eventType, Order order, boolean beforeModifications,
+            EventListener<? super T> listener);
 
     /**
      * Un-registers an object from receiving {@link Event}s.

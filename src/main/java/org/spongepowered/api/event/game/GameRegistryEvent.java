@@ -26,6 +26,7 @@ package org.spongepowered.api.event.game;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.event.Event;
+import org.spongepowered.api.event.GenericEvent;
 import org.spongepowered.api.registry.CatalogRegistryModule;
 import org.spongepowered.api.registry.CatalogTypeAlreadyRegisteredException;
 
@@ -40,7 +41,7 @@ public interface GameRegistryEvent extends Event {
      *
      * @param <T> The type of the catalog type
      */
-    interface Register<T extends CatalogType> extends GameRegistryEvent {
+    interface Register<T extends CatalogType> extends GameRegistryEvent, GenericEvent<T> {
 
         /**
          * Gets the {@link CatalogType} that
