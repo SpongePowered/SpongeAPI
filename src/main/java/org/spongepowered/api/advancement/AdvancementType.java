@@ -25,7 +25,7 @@
 package org.spongepowered.api.advancement;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.format.TextFormat;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -36,10 +36,9 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 public interface AdvancementType extends CatalogType {
 
     /**
-     * Formats the given title {@link Text} for this advancement type.
+     * Gets the {@link TextFormat} of the advancement type.
      *
-     * @param title The title
-     * @return The formatted text, may contain {@link Text#NEW_LINE}s
+     * @return The text format
      */
-    Text format(Text title);
+    TextFormat getTextFormat();
 }
