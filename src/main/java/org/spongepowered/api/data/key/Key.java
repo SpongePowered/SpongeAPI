@@ -26,12 +26,19 @@ package org.spongepowered.api.data.key;
 
 import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.ValueContainer;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.TypeTokens;
+
+import java.lang.reflect.Type;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Represents a key to an underlying {@link BaseValue} such that the underlying
@@ -43,16 +50,25 @@ import org.spongepowered.api.data.value.mutable.Value;
  */
 public interface Key<V extends BaseValue<?>> extends CatalogType {
 
+    @SuppressWarnings("unchecked")
+    static Builder<?, ?> builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
     /**
-     * Gets the class of the {@link Value} this {@link Key} is representing.
+     * Gets the class of the {@link BaseValue} this {@link Key} is representing.
      *
      * @return The value class
      */
     TypeToken<V> getValueToken();
 
     /**
-     * Gets the class of the element of the {@link Value} this {@link Key}
-     * is representing.
+     * Gets the class of the element of the {@link BaseValue} this {@link Key}
+     * is representing. On occasion, if the element is a {@link Collection} type,
+     * one can occasionally use {@link TypeToken#resolveType(Type)} with
+     * {@link Class#getTypeParameters()} as the type parameter of a collection
+     * is retrievable, such as the element type parameter for {@link List} or
+     * {@link Map}.
      *
      * @return The element class
      */
@@ -65,5 +81,71 @@ public interface Key<V extends BaseValue<?>> extends CatalogType {
      * @return The recommended {@link DataQuery} for use
      */
     DataQuery getQuery();
+
+    interface Builder<E, V extends BaseValue<E>> extends ResettableBuilder<Key<V>, Builder<E, V>> {
+
+        /**
+         * Starter method for the builder, to be used immediately after
+         * {@link Key#builder()} is called. This defines the generics for the
+         * builder itself to provide the properly generified {@link Key}.
+         *
+         * <p>Common {@link TypeToken TypeTokens} can be found in
+         * {@link TypeTokens}. If a new TypeToken is to be created, it is
+         * recommended to create an anonymous class instance of a token,
+         * as recommended by Guava's wiki found
+         * <a href="https://github.com/google/guava/wiki/ReflectionExplained#introduction">here</a>.
+         * </p>
+         *
+         * @param token The type token, preferrably an anonymous
+         * @param <T> The element type of the Key
+         * @param <B> The base value type of the key
+         * @return This builder, generified
+         */
+        <T, B extends BaseValue<T>> Builder<T, B> type(TypeToken<B> token);
+
+        /**
+         * Sets the string id to be used for {@link CatalogType#getId()}.
+         *
+         * <p>This should be formatted appropriately, review {@link CatalogType}
+         * documentation for formatted id's.</p>
+         *
+         * @param id The string id
+         * @return This builder, for chaining
+         */
+        Builder<E, V> id(String id);
+
+        /**
+         * Sets the human readable name for the generated {@link Key}.
+         *
+         * @param name The human readable name
+         * @return This builder, for chaining
+         */
+        Builder<E, V> name(String name);
+
+        /**
+         * Sets the {@link DataQuery} recommended for use with
+         * {@link DataContainer}s. See {@link Key#getQuery()}.
+         *
+         * @param query The DataQuery
+         * @return This builder, for chaining
+         */
+        Builder<E, V> query(DataQuery query);
+
+        /**
+         * Builds a new {@link Key}, provided that the
+         * {@link #type(TypeToken)}, {@link #id(String)},
+         * {@link #name(String)}, and {@link #query(DataQuery)}
+         * are set.
+         *
+         * @return The generated Key
+         */
+        Key<V> build();
+
+        @Override
+        @Deprecated
+        default Builder<E, V> from(Key<V> value) throws UnsupportedOperationException {
+            throw new UnsupportedOperationException("Cannot create duplicate keys!");
+        }
+    }
 
 }
