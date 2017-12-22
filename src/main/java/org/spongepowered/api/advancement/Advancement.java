@@ -27,9 +27,12 @@ package org.spongepowered.api.advancement;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.TextRepresentable;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.Nullable;
@@ -37,7 +40,7 @@ import javax.annotation.Nullable;
 /**
  * An advancement.
  */
-public interface Advancement extends CatalogType {
+public interface Advancement extends CatalogType, TextRepresentable {
 
     /**
      * Creates a new {@link Builder} to create {@link Advancement}s.
@@ -89,6 +92,14 @@ public interface Advancement extends CatalogType {
      * @return The display info, if present
      */
     Optional<DisplayInfo> getDisplayInfo();
+
+    /**
+     * Gets the {@link Text} lines that would be used to
+     * display a toast notification.
+     *
+     * @return The text lines
+     */
+    List<Text> toToastText();
 
     /**
      * A builder to create {@link Advancement}s.

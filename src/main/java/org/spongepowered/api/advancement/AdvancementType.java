@@ -36,14 +36,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 public interface AdvancementType extends CatalogType {
 
     /**
-     * Formats the given {@link Advancement} for this type.
-     *
-     * @param advancement The advancement
-     * @return The formatted text, may contain {@link Text#NEW_LINE}s
-     */
-    Text format(Advancement advancement);
-
-    /**
      * Formats the given title {@link Text} for this advancement type.
      *
      * @param title The title
