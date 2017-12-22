@@ -63,7 +63,6 @@ public interface BlockChangeFlag {
      */
     boolean notifyObservers();
 
-
     /**
      * Gets the equivalent {@link BlockChangeFlag} of this flag with all
      * other flags while having the desired {@code updateNeighbors}
@@ -143,9 +142,5 @@ public interface BlockChangeFlag {
      * @return The resulting flag with matched values
      */
     BlockChangeFlag andNotFlag(BlockChangeFlag flag);
-
-    BlockChangeFlag orFlag(BlockChangeFlag flag);
-
-    BlockChangeFlag exclusiveOrFlag(BlockChangeFlag flag);
 
 }
