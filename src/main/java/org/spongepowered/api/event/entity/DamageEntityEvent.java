@@ -58,7 +58,7 @@ import java.util.function.DoubleUnaryOperator;
  * The uniqueness of this event is that all {@link DamageSource}s can deal
  * varying amounts of damage with varying modifiers based on various reasons.
  * Due to this ambiguous variety of information that is possible to provide,
- * the {@link AttackEntityEvent} can be summarized as so:
+ * the {@link DamageEntityEvent} can be summarized as so:
  *
  * <p>An {@link Arrow},
  *  that was shot by a {@link Skeleton},

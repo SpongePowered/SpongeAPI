@@ -33,7 +33,6 @@ import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 

@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * of sand. The block place event for the final block of sand would have the
  * cause chain of the block of sand -&gt; falling sand entity.</p>
  *
- * <p>It is not possible to accurately the describe the chain of causes in all
+ * <p>It is not possible to accurately describe the chain of causes in all
  * scenarios so a best effort approach is generally acceptable. For example, a
  * player might press a lever, activating a complex Redstone circuit, which
  * would then launch TNT and cause the destruction of some blocks, but tracing

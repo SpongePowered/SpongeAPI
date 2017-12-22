@@ -2079,17 +2079,17 @@ public final class GenericArguments {
             super(key);
             this.serializer = serializer;
             this.allRemaining = allRemaining;
-            joinedElement = allRemaining ? new RemainingJoinedStringsCommandElement(key, false) : null;
+            this.joinedElement = allRemaining ? new RemainingJoinedStringsCommandElement(key, false) : null;
         }
 
         @Nullable
         @Override
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
-            String arg = this.allRemaining ? (String) joinedElement.parseValue(source, args) : args.next();
+            String arg = this.allRemaining ? (String) this.joinedElement.parseValue(source, args) : args.next();
             try {
-                return serializer.deserialize(arg);
+                return this.serializer.deserialize(arg);
             } catch (TextParseException ex) {
-                if (serializer == TextSerializers.JSON) {
+                if (this.serializer == TextSerializers.JSON) {
                     if (ex.getMessage() == null) {
                         throw args.createError(Text.of("Invalid JSON text!"));
                     } else {
@@ -2361,7 +2361,7 @@ public final class GenericArguments {
 
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            return this.wrapped.complete(src, args, context).stream().filter(predicate).collect(ImmutableList.toImmutableList());
+            return this.wrapped.complete(src, args, context).stream().filter(this.predicate).collect(ImmutableList.toImmutableList());
         }
 
     }

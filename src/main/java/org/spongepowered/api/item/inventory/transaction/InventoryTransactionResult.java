@@ -40,8 +40,8 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
- * An interface for structs returned by inventory operations which encapsulate
- * the result of an attempted operation.
+ * An interface for data returned by inventory operations which encapsulates the
+ * result of an attempted operation.
  */
 public final class InventoryTransactionResult {
 
@@ -209,7 +209,7 @@ public final class InventoryTransactionResult {
         /**
          * Creates a new {@link InventoryTransactionResult}.
          *
-         * @return A new inventoryu transaction result
+         * @return A new inventory transaction result
          */
         public InventoryTransactionResult build() {
             checkState(this.resultType != null, "ResultType cannot be null!");

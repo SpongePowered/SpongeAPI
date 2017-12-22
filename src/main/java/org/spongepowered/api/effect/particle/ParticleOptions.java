@@ -70,9 +70,7 @@ public final class ParticleOptions {
     public static final ParticleOption<Color> COLOR = DummyObjectProvider.createFor(ParticleOption.class, "COLOR");
 
     /**
-     * This option will change the potion type of a particle. The only vanilla
-     * {@link ParticleType}s this option is applicable to is
-     * {@link ParticleTypes#FIRE_SMOKE}.
+     * This option will change the direction of a particle.
      */
     public static final ParticleOption<Direction> DIRECTION = DummyObjectProvider.createFor(ParticleOption.class, "DIRECTION");
 

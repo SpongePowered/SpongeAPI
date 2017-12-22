@@ -201,7 +201,7 @@ public interface ItemStack extends DataHolder, Translatable {
          * is not supported. Offering custom data is not supported through this,
          * use {@link #itemData(DataManipulator)} instead.
          *
-         * @param key The key to identiy the value to
+         * @param key The key to identify the value with
          * @param value The value to apply
          * @param <E> The type of value
          * @return This builder, for chaining
