@@ -41,7 +41,10 @@ import org.spongepowered.api.world.gen.GenerationPopulator;
 
 /**
  * Places tall grass with groups of flowers.
+ *
+ * @deprecated Will be removed from the api
  */
+@Deprecated
 public class SkylandsGrassPopulator implements GenerationPopulator {
 
     private static final double GRASS_ODDS = 0.3;

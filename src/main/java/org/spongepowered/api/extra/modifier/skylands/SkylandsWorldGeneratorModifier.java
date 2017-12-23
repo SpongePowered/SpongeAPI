@@ -41,7 +41,10 @@ import java.util.List;
 /**
  * Modifies a {@link World}'s generation to look like the world type "Skylands"
  * that used to exist in vanilla Minecraft.
+ *
+ * @deprecated Will be removed from the api
  */
+@Deprecated
 public class SkylandsWorldGeneratorModifier implements WorldGeneratorModifier {
 
     @Override
