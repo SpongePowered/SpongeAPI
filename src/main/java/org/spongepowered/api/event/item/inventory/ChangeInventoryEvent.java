@@ -26,6 +26,7 @@ package org.spongepowered.api.event.item.inventory;
 
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.entity.item.TargetItemEvent;
@@ -50,6 +51,13 @@ public interface ChangeInventoryEvent extends TargetInventoryEvent, AffectSlotEv
      * Fired when a {@link Living} changes it's held {@link ItemStack}.
      */
     interface Held extends ChangeInventoryEvent {
+
+    }
+
+    /**
+     * Fired when a {@link Player} swaps it's hands.
+     */
+    interface SwapHand extends ChangeInventoryEvent {
 
     }
 
