@@ -54,11 +54,27 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
     Class<T> getManipulatorClass();
 
     /**
+     * Gets the implementing class of the {@link DataManipulator} for this
+     * registration.
+     *
+     * @return The manipulator class registered
+     */
+    Class<? extends T> getImplementationClass();
+
+    /**
      * Gets the {@link ImmutableDataManipulator} class for this registration.
      *
      * @return The immutable class registered
      */
     Class<I> getImmutableManipulatorClass();
+
+    /**
+     * Gets the implementing class of the {@link ImmutableDataManipulator} for
+     * this registration.
+     *
+     * @return The immutable manipulator class registered
+     */
+    Class<? extends I> getImmutableImplementationClass();
 
     /**
      * Gets the {@link DataManipulatorBuilder} registered for this registration.
@@ -106,6 +122,31 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
          *     been set already
          */
         Builder<T, I> immutableClass(Class<I> immutableDataClass) throws IllegalStateException;
+
+        /**
+         * Optionally sets a separate implementation class for the
+         * {@link DataManipulator}. <strong>THIS MUST BE CALLED AFTER
+         * {@link #dataClass(Class)}!</strong>
+         *
+         * @param dataImplementationClass The data manipulator implementation
+         * @return This builder, for chaining
+         * @throws IllegalStateException If the data manipulator class has not
+         *     been set already
+         */
+        Builder<T, I> dataImplementation(Class<? extends T> dataImplementationClass) throws IllegalStateException;
+
+        /**
+         * Optionally sets a separate implementation class for the
+         * {@link ImmutableDataManipulator}. <strong>THIS MUST BE CALLED AFTER
+         * {@link #dataClass(Class)}!</strong>
+         *
+         * @param immutableImplementationClass The immutable data manipulator
+         *     implementation
+         * @return This builder, for chaining
+         * @throws IllegalStateException If the immutable data manipulator
+         *     class has not been set already
+         */
+        Builder<T, I> immutableImplementation(Class<? extends I> immutableImplementationClass) throws IllegalStateException;
 
         /**
          * Sets the id for the manipulator. The id should be formatted
