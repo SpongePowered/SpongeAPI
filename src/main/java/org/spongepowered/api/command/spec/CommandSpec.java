@@ -25,7 +25,6 @@
 package org.spongepowered.api.command.spec;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static org.spongepowered.api.command.args.GenericArguments.firstParsing;
 import static org.spongepowered.api.command.args.GenericArguments.optional;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
@@ -289,9 +288,10 @@ public final class CommandSpec implements CommandCallable {
                 checkNotNull(this.executor, "An executor is required");
             } else {
                 if (this.args == DEFAULT_ARG) {
+                    CommandExecutor baseExecutor = this.executor;
                     ChildCommandElementExecutor childDispatcher =
-                            registerInDispatcher(new ChildCommandElementExecutor(this.executor, null, false));
-                    arguments(this.executor == null ? childDispatcher : optional(childDispatcher));
+                            registerInDispatcher(new ChildCommandElementExecutor(baseExecutor, null, false));
+                    arguments(baseExecutor == null ? childDispatcher : optional(childDispatcher));
                 } else {
                     if (this.executor == null) {
                         arguments(this.args, registerInDispatcher(new ChildCommandElementExecutor(null, null, false)));
