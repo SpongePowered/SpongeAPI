@@ -286,19 +286,10 @@ public final class CommandSpec implements CommandCallable {
         public CommandSpec build() {
             if (this.childCommandMap == null) {
                 checkNotNull(this.executor, "An executor is required");
+            } else if (this.executor == null) {
+                arguments(this.args, registerInDispatcher(new ChildCommandElementExecutor(null, null, false)));
             } else {
-                if (this.args == DEFAULT_ARG) {
-                    CommandExecutor baseExecutor = this.executor;
-                    ChildCommandElementExecutor childDispatcher =
-                            registerInDispatcher(new ChildCommandElementExecutor(baseExecutor, null, false));
-                    arguments(baseExecutor == null ? childDispatcher : optional(childDispatcher));
-                } else {
-                    if (this.executor == null) {
-                        arguments(this.args, registerInDispatcher(new ChildCommandElementExecutor(null, null, false)));
-                    } else {
-                        arguments(registerInDispatcher(new ChildCommandElementExecutor(this.executor, this.args, this.childCommandFallback)));
-                    }
-                }
+                arguments(registerInDispatcher(new ChildCommandElementExecutor(this.executor, this.args, this.childCommandFallback)));
             }
 
             return new CommandSpec(this.args, this.executor, this.description, this.extendedDescription, this.permission,

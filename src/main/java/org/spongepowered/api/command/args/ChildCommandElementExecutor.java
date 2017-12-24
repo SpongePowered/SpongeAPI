@@ -55,6 +55,7 @@ import javax.annotation.Nullable;
 
 public class ChildCommandElementExecutor extends CommandElement implements CommandExecutor {
     private static final AtomicInteger COUNTER = new AtomicInteger();
+    private static final CommandElement NONE = GenericArguments.none();
 
     @Nullable private final CommandExecutor fallbackExecutor;
     @Nullable private final CommandElement fallbackElements;
@@ -94,7 +95,7 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
             boolean fallbackOnFail) {
         super(Text.of("child" + COUNTER.getAndIncrement()));
         this.fallbackExecutor = fallbackExecutor;
-        this.fallbackElements = fallbackElements;
+        this.fallbackElements = NONE == fallbackElements ? null : fallbackElements;
         this.fallbackOnFail = fallbackOnFail;
     }
 
@@ -175,6 +176,10 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
 
     @Override
     public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
+        if (this.fallbackExecutor != null && this.fallbackElements == null && !args.hasNext()) {
+            return; // execute the fallback regardless in this scenario.
+        }
+
         Object state = args.getState();
         final String key = args.next();
         Optional<CommandMapping> optionalCommandMapping = this.dispatcher.get(key, source);
