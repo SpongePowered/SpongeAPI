@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.manipulator.immutable.entity;
 
-import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.SleepingData;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
@@ -42,9 +41,17 @@ public interface ImmutableSleepingData extends ImmutableDataManipulator<Immutabl
      * Gets the {@link ImmutableValue} for the "sleeping" state.
      *
      * @return The immutable value for the "sleeping" state
-     * @see Keys#IS_SLEEPING
      */
     ImmutableValue<Boolean> sleeping();
+
+    /**
+     * Gets the {@link ImmutableValue} for whether the owning {@link Player}'s
+     * "sleeping" state is ignored when vanilla mechanics dictate that all
+     * {@link Player}s must be sleeping to advance through the night.
+     *
+     * @return The immutable value for ignoring sleep
+     */
+    ImmutableValue<Boolean> ignoreSleeping();
 
 }
 

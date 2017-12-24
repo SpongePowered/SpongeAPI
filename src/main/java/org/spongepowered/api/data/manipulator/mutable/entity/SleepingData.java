@@ -39,9 +39,11 @@ import org.spongepowered.api.entity.living.player.Player;
 public interface SleepingData extends DataManipulator<SleepingData, ImmutableSleepingData> {
 
     /**
-     * Gets the {@link Value} for the "sleeping" state.
+     * Gets the {@link Value} for whether the owning {@link Player}'s
+     * "sleeping" state is ignored when vanilla mechanics dictate that all
+     * {@link Player}s must be sleeping to advance through the night.
      *
-     * @return The mutable value for the "sleeping" state
+     * @return The immutable value for ignoring sleep
      * @see Keys#IS_SLEEPING
      */
     Value<Boolean> sleeping();
