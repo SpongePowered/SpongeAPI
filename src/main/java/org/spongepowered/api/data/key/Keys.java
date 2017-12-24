@@ -1087,6 +1087,14 @@ public final class Keys {
     public static final Key<Value<HorseStyle>> HORSE_STYLE = KeyFactory.fake("HORSE_STYLE");
 
     /**
+     * Represents the {@link Key} for whether a {@link Player} will be checked
+     * to be sleeping.
+     * 
+     * @see IgnoreSleepingData#ignoreSleeping()
+     */
+    public static final Key<Value<Boolean>> IGNORE_SLEEPING = KeyFactory.fake("IGNORE_SLEEPING");
+
+    /**
      * Represents the {@link Key} for whether an {@link Item} will not despawn
      * for an infinite time.
      *
