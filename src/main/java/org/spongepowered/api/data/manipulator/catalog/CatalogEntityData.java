@@ -59,6 +59,7 @@ import org.spongepowered.api.entity.living.monster.Enderman;
 import org.spongepowered.api.entity.living.monster.Endermite;
 import org.spongepowered.api.entity.living.monster.MagmaCube;
 import org.spongepowered.api.entity.living.monster.Slime;
+import org.spongepowered.api.entity.living.monster.Vindicator;
 import org.spongepowered.api.entity.living.monster.Zombie;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
@@ -252,6 +253,11 @@ public final class CatalogEntityData {
      * known types of {@link Living} entities.
      */
     public static final Class<InvisibilityData> INVISIBILITY_DATA = InvisibilityData.class;
+    /**
+     * Represents whether an entity is exhibiting "johnny" behavior. In vanilla
+     * this is only applicable to {@link Vindicator}s.
+     */
+    public static final Class<JohnnyData> JOHNNY_DATA = JohnnyData.class;
     /**
      * Represents the specific information of an initial joined time on the
      * server. Usually applicable to {@link Player}s and {@link User}s.
