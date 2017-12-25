@@ -88,12 +88,11 @@ public interface AdvancementTree extends CatalogType {
 
         /**
          * Builds the {@link AdvancementTree} with the specified
-         * plugin id and id.
+         * identifier (without the namespace).
          *
-         * @param pluginId The plugin id
-         * @param id The id
+         * @param id The identifier
          * @return The advancement tree
          */
-        AdvancementTree build(String pluginId, String id);
+        AdvancementTree build(String id);
     }
 }

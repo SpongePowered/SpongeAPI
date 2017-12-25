@@ -378,7 +378,7 @@ public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMe
 
     /**
      * Gets all the {@link AdvancementTree}s that this
-     * advancer already unlocked.
+     * {@link Player} already unlocked.
      *
      * @return The advancement trees
      */

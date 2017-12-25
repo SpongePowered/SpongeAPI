@@ -26,7 +26,7 @@ package org.spongepowered.api.advancement.criteria;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.Advancement;
-import org.spongepowered.api.advancement.criteria.trigger.Trigger;
+import org.spongepowered.api.advancement.criteria.trigger.FilteredTrigger;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
@@ -118,12 +118,12 @@ public interface AdvancementCriterion {
     AdvancementCriterion or(Iterable<AdvancementCriterion> criteria);
 
     /**
-     * Gets the {@link Trigger}s of this {@link AdvancementCriterion}. The
+     * Gets the {@link FilteredTrigger}s of this {@link AdvancementCriterion}. The
      * {@link Collection} can be empty.
      *
      * @return The triggers
      */
-    Collection<Trigger> getTriggers();
+    Collection<FilteredTrigger<?>> getTriggers();
 
     /**
      * A builder to create {@link AdvancementCriterion}s.
@@ -136,6 +136,14 @@ public interface AdvancementCriterion {
      * A base builder to create {@link AdvancementCriterion}s.
      */
     interface BaseBuilder<T extends AdvancementCriterion, B extends BaseBuilder<T, B>> extends ResettableBuilder<T, B> {
+
+        /**
+         * Sets the {@link FilteredTrigger}.
+         *
+         * @param trigger The filtered trigger
+         * @return This builder, for chaining
+         */
+        B trigger(FilteredTrigger<?> trigger);
 
         /**
          * Builds a new {@link AdvancementCriterion} with the specified

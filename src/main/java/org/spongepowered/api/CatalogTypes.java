@@ -27,7 +27,7 @@ package org.spongepowered.api;
 import org.spongepowered.api.advancement.Advancement;
 import org.spongepowered.api.advancement.AdvancementTree;
 import org.spongepowered.api.advancement.AdvancementType;
-import org.spongepowered.api.advancement.criteria.trigger.TriggerType;
+import org.spongepowered.api.advancement.criteria.trigger.Trigger;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.tileentity.TileEntityType;
 import org.spongepowered.api.boss.BossBarColor;
@@ -305,7 +305,7 @@ public final class CatalogTypes {
 
     public static final Class<TreeType> TREE_TYPE = TreeType.class;
 
-    public static final Class<TriggerType> TRIGGER_TYPE = TriggerType.class;
+    public static final Class<Trigger> TRIGGER = Trigger.class;
 
     public static final Class<Visibility> VISIBILITY = Visibility.class;
 

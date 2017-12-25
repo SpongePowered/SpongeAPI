@@ -103,7 +103,7 @@ task('setupDecompWorkspace', dependsOn: 'genEventImpl')
 sortClassFields {
     add 'main', 'org.spongepowered.api.CatalogTypes'
     add 'main', 'org.spongepowered.api.advancement.AdvancementTypes'
-    add 'main', 'org.spongepowered.api.advancement.criteria.trigger.TriggerTypes'
+    add 'main', 'org.spongepowered.api.advancement.criteria.trigger.Triggers'
     add 'main', 'org.spongepowered.api.boss.BossBarColors'
     add 'main', 'org.spongepowered.api.boss.BossBarOverlays'
     add 'main', 'org.spongepowered.api.data.key.Keys'

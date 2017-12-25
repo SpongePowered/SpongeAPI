@@ -24,14 +24,17 @@
  */
 package org.spongepowered.api.advancement.criteria.trigger;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
-import org.spongepowered.api.util.annotation.CatalogedBy;
-
 /**
- * Represents a source that can trigger a {@link AdvancementCriterion}.
+ * Represents the configuration of a {@link FilteredTrigger}, this interface
+ * can be implemented by developers to create configurations for their
+ * custom {@link Trigger}s.
  */
-@CatalogedBy(TriggerTypes.class)
-public interface TriggerType extends CatalogType {
+public interface FilteredTriggerConfiguration {
 
+    /**
+     * The default {@link FilteredTriggerConfiguration} type for all
+     * the constructed {@link Trigger}s.
+     */
+    final class Empty implements FilteredTriggerConfiguration {
+    }
 }

@@ -26,10 +26,12 @@ package org.spongepowered.api.event.advancement;
 
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
 import org.spongepowered.api.advancement.criteria.ScoreAdvancementCriterion;
-import org.spongepowered.api.advancement.criteria.trigger.Trigger;
+import org.spongepowered.api.advancement.criteria.trigger.FilteredTrigger;
+import org.spongepowered.api.advancement.criteria.trigger.FilteredTriggerConfiguration;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.GenericEvent;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
+import org.spongepowered.api.scoreboard.critieria.Criterion;
 
 import java.time.Instant;
 
@@ -69,56 +71,75 @@ public interface CriterionEvent extends AdvancementEvent {
     }
 
     /**
-     * Is called when the score of a {@link ScoreAdvancementCriterion}
-     * changes. This is done before any {@link CriterionEvent.Grant}
-     * or {@link CriterionEvent.Revoke} events are called.
+     * A base event for {@link ScoreAdvancementCriterion} related events.
      */
-    interface ScoreChange extends CriterionEvent, Cancellable {
+    interface Score extends CriterionEvent {
 
         @Override
         ScoreAdvancementCriterion getCriterion();
 
         /**
-         * Gets the previous score.
-         *
-         * @return The previous score
+         * Is called when the score of a {@link ScoreAdvancementCriterion}
+         * changes.
          */
-        int getPreviousScore();
+        interface Change extends Score, Cancellable {
 
-        /**
-         * Gets the new score.
-         *
-         * @return The new score
-         */
-        int getNewScore();
+            /**
+             * Gets the previous score.
+             *
+             * @return The previous score
+             */
+            int getPreviousScore();
 
-        /**
-         * Sets the new score.
-         *
-         * @param score The score
-         */
-        void setNewScore(int score);
-
-        /**
-         * Gets whether the {@link ScoreAdvancementCriterion} was granted
-         * before the event was thrown.
-         *
-         * @return Was granted before
-         */
-        @PropertySettings(generateMethods = false, requiredParameter = false)
-        default boolean wasGrantedBefore() {
-            return getPreviousScore() >= getCriterion().getGoal();
+            /**
+             * Gets the new score.
+             *
+             * @return The new score
+             */
+            int getNewScore();
         }
 
         /**
-         * Gets whether the {@link ScoreAdvancementCriterion} is
-         * granted after this event is processed.
-         *
-         * @return Is granted
+         * Is called when the score of a {@link ScoreAdvancementCriterion}
+         * changes and results into granting the criterion.
          */
-        @PropertySettings(generateMethods = false, requiredParameter = false)
-        default boolean isGranted() {
-            return getNewScore() >= getCriterion().getGoal();
+        interface Grant extends Change, CriterionEvent.Grant {
         }
+
+        /**
+         * Is called when the score of a {@link ScoreAdvancementCriterion}
+         * changes and results into revoking the criterion.
+         */
+        interface Revoke extends Change, CriterionEvent.Revoke {
+        }
+    }
+
+    /**
+     * Is called when a {@link FilteredTrigger} is
+     * being processed for a specific {@link Criterion}.
+     */
+    interface Trigger<C extends FilteredTriggerConfiguration> extends CriterionEvent, GenericEvent<C> {
+
+        /**
+         * Gets the {@link FilteredTrigger}
+         * that is being processed.
+         *
+         * @return The trigger
+         */
+        FilteredTrigger<C> getTrigger();
+
+        /**
+         * Gets the result of the trigger event.
+         *
+         * @return The result
+         */
+        boolean getResult();
+
+        /**
+         * Sets the result of the trigger event.
+         *
+         * @param result The result
+         */
+        void setResult(boolean result);
     }
 }

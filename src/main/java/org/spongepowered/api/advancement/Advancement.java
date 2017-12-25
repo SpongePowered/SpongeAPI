@@ -132,13 +132,12 @@ public interface Advancement extends CatalogType, TextRepresentable {
         Builder displayInfo(@Nullable DisplayInfo displayInfo);
 
         /**
-         * Builds the {@link Advancement} with the specified
-         * plugin id and id.
+         * Builds the {@link Advancement} with the specified identifier
+         * (without the namespace).
          *
-         * @param pluginId The plugin id
-         * @param id The id
+         * @param id The identifier
          * @return The advancement
          */
-        Advancement build(String pluginId, String id);
+        Advancement build(String id);
     }
 }
