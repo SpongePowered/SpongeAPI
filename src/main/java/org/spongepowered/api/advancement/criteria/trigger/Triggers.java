@@ -27,68 +27,68 @@ package org.spongepowered.api.advancement.criteria.trigger;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * An enumeration of all the available {@link TriggerType}s in minecraft.
+ * An enumeration of all the available {@link Trigger}s in minecraft.
  */
-public final class TriggerTypes {
+public final class Triggers {
 
     // SORTFIELDS:ON
 
-    public static final TriggerType<?> BRED_ANIMALS = DummyObjectProvider.createFor(TriggerType.class, "BRED_ANIMALS");
+    public static final Trigger<?> BRED_ANIMALS = DummyObjectProvider.createFor(Trigger.class, "BRED_ANIMALS");
 
-    public static final TriggerType<?> BREWED_POTION = DummyObjectProvider.createFor(TriggerType.class, "BREWED_POTION");
+    public static final Trigger<?> BREWED_POTION = DummyObjectProvider.createFor(Trigger.class, "BREWED_POTION");
 
-    public static final TriggerType<?> CHANGED_DIMENSION = DummyObjectProvider.createFor(TriggerType.class, "CHANGED_DIMENSION");
+    public static final Trigger<?> CHANGED_DIMENSION = DummyObjectProvider.createFor(Trigger.class, "CHANGED_DIMENSION");
 
-    public static final TriggerType<?> CONSTRUCT_BEACON = DummyObjectProvider.createFor(TriggerType.class, "CONSTRUCT_BEACON");
+    public static final Trigger<?> CONSTRUCT_BEACON = DummyObjectProvider.createFor(Trigger.class, "CONSTRUCT_BEACON");
 
-    public static final TriggerType<?> CONSUME_ITEM = DummyObjectProvider.createFor(TriggerType.class, "CONSUME_ITEM");
+    public static final Trigger<?> CONSUME_ITEM = DummyObjectProvider.createFor(Trigger.class, "CONSUME_ITEM");
 
-    public static final TriggerType<?> CURED_ZOMBIE_VILLAGER = DummyObjectProvider.createFor(TriggerType.class, "CURED_ZOMBIE_VILLAGER");
+    public static final Trigger<?> CURED_ZOMBIE_VILLAGER = DummyObjectProvider.createFor(Trigger.class, "CURED_ZOMBIE_VILLAGER");
 
-    public static final TriggerType<?> ENCHANTED_ITEM = DummyObjectProvider.createFor(TriggerType.class, "ENCHANTED_ITEM");
+    public static final Trigger<?> ENCHANTED_ITEM = DummyObjectProvider.createFor(Trigger.class, "ENCHANTED_ITEM");
 
-    public static final TriggerType<?> ENTER_BLOCK = DummyObjectProvider.createFor(TriggerType.class, "ENTER_BLOCK");
+    public static final Trigger<?> ENTER_BLOCK = DummyObjectProvider.createFor(Trigger.class, "ENTER_BLOCK");
 
-    public static final TriggerType<?> ENTITY_HURT_PLAYER = DummyObjectProvider.createFor(TriggerType.class, "ENTITY_HURT_PLAYER");
+    public static final Trigger<?> ENTITY_HURT_PLAYER = DummyObjectProvider.createFor(Trigger.class, "ENTITY_HURT_PLAYER");
 
-    public static final TriggerType<?> ENTITY_KILLED_PLAYER = DummyObjectProvider.createFor(TriggerType.class, "ENTITY_KILLED_PLAYER");
+    public static final Trigger<?> ENTITY_KILLED_PLAYER = DummyObjectProvider.createFor(Trigger.class, "ENTITY_KILLED_PLAYER");
 
-    public static final TriggerType<?> IMPOSSIBLE = DummyObjectProvider.createFor(TriggerType.class, "IMPOSSIBLE");
+    public static final Trigger<?> IMPOSSIBLE = DummyObjectProvider.createFor(Trigger.class, "IMPOSSIBLE");
 
-    public static final TriggerType<?> INVENTORY_CHANGED = DummyObjectProvider.createFor(TriggerType.class, "INVENTORY_CHANGED");
+    public static final Trigger<?> INVENTORY_CHANGED = DummyObjectProvider.createFor(Trigger.class, "INVENTORY_CHANGED");
 
-    public static final TriggerType<?> ITEM_DURABILITY_CHANGED = DummyObjectProvider.createFor(TriggerType.class, "ITEM_DURABILITY_CHANGED");
+    public static final Trigger<?> ITEM_DURABILITY_CHANGED = DummyObjectProvider.createFor(Trigger.class, "ITEM_DURABILITY_CHANGED");
 
-    public static final TriggerType<?> LEVITATION = DummyObjectProvider.createFor(TriggerType.class, "LEVITATION");
+    public static final Trigger<?> LEVITATION = DummyObjectProvider.createFor(Trigger.class, "LEVITATION");
 
-    public static final TriggerType<?> LOCATION = DummyObjectProvider.createFor(TriggerType.class, "LOCATION");
+    public static final Trigger<?> LOCATION = DummyObjectProvider.createFor(Trigger.class, "LOCATION");
 
-    public static final TriggerType<?> NETHER_TRAVEL = DummyObjectProvider.createFor(TriggerType.class, "NETHER_TRAVEL");
+    public static final Trigger<?> NETHER_TRAVEL = DummyObjectProvider.createFor(Trigger.class, "NETHER_TRAVEL");
 
-    public static final TriggerType<?> PLACED_BLOCK = DummyObjectProvider.createFor(TriggerType.class, "PLACED_BLOCK");
+    public static final Trigger<?> PLACED_BLOCK = DummyObjectProvider.createFor(Trigger.class, "PLACED_BLOCK");
 
-    public static final TriggerType<?> PLAYER_HURT_ENTITY = DummyObjectProvider.createFor(TriggerType.class, "PLAYER_HURT_ENTITY");
+    public static final Trigger<?> PLAYER_HURT_ENTITY = DummyObjectProvider.createFor(Trigger.class, "PLAYER_HURT_ENTITY");
 
-    public static final TriggerType<?> PLAYER_KILLED_ENTITY = DummyObjectProvider.createFor(TriggerType.class, "PLAYER_KILLED_ENTITY");
+    public static final Trigger<?> PLAYER_KILLED_ENTITY = DummyObjectProvider.createFor(Trigger.class, "PLAYER_KILLED_ENTITY");
 
-    public static final TriggerType<?> RECIPE_UNLOCKED = DummyObjectProvider.createFor(TriggerType.class, "RECIPE_UNLOCKED");
+    public static final Trigger<?> RECIPE_UNLOCKED = DummyObjectProvider.createFor(Trigger.class, "RECIPE_UNLOCKED");
 
-    public static final TriggerType<?> SLEPT_IN_BED = DummyObjectProvider.createFor(TriggerType.class, "SLEPT_IN_BED");
+    public static final Trigger<?> SLEPT_IN_BED = DummyObjectProvider.createFor(Trigger.class, "SLEPT_IN_BED");
 
-    public static final TriggerType<?> SUMMONED_ENTITY = DummyObjectProvider.createFor(TriggerType.class, "SUMMONED_ENTITY");
+    public static final Trigger<?> SUMMONED_ENTITY = DummyObjectProvider.createFor(Trigger.class, "SUMMONED_ENTITY");
 
-    public static final TriggerType<?> TAME_ANIMAL = DummyObjectProvider.createFor(TriggerType.class, "TAME_ANIMAL");
+    public static final Trigger<?> TAME_ANIMAL = DummyObjectProvider.createFor(Trigger.class, "TAME_ANIMAL");
 
-    public static final TriggerType<?> TICK = DummyObjectProvider.createFor(TriggerType.class, "TICK");
+    public static final Trigger<?> TICK = DummyObjectProvider.createFor(Trigger.class, "TICK");
 
-    public static final TriggerType<?> USED_ENDER_EYE = DummyObjectProvider.createFor(TriggerType.class, "USED_ENDER_EYE");
+    public static final Trigger<?> USED_ENDER_EYE = DummyObjectProvider.createFor(Trigger.class, "USED_ENDER_EYE");
 
-    public static final TriggerType<?> USED_TOTEM = DummyObjectProvider.createFor(TriggerType.class, "USED_TOTEM");
+    public static final Trigger<?> USED_TOTEM = DummyObjectProvider.createFor(Trigger.class, "USED_TOTEM");
 
-    public static final TriggerType<?> VILLAGER_TRADE = DummyObjectProvider.createFor(TriggerType.class, "VILLAGER_TRADE");
+    public static final Trigger<?> VILLAGER_TRADE = DummyObjectProvider.createFor(Trigger.class, "VILLAGER_TRADE");
 
     // SORTFIELDS:OFF
 
-    private TriggerTypes() {
+    private Triggers() {
     }
 }
