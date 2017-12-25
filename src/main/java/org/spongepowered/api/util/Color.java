@@ -33,6 +33,8 @@ import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.type.DyeColor;
 
+import static com.google.common.base.Preconditions.checkArgument;
+
 public interface Color extends DataSerializable {
 
     //16 HTML web colors and CSS orange
@@ -42,6 +44,8 @@ public interface Color extends DataSerializable {
     Color SILVER = ofRgb(0xC0C0C0);
 
     Color GRAY = ofRgb(0x808080);
+
+    Color BROWN = ofRgb(0xAA5500);
 
     Color BLACK = ofRgb(0x000000);
 
@@ -194,49 +198,48 @@ public interface Color extends DataSerializable {
     }
 
     /**
-     * Creates a new {@link Color} combining the provided {@link Color} objects,
-     * their summation and average is taken into effect to properly mix the
-     * colors together.
+     * Creates a new {@link Color} combining the provided {@link Color} objects.
+     * The result is the average of each component (red, green, and blue).
      *
      * @param colors The colors to mix
      * @return The final output mixed color
-     */
-    static Color mix(Color... colors) {
-        return builder().mix(colors).build();
-    }
-
-    /**
-     * Creates a new {@link Color} combining the provided {@link Color} objects,
-     * their summation and average is taken into effect to properly mix the
-     * colors together.
-     *
-     * @param colors The colors to mix
-     * @return The final output mixed color
-     * @deprecated in favor of {@link #mix(Color...)}
+     * @deprecated for removal
      */
     @Deprecated
     static Color mixColors(Color... colors) {
-        return mix(colors);
+        Validate.noNullElements(colors, "No null colors allowed!");
+        checkArgument(colors.length > 0, "Cannot have an empty color array!");
+        if (colors.length == 1) {
+            return builder().from(colors[0]).build();
+        }
+        int red = 0, green = 0, blue = 0;
+        for (Color color : colors) {
+            red += color.getRed();
+            green += color.getGreen();
+            blue += color.getBlue();
+        }
+        return ofRgb(Math.round((float) red / colors.length), Math.round((float) green / colors.length), Math.round((float) blue / colors.length));
     }
 
     /**
-     * Creates a new {@link Color} combining the provided {@link DyeColor}
-     * objects. Since {@link DyeColor}s can be converted into {@link Color}
-     * objects themselves, their summation and average is taken into effect
-     * to properly mix the colors together.
+     * Creates a new {@link Color} combining the colors of the {@link DyeColor}
+     * objects based on {@link DyeColor#getColor()}.
      *
-     * @param colors The colors to mix
+     * The formula used is the same as {@link #mixColors(Color...)}, which is
+     * different from the formula used to mix dyes for leather armor colors.
+     *
+     * @param dyeColors The dye colors to mix
      * @return The final output mixed color
      * @deprecated If needed, convert to colors first
      */
     @Deprecated
-    static Color mixDyeColors(DyeColor... colors) {
-        Validate.noNullElements(colors, "No nulls allowed!");
-        final Color[] actualColors = new Color[colors.length];
-        for (int i = 0; i < colors.length; i++) {
-            actualColors[i] = colors[i].getColor();
+    static Color mixDyeColors(DyeColor... dyeColors) {
+        Validate.noNullElements(dyeColors, "No nulls allowed!");
+        final Color[] colors = new Color[dyeColors.length];
+        for (int i = 0; i < dyeColors.length; i++) {
+            colors[i] = dyeColors[i].getColor();
         }
-        return mix(actualColors);
+        return mixColors(colors);
     }
 
     /**
@@ -342,10 +345,10 @@ public interface Color extends DataSerializable {
      */
     @Deprecated
     default Color mixWithColors(Color... colors) {
-        Color[] newColorArray = new Color[colors.length + 1];
-        newColorArray[0] = this;
-        System.arraycopy(colors, 0, newColorArray, 1, colors.length);
-        return mixColors(newColorArray);
+        Color[] newColors = new Color[colors.length + 1];
+        newColors[0] = this;
+        System.arraycopy(colors, 0, newColors, 1, colors.length);
+        return mixColors(newColors);
     }
 
     /**
@@ -358,12 +361,12 @@ public interface Color extends DataSerializable {
      */
     @Deprecated
     default Color mixWithDyes(DyeColor... dyeColors) {
-        Color[] newColorArray = new Color[dyeColors.length + 1];
-        newColorArray[0] = this;
+        Color[] newColors = new Color[dyeColors.length + 1];
+        newColors[0] = this;
         for (int i = 0; i < dyeColors.length; i++) {
-            newColorArray[i + 1] = dyeColors[i].getColor();
+            newColors[i + 1] = dyeColors[i].getColor();
         }
-        return mixColors(newColorArray);
+        return mixColors(newColors);
     }
 
     interface Builder extends DataBuilder<Color> {
@@ -387,16 +390,25 @@ public interface Color extends DataSerializable {
         Builder rgb(int red, int green, int blue);
 
         /**
-         * Sets the red, green, and blue values for this color by taking the
-         * average of each for every color in the array.
+         * Sets the red, green, and blue values to those of the given color.
          *
-         * @param colors The colors to mix
+         * @param value The template color
          * @return This builder
          */
-        Builder mix(Color... colors);
+        @Override
+        Builder from(Color value);
 
         /**
-         * Builds and returns the color represented by this builder.
+         * Resets the red, green, and blue values to their default values.
+         *
+         * @return This builder
+         */
+        @Override
+        Builder reset();
+
+        /**
+         * Builds and returns the color represented by this builder. If a color
+         * has not been defined, an {@link IllegalStateException} is thrown.
          *
          * @return The new color
          */
