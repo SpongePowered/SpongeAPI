@@ -45,6 +45,13 @@ test {
     }
 }
 
+// Fix problems caused by separate output directories for classes/resources in IntelliJ IDEA
+idea {
+    module {
+        inheritOutputDirs = true
+    }
+}
+
 // Set manifest entries
 jar {
     manifest {

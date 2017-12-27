@@ -65,12 +65,6 @@ dependencies {
     compile 'org.ow2.asm:asm:5.2'
 }
 
-idea {
-    module {
-        inheritOutputDirs = true
-    }
-}
-
 // JAR manifest configuration
 jar {
     from sourceSets.ap.output
