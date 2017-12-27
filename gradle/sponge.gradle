@@ -16,12 +16,6 @@ archivesBaseName = project.name.toLowerCase()
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
 
-afterEvaluate {
-    // Set it again in case ForgeGradle resets it to 1.6
-    sourceCompatibility = '1.8'
-    targetCompatibility = '1.8'
-}
-
 repositories {
     mavenCentral()
     maven {
