@@ -30,7 +30,7 @@ import org.spongepowered.api.advancement.criteria.trigger.FilteredTrigger;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-import java.util.Collection;
+import java.util.Optional;
 
 /**
  * Represents a criterion that should be acquired
@@ -118,12 +118,12 @@ public interface AdvancementCriterion {
     AdvancementCriterion or(Iterable<AdvancementCriterion> criteria);
 
     /**
-     * Gets the {@link FilteredTrigger}s of this {@link AdvancementCriterion}. The
-     * {@link Collection} can be empty.
+     * Gets the {@link FilteredTrigger} of this
+     * {@link AdvancementCriterion}, if present.
      *
-     * @return The triggers
+     * @return The trigger
      */
-    Collection<FilteredTrigger<?>> getTriggers();
+    Optional<FilteredTrigger<?>> getTrigger();
 
     /**
      * A builder to create {@link AdvancementCriterion}s.
