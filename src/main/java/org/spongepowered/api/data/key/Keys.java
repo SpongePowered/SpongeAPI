@@ -83,6 +83,7 @@ import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.RespawnLocation;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 import org.spongepowered.api.world.explosion.Explosion;
@@ -105,7 +106,7 @@ public final class Keys {
      *
      * @see AbsorptionData#absorption()
      */
-    public static final Key<Value<Double>> ABSORPTION = KeyFactory.fake("ABSORPTION");
+    public static final Key<Value<Double>> ABSORPTION = DummyObjectProvider.createExtendedFor(Key.class, "ABSORPTION");
 
     /**
      * Represents the {@link Key} for the "affecting spawning" state of
@@ -118,7 +119,7 @@ public final class Keys {
      *
      * @see AffectsSpawningData#affectsSpawning()
      */
-    public static final Key<Value<Boolean>> AFFECTS_SPAWNING = KeyFactory.fake("AFFECTS_SPAWNING");
+    public static final Key<Value<Boolean>> AFFECTS_SPAWNING = DummyObjectProvider.createExtendedFor(Key.class,"AFFECTS_SPAWNING");
 
     /**
      * Represents the {@link Key} for the age of any {@link Ageable} creature
@@ -126,14 +127,14 @@ public final class Keys {
      *
      * @see AgeableData#age()
      */
-    public static final Key<MutableBoundedValue<Integer>> AGE = KeyFactory.fake("AGE");
+    public static final Key<MutableBoundedValue<Integer>> AGE = DummyObjectProvider.createExtendedFor(Key.class,"AGE");
 
     /**
      * Represents the {@link Key} for whether an {@link Agent}s AI is enabled.
      *
      * @see AgentData#aiEnabled()
      */
-    public static final Key<Value<Boolean>> AI_ENABLED = KeyFactory.fake("AI_ENABLED");
+    public static final Key<Value<Boolean>> AI_ENABLED = DummyObjectProvider.createExtendedFor(Key.class,"AI_ENABLED");
 
     /**
      * Represents the {@link Key} for how angry an {@link Entity} is. This
@@ -145,7 +146,7 @@ public final class Keys {
      *
      * @see AngerableData#angerLevel()
      */
-    public static final Key<MutableBoundedValue<Integer>> ANGER = KeyFactory.fake("ANGER");
+    public static final Key<MutableBoundedValue<Integer>> ANGER = DummyObjectProvider.createExtendedFor(Key.class,"ANGER");
 
     /**
      * Represents the {@link Key} for whether an {@link Entity} is currently
@@ -153,7 +154,7 @@ public final class Keys {
      *
      * @see AggressiveData#aggressive()
      */
-    public static final Key<Value<Boolean>> ANGRY = KeyFactory.fake("ANGRY");
+    public static final Key<Value<Boolean>> ANGRY = DummyObjectProvider.createExtendedFor(Key.class,"ANGRY");
 
     /**
      * Represents the {@link Key} for the age (in ticks) of an
@@ -161,7 +162,7 @@ public final class Keys {
      *
      * @see AreaEffectCloudData#age()
      */
-    public static final Key<MutableBoundedValue<Integer>> AREA_EFFECT_CLOUD_AGE = KeyFactory.fake("AREA_EFFECT_CLOUD_AGE");
+    public static final Key<MutableBoundedValue<Integer>> AREA_EFFECT_CLOUD_AGE = DummyObjectProvider.createExtendedFor(Key.class,"AREA_EFFECT_CLOUD_AGE");
 
     /**
      * Represents the {@link Key} for the color of an {@link AreaEffectCloud}
@@ -169,7 +170,7 @@ public final class Keys {
      *
      * @see AreaEffectCloudData#color()
      */
-    public static final Key<Value<Color>> AREA_EFFECT_CLOUD_COLOR = KeyFactory.fake("AREA_EFFECT_CLOUD_COLOR");
+    public static final Key<Value<Color>> AREA_EFFECT_CLOUD_COLOR = DummyObjectProvider.createExtendedFor(Key.class,"AREA_EFFECT_CLOUD_COLOR");
 
     /**
      * Represents the {@link Key} for the maximum age (in ticks) of an
@@ -177,7 +178,7 @@ public final class Keys {
      *
      * @see AreaEffectCloudData#duration()
      */
-    public static final Key<MutableBoundedValue<Integer>> AREA_EFFECT_CLOUD_DURATION = KeyFactory.fake("AREA_EFFECT_CLOUD_DURATION");
+    public static final Key<MutableBoundedValue<Integer>> AREA_EFFECT_CLOUD_DURATION = DummyObjectProvider.createExtendedFor(Key.class,"AREA_EFFECT_CLOUD_DURATION");
 
     /**
      * Represents the {@link Key} for the amount of ticks the duration of an
@@ -186,7 +187,7 @@ public final class Keys {
      *
      * @see AreaEffectCloudData#durationOnUse()
      */
-    public static final Key<MutableBoundedValue<Integer>> AREA_EFFECT_CLOUD_DURATION_ON_USE = KeyFactory.fake("AREA_EFFECT_CLOUD_DURATION_ON_USE");
+    public static final Key<MutableBoundedValue<Integer>> AREA_EFFECT_CLOUD_DURATION_ON_USE = DummyObjectProvider.createExtendedFor(Key.class,"AREA_EFFECT_CLOUD_DURATION_ON_USE");
 
     /**
      * Represents the {@link Key} for the particle type of an
@@ -194,14 +195,14 @@ public final class Keys {
      *
      * @see AreaEffectCloudData#particleType()
      */
-    public static final Key<Value<ParticleType>> AREA_EFFECT_CLOUD_PARTICLE_TYPE = KeyFactory.fake("AREA_EFFECT_CLOUD_PARTICLE_TYPE");
+    public static final Key<Value<ParticleType>> AREA_EFFECT_CLOUD_PARTICLE_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"AREA_EFFECT_CLOUD_PARTICLE_TYPE");
 
     /**
      * Represents the {@link Key} for the radius of an {@link AreaEffectCloud}.
      *
      * @see AreaEffectCloudData#radius()
      */
-    public static final Key<MutableBoundedValue<Double>> AREA_EFFECT_CLOUD_RADIUS = KeyFactory.fake("AREA_EFFECT_CLOUD_RADIUS");
+    public static final Key<MutableBoundedValue<Double>> AREA_EFFECT_CLOUD_RADIUS = DummyObjectProvider.createExtendedFor(Key.class,"AREA_EFFECT_CLOUD_RADIUS");
 
     /**
      * Represents the {@link Key} for the amount the radius of an
@@ -210,7 +211,7 @@ public final class Keys {
      *
      * @see AreaEffectCloudData#radiusOnUse()
      */
-    public static final Key<MutableBoundedValue<Double>> AREA_EFFECT_CLOUD_RADIUS_ON_USE = KeyFactory.fake("AREA_EFFECT_CLOUD_RADIUS_ON_USE");
+    public static final Key<MutableBoundedValue<Double>> AREA_EFFECT_CLOUD_RADIUS_ON_USE = DummyObjectProvider.createExtendedFor(Key.class,"AREA_EFFECT_CLOUD_RADIUS_ON_USE");
 
     /**
      * Represents the {@link Key} for the amount the radius of an
@@ -218,7 +219,7 @@ public final class Keys {
      *
      * @see AreaEffectCloudData#radiusOnUse()
      */
-    public static final Key<MutableBoundedValue<Double>> AREA_EFFECT_CLOUD_RADIUS_PER_TICK = KeyFactory.fake("AREA_EFFECT_CLOUD_RADIUS_PER_TICK");
+    public static final Key<MutableBoundedValue<Double>> AREA_EFFECT_CLOUD_RADIUS_PER_TICK = DummyObjectProvider.createExtendedFor(Key.class,"AREA_EFFECT_CLOUD_RADIUS_PER_TICK");
 
     /**
      * Represents the {@link Key} for the delay (in ticks) after which an
@@ -227,7 +228,7 @@ public final class Keys {
      *
      * @see AreaEffectCloudData#applicationDelay()
      */
-    public static final Key<MutableBoundedValue<Integer>> AREA_EFFECT_CLOUD_REAPPLICATION_DELAY = KeyFactory.fake("AREA_EFFECT_CLOUD_REAPPLICATION_DELAY");
+    public static final Key<MutableBoundedValue<Integer>> AREA_EFFECT_CLOUD_REAPPLICATION_DELAY = DummyObjectProvider.createExtendedFor(Key.class,"AREA_EFFECT_CLOUD_REAPPLICATION_DELAY");
 
     /**
      * Represents the {@link Key} for the duration in ticks after which an
@@ -235,7 +236,7 @@ public final class Keys {
      *
      * @see AreaEffectCloudData#waitTime()
      */
-    public static final Key<MutableBoundedValue<Integer>> AREA_EFFECT_CLOUD_WAIT_TIME = KeyFactory.fake("AREA_EFFECT_CLOUD_WAIT_TIME");
+    public static final Key<MutableBoundedValue<Integer>> AREA_EFFECT_CLOUD_WAIT_TIME = DummyObjectProvider.createExtendedFor(Key.class,"AREA_EFFECT_CLOUD_WAIT_TIME");
 
     /**
      * Represents the {@link Key} for whether an {@link ArmorStand}'s arms are
@@ -243,7 +244,7 @@ public final class Keys {
      *
      * @see ArmorStandData#arms()
      */
-    public static final Key<Value<Boolean>> ARMOR_STAND_HAS_ARMS = KeyFactory.fake("ARMOR_STAND_HAS_ARMS");
+    public static final Key<Value<Boolean>> ARMOR_STAND_HAS_ARMS = DummyObjectProvider.createExtendedFor(Key.class,"ARMOR_STAND_HAS_ARMS");
 
     /**
      * Represents the {@link Key} for whether an {@link ArmorStand} has a
@@ -251,14 +252,14 @@ public final class Keys {
      *
      * @see ArmorStandData#basePlate()
      */
-    public static final Key<Value<Boolean>> ARMOR_STAND_HAS_BASE_PLATE = KeyFactory.fake("ARMOR_STAND_HAS_BASE_PLATE");
+    public static final Key<Value<Boolean>> ARMOR_STAND_HAS_BASE_PLATE = DummyObjectProvider.createExtendedFor(Key.class,"ARMOR_STAND_HAS_BASE_PLATE");
 
     /**
      * Represents the {@link Key} for whether an {@link ArmorStand} is small.
      *
      * @see ArmorStandData#small()
      */
-    public static final Key<Value<Boolean>> ARMOR_STAND_IS_SMALL = KeyFactory.fake("ARMOR_STAND_IS_SMALL");
+    public static final Key<Value<Boolean>> ARMOR_STAND_IS_SMALL = DummyObjectProvider.createExtendedFor(Key.class,"ARMOR_STAND_IS_SMALL");
 
     /**
      * Represents the {@link Key} for whether an {@link ArmorStand} has a
@@ -266,7 +267,7 @@ public final class Keys {
      *
      * @see ArmorStandData#marker()
      */
-    public static final Key<Value<Boolean>> ARMOR_STAND_MARKER = KeyFactory.fake("ARMOR_STAND_MARKER");
+    public static final Key<Value<Boolean>> ARMOR_STAND_MARKER = DummyObjectProvider.createExtendedFor(Key.class,"ARMOR_STAND_MARKER");
 
     /**
      * Represents the {@link Key} for the type of {@link Art} shown by
@@ -274,7 +275,7 @@ public final class Keys {
      *
      * @see ArtData
      */
-    public static final Key<Value<Art>> ART = KeyFactory.fake("ART");
+    public static final Key<Value<Art>> ART = DummyObjectProvider.createExtendedFor(Key.class,"ART");
 
     /**
      * Represents the {@link Key} for representing whether a {@link BlockState}
@@ -282,7 +283,7 @@ public final class Keys {
      *
      * @see AttachedData#attached()
      */
-    public static final Key<Value<Boolean>> ATTACHED = KeyFactory.fake("ATTACHED");
+    public static final Key<Value<Boolean>> ATTACHED = DummyObjectProvider.createExtendedFor(Key.class,"ATTACHED");
 
     /**
      * Represents the {@link Key} for the damage dealt by a
@@ -290,7 +291,7 @@ public final class Keys {
      *
      * @see DamagingData#damage()
      */
-    public static final Key<MutableBoundedValue<Double>> ATTACK_DAMAGE = KeyFactory.fake("ATTACK_DAMAGE");
+    public static final Key<MutableBoundedValue<Double>> ATTACK_DAMAGE = DummyObjectProvider.createExtendedFor(Key.class,"ATTACK_DAMAGE");
 
     /**
      * Represents the {@link Key} for representing the {@link Axis} direction
@@ -298,21 +299,21 @@ public final class Keys {
      *
      * @see AxisData
      */
-    public static final Key<Value<Axis>> AXIS = KeyFactory.fake("AXIS");
+    public static final Key<Value<Axis>> AXIS = DummyObjectProvider.createExtendedFor(Key.class,"AXIS");
 
     /**
      * Represents the {@link Key} for a {@link Banner}'s base {@link DyeColor}.
      *
      * @see BannerData#baseColor()
      */
-    public static final Key<Value<DyeColor>> BANNER_BASE_COLOR = KeyFactory.fake("BANNER_BASE_COLOR");
+    public static final Key<Value<DyeColor>> BANNER_BASE_COLOR = DummyObjectProvider.createExtendedFor(Key.class,"BANNER_BASE_COLOR");
 
     /**
      * Represents the {@link Key} for a {@link Banner}'s patterns.
      *
      * @see BannerData#patternsList()
      */
-    public static final Key<PatternListValue> BANNER_PATTERNS = KeyFactory.fake("BANNER_PATTERNS");
+    public static final Key<PatternListValue> BANNER_PATTERNS = DummyObjectProvider.createExtendedFor(Key.class,"BANNER_PATTERNS");
 
     /**
      * Represents the {@link Key} for the width of the physical form of an
@@ -323,7 +324,7 @@ public final class Keys {
      *
      * @see SizeData#base()
      */
-    public static final Key<MutableBoundedValue<Float>> BASE_SIZE = KeyFactory.fake("BASE_SIZE");
+    public static final Key<MutableBoundedValue<Float>> BASE_SIZE = DummyObjectProvider.createExtendedFor(Key.class,"BASE_SIZE");
 
     /**
      * Represents the {@link Key} for the base vehicle a passenger is riding
@@ -333,21 +334,21 @@ public final class Keys {
      *
      * @see VehicleData#baseVehicle()
      */
-    public static final Key<Value<EntitySnapshot>> BASE_VEHICLE = KeyFactory.fake("BASE_VEHICLE");
+    public static final Key<Value<EntitySnapshot>> BASE_VEHICLE = DummyObjectProvider.createExtendedFor(Key.class,"BASE_VEHICLE");
 
     /**
      * Represents the {@link Key} for a {@link Beacon}'s primary effect.
      *
      * @see BeaconData#primaryEffect()
      */
-    public static final Key<OptionalValue<PotionEffectType>> BEACON_PRIMARY_EFFECT = KeyFactory.fake("BEACON_PRIMARY_EFFECT");
+    public static final Key<OptionalValue<PotionEffectType>> BEACON_PRIMARY_EFFECT = DummyObjectProvider.createExtendedFor(Key.class,"BEACON_PRIMARY_EFFECT");
 
     /**
      * Represents the {@link Key} for a {@link Beacon}'s secondary effect.
      *
      * @see BeaconData#secondaryEffect()
      */
-    public static final Key<OptionalValue<PotionEffectType>> BEACON_SECONDARY_EFFECT = KeyFactory.fake("BEACON_SECONDARY_EFFECT");
+    public static final Key<OptionalValue<PotionEffectType>> BEACON_SECONDARY_EFFECT = DummyObjectProvider.createExtendedFor(Key.class,"BEACON_SECONDARY_EFFECT");
 
     /**
      * Represents the {@link Key} for representing the {@link BigMushroomType}
@@ -355,7 +356,7 @@ public final class Keys {
      *
      * @see BigMushroomData
      */
-    public static final Key<Value<BigMushroomType>> BIG_MUSHROOM_TYPE = KeyFactory.fake("BIG_MUSHROOM_TYPE");
+    public static final Key<Value<BigMushroomType>> BIG_MUSHROOM_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"BIG_MUSHROOM_TYPE");
 
     /**
      * Represents the {@link Key} for the rotation of specific body parts.
@@ -367,7 +368,7 @@ public final class Keys {
      *
      * @see BodyPartRotationalData#partRotation()
      */
-    public static final Key<MapValue<BodyPart, Vector3d>> BODY_ROTATIONS = KeyFactory.fake("BODY_ROTATIONS");
+    public static final Key<MapValue<BodyPart, Vector3d>> BODY_ROTATIONS = DummyObjectProvider.createExtendedFor(Key.class,"BODY_ROTATIONS");
 
     /**
      * Represents the {@link Key} for the author of a
@@ -375,7 +376,7 @@ public final class Keys {
      *
      * @see AuthorData#author()
      */
-    public static final Key<Value<Text>> BOOK_AUTHOR = KeyFactory.fake("BOOK_AUTHOR");
+    public static final Key<Value<Text>> BOOK_AUTHOR = DummyObjectProvider.createExtendedFor(Key.class,"BOOK_AUTHOR");
 
     /**
      * Represents the {@link Key} for the content of a
@@ -383,7 +384,7 @@ public final class Keys {
      *
      * @see PagedData#pages()
      */
-    public static final Key<ListValue<Text>> BOOK_PAGES = KeyFactory.fake("BOOK_PAGES");
+    public static final Key<ListValue<Text>> BOOK_PAGES = DummyObjectProvider.createExtendedFor(Key.class,"BOOK_PAGES");
 
     /**
      * Represents the {@link Key} for the {@link BlockType}s able to be broken
@@ -391,7 +392,7 @@ public final class Keys {
      *
      * @see BreakableData#breakable()
      */
-    public static final Key<SetValue<BlockType>> BREAKABLE_BLOCK_TYPES = KeyFactory.fake("BREAKABLE_BLOCK_TYPES");
+    public static final Key<SetValue<BlockType>> BREAKABLE_BLOCK_TYPES = DummyObjectProvider.createExtendedFor(Key.class,"BREAKABLE_BLOCK_TYPES");
 
     /**
      * Represents the {@link Key} for representing the {@link BrickType}
@@ -399,14 +400,14 @@ public final class Keys {
      *
      * @see BrickData
      */
-    public static final Key<Value<BrickType>> BRICK_TYPE = KeyFactory.fake("BRICK_TYPE");
+    public static final Key<Value<BrickType>> BRICK_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"BRICK_TYPE");
 
     /**
      * Represents the {@link Key} for whether an {@link Entity} can breed.
      *
      * @see BreedableData#breedable()
      */
-    public static final Key<Value<Boolean>> CAN_BREED = KeyFactory.fake("CAN_BREED");
+    public static final Key<Value<Boolean>> CAN_BREED = DummyObjectProvider.createExtendedFor(Key.class,"CAN_BREED");
 
     /**
      * Represents the {@link Key} for whether a {@link FallingBlock} can drop
@@ -414,7 +415,7 @@ public final class Keys {
      *
      * @see FallingBlockData#canDropAsItem()
      */
-    public static final Key<Value<Boolean>> CAN_DROP_AS_ITEM = KeyFactory.fake("CAN_DROP_AS_ITEM");
+    public static final Key<Value<Boolean>> CAN_DROP_AS_ITEM = DummyObjectProvider.createExtendedFor(Key.class,"CAN_DROP_AS_ITEM");
 
     /**
      * Represents the {@link Key} for whether a {@link Humanoid} can fly.
@@ -424,7 +425,7 @@ public final class Keys {
      *
      * @see FlyingAbilityData#canFly()
      */
-    public static final Key<Value<Boolean>> CAN_FLY = KeyFactory.fake("CAN_FLY");
+    public static final Key<Value<Boolean>> CAN_FLY = DummyObjectProvider.createExtendedFor(Key.class,"CAN_FLY");
 
     /**
      * Represents the {@link Key} for whether a {@link Living} entity may
@@ -433,7 +434,7 @@ public final class Keys {
      *
      * @see GriefingData#canGrief()
      */
-    public static final Key<Value<Boolean>> CAN_GRIEF = KeyFactory.fake("CAN_GRIEF");
+    public static final Key<Value<Boolean>> CAN_GRIEF = DummyObjectProvider.createExtendedFor(Key.class,"CAN_GRIEF");
 
     /**
      * Represents the {@link Key} for whether a {@link FallingBlock} will place
@@ -441,14 +442,14 @@ public final class Keys {
      *
      * @see FallingBlockData#canPlaceAsBlock()
      */
-    public static final Key<Value<Boolean>> CAN_PLACE_AS_BLOCK = KeyFactory.fake("CAN_PLACE_AS_BLOCK");
+    public static final Key<Value<Boolean>> CAN_PLACE_AS_BLOCK = DummyObjectProvider.createExtendedFor(Key.class,"CAN_PLACE_AS_BLOCK");
 
     /**
      * Represents the {@link Key} for the {@link Villager}'s {@link Career}.
      *
      * @see CareerData
      */
-    public static final Key<Value<Career>> CAREER = KeyFactory.fake("CAREER");
+    public static final Key<Value<Career>> CAREER = DummyObjectProvider.createExtendedFor(Key.class,"CAREER");
 
     /**
      * Represents the {@link Key} for the rotation of the
@@ -456,7 +457,7 @@ public final class Keys {
      *
      * @see BodyPartRotationalData#bodyRotation()
      */
-    public static final Key<Value<Vector3d>> CHEST_ROTATION = KeyFactory.fake("CHEST_ROTATION");
+    public static final Key<Value<Vector3d>> CHEST_ROTATION = DummyObjectProvider.createExtendedFor(Key.class,"CHEST_ROTATION");
 
     /**
      * Represents the {@link Key} for the {@link CoalType} of an
@@ -465,7 +466,7 @@ public final class Keys {
      *
      * @see CoalData
      */
-    public static final Key<Value<CoalType>> COAL_TYPE = KeyFactory.fake("COAL_TYPE");
+    public static final Key<Value<CoalType>> COAL_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"COAL_TYPE");
 
     /**
      * Represents the {@link Key} for the {@link Color} of an
@@ -473,7 +474,7 @@ public final class Keys {
      *
      * @see ColoredData#color()
      */
-    public static final Key<Value<Color>> COLOR = KeyFactory.fake("COLOR");
+    public static final Key<Value<Color>> COLOR = DummyObjectProvider.createExtendedFor(Key.class,"COLOR");
 
     /**
      * Represents a key for the stored command, mostly related to
@@ -481,7 +482,7 @@ public final class Keys {
      *
      * @see CommandData#storedCommand()
      */
-    public static final Key<Value<String>> COMMAND = KeyFactory.fake("COMMAND");
+    public static final Key<Value<String>> COMMAND = DummyObjectProvider.createExtendedFor(Key.class,"COMMAND");
 
     /**
      * Represents the {@link Key} for representing the {@link ComparatorType}
@@ -489,7 +490,7 @@ public final class Keys {
      *
      * @see ComparatorData
      */
-    public static final Key<Value<ComparatorType>> COMPARATOR_TYPE = KeyFactory.fake("COMPARATOR_TYPE");
+    public static final Key<Value<ComparatorType>> COMPARATOR_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"COMPARATOR_TYPE");
 
     /**
      * Represents the {@link Key} for representing the connected directions
@@ -497,7 +498,7 @@ public final class Keys {
      *
      * @see ConnectedDirectionData#connectedDirections()
      */
-    public static final Key<SetValue<Direction>> CONNECTED_DIRECTIONS = KeyFactory.fake("CONNECTED_DIRECTIONS");
+    public static final Key<SetValue<Direction>> CONNECTED_DIRECTIONS = DummyObjectProvider.createExtendedFor(Key.class,"CONNECTED_DIRECTIONS");
 
     /**
      * Represents the {@link Key} for representing the "connected to the east"
@@ -505,7 +506,7 @@ public final class Keys {
      *
      * @see ConnectedDirectionData#connectedEast()
      */
-    public static final Key<Value<Boolean>> CONNECTED_EAST = KeyFactory.fake("CONNECTED_EAST");
+    public static final Key<Value<Boolean>> CONNECTED_EAST = DummyObjectProvider.createExtendedFor(Key.class,"CONNECTED_EAST");
 
     /**
      * Represents the {@link Key} for representing the "connected to the north"
@@ -513,7 +514,7 @@ public final class Keys {
      *
      * @see ConnectedDirectionData#connectedNorth()
      */
-    public static final Key<Value<Boolean>> CONNECTED_NORTH = KeyFactory.fake("CONNECTED_NORTH");
+    public static final Key<Value<Boolean>> CONNECTED_NORTH = DummyObjectProvider.createExtendedFor(Key.class,"CONNECTED_NORTH");
 
     /**
      * Represents the {@link Key} for representing the "connected to the south"
@@ -521,7 +522,7 @@ public final class Keys {
      *
      * @see ConnectedDirectionData#connectedSouth()
      */
-    public static final Key<Value<Boolean>> CONNECTED_SOUTH = KeyFactory.fake("CONNECTED_SOUTH");
+    public static final Key<Value<Boolean>> CONNECTED_SOUTH = DummyObjectProvider.createExtendedFor(Key.class,"CONNECTED_SOUTH");
 
     /**
      * Represents the {@link Key} for representing the "connected to the west"
@@ -529,7 +530,7 @@ public final class Keys {
      *
      * @see ConnectedDirectionData#connectedWest()
      */
-    public static final Key<Value<Boolean>> CONNECTED_WEST = KeyFactory.fake("CONNECTED_WEST");
+    public static final Key<Value<Boolean>> CONNECTED_WEST = DummyObjectProvider.createExtendedFor(Key.class,"CONNECTED_WEST");
 
     /**
      * Represents the {@link Key} for the amount of experience points stored
@@ -537,7 +538,7 @@ public final class Keys {
      *
      * @see ExpOrbData#experience()
      */
-    public static final Key<MutableBoundedValue<Integer>> CONTAINED_EXPERIENCE = KeyFactory.fake("CONTAINED_EXPERIENCE");
+    public static final Key<MutableBoundedValue<Integer>> CONTAINED_EXPERIENCE = DummyObjectProvider.createExtendedFor(Key.class,"CONTAINED_EXPERIENCE");
 
     /**
      * Represents the {@link Key} for the type of {@link CookedFish} an
@@ -545,7 +546,7 @@ public final class Keys {
      *
      * @see CookedFishData
      */
-    public static final Key<Value<CookedFish>> COOKED_FISH = KeyFactory.fake("COOKED_FISH");
+    public static final Key<Value<CookedFish>> COOKED_FISH = DummyObjectProvider.createExtendedFor(Key.class,"COOKED_FISH");
 
     /**
      * Represents the {@link Key} for the amount of ticks a {@link Hopper} has
@@ -553,14 +554,14 @@ public final class Keys {
      *
      * @see CooldownData#cooldown()
      */
-    public static final Key<MutableBoundedValue<Integer>> COOLDOWN = KeyFactory.fake("COOLDOWN");
+    public static final Key<MutableBoundedValue<Integer>> COOLDOWN = DummyObjectProvider.createExtendedFor(Key.class,"COOLDOWN");
 
     /**
      * Represents the {@link Key} for whether a {@link Creeper} is charged.
      *
      * @see ChargedData#charged()
      */
-    public static final Key<Value<Boolean>> CREEPER_CHARGED = KeyFactory.fake("CREEPER_CHARGED");
+    public static final Key<Value<Boolean>> CREEPER_CHARGED = DummyObjectProvider.createExtendedFor(Key.class,"CREEPER_CHARGED");
 
     /**
      * Represents the {@link Key} for whether the next attack of an
@@ -568,7 +569,7 @@ public final class Keys {
      *
      * @see CriticalHitData#criticalHit()
      */
-    public static final Key<Value<Boolean>> CRITICAL_HIT = KeyFactory.fake("CRITICAL_HIT");
+    public static final Key<Value<Boolean>> CRITICAL_HIT = DummyObjectProvider.createExtendedFor(Key.class,"CRITICAL_HIT");
 
     /**
      * Represents the {@link Key} for whether a custom name is visible on an
@@ -576,7 +577,7 @@ public final class Keys {
      *
      * @see CustomNameVisibleData#customNameVisible()
      */
-    public static final Key<Value<Boolean>> CUSTOM_NAME_VISIBLE = KeyFactory.fake("CUSTOM_NAME_VISIBLE");
+    public static final Key<Value<Boolean>> CUSTOM_NAME_VISIBLE = DummyObjectProvider.createExtendedFor(Key.class,"CUSTOM_NAME_VISIBLE");
 
     /**
      * Represents the {@link Key} for the damage dealt towards entities of a
@@ -585,7 +586,7 @@ public final class Keys {
      *
      * @see DamagingData#damageForEntity()
      */
-    public static final Key<MapValue<EntityType, Double>> DAMAGE_ENTITY_MAP = KeyFactory.fake("DAMAGE_ENTITY_MAP");
+    public static final Key<MapValue<EntityType, Double>> DAMAGE_ENTITY_MAP = DummyObjectProvider.createExtendedFor(Key.class,"DAMAGE_ENTITY_MAP");
 
     /**
      * Represents the {@link Key} for representing whether a {@link BlockState}
@@ -593,14 +594,14 @@ public final class Keys {
      *
      * @see DecayableData#decayable()
      */
-    public static final Key<Value<Boolean>> DECAYABLE = KeyFactory.fake("DECAYABLE");
+    public static final Key<Value<Boolean>> DECAYABLE = DummyObjectProvider.createExtendedFor(Key.class,"DECAYABLE");
 
     /**
      * Represents the {@link Key} for the delay on a redstone repeater.
      *
      * @see DelayableData#delay()
      */
-    public static final Key<MutableBoundedValue<Integer>> DELAY = KeyFactory.fake("DELAY");
+    public static final Key<MutableBoundedValue<Integer>> DELAY = DummyObjectProvider.createExtendedFor(Key.class,"DELAY");
 
     /**
      * Represents the {@link Key} for representing the despawn delay
@@ -608,7 +609,7 @@ public final class Keys {
      *
      * @see DespawnDelayData#delay()
      */
-    public static final Key<MutableBoundedValue<Integer>> DESPAWN_DELAY = KeyFactory.fake("DESPAWN_DELAY");
+    public static final Key<MutableBoundedValue<Integer>> DESPAWN_DELAY = DummyObjectProvider.createExtendedFor(Key.class,"DESPAWN_DELAY");
 
     /**
      * Represents the {@link Key} for representing the {@link Direction}
@@ -616,7 +617,7 @@ public final class Keys {
      *
      * @see DirectionalData#direction()
      */
-    public static final Key<Value<Direction>> DIRECTION = KeyFactory.fake("DIRECTION");
+    public static final Key<Value<Direction>> DIRECTION = DummyObjectProvider.createExtendedFor(Key.class,"DIRECTION");
 
     /**
      * Represents the {@link Key} for representing the {@link DirtType}
@@ -624,7 +625,7 @@ public final class Keys {
      *
      * @see DirtData
      */
-    public static final Key<Value<DirtType>> DIRT_TYPE = KeyFactory.fake("DIRT_TYPE");
+    public static final Key<Value<DirtType>> DIRT_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"DIRT_TYPE");
 
     /**
      * Represents the {@link Key} for representing the "disarmed" state
@@ -633,7 +634,7 @@ public final class Keys {
      *
      * @see DisarmedData#disarmed()
      */
-    public static final Key<Value<Boolean>> DISARMED = KeyFactory.fake("DISARMED");
+    public static final Key<Value<Boolean>> DISARMED = DummyObjectProvider.createExtendedFor(Key.class,"DISARMED");
 
     /**
      * Represents the {@link Key} for representing the {@link DisguisedBlockType}
@@ -641,7 +642,7 @@ public final class Keys {
      *
      * @see DisguisedBlockData
      */
-    public static final Key<Value<DisguisedBlockType>> DISGUISED_BLOCK_TYPE = KeyFactory.fake("DISGUISED_BLOCK_TYPE");
+    public static final Key<Value<DisguisedBlockType>> DISGUISED_BLOCK_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"DISGUISED_BLOCK_TYPE");
 
     /**
      * Represents the {@link Key} for the display name of an {@link Entity},
@@ -652,7 +653,7 @@ public final class Keys {
      *
      * @see DisplayNameData#displayName()
      */
-    public static final Key<Value<Text>> DISPLAY_NAME = KeyFactory.fake("DISPLAY_NAME");
+    public static final Key<Value<Text>> DISPLAY_NAME = DummyObjectProvider.createExtendedFor(Key.class,"DISPLAY_NAME");
 
     /**
      * Represents the {@link Key} for representing the dominant {@link HandPreference}
@@ -664,7 +665,7 @@ public final class Keys {
      *
      * @see DominantHandData#dominantHand()
      */
-    public static final Key<Value<HandPreference>> DOMINANT_HAND = KeyFactory.fake("DOMINANT_HAND");
+    public static final Key<Value<HandPreference>> DOMINANT_HAND = DummyObjectProvider.createExtendedFor(Key.class,"DOMINANT_HAND");
 
     /**
      * Represents the {@link Key} for representing the {@link DoublePlantType}
@@ -672,7 +673,7 @@ public final class Keys {
      *
      * @see DoublePlantData
      */
-    public static final Key<Value<DoublePlantType>> DOUBLE_PLANT_TYPE = KeyFactory.fake("DOUBLE_PLANT_TYPE");
+    public static final Key<Value<DoublePlantType>> DOUBLE_PLANT_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"DOUBLE_PLANT_TYPE");
 
     /**
      * Represents the {@link Key} for the color of a dyeable block, item or
@@ -680,7 +681,7 @@ public final class Keys {
      *
      * @see DyeableData
      */
-    public static final Key<Value<DyeColor>> DYE_COLOR = KeyFactory.fake("DYE_COLOR");
+    public static final Key<Value<DyeColor>> DYE_COLOR = DummyObjectProvider.createExtendedFor(Key.class,"DYE_COLOR");
 
     /**
      * Represents the {@link Key} for representing the age of
@@ -688,7 +689,7 @@ public final class Keys {
      *
      * @see EndGatewayData#age()
      */
-    public static final Key<Value<Long>> END_GATEWAY_AGE = KeyFactory.fake("END_GATEWAY_AGE");
+    public static final Key<Value<Long>> END_GATEWAY_AGE = DummyObjectProvider.createExtendedFor(Key.class,"END_GATEWAY_AGE");
 
     /**
      * Represents the {@link Key} for representing the teleport cooldown of
@@ -696,7 +697,7 @@ public final class Keys {
      *
      * @see EndGatewayData#teleportCooldown()
      */
-    public static final Key<Value<Integer>> END_GATEWAY_TELEPORT_COOLDOWN = KeyFactory.fake("END_GATEWAY_TELEPORT_COOLDOWN");
+    public static final Key<Value<Integer>> END_GATEWAY_TELEPORT_COOLDOWN = DummyObjectProvider.createExtendedFor(Key.class,"END_GATEWAY_TELEPORT_COOLDOWN");
 
     /**
      * Represents the {@link Key} for representing if the exact teleport location
@@ -704,7 +705,7 @@ public final class Keys {
      *
      * @see EndGatewayData#exactTeleport()
      */
-    public static final Key<Value<Boolean>> EXACT_TELEPORT = KeyFactory.fake("EXACT_TELEPORT");
+    public static final Key<Value<Boolean>> EXACT_TELEPORT = DummyObjectProvider.createExtendedFor(Key.class,"EXACT_TELEPORT");
 
     /**
      * Represents the {@link Key} for the current level of exhaustion of a
@@ -716,7 +717,7 @@ public final class Keys {
      *
      * @see FoodData#exhaustion()
      */
-    public static final Key<MutableBoundedValue<Double>> EXHAUSTION = KeyFactory.fake("EXHAUSTION");
+    public static final Key<MutableBoundedValue<Double>> EXHAUSTION = DummyObjectProvider.createExtendedFor(Key.class,"EXHAUSTION");
 
     /**
      * Represents the {@link Key} for representing the exit
@@ -724,7 +725,7 @@ public final class Keys {
      *
      * @see EndGatewayData#exitPosition()
      */
-    public static final Key<Value<Vector3i>> EXIT_POSITION = KeyFactory.fake("EXIT_PORTAL");
+    public static final Key<Value<Vector3i>> EXIT_POSITION = DummyObjectProvider.createExtendedFor(Key.class,"EXIT_PORTAL");
 
     /**
      * Represents the {@link Key} for the total experience a {@link Player}
@@ -732,14 +733,14 @@ public final class Keys {
      *
      * @see ExperienceHolderData#getExperienceBetweenLevels()
      */
-    public static final Key<ImmutableBoundedValue<Integer>> EXPERIENCE_FROM_START_OF_LEVEL = KeyFactory.fake("EXPERIENCE_FROM_START_OF_LEVEL");
+    public static final Key<ImmutableBoundedValue<Integer>> EXPERIENCE_FROM_START_OF_LEVEL = DummyObjectProvider.createExtendedFor(Key.class,"EXPERIENCE_FROM_START_OF_LEVEL");
 
     /**
      * Represents the {@link Key} for the current level a {@link Player} has.
      *
      * @see ExperienceHolderData#level()
      */
-    public static final Key<MutableBoundedValue<Integer>> EXPERIENCE_LEVEL = KeyFactory.fake("EXPERIENCE_LEVEL");
+    public static final Key<MutableBoundedValue<Integer>> EXPERIENCE_LEVEL = DummyObjectProvider.createExtendedFor(Key.class,"EXPERIENCE_LEVEL");
 
     /**
      * Represents the {@link Key} for the amount of experience a {@link Player}
@@ -747,7 +748,7 @@ public final class Keys {
      *
      * @see ExperienceHolderData#experienceSinceLevel()
      */
-    public static final Key<MutableBoundedValue<Integer>> EXPERIENCE_SINCE_LEVEL = KeyFactory.fake("EXPERIENCE_SINCE_LEVEL");
+    public static final Key<MutableBoundedValue<Integer>> EXPERIENCE_SINCE_LEVEL = DummyObjectProvider.createExtendedFor(Key.class,"EXPERIENCE_SINCE_LEVEL");
 
     /**
      * Represents the {@link Key} for after how many ticks an entity or
@@ -757,7 +758,7 @@ public final class Keys {
      *
      * @see ExpirableData#expireTicks()
      */
-    public static final Key<MutableBoundedValue<Integer>> EXPIRATION_TICKS = KeyFactory.fake("EXPIRATION_TICKS");
+    public static final Key<MutableBoundedValue<Integer>> EXPIRATION_TICKS = DummyObjectProvider.createExtendedFor(Key.class,"EXPIRATION_TICKS");
 
     /**
      * Represents the {@link Key} for the radius of the {@link Explosion} to
@@ -769,7 +770,7 @@ public final class Keys {
      *
      * @see ExplosionRadiusData#explosionRadius()
      */
-    public static final Key<OptionalValue<Integer>> EXPLOSION_RADIUS = KeyFactory.fake("EXPLOSION_RADIUS");
+    public static final Key<OptionalValue<Integer>> EXPLOSION_RADIUS = DummyObjectProvider.createExtendedFor(Key.class,"EXPLOSION_RADIUS");
 
     /**
      * Represents the {@link Key} for representing whether a {@link Piston} is
@@ -777,7 +778,7 @@ public final class Keys {
      *
      * @see ExtendedData#extended()
      */
-    public static final Key<Value<Boolean>> EXTENDED = KeyFactory.fake("EXTENDED");
+    public static final Key<Value<Boolean>> EXTENDED = DummyObjectProvider.createExtendedFor(Key.class,"EXTENDED");
 
     /**
      * Represents the {@link Key} for whether a {@link FallingBlock} will
@@ -785,7 +786,7 @@ public final class Keys {
      *
      * @see FallingBlockData#canHurtEntities()
      */
-    public static final Key<Value<Boolean>> FALLING_BLOCK_CAN_HURT_ENTITIES = KeyFactory.fake("FALLING_BLOCK_CAN_HURT_ENTITIES");
+    public static final Key<Value<Boolean>> FALLING_BLOCK_CAN_HURT_ENTITIES = DummyObjectProvider.createExtendedFor(Key.class,"FALLING_BLOCK_CAN_HURT_ENTITIES");
 
     /**
      * Represents the {@link Key} for the {@link BlockState} of a
@@ -793,7 +794,7 @@ public final class Keys {
      *
      * @see FallingBlockData#blockState()
      */
-    public static final Key<Value<BlockState>> FALLING_BLOCK_STATE = KeyFactory.fake("FALLING_BLOCK_STATE");
+    public static final Key<Value<BlockState>> FALLING_BLOCK_STATE = DummyObjectProvider.createExtendedFor(Key.class,"FALLING_BLOCK_STATE");
 
     /**
      * Represents the {@link Key} for how much damage a {@link FallingBlock}
@@ -803,7 +804,7 @@ public final class Keys {
      *
      * @see FallingBlockData#fallDamagePerBlock()
      */
-    public static final Key<MutableBoundedValue<Double>> FALL_DAMAGE_PER_BLOCK = KeyFactory.fake("FALL_DAMAGE_PER_BLOCK");
+    public static final Key<MutableBoundedValue<Double>> FALL_DAMAGE_PER_BLOCK = DummyObjectProvider.createExtendedFor(Key.class,"FALL_DAMAGE_PER_BLOCK");
 
     /**
      * Represents the {@link Key} for representing the distance an entity has
@@ -811,7 +812,7 @@ public final class Keys {
      *
      * @see FallDistanceData#fallDistance()
      */
-    public static final Key<MutableBoundedValue<Float>> FALL_DISTANCE = KeyFactory.fake("FALL_DISTANCE");
+    public static final Key<MutableBoundedValue<Float>> FALL_DISTANCE = DummyObjectProvider.createExtendedFor(Key.class,"FALL_DISTANCE");
 
     /**
      * Represents the {@link Key} for the amount of ticks a
@@ -819,7 +820,7 @@ public final class Keys {
      *
      * @see FallingBlockData#fallTime()
      */
-    public static final Key<Value<Integer>> FALL_TIME = KeyFactory.fake("FALL_TIME");
+    public static final Key<Value<Integer>> FALL_TIME = DummyObjectProvider.createExtendedFor(Key.class,"FALL_TIME");
 
     /**
      * Represents the {@link Key} for representing the "filled" state
@@ -829,7 +830,7 @@ public final class Keys {
      *
      * @see FilledData#filled()
      */
-    public static final Key<Value<Boolean>> FILLED = KeyFactory.fake("FILLED");
+    public static final Key<Value<Boolean>> FILLED = DummyObjectProvider.createExtendedFor(Key.class,"FILLED");
 
     /**
      * Represents the {@link Key} for the {@link FireworkEffect}s of a
@@ -838,7 +839,7 @@ public final class Keys {
      *
      * @see FireworkEffectData#effects()
      */
-    public static final Key<ListValue<FireworkEffect>> FIREWORK_EFFECTS = KeyFactory.fake("FIREWORK_EFFECTS");
+    public static final Key<ListValue<FireworkEffect>> FIREWORK_EFFECTS = DummyObjectProvider.createExtendedFor(Key.class,"FIREWORK_EFFECTS");
 
     /**
      * Represents the {@link Key} for the flight duration of a firework.
@@ -849,7 +850,7 @@ public final class Keys {
      *
      * @see FireworkRocketData#flightModifier()
      */
-    public static final Key<MutableBoundedValue<Integer>> FIREWORK_FLIGHT_MODIFIER = KeyFactory.fake("FIREWORK_FLIGHT_MODIFIER");
+    public static final Key<MutableBoundedValue<Integer>> FIREWORK_FLIGHT_MODIFIER = DummyObjectProvider.createExtendedFor(Key.class,"FIREWORK_FLIGHT_MODIFIER");
 
     /**
      * Represents the {@link Key} for the delay in ticks until the
@@ -857,7 +858,7 @@ public final class Keys {
      *
      * @see IgniteableData#fireDelay()
      */
-    public static final Key<MutableBoundedValue<Integer>> FIRE_DAMAGE_DELAY = KeyFactory.fake("FIRE_DAMAGE_DELAY");
+    public static final Key<MutableBoundedValue<Integer>> FIRE_DAMAGE_DELAY = DummyObjectProvider.createExtendedFor(Key.class,"FIRE_DAMAGE_DELAY");
 
     /**
      * Represents the {@link Key} for the amount of ticks an
@@ -865,7 +866,7 @@ public final class Keys {
      *
      * @see IgniteableData#fireTicks()
      */
-    public static final Key<MutableBoundedValue<Integer>> FIRE_TICKS = KeyFactory.fake("FIRE_TICKS");
+    public static final Key<MutableBoundedValue<Integer>> FIRE_TICKS = DummyObjectProvider.createExtendedFor(Key.class,"FIRE_TICKS");
 
     /**
      * Represents the {@link Key} for the time a {@link Player} first played
@@ -873,7 +874,7 @@ public final class Keys {
      *
      * @see JoinData#firstPlayed()
      */
-    public static final Key<Value<Instant>> FIRST_DATE_PLAYED = KeyFactory.fake("FIRST_DATE_PLAYED");
+    public static final Key<Value<Instant>> FIRST_DATE_PLAYED = DummyObjectProvider.createExtendedFor(Key.class,"FIRST_DATE_PLAYED");
 
     /**
      * Represents the {@link Key} for the {@link Fish} type an {@link Item} or
@@ -884,7 +885,7 @@ public final class Keys {
      *
      * @see FishData
      */
-    public static final Key<Value<Fish>> FISH_TYPE = KeyFactory.fake("FISH_TYPE");
+    public static final Key<Value<Fish>> FISH_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"FISH_TYPE");
 
     /**
      * Represents the {@link Key} for representing the
@@ -893,7 +894,7 @@ public final class Keys {
      *
      * @see FluidItemData#fluid()
      */
-    public static final Key<Value<FluidStackSnapshot>> FLUID_ITEM_STACK = KeyFactory.fake("FLUID_ITEM_STACK");
+    public static final Key<Value<FluidStackSnapshot>> FLUID_ITEM_STACK = DummyObjectProvider.createExtendedFor(Key.class,"FLUID_ITEM_STACK");
 
     /**
      * Represents the {@link Key} for representing the "fluid level" state
@@ -901,7 +902,7 @@ public final class Keys {
      *
      * @see FluidLevelData#level()
      */
-    public static final Key<MutableBoundedValue<Integer>> FLUID_LEVEL = KeyFactory.fake("FLUID_LEVEL");
+    public static final Key<MutableBoundedValue<Integer>> FLUID_LEVEL = DummyObjectProvider.createExtendedFor(Key.class,"FLUID_LEVEL");
 
     /**
      * Represents the {@link Key} for representing the directional tank
@@ -909,21 +910,21 @@ public final class Keys {
      *
      * @see FluidTankData#fluids()
      */
-    public static final Key<MapValue<Direction, List<FluidStackSnapshot>>> FLUID_TANK_CONTENTS = KeyFactory.fake("FLUID_TANK_CONTENTS");
+    public static final Key<MapValue<Direction, List<FluidStackSnapshot>>> FLUID_TANK_CONTENTS = DummyObjectProvider.createExtendedFor(Key.class,"FLUID_TANK_CONTENTS");
 
     /**
      * Represents the {@link Key} for the speed at which an entity flies.
      *
      * @see MovementSpeedData#flySpeed()
      */
-    public static final Key<Value<Double>> FLYING_SPEED = KeyFactory.fake("FLYING_SPEED");
+    public static final Key<Value<Double>> FLYING_SPEED = DummyObjectProvider.createExtendedFor(Key.class,"FLYING_SPEED");
 
     /**
      * Represents the {@link Key} for the food level of a {@link Humanoid}.
      *
      * @see FoodData#foodLevel()
      */
-    public static final Key<MutableBoundedValue<Integer>> FOOD_LEVEL = KeyFactory.fake("FOOD_LEVEL");
+    public static final Key<MutableBoundedValue<Integer>> FOOD_LEVEL = DummyObjectProvider.createExtendedFor(Key.class,"FOOD_LEVEL");
 
     /**
      * Represents the {@link Key} for the time a {@link FusedExplosive}'s fuse
@@ -931,7 +932,7 @@ public final class Keys {
      *
      * @see FuseData#fuseDuration()
      */
-    public static final Key<Value<Integer>> FUSE_DURATION = KeyFactory.fake("FUSE_DURATION");
+    public static final Key<Value<Integer>> FUSE_DURATION = DummyObjectProvider.createExtendedFor(Key.class,"FUSE_DURATION");
 
     /**
      * Represents the {@link Key} for the {@link GameMode} a {@link Humanoid}
@@ -939,7 +940,7 @@ public final class Keys {
      *
      * @see GameModeData
      */
-    public static final Key<Value<GameMode>> GAME_MODE = KeyFactory.fake("GAME_MODE");
+    public static final Key<Value<GameMode>> GAME_MODE = DummyObjectProvider.createExtendedFor(Key.class,"GAME_MODE");
 
     /**
      * Represents the {@link Key} for the generation of a
@@ -948,7 +949,7 @@ public final class Keys {
      *
      * @see GenerationData#generation()
      */
-    public static final Key<MutableBoundedValue<Integer>> GENERATION = KeyFactory.fake("GENERATION");
+    public static final Key<MutableBoundedValue<Integer>> GENERATION = DummyObjectProvider.createExtendedFor(Key.class,"GENERATION");
 
     /**
      * Represents the {@link Key} for representing whether an entity has a
@@ -956,7 +957,7 @@ public final class Keys {
      *
      * @see GlowingData#glowing()
      */
-    public static final Key<Value<Boolean>> GLOWING = KeyFactory.fake("GLOWING");
+    public static final Key<Value<Boolean>> GLOWING = DummyObjectProvider.createExtendedFor(Key.class,"GLOWING");
 
     /**
      * Represents the {@link Key} for the type of a
@@ -964,7 +965,7 @@ public final class Keys {
      *
      * @see GoldenAppleData
      */
-    public static final Key<Value<GoldenApple>> GOLDEN_APPLE_TYPE = KeyFactory.fake("GOLDEN_APPLE_TYPE");
+    public static final Key<Value<GoldenApple>> GOLDEN_APPLE_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"GOLDEN_APPLE_TYPE");
 
     /**
      * Represents the {@link Key} for representing the "growth stage" state
@@ -972,7 +973,7 @@ public final class Keys {
      *
      * @see GrowthData#growthStage()
      */
-    public static final Key<MutableBoundedValue<Integer>> GROWTH_STAGE = KeyFactory.fake("GROWTH_STAGE");
+    public static final Key<MutableBoundedValue<Integer>> GROWTH_STAGE = DummyObjectProvider.createExtendedFor(Key.class,"GROWTH_STAGE");
 
     /**
      * Represents the {@link Key} for whether an {@link Entity} is affected by
@@ -980,7 +981,7 @@ public final class Keys {
      *
      * @see GravityData#gravity()
      */
-    public static final Key<Value<Boolean>> HAS_GRAVITY = KeyFactory.fake("HAS_GRAVITY");
+    public static final Key<Value<Boolean>> HAS_GRAVITY = DummyObjectProvider.createExtendedFor(Key.class,"HAS_GRAVITY");
 
     /**
      * Represents the {@link Key} for the direction an entities head is
@@ -988,14 +989,14 @@ public final class Keys {
      *
      * @see BodyPartRotationalData#headDirection()
      */
-    public static final Key<Value<Vector3d>> HEAD_ROTATION = KeyFactory.fake("HEAD_ROTATION");
+    public static final Key<Value<Vector3d>> HEAD_ROTATION = DummyObjectProvider.createExtendedFor(Key.class,"HEAD_ROTATION");
 
     /**
      * Represents the {@link Key} for a {@link Living}'s current health.
      *
      * @see HealthData#health()
      */
-    public static final Key<MutableBoundedValue<Double>> HEALTH = KeyFactory.fake("HEALTH");
+    public static final Key<MutableBoundedValue<Double>> HEALTH = DummyObjectProvider.createExtendedFor(Key.class,"HEALTH");
 
     /**
      * Represents the {@link Key} for how much health a half-heart on a
@@ -1003,7 +1004,7 @@ public final class Keys {
      *
      * @see HealthScalingData#healthScale()
      */
-    public static final Key<MutableBoundedValue<Double>> HEALTH_SCALE = KeyFactory.fake("HEALTH_SCALE");
+    public static final Key<MutableBoundedValue<Double>> HEALTH_SCALE = DummyObjectProvider.createExtendedFor(Key.class,"HEALTH_SCALE");
 
     /**
      * Represents the {@link Key} for the height of the physical form of an
@@ -1014,7 +1015,7 @@ public final class Keys {
      *
      * @see SizeData#height()
      */
-    public static final Key<MutableBoundedValue<Float>> HEIGHT = KeyFactory.fake("HEIGHT");
+    public static final Key<MutableBoundedValue<Float>> HEIGHT = DummyObjectProvider.createExtendedFor(Key.class,"HEIGHT");
 
     /**
      * Represents the {@link Key} for representing the "attributes hidden"
@@ -1022,7 +1023,7 @@ public final class Keys {
      *
      * @see HideData#hideAttributes()
      */
-    public static final Key<Value<Boolean>> HIDE_ATTRIBUTES = KeyFactory.fake("HIDE_ATTRIBUTES");
+    public static final Key<Value<Boolean>> HIDE_ATTRIBUTES = DummyObjectProvider.createExtendedFor(Key.class,"HIDE_ATTRIBUTES");
 
     /**
      * Represents the {@link Key} for representing the "can destroy hidden"
@@ -1030,7 +1031,7 @@ public final class Keys {
      *
      * @see HideData#hideCanDestroy()
      */
-    public static final Key<Value<Boolean>> HIDE_CAN_DESTROY = KeyFactory.fake("HIDE_CAN_DESTROY");
+    public static final Key<Value<Boolean>> HIDE_CAN_DESTROY = DummyObjectProvider.createExtendedFor(Key.class,"HIDE_CAN_DESTROY");
 
     /**
      * Represents the {@link Key} for representing the "can place hidden"
@@ -1038,7 +1039,7 @@ public final class Keys {
      *
      * @see HideData#hideCanPlace()
      */
-    public static final Key<Value<Boolean>> HIDE_CAN_PLACE = KeyFactory.fake("HIDE_CAN_PLACE");
+    public static final Key<Value<Boolean>> HIDE_CAN_PLACE = DummyObjectProvider.createExtendedFor(Key.class,"HIDE_CAN_PLACE");
 
     /**
      * Represents the {@link Key} for representing the "enchantments hidden"
@@ -1046,7 +1047,7 @@ public final class Keys {
      *
      * @see HideData#hideEnchantments()
      */
-    public static final Key<Value<Boolean>> HIDE_ENCHANTMENTS = KeyFactory.fake("HIDE_ENCHANTMENTS");
+    public static final Key<Value<Boolean>> HIDE_ENCHANTMENTS = DummyObjectProvider.createExtendedFor(Key.class,"HIDE_ENCHANTMENTS");
 
     /**
      * Represents the {@link Key} for representing the "miscellaneous hidden"
@@ -1054,7 +1055,7 @@ public final class Keys {
      *
      * @see HideData#hideMiscellaneous()
      */
-    public static final Key<Value<Boolean>> HIDE_MISCELLANEOUS = KeyFactory.fake("HIDE_MISCELLANEOUS");
+    public static final Key<Value<Boolean>> HIDE_MISCELLANEOUS = DummyObjectProvider.createExtendedFor(Key.class,"HIDE_MISCELLANEOUS");
 
     /**
      * Represents the {@link Key} for representing the "unbreakable hidden"
@@ -1062,7 +1063,7 @@ public final class Keys {
      *
      * @see HideData#hideUnbreakable()
      */
-    public static final Key<Value<Boolean>> HIDE_UNBREAKABLE = KeyFactory.fake("HIDE_UNBREAKABLE");
+    public static final Key<Value<Boolean>> HIDE_UNBREAKABLE = DummyObjectProvider.createExtendedFor(Key.class,"HIDE_UNBREAKABLE");
 
     /**
      * Represents the {@link Key} for representing the {@link Hinge}
@@ -1070,21 +1071,21 @@ public final class Keys {
      *
      * @see HingeData
      */
-    public static final Key<Value<Hinge>> HINGE_POSITION = KeyFactory.fake("HINGE_POSITION");
+    public static final Key<Value<Hinge>> HINGE_POSITION = DummyObjectProvider.createExtendedFor(Key.class,"HINGE_POSITION");
 
     /**
      * Represents the {@link Key} for the color of a {@link Horse}.
      *
      * @see HorseData#color()
      */
-    public static final Key<Value<HorseColor>> HORSE_COLOR = KeyFactory.fake("HORSE_COLOR");
+    public static final Key<Value<HorseColor>> HORSE_COLOR = DummyObjectProvider.createExtendedFor(Key.class,"HORSE_COLOR");
 
     /**
      * Represents the {@link Key} for the style of a {@link Horse}.
      *
      * @see HorseData#style()
      */
-    public static final Key<Value<HorseStyle>> HORSE_STYLE = KeyFactory.fake("HORSE_STYLE");
+    public static final Key<Value<HorseStyle>> HORSE_STYLE = DummyObjectProvider.createExtendedFor(Key.class,"HORSE_STYLE");
 
     /**
      * Represents the {@link Key} for whether an {@link Item} will not despawn
@@ -1092,7 +1093,7 @@ public final class Keys {
      *
      * @see DespawnDelayData#infinite()
      */
-    public static final Key<Value<Boolean>> INFINITE_DESPAWN_DELAY = KeyFactory.fake("INFINITE_DESPAWN_DELAY");
+    public static final Key<Value<Boolean>> INFINITE_DESPAWN_DELAY = DummyObjectProvider.createExtendedFor(Key.class,"INFINITE_DESPAWN_DELAY");
 
     /**
      * Represents the {@link Key} for representing the "is infinite" state
@@ -1100,7 +1101,7 @@ public final class Keys {
      *
      * @see PickupDelayData#infinite()
      */
-    public static final Key<Value<Boolean>> INFINITE_PICKUP_DELAY = KeyFactory.fake("INFINITE_PICKUP_DELAY");
+    public static final Key<Value<Boolean>> INFINITE_PICKUP_DELAY = DummyObjectProvider.createExtendedFor(Key.class,"INFINITE_PICKUP_DELAY");
 
     /**
      * Represents the {@link Key} for representing the "vanish" state
@@ -1110,7 +1111,7 @@ public final class Keys {
      *
      * @see InvisibilityData#invisible()
      */
-    public static final Key<Value<Boolean>> INVISIBLE = KeyFactory.fake("INVISIBLE");
+    public static final Key<Value<Boolean>> INVISIBLE = DummyObjectProvider.createExtendedFor(Key.class,"INVISIBLE");
 
     /**
      * Represents the {@link Key} for representing if an {@link Entity}
@@ -1121,7 +1122,7 @@ public final class Keys {
      *
      * @see InvulnerabilityData#invulnerable()
      */
-    public static final Key<Value<Boolean>> INVULNERABLE = KeyFactory.fake("INVULNERABLE");
+    public static final Key<Value<Boolean>> INVULNERABLE = DummyObjectProvider.createExtendedFor(Key.class,"INVULNERABLE");
 
     /**
      * Represents the {@link Key} for the amount of ticks an {@link Entity}
@@ -1129,7 +1130,7 @@ public final class Keys {
      *
      * @see InvulnerabilityData#invulnerableTicks()
      */
-    public static final Key<MutableBoundedValue<Integer>> INVULNERABILITY_TICKS = KeyFactory.fake("INVULNERABILITY_TICKS");
+    public static final Key<MutableBoundedValue<Integer>> INVULNERABILITY_TICKS = DummyObjectProvider.createExtendedFor(Key.class,"INVULNERABILITY_TICKS");
 
     /**
      * Represents the {@link Key} for representing the "in-wall" state of
@@ -1137,13 +1138,13 @@ public final class Keys {
      *
      * @see InWallData#inWall()
      */
-    public static final Key<Value<Boolean>> IN_WALL = KeyFactory.fake("IN_WALL");
+    public static final Key<Value<Boolean>> IN_WALL = DummyObjectProvider.createExtendedFor(Key.class,"IN_WALL");
 
     /**
      * Represents the {@link Key} for the state whether a {@link Ageable}
      * entity is considered an "adult" and may affect breeding capabilities.
      */
-    public static final Key<Value<Boolean>> IS_ADULT = KeyFactory.fake("IS_ADULT");
+    public static final Key<Value<Boolean>> IS_ADULT = DummyObjectProvider.createExtendedFor(Key.class,"IS_ADULT");
 
     /**
      * Represents the {@link Key} for whether a {@link Blaze} is currently
@@ -1154,7 +1155,7 @@ public final class Keys {
      *
      * @see FlammableData#flammable()
      */
-    public static final Key<Value<Boolean>> IS_AFLAME = KeyFactory.fake("IS_AFLAME");
+    public static final Key<Value<Boolean>> IS_AFLAME = DummyObjectProvider.createExtendedFor(Key.class,"IS_AFLAME");
 
     /**
      * Represents the {@link Key} for whether an {@link Entity} is flying.
@@ -1166,7 +1167,7 @@ public final class Keys {
      *
      * @see FlyingData#flying()
      */
-    public static final Key<Value<Boolean>> IS_FLYING = KeyFactory.fake("IS_FLYING");
+    public static final Key<Value<Boolean>> IS_FLYING = DummyObjectProvider.createExtendedFor(Key.class,"IS_FLYING");
 
     /**
      * Gets the {@link Value} for whether this mob is exhibiting
@@ -1179,7 +1180,7 @@ public final class Keys {
      *     relating to vindicators
      * @see JohnnyData#johnny()
      */
-    public static final Key<Value<Boolean>> IS_JOHNNY = KeyFactory.fake("IS_JOHNNY");
+    public static final Key<Value<Boolean>> IS_JOHNNY = DummyObjectProvider.createExtendedFor(Key.class, "IS_JOHNNY");
 
     /**
      * Represents the {@link Key} for whether a {@link Villager} is playing.
@@ -1189,21 +1190,21 @@ public final class Keys {
      *
      * @see PlayingData#playing()
      */
-    public static final Key<Value<Boolean>> IS_PLAYING = KeyFactory.fake("IS_PLAYING");
+    public static final Key<Value<Boolean>> IS_PLAYING = DummyObjectProvider.createExtendedFor(Key.class,"IS_PLAYING");
 
     /**
      * Represents the {@link Key} for whether an {@link Enderman} is screaming.
      *
      * @see ScreamingData#screaming()
      */
-    public static final Key<Value<Boolean>> IS_SCREAMING = KeyFactory.fake("IS_SCREAMING");
+    public static final Key<Value<Boolean>> IS_SCREAMING = DummyObjectProvider.createExtendedFor(Key.class,"IS_SCREAMING");
 
     /**
      * Represents the {@link Key} for whether a {@link Sheep} is sheared.
      *
      * @see ShearedData#sheared()
      */
-    public static final Key<Value<Boolean>> IS_SHEARED = KeyFactory.fake("IS_SHEARED");
+    public static final Key<Value<Boolean>> IS_SHEARED = DummyObjectProvider.createExtendedFor(Key.class,"IS_SHEARED");
 
     /**
      * Represents the {@link Key} for whether an {@link Entity} is silent.
@@ -1212,7 +1213,7 @@ public final class Keys {
      *
      * @see SilentData#silent()
      */
-    public static final Key<Value<Boolean>> IS_SILENT = KeyFactory.fake("IS_SILENT");
+    public static final Key<Value<Boolean>> IS_SILENT = DummyObjectProvider.createExtendedFor(Key.class,"IS_SILENT");
 
     /**
      * Represents the {@link Key} for whether a {@link Wolf} or {@link Ocelot}
@@ -1220,7 +1221,7 @@ public final class Keys {
      *
      * @see SittingData#sitting()
      */
-    public static final Key<Value<Boolean>> IS_SITTING = KeyFactory.fake("IS_SITTING");
+    public static final Key<Value<Boolean>> IS_SITTING = DummyObjectProvider.createExtendedFor(Key.class,"IS_SITTING");
 
     /**
      * Represents the {@link Key} for whether a {@link Bat} or {@link Player}
@@ -1232,7 +1233,7 @@ public final class Keys {
      *
      * @see SleepingData#sleeping()
      */
-    public static final Key<Value<Boolean>> IS_SLEEPING = KeyFactory.fake("IS_SLEEPING");
+    public static final Key<Value<Boolean>> IS_SLEEPING = DummyObjectProvider.createExtendedFor(Key.class,"IS_SLEEPING");
 
     /**
      * Represents the {@link Key} for whether an {@link Entity} is sneaking.
@@ -1242,14 +1243,14 @@ public final class Keys {
      *
      * @see SneakingData#sneaking()
      */
-    public static final Key<Value<Boolean>> IS_SNEAKING = KeyFactory.fake("IS_SNEAKING");
+    public static final Key<Value<Boolean>> IS_SNEAKING = DummyObjectProvider.createExtendedFor(Key.class,"IS_SNEAKING");
 
     /**
      * Represents the {@link Key} for whether an {@link Entity} is sprinting.
      *
      * @see SprintData#sprinting()
      */
-    public static final Key<Value<Boolean>> IS_SPRINTING = KeyFactory.fake("IS_SPRINTING");
+    public static final Key<Value<Boolean>> IS_SPRINTING = DummyObjectProvider.createExtendedFor(Key.class,"IS_SPRINTING");
 
     /**
      * Represents the {@link Key} for whether a {@link Wolf}, a
@@ -1258,7 +1259,7 @@ public final class Keys {
      *
      * @see WetData#wet()
      */
-    public static final Key<Value<Boolean>> IS_WET = KeyFactory.fake("IS_WET");
+    public static final Key<Value<Boolean>> IS_WET = DummyObjectProvider.createExtendedFor(Key.class,"IS_WET");
 
     /**
      * Represents the {@link Key} for the {@link BlockState} represented by
@@ -1266,14 +1267,14 @@ public final class Keys {
      *
      * @see BlockItemData#state()
      */
-    public static final Key<Value<BlockState>> ITEM_BLOCKSTATE = KeyFactory.fake("ITEM_BLOCKSTATE");
+    public static final Key<Value<BlockState>> ITEM_BLOCKSTATE = DummyObjectProvider.createExtendedFor(Key.class,"ITEM_BLOCKSTATE");
 
     /**
      * Represents the {@link Key} for the durability of an {@link ItemStack}.
      *
      * @see DurabilityData#durability()
      */
-    public static final Key<MutableBoundedValue<Integer>> ITEM_DURABILITY = KeyFactory.fake("ITEM_DURABILITY");
+    public static final Key<MutableBoundedValue<Integer>> ITEM_DURABILITY = DummyObjectProvider.createExtendedFor(Key.class,"ITEM_DURABILITY");
 
     /**
      * Represents the {@link Key} for the enchantments applied to an
@@ -1287,7 +1288,7 @@ public final class Keys {
      *
      * @see EnchantmentData#enchantments()
      */
-    public static final Key<ListValue<Enchantment>> ITEM_ENCHANTMENTS = KeyFactory.fake("ITEM_ENCHANTMENTS");
+    public static final Key<ListValue<Enchantment>> ITEM_ENCHANTMENTS = DummyObjectProvider.createExtendedFor(Key.class,"ITEM_ENCHANTMENTS");
 
     /**
      * Represents the {@link Key} for the displayed decrption ("lore") text of
@@ -1299,7 +1300,7 @@ public final class Keys {
      *
      * @see LoreData#lore()
      */
-    public static final Key<ListValue<Text>> ITEM_LORE = KeyFactory.fake("ITEM_LORE");
+    public static final Key<ListValue<Text>> ITEM_LORE = DummyObjectProvider.createExtendedFor(Key.class,"ITEM_LORE");
 
     /**
      * Gets the {@link Value} for whether this vindicator is considered a
@@ -1311,7 +1312,7 @@ public final class Keys {
      *     any implementation. Will be removed in API 8
      */
     @Deprecated
-    public static final Key<Value<Boolean>> JOHNNY_VINDICATOR = KeyFactory.fake("JOHNNY_VINDICATOR");;
+    public static final Key<Value<Boolean>> JOHNNY_VINDICATOR = DummyObjectProvider.createExtendedFor(Key.class,"JOHNNY_VINDICATOR");
 
     /**
      * Represents the {@link Key} for the knockback strength applied by an
@@ -1322,14 +1323,14 @@ public final class Keys {
      *
      * @see KnockbackData#knockbackStrength()
      */
-    public static final Key<MutableBoundedValue<Integer>> KNOCKBACK_STRENGTH = KeyFactory.fake("KNOCKBACK_STRENGTH");
+    public static final Key<MutableBoundedValue<Integer>> KNOCKBACK_STRENGTH = DummyObjectProvider.createExtendedFor(Key.class,"KNOCKBACK_STRENGTH");
 
     /**
      * Represents the {@link Key} for who last attacked an {@link Entity}.
      *
      * @see DamageableData#lastAttacker()
      */
-    public static final Key<OptionalValue<Living>> LAST_ATTACKER = KeyFactory.fake("LAST_ATTACKER");
+    public static final Key<OptionalValue<Living>> LAST_ATTACKER = DummyObjectProvider.createExtendedFor(Key.class,"LAST_ATTACKER");
 
     /**
      * Represents the {@link Key} for the output yielded by the last command of
@@ -1337,7 +1338,7 @@ public final class Keys {
      *
      * @see CommandData#lastOutput()
      */
-    public static final Key<OptionalValue<Text>> LAST_COMMAND_OUTPUT = KeyFactory.fake("LAST_COMMAND_OUTPUT");
+    public static final Key<OptionalValue<Text>> LAST_COMMAND_OUTPUT = DummyObjectProvider.createExtendedFor(Key.class,"LAST_COMMAND_OUTPUT");
 
     /**
      * Represents the {@link Key} for the last amount of damage received by an
@@ -1345,7 +1346,7 @@ public final class Keys {
      *
      * @see DamageableData#lastDamage()
      */
-    public static final Key<OptionalValue<Double>> LAST_DAMAGE = KeyFactory.fake("LAST_DAMAGE");
+    public static final Key<OptionalValue<Double>> LAST_DAMAGE = DummyObjectProvider.createExtendedFor(Key.class,"LAST_DAMAGE");
 
     /**
      * Represents the {@link Key} for the last time a {@link User} has been
@@ -1353,7 +1354,7 @@ public final class Keys {
      *
      * @see JoinData#lastPlayed()
      */
-    public static final Key<Value<Instant>> LAST_DATE_PLAYED = KeyFactory.fake("LAST_DATE_PLAYED");
+    public static final Key<Value<Instant>> LAST_DATE_PLAYED = DummyObjectProvider.createExtendedFor(Key.class,"LAST_DATE_PLAYED");
 
     /**
      * Represents the {@link Key} for representing the "layer" value of
@@ -1361,7 +1362,7 @@ public final class Keys {
      *
      * @see LayeredData#layer()
      */
-    public static final Key<MutableBoundedValue<Integer>> LAYER = KeyFactory.fake("LAYER");
+    public static final Key<MutableBoundedValue<Integer>> LAYER = DummyObjectProvider.createExtendedFor(Key.class,"LAYER");
 
     /**
      * Represents the {@link Key} for the rotation of an {@link Entity}'s left
@@ -1369,7 +1370,7 @@ public final class Keys {
      *
      * @see BodyPartRotationalData#leftArmDirection()
      */
-    public static final Key<Value<Vector3d>> LEFT_ARM_ROTATION = KeyFactory.fake("LEFT_ARM_ROTATION");
+    public static final Key<Value<Vector3d>> LEFT_ARM_ROTATION = DummyObjectProvider.createExtendedFor(Key.class,"LEFT_ARM_ROTATION");
 
     /**
      * Represents the {@link Key} for the rotation of an {@link Entity}'s left
@@ -1377,18 +1378,18 @@ public final class Keys {
      *
      * @see BodyPartRotationalData#leftLegDirection()
      */
-    public static final Key<Value<Vector3d>> LEFT_LEG_ROTATION = KeyFactory.fake("LEFT_LEG_ROTATION");
+    public static final Key<Value<Vector3d>> LEFT_LEG_ROTATION = DummyObjectProvider.createExtendedFor(Key.class,"LEFT_LEG_ROTATION");
 
     /**
      * Represents the {@link Key} for a {@link Llama}s carrying strength. The higher the strength,
      * the more items it can carry (effectively the size of inventory).
      */
-    public static final Key<MutableBoundedValue<Integer>> LLAMA_STRENGTH = KeyFactory.fake("LLAMA_STRENGTH");
+    public static final Key<MutableBoundedValue<Integer>> LLAMA_STRENGTH = DummyObjectProvider.createExtendedFor(Key.class,"LLAMA_STRENGTH");
 
     /**
      * Represents the {@link Key} for a {@link Llama}'s {@link LlamaVariant}.
      */
-    public static final Key<Value<LlamaVariant>> LLAMA_VARIANT = KeyFactory.fake("LLAMA_VARIANT");
+    public static final Key<Value<LlamaVariant>> LLAMA_VARIANT = DummyObjectProvider.createExtendedFor(Key.class,"LLAMA_VARIANT");
 
     /**
      * Represents the {@link Key} for the token used to lock a
@@ -1396,7 +1397,7 @@ public final class Keys {
      *
      * @see LockableData#lockToken()
      */
-    public static final Key<Value<String>> LOCK_TOKEN = KeyFactory.fake("LOCK_TOKEN");
+    public static final Key<Value<String>> LOCK_TOKEN = DummyObjectProvider.createExtendedFor(Key.class,"LOCK_TOKEN");
 
     /**
      * Represents the {@link Key} for the axis of a {@link BlockTypes#LOG}.
@@ -1406,7 +1407,7 @@ public final class Keys {
      *
      * @see LogAxisData
      */
-    public static final Key<Value<LogAxis>> LOG_AXIS = KeyFactory.fake("LOG_AXIS");
+    public static final Key<Value<LogAxis>> LOG_AXIS = DummyObjectProvider.createExtendedFor(Key.class,"LOG_AXIS");
 
     /**
      * Represents the {@link Key} for the maximum air supply a {@link Living}
@@ -1416,7 +1417,7 @@ public final class Keys {
      *
      * @see BreathingData#maxAir()
      */
-    public static final Key<MutableBoundedValue<Integer>> MAX_AIR = KeyFactory.fake("MAX_AIR");
+    public static final Key<MutableBoundedValue<Integer>> MAX_AIR = DummyObjectProvider.createExtendedFor(Key.class,"MAX_AIR");
 
     /**
      * Represents the {@link Key} for the maximum amount of ticks a
@@ -1424,7 +1425,7 @@ public final class Keys {
      *
      * @see FurnaceData#maxBurnTime()
      */
-    public static final Key<MutableBoundedValue<Integer>> MAX_BURN_TIME = KeyFactory.fake("MAX_BURN_TIME");
+    public static final Key<MutableBoundedValue<Integer>> MAX_BURN_TIME = DummyObjectProvider.createExtendedFor(Key.class,"MAX_BURN_TIME");
 
     /**
      * Represents the {@link Key} for the total time the current
@@ -1432,7 +1433,7 @@ public final class Keys {
      *
      * @see FurnaceData#maxCookTime()
      */
-    public static final Key<MutableBoundedValue<Integer>> MAX_COOK_TIME = KeyFactory.fake("MAX_COOK_TIME");
+    public static final Key<MutableBoundedValue<Integer>> MAX_COOK_TIME = DummyObjectProvider.createExtendedFor(Key.class,"MAX_COOK_TIME");
 
     /**
      * Represents the {@link Key} for the maximum damage a {@link FallingBlock}
@@ -1440,14 +1441,14 @@ public final class Keys {
      *
      * @see FallingBlockData#maxFallDamage()
      */
-    public static final Key<MutableBoundedValue<Double>> MAX_FALL_DAMAGE = KeyFactory.fake("MAX_FALL_DAMAGE");
+    public static final Key<MutableBoundedValue<Double>> MAX_FALL_DAMAGE = DummyObjectProvider.createExtendedFor(Key.class,"MAX_FALL_DAMAGE");
 
     /**
      * Represents the {@link Key} for the maximum health of a {@link Living}.
      *
      * @see HealthData#maxHealth()
      */
-    public static final Key<MutableBoundedValue<Double>> MAX_HEALTH = KeyFactory.fake("MAX_HEALTH");
+    public static final Key<MutableBoundedValue<Double>> MAX_HEALTH = DummyObjectProvider.createExtendedFor(Key.class,"MAX_HEALTH");
 
     /**
      * Represents the {@link Key} for representing the "moisture" state of
@@ -1455,14 +1456,14 @@ public final class Keys {
      *
      * @see MoistureData#moisture()
      */
-    public static final Key<MutableBoundedValue<Integer>> MOISTURE = KeyFactory.fake("MOISTURE");
+    public static final Key<MutableBoundedValue<Integer>> MOISTURE = DummyObjectProvider.createExtendedFor(Key.class,"MOISTURE");
 
     /**
      * Represents the {@link Key} for the pitch of a {@link Note} block.
      *
      * @see NoteData#note()
      */
-    public static final Key<Value<NotePitch>> NOTE_PITCH = KeyFactory.fake("NOTE_PITCH");
+    public static final Key<Value<NotePitch>> NOTE_PITCH = DummyObjectProvider.createExtendedFor(Key.class,"NOTE_PITCH");
 
     /**
      * Represents the {@link Key} for representing the "occupied" state of
@@ -1470,14 +1471,14 @@ public final class Keys {
      *
      * @see OccupiedData#occupied()
      */
-    public static final Key<Value<Boolean>> OCCUPIED = KeyFactory.fake("OCCUPIED");
+    public static final Key<Value<Boolean>> OCCUPIED = DummyObjectProvider.createExtendedFor(Key.class,"OCCUPIED");
 
     /**
      * Represents the {@link Key} for the type of an {@link Ocelot}.
      *
      * @see OcelotData
      */
-    public static final Key<Value<OcelotType>> OCELOT_TYPE = KeyFactory.fake("OCELOT_TYPE");
+    public static final Key<Value<OcelotType>> OCELOT_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"OCELOT_TYPE");
 
     /**
      * Represents the {@link Key} for representing a block's offset when inside
@@ -1485,7 +1486,7 @@ public final class Keys {
      *
      * @see MinecartBlockData#offset()
      */
-    public static final Key<Value<Integer>> OFFSET = KeyFactory.fake("OFFSET");
+    public static final Key<Value<Integer>> OFFSET = DummyObjectProvider.createExtendedFor(Key.class,"OFFSET");
 
     /**
      * Represents the {@link Key} for representing the "open" state of
@@ -1493,14 +1494,14 @@ public final class Keys {
      *
      * @see OpenData#open()
      */
-    public static final Key<Value<Boolean>> OPEN = KeyFactory.fake("OPEN");
+    public static final Key<Value<Boolean>> OPEN = DummyObjectProvider.createExtendedFor(Key.class,"OPEN");
 
     /**
      * Represents the {@link ParrotVariant variant} of a {@link Parrot}.
      *
      * @see ParrotData#type()
      */
-    public static final Key<Value<ParrotVariant>> PARROT_VARIANT = KeyFactory.fake("PARROT_VARIANT");
+    public static final Key<Value<ParrotVariant>> PARROT_VARIANT = DummyObjectProvider.createExtendedFor(Key.class,"PARROT_VARIANT");
 
     /**
      * Represents the {@link Key} for the amount of ticks a {@link Furnace} has
@@ -1511,7 +1512,7 @@ public final class Keys {
      *
      * @see FurnaceData#passedBurnTime()
      */
-    public static final Key<MutableBoundedValue<Integer>> PASSED_BURN_TIME = KeyFactory.fake("PASSED_BURN_TIME");
+    public static final Key<MutableBoundedValue<Integer>> PASSED_BURN_TIME = DummyObjectProvider.createExtendedFor(Key.class,"PASSED_BURN_TIME");
 
     /**
      * Represents the {@link Key} for the amount of ticks a {@link Furnace} has
@@ -1522,7 +1523,7 @@ public final class Keys {
      *
      * @see FurnaceData#passedCookTime()
      */
-    public static final Key<MutableBoundedValue<Integer>> PASSED_COOK_TIME = KeyFactory.fake("PASSED_COOK_TIME");
+    public static final Key<MutableBoundedValue<Integer>> PASSED_COOK_TIME = DummyObjectProvider.createExtendedFor(Key.class,"PASSED_COOK_TIME");
 
     /**
      * Represents the {@link Key} for the entities that act as passengers for
@@ -1533,7 +1534,7 @@ public final class Keys {
      *
      * @see PassengerData#passengers()
      */
-    public static final Key<ListValue<UUID>> PASSENGERS = KeyFactory.fake("PASSENGERS");
+    public static final Key<ListValue<UUID>> PASSENGERS = DummyObjectProvider.createExtendedFor(Key.class,"PASSENGERS");
 
     /**
      * Represents the {@link Key} for whether an {@link Entity} will be
@@ -1545,7 +1546,7 @@ public final class Keys {
      *
      * @see PersistingData#persists()
      */
-    public static final Key<Value<Boolean>> PERSISTS = KeyFactory.fake("PERSISTS");
+    public static final Key<Value<Boolean>> PERSISTS = DummyObjectProvider.createExtendedFor(Key.class,"PERSISTS");
 
     /**
      * Represents the {@link Key} for representing the pickup delay
@@ -1553,21 +1554,21 @@ public final class Keys {
      *
      * @see PickupDelayData#delay()
      */
-    public static final Key<MutableBoundedValue<Integer>> PICKUP_DELAY = KeyFactory.fake("PICKUP_DELAY");
+    public static final Key<MutableBoundedValue<Integer>> PICKUP_DELAY = DummyObjectProvider.createExtendedFor(Key.class,"PICKUP_DELAY");
 
     /**
      * Represents the {@link Key} for the "pickup rule" of an {@link Arrow}.
      *
      * @see PickupRuleData
      */
-    public static final Key<Value<PickupRule>> PICKUP_RULE = KeyFactory.fake("PICKUP_RULE");
+    public static final Key<Value<PickupRule>> PICKUP_RULE = DummyObjectProvider.createExtendedFor(Key.class,"PICKUP_RULE");
 
     /**
      * Represents the {@link Key} for whether a {@link Pig} is saddled.
      *
      * @see PigSaddleData#saddle()
      */
-    public static final Key<Value<Boolean>> PIG_SADDLE = KeyFactory.fake("PIG_SADDLE");
+    public static final Key<Value<Boolean>> PIG_SADDLE = DummyObjectProvider.createExtendedFor(Key.class,"PIG_SADDLE");
 
     /**
      * Represents the {@link Key} for representing the {@link PistonType}
@@ -1575,7 +1576,7 @@ public final class Keys {
      *
      * @see PistonData
      */
-    public static final Key<Value<PistonType>> PISTON_TYPE = KeyFactory.fake("PISTON_TYPE");
+    public static final Key<Value<PistonType>> PISTON_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"PISTON_TYPE");
 
     /**
      * Represents the {@link Key} for which block types an {@link ItemStack}
@@ -1583,7 +1584,7 @@ public final class Keys {
      *
      * @see PlaceableData#placeable()
      */
-    public static final Key<SetValue<BlockType>> PLACEABLE_BLOCKS = KeyFactory.fake("PLACEABLE_BLOCKS");
+    public static final Key<SetValue<BlockType>> PLACEABLE_BLOCKS = DummyObjectProvider.createExtendedFor(Key.class,"PLACEABLE_BLOCKS");
 
     /**
      * Represents the {@link Key} for representing the {@link PlantType}
@@ -1591,7 +1592,7 @@ public final class Keys {
      *
      * @see PlantData
      */
-    public static final Key<Value<PlantType>> PLANT_TYPE = KeyFactory.fake("PLANT_TYPE");
+    public static final Key<Value<PlantType>> PLANT_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"PLANT_TYPE");
 
     /**
      * Represents the {@link Key} for whether an {@link IronGolem} has been
@@ -1599,7 +1600,7 @@ public final class Keys {
      *
      * @see PlayerCreatedData#playerCreated()
      */
-    public static final Key<Value<Boolean>> PLAYER_CREATED = KeyFactory.fake("PLAYER_CREATED");
+    public static final Key<Value<Boolean>> PLAYER_CREATED = DummyObjectProvider.createExtendedFor(Key.class,"PLAYER_CREATED");
 
     /**
      * Represents the {@link Key} for representing the {@link PortionType}
@@ -1607,7 +1608,7 @@ public final class Keys {
      *
      * @see PortionData
      */
-    public static final Key<Value<PortionType>> PORTION_TYPE = KeyFactory.fake("PORTION_TYPE");
+    public static final Key<Value<PortionType>> PORTION_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"PORTION_TYPE");
 
     /**
      * Represents the {@link Key} for which potion effects are present on an
@@ -1615,7 +1616,7 @@ public final class Keys {
      *
      * @see PotionEffectData#effects()
      */
-    public static final Key<ListValue<PotionEffect>> POTION_EFFECTS = KeyFactory.fake("POTION_EFFECTS");
+    public static final Key<ListValue<PotionEffect>> POTION_EFFECTS = DummyObjectProvider.createExtendedFor(Key.class,"POTION_EFFECTS");
 
     /**
      * Represents the {@link Key} for representing the "power" state
@@ -1628,7 +1629,7 @@ public final class Keys {
      *
      * @see RedstonePoweredData#power()
      */
-    public static final Key<MutableBoundedValue<Integer>> POWER = KeyFactory.fake("POWER");
+    public static final Key<MutableBoundedValue<Integer>> POWER = DummyObjectProvider.createExtendedFor(Key.class,"POWER");
 
     /**
      * Represents the {@link Key} for representing the "powered" state
@@ -1642,7 +1643,7 @@ public final class Keys {
      *
      * @see PoweredData#powered()
      */
-    public static final Key<Value<Boolean>> POWERED = KeyFactory.fake("POWERED");
+    public static final Key<Value<Boolean>> POWERED = DummyObjectProvider.createExtendedFor(Key.class,"POWERED");
 
     /**
      * Represents the {@link Key} for representing the {@link PrismarineType}
@@ -1650,7 +1651,7 @@ public final class Keys {
      *
      * @see PrismarineData
      */
-    public static final Key<Value<PrismarineType>> PRISMARINE_TYPE = KeyFactory.fake("PRISMARINE_TYPE");
+    public static final Key<Value<PrismarineType>> PRISMARINE_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"PRISMARINE_TYPE");
 
     /**
      * Represents the {@link Key} for representing the {@link QuartzType}
@@ -1658,14 +1659,14 @@ public final class Keys {
      *
      * @see QuartzData
      */
-    public static final Key<Value<QuartzType>> QUARTZ_TYPE = KeyFactory.fake("QUARTZ_TYPE");
+    public static final Key<Value<QuartzType>> QUARTZ_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"QUARTZ_TYPE");
 
     /**
      * Represents the {@link Key} for the type of a {@link Rabbit}.
      *
      * @see RabbitData
      */
-    public static final Key<Value<RabbitType>> RABBIT_TYPE = KeyFactory.fake("RABBIT_TYPE");
+    public static final Key<Value<RabbitType>> RABBIT_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"RABBIT_TYPE");
 
     /**
      * Represents the {@link Key} for representing the {@link RailDirection}
@@ -1673,14 +1674,14 @@ public final class Keys {
      *
      * @see RailDirectionData
      */
-    public static final Key<Value<RailDirection>> RAIL_DIRECTION = KeyFactory.fake("RAIL_DIRECTION");
+    public static final Key<Value<RailDirection>> RAIL_DIRECTION = DummyObjectProvider.createExtendedFor(Key.class,"RAIL_DIRECTION");
 
     /**
      * Represents the {@link Key} for how much air a {@link Living} has left.
      *
      * @see BreathingData#remainingAir()
      */
-    public static final Key<MutableBoundedValue<Integer>> REMAINING_AIR = KeyFactory.fake("REMAINING_AIR");
+    public static final Key<MutableBoundedValue<Integer>> REMAINING_AIR = DummyObjectProvider.createExtendedFor(Key.class,"REMAINING_AIR");
 
     /**
      * Represents the {@link Key} for how many more ticks the current brewing
@@ -1690,7 +1691,7 @@ public final class Keys {
      *
      * @see BrewingStandData#remainingBrewTime()
      */
-    public static final Key<MutableBoundedValue<Integer>> REMAINING_BREW_TIME = KeyFactory.fake("REMAINING_BREW_TIME");
+    public static final Key<MutableBoundedValue<Integer>> REMAINING_BREW_TIME = DummyObjectProvider.createExtendedFor(Key.class,"REMAINING_BREW_TIME");
 
     /**
      * Represents the {@link Key} for representing the {@link BlockState}
@@ -1698,7 +1699,7 @@ public final class Keys {
      *
      * @see MinecartBlockData#block()
      */
-    public static final Key<Value<BlockState>> REPRESENTED_BLOCK = KeyFactory.fake("REPRESENTED_BLOCK");
+    public static final Key<Value<BlockState>> REPRESENTED_BLOCK = DummyObjectProvider.createExtendedFor(Key.class,"REPRESENTED_BLOCK");
 
     /**
      * Represents the {@link Key} for the item displayed in an
@@ -1706,7 +1707,7 @@ public final class Keys {
      *
      * @see RepresentedItemData#item()
      */
-    public static final Key<Value<ItemStackSnapshot>> REPRESENTED_ITEM = KeyFactory.fake("REPRESENTED_ITEM");
+    public static final Key<Value<ItemStackSnapshot>> REPRESENTED_ITEM = DummyObjectProvider.createExtendedFor(Key.class,"REPRESENTED_ITEM");
 
     /**
      * Represents the {@link Key} for the player represented by a
@@ -1717,7 +1718,7 @@ public final class Keys {
      *
      * @see RepresentedPlayerData#owner()
      */
-    public static final Key<Value<GameProfile>> REPRESENTED_PLAYER = KeyFactory.fake("REPRESENTED_PLAYER");
+    public static final Key<Value<GameProfile>> REPRESENTED_PLAYER = DummyObjectProvider.createExtendedFor(Key.class,"REPRESENTED_PLAYER");
 
     /**
      * Represents the {@link Key} for the spawn locations a {@link Player}
@@ -1725,7 +1726,7 @@ public final class Keys {
      *
      * @see RespawnLocationData#respawnLocation()
      */
-    public static final Key<MapValue<UUID, RespawnLocation>> RESPAWN_LOCATIONS = KeyFactory.fake("RESPAWN_LOCATIONS");
+    public static final Key<MapValue<UUID, RespawnLocation>> RESPAWN_LOCATIONS = DummyObjectProvider.createExtendedFor(Key.class,"RESPAWN_LOCATIONS");
 
     /**
      * Represents the {@link Key} for the rotation of an {@link Entity}'s right
@@ -1733,7 +1734,7 @@ public final class Keys {
      *
      * @see BodyPartRotationalData#rightArmDirection()
      */
-    public static final Key<Value<Vector3d>> RIGHT_ARM_ROTATION = KeyFactory.fake("RIGHT_ARM_ROTATION");
+    public static final Key<Value<Vector3d>> RIGHT_ARM_ROTATION = DummyObjectProvider.createExtendedFor(Key.class,"RIGHT_ARM_ROTATION");
 
     /**
      * Represents the {@link Key} for the rotation of an {@link Entity}'s right
@@ -1741,7 +1742,7 @@ public final class Keys {
      *
      * @see BodyPartRotationalData#rightLegDirection()
      */
-    public static final Key<Value<Vector3d>> RIGHT_LEG_ROTATION = KeyFactory.fake("RIGHT_LEG_ROTATION");
+    public static final Key<Value<Vector3d>> RIGHT_LEG_ROTATION = DummyObjectProvider.createExtendedFor(Key.class,"RIGHT_LEG_ROTATION");
 
     /**
      * Represents the {@link Key} for the {@link Rotation} of a block or an
@@ -1749,7 +1750,7 @@ public final class Keys {
      *
      * @see RotationalData
      */
-    public static final Key<Value<Rotation>> ROTATION = KeyFactory.fake("ROTATION");
+    public static final Key<Value<Rotation>> ROTATION = DummyObjectProvider.createExtendedFor(Key.class,"ROTATION");
 
     /**
      * Represents the {@link Key} for representing the {@link SandstoneType}
@@ -1757,7 +1758,7 @@ public final class Keys {
      *
      * @see SandstoneData
      */
-    public static final Key<Value<SandstoneType>> SANDSTONE_TYPE = KeyFactory.fake("SANDSTONE_TYPE");
+    public static final Key<Value<SandstoneType>> SANDSTONE_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"SANDSTONE_TYPE");
 
     /**
      * Represents the {@link Key} for representing the {@link SandType}
@@ -1765,7 +1766,7 @@ public final class Keys {
      *
      * @see SandData
      */
-    public static final Key<Value<SandType>> SAND_TYPE = KeyFactory.fake("SAND_TYPE");
+    public static final Key<Value<SandType>> SAND_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"SAND_TYPE");
 
     /**
      * Represents the {@link Key} for the current saturation of a {@link Living}.
@@ -1775,7 +1776,7 @@ public final class Keys {
      *
      * @see FoodData#saturation()
      */
-    public static final Key<MutableBoundedValue<Double>> SATURATION = KeyFactory.fake("SATURATION");
+    public static final Key<MutableBoundedValue<Double>> SATURATION = DummyObjectProvider.createExtendedFor(Key.class,"SATURATION");
 
     /**
      * Represents the {@link Key} for the "scale" for the size of an
@@ -1783,7 +1784,7 @@ public final class Keys {
      *
      * @see SizeData#scale()
      */
-    public static final Key<MutableBoundedValue<Float>> SCALE = KeyFactory.fake("SCALE");
+    public static final Key<MutableBoundedValue<Float>> SCALE = DummyObjectProvider.createExtendedFor(Key.class,"SCALE");
 
     /**
      * Represents the {@link Key} for representing the "seamless" state
@@ -1791,7 +1792,7 @@ public final class Keys {
      *
      * @see SeamlessData#seamless()
      */
-    public static final Key<Value<Boolean>> SEAMLESS = KeyFactory.fake("SEAMLESS");
+    public static final Key<Value<Boolean>> SEAMLESS = DummyObjectProvider.createExtendedFor(Key.class,"SEAMLESS");
 
     /**
      * Represents the {@link Key} for representing the "should drop" state
@@ -1799,7 +1800,7 @@ public final class Keys {
      *
      * @see DropData#willDrop()
      */
-    public static final Key<Value<Boolean>> SHOULD_DROP = KeyFactory.fake("SHOULD_DROP");
+    public static final Key<Value<Boolean>> SHOULD_DROP = DummyObjectProvider.createExtendedFor(Key.class,"SHOULD_DROP");
 
     /**
      * Represents the {@link Key} for representing the {@link ShrubType}
@@ -1807,14 +1808,14 @@ public final class Keys {
      *
      * @see ShrubData
      */
-    public static final Key<Value<ShrubType>> SHRUB_TYPE = KeyFactory.fake("SHRUB_TYPE");
+    public static final Key<Value<ShrubType>> SHRUB_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"SHRUB_TYPE");
 
     /**
      * Represents the {@link Key} for the lines displayed on a {@link Sign}.
      *
      * @see SignData#lines()
      */
-    public static final Key<ListValue<Text>> SIGN_LINES = KeyFactory.fake("SIGN_LINES");
+    public static final Key<ListValue<Text>> SIGN_LINES = DummyObjectProvider.createExtendedFor(Key.class,"SIGN_LINES");
 
     /**
      * Represents the {@link Key} for the skin of a {@link Humanoid}.
@@ -1825,7 +1826,7 @@ public final class Keys {
      *
      * @see SkinData#skinUniqueId()
      */
-    public static final Key<Value<UUID>> SKIN_UNIQUE_ID = KeyFactory.fake("SKIN_UNIQUE_ID");
+    public static final Key<Value<UUID>> SKIN_UNIQUE_ID = DummyObjectProvider.createExtendedFor(Key.class,"SKIN_UNIQUE_ID");
 
     /**
      * Represents the {@link Key} for the type of skull a block or item stack
@@ -1833,7 +1834,7 @@ public final class Keys {
      *
      * @see SkullData
      */
-    public static final Key<Value<SkullType>> SKULL_TYPE = KeyFactory.fake("SKULL_TYPE");
+    public static final Key<Value<SkullType>> SKULL_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"SKULL_TYPE");
 
     /**
      * Represents the {@link Key} for representing the {@link SlabType}
@@ -1841,14 +1842,14 @@ public final class Keys {
      *
      * @see SlabData
      */
-    public static final Key<Value<SlabType>> SLAB_TYPE = KeyFactory.fake("SLAB_TYPE");
+    public static final Key<Value<SlabType>> SLAB_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"SLAB_TYPE");
 
     /**
      * Represents the {@link Key} for the size of a {@link Slime}.
      *
      * @see SlimeData#size()
      */
-    public static final Key<MutableBoundedValue<Integer>> SLIME_SIZE = KeyFactory.fake("SLIME_SIZE");
+    public static final Key<MutableBoundedValue<Integer>> SLIME_SIZE = DummyObjectProvider.createExtendedFor(Key.class,"SLIME_SIZE");
 
     /**
      * Represents the {@link Key} for representing the "snowed" state
@@ -1856,7 +1857,7 @@ public final class Keys {
      *
      * @see SnowedData#hasSnow()
      */
-    public static final Key<Value<Boolean>> SNOWED = KeyFactory.fake("SNOWED");
+    public static final Key<Value<Boolean>> SNOWED = DummyObjectProvider.createExtendedFor(Key.class,"SNOWED");
 
     /**
      * Represents the {@link Key} for the entity type spawned by an
@@ -1866,7 +1867,7 @@ public final class Keys {
      *
      * @see SpawnableData
      */
-    public static final Key<Value<EntityType>> SPAWNABLE_ENTITY_TYPE = KeyFactory.fake("SPAWNABLE_ENTITY_TYPE");
+    public static final Key<Value<EntityType>> SPAWNABLE_ENTITY_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"SPAWNABLE_ENTITY_TYPE");
 
     /**
      * Represents the {@link Key} for the list of {@link EntityArchetype}s able to be spawned
@@ -1874,7 +1875,7 @@ public final class Keys {
      *
      * @see MobSpawnerData#possibleEntitiesToSpawn()
      */
-    public static final Key<WeightedCollectionValue<EntityArchetype>> SPAWNER_ENTITIES = KeyFactory.fake("SPAWNER_ENTITIES");
+    public static final Key<WeightedCollectionValue<EntityArchetype>> SPAWNER_ENTITIES = DummyObjectProvider.createExtendedFor(Key.class,"SPAWNER_ENTITIES");
 
     /**
      * Represents the {@link Key} for the maximum amount of ticks between two
@@ -1882,7 +1883,7 @@ public final class Keys {
      *
      * @see MobSpawnerData#maximumSpawnDelay()
      */
-    public static final Key<MutableBoundedValue<Short>> SPAWNER_MAXIMUM_DELAY = KeyFactory.fake("SPAWNER_MAXIMUM_DELAY");
+    public static final Key<MutableBoundedValue<Short>> SPAWNER_MAXIMUM_DELAY = DummyObjectProvider.createExtendedFor(Key.class,"SPAWNER_MAXIMUM_DELAY");
 
     /**
      * Represents the {@link Key} for the maximum number of entities around a
@@ -1891,7 +1892,7 @@ public final class Keys {
      *
      * @see MobSpawnerData#maximumNearbyEntities()
      */
-    public static final Key<MutableBoundedValue<Short>> SPAWNER_MAXIMUM_NEARBY_ENTITIES = KeyFactory.fake("SPAWNER_MAXIMUM_NEARBY_ENTITIES");
+    public static final Key<MutableBoundedValue<Short>> SPAWNER_MAXIMUM_NEARBY_ENTITIES = DummyObjectProvider.createExtendedFor(Key.class,"SPAWNER_MAXIMUM_NEARBY_ENTITIES");
 
     /**
      * Represents the {@link Key} for the minimum amount of ticks between two
@@ -1899,7 +1900,7 @@ public final class Keys {
      *
      * @see MobSpawnerData#minimumSpawnDelay()
      */
-    public static final Key<MutableBoundedValue<Short>> SPAWNER_MINIMUM_DELAY = KeyFactory.fake("SPAWNER_MINIMUM_DELAY");
+    public static final Key<MutableBoundedValue<Short>> SPAWNER_MINIMUM_DELAY = DummyObjectProvider.createExtendedFor(Key.class,"SPAWNER_MINIMUM_DELAY");
 
     /**
      * Represents the {@link Key} for the next entity that will be spawned
@@ -1911,7 +1912,7 @@ public final class Keys {
      *
      * @see MobSpawnerData#nextEntityToSpawn()
      */
-    public static final Key<Value<WeightedSerializableObject<EntityArchetype>>> SPAWNER_NEXT_ENTITY_TO_SPAWN = KeyFactory.fake("SPAWNER_NEXT_ENTITY_TO_SPAWN");
+    public static final Key<Value<WeightedSerializableObject<EntityArchetype>>> SPAWNER_NEXT_ENTITY_TO_SPAWN = DummyObjectProvider.createExtendedFor(Key.class,"SPAWNER_NEXT_ENTITY_TO_SPAWN");
 
     /**
      * Represents the {@link Key} for the remaining number of ticks to pass
@@ -1919,7 +1920,7 @@ public final class Keys {
      *
      * @see MobSpawnerData#remainingDelay()
      */
-    public static final Key<MutableBoundedValue<Short>> SPAWNER_REMAINING_DELAY = KeyFactory.fake("SPAWNER_REMAINING_DELAY");
+    public static final Key<MutableBoundedValue<Short>> SPAWNER_REMAINING_DELAY = DummyObjectProvider.createExtendedFor(Key.class,"SPAWNER_REMAINING_DELAY");
 
     /**
      * Represents the {@link Key} for how close a {@link Player} has to be
@@ -1927,7 +1928,7 @@ public final class Keys {
      *
      * @see MobSpawnerData#requiredPlayerRange()
      */
-    public static final Key<MutableBoundedValue<Short>> SPAWNER_REQUIRED_PLAYER_RANGE = KeyFactory.fake("SPAWNER_REQUIRED_PLAYER_RANGE");
+    public static final Key<MutableBoundedValue<Short>> SPAWNER_REQUIRED_PLAYER_RANGE = DummyObjectProvider.createExtendedFor(Key.class,"SPAWNER_REQUIRED_PLAYER_RANGE");
 
     /**
      * Represents the {@link Key} for how many entities a {@link Spawner} has
@@ -1935,7 +1936,7 @@ public final class Keys {
      *
      * @see MobSpawnerData#spawnCount()
      */
-    public static final Key<MutableBoundedValue<Short>> SPAWNER_SPAWN_COUNT = KeyFactory.fake("SPAWNER_SPAWN_COUNT");
+    public static final Key<MutableBoundedValue<Short>> SPAWNER_SPAWN_COUNT = DummyObjectProvider.createExtendedFor(Key.class,"SPAWNER_SPAWN_COUNT");
 
     /**
      * Represents the {@link Key} for how far away from the {@link Spawner} the
@@ -1943,7 +1944,7 @@ public final class Keys {
      *
      * @see MobSpawnerData#spawnRange()
      */
-    public static final Key<MutableBoundedValue<Short>> SPAWNER_SPAWN_RANGE = KeyFactory.fake("SPAWNER_SPAWN_RANGE");
+    public static final Key<MutableBoundedValue<Short>> SPAWNER_SPAWN_RANGE = DummyObjectProvider.createExtendedFor(Key.class,"SPAWNER_SPAWN_RANGE");
 
     /**
      * Represents the {@link Key} for representing the {@link StairShape}
@@ -1951,14 +1952,14 @@ public final class Keys {
      *
      * @see StairShapeData
      */
-    public static final Key<Value<StairShape>> STAIR_SHAPE = KeyFactory.fake("STAIR_SHAPE");
+    public static final Key<Value<StairShape>> STAIR_SHAPE = DummyObjectProvider.createExtendedFor(Key.class,"STAIR_SHAPE");
 
     /**
      * Represents the {@link Key} for the {@link Statistic}s of a {@link Player}.
      *
      * @see StatisticData
      */
-    public static final Key<MapValue<Statistic, Long>> STATISTICS = KeyFactory.fake("STATISTICS");
+    public static final Key<MapValue<Statistic, Long>> STATISTICS = DummyObjectProvider.createExtendedFor(Key.class,"STATISTICS");
 
     /**
      * Represents the {@link Key} for representing the {@link StoneType}
@@ -1966,7 +1967,7 @@ public final class Keys {
      *
      * @see StoneData
      */
-    public static final Key<Value<StoneType>> STONE_TYPE = KeyFactory.fake("STONE_TYPE");
+    public static final Key<Value<StoneType>> STONE_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"STONE_TYPE");
 
     /**
      * Represents the {@link Key} for the enchantments stored on an
@@ -1979,77 +1980,77 @@ public final class Keys {
      *
      * @see StoredEnchantmentData#enchantments()
      */
-    public static final Key<ListValue<Enchantment>> STORED_ENCHANTMENTS = KeyFactory.fake("STORED_ENCHANTMENTS");
+    public static final Key<ListValue<Enchantment>> STORED_ENCHANTMENTS = DummyObjectProvider.createExtendedFor(Key.class,"STORED_ENCHANTMENTS");
 
     /**
      * Represents the {@link Key} for representing the mode of a {@link Structure}.
      *
      * @see StructureData#mode()
      */
-    public static final Key<Value<String>> STRUCTURE_AUTHOR = KeyFactory.fake("STRUCTURE_AUTHOR");
+    public static final Key<Value<String>> STRUCTURE_AUTHOR = DummyObjectProvider.createExtendedFor(Key.class,"STRUCTURE_AUTHOR");
 
     /**
      * Represents the {@link Key} for representing the mode of a {@link Structure}.
      *
      * @see StructureData#mode()
      */
-    public static final Key<Value<Boolean>> STRUCTURE_IGNORE_ENTITIES = KeyFactory.fake("STRUCTURE_IGNORE_ENTITIES");
+    public static final Key<Value<Boolean>> STRUCTURE_IGNORE_ENTITIES = DummyObjectProvider.createExtendedFor(Key.class,"STRUCTURE_IGNORE_ENTITIES");
 
     /**
      * Represents the {@link Key} for representing the mode of a {@link Structure}.
      *
      * @see StructureData#mode()
      */
-    public static final Key<Value<Float>> STRUCTURE_INTEGRITY = KeyFactory.fake("STRUCTURE_INTEGRITY");
+    public static final Key<Value<Float>> STRUCTURE_INTEGRITY = DummyObjectProvider.createExtendedFor(Key.class,"STRUCTURE_INTEGRITY");
 
     /**
      * Represents the {@link Key} for representing the mode of a {@link Structure}.
      *
      * @see StructureData#mode()
      */
-    public static final Key<Value<StructureMode>> STRUCTURE_MODE = KeyFactory.fake("STRUCTURE_MODE");
+    public static final Key<Value<StructureMode>> STRUCTURE_MODE = DummyObjectProvider.createExtendedFor(Key.class,"STRUCTURE_MODE");
 
     /**
      * Represents the {@link Key} for representing the position of a {@link Structure}.
      *
      * @see StructureData#size()
      */
-    public static final Key<Value<Vector3i>> STRUCTURE_POSITION = KeyFactory.fake("STRUCTURE_POSITION");
+    public static final Key<Value<Vector3i>> STRUCTURE_POSITION = DummyObjectProvider.createExtendedFor(Key.class,"STRUCTURE_POSITION");
 
     /**
      * Represents the {@link Key} for representing the mode of a {@link Structure}.
      *
      * @see StructureData#mode()
      */
-    public static final Key<Value<Boolean>> STRUCTURE_POWERED = KeyFactory.fake("STRUCTURE_POWERED");
+    public static final Key<Value<Boolean>> STRUCTURE_POWERED = DummyObjectProvider.createExtendedFor(Key.class,"STRUCTURE_POWERED");
 
     /**
      * Represents the {@link Key} for representing the mode of a {@link Structure}.
      *
      * @see StructureData#mode()
      */
-    public static final Key<Value<Long>> STRUCTURE_SEED = KeyFactory.fake("STRUCTURE_SEED");
+    public static final Key<Value<Long>> STRUCTURE_SEED = DummyObjectProvider.createExtendedFor(Key.class,"STRUCTURE_SEED");
 
     /**
      * Represents the {@link Key} for representing the mode of a {@link Structure}.
      *
      * @see StructureData#mode()
      */
-    public static final Key<Value<Boolean>> STRUCTURE_SHOW_AIR = KeyFactory.fake("STRUCTURE_SHOW_AIR");
+    public static final Key<Value<Boolean>> STRUCTURE_SHOW_AIR = DummyObjectProvider.createExtendedFor(Key.class,"STRUCTURE_SHOW_AIR");
 
     /**
      * Represents the {@link Key} for representing the mode of a {@link Structure}.
      *
      * @see StructureData#mode()
      */
-    public static final Key<Value<Boolean>> STRUCTURE_SHOW_BOUNDING_BOX = KeyFactory.fake("STRUCTURE_SHOW_BOUNDING_BOX");
+    public static final Key<Value<Boolean>> STRUCTURE_SHOW_BOUNDING_BOX = DummyObjectProvider.createExtendedFor(Key.class,"STRUCTURE_SHOW_BOUNDING_BOX");
 
     /**
      * Represents the {@link Key} for representing the size of a {@link Structure}.
      *
      * @see StructureData#size()
      */
-    public static final Key<Value<Vector3i>> STRUCTURE_SIZE = KeyFactory.fake("STRUCTURE_SIZE");
+    public static final Key<Value<Vector3i>> STRUCTURE_SIZE = DummyObjectProvider.createExtendedFor(Key.class,"STRUCTURE_SIZE");
 
     /**
      * Represents the {@link Key} for representing the amount of "stuck arrows"
@@ -2057,7 +2058,7 @@ public final class Keys {
      *
      * @see StuckArrowsData#stuckArrows()
      */
-    public static final Key<MutableBoundedValue<Integer>> STUCK_ARROWS = KeyFactory.fake("STUCK_ARROWS");
+    public static final Key<MutableBoundedValue<Integer>> STUCK_ARROWS = DummyObjectProvider.createExtendedFor(Key.class,"STUCK_ARROWS");
 
     /**
      * Reprsents a key for the amount of successful executions of a command
@@ -2065,13 +2066,13 @@ public final class Keys {
      *
      * @see CommandData#successCount()
      */
-    public static final Key<MutableBoundedValue<Integer>> SUCCESS_COUNT = KeyFactory.fake("SUCCESS_COUNT");
+    public static final Key<MutableBoundedValue<Integer>> SUCCESS_COUNT = DummyObjectProvider.createExtendedFor(Key.class,"SUCCESS_COUNT");
 
     /**
      * Represents the {@link Key} for representing the "suspended" state
      * of a {@link BlockState}.
      */
-    public static final Key<Value<Boolean>> SUSPENDED = KeyFactory.fake("SUSPENDED");
+    public static final Key<Value<Boolean>> SUSPENDED = DummyObjectProvider.createExtendedFor(Key.class,"SUSPENDED");
 
     /**
      * Represents the {@link Key} for the owner uuid of a tamed {@link Animal}.
@@ -2081,7 +2082,7 @@ public final class Keys {
      *
      * @see TameableData#owner()
      */
-    public static final Key<OptionalValue<UUID>> TAMED_OWNER = KeyFactory.fake("TAMED_OWNER");
+    public static final Key<OptionalValue<UUID>> TAMED_OWNER = DummyObjectProvider.createExtendedFor(Key.class,"TAMED_OWNER");
 
     /**
      * Represents the {@link Key} for the location targeted by an
@@ -2089,7 +2090,7 @@ public final class Keys {
      *
      * @see TargetedLocationData#target()
      */
-    public static final Key<Value<Vector3d>> TARGETED_LOCATION = KeyFactory.fake("TARGETED_LOCATION");
+    public static final Key<Value<Vector3d>> TARGETED_LOCATION = DummyObjectProvider.createExtendedFor(Key.class,"TARGETED_LOCATION");
 
     /**
      * Represents the {@link Key} for the remaining fuse time in ticks of a
@@ -2098,7 +2099,7 @@ public final class Keys {
      *
      * @see FuseData#ticksRemaining()
      */
-    public static final Key<Value<Integer>> TICKS_REMAINING = KeyFactory.fake("TICKS_REMAINING");
+    public static final Key<Value<Integer>> TICKS_REMAINING = DummyObjectProvider.createExtendedFor(Key.class,"TICKS_REMAINING");
 
     /**
      * Represents the {@link Key} for the full amount of experience a
@@ -2106,7 +2107,7 @@ public final class Keys {
      *
      * @see ExperienceHolderData#totalExperience()
      */
-    public static final Key<MutableBoundedValue<Integer>> TOTAL_EXPERIENCE = KeyFactory.fake("TOTAL_EXPERIENCE");
+    public static final Key<MutableBoundedValue<Integer>> TOTAL_EXPERIENCE = DummyObjectProvider.createExtendedFor(Key.class,"TOTAL_EXPERIENCE");
 
     /**
      * Represents the {@link Key} for whether a {@link CommandBlock} does track
@@ -2117,7 +2118,7 @@ public final class Keys {
      *
      * @see CommandData#doesTrackOutput()
      */
-    public static final Key<Value<Boolean>> TRACKS_OUTPUT = KeyFactory.fake("TRACKS_OUTPUT");
+    public static final Key<Value<Boolean>> TRACKS_OUTPUT = DummyObjectProvider.createExtendedFor(Key.class,"TRACKS_OUTPUT");
 
     /**
      * Represents the {@link Key} for the {@link TradeOffer}s offered by a
@@ -2125,7 +2126,7 @@ public final class Keys {
      *
      * @see TradeOfferData#tradeOffers()
      */
-    public static final Key<ListValue<TradeOffer>> TRADE_OFFERS = KeyFactory.fake("TRADE_OFFERS");
+    public static final Key<ListValue<TradeOffer>> TRADE_OFFERS = DummyObjectProvider.createExtendedFor(Key.class,"TRADE_OFFERS");
 
     /**
      * Represents the {@link Key} for representing the {@link TreeType}
@@ -2133,7 +2134,7 @@ public final class Keys {
      *
      * @see TreeData
      */
-    public static final Key<Value<TreeType>> TREE_TYPE = KeyFactory.fake("TREE_TYPE");
+    public static final Key<Value<TreeType>> TREE_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"TREE_TYPE");
 
     /**
      * Represents the {@link Key} for whether an {@link ItemStack} is unbreakable.
@@ -2143,7 +2144,7 @@ public final class Keys {
      *
      * @see DurabilityData#unbreakable()
      */
-    public static final Key<Value<Boolean>> UNBREAKABLE = KeyFactory.fake("UNBREAKABLE");
+    public static final Key<Value<Boolean>> UNBREAKABLE = DummyObjectProvider.createExtendedFor(Key.class,"UNBREAKABLE");
 
     /**
      * Gets the {@link Key} for the "vanish" state of an {@link Entity}.
@@ -2158,7 +2159,7 @@ public final class Keys {
      *
      * @see Keys#VANISH
      */
-    public static final Key<Value<Boolean>> VANISH = KeyFactory.fake("VANISH");
+    public static final Key<Value<Boolean>> VANISH = DummyObjectProvider.createExtendedFor(Key.class,"VANISH");
 
     /**
      * Represents the {@link Key} for whether an {@link Entity} ignores collision
@@ -2169,7 +2170,7 @@ public final class Keys {
      *
      * @see InvisibilityData#ignoresCollisionDetection()
      */
-    public static final Key<Value<Boolean>> VANISH_IGNORES_COLLISION = KeyFactory.fake("VANISH_IGNORES_COLLISION");
+    public static final Key<Value<Boolean>> VANISH_IGNORES_COLLISION = DummyObjectProvider.createExtendedFor(Key.class,"VANISH_IGNORES_COLLISION");
 
     /**
      * Represents the {@link Key} for
@@ -2183,7 +2184,7 @@ public final class Keys {
      *
      * @see InvisibilityData#untargetable()
      */
-    public static final Key<Value<Boolean>> VANISH_PREVENTS_TARGETING = KeyFactory.fake("VANISH_PREVENTS_TARGETING");
+    public static final Key<Value<Boolean>> VANISH_PREVENTS_TARGETING = DummyObjectProvider.createExtendedFor(Key.class,"VANISH_PREVENTS_TARGETING");
 
     /**
      * Represents the {@link Key} for the vehicle an {@link Entity} is riding.
@@ -2193,21 +2194,21 @@ public final class Keys {
      *
      * @see VehicleData#vehicle()
      */
-    public static final Key<Value<EntitySnapshot>> VEHICLE = KeyFactory.fake("VEHICLE");
+    public static final Key<Value<EntitySnapshot>> VEHICLE = DummyObjectProvider.createExtendedFor(Key.class,"VEHICLE");
 
     /**
      * Represents the {@link Key} for the velocity of an {@link Entity}.
      *
      * @see VelocityData#velocity()
      */
-    public static final Key<Value<Vector3d>> VELOCITY = KeyFactory.fake("VELOCITY");
+    public static final Key<Value<Vector3d>> VELOCITY = DummyObjectProvider.createExtendedFor(Key.class,"VELOCITY");
 
     /**
      * Represents the {@link Key} for the speed at which an entity walks.
      *
      * @see MovementSpeedData#walkSpeed()
      */
-    public static final Key<Value<Double>> WALKING_SPEED = KeyFactory.fake("WALKING_SPEED");
+    public static final Key<Value<Double>> WALKING_SPEED = DummyObjectProvider.createExtendedFor(Key.class,"WALKING_SPEED");
 
     /**
      * Represents the {@link Key} for the type of
@@ -2215,7 +2216,7 @@ public final class Keys {
      *
      * @see WallData
      */
-    public static final Key<Value<WallType>> WALL_TYPE = KeyFactory.fake("WALL_TYPE");
+    public static final Key<Value<WallType>> WALL_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"WALL_TYPE");
 
     /**
      * Represents the {@link Key} for whether a thrown {@link EyeOfEnder} will
@@ -2223,7 +2224,7 @@ public final class Keys {
      *
      * @see ShatteringData#willShatter()
      */
-    public static final Key<Value<Boolean>> WILL_SHATTER = KeyFactory.fake("WILL_SHATTER");
+    public static final Key<Value<Boolean>> WILL_SHATTER = DummyObjectProvider.createExtendedFor(Key.class,"WILL_SHATTER");
 
     /**
      * Represents the {@link Key} for how a {@link BlockTypes#REDSTONE_WIRE} is
@@ -2231,7 +2232,7 @@ public final class Keys {
      *
      * @see WireAttachmentData#wireAttachments()
      */
-    public static final Key<MapValue<Direction, WireAttachmentType>> WIRE_ATTACHMENTS = KeyFactory.fake("WIRE_ATTACHMENTS");
+    public static final Key<MapValue<Direction, WireAttachmentType>> WIRE_ATTACHMENTS = DummyObjectProvider.createExtendedFor(Key.class,"WIRE_ATTACHMENTS");
 
     /**
      * Represents the {@link Key} for how a {@link BlockTypes#REDSTONE_WIRE} is
@@ -2239,7 +2240,7 @@ public final class Keys {
      *
      * @see WireAttachmentData#wireAttachmentEast()
      */
-    public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_EAST = KeyFactory.fake("WIRE_ATTACHMENT_EAST");
+    public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_EAST = DummyObjectProvider.createExtendedFor(Key.class,"WIRE_ATTACHMENT_EAST");
 
     /**
      * Represents the {@link Key} for how a {@link BlockTypes#REDSTONE_WIRE} is
@@ -2247,7 +2248,7 @@ public final class Keys {
      *
      * @see WireAttachmentData#wireAttachmentNorth()
      */
-    public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_NORTH = KeyFactory.fake("WIRE_ATTACHMENT_NORTH");
+    public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_NORTH = DummyObjectProvider.createExtendedFor(Key.class,"WIRE_ATTACHMENT_NORTH");
 
     /**
      * Represents the {@link Key} for how a {@link BlockTypes#REDSTONE_WIRE} is
@@ -2255,7 +2256,7 @@ public final class Keys {
      *
      * @see WireAttachmentData#wireAttachmentSouth()
      */
-    public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_SOUTH = KeyFactory.fake("WIRE_ATTACHMENT_SOUTH");
+    public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_SOUTH = DummyObjectProvider.createExtendedFor(Key.class,"WIRE_ATTACHMENT_SOUTH");
 
     /**
      * Represents the {@link Key} for how a {@link BlockTypes#REDSTONE_WIRE} is
@@ -2263,7 +2264,7 @@ public final class Keys {
      *
      * @see WireAttachmentData#wireAttachmentWest()
      */
-    public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_WEST = KeyFactory.fake("WIRE_ATTACHMENT_WEST");
+    public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_WEST = DummyObjectProvider.createExtendedFor(Key.class,"WIRE_ATTACHMENT_WEST");
 
     // SORTFIELDS:OFF
 

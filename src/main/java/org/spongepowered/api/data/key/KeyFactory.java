@@ -26,7 +26,6 @@ package org.spongepowered.api.data.key;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
-import com.google.common.base.Objects;
 import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.data.DataView;
@@ -42,13 +41,14 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-import javax.annotation.Nullable;
-
 /**
  * A factory of {@link Key}s, useful for both the implementation of SpongeAPI,
  * and for plugins wishing to provide their own {@link Key}s without having to
  * remain afraid of having to cast back and forth.
+ * @deprecated To be removed in future API versions. Use {@link Key#builder()}
+ *    to create keys.
  */
+@Deprecated
 public final class KeyFactory {
 
     private KeyFactory() {}
@@ -70,58 +70,19 @@ public final class KeyFactory {
      * @param id The id for the new key
      * @param name The name for the new key
      * @return The generated key
+     * @deprecated Use {@link Key#builder()} to build keys. Implementation is
+     *     being removed in future API versions
      */
+    @Deprecated
     public static <E, V extends BaseValue<E>> Key<V> makeSingleKey(final TypeToken<E> elementToken, final TypeToken<V> valueToken,
             final DataQuery query, final String id, final String name) {
         validateId(id);
-        return new Key<V>() {
-
-            @Nullable private String string;
-
-
-            @Override
-            public String getId() {
-                return id;
-            }
-
-            @Override
-            public String getName() {
-                return name;
-            }
-
-            private final int hash = Objects.hashCode(elementToken, valueToken, query);
-
-            @Override
-            public TypeToken<V> getValueToken() {
-                return valueToken;
-            }
-
-            @Override
-            public TypeToken<?> getElementToken() {
-                return elementToken;
-            }
-
-            @Override
-            public DataQuery getQuery() {
-                return query;
-            }
-
-            @Override
-            public int hashCode() {
-                return this.hash;
-            }
-
-            @Override
-            public String toString() {
-                if (this.string == null) {
-                    this.string = "Key{Value:" + valueToken.getRawType().getSimpleName() + "<"
-                            + elementToken.getRawType().getSimpleName() + ">, Query: "
-                            + query.toString() + "}";
-                }
-
-                return this.string;
-            }
-        };
+        return Key.builder()
+            .type(valueToken)
+            .id(id)
+            .name(name)
+            .query(query)
+            .build();
     }
 
     /**
@@ -135,53 +96,19 @@ public final class KeyFactory {
      * @param id The id for the new key
      * @param name The name for the new key
      * @return The generated key
+     * @deprecated Use {@link Key#builder()} to build keys. Implementation is
+     *     being removed in future API versions
      */
+    @Deprecated
     public static <E> Key<ListValue<E>> makeListKey(final TypeToken<? extends List<E>> elementToken, final TypeToken<ListValue<E>> valueToken,
             final DataQuery query, final String id, final String name) {
         validateId(id);
-        return new Key<ListValue<E>>() {
-            @Nullable private String string;
-
-            @Override
-            public String getId() {
-                return id;
-            }
-
-            @Override
-            public String getName() {
-                return name;
-            }
-
-            private final int hash = Objects.hashCode(ListValue.class, elementToken, query);
-
-            @Override
-            public TypeToken<ListValue<E>> getValueToken() {
-                return valueToken;
-            }
-
-            @Override
-            public TypeToken<?> getElementToken() {
-                return elementToken;
-            }
-
-            @Override
-            public DataQuery getQuery() {
-                return query;
-            }
-
-            @Override
-            public int hashCode() {
-                return this.hash;
-            }
-
-            @Override
-            public String toString() {
-                if (this.string == null) {
-                    this.string = "Key{Value:ListValue<" + elementToken.toString() + ">, Query: " + query.toString() + "}";
-                }
-                return this.string;
-            }
-        };
+        return Key.builder()
+            .type(valueToken)
+            .id(id)
+            .name(name)
+            .query(query)
+            .build();
     }
 
     /**
@@ -195,54 +122,19 @@ public final class KeyFactory {
      * @param id The id for the new key
      * @param name The name for the new key
      * @return The generated key
+     * @deprecated Use {@link Key#builder()} to build keys. Implementation is
+     *     being removed in future API versions
      */
+    @Deprecated
     public static <E> Key<SetValue<E>> makeSetKey(final TypeToken<? extends Set<E>> elementToken, TypeToken<SetValue<E>> valueToken,
             final DataQuery query, final String id, final String name) {
         validateId(id);
-        return new Key<SetValue<E>>() {
-
-            @Nullable private String string;
-
-            @Override
-            public String getId() {
-                return id;
-            }
-
-            @Override
-            public String getName() {
-                return name;
-            }
-
-            private final int hash = Objects.hashCode(ListValue.class, elementToken, query);
-
-            @Override
-            public TypeToken<SetValue<E>> getValueToken() {
-                return valueToken;
-            }
-
-            @Override
-            public TypeToken<?> getElementToken() {
-                return elementToken;
-            }
-
-            @Override
-            public DataQuery getQuery() {
-                return query;
-            }
-
-            @Override
-            public int hashCode() {
-                return this.hash;
-            }
-
-            @Override
-            public String toString() {
-                if (this.string == null) {
-                    this.string = "Key{Value:" + "SetValue<" + elementToken.toString() + ">, Query: " + query.toString() + "}";
-                }
-                return this.string;
-            }
-        };
+        return Key.builder()
+            .type(valueToken)
+            .id(id)
+            .name(name)
+            .query(query)
+            .build();
     }
 
     /**
@@ -258,55 +150,19 @@ public final class KeyFactory {
      * @param id The id for the new key
      * @param name The name for the new key
      * @return The generated key
+     * @deprecated Use {@link Key#builder()} to build keys. Implementation is
+     *     being removed in future API versions
      */
+    @Deprecated
     public static <K, V> Key<MapValue<K, V>> makeMapKey(final TypeToken<Map<K, V>> elementToken, final TypeToken<MapValue<K, V>> valueToken,
                 final DataQuery query, final String id, final String name) {
         validateId(id);
-        return new Key<MapValue<K, V>>() {
-
-            @Nullable private String string;
-
-            @Override
-            public String getId() {
-                return id;
-            }
-
-            @Override
-            public String getName() {
-                return name;
-            }
-
-            private final int hash = Objects.hashCode(elementToken, valueToken, query);
-
-            @Override
-            public TypeToken<MapValue<K, V>> getValueToken() {
-                return valueToken;
-            }
-
-            @Override
-            public TypeToken<?> getElementToken() {
-                return elementToken;
-            }
-
-            @Override
-            public DataQuery getQuery() {
-                return query;
-            }
-
-            @Override
-            public int hashCode() {
-                return this.hash;
-            }
-
-            @Override
-            public String toString() {
-                if (this.string == null) {
-                    this.string = "Key{Value:" + "MapValue<" + elementToken.toString() + ","
-                                  + valueToken.toString() + ">, Query: " + query.toString() + "}";
-                }
-                return this.string;
-            }
-        };
+        return Key.builder()
+            .type(valueToken)
+            .id(id)
+            .name(name)
+            .query(query)
+            .build();
     }
 
     /**
@@ -321,53 +177,19 @@ public final class KeyFactory {
      * @param id The id for the new key
      * @param name The name for the new key
      * @return The generated key
+     * @deprecated Use {@link Key#builder()} to build keys. Implementation is
+     *     being removed in future API versions
      */
+    @Deprecated
     public static <E> Key<OptionalValue<E>> makeOptionalKey(final TypeToken<Optional<E>> elementToken, TypeToken<OptionalValue<E>> valueToken,
             final DataQuery query, final String id, final String name) {
         validateId(id);
-        return new Key<OptionalValue<E>>() {
-            @Nullable private String string;
-
-            @Override
-            public String getId() {
-                return id;
-            }
-
-            @Override
-            public String getName() {
-                return name;
-            }
-
-            private final int hash = Objects.hashCode(Optional.class, elementToken, query);
-
-            @Override
-            public TypeToken<OptionalValue<E>> getValueToken() {
-                return valueToken;
-            }
-
-            @Override
-            public TypeToken<?> getElementToken() {
-                return elementToken;
-            }
-
-            @Override
-            public DataQuery getQuery() {
-                return query;
-            }
-
-            @Override
-            public int hashCode() {
-                return this.hash;
-            }
-
-            @Override
-            public String toString() {
-                if (this.string == null) {
-                    this.string = "Key{Value:" + "OptionalValue<" + elementToken.toString() + ">, Query: " + query.toString() + "}";
-                }
-                return this.string;
-            }
-        };
+        return Key.builder()
+            .type(valueToken)
+            .id(id)
+            .name(name)
+            .query(query)
+            .build();
     }
 
     private static void validateId(String id) {
@@ -377,6 +199,8 @@ public final class KeyFactory {
 
     static <E, V extends BaseValue<E>> Key<V> fake(final String keyName) {
         return new Key<V>() {
+            final TypeToken<V> token = new TypeToken<V>() {};
+
             @Override
             public String getId() {
                 throw new UnsupportedOperationException("Key " + keyName + " is not implemented");
