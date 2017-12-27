@@ -28,10 +28,13 @@ import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.ValueContainer;
+import org.spongepowered.api.event.EventListener;
+import org.spongepowered.api.event.data.ChangeDataHolderEvent;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.TypeTokens;
 
@@ -81,6 +84,8 @@ public interface Key<V extends BaseValue<?>> extends CatalogType {
      * @return The recommended {@link DataQuery} for use
      */
     DataQuery getQuery();
+
+    <E extends DataHolder> void registerEvent(Class<E> holderFilter, EventListener<ChangeDataHolderEvent.ValueChange> listener);
 
     interface Builder<E, V extends BaseValue<E>> extends ResettableBuilder<Key<V>, Builder<E, V>> {
 
