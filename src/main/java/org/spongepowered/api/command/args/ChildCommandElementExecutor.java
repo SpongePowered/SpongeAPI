@@ -176,7 +176,12 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
 
     @Override
     public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
-        if (this.fallbackExecutor != null && this.fallbackElements == null && !args.hasNext()) {
+        if (this.fallbackExecutor != null && !args.hasNext()) {
+            if (this.fallbackElements != null) {
+                // there might be optionals to take account of that would parse this successfully.
+                this.fallbackElements.parse(source, args, context);
+            }
+
             return; // execute the fallback regardless in this scenario.
         }
 

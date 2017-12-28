@@ -284,7 +284,7 @@ public final class CommandSpec implements CommandCallable {
          * @return the new spec
          */
         public CommandSpec build() {
-            if (this.childCommandMap == null) {
+            if (this.childCommandMap == null || this.childCommandMap.isEmpty()) {
                 checkNotNull(this.executor, "An executor is required");
             } else if (this.executor == null) {
                 arguments(this.args, registerInDispatcher(new ChildCommandElementExecutor(null, null, false)));

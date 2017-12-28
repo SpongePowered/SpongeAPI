@@ -32,6 +32,7 @@ import static org.mockito.Mockito.when;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
 import org.junit.Before;
 import org.junit.Test;
 import org.spongepowered.api.Game;
@@ -67,6 +68,61 @@ public class ChildCommandsTest {
         when(game.getCommandManager()).thenReturn(cm);
         TestHooks.setGame(game);
         TestHooks.setInstance("commandManager", cm);
+    }
+
+    @Test
+    public void testEmptyChildrenWorks() throws CommandException {
+        final AtomicBoolean parent = new AtomicBoolean();
+        final CommandSpec spec = CommandSpec.builder()
+                .children(ImmutableMap.<List<String>, CommandSpec>of())
+                .executor((s, c) -> {
+                    parent.set(true);
+                    return CommandResult.success();
+                })
+                .build();
+        final SimpleDispatcher execute = new SimpleDispatcher();
+        execute.register(spec, "emptyparent");
+        execute.process(mock(CommandSource.class), "emptyparent");
+
+        assertTrue(parent.get());
+    }
+
+    @Test
+    public void testEmptyChildrenWorksWithArgument() throws CommandException {
+        final AtomicBoolean parent = new AtomicBoolean();
+        final CommandSpec spec = CommandSpec.builder()
+                .arguments(GenericArguments.optional(GenericArguments.string(Text.of("a"))))
+                .children(ImmutableMap.<List<String>, CommandSpec>of())
+                .executor((s, c) -> {
+                    parent.set(true);
+                    return CommandResult.success();
+                })
+                .build();
+        final SimpleDispatcher execute = new SimpleDispatcher();
+        execute.register(spec, "emptyparentwith");
+        execute.process(mock(CommandSource.class), "emptyparentwith child");
+
+        assertTrue(parent.get());
+    }
+
+    @Test
+    public void testEmptyChildrenWorksWithOptionalArgument() throws CommandException {
+        final AtomicBoolean parent = new AtomicBoolean();
+        final CommandSpec spec = CommandSpec.builder()
+                .arguments(GenericArguments.optional(GenericArguments.string(Text.of("b"))))
+                .children(ImmutableMap.<List<String>, CommandSpec>builder()
+                        .put(Lists.newArrayList("aaa"),
+                                CommandSpec.builder().executor((s, c) -> CommandResult.empty()).build()).build())
+                .executor((s, c) -> {
+                    parent.set(true);
+                    return CommandResult.success();
+                })
+                .build();
+        final SimpleDispatcher execute = new SimpleDispatcher();
+        execute.register(spec, "emptyparentwithopt");
+        execute.process(mock(CommandSource.class), "emptyparentwithopt");
+
+        assertTrue(parent.get());
     }
 
     @Test
