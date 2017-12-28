@@ -56,8 +56,10 @@ public interface AdvancementTree extends CatalogType {
      *
      * @return The background texture
      */
-    // TODO: Use ResourcePath, or something similar?
-    String getBackground();
+    // TODO: Deprecate when ResourcePath is available
+    String getBackgroundPath();
+
+    // ResourcePath getBackground();
 
     /**
      * A builder to create {@link AdvancementTree}s.
@@ -83,16 +85,42 @@ public interface AdvancementTree extends CatalogType {
          * @param background The background
          * @return This builder, for chaining
          */
-        // TODO: Use ResourcePath, or something similar?
+        // TODO: Deprecate when ResourcePath is available
         Builder background(String background);
 
+        // Builder background(ResourcePath background);
+
         /**
-         * Builds the {@link AdvancementTree} with the specified
-         * identifier (without the namespace).
+         * Sets the identifier of the {@link AdvancementTree}
+         * (without the namespace).
          *
          * @param id The identifier
+         * @return This builder, for chaining
+         */
+        Builder id(String id);
+
+        /**
+         * Sets the name of the {@link AdvancementTree}. Defaults to
+         * the plain {@link DisplayInfo#getTitle()} of the root
+         * {@link Advancement} if  {@link DisplayInfo} is present.
+         * Otherwise will it default to the identifier ({@link #id(String)}).
+         *
+         * @param name The name
+         * @return This builder, for chaining
+         */
+        Builder name(String name);
+
+        /**
+         * Builds the {@link AdvancementTree}.
+         *
          * @return The advancement tree
          */
-        AdvancementTree build(String id);
+        AdvancementTree build();
+
+        @Override
+        @Deprecated
+        default Builder from(AdvancementTree value) throws UnsupportedOperationException {
+            throw new UnsupportedOperationException("Cannot create duplicate advancement trees!");
+        }
     }
 }

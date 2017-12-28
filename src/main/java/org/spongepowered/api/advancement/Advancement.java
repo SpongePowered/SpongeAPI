@@ -132,12 +132,36 @@ public interface Advancement extends CatalogType, TextRepresentable {
         Builder displayInfo(@Nullable DisplayInfo displayInfo);
 
         /**
-         * Builds the {@link Advancement} with the specified identifier
+         * Sets the identifier of the {@link Advancement}
          * (without the namespace).
          *
          * @param id The identifier
+         * @return This builder, for chaining
+         */
+        Builder id(String id);
+
+        /**
+         * Sets the name of the {@link Advancement}. Defaults to
+         * the plain {@link DisplayInfo#getTitle()} if the
+         * {@link DisplayInfo} is present. Otherwise will it default
+         * to the identifier ({@link #id(String)}).
+         *
+         * @param name The name
+         * @return This builder, for chaining
+         */
+        Builder name(String name);
+
+        /**
+         * Builds the {@link Advancement}.
+         *
          * @return The advancement
          */
-        Advancement build(String id);
+        Advancement build();
+
+        @Override
+        @Deprecated
+        default Builder from(Advancement value) throws UnsupportedOperationException {
+            throw new UnsupportedOperationException("Cannot create duplicate advancements!");
+        }
     }
 }

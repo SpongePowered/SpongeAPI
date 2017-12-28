@@ -146,13 +146,20 @@ public interface AdvancementCriterion {
         B trigger(FilteredTrigger<?> trigger);
 
         /**
-         * Builds a new {@link AdvancementCriterion} with the specified
-         * name. Names can be shared between multiple criteria, although
-         * it should be avoided when using them for the same {@link Advancement}.
+         * Sets the name of the {@link AdvancementCriterion}. Names can be shared
+         * between multiple criteria, although it isn't allowed when using
+         * them for the same {@link Advancement}.
          *
          * @param name The name
+         * @return This builder, for chaining
+         */
+        B name(String name);
+
+        /**
+         * Builds a new {@link AdvancementCriterion}.
+         *
          * @return The criterion
          */
-        T build(String name);
+        T build();
     }
 }

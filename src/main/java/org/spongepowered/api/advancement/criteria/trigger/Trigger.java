@@ -168,11 +168,34 @@ public interface Trigger<C extends FilteredTriggerConfiguration> extends Catalog
         Builder<C> listener(Consumer<CriterionEvent.Trigger<C>> eventListener);
 
         /**
-         * Builds a {@link Trigger} with the given identifier (without the namespace).
+         * Sets the identifier of the {@link Trigger}
+         * (without the namespace).
          *
          * @param id The identifier
+         * @return This builder, for chaining
+         */
+        Builder<C> id(String id);
+
+        /**
+         * Sets the name of the {@link Trigger}. Defaults
+         * to the identifier ({@link #id(String)}).
+         *
+         * @param name The name
+         * @return This builder, for chaining
+         */
+        Builder<C> name(String name);
+
+        /**
+         * Builds a {@link Trigger}.
+         *
          * @return The trigger type
          */
-        Trigger<C> build(String id);
+        Trigger<C> build();
+
+        @Override
+        @Deprecated
+        default Builder<C> from(Trigger<C> value) throws UnsupportedOperationException {
+            throw new UnsupportedOperationException("Cannot create duplicate triggers!");
+        }
     }
 }
