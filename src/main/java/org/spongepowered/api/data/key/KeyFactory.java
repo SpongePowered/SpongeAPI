@@ -197,35 +197,4 @@ public final class KeyFactory {
         checkArgument(id.contains(":"), "A key must have a plugin id prefix with \":\" separating the plugin id and key id!");
     }
 
-    static <E, V extends BaseValue<E>> Key<V> fake(final String keyName) {
-        return new Key<V>() {
-            final TypeToken<V> token = new TypeToken<V>() {};
-
-            @Override
-            public String getId() {
-                throw new UnsupportedOperationException("Key " + keyName + " is not implemented");
-            }
-
-            @Override
-            public String getName() {
-                throw new UnsupportedOperationException("Key " + keyName + " is not implemented");
-            }
-
-            @Override
-            public TypeToken<V> getValueToken() {
-                throw new UnsupportedOperationException("Key " + keyName + " is not implemented");
-            }
-
-            @Override
-            public TypeToken<?> getElementToken() {
-                throw new UnsupportedOperationException("Key " + keyName + " is not implemented");
-            }
-
-            @Override
-            public DataQuery getQuery() {
-                throw new UnsupportedOperationException("Key " + keyName + " is not implemented");
-            }
-        };
-    }
-
 }
