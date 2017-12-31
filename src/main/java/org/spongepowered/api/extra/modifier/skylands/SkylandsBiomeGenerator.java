@@ -31,7 +31,10 @@ import org.spongepowered.api.world.gen.BiomeGenerator;
 
 /**
  * A biome generator for a Skylands look-alike.
+ *
+ * @deprecated Will be removed from the api
  */
+@Deprecated
 public class SkylandsBiomeGenerator implements BiomeGenerator {
 
     @Override

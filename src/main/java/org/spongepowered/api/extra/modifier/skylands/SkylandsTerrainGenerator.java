@@ -42,7 +42,10 @@ import org.spongepowered.api.world.gen.GenerationPopulator;
 
 /**
  * A terrain generator for a Skylands look-alike.
+ *
+ * @deprecated Will be removed from the api
  */
+@Deprecated
 public class SkylandsTerrainGenerator implements GenerationPopulator {
 
     private static final int MID_POINT = 64;

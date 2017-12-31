@@ -33,7 +33,10 @@ import org.spongepowered.api.world.extent.MutableBlockVolume;
 /**
  * Private utility methods for the Skylands generator too specific to be made
  * public.
+ *
+ * @deprecated Will be removed from the api
  */
+@Deprecated
 class SkylandsUtil {
 
     /**

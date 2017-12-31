@@ -36,7 +36,10 @@ import org.spongepowered.api.world.gen.GenerationPopulator;
 
 /**
  * Places grass and dirt on the blocks just bellow air.
+ *
+ * @deprecated Will be removed from the api
  */
+@Deprecated
 public class SkylandsGroundCoverPopulator implements GenerationPopulator {
 
     @SuppressWarnings("ConstantConditions")
