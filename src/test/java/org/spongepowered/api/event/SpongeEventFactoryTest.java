@@ -31,6 +31,7 @@ import static org.mockito.Mockito.withSettings;
 import com.flowpowered.math.vector.Vector3d;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
+import com.google.common.reflect.TypeToken;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -44,6 +45,7 @@ import org.spongepowered.api.event.entity.AttackEntityEvent;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.event.entity.HealEntityEvent;
 import org.spongepowered.api.event.entity.ai.AITaskEvent;
+import org.spongepowered.api.event.game.GameRegistryEvent;
 import org.spongepowered.api.event.impl.AbstractEvent;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.PEBKACException;
@@ -54,6 +56,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.net.InetSocketAddress;
 import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -68,7 +71,8 @@ import javax.annotation.Nullable;
 public class SpongeEventFactoryTest {
 
     private static final Set<Class<?>> excludedEvents = ImmutableSet.of(DamageEntityEvent.class, HealEntityEvent.class,
-        AITaskEvent.class, AITaskEvent.Add.class, AITaskEvent.Remove.class, AttackEntityEvent.class);
+            AITaskEvent.class, AITaskEvent.Add.class, AITaskEvent.Remove.class, AttackEntityEvent.class,
+            GameRegistryEvent.Register.class);
 
     private static final Set<String> excludedMethods = ImmutableSet.of("getEntitySnapshots");
 
@@ -236,6 +240,10 @@ public class SpongeEventFactoryTest {
             return Text.of();
         } else if (paramType == Duration.class) {
             return Duration.ZERO;
+        } else if (paramType == Instant.class) {
+            return Instant.now();
+        } else if (paramType == TypeToken.class) {
+            return TypeToken.of(Object.class);
         } else {
             return mock(paramType, withSettings().defaultAnswer(EVENT_MOCKING_ANSWER));
         }
