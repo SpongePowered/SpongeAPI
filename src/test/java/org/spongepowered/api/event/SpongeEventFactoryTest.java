@@ -58,6 +58,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
+import java.util.OptionalInt;
 import java.util.Set;
 import java.util.UUID;
 
@@ -205,6 +206,8 @@ public class SpongeEventFactoryTest {
             return "Cupcakes";
         } else if (paramType == Optional.class) {
             return Optional.empty();
+        } else if (paramType == OptionalInt.class) {
+            return OptionalInt.empty();
         } else if (Enum.class.isAssignableFrom(paramType)) {
             return paramType.getEnumConstants()[0];
         } else if (Location.class.isAssignableFrom(paramType)) {

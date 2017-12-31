@@ -59,16 +59,20 @@ public interface CooldownTracker {
      *
      * @param type The item type to set the cooldown for
      * @param ticks The amount of ticks to set the item type on cooldown for
+     * @return False if setting the cooldown failed, possibly due to the event
+     *     being cancelled
      */
-    void setCooldown(ItemType type, int ticks);
+    boolean setCooldown(ItemType type, int ticks);
 
     /**
      * Resets the cooldown of the specified {@link ItemType} for the
      * player.
      *
      * @param type The item type to reset the cooldown for
+     * @return False if setting the cooldown failed, possibly due to the event
+     *     being cancelled
      */
-    void resetCooldown(ItemType type);
+    boolean resetCooldown(ItemType type);
 
     /**
      * Gets the fraction of the specified {@link ItemType}'s cooldown that
