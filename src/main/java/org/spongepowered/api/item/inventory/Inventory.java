@@ -432,7 +432,11 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
     default <T extends Inventory> T query(Class<?>... types) {
         QueryOperation<?>[] operations = new QueryOperation<?>[types.length];
         for (int i = 0; i < types.length; i++) {
-            operations[i] = QueryOperationTypes.INVENTORY_TYPE.of(types[i].asSubclass(Inventory.class));
+            if (Inventory.class.isAssignableFrom(types[i])) {
+                operations[i] = QueryOperationTypes.INVENTORY_TYPE.of(types[i].asSubclass(Inventory.class));
+            } else {
+                operations[i] = QueryOperationTypes.TYPE.of(types[i]);
+            }
         }
         return query(operations);
     }
