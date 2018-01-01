@@ -262,10 +262,10 @@ public interface EntityUniverse {
      * Similar to {@link #spawnEntity(Entity)} except where multiple entities
      * can be attempted to be spawned.
      *
-     * @param entities The entities to be spawned
+     * @param entities The entities which spawned correctly, or empty if none
      * @return True if any of the entities were successfully spawned
      */
-    boolean spawnEntities(Iterable<? extends Entity> entities);
+    Collection<Entity> spawnEntities(Iterable<? extends Entity> entities);
 
     /**
      * Gets all the entities that intersect the bounding box, in no particular
