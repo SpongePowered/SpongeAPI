@@ -1328,9 +1328,15 @@ public final class Keys {
     /**
      * Represents the {@link Key} for who last attacked an {@link Entity}.
      *
+     * <p>This will usually be an entity snapshot of a {@link Living}.</p>
+     *
+     * <p>This data will usually only be present within 100 ticks of the attack
+     * occurring.</p>
+     *
      * @see DamageableData#lastAttacker()
      */
-    public static final Key<OptionalValue<Living>> LAST_ATTACKER = DummyObjectProvider.createExtendedFor(Key.class,"LAST_ATTACKER");
+    public static final Key<OptionalValue<EntitySnapshot>> LAST_ATTACKER = DummyObjectProvider.createExtendedFor(Key.class,"LAST_ATTACKER");
+
 
     /**
      * Represents the {@link Key} for the output yielded by the last command of
@@ -1343,6 +1349,9 @@ public final class Keys {
     /**
      * Represents the {@link Key} for the last amount of damage received by an
      * {@link Entity}.
+     *
+     * <p>This data will usually only be present within 100 ticks of the attack
+     * occurring.</p>
      *
      * @see DamageableData#lastDamage()
      */
