@@ -46,6 +46,7 @@ public abstract class AbstractDamageSource implements DamageSource {
     private final boolean explosive;
     private final boolean magic;
     private final boolean creative;
+    private final double exhaustion;
 
     protected AbstractDamageSource(AbstractDamageSourceBuilder<?, ?> builder) {
         this.apiDamageType = checkNotNull(builder.damageType, "DamageType cannot be null!");
@@ -55,6 +56,13 @@ public abstract class AbstractDamageSource implements DamageSource {
         this.explosive = builder.explosion;
         this.magic = builder.magical;
         this.creative = builder.creative;
+        if (builder.exhaustion != null) {
+            this.exhaustion = builder.exhaustion;
+        } else if (this.absolute || this.bypassesArmor) {
+            this.exhaustion = 0.0;
+        } else {
+            this.exhaustion = 0.1;
+        }
     }
 
     @Override
@@ -90,6 +98,11 @@ public abstract class AbstractDamageSource implements DamageSource {
     @Override
     public boolean doesAffectCreative() {
         return this.creative;
+    }
+
+    @Override
+    public double getExhaustion() {
+        return this.exhaustion;
     }
 
 }

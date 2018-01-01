@@ -39,6 +39,7 @@ public abstract class AbstractIndirectEntityDamageSource implements IndirectEnti
     private final boolean explosive;
     private final boolean magic;
     private final boolean creative;
+    private final double exhaustion;
     private final Entity source;
     private final Entity indirect;
 
@@ -50,6 +51,13 @@ public abstract class AbstractIndirectEntityDamageSource implements IndirectEnti
         this.explosive = builder.explosion;
         this.magic = builder.magical;
         this.creative = builder.creative;
+        if (builder.exhaustion != null) {
+            this.exhaustion = builder.exhaustion;
+        } else if (this.absolute || this.bypassesArmor) {
+            this.exhaustion = 0.0;
+        } else {
+            this.exhaustion = 0.1;
+        }
         this.source = checkNotNull(builder.sourceEntity, "Entity source cannot be null!");
         this.indirect = checkNotNull(builder.indirect, "Indirect source cannot be null!");
     }
@@ -97,6 +105,11 @@ public abstract class AbstractIndirectEntityDamageSource implements IndirectEnti
     @Override
     public Entity getIndirectSource() {
         return this.indirect;
+    }
+
+    @Override
+    public double getExhaustion() {
+        return this.exhaustion;
     }
 
     @SuppressWarnings("unchecked")
