@@ -31,7 +31,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
 
-public final class SlotTransaction extends Transaction<ItemStackSnapshot> {
+public class SlotTransaction extends Transaction<ItemStackSnapshot> {
     
     private final Slot slot;
 
