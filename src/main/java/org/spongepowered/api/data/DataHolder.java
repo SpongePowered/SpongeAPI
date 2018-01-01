@@ -24,10 +24,17 @@
  */
 package org.spongepowered.api.data;
 
+import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.merge.MergeFunction;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.property.PropertyHolder;
+import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.mutable.CompositeValueStore;
+import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.data.ChangeDataHolderEvent;
+
+import java.util.Optional;
 
 /**
  * A data holder object allows the access of additional data on the object
@@ -66,4 +73,20 @@ public interface DataHolder extends DataSerializable, PropertyHolder, CompositeV
      *     data that this holder will refuse
      */
     void setRawData(DataView container) throws InvalidDataException;
+
+    /**
+     * Offers the given {@code value} as defined by the provided {@link Key}.
+     * A {@link ChangeDataHolderEvent.ValueChange} event is thrown,
+     * using this DataHolder and the provided value.
+     *
+     * <p>If the provided {@link Key} is supported by this DataHolder,
+     * the fired {@link ChangeDataHolderEvent.ValueChange} event is thrown.
+     * Otherwise, {@link Optional#empty()} is returned.</p>
+     *
+     * @param key The key to the value to set
+     * @param value The value to set
+     * @param <E> The type of value
+     * @return The created event, if available
+     */
+    <E> Optional<ChangeDataHolderEvent.ValueChange> offerWithEvent(Key<? extends BaseValue<E>> key, E value, Cause cause);
 }

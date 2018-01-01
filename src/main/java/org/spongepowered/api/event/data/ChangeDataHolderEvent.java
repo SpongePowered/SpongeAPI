@@ -61,19 +61,14 @@ public interface ChangeDataHolderEvent extends Event, Cancellable {
         DataTransactionResult getOriginalChanges();
 
         /**
-         * Submits a new {@link DataTransactionResult} as a proposal of various
+         * Sets a new {@link DataTransactionResult} as a proposal of various
          * {@link Value}s to be successfully offered/changed on the original
          * {@link DataHolder}.
          *
-         * <p>If the proposed {@link DataTransactionResult} provides additional
-         * values that were not changed in the {@link #getOriginalChanges()},
-         * the provided changes suggested to be successfully offered will be
-         * re-offered </p>
          *
          * @param result The resulting offer
-         * @return This event, for chaining
          */
-        ValueChange proposeChanges(DataTransactionResult result);
+        void setChanges(DataTransactionResult result);
 
         /**
          * Gets the ending resulting {@link DataTransactionResult} that will be
@@ -82,6 +77,6 @@ public interface ChangeDataHolderEvent extends Event, Cancellable {
          * @return The final transaction details to be submitted
          */
         @PropertySettings(requiredParameter = false)
-        DataTransactionResult getEndResult();
+        DataTransactionResult getChanges();
     }
 }

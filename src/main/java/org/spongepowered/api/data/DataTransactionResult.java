@@ -42,6 +42,7 @@ import org.spongepowered.api.util.ResettableBuilder;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -207,6 +208,24 @@ public final class DataTransactionResult {
     }
 
     /**
+     * Represents the possible states of a value in this data transaction result
+     */
+    public enum DataCategory {
+        /**
+         * Represents values that were successfully offered to the {@link DataHolder}
+         */
+        SUCCESSFUL,
+        /**
+         * Represents values that were rejected by the {@link DataHolder}
+         */
+        REJECTED,
+        /**
+         * Represents values from the {@link DataHolder} that were replaced
+         */
+        REPLACED
+    }
+
+    /**
      * The type of transaction result.
      */
     public enum Type {
@@ -320,6 +339,37 @@ public final class DataTransactionResult {
      */
     public List<ImmutableValue<?>> getReplacedData() {
         return this.replaced;
+    }
+
+    /**
+     * Gets the {@link ImmutableValue}s associated with the provided {@link DataCategory}
+     * @param category The data category
+     *
+     * @return The {@link ImmutableValue}s for the category
+     */
+    public List<ImmutableValue<?>> getData(DataCategory category) {
+        switch (category) {
+            case SUCCESSFUL:
+                return this.success;
+            case REJECTED:
+                return this.rejected;
+            case REPLACED:
+                return this.replaced;
+        }
+        throw new IllegalStateException("Unhandled DataCategory " + category);
+    }
+
+    /**
+     * Returns the value with the provided {@link Key} in the provided {@link DataCategory},
+     * if available. Otherwise, {@link Optional#empty()} is returned.
+     *
+     * @param category The category to lookup the provided {@param key} in
+     * @param key The {@link Key} to lookup
+     * @return The corresponding {@link ImmutableValue}, if available
+     */
+    @SuppressWarnings("unchecked")
+    public Optional<ImmutableValue<?>> get(DataCategory category, Key<?> key) {
+        return this.getData(category).stream().filter(v -> v.getKey().equals(key)).findFirst();
     }
 
     /**

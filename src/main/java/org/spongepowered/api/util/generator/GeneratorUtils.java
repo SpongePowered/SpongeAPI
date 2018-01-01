@@ -28,6 +28,7 @@ import static org.objectweb.asm.Opcodes.CHECKCAST;
 import static org.objectweb.asm.Opcodes.INVOKESTATIC;
 import static org.objectweb.asm.Opcodes.INVOKEVIRTUAL;
 
+import com.google.common.base.Preconditions;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Type;
 
@@ -113,7 +114,6 @@ public final class GeneratorUtils {
             mv.visitTypeInsn(CHECKCAST, type.getInternalName());
         }
     }
-
 
     public static class LocalClassLoader extends ClassLoader {
 

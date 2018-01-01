@@ -55,6 +55,7 @@ import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.EventContext;
 import org.spongepowered.api.event.cause.entity.spawn.SpawnType;
+import org.spongepowered.api.event.data.ChangeDataHolderEvent;
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.biome.BiomeType;
@@ -774,6 +775,11 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     @Override
+    public <E> Optional<ChangeDataHolderEvent.ValueChange> offerWithEvent(Key<? extends BaseValue<E>> key, E value, Cause cause) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public int getContentVersion() {
         return 1;
     }
@@ -807,6 +813,11 @@ public final class Location<E extends Extent> implements DataHolder {
     @Override
     public <T> Optional<T> get(Key<? extends BaseValue<T>> key) {
         return getExtent().get(getBlockPosition(), key);
+    }
+
+    @Override
+    public <E> Optional<E> getDefault(Key<? extends BaseValue<E>> key) {
+        return getExtent().getDefault(getBlockPosition(), key);
     }
 
     @Override
@@ -882,6 +893,11 @@ public final class Location<E extends Extent> implements DataHolder {
     @Override
     public <T, V extends BaseValue<T>> Optional<V> getValue(Key<V> key) {
         return getExtent().getValue(getBlockPosition(), key);
+    }
+
+    @Override
+    public <E, V extends BaseValue<E>> Optional<V> getDefaultValue(Key<V> key) {
+        return getExtent().getDefaultValue(getBlockPosition(), key);
     }
 
     @Override

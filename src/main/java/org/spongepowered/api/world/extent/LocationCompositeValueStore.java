@@ -57,6 +57,19 @@ public interface LocationCompositeValueStore {
      * Gets the value of data that is keyed to the provided {@link Key} at the
      * give block location.
      *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param key The key to the data
+     * @param <E> The type of element of data
+     * @return The data, if available
+     */
+    <E> Optional<E> get(int x, int y, int z, Key<? extends BaseValue<E>> key);
+
+    /**
+     * Gets the value of data that is keyed to the provided {@link Key} at the
+     * give block location.
+     *
      * @param coordinates The position of the block
      * @param key The key to the data
      * @param <E> The type of element of data
@@ -67,17 +80,34 @@ public interface LocationCompositeValueStore {
     }
 
     /**
-     * Gets the value of data that is keyed to the provided {@link Key} at the
-     * give block location.
+     * Gets the default value for the given {@link Key} at the give block location, regardless of whether
+     * or not a value is actually stored with the given location and key.
+     * The data may not exist, or may not be compatible in
+     * which case {@link Optional#empty()} may be returned.
+     *
+     * @param coordinates The position of the block
+     * @param key The key to the data
+     * @param <E> The type of element of data
+     * @return The base value, if available
+     */
+    default <E> Optional<E> getDefault(Vector3i coordinates, Key<? extends BaseValue<E>> key) {
+        return getDefault(coordinates.getX(), coordinates.getY(), coordinates.getZ(), key);
+    }
+
+    /**
+     * Gets the default value for the given {@link Key} at the give block location, regardless of whether
+     * or not a value is actually stored with the given location and key.
+     * The data may not exist, or may not be compatible in
+     * which case {@link Optional#empty()} may be returned.
      *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
      * @param key The key to the data
      * @param <E> The type of element of data
-     * @return The data, if available
+     * @return The base value, if available
      */
-    <E> Optional<E> get(int x, int y, int z, Key<? extends BaseValue<E>> key);
+    <E> Optional<E> getDefault(int x, int y, int z, Key<? extends BaseValue<E>> key);
 
     /**
      * Gets an instance of the given data class for given block at the location.
@@ -214,7 +244,7 @@ public interface LocationCompositeValueStore {
     /**
      * Gets the value of data that is keyed to the provided {@link Key} at the
      * give block location. The data may not exist, or may not be compatible in
-     * which case <code>null</code> may be returned.
+     * which case {@link Optional#empty()}may be returned.
      *
      * @param coordinates The position of the block
      * @param key The key to the data
@@ -223,6 +253,22 @@ public interface LocationCompositeValueStore {
      * @return The base value, if available
      */
     default <E, V extends BaseValue<E>> Optional<V> getValue(Vector3i coordinates, Key<V> key) {
+        return getValue(coordinates.getX(), coordinates.getY(), coordinates.getZ(), key);
+    }
+
+    /**
+     * Gets the default value of {@link Key} at the give block location, regardless of whether
+     * or not a value is actually stored with the given location and key.
+     * The data may not exist, or may not be compatible in
+     * which case {@link Optional#empty()} may be returned.
+     *
+     * @param coordinates The position of the block
+     * @param key The key to the data
+     * @param <E> The type of element of data
+     * @param <V> The type of value
+     * @return The base value, if available
+     */
+    default <E, V extends BaseValue<E>> Optional<V> getDefaultValue(Vector3i coordinates, Key<V> key) {
         return getValue(coordinates.getX(), coordinates.getY(), coordinates.getZ(), key);
     }
 
@@ -239,6 +285,22 @@ public interface LocationCompositeValueStore {
      * @return The base value, if available
      */
     <E, V extends BaseValue<E>> Optional<V> getValue(int x, int y, int z, Key<V> key);
+
+    /**
+     * Gets the default value of {@link Key} at the give block location, regardless of whether
+     * or not a value is actually stored with the given location and key.
+     * The data may not exist, or may not be compatible in
+     * which case {@link Optional#empty()} may be returned.
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param key The key to the data
+     * @param <E> The type of element of data
+     * @param <V> The type of value
+     * @return The base value, if available
+     */
+    <E, V extends BaseValue<E>> Optional<V> getDefaultValue(int x, int y, int z, Key<V> key);
 
     /**
      * Checks if the provided {@link Key} to the data is supported by the block

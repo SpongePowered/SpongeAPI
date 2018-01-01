@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.filter.cause;
 
 import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.filter.data.GetKey;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -62,5 +63,12 @@ public @interface Last {
      * @return If the type filter is reversed
      */
     boolean inverse() default false;
+
+    /**
+     * The tag to use to associate this parameter with a {@link GetKey} parameter
+     *
+     * @return The tag
+     */
+    String tag() default "";
 
 }
