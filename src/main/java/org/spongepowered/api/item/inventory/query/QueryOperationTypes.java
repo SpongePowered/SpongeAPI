@@ -63,6 +63,11 @@ public final class QueryOperationTypes {
             "INVENTORY_TYPE");
 
     /**
+     * Tests based on the class of the inventory.
+     */
+    public static final QueryOperationType<Class<?>> TYPE = DummyObjectProvider.createFor(QueryOperationType.class, "TYPE");
+
+    /**
      * Allows a custom condition for the items contained within an item stack.
      */
     public static final QueryOperationType<Predicate<ItemStack>> ITEM_STACK_CUSTOM = DummyObjectProvider.createFor(QueryOperationType.class,
