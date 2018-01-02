@@ -22,27 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.item;
+package org.spongepowered.api.map.util;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.item.MapItemData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.item.ItemTypes;
-import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.map.color.MapColor;
+import org.spongepowered.api.map.color.MapColorMatchers;
+import org.spongepowered.api.util.Color;
+import org.spongepowered.api.util.annotation.CatalogedBy;
+
+import java.util.function.Function;
 
 /**
- * Represents an {@link ImmutableDataManipulator} hosting the specific map
- * information of an {@link ItemStack} of the type {@link ItemTypes#FILLED_MAP}.
+ * Represents a color matching function between an RGB and a color representable on a map palette
  */
-public interface ImmutableMapItemData extends ImmutableDataManipulator<ImmutableMapItemData, MapItemData> {
-
-    /**
-     * Gets the {@link ImmutableValue} for the attached map id for an
-     * {@link ItemTypes#FILLED_MAP} {@link ItemStack}.
-     *
-     * @return The attached map id
-     */
-    ImmutableValue<String> attachedMap();
-
+@CatalogedBy(MapColorMatchers.class)
+public interface MapColorMatcher extends Function<Color, MapColor>, CatalogType {
 }

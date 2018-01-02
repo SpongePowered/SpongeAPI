@@ -22,27 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.item;
+package org.spongepowered.api.map.color;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.item.MapItemData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.item.ItemTypes;
-import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.map.util.MapColorMatcher;
+import org.spongepowered.api.util.Color;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
+import java.util.function.Function;
 
 /**
- * Represents an {@link ImmutableDataManipulator} hosting the specific map
- * information of an {@link ItemStack} of the type {@link ItemTypes#FILLED_MAP}.
+ * An enumeration of all the built-in {@link MapColorMatcher}
  */
-public interface ImmutableMapItemData extends ImmutableDataManipulator<ImmutableMapItemData, MapItemData> {
+public final class MapColorMatchers {
+
+    //SORTFIELDS:ON
 
     /**
-     * Gets the {@link ImmutableValue} for the attached map id for an
-     * {@link ItemTypes#FILLED_MAP} {@link ItemStack}.
-     *
-     * @return The attached map id
+     * A matcher that matches to the {@link MapColor} with the smallest overall
+     * CIELab distance. This tends to be a much more accurate overall match, but
+     * the conversion is slightly more computationally intensive.
      */
-    ImmutableValue<String> attachedMap();
+    public static final MapColorMatcher CIELAB = DummyObjectProvider.createFor(MapColorMatcher.class,"CIELAB");
+
+    /**
+     * This is the default color matcher and simply minimizes the distance in RGB
+     * colorspace, this method is quite simple, but offers a fairly accurate match.
+     */
+    public static final MapColorMatcher RGB_UNWEIGHTED = DummyObjectProvider.createFor(MapColorMatcher.class,"RGB_UNWEIGHTED");
+
+    //SORTFIELDS:OFF
 
 }

@@ -22,27 +22,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.item;
+package org.spongepowered.api.map.color;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.item.MapItemData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.item.ItemTypes;
-import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * Represents an {@link ImmutableDataManipulator} hosting the specific map
- * information of an {@link ItemStack} of the type {@link ItemTypes#FILLED_MAP}.
+ * An enumeration of all the possible {@link MapShade}s.
  */
-public interface ImmutableMapItemData extends ImmutableDataManipulator<ImmutableMapItemData, MapItemData> {
+public final class MapShades {
+
+    // SORTFIELDS:ON
 
     /**
-     * Gets the {@link ImmutableValue} for the attached map id for an
-     * {@link ItemTypes#FILLED_MAP} {@link ItemStack}.
-     *
-     * @return The attached map id
+     * Represents the default mapping, no modification to the color.
      */
-    ImmutableValue<String> attachedMap();
+    public static final MapShade BASE = DummyObjectProvider.createFor(MapShade.class, "BASE");
+
+    /**
+     * Represents a multiplication by 220 to each RGB component, the remainder
+     * out of 255 is taken as the new component for each color channel.
+     */
+    public static final MapShade DARK = DummyObjectProvider.createFor(MapShade.class, "DARK");
+
+    /**
+     * Represents a multiplication by 180 to each RGB component, the remainder
+     * out of 255 is taken as the new component for each color channel.
+     */
+    public static final MapShade DARKER = DummyObjectProvider.createFor(MapShade.class, "DARKER");
+
+    /**
+     * Represents a multiplication by 135 to each RGB component, the remainder
+     * out of 255 is taken as the new component for each color channel.
+     */
+    public static final MapShade DARKEST = DummyObjectProvider.createFor(MapShade.class, "DARKEST");
+
+    // SORTFIELDS:OFF
+
+    private MapShades() {
+    }
 
 }

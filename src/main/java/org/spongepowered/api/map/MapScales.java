@@ -22,27 +22,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.item;
+package org.spongepowered.api.map;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.item.MapItemData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.item.ItemTypes;
-import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * Represents an {@link ImmutableDataManipulator} hosting the specific map
- * information of an {@link ItemStack} of the type {@link ItemTypes#FILLED_MAP}.
+ * An enumeration of all the possible vanilla {@link MapScales}s.
  */
-public interface ImmutableMapItemData extends ImmutableDataManipulator<ImmutableMapItemData, MapItemData> {
+public final class MapScales {
 
     /**
-     * Gets the {@link ImmutableValue} for the attached map id for an
-     * {@link ItemTypes#FILLED_MAP} {@link ItemStack}.
-     *
-     * @return The attached map id
+     * The default scale of a newly crafted map, this scale represents a 1:1 block to pixel ratio.
      */
-    ImmutableValue<String> attachedMap();
+    public static final MapScale SCALE_BASE = DummyObjectProvider.createFor(MapScale.class, "SCALE_BASE");
+
+    /**
+     * Represents a 4:1 block to pixel ratio scaling.
+     */
+    public static final MapScale SCALE_4 = DummyObjectProvider.createFor(MapScale.class, "SCALE_4");
+
+    /**
+     * Represents a 16:1 block to pixel ratio scaling, 4x4 blocks (1/16 chunk) per map pixel.
+     */
+    public static final MapScale SCALE_16 = DummyObjectProvider.createFor(MapScale.class, "SCALE_16");
+
+    /**
+     * Represents a 64:1 block to pixel ratio scaling, 8x8 blocks (1/4 chunk) per map pixel.
+     */
+    public static final MapScale SCALE_64 = DummyObjectProvider.createFor(MapScale.class, "SCALE_64");
+
+    /**
+     * Represents a 256:1 block to pixel ratio scaling, 16x16 blocks (1 chunk) per map pixel.
+     */
+    public static final MapScale SCALE_256 = DummyObjectProvider.createFor(MapScale.class, "SCALE_256");
+
+    private MapScales() {
+    }
 
 }

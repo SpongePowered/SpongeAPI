@@ -22,27 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.item;
+package org.spongepowered.api.map.util;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.item.MapItemData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.item.ItemTypes;
-import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.map.color.MapColor;
+import org.spongepowered.api.map.color.MapColors;
+
+import java.util.Collection;
 
 /**
- * Represents an {@link ImmutableDataManipulator} hosting the specific map
- * information of an {@link ItemStack} of the type {@link ItemTypes#FILLED_MAP}.
+ * Represents the required implementation for the static methods in
+ * {@link MapColors}.
  */
-public interface ImmutableMapItemData extends ImmutableDataManipulator<ImmutableMapItemData, MapItemData> {
+public interface MapColorFactory {
 
     /**
-     * Gets the {@link ImmutableValue} for the attached map id for an
-     * {@link ItemTypes#FILLED_MAP} {@link ItemStack}.
+     * Returns an unmodifiable collection of all the possible {@link MapColor}s
+     * available, including the shaded colors.
      *
-     * @return The attached map id
+     * @return All the map colors including shades
      */
-    ImmutableValue<String> attachedMap();
+    Collection<MapColor> getAll();
 
 }
