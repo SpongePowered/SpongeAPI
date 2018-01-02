@@ -64,30 +64,6 @@ public interface Platform {
     PluginContainer getContainer(Component component);
 
     /**
-     * Returns the current API plugin container.
-     *
-     * @return The API plugin container
-     * @deprecated Use {@link #getContainer(Component)} with
-     *     {@link Component#API}
-     */
-    @Deprecated
-    default PluginContainer getApi() {
-        return getContainer(Component.API);
-    }
-
-    /**
-     * Returns the current implementation plugin container.
-     *
-     * @return The implementation plugin container
-     * @deprecated Use {@link #getContainer(Component)} with
-     *     {@link Component#IMPLEMENTATION}
-     */
-    @Deprecated
-    default PluginContainer getImplementation() {
-        return getContainer(Component.IMPLEMENTATION);
-    }
-
-    /**
      * Gets the current Minecraft version of this platform.
      *
      * @return The Minecraft version

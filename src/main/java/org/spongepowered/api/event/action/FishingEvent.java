@@ -90,18 +90,5 @@ public interface FishingEvent extends Event {
          */
         List<Transaction<ItemStackSnapshot>> getTransactions();
 
-        /**
-         * Gets a list of {@link Transaction}s for each {@link ItemStackSnapshot}
-         * that will be spawned if this event is not cancelled.
-         *
-         * @return The transactions
-         * @deprecated Use {@link #getTransactions()}
-         */
-        @Deprecated
-        @PropertySettings(generateMethods = false, requiredParameter = false) // TODO: Detect default methods
-        default List<Transaction<ItemStackSnapshot>> getItemStackTransaction() {
-            return getTransactions();
-        }
-
     }
 }

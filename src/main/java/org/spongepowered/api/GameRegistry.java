@@ -206,30 +206,6 @@ public interface GameRegistry {
     <T extends ResettableBuilder<?, ? super T>> T createBuilder(Class<T> builderClass) throws IllegalArgumentException;
 
     /**
-     * Registers a new {@link CatalogType} instance if registration for that
-     * type is supported.
-     *
-     * <p>Note that this is intended only for registering new instances of
-     * already existing CatalogTypes, not for registering entirely new
-     * CatalogType classes.</p>
-     *
-     * @param type The CatalogType class
-     * @param obj The dummy type instance
-     * @param <T> dummy object type
-     * @return The registered type
-     * @throws IllegalArgumentException If there is an id conflict with the
-     *      given type and an existing type
-     * @throws UnsupportedOperationException If registration for the given type
-     *      is not supported
-     * @throws CatalogTypeAlreadyRegisteredException if the type cannot be
-     *      registered because a matching type was already registered
-     * @deprecated Is scheduled to be removed in API 8, the
-     *      {@link GameRegistryEvent.Register} should be used instead
-     */
-    @Deprecated
-    <T extends CatalogType> T register(Class<T> type, T obj) throws IllegalArgumentException, CatalogTypeAlreadyRegisteredException;
-
-    /**
      * Gets a {@link Collection} of the default GameRules.
      *
      * @return The default GameRules.
@@ -396,24 +372,6 @@ public interface GameRegistry {
      * @return The villager registry instance
      */
     VillagerRegistry getVillagerRegistry();
-
-    /**
-     * Gets the internal {@link TextSerializerFactory}.
-     *
-     * @return The text serializer factory
-     * @deprecated Use {@link TextSerializers} instead
-     */
-    @Deprecated
-    TextSerializerFactory getTextSerializerFactory();
-
-    /**
-     * Gets the internal {@link SelectorFactory}.
-     *
-     * @return The selector factory
-     * @deprecated Use the appropriate class in the selector package instead
-     */
-    @Deprecated
-    SelectorFactory getSelectorFactory();
 
     /**
      * Gets a locale for the specified locale code, e.g. {@code en_US}.

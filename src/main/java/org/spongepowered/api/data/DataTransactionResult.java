@@ -336,19 +336,6 @@ public final class DataTransactionResult {
     }
 
     /**
-     * If this result of {@link #isSuccessful()} returns {@code true},
-     * the provided {@link Consumer} is called provided a list of all
-     * "successful" data as retrieved from {@link #getSuccessfulData()}.
-     *
-     * @param consumer The consumer to call
-     * @deprecated Use {@link #ifSuccessful(Consumer)} instead
-     */
-    @Deprecated
-    public void ifSucessful(Consumer<List<ImmutableValue<?>>> consumer) {
-        ifSuccessful(consumer);
-    }
-
-    /**
      * Used to call a {@link Supplier} for an {@link Exception} of type
      * {@code E} such that if this transaction's {@link #isSuccessful()}
      * returns {@code false}, the supplier's exception is thrown.

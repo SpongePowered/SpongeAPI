@@ -59,39 +59,9 @@ public interface GameProfileCache {
      * @param expiry The expiration date
      * @return {@code true} if the profile was successfully cached,
      *     otherwise {@code false}
-     * @deprecated Use {@link #add(GameProfile, Instant)}
-     */
-    @Deprecated
-    default boolean add(GameProfile profile, @Nullable Date expiry) {
-        return this.add(profile, expiry == null ? null : expiry.toInstant());
-    }
-
-    /**
-     * Add an entry to this cache, with an optional expiration date.
-     *
-     * @param profile The profile to cache
-     * @param expiry The expiration date
-     * @return {@code true} if the profile was successfully cached,
-     *     otherwise {@code false}
      */
     default boolean add(GameProfile profile, @Nullable Instant expiry) {
         return this.add(profile, false, expiry);
-    }
-
-    /**
-     * Add an entry to this cache, with an optional expiration date.
-     *
-     * @param profile The profile to cache
-     * @param overwrite If we should overwrite the cache entry for
-     *      the provided profile
-     * @param expiry The expiration date
-     * @return {@code true} if the profile was successfully cached,
-     *     otherwise {@code false}
-     * @deprecated Use {@link #add(GameProfile, boolean, Instant)}
-     */
-    @Deprecated
-    default boolean add(GameProfile profile, boolean overwrite, @Nullable Date expiry) {
-        return this.add(profile, overwrite, expiry == null ? null : expiry.toInstant());
     }
 
     /**

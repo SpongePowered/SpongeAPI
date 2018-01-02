@@ -50,18 +50,6 @@ public interface ItemStackSnapshot extends ImmutableDataHolder<ItemStackSnapshot
     ItemType getType();
 
     /**
-     * Gets the current stack size count of the {@link ItemStack} this
-     * {@link ItemStackSnapshot} is representing.
-     *
-     * @return The current stack size
-     * @deprecated Use {@link #getQuantity()}
-     */
-    @Deprecated
-    default int getCount() {
-        return getQuantity();
-    }
-
-    /**
      * Gets the quantity of items in this the {@link ItemStack} this
      * {@link ItemStackSnapshot} is representing.
      *

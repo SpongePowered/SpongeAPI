@@ -33,12 +33,6 @@ public class WorldGeneratorModifiers {
 
     // SORTFIELDS:ON
 
-    /**
-     * @deprecated Will be removed from the api
-     */
-    @Deprecated
-    public static final WorldGeneratorModifier SKYLANDS = DummyObjectProvider.createFor(WorldGeneratorModifier.class, "SKYLANDS");
-
     public static final WorldGeneratorModifier VOID = DummyObjectProvider.createFor(WorldGeneratorModifier.class, "VOID");
 
     // SORTFIELDS:OFF

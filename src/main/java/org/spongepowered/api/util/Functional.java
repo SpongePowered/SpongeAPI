@@ -134,22 +134,6 @@ public class Functional {
     }
 
     /**
-     * Creates a new {@link Predicate} based on the provided {@link com.google.common.base.Predicate},
-     * used to transform between Java 8 specific code to those from the guava
-     * library.
-     *
-     * @param p The predicate
-     * @param <E> The type of object
-     * @return The java 8 predicate
-     *
-     * @deprecated {@link com.google.common.base.Predicate} extends {@link Predicate}
-     */
-    @Deprecated
-    public static <E> Predicate<E> guavaToJava8(com.google.common.base.Predicate<E> p) {
-        return p;
-    }
-
-    /**
      * Gets the value of an {@link Optional} as either a zero- or one-element immutable set.
      *
      * @param value The value to get as a set
