@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.living.animal.Animal;
+import org.spongepowered.api.entity.living.animal.Wolf;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -46,7 +47,7 @@ public interface FeedAnimalEvent extends InteractEntityEvent {
 
     /**
      * Fired when an adult {@link Animal} is fed with a breeding item leading to it being set in love.
-     * This can be the case from attempting to breed animals, when a wolf is healed to full and from ocelots being fed fish.
+     * This can be the case from attempting to breed animals, and from ocelots being fed fish.
      */
     interface Love extends FeedAnimalEvent {}
 
@@ -61,7 +62,7 @@ public interface FeedAnimalEvent extends InteractEntityEvent {
     interface Healing extends FeedAnimalEvent {}
 
     /**
-     * Fired when an child {@link Animal} is fed with a breeding item leading to it aging.
+     * Fired when a child {@link Animal} is fed with a breeding item leading to it aging.
      */
     interface Aging extends FeedAnimalEvent {}
 
