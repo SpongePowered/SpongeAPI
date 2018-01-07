@@ -29,6 +29,7 @@ import static org.junit.Assert.assertTrue;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3f;
 import com.flowpowered.math.vector.Vector3i;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.spongepowered.api.data.DataContainer;
 
@@ -136,7 +137,13 @@ public class ColorTest {
         assertTrue(color == rgb);
     }
 
+    // Ignored by dualspiral, 7th January 2018
+    //
+    // Ignored as Sponge.getDataManager() will fail. It is expected that
+    // this will move to impl in API 8, thus not too concerned about fixing
+    // this as of yet.
     @Test
+    @Ignore
     public void testToContainer() {
         final Color colorGray = Color.GRAY;
         final Color.Builder builder = new Color.Builder();

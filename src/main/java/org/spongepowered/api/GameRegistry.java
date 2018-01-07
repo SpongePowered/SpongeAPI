@@ -374,6 +374,24 @@ public interface GameRegistry {
     VillagerRegistry getVillagerRegistry();
 
     /**
+     * Gets the internal {@link TextSerializerFactory}.
+     *
+     * @return The text serializer factory
+     * @deprecated Use {@link TextSerializers} instead.
+     */
+    @Deprecated
+    TextSerializerFactory getTextSerializerFactory();
+
+    /**
+     * Gets the internal {@link SelectorFactory}.
+     *
+     * @return The selector factory
+     * @deprecated Use the appropriate class in the selector package instead
+     */
+    @Deprecated
+    SelectorFactory getSelectorFactory();
+
+    /**
      * Gets a locale for the specified locale code, e.g. {@code en_US}.
      *
      * @param locale The locale to lookup (e.g. {@code en_US}.
