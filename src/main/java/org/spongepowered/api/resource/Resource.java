@@ -74,8 +74,8 @@ public interface Resource extends ResourceData {
      * @return A new reader
      * @throws IOException if an error occurs
      */
-    default Reader getReader(Charset charset) throws IOException {
-        return new InputStreamReader(openStream(), charset);
+    default BufferedReader getReader(Charset charset) throws IOException {
+        return new BufferedReader(new InputStreamReader(openStream(), charset));
     }
 
     /**
@@ -99,7 +99,7 @@ public interface Resource extends ResourceData {
      * @throws IOException if an error occurs
      */
     default Stream<String> readLines(Charset charset) throws IOException {
-        try (BufferedReader r = new BufferedReader(getReader(charset))) {
+        try (BufferedReader r = getReader(charset)) {
             return r.lines();
         }
     }
@@ -155,5 +155,4 @@ public interface Resource extends ResourceData {
             ByteStreams.copy(in, out);
         }
     }
-
 }
