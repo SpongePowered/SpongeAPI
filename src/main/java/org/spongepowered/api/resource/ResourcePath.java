@@ -29,6 +29,7 @@ import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 /**
  * <p>A resource path should contain a namespace. If one is not provided,
@@ -41,7 +42,7 @@ import java.util.Map;
  * <p>A resource path should be usable in a {@link Map}, so implementations
  * should override {@link #hashCode()} and {@link #equals(Object)}.</p>
  */
-public interface ResourcePath extends Comparable<ResourcePath> {
+public interface ResourcePath extends Comparable<ResourcePath>, Iterable<ResourcePath> {
 
     /**
      * Creates a new {@link Builder} to build a {@link ResourcePath}.
@@ -94,36 +95,38 @@ public interface ResourcePath extends Comparable<ResourcePath> {
     String getPath();
 
     /**
-     * Gets the root path from this path. This is the same object as returned
-     * by the following code.
-     * <pre>
-     * List<ResourcePath> parents = getParents();
-     * if (parents.isEmpty()) {
-     *     return this;
-     * }
-     * return parents.get(parents.size() - 1);
-     * </pre>
+     * Gets the root path from this path.
      *
      * @return The root path
      */
     ResourcePath getRoot();
 
     /**
-     * Gets a list of parents for this {@link ResourcePath}. Order of parents
-     * will be closest first, with the root being the last element. If the
-     * returned list is empty, this path is the root path.
+     * Gets the immediate parent for this {@link ResourcePath}. If this path is
+     * the root path, itself is returned.
      *
-     * @return The list of parents
+     * @return The parent path
+     * @see #getRoot()
      */
-    List<ResourcePath> getParents();
+    ResourcePath getParent();
 
     /**
-     * Similar to {@link #getParents()}, but only returns the name portion of
-     * the paths.
+     * Gets a list of paths for this {@link ResourcePath}. Order of parents
+     * will be closest first, with the first element being this element and the
+     * root being the last element. If the returned list is empty, this path is
+     * the root path.
      *
-     * @return The list of names in the path.
+     * @return The list of paths
      */
-    List<String> getNames();
+    List<ResourcePath> getParts();
+
+    /**
+     * Creates a new stream of all the paths in this {@link ResourcePath}.
+     *
+     * @return A new stream
+     * @see #getParts()
+     */
+    Stream<ResourcePath> stream();
 
     /**
      * Gets the file name portion of this {@link ResourcePath}.
