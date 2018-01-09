@@ -111,10 +111,9 @@ public interface ResourcePath extends Comparable<ResourcePath>, Iterable<Resourc
     ResourcePath getParent();
 
     /**
-     * Gets a list of paths for this {@link ResourcePath}. Order of parents
-     * will be closest first, with the first element being this element and the
-     * root being the last element. If the returned list is empty, this path is
-     * the root path.
+     * Gets a list of paths for this {@link ResourcePath}. Order of parts will
+     * be closest first, with the first element being this element and the root
+     * being the last element.
      *
      * @return The list of paths
      */
