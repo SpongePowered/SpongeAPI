@@ -24,8 +24,12 @@
  */
 package org.spongepowered.api.event.resource;
 
+import com.google.common.collect.ImmutableList;
+import org.spongepowered.api.resource.Pack;
 import org.spongepowered.api.resource.Resource;
 import org.spongepowered.api.resource.ResourceManager;
+
+import java.util.List;
 
 /**
  * Base interface for resource reloading events.
@@ -39,6 +43,27 @@ public interface ResourceReloadEvent extends ResourceEvent {
      */
     interface Pre extends ResourceReloadEvent {
 
+        /**
+         * Gets an immutable list of the original packs to reload.
+         *
+         * @return The packs to reload
+         */
+        ImmutableList<Pack> getOriginalPacksToReload();
+
+        /**
+         * Gets a mutable list of the packs to reload. This list can be changed
+         * or may be set via {@link #setPacksToReload(List)}.
+         *
+         * @return The packs to reload
+         */
+        List<Pack> getPacksToReload();
+
+        /**
+         * Sets the packs to reload.
+         *
+         * @param packs The packs
+         */
+        void setPacksToReload(List<Pack> packs);
     }
 
     /**
