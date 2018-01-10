@@ -29,6 +29,7 @@ import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.ResettableBuilder;
 
+import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
@@ -125,6 +126,17 @@ public interface Pack extends ResourceProvider {
          * @return This builder
          */
         Builder resources(Supplier<Map<ResourcePath, ResourceData>> resources);
+
+        /**
+         * Uses the given path to provide the resources, as well as the
+         * metadata and name of pack if not yet provided.
+         *
+         * <p>The path can be either a directory or a zip file.</p>
+         *
+         * @param path The path to a folder or zip
+         * @return This builder
+         */
+        Builder from(Path path);
 
         /**
          * Creates a new instance of {@link Pack}.
