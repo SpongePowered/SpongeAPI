@@ -27,8 +27,10 @@ package org.spongepowered.api.resource;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.ResettableBuilder;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
@@ -69,9 +71,9 @@ public interface ResourcePath extends Comparable<ResourcePath>, Iterable<Resourc
      * The representation should include both the namespace and path, separated
      * by a colon (:). Path items should be separated by a forward slash (/).
      * If the namespace is excluded, the default of minecraft is used instead.
-     *
-     * <p>e.g. {@code lagmeter:functions/lm.json} points to the
-     * functions/lm.json file in the lagmeter namespace.</p>
+     * <p>
+     * <p>e.g. {@code foo:bar/custom.json} points to the
+     * {@code bar/custom.json} file in the {@code foo} namespace.</p>
      *
      * @param path The path
      * @return A new ResourcePath
@@ -111,28 +113,59 @@ public interface ResourcePath extends Comparable<ResourcePath>, Iterable<Resourc
     ResourcePath getParent();
 
     /**
-     * Gets a list of paths for this {@link ResourcePath}. Order of parts will
-     * be closest first, with the first element being this element and the root
-     * being the last element.
+     * Gets a list of names which make up this {@link ResourcePath}. Order of
+     * names will be root first, with the last name being this path's
+     * filename.
      *
      * @return The list of paths
      */
-    List<ResourcePath> getParts();
+    List<String> getNames();
 
     /**
-     * Creates a new stream of all the paths in this {@link ResourcePath}.
+     * Tests if this {@link ResourcePath} is a direct child of the given other path.
      *
-     * @return A new stream
-     * @see #getParts()
+     * @param parent The other resource path to check against
+     * @return True if this is a child to other
      */
-    Stream<ResourcePath> stream();
+    boolean isParent(ResourcePath parent);
 
     /**
      * Gets the file name portion of this {@link ResourcePath}.
      *
      * @return The file name of the path
+     * @see #getBaseName()
+     * @see #getExtension()
      */
-    String getName();
+    String getFileName();
+
+    /**
+     * Gets the base name of this path without the extension
+     *
+     * @return The base name
+     * @see #getFileName()
+     */
+    String getBaseName();
+
+    /**
+     * Gets the extension of this path, which is the portion which is after the
+     * last dot if it has one.
+     *
+     * <p>If the path does not have an extension, {@link Optional#empty() empty}
+     * is returned.</p>
+     *
+     * @return The extension of empty if not present
+     * @see #hasExtension(String...)
+     */
+    Optional<String> getExtension();
+
+    /**
+     * Tests if this path has one of the given extensions. Case is insensitive.
+     *
+     * @param ext The extensions to test
+     * @return True if the extension matches one of the ones provided
+     * @see #getExtension()
+     */
+    boolean hasExtension(String... ext);
 
     /**
      * Resolves a new {@link ResourcePath} with this one as the parent.
@@ -150,6 +183,23 @@ public interface ResourcePath extends Comparable<ResourcePath>, Iterable<Resourc
      * @return A new path
      */
     ResourcePath resolveSibling(String name);
+
+    /**
+     * Creates a new stream of paths leading up to this path, starting with the
+     * root.
+     *
+     * @return A new stream
+     */
+    Stream<ResourcePath> stream();
+
+    /**
+     * Returns an iterator of the paths leading up to this path, starting with
+     * the root.
+     *
+     * @return The iterator
+     */
+    @Override
+    Iterator<ResourcePath> iterator();
 
     /**
      * Represents a builder to create {@link ResourcePath} instances.
