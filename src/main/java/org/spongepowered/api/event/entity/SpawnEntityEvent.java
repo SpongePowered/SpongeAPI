@@ -26,6 +26,7 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.cause.entity.spawn.SpawnTypes;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
@@ -46,6 +47,10 @@ public interface SpawnEntityEvent extends AffectEntityEvent {
 
     interface ChunkLoad extends SpawnEntityEvent {}
 
+    /**
+     * @deprecated Utilize {@link SpawnTypes#MOB_SPAWNER} as context.
+     */
+    @Deprecated
     interface Spawner extends SpawnEntityEvent {}
 
     interface Custom extends SpawnEntityEvent {}
