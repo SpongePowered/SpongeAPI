@@ -26,6 +26,7 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.cause.EventContextKeys;
 import org.spongepowered.api.event.cause.entity.dismount.DismountType;
 
 /**
@@ -47,7 +48,9 @@ public interface RideEntityEvent extends TargetEntityEvent, Cancellable {
          * Gets the {@link DismountType} when entity is dismounted.
          *
          * @return The dismount type
+         * @deprecated Use {@link EventContextKeys#DISMOUNT_TYPE} instead
          */
+        @Deprecated
         DismountType getDismountType();
     }
 
