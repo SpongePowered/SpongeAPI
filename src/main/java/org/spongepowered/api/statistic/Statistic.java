@@ -33,7 +33,7 @@ import java.text.NumberFormat;
 import java.util.Optional;
 
 /**
- * Represents some statistic in Minecraft with a string ID.
+ * Represents some statistic in minecraft.
  */
 @CatalogedBy(Statistics.class)
 public interface Statistic extends CatalogType, Translatable {
@@ -54,12 +54,31 @@ public interface Statistic extends CatalogType, Translatable {
     NumberFormat getFormat();
 
     /**
-     * Returns this statistic's {@link StatisticType}.
+     * Returns this statistic's {@link StatisticCategory}.
      *
      * @return Statistic type
      */
-    default StatisticType getType() {
-        return StatisticTypes.BASIC;
+    default StatisticCategory getType() {
+        return StatisticCategories.CUSTOM;
     }
 
+    /**
+     * Represents a {@link Statistic} within a
+     * {@link org.spongepowered.api.statistic.StatisticCategory.ForCatalogType}
+     * for a specific {@link CatalogType}.
+     *
+     * @param <T> The catalog type
+     */
+    interface ForCatalog<T extends CatalogType> extends Statistic {
+
+        /**
+         * Gets the {@link CatalogType}.
+         *
+         * @return The catalog type
+         */
+        T getCatalogType();
+
+        @Override
+        StatisticCategory.ForCatalogType<T> getType();
+    }
 }
