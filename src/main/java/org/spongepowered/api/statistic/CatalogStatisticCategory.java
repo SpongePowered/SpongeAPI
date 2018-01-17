@@ -24,18 +24,16 @@
  */
 package org.spongepowered.api.statistic;
 
-import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.CatalogType;
 
-/**
- * Represents a {@link Statistic} on a particular {@link ItemType}.
- */
-public interface ItemStatistic extends Statistic {
+// TODO: Better name?
+public interface CatalogStatisticCategory<T extends CatalogType> extends StatisticCategory<CatalogStatistic<T>> {
 
     /**
-     * Returns the {@link ItemType} this statistic is associated with.
+     * Gets the {@link CatalogStatistic} for the given {@link CatalogType}.
      *
-     * @return ItemType of statistic
+     * @param catalogType The catalog type
+     * @return The catalog statistic
      */
-    ItemType getItemType();
-
+    CatalogStatistic<T> getStatistic(T catalogType);
 }

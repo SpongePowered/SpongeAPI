@@ -24,15 +24,11 @@
  */
 package org.spongepowered.api;
 
-import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.type.Career;
 import org.spongepowered.api.data.value.ValueFactory;
-import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.ai.task.AITaskType;
 import org.spongepowered.api.entity.ai.task.AbstractAITask;
 import org.spongepowered.api.entity.living.Agent;
-import org.spongepowered.api.event.game.GameRegistryEvent;
-import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.merchant.TradeOfferGenerator;
 import org.spongepowered.api.item.merchant.VillagerRegistry;
 import org.spongepowered.api.item.recipe.crafting.CraftingRecipeRegistry;
@@ -41,16 +37,10 @@ import org.spongepowered.api.network.status.Favicon;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.registry.CatalogRegistryModule;
-import org.spongepowered.api.registry.CatalogTypeAlreadyRegisteredException;
 import org.spongepowered.api.registry.RegistryModule;
 import org.spongepowered.api.registry.RegistryModuleAlreadyRegisteredException;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
-import org.spongepowered.api.statistic.BlockStatistic;
-import org.spongepowered.api.statistic.EntityStatistic;
-import org.spongepowered.api.statistic.ItemStatistic;
-import org.spongepowered.api.statistic.Statistic;
-import org.spongepowered.api.statistic.StatisticType;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.selector.SelectorFactory;
 import org.spongepowered.api.text.serializer.TextSerializerFactory;
@@ -211,42 +201,6 @@ public interface GameRegistry {
      * @return The default GameRules.
      */
     Collection<String> getDefaultGameRules();
-
-    /**
-     * Gets the {@link Statistic} for the given {@link StatisticType} and
-     * {@link EntityType}. If the statistic group is not a valid
-     * {@link EntityStatistic} group then {@link Optional#empty()} will be
-     * returned.
-     *
-     * @param statType The type of statistic to return
-     * @param entityType The entity type for the statistic to return
-     * @return The entity statistic or Optional.empty() if not found
-     */
-    Optional<EntityStatistic> getEntityStatistic(StatisticType statType, EntityType entityType);
-
-    /**
-     * Gets the {@link Statistic} for the given {@link StatisticType} and
-     * {@link ItemType}. If the statistic group is not a valid
-     * {@link ItemStatistic} group then {@link Optional#empty()} will be
-     * returned.
-     *
-     * @param statType The type of statistic to return
-     * @param itemType The item type for the statistic to return
-     * @return The item statistic or Optional.empty() if not found
-     */
-    Optional<ItemStatistic> getItemStatistic(StatisticType statType, ItemType itemType);
-
-    /**
-     * Gets the {@link Statistic} for the given {@link StatisticType} and
-     * {@link BlockType}. If the statistic group is not a valid
-     * {@link BlockStatistic} group then {@link Optional#empty()} will be
-     * returned.
-     *
-     * @param statType The type of statistic to return
-     * @param blockType The block type for the statistic to return
-     * @return The block statistic or Optional.empty() if not found
-     */
-    Optional<BlockStatistic> getBlockStatistic(StatisticType statType, BlockType blockType);
 
     /**
      * Gets the {@link Rotation} with the provided degrees.

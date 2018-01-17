@@ -24,11 +24,24 @@
  */
 package org.spongepowered.api.statistic;
 
+
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.text.translation.Translatable;
-import org.spongepowered.api.util.annotation.CatalogedBy;
 
-@CatalogedBy(StatisticTypes.class)
-public interface StatisticType extends CatalogType, Translatable {
+/**
+ * A {@link Statistic} that is got created for a specific {@link CatalogType}
+ * within a {@link StatisticCategory}.
+ */
+// TODO: Better name
+public interface CatalogStatistic<T extends CatalogType> extends Statistic {
 
+    /**
+     * Gets the {@link CatalogType}.
+     *
+     * @return The catalog type
+     */
+    // TODO: Better name
+    T getCatalogType();
+
+    @Override
+    CatalogStatisticCategory<T> getType();
 }

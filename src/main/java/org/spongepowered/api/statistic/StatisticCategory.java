@@ -24,20 +24,20 @@
  */
 package org.spongepowered.api.statistic;
 
-import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-/**
- * Represents a {@link Statistic} on a particular {@link BlockType}.
- */
-public interface BlockStatistic extends ItemStatistic {
+import java.util.Collection;
+
+@CatalogedBy(StatisticCategories.class)
+public interface StatisticCategory<C extends Statistic> extends CatalogType, Translatable {
 
     /**
-     * Returns the statistic's {@link BlockType}.
+     * Gets all the {@link Statistic}s that are listed
+     * within this {@link StatisticCategory}.
      *
-     * @return BlockType
+     * @return The statistics
      */
-    default BlockType getBlockType() {
-        return getItemType().getBlock().get();
-    }
-
+    Collection<C> getStatistics();
 }

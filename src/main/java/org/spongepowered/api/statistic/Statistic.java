@@ -54,12 +54,11 @@ public interface Statistic extends CatalogType, Translatable {
     NumberFormat getFormat();
 
     /**
-     * Returns this statistic's {@link StatisticType}.
+     * Returns this statistic's {@link StatisticCategory}.
      *
      * @return Statistic type
      */
-    default StatisticType getType() {
-        return StatisticTypes.BASIC;
+    default StatisticCategory<?> getType() {
+        return StatisticCategories.CUSTOM;
     }
-
 }
