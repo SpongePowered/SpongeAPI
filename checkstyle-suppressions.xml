@@ -13,6 +13,7 @@
     <suppress checks="AbbreviationAsWordInName" files="AABB"/>
     <suppress checks=".*" files="SpongeEventFactory\.java"/>
     <suppress checks="LineLength" files="Keys\.java"/>
+    <suppress checks="LineLength|OneStatementPerLine|WhitespaceAround" files="TypeTokens\.java"/>
     <suppress checks="AvoidStarImport" files="Keys\.java"/>
     <suppress checks="AvoidStarImport" files="CatalogEntityData\.java"/>
 </suppressions>
