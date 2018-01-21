@@ -95,9 +95,7 @@ public interface CraftingRecipe extends Recipe, CatalogType {
      *     {@link Optional#empty()} if not
      */
     default Optional<CraftingResult> getResult(CraftingGridInventory grid, World world) {
-        return isValid(grid, world)
-            ? Optional.of(new CraftingResult(getResult(grid), getRemainingItems(grid)))
-            : Optional.empty();
+        return isValid(grid, world) ? Optional.of(new CraftingResult(getResult(grid), getRemainingItems(grid))) : Optional.empty();
     }
 
     /**
