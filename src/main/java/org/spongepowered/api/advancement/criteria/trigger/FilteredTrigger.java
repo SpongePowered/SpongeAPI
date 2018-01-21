@@ -25,7 +25,6 @@
 package org.spongepowered.api.advancement.criteria.trigger;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
 import org.spongepowered.api.util.ResettableBuilder;
 
 /**
@@ -89,5 +88,7 @@ public interface FilteredTrigger<C extends FilteredTriggerConfiguration> {
          * @return The trigger
          */
         FilteredTrigger<C> build();
+
     }
+
 }

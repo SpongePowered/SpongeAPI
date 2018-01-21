@@ -25,17 +25,19 @@
 package org.spongepowered.api.advancement.criteria;
 
 /**
- * A {@link AdvancementCriterion} that represents an AND operation. All the criteria
- * should be {@code true} in order for the final result to be {@code true}.
+ * A {@link AdvancementCriterion} that represents an AND operation. All
+ * the criteria should be {@code true} in order for the final result
+ * to be {@code true}.
  */
 public interface AndCriterion extends OperatorCriterion {
 
     /**
-     * Attempts to build a new AND operation with the given {@link AdvancementCriterion}s.
-     * <p>
-     * There is no guarantee that the returned extends {@link AndCriterion}, this depends
-     * on if there are duplicate criteria, {@link #EMPTY} is present or when no
-     * extra criteria are provided.
+     * Attempts to build a new AND operation with the
+     * given {@link AdvancementCriterion}s.
+     *
+     * <p>There is no guarantee that the returned extends {@link AndCriterion},
+     * this depends on if there are duplicate criteria, {@link #EMPTY}
+     * is present, or when no extra criteria are provided.</p>
      *
      * @param criteria The other criteria
      * @return The AND operation
@@ -45,11 +47,12 @@ public interface AndCriterion extends OperatorCriterion {
     }
 
     /**
-     * Attempts to build a new AND operation with the given {@link AdvancementCriterion}s.
-     * <p>
-     * There is no guarantee that the returned extends {@link AndCriterion}, this depends
-     * on if there are duplicate criteria, {@link #EMPTY} is present or when no
-     * extra criteria are provided.
+     * Attempts to build a new AND operation with the
+     * given {@link AdvancementCriterion}s.
+     *
+     * <p>There is no guarantee that the returned extends {@link AndCriterion},
+     * this depends on if there are duplicate criteria, {@link #EMPTY}
+     * is present, or when no extra criteria are provided.</p>
      *
      * @param criteria The other criteria
      * @return The AND operation
@@ -57,4 +60,5 @@ public interface AndCriterion extends OperatorCriterion {
     static AdvancementCriterion of(Iterable<AdvancementCriterion> criteria) {
         return EMPTY.and(criteria);
     }
+
 }
