@@ -31,7 +31,7 @@ import org.spongepowered.api.data.property.IntProperty;
 /**
  * Temperature of the fluid - completely arbitrary; higher temperature indicates
  * that the fluid is hotter than air. Usually, depending on the implementation,
- * the "hotter" the fluid, the more likely it is to make flamable blocks and
+ * the "hotter" the fluid, the more likely it is to make flammable blocks and
  * entities catch on fire.
  *
  * <p>Default value is approximately the real-life room temperature of water in

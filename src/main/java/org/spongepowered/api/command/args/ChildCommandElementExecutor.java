@@ -44,13 +44,11 @@ import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import javax.activation.CommandMap;
 import javax.annotation.Nullable;
 
 public class ChildCommandElementExecutor extends CommandElement implements CommandExecutor {
@@ -231,7 +229,7 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
                 this.fallbackElements.parse(source, args, context);
             } else {
                 // If we have no elements to parse, then we throw this error - this is the only element
-                // so specifying it implicity means we have a child command to execute.
+                // so specifying it implicitly means we have a child command to execute.
                 throw args.createError(t("Input command %s was not a valid subcommand!", key));
             }
         }

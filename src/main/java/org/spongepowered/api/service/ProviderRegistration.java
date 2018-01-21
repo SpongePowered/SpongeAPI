@@ -39,7 +39,7 @@ public interface ProviderRegistration<T> {
     Class<T> getService();
 
     /**
-     * Gets the service provider of this provider regitration.
+     * Gets the service provider of this provider registration.
      *
      * @return The provider
      */

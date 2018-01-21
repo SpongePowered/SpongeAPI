@@ -242,7 +242,7 @@ public final class ItemStackBuilderPopulators {
     /**
      * Creates a new {@link BiConsumer} where the {@link Key} is responsible
      * for a {@link List} based {@link Value}. Given that the provided elements
-     * are chosent with a {@link Random}, it's not clear that the elements will
+     * are chosen with a {@link Random}, it's not clear that the elements will
      * be added in bundles or in the same iteration order.
      *
      * <p>Note that custom data is not supported through this method, use

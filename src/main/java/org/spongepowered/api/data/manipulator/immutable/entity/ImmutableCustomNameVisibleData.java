@@ -31,7 +31,7 @@ import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.entity.Entity;
 
 /**
- * An {@link ImmutableDataManipulator} for the "custom name vislble" state
+ * An {@link ImmutableDataManipulator} for the "custom name visible" state
  * of an {@link Entity}.
  *
  * @see ImmutableDisplayNameData

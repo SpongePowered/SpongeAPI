@@ -115,7 +115,7 @@ public interface Ban {
      *
      * <p>Depending on the implementation, it may not be possible to determine
      * the {@link CommandSource} responsible for this ban. Because of this,
-     * it is reccomended to check {@link #getBanSource()} if this method
+     * it is recommended to check {@link #getBanSource()} if this method
      * returns {@link Optional#empty()}.</p>
      *
      * @return The banning source or {@link Optional#empty()}

@@ -29,7 +29,6 @@ import org.spongepowered.api.service.user.UserStorageService;
 
 import java.time.Instant;
 import java.util.Collection;
-import java.util.Date;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;

@@ -816,7 +816,7 @@ public abstract class Text implements TextRepresentable, DataSerializable, Compa
      * Creates a {@link Text} with the specified char as plain text. The created
      * text won't have any formatting or events configured.
      *
-     * @param content The contant of the text as char
+     * @param content The content of the text as char
      * @return The created text
      * @see LiteralText
      */
