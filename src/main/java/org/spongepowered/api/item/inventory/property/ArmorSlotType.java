@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.item.inventory.property;
 
-import org.spongepowered.api.item.inventory.equipment.WornEquipmentType;
 import org.spongepowered.api.item.inventory.equipment.EquipmentTypes;
+import org.spongepowered.api.item.inventory.equipment.WornEquipmentType;
 import org.spongepowered.api.util.Coerce;
 
 /**

@@ -55,7 +55,7 @@ public interface UserInventory<T extends User> extends CarriedInventory<T> {
     }
 
     /**
-     * Gets the main inventory excluding the Hotbar
+     * Gets the main inventory excluding the Hotbar.
      *
      * @return The main inventory grid
      */

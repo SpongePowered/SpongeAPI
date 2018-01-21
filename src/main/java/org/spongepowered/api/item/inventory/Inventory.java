@@ -624,15 +624,22 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * that are present in both inventories.
      *
      * @param inventory the other inventory
-     * @return an inventory wrapping all slots that are present in both inventories
+     * @return an inventory wrapping all slots that are present in
+     *     both inventories
      */
     Inventory intersect(Inventory inventory);
 
     /**
      * Constructs a union of the slots in both inventories.
-     * The resulting inventory will contain all slots from both inventories.
-     * The slots of this inventory are ordered before the slots of the given inventory.
-     * If the same slot is contained in both inventories the duplicate in the second one is removed.
+     *
+     * <p>The resulting inventory will contain all slots from
+     * both inventories.</p>
+     *
+     * <p>The slots of this inventory are ordered before the slots of the
+     * given inventory.</p>
+     *
+     * <p>If the same slot is contained in both inventories the duplicate
+     * in the second one is removed.</p>
      *
      * @param inventory the other inventory
      * @return an inventory wrapping all slots of both inventories.

@@ -96,7 +96,8 @@ public interface CraftingRecipe extends Recipe, CatalogType {
     List<ItemStackSnapshot> getRemainingItems(CraftingGridInventory grid);
 
     /**
-     * The group this CraftingRecipe belongs to or {@link Optional#empty()} if not defined.
+     * The group this CraftingRecipe belongs to or {@link Optional#empty()}
+     * if not defined.
      *
      * @return The group this Recipe belongs to.
      */

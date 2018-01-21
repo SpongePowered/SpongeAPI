@@ -140,7 +140,7 @@ public class ArgumentParseException extends CommandException {
         }
 
         /**
-         * Gets the usage associated with this exception
+         * Gets the usage associated with this exception.
          *
          * @return The usage
          */

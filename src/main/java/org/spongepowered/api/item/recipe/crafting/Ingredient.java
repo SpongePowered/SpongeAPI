@@ -40,9 +40,9 @@ import javax.annotation.Nullable;
 
 /**
  * An Ingredient for a crafting recipe.
- * <p>
- * Crafting recipes can only be crafted when all of the ingredients match
- * the items in the input grid.
+ *
+ * <p>Crafting recipes can only be crafted when all of the ingredients match
+ * the items in the input grid.</p>
  */
 public interface Ingredient extends Predicate<ItemStack> {
 
@@ -132,7 +132,7 @@ public interface Ingredient extends Predicate<ItemStack> {
          * Adds a predicate for matching the ingredient.
          * Also clears all previously set {@link #withDisplay} items.
          * All predicates and items are ORed together.
-         * Use {@link #from)} to create an ingredient from another one.
+         * Use {@link #from} to create an ingredient from another one.
          *
          * @param predicate The predicate.
          * @return This Builder, for chaining

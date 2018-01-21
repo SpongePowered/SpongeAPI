@@ -65,6 +65,7 @@ public interface StringDataFormat extends DataFormat {
      * the format specified by this {@link DataFormat}.
      *
      * @param data The DataView to write
+     * @return The serialized data view
      * @throws IOException If there was an error serializing the data
      */
     String write(DataView data) throws IOException;

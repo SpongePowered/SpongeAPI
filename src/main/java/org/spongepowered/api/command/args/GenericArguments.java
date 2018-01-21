@@ -567,7 +567,7 @@ public final class GenericArguments {
     }
 
     /**
-     * Make the provided command element optional
+     * Make the provided command element optional.
      *
      * <p>This means the command element is not required. However, if the
      * element is provided with invalid format and there are no more args

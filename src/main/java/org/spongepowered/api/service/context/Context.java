@@ -53,7 +53,7 @@ public final class Context implements Map.Entry<String, String> {
     private final Map.Entry<String, String> wrapped;
 
     /**
-     * Create a new context instance
+     * Create a new context instance.
      *
      * @param type Context type. Must not be null.
      * @param name Context name. Must not be null.

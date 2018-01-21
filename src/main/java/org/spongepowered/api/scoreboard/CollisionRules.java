@@ -58,7 +58,7 @@ public final class CollisionRules {
     // SORTFIELDS:ON
 
     /**
-     * Members will always collide with other entities
+     * Members will always collide with other entities.
      *
      * <p>This is the default value.</p>
      */

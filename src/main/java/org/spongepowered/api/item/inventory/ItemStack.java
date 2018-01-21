@@ -80,7 +80,7 @@ public interface ItemStack extends DataHolder, Translatable {
     }
 
     /**
-     * Returns an empty {@link ItemStack}
+     * Returns an empty {@link ItemStack}.
      *
      * @return The empty ItemStack
      */

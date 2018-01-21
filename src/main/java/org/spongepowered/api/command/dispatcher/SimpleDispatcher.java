@@ -334,7 +334,7 @@ public final class SimpleDispatcher implements Dispatcher {
         final String arguments = argSplit.length > 1 ? argSplit[1] : "";
         CommandMapping mapping = cmdOptional.get();
         Optional<PluginContainer> pluginOwner = Sponge.getCommandManager().getOwner(mapping);
-        if(pluginOwner.isPresent()) {
+        if (pluginOwner.isPresent()) {
             Sponge.getCauseStackManager().pushCause(pluginOwner.get());
         }
         final CommandCallable spec = mapping.getCallable();
@@ -343,7 +343,7 @@ public final class SimpleDispatcher implements Dispatcher {
         } catch (CommandNotFoundException e) {
             throw new CommandException(t("No such child command: %s", e.getCommand()));
         } finally {
-            if(pluginOwner.isPresent()) {
+            if (pluginOwner.isPresent()) {
                 Sponge.getCauseStackManager().popCause();
             }
         }

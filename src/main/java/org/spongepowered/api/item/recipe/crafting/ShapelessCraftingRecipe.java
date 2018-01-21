@@ -72,7 +72,7 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
         ResultStep addIngredient(Ingredient ingredient);
 
         /**
-         * In this Step set the result of the Recipe
+         * In this Step set the result of the Recipe.
          */
         interface ResultStep extends Builder {
 
@@ -110,7 +110,7 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
              * @param name the group
              * @return This builder, for chaining
              */
-             EndStep group(@Nullable String name);
+            EndStep group(@Nullable String name);
 
             /**
              * Builds a new {@link ShapelessCraftingRecipe} from this builder.
@@ -118,7 +118,8 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
              * @param id The id of this recipe.
              * @param plugin The owning plugin.
              * @return A new {@link ShapelessCraftingRecipe}
-             * @throws IllegalStateException If not all required options were specified
+             * @throws IllegalStateException If not all required options
+             *     were specified
              */
             ShapelessCraftingRecipe build(String id, Object plugin);
         }
