@@ -38,8 +38,18 @@ import java.util.function.DoubleUnaryOperator;
  */
 public interface ModifierFunction<M> {
 
+    /**
+     * Gets the modifier used by this modifier function.
+     *
+     * @return The modifier
+     */
     M getModifier();
 
+    /**
+     * Gets the double unary operator used by this function.
+     *
+     * @return The unary operator
+     */
     DoubleUnaryOperator getFunction();
 
 }

@@ -138,7 +138,8 @@ public interface ChangeInventoryEvent extends TargetInventoryEvent, AffectSlotEv
             /**
              * Sets the items to add to the inventory.
              *
-             * <p>If all items do not fit the inventory this event will be automatically canceled.</p>
+             * <p>If all items do not fit the inventory this event will be
+             * automatically canceled.</p>
              *
              * @param items The items to add to the inventory
              */
