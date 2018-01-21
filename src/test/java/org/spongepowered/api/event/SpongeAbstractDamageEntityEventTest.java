@@ -161,7 +161,8 @@ public class SpongeAbstractDamageEntityEventTest {
 
         assertThat(event.getOriginalFunctions(), is(Matchers.equalTo(originalFunctions)));
 
-        assertThat(event.getModifiers(), is(Matchers.equalTo(Lists.newArrayList(DamageFunction.of(firstModifer, newFunction), originalFunctions.get(1)))));
+        assertThat(event.getModifiers(),
+            is(Matchers.equalTo(Lists.newArrayList(DamageFunction.of(firstModifer, newFunction), originalFunctions.get(1)))));
     }
 
     @Test
@@ -225,7 +226,8 @@ public class SpongeAbstractDamageEntityEventTest {
         List<DamageFunction>
                 originalFunctions = Lists.newArrayList(DamageFunction.of(firstModifer, p -> p), DamageFunction.of(secondModifier, p -> p));
 
-        DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.of(EventContext.empty(), "none"), originalFunctions, targetEntity, 0);
+        DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(
+            Cause.of(EventContext.empty(), "none"), originalFunctions, targetEntity, 0);
 
         assertThat(event.isModifierApplicable(firstModifer), is(true));
         assertThat(event.isModifierApplicable(secondModifier), is(true));

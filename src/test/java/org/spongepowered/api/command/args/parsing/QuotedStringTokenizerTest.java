@@ -74,7 +74,7 @@ public class QuotedStringTokenizerTest {
 
     @Test
     public void testFlagString() throws ArgumentParseException {
-        assertEquals(ImmutableList.of("-abc", "value", "something", "--a=b", "--" , "pure", "strings"),
+        assertEquals(ImmutableList.of("-abc", "value", "something", "--a=b", "--", "pure", "strings"),
                 parseFrom("-abc value something --a=b -- pure strings"));
     }
 
