@@ -24,14 +24,26 @@
  */
 package org.spongepowered.api.item.inventory.entity;
 
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.item.inventory.type.GridInventory;
 
 /**
- * A Players main inventory including the hotbar.
+ * A {@link Player}'s main inventory including the {@link Hotbar}.
  */
 public interface MainPlayerInventory extends GridInventory {
 
+    /**
+     * Gets the hotbar of the player.
+     *
+     * @return The hotbar of the player
+     */
     Hotbar getHotbar();
 
+    /**
+     * Gets the grid of the player's main inventory.
+     *
+     * @return The grid of the player's main inventory
+     */
     GridInventory getGrid();
+
 }

@@ -116,8 +116,8 @@ public final class InventoryTransactionResult {
 
     InventoryTransactionResult(Builder builder) {
         this.type = checkNotNull(builder.resultType, "Result type");
-        this.rejected = builder.rejected != null ? ImmutableList.copyOf(builder.rejected) : Collections.<ItemStackSnapshot>emptyList();
-        this.replaced = builder.replaced != null ? ImmutableList.copyOf(builder.replaced) : Collections.<ItemStackSnapshot>emptyList();
+        this.rejected = builder.rejected != null ? ImmutableList.copyOf(builder.rejected) : Collections.emptyList();
+        this.replaced = builder.replaced != null ? ImmutableList.copyOf(builder.replaced) : Collections.emptyList();
     }
 
     /**

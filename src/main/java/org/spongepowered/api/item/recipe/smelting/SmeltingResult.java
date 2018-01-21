@@ -40,6 +40,16 @@ public final class SmeltingResult {
     private final ItemStackSnapshot result;
     private final double experience;
 
+    /**
+     * Creates a new {@link SmeltingResult}.
+     *
+     * <p>Note that this may be replaced with a static of method in the
+     * future.</p>
+     *
+     * @param result The result of the smelting recipe
+     * @param experience The experience that should be created from this
+     *     smelting result
+     */
     @SuppressWarnings("ConstantConditions")
     public SmeltingResult(ItemStackSnapshot result, double experience) {
         checkNotNull(result, "result");
