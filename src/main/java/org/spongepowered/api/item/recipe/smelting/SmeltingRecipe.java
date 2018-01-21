@@ -64,7 +64,7 @@ public interface SmeltingRecipe extends Recipe {
      * constraints to craft this {@link SmeltingRecipe}.
      *
      * @param ingredient The ingredient to check against
-     * @return Whether this {@param ingredient} can be used to craft the result
+     * @return Whether this ingredient can be used to craft the result
      */
     boolean isValid(ItemStackSnapshot ingredient);
 
@@ -74,7 +74,7 @@ public interface SmeltingRecipe extends Recipe {
      *
      * <p>This method should be used instead of the {@link #getExemplaryResult()}
      * method, as it customizes the result further depending on the specified
-     * {@param ingredient} {@link ItemStackSnapshot}. It is advised to use
+     * ingredient {@link ItemStackSnapshot}. It is advised to use
      * the output of {@link #getExemplaryResult()}, modify it accordingly,
      * and {@code return} it.</p>
      *

@@ -63,7 +63,7 @@ public final class SmeltingResult {
     /**
      * This method should be used instead of the
      * {@link SmeltingRecipe#getExemplaryResult()} method, as it customizes the
-     * result further depending on the specified {@param ingredient}
+     * result further depending on the specified ingredient
      * {@link ItemStackSnapshot}. It is advised to use the output of
      * {@link SmeltingRecipe#getExemplaryResult()}, modify it accordingly, and
      * {@code return} it.

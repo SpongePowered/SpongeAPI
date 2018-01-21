@@ -1173,8 +1173,7 @@ public final class Keys {
      * <p>In vanilla this currently only applies to {@link Vindicator}s.</p>
      *
      * @see <a href="https://minecraft.gamepedia.com/Vindicator#Behavior">
-     *     The Minecraft Wiki</a> for more information about "johnny" behavior
-     *     relating to vindicators
+     *     The Minecraft Wiki for more information about "johnny" behavior</a>
      * @see JohnnyData#johnny()
      */
     public static final Key<Value<Boolean>> IS_JOHNNY = DummyObjectProvider.createExtendedFor(Key.class, "IS_JOHNNY");

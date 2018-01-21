@@ -37,24 +37,24 @@ public final class AdvancementTypes {
     /**
      * Represents the challenge completion advancement type.
      *
-     * @see <a href="https://minecraft.gamepedia.com/File:ChallengeComplete.png">the Minecraft Wiki</a>
-     *     for an example of this advancement type
+     * @see <a href="https://minecraft.gamepedia.com/File:ChallengeComplete.png">
+     *     the Minecraft Wiki for an example of this advancement type</a>
      */
     public static final AdvancementType CHALLENGE = DummyObjectProvider.createFor(AdvancementType.class, "CHALLENGE");
 
     /**
      * Represents the goal reached advancement type.
      *
-     * @see <a href="https://minecraft.gamepedia.com/File:GoalReached.png">the Minecraft Wiki</a>
-     *     for an example of this advancement type
+     * @see <a href="https://minecraft.gamepedia.com/File:GoalReached.png">
+     *     the Minecraft Wiki for an example of this advancement type</a>
      */
     public static final AdvancementType GOAL = DummyObjectProvider.createFor(AdvancementType.class, "GOAL");
 
     /**
      * Represents the advancement made advancement type.
      *
-     * @see <a href="https://minecraft.gamepedia.com/File:AdvancementMade.png">the Minecraft Wiki</a>
-     *     for an example of this advancement type
+     * @see <a href="https://minecraft.gamepedia.com/File:AdvancementMade.png">
+     *     the Minecraft Wiki for an example of this advancement type</a>
      */
     public static final AdvancementType TASK = DummyObjectProvider.createFor(AdvancementType.class, "TASK");
 
