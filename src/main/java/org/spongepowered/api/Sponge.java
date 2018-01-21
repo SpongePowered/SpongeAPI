@@ -42,8 +42,8 @@ import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.TeleportHelper;
 
-import javax.annotation.Nullable;
 import java.util.Optional;
+import javax.annotation.Nullable;
 
 /**
  * A static all access class granting static access to various systems
@@ -90,7 +90,8 @@ public final class Sponge {
     }
 
     /**
-     * Returns the current platform, or implementation, this {@link Game} is running on.
+     * Returns the current platform, or implementation, this {@link Game}
+     * is running on.
      *
      * @return The current implementation
      */
