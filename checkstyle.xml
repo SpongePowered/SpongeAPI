@@ -50,6 +50,7 @@
             <property name="id" value="LineLengthComment"/>
             <property name="max" value="80"/>
             <property name="ignorePattern" value="^[ \t]*([a-zA-Z0-9\{\}\+\|\&amp;\&quot;@\(\)&gt;&lt;\.]|//)|@link|@see"/>
+            <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://"/>
             <message key="maxLineLen" value="Comment line is longer than {0,number,integer} characters (found {1,number,integer})."/>
         </module>
         <module name="AvoidStarImport"/>

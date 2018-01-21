@@ -53,6 +53,13 @@ import java.util.Map;
  */
 public interface Key<V extends BaseValue<?>> extends CatalogType {
 
+    /**
+     * Creates a {@link Key.Builder} which allows creation of a {@link Key}
+     * to later be registered for accessing values from
+     * a {@link ValueContainer}.
+     *
+     * @return The key builder
+     */
     @SuppressWarnings("unchecked")
     static Builder<?, ?> builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
@@ -101,7 +108,7 @@ public interface Key<V extends BaseValue<?>> extends CatalogType {
          * <a href="https://github.com/google/guava/wiki/ReflectionExplained#introduction">here</a>.
          * </p>
          *
-         * @param token The type token, preferrably an anonymous
+         * @param token The type token, preferably an anonymous
          * @param <T> The element type of the Key
          * @param <B> The base value type of the key
          * @return This builder, generified
@@ -112,7 +119,7 @@ public interface Key<V extends BaseValue<?>> extends CatalogType {
          * Sets the string id to be used for {@link CatalogType#getId()}.
          *
          * <p>This should be formatted appropriately, review {@link CatalogType}
-         * documentation for formatted id's.</p>
+         * documentation for formatted ids.</p>
          *
          * @param id The string id
          * @return This builder, for chaining
