@@ -960,14 +960,12 @@ public final class GenericArguments {
             super(key);
             this.type = type;
             this.values = Arrays.stream(type.getEnumConstants())
-                    .collect(Collectors.toMap(
-                            value -> value.name().toLowerCase(),
-                            Function.identity(),
-                            (value, value2) -> {
-                                throw new UnsupportedOperationException(type.getCanonicalName() + " contains more than one enum constant " +
-                                        "with the same name, only differing by capitalization, which is unsupported.");
-                            }
-                    ));
+                .collect(Collectors.toMap(value -> value.name().toLowerCase(),
+                    Function.identity(), (value, value2) -> {
+                        throw new UnsupportedOperationException(type.getCanonicalName() + " contains more than one enum constant "
+                            + "with the same name, only differing by capitalization, which is unsupported.");
+                    }
+                ));
         }
 
         @Override
@@ -1311,7 +1309,9 @@ public final class GenericArguments {
     }
 
     /**
-     * Syntax:
+     * A {@link Vector3d} command element.
+     *
+     * <p>It has the following syntax:</p>
      *
      * <blockquote><pre> x,y,z
      * x y z.</pre></blockquote>
@@ -1622,18 +1622,6 @@ public final class GenericArguments {
     }
 
     /**
-     * Expect an argument to represent an {@link Entity}, or if the argument is
-     * not present and the {@link CommandSource} is an entity, return the
-     * source.
-     *
-     * @param key The key to store under
-     * @return the argument
-     */
-    public static CommandElement entityOrSource(Text key) {
-        return new EntityCommandElement(key, true, false, (EntityType) null);
-    }
-
-    /**
      * Expect an argument to represent an {@link Entity} of the specified type.
      *
      * @param key The key to store under
@@ -1654,6 +1642,18 @@ public final class GenericArguments {
      */
     public static CommandElement entity(Text key, EntityType type) {
         return new EntityCommandElement(key, false, false, type);
+    }
+
+    /**
+     * Expect an argument to represent an {@link Entity}, or if the argument is
+     * not present and the {@link CommandSource} is an entity, return the
+     * source.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement entityOrSource(Text key) {
+        return new EntityCommandElement(key, true, false, (EntityType) null);
     }
 
     /**
@@ -1842,12 +1842,12 @@ public final class GenericArguments {
      * @return the argument
      */
     public static CommandElement url(Text key) {
-        return new URLElement(key);
+        return new UrlElement(key);
     }
 
-    private static class URLElement extends KeyElement {
+    private static class UrlElement extends KeyElement {
 
-        protected URLElement(Text key) {
+        protected UrlElement(Text key) {
             super(key);
         }
 
@@ -1989,7 +1989,7 @@ public final class GenericArguments {
             try {
                 return new BigInteger(integerString);
             } catch (NumberFormatException ex) {
-                throw args.createError(Text.of("Expected an integer, but input "+integerString+" was not"));
+                throw args.createError(Text.of("Expected an integer, but input " + integerString + " was not"));
             }
         }
     }
@@ -2035,12 +2035,12 @@ public final class GenericArguments {
      * @return the argument
      */
     public static CommandElement uuid(Text key) {
-        return new UUIDElement(key);
+        return new UuidElement(key);
     }
 
-    private static class UUIDElement extends KeyElement {
+    private static class UuidElement extends KeyElement {
 
-        protected UUIDElement(Text key) {
+        protected UuidElement(Text key) {
             super(key);
         }
 
@@ -2271,18 +2271,6 @@ public final class GenericArguments {
     }
 
     /**
-     * Filters an argument's suggestions. A suggestion will only be used if it
-     * matches the predicate.
-     *
-     * @param argument The element to filter the suggestions of
-     * @param predicate The predicate to test suggestions against
-     * @return the argument
-     */
-    public static CommandElement withConstrainedSuggestions(CommandElement argument, Predicate<String> predicate) {
-        return new FilteredSuggestionsElement(argument, predicate);
-    }
-
-    /**
      * Uses a custom set of suggestions for an argument. The provided
      * suggestions will replace the regular ones.
      *
@@ -2307,8 +2295,21 @@ public final class GenericArguments {
      *                     begin provided arguments
      * @return the argument
      */
-    public static CommandElement withSuggestions(CommandElement argument, Function<CommandSource, Iterable<String>> suggestions, boolean requireBegin) {
+    public static CommandElement withSuggestions(CommandElement argument, Function<CommandSource,
+        Iterable<String>> suggestions, boolean requireBegin) {
         return new WithSuggestionsElement(argument, suggestions, requireBegin);
+    }
+
+    /**
+     * Filters an argument's suggestions. A suggestion will only be used if it
+     * matches the predicate.
+     *
+     * @param argument The element to filter the suggestions of
+     * @param predicate The predicate to test suggestions against
+     * @return the argument
+     */
+    public static CommandElement withConstrainedSuggestions(CommandElement argument, Predicate<String> predicate) {
+        return new FilteredSuggestionsElement(argument, predicate);
     }
 
     private static class WithSuggestionsElement extends CommandElement {

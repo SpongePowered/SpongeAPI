@@ -407,7 +407,8 @@ public final class SimpleDispatcher implements Dispatcher {
 
     // Filter out commands by String first
     private Set<String> filterCommands(final CommandSource src, String start) {
-        ListMultimap<String, CommandMapping> map = Multimaps.filterKeys(this.commands, input -> input != null && input.toLowerCase().startsWith(start.toLowerCase()));
+        ListMultimap<String, CommandMapping> map = Multimaps.filterKeys(this.commands,
+            input -> input != null && input.toLowerCase().startsWith(start.toLowerCase()));
         return Multimaps.filterValues(map, input -> input.getCallable().testPermission(src)).keys().elementSet();
     }
 
