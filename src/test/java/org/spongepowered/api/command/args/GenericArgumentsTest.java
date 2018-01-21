@@ -63,12 +63,7 @@ import org.spongepowered.api.text.Text;
 public class GenericArgumentsTest {
 
     private static final CommandSource MOCK_SOURCE = Mockito.mock(CommandSource.class);
-    static final CommandExecutor NULL_EXECUTOR = new CommandExecutor() {
-        @Override
-        public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
-            return CommandResult.empty();
-        }
-    };
+    static final CommandExecutor NULL_EXECUTOR = (src, args) -> CommandResult.empty();
 
     @Before
     public void initialize() throws Exception {

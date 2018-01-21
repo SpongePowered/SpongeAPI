@@ -129,13 +129,10 @@ public class ChildCommandsTest {
     public void testSimpleChildCommand() throws CommandException {
         final AtomicBoolean childExecuted = new AtomicBoolean();
         final CommandSpec spec = CommandSpec.builder()
-                .children(ImmutableMap.<List<String>, CommandSpec>of(ImmutableList.of("child"), CommandSpec.builder()
-                        .executor(new CommandExecutor() {
-                            @Override
-                            public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
-                                childExecuted.set(true);
-                                return CommandResult.builder().successCount(1).build();
-                            }
+                .children(ImmutableMap.of(ImmutableList.of("child"), CommandSpec.builder()
+                        .executor((src, args) -> {
+                            childExecuted.set(true);
+                            return CommandResult.builder().successCount(1).build();
                         })
                         .build()))
                         .build();
@@ -151,7 +148,7 @@ public class ChildCommandsTest {
         final AtomicBoolean parentExecuted = new AtomicBoolean();
         final AtomicBoolean childExecuted = new AtomicBoolean();
         final CommandSpec spec = CommandSpec.builder()
-                .children(ImmutableMap.<List<String>, CommandSpec>of(ImmutableList.of("child"), CommandSpec.builder()
+                .children(ImmutableMap.of(ImmutableList.of("child"), CommandSpec.builder()
                         .arguments(GenericArguments.literal(Text.of("test"), "test"))
                         .executor((src, args) -> {
                             childExecuted.set(true);
@@ -177,7 +174,7 @@ public class ChildCommandsTest {
         final AtomicBoolean parentExecuted = new AtomicBoolean();
         final AtomicBoolean childExecuted = new AtomicBoolean();
         final CommandSpec spec = CommandSpec.builder()
-                .children(ImmutableMap.<List<String>, CommandSpec>of(ImmutableList.of("child"), CommandSpec.builder()
+                .children(ImmutableMap.of(ImmutableList.of("child"), CommandSpec.builder()
                         .arguments(GenericArguments.literal(Text.of("test"), "test"))
                         .executor((src, args) -> {
                             childExecuted.set(true);
@@ -207,7 +204,7 @@ public class ChildCommandsTest {
     @Test
     public void testErrorOnNonExistentChildWithNoExecutor() throws CommandException {
         final CommandSpec spec = CommandSpec.builder()
-                .children(ImmutableMap.<List<String>, CommandSpec>of(ImmutableList.of("child"), CommandSpec.builder()
+                .children(ImmutableMap.of(ImmutableList.of("child"), CommandSpec.builder()
                         .executor((src, args) -> CommandResult.builder().successCount(1).build())
                         .build()))
                 .childArgumentParseExceptionFallback(false)
@@ -225,7 +222,7 @@ public class ChildCommandsTest {
     @Test
     public void testErrorOnNonExistentChildWithNoOtherParameters() throws CommandException {
         final CommandSpec spec = CommandSpec.builder()
-                .children(ImmutableMap.<List<String>, CommandSpec>of(ImmutableList.of("child"), CommandSpec.builder()
+                .children(ImmutableMap.of(ImmutableList.of("child"), CommandSpec.builder()
                         .executor((src, args) -> CommandResult.builder().successCount(1).build())
                         .build()))
                 .childArgumentParseExceptionFallback(false)

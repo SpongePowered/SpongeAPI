@@ -65,14 +65,11 @@ public class CommandFlagsTest {
         CommandSpec command = CommandSpec.builder()
                 .arguments(flags()
                         .flag("a").valueFlag(integer(t("quot")), "q").buildWith(string(t("key"))))
-                .executor(new CommandExecutor() {
-                    @Override
-                    public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
-                        assertEquals(true, args.getOne("a").get());
-                        assertEquals(42, args.getOne("quot").get());
-                        assertEquals("something", args.getOne("key").get());
-                        return CommandResult.builder().successCount(3).build();
-                    }
+                .executor((src, args) -> {
+                    assertEquals(true, args.getOne("a").get());
+                    assertEquals(42, args.getOne("quot").get());
+                    assertEquals("something", args.getOne("key").get());
+                    return CommandResult.builder().successCount(3).build();
                 })
                 .build();
         process(command, "-a -q 42 something");
