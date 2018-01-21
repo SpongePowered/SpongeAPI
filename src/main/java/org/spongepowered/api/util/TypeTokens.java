@@ -29,14 +29,55 @@ import com.flowpowered.math.vector.Vector3i;
 import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.data.value.mutable.PatternListValue;
-import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.data.meta.PatternLayer;
-import org.spongepowered.api.data.type.*;
+import org.spongepowered.api.data.type.Art;
+import org.spongepowered.api.data.type.BigMushroomType;
+import org.spongepowered.api.data.type.BodyPart;
+import org.spongepowered.api.data.type.BrickType;
+import org.spongepowered.api.data.type.Career;
+import org.spongepowered.api.data.type.CoalType;
+import org.spongepowered.api.data.type.ComparatorType;
+import org.spongepowered.api.data.type.CookedFish;
+import org.spongepowered.api.data.type.DirtType;
+import org.spongepowered.api.data.type.DisguisedBlockType;
+import org.spongepowered.api.data.type.DoublePlantType;
+import org.spongepowered.api.data.type.DyeColor;
+import org.spongepowered.api.data.type.Fish;
+import org.spongepowered.api.data.type.GoldenApple;
+import org.spongepowered.api.data.type.HandPreference;
+import org.spongepowered.api.data.type.Hinge;
+import org.spongepowered.api.data.type.HorseColor;
+import org.spongepowered.api.data.type.HorseStyle;
+import org.spongepowered.api.data.type.LlamaVariant;
+import org.spongepowered.api.data.type.LogAxis;
+import org.spongepowered.api.data.type.NotePitch;
+import org.spongepowered.api.data.type.OcelotType;
+import org.spongepowered.api.data.type.ParrotVariant;
+import org.spongepowered.api.data.type.PickupRule;
+import org.spongepowered.api.data.type.PistonType;
+import org.spongepowered.api.data.type.PlantType;
+import org.spongepowered.api.data.type.PortionType;
+import org.spongepowered.api.data.type.PrismarineType;
+import org.spongepowered.api.data.type.Profession;
+import org.spongepowered.api.data.type.QuartzType;
+import org.spongepowered.api.data.type.RabbitType;
+import org.spongepowered.api.data.type.RailDirection;
+import org.spongepowered.api.data.type.SandType;
+import org.spongepowered.api.data.type.SandstoneType;
+import org.spongepowered.api.data.type.ShrubType;
+import org.spongepowered.api.data.type.SkullType;
+import org.spongepowered.api.data.type.SlabType;
+import org.spongepowered.api.data.type.StairShape;
+import org.spongepowered.api.data.type.StoneType;
+import org.spongepowered.api.data.type.StructureMode;
+import org.spongepowered.api.data.type.TreeType;
+import org.spongepowered.api.data.type.WallType;
+import org.spongepowered.api.data.type.WireAttachmentType;
 import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.data.value.mutable.MapValue;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 import org.spongepowered.api.data.value.mutable.OptionalValue;
+import org.spongepowered.api.data.value.mutable.PatternListValue;
 import org.spongepowered.api.data.value.mutable.SetValue;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.data.value.mutable.WeightedCollectionValue;
@@ -46,10 +87,10 @@ import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.extra.fluid.FluidStackSnapshot;
 import org.spongepowered.api.item.FireworkEffect;
+import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.profile.GameProfile;
@@ -66,7 +107,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
-public class TypeTokens {
+@SuppressWarnings("unused")
+public final class TypeTokens {
 
     // SORTFIELDS:ON
 
@@ -410,7 +452,7 @@ public class TypeTokens {
 
     public static final TypeToken<Value<WallType>> WALL_VALUE_TOKEN = new TypeToken<Value<WallType>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<WeightedCollectionValue<EntityArchetype>> WEIGHTED_ENTITY_ARCHETYPE_COLLECTION_VALUE_TOKEN = new TypeToken<WeightedCollectionValue<EntityArchetype>> () {private static final long serialVersionUID = -1;};
+    public static final TypeToken<WeightedCollectionValue<EntityArchetype>> WEIGHTED_ENTITY_ARCHETYPE_COLLECTION_VALUE_TOKEN = new TypeToken<WeightedCollectionValue<EntityArchetype>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<WeightedTable<EntityArchetype>> WEIGHTED_ENTITY_ARCHETYPE_TABLE_TOKEN = new TypeToken<WeightedTable<EntityArchetype>>() {private static final long serialVersionUID = -1;};
 
@@ -425,12 +467,14 @@ public class TypeTokens {
     public static final TypeToken<WireAttachmentType> WIRE_ATTACHMENT_TYPE_TOKEN = new TypeToken<WireAttachmentType>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<WireAttachmentType>> WIRE_ATTACHMENT_TYPE_VALUE_TOKEN = new TypeToken<Value<WireAttachmentType>>() {private static final long serialVersionUID = -1;};
-    public static final TypeToken<PatternListValue> PATTERN_LIST_VALUE_TOKEN = new TypeToken<PatternListValue>() {private static final long serialVerionUID = -1;};
+
+    public static final TypeToken<PatternListValue> PATTERN_LIST_VALUE_TOKEN = new TypeToken<PatternListValue>() {private static final long serialVersionUID = -1;};
 
     // SORTFIELDS:OFF
 
+    // Suppress default constructor to ensure non-instantiability.
     private TypeTokens() {
-        throw new RuntimeException("Lolno");
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
 }
