@@ -76,7 +76,7 @@ public abstract class AbstractImmutableSingleData<T, I extends ImmutableDataMani
     @SuppressWarnings("unchecked")
     @Override
     public <E> Optional<E> get(Key<? extends BaseValue<E>> key) {
-        return checkNotNull(key).equals(this.usedKey) ? Optional.of((E) this.value) : Optional.<E>empty();
+        return checkNotNull(key).equals(this.usedKey) ? Optional.of((E) this.value) : Optional.empty();
     }
 
     @Override
@@ -86,7 +86,7 @@ public abstract class AbstractImmutableSingleData<T, I extends ImmutableDataMani
 
     @Override
     public Set<Key<?>> getKeys() {
-        return ImmutableSet.<Key<?>>of(this.usedKey);
+        return ImmutableSet.of(this.usedKey);
     }
 
 }

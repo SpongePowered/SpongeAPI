@@ -38,6 +38,13 @@ public class DataAlreadyRegisteredException extends DataException {
     @Nullable private final DataManipulatorBuilder<?, ?> builder;
 
 
+    /**
+     * Constructs a new data already registered exception.
+     *
+     * @param manipulatorClass The manipulator class
+     * @param immutableManipulatorClass The immutable manipulator class
+     * @param builder The data manipulator builder
+     */
     public DataAlreadyRegisteredException(@Nullable Class<? extends DataManipulator<?, ?>> manipulatorClass,
         @Nullable Class<? extends ImmutableDataManipulator<?, ?>> immutableManipulatorClass,
         @Nullable DataManipulatorBuilder<?, ?> builder) {
@@ -46,6 +53,14 @@ public class DataAlreadyRegisteredException extends DataException {
         this.builder = builder;
     }
 
+    /**
+     * Constructs a new data already registered exception with a message.
+     *
+     * @param message The message to send with the exception
+     * @param manipulatorClass The manipulator class
+     * @param immutableManipulatorClass The immutable manipulator class
+     * @param builder The data manipulator builder
+     */
     public DataAlreadyRegisteredException(String message,
         @Nullable Class<? extends DataManipulator<?, ?>> manipulatorClass,
         @Nullable Class<? extends ImmutableDataManipulator<?, ?>> immutableManipulatorClass,
@@ -56,6 +71,16 @@ public class DataAlreadyRegisteredException extends DataException {
         this.builder = builder;
     }
 
+    /**
+     * Constructs a new data already registered exception with a message and
+     * a throwable cause.
+     *
+     * @param message The message to send with the exception
+     * @param cause The cause of the exception
+     * @param manipulatorClass The manipulator class
+     * @param immutableManipulatorClass The immutable manipulator class
+     * @param builder The data manipulator builder
+     */
     public DataAlreadyRegisteredException(String message, Throwable cause,
         @Nullable Class<? extends DataManipulator<?, ?>> manipulatorClass,
         @Nullable Class<? extends ImmutableDataManipulator<?, ?>> immutableManipulatorClass,
@@ -66,6 +91,15 @@ public class DataAlreadyRegisteredException extends DataException {
         this.builder = builder;
     }
 
+    /**
+     * Constructs a new data already registered exception with
+     * a throwable cause.
+     *
+     * @param cause The cause of the exception
+     * @param manipulatorClass The manipulator class
+     * @param immutableManipulatorClass The immutable manipulator class
+     * @param builder The data manipulator builder
+     */
     public DataAlreadyRegisteredException(Throwable cause,
         @Nullable Class<? extends DataManipulator<?, ?>> manipulatorClass,
         @Nullable Class<? extends ImmutableDataManipulator<?, ?>> immutableManipulatorClass,
@@ -76,16 +110,31 @@ public class DataAlreadyRegisteredException extends DataException {
         this.builder = builder;
     }
 
+    /**
+     * Gets the related data manipulator class.
+     *
+     * @return The manipulator class
+     */
     @Nullable
     public Class<? extends DataManipulator<?, ?>> getManipulatorClass() {
         return this.manipulatorClass;
     }
 
+    /**
+     * Gets the related immutable data manipulator class.
+     *
+     * @return The immutable manipulator class
+     */
     @Nullable
     public Class<? extends ImmutableDataManipulator<?, ?>> getImmutableManipulatorClass() {
         return this.immutableManipulatorClass;
     }
 
+    /**
+     * Gets the related data manipulator builder.
+     *
+     * @return The data manipulator builder
+     */
     @Nullable
     public DataManipulatorBuilder<?, ?> getBuilder() {
         return this.builder;

@@ -92,6 +92,14 @@ public interface Key<V extends BaseValue<?>> extends CatalogType {
      */
     DataQuery getQuery();
 
+    /**
+     * Register an event listener which listens to the value the key accesses
+     * changing.
+     *
+     * @param holderFilter The data holder to filter with
+     * @param listener The event listener
+     * @param <E> The class type of the data holder
+     */
     <E extends DataHolder> void registerEvent(Class<E> holderFilter, EventListener<ChangeDataHolderEvent.ValueChange> listener);
 
     interface Builder<E, V extends BaseValue<E>> extends ResettableBuilder<Key<V>, Builder<E, V>> {

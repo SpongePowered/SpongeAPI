@@ -45,11 +45,11 @@ import java.util.Optional;
  * container.get(Keys.HEALTH).get() : 0 }</pre> where the container is simply
  * a {@link ValueContainer}, nothing more, nothing less.
  *
- * <p>The advantage of this is that now, these various known and unkonwn
+ * <p>The advantage of this is that now, these various known and unknown
  * {@link Value}s can be retrieved by simple java generics:
  * {@link ValueContainer#getValue(Key)}. While having a {@link Value} for
  * something so primitive as the current health of a {@link Living} entity,
- * the power is weilded when a {@link Value} can be offered up to multiple
+ * the power is wielded when a {@link Value} can be offered up to multiple
  * {@link ValueContainer}s without worrying about whether it's supported or not,
  * or getting the right cast information.</p>
  *
