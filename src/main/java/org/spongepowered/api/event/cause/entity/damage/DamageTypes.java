@@ -62,6 +62,9 @@ public final class DamageTypes {
 
     // SORTFIELDS:OFF
 
-    private DamageTypes() {}
+    // Suppress default constructor to ensure non-instantiability.
+    private DamageTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 
 }

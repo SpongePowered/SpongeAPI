@@ -364,4 +364,5 @@ public final class CatalogTypes {
     private CatalogTypes() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }
+
 }

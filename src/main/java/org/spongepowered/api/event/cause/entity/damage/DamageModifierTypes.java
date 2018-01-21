@@ -160,7 +160,9 @@ public final class DamageModifierTypes {
 
     // SORTFIELDS:OFF
 
+    // Suppress default constructor to ensure non-instantiability.
     private DamageModifierTypes() {
-
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
+
 }

@@ -32,8 +32,6 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
  */
 public final class IntegerTraits {
 
-    private IntegerTraits() {}
-
     // SORTFIELDS:ON
 
     public static final IntegerTrait ANVIL_DAMAGE = DummyObjectProvider.createFor(IntegerTrait.class, "ANVIL_DAMAGE");
@@ -48,9 +46,7 @@ public final class IntegerTraits {
 
     public static final IntegerTrait COCOA_AGE = DummyObjectProvider.createFor(IntegerTrait.class, "COCOA_AGE");
 
-    public static final IntegerTrait DAYLIGHT_DETECTOR_INVERTED_POWER = DummyObjectProvider
-
-            .createFor(IntegerTrait.class, "DAYLIGHT_DETECTOR_INVERTED_POWER");
+    public static final IntegerTrait DAYLIGHT_DETECTOR_INVERTED_POWER = DummyObjectProvider.createFor(IntegerTrait.class, "DAYLIGHT_DETECTOR_INVERTED_POWER");
 
     public static final IntegerTrait DAYLIGHT_DETECTOR_POWER = DummyObjectProvider.createFor(IntegerTrait.class, "DAYLIGHT_DETECTOR_POWER");
 
@@ -64,15 +60,11 @@ public final class IntegerTraits {
 
     public static final IntegerTrait FLOWING_WATER_LEVEL = DummyObjectProvider.createFor(IntegerTrait.class, "FLOWING_WATER_LEVEL");
 
-    public static final IntegerTrait HEAVY_WEIGHTED_PRESSURE_PLATE_POWER = DummyObjectProvider
-
-            .createFor(IntegerTrait.class, "HEAVY_WEIGHTED_PRESSURE_PLATE_POWER");
+    public static final IntegerTrait HEAVY_WEIGHTED_PRESSURE_PLATE_POWER = DummyObjectProvider.createFor(IntegerTrait.class, "HEAVY_WEIGHTED_PRESSURE_PLATE_POWER");
 
     public static final IntegerTrait LAVA_LEVEL = DummyObjectProvider.createFor(IntegerTrait.class, "LAVA_LEVEL");
 
-    public static final IntegerTrait LIGHT_WEIGHTED_PRESSURE_PLATE_POWER = DummyObjectProvider
-
-            .createFor(IntegerTrait.class, "LIGHT_WEIGHTED_PRESSURE_PLATE_POWER");
+    public static final IntegerTrait LIGHT_WEIGHTED_PRESSURE_PLATE_POWER = DummyObjectProvider.createFor(IntegerTrait.class, "LIGHT_WEIGHTED_PRESSURE_PLATE_POWER");
 
     public static final IntegerTrait MELON_STEM_AGE = DummyObjectProvider.createFor(IntegerTrait.class, "MELON_STEM_AGE");
 
@@ -103,4 +95,10 @@ public final class IntegerTraits {
     public static final IntegerTrait WHEAT_AGE = DummyObjectProvider.createFor(IntegerTrait.class, "WHEAT_AGE");
 
     // SORTFIELDS:OFF
+
+    // Suppress default constructor to ensure non-instantiability.
+    private IntegerTraits() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
 }

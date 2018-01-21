@@ -78,7 +78,10 @@ public final class ItemStackComparators {
 
     public static final Comparator<ItemStack> ALL = Ordering.compound(ImmutableList.of(TYPE, SIZE, PROPERTIES, ITEM_DATA));
 
-    private ItemStackComparators() {}
+    // Suppress default constructor to ensure non-instantiability.
+    private ItemStackComparators() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 
     static final class Type implements Comparator<ItemStack> {
 

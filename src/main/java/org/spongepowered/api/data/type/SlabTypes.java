@@ -53,7 +53,9 @@ public final class SlabTypes {
 
     // SORTFIELDS:OFF
 
+    // Suppress default constructor to ensure non-instantiability.
     private SlabTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
 }

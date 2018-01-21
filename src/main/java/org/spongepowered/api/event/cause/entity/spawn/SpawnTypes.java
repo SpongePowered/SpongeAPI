@@ -43,8 +43,6 @@ import org.spongepowered.api.world.weather.Weather;
 
 public final class SpawnTypes {
 
-    private SpawnTypes() {}
-
     // SORTFIELDS:ON
 
     /**
@@ -153,5 +151,10 @@ public final class SpawnTypes {
     public static final SpawnType WORLD_SPAWNER = DummyObjectProvider.createFor(SpawnType.class, "WORLD_SPAWNER");
 
     // SORTFIELDS:OFF
+
+    // Suppress default constructor to ensure non-instantiability.
+    private SpawnTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 
 }

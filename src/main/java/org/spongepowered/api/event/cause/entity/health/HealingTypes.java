@@ -42,7 +42,9 @@ public final class HealingTypes {
 
     // SORTFIELDS:OFF
 
+    // Suppress default constructor to ensure non-instantiability.
     private HealingTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
 }

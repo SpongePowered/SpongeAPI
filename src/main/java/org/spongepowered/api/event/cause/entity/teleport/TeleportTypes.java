@@ -42,6 +42,9 @@ public final class TeleportTypes {
 
     // SORTFIELDS:OFF
 
-    private TeleportTypes() {}
+    // Suppress default constructor to ensure non-instantiability.
+    private TeleportTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 
 }

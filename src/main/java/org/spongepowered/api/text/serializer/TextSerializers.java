@@ -35,9 +35,6 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
  */
 public final class TextSerializers {
 
-    private TextSerializers() {
-    }
-
     /**
      * The {@link TextSerializer} for plain text input, without support for
      * formatting or special text types.
@@ -105,6 +102,11 @@ public final class TextSerializers {
         } else {
             return Sponge.getRegistry().getTextSerializerFactory().getFormattingCodeTextSerializer(formattingChar);
         }
+    }
+
+    // Suppress default constructor to ensure non-instantiability.
+    private TextSerializers() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
 }

@@ -88,7 +88,9 @@ public final class Queries {
     public static final DataQuery UUID_LEAST = of("UuidLeast");
     public static final DataQuery UUID_MOST = of("UuidMost");
 
+    // Suppress default constructor to ensure non-instantiability.
     private Queries() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
 }

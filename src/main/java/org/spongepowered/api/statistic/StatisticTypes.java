@@ -50,7 +50,9 @@ public final class StatisticTypes {
 
     // SORTFIELDS:OFF
 
+    // Suppress default constructor to ensure non-instantiability.
     private StatisticTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
 }

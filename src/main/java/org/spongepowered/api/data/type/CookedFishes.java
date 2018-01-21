@@ -39,7 +39,9 @@ public final class CookedFishes {
 
     // SORTFIELDS:OFF
 
+    // Suppress default constructor to ensure non-instantiability.
     private CookedFishes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
 }

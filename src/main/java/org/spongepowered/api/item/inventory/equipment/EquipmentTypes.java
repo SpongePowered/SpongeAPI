@@ -64,9 +64,9 @@ public final class EquipmentTypes {
 
     public static final WornEquipmentType LEGGINGS = DummyObjectProvider.createFor(WornEquipmentType.class, "LEGGINGS");
 
-    /**
-     * No subclasses for you.
-     */
-    private EquipmentTypes() {}
+    // Suppress default constructor to ensure non-instantiability.
+    private EquipmentTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 
 }
