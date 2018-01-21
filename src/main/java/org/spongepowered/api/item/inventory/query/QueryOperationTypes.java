@@ -68,7 +68,7 @@ public final class QueryOperationTypes {
     /**
      * Tests for an exact match of the item stack contained in each slot.
      *
-     * @see ItemStack#equals(Object)
+     * <p>Generally uses {@link ItemStack}'s <code>#equals</code> method.</p>
      */
     public static final QueryOperationType<ItemStack> ITEM_STACK_EXACT = DummyObjectProvider.createExtendedFor(QueryOperationType.class, "ITEM_STACK_EXACT");
 
