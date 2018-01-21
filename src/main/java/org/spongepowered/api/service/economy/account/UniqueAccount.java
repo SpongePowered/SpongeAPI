@@ -37,4 +37,5 @@ import java.util.UUID;
  * through {@link #getUniqueId()}.</p>.
  */
 public interface UniqueAccount extends Account, Identifiable {
+
 }

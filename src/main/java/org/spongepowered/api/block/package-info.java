@@ -27,4 +27,5 @@
  * game universe. Each "block" has a
  * {@link org.spongepowered.api.block.BlockState} that can be changed.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.block;
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.block;
