@@ -213,8 +213,8 @@ public interface ValueFactory {
          * Sets the default value. This is required. If no value is set,
          * the default value transitively sets the value.
          *
-         * @param defaultValue The defualt value
-         * @return This bulder, for chaining
+         * @param defaultValue The default value
+         * @return This builder, for chaining
          */
         BoundedValueBuilder<E> defaultValue(E defaultValue);
 
@@ -223,7 +223,7 @@ public interface ValueFactory {
          * different from the {@link #defaultValue(Object)}, it should be
          * set.
          *
-         * @param actual The actaul value
+         * @param actual The actual value
          * @return This builder, for chaining
          */
         BoundedValueBuilder<E> actualValue(E actual);

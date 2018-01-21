@@ -48,7 +48,7 @@ public abstract class AbstractBooleanData<M extends DataManipulator<M, I>, I ext
 
     protected AbstractBooleanData(boolean value, Key<? extends BaseValue<Boolean>> usedKey, boolean defaultValue) {
         super(value, usedKey);
-        this.defaultValue = checkNotNull(defaultValue);
+        this.defaultValue = defaultValue;
     }
 
     @SuppressWarnings("unchecked")
