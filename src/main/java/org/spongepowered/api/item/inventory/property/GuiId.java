@@ -25,14 +25,10 @@
 package org.spongepowered.api.item.inventory.property;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.InventoryArchetype;
-import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
-
-import java.util.Optional;
 
 /**
  * GuiIds are used in a {@link GuiIdProperty} when building a custom {@link Inventory}.

@@ -29,15 +29,11 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.item.inventory.InteractInventoryEvent;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.query.QueryOperation;
-import org.spongepowered.api.item.inventory.query.QueryOperationTypes;
 import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult;
 import org.spongepowered.api.plugin.PluginContainer;
-import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.ResettableBuilder;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 import java.util.Queue;
 import java.util.function.Consumer;
@@ -104,7 +100,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      *
      * @param <T> expected inventory type, specified as generic to allow easy
      *      pseudo-duck-typing
-     * @return the next sibiling inventory, or an {@link EmptyInventory} if
+     * @return the next sibling inventory, or an {@link EmptyInventory} if
      *      there are no further siblings
      */
     <T extends Inventory> T next();
@@ -123,7 +119,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * return anything here, this does not imply that the inventory is empty,
      * just that a more specific query is required to obtain items from it.</p>
      *
-     * @return First available itemstack, or {@link Optional#empty()} if
+     * @return The first available item stack, or {@link Optional#empty()} if
      *      unavailable or unsupported
      */
     Optional<ItemStack> poll();
@@ -135,8 +131,9 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * the usual behaviour of {@link #poll()}, otherwise a new {@link ItemStack}
      * is returned containing the removed items, the contents of the stack in
      * the inventory are reduced by the number of items consumed. Note that this
-     * method attempts to consume items into the ouput up to <code>limit</code>,
-     * which may consume items from an abitrary number of internal slots.</p>
+     * method attempts to consume items into the output up to
+     * <code>limit</code>, which may consume items from an arbitrary number
+     * of internal slots.</p>
      *
      * <p>For example, assume an inventory containing 4 slots contains stacks as
      * follows:</p>
@@ -374,19 +371,6 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
     <T extends InventoryProperty<?, ?>> Optional<T> getProperty(Inventory child, Class<T> property, Object key);
 
     /**
-     * Gets the property with the default key defined in <em>this</em>
-     * inventory for the specified (immediate) sub-inventory.
-     *
-     * @param child the child inventory to inspect
-     * @param property the type of property to query for
-     * @param <T> expected type of inventory property, generic to enable easy
-     *      pseudo-duck-typing
-     * @return matching properties, may be absent if no property matched the
-     *      supplied criteria
-     */
-    <T extends InventoryProperty<?, ?>> Optional<T> getInventoryProperty(Inventory child, Class<T> property);
-
-    /**
      * Gets a property with the specified key defined directly on this Inventory
      * if one is defined. For sub-inventories this is effectively the same as
      * <code>inv.getParent().getProperty(inv, property, key);</code> but for
@@ -401,6 +385,20 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      *      supplied criteria
      */
     <T extends InventoryProperty<?, ?>> Optional<T> getProperty(Class<T> property, Object key);
+
+
+    /**
+     * Gets the property with the default key defined in <em>this</em>
+     * inventory for the specified (immediate) sub-inventory.
+     *
+     * @param child the child inventory to inspect
+     * @param property the type of property to query for
+     * @param <T> expected type of inventory property, generic to enable easy
+     *      pseudo-duck-typing
+     * @return matching properties, may be absent if no property matched the
+     *      supplied criteria
+     */
+    <T extends InventoryProperty<?, ?>> Optional<T> getInventoryProperty(Inventory child, Class<T> property);
 
     /**
      * Gets a property with the default key defined directly on this Inventory

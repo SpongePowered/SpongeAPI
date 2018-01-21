@@ -28,8 +28,6 @@ import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
-import java.util.Optional;
-
 /**
  * Represents a Block that is a carrier of an Inventory
  * e.g. An Anvil

@@ -32,6 +32,11 @@ import org.spongepowered.api.data.Property;
  */
 public class GuiIdProperty extends AbstractInventoryProperty<String, GuiId> {
 
+    /**
+     * Creates a GuiID property from the specified GUI ID.
+     *
+     * @param value The GUI ID to create the property with
+     */
     public GuiIdProperty(GuiId value) {
         super(value);
     }
