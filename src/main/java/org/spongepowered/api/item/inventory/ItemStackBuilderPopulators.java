@@ -35,13 +35,13 @@ import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.data.value.mutable.SetValue;
 import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.item.enchantment.EnchantmentType;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.enchantment.Enchantment;
+import org.spongepowered.api.item.enchantment.EnchantmentType;
 import org.spongepowered.api.util.Tuple;
 import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.util.weighted.WeightedTable;
@@ -639,7 +639,8 @@ public final class ItemStackBuilderPopulators {
         checkNotNull(amount, "VariableAmount cannot be null!");
         final WeightedTable<Function<Random, Enchantment>> suppliers = new WeightedTable<>(amount);
         for (Tuple<EnchantmentType, VariableAmount> enchantment : enchantments) {
-            suppliers.add(random -> Enchantment.builder().type(enchantment.getFirst()).level(enchantment.getSecond().getFlooredAmount(random)).build(), 1);
+            suppliers.add(random ->
+                Enchantment.builder().type(enchantment.getFirst()).level(enchantment.getSecond().getFlooredAmount(random)).build(), 1);
         }
         return listValueSuppliers(Keys.ITEM_ENCHANTMENTS, suppliers);
     }

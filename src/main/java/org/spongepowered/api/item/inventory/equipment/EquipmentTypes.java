@@ -32,7 +32,8 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 public final class EquipmentTypes {
 
     /**
-     * Any type, all other types should subclass this to allow instanceof checks to succeed.
+     * Any type, all other types should subclass this to allow instanceof
+     * checks to succeed.
      */
     public static final EquipmentType ANY = DummyObjectProvider.createFor(EquipmentType.class, "ANY");
 
@@ -42,7 +43,7 @@ public final class EquipmentTypes {
     public static final EquipmentType EQUIPPED = DummyObjectProvider.createFor(EquipmentType.class, "EQUIPPED");
 
     /**
-     * Any held types like MAINHAND and OFFHAND
+     * Any held types like MAINHAND and OFFHAND.
      */
     public static final HeldEquipmentType HELD = DummyObjectProvider.createFor(HeldEquipmentType.class, "HELD");
 

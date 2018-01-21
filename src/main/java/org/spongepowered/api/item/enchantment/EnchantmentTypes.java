@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.item.enchantment;
 
-import org.spongepowered.api.item.enchantment.EnchantmentType;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**

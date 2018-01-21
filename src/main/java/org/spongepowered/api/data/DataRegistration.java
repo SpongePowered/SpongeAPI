@@ -229,7 +229,8 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
          *
          *
          * @return The data registration object
-         * @throws IllegalStateException If registrations can no longer take place
+         * @throws IllegalStateException If registrations can no longer
+         *     take place
          * @throws IllegalArgumentException Various reasons
          * @throws DataAlreadyRegisteredException If the classes and or builder
          *     has already been registered

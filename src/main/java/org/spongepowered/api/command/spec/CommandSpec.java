@@ -210,7 +210,7 @@ public final class CommandSpec implements CommandCallable {
 
         /**
          * If a child command is selected but fails to parse arguments passed to
-         * it, this determines the behavior:
+         * it, the following determines the behavior.
          *
          * <ul>
          *     <li>If this is set to <strong>false</strong>, this command (the
@@ -400,7 +400,7 @@ public final class CommandSpec implements CommandCallable {
 
     /**
      * Gets a short, one-line description used with this command if any is
-     * present
+     * present.
      *
      * @return the short description.
      */
@@ -410,8 +410,9 @@ public final class CommandSpec implements CommandCallable {
     }
 
     /**
-     * Gets the extended description used with this command if any is present
+     * Gets the extended description used with this command if any is present.
      *
+     * @param source The source to get the description for
      * @return the extended description.
      */
     public Optional<Text> getExtendedDescription(CommandSource source) {

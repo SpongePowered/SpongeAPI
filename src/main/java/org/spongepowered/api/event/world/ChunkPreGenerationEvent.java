@@ -88,7 +88,7 @@ public interface ChunkPreGenerationEvent extends TargetWorldEvent {
 
         /**
          * The number of chunks generated that did not need to be generated and
-         * were skipped over
+         * were skipped over.
          *
          * @return The number of chunks that were generated.
          */

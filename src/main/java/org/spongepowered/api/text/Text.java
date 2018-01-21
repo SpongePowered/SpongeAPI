@@ -1264,8 +1264,7 @@ public abstract class Text implements TextRepresentable, DataSerializable, Compa
         do {
             builder.append(separator);
             builder.append(texts.next());
-        }
-        while (texts.hasNext());
+        } while (texts.hasNext());
 
         return builder.build();
     }

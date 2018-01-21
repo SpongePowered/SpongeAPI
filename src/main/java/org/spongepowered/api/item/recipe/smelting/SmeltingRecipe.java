@@ -44,6 +44,8 @@ public interface SmeltingRecipe extends Recipe {
     /**
      * Builds a simple furnace recipe. Note, that you can implement the
      * {@link SmeltingRecipe} manually, too.
+     *
+     * @return A {@link SmeltingRecipe} builder
      */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
@@ -84,7 +86,7 @@ public interface SmeltingRecipe extends Recipe {
     Optional<SmeltingResult> getResult(ItemStackSnapshot ingredient);
 
     /**
-     * Builds a simple furnace recipe
+     * Builds a simple furnace recipe.
      */
     interface Builder extends ResettableBuilder<SmeltingRecipe, Builder> {
 
@@ -164,11 +166,11 @@ public interface SmeltingRecipe extends Recipe {
 
             /**
              * Changes the experience and returns this builder. It is the
-             * required amount of experience the user must possess in order to be
-             * able to fulfill the recipe.
+             * required amount of experience the user must possess in order to
+             * be able to fulfill the recipe.
              *
-             * @param experience The amount of experience released when this recipe
-             *                   is completed
+             * @param experience The amount of experience released when this
+             *     recipe is completed
              * @return This builder, for chaining
              */
             EndStep experience(double experience);
@@ -177,7 +179,8 @@ public interface SmeltingRecipe extends Recipe {
              * Builds the recipe and returns it.
              *
              * @return The built recipe
-             * @throws IllegalStateException If not all required options were specified
+             * @throws IllegalStateException If not all required options
+             *     were specified
              */
             SmeltingRecipe build();
         }

@@ -53,7 +53,7 @@ public interface Property<K, V> extends Comparable<Property<?, ?>> {
         },
 
         /**
-         * Use the <code>.equals()</code> method
+         * Use the <code>.equals()</code> method.
          */
         EQUAL {
             @Override
@@ -64,7 +64,7 @@ public interface Property<K, V> extends Comparable<Property<?, ?>> {
 
         /**
          * Use the <code>.equals()</code> method but match if the result is
-         * false
+         * false.
          */
         NOTEQUAL {
             @Override
@@ -75,7 +75,7 @@ public interface Property<K, V> extends Comparable<Property<?, ?>> {
 
         /**
          * Use <code>.compareTo()</code> amd match if target is greater than
-         * supplied operand
+         * supplied operand.
          */
         GREATER {
             @Override
@@ -88,7 +88,7 @@ public interface Property<K, V> extends Comparable<Property<?, ?>> {
 
         /**
          * Use <code>.compareTo()</code> and match if target is greater than
-         * or equal to supplied operand
+         * or equal to supplied operand.
          */
         GEQUAL {
             @Override
@@ -101,7 +101,7 @@ public interface Property<K, V> extends Comparable<Property<?, ?>> {
 
         /**
          * Use <code>.compareTo()</code> amd match if target is less than the
-         * supplied operand
+         * supplied operand.
          */
         LESS {
             @Override
@@ -114,7 +114,7 @@ public interface Property<K, V> extends Comparable<Property<?, ?>> {
 
         /**
          * Use <code>.compareTo()</code> amd match if target is less than or
-         * equal to the supplied operand
+         * equal to the supplied operand.
          */
         LEQUAL {
             @Override

@@ -664,7 +664,7 @@ public final class Coerce {
     }
 
     /**
-     * Coerce the supplied object to a Vector2i
+     * Coerce the supplied object to a Vector2i.
      *
      * @param obj Object to coerce
      * @return Vector2i, returns Vector2i.ZERO if coercion failed

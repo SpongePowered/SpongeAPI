@@ -44,7 +44,7 @@ import java.util.Optional;
 public interface ChangeServiceProviderEvent extends Event {
 
     /**
-     * Gets the previous provider registration for the service, if available
+     * Gets the previous provider registration for the service, if available.
      *
      * <p>If a provider is being registered for the first time for the service,
      * this will return {@link Optional#empty()}.</p>

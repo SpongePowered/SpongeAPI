@@ -99,7 +99,7 @@ public interface Ban {
     Instant getCreationDate();
 
     /**
-     * Gets the source that created this ban, if available
+     * Gets the source that created this ban, if available.
      *
      * <p>Depending on the implementation, the returned {@link Text}
      * may represent a {@link CommandSource}. {@link #getBanCommandSource()} can be
@@ -110,7 +110,8 @@ public interface Ban {
     Optional<Text> getBanSource();
 
     /**
-     * Gets the source that created this ban in {@link CommandSource} form, if available
+     * Gets the source that created this ban in {@link CommandSource} form,
+     * if available.
      *
      * <p>Depending on the implementation, it may not be possible to determine
      * the {@link CommandSource} responsible for this ban. Because of this,

@@ -39,7 +39,8 @@ import javax.sql.DataSource;
 public interface SqlService {
 
     /**
-     * Returns a data source for the provided JDBC connection string or an alias
+     * Returns a data source for the provided JDBC connection string or
+     * an alias.
      *
      * <p>A jdbc connection url is expected to be of the form:
      * jdbc:&lt;engine&gt;://[&lt;username&gt;[:&lt;password&gt;]@]&lt;host
