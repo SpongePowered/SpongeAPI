@@ -30,7 +30,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 /**
- * Represents a mapping for blockstates to a local identifier.
+ * Represents a mapping for block states to a local identifier.
  */
 public interface BlockPalette {
 
@@ -68,7 +68,7 @@ public interface BlockPalette {
     /**
      * Gets the identifier for the given blockstate from the mapping. If the
      * blockstate is not yet registered in the mapping then it is registered and
-     * given the next availale identifier.
+     * given the next available identifier.
      *
      * @param state The blockstate
      * @return The identifier

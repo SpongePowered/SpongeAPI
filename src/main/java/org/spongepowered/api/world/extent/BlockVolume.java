@@ -210,7 +210,6 @@ public interface BlockVolume {
     /**
      * Gets a new block worker for this block volume.
      *
-     * @param cause The cause for the block worker to use for changes
      * @return The block worker
      */
     BlockVolumeWorker<? extends BlockVolume> getBlockWorker();

@@ -111,8 +111,20 @@ public interface Chunk extends Extent {
      * at 3,600,000 ticks (50 hours).
      *
      * @return The number of ticks
+     * @deprecated Due to misspelling, use {@link #getInhabitedTime()} instead
      */
+    @Deprecated
     int getInhabittedTime();
+
+    /**
+     * Gets the number of ticks players have been present in this chunk, used
+     * for calculation of the regional difficulty factor. In vanilla, it is
+     * increased by the number of players in the chunk every tick, and is capped
+     * at 3,600,000 ticks (50 hours).
+     *
+     * @return The number of ticks
+     */
+    int getInhabitedTime();
 
     /**
      * Gets the regional difficulty factor for this chunk. In vanilla, it is
@@ -160,7 +172,7 @@ public interface Chunk extends Extent {
      */
     default Optional<Chunk> getNeighbor(Direction direction, boolean shouldLoad) {
         Optional<Vector3i> neighborPosition = Sponge.getServer().getChunkLayout().moveToChunk(getPosition(), direction);
-        return neighborPosition.isPresent() ? getWorld().loadChunk(neighborPosition.get(), shouldLoad) : Optional.empty();
+        return neighborPosition.flatMap(vector3i -> getWorld().loadChunk(vector3i, shouldLoad));
     }
 
     @Override

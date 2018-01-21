@@ -124,8 +124,8 @@ public interface WorldBorder {
     /**
      * Gets the center of the world border.
      *
-     * <p>The returned position is three-dimensional. As the worldborder extends
-     * over the entire y-axis, the returned position will always have a
+     * <p>The returned position is three-dimensional. As the world border
+     * extends over the entire y-axis, the returned position will always have a
      * {@code y} set to 0.</p>
      *
      * @return The center
@@ -210,7 +210,7 @@ public interface WorldBorder {
 
     /**
      * Returns a new builder for creating a task to pre-generate the chunks
-     * inside the border. The current state of the border is "snapshoted" for
+     * inside the border. The current state of the border is "snapshotted" for
      * the builder. It is not backed by this instance. If the border size is
      * changing then the target size is used.
      *

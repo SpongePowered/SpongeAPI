@@ -57,7 +57,7 @@ import java.util.List;
  *     found).</li>
  *   <li>Call each of the {@link #getGenerationPopulators() GenerationPopulators}
  *     registered to the WorldGenerator.</li>
- *   <li>Build thefinal Chunk object from the contents of the BlockBuffer.</li>
+ *   <li>Build the final Chunk object from the contents of the BlockBuffer.</li>
  * </ol>
  * 
  * <ol><strong>The population phase:</strong>
@@ -111,7 +111,7 @@ public interface WorldGenerator {
      * given class type.
      * 
      * @param type The type to match
-     * @return The genpops which match the type
+     * @return The generation populator which match the type
      */
     List<GenerationPopulator> getGenerationPopulators(Class<? extends GenerationPopulator> type);
 

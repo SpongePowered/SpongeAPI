@@ -28,19 +28,19 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 public final class TeleportHelperFilters {
 
-    private TeleportHelperFilters() {}
-
     // SORTFIELDS:ON
 
     /**
      * Designed to be combined with other filters, this filter determines if a
      * block is in the config blacklist and returns the appropriate result.
      */
-    public final static TeleportHelperFilter CONFIG = DummyObjectProvider.createFor(TeleportHelperFilter.class, "CONFIG");
+    public static final TeleportHelperFilter CONFIG = DummyObjectProvider.createFor(TeleportHelperFilter.class, "CONFIG");
 
     /**
-     * The default behavior for safe teleportation, this filter attempts to
-     * find a location to teleport to that has the following characteristics:
+     * The default behavior for safe teleportation.
+     *
+     * <p>This filter attempts to find a location to teleport to that has
+     * the following characteristics:</p>
      *
      * <ul>
      *     <li>The two blocks that the player would occupy (the target and the
@@ -51,10 +51,12 @@ public final class TeleportHelperFilters {
      *     floor or body (see {@link #CONFIG}).</li>
      * </ul>
      */
-    public final static TeleportHelperFilter DEFAULT = DummyObjectProvider.createFor(TeleportHelperFilter.class, "DEFAULT");
+    public static final TeleportHelperFilter DEFAULT = DummyObjectProvider.createFor(TeleportHelperFilter.class, "DEFAULT");
 
     /**
-     * This filter attempts to find the following:
+     * The flying safe teleportation behavior.
+     *
+     * <p>This filter attempts to find the following:</p>
      *
      * <ul>
      *     <li>A block that is air or a liquid which is not known by Sponge
@@ -63,20 +65,25 @@ public final class TeleportHelperFilters {
      *     <li>That floor blocks are not cacti (and thus, hurt).</li>
      * </ul>
      */
-    public final static TeleportHelperFilter FLYING = DummyObjectProvider.createFor(TeleportHelperFilter.class, "FLYING");
+    public static final TeleportHelperFilter FLYING = DummyObjectProvider.createFor(TeleportHelperFilter.class, "FLYING");
 
     /**
      * This filter is the same as the {@link #DEFAULT} kernel, except that
      * portals are not valid targets.
      */
-    public final static TeleportHelperFilter NO_PORTAL = DummyObjectProvider.createFor(TeleportHelperFilter.class, "NO_PORTAL");
+    public static final TeleportHelperFilter NO_PORTAL = DummyObjectProvider.createFor(TeleportHelperFilter.class, "NO_PORTAL");
 
     /**
      * This filter is the same as the {@link #DEFAULT} kernel, except that
      * only targets that can see the sky are considered.
      */
-    public final static TeleportHelperFilter SURFACE_ONLY = DummyObjectProvider.createFor(TeleportHelperFilter.class, "SURFACE_ONLY");
+    public static final TeleportHelperFilter SURFACE_ONLY = DummyObjectProvider.createFor(TeleportHelperFilter.class, "SURFACE_ONLY");
 
     // SORTFIELDS:OFF
+
+    // Suppress default constructor to ensure non-instantiability.
+    private TeleportHelperFilters() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 
 }

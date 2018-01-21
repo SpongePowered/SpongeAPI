@@ -163,7 +163,8 @@ public class DefaultGameRules {
      * The total number of {@link BlockTypes#CHAIN_COMMAND_BLOCK chain command
      * blocks} that can run during a single tick.
      *
-     * <p>This is a numerical game rule, with a default value of {@code 65536}.</p>
+     * <p>This is a numerical game rule, with a default value
+     * of {@code 65536}.</p>
      */
     public static final String MAX_COMMAND_CHAIN_LENGTH = "maxCommandChainLength";
 
@@ -265,7 +266,7 @@ public class DefaultGameRules {
     /**
      * The number of blocks outward from the world spawn coordinates
      * that a player will spawn in when first joining a server or when
-     * dying without a spawnpoint.
+     * dying without a spawn point.
      *
      * <p>This is a numerical game rule, with a default value of {@code 10}.</p>
      */
