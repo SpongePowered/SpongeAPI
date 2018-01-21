@@ -42,4 +42,5 @@
  * bucket to just a normal empty bucket. This is also the case for lava buckets.
  * </p>
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.extra.fluid;
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.extra.fluid;

@@ -26,4 +26,5 @@
  * A common root package of all {@link org.spongepowered.api.event.Event}s that
  * lack a common "Source" and "Target" such that only the "Action" is known.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.event.action;
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.event.action;
