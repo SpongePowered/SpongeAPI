@@ -1226,7 +1226,7 @@ public final class GenericArguments {
     /**
      * A command element which represents a world or dimension.
      *
-     * <p>Acceped formats:</p>
+     * <p>Accepted formats:</p>
      *
      * <ul>
      *     <li>#first</li>

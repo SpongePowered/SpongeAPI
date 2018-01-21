@@ -27,7 +27,6 @@ package org.spongepowered.api.command.args;
 import com.google.common.base.Strings;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.annotation.NonnullByDefault;
 
 /**
  * Exception thrown when an error occurs while parsing arguments.

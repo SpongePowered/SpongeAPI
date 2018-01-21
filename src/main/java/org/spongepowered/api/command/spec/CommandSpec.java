@@ -25,7 +25,6 @@
 package org.spongepowered.api.command.spec;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static org.spongepowered.api.command.args.GenericArguments.optional;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.google.common.base.MoreObjects;
