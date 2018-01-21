@@ -89,6 +89,7 @@ public final class EventContext {
      * Gets the value corresponding to the given key from the context.
      * 
      * @param key The key
+     * @param <T> The type of the value stored with the key
      * @return The context value, if found
      */
     @SuppressWarnings("unchecked")
@@ -104,6 +105,7 @@ public final class EventContext {
      * thrown.</p>
      * 
      * @param key The key
+     * @param <T> The type of the value stored with the key
      * @return The context value, if found
      */
     public <T> T require(EventContextKey<T> key) {
@@ -190,6 +192,7 @@ public final class EventContext {
          * Adds the given context key value pair to the context.
          * 
          * @param key The key
+         * @param <T> The type of the value stored with the key
          * @param value The value
          * @return This builder, for chaining
          */

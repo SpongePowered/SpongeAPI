@@ -41,7 +41,7 @@ public class DamageFunction implements ModifierFunction<DamageModifier> {
      *
      * @param first The damage modifier to use
      * @param second The unary operator to use
-     * @return
+     * @return The resulting damage function
      */
     public static DamageFunction of(DamageModifier first, DoubleUnaryOperator second) {
         return new DamageFunction(first, second);
@@ -67,7 +67,7 @@ public class DamageFunction implements ModifierFunction<DamageModifier> {
      * {@link DamageModifier} and {@link DoubleUnaryOperator}.
      *
      * @param modifier The modifier
-     * @param function The fucntion
+     * @param function The function
      */
     public DamageFunction(DamageModifier modifier, DoubleUnaryOperator function) {
         this.modifier = checkNotNull(modifier, "modifier");

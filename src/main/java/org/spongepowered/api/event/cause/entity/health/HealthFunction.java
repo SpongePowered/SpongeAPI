@@ -36,6 +36,13 @@ public class HealthFunction implements ModifierFunction<HealthModifier> {
 
     public static final DoubleUnaryOperator NO_HEALTH = value -> 0.0d;
 
+    /**
+     * Constructs a new health function.
+     *
+     * @param first The health modifier to use
+     * @param second The unary operator to use
+     * @return The resulting health function
+     */
     public static HealthFunction of(HealthModifier first, DoubleUnaryOperator second) {
         return new HealthFunction(first, second);
     }
@@ -91,7 +98,7 @@ public class HealthFunction implements ModifierFunction<HealthModifier> {
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
-                .add("HealthModifer", this.modifier)
+                .add("HealthModifier", this.modifier)
                 .add("Function", this.function)
                 .toString();
     }

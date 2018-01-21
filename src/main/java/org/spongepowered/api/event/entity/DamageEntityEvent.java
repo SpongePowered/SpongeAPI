@@ -119,7 +119,7 @@ import java.util.function.DoubleUnaryOperator;
  *
  * <p>After which, the "final" damage is simply the summation of the
  * "base" damage and all "modified damage" for each {@link DamageModifier}
- * prorivded in this event.</p>
+ * provided in this event.</p>
  *
  * <p>Coming forward, it is possible to further customize not only the "base"
  * damage, but override pre-existing {@link DamageModifier} {@link DamageFunction}s
@@ -132,7 +132,7 @@ import java.util.function.DoubleUnaryOperator;
  * the provided pairing will be added at the
  * "end" of the list for "modifying" the "base" damage.</p>
  *
- * <p>Note that this event is intended for processing incomming damage to
+ * <p>Note that this event is intended for processing incoming damage to
  * an {@link Entity} prior to any {@link DamageModifier}s associated with
  * the {@link #getTargetEntity()}. The {@link DamageEntityEvent} is used
  * to process the various {@link DamageModifier}s of which originate or are

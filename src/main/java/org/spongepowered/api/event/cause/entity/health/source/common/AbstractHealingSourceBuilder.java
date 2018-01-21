@@ -51,7 +51,7 @@ public abstract class AbstractHealingSourceBuilder<T extends HealingSource, B ex
 
     @Override
     public B type(HealingType healingType) {
-        this.healingType = checkNotNull(healingType, "Healingtype cannot be null!");
+        this.healingType = checkNotNull(healingType, "Healing type cannot be null!");
         return (B) this;
     }
 

@@ -38,7 +38,7 @@ import java.util.Optional;
  * {@link ServiceManager#provideUnchecked(Class)} with the service will return
  * {@link #getNewProviderRegistration()}.</p>
  *
- * <p>This can occur when a provider is registered for a serivce for the first
+ * <p>This can occur when a provider is registered for a service for the first
  * time, or when the provider for a service is replaced.</p>
  */
 public interface ChangeServiceProviderEvent extends Event {

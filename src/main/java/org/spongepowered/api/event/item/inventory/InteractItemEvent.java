@@ -33,7 +33,7 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
  * Base event for all interactions with an {@link ItemStack} in hand.
  * 
  * <p>Note: Canceling this event will halt any future actions from
- * occuring.</p>
+ * occurring.</p>
  */
 public interface InteractItemEvent extends InteractEvent {
 

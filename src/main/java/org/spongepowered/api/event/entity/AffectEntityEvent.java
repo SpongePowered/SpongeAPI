@@ -58,7 +58,7 @@ public interface AffectEntityEvent extends Event, Cancellable {
      * un-affected by event changes.
      *
      * <p>This method <b>MUST</b> be called at {@link Order#PRE} in order
-     * to be properly initialized, after whih it can be called at any time.
+     * to be properly initialized, after which it can be called at any time.
      * If it is not first called at {@link Order#PRE}, it will throw an {@link IllegalStateException}
      * when invoked.</p>
      *
@@ -87,17 +87,17 @@ public interface AffectEntityEvent extends Event, Cancellable {
      * @return The entities removed from {@link #getEntities()}
      */
     default List<Entity> filterEntityLocations(Predicate<Location<World>> predicate) {
-        List<Entity> removedEntiies = new ArrayList<>();
+        List<Entity> removedEntities = new ArrayList<>();
 
         Iterator<Entity> i = this.getEntities().iterator();
         while (i.hasNext()) {
             Entity entity = i.next();
             if (!predicate.test(entity.getLocation())) {
                 i.remove();
-                removedEntiies.add(entity);
+                removedEntities.add(entity);
             }
         }
-        return removedEntiies;
+        return removedEntities;
     }
 
     /**
@@ -111,16 +111,16 @@ public interface AffectEntityEvent extends Event, Cancellable {
      * @return The entities removed from {@link #getEntities()}
      */
     default List<? extends Entity> filterEntities(Predicate<Entity> predicate) {
-        List<Entity> removedEntiies = new ArrayList<>();
+        List<Entity> removedEntities = new ArrayList<>();
 
         Iterator<Entity> i = this.getEntities().iterator();
         while (i.hasNext()) {
             Entity entity = i.next();
             if (!predicate.test(entity)) {
                 i.remove();
-                removedEntiies.add(entity);
+                removedEntities.add(entity);
             }
         }
-        return removedEntiies;
+        return removedEntities;
     }
 }

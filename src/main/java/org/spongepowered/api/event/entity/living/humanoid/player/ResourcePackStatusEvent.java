@@ -30,6 +30,7 @@ import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 import java.util.Optional;
+import javax.annotation.Nullable;
 
 /**
  * Called when a {@link Player} notifies the server of the status of a resource pack
@@ -90,10 +91,10 @@ public interface ResourcePackStatusEvent extends Event {
          */
         SUCCESSFULLY_LOADED(true);
 
-        private final Optional<Boolean> success;
+        @Nullable private final Boolean success;
 
-        ResourcePackStatus(Boolean success) {
-            this.success = Optional.ofNullable(success);
+        ResourcePackStatus(@Nullable Boolean success) {
+            this.success = success;
         }
 
         /**
@@ -103,7 +104,7 @@ public interface ResourcePackStatusEvent extends Event {
          *         Optional.empty() if it cannot be determined at this time.
          */
         public Optional<Boolean> wasSuccessful() {
-            return this.success;
+            return Optional.ofNullable(this.success);
         }
 
     }
