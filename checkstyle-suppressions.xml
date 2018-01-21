@@ -16,4 +16,5 @@
     <suppress checks="LineLength|OneStatementPerLine|WhitespaceAround" files="TypeTokens\.java"/>
     <suppress checks="AvoidStarImport" files="Keys\.java"/>
     <suppress checks="AvoidStarImport" files="CatalogEntityData\.java"/>
+    <suppress checks="AvoidStarImport" files="CatalogTypes\.java"/>
 </suppressions>

@@ -192,12 +192,6 @@ public final class CatalogTypes {
 
     public static final Class<DyeColor> DYE_COLOR = DyeColor.class;
 
-    /**
-     * @deprecated Use {@link #ENCHANTMENT_TYPE} instead.
-     */
-    @Deprecated
-    public static final Class<EnchantmentType> ENCHANTMENT = EnchantmentType.class;
-
     public static final Class<EnchantmentType> ENCHANTMENT_TYPE = EnchantmentType.class;
 
     public static final Class<EntityStatistic> ENTITY_STATISTIC = EntityStatistic.class;
