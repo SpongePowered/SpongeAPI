@@ -44,10 +44,20 @@ public interface RideableHorse extends Horse {
         return get(HorseData.class).get();
     }
 
+    /**
+     * Gets the style of the horse.
+     *
+     * @return The value of the horse's style
+     */
     default Value<HorseStyle> style() {
         return getValue(Keys.HORSE_STYLE).get();
     }
 
+    /**
+     * Gets the color of the horse.
+     *
+     * @return The value of the horse's color
+     */
     default Value<HorseColor> color() {
         return getValue(Keys.HORSE_COLOR).get();
     }
