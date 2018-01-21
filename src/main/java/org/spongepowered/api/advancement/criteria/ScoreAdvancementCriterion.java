@@ -33,7 +33,8 @@ import org.spongepowered.api.Sponge;
 public interface ScoreAdvancementCriterion extends AdvancementCriterion {
 
     /**
-     * Creates a new {@link Builder} to create {@link ScoreAdvancementCriterion}s.
+     * Creates a new {@link Builder} which can be used to create
+     * a {@link ScoreAdvancementCriterion}.
      *
      * @return The new builder
      */
@@ -55,12 +56,14 @@ public interface ScoreAdvancementCriterion extends AdvancementCriterion {
 
         /**
          * Sets the goal value. This value must be greater then zero.
-         * <p>
-         * Defaults to {@code 1}.
+         *
+         * <p>Defaults to {@code 1}.</p>
          *
          * @param goal The goal value
          * @return This builder, for chaining
          */
         Builder goal(int goal);
+
     }
+
 }

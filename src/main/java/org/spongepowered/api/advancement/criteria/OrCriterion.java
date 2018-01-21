@@ -31,11 +31,12 @@ package org.spongepowered.api.advancement.criteria;
 public interface OrCriterion extends OperatorCriterion {
 
     /**
-     * Attempts to build a new OR operation with the given {@link AdvancementCriterion}s.
-     * <p>
-     * There is no guarantee that the returned extends {@link OrCriterion}, this depends
-     * on if there are duplicate criteria, {@link #EMPTY} is present or when no
-     * extra criteria are provided.
+     * Attempts to build a new OR operation with the
+     * given {@link AdvancementCriterion}s.
+     *
+     * <p> There is no guarantee that the returned extends {@link OrCriterion},
+     * this depends on if there are duplicate criteria, {@link #EMPTY}
+     * is present, or when no extra criteria are provided.</p>
      *
      * @param criteria The other criteria
      * @return The OR operation
@@ -45,11 +46,12 @@ public interface OrCriterion extends OperatorCriterion {
     }
 
     /**
-     * Attempts to build a new OR operation with the given {@link AdvancementCriterion}s.
-     * <p>
-     * There is no guarantee that the returned extends {@link OrCriterion}, this depends
-     * on if there are duplicate criteria, {@link #EMPTY} is present or when no
-     * extra criteria are provided.
+     * Attempts to build a new OR operation with the
+     * given {@link AdvancementCriterion}s.
+     *
+     * <p>There is no guarantee that the returned extends {@link OrCriterion},
+     * this depends on if there are duplicate criteria, {@link #EMPTY}
+     * is present, or when no extra criteria are provided.</p>
      *
      * @param criteria The other criteria
      * @return The OR operation
@@ -57,4 +59,5 @@ public interface OrCriterion extends OperatorCriterion {
     static AdvancementCriterion of(Iterable<AdvancementCriterion> criteria) {
         return EMPTY.or(criteria);
     }
+
 }

@@ -39,13 +39,14 @@ import java.util.Optional;
 public interface AdvancementCriterion {
 
     /**
-     * Represents an empty criterion, this means that nothing has to be achieved to
-     * unlock a {@link Advancement}.
+     * Represents an empty criterion, this means that nothing has to be
+     * achieved to unlock a {@link Advancement}.
      */
     AdvancementCriterion EMPTY = DummyObjectProvider.createFor(AdvancementCriterion.class, "EMPTY");
 
     /**
-     * Represents a dummy criterion, this will never be triggered by vanilla minecraft.
+     * Represents a dummy criterion, this will never be triggered
+     * by vanilla Minecraft.
      */
     AdvancementCriterion DUMMY = DummyObjectProvider.createFor(AdvancementCriterion.class, "DUMMY");
 
@@ -68,10 +69,10 @@ public interface AdvancementCriterion {
     /**
      * Combines this {@link AdvancementCriterion} with the other criteria
      * to create an AND operation.
-     * <p>
-     * There is no guarantee that the returned extends {@link AndCriterion}, this depends
-     * on if there are duplicate criteria, {@link #EMPTY} is present or when no
-     * extra criteria are provided.
+     *
+     * <p>There is no guarantee that the returned extends {@link AndCriterion},
+     * this depends on if there are duplicate criteria, {@link #EMPTY}
+     * is present, or when no extra criteria are provided.</p>
      *
      * @param criteria The criteria
      * @return The AND operation
@@ -81,10 +82,10 @@ public interface AdvancementCriterion {
     /**
      * Combines this {@link AdvancementCriterion} with the other criteria
      * to create an AND operation.
-     * <p>
-     * There is no guarantee that the returned extends {@link AndCriterion}, this depends
-     * on if there are duplicate criteria, {@link #EMPTY} is present or when no
-     * extra criteria are provided.
+     *
+     * <p>There is no guarantee that the returned extends {@link AndCriterion},
+     * this depends on if there are duplicate criteria, {@link #EMPTY}
+     * is present, or when no extra criteria are provided.</p>
      *
      * @param criteria The criteria
      * @return The AND operation
@@ -94,10 +95,10 @@ public interface AdvancementCriterion {
     /**
      * Combines this {@link AdvancementCriterion} with the other criteria
      * to create an OR operation.
-     * <p>
-     * There is no guarantee that the returned extends {@link OrCriterion}, this depends
-     * on if there are duplicate criteria, {@link #EMPTY} is present or when no
-     * extra criteria are provided.
+     *
+     * <p>There is no guarantee that the returned extends {@link OrCriterion},
+     * this depends on if there are duplicate criteria, {@link #EMPTY}
+     * is present, or when no extra criteria are provided.</p>
      *
      * @param criteria The criteria
      * @return The OR operation
@@ -107,10 +108,10 @@ public interface AdvancementCriterion {
     /**
      * Combines this {@link AdvancementCriterion} with the other criteria
      * to create an OR operation.
-     * <p>
-     * There is no guarantee that the returned extends {@link OrCriterion}, this depends
-     * on if there are duplicate criteria, {@link #EMPTY} is present or when no
-     * extra criteria are provided.
+     *
+     * <p>There is no guarantee that the returned extends {@link OrCriterion},
+     * this depends on if there are duplicate criteria, {@link #EMPTY}
+     * is present, or when no extra criteria are provided.</p>
      *
      * @param criteria The criteria
      * @return The OR operation
@@ -146,9 +147,9 @@ public interface AdvancementCriterion {
         B trigger(FilteredTrigger<?> trigger);
 
         /**
-         * Sets the name of the {@link AdvancementCriterion}. Names can be shared
-         * between multiple criteria, although it isn't allowed when using
-         * them for the same {@link Advancement}.
+         * Sets the name of the {@link AdvancementCriterion}. Names can be
+         * shared between multiple criteria, although it isn't allowed when
+         * using them for the same {@link Advancement}.
          *
          * @param name The name
          * @return This builder, for chaining
@@ -161,5 +162,6 @@ public interface AdvancementCriterion {
          * @return The criterion
          */
         T build();
+
     }
 }

@@ -44,19 +44,23 @@ public interface AdvancementProgress extends Progressable {
     Advancement getAdvancement();
 
     /**
-     * Gets the {@link ScoreCriterionProgress} for the given {@link ScoreAdvancementCriterion}.
+     * Gets the {@link CriterionProgress} for the given
+     * {@link AdvancementCriterion} if the specified criterion is
+     * present on the {@link Advancement}.
      *
-     * @param criterion The score criterion
-     * @return The score criterion progress
+     * <p>For AND and OR criteria will wrapped {@link CriterionProgress} be
+     * provided that will interact with the {@link CriterionProgress}s
+     * for every child {@link AdvancementCriterion}s.</p>
+     *
+     * @param criterion The criterion
+     * @return The criterion progress
      */
-    default ScoreCriterionProgress require(ScoreAdvancementCriterion criterion) {
-        return get(criterion).orElseThrow(() -> new IllegalStateException("The score criterion " + criterion.getName() +
-                " isn't present on the advancement " + getAdvancement().getName()));
-    }
+    Optional<CriterionProgress> get(AdvancementCriterion criterion);
 
     /**
-     * Gets the {@link ScoreCriterionProgress} for the given {@link ScoreAdvancementCriterion},
-     * this will only be returned of the criterion is present on the {@link Advancement}.
+     * Gets the {@link ScoreCriterionProgress} for the given
+     * {@link ScoreAdvancementCriterion} if the specified criterion is
+     * present on the {@link Advancement}.
      *
      * @param criterion The score criterion
      * @return The score criterion progress
@@ -64,28 +68,31 @@ public interface AdvancementProgress extends Progressable {
     Optional<ScoreCriterionProgress> get(ScoreAdvancementCriterion criterion);
 
     /**
-     * Gets the {@link CriterionProgress} for the given {@link AdvancementCriterion}.
-     * <p>
-     * For AND and OR criteria will wrapped {@link CriterionProgress} be provided that will
-     * interact with the {@link CriterionProgress}s for every child {@link AdvancementCriterion}s.
+     * Gets the {@link CriterionProgress} for the
+     * given {@link AdvancementCriterion}.
+     *
+     * <p>For AND and OR criteria will wrapped {@link CriterionProgress} be
+     * provided that will interact with the {@link CriterionProgress}s
+     * for every child {@link AdvancementCriterion}s.</p>
      *
      * @param criterion The criterion
      * @return The criterion progress
      */
     default CriterionProgress require(AdvancementCriterion criterion) {
-        return get(criterion).orElseThrow(() -> new IllegalStateException("The criterion " + criterion.getName() +
-                " isn't present on the advancement " + getAdvancement().getName()));
+        return get(criterion).orElseThrow(() -> new IllegalStateException("The criterion " + criterion.getName()
+            + " isn't present on the advancement " + getAdvancement().getName()));
     }
 
     /**
-     * Gets the {@link CriterionProgress} for the given {@link AdvancementCriterion},
-     * this will only be returned of the criterion is present on the {@link Advancement}.
-     * <p>
-     * For AND and OR criteria will wrapped {@link CriterionProgress} be provided that will
-     * interact with the {@link CriterionProgress}s for every child {@link AdvancementCriterion}s.
+     * Gets the {@link ScoreCriterionProgress} for the
+     * given {@link ScoreAdvancementCriterion}.
      *
-     * @param criterion The criterion
-     * @return The criterion progress
+     * @param criterion The score criterion
+     * @return The score criterion progress
      */
-    Optional<CriterionProgress> get(AdvancementCriterion criterion);
+    default ScoreCriterionProgress require(ScoreAdvancementCriterion criterion) {
+        return get(criterion).orElseThrow(() -> new IllegalStateException("The score criterion " + criterion.getName()
+            + " isn't present on the advancement " + getAdvancement().getName()));
+    }
+
 }

@@ -41,4 +41,5 @@ public interface AdvancementType extends CatalogType {
      * @return The text format
      */
     TextFormat getTextFormat();
+
 }

@@ -65,4 +65,5 @@ public interface Progressable {
      * @return The previous achieving time, if present
      */
     Optional<Instant> revoke();
+
 }

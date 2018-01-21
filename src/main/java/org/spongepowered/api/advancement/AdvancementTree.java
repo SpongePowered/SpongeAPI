@@ -30,8 +30,8 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.util.ResettableBuilder;
 
 /**
- * Represents a {@link Advancement} tree or tab menu. The tree will become visible to
- * a {@link Player} once the root {@link Advancement} gets achieved.
+ * Represents a {@link Advancement} tree or tab menu. The tree will become
+ * visible to a {@link Player} once the root {@link Advancement} gets achieved.
  */
 public interface AdvancementTree extends CatalogType {
 
@@ -78,9 +78,9 @@ public interface AdvancementTree extends CatalogType {
 
         /**
          * Sets the background of {@link AdvancementTree}.
-         * <p>
-         * Defaults to the stone background:
-         * {@code minecraft:textures/gui/advancements/backgrounds/stone.png}
+         *
+         * <p>Defaults to the stone background:
+         * {@code minecraft:textures/gui/advancements/backgrounds/stone.png}</p>
          *
          * @param background The background
          * @return This builder, for chaining
@@ -122,5 +122,7 @@ public interface AdvancementTree extends CatalogType {
         default Builder from(AdvancementTree value) throws UnsupportedOperationException {
             throw new UnsupportedOperationException("Cannot create duplicate advancement trees!");
         }
+
     }
+
 }
