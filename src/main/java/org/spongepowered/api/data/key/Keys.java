@@ -1111,6 +1111,14 @@ public final class Keys {
     public static final Key<Value<Boolean>> INVISIBLE = DummyObjectProvider.createExtendedFor(Key.class,"INVISIBLE");
 
     /**
+     * Represents the {@link Key} for the amount of ticks an {@link Entity}
+     * will remain invulnerable for.
+     *
+     * @see InvulnerabilityData#invulnerableTicks()
+     */
+    public static final Key<MutableBoundedValue<Integer>> INVULNERABILITY_TICKS = DummyObjectProvider.createExtendedFor(Key.class,"INVULNERABILITY_TICKS");
+
+    /**
      * Represents the {@link Key} for representing if an {@link Entity}
      * is invulnerable or not.
      *
@@ -1120,14 +1128,6 @@ public final class Keys {
      * @see InvulnerabilityData#invulnerable()
      */
     public static final Key<Value<Boolean>> INVULNERABLE = DummyObjectProvider.createExtendedFor(Key.class,"INVULNERABLE");
-
-    /**
-     * Represents the {@link Key} for the amount of ticks an {@link Entity}
-     * will remain invulnerable for.
-     *
-     * @see InvulnerabilityData#invulnerableTicks()
-     */
-    public static final Key<MutableBoundedValue<Integer>> INVULNERABILITY_TICKS = DummyObjectProvider.createExtendedFor(Key.class,"INVULNERABILITY_TICKS");
 
     /**
      * Represents the {@link Key} for representing the "in-wall" state of
@@ -1321,7 +1321,6 @@ public final class Keys {
      * @see DamageableData#lastAttacker()
      */
     public static final Key<OptionalValue<EntitySnapshot>> LAST_ATTACKER = DummyObjectProvider.createExtendedFor(Key.class,"LAST_ATTACKER");
-
 
     /**
      * Represents the {@link Key} for the output yielded by the last command of

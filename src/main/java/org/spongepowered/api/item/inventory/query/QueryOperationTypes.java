@@ -61,11 +61,6 @@ public final class QueryOperationTypes {
     public static final QueryOperationType<Class<? extends Inventory>> INVENTORY_TYPE = DummyObjectProvider.createExtendedFor(QueryOperationType.class, "INVENTORY_TYPE");
 
     /**
-     * Tests based on the class of the inventory.
-     */
-    public static final QueryOperationType<Class<?>> TYPE = DummyObjectProvider.createExtendedFor(QueryOperationType.class, "TYPE");
-
-    /**
      * Allows a custom condition for the items contained within an item stack.
      */
     public static final QueryOperationType<Predicate<ItemStack>> ITEM_STACK_CUSTOM = DummyObjectProvider.createExtendedFor(QueryOperationType.class, "ITEM_STACK_CUSTOM");
@@ -92,6 +87,11 @@ public final class QueryOperationTypes {
      * @see ItemStack#getType()
      */
     public static final QueryOperationType<ItemType> ITEM_TYPE = DummyObjectProvider.createExtendedFor(QueryOperationType.class, "ITEM_TYPE");
+
+    /**
+     * Tests based on the class of the inventory.
+     */
+    public static final QueryOperationType<Class<?>> TYPE = DummyObjectProvider.createExtendedFor(QueryOperationType.class, "TYPE");
 
     // SORTFIELDS:OFF
 

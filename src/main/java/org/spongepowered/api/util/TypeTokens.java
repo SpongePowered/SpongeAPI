@@ -250,11 +250,11 @@ public final class TypeTokens {
 
     public static final TypeToken<ListValue<DyeColor>> LIST_DYE_COLOR_VALUE_TOKEN = new TypeToken<ListValue<DyeColor>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<List<FireworkEffect>> LIST_FIREWORK_TOKEN = new TypeToken<List<FireworkEffect>>() {private static final long serialVersionUID = -1;};
-
     public static final TypeToken<List<Enchantment>> LIST_ENCHANTMENT_TOKEN = new TypeToken<List<Enchantment>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<ListValue<Enchantment>> LIST_ENCHANTMENT_VALUE_TOKEN = new TypeToken<ListValue<Enchantment>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<List<FireworkEffect>> LIST_FIREWORK_TOKEN = new TypeToken<List<FireworkEffect>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<List<PatternLayer>> LIST_PATTERN_TOKEN = new TypeToken<List<PatternLayer>>() {private static final long serialVersionUID = -1;};
 
@@ -341,6 +341,8 @@ public final class TypeTokens {
     public static final TypeToken<ParticleType> PARTICLE_TYPE_TOKEN = new TypeToken<ParticleType>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<ParticleType>> PARTICLE_TYPE_VALUE_TOKEN = new TypeToken<Value<ParticleType>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<PatternListValue> PATTERN_LIST_VALUE_TOKEN = new TypeToken<PatternListValue>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<PickupRule> PICKUP_TOKEN = new TypeToken<PickupRule>() {private static final long serialVersionUID = -1;};
 
@@ -467,8 +469,6 @@ public final class TypeTokens {
     public static final TypeToken<WireAttachmentType> WIRE_ATTACHMENT_TYPE_TOKEN = new TypeToken<WireAttachmentType>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<WireAttachmentType>> WIRE_ATTACHMENT_TYPE_VALUE_TOKEN = new TypeToken<Value<WireAttachmentType>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<PatternListValue> PATTERN_LIST_VALUE_TOKEN = new TypeToken<PatternListValue>() {private static final long serialVersionUID = -1;};
 
     // SORTFIELDS:OFF
 
