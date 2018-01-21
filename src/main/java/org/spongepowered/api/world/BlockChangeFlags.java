@@ -29,11 +29,12 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
  * An enumeration of the possible {@link BlockChangeFlag}s.
- * <p>
- * {@link BlockChangeFlag}s can be combined using the
+ *
+ * <p>{@link BlockChangeFlag}s can be combined using the
  * {@link BlockChangeFlag#andFlag(BlockChangeFlag)} and
- * {@link BlockChangeFlag#andNotFlag(BlockChangeFlag)} operators.
+ * {@link BlockChangeFlag#andNotFlag(BlockChangeFlag)} operators.</p>
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public final class BlockChangeFlags {
 
     // SORTFIELDS:ON
@@ -44,22 +45,26 @@ public final class BlockChangeFlags {
     public static final BlockChangeFlag ALL = DummyObjectProvider.createFor(BlockChangeFlag.class, "ALL");
 
     /**
-     * A flag that defines whether a block change should notify neighboring blocks.
+     * A flag that defines whether a block change should notify
+     * neighboring blocks.
      */
     public static final BlockChangeFlag NEIGHBOR = DummyObjectProvider.createFor(BlockChangeFlag.class, "NEIGHBOR");
 
     /**
-     * The {@link #NEIGHBOR} and {@link #OBSERVER} flags combined with the AND operator.
+     * The {@link #NEIGHBOR} and {@link #OBSERVER} flags combined
+     * with the AND operator.
      */
     public static final BlockChangeFlag NEIGHBOR_OBSERVER = DummyObjectProvider.createFor(BlockChangeFlag.class, "NEIGHBOR_OBSERVER");
 
     /**
-     * The {@link #NEIGHBOR} and {@link #PHYSICS} flags combined with the AND operator.
+     * The {@link #NEIGHBOR} and {@link #PHYSICS} flags combined
+     * with the AND operator.
      */
-    public static final BlockChangeFlag NEIGHBOR_PHYSICS = DummyObjectProvider.createFor(BlockChangeFlag.class, "NEIGHBOR_PHSYICS");
+    public static final BlockChangeFlag NEIGHBOR_PHYSICS = DummyObjectProvider.createFor(BlockChangeFlag.class, "NEIGHBOR_PHYSICS");
 
     /**
-     * The {@link #NEIGHBOR}, {@link #PHYSICS} and {@link #OBSERVER} flags combined with the AND operator.
+     * The {@link #NEIGHBOR}, {@link #PHYSICS} and {@link #OBSERVER} flags
+     * combined with the AND operator.
      */
     public static final BlockChangeFlag NEIGHBOR_PHYSICS_OBSERVER = DummyObjectProvider.createFor(BlockChangeFlag.class, "NEIGHBOR_PHYSICS_OBSERVER");
 
@@ -85,12 +90,15 @@ public final class BlockChangeFlags {
     public static final BlockChangeFlag PHYSICS = DummyObjectProvider.createFor(BlockChangeFlag.class, "PHYSICS");
 
     /**
-     * The {@link #PHYSICS} and {@link #OBSERVER} flags combined with the AND operator.
+     * The {@link #PHYSICS} and {@link #OBSERVER} flags combined with
+     * the AND operator.
      */
     public static final BlockChangeFlag PHYSICS_OBSERVER = DummyObjectProvider.createFor(BlockChangeFlag.class, "PHYSICS_OBSERVER");
 
     // SORTFIELDS:OFF
 
+    // Suppress default constructor to ensure non-instantiability.
     private BlockChangeFlags() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 }

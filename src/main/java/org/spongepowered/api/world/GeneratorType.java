@@ -44,9 +44,10 @@ public interface GeneratorType extends CatalogType {
     DataContainer getGeneratorSettings();
 
     /**
-     * Creates a new {@link WorldGenerator} for this generator type
+     * Creates a new {@link WorldGenerator} for this generator type.
      *
-     * <p>This will use the default settings of this generator type</p>
+     * <p>This will use the default settings of this generator type.</p>
+     *
      * @param world The world to create the world generator for.
      * @return The new generator
      */

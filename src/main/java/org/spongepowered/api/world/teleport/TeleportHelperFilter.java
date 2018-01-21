@@ -26,10 +26,7 @@ package org.spongepowered.api.world.teleport;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.plugin.PluginContainer;
-import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.Tristate;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.TeleportHelper;
@@ -77,9 +74,9 @@ public interface TeleportHelperFilter extends CatalogType {
      * performed, this is the first check performed when investigating a
      * location.</p>
      *
-     * @param world The {@link World} to check.
-     * @param position The {@link Vector3i} (block position) to check.
-     * @return A {@link Tristate}.
+     * @param world The {@link World} to check
+     * @param position The {@link Vector3i} (block position) to check
+     * @return A {@link Tristate}
      */
     default Tristate isValidLocation(World world, Vector3i position) {
         return Tristate.UNDEFINED;
@@ -90,7 +87,7 @@ public interface TeleportHelperFilter extends CatalogType {
      * to land on.
      *
      * @param blockState The {@link BlockState} to check
-     * @return <code>true</code> if the material should be safe to land on.
+     * @return <code>true</code> if the material should be safe to land on
      */
     boolean isSafeFloorMaterial(BlockState blockState);
 
@@ -102,7 +99,7 @@ public interface TeleportHelperFilter extends CatalogType {
      *
      * @param blockState The {@link BlockState} to check
      * @return <code>true</code> if the material should be safe for the body to
-     *         be inside of.
+     *         be inside of
      */
     boolean isSafeBodyMaterial(BlockState blockState);
 

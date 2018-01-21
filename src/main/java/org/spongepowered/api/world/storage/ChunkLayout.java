@@ -184,7 +184,7 @@ public interface ChunkLayout {
      */
     default Optional<Vector3i> toChunk(int x, int y, int z) {
         final Vector3i chunkCoords = forceToChunk(x, y, z);
-        return isValidChunk(chunkCoords) ? Optional.of(chunkCoords) : Optional.<Vector3i>empty();
+        return isValidChunk(chunkCoords) ? Optional.of(chunkCoords) : Optional.empty();
     }
 
     /**
@@ -209,7 +209,7 @@ public interface ChunkLayout {
      * @return The world coordinates on success, else nothing
      */
     default Optional<Vector3i> toWorld(int x, int y, int z) {
-        return isValidChunk(x, y, z) ? Optional.of(forceToWorld(x, y, z)) : Optional.<Vector3i>empty();
+        return isValidChunk(x, y, z) ? Optional.of(forceToWorld(x, y, z)) : Optional.empty();
     }
 
     /**
@@ -286,7 +286,7 @@ public interface ChunkLayout {
      */
     default Optional<Vector3i> addToChunk(int cx, int cy, int cz, int ox, int oy, int oz) {
         final Vector3i newChunkCoords = new Vector3i(cx + ox, cy + oy, cz + oz);
-        return isValidChunk(newChunkCoords) ? Optional.of(newChunkCoords) : Optional.<Vector3i>empty();
+        return isValidChunk(newChunkCoords) ? Optional.of(newChunkCoords) : Optional.empty();
     }
 
     /**

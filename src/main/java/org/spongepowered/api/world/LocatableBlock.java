@@ -42,7 +42,7 @@ public interface LocatableBlock extends ImmutableDataHolder<LocatableBlock>, Loc
     }
 
     /**
-     * Gets the {@link BlockState} for this lcoatable block.
+     * Gets the {@link BlockState} for this locatable block.
      *
      * @return The block state
      */

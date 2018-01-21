@@ -442,7 +442,8 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
     /**
      * Instructs the world to save all data.
      *
-     * @return True if save was successfull, false if {@link SerializationBehavior} is {@link SerializationBehaviors#NONE}.
+     * @return True if save was successfull, or false if
+     *     {@link SerializationBehavior} is {@link SerializationBehaviors#NONE}
      * @throws IOException If the save failed
      */
     boolean save() throws IOException;
@@ -457,11 +458,12 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
     /**
      * Sets the view distance (in chunks) for this world.
      *
-     * <p>The view distance must be greater than or equal to 3, andless than or equal to 32.</p>
+     * <p>The view distance must be greater than or equal to 3,
+     * and less than or equal to 32.</p>
      *
      * @param viewDistance The view distance
      */
-    void setViewDistance(final int viewDistance);
+    void setViewDistance(int viewDistance);
 
     /**
      * Resets the view distance to the default value for this world.

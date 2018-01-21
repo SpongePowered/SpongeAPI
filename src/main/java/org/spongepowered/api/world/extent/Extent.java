@@ -55,8 +55,8 @@ import javax.annotation.Nullable;
  * A mutable object containing blocks, tile entities, entities, and possibly
  * other game objects.
  */
-public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVolume, MutableBiomeVolume, LocationCompositeValueStore, Identifiable,
-    LocationBasePropertyHolder {
+public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVolume, MutableBiomeVolume,
+    LocationCompositeValueStore, Identifiable, LocationBasePropertyHolder {
 
     /**
      * Gets a location in this extent at the given position. Essentially, this
@@ -111,6 +111,8 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * <p>This method ignores all transparent blocks, providing the highest
      * opaque block.</p>
      *
+     * @param x The x column value
+     * @param z The z column value
      * @return The y value of the highest opaque block
      */
     int getHighestYAt(int x, int z);
@@ -122,6 +124,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * <p>This method ignores all transparent blocks, providing the highest
      * opaque block.</p>
      *
+     * @param column The column value
      * @return The y value of the highest opaque block
      */
     default int getHighestYAt(Vector2i column) {
@@ -148,6 +151,8 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * <p>A value is still returned for columns in biomes which do not
      * receive precipitation.</p>
      *
+     * @param x The x column value
+     * @param z The y column value
      * @return The y level that precipitation ends
      */
     int getPrecipitationLevelAt(int x, int z);
@@ -158,6 +163,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * <p>A value is still returned for columns in biomes which do not
      * receive precipitation.</p>
      *
+     * @param column The column value
      * @return The y level that precipitation ends
      */
     default int getPrecipitationLevelAt(Vector2i column) {
@@ -171,6 +177,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * <p>A position is still returned for positions in biomes which do not
      * receive precipitation.</p>
      *
+     * @param position The position value
      * @return The position that precipitation ends
      */
     default Vector3i getPrecipitationLevelAt(Vector3i position) {
@@ -275,7 +282,6 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * @param force If true, forces block state to be set even if the
      *        {@link BlockType} does not match the snapshot one.
      * @param flag The various change flags controlling some interactions
-     * @param cause The cause of the snapshot restore
      * @return true if the restore was successful, false otherwise
      */
     boolean restoreSnapshot(BlockSnapshot snapshot, boolean force, BlockChangeFlag flag);
@@ -294,7 +300,6 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * @param force If true, forces block state to be set even if the
      *        {@link BlockType} does not match the snapshot one.
      * @param flag The various change flags controlling some interactions
-     * @param cause The cause of this operation
      * @return true if the restore was successful, false otherwise
      */
     default boolean restoreSnapshot(Vector3i position, BlockSnapshot snapshot, boolean force, BlockChangeFlag flag) {
@@ -317,7 +322,6 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * @param force If true, forces block state to be set even if the
      *        {@link BlockType} does not match the snapshot one.
      * @param flag The various change flags controlling some interactions
-     * @param cause The cause of the snapshot restore
      * @return true if the restore was successful, false otherwise
      */
     boolean restoreSnapshot(int x, int y, int z, BlockSnapshot snapshot, boolean force, BlockChangeFlag flag);

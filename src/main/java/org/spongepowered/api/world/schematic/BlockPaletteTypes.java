@@ -29,7 +29,7 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 public class BlockPaletteTypes {
 
     /**
-     * The global palette containing a mapping of all blockstates to ids.
+     * The global palette containing a mapping of all block states to ids.
      */
     public static final BlockPaletteType GLOBAL = DummyObjectProvider.createFor(BlockPaletteType.class, "GLOBAL");
     /**

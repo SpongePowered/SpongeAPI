@@ -43,9 +43,8 @@ import org.spongepowered.api.world.storage.WorldProperties;
  * replace only the biome generator. Multiple world generator modifiers can be
  * applied on a single world.</p>
  *
- * <p>Implementations of this interface must be registered using
- * {@link GameRegistry#register(Class, CatalogType)}
- * .</p>
+ * <p>Implementations of this interface must be registered using the
+ * {@link GameRegistry}.</p>
  */
 @CatalogedBy(WorldGeneratorModifiers.class)
 public interface WorldGeneratorModifier extends CatalogType {
