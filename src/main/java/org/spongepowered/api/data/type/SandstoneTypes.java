@@ -38,7 +38,9 @@ public final class SandstoneTypes {
 
     // SORTFIELDS:OFF
 
+    // Suppress default constructor to ensure non-instantiability.
     private SandstoneTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
 }

@@ -31,9 +31,6 @@ import java.util.Locale;
  */
 public final class NamedLocales {
 
-    private NamedLocales() {
-    }
-
     /**
      * The default locale used when the receiver's locale is unknown.
      */
@@ -114,5 +111,10 @@ public final class NamedLocales {
     public static final Locale VIETNAMESE = Locales.VI_VN;
     public static final Locale SIMPLIFIED_CHINESE = Locales.ZH_CN;
     public static final Locale TRADITIONAL_CHINESE = Locales.ZH_TW;
+
+    // Suppress default constructor to ensure non-instantiability.
+    private NamedLocales() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 
 }

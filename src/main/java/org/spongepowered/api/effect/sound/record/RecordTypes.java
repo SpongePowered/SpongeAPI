@@ -56,7 +56,9 @@ public final class RecordTypes {
 
     // SORTFIELDS:OFF
 
+    // Suppress default constructor to ensure non-instantiability.
     private RecordTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
 }

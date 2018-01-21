@@ -113,6 +113,9 @@ public final class BannerPatternShapes {
 
     // SORTFIELDS:OFF
 
+    // Suppress default constructor to ensure non-instantiability.
     private BannerPatternShapes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
+
 }

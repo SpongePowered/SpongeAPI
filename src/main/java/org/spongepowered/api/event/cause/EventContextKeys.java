@@ -47,7 +47,6 @@ import org.spongepowered.api.world.World;
  */
 public final class EventContextKeys {
 
-
     // SORTFIELDS:ON
 
     public static final EventContextKey<BlockSnapshot> BLOCK_HIT = createFor("BLOCK_HIT");
@@ -111,7 +110,9 @@ public final class EventContextKeys {
         return DummyObjectProvider.createFor(EventContextKey.class, id);
     }
 
+    // Suppress default constructor to ensure non-instantiability.
     private EventContextKeys() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
 }

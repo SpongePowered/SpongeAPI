@@ -32,8 +32,6 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
  */
 public final class BooleanTraits {
 
-    private BooleanTraits() {}
-
     // SORTFIELDS:ON
 
     public static final BooleanTrait ACACIA_DOOR_OPEN = DummyObjectProvider.createFor(BooleanTrait.class, "ACACIA_DOOR_OPEN");
@@ -302,9 +300,13 @@ public final class BooleanTraits {
 
     public static final BooleanTrait WOODEN_DOOR_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "WOODEN_DOOR_POWERED");
 
-    public static final BooleanTrait WOODEN_PRESSURE_PLATE_POWERED = DummyObjectProvider
-            .createFor(BooleanTrait.class, "WOODEN_PRESSURE_PLATE_POWERED");
+    public static final BooleanTrait WOODEN_PRESSURE_PLATE_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "WOODEN_PRESSURE_PLATE_POWERED");
 
     // SORTFIELDS:OFF
+
+    // Suppress default constructor to ensure non-instantiability.
+    private BooleanTraits() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 
 }

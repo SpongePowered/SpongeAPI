@@ -29,12 +29,20 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 public final class LlamaVariants {
 
     // SORTFIELDS:ON
+
     public static final LlamaVariant CREAMY = DummyObjectProvider.createFor(LlamaVariant.class, "CREAMY");
+
     public static final LlamaVariant WHITE = DummyObjectProvider.createFor(LlamaVariant.class, "WHITE");
+
     public static final LlamaVariant BROWN = DummyObjectProvider.createFor(LlamaVariant.class, "BROWN");
+
     public static final LlamaVariant GRAY = DummyObjectProvider.createFor(LlamaVariant.class, "GRAY");
+
     // SORTFIELDS:OFF
 
-    private LlamaVariants() {}
+    // Suppress default constructor to ensure non-instantiability.
+    private LlamaVariants() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 
 }

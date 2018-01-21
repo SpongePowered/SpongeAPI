@@ -42,7 +42,9 @@ public final class QuartzTypes {
 
     // SORTFIELDS:OFF
 
+    // Suppress default constructor to ensure non-instantiability.
     private QuartzTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
 }

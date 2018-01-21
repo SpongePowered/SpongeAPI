@@ -62,9 +62,9 @@ public final class CollectionUtils {
         }
     }
 
-
-
+    // Suppress default constructor to ensure non-instantiability.
     private CollectionUtils() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
 }

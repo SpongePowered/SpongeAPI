@@ -46,7 +46,9 @@ public final class StoneTypes {
 
     // SORTFIELDS:OFF
 
+    // Suppress default constructor to ensure non-instantiability.
     private StoneTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
 }

@@ -53,7 +53,9 @@ public final class BiomeTreeTypes {
 
     // SORTFIELDS:OFF
 
+    // Suppress default constructor to ensure non-instantiability.
     private BiomeTreeTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
 }

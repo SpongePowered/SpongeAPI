@@ -645,7 +645,9 @@ public final class ItemStackBuilderPopulators {
         return listValueSuppliers(Keys.ITEM_ENCHANTMENTS, suppliers);
     }
 
+    // Suppress default constructor to ensure non-instantiability.
     private ItemStackBuilderPopulators() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
 }

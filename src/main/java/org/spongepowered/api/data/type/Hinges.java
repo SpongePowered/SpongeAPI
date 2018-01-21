@@ -39,7 +39,9 @@ public final class Hinges {
 
     // SORTFIELDS:OFF
 
+    // Suppress default constructor to ensure non-instantiability.
     private Hinges() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
 }

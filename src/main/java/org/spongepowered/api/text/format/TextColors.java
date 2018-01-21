@@ -33,7 +33,9 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
  */
 public final class TextColors {
 
+    // Suppress default constructor to ensure non-instantiability.
     private TextColors() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
     /**

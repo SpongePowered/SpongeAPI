@@ -43,9 +43,6 @@ public class SpongeApiTranslationHelper {
     private static final Function<Locale, ResourceBundle> LOOKUP_FUNC = input ->
             ResourceBundle.getBundle("org.spongepowered.api.Translations", input);
 
-    private SpongeApiTranslationHelper() {
-    } // Prevent instance creation
-
     /**
      * Gets the translated text for a given string.
      *
@@ -55,6 +52,11 @@ public class SpongeApiTranslationHelper {
      */
     public static Text t(String key, Object... args) {
         return Text.of(new ResourceBundleTranslation(key, LOOKUP_FUNC), args);
+    }
+
+    // Suppress default constructor to ensure non-instantiability.
+    private SpongeApiTranslationHelper() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
 }
