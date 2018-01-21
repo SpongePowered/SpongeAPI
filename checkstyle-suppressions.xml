@@ -12,7 +12,7 @@
     <suppress checks="AbbreviationAsWordInName" files="PEBKAC"/>
     <suppress checks="AbbreviationAsWordInName" files="AABB"/>
     <suppress checks=".*" files="SpongeEventFactory\.java"/>
-    <suppress checks="LineLength" files="IntegerTraits\.Java"/>
+    <suppress checks="LineLength" files="IntegerTraits\.java"/>
     <suppress checks="LineLength" files="BooleanTraits\.java"/>
     <suppress checks="LineLength" files="SoundTypes\.java"/>
     <suppress checks="LineLength" files="CraftingRecipes\.java"/>
