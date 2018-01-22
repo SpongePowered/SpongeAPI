@@ -24,47 +24,22 @@
  */
 package org.spongepowered.api.text.format;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
-import com.google.common.reflect.TypeToken;
-import ninja.leaping.configurate.objectmapping.serialize.TypeSerializers;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextElement;
-import org.spongepowered.api.text.serializer.TextFormatConfigSerializer;
 
 /**
  * Represents a pair of {@link TextStyle} and {@link TextColor}.
  */
-public final class TextFormat implements TextElement {
-
-    static {
-        TypeSerializers.getDefaultSerializers().registerType(TypeToken.of(TextFormat.class), new TextFormatConfigSerializer());
-    }
-
-    /**
-     * An empty {@link TextFormat} with no {@link TextColor} and no {@link TextStyle}.
-     */
-    public static final TextFormat NONE = new TextFormat(TextColors.NONE, TextStyles.NONE);
-
-    /**
-     * The text color.
-     */
-    private final TextColor color;
-
-    /**
-     * The text style.
-     */
-    private final TextStyle style;
+public interface TextFormat extends TextElement {
 
     /**
      * Gets the {@link TextFormat} with the default style and color.
      *
      * @return The empty text format
      */
-    public static TextFormat of() {
-        return NONE;
+    static TextFormat of() {
+        return Sponge.getRegistry().getTextFactory().emptyFormat();
     }
 
     /**
@@ -73,8 +48,9 @@ public final class TextFormat implements TextElement {
      * @param style The style
      * @return The new text format
      */
-    public static TextFormat of(TextStyle style) {
-        return new TextFormat(TextColors.NONE, style);
+    @SuppressWarnings("deprecation")
+    static TextFormat of(TextStyle style) {
+        return Sponge.getRegistry().getTextFactory().format(TextColors.NONE, style);
     }
 
     /**
@@ -83,8 +59,9 @@ public final class TextFormat implements TextElement {
      * @param color The color
      * @return The new text format
      */
-    public static TextFormat of(TextColor color) {
-        return new TextFormat(color, TextStyles.NONE);
+    @SuppressWarnings("deprecation")
+    static TextFormat of(TextColor color) {
+        return Sponge.getRegistry().getTextFactory().format(color, TextStyles.NONE);
     }
 
     /**
@@ -94,19 +71,9 @@ public final class TextFormat implements TextElement {
      * @param style The style
      * @return The new text format
      */
-    public static TextFormat of(TextColor color, TextStyle style) {
-        return new TextFormat(color, style);
-    }
-
-    /**
-     * Constructs a new {@link TextFormat}.
-     *
-     * @param color The color
-     * @param style The style
-     */
-    private TextFormat(TextColor color, TextStyle style) {
-        this.color = checkNotNull(color, "color");
-        this.style = checkNotNull(style, "style");
+    @SuppressWarnings("deprecation")
+    static TextFormat of(TextColor color, TextStyle style) {
+        return Sponge.getRegistry().getTextFactory().format(color, style);
     }
 
     /**
@@ -114,19 +81,14 @@ public final class TextFormat implements TextElement {
      *
      * @return The color
      */
-    public TextColor getColor() {
-        return this.color;
-    }
-
+    TextColor getColor();
 
     /**
      * Returns the {@link TextStyle} in this format.
      *
      * @return The style
      */
-    public TextStyle getStyle() {
-        return this.style;
-    }
+    TextStyle getStyle();
 
     /**
      * Returns a new {@link TextFormat} with the given color.
@@ -134,9 +96,7 @@ public final class TextFormat implements TextElement {
      * @param color The color
      * @return The new text format
      */
-    public TextFormat color(TextColor color) {
-        return new TextFormat(color, this.style);
-    }
+    TextFormat color(TextColor color);
 
     /**
      * Returns a new {@link TextFormat} with the given style.
@@ -144,9 +104,7 @@ public final class TextFormat implements TextElement {
      * @param style The style
      * @return The new text format
      */
-    public TextFormat style(TextStyle style) {
-        return new TextFormat(this.color, style);
-    }
+    TextFormat style(TextStyle style);
 
     /**
      * Returns a new {@link TextFormat} that combines this and the given format.
@@ -159,17 +117,7 @@ public final class TextFormat implements TextElement {
      * @param format The format to merge
      * @return The new text format
      */
-    public TextFormat merge(TextFormat format) {
-        TextColor color = format.color;
-        // If the given format's color is NONE use this ones
-        if (color == TextColors.NONE) {
-            color = this.color;
-            // If the given format's color is RESET use NONE
-        } else if (color == TextColors.RESET) {
-            color = TextColors.NONE;
-        }
-        return new TextFormat(color, this.style.and(format.style));
-    }
+    TextFormat merge(TextFormat format);
 
     /**
      * Returns whether this {@link TextFormat} has no color and format
@@ -177,40 +125,10 @@ public final class TextFormat implements TextElement {
      *
      * @return If the format does not contain a color or any styles
      */
-    public boolean isEmpty() {
-        return this.color == TextColors.NONE && this.style.isEmpty();
-    }
+    boolean isEmpty();
 
     @Override
-    public void applyTo(Text.Builder builder) {
+    default void applyTo(Text.Builder builder) {
         builder.format(this);
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof TextFormat)) {
-            return false;
-        }
-
-        TextFormat that = (TextFormat) o;
-        return this.color.equals(that.color) && this.style.equals(that.style);
-
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(this.color, this.style);
-    }
-
-    @Override
-    public String toString() {
-        return MoreObjects.toStringHelper(this)
-                .add("color", this.color)
-                .add("style", this.style)
-                .toString();
-    }
-
 }

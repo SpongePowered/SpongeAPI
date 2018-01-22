@@ -274,7 +274,7 @@ public final class GenericArguments {
 
         @Override
         public Text getUsage(CommandSource src) {
-            return Text.EMPTY;
+            return Text.of();
         }
     }
 

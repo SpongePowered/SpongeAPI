@@ -309,7 +309,7 @@ public interface TextFormatter<E extends TextRepresentable> extends TextRepresen
      * @return Text result of formatter
      */
     default Text format() {
-        Text text = Text.EMPTY;
+        Text text = Text.empty();
         for (E e : this) {
             text = text.concat(e.toText());
         }

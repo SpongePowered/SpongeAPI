@@ -24,43 +24,55 @@
  */
 package org.spongepowered.api.text.action;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.ResettableBuilder;
 
 /**
  * Represents a {@link TextAction} that responds to shift-clicks.
  *
  * @param <R> the type of the result of the action
  */
-public abstract class ShiftClickAction<R> extends TextAction<R> {
-
-    /**
-     * Constructs a new {@link ShiftClickAction} with the given result.
-     *
-     * @param result The result of the shift click action
-     */
-    ShiftClickAction(R result) {
-        super(result);
-    }
+public interface ShiftClickAction<R> extends TextAction<R> {
 
     @Override
-    public void applyTo(Text.Builder builder) {
+    default void applyTo(Text.Builder builder) {
         builder.onShiftClick(this);
     }
 
     /**
      * Inserts some text into the chat prompt.
      */
-    public static final class InsertText extends ShiftClickAction<String> {
+    interface InsertText extends ShiftClickAction<String> {
 
         /**
-         * Constructs a new {@link InsertText} instance that will insert text at
-         * the current cursor position in the chat when it is shift-clicked.
+         * Creates a new builder.
          *
-         * @param text The text to insert
+         * @return A new builder
          */
-        InsertText(String text) {
-            super(text);
+        static Builder builder() {
+            return Sponge.getRegistry().createBuilder(Builder.class);
         }
 
+        /**
+         * A builder for {@link InsertText} shift click actions.
+         */
+        interface Builder extends ResettableBuilder<InsertText, Builder> {
+
+            /**
+             * Sets the text to insert.
+             *
+             * @param text The text
+             * @return This builder
+             */
+            Builder text(String text);
+
+            /**
+             * Builds the action.
+             *
+             * @return The built action
+             */
+            InsertText build();
+        }
     }
 }

@@ -211,14 +211,14 @@ public interface Viewer {
      * all settings back to default values.
      */
     default void resetTitle() {
-        sendTitle(Title.RESET);
+        sendTitle(Title.reset());
     }
 
     /**
      * Removes the currently displayed {@link Title} from the player's screen.
      */
     default void clearTitle() {
-        sendTitle(Title.CLEAR);
+        sendTitle(Title.clear());
     }
 
     /**
