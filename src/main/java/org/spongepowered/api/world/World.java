@@ -38,7 +38,6 @@ import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.extent.Extent;
 import org.spongepowered.api.world.extent.worker.MutableBiomeVolumeWorker;
 import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
-import org.spongepowered.api.world.gamerule.DefaultGameRules;
 import org.spongepowered.api.world.gen.WorldGenerator;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.storage.WorldStorage;
@@ -47,7 +46,6 @@ import org.spongepowered.api.world.weather.WeatherUniverse;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Collection;
-import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
@@ -332,28 +330,6 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
      */
     default Difficulty getDifficulty() {
         return getProperties().getDifficulty();
-    }
-
-    /**
-     * Gets a set game rule's current value, if available and set.
-     *
-     * @see WorldProperties#getGameRule(String)
-     * @param gameRule The game rule
-     * @return the game rule, if available
-     */
-    default Optional<String> getGameRule(String gameRule) {
-        return getProperties().getGameRule(gameRule);
-    }
-
-    /**
-     * Gets the current {@link Map map} of game rules and their
-     * values. Most game rules can be found in {@link DefaultGameRules}.
-     *
-     * @see WorldProperties#getGameRules()
-     * @return The map of game rules and their values
-     */
-    default Map<String, String> getGameRules() {
-        return getProperties().getGameRules();
     }
 
     /**

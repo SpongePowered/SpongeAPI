@@ -204,6 +204,8 @@ sortClassFields {
     add 'main', 'org.spongepowered.api.world.DimensionTypes'
     add 'main', 'org.spongepowered.api.world.GeneratorTypes'
     add 'main', 'org.spongepowered.api.world.difficulty.Difficulties'
+    add 'main', 'org.spongepowered.api.world.gamerule.GameRules'
+    add 'main', 'org.spongepowered.api.world.gamerule.GameRuleTypes'
     add 'main', 'org.spongepowered.api.world.gen.type.BiomeTreeTypes'
     add 'main', 'org.spongepowered.api.world.gen.type.MushroomTypes'
     add 'main', 'org.spongepowered.api.world.gen.PopulatorObjects'

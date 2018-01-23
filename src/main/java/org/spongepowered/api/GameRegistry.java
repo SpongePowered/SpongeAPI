@@ -206,13 +206,6 @@ public interface GameRegistry {
     <T extends ResettableBuilder<?, ? super T>> T createBuilder(Class<T> builderClass) throws IllegalArgumentException;
 
     /**
-     * Gets a {@link Collection} of the default GameRules.
-     *
-     * @return The default GameRules.
-     */
-    Collection<String> getDefaultGameRules();
-
-    /**
      * Gets the {@link Statistic} for the given {@link StatisticType} and
      * {@link EntityType}. If the statistic group is not a valid
      * {@link EntityStatistic} group then {@link Optional#empty()} will be
