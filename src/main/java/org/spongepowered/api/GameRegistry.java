@@ -40,6 +40,7 @@ import org.spongepowered.api.network.status.Favicon;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.registry.CatalogRegistryModule;
+import org.spongepowered.api.registry.CatalogTypeAlreadyRegisteredException;
 import org.spongepowered.api.registry.RegistryModule;
 import org.spongepowered.api.registry.RegistryModuleAlreadyRegisteredException;
 import org.spongepowered.api.resourcepack.ResourcePack;
@@ -222,7 +223,8 @@ public interface GameRegistry {
      * @throws CatalogTypeAlreadyRegisteredException if the type cannot be
      *      registered because a matching type was already registered
      * @deprecated Is scheduled to be removed in API 8, the
-     *      {@link GameRegistryEvent.Register} should be used instead
+     *      {@link org.spongepowered.api.event.game.GameRegistryEvent.Register}
+     *      should be used instead
      */
     @Deprecated
     <T extends CatalogType> T register(Class<T> type, T obj) throws IllegalArgumentException, CatalogTypeAlreadyRegisteredException;
