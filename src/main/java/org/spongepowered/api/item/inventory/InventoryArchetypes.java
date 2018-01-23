@@ -29,7 +29,7 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 /**
  * An enumeration of {@link InventoryArchetype}s.
  */
-public final class InventoryArchetypes {
+public class InventoryArchetypes {
 
     // Base Archetypes
 
@@ -170,9 +170,15 @@ public final class InventoryArchetypes {
 
     public static final InventoryArchetype UNKNOWN = DummyObjectProvider.createFor(InventoryArchetype.class, "unknown");
 
-    // Suppress default constructor to ensure non-instantiability.
-    private InventoryArchetypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    /**
+     * You should not be using this constructor, it will be made private in
+     * API 8.
+     *
+     * @deprecated Will be made private in API 8
+     */
+    @Deprecated
+    public InventoryArchetypes() throws AssertionError {
+        //throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
 }
