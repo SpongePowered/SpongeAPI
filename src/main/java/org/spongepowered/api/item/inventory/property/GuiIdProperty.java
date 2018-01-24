@@ -27,10 +27,16 @@ package org.spongepowered.api.item.inventory.property;
 import org.spongepowered.api.data.Property;
 
 /**
- * A property to define which GUI should be opened on the client for the inventory.
+ * A property to define which GUI should be opened on the client
+ * for the inventory.
  */
 public class GuiIdProperty extends AbstractInventoryProperty<String, GuiId> {
 
+    /**
+     * Creates a GuiID property from the specified GUI ID.
+     *
+     * @param value The GUI ID to create the property with
+     */
     public GuiIdProperty(GuiId value) {
         super(value);
     }

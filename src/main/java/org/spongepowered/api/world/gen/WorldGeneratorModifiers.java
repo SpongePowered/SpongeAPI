@@ -37,6 +37,9 @@ public class WorldGeneratorModifiers {
 
     // SORTFIELDS:OFF
 
+    // Suppress default constructor to ensure non-instantiability.
     private WorldGeneratorModifiers() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
+
 }

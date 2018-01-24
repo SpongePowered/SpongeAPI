@@ -35,6 +35,6 @@ public interface FilteredTriggerConfiguration {
      * The default {@link FilteredTriggerConfiguration} type for all
      * the constructed {@link Trigger}s.
      */
-    final class Empty implements FilteredTriggerConfiguration {
-    }
+    final class Empty implements FilteredTriggerConfiguration { }
+
 }

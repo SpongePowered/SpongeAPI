@@ -45,7 +45,9 @@ public final class GameModes {
 
     // SORTFIELDS:OFF
 
+    // Suppress default constructor to ensure non-instantiability.
     private GameModes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
 }

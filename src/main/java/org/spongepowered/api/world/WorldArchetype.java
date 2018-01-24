@@ -376,7 +376,8 @@ public interface WorldArchetype extends CatalogType {
          * Builds the {@link WorldArchetype} which can be used to create
          * a {@link World} in {@link Server#createWorldProperties(String, WorldArchetype)}.
          *
-         * <p>This will also register the settings as a new type in {@link GameRegistry#register(Class, CatalogType)}.</p>
+         * <p>This will also register the settings as a new type in the
+         * {@link GameRegistry}.</p>
          *
          * @param id The id that this settings will be registered under
          * @param name The human readable name of this settings

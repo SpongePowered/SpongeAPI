@@ -82,7 +82,7 @@ public interface TradeOffer extends DataSerializable {
 
     /**
      * Gets the selling item the {@link Merchant} will give to the customer
-     * often in exchange for a singel item or sometimes, two items from the
+     * often in exchange for a single item or sometimes, two items from the
      * following methods: {@link #getFirstBuyingItem()} and
      * {@link #getSecondBuyingItem}.
      *
@@ -95,7 +95,7 @@ public interface TradeOffer extends DataSerializable {
      *
      * <p>Usually, the uses of an offer are limited by the amount of
      * {@link #getMaxUses()}. Once the uses reaches the max uses, the offer may
-     * temporariliy become disabled.</p>
+     * temporarily become disabled.</p>
      *
      * @return The current uses of this trade offer
      */

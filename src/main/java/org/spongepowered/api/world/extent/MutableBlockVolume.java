@@ -43,7 +43,6 @@ public interface MutableBlockVolume extends BlockVolume {
      *
      * @param position The position
      * @param block The block
-     * @param cause The cause
      * @return Whether the block change was successful
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the volume

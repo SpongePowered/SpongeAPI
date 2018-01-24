@@ -29,8 +29,12 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 public final class FluidTypes {
 
     public static final FluidType WATER = DummyObjectProvider.createFor(FluidType.class, "WATER");
+
     public static final FluidType LAVA = DummyObjectProvider.createFor(FluidType.class, "LAVA");
 
-    private FluidTypes() { }
+    // Suppress default constructor to ensure non-instantiability.
+    private FluidTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 
 }

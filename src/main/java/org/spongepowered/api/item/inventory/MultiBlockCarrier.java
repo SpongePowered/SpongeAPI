@@ -38,14 +38,14 @@ import java.util.Optional;
 public interface MultiBlockCarrier extends BlockCarrier {
 
     /**
-     * Returns the Locations of the Blocks
+     * Returns the Locations of the Blocks.
      *
      * @return The Locations of the Blocks
      */
     List<Location<World>> getLocations();
 
     /**
-     * Returns the Inventory at given location if owned by this Carrier
+     * Returns the Inventory at given location if owned by this Carrier.
      *
      * @param at The location
      * @return The inventory at given location
@@ -56,7 +56,8 @@ public interface MultiBlockCarrier extends BlockCarrier {
      * Returns the Inventory at given location if owned by this Carrier and
      * accessible from given direction.
      *
-     * e.g. A Furnace accessed from {@link Direction#DOWN} will return its Fuel Slot
+     * <p>e.g. A Furnace accessed from {@link Direction#DOWN} will return
+     * its Fuel Slot</p>
      *
      * @param at The Location
      * @param from The Direction

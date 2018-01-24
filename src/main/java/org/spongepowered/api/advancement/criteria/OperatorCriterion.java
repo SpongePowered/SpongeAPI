@@ -50,8 +50,7 @@ public interface OperatorCriterion extends AdvancementCriterion {
 
     /**
      * Gets the children {@link AdvancementCriterion}s of this
-     * {@link OperatorCriterion}. May contain
-     * {@link OperatorCriterion}s.
+     * {@link OperatorCriterion}. May contain {@link OperatorCriterion}s.
      *
      * @return The criteria
      */
@@ -64,4 +63,5 @@ public interface OperatorCriterion extends AdvancementCriterion {
      * @return The leaf criteria
      */
     Collection<AdvancementCriterion> getLeafCriteria();
+
 }

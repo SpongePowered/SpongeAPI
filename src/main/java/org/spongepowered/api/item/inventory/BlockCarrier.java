@@ -28,8 +28,6 @@ import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
-import java.util.Optional;
-
 /**
  * Represents a Block that is a carrier of an Inventory
  * e.g. An Anvil
@@ -44,7 +42,8 @@ public interface BlockCarrier extends Carrier {
     Location<World> getLocation();
 
     /**
-     * Returns the Inventory owned by this Carrier and accessible from given direction.
+     * Returns the Inventory owned by this Carrier and accessible from
+     * the given direction.
      *
      * <p>e.g. A Furnace accessed from {@link Direction#DOWN} will return its Fuel Slot</p>
      *

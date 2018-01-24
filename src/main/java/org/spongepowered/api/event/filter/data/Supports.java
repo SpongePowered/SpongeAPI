@@ -54,7 +54,7 @@ public @interface Supports {
 
     /**
      * If true the standard behavior of this filter is reversed and events where
-     * the annotated parameter <string>does support</strong> the specified data
+     * the annotated parameter <strong>does support</strong> the specified data
      * manipulator type are filtered out.
      * 
      * @return If the behavior should be reversed

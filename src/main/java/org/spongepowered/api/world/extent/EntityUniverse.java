@@ -51,7 +51,7 @@ public interface EntityUniverse {
 
     /**
      * Gets the entity whose {@link UUID} matches the provided id, possibly
-     * returning no entity if the entity is not loaded or non-existant.
+     * returning no entity if the entity is not loaded or non-existent.
      *
      * <p>For world implementations, only some parts of the world is usually
      * loaded, so this method may return no entity if the entity is not
@@ -75,6 +75,20 @@ public interface EntityUniverse {
     Collection<Entity> getEntities();
 
     /**
+     * Return a collection of entities contained within this universe, possibly
+     * only returning entities only in loaded areas. The returned entities are
+     * filtered by the given {@link Predicate} before being returned.
+     *
+     * <p>For world implementations, only some parts of the world is usually
+     * loaded, so this method will only return entities within those loaded
+     * parts.</p>
+     *
+     * @param filter The filter to apply to the returned entities
+     * @return A collection of filtered entities
+     */
+    Collection<Entity> getEntities(Predicate<Entity> filter);
+
+    /**
      * Return a collection of entities contained within {@code distance} blocks
      * of the specified location. This uses a sphere to test distances.
      *
@@ -91,22 +105,8 @@ public interface EntityUniverse {
         checkArgument(distance > 0, "distance must be > 0");
         return this.getIntersectingEntities(new AABB(location.getX() - distance, location.getY() - distance, location.getZ() - distance,
                 location.getX() + distance, location.getY() + distance, location.getZ() + distance),
-                entity -> entity.getLocation().getPosition().distanceSquared(location) <= distance * distance);
+            entity -> entity.getLocation().getPosition().distanceSquared(location) <= distance * distance);
     }
-
-    /**
-     * Return a collection of entities contained within this universe, possibly
-     * only returning entities only in loaded areas. The returned entities are
-     * filtered by the given {@link Predicate} before being returned.
-     *
-     * <p>For world implementations, only some parts of the world is usually
-     * loaded, so this method will only return entities within those loaded
-     * parts.</p>
-     *
-     * @param filter The filter to apply to the returned entities
-     * @return A collection of filtered entities
-     */
-    Collection<Entity> getEntities(Predicate<Entity> filter);
 
     /**
      * Create an entity instance at the given position.

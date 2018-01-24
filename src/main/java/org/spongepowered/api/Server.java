@@ -64,15 +64,15 @@ public interface Server {
     int getMaxPlayers();
 
     /**
-     * Gets a {@link Player} by their unique id
+     * Gets a {@link Player} by their UUID.
      *
      * @param uniqueId The UUID to get the player from
-     * @return {@link Player} or Optional.empty() if not found
+     * @return The {@link Player} or empty if not found
      */
     Optional<Player> getPlayer(UUID uniqueId);
 
     /**
-     * Gets a {@link Player} by their name
+     * Gets a {@link Player} by their name.
      *
      * <p>This only works for online players.</p>
      *
@@ -80,7 +80,7 @@ public interface Server {
      * Notch of today may not be the Notch of yesterday.</b></p>
      *
      * @param name The name to get the player from
-     * @return {@link Player} or Optional.empty() if not found
+     * @return The {@link Player} or empty if not found
      */
     Optional<Player> getPlayer(String name);
 

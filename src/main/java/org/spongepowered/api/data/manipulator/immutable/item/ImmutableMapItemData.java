@@ -32,7 +32,6 @@ import org.spongepowered.api.item.inventory.ItemStack;
 /**
  * Represents an {@link ImmutableDataManipulator} hosting the specific map
  * information of an {@link ItemStack} of the type {@link ItemTypes#FILLED_MAP}.
- * // TODO for modwizcode
  */
 public interface ImmutableMapItemData extends ImmutableDataManipulator<ImmutableMapItemData, MapItemData> {
 

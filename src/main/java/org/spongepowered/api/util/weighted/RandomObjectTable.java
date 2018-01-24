@@ -78,7 +78,7 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
     }
 
     /**
-     * Sets the number of times this table will roll while retrieving tiems.
+     * Sets the number of times this table will roll while retrieving items.
      * 
      * @param rolls The new roll count
      */
@@ -87,7 +87,7 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
     }
 
     /**
-     * Sets the number of times this table will roll while retrieving tiems.
+     * Sets the number of times this table will roll while retrieving items.
      * 
      * @param rolls The new roll count
      */
@@ -113,7 +113,7 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
     public boolean add(T object, double weight) {
         checkNotNull(object);
         checkArgument(weight >= 0, "Weight cannot be negative");
-        return add(new WeightedObject<T>(object, weight));
+        return add(new WeightedObject<>(object, weight));
     }
 
     @Override

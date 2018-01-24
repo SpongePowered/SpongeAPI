@@ -37,6 +37,13 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 @CatalogedBy(EventContextKeys.class)
 public interface EventContextKey<T> extends CatalogType {
 
+    /**
+     * Creates a builder to be used for creating a new {@link EventContextKey}.
+     *
+     * @param clazz The class the key will allow access to
+     * @param <T> The type of the value stored with this key
+     * @return The constructed builder
+     */
     @SuppressWarnings("unchecked")
     static <T> Builder<T> builder(Class<T> clazz) {
         return Sponge.getRegistry().createBuilder(Builder.class).type(clazz);

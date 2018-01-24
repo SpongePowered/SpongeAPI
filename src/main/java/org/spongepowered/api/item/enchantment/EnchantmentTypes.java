@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.item.enchantment;
 
-import org.spongepowered.api.item.enchantment.EnchantmentType;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
@@ -255,6 +254,10 @@ public final class EnchantmentTypes {
 
     // SORTFIELDS:OFF
 
-    private EnchantmentTypes() {}
+    // Suppress default constructor to ensure non-instantiability.
+    private EnchantmentTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
 
 }

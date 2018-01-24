@@ -128,7 +128,7 @@ public interface TradeOfferGenerator extends Function<Random, TradeOffer>, Trade
          * {@link TradeOffer}.
          *
          * @param amount The variable amount of maximum uses
-         * @return This buidler, for chaining
+         * @return This builder, for chaining
          */
         Builder maxUses(VariableAmount amount);
 

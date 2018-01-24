@@ -203,7 +203,7 @@ public interface ChunkTicketManager {
          * {@link #setCompanionData(DataContainer)} before modifications can
          * be handled.
          *
-         * <p>The sort of data stored in the contianer is plugin/mod dependent
+         * <p>The sort of data stored in the container is plugin/mod dependent
          * and is based on the original creator of this {@link LoadingTicket}.
          * As such, the structure and particular data stored in the container
          * is not concrete or defined in any specific way.</p>
@@ -215,7 +215,7 @@ public interface ChunkTicketManager {
         /**
          * Sets the companion data for this loading ticket.
          *
-         * <p>The sort of data stored in the contianer is plugin/mod dependent
+         * <p>The sort of data stored in the container is plugin/mod dependent
          * and is based on the original creator of this {@link LoadingTicket}.
          * As such, the structure and particular data stored in the container
          * is not concrete or defined in any specific way.</p>
@@ -320,7 +320,7 @@ public interface ChunkTicketManager {
     }
 
     /**
-     * A callback for loading dickets during world load.
+     * A callback for loading tickets during world load.
      */
     @FunctionalInterface
     interface Callback {
@@ -347,7 +347,7 @@ public interface ChunkTicketManager {
     }
 
     /**
-     * A ordered callback for loading dickets during world load.
+     * A ordered callback for loading tickets during world load.
      */
     interface OrderedCallback extends Callback {
 
@@ -368,7 +368,7 @@ public interface ChunkTicketManager {
     }
 
     /**
-     * A player ordered callback for loading dickets during world load.
+     * A player ordered callback for loading tickets during world load.
      */
     interface PlayerOrderedCallback extends Callback {
 

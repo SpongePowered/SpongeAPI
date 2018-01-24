@@ -61,4 +61,5 @@ public interface TreeLayoutElement {
      * @param y The y coordinate
      */
     void setPosition(double x, double y);
+
 }

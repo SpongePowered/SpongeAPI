@@ -36,7 +36,6 @@ import org.spongepowered.api.data.manipulator.mutable.block.*;
 import org.spongepowered.api.data.manipulator.mutable.entity.*;
 import org.spongepowered.api.data.manipulator.mutable.item.*;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.*;
-import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.data.property.entity.DominantHandProperty;
 import org.spongepowered.api.data.type.*;
 import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
@@ -53,9 +52,6 @@ import org.spongepowered.api.entity.living.*;
 import org.spongepowered.api.entity.living.animal.*;
 import org.spongepowered.api.entity.living.golem.IronGolem;
 import org.spongepowered.api.entity.living.monster.*;
-import org.spongepowered.api.entity.living.animal.Horse;
-import org.spongepowered.api.entity.living.animal.Llama;
-import org.spongepowered.api.entity.living.animal.Parrot;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
@@ -67,12 +63,12 @@ import org.spongepowered.api.entity.projectile.arrow.Arrow;
 import org.spongepowered.api.entity.projectile.explosive.fireball.Fireball;
 import org.spongepowered.api.entity.vehicle.minecart.CommandBlockMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.Minecart;
-import org.spongepowered.api.event.entity.SpawnEntityEvent.Spawner;
 import org.spongepowered.api.extra.fluid.FluidStackSnapshot;
 import org.spongepowered.api.extra.fluid.data.manipulator.mutable.FluidItemData;
 import org.spongepowered.api.extra.fluid.data.manipulator.mutable.FluidTankData;
 import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.ItemTypes;
+import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.merchant.TradeOffer;
@@ -96,13 +92,14 @@ import java.util.UUID;
 /**
  * An enumeration of known {@link Key}s used throughout the API.
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public final class Keys {
 
     // SORTFIELDS:ON
 
     /**
-     * Represents the {@link Key} for the absoprtion amount of any {@link Living}
-     * entity.
+     * Represents the {@link Key} for the absorption amount of any
+     * {@link Living} entity.
      *
      * @see AbsorptionData#absorption()
      */
@@ -140,7 +137,7 @@ public final class Keys {
      * Represents the {@link Key} for how angry an {@link Entity} is. This
      * applies mostly to {@link ZombiePigman}.
      *
-     * <p>Unlike {@link #ANGRY}, the agressiveness represented by this key may
+     * <p>Unlike {@link #ANGRY}, the aggressiveness represented by this key may
      * fade over time and the entity will become peaceful again once its anger
      * reaches its minimum.</p>
      *
@@ -1114,6 +1111,14 @@ public final class Keys {
     public static final Key<Value<Boolean>> INVISIBLE = DummyObjectProvider.createExtendedFor(Key.class,"INVISIBLE");
 
     /**
+     * Represents the {@link Key} for the amount of ticks an {@link Entity}
+     * will remain invulnerable for.
+     *
+     * @see InvulnerabilityData#invulnerableTicks()
+     */
+    public static final Key<MutableBoundedValue<Integer>> INVULNERABILITY_TICKS = DummyObjectProvider.createExtendedFor(Key.class,"INVULNERABILITY_TICKS");
+
+    /**
      * Represents the {@link Key} for representing if an {@link Entity}
      * is invulnerable or not.
      *
@@ -1123,14 +1128,6 @@ public final class Keys {
      * @see InvulnerabilityData#invulnerable()
      */
     public static final Key<Value<Boolean>> INVULNERABLE = DummyObjectProvider.createExtendedFor(Key.class,"INVULNERABLE");
-
-    /**
-     * Represents the {@link Key} for the amount of ticks an {@link Entity}
-     * will remain invulnerable for.
-     *
-     * @see InvulnerabilityData#invulnerableTicks()
-     */
-    public static final Key<MutableBoundedValue<Integer>> INVULNERABILITY_TICKS = DummyObjectProvider.createExtendedFor(Key.class,"INVULNERABILITY_TICKS");
 
     /**
      * Represents the {@link Key} for representing the "in-wall" state of
@@ -1176,8 +1173,7 @@ public final class Keys {
      * <p>In vanilla this currently only applies to {@link Vindicator}s.</p>
      *
      * @see <a href="https://minecraft.gamepedia.com/Vindicator#Behavior">
-     *     The Minecraft Wiki</a> for more information about "johnny" behavior
-     *     relating to vindicators
+     *     The Minecraft Wiki for more information about "johnny" behavior</a>
      * @see JohnnyData#johnny()
      */
     public static final Key<Value<Boolean>> IS_JOHNNY = DummyObjectProvider.createExtendedFor(Key.class, "IS_JOHNNY");
@@ -1291,8 +1287,8 @@ public final class Keys {
     public static final Key<ListValue<Enchantment>> ITEM_ENCHANTMENTS = DummyObjectProvider.createExtendedFor(Key.class,"ITEM_ENCHANTMENTS");
 
     /**
-     * Represents the {@link Key} for the displayed decrption ("lore") text of
-     * an {@link ItemStack}.
+     * Represents the {@link Key} for the displayed description ("lore") text
+     * of an {@link ItemStack}.
      *
      * <p>The lore text is usually displayed when the player hovers his cursor
      * over the stack. For the contents of a book see {@link #BOOK_PAGES}
@@ -1324,7 +1320,6 @@ public final class Keys {
      * @see DamageableData#lastAttacker()
      */
     public static final Key<OptionalValue<EntitySnapshot>> LAST_ATTACKER = DummyObjectProvider.createExtendedFor(Key.class,"LAST_ATTACKER");
-
 
     /**
      * Represents the {@link Key} for the output yielded by the last command of
@@ -1860,15 +1855,16 @@ public final class Keys {
      * Represents the {@link Key} for the entity type spawned by an
      * {@link ItemStack} of the type {@link ItemTypes#SPAWN_EGG}.
      *
-     * <p>For the type of entity spawned by a {@link Spawner}, see {@link #SPAWNER_ENTITIES}.</p>
+     * <p>For the type of entity spawned by a {@link MobSpawner},
+     * see {@link #SPAWNER_ENTITIES}.</p>
      *
      * @see SpawnableData
      */
     public static final Key<Value<EntityType>> SPAWNABLE_ENTITY_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"SPAWNABLE_ENTITY_TYPE");
 
     /**
-     * Represents the {@link Key} for the list of {@link EntityArchetype}s able to be spawned
-     * by a {@link Spawner}.
+     * Represents the {@link Key} for the list of {@link EntityArchetype}s able
+     * to be spawned by a {@link MobSpawner}.
      *
      * @see MobSpawnerData#possibleEntitiesToSpawn()
      */
@@ -1876,7 +1872,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the maximum amount of ticks between two
-     * batches of entities spawned by a {@link Spawner}.
+     * batches of entities spawned by a {@link MobSpawner}.
      *
      * @see MobSpawnerData#maximumSpawnDelay()
      */
@@ -1884,7 +1880,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the maximum number of entities around a
-     * {@link Spawner}. A spawner will not spawn entities if there are more
+     * {@link MobSpawner}. A spawner will not spawn entities if there are more
      * entities around than this value permits.
      *
      * @see MobSpawnerData#maximumNearbyEntities()
@@ -1893,7 +1889,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the minimum amount of ticks between two
-     * batches of entities spawned by a {@link Spawner}.
+     * batches of entities spawned by a {@link MobSpawner}.
      *
      * @see MobSpawnerData#minimumSpawnDelay()
      */
@@ -1901,7 +1897,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the next entity that will be spawned
-     * by a {@link Spawner}.
+     * by a {@link MobSpawner}.
      *
      * <p>Normally the entities to be spawned are determined by a random value
      * applied to the {@link #SPAWNER_ENTITIES} weighted collection. If this
@@ -1913,7 +1909,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the remaining number of ticks to pass
-     * before another attempt to spawn entities is made by a {@link Spawner}.
+     * before another attempt to spawn entities is made by a {@link MobSpawner}.
      *
      * @see MobSpawnerData#remainingDelay()
      */
@@ -1921,14 +1917,15 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for how close a {@link Player} has to be
-     * around the {@link Spawner} in order for it to attempt to spawn entities.
+     * around the {@link MobSpawner} in order for it to attempt to
+     * spawn entities.
      *
      * @see MobSpawnerData#requiredPlayerRange()
      */
     public static final Key<MutableBoundedValue<Short>> SPAWNER_REQUIRED_PLAYER_RANGE = DummyObjectProvider.createExtendedFor(Key.class,"SPAWNER_REQUIRED_PLAYER_RANGE");
 
     /**
-     * Represents the {@link Key} for how many entities a {@link Spawner} has
+     * Represents the {@link Key} for how many entities a {@link MobSpawner} has
      * spawned so far.
      *
      * @see MobSpawnerData#spawnCount()
@@ -1936,8 +1933,8 @@ public final class Keys {
     public static final Key<MutableBoundedValue<Short>> SPAWNER_SPAWN_COUNT = DummyObjectProvider.createExtendedFor(Key.class,"SPAWNER_SPAWN_COUNT");
 
     /**
-     * Represents the {@link Key} for how far away from the {@link Spawner} the
-     * entities spawned by it may appear.
+     * Represents the {@link Key} for how far away from the
+     * {@link MobSpawner} the entities spawned by it may appear.
      *
      * @see MobSpawnerData#spawnRange()
      */
@@ -2058,7 +2055,7 @@ public final class Keys {
     public static final Key<MutableBoundedValue<Integer>> STUCK_ARROWS = DummyObjectProvider.createExtendedFor(Key.class,"STUCK_ARROWS");
 
     /**
-     * Reprsents a key for the amount of successful executions of a command
+     * Represents a key for the amount of successful executions of a command
      * stored in a {@link CommandBlock} or {@link CommandBlockMinecart}.
      *
      * @see CommandData#successCount()
@@ -2265,5 +2262,9 @@ public final class Keys {
 
     // SORTFIELDS:OFF
 
-    private Keys() {}
+    // Suppress default constructor to ensure non-instantiability.
+    private Keys() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
 }

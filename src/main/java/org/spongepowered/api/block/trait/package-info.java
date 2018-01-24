@@ -30,4 +30,5 @@
  * support only through a <code>BlockTrait</code> is when mods are introduced
  * to the game, providing custom content and custom states.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.block.trait;
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.block.trait;

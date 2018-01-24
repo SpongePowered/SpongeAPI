@@ -46,4 +46,10 @@ public final class SerializationBehaviors {
     public static final SerializationBehavior NONE = DummyObjectProvider.createFor(SerializationBehavior.class, "none");
 
     // SORTFIELDS:OFF
+
+    // Suppress default constructor to ensure non-instantiability.
+    private SerializationBehaviors() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
 }

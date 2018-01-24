@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.event.cause.entity.health;
 
-import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.effect.potion.PotionEffectTypes;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.enchantment.EnchantmentType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
@@ -91,7 +91,9 @@ public final class HealthModifierTypes {
 
     // SORTFIELDS:OFF
 
+    // Suppress default constructor to ensure non-instantiability.
     private HealthModifierTypes() {
-
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
+
 }

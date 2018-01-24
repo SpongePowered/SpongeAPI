@@ -32,7 +32,7 @@ import java.util.function.Consumer;
 
 /**
  * Represents a network channel bound to a {@link ChannelRegistrar}. The channel
- * can be used to send and recieve data. If this binding is removed by
+ * can be used to send and receive data. If this binding is removed by
  * {@link ChannelRegistrar#unbindChannel}, all methods will throw
  * {@link IllegalStateException}.
  */

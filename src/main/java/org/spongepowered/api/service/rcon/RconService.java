@@ -40,7 +40,7 @@ public interface RconService {
     boolean isRconEnabled();
 
     /**
-     * Gets the Rcon password for this service
+     * Gets the Rcon password for this service.
      *
      * <p>This password is used by Rcon clients to authenticate.</p>
      *

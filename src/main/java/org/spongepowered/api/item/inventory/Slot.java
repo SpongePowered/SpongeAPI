@@ -30,12 +30,12 @@ package org.spongepowered.api.item.inventory;
 public interface Slot extends Inventory {
 
     /**
-     * A type of Slot
+     * A type of Slot.
      */
     enum Type {
 
         /**
-         * Slots in an Inventory as opposed to a {@link Container}
+         * Slots in an Inventory as opposed to a {@link Container}.
          */
         INVENTORY
 
@@ -55,8 +55,8 @@ public interface Slot extends Inventory {
      *
      * <dl>
      *   <dt>Example</dt>
-     *   <dd>In a InventoryEvent with a Container to get the actual inventory from Slot,
-     *     you may call this with {@link Type#INVENTORY}.</dd>
+     *   <dd>In a InventoryEvent with a Container to get the actual inventory
+     *       from Slot, you may call this with {@link Type#INVENTORY}.</dd>
      * </dl>
      *
      * @param type the type to transform into

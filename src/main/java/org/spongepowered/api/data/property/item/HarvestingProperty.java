@@ -49,7 +49,7 @@ public class HarvestingProperty extends AbstractProperty<String, Set<BlockType>>
      * @param value The harvestable block types
      */
     public HarvestingProperty(@Nullable Set<BlockType> value) {
-        super(value == null ? ImmutableSet.<BlockType>of() : ImmutableSet.copyOf(value));
+        super(value == null ? ImmutableSet.of() : ImmutableSet.copyOf(value));
     }
 
     /**
@@ -59,7 +59,7 @@ public class HarvestingProperty extends AbstractProperty<String, Set<BlockType>>
      * @param op The operator to use when comparing against other properties
      */
     public HarvestingProperty(@Nullable Set<BlockType> value, Operator op) {
-        super(value == null ? ImmutableSet.<BlockType>of() : ImmutableSet.copyOf(value), op);
+        super(value == null ? ImmutableSet.of() : ImmutableSet.copyOf(value), op);
     }
 
     @Override

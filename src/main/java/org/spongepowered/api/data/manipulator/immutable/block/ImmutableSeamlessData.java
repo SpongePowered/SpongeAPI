@@ -31,7 +31,7 @@ import org.spongepowered.api.data.value.immutable.ImmutableValue;
 
 /**
  * An {@link ImmutableDataManipulator} for the "seamless" state. This is
- * normally a simple visual change for the applicable blocktypes of
+ * normally a simple visual change for the applicable block types of
  * {@link BlockTypes#DOUBLE_STONE_SLAB}, {@link BlockTypes#DOUBLE_STONE_SLAB2},
  * and {@link BlockTypes#DOUBLE_WOODEN_SLAB}.
  */

@@ -35,7 +35,7 @@ public class TestWeightedTable {
     public void test() {
         RiggedRandom rand = new RiggedRandom();
         WeightedTable<Object> table = new WeightedTable<>();
-        table.add(new WeightedObject<Object>(this, 4));
+        table.add(new WeightedObject<>(this, 4));
         rand.enqueue(0);
         List<Object> results = table.get(rand);
         Assert.assertEquals(this, results.get(0));

@@ -71,7 +71,7 @@ public interface InventoryArchetype extends CatalogType {
     Optional<InventoryProperty<String, ?>> getProperty(String key);
 
     /**
-     * Returns the property with the Properties default key
+     * Returns the property with the Properties default key.
      *
      * @param type The type of Property to query for
      * @param <T> Expected Type of InventoryProperty

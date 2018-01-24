@@ -34,7 +34,7 @@ import org.spongepowered.api.service.economy.transaction.TransactionResult;
 public interface EconomyTransactionEvent extends Event {
 
     /**
-     * Gets the {@link TransactionResult} for the transaction that occured.
+     * Gets the {@link TransactionResult} for the transaction that occurred.
      *
      * @return The {@link TransactionResult}
      */

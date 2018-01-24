@@ -45,10 +45,10 @@ public interface AdvancementEvent extends TargetPlayerEvent {
 
     /**
      * Is called when a {@link Advancement} is granted/unlocked.
-     * <p>
-     * This event cannot be canceled, you have to cancel the
+     *
+     * <p>This event cannot be canceled, you have to cancel the
      * {@link CriterionEvent.Grant}s of the underlying {@link CriterionEvent}s
-     * to prevent unlocking the {@link Advancement}.
+     * to prevent unlocking the {@link Advancement}.</p>
      */
     interface Grant extends AdvancementEvent, MessageChannelEvent {
 
@@ -63,10 +63,10 @@ public interface AdvancementEvent extends TargetPlayerEvent {
 
     /**
      * Is called when a {@link AdvancementCriterion} is revoked.
-     * <p>
-     * This event cannot be canceled, you have to cancel the
+     *
+     * <p>This event cannot be canceled, you have to cancel the
      * {@link CriterionEvent.Grant}s of the underlying {@link CriterionEvent}s
-     * to prevent revoking the {@link Advancement}.
+     * to prevent revoking the {@link Advancement}.</p>
      */
     interface Revoke extends AdvancementEvent {
     }

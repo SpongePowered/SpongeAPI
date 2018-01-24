@@ -31,18 +31,20 @@ public class BanTypes {
     // SORTFIELDS:ON
 
     /**
-     * Represents a {@link Ban.Ip}
+     * Represents a {@link Ban.Ip}.
      */
     public static final BanType IP = DummyObjectProvider.createFor(BanType.class, "IP");
 
     /**
-     * Represents a {@link Ban.Profile}
+     * Represents a {@link Ban.Profile}.
      */
     public static final BanType PROFILE = DummyObjectProvider.createFor(BanType.class, "PROFILE");
 
     // SORTFIELDS:OFF
 
+    // Suppress default constructor to ensure non-instantiability.
     private BanTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
 }

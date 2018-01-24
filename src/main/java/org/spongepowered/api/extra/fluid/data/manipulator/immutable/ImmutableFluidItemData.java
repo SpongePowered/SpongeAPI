@@ -41,7 +41,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
  * and possibly {@link Entity} instances. Traditionally,
  * {@link ItemTypes#BUCKET}s will not have changeable instances of data without
  * changing the {@link ItemType}. Provided that a {@link TileEntity} contains
- * multiple fluids, it may have optionaly {@link FluidTankData} instead of
+ * multiple fluids, it may have optionally {@link FluidTankData} instead of
  * {@link FluidItemData}.
  */
 public interface ImmutableFluidItemData extends ImmutableDataManipulator<ImmutableFluidItemData, FluidItemData> {

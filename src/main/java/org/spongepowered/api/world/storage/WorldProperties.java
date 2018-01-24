@@ -382,8 +382,8 @@ public interface WorldProperties extends DataSerializable {
     /**
      * Gets the center of the world border.
      *
-     * <p>The returned position is three-dimensional. As the worldborder extends
-     * over the entire y-axis, the returned position will always have a
+     * <p>The returned position is three-dimensional. As the world border
+     * extends over the entire y-axis, the returned position will always have a
      * {@code y} set to 0.</p>
      *
      * @return The center
@@ -557,7 +557,7 @@ public interface WorldProperties extends DataSerializable {
     void setGameRule(String gameRule, String value);
 
     /**
-     * Removes custom GameRule
+     * Removes custom GameRule.
      *
      * @param gameRule The name of the GameRule.
      * @return True if GameRule was deleted, false if not

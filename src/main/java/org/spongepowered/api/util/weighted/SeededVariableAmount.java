@@ -43,7 +43,7 @@ public interface SeededVariableAmount<T> {
      * @return A variable amount representation
      */
     static <T> SeededVariableAmount<T> fixed(double value) {
-        return new WrappedVariableAmount<T>(VariableAmount.fixed(value));
+        return new WrappedVariableAmount<>(VariableAmount.fixed(value));
     }
 
     /**
@@ -55,7 +55,7 @@ public interface SeededVariableAmount<T> {
      * @return A variable amount representation
      */
     static <T> SeededVariableAmount<T> wrapped(VariableAmount value) {
-        return new WrappedVariableAmount<T>(value);
+        return new WrappedVariableAmount<>(value);
     }
 
     /**

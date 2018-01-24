@@ -46,7 +46,7 @@ import java.lang.annotation.Target;
 public @interface AbsoluteSortPosition {
 
     /**
-     * Gets the absolute position for the annotated property
+     * Gets the absolute position for the annotated property.
      *
      * @return the absolute position
      */

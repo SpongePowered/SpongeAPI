@@ -28,7 +28,8 @@ import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.event.game.GameRegistryEvent;
 
 /**
- * A base class for implementing {@link GameRegistryEvent.Register} events.
+ * A base class for implementing
+ * {@link org.spongepowered.api.event.game.GameRegistryEvent.Register} events.
  *
  * @param <T> The catalog type
  */

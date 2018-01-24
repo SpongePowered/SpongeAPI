@@ -664,7 +664,7 @@ public final class Coerce {
     }
 
     /**
-     * Coerce the supplied object to a Vector2i
+     * Coerce the supplied object to a Vector2i.
      *
      * @param obj Object to coerce
      * @return Vector2i, returns Vector2i.ZERO if coercion failed
@@ -707,7 +707,7 @@ public final class Coerce {
 
     /**
      * Sanitise a string containing a common representation of a number to make
-     * it parseable. Strips thousand-separating commas and trims later members
+     * it parsable. Strips thousand-separating commas and trims later members
      * of a comma-separated list. For example the string "(9.5, 10.6, 33.2)"
      * will be sanitised to "9.5".
      *

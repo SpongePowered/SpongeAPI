@@ -112,12 +112,15 @@ public interface ChangeInventoryEvent extends TargetInventoryEvent, AffectSlotEv
         /**
          * Fires before an {@link Item} is picked up.
          *
-         * <p>Modifying the picked up items causes this event to be automatically canceled if the inventory does not fit the entire list.</p>
+         * <p>Modifying the picked up items causes this event to be
+         * automatically canceled if the inventory does not
+         * fit the entire list.</p>
          */
         interface Pre extends TargetInventoryEvent, TargetItemEvent, Cancellable {
 
             /**
-             * Returns the original picked up {@link ItemStackSnapshot} to add to the inventory.
+             * Returns the original picked up {@link ItemStackSnapshot}
+             * to add to the inventory.
              *
              * @return The original picked up item
              */
@@ -135,7 +138,8 @@ public interface ChangeInventoryEvent extends TargetInventoryEvent, AffectSlotEv
             /**
              * Sets the items to add to the inventory.
              *
-             * <p>If all items do not fit the inventory this event will be automatically canceled.</p>
+             * <p>If all items do not fit the inventory this event will be
+             * automatically canceled.</p>
              *
              * @param items The items to add to the inventory
              */
@@ -144,7 +148,8 @@ public interface ChangeInventoryEvent extends TargetInventoryEvent, AffectSlotEv
             /**
              * Returns the proposed final list of items to add to the inventory.
              *
-             * <p>If a custom list was set all items have to fit the inventory or this event will be automatically canceled.</p>
+             * <p>If a custom list was set all items have to fit the inventory
+             * or this event will be automatically canceled.</p>
              *
              * @return The proposed final list
              */

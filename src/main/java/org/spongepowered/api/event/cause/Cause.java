@@ -69,12 +69,27 @@ public final class Cause implements Iterable<Object> {
         return new Builder();
     }
 
+    /**
+     * Constructs a new cause with the specified event context and cause.
+     *
+     * @param ctx The event context
+     * @param cause The direct object cause
+     * @return The constructed cause
+     */
     public static Cause of(EventContext ctx, Object cause) {
         checkNotNull(ctx, "Context");
         checkNotNull(cause, "Cause cannot be null!");
         return new Cause(ctx, new Object[] {cause});
     }
 
+    /**
+     * Constructs a new cause with the specified event context and causes.
+     *
+     * @param ctx The event context
+     * @param cause The direct object cause
+     * @param causes Other associated causes
+     * @return The built cause
+     */
     public static Cause of(EventContext ctx, Object cause, Object... causes) {
         checkNotNull(ctx, "Context");
         Builder builder = builder();
@@ -85,6 +100,13 @@ public final class Cause implements Iterable<Object> {
         return builder.build(ctx);
     }
 
+    /**
+     * Constructs a new cause with the specified event context and causes.
+     *
+     * @param ctx The event context
+     * @param iterable The associated causes
+     * @return The built cause
+     */
     public static Cause of(EventContext ctx, Iterable<Object> iterable) {
         checkNotNull(ctx, "Context");
         Builder builder = builder();
@@ -100,6 +122,12 @@ public final class Cause implements Iterable<Object> {
     // lazy load
     @Nullable private ImmutableList<Object> immutableCauses;
 
+    /**
+     * Constructs a new cause.
+     *
+     * @param ctx The event context
+     * @param causes The causes
+     */
     Cause(EventContext ctx, Object[] causes) {
         checkNotNull(ctx, "Context");
         final Object[] objects = new Object[causes.length];
@@ -110,6 +138,12 @@ public final class Cause implements Iterable<Object> {
         this.context = ctx;
     }
 
+    /**
+     * Constructs a new cause.
+     *
+     * @param ctx The event context
+     * @param causes The causes
+     */
     Cause(EventContext ctx, Collection<Object> causes) {
         checkNotNull(ctx, "Context");
         final Object[] objects = new Object[causes.size()];
@@ -121,6 +155,11 @@ public final class Cause implements Iterable<Object> {
         this.context = ctx;
     }
 
+    /**
+     * Gets the event context relating to this cause.
+     *
+     * @return The event context
+     */
     public EventContext getContext() {
         return this.context;
     }
@@ -385,8 +424,7 @@ public final class Cause implements Iterable<Object> {
 
         private int index = 0;
 
-        public Itr() {
-        }
+        Itr() { }
 
         @Override
         public Object next() {
@@ -405,12 +443,18 @@ public final class Cause implements Iterable<Object> {
 
     public static final class Builder implements ResettableBuilder<Cause, Builder> {
 
-        List<Object> causes = new ArrayList<>();
+        final List<Object> causes = new ArrayList<>();
 
         Builder() {
 
         }
 
+        /**
+         * Appends the specified object to the cause.
+         *
+         * @param cause The object to append to the cause.
+         * @return The modified builder, for chaining
+         */
         public Builder append(Object cause) {
             checkNotNull(cause, "Cause cannot be null!");
             if (!this.causes.isEmpty() && this.causes.get(this.causes.size() - 1) == cause) {
@@ -420,18 +464,37 @@ public final class Cause implements Iterable<Object> {
             return this;
         }
 
+        /**
+         * Inserts the specified object into the cause.
+         *
+         * @param position The position to insert into
+         * @param cause The object to insert into the cause
+         * @return The modified builder, for chaining
+         */
         public Builder insert(int position, Object cause) {
             checkNotNull(cause, "Cause cannot be null!");
             this.causes.add(position, cause);
             return this;
         }
 
+        /**
+         * Appends all specified objects onto the cause.
+         *
+         * @param causes The objects to add onto the cause
+         * @return The modified builder, for chaining
+         */
         public Builder appendAll(Collection<Object> causes) {
             checkNotNull(causes, "Causes cannot be null!");
             causes.forEach(this::append);
             return this;
         }
 
+        /**
+         * Constructs a new {@link Cause} with information added to the builder.
+         *
+         * @param ctx The context to build the cause with
+         * @return The built cause
+         */
         public Cause build(EventContext ctx) {
             checkState(!this.causes.isEmpty(), "Cannot create an empty Cause!");
             return new Cause(ctx, this.causes);

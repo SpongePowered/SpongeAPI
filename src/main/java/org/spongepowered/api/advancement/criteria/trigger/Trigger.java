@@ -51,7 +51,8 @@ import java.util.function.Consumer;
 public interface Trigger<C extends FilteredTriggerConfiguration> extends CatalogType {
 
     /**
-     * Creates a new {@link Builder}.
+     * Creates a new {@link Builder} which can be used to create
+     * a {@link Trigger}.
      *
      * @return The builder
      */
@@ -75,12 +76,16 @@ public interface Trigger<C extends FilteredTriggerConfiguration> extends Catalog
     /**
      * Triggers the {@link Trigger} for the
      * specified {@link Player}s.
+     *
+     * @param players The players to trigger for
      */
     void trigger(Iterable<Player> players);
 
     /**
      * Triggers the {@link Trigger} for the
      * specified {@link Player}.
+     *
+     * @param player The player to trigger for
      */
     void trigger(Player player);
 
@@ -92,9 +97,10 @@ public interface Trigger<C extends FilteredTriggerConfiguration> extends Catalog
     interface Builder<C extends FilteredTriggerConfiguration> extends ResettableBuilder<Trigger<C>, Builder<C>> {
 
         /**
-         * Sets the class for the {@link FilteredTriggerConfiguration} as a {@link DataSerializable}. The
-         * configuration will be constructed using the {@link DataBuilder} that is registered
-         * for the {@link DataSerializable}.
+         * Sets the class for the {@link FilteredTriggerConfiguration} as
+         * a {@link DataSerializable}. The configuration will be constructed
+         * using the {@link DataBuilder} that is registered for
+         * the {@link DataSerializable}.
          *
          * @param dataConfigClass The configuration class
          * @param <T> The configuration type
@@ -103,8 +109,9 @@ public interface Trigger<C extends FilteredTriggerConfiguration> extends Catalog
         <T extends FilteredTriggerConfiguration & DataSerializable> Builder<T> dataSerializableConfig(Class<T> dataConfigClass);
 
         /**
-         * Sets the class for the {@link FilteredTriggerConfiguration} as a config serializable. This
-         * configuration will be constructed using configurate (with {@link TypeSerializer}s).
+         * Sets the class for the {@link FilteredTriggerConfiguration} as
+         * a config serializable. This configuration will be constructed
+         * using Configurate (with {@link TypeSerializer}s).
          *
          * @param configClass The configuration class
          * @param <T> The configuration type
@@ -113,9 +120,10 @@ public interface Trigger<C extends FilteredTriggerConfiguration> extends Catalog
         <T extends FilteredTriggerConfiguration> Builder<T> typeSerializableConfig(Class<T> configClass);
 
         /**
-         * Sets the class for the {@link FilteredTriggerConfiguration} as a config serializable. This
-         * configuration will be constructed using configurate (with {@link TypeSerializer}s)
-         * with a specific {@link TypeSerializerCollection} instead of the global one.
+         * Sets the class for the {@link FilteredTriggerConfiguration} as
+         * a config serializable. This configuration will be constructed using
+         * Configurate (with {@link TypeSerializer}s) with a
+         * specific {@link TypeSerializerCollection} instead of the global one.
          *
          * @param configClass The configuration class
          * @param typeSerializerCollection The type serializer collection
@@ -126,19 +134,21 @@ public interface Trigger<C extends FilteredTriggerConfiguration> extends Catalog
                 TypeSerializerCollection typeSerializerCollection);
 
         /**
-         * Sets the class for the {@link FilteredTriggerConfiguration} as a json serializable. This
-         * configuration will be constructed using the provided {@link Gson} instance.
+         * Sets the class for the {@link FilteredTriggerConfiguration} as
+         * a json serializable. This configuration will be constructed using
+         * the provided {@link Gson} instance.
          *
          * @param configClass The configuration class
-         * @param gson The gson
+         * @param gson The gson instance to use
          * @param <T> The configuration type
          * @return This builder, for chaining
          */
         <T extends FilteredTriggerConfiguration> Builder<T> jsonSerializableConfig(Class<T> configClass, Gson gson);
 
         /**
-         * Sets the class for the {@link FilteredTriggerConfiguration} as a json serializable. This
-         * configuration will be constructed using the default {@link Gson} instance.
+         * Sets the class for the {@link FilteredTriggerConfiguration} as
+         * a json serializable. This configuration will be constructed using
+         * the default {@link Gson} instance.
          *
          * @param configClass The configuration class
          * @param <T> The configuration type
@@ -158,9 +168,10 @@ public interface Trigger<C extends FilteredTriggerConfiguration> extends Catalog
          * Adds the {@link Consumer} to handle the triggers. If no handler is
          * provided then will the result of the trigger always be {@code true},
          * which results in triggering the {@link Criterion}.
+         *
          * <p>The {@link Cause} of the event should be used to determine
          * whether the configuration matches the requirements to trigger
-         * the criterion.
+         * the criterion.</p>
          *
          * @param eventListener The event listener
          * @return This builder, for chaining
@@ -197,5 +208,6 @@ public interface Trigger<C extends FilteredTriggerConfiguration> extends Catalog
         default Builder<C> from(Trigger<C> value) throws UnsupportedOperationException {
             throw new UnsupportedOperationException("Cannot create duplicate triggers!");
         }
+
     }
 }

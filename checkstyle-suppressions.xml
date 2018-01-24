@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suppressions PUBLIC "-//Puppy Crawl//DTD Suppressions 1.1//EN" "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
+<!DOCTYPE suppressions PUBLIC
+        "-//Puppy Crawl//DTD Suppressions 1.2//EN"
+        "http://checkstyle.sourceforge.net/dtds/suppressions_1_2.dtd">
 
 <suppressions>
     <suppress checks="JavadocMethod|SummaryJavadoc|AvoidEscapedUnicodeCharacters" files="src[\\/]test[\\/]java[\\/].*"/>
@@ -10,7 +12,14 @@
     <suppress checks="AbbreviationAsWordInName" files="PEBKAC"/>
     <suppress checks="AbbreviationAsWordInName" files="AABB"/>
     <suppress checks=".*" files="SpongeEventFactory\.java"/>
+    <suppress checks="LineLength" files="IntegerTraits\.java"/>
+    <suppress checks="LineLength" files="BooleanTraits\.java"/>
+    <suppress checks="LineLength" files="SoundTypes\.java"/>
+    <suppress checks="LineLength" files="CraftingRecipes\.java"/>
+    <suppress checks="LineLength" files="QueryOperationTypes\.java"/>
     <suppress checks="LineLength" files="Keys\.java"/>
+    <suppress checks="LineLength|OneStatementPerLine|WhitespaceAround" files="TypeTokens\.java"/>
     <suppress checks="AvoidStarImport" files="Keys\.java"/>
     <suppress checks="AvoidStarImport" files="CatalogEntityData\.java"/>
+    <suppress checks="AvoidStarImport" files="CatalogTypes\.java"/>
 </suppressions>

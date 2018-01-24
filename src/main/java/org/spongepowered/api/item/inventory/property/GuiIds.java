@@ -34,51 +34,51 @@ public final class GuiIds {
     // SORTFIELDS:ON
 
     /**
-     * Size only multiple of 9 up to 6x9
+     * Size only multiple of 9 up to 6x9.
      */
     public static final GuiId CHEST = DummyObjectProvider.createFor(GuiId.class, "chest"); // "minecraft:chest"
     /**
-     * Size only 3
+     * Size only 3.
      */
     public static final GuiId FURNACE = DummyObjectProvider.createFor(GuiId.class, "furnace"); // "minecraft:furnace"
     /**
-     * Size only 9
+     * Size only 9.
      */
     public static final GuiId DISPENSER = DummyObjectProvider.createFor(GuiId.class, "dispenser"); // "minecraft:dispenser"
     /**
-     * Size only 10
+     * Size only 10.
      */
     public static final GuiId CRAFTING_TABLE = DummyObjectProvider.createFor(GuiId.class, "crafting_table"); // "minecraft:crafting_table"
     /**
-     * Size only 5
+     * Size only 5.
      */
     public static final GuiId BREWING_STAND = DummyObjectProvider.createFor(GuiId.class, "brewing_stand"); // "minecraft:brewing_stand"
     /**
-     * Size only 5
+     * Size only 5.
      */
     public static final GuiId HOPPER = DummyObjectProvider.createFor(GuiId.class, "hopper"); // "minecraft:hopper"
     /**
-     * Size only 1
+     * Size only 1.
      */
     public static final GuiId BEACON = DummyObjectProvider.createFor(GuiId.class, "beacon"); // "minecraft:beacon"
     /**
-     * Size only 2
+     * Size only 2.
      */
     public static final GuiId ENCHANTING_TABLE = DummyObjectProvider.createFor(GuiId.class, "enchanting_table"); // "minecraft:enchanting_table"
     /**
-     * Size only 3
+     * Size only 3.
      */
     public static final GuiId ANVIL = DummyObjectProvider.createFor(GuiId.class, "anvil"); // "minecraft:anvil"
     /**
-     * Size only 3
+     * Size only 3.
      */
     public static final GuiId VILLAGER = DummyObjectProvider.createFor(GuiId.class, "villager"); // "minecraft:villager"
     /**
-     * Sizes 2 and more depending on the Horse Carrier
+     * Sizes 2 and more depending on the Horse Carrier.
      */
     public static final GuiId HORSE = DummyObjectProvider.createFor(GuiId.class, "horse"); // "minecraft:horse" internally "EntityHorse"
     /**
-     * Size only 27 (3x9)
+     * Size only 27 (3x9).
      */
     public static final GuiId SHULKER_BOX = DummyObjectProvider.createFor(GuiId.class, "shulker_box"); // "minecraft:shulker_box"
 

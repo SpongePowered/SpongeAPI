@@ -89,7 +89,7 @@ public interface EnchantmentType extends CatalogType, Translatable {
 
     /**
      * Test if this enchantment type can be applied to an {@link ItemStack} by
-     * the {@link EnchantmentTable};
+     * the {@link EnchantmentTable}.
      *
      * @param stack Te item stack to check
      * @return Whether this enchantment type can be applied by the

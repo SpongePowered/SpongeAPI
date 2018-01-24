@@ -44,8 +44,10 @@ public @interface Dependency {
     String id();
 
     /**
-     * The required version range of the dependency in <b>Maven version range
-     * syntax</b>:
+     * The required version range of the dependency.
+     *
+     * <p>The version range will be specified in <b>Maven version range
+     * syntax</b>:</p>
      *
      * <table>
      * <tr><th>Range</th><th>Meaning</th></tr>

@@ -40,6 +40,16 @@ public final class SmeltingResult {
     private final ItemStackSnapshot result;
     private final double experience;
 
+    /**
+     * Creates a new {@link SmeltingResult}.
+     *
+     * <p>Note that this may be replaced with a static of method in the
+     * future.</p>
+     *
+     * @param result The result of the smelting recipe
+     * @param experience The experience that should be created from this
+     *     smelting result
+     */
     @SuppressWarnings("ConstantConditions")
     public SmeltingResult(ItemStackSnapshot result, double experience) {
         checkNotNull(result, "result");
@@ -53,7 +63,7 @@ public final class SmeltingResult {
     /**
      * This method should be used instead of the
      * {@link SmeltingRecipe#getExemplaryResult()} method, as it customizes the
-     * result further depending on the specified {@param ingredient}
+     * result further depending on the specified ingredient
      * {@link ItemStackSnapshot}. It is advised to use the output of
      * {@link SmeltingRecipe#getExemplaryResult()}, modify it accordingly, and
      * {@code return} it.

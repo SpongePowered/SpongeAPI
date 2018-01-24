@@ -35,6 +35,7 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 import java.util.function.Predicate;
 
+@SuppressWarnings({"unused", "WeakerAccess"})
 public final class QueryOperationTypes {
 
     // SORTFIELDS:ON
@@ -44,8 +45,7 @@ public final class QueryOperationTypes {
      *
      * @see Inventory#getProperties(Inventory, Class)
      */
-    public static final QueryOperationType<InventoryProperty<?, ?>> INVENTORY_PROPERTY = DummyObjectProvider.createFor(QueryOperationType.class,
-            "INVENTORY_PROPERTY");
+    public static final QueryOperationType<InventoryProperty<?, ?>> INVENTORY_PROPERTY = DummyObjectProvider.createExtendedFor(QueryOperationType.class, "INVENTORY_PROPERTY");
 
     /**
      * Tests based on the title of the inventory.
@@ -53,32 +53,24 @@ public final class QueryOperationTypes {
      * @see InventoryTitle
      * @see Nameable#getName()
      */
-    public static final QueryOperationType<Translation> INVENTORY_TRANSLATION = DummyObjectProvider.createFor(QueryOperationType.class,
-            "INVENTORY_TRANSLATION");
+    public static final QueryOperationType<Translation> INVENTORY_TRANSLATION = DummyObjectProvider.createExtendedFor(QueryOperationType.class, "INVENTORY_TRANSLATION");
 
     /**
      * Tests based on the class of the inventory.
      */
-    public static final QueryOperationType<Class<? extends Inventory>> INVENTORY_TYPE = DummyObjectProvider.createFor(QueryOperationType.class,
-            "INVENTORY_TYPE");
-
-    /**
-     * Tests based on the class of the inventory.
-     */
-    public static final QueryOperationType<Class<?>> TYPE = DummyObjectProvider.createFor(QueryOperationType.class, "TYPE");
+    public static final QueryOperationType<Class<? extends Inventory>> INVENTORY_TYPE = DummyObjectProvider.createExtendedFor(QueryOperationType.class, "INVENTORY_TYPE");
 
     /**
      * Allows a custom condition for the items contained within an item stack.
      */
-    public static final QueryOperationType<Predicate<ItemStack>> ITEM_STACK_CUSTOM = DummyObjectProvider.createFor(QueryOperationType.class,
-            "ITEM_STACK_CUSTOM");
+    public static final QueryOperationType<Predicate<ItemStack>> ITEM_STACK_CUSTOM = DummyObjectProvider.createExtendedFor(QueryOperationType.class, "ITEM_STACK_CUSTOM");
 
     /**
      * Tests for an exact match of the item stack contained in each slot.
      *
-     * @see ItemStack#equals(Object)
+     * <p>Generally uses {@link ItemStack}'s <code>#equals</code> method.</p>
      */
-    public static final QueryOperationType<ItemStack> ITEM_STACK_EXACT = DummyObjectProvider.createFor(QueryOperationType.class, "ITEM_STACK_EXACT");
+    public static final QueryOperationType<ItemStack> ITEM_STACK_EXACT = DummyObjectProvider.createExtendedFor(QueryOperationType.class, "ITEM_STACK_EXACT");
 
     /**
      * Tests for an exact match of the item stack contained in each slot, with
@@ -87,18 +79,25 @@ public final class QueryOperationTypes {
      *
      * @see ItemStack#equalTo(ItemStack)
      */
-    public static final QueryOperationType<ItemStack> ITEM_STACK_IGNORE_QUANTITY = DummyObjectProvider.createFor(QueryOperationType.class,
-            "ITEM_STACK_IGNORE_QUANTITY");
+    public static final QueryOperationType<ItemStack> ITEM_STACK_IGNORE_QUANTITY = DummyObjectProvider.createExtendedFor(QueryOperationType.class, "ITEM_STACK_IGNORE_QUANTITY");
 
     /**
      * Tests for a match of the type of item contained in each slot.
      *
      * @see ItemStack#getType()
      */
-    public static final QueryOperationType<ItemType> ITEM_TYPE = DummyObjectProvider.createFor(QueryOperationType.class, "ITEM_TYPE");
+    public static final QueryOperationType<ItemType> ITEM_TYPE = DummyObjectProvider.createExtendedFor(QueryOperationType.class, "ITEM_TYPE");
+
+    /**
+     * Tests based on the class of the inventory.
+     */
+    public static final QueryOperationType<Class<?>> TYPE = DummyObjectProvider.createExtendedFor(QueryOperationType.class, "TYPE");
 
     // SORTFIELDS:OFF
 
-    private QueryOperationTypes() {}
+    // Suppress default constructor to ensure non-instantiability.
+    private QueryOperationTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 
 }

@@ -120,6 +120,7 @@ public interface CauseStackManager {
      * 
      * @param key The context key
      * @param value The object
+     * @param <T> The type of the value stored with the event context key
      * @return The cause stack manager, for chaining
      * @see EventContextKeys
      */
@@ -129,6 +130,7 @@ public interface CauseStackManager {
      * Gets the context value with the given key.
      * 
      * @param key The context key
+     * @param <T> The type of the value stored with the event context key
      * @return The context object, if present
      */
     <T> Optional<T> getContext(EventContextKey<T> key);
@@ -140,6 +142,7 @@ public interface CauseStackManager {
      * thrown.</p>
      * 
      * @param key The context key
+     * @param <T> The type of the value stored with the event context key
      * @return The context object, if present
      */
     default <T> T requireContext(EventContextKey<T> key) {
@@ -154,6 +157,7 @@ public interface CauseStackManager {
      * Removes the given context key from the current context.
      * 
      * @param key The key to clear
+     * @param <T> The type of the value stored with the event context key
      * @return The existing context value, if it was present
      * @see EventContextKeys
      */
@@ -179,8 +183,9 @@ public interface CauseStackManager {
         EventContext getCurrentContext();
 
         /**
-         * Pushes an object to the current cause stack which will associate it with
-         * all events through from api actions until it is popped off again.
+         * Pushes an object to the current cause stack which will associate
+         * it with all events through from api actions until it is
+         * popped off again.
          *
          * @param obj The object to push to the stack
          * @return The stack frame, for chaining
@@ -189,8 +194,8 @@ public interface CauseStackManager {
         StackFrame pushCause(Object obj);
 
         /**
-         * Pops the most recently pushed cause object off of the stack and returns
-         * it.
+         * Pops the most recently pushed cause object off of the stack and
+         * returns it.
          *
          * @return The last pushed object
          * @see CauseStackManager#popCause()

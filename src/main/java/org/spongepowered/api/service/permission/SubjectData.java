@@ -83,7 +83,7 @@ public interface SubjectData {
     Map<String, Boolean> getPermissions(Set<Context> contexts);
 
     /**
-     * Sets a permission to a given value
+     * Sets a permission to a given value.
      *
      * <p>Setting value as {@link Tristate#UNDEFINED} unsets the permission.</p>
      *

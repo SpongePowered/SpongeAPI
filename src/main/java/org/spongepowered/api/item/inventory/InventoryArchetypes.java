@@ -29,7 +29,7 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 /**
  * An enumeration of {@link InventoryArchetype}s.
  */
-public class InventoryArchetypes {
+public final class InventoryArchetypes {
 
     // Base Archetypes
 
@@ -86,8 +86,10 @@ public class InventoryArchetypes {
 
     /**
      * A Chest. Sizes from 9x1 to 9x6 are allowed. The default is 9x3.
-     * When displaying the inventory the actual arrangement of slot does not matter.
-     * This means, that when creating a 3x3 CHEST inventory it will still be displayed as 9x1 to the player.
+     *
+     * <p>When displaying the inventory the actual arrangement of slot
+     * does not matter. This means, that when creating a 3x3 CHEST inventory it
+     * will still be displayed as 9x1 to the player.</p>
      */
     public static final InventoryArchetype CHEST = DummyObjectProvider.createFor(InventoryArchetype.class, "chest");
 
@@ -167,5 +169,10 @@ public class InventoryArchetypes {
     public static final InventoryArchetype PLAYER = DummyObjectProvider.createFor(InventoryArchetype.class, "player");
 
     public static final InventoryArchetype UNKNOWN = DummyObjectProvider.createFor(InventoryArchetype.class, "unknown");
+
+    // Suppress default constructor to ensure non-instantiability.
+    private InventoryArchetypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 
 }

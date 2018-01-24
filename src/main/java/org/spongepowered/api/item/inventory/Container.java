@@ -25,7 +25,6 @@
 package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.item.inventory.type.Interactable;
 import org.spongepowered.api.plugin.PluginContainer;
 

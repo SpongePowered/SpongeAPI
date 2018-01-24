@@ -103,6 +103,11 @@ public abstract class AbstractModifierEvent<T extends ModifierFunction<M>, M> ex
         return damage;
     }
 
+    /**
+     * Gets the modifiers affecting this event.
+     *
+     * @return The list of modifiers
+     */
     public List<T> getModifiers() {
         ImmutableList.Builder<T> builder = ImmutableList.builder();
         for (T entry : this.modifierFunctions) {

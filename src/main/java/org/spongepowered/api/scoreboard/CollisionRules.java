@@ -58,7 +58,7 @@ public final class CollisionRules {
     // SORTFIELDS:ON
 
     /**
-     * Members will always collide with other entities
+     * Members will always collide with other entities.
      *
      * <p>This is the default value.</p>
      */
@@ -81,6 +81,9 @@ public final class CollisionRules {
 
     // SORTFIELDS:OFF
 
+    // Suppress default constructor to ensure non-instantiability.
     private CollisionRules() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
+
 }

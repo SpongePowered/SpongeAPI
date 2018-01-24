@@ -49,7 +49,6 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.action.TextActions;
 import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.format.TextStyles;
-import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
@@ -334,7 +333,7 @@ public final class SimpleDispatcher implements Dispatcher {
         final String arguments = argSplit.length > 1 ? argSplit[1] : "";
         CommandMapping mapping = cmdOptional.get();
         Optional<PluginContainer> pluginOwner = Sponge.getCommandManager().getOwner(mapping);
-        if(pluginOwner.isPresent()) {
+        if (pluginOwner.isPresent()) {
             Sponge.getCauseStackManager().pushCause(pluginOwner.get());
         }
         final CommandCallable spec = mapping.getCallable();
@@ -343,7 +342,7 @@ public final class SimpleDispatcher implements Dispatcher {
         } catch (CommandNotFoundException e) {
             throw new CommandException(t("No such child command: %s", e.getCommand()));
         } finally {
-            if(pluginOwner.isPresent()) {
+            if (pluginOwner.isPresent()) {
                 Sponge.getCauseStackManager().popCause();
             }
         }
@@ -407,7 +406,8 @@ public final class SimpleDispatcher implements Dispatcher {
 
     // Filter out commands by String first
     private Set<String> filterCommands(final CommandSource src, String start) {
-        ListMultimap<String, CommandMapping> map = Multimaps.filterKeys(this.commands, input -> input != null && input.toLowerCase().startsWith(start.toLowerCase()));
+        ListMultimap<String, CommandMapping> map = Multimaps.filterKeys(this.commands,
+            input -> input != null && input.toLowerCase().startsWith(start.toLowerCase()));
         return Multimaps.filterValues(map, input -> input.getCallable().testPermission(src)).keys().elementSet();
     }
 

@@ -27,35 +27,42 @@ package org.spongepowered.api.advancement;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * An enumeration of all the available {@link AdvancementType}s in minecraft.
+ * An enumeration of all the available {@link AdvancementType}s in Minecraft.
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public final class AdvancementTypes {
 
     // SORTFIELDS:ON
 
     /**
-     * Notification appearance:
-     *      Challenge Complete!
-     *      [title]
+     * Represents the challenge completion advancement type.
+     *
+     * @see <a href="https://minecraft.gamepedia.com/File:ChallengeComplete.png">
+     *     the Minecraft Wiki for an example of this advancement type</a>
      */
     public static final AdvancementType CHALLENGE = DummyObjectProvider.createFor(AdvancementType.class, "CHALLENGE");
 
     /**
-     * Notification appearance:
-     *      Goal Reached!
-     *      [title]
+     * Represents the goal reached advancement type.
+     *
+     * @see <a href="https://minecraft.gamepedia.com/File:GoalReached.png">
+     *     the Minecraft Wiki for an example of this advancement type</a>
      */
     public static final AdvancementType GOAL = DummyObjectProvider.createFor(AdvancementType.class, "GOAL");
 
     /**
-     * Notification appearance:
-     *      Advancement Made!
-     *      [title]
+     * Represents the advancement made advancement type.
+     *
+     * @see <a href="https://minecraft.gamepedia.com/File:AdvancementMade.png">
+     *     the Minecraft Wiki for an example of this advancement type</a>
      */
     public static final AdvancementType TASK = DummyObjectProvider.createFor(AdvancementType.class, "TASK");
 
     // SORTFIELDS:OFF
 
+    // Suppress default constructor to ensure non-instantiability.
     private AdvancementTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
+
 }

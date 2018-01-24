@@ -47,7 +47,9 @@ public final class DisguisedBlockTypes {
 
     // SORTFIELDS:OFF
 
+    // Suppress default constructor to ensure non-instantiability.
     private DisguisedBlockTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
 }

@@ -29,6 +29,7 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 /**
  * An enumeration of all the available {@link Trigger}s in minecraft.
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public final class Triggers {
 
     // SORTFIELDS:ON
@@ -89,6 +90,8 @@ public final class Triggers {
 
     // SORTFIELDS:OFF
 
+    // Suppress default constructor to ensure non-instantiability.
     private Triggers() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 }

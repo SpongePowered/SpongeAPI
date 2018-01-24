@@ -35,16 +35,17 @@ import org.spongepowered.api.boss.BossBarOverlay;
 import org.spongepowered.api.data.persistence.DataFormat;
 import org.spongepowered.api.data.persistence.DataTranslator;
 import org.spongepowered.api.data.type.*;
-import org.spongepowered.api.data.type.WireAttachmentType;
 import org.spongepowered.api.effect.particle.ParticleOption;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.effect.sound.SoundCategory;
 import org.spongepowered.api.effect.sound.SoundType;
+import org.spongepowered.api.effect.sound.record.RecordType;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.ai.GoalType;
 import org.spongepowered.api.entity.ai.task.AITaskType;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
+import org.spongepowered.api.event.cause.EventContextKey;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifierType;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.dismount.DismountType;
@@ -53,18 +54,25 @@ import org.spongepowered.api.event.cause.entity.health.HealthModifierType;
 import org.spongepowered.api.event.cause.entity.spawn.SpawnType;
 import org.spongepowered.api.event.cause.entity.teleport.TeleportType;
 import org.spongepowered.api.extra.fluid.FluidType;
-import org.spongepowered.api.item.enchantment.EnchantmentType;
 import org.spongepowered.api.item.FireworkShape;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.enchantment.EnchantmentType;
 import org.spongepowered.api.item.inventory.InventoryArchetype;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
+import org.spongepowered.api.item.inventory.equipment.HeldEquipmentType;
+import org.spongepowered.api.item.inventory.equipment.WornEquipmentType;
+import org.spongepowered.api.item.inventory.query.QueryOperationType;
 import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
 import org.spongepowered.api.scoreboard.CollisionRule;
 import org.spongepowered.api.scoreboard.Visibility;
 import org.spongepowered.api.scoreboard.critieria.Criterion;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMode;
+import org.spongepowered.api.service.economy.Currency;
 import org.spongepowered.api.service.economy.transaction.TransactionType;
+import org.spongepowered.api.statistic.BlockStatistic;
+import org.spongepowered.api.statistic.EntityStatistic;
+import org.spongepowered.api.statistic.ItemStatistic;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.StatisticType;
 import org.spongepowered.api.text.chat.ChatType;
@@ -72,6 +80,7 @@ import org.spongepowered.api.text.chat.ChatVisibility;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextStyle;
 import org.spongepowered.api.text.selector.SelectorType;
+import org.spongepowered.api.text.serializer.TextSerializer;
 import org.spongepowered.api.util.ban.BanType;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.DimensionType;
@@ -80,6 +89,7 @@ import org.spongepowered.api.world.PortalAgentType;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.WorldArchetype;
 import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.biome.VirtualBiomeType;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gen.PopulatorObject;
 import org.spongepowered.api.world.gen.PopulatorType;
@@ -87,14 +97,17 @@ import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 import org.spongepowered.api.world.gen.type.BiomeTreeType;
 import org.spongepowered.api.world.gen.type.MushroomType;
 import org.spongepowered.api.world.schematic.BlockPaletteType;
+import org.spongepowered.api.world.teleport.TeleportHelperFilter;
 import org.spongepowered.api.world.weather.Weather;
 
 /**
- * Enumeration of all known {@link CatalogType}s for autocompletion when using the
- * {@link GameRegistry#getType(Class, String)} and
- * {@link GameRegistry#getAllOf(Class)}.
+ * Enumeration of all known {@link CatalogType}s for autocompletion when using
+ * the {@link GameRegistry} to retrieve specific types or all of a certain type.
+ *
+ * <p>These are generally useful for {@link GameRegistry#getType(Class, String)}
+ * and {@link GameRegistry#getAllOf(Class)}.</p>
  */
-@SuppressWarnings("rawtypes")
+@SuppressWarnings({"rawtypes", "unused", "WeakerAccess"})
 public final class CatalogTypes {
 
     // SORTFIELDS:ON
@@ -122,6 +135,8 @@ public final class CatalogTypes {
     public static final Class<BiomeType> BIOME_TYPE = BiomeType.class;
 
     public static final Class<BlockPaletteType> BLOCK_PALETTE_TYPE = BlockPaletteType.class;
+
+    public static final Class<BlockStatistic> BLOCK_STATISTIC = BlockStatistic.class;
 
     public static final Class<BlockType> BLOCK_TYPE = BlockType.class;
 
@@ -151,6 +166,8 @@ public final class CatalogTypes {
 
     public static final Class<Criterion> CRITERION = Criterion.class;
 
+    public static final Class<Currency> CURRENCY = Currency.class;
+
     public static final Class<DamageModifierType> DAMAGE_MODIFIER_TYPE = DamageModifierType.class;
 
     public static final Class<DamageType> DAMAGE_TYPE = DamageType.class;
@@ -175,11 +192,15 @@ public final class CatalogTypes {
 
     public static final Class<DyeColor> DYE_COLOR = DyeColor.class;
 
-    public static final Class<EnchantmentType> ENCHANTMENT = EnchantmentType.class;
+    public static final Class<EnchantmentType> ENCHANTMENT_TYPE = EnchantmentType.class;
+
+    public static final Class<EntityStatistic> ENTITY_STATISTIC = EntityStatistic.class;
 
     public static final Class<EntityType> ENTITY_TYPE = EntityType.class;
 
     public static final Class<EquipmentType> EQUIPMENT_TYPE = EquipmentType.class;
+
+    public static final Class<EventContextKey> EVENT_CONTEXT_KEY = EventContextKey.class;
 
     public static final Class<FireworkShape> FIREWORK_SHAPE = FireworkShape.class;
 
@@ -203,6 +224,8 @@ public final class CatalogTypes {
 
     public static final Class<HealthModifierType> HEALTH_MODIFIER_TYPE = HealthModifierType.class;
 
+    public static final Class<HeldEquipmentType> HELD_EQUIPMENT_TYPE = HeldEquipmentType.class;
+
     public static final Class<Hinge> HINGE = Hinge.class;
 
     public static final Class<HorseColor> HORSE_COLOR = HorseColor.class;
@@ -212,6 +235,8 @@ public final class CatalogTypes {
     public static final Class<InstrumentType> INSTRUMENT_TYPE = InstrumentType.class;
 
     public static final Class<InventoryArchetype> INVENTORY_ARCHETYPE = InventoryArchetype.class;
+
+    public static final Class<ItemStatistic> ITEM_STATISTIC = ItemStatistic.class;
 
     public static final Class<ItemType> ITEM_TYPE = ItemType.class;
 
@@ -255,9 +280,13 @@ public final class CatalogTypes {
 
     public static final Class<QuartzType> QUARTZ_TYPE = QuartzType.class;
 
+    public static final Class<QueryOperationType> QUERY_OPERATION_TYPE = QueryOperationType.class;
+
     public static final Class<RabbitType> RABBIT_TYPE = RabbitType.class;
 
     public static final Class<RailDirection> RAIL_DIRECTION = RailDirection.class;
+
+    public static final Class<RecordType> RECORD_TYPE = RecordType.class;
 
     public static final Class<Rotation> ROTATION = Rotation.class;
 
@@ -291,9 +320,15 @@ public final class CatalogTypes {
 
     public static final Class<StoneType> STONE_TYPE = StoneType.class;
 
+    public static final Class<StructureMode> STRUCTURE_MODE = StructureMode.class;
+
+    public static final Class<TeleportHelperFilter> TELEPORT_HELPER_FILTER = TeleportHelperFilter.class;
+
     public static final Class<TeleportType> TELEPORT_TYPE = TeleportType.class;
 
     public static final Class<TextColor> TEXT_COLOR = TextColor.class;
+
+    public static final Class<TextSerializer> TEXT_SERIALIZER = TextSerializer.class;
 
     public static final Class<TextStyle> TEXT_STYLE = TextStyle.class;
 
@@ -307,6 +342,8 @@ public final class CatalogTypes {
 
     public static final Class<Trigger> TRIGGER = Trigger.class;
 
+    public static final Class<VirtualBiomeType> VIRTUAL_BIOME_TYPE = VirtualBiomeType.class;
+
     public static final Class<Visibility> VISIBILITY = Visibility.class;
 
     public static final Class<WallType> WALL_TYPE = WallType.class;
@@ -319,8 +356,13 @@ public final class CatalogTypes {
 
     public static final Class<WorldGeneratorModifier> WORLD_GENERATOR_MODIFIER = WorldGeneratorModifier.class;
 
+    public static final Class<WornEquipmentType> WORN_EQUIPMENT_TYPE = WornEquipmentType.class;
+
     // SORTFIELDS:OFF
 
+    // Suppress default constructor to ensure non-instantiability.
     private CatalogTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
+
 }

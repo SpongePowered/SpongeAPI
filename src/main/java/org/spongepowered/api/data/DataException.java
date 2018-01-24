@@ -28,17 +28,35 @@ public class DataException extends RuntimeException {
 
     private static final long serialVersionUID = -7843375998187638640L;
 
-    public DataException() {
-    }
+    /**
+     * Constructs a new data exception.
+     */
+    public DataException() { }
 
+    /**
+     * Constructs a new data exception with a message.
+     *
+     * @param message The message
+     */
     public DataException(String message) {
         super(message);
     }
 
+    /**
+     * Constructs a new data exception with a message and throwable cause.
+     *
+     * @param message The message
+     * @param cause The cause
+     */
     public DataException(String message, Throwable cause) {
         super(message, cause);
     }
 
+    /**
+     * Constructs a new data exception with a throwable cause.
+     *
+     * @param cause The cause
+     */
     public DataException(Throwable cause) {
         super(cause);
     }

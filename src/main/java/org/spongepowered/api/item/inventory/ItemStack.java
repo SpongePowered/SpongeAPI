@@ -80,7 +80,7 @@ public interface ItemStack extends DataHolder, Translatable {
     }
 
     /**
-     * Returns an empty {@link ItemStack}
+     * Returns an empty {@link ItemStack}.
      *
      * @return The empty ItemStack
      */
@@ -247,7 +247,7 @@ public interface ItemStack extends DataHolder, Translatable {
          * {@link ItemStack#toContainer()} including all custom data.
          *
          * @param container The container to translate
-         * @return This bulder, for chaining
+         * @return This builder, for chaining
          */
         Builder fromContainer(DataView container);
 
