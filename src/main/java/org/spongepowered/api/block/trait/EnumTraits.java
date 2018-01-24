@@ -32,8 +32,6 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
  */
 public final class EnumTraits {
 
-    private EnumTraits() {}
-
     // SORTFIELDS:ON
 
     public static final EnumTrait<?> ACACIA_DOOR_FACING = DummyObjectProvider.createFor(EnumTrait.class, "ACACIA_DOOR_FACING");
@@ -357,5 +355,10 @@ public final class EnumTraits {
     public static final EnumTrait<?> YELLOW_FLOWER_TYPE = DummyObjectProvider.createFor(EnumTrait.class, "YELLOW_FLOWER_TYPE");
 
     // SORTFIELDS:OFF
+
+    // Suppress default constructor to ensure non-instantiability.
+    private EnumTraits() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 
 }

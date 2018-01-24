@@ -160,7 +160,8 @@ public class SpongeAbstractHealEntityEventTest {
 
         assertThat(event.getOriginalFunctions(), is(Matchers.equalTo(originalFunctions)));
 
-        assertThat(event.getModifiers(), is(Matchers.equalTo(Lists.newArrayList(HealthFunction.of(firstModifer, newFunction), originalFunctions.get(1)))));
+        assertThat(event.getModifiers(),
+            is(Matchers.equalTo(Lists.newArrayList(HealthFunction.of(firstModifer, newFunction), originalFunctions.get(1)))));
     }
 
     @Test

@@ -44,18 +44,18 @@ import java.util.Optional;
  * as a function from a crafting matrix to a list of {@link ItemStack} (the
  * crafting result), therefore making it an immutable interface.</p>
  *
- * <p>The passed in {@link CraftingGridInventory} is usually a crafting inventory, e.g. a 2x2 or 3x3
- * crafting matrix.</p>
+ * <p>The passed in {@link CraftingGridInventory} is usually a crafting
+ * inventory, e.g. a 2x2 or 3x3 crafting matrix.</p>
  *
  * <p>The requirements of a CraftingRecipe can be general, they just have to
- * eventually return a boolean given an craftinggrid.</p>
+ * eventually return a boolean given an crafting grid.</p>
  */
 @CatalogedBy(CraftingRecipes.class)
 public interface CraftingRecipe extends Recipe, CatalogType {
 
     /**
-     * Checks if the given {@link CraftingGridInventory} fits the required constraints
-     * to craft this {@link CraftingGridInventory}.
+     * Checks if the given {@link CraftingGridInventory} fits the required
+     * constraints to craft this {@link CraftingGridInventory}.
      *
      * @param grid The {@link CraftingGridInventory} to check for validity
      * @param world The world this recipe would be used in
@@ -81,6 +81,24 @@ public interface CraftingRecipe extends Recipe, CatalogType {
     ItemStackSnapshot getResult(CraftingGridInventory grid);
 
     /**
+     * Returns the {@link CraftingResult} for the current crafting grid
+     * configuration and the {@link World} the player is in.
+     *
+     * <p>Returns
+     * {@link Optional#empty()} if the arguments do not satisfy
+     * {@link #isValid(CraftingGridInventory, World)}.</p>
+     *
+     * @param grid The crafting input, typically 3x3 or 2x2
+     * @param world The world this recipe would be used in
+     * @return A {@link CraftingResult} if the arguments satisfy
+     *     {@link #isValid(CraftingGridInventory, World)}, or
+     *     {@link Optional#empty()} if not
+     */
+    default Optional<CraftingResult> getResult(CraftingGridInventory grid, World world) {
+        return isValid(grid, world) ? Optional.of(new CraftingResult(getResult(grid), getRemainingItems(grid))) : Optional.empty();
+    }
+
+    /**
      * This method should only be called if
      * {@link #isValid(CraftingGridInventory, World)} returns {@code true}.
      *
@@ -96,29 +114,12 @@ public interface CraftingRecipe extends Recipe, CatalogType {
     List<ItemStackSnapshot> getRemainingItems(CraftingGridInventory grid);
 
     /**
-     * The group this CraftingRecipe belongs to or {@link Optional#empty()} if not defined.
+     * The group this CraftingRecipe belongs to or {@link Optional#empty()}
+     * if not defined.
      *
      * @return The group this Recipe belongs to.
      */
     Optional<String> getGroup();
-
-    /**
-     * Returns the {@link CraftingResult} for the current crafting grid
-     * configuration and the {@link World} the player is in. Returns
-     * {@link Optional#empty()} if the arguments do not satisfy
-     * {@link #isValid(CraftingGridInventory, World)}.
-     *
-     * @param grid The crafting input, typically 3x3 or 2x2
-     * @param world The world this recipe would be used in
-     * @return A {@link CraftingResult} if the arguments satisfy
-     *         {@link #isValid(CraftingGridInventory, World)}, or
-     *         {@link Optional#empty()} if not
-     */
-    default Optional<CraftingResult> getResult(CraftingGridInventory grid, World world) {
-        return isValid(grid, world)
-                ? Optional.of(new CraftingResult(getResult(grid), getRemainingItems(grid)))
-                : Optional.empty();
-    }
 
     /**
      * Provides a Builder for a {@link ShapedCraftingRecipe}.

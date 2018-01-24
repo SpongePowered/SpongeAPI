@@ -38,7 +38,9 @@ public final class DismountTypes {
 
     // SORTFIELDS:OFF
 
+    // Suppress default constructor to ensure non-instantiability.
     private DismountTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
 }

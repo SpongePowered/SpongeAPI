@@ -38,6 +38,11 @@ import org.spongepowered.api.item.inventory.ItemStack;
  */
 public final class RecordProperty extends AbstractProperty<String, RecordType> {
 
+    /**
+     * Constructs a new record property with the specified record type.
+     *
+     * @param instrument The record type the record plays
+     */
     public RecordProperty(RecordType instrument) {
         super(checkNotNull(instrument, "instrument"));
     }

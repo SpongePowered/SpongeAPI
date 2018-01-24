@@ -54,7 +54,7 @@ public @interface Has {
 
     /**
      * If true the standard behavior of this filter is reversed and events where
-     * the annotated parameter <string>does have</strong> the specified data
+     * the annotated parameter <strong>does have</strong> the specified data
      * manipulator type are filtered out.
      * 
      * @return If the behavior should be reversed

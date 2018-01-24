@@ -31,7 +31,6 @@ import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.ai.task.AITaskType;
 import org.spongepowered.api.entity.ai.task.AbstractAITask;
 import org.spongepowered.api.entity.living.Agent;
-import org.spongepowered.api.event.game.GameRegistryEvent;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.merchant.TradeOfferGenerator;
 import org.spongepowered.api.item.merchant.VillagerRegistry;
@@ -224,7 +223,8 @@ public interface GameRegistry {
      * @throws CatalogTypeAlreadyRegisteredException if the type cannot be
      *      registered because a matching type was already registered
      * @deprecated Is scheduled to be removed in API 8, the
-     *      {@link GameRegistryEvent.Register} should be used instead
+     *      {@link org.spongepowered.api.event.game.GameRegistryEvent.Register}
+     *      should be used instead
      */
     @Deprecated
     <T extends CatalogType> T register(Class<T> type, T obj) throws IllegalArgumentException, CatalogTypeAlreadyRegisteredException;

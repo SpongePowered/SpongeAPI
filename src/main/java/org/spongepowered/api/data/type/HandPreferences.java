@@ -34,7 +34,9 @@ public final class HandPreferences {
     public static final HandPreference LEFT = DummyObjectProvider.createFor(HandPreference.class, "LEFT");
     public static final HandPreference RIGHT = DummyObjectProvider.createFor(HandPreference.class, "RIGHT");
 
+    // Suppress default constructor to ensure non-instantiability.
     private HandPreferences() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
 }

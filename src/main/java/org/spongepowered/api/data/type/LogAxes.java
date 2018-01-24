@@ -28,8 +28,6 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 public final class LogAxes {
 
-    private LogAxes() {}
-
     // SORTFIELDS:ON
 
     public static final LogAxis NONE = DummyObjectProvider.createFor(LogAxis.class, "NONE");
@@ -41,5 +39,10 @@ public final class LogAxes {
     public static final LogAxis Z = DummyObjectProvider.createFor(LogAxis.class, "Z");
 
     // SORTFIELDS:OFF
+
+    // Suppress default constructor to ensure non-instantiability.
+    private LogAxes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 
 }

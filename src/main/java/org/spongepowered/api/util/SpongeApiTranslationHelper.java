@@ -33,7 +33,7 @@ import java.util.function.Function;
 
 /**
  * This class provides translations for strings within SpongeAPI. Plugins
- * should consult an implementaion of Translation for help.
+ * should consult an implementation of Translation for help.
  *
  * <p>THIS IS AN API-INTERNAL CLASS -- DO NOT USE OUTSIDE OF API OR YOU WILL
  * LIVE A SAD AND LONELY LIFE</p>
@@ -42,9 +42,6 @@ public class SpongeApiTranslationHelper {
 
     private static final Function<Locale, ResourceBundle> LOOKUP_FUNC = input ->
             ResourceBundle.getBundle("org.spongepowered.api.Translations", input);
-
-    private SpongeApiTranslationHelper() {
-    } // Prevent instance creation
 
     /**
      * Gets the translated text for a given string.
@@ -55,6 +52,11 @@ public class SpongeApiTranslationHelper {
      */
     public static Text t(String key, Object... args) {
         return Text.of(new ResourceBundleTranslation(key, LOOKUP_FUNC), args);
+    }
+
+    // Suppress default constructor to ensure non-instantiability.
+    private SpongeApiTranslationHelper() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
 }

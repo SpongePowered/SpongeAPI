@@ -49,9 +49,10 @@ public interface CriterionEvent extends AdvancementEvent {
 
     /**
      * Is called when a {@link AdvancementCriterion} is granted/unlocked.
+     *
      * <p>The {@link Cause} in vanilla minecraft may contain the {@link Trigger}
      * that caused this event to happen, other methods to trigger the event
-     * are through commands or the api.
+     * are through commands or the api.</p>
      */
     interface Grant extends CriterionEvent, Cancellable {
 

@@ -42,6 +42,16 @@ public final class CraftingResult {
     private final ItemStackSnapshot result;
     private final List<ItemStackSnapshot> remainingItems;
 
+    /**
+     * Creates a new {@link CraftingResult}.
+     *
+     * <p>Note that this may be replaced with a static of method in the
+     * future.</p>
+     *
+     * @param result The result of the crafting recipe
+     * @param remainingItems The remaining items to leave in the
+     *     crafting window
+     */
     @SuppressWarnings("ConstantConditions")
     public CraftingResult(ItemStackSnapshot result, List<ItemStackSnapshot> remainingItems) {
         checkNotNull(result, "result");
@@ -57,7 +67,7 @@ public final class CraftingResult {
     /**
      * This method should be used instead of the
      * {@link CraftingRecipe#getExemplaryResult()} method, as it customizes the
-     * result further depending on the specified {@param ingredient}
+     * result further depending on the specified ingredient
      * {@link ItemStackSnapshot}. It is advised to use the output of
      * {@link CraftingRecipe#getExemplaryResult()}, modify it accordingly, and
      * {@code return} it.

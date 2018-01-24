@@ -36,32 +36,72 @@ public class DataRegistrationNotFoundException extends DataException {
     @Nullable private Class<? extends DataManipulator<?, ?>> manipulatorClass;
     @Nullable private Class<? extends ImmutableDataManipulator<?, ?>> immutableClass;
 
+    /**
+     * Constructs a basic data registration not found exception.
+     */
     public DataRegistrationNotFoundException() {
         super();
     }
 
+    /**
+     * Constructs a data registration not found exception with a specified
+     * registration query, which will be used as the message.
+     *
+     * @param registrationQuery The registration query
+     */
     public DataRegistrationNotFoundException(String registrationQuery) {
         super(registrationQuery);
         this.registrationQuery = registrationQuery;
     }
 
+    /**
+     * Constructs a data registration not found exception with a specified
+     * message and registration query.
+     *
+     * @param message The message
+     * @param registrationQuery The registration query
+     */
     public DataRegistrationNotFoundException(String message, String registrationQuery) {
         super(message);
         this.registrationQuery = registrationQuery;
     }
 
+    /**
+     * Constructs a data registration not found exception with a message and a
+     * specified data manipulator class.
+     *
+     * @param message The message
+     * @param manipulatorClass The manipulator class
+     */
     public DataRegistrationNotFoundException(String message,
         Class<? extends DataManipulator<?, ?>> manipulatorClass) {
         super(message);
         this.manipulatorClass = manipulatorClass;
     }
 
+    /**
+     * Constructs a data registration not found exception with a message,
+     * a throwable cause, and a specified data manipulator class.
+     *
+     * @param message The message
+     * @param cause The cause
+     * @param manipulatorClass The manipulator class
+     */
     public DataRegistrationNotFoundException(String message, Throwable cause,
         Class<? extends DataManipulator<?, ?>> manipulatorClass) {
         super(message, cause);
         this.manipulatorClass = manipulatorClass;
     }
 
+    /**
+     * Constructs a data registration not found exception with a message,
+     * an immutable data manipulator class, and a mutable
+     * data manipulator class.
+     *
+     * @param message The message
+     * @param manipulatorClass The manipulator class
+     * @param immutableClass The immutable class
+     */
     public DataRegistrationNotFoundException(String message,
         @Nullable Class<? extends DataManipulator<?, ?>> manipulatorClass,
         Class<? extends ImmutableDataManipulator<?, ?>> immutableClass) {
@@ -70,6 +110,16 @@ public class DataRegistrationNotFoundException extends DataException {
         this.immutableClass = immutableClass;
     }
 
+    /**
+     * Constructs a data registration not found exception with a message,
+     * a throwable cause, an immutable data manipulator class,
+     * and a mutable data manipulator class.
+     *
+     * @param message The message
+     * @param cause The cause
+     * @param manipulatorClass The manipulator class
+     * @param immutableClass The immutable class
+     */
     public DataRegistrationNotFoundException(String message, Throwable cause,
         @Nullable Class<? extends DataManipulator<?, ?>> manipulatorClass,
         Class<? extends ImmutableDataManipulator<?, ?>> immutableClass) {
@@ -78,16 +128,31 @@ public class DataRegistrationNotFoundException extends DataException {
         this.immutableClass = immutableClass;
     }
 
+    /**
+     * Gets the specified registration query, if present.
+     *
+     * @return The registration query, if present
+     */
     @Nullable
     public String getRegistrationQuery() {
         return this.registrationQuery;
     }
 
+    /**
+     * Gets the data manipulator class, if present.
+     *
+     * @return The manipulator class, if present
+     */
     @Nullable
     public Class<? extends DataManipulator<?, ?>> getManipulatorClass() {
         return this.manipulatorClass;
     }
 
+    /**
+     * Gets the immutable data manipulator class, if present.
+     *
+     * @return The immutable manipulator class, if present
+     */
     @Nullable
     public Class<? extends ImmutableDataManipulator<?, ?>> getImmutableClass() {
         return this.immutableClass;

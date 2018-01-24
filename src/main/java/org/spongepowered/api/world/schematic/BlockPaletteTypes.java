@@ -29,15 +29,17 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 public class BlockPaletteTypes {
 
     /**
-     * The global palette containing a mapping of all blockstates to ids.
+     * The global palette containing a mapping of all block states to ids.
      */
     public static final BlockPaletteType GLOBAL = DummyObjectProvider.createFor(BlockPaletteType.class, "GLOBAL");
     /**
      * A local palette containing only a subset of the global palette.
      */
     public static final BlockPaletteType LOCAL = DummyObjectProvider.createFor(BlockPaletteType.class, "LOCAL");
-    
+
+    // Suppress default constructor to ensure non-instantiability.
     private BlockPaletteTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
 }

@@ -31,6 +31,7 @@ import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.merge.MergeFunction;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.ValueContainer;
+
 import java.util.Collection;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -200,28 +201,6 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
     <E> DataTransactionResult offer(Key<? extends BaseValue<E>> key, E value);
 
     /**
-     * Offers the given {@code value} as defined by the provided {@link Key}
-     * such that a {@link DataTransactionResult} is returned for any
-     * successful {@link BaseValue}s from this {@link CompositeValueStore}.
-     * Intentionally, however, this differs from {@link #offer(Key, Object)}
-     * as it will intentionally throw an exception if the result was a failure.
-     *
-     * @param key The key to the value to set
-     * @param value The value to set
-     * @param <E> The type of value
-     * @return The transaction result
-     * @throws IllegalArgumentException If the result is a failure likely due to
-     *     incompatibility
-     */
-    default <E> DataTransactionResult tryOffer(Key<? extends BaseValue<E>> key, E value) throws IllegalArgumentException {
-        final DataTransactionResult result = offer(key, value);
-        if (!result.isSuccessful()) {
-            throw new IllegalArgumentException("Failed offer transaction!");
-        }
-        return result;
-    }
-
-    /**
      * Offers the given {@link BaseValue} as defined by the provided
      * {@link Key} such that a {@link DataTransactionResult} is returned for
      * any successful, rejected, and replaced {@link BaseValue}s from this
@@ -233,27 +212,6 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      */
     default <E> DataTransactionResult offer(BaseValue<E> value) {
         return offer(value.getKey(), value.get());
-    }
-
-    /**
-     * Offers the given {@code value} as defined by the provided {@link Key}
-     * such that a {@link DataTransactionResult} is returned for any
-     * successful {@link BaseValue}s from this {@link CompositeValueStore}.
-     * Intentionally, however, this differs from {@link #offer(Key, Object)}
-     * as it will intentionally throw an exception if the result was a failure.
-     *
-     * @param value The value to set
-     * @param <E> The type of value
-     * @return The transaction result
-     * @throws IllegalArgumentException If the result is a failure likely due to
-     *     incompatibility
-     */
-    default <E> DataTransactionResult tryOffer(BaseValue<E> value) throws IllegalArgumentException {
-        final DataTransactionResult result = offer(value.getKey(), value.get());
-        if (!result.isSuccessful()) {
-            throw new IllegalArgumentException("Failed offer transaction!");
-        }
-        return result;
     }
 
     /**
@@ -317,6 +275,49 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
             builder.absorbResult(offer(valueContainer, function));
         }
         return builder.build();
+    }
+
+    /**
+     * Offers the given {@code value} as defined by the provided {@link Key}
+     * such that a {@link DataTransactionResult} is returned for any
+     * successful {@link BaseValue}s from this {@link CompositeValueStore}.
+     * Intentionally, however, this differs from {@link #offer(Key, Object)}
+     * as it will intentionally throw an exception if the result was a failure.
+     *
+     * @param key The key to the value to set
+     * @param value The value to set
+     * @param <E> The type of value
+     * @return The transaction result
+     * @throws IllegalArgumentException If the result is a failure likely due to
+     *     incompatibility
+     */
+    default <E> DataTransactionResult tryOffer(Key<? extends BaseValue<E>> key, E value) throws IllegalArgumentException {
+        final DataTransactionResult result = offer(key, value);
+        if (!result.isSuccessful()) {
+            throw new IllegalArgumentException("Failed offer transaction!");
+        }
+        return result;
+    }
+
+    /**
+     * Offers the given {@code value} as defined by the provided {@link Key}
+     * such that a {@link DataTransactionResult} is returned for any
+     * successful {@link BaseValue}s from this {@link CompositeValueStore}.
+     * Intentionally, however, this differs from {@link #offer(Key, Object)}
+     * as it will intentionally throw an exception if the result was a failure.
+     *
+     * @param value The value to set
+     * @param <E> The type of value
+     * @return The transaction result
+     * @throws IllegalArgumentException If the result is a failure likely due to
+     *     incompatibility
+     */
+    default <E> DataTransactionResult tryOffer(BaseValue<E> value) throws IllegalArgumentException {
+        final DataTransactionResult result = offer(value.getKey(), value.get());
+        if (!result.isSuccessful()) {
+            throw new IllegalArgumentException("Failed offer transaction!");
+        }
+        return result;
     }
 
     /**

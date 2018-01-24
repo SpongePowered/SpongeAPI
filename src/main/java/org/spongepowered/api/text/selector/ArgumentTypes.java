@@ -39,9 +39,6 @@ import java.util.Optional;
  */
 public final class ArgumentTypes {
 
-    private ArgumentTypes() {
-    }
-
     /**
      * The argument types representing the position of the selector.
      *
@@ -188,6 +185,11 @@ public final class ArgumentTypes {
      */
     public static <T> ArgumentType<T> create(String key, Class<T> type) {
         return getFactory().createArgumentType(key, type);
+    }
+
+    // Suppress default constructor to ensure non-instantiability.
+    private ArgumentTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
 }

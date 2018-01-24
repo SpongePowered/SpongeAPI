@@ -35,7 +35,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * into the string representation.
  *
  * <p>Custom implementations can be registered using
- * {@link GameRegistry#register(Class, CatalogType)}.</p>
+ * the {@link GameRegistry}.</p>
  */
 @CatalogedBy(TextSerializers.class)
 public interface TextSerializer extends CatalogType {

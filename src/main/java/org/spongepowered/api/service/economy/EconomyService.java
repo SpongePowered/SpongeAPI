@@ -101,7 +101,7 @@ public interface EconomyService extends ContextualService<Account> {
     Optional<UniqueAccount> getOrCreateAccount(UUID uuid);
 
     /**
-     * Gets the {@link VirtualAccount} with the specified identifier
+     * Gets the {@link VirtualAccount} with the specified identifier.
      *
      * <p>Depending on the implementation, the {@link Account} may be a
      * {@link UniqueAccount} or a {@link VirtualAccount}.</p>

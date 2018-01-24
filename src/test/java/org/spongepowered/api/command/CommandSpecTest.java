@@ -49,12 +49,7 @@ public class CommandSpecTest {
         TestHooks.setInstance("commandManager", cm);
 
         CommandSpec cmd = CommandSpec.builder()
-                .executor(new CommandExecutor() {
-                    @Override
-                    public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
-                        return CommandResult.empty();
-                    }
-                })
+                .executor((src, args) -> CommandResult.empty())
                 .build();
 
         final SimpleDispatcher dispatcher = new SimpleDispatcher();

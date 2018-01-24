@@ -36,6 +36,13 @@ public class DamageFunction implements ModifierFunction<DamageModifier> {
 
     public static final DoubleUnaryOperator ZERO_DAMAGE = value -> 0.0D;
 
+    /**
+     * Constructs a new damage function.
+     *
+     * @param first The damage modifier to use
+     * @param second The unary operator to use
+     * @return The resulting damage function
+     */
     public static DamageFunction of(DamageModifier first, DoubleUnaryOperator second) {
         return new DamageFunction(first, second);
     }
@@ -60,7 +67,7 @@ public class DamageFunction implements ModifierFunction<DamageModifier> {
      * {@link DamageModifier} and {@link DoubleUnaryOperator}.
      *
      * @param modifier The modifier
-     * @param function The fucntion
+     * @param function The function
      */
     public DamageFunction(DamageModifier modifier, DoubleUnaryOperator function) {
         this.modifier = checkNotNull(modifier, "modifier");
@@ -104,8 +111,8 @@ public class DamageFunction implements ModifierFunction<DamageModifier> {
             return false;
         }
         DamageFunction that = (DamageFunction) o;
-        return Objects.equal(this.modifier, that.modifier) &&
-               Objects.equal(this.function, that.function);
+        return Objects.equal(this.modifier, that.modifier)
+            && Objects.equal(this.function, that.function);
     }
 
     @Override

@@ -35,7 +35,9 @@ import javax.annotation.Nullable;
  */
 public final class TextStyles {
 
+    // Suppress default constructor to ensure non-instantiability.
     private TextStyles() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
     /**

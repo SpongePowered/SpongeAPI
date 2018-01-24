@@ -76,26 +76,48 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
     int getHeight();
 
     /**
-     * First decide how you want to build your recipe.
-     * Either by defining the pattern with {@link #aisle} and then setting {@link AisleStep#where} the ingredients are
-     * Or by defining the pattern using {@link #rows} adding each {@link RowsStep#row} of ingredients after the other.
-     * When the ingredients are set define the {@link ResultStep#result} of the recipe.
-     * Next you can define its {@link EndStep#group}.
-     * And finally {@link EndStep#build} your recipe.
-     * <p>
-     * Examples: (The two resulting recipes are identical)
-     * <pre>{@code Ingredient log = Ingredient.of(LOG);
-     *     ShapedCraftingRecipe.builder().aisle("sss").where('s', log).result(ItemStack.of(WOODEN_PRESSURE_PLATE, 1)).build("mypressureplate", plugin);
-     *     ShapedCraftingRecipe.builder().rows().row(log, log, log).result(ItemStack.of(WOODEN_PRESSURE_PLATE, 1)).build("mypressureplate", plugin);}
+     * The builder which you create {@link ShapedCraftingRecipe}s through.
+     *
+     * <p>First decide how you want to build your recipe. Either by defining
+     * the pattern with {@link #aisle} and then setting {@link AisleStep#where}
+     * the ingredients are, or by defining the pattern using {@link #rows}
+     * adding each {@link RowsStep#row} of ingredients after the other. When the
+     * ingredients are set define the {@link ResultStep#result} of the recipe.
+     * Next you can define its {@link EndStep#group}. And
+     * finally {@link EndStep#build} your recipe.</p>
+     *
+     * <p>Here is an example, where the two resulting recipes are identical:</p>
+
+     * <pre>
+     * {@code
+     *     Ingredient log = Ingredient.of(LOG);
+     *     ShapedCraftingRecipe.builder()
+     *         .aisle("sss")
+     *         .where('s', log)
+     *         .result(ItemStack.of(WOODEN_PRESSURE_PLATE, 1))
+     *         .build("mypressureplate", plugin);
+     *
+     *     ShapedCraftingRecipe.builder()
+     *         .rows()
+     *         .row(log, log, log)
+     *         .result(ItemStack.of(WOODEN_PRESSURE_PLATE, 1))
+     *         .build("mypressureplate", plugin);
+     * }
      * </pre>
      */
     interface Builder extends ResettableBuilder<ShapedCraftingRecipe, Builder> {
 
         /**
          * Start building a new recipe based on the aisle pattern.
-         * Use {@link AisleStep#where} to assign ingredients to characters of the aisles.
-         * The space character will be defaulted to {@link Ingredient#NONE} if not specified.
-         * Any other not assigned characters will cause an Exception when {@link EndStep#build}ing the Recipe.
+         *
+         * <p>Use {@link AisleStep#where} to assign ingredients to characters
+         * of the aisles.</p>
+         *
+         * <p>The space character will be defaulted to {@link Ingredient#NONE}
+         * if not specified.</p>
+         *
+         * <p>Any other not assigned characters will cause an Exception
+         * when {@link EndStep#build}ing the Recipe.</p>
          *
          * @param aisle A string array of ingredients
          * @return The builder
@@ -103,18 +125,21 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
         AisleStep aisle(String... aisle);
 
         /**
-         * In this Step define one or more Ingredients
+         * In this Step define one or more Ingredients.
          */
         interface AisleStep extends Builder {
 
             /**
-             * In this Step define one or more Ingredients or continue by setting the result.
+             * In this Step define one or more Ingredients or continue by
+             * setting the result.
              */
             interface ResultStep extends AisleStep, Builder.ResultStep {}
 
             /**
-             * Sets an ingredient based on the aisle pattern
-             * Sets the ingredient to {@link Ingredient#NONE} if {@code null} is specified.
+             * Sets an ingredient based on the aisle pattern.
+             *
+             * <p>Sets the ingredient to {@link Ingredient#NONE} if
+             * {@code null} is specified.</p>
              *
              * @param symbol The ingredient symbol
              * @param ingredient The ingredient to set
@@ -150,7 +175,8 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
         interface RowsStep extends Builder {
 
             /**
-             * In this Step add one or more rows of Ingredients or continue by setting the result.
+             * In this Step add one or more rows of Ingredients or continue
+             * by setting the result.
              */
             interface ResultStep extends RowsStep, Builder.ResultStep {}
 
@@ -165,7 +191,8 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
             }
 
             /**
-             * Adds a row of ingredients filling the skipped columns with {@link Ingredient#NONE}
+             * Adds a row of ingredients filling the skipped
+             * columns with {@link Ingredient#NONE}.
              *
              * @param skip The amount of columns to skip.
              * @param ingredients The row of ingredients.
@@ -224,7 +251,8 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
              * @param id The id of this recipe.
              * @param plugin The owning plugin.
              * @return A new {@link ShapedCraftingRecipe}
-             * @throws IllegalStateException If not all required options were specified
+             * @throws IllegalStateException If not all required options
+             *     were specified
              */
             ShapedCraftingRecipe build(String id, Object plugin);
         }

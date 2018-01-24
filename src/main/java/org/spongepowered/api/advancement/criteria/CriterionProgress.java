@@ -37,4 +37,5 @@ public interface CriterionProgress extends Progressable {
      * @return The criterion
      */
     AdvancementCriterion getCriterion();
+
 }

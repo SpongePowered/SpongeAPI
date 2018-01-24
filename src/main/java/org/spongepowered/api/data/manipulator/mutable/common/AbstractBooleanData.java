@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.common;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.key.Key;
@@ -48,7 +46,7 @@ public abstract class AbstractBooleanData<M extends DataManipulator<M, I>, I ext
 
     protected AbstractBooleanData(boolean value, Key<? extends BaseValue<Boolean>> usedKey, boolean defaultValue) {
         super(value, usedKey);
-        this.defaultValue = checkNotNull(defaultValue);
+        this.defaultValue = defaultValue;
     }
 
     @SuppressWarnings("unchecked")

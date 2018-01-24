@@ -79,4 +79,5 @@ public interface ScoreCriterionProgress extends CriterionProgress {
      * @return The old achieving time, if achieved before
      */
     Optional<Instant> remove(int score);
+
 }

@@ -89,7 +89,7 @@ public interface TabCompleteEvent extends Event, Cancellable {
     Optional<Location<World>> getTargetPos();
 
     /**
-     * Gets whether the player is tab completing from a block's GUI
+     * Gets whether the player is tab completing from a block's GUI.
      *
      * <p>In Vanilla, this will be <code>true</code> if the player is tab
      * completing in a commandblock or commandblock minecart's GUI, and
@@ -100,7 +100,7 @@ public interface TabCompleteEvent extends Event, Cancellable {
     boolean isUsingBlock();
 
     /**
-     * Fired when a {@link Player} sends a tab complete request for a command
+     * Fired when a {@link Player} sends a tab complete request for a command.
      *
      * <p>In Vanilla, this is fired when a {@link Player} presses the
      * <code>TAB</code> key with a command in chat (a string starting with

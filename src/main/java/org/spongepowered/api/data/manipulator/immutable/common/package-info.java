@@ -30,4 +30,5 @@
  * {@link org.spongepowered.api.data.manipulator.immutable.common.AbstractImmutableSingleData}
  * without having to implement all the required methods of a manipulator.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.data.manipulator.immutable.common;
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.data.manipulator.immutable.common;

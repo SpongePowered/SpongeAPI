@@ -26,7 +26,7 @@ package org.spongepowered.api.world;
 
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-public final class SerializationBehaviors {
+public class SerializationBehaviors {
 
     // SORTFIELDS:ON
 
@@ -46,4 +46,16 @@ public final class SerializationBehaviors {
     public static final SerializationBehavior NONE = DummyObjectProvider.createFor(SerializationBehavior.class, "none");
 
     // SORTFIELDS:OFF
+
+    /**
+     * You should not be using this constructor, it will be made private in
+     * API 8.
+     *
+     * @deprecated Will be made private in API 8
+     */
+    @Deprecated
+    public SerializationBehaviors() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
 }

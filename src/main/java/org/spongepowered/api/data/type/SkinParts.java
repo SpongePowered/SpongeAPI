@@ -31,9 +31,6 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
  */
 public final class SkinParts {
 
-    private SkinParts() {
-    }
-
     // SORTFIELDS:ON
 
     public static final SkinPart CAPE = DummyObjectProvider.createFor(SkinPart.class, "CAPE");
@@ -51,5 +48,10 @@ public final class SkinParts {
     public static final SkinPart RIGHT_SLEEVE = DummyObjectProvider.createFor(SkinPart.class, "RIGHT_SLEEVE");
 
     // SORTFIELDS:OFF
+
+    // Suppress default constructor to ensure non-instantiability.
+    private SkinParts() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 
 }

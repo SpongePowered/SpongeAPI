@@ -114,7 +114,7 @@ public interface RandomBlock extends Populator {
 
     /**
      * Sets the {@link Predicate} that this populator used to determine of a
-     * given {@link Location} is valid to attempt to place a blockat.
+     * given {@link Location} is valid to attempt to place a block at.
      * 
      * @param target The new targeted block predicate
      */

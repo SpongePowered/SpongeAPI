@@ -71,8 +71,10 @@ public interface DisplayInfo {
     Text getTitle();
 
     /**
-     * Gets whether a toast should be shown. This is the notification
-     * that will be displayed in the top right corner.
+     * Gets whether a toast should be shown.
+     *
+     * <p>The toast is the notification that will be displayed
+     * in the top right corner.</p>
      *
      * @return Show toast
      */
@@ -87,10 +89,10 @@ public interface DisplayInfo {
 
     /**
      * Gets whether this advancement is hidden.
-     * <p>
-     * Hidden advancements will only appear in the tree once they
+     *
+     * <p>Hidden advancements will only appear in the tree once they
      * are unlocked. The lines that connect them to other advancements
-     * are still present.
+     * are still present.</p>
      *
      * @return Is hidden
      */
@@ -160,8 +162,8 @@ public interface DisplayInfo {
         /**
          * Sets whether a toast should be shown. This is the notification
          * that will be displayed in the top right corner.
-         * <p>
-         * Defaults to {@code true}.
+         *
+         * <p>Defaults to {@code true}.</p>
          *
          * @param showToast Whether a toast should be shown
          * @return This builder, for chaining
@@ -170,20 +172,21 @@ public interface DisplayInfo {
 
         /**
          * Sets whether a notification should be shown in the global chat.
-         * <p>
-         * Defaults to {@code true}.
          *
-         * @param announceToChat Whether a notification should be shown in the chat
+         * <p>Defaults to {@code true}.</p>
+         *
+         * @param announceToChat Whether a notification should be shown in
+         *     the chat
          * @return This builder, for chaining
          */
         Builder announceToChat(boolean announceToChat);
 
         /**
          * Sets whether the {@link Advancement} should be hidden.
-         * <p>
-         * Hidden advancements will only appear in the tree once they
+         *
+         * <p>Hidden advancements will only appear in the tree once they
          * are unlocked. The lines that connect them to other advancements
-         * are still present.
+         * are still present.</p>
          *
          * @param hidden Is hidden
          * @return This builder, for chaining
@@ -196,5 +199,7 @@ public interface DisplayInfo {
          * @return The display info
          */
         DisplayInfo build();
+
     }
+
 }

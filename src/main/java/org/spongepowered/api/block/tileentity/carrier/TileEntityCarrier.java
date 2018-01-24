@@ -26,7 +26,6 @@ package org.spongepowered.api.block.tileentity.carrier;
 
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.item.inventory.BlockCarrier;
-import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.item.inventory.type.TileEntityInventory;
 
 /**

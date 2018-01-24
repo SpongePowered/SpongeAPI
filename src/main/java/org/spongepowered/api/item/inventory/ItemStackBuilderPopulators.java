@@ -35,13 +35,13 @@ import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.data.value.mutable.SetValue;
 import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.item.enchantment.EnchantmentType;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.enchantment.Enchantment;
+import org.spongepowered.api.item.enchantment.EnchantmentType;
 import org.spongepowered.api.util.Tuple;
 import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.util.weighted.WeightedTable;
@@ -242,7 +242,7 @@ public final class ItemStackBuilderPopulators {
     /**
      * Creates a new {@link BiConsumer} where the {@link Key} is responsible
      * for a {@link List} based {@link Value}. Given that the provided elements
-     * are chosent with a {@link Random}, it's not clear that the elements will
+     * are chosen with a {@link Random}, it's not clear that the elements will
      * be added in bundles or in the same iteration order.
      *
      * <p>Note that custom data is not supported through this method, use
@@ -269,7 +269,7 @@ public final class ItemStackBuilderPopulators {
     /**
      * Creates a new {@link BiConsumer} where the {@link Key} is responsible
      * for a {@link List} based {@link Value}. Given that the provided elements
-     * are chosent with a {@link Random}, it's not clear that the elements will
+     * are chosen with a {@link Random}, it's not clear that the elements will
      * be added in bundles or in the same iteration order. The default variance
      * is provided as {@link VariableAmount#baseWithRandomAddition(double, double)}
      * where at the least, a single element is chosen, and at most the entire
@@ -415,7 +415,7 @@ public final class ItemStackBuilderPopulators {
         return setValue(key, random -> ImmutableSet.copyOf(weightedTable.get(random)));
     }
 
-    /*Note : This is used interanlly only, no validation is performed.*/
+    /*Note : This is used internally only, no validation is performed.*/
     private static <E> BiConsumer<ItemStack.Builder, Random> setValue(Key<? extends BaseValue<E>> key, Function<Random, E> element) {
         return (builder, random) -> {
             final ItemStack itemStack = builder.build();
@@ -639,12 +639,15 @@ public final class ItemStackBuilderPopulators {
         checkNotNull(amount, "VariableAmount cannot be null!");
         final WeightedTable<Function<Random, Enchantment>> suppliers = new WeightedTable<>(amount);
         for (Tuple<EnchantmentType, VariableAmount> enchantment : enchantments) {
-            suppliers.add(random -> Enchantment.builder().type(enchantment.getFirst()).level(enchantment.getSecond().getFlooredAmount(random)).build(), 1);
+            suppliers.add(random ->
+                Enchantment.builder().type(enchantment.getFirst()).level(enchantment.getSecond().getFlooredAmount(random)).build(), 1);
         }
         return listValueSuppliers(Keys.ITEM_ENCHANTMENTS, suppliers);
     }
 
+    // Suppress default constructor to ensure non-instantiability.
     private ItemStackBuilderPopulators() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
 }

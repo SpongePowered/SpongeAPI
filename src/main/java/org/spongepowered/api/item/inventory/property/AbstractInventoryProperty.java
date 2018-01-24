@@ -25,13 +25,11 @@
 package org.spongepowered.api.item.inventory.property;
 
 import org.spongepowered.api.data.Property;
-import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.InventoryProperty;
 
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Optional;
 
 import javax.annotation.Nullable;
 

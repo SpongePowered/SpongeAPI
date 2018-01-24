@@ -26,7 +26,6 @@ package org.spongepowered.api.item.inventory.entity;
 
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.item.inventory.Slot;
-import org.spongepowered.api.item.inventory.crafting.CraftingInventory;
 import org.spongepowered.api.item.inventory.equipment.EquipmentInventory;
 import org.spongepowered.api.item.inventory.type.CarriedInventory;
 import org.spongepowered.api.item.inventory.type.GridInventory;
@@ -55,7 +54,7 @@ public interface UserInventory<T extends User> extends CarriedInventory<T> {
     }
 
     /**
-     * Gets the main inventory excluding the Hotbar
+     * Gets the main inventory excluding the Hotbar.
      *
      * @return The main inventory grid
      */

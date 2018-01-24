@@ -213,7 +213,8 @@ public interface DamageSource {
          * the values you inputted into the builder.
          *
          * @return The resulting damage source
-         * @throws IllegalStateException If a value required to be set is not set
+         * @throws IllegalStateException If a value required to be set
+         *     is not set
          */
         T build() throws IllegalStateException;
 

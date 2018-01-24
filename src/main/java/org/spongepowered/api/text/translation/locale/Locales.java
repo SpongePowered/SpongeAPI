@@ -33,9 +33,6 @@ import java.util.Locale;
  */
 public final class Locales {
 
-    private Locales() {
-    }
-
     /**
      * Gets a locale for the specified locale code, e.g. {@code en_US}.
      *
@@ -126,5 +123,10 @@ public final class Locales {
      * The default locale used when the receiver's locale is unknown.
      */
     public static final Locale DEFAULT = EN_US;
+
+    // Suppress default constructor to ensure non-instantiability.
+    private Locales() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 
 }

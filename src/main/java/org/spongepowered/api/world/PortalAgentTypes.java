@@ -31,6 +31,9 @@ public final class PortalAgentTypes {
     // The default agent used to handle traveling to nether and the end
     public static final PortalAgentType DEFAULT = DummyObjectProvider.createFor(PortalAgentType.class, "DEFAULT");
 
+    // Suppress default constructor to ensure non-instantiability.
     private PortalAgentTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
+
 }

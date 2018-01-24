@@ -27,8 +27,8 @@ package org.spongepowered.api.data.manipulator.mutable.item;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.item.ImmutableEnchantmentData;
 import org.spongepowered.api.data.manipulator.mutable.ListData;
-import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.data.value.mutable.ListValue;
+import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.enchantment.EnchantmentType;
 
 /**

@@ -34,7 +34,6 @@ import org.spongepowered.api.util.ResettableBuilder;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-
 import javax.annotation.Nullable;
 
 /**
@@ -71,9 +70,9 @@ public interface Advancement extends CatalogType, TextRepresentable {
      * Gets all the {@link AdvancementCriterion} that should be achieved
      * before this advancement is unlocked. {@link AdvancementCriterion#EMPTY}
      * will be returned if no criterion was assigned.
-     * <p>
-     * This {@link AdvancementCriterion} can be a AND or OR operation that
-     * contains multiple possible {@link AdvancementCriterion}s.
+     *
+     * <p>This {@link AdvancementCriterion} can be a AND or OR operation that
+     * contains multiple possible {@link AdvancementCriterion}s.</p>
      *
      * @return The criterion
      */
@@ -163,5 +162,7 @@ public interface Advancement extends CatalogType, TextRepresentable {
         default Builder from(Advancement value) throws UnsupportedOperationException {
             throw new UnsupportedOperationException("Cannot create duplicate advancements!");
         }
+
     }
+
 }

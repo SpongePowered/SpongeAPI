@@ -66,11 +66,11 @@ public interface GameRegistryEvent extends Event {
          *
          * @param catalogType The catalog type
          * @throws IllegalArgumentException If there is an id conflict with the
-         *      given type and an existing type
-         * @throws UnsupportedOperationException If registration for the given type
-         *      is not supported
+         *     given type and an existing type
+         * @throws UnsupportedOperationException If registration for the given
+         *     type is not supported
          * @throws CatalogTypeAlreadyRegisteredException If the type cannot be
-         *      registered because a matching type was already registered
+         *     registered because a matching type was already registered
          */
         void register(T catalogType);
     }

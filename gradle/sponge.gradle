@@ -127,7 +127,7 @@ processResources {
 
 // Checkstyle settings
 checkstyle {
-    toolVersion = '7.5.1'
+    toolVersion = '8.7'
     configFile = api.file('checkstyle.xml')
     configProperties = [
             'basedir': project.projectDir,

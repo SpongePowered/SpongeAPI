@@ -51,7 +51,7 @@ public class ApplicableEffectProperty extends AbstractProperty<String, Set<Potio
      * @param value The potion effects
      */
     public ApplicableEffectProperty(@Nullable Set<PotionEffect> value) {
-        super(value == null ? ImmutableSet.<PotionEffect>of() : ImmutableSet.copyOf(value));
+        super(value == null ? ImmutableSet.of() : ImmutableSet.copyOf(value));
     }
 
     /**
@@ -61,7 +61,7 @@ public class ApplicableEffectProperty extends AbstractProperty<String, Set<Potio
      * @param op The operator to use when comparing against other properties
      */
     public ApplicableEffectProperty(@Nullable Set<PotionEffect> value, Operator op) {
-        super(value == null ? ImmutableSet.<PotionEffect>of() : ImmutableSet.copyOf(value), op);
+        super(value == null ? ImmutableSet.of() : ImmutableSet.copyOf(value), op);
     }
 
     @Override

@@ -27,7 +27,6 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 public final class WireAttachmentTypes {
-    private WireAttachmentTypes() {}
 
     // SORTFIELDS:ON
 
@@ -38,5 +37,10 @@ public final class WireAttachmentTypes {
     public static final WireAttachmentType UP = DummyObjectProvider.createFor(WireAttachmentType.class, "UP");
 
     // SORTFIELDS:OFF
+
+    // Suppress default constructor to ensure non-instantiability.
+    private WireAttachmentTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 
 }

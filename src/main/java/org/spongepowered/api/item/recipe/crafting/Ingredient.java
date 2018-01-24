@@ -40,9 +40,9 @@ import javax.annotation.Nullable;
 
 /**
  * An Ingredient for a crafting recipe.
- * <p>
- * Crafting recipes can only be crafted when all of the ingredients match
- * the items in the input grid.
+ *
+ * <p>Crafting recipes can only be crafted when all of the ingredients match
+ * the items in the input grid.</p>
  */
 public interface Ingredient extends Predicate<ItemStack> {
 
@@ -111,7 +111,8 @@ public interface Ingredient extends Predicate<ItemStack> {
     }
 
     /**
-     * Creates a new {@link Ingredient} for the provided {@link GameDictionary.Entry}s.
+     * Creates a new {@link Ingredient} for the provided
+     * {@link org.spongepowered.api.GameDictionary.Entry}s.
      *
      * @param entries The GameDictionary Entries
      * @return The new ingredient
@@ -130,9 +131,12 @@ public interface Ingredient extends Predicate<ItemStack> {
 
         /**
          * Adds a predicate for matching the ingredient.
-         * Also clears all previously set {@link #withDisplay} items.
-         * All predicates and items are ORed together.
-         * Use {@link #from)} to create an ingredient from another one.
+         *
+         * <p>Also clears all previously set {@link #withDisplay} items.</p>
+         *
+         * <p>All predicates and items are ORed together.</p>
+         *
+         * <p>Use {@link #from} to create an ingredient from another one.</p>
          *
          * @param predicate The predicate.
          * @return This Builder, for chaining
@@ -141,8 +145,11 @@ public interface Ingredient extends Predicate<ItemStack> {
 
         /**
          * Adds a GameDictionary Entry as Predicate for matching the ingredient.
-         * Also clears all previously set {@link #withDisplay} items and then adds {@link GameDictionary.Entry#getTemplate()} to it.
-         * All predicates and items are ORed together.
+         * Also clears all previously set {@link #withDisplay} items and then
+         * adds {@link org.spongepowered.api.GameDictionary.Entry#getTemplate()}
+         * to it.
+         *
+         * <p>All predicates and items are ORed together.</p>
          *
          * @param entry The GameDictionary entry.
          * @return This Builder, for chaining

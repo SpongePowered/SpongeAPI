@@ -129,7 +129,7 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData, Immutabl
      * {@link Entity} instances that can be spawned by the spawner. As they
      * are all {@link WeightedSerializableObject}{@code <EntityArchetype>}
      * instances, their weight is defined as a {@link Random} to determine
-     * the next {@link Entity} that will be spawned, unless overriden by
+     * the next {@link Entity} that will be spawned, unless overridden by
      * {@link #nextEntityToSpawn()}.
      *
      * @return The immutable weighted entity collection value of entities

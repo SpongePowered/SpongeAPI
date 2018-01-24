@@ -126,7 +126,7 @@ public abstract class AbstractData<M extends DataManipulator<M, I>, I extends Im
 
     /**
      * A required registration method for registering the various fields and
-     * value getters. It's suggested that if multipl fields are used, each
+     * value getters. It's suggested that if multiple fields are used, each
      * field can be represented as a {@link Value} such that there is an
      * associated {@link Key} to "get" that field value.
      */

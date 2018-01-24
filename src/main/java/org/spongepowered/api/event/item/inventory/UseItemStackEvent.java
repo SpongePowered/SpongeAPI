@@ -87,7 +87,7 @@ public interface UseItemStackEvent extends Event {
      * sounds.</p>
      *
      * <p>In Vanilla, items only perform an action every 4 ticks, and only
-     * when 25 or fewever ticks remaining. Cancelling this event on other
+     * when 25 or fewer ticks remaining. Cancelling this event on other
      * ticks will have no effect in Vanilla.</p>
      *
      * <p>Cancelling the event will cause no action to be taken for the

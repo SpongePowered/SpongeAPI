@@ -121,11 +121,11 @@ public final class ItemTypes {
 
     public static final ItemType BRICK_STAIRS = DummyObjectProvider.createFor(ItemType.class, "BRICK_STAIRS");
 
+    public static final ItemType BROWN_GLAZED_TERRACOTTA = DummyObjectProvider.createFor(ItemType.class, "BROWN_GLAZED_TERRACOTTA");
+
     public static final ItemType BROWN_MUSHROOM = DummyObjectProvider.createFor(ItemType.class, "BROWN_MUSHROOM");
 
     public static final ItemType BROWN_MUSHROOM_BLOCK = DummyObjectProvider.createFor(ItemType.class, "BROWN_MUSHROOM_BLOCK");
-
-    public static final ItemType BROWN_GLAZED_TERRACOTTA = DummyObjectProvider.createFor(ItemType.class, "BROWN_GLAZED_TERRACOTTA");
 
     public static final ItemType BROWN_SHULKER_BOX = DummyObjectProvider.createFor(ItemType.class, "BROWN_SHULKER_BOX");
 
@@ -670,6 +670,8 @@ public final class ItemTypes {
 
     public static final ItemType RED_FLOWER = DummyObjectProvider.createFor(ItemType.class, "RED_FLOWER");
 
+    public static final ItemType RED_GLAZED_TERRACOTTA = DummyObjectProvider.createFor(ItemType.class, "RED_GLAZED_TERRACOTTA");
+
     public static final ItemType RED_MUSHROOM = DummyObjectProvider.createFor(ItemType.class, "RED_MUSHROOM");
 
     public static final ItemType RED_MUSHROOM_BLOCK = DummyObjectProvider.createFor(ItemType.class, "RED_MUSHROOM_BLOCK");
@@ -679,8 +681,6 @@ public final class ItemTypes {
     public static final ItemType RED_SANDSTONE = DummyObjectProvider.createFor(ItemType.class, "RED_SANDSTONE");
 
     public static final ItemType RED_SANDSTONE_STAIRS = DummyObjectProvider.createFor(ItemType.class, "RED_SANDSTONE_STAIRS");
-
-    public static final ItemType RED_GLAZED_TERRACOTTA = DummyObjectProvider.createFor(ItemType.class, "RED_GLAZED_TERRACOTTA");
 
     public static final ItemType RED_SHULKER_BOX = DummyObjectProvider.createFor(ItemType.class, "RED_SHULKER_BOX");
 
@@ -871,6 +871,9 @@ public final class ItemTypes {
 
     // SORTFIELDS:OFF
 
+    // Suppress default constructor to ensure non-instantiability.
     private ItemTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
+
 }

@@ -259,8 +259,7 @@ public class MemorySubjectData implements SubjectData {
                 newMap.put(key, value);
             }
             newMap = Collections.unmodifiableMap(newMap);
-        }
-        while (!this.options.replace(contexts, origMap, newMap));
+        } while (!this.options.replace(contexts, origMap, newMap));
         return CompletableFuture.completedFuture(true);
     }
 

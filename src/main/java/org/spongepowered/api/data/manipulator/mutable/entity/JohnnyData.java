@@ -36,8 +36,7 @@ import org.spongepowered.api.entity.living.monster.Vindicator;
  * <p>In vanilla this currently only applies to {@link Vindicator}s.</p>
  *
  * @see <a href="https://minecraft.gamepedia.com/Vindicator#Behavior">
- *     The Minecraft Wiki</a> for more information about "johnny" behavior
- *     relating to vindicators
+ *     The Minecraft Wiki for more information about "johnny" behavior</a>
  */
 public interface JohnnyData extends DataManipulator<JohnnyData, ImmutableJohnnyData> {
 

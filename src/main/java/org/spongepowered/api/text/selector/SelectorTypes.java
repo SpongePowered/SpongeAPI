@@ -32,9 +32,6 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
  */
 public final class SelectorTypes {
 
-    private SelectorTypes() {
-    }
-
     // SORTFIELDS:ON
 
     /**
@@ -60,5 +57,10 @@ public final class SelectorTypes {
     public static final SelectorType RANDOM = DummyObjectProvider.createFor(SelectorType.class, "RANDOM");
 
     // SORTFIELDS:OFF
+
+    // Suppress default constructor to ensure non-instantiability.
+    private SelectorTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 
 }
