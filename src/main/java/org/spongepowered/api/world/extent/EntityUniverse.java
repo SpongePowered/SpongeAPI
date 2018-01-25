@@ -262,8 +262,8 @@ public interface EntityUniverse {
      * Similar to {@link #spawnEntity(Entity)} except where multiple entities
      * can be attempted to be spawned.
      *
-     * @param entities The entities which spawned correctly, or empty if none
-     * @return True if any of the entities were successfully spawned
+     * @param entities The created entities you wish to spawn
+     * @return The entities which spawned correctly, or empty if none
      */
     Collection<Entity> spawnEntities(Iterable<? extends Entity> entities);
 

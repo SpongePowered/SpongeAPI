@@ -56,7 +56,6 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.projectile.DamagingProjectile;
-import org.spongepowered.api.entity.projectile.EnderPearl;
 import org.spongepowered.api.entity.projectile.EyeOfEnder;
 import org.spongepowered.api.entity.projectile.Firework;
 import org.spongepowered.api.entity.projectile.arrow.Arrow;
@@ -2080,7 +2079,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the location targeted by an
-     * {@link EnderPearl} or a compass held by a {@link Player}.
+     * {@link EyeOfEnder} or a {@link Player}'s compass.
      *
      * @see TargetedLocationData#target()
      */

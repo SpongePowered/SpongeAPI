@@ -47,6 +47,7 @@ public final class ParticleTypes {
     /**
      * This particle type will play the effect of a block that
      * is being broken and it's break sound.
+     *
      * <p>This type has limited {@link ParticleOption}s, only
      * {@link ParticleOptions#BLOCK_STATE} and
      * {@link ParticleOptions#ITEM_STACK_SNAPSHOT} are supported.</p>
@@ -80,13 +81,18 @@ public final class ParticleTypes {
     /**
      * This particle type will play the effect that will occur when
      * a {@link Player} uses bone meal on a plant to boost the growth.
+     *
      * <p>This type has limited {@link ParticleOption}s, only
      * {@link ParticleOptions#QUANTITY} is supported.</p>
+     *
+     * <p>This type can no longer be spawned on air blocks. It will only
+     * show up if spawned at the location of solid blocks.</p>
      */
     public static final ParticleType FERTILIZER = DummyObjectProvider.createFor(ParticleType.class, "FERTILIZER");
 
     /**
      * This particle type will play a fireworks effect.
+     *
      * <p>This type has limited {@link ParticleOption}s, only
      * {@link ParticleOptions#FIREWORK_EFFECTS} is supported.</p>
      */
@@ -114,8 +120,8 @@ public final class ParticleTypes {
     public static final ParticleType HUGE_EXPLOSION = DummyObjectProvider.createFor(ParticleType.class, "HUGE_EXPLOSION");
 
     /**
-     * While this particle type the option {@link ParticleOptions#VELOCITY} supports, this
-     * will only affect the velocity in the y direction.
+     * While this particle type the option {@link ParticleOptions#VELOCITY}
+     * supports, this will only affect the velocity in the y direction.
      */
     public static final ParticleType INSTANT_SPELL = DummyObjectProvider.createFor(ParticleType.class, "INSTANT_SPELL");
 
@@ -148,8 +154,8 @@ public final class ParticleTypes {
     public static final ParticleType SNOW_SHOVEL = DummyObjectProvider.createFor(ParticleType.class, "SNOW_SHOVEL");
 
     /**
-     * While this particle type the option {@link ParticleOptions#VELOCITY} supports, this
-     * will only affect the velocity in the y direction.
+     * While this particle type the option {@link ParticleOptions#VELOCITY}
+     * supports, this will only affect the velocity in the y direction.
      */
     public static final ParticleType SPELL = DummyObjectProvider.createFor(ParticleType.class, "SPELL");
 
@@ -172,8 +178,8 @@ public final class ParticleTypes {
     public static final ParticleType WATER_WAKE = DummyObjectProvider.createFor(ParticleType.class, "WATER_WAKE");
 
     /**
-     * While this particle type the option {@link ParticleOptions#VELOCITY} supports, this
-     * will only affect the velocity in the y direction.
+     * While this particle type the option {@link ParticleOptions#VELOCITY}
+     * supports, this will only affect the velocity in the y direction.
      */
     public static final ParticleType WITCH_SPELL = DummyObjectProvider.createFor(ParticleType.class, "WITCH_SPELL");
 
