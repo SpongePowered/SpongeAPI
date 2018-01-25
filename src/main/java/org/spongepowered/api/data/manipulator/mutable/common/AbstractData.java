@@ -58,7 +58,7 @@ import java.util.stream.Collectors;
  * values otherwise accessible by fields.
  *
  * @param <M> The generic of the DataManipulator from the API
- * @param <I> The type of the ImmutableDatAManipulator from the API
+ * @param <I> The type of the ImmutableDataManipulator from the API
  */
 @SuppressWarnings("unchecked")
 public abstract class AbstractData<M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>> implements DataManipulator<M, I> {
