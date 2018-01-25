@@ -57,8 +57,8 @@ import java.util.stream.Collectors;
  * and {@link #registerKeyValue(Key, Supplier)} of which supply and consume
  * values otherwise accessible by fields.
  *
- * @param <M> The generic of the DataManipulator from the API
- * @param <I> The type of the ImmutableDatAManipulator from the API
+ * @param <M> The mutable data manipulator type
+ * @param <I> The immutable data manipulator type
  */
 @SuppressWarnings("unchecked")
 public abstract class AbstractData<M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>> implements DataManipulator<M, I> {
