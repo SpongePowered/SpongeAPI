@@ -29,6 +29,7 @@ import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.event.entity.living.TargetLivingEvent;
 import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
+import org.spongepowered.api.world.gamerule.DefaultGameRules;
 
 /**
  * An event where the {@link Entity} is being either removed usually due to
@@ -41,5 +42,25 @@ public interface DestructEntityEvent extends TargetEntityEvent, MessageChannelEv
      * A derivative of {@link DestructEntityEvent} where the removal of the {@link Living}, the {@link TargetLivingEvent#getTargetEntity()},
      * is due to it losing its health.
      */
-    interface Death extends DestructEntityEvent, TargetLivingEvent {}
+    interface Death extends DestructEntityEvent, TargetLivingEvent {
+
+        /**
+         * Applies the {@link DefaultGameRules#KEEP_INVENTORY} gamerule to this entity alone.
+         *
+         * <p>This only works for players</p>
+         *
+         * @param keepInventory Whether to keep the inventory on death
+         */
+        void setKeepInventory(boolean keepInventory);
+
+        /**
+         * Returns whether the inventory is kept after death.
+         *
+         * <p>By default this is the same as the {@link DefaultGameRules#KEEP_INVENTORY} gamerule</p>
+         *
+         * @return Whether the inventory is kept after death.
+         */
+        boolean getKeepInventory();
+
+    }
 }
