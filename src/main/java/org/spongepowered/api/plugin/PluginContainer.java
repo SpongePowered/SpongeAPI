@@ -28,9 +28,11 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.spongepowered.api.Game;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.asset.Asset;
 import org.spongepowered.api.asset.AssetManager;
+import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.plugin.meta.PluginDependency;
 
 import java.nio.file.Path;
@@ -162,5 +164,15 @@ public interface PluginContainer {
     default Logger getLogger() {
         return LoggerFactory.getLogger(getId());
     }
+
+    /**
+     * Gets the service manager for this container.
+     *
+     * <p>Unlike {@link Game#getServiceManager()}, this service manager is
+     * not global but is instead local to this container.</p>
+     *
+     * @return The plugin's service manager
+     */
+    ServiceManager getServiceManager();
 
 }
