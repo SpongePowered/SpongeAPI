@@ -64,9 +64,24 @@ public interface SubjectData {
     Set<Context> GLOBAL_CONTEXT = Collections.emptySet();
 
     /**
+     * Gets the {@link Subject} which holds this data.
+     *
+     * @return The subject which holds this data
+     */
+    Subject getSubject();
+
+    /**
+     * Return if this SubjectData is transient.
+     *
+     * @return If this SubjectData is transient
+     * @see Subject#getTransientSubjectData()
+     */
+    boolean isTransient();
+
+    /**
      * Return all permissions associated with this data object.
      *
-     * @return an immutable copy of the mappings between contexts and lists of
+     * @return An immutable copy of the mappings between contexts and lists of
      *         permissions containing every permission registered
      */
     Map<Set<Context>, Map<String, Boolean>> getAllPermissions();

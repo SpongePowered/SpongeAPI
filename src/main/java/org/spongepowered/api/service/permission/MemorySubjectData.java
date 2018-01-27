@@ -30,11 +30,11 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
+import org.spongepowered.api.event.permission.SubjectDataUpdateEvent;
 import org.spongepowered.api.service.context.Context;
 import org.spongepowered.api.util.Tristate;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,24 +47,45 @@ import javax.annotation.Nullable;
 /**
  * A subject data implementation storing all contained data in memory.
  *
+ * <p>Users of this class who wish to correctly implement the
+ * {@link SubjectDataUpdateEvent} should do so by overriding the
+ * {@link #onUpdate()} method. </p>
+ *
  * <p>This class is thread-safe.</p>
  */
 public class MemorySubjectData implements SubjectData {
 
-    private final PermissionService service;
-    private final ConcurrentMap<Set<Context>, Map<String, String>> options = Maps.newConcurrentMap();
-    private final ConcurrentMap<Set<Context>, NodeTree> permissions = Maps.newConcurrentMap();
-    private final ConcurrentMap<Set<Context>, List<Map.Entry<String, String>>> parents = Maps.newConcurrentMap();
+    protected final Subject subject;
+    protected final ConcurrentMap<Set<Context>, Map<String, String>> options = Maps.newConcurrentMap();
+    protected final ConcurrentMap<Set<Context>, NodeTree> permissions = Maps.newConcurrentMap();
+    protected final ConcurrentMap<Set<Context>, List<SubjectReference>> parents = Maps.newConcurrentMap();
 
     /**
      * Creates a new subject data instance, using the provided service to
      * request instances of permission subjects.
      *
-     * @param service The service to request subjects from
+     * @param subject The subject this data belongs to
      */
-    public MemorySubjectData(PermissionService service) {
-        checkNotNull(service, "service");
-        this.service = service;
+    public MemorySubjectData(Subject subject) {
+        this.subject = checkNotNull(subject, "subject");
+    }
+
+    /**
+     * Called each time the data in this {@link MemorySubjectData} is mutated
+     * in some way.
+     */
+    protected void onUpdate() {
+        // Do nothing - users of the class will override.
+    }
+
+    @Override
+    public Subject getSubject() {
+        return this.subject;
+    }
+
+    @Override
+    public boolean isTransient() {
+        return true;
     }
 
     @Override
@@ -85,18 +106,21 @@ public class MemorySubjectData implements SubjectData {
      * @return The node tree
      */
     public NodeTree getNodeTree(Set<Context> contexts) {
-        NodeTree perms = this.permissions.get(contexts);
-        return perms == null ? NodeTree.of(Collections.emptyMap()) : perms;
+        NodeTree perms = this.permissions.get(checkNotNull(contexts, "contexts"));
+        return perms == null ? NodeTree.of(ImmutableMap.of()) : perms;
     }
 
     @Override
     public Map<String, Boolean> getPermissions(Set<Context> contexts) {
-        NodeTree perms = this.permissions.get(contexts);
-        return perms == null ? Collections.emptyMap() : perms.asMap();
+        NodeTree perms = this.permissions.get(checkNotNull(contexts, "contexts"));
+        return perms == null ? ImmutableMap.of() : perms.asMap();
     }
 
     @Override
     public CompletableFuture<Boolean> setPermission(Set<Context> contexts, String permission, Tristate value) {
+        checkNotNull(contexts, "contexts");
+        checkNotNull(permission, "permission");
+        checkNotNull(value, "value");
         contexts = ImmutableSet.copyOf(contexts);
         while (true) {
             NodeTree oldTree = this.permissions.get(contexts);
@@ -114,6 +138,7 @@ public class MemorySubjectData implements SubjectData {
                 }
             }
         }
+        onUpdate();
         return CompletableFuture.completedFuture(true);
     }
 
@@ -121,53 +146,49 @@ public class MemorySubjectData implements SubjectData {
     public CompletableFuture<Boolean> clearPermissions() {
         boolean wasEmpty = this.permissions.isEmpty();
         this.permissions.clear();
+        if (!wasEmpty) {
+            onUpdate();
+        }
         return CompletableFuture.completedFuture(!wasEmpty);
     }
 
     @Override
     public CompletableFuture<Boolean> clearPermissions(Set<Context> context) {
-        return CompletableFuture.completedFuture(this.permissions.remove(context) != null);
+        boolean ret = this.permissions.remove(checkNotNull(context, "context")) != null;
+        if (ret) {
+            onUpdate();
+        }
+        return CompletableFuture.completedFuture(ret);
     }
 
     @Override
     public Map<Set<Context>, List<SubjectReference>> getAllParents() {
-        ImmutableMap.Builder<Set<Context>, List<SubjectReference>> ret = ImmutableMap.builder();
-        for (Map.Entry<Set<Context>, List<Map.Entry<String, String>>> ent : this.parents.entrySet()) {
-            ret.put(ent.getKey(), toSubjectList(ent.getValue()));
-        }
-        return ret.build();
-    }
-
-    List<SubjectReference> toSubjectList(List<Map.Entry<String, String>> parents) {
-        ImmutableList.Builder<SubjectReference> ret = ImmutableList.builder();
-        for (Map.Entry<String, String> ent : parents) {
-            ret.add(this.service.newSubjectReference(ent.getKey(), ent.getValue()));
-        }
-        return ret.build();
+        return ImmutableMap.copyOf(this.parents);
     }
 
     @Override
     public List<SubjectReference> getParents(Set<Context> contexts) {
-        List<Map.Entry<String, String>> ret = this.parents.get(contexts);
-        return ret == null ? Collections.emptyList() : toSubjectList(ret);
+        return this.parents.getOrDefault(checkNotNull(contexts, "contexts"), ImmutableList.of());
     }
 
     @Override
     public CompletableFuture<Boolean> addParent(Set<Context> contexts, SubjectReference parent) {
+        checkNotNull(contexts, "contexts");
+        checkNotNull(parent, "parent");
         contexts = ImmutableSet.copyOf(contexts);
         while (true) {
-            Map.Entry<String, String> newEnt = Maps.immutableEntry(parent.getCollectionIdentifier(),
-                    parent.getSubjectIdentifier());
-            List<Map.Entry<String, String>> oldParents = this.parents.get(contexts);
-            List<Map.Entry<String, String>> newParents = ImmutableList.<Map.Entry<String, String>>builder()
-                    .addAll(oldParents == null ? Collections.emptyList() : oldParents)
-                    .add(newEnt)
-                    .build();
-            if (oldParents != null && oldParents.contains(newEnt)) {
+            List<SubjectReference> oldParents = this.parents.get(contexts);
+            if (oldParents != null && oldParents.contains(parent)) {
                 return CompletableFuture.completedFuture(false);
             }
 
+            List<SubjectReference> newParents = ImmutableList.<SubjectReference>builder()
+                    .addAll(oldParents == null ? ImmutableList.of() : oldParents)
+                    .add(parent)
+                    .build();
+
             if (updateCollection(this.parents, contexts, oldParents, newParents)) {
+                onUpdate();
                 return CompletableFuture.completedFuture(true);
             }
         }
@@ -175,49 +196,50 @@ public class MemorySubjectData implements SubjectData {
 
     private <K, V> boolean updateCollection(ConcurrentMap<K, V> collection, K key, @Nullable V oldValue, V newValue) {
         if (oldValue == null) {
-            if (collection.putIfAbsent(key, newValue) == null) {
-                return true;
-            }
+            return collection.putIfAbsent(key, newValue) == null;
         } else {
-            if (collection.replace(key, oldValue, newValue)) {
-                return true;
-            }
+            return collection.replace(key, oldValue, newValue);
         }
-        return false;
     }
 
     @Override
     public CompletableFuture<Boolean> removeParent(Set<Context> contexts, SubjectReference parent) {
+        checkNotNull(contexts, "contexts");
+        checkNotNull(parent, "parent");
         contexts = ImmutableSet.copyOf(contexts);
         while (true) {
-            Map.Entry<String, String> removeEnt = Maps.immutableEntry(parent.getCollectionIdentifier(),
-                    parent.getSubjectIdentifier());
-            List<Map.Entry<String, String>> oldParents = this.parents.get(contexts);
-            List<Map.Entry<String, String>> newParents;
-
-            if (oldParents == null || !oldParents.contains(removeEnt)) {
+            List<SubjectReference> oldParents = this.parents.get(contexts);
+            if (oldParents == null || !oldParents.contains(parent)) {
                 return CompletableFuture.completedFuture(false);
             }
-            newParents = new ArrayList<>(oldParents);
-            newParents.remove(removeEnt);
 
-            if (updateCollection(this.parents, contexts, oldParents, Collections.unmodifiableList(newParents))) {
+            List<SubjectReference> newParents = new ArrayList<>(oldParents);
+            newParents.remove(parent);
+
+            if (updateCollection(this.parents, contexts, oldParents, ImmutableList.copyOf(newParents))) {
+                onUpdate();
                 return CompletableFuture.completedFuture(true);
             }
         }
-
     }
 
     @Override
     public CompletableFuture<Boolean> clearParents() {
         boolean wasEmpty = this.parents.isEmpty();
         this.parents.clear();
+        if (!wasEmpty) {
+            onUpdate();
+        }
         return CompletableFuture.completedFuture(!wasEmpty);
     }
 
     @Override
     public CompletableFuture<Boolean> clearParents(Set<Context> contexts) {
-        return CompletableFuture.completedFuture(this.parents.remove(contexts) != null);
+        boolean ret = this.parents.remove(checkNotNull(contexts, "contexts")) != null;
+        if (ret) {
+            onUpdate();
+        }
+        return CompletableFuture.completedFuture(ret);
     }
 
     @Override
@@ -227,12 +249,13 @@ public class MemorySubjectData implements SubjectData {
 
     @Override
     public Map<String, String> getOptions(Set<Context> contexts) {
-        Map<String, String> ret = this.options.get(contexts);
-        return ret == null ? ImmutableMap.of() : ImmutableMap.copyOf(ret);
+        return this.options.getOrDefault(checkNotNull(contexts, "contexts"), ImmutableMap.of());
     }
 
     @Override
     public CompletableFuture<Boolean> setOption(Set<Context> contexts, String key, @Nullable String value) {
+        checkNotNull(contexts, "contexts");
+        checkNotNull(key, "key");
         Map<String, String> origMap = this.options.get(contexts);
         Map<String, String> newMap;
 
@@ -242,6 +265,7 @@ public class MemorySubjectData implements SubjectData {
             }
 
             if ((origMap = this.options.putIfAbsent(ImmutableSet.copyOf(contexts), ImmutableMap.of(key.toLowerCase(), value))) == null) {
+                onUpdate();
                 return CompletableFuture.completedFuture(true);
             }
         }
@@ -250,27 +274,34 @@ public class MemorySubjectData implements SubjectData {
                 if (!origMap.containsKey(key)) {
                     return CompletableFuture.completedFuture(false);
                 }
-                newMap = new HashMap<>();
-                newMap.putAll(origMap);
+                newMap = new HashMap<>(origMap);
                 newMap.remove(key);
             } else {
-                newMap = new HashMap<>();
-                newMap.putAll(origMap);
+                newMap = new HashMap<>(origMap);
                 newMap.put(key, value);
             }
-            newMap = Collections.unmodifiableMap(newMap);
+            newMap = ImmutableMap.copyOf(newMap);
         } while (!this.options.replace(contexts, origMap, newMap));
+        onUpdate();
         return CompletableFuture.completedFuture(true);
-    }
-
-    @Override
-    public CompletableFuture<Boolean> clearOptions(Set<Context> contexts) {
-        return CompletableFuture.completedFuture(this.options.remove(contexts) != null);
     }
 
     @Override
     public CompletableFuture<Boolean> clearOptions() {
+        boolean wasEmpty = this.options.isEmpty();
         this.options.clear();
-        return CompletableFuture.completedFuture(true);
+        if (!wasEmpty) {
+            onUpdate();
+        }
+        return CompletableFuture.completedFuture(!wasEmpty);
+    }
+
+    @Override
+    public CompletableFuture<Boolean> clearOptions(Set<Context> contexts) {
+        boolean ret = this.options.remove(checkNotNull(contexts, "contexts")) != null;
+        if (ret) {
+            onUpdate();
+        }
+        return CompletableFuture.completedFuture(ret);
     }
 }
