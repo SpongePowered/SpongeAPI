@@ -88,11 +88,19 @@ public interface DataGenerator<
     G predicate(Predicate<? extends DataHolder> predicate);
 
     /**
+     * Sets the identifier of the {@link DataRegistration}
+     * (without the namespace).
+     *
+     * @param id The identifier
+     * @return This builder, for chaining
+     */
+    G id(String id);
+
+    /**
      * Builds the {@link DataRegistration} with the specified manipulator
      * id and the {@link PluginContainer} in the current context.
      *
-     * @param id The manipulator id (without the namespace)
      * @return The constructed data registration
      */
-    DataRegistration<M, I> build(String id);
+    DataRegistration<M, I> build();
 }

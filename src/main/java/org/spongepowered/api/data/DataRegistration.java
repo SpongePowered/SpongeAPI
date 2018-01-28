@@ -26,7 +26,6 @@ package org.spongepowered.api.data;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.generator.DataGenerator;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.DataManipulatorBuilder;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
@@ -41,12 +40,8 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
      * the desired {@link DataManipulator} type to be registered.
      *
      * @return The new builder instance
-     * @deprecated Use the {@link DataGenerator} instead, this is the new
-     *    method of generating {@link DataManipulator} implementations and
-     *    should be used instead of the abstract classes
      */
     @SuppressWarnings("unchecked")
-    @Deprecated
     static Builder<?, ?> builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
@@ -115,11 +110,6 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
     @Override
     String getName();
 
-    /**
-     * @deprecated Use the {@link DataGenerator} instead of the
-     * abstract {@link DataManipulator} implementations.
-     */
-    @Deprecated
     interface Builder<T extends DataManipulator<T, I>, I extends ImmutableDataManipulator<I, T>>
         extends ResettableBuilder<DataRegistration<T, I>, Builder<T, I>> {
 
