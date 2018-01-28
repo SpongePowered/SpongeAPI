@@ -49,10 +49,9 @@ public interface VariantDataGenerator<V, M extends VariantData<V, M, I>, I exten
      * this generator. The output extend the classes {@link VariantData}
      * and a {@link ImmutableVariantData}.
      *
-     * @param <V> The value type
      * @return The variant data generator
      */
-    static <V> VariantDataGenerator<V, ? extends VariantData<V, ?, ?>, ? extends ImmutableVariantData<V, ?, ?>> builder() {
+    static VariantDataGenerator<?,?,?> builder() {
         return Sponge.getRegistry().createBuilder(VariantDataGenerator.class);
     }
 

@@ -36,6 +36,7 @@ import org.spongepowered.api.data.value.mutable.Value;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 /**
  * This {@link DataGenerator} supports only one {@link Key} with a {@link BaseValue}
@@ -56,10 +57,9 @@ public interface ListDataGenerator<E, M extends ListData<E, M, I>, I extends Imm
      * be a {@link ListValue}. The output extend the classes
      * {@link ListData} and a {@link ImmutableListData}.
      *
-     * @param <E> The element type
      * @return The list data builder
      */
-    static <E> ListDataGenerator<E, ? extends ListData<E, ?, ?>, ? extends ImmutableListData<E, ?, ?>> builder() {
+    static ListDataGenerator<?,?,?> builder() {
         return Sponge.getRegistry().createBuilder(ListDataGenerator.class);
     }
 
@@ -94,4 +94,12 @@ public interface ListDataGenerator<E, M extends ListData<E, M, I>, I extends Imm
      * @return This builder, for chaining
      */
     ListDataGenerator<E, M, I> defaultValue(List<E> defaultList);
+
+    /**
+     * Sets the default {@link List} value supplier.
+     *
+     * @param defaultListSupplier The default list supplier
+     * @return This builder, for chaining
+     */
+    ListDataGenerator<E, M, I> defaultValueSupplier(Supplier<List<E>> defaultListSupplier);
 }
