@@ -36,7 +36,6 @@ import org.spongepowered.api.data.value.mutable.Value;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Supplier;
 
 /**
  * This {@link DataGenerator} supports only one {@link Key} with a {@link BaseValue}
@@ -96,12 +95,4 @@ public interface MappedDataGenerator<K, V, M extends MappedData<K, V, M, I>, I e
      * @return This builder, for chaining
      */
     MappedDataGenerator<K, V, M, I> defaultValue(Map<K, V> defaultMap);
-
-    /**
-     * Sets the default {@link Map} value supplier.
-     *
-     * @param defaultMapSupplier The default map supplier
-     * @return This builder, for chaining
-     */
-    MappedDataGenerator<K, V, M, I> defaultValueSupplier(Supplier<Map<K, V>> defaultMapSupplier);
 }
