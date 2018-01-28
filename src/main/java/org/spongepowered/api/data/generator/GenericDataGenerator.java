@@ -1,5 +1,30 @@
+/*
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+ *
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
+ * Copyright (c) contributors
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 package org.spongepowered.api.data.generator;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
@@ -9,22 +34,23 @@ import org.spongepowered.api.data.value.BoundedValue;
 import java.util.Comparator;
 
 /**
- * This {@link DataGenerator.FinalStep} supports multiple {@link Key}s and it's values.
+ * This {@link DataGenerator} supports multiple {@link Key}s and it's values.
  *
  * @param <M> The mutable manipulator type
  * @param <I> The immutable manipulator type
  */
+@SuppressWarnings("unchecked")
 public interface GenericDataGenerator<M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>>
-        extends DataGenerator.FinalStep<M, I, GenericDataGenerator<M, I>> {
+        extends DataGenerator<M, I, GenericDataGenerator<M, I>, GenericDataGenerator<?,?>> {
 
     /**
-     * Constructs a new {@link GenericDataGenerator}. This is the only {@link FinalStep}
-     * that supports multiple {@link Key}s.
+     * Constructs a new {@link GenericDataGenerator}. This is the
+     * only generator that supports multiple {@link Key}s.
      *
-     * @return The key values data builder
+     * @return The generic data generator
      */
-    static GenericDataGenerator builder() {
-        return DataGenerator.builder().generic();
+    static GenericDataGenerator<?,?> builder() {
+        return Sponge.getRegistry().createBuilder(GenericDataGenerator.class);
     }
 
     /**
