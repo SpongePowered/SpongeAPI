@@ -1,14 +1,15 @@
 SpongeAPI [![Build Status](https://travis-ci.org/SpongePowered/SpongeAPI.svg?branch=master)](https://travis-ci.org/SpongePowered/SpongeAPI)
 =============
-**Currently not stable and under heavy development!**  
-A Minecraft plugin API (not including an implementation). It is licensed under the [MIT License]. 
+**This branch is subject to breaking changes! Refer to [stable-7] for our stable branch.**  
+A mature Minecraft plugin API (not including an implementation), licensed under the [MIT License]. 
 
 * [Homepage]
 * [Source]
 * [Issues]
-* [Wiki]
-* [Community Chat]: [#sponge on irc.esper.net]
-* [Development Chat]: [#spongedev on irc.esper.net]
+* [Documentation]
+* [Community Discord]
+* [Community IRC]: [#sponge on irc.esper.net]
+* [Development IRC]: [#spongedev on irc.esper.net]
 * [Preparing for Development]
 * [Javadocs]
 
@@ -17,7 +18,7 @@ A Minecraft plugin API (not including an implementation). It is licensed under t
 
 ## Clone
 The following steps will ensure your project is cloned properly.  
-1. `git clone git@github.com:SpongePowered/SpongeAPI.git`  
+1. `git clone https://github.com/SpongePowered/SpongeAPI.git`  
 2. `cd SpongeAPI`  
 3. `cp scripts/pre-commit .git/hooks`
 
@@ -35,16 +36,18 @@ Are you a talented programmer looking to contribute some code? We'd love the hel
 [Gradle]: https://www.gradle.org/
 [Homepage]: https://spongepowered.org/
 [IntelliJ]: https://www.jetbrains.com/idea/
-[Issues]: https://issues.spongepowered.org/
-[Wiki]: https://github.com/SpongePowered/SpongeAPI/wiki/
+[Issues]: https://github.com/SpongePowered/SpongeAPI/issues
+[Documentation]: https://docs.spongepowered.org/
 [Java]: http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 [Source]: https://github.com/SpongePowered/SpongeAPI/
 [MIT License]: https://www.tldrlegal.com/license/mit-license
-[Community Chat]: https://webchat.esper.net/?channels=sponge
-[Development Chat]: https://webchat.esper.net/?channels=spongedev
+[Community Discord]: https://discord.gg/PtaGRAs
+[Community IRC]: https://kiwiirc.com/client/irc.esper.net:+6697/?nick=sponge|?#sponge
+[Development IRC]: https://kiwiirc.com/client/irc.esper.net:+6697/?nick=sponge|?#spongedev
 [Preparing for Development]: https://docs.spongepowered.org/en/preparing/
 [#sponge on irc.esper.net]: irc://irc.esper.net/#sponge
 [Development Chat]: https://webchat.esper.net/?channels=spongedev
 [#spongedev on irc.esper.net]: irc://irc.esper.net/#spongedev
 [Preparing for Development]: https://docs.spongepowered.org/en/preparing/
 [Javadocs]: https://jd.spongepowered.org
+[stable-7]: https://github.com/SpongePowered/SpongeAPI/tree/stable-7
