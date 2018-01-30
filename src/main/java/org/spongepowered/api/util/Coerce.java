@@ -218,6 +218,8 @@ public final class Coerce {
     public static Optional<Boolean> asBoolean(@Nullable Object obj) {
         if (obj instanceof Boolean) {
             return Optional.of((Boolean) obj);
+        } else if (obj instanceof Byte) {
+            return Optional.of((Byte) obj != 0);
         }
         return Optional.empty();
     }
