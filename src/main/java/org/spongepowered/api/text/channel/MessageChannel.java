@@ -28,8 +28,10 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.impl.DelegateMutableMessageChannel;
+import org.spongepowered.api.text.channel.impl.EventPostingMessageChannel;
 import org.spongepowered.api.text.channel.type.CombinedMessageChannel;
 import org.spongepowered.api.text.channel.type.FixedMessageChannel;
 import org.spongepowered.api.text.channel.type.PermissionMessageChannel;
@@ -58,21 +60,21 @@ public interface MessageChannel {
     /**
      * A channel with all online players as members.
      */
-    MessageChannel TO_PLAYERS = () -> ImmutableSet.copyOf(Sponge.getGame().getServer().getOnlinePlayers());
+    MessageChannel TO_PLAYERS = eventPosting(() -> ImmutableSet.copyOf(Sponge.getGame().getServer().getOnlinePlayers()));
 
     /**
      * A channel with the server console as a member.
      */
-    MessageChannel TO_CONSOLE = () -> ImmutableSet.of(Sponge.getGame().getServer().getConsole());
+    MessageChannel TO_CONSOLE = eventPosting(() -> ImmutableSet.of(Sponge.getGame().getServer().getConsole()));
 
     /**
      * A channel with all online players, as well as the server console, as
      * members.
      */
-    MessageChannel TO_ALL = () -> ImmutableSet.<MessageReceiver>builder()
+    MessageChannel TO_ALL = eventPosting(() -> ImmutableSet.<MessageReceiver>builder()
             .addAll(Sponge.getGame().getServer().getOnlinePlayers())
             .add(Sponge.getGame().getServer().getConsole())
-            .build();
+            .build());
 
     /**
      * Creates a message channel that targets all subjects with the given
@@ -143,6 +145,17 @@ public interface MessageChannel {
      */
     static MessageChannel world(World world) {
         return new WorldMessageChannel(world);
+    }
+
+    /**
+     * Creates a message channel that posts a {@link MessageChannelEvent} before
+     * sending a message.
+     *
+     * @param delegate The delegate message channel
+     * @return The event posting message channel
+     */
+    static MessageChannel eventPosting(final MessageChannel delegate) {
+        return new EventPostingMessageChannel(delegate);
     }
 
     /**
