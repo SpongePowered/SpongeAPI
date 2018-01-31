@@ -44,7 +44,11 @@ import java.lang.annotation.Target;
 public @interface ContextValue {
 
     /**
-     * Gets the name to use with the {@link EventContextKey}.
+     * Gets the name to use with the {@link EventContextKey}. For reference,
+     * utilize
+     * {@link org.spongepowered.api.event.cause.EventContextKeys.Named#BLOCK_HIT_NAME}
+     * as an example for what constants to use. The name is not irrelevent as it
+     * will be matched by the existing name at registration case insensitive.
      *
      * @return The name to use
      */
@@ -54,7 +58,7 @@ public @interface ContextValue {
      * If specified the possible type for the returned object (normally
      * specified by the type of the annotated parameter) is restricted to only
      * the specified types.
-     *
+     * <p>
      * <p>For exampled annotating a parameter of type Monster would normally
      * accept all entities extending Monster, however with the includes
      * specified as Enderman and Zombie the possible Monsters returned would be
