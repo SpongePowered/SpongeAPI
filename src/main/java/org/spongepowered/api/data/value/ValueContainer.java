@@ -33,6 +33,7 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValueStore;
 import org.spongepowered.api.data.value.mutable.CompositeValueStore;
+import org.spongepowered.api.util.Copyable;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -55,7 +56,7 @@ import javax.annotation.Nullable;
  *
  * @param <C> The type of container for fluency
  */
-public interface ValueContainer<C extends ValueContainer<C>> {
+public interface ValueContainer<C extends ValueContainer<C>> extends Copyable<C> {
 
     /**
      * Attempts to get the underlying value backed by a {@link BaseValue}
@@ -161,6 +162,7 @@ public interface ValueContainer<C extends ValueContainer<C>> {
      *
      * @return The new copy
      */
+    @Override
     C copy();
 
     /**

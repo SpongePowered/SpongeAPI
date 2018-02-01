@@ -134,13 +134,13 @@ public interface ImmutableCollectionValue<E, C extends Collection<E>, I extends 
     boolean containsAll(Iterable<E> iterable);
 
     /**
-     * Creates a new {@link Collection} of the proper type <code>C</code> with
+     * Creates a new mutable {@link Collection} of the proper type <code>C</code> with
      * all elements copied to the new collection. Any modifications to the new
      * collection are not reflected to this {@link ImmutableCollectionValue}.
      * Likewise, no modifications to this {@link ImmutableCollectionValue} are
      * reflected to the returned {@link Collection}.
      *
-     * @return A new collection with all elements copied
+     * @return A new mutable collection with all elements copied
      */
     C getAll();
 
