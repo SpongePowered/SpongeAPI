@@ -22,32 +22,4 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.entity;
-
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.entity.AgentData;
-import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.entity.living.Agent;
-
-/**
- * An {@link ImmutableDataManipulator} for AI tasks on {@link Agent}s.
- */
-public interface ImmutableAgentData extends ImmutableDataManipulator<ImmutableAgentData, AgentData> {
-
-    /**
-     * Gets the {@link ImmutableValue} for whether AI tasks are enabled or not.
-     *
-     * @return The immutable value for the current "enabled" state of ai tasks
-     */
-    ImmutableValue<Boolean> aiEnabled();
-
-    /**
-     * Gets the {@link ImmutableBoundedValue} for the current follow range of this agent's
-     * {@link Agent#getNavigator() navigator}.
-     *
-     * @return The immutable value for the current follow range
-     */
-    ImmutableBoundedValue<Double> followRange();
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.entity.ai.navigation;

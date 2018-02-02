@@ -27,10 +27,13 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableAgentData;
+import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.entity.ai.navigation.Navigator;
+import org.spongepowered.api.entity.living.Agent;
 
 /**
- * Data regarding the toggle of AI tasks on an entity.
+ * Data regarding AI tasks on an entity.
  */
 public interface AgentData extends DataManipulator<AgentData, ImmutableAgentData> {
 
@@ -41,5 +44,15 @@ public interface AgentData extends DataManipulator<AgentData, ImmutableAgentData
      * @see Keys#AI_ENABLED
      */
     Value<Boolean> aiEnabled();
+
+    /**
+     * Gets the {@link MutableBoundedValue} for the current follow range of this agent's
+     * {@link Agent#getNavigator() navigator}.
+     *
+     * @return The value for the current follow range
+     * @see Keys#FOLLOW_RANGE
+     * @see Navigator#getFollowRange()
+     */
+    MutableBoundedValue<Double> followRange();
 
 }

@@ -26,10 +26,12 @@ package org.spongepowered.api.entity.living;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.AgentData;
+import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.ai.Goal;
 import org.spongepowered.api.entity.ai.GoalType;
+import org.spongepowered.api.entity.ai.navigation.Navigator;
 import org.spongepowered.api.entity.ai.task.AITask;
 
 import java.util.Optional;
@@ -84,4 +86,21 @@ public interface Agent extends Living {
      * @return The goal or {@link Optional#empty()} if not found.
      */
     <T extends Agent> Optional<Goal<T>> getGoal(GoalType type);
+
+    /**
+     * Gets the navigator for the agent.
+     *
+     * @return The navigator
+     */
+    Navigator getNavigator();
+
+    /**
+     * Gets the {@link MutableBoundedValue} for this agent's following range in blocks.
+     *
+     * @return The following range
+     */
+    default MutableBoundedValue<Double> followRange() {
+        return getValue(Keys.FOLLOW_RANGE).get();
+    }
+
 }
