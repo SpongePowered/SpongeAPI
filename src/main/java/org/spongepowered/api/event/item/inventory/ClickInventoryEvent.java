@@ -57,6 +57,8 @@ public interface ClickInventoryEvent extends ChangeInventoryEvent, InteractInven
         interface Primary extends Drag, ClickInventoryEvent.Primary {}
 
         interface Secondary extends Drag, ClickInventoryEvent.Secondary {}
+
+        interface Middle extends Drag, ClickInventoryEvent.Middle {}
     }
 
     interface NumberPress extends ClickInventoryEvent {
