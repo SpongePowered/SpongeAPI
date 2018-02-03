@@ -69,6 +69,8 @@ public final class EventContextKeys {
 
     public static final EventContextKey<World> LEAVES_DECAY = createFor("LEAVES_DECAY");
 
+    public static final EventContextKey<World> LIQUID_BREAK = createFor("LIQUID_BREAK");
+
     public static final EventContextKey<World> LIQUID_MIX = createFor("LIQUID_MIX");
 
     public static final EventContextKey<User> NOTIFIER = createFor("NOTIFIER");
