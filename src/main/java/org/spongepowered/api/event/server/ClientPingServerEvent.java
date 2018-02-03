@@ -31,6 +31,7 @@ import org.spongepowered.api.network.status.StatusClient;
 import org.spongepowered.api.network.status.StatusResponse;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.annotation.eventgen.AbstractEvent;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 import java.util.List;
@@ -65,6 +66,7 @@ public interface ClientPingServerEvent extends Event, Cancellable {
     /**
      * Represents a mutable response to a status request.
      */
+    @AbstractEvent
     interface Response extends StatusResponse {
 
         /**
@@ -103,6 +105,7 @@ public interface ClientPingServerEvent extends Event, Cancellable {
          * Represents the information about the players on the server, sent
          * after the {@link ClientPingServerEvent}.
          */
+        @AbstractEvent
         interface Players extends StatusResponse.Players {
 
             /**

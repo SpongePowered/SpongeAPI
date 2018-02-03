@@ -26,10 +26,12 @@ package org.spongepowered.api.event.game.state;
 
 import org.spongepowered.api.GameState;
 import org.spongepowered.api.event.Event;
+import org.spongepowered.api.util.annotation.eventgen.AbstractEvent;
 
 /**
  * Represents all {@link GameState} events.
  */
+@AbstractEvent
 public interface GameStateEvent extends Event {
 
     /**

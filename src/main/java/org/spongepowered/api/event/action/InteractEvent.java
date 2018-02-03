@@ -27,12 +27,14 @@ package org.spongepowered.api.event.action;
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
+import org.spongepowered.api.util.annotation.eventgen.AbstractEvent;
 
 import java.util.Optional;
 
 /**
  * Base event for all interactions.
  */
+@AbstractEvent
 public interface InteractEvent extends Event, Cancellable {
 
     /**

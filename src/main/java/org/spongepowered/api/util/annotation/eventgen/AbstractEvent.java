@@ -22,22 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
+package org.spongepowered.api.util.annotation.eventgen;
 
-import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.util.annotation.eventgen.AbstractEvent;
+import org.spongepowered.api.event.entity.TargetEntityEvent;
 
 /**
- * Base event for when a {@link BlockSnapshot} is a target.
+ * Explicitly disables generation of an event factory method for an event class.
+ *
+ * <p>By default, an event which does not contain sub-interfaces will have
+ * an event factory method generated. This allows some events with abstract concepts,
+ * such as {@link TargetEntityEvent}, to avoid implementation generation.</p>
  */
-@AbstractEvent
-public interface TargetBlockEvent extends Event {
+public @interface AbstractEvent {
 
-    /**
-     * Gets the target {@link BlockSnapshot} of this {@link Event}.
-     *
-     * @return The BlockSnapshot
-     */
-    BlockSnapshot getTargetBlock();
 }

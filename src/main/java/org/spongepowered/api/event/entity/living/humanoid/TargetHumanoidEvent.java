@@ -27,7 +27,12 @@ package org.spongepowered.api.event.entity.living.humanoid;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.event.entity.living.TargetLivingEvent;
+import org.spongepowered.api.util.annotation.eventgen.AbstractEvent;
 
+/**
+ * Base event for all events with a {@link Humanoid} as the source.
+ */
+@AbstractEvent
 public interface TargetHumanoidEvent extends TargetLivingEvent {
 
     /**

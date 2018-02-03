@@ -26,10 +26,12 @@ package org.spongepowered.api.event.item.inventory;
 
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.item.inventory.Inventory;
+import org.spongepowered.api.util.annotation.eventgen.AbstractEvent;
 
 /**
  * Base event for all events with an {@link Inventory} as the target.
  */
+@AbstractEvent
 public interface TargetInventoryEvent extends Event {
 
     /**

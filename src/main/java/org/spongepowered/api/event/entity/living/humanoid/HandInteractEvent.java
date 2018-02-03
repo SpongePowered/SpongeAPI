@@ -26,7 +26,9 @@ package org.spongepowered.api.event.entity.living.humanoid;
 
 import org.spongepowered.api.data.type.HandType;
 import org.spongepowered.api.event.action.InteractEvent;
+import org.spongepowered.api.util.annotation.eventgen.AbstractEvent;
 
+@AbstractEvent
 public interface HandInteractEvent extends InteractEvent {
 
     /**

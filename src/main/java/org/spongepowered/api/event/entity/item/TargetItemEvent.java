@@ -26,10 +26,12 @@ package org.spongepowered.api.event.entity.item;
 
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.event.entity.TargetEntityEvent;
+import org.spongepowered.api.util.annotation.eventgen.AbstractEvent;
 
 /**
  * Base event for all events with a {@link Item} as the source.
  */
+@AbstractEvent
 public interface TargetItemEvent extends TargetEntityEvent {
 
     @Override

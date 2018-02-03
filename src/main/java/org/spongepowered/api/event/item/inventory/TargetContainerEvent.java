@@ -25,10 +25,12 @@
 package org.spongepowered.api.event.item.inventory;
 
 import org.spongepowered.api.item.inventory.Container;
+import org.spongepowered.api.util.annotation.eventgen.AbstractEvent;
 
 /**
  * Base event for all events with an {@link Container} as the target.
  */
+@AbstractEvent
 public interface TargetContainerEvent extends TargetInventoryEvent {
     @Override
     Container getTargetInventory();

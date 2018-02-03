@@ -30,6 +30,7 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.Order;
 import org.spongepowered.api.event.impl.AbstractAffectEntityEvent;
+import org.spongepowered.api.util.annotation.eventgen.AbstractEvent;
 import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
 import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 import org.spongepowered.api.world.Location;
@@ -50,6 +51,7 @@ import java.util.function.Predicate;
  * {@link Explosion} "damaging" a varying amount of {@link Entity} instances.
  * Other cases will be included as necessary.
  */
+@AbstractEvent
 @ImplementedBy(AbstractAffectEntityEvent.class)
 public interface AffectEntityEvent extends Event, Cancellable {
 

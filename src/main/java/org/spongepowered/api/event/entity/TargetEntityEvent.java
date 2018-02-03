@@ -26,10 +26,12 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Event;
+import org.spongepowered.api.util.annotation.eventgen.AbstractEvent;
 
 /**
  * Base event for when a {@link Entity} is a target.
  */
+@AbstractEvent
 public interface TargetEntityEvent extends Event {
 
     /**

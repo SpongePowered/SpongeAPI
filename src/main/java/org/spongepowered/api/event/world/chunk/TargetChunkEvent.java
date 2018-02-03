@@ -25,11 +25,13 @@
 package org.spongepowered.api.event.world.chunk;
 
 import org.spongepowered.api.event.Event;
+import org.spongepowered.api.util.annotation.eventgen.AbstractEvent;
 import org.spongepowered.api.world.Chunk;
 
 /**
  * Base event for anything targeting a {@link Chunk}.
  */
+@AbstractEvent
 public interface TargetChunkEvent extends Event {
 
     /**

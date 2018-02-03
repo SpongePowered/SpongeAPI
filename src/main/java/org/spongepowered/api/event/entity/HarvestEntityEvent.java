@@ -31,11 +31,13 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.entity.living.TargetLivingEvent;
 import org.spongepowered.api.event.entity.living.humanoid.TargetHumanoidEvent;
 import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
+import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 /**
  * Called when an {@link Entity} has been killed and is being "harvested" (drops/etc). Happens
  * after {@link DestructEntityEvent}.
  */
+@GenerateFactoryMethod
 public interface HarvestEntityEvent extends ChangeEntityExperienceEvent {
 
     /**

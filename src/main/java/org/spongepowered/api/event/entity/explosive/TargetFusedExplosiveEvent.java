@@ -25,10 +25,12 @@
 package org.spongepowered.api.event.entity.explosive;
 
 import org.spongepowered.api.entity.explosive.FusedExplosive;
+import org.spongepowered.api.util.annotation.eventgen.AbstractEvent;
 
 /**
  * Represents an event regarding a {@link FusedExplosive}.
  */
+@AbstractEvent
 public interface TargetFusedExplosiveEvent extends TargetExplosiveEvent {
 
     @Override

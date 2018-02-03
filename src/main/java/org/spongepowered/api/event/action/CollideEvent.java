@@ -28,6 +28,7 @@ import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
+import org.spongepowered.api.util.annotation.eventgen.AbstractEvent;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
@@ -42,6 +43,7 @@ public interface CollideEvent extends Event, Cancellable {
      *
      * <p>Note: this should only fire once after the first impact.</p>
      */
+    @AbstractEvent
     interface Impact extends CollideEvent {
 
         /**

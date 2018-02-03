@@ -26,11 +26,13 @@ package org.spongepowered.api.event.user;
 
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.event.Event;
+import org.spongepowered.api.util.annotation.eventgen.AbstractEvent;
 
 /**
  * An event where a {@link User} is the target. The action and source may not
  * be known.
  */
+@AbstractEvent
 public interface TargetUserEvent extends Event {
 
     /**

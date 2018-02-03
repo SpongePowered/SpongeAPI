@@ -11,7 +11,7 @@ buildscript {
         classpath 'gradle.plugin.net.minecrell:licenser:0.3'
         classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.4'
         classpath 'gradle.plugin.org.spongepowered:spongegradle:0.8.1'
-        classpath 'gradle.plugin.org.spongepowered:event-impl-gen:5.0.2'
+        classpath 'gradle.plugin.org.spongepowered:event-impl-gen:5.4.0'
     }
 }
 
@@ -90,6 +90,9 @@ apply plugin: 'org.spongepowered.event-impl-gen'
 
 genEventImpl {
     outputFactory = 'org.spongepowered.api.event.SpongeEventFactory'
+
+    inclusiveAnnotation 'org.spongepowered.api.util.annotation.GenerateFactoryMethod'
+    exclusiveAnnotation 'org.spongepowered.api.util.annotation.AbstractEvent'
 
     include 'org/spongepowered/api/event/*/**/*'
     exclude 'org/spongepowered/api/event/cause/'

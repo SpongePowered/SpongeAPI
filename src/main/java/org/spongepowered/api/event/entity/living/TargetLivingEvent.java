@@ -26,7 +26,12 @@ package org.spongepowered.api.event.entity.living;
 
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.event.entity.TargetEntityEvent;
+import org.spongepowered.api.util.annotation.eventgen.AbstractEvent;
 
+/**
+ * Base event for all events with a {@link Living} as the source.
+ */
+@AbstractEvent
 public interface TargetLivingEvent extends TargetEntityEvent {
 
     @Override

@@ -26,10 +26,12 @@ package org.spongepowered.api.event.entity.projectile;
 
 import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.event.entity.TargetEntityEvent;
+import org.spongepowered.api.util.annotation.eventgen.AbstractEvent;
 
 /**
  * Base event for all events with an {@link Projectile} as the target.
  */
+@AbstractEvent
 public interface TargetProjectileEvent extends TargetEntityEvent {
 
     @Override

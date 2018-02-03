@@ -25,8 +25,10 @@
 package org.spongepowered.api.event.world;
 
 import org.spongepowered.api.event.Event;
+import org.spongepowered.api.util.annotation.eventgen.AbstractEvent;
 import org.spongepowered.api.world.World;
 
+@AbstractEvent
 public interface TargetWorldEvent extends Event {
 
     /**
