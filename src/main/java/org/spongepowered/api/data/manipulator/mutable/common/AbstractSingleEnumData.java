@@ -53,9 +53,8 @@ public abstract class AbstractSingleEnumData<E extends Enum<E>, M extends DataMa
     }
 
     @Override
-    public DataContainer toContainer() {
-        return super.toContainer()
-                .set(this.usedKey.getQuery(), this.getValue().name());
+    protected DataContainer fillContainer(DataContainer dataContainer) {
+        return dataContainer.set(this.usedKey.getQuery(), this.getValue().name());
     }
 
     @SuppressWarnings("unchecked")
