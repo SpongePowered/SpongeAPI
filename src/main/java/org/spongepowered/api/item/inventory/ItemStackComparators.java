@@ -29,9 +29,11 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Ordering;
 import org.spongepowered.api.data.Property;
 import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.mutable.entity.DamageableData;
 import org.spongepowered.api.item.ItemType;
 
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -72,9 +74,27 @@ public final class ItemStackComparators {
      */
     public static final Comparator<ItemStack> DEFAULT = TYPE_SIZE;
 
+    /**
+     * Compares ItemStacks based on its {@link Property} list.
+     */
     public static final Comparator<ItemStack> PROPERTIES = new Properties();
 
+    /**
+     * Compares ItemStacks based on their {@link DataManipulator}s.
+     */
     public static final Comparator<ItemStack> ITEM_DATA = new ItemDataComparator();
+
+    /**
+     * Compares ItemStacks based on their {@link DataManipulator}s ignoring {@link DamageableData}
+     */
+    public static final Comparator<ItemStack> ITEM_DATA_IGNORE_DAMAGE = new ItemDataComparator(DamageableData.class);
+
+    /**
+     * Compares ItemStacks only ignoring their stack-size.
+     *
+     * <p>This means for stackable items that they can stack together</p>
+     */
+    public static final Comparator<ItemStack> IGNORE_SIZE = Ordering.compound(ImmutableList.of(TYPE, PROPERTIES, ITEM_DATA));
 
     public static final Comparator<ItemStack> ALL = Ordering.compound(ImmutableList.of(TYPE, SIZE, PROPERTIES, ITEM_DATA));
 
@@ -145,6 +165,12 @@ public final class ItemStackComparators {
 
     static final class ItemDataComparator implements Comparator<ItemStack> {
 
+        private final Class<? extends DataManipulator<?, ?>>[] ignored;
+
+        public ItemDataComparator(Class<? extends DataManipulator<?, ?>>... ignored) {
+            this.ignored = ignored;
+        }
+
         @Override
         public int compare(@Nullable final ItemStack o1, @Nullable final ItemStack o2) {
             if (o1 == null && o2 == null) {
@@ -160,11 +186,21 @@ public final class ItemStackComparators {
             for (final DataManipulator<?, ?> manipulator : o1.getContainers()) {
                 if (manipulators.contains(manipulator)) {
                     manipulators.remove(manipulator);
-                } else {
+                } else if (!isIgnored(manipulators, manipulator)) {
                     return -1;
                 }
             }
             return manipulators.size();
+        }
+
+        private boolean isIgnored(List<DataManipulator<?, ?>> list, DataManipulator<?, ?> toCheck) {
+            for (Class<? extends DataManipulator<?, ?>> ignore : this.ignored) {
+                if (ignore.isAssignableFrom(toCheck.getClass())) {
+                    list.removeIf(manip -> ignore.isAssignableFrom(manip.getClass()));
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
