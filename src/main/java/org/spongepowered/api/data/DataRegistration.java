@@ -29,6 +29,8 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.DataManipulatorBuilder;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.event.CauseStackManager;
+import org.spongepowered.api.event.game.GameRegistryEvent.Register;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.ResettableBuilder;
 
@@ -90,20 +92,6 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
      */
     PluginContainer getPluginContainer();
 
-    /**
-     * Constructs a default {@link DataManipulator} of type {@link T}.
-     *
-     * @return The constructed data manipulator
-     */
-    T constructManipulator();
-
-    /**
-     * Constructs a default {@link ImmutableDataManipulator} of type {@link I}.
-     *
-     * @return The constructed immutable data manipulator
-     */
-    I constructImmutableManipulator();
-
     @Override
     String getId();
 
@@ -111,7 +99,7 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
     String getName();
 
     interface Builder<T extends DataManipulator<T, I>, I extends ImmutableDataManipulator<I, T>>
-        extends ResettableBuilder<DataRegistration<T, I>, Builder<T, I>> {
+            extends ResettableBuilder<DataRegistration<T, I>, Builder<T, I>> {
 
         /**
          * Sets the {@link DataManipulator} class to be used. For the sake of
@@ -167,8 +155,33 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
          * according to the normal {@link CatalogType} standard:
          * <code>&#123;manipulator-id&#124;</code> since the
          * <code>&quot;pluginid&quot;</code>
-         * is gathered from {@link #buildAndRegister(PluginContainer)} provided
-         * {@link PluginContainer}.
+         * is gathered from the {@link CauseStackManager} or
+         * {@link #buildAndRegister(PluginContainer)}
+         * provided {@link PluginContainer}.
+         *
+         * <p>The importance of the id is that the id is what will be used for
+         * serialization and deserialization of custom plugin provided data,
+         * such that if the string changes, or a plugin is no longer available
+         * to register the data, the custom data being deserialized will not be
+         * available through the system, and may be lost.</p>
+         *
+         * @param id The id for the manipulator
+         * @return This builder, for chaining
+         * @deprecated Use {@link #id(String)} instead
+         */
+        @Deprecated
+        default Builder<T, I> manipulatorId(String id) {
+            return id(id);
+        }
+
+        /**
+         * Sets the id for the manipulator. The id should be formatted
+         * according to the normal {@link CatalogType} standard:
+         * <code>&#123;manipulator-id&#124;</code> since the
+         * <code>&quot;pluginid&quot;</code>
+         * is gathered from the {@link CauseStackManager} or
+         * {@link #buildAndRegister(PluginContainer)}
+         * provided {@link PluginContainer}.
          *
          * <p>The importance of the id is that the id is what will be used for
          * serialization and deserialization of custom plugin provided data,
@@ -179,7 +192,23 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
          * @param id The id for the manipulator
          * @return This builder, for chaining
          */
-        Builder<T, I> manipulatorId(String id);
+        Builder<T, I> id(String id);
+
+        /**
+         * Sets a more generalized name to refer to the registered
+         * {@link DataManipulator} as a common name.
+         *
+         * <p>As an example: if I have a DummyTestData, a name could be "Dummy".
+         * </p>
+         *
+         * @param name The data name
+         * @return This builder, for chaining
+         * @deprecated Use {@link #name(String)} instead
+         */
+        @Deprecated
+        default Builder<T, I> dataName(String name) {
+            return name(name);
+        }
 
         /**
          * Sets a more generalized name to refer to the registered
@@ -191,7 +220,7 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
          * @param name The data name
          * @return This builder, for chaining
          */
-        Builder<T, I> dataName(String name);
+        Builder<T, I> name(String name);
 
         /**
          * Sets the {@link DataManipulatorBuilder} to be used to generate new
@@ -240,18 +269,28 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
          * {@link PluginContainer#getId()} is utilized to generate the final
          * {@link DataRegistration#getId()} for serialization purposes.</p>
          *
-         *
-         *
          * @return The data registration object
          * @throws IllegalStateException If registrations can no longer
          *     take place
          * @throws IllegalArgumentException Various reasons
          * @throws DataAlreadyRegisteredException If the classes and or builder
          *     has already been registered
+         * @deprecated Use {@link #build()} and the {@link Register} event instead
          */
+        @Deprecated
         DataRegistration<T, I> buildAndRegister(PluginContainer container) throws IllegalStateException, IllegalArgumentException,
                                                                                   DataAlreadyRegisteredException;
 
+        /**
+         * Builds the {@link DataRegistration} object, this registration must be
+         * registered in the {@link Register} event.
+         * <p>The {@link PluginContainer} that is currently in the
+         * {@link CauseStackManager} will be used as owning plugin
+         * for the registration.
+         *
+         * @return The data registration object
+         */
+        DataRegistration<T, I> build();
     }
 
 }

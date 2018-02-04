@@ -27,6 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable.common;
 import com.google.common.base.Objects;
 import com.google.common.collect.Maps;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.generator.DataGenerator;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
@@ -47,10 +48,9 @@ import java.util.Map;
  * @param <M> The type of {@link DataManipulator}
  * @param <I> The type of {@link ImmutableDataManipulator}
  * @deprecated These classes are only to be used for easing the compatibility requirements
- * for plugin developers moving to the new system introduced by
- * {@link org.spongepowered.api.data.generator.DataGenerator}. It is highly
- * recommended to move towards the data provider system as all implementation classes provided
- * by the API will be removed in the next major version (API 8.0.0).
+ * for plugin developers moving to the new system introduced by {@link DataGenerator}. It
+ * is highly recommended to move towards the data provider system as all implementation
+ * classes provided by the API will be removed in the next major version (API 8.0.0).
  */
 @SuppressWarnings("unchecked")
 @Deprecated

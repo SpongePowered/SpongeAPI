@@ -27,6 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable.common;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.generator.DataGenerator;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableVariantData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
@@ -40,10 +41,9 @@ import org.spongepowered.api.data.value.mutable.Value;
  * @param <M> The manipulator type
  * @param <I> The immutable manipulator type
  * @deprecated These classes are only to be used for easing the compatibility requirements
- * for plugin developers moving to the new system introduced by
- * {@link org.spongepowered.api.data.generator.DataGenerator}. It is highly
- * recommended to move towards the data provider system as all implementation classes provided
- * by the API will be removed in the next major version (API 8.0.0).
+ * for plugin developers moving to the new system introduced by {@link DataGenerator}. It
+ * is highly recommended to move towards the data provider system as all implementation
+ * classes provided by the API will be removed in the next major version (API 8.0.0).
  */
 @Deprecated
 public abstract class AbstractSingleCatalogData<T extends CatalogType, M extends VariantData<T, M, I>, I extends ImmutableVariantData<T, I, M>>
