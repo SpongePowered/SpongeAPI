@@ -38,6 +38,7 @@ import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 import java.util.List;
 import java.util.Optional;
 
+@GenerateFactoryMethod
 public interface ChangeInventoryEvent extends TargetInventoryEvent, AffectSlotEvent {
 
     /**
