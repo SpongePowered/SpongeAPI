@@ -73,15 +73,13 @@ public final class CommandFlags extends CommandElement {
         Object state = args.getState();
         while (args.hasNext()) {
             String arg = args.next();
-            boolean remove;
             if (arg.startsWith("-")) {
                 Object start = args.getState();
+                boolean remove;
                 if (arg.startsWith("--")) { // Long flag
-                    String longFlag = arg.substring(2);
-                    remove = parseLongFlag(source, longFlag, args, context);
+                    remove = parseLongFlag(source, arg.substring(2), args, context);
                 } else {
-                    arg = arg.substring(1);
-                    remove = parseShortFlags(source, arg, args, context);
+                    remove = parseShortFlags(source, arg.substring(1), args, context);
                 }
                 if (remove) {
                     args.removeArgs(start, args.getState());
@@ -138,7 +136,7 @@ public final class CommandFlags extends CommandElement {
                         context.putArg(shortFlag, true);
                         break;
                     case ACCEPT_VALUE:
-                        string(Text.of(shortFlag)).parse(source, args, context);
+                        context.putArg(shortFlag, args.next());
                         break;
                     default:
                         throw new Error("New UnknownFlagBehavior added without corresponding case clauses");
@@ -212,7 +210,7 @@ public final class CommandFlags extends CommandElement {
     private List<String> tabCompleteLongFlag(String longFlag, CommandSource src, CommandArgs args, CommandContext context) {
         String[] flagSplit = longFlag.split("=", 2);
         CommandElement element = this.longFlags.get(flagSplit[0].toLowerCase());
-        if (element == null) {
+        if (element == null || flagSplit.length == 1 && !args.hasNext()) {
             return this.longFlags.keySet().stream()
                     .filter(new StartsWithPredicate(flagSplit[0]))
                     .map(f -> "--" + f)
@@ -225,9 +223,9 @@ public final class CommandFlags extends CommandElement {
             element.parse(src, args, context);
         } catch (ArgumentParseException ex) {
             args.setState(state);
-            String start = flagSplit.length == 2 ? flagSplit[0] + "=" : args.hasNext() ? "" : flagSplit[0] + " ";
+            String prefix = flagSplit.length == 2 ? flagSplit[0] + "=" : args.hasNext() ? "" : flagSplit[0] + " ";
             return element.complete(src, args, context).stream()
-                    .map(s -> start + s)
+                    .map(s -> prefix + s)
                     .collect(Collectors.toList());
         }
         return null;
@@ -256,12 +254,10 @@ public final class CommandFlags extends CommandElement {
     }
 
     public enum UnknownFlagBehavior {
-
         /**
          * Throw an {@link ArgumentParseException} when an unknown flag is encountered.
          */
         ERROR,
-
         /**
          * Mark the flag as a non-value flag.
          */
@@ -271,7 +267,6 @@ public final class CommandFlags extends CommandElement {
          * Mark the flag as a string-valued flag.
          */
         ACCEPT_VALUE,
-
         /**
          * Act as if the unknown flag is an ordinary argument.
          */
