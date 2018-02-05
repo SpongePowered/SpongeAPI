@@ -97,17 +97,17 @@ public final class CommandFlags extends CommandElement {
     }
 
     private boolean parseLongFlag(CommandSource source, String longFlag, CommandArgs args, CommandContext context) throws ArgumentParseException {
-        final String[] flagSplit = longFlag.split("=", 2);
+        String[] flagSplit = longFlag.split("=", 2);
         CommandElement element = this.longFlags.get(flagSplit[0].toLowerCase());
         if (element == null) {
             switch (this.unknownLongFlagBehavior) {
                 case ERROR:
                     throw args.createError(t("Unknown long flag %s specified", flagSplit[0]));
                 case ACCEPT_NONVALUE:
-                    context.putArg(longFlag, flagSplit.length == 2 ? flagSplit[1] : true);
+                    context.putArg(flagSplit[0], flagSplit.length == 2 ? flagSplit[1] : true);
                     return true;
                 case ACCEPT_VALUE:
-                    context.putArg(longFlag, flagSplit.length == 2 ? flagSplit[1] : args.next());
+                    context.putArg(flagSplit[0], flagSplit.length == 2 ? flagSplit[1] : args.next());
                     return true;
                 case IGNORE:
                     return false;
