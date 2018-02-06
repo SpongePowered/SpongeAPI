@@ -107,10 +107,35 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
             /**
              * Sets the group of the recipe.
              *
-             * @param name the group
+             * @param name The group
              * @return This builder, for chaining
              */
             EndStep group(@Nullable String name);
+
+            /**
+             * Sets the id of the recipe (without the namespace).
+             *
+             * @param id The id
+             * @return This builder, for chaining
+             */
+            EndStep id(String id);
+
+            /**
+             * Sets the name of the recipe.
+             *
+             * @param name The name
+             * @return This builder, for chaining
+             */
+            EndStep name(String name);
+
+            /**
+             * Builds a {@link ShapelessCraftingRecipe} from this builder.
+             *
+             * @return A new {@link ShapelessCraftingRecipe}
+             * @throws IllegalStateException If not all required options
+             *     were specified
+             */
+            ShapelessCraftingRecipe build();
 
             /**
              * Builds a new {@link ShapelessCraftingRecipe} from this builder.
@@ -120,7 +145,10 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
              * @return A new {@link ShapelessCraftingRecipe}
              * @throws IllegalStateException If not all required options
              *     were specified
+             * @deprecated Use the method {@link #build()}
+             *     in combination with {@link #id(String)}.
              */
+            @Deprecated
             ShapelessCraftingRecipe build(String id, Object plugin);
         }
 

@@ -240,10 +240,35 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
             /**
              * Sets the group of the recipe.
              *
-             * @param name the group
+             * @param name The group
              * @return This builder, for chaining
              */
             EndStep group(@Nullable String name);
+
+            /**
+             * Sets the id of the recipe (without the namespace).
+             *
+             * @param id The id
+             * @return This builder, for chaining
+             */
+            EndStep id(String id);
+
+            /**
+             * Sets the name of the recipe.
+             *
+             * @param name The name
+             * @return This builder, for chaining
+             */
+            EndStep name(String name);
+
+            /**
+             * Builds a {@link ShapedCraftingRecipe} from this builder.
+             *
+             * @return A new {@link ShapedCraftingRecipe}
+             * @throws IllegalStateException If not all required options
+             *     were specified
+             */
+            ShapedCraftingRecipe build();
 
             /**
              * Builds a {@link ShapedCraftingRecipe} from this builder.
@@ -253,7 +278,10 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
              * @return A new {@link ShapedCraftingRecipe}
              * @throws IllegalStateException If not all required options
              *     were specified
+             * @deprecated Use the method {@link #build()}
+             *     in combination with {@link #id(String)}.
              */
+            @Deprecated
             ShapedCraftingRecipe build(String id, Object plugin);
         }
     }

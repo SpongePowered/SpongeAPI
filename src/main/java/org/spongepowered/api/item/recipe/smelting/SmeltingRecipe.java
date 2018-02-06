@@ -29,6 +29,7 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.Recipe;
+import org.spongepowered.api.item.recipe.crafting.ShapedCraftingRecipe;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Optional;
@@ -174,6 +175,22 @@ public interface SmeltingRecipe extends Recipe {
              * @return This builder, for chaining
              */
             EndStep experience(double experience);
+
+            /**
+             * Sets the id of the recipe (without the namespace).
+             *
+             * @param id The id
+             * @return This builder, for chaining
+             */
+            EndStep id(String id);
+
+            /**
+             * Sets the name of the recipe.
+             *
+             * @param name The name
+             * @return This builder, for chaining
+             */
+            EndStep name(String name);
 
             /**
              * Builds the recipe and returns it.

@@ -24,25 +24,35 @@
  */
 package org.spongepowered.api.item.recipe;
 
+import org.spongepowered.api.event.game.GameRegistryEvent.Register;
+import org.spongepowered.api.registry.CatalogRegistryModule;
+
 import java.util.Collection;
 
 /**
  * A RecipeRegistry holds all registered recipes for a given game.
  */
-public interface RecipeRegistry<T extends Recipe> {
+public interface RecipeRegistry<T extends Recipe> extends CatalogRegistryModule<T> {
 
     /**
      * Registers the given {@link Recipe} to make it available to craft.
      *
      * @param recipe The {@link Recipe} to register
+     * @deprecated All recipes should be registered in
+     *     their proper {@link Register} event
      */
+    @Deprecated
     void register(T recipe);
 
     /**
      * Retrieves all recipes registered in this registry.
      *
      * @return An unmodifiable collection of registered recipes
+     * @deprecated Use {@link #getAll()} instead
      */
-    Collection<T> getRecipes();
+    @Deprecated
+    default Collection<T> getRecipes() {
+        return getAll();
+    }
 
 }
