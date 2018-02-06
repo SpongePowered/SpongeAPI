@@ -26,6 +26,7 @@ package org.spongepowered.api.data;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.persistence.DataBuilder;
@@ -172,12 +173,23 @@ public interface DataView {
 
     /**
      * Gets an object from the desired path. If the path is not defined,
-     * an absent Optional is returned.
+     * {@link Optional#empty()} is returned.
      *
      * @param path The path to the Object
      * @return The Object, if available
      */
     Optional<Object> get(DataQuery path);
+
+    /**
+     * Gets an object from the desired path and deserializes the data using
+     * the given {@link TypeToken}. If the path is not defined,
+     * {@link Optional#empty()} is returned.
+     *
+     * @param path The path to the Object
+     * @param typeToken The type token
+     * @return The Object, if available
+     */
+    <E> Optional<E> get(DataQuery path, TypeToken<E> typeToken);
 
     /**
      * Sets the given Object value according to the given path relative to
@@ -188,6 +200,18 @@ public interface DataView {
      * @return This view, for chaining
      */
     DataView set(DataQuery path, Object value);
+
+    /**
+     * Sets the given Object value according to the given path relative to
+     * this {@link DataView}'s path and serializes the data using the
+     * given {@link TypeToken}.
+     *
+     * @param value The value of the data
+     * @param <E> The type of value
+     * @param typeToken The type token
+     * @return This view, for chaining
+     */
+    <E> DataView set(DataQuery path, E value, TypeToken<E> typeToken);
 
     /**
      * Sets the given {@link Key}ed value according to the provided

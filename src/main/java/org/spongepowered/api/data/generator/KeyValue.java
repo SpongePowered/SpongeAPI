@@ -33,6 +33,9 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.util.Optional;
+
+import javax.annotation.Nullable;
 
 /**
  * This annotation can be applied to a method in a {@link DataManipulator} or
@@ -47,7 +50,13 @@ import java.lang.annotation.Target;
  * <pre>
  * {@code
  * // The key
- * Key<Value<Integer>> MY_INT_KEY = KeyFactory.makeValueKey(TypeTokens.INTEGER_TOKEN, DataQuery.of("MyInt"), "my_plugin:my_int", "MyInt");
+ * Key<Value<Integer>> MY_INT_KEY = Key.builder()
+ *          .type(TypeTokens.INTEGER_VALUE_TOKEN))
+ *          .query(DataQuery.of("MyInt"))
+ *          .id("my_int")
+ *          .name("MyInt")
+ *          .build();
+ * // Be sure to register it
  *
  * class MyImmutableData extends ImmutableDataManipulator<MyImmutableData, MyData> { }
  * class MyData extends DataManipulator<MyData, MyImmutableData> {
@@ -68,7 +77,13 @@ import java.lang.annotation.Target;
  * <pre>
  * {@code
  * // The key
- * Key<Value<Integer>> MY_INT_KEY = KeyFactory.makeValueKey(TypeTokens.INTEGER_TOKEN, DataQuery.of("MyInt"), "my_plugin:my_int", "MyInt");
+ * Key<Value<Integer>> MY_INT_KEY = Key.builder()
+ *          .type(TypeTokens.INTEGER_VALUE_TOKEN))
+ *          .query(DataQuery.of("MyInt"))
+ *          .id("my_int")
+ *          .name("MyInt")
+ *          .build();
+ * // Be sure to register it
  *
  * class MyImmutableData extends ImmutableDataManipulator<MyImmutableData, MyData> {
  *   @KeyValue("my_int") MyImmutableData myInt(int value);
@@ -83,6 +98,35 @@ import java.lang.annotation.Target;
  * }
  * </pre>
  * </p>
+ * <p>
+ * In addition to the default setters and getters is there also extended support
+ * for {@link Nullable} values when using {@link Optional}s. A setter with a {@link Nullable}
+ * annotated parameter will automatically be put into a {@link Optional} (this
+ * also works in combination with returning a manipulator). A getter
+ * with a {@link Nullable} annotation will be automatically unboxed.
+ * <p>For example:
+ * <pre>
+ * {@code
+ * // The key
+ * Key<OptionalValue<Integer>> MY_OPT_INT_KEY = Key.builder()
+ *          .type(new TypeToken<OptionalValue<Integer>() {})
+ *          .query(DataQuery.of("MyOptInt"))
+ *          .id("my_opt_int")
+ *          .name("MyOptInt")
+ *          .build();
+ * // Be sure to register it
+ *
+ * class MyImmutableData extends ImmutableDataManipulator<MyImmutableData, MyData> {
+ *   @KeyValue("my_opt_int") MyImmutableData myOptInteger(Optional<Integer> value);
+ *   @KeyValue("my_opt_int") MyImmutableData myOptInteger(@Nullable Integer value);
+ * }
+ * class MyData extends DataManipulator<MyData, MyImmutableData> {
+ *   @KeyValue("my_opt_int") void setMyInteger(@Nullable Integer value);
+ *   @KeyValue("my_opt_int") MyData myInteger(Optional<Integer> value);
+ * }
+ * }
+ * </pre>
+ * <p/>
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
