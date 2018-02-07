@@ -96,16 +96,17 @@ public final class CommandFlags extends CommandElement {
 
     private boolean parseLongFlag(CommandSource source, String longFlag, CommandArgs args, CommandContext context) throws ArgumentParseException {
         String[] flagSplit = longFlag.split("=", 2);
-        CommandElement element = this.longFlags.get(flagSplit[0].toLowerCase());
+        String flag = flagSplit[0].toLowerCase();
+        CommandElement element = this.longFlags.get(flag);
         if (element == null) {
             switch (this.unknownLongFlagBehavior) {
                 case ERROR:
                     throw args.createError(t("Unknown long flag %s specified", flagSplit[0]));
                 case ACCEPT_NONVALUE:
-                    context.putArg(flagSplit[0], flagSplit.length == 2 ? flagSplit[1] : true);
+                    context.putArg(flag, flagSplit.length == 2 ? flagSplit[1] : true);
                     return true;
                 case ACCEPT_VALUE:
-                    context.putArg(flagSplit[0], flagSplit.length == 2 ? flagSplit[1] : args.next());
+                    context.putArg(flag, flagSplit.length == 2 ? flagSplit[1] : args.next());
                     return true;
                 case IGNORE:
                     return false;
@@ -221,14 +222,14 @@ public final class CommandFlags extends CommandElement {
         Object state = args.getState();
         try {
             element.parse(src, args, context);
+            return null;
         } catch (ArgumentParseException ex) {
             args.setState(state);
-            String prefix = flagSplit.length == 2 ? flagSplit[0] + "=" : args.hasNext() ? "" : flagSplit[0] + " ";
+            String prefix = flagSplit.length == 2 ? flagSplit[0] + "=" : "";
             return element.complete(src, args, context).stream()
                     .map(s -> prefix + s)
                     .collect(Collectors.toList());
         }
-        return null;
     }
 
     @Nullable
