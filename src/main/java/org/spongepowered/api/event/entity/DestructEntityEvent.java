@@ -26,6 +26,7 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.entity.living.TargetLivingEvent;
 import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
@@ -42,7 +43,7 @@ public interface DestructEntityEvent extends TargetEntityEvent, MessageChannelEv
      * A derivative of {@link DestructEntityEvent} where the removal of the {@link Living}, the {@link TargetLivingEvent#getTargetEntity()},
      * is due to it losing its health.
      */
-    interface Death extends DestructEntityEvent, TargetLivingEvent {
+    interface Death extends DestructEntityEvent, TargetLivingEvent, Cancellable {
 
         /**
          * Applies the {@link DefaultGameRules#KEEP_INVENTORY} gamerule to this entity alone.
