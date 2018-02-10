@@ -25,13 +25,12 @@
 package org.spongepowered.api.world.gen;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Describes a type of {@link Populator}.
  */
 @CatalogedBy(PopulatorTypes.class)
-public interface PopulatorType extends CatalogType, Translatable {
+public interface PopulatorType extends CatalogType {
 
 }
