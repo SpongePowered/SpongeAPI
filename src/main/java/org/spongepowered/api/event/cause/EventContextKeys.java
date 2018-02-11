@@ -97,8 +97,6 @@ public final class EventContextKeys {
 
     public static final EventContextKey<TeleportType> TELEPORT_TYPE = createFor("TELEPORT_TYPE");
 
-    public static final EventContextKey<ProjectileSource> THROWER = createFor("THROWER");
-
     public static final EventContextKey<ItemStackSnapshot> USED_ITEM = createFor("USED_ITEM");
 
     public static final EventContextKey<ItemStackSnapshot> WEAPON = createFor("WEAPON");
