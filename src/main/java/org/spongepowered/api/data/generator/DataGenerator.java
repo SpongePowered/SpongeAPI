@@ -24,15 +24,12 @@
  */
 package org.spongepowered.api.data.generator;
 
-import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataRegistration;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.ResettableBuilder;
-
-import java.util.function.Predicate;
 
 /**
  * A generator that allows a {@link DataRegistration} to be constructed with
@@ -77,15 +74,6 @@ public interface DataGenerator<
      * @return This builder, for chaining
      */
     G version(int contentVersion);
-
-    /**
-     * Defines a {@link Predicate} that checks whether the supplied
-     * {@link DataManipulator} type is supported by the {@link DataHolder}.
-     *
-     * @param predicate The predicate
-     * @return This builder, for chaining
-     */
-    G predicate(Predicate<? extends DataHolder> predicate);
 
     /**
      * Sets the identifier of the {@link DataRegistration}
