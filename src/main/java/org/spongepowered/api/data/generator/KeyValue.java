@@ -47,25 +47,20 @@ import javax.annotation.Nullable;
  * the {@link Key} value or element. Primitive values can be automatically unboxed,
  * this is an exception on the exact match.</p>
  * <p>For example:
- * <pre>
- * {@code
- * // The key
- * Key<Value<Integer>> MY_INT_KEY = Key.builder()
- *          .type(TypeTokens.INTEGER_VALUE_TOKEN))
- *          .query(DataQuery.of("MyInt"))
- *          .id("my_int")
- *          .name("MyInt")
- *          .build();
- * // Be sure to register it
- *
- * class MyImmutableData extends ImmutableDataManipulator<MyImmutableData, MyData> { }
- * class MyData extends DataManipulator<MyData, MyImmutableData> {
- *   @KeyValue("my_int") int getMyInt();
- *   @KeyValue("my_int") Integer getMyInteger();
- *   @KeyValue("my_int") Value<Integer> myInt();
- * }
- * }
- * </pre>
+ * <blockquote><code>Key&lt;Value&lt;Integer&gt;&gt;&nbsp;MY_INT_KEY&nbsp;=&nbsp;Key.builder()
+ * <br/>&nbsp;&nbsp;&nbsp;&nbsp;.type(TypeTokens.INTEGER_VALUE_TOKEN))
+ * <br/>&nbsp;&nbsp;&nbsp;&nbsp;.query(DataQuery.of("MyInt"))
+ * <br/>&nbsp;&nbsp;&nbsp;&nbsp;.id("my_int")
+ * <br/>&nbsp;&nbsp;&nbsp;&nbsp;.name("MyInt")
+ * <br/>&nbsp;&nbsp;&nbsp;&nbsp;.build();
+ * <br/>// Don't forget to register it!
+ * <br/>
+ * <br/>class&nbsp;MyImmutableData&nbsp;extends&nbsp;ImmutableDataManipulator&lt;MyImmutableData,&nbsp;MyData&gt;&nbsp;{&nbsp;}
+ * <br/>class&nbsp;MyData&nbsp;extends&nbsp;DataManipulator&lt;MyData,&nbsp;MyImmutableData&gt;&nbsp;{
+ * <br/>&nbsp;&nbsp;@KeyValue("my_int")&nbsp;int&nbsp;getMyInt();
+ * <br/>&nbsp;&nbsp;@KeyValue("my_int")&nbsp;Integer&nbsp;getMyInteger();
+ * <br/>&nbsp;&nbsp;@KeyValue("my_int")&nbsp;Value&lt;Integer&gt;&nbsp;myInt();
+ * <br/>}</code></blockquote>
  * </p>
  * <p>Setters have always one argument, this must always match the element
  * <code>E</code></p>. Primitive values can also be automatically boxed.
@@ -73,30 +68,26 @@ import javax.annotation.Nullable;
  * constructed immutable manipulator.
  * You can also return a manipulator in a{@link DataManipulator}, this will always return the
  * object itself and allows chaining operations. The return type isn't required in this case.
+ * this is an exception on the exact match.</p>
  * <p>For example:
- * <pre>
- * {@code
- * // The key
- * Key<Value<Integer>> MY_INT_KEY = Key.builder()
- *          .type(TypeTokens.INTEGER_VALUE_TOKEN))
- *          .query(DataQuery.of("MyInt"))
- *          .id("my_int")
- *          .name("MyInt")
- *          .build();
- * // Be sure to register it
- *
- * class MyImmutableData extends ImmutableDataManipulator<MyImmutableData, MyData> {
- *   @KeyValue("my_int") MyImmutableData myInt(int value);
- *   @KeyValue("my_int") MyImmutableData myInteger(Integer value);
- * }
- * class MyData extends DataManipulator<MyData, MyImmutableData> {
- *   @KeyValue("my_int") void setMyInt(int value);
- *   @KeyValue("my_int") MyData myInt(int value);
- *   @KeyValue("my_int") void setMyInteger(Integer value);
- *   @KeyValue("my_int") MyData myInteger(Integer value);
- * }
- * }
- * </pre>
+ * <blockquote><code>Key&lt;Value&lt;Integer&gt;&gt;&nbsp;MY_INT_KEY&nbsp;=&nbsp;Key.builder()
+ * <br/>&nbsp;&nbsp;&nbsp;&nbsp;.type(TypeTokens.INTEGER_VALUE_TOKEN))
+ * <br/>&nbsp;&nbsp;&nbsp;&nbsp;.query(DataQuery.of("MyInt"))
+ * <br/>&nbsp;&nbsp;&nbsp;&nbsp;.id("my_int")
+ * <br/>&nbsp;&nbsp;&nbsp;&nbsp;.name("MyInt")
+ * <br/>&nbsp;&nbsp;&nbsp;&nbsp;.build();
+ * <br/>// Don't forget to register it!
+ * <br/>
+ * <br/>class&nbsp;MyImmutableData&nbsp;extends&nbsp;ImmutableDataManipulator&lt;MyImmutableData,&nbsp;MyData&gt;&nbsp;{
+ * <br/>&nbsp;&nbsp;@KeyValue("my_int")&nbsp;MyImmutableData&nbsp;myInt(int&nbsp;value);
+ * <br/>&nbsp;&nbsp;@KeyValue("my_int")&nbsp;MyImmutableData&nbsp;myInteger(Integer&nbsp;value);
+ * <br/>}
+ * <br/>class&nbsp;MyData&nbsp;extends&nbsp;DataManipulator&lt;MyData,&nbsp;MyImmutableData&gt;&nbsp;{
+ * <br/>&nbsp;&nbsp;@KeyValue("my_int")&nbsp;void&nbsp;setMyInt(int&nbsp;value);
+ * <br/>&nbsp;&nbsp;@KeyValue("my_int")&nbsp;MyData&nbsp;myInt(int&nbsp;value);
+ * <br/>&nbsp;&nbsp;@KeyValue("my_int")&nbsp;void&nbsp;setMyInteger(Integer&nbsp;value);
+ * <br/>&nbsp;&nbsp;@KeyValue("my_int")&nbsp;MyData&nbsp;myInteger(Integer&nbsp;value);
+ * <br/>}</code></blockquote>
  * </p>
  * <p>
  * In addition to the default setters and getters is there also extended support
@@ -105,28 +96,23 @@ import javax.annotation.Nullable;
  * also works in combination with returning a manipulator). A getter
  * with a {@link Nullable} annotation will be automatically unboxed.
  * <p>For example:
- * <pre>
- * {@code
- * // The key
- * Key<OptionalValue<Integer>> MY_OPT_INT_KEY = Key.builder()
- *          .type(new TypeToken<OptionalValue<Integer>() {})
- *          .query(DataQuery.of("MyOptInt"))
- *          .id("my_opt_int")
- *          .name("MyOptInt")
- *          .build();
- * // Be sure to register it
- *
- * class MyImmutableData extends ImmutableDataManipulator<MyImmutableData, MyData> {
- *   @KeyValue("my_opt_int") MyImmutableData myOptInteger(Optional<Integer> value);
- *   @KeyValue("my_opt_int") MyImmutableData myOptInteger(@Nullable Integer value);
- * }
- * class MyData extends DataManipulator<MyData, MyImmutableData> {
- *   @KeyValue("my_opt_int") void setMyInteger(@Nullable Integer value);
- *   @KeyValue("my_opt_int") MyData myInteger(Optional<Integer> value);
- * }
- * }
- * </pre>
- * <p/>
+ * <blockquote><code>Key&lt;Value&lt;Integer&gt;&gt;&nbsp;MY_INT_KEY&nbsp;=&nbsp;Key.builder()
+ * <br/>&nbsp;&nbsp;&nbsp;&nbsp;.type(new&nbsp;TypeToken&lt;OptionalValue&lt;Integer&gt;&gt;()&nbsp;{})
+ * <br/>&nbsp;&nbsp;&nbsp;&nbsp;.query(DataQuery.of("MyOptInt"))
+ * <br/>&nbsp;&nbsp;&nbsp;&nbsp;.id("my_opt_int")
+ * <br/>&nbsp;&nbsp;&nbsp;&nbsp;.name("MyOptInt")
+ * <br/>&nbsp;&nbsp;&nbsp;&nbsp;.build();
+ * <br/>// Don't forget to register it!
+ * <br/>
+ * <br/>class&nbsp;MyImmutableData&nbsp;extends&nbsp;ImmutableDataManipulator&lt;MyImmutableData,&nbsp;MyData&gt;&nbsp;{
+ * <br/>&nbsp;&nbsp;@KeyValue("my_opt_int")&nbsp;MyImmutableData&nbsp;myOptInteger(Optional&lt;Integer&gt;&nbsp;value);
+ * <br/>&nbsp;&nbsp;@KeyValue("my_opt_int")&nbsp;MyImmutableData&nbsp;myOptInteger(@Nullable&nbsp;Integer&nbsp;value);
+ * <br/>}
+ * <br/>class&nbsp;MyData&nbsp;extends&nbsp;DataManipulator&lt;MyData,&nbsp;MyImmutableData&gt;&nbsp;{
+ * <br/>&nbsp;&nbsp;@KeyValue("my_opt_int")&nbsp;void&nbsp;setMyInteger(@Nullable&nbsp;Integer&nbsp;value);
+ * <br/>&nbsp;&nbsp;@KeyValue("my_opt_int")&nbsp;MyData&nbsp;myInteger(Optional&lt;Integer&gt;&nbsp;value);
+ * <br/>}</code></blockquote>
+ * </p>
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

@@ -63,7 +63,6 @@ public abstract class AbstractImmutableSingleData<T, I extends ImmutableDataMani
         registerGetters();
     }
 
-    @Deprecated
     protected abstract ImmutableValue<?> getValueGetter();
 
     protected final T getValue() {

@@ -68,7 +68,6 @@ public abstract class AbstractSingleData<T, M extends DataManipulator<M, I>, I e
     }
 
     @Override
-    @Deprecated
     protected final void registerGettersAndSetters() {
         registerFieldGetter(this.usedKey, AbstractSingleData.this::getValue);
         registerFieldSetter(this.usedKey, this::setValue);

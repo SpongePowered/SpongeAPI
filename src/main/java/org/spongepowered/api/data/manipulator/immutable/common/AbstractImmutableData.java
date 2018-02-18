@@ -75,7 +75,6 @@ public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I
      * @param key The key for the value return type
      * @param function The function for getting the value
      */
-    @Deprecated
     protected final void registerKeyValue(Key<?> key, Supplier<ImmutableValue<?>> function) {
         this.keyValueMap.put(checkNotNull(key), checkNotNull(function));
     }
@@ -89,12 +88,10 @@ public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I
      * @param key The key for the value return type
      * @param function The function for getting the field
      */
-    @Deprecated
     protected final void registerFieldGetter(Key<?> key, Supplier<?> function) {
         this.keyFieldGetterMap.put(checkNotNull(key), checkNotNull(function));
     }
 
-    @Deprecated
     protected abstract void registerGetters();
 
     @Override

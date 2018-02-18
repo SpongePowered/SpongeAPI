@@ -34,6 +34,12 @@ import org.spongepowered.api.util.ResettableBuilder;
 /**
  * A generator that allows a {@link DataRegistration} to be constructed with
  * generated {@link DataManipulator} and {@link ImmutableDataManipulator} classes.
+ *
+ * @param <M> The mutable data manipulator type
+ * @param <I> The immutable data manipulator type
+ * @param <G> The generic type that will be used when chaining
+ *            methods, should always return the same signature.
+ * @param <R> The generic type used when resetting the builder through {@link #reset()}.
  */
 public interface DataGenerator<
         M extends DataManipulator<M, I>,
@@ -50,6 +56,8 @@ public interface DataGenerator<
      *
      * @param value The built object
      * @return This builder, for chaining
+     * @deprecated It is not supported to construct the same {@link DataRegistration},
+     *             use {@link #reset()} instead and start from scratch.
      */
     @Deprecated
     @Override

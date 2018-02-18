@@ -99,7 +99,6 @@ public abstract class AbstractData<M extends DataManipulator<M, I>, I extends Im
      * @param key The key for the value return type
      * @param function The function for getting the value
      */
-    @Deprecated
     protected final void registerKeyValue(Key<?> key, Supplier<Value<?>> function) {
         this.keyValueMap.put(checkNotNull(key), checkNotNull(function));
     }
@@ -113,7 +112,6 @@ public abstract class AbstractData<M extends DataManipulator<M, I>, I extends Im
      * @param key The key for the value return type
      * @param function The function for getting the field
      */
-    @Deprecated
     protected final void registerFieldGetter(Key<?> key, Supplier<?> function) {
         this.keyFieldGetterMap.put(checkNotNull(key, "The key cannot be null"), checkNotNull(function, "The function cannot be null"));
     }
@@ -128,7 +126,6 @@ public abstract class AbstractData<M extends DataManipulator<M, I>, I extends Im
      * @param function The function for setting the field
      */
     @SuppressWarnings("rawtypes")
-    @Deprecated
     protected final <E> void registerFieldSetter(Key<? extends BaseValue<E>> key, Consumer<E> function) {
         this.keyFieldSetterMap.put(checkNotNull(key), checkNotNull((Consumer) function));
     }
@@ -139,7 +136,6 @@ public abstract class AbstractData<M extends DataManipulator<M, I>, I extends Im
      * field can be represented as a {@link Value} such that there is an
      * associated {@link Key} to "get" that field value.
      */
-    @Deprecated
     protected abstract void registerGettersAndSetters();
 
     // Beyond this point is all implementation with the getter/setter functions!

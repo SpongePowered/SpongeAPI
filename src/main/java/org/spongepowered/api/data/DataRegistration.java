@@ -284,9 +284,10 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
         /**
          * Builds the {@link DataRegistration} object, this registration must be
          * registered in the {@link Register} event.
+         *
          * <p>The {@link PluginContainer} that is currently in the
          * {@link CauseStackManager} will be used as owning plugin
-         * for the registration.
+         * for the registration.</p>
          *
          * @return The data registration object
          */
