@@ -130,8 +130,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      *
      * <p>The format of the rotation is represented by:</p>
      *
-     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
-     * </code></ul>
+     * <p>{@code x -> pitch}, {@code y -> yaw}, {@code z -> roll}</p>
      *
      * @return The rotation
      */
@@ -142,8 +141,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      *
      * <p>The format of the rotation is represented by:</p>
      *
-     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
-     * </code></ul>
+     * <p>{@code x -> pitch}, {@code y -> yaw}, {@code z -> roll}</p>
      *
      * @param rotation The rotation to set the entity to
      */
@@ -154,8 +152,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      *
      * <p>The format of the rotation is represented by:</p>
      *
-     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
-     * </code></ul>
+     * <p>{@code x -> pitch}, {@code y -> yaw}, {@code z -> roll}</p>
      *
      * @param location The location to set
      * @param rotation The rotation to set
@@ -173,8 +170,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      *
      * <p>The format of the rotation is represented by:</p>
      *
-     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
-     * </code></ul>
+     * <p>{@code x -> pitch}, {@code y -> yaw}, {@code z -> roll}</p>
      *
      * @param location The location to set
      * @param rotation The rotation to set
@@ -193,8 +189,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      *
      * <p>The format of the rotation is represented by:</p>
      *
-     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
-     * </code></ul>
+     * <p>{@code x -> pitch}, {@code y -> yaw}, {@code z -> roll}</p>
      *
      * @param location The location to set
      * @param rotation The rotation to set
@@ -218,8 +213,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      *
      * <p>The format of the rotation is represented by:</p>
      *
-     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
-     * </code></ul>
+     * <p>{@code x -> pitch}, {@code y -> yaw}, {@code z -> roll}</p>
      *
      * @param location The location to set
      * @param rotation The rotation to set
