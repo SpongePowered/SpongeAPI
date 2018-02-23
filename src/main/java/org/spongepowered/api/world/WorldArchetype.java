@@ -34,6 +34,7 @@ import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.registry.CatalogTypeAlreadyRegisteredException;
 import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.Tristate;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
@@ -49,7 +50,7 @@ public interface WorldArchetype extends CatalogType {
 
     /**
      * Gets a new Builder instance for {@link WorldArchetype}.
-     * 
+     *
      * @return A new builder instance
      */
     static WorldArchetype.Builder builder() {
@@ -76,8 +77,26 @@ public interface WorldArchetype extends CatalogType {
      * Gets whether spawn chunks remain loaded when no players are present.
      *
      * @return True to keep spawn chunks loaded, false if not
+     * @deprecated Use {@link #getKeepSpawnLoaded()} instead
      */
+    @Deprecated
     boolean doesKeepSpawnLoaded();
+
+    /**
+     * Gets whether spawn chunks remain loaded when no players are present.
+     *
+     * <p>{@link Tristate#TRUE TRUE} indicates that the spawn chunks should always remain loaded.</p>
+     *
+     * <p>{@link Tristate#FALSE FALSE} indicates that the spawn chunks should not remain loaded
+     * without players.</p>
+     *
+     * <p>{@link Tristate#UNDEFINED UNDEFINED} indicates that the spawn chunks should remain
+     * loaded as needed. For example, when this is a nether world, the spawn would not remain
+     * loaded; when this is an overworld, the spawn would remain loaded.</p>
+     *
+     * @return A tri-state result as specified above
+     */
+    Tristate getKeepSpawnLoaded();
 
     /**
      * Gets whether spawn chunks will generate on load.
@@ -88,14 +107,14 @@ public interface WorldArchetype extends CatalogType {
 
     /**
      * Gets the seed.
-     * 
+     *
      * @return The seed
      */
     long getSeed();
 
     /**
      * Gets if the seed will be randomized for each world generated.
-     * 
+     *
      * @return If the seed is randomized
      */
     boolean isSeedRandomized();
@@ -109,14 +128,14 @@ public interface WorldArchetype extends CatalogType {
 
     /**
      * Gets the generator type.
-     * 
+     *
      * @return The generator type
      */
     GeneratorType getGeneratorType();
 
     /**
      * Gets an immutable collection of the world generator modifiers.
-     * 
+     *
      * @return The modifiers
      */
     Collection<WorldGeneratorModifier> getGeneratorModifiers();
@@ -125,21 +144,21 @@ public interface WorldArchetype extends CatalogType {
      * Gets whether map features are enabled.
      *
      * <p>Examples include Villages, Temples, etc.</p>
-     * 
+     *
      * @return True if map features are enabled, false if not
      */
     boolean usesMapFeatures();
 
     /**
      * Gets whether hardcore mode is enabled.
-     * 
+     *
      * @return True if hardcore mode is enabled, false if not
      */
     boolean isHardcore();
 
     /**
      * Gets whether commands are allowed.
-     * 
+     *
      * @return True if commands are allowed, false if not
      */
     boolean areCommandsAllowed();
@@ -149,14 +168,14 @@ public interface WorldArchetype extends CatalogType {
      *
      * <p>This only applies on the initial load of the {@link World}
      * created via the {@link WorldProperties} created from this settings.</p>
-     * 
+     *
      * @return True if bonus chest is generated, false if not
      */
     boolean doesGenerateBonusChest();
 
     /**
      * Gets the dimension type.
-     * 
+     *
      * @return The dimension type
      */
     DimensionType getDimensionType();
@@ -223,8 +242,28 @@ public interface WorldArchetype extends CatalogType {
          *
          * @param state Should keep spawn loaded
          * @return The builder, for chaining
+         * @deprecated Use {@link #keepsSpawnLoaded(Tristate)} instead
          */
+        @Deprecated
         Builder keepsSpawnLoaded(boolean state);
+
+        /**
+         * Sets whether the spawn chunks should remain loaded when
+         * no players are present.
+         *
+         * <p>{@link Tristate#TRUE TRUE} indicates that the spawn chunks should always remain loaded.</p>
+         *
+         * <p>{@link Tristate#FALSE FALSE} indicates that the spawn chunks should not remain loaded
+         * without players.</p>
+         *
+         * <p>{@link Tristate#UNDEFINED UNDEFINED} indicates that the spawn chunks should remain
+         * loaded as needed. For example, when this is a nether world, the spawn would not remain
+         * loaded; when this is an overworld, the spawn would remain loaded.</p>
+         *
+         * @param state A tri-state definition as specified above
+         * @return The builder, for chaining
+         */
+        Builder keepsSpawnLoaded(Tristate state);
 
         /**
          * Sets whether the spawn chunks generate on load.
@@ -244,7 +283,7 @@ public interface WorldArchetype extends CatalogType {
 
         /**
          * Sets the seed to be randomized for each world created.
-         * 
+         *
          * @return The builder, for chaining
          */
         Builder randomSeed();
