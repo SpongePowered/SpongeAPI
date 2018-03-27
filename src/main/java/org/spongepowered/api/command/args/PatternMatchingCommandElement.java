@@ -31,6 +31,7 @@ import com.google.common.collect.Iterables;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.text.Text;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
@@ -57,7 +58,8 @@ public abstract class PatternMatchingCommandElement extends CommandElement {
         // We do this because anything with ^[abc] would not match [abc]
         Optional<Object> exactMatch = getExactMatch(choices, unformattedPattern);
         if (exactMatch.isPresent()) {
-            return exactMatch.get();
+            // Return this as a collection as this can get transformed by the subclass.
+            return Collections.singleton(exactMatch.get());
         }
 
         Pattern pattern = getFormattedPattern(unformattedPattern);
