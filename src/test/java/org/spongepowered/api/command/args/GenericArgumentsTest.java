@@ -26,6 +26,7 @@ package org.spongepowered.api.command.args;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.spongepowered.api.command.args.GenericArguments.allOf;
 import static org.spongepowered.api.command.args.GenericArguments.bool;
 import static org.spongepowered.api.command.args.GenericArguments.choices;
@@ -43,18 +44,30 @@ import static org.spongepowered.api.command.args.GenericArguments.string;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
+import org.spongepowered.api.Game;
+import org.spongepowered.api.Server;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.command.args.parsing.SingleArg;
 import org.spongepowered.api.command.spec.CommandExecutor;
 import org.spongepowered.api.command.spec.CommandSpec;
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.text.TestPlainTextSerializer;
 import org.spongepowered.api.text.Text;
+
+import java.lang.reflect.Field;
+import java.util.Collection;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 /**
@@ -216,4 +229,50 @@ public class GenericArgumentsTest {
         assertEquals("one", parseForInput("one", remainingJoined).getOne("val").get());
         assertEquals("one big string", parseForInput("one big string", remainingJoined).getOne("val").get());
     }
+
+    private CommandElement getPlayerElement() throws Exception {
+        // Create two fake players
+        Player player1 = Mockito.mock(Player.class);
+        Mockito.when(player1.getName()).thenReturn("test1");
+        Player player2 = Mockito.mock(Player.class);
+        Mockito.when(player2.getName()).thenReturn("test2");
+
+        Server mock = Mockito.mock(Server.class);
+        Mockito.when(mock.getOnlinePlayers()).thenReturn(Lists.newArrayList(player1, player2));
+        Mockito.when(mock.getPlayer(Mockito.anyString())).thenReturn(Optional.empty());
+        Mockito.when(mock.getPlayer("test1")).thenReturn(Optional.of(player1));
+        Mockito.when(mock.getPlayer("test2")).thenReturn(Optional.of(player2));
+
+        Game gameMock = Mockito.mock(Game.class);
+        Mockito.when(gameMock.getServer()).thenReturn(mock);
+        Field field = Sponge.class.getDeclaredField("game");
+        field.setAccessible(true);
+        field.set(null, gameMock);
+
+        // Create element
+        return GenericArguments.player(Text.of("player"));
+    }
+
+    @Test
+    public void testGettingSinglePlayer() throws Exception {
+        CommandArgs args = new CommandArgs("test1", Lists.newArrayList(new SingleArg("test1", 0, 5)));
+        CommandContext context = new CommandContext();
+        CommandSource source = Mockito.mock(CommandSource.class);
+        getPlayerElement().parse(source, args, context);
+        assertEquals("test1", context.<Player>getOne(Text.of("player")).get().getName());
+    }
+
+    @Test
+    public void testGettingBothPlayers() throws Exception {
+        CommandArgs args = new CommandArgs("test", Lists.newArrayList(new SingleArg("test", 0, 5)));
+        CommandContext context = new CommandContext();
+        CommandSource source = Mockito.mock(CommandSource.class);
+        getPlayerElement().parse(source, args, context);
+        Collection<Player> cpl = context.getAll(Text.of("player"));
+        assertEquals(2, cpl.size());
+        Collection<String> s = cpl.stream().map(User::getName).collect(Collectors.toList());
+        assertTrue(s.contains("test1"));
+        assertTrue(s.contains("test2"));
+    }
+
 }
