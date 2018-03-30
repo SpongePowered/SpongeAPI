@@ -667,6 +667,16 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
     boolean containsInventory(Inventory inventory);
 
     /**
+     * Transforms this inventory using the given transformation.
+     *
+     * @param transformation The transformation
+     * @return The transformed Inventory
+     */
+    default Inventory transform(InventoryTransformation transformation) {
+        return transformation.transform(this);
+    }
+
+    /**
      * A Builder for Inventories based on {@link InventoryArchetype}s.
      */
     interface Builder extends ResettableBuilder<Inventory, Builder> {
