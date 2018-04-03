@@ -1131,7 +1131,7 @@ public final class GenericArguments {
         @Override
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
             try {
-                return Iterables.filter((Iterable<Entity>) super.parseValue(source, args), e -> e instanceof User);
+                return Iterables.filter((Iterable<User>) super.parseValue(source, args), e -> e instanceof User);
             } catch (ArgumentParseException ex2) {
                 if (this.returnSource && source instanceof User) {
                     return source;
@@ -1161,10 +1161,15 @@ public final class GenericArguments {
             if (getKey() != null && !context.hasAny(CommandContext.TAB_COMPLETION)) {
                 Object state = args.getState();
                 String element = args.next();
-                Optional<User> match = Sponge.getServiceManager().provideUnchecked(UserStorageService.class).get(element);
-                if (match.isPresent()) {
-                    context.putArg(getKey(), match.get());
-                    return;
+                try {
+                    Optional<User> match = Sponge.getServiceManager().provideUnchecked(UserStorageService.class).get(element);
+                    if (match.isPresent()) {
+                        context.putArg(getKey(), match.get());
+                        return;
+                    }
+                } catch (IllegalArgumentException ignored) {
+                    // Intentionally ignored
+                    // If it's not an exact match, we just let this carry on to parse using the pattern element
                 }
 
                 args.setState(state);
