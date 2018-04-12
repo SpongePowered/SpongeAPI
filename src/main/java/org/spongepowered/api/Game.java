@@ -25,6 +25,7 @@
 package org.spongepowered.api;
 
 import org.spongepowered.api.asset.AssetManager;
+import org.spongepowered.api.client.Client;
 import org.spongepowered.api.command.CommandManager;
 import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataManager;
@@ -86,7 +87,6 @@ public interface Game {
      */
     Path getSavesDirectory();
 
-
     /**
      * Returns if the {@link Server} is available for use. The result of this method is entirely
      * dependent on the implementation.
@@ -103,6 +103,50 @@ public interface Game {
      */
     Server getServer();
 
+    /**
+     * Gets the {@link Server}, if it's available.
+     *
+     * @return The server
+     */
+    default Optional<Server> optionalServer() {
+        if (this.isServerAvailable()) {
+            return Optional.of(this.getServer());
+        }
+        return Optional.empty();
+    }
+
+    /**
+     * Returns if the {@link Client} is available for use. The result of this method is entirely
+     * dependent on the implementation.
+     *
+     * @return True if the Client is available, false if not
+     */
+    default boolean isClientAvailable() {
+        return false;
+    }
+
+    /**
+     * Gets the {@link Client}.
+     *
+     * @return The client
+     * @throws UnsupportedEngineException If the client engine is not supported
+     * @throws IllegalStateException If the Client isn't currently available
+     */
+    default Client getClient() {
+        return Client.unsupportedEngine();
+    }
+
+    /**
+     * Gets the {@link Client}, if it's available.
+     *
+     * @return The client
+     */
+    default Optional<Client> optionalClient() {
+        if (this.isClientAvailable()) {
+            return Optional.of(this.getClient());
+        }
+        return Optional.empty();
+    }
 
     /**
      * Retrieves the GameDictionary (item dictionary) for this {@link Game}.
@@ -112,7 +156,6 @@ public interface Game {
     default Optional<GameDictionary> getGameDictionary() {
         return Optional.empty();
     }
-
 
     /**
      * Returns the current platform, or implementation, this {@link Game} is running on.
@@ -217,7 +260,9 @@ public interface Game {
      * Gets the scheduler used to schedule tasks.
      *
      * @return The scheduler
+     * @deprecated Use {@link Server#getScheduler()} or {@link Client#getScheduler()}
      */
+    @Deprecated
     default Scheduler getScheduler() {
         return Sponge.getScheduler();
     }

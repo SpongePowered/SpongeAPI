@@ -38,8 +38,12 @@ public interface Scheduler {
      * Gets a new instance of a {@link Task.Builder}.
      *
      * @return A new task builder
+     * @deprecated Use {@link Task#builder()}
      */
-    Task.Builder createTaskBuilder();
+    @Deprecated
+    default Task.Builder createTaskBuilder() {
+        return Task.builder();
+    }
 
     /**
      * Retrieves a scheduled or running task by its unique ID.
@@ -111,4 +115,15 @@ public interface Scheduler {
      * @see Task.Builder#async()
      */
     SpongeExecutorService createAsyncExecutor(Object plugin);
+
+    /**
+     * Submit a task to the scheduler.
+     *
+     * <p>For convenience, the same task is returned to you.</p>
+     *
+     * @param plugin The plugin
+     * @param task The task
+     * @return The task
+     */
+    Task submit(final Object plugin, final Task task);
 }

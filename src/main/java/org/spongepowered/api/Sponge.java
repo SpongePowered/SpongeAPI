@@ -28,6 +28,7 @@ import static com.google.common.base.Preconditions.checkState;
 
 import com.google.inject.Inject;
 import org.spongepowered.api.asset.AssetManager;
+import org.spongepowered.api.client.Client;
 import org.spongepowered.api.command.CommandManager;
 import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataManager;
@@ -65,7 +66,7 @@ public final class Sponge {
     @Inject private static ConfigManager configManager;
     @Inject private static CommandManager commandManager;
     @Inject private static ServiceManager serviceManager;
-    @Inject private static Scheduler scheduler;
+    @Deprecated @Inject private static Scheduler scheduler;
     @Inject private static ChannelRegistrar channelRegistrar;
 
     @Inject private static TeleportHelper teleportHelper;
@@ -75,7 +76,6 @@ public final class Sponge {
         checkState(instance != null, "Sponge has not been initialized!");
         return instance;
     }
-
 
     /**
      * Gets the {@link Game} instance. There is ever only going
@@ -99,7 +99,6 @@ public final class Sponge {
         return check(platform);
     }
 
-
     /**
      * Gets the {@link GameRegistry} instance.
      *
@@ -118,7 +117,6 @@ public final class Sponge {
         return check(dataManager);
     }
 
-
     /**
      * Gets the {@link PropertyRegistry} instance to register
      * {@link PropertyStore}s.
@@ -128,7 +126,6 @@ public final class Sponge {
     public static PropertyRegistry getPropertyRegistry() {
         return check(propertyRegistry);
     }
-
 
     /**
      * Gets the {@link PluginManager} instance.
@@ -192,7 +189,9 @@ public final class Sponge {
      * Gets the scheduler used to schedule tasks.
      *
      * @return The scheduler
+     * @deprecated Use {@link Server#getScheduler()} or {@link Client#getScheduler()}
      */
+    @Deprecated
     public static Scheduler getScheduler() {
         return check(scheduler);
     }
@@ -214,7 +213,6 @@ public final class Sponge {
     public static TeleportHelper getTeleportHelper() {
         return check(teleportHelper);
     }
-
 
     /**
      * Gets whether a {@link Server} instance is available without throwing an
@@ -244,6 +242,48 @@ public final class Sponge {
         return getGame().getServer();
     }
 
+    /**
+     * Gets the {@link Server}, if it's available.
+     *
+     * @return The server
+     * @see Game#optionalServer()
+     */
+    public static Optional<Server> optionalServer() {
+        return getGame().optionalServer();
+    }
+
+    /**
+     * Gets whether a {@link Client} instance is available without throwing an
+     * exception from calling {@link #getClient()}.
+     *
+     * @return True if the client instance is available
+     * @see Game#isClientAvailable()
+     */
+    public static boolean isClientAvailable() {
+        return getGame().isClientAvailable();
+    }
+
+    /**
+     * Gets the {@link Client} instance from the
+     * {@link Game} instance.
+     *
+     * @return The client instance
+     * @throws UnsupportedEngineException If the client engine is not supported
+     * @see Game#getClient()
+     */
+    public static Client getClient() {
+        return getGame().getClient();
+    }
+
+    /**
+     * Gets the {@link Client}, if it's available.
+     *
+     * @return The client
+     * @see Game#optionalClient()
+     */
+    public static Optional<Client> optionalClient() {
+        return getGame().optionalClient();
+    }
 
     /**
      * Gets the {@link GameDictionary} instance from the

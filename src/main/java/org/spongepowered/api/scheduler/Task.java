@@ -220,6 +220,13 @@ public interface Task extends Identifiable {
         Builder name(String name);
 
         /**
+         * Builds the task.
+         *
+         * @return The task
+         */
+        Task build();
+
+        /**
          * Submits the task to the scheduler and returns the task that was
          * created.
          *
@@ -228,7 +235,10 @@ public interface Task extends Identifiable {
          * @throws IllegalArgumentException If the object passed in is not
          *     a plugin instance
          * @throws IllegalStateException If the builder is incomplete
+         * @deprecated {@link #build()} and {@link Scheduler#submit(Object, Task)}
+         *     to the appropriate scheduler
          */
+        @Deprecated
         Task submit(Object plugin);
 
     }
