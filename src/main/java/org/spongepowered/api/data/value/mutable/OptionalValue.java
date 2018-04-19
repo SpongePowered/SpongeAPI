@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.data.value.mutable;
 
+import org.spongepowered.api.data.value.immutable.ImmutableOptionalValue;
+
 import java.util.Optional;
 
 import javax.annotation.Nullable;
@@ -58,5 +60,8 @@ public interface OptionalValue<E> extends Value<Optional<E>> {
      * @return A new {@link Value} with a non-null value
      */
     Value<E> or(E defaultValue);
+
+    @Override
+    ImmutableOptionalValue<E> asImmutable();
 
 }
