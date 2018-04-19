@@ -24,14 +24,18 @@
  */
 package org.spongepowered.api.entity.living.player;
 
+import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.manipulator.mutable.entity.StatisticData;
 import org.spongepowered.api.entity.ArmorEquipable;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.Tamer;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.permission.Subject;
+import org.spongepowered.api.world.Location;
 
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * A User is the data usually associated with a Player that is persisted
@@ -69,6 +73,58 @@ public interface User extends DataHolder, ArmorEquipable, Tamer, Subject {
      * @return The associated online Player, if available
      */
     Optional<Player> getPlayer();
+
+    /**
+     * Gets the position of this User
+     *
+     * @return The position of this User
+     */
+    Vector3d getPosition();
+
+    /**
+     * Gets the World UUID of this User.
+     *
+     * <p>May return empty when the world the player is in does not exist anymore</p>
+     *
+     * @return The World UUID of this User if found
+     */
+    Optional<UUID> getWorldUniqueId();
+
+    /**
+     * Sets the position and world of this User.
+     *
+     * <p>The UUID must belong to an existing world.</p>
+     *
+     * <p>When the User {@link #isOnline()} this redirects to {@link Entity#setLocation(Location)}</p>
+     *
+     * @param position The position to set
+     * @param world The world UUID to set
+     *
+     * @throws IllegalArgumentException When the UUID does not belong to an existing world.
+     */
+    boolean setLocation(Vector3d position, UUID world);
+
+    /**
+     * Sets the rotation of this entity.
+     *
+     * <p>The format of the rotation is represented by:</p>
+     *
+     * <p>{@code x -> pitch}, {@code y -> yaw}, {@code z -> roll}</p>
+     *
+     * @param rotation The rotation to set the entity to
+     */
+    void setRotation(Vector3d rotation);
+
+    /**
+     * Gets the rotation.
+     *
+     * <p>The format of the rotation is represented by:</p>
+     *
+     * <p>{@code x -> pitch}, {@code y -> yaw}, {@code z -> roll}</p>
+     *
+     * @return The rotation
+     */
+    Vector3d getRotation();
 
     /**
      * Gets a copy of the {@link StatisticData} for this user.
