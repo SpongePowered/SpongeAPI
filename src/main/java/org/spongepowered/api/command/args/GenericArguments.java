@@ -332,17 +332,19 @@ public final class GenericArguments {
                 Object state = args.getState();
                 try {
                     element.parse(src, args, context);
-                    if (args.getState().equals(state) || !args.hasNext()) {
-                        completions.addAll(element.complete(src, args, context));
-                        args.setState(state);
-                    } else {
-                        completions.clear();
+                    if (args.hasNext()) {
+                        if (args.getState().equals(state)) {
+                            completions.addAll(element.complete(src, args, context));
+                            args.setState(state);
+                        } else {
+                            completions.clear();
+                        }
+                        continue;
                     }
-                } catch (ArgumentParseException e) {
-                    args.setState(state);
-                    completions.addAll(element.complete(src, args, context));
-                    break;
-                }
+                } catch (ArgumentParseException ignored) {}
+                args.setState(state);
+                completions.addAll(element.complete(src, args, context));
+                break;
             }
             return Lists.newArrayList(completions);
         }
