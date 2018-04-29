@@ -329,21 +329,20 @@ public final class GenericArguments {
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
             Set<String> completions = Sets.newHashSet();
             for (CommandElement element : elements) {
-                Object start = args.getState();
+                Object state = args.getState();
                 try {
                     element.parse(src, args, context);
-                    if (args.hasNext()) {
-                        if (start.equals(args.getState())) {
-                            completions.addAll(element.complete(src, args, context));
-                        } else if (!completions.isEmpty()) {
-                            completions.clear();
-                        }
-                        continue;
+                    if (args.getState().equals(state) || !args.hasNext()) {
+                        completions.addAll(element.complete(src, args, context));
+                        args.setState(state);
+                    } else {
+                        completions.clear();
                     }
-                } catch (ArgumentParseException ignored) {}
-                args.setState(start);
-                completions.addAll(element.complete(src, args, context));
-                break;
+                } catch (ArgumentParseException e) {
+                    args.setState(state);
+                    completions.addAll(element.complete(src, args, context));
+                    break;
+                }
             }
             return Lists.newArrayList(completions);
         }
