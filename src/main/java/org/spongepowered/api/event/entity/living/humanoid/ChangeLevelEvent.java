@@ -25,13 +25,17 @@
 package org.spongepowered.api.event.entity.living.humanoid;
 
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.entity.ChangeEntityExperienceEvent;
 import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 /**
  * Called when a human's level is changed.
+ *
+ * @deprecated Use {@link ChangeEntityExperienceEvent} instead
  */
 @GenerateFactoryMethod
+@Deprecated
 public interface ChangeLevelEvent extends TargetHumanoidEvent, Cancellable {
 
     /**

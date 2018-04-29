@@ -24,33 +24,70 @@
  */
 package org.spongepowered.api.event.entity;
 
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableExperienceHolderData;
+import org.spongepowered.api.data.manipulator.mutable.entity.ExperienceHolderData;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.util.annotation.eventgen.AbsoluteSortPosition;
+import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 
 /**
  * An event that is related to experience.
  */
 public interface ChangeEntityExperienceEvent extends TargetEntityEvent, Cancellable {
 
+    @Override
+    Player getTargetEntity();
+
     /**
      * Gets the original experience unmodified by event changes.
      *
      * @return The experience
      */
-    int getOriginalExperience();
+    @PropertySettings(generateMethods = false, requiredParameter = false)
+    @Deprecated
+    default int getOriginalExperience() {
+        return getOriginalData().totalExperience().get();
+    }
 
     /**
-     * Gets the experience after an event has been processed.
+     * Gets the original values for the experience unmodified by event changes.
+     *
+     * @return The experience data
+     */
+    @AbsoluteSortPosition(1)
+    ImmutableExperienceHolderData getOriginalData();
+
+    /**
+     * Gets the original experience unmodified by event changes.
+     *
+     * @return The experience
+     */
+    @PropertySettings(generateMethods = false, requiredParameter = false)
+    @Deprecated
+    default int getExperience() {
+        return getFinalData().totalExperience().get();
+    }
+
+    /**
+     * Gets the original experience unmodified by event changes.
+     *
+     * @return The experience
+     */
+    @PropertySettings(generateMethods = false, requiredParameter = false)
+    @Deprecated
+    default void setExperience(int experience) {
+        getFinalData().set(Keys.TOTAL_EXPERIENCE, experience);
+    }
+
+    /**
+     * Gets the experience after an event has been processed. Modify this
+     * data manipulator to change the final experience.
      *
      * @return The experience to receive
      */
-    int getExperience();
-
-    /**
-     * Sets the amount of experience after an event has been processed.
-     * Negative values will remove experience.
-     *
-     * @param exp The experience to give or take
-     */
-    void setExperience(int exp);
+    @AbsoluteSortPosition(2)
+    ExperienceHolderData getFinalData();
 
 }
