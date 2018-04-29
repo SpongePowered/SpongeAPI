@@ -27,23 +27,22 @@ package org.spongepowered.api.event.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableExperienceHolderData;
 import org.spongepowered.api.data.manipulator.mutable.entity.ExperienceHolderData;
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
 import org.spongepowered.api.util.annotation.eventgen.AbsoluteSortPosition;
 import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 
 /**
  * An event that is related to experience.
  */
-public interface ChangeEntityExperienceEvent extends TargetEntityEvent, Cancellable {
-
-    @Override
-    Player getTargetEntity();
+public interface ChangeEntityExperienceEvent extends TargetPlayerEvent, Cancellable {
 
     /**
-     * Gets the original experience unmodified by event changes.
+     * Gets the original total experience unmodified by event changes.
      *
      * @return The experience
+     * @deprecated Use {@link #getOriginalData()} instead, which provides more
+     * information about the experience.
      */
     @PropertySettings(generateMethods = false, requiredParameter = false)
     @Deprecated
@@ -60,9 +59,11 @@ public interface ChangeEntityExperienceEvent extends TargetEntityEvent, Cancella
     ImmutableExperienceHolderData getOriginalData();
 
     /**
-     * Gets the original experience unmodified by event changes.
+     * Gets the total experience after event changes.
      *
      * @return The experience
+     * @deprecated Use {@link #getFinalData()} instead, which provides more
+     * information about the experience.
      */
     @PropertySettings(generateMethods = false, requiredParameter = false)
     @Deprecated
@@ -71,9 +72,11 @@ public interface ChangeEntityExperienceEvent extends TargetEntityEvent, Cancella
     }
 
     /**
-     * Gets the original experience unmodified by event changes.
+     * Sets the final total experience after event changes.
      *
-     * @return The experience
+     * @param experience The experience
+     * @deprecated Modify the value returned by {@link #getFinalData()}
+     * instead, which provides more information about the experience.
      */
     @PropertySettings(generateMethods = false, requiredParameter = false)
     @Deprecated
