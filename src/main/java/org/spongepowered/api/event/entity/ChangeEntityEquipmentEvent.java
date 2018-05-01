@@ -33,12 +33,14 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.entity.living.TargetLivingEvent;
 import org.spongepowered.api.event.entity.living.humanoid.TargetHumanoidEvent;
 import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
+import org.spongepowered.api.event.impl.AbstractChangeEntityEquipmentEvent;
 import org.spongepowered.api.event.item.inventory.TargetInventoryEvent;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
-import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
+import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
+import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 
 import java.util.Optional;
 
@@ -46,13 +48,10 @@ import java.util.Optional;
  * Called when an entity changes an equipped item. This can occur whenever
  * a {@link Slot} belonging to an {@link Inventory} of an {@link Entity}
  * is filled with an {@link ItemStack}, emptied of an {@link ItemStack},
- * or swapped with an {@link ItemStack}. The requirement of course is
- * that if the {@link #getOriginalItemStack()} is {@link Optional#empty()}, then
- * the {@link #getItemStack()} must be present, and vice versa. In the event
- * that a change to the suggested {@link ItemStack}, the use of the
- * {@link Transaction} is recommended.
+ * or swapped with an {@link ItemStack}. In the event that a change to the
+ * {@link ItemStack}, the use of the {@link Transaction} is recommended.
  */
-@GenerateFactoryMethod
+@ImplementedBy(AbstractChangeEntityEquipmentEvent.class)
 public interface ChangeEntityEquipmentEvent extends TargetEntityEvent, TargetInventoryEvent, Cancellable {
 
     /**
@@ -62,7 +61,10 @@ public interface ChangeEntityEquipmentEvent extends TargetEntityEvent, TargetInv
      * <p>The previously equipped item may have been empty.</p>
      *
      * @return The original itemstack, if available
+     * @deprecated Use {@link #getTransaction()} instead
      */
+    @Deprecated
+    @PropertySettings(requiredParameter = false, generateMethods = false)
     Optional<ItemStackSnapshot> getOriginalItemStack();
 
     /**
@@ -72,8 +74,22 @@ public interface ChangeEntityEquipmentEvent extends TargetEntityEvent, TargetInv
      * <p>The itemstack may not exist or the slot is being emptied.</p>
      *
      * @return The new item stack, if available
+     * @deprecated Use {@link #getTransaction()} instead
      */
+    @Deprecated
+    @PropertySettings(requiredParameter = false, generateMethods = false)
     Optional<Transaction<ItemStackSnapshot>> getItemStack();
+
+    /**
+     * Gets the {@link Transaction} of {@link ItemStackSnapshot}s for this event.
+     *
+     * @return The transaction of the item
+     */
+    default Transaction<ItemStackSnapshot> getTransaction() {
+        @SuppressWarnings("deprecation")
+        Optional<Transaction<ItemStackSnapshot>> optional = this.getItemStack();
+        return optional.orElseThrow(() -> new IllegalStateException("No transaction available!"));
+    }
 
     @Override
     Slot getTargetInventory();
