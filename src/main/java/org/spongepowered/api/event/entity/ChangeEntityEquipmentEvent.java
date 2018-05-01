@@ -85,6 +85,7 @@ public interface ChangeEntityEquipmentEvent extends TargetEntityEvent, TargetInv
      *
      * @return The transaction of the item
      */
+    @PropertySettings(generateMethods = false)
     default Transaction<ItemStackSnapshot> getTransaction() {
         @SuppressWarnings("deprecation")
         Optional<Transaction<ItemStackSnapshot>> optional = this.getItemStack();

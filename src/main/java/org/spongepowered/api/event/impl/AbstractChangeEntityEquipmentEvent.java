@@ -48,4 +48,9 @@ public abstract class AbstractChangeEntityEquipmentEvent extends AbstractEvent i
     public Optional<Transaction<ItemStackSnapshot>> getItemStack() {
         return Optional.of(this.getTransaction());
     }
+
+    @Override
+    public Transaction<ItemStackSnapshot> getTransaction() {
+        return this.transaction;
+    }
 }
