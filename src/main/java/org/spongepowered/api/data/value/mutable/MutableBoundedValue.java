@@ -36,4 +36,7 @@ public interface MutableBoundedValue<E> extends BoundedValue<E>, Value<E> {
 
     @Override
     ImmutableBoundedValue<E> asImmutable();
+
+    @Override
+    MutableBoundedValue<E> copy();
 }
