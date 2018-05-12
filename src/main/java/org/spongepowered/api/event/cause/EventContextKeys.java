@@ -71,6 +71,8 @@ public final class EventContextKeys {
 
     public static final EventContextKey<World> LIQUID_BREAK = createFor("LIQUID_BREAK");
 
+    public static final EventContextKey<World> LIQUID_FLOW = createFor("LIQUID_FLOW");
+
     public static final EventContextKey<World> LIQUID_MIX = createFor("LIQUID_MIX");
 
     public static final EventContextKey<User> NOTIFIER = createFor("NOTIFIER");
