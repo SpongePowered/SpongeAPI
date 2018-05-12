@@ -59,4 +59,6 @@ public interface OptionalValue<E> extends Value<Optional<E>> {
      */
     Value<E> or(E defaultValue);
 
+    @Override
+    OptionalValue<E> copy();
 }
