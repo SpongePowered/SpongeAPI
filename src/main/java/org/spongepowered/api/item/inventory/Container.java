@@ -67,4 +67,17 @@ public interface Container extends Interactable {
      */
     void close(Player viewer) throws IllegalArgumentException;
 
+    /**
+     * Returns whether given slot is part of the viewed inventories
+     * but not part of the viewers own inventory.
+     *
+     * <p>Examples for viewed inventory slots:</p>
+     * <p>All the slots of the opened chest and not the player grid below.</p>
+     * <p>The slots of the crafting grid in the opened player inventory.</p>
+     *
+     * @param slot The slot to check.
+     * @return {@code true} when the slot is part of the viewed inventories.
+     */
+    boolean isViewedSlot(Slot slot);
+
 }
