@@ -28,8 +28,10 @@ import org.spongepowered.api.block.tileentity.MobSpawner;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.entity.spawn.SpawnTypes;
+import org.spongepowered.api.event.impl.AbstractSpawnEntityEvent;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
+import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
 
 /**
  * Raised when an {@link Entity} is spawned. This usually follows the chain of
@@ -44,6 +46,7 @@ import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
  * recommended event to interact with connecting players.</p>
  */
 @GenerateFactoryMethod
+@ImplementedBy(AbstractSpawnEntityEvent.class)
 public interface SpawnEntityEvent extends AffectEntityEvent {
 
     interface ChunkLoad extends SpawnEntityEvent {}
