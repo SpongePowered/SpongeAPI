@@ -30,7 +30,10 @@ import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 import org.spongepowered.api.entity.projectile.DamagingProjectile;
 
 /**
- * Represents an Arrow.
+ * Base interface representing an Arrow. You should not launch an Arrow, but instead on of its sub-interface (like {@link TippedArrow}).
+ *
+ * @see TippedArrow
+ * @see SpectralArrow
  */
 public interface Arrow extends DamagingProjectile {
 

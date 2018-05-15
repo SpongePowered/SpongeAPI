@@ -24,6 +24,13 @@
  */
 package org.spongepowered.api.entity.projectile.arrow;
 
+import org.spongepowered.api.effect.potion.PotionEffectType;
+
+/**
+ * Represents an {@link Arrow} which can have a {@link PotionEffectType} applied.
+ *
+ * @see SpectralArrow
+ */
 public interface TippedArrow extends Arrow {
 
 }

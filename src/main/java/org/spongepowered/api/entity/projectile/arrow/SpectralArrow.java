@@ -24,6 +24,11 @@
  */
 package org.spongepowered.api.entity.projectile.arrow;
 
-public interface SpectralArrow {
+import org.spongepowered.api.effect.potion.PotionEffectTypes;
+
+/**
+ * An {@link Arrow} applying the {@link PotionEffectTypes#GLOWING} effect on hit.
+ */
+public interface SpectralArrow extends Arrow {
 
 }
