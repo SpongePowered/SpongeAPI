@@ -152,4 +152,7 @@ public interface CollectionValue<E, C extends Collection<E>, V extends Collectio
 
     @Override
     I asImmutable();
+
+    @Override
+    V copy();
 }

@@ -64,4 +64,13 @@ public interface Value<E> extends BaseValue<E> {
      * @return A new {@link ImmutableValue} instance
      */
     ImmutableValue<E> asImmutable();
+
+    /**
+     * Makes an independent copy of this {@link Value} with the same initial
+     * data. Both this value and the new value will refer to the same object
+     * initially.
+     *
+     * @return A new copy of this {@link Value}
+     */
+    Value<E> copy();
 }
