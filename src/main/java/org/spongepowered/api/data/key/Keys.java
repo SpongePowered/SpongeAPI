@@ -2083,7 +2083,7 @@ public final class Keys {
      *     https://minecraft.gamepedia.com/Scoreboard#Tags</a>
      * @see TagData#tags()
      */
-    public static final Key<SetValue<String>> TAGS = KeyFactory.fake("TAGS");
+    public static final Key<SetValue<String>> TAGS = DummyObjectProvider.createExtendedFor(Key.class, "TAGS");
 
     /**
      * Represents the {@link Key} for the owner uuid of a tamed {@link Animal}.
