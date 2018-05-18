@@ -32,6 +32,8 @@ public final class TeleportTypes {
 
     public static final TeleportType COMMAND = DummyObjectProvider.createFor(TeleportType.class, "COMMAND");
 
+    public static final TeleportType CHORUS_FRUIT = DummyObjectProvider.createFor(TeleportType.class, "CHORUS_FRUIT");
+
     public static final TeleportType ENTITY_TELEPORT = DummyObjectProvider.createFor(TeleportType.class, "ENTITY_TELEPORT");
 
     public static final TeleportType PLUGIN = DummyObjectProvider.createFor(TeleportType.class, "PLUGIN");
