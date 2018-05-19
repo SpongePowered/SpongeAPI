@@ -45,6 +45,8 @@ public final class DamageSources {
 
     // SORTFIELDS:ON
 
+    public static final DamageSource DRAGON_BREATH = DummyObjectProvider.createFor(DamageSource.class, "DRAGON_BREATH");
+
     public static final DamageSource DROWNING = DummyObjectProvider.createFor(DamageSource.class, "DROWNING");
 
     public static final DamageSource FALLING = DummyObjectProvider.createFor(DamageSource.class, "FALLING");
@@ -62,6 +64,12 @@ public final class DamageSources {
     public static final DamageSource STARVATION = DummyObjectProvider.createFor(DamageSource.class, "STARVATION");
 
     public static final DamageSource VOID = DummyObjectProvider.createFor(DamageSource.class, "VOID");
+
+    /**
+     * Generally used to describe the damage taken when colliding into a wall
+     * while flying with an elytra.
+     */
+    public static final DamageSource WALL_COLLISION = DummyObjectProvider.createFor(DamageSource.class, "WALL_COLLISION");
 
     public static final DamageSource WITHER = DummyObjectProvider.createFor(DamageSource.class, "WITHER");
 
