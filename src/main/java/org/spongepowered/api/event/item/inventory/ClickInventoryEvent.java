@@ -61,6 +61,29 @@ public interface ClickInventoryEvent extends ChangeInventoryEvent, InteractInven
         interface Middle extends Drag, ClickInventoryEvent.Middle {}
     }
 
+    /**
+     * Fires when the client requests a recipe to be crafted.
+     */
+    interface Recipe extends ClickInventoryEvent {
+
+        /**
+         * Returns the requested recipe.
+         *
+         * @return The requested recipe.
+         */
+        org.spongepowered.api.item.recipe.Recipe getRecipe();
+
+        /**
+         * Fires when the Client requests a recipe to be crafted once.
+         */
+        interface Single extends Recipe {}
+
+        /**
+         * Fires when the client requests a recipe to be crafted as much as possible.
+         */
+        interface All extends Recipe {}
+    }
+
     interface NumberPress extends ClickInventoryEvent {
         int getNumber();
     }
