@@ -29,24 +29,33 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableSkinData;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.living.Humanoid;
+import org.spongepowered.api.profile.GameProfile;
+import org.spongepowered.api.profile.property.ProfileProperty;
 
 import java.util.UUID;
 
 /**
  * Represents the UUID of the skin for a {@link Humanoid}.
  *
- * <p>Unfortunately the actual binary data for the skin is not able to be
- * manipulated because it must be signed on mojang's server.</p>
+ * <p>In order to be accepted by the client, all skins must be
+ * signed by Mojang.</p>
+ *
+ * <p>SkinData should be used instead of manipulating a {@link Humanoid}'s
+ * {@link GameProfile}. This ensures that the {@link Humanoid}'s skin is
+ * properly updated on all viewing clients.</p>
  */
 public interface SkinData extends DataManipulator<SkinData, ImmutableSkinData> {
 
     /**
-     * Gets the {@link Value} for the {@link UUID} of the skin to display on a
+     * Gets the {@link Value} for the {@link ProfileProperty} of the skin to display on a
      * {@link Humanoid} entity for customization.
      *
+     * <p>The name of the {@link ProfileProperty} MUST be {@link ProfileProperty#TEXTURES},
+     * and have a valid signature, in order to be accepted by the client.</p>
+     *
      * @return The value for the skin uuid
-     * @see Keys#SKIN_UNIQUE_ID
+     * @see Keys#SKIN
      */
-    Value<UUID> skinUniqueId();
+    Value<ProfileProperty> skin();
 
 }

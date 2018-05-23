@@ -25,6 +25,8 @@
 package org.spongepowered.api.profile.property;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.manipulator.mutable.entity.SkinData;
+import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.profile.GameProfile;
 
 import java.util.Optional;
@@ -40,6 +42,12 @@ import javax.annotation.Nullable;
  * @see #of(String, String, String)
  */
 public interface ProfileProperty {
+
+    /**
+     * The name of the special 'textures' property. This is
+     * used with {@link SkinData} to set the skin of a {@link Humanoid}
+     */
+    static String TEXTURES = "textures";
 
     /**
      * Creates a new property.
