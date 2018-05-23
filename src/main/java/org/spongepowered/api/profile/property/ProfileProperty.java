@@ -25,6 +25,9 @@
 package org.spongepowered.api.profile.property;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.manipulator.mutable.entity.SkinData;
+import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.profile.GameProfile;
 
 import java.util.Optional;
@@ -39,7 +42,14 @@ import javax.annotation.Nullable;
  * @see #of(String, String)
  * @see #of(String, String, String)
  */
-public interface ProfileProperty {
+public interface ProfileProperty extends DataSerializable {
+
+    /**
+     * The name of the {@code textures} property.
+     *
+     * <p>This is used with {@link SkinData} to set the skin of a {@link Humanoid}.</p>
+     */
+    static String TEXTURES = "textures";
 
     /**
      * Creates a new property.
