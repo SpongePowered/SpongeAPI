@@ -32,8 +32,6 @@ import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.profile.property.ProfileProperty;
 
-import java.util.UUID;
-
 /**
  * Represents the skin data for a {@link Humanoid}.
  *
@@ -53,7 +51,7 @@ public interface SkinData extends DataManipulator<SkinData, ImmutableSkinData> {
      * <p>The name of the {@link ProfileProperty} MUST be {@link ProfileProperty#TEXTURES},
      * and have a valid signature, in order to be accepted by the client.</p>
      *
-     * @return The value for the skin uuid
+     * @return The value for the skin property
      * @see Keys#SKIN
      */
     Value<ProfileProperty> skin();

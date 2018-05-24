@@ -51,7 +51,7 @@ public interface ImmutableSkinData extends ImmutableDataManipulator<ImmutableSki
      * <p>The name of the {@link ProfileProperty} MUST be {@link ProfileProperty#TEXTURES},
      * and have a valid signature, in order to be accepted by the client.</p>
      *
-     * @return The value for the skin uuid
+     * @return The value for the skin property
      * @see Keys#SKIN
      */
     ImmutableValue<ProfileProperty> skin();
