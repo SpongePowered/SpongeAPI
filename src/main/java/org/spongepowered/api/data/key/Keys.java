@@ -1826,7 +1826,7 @@ public final class Keys {
      *
      * @see SkinData#skin()
      */
-    public static final Key<Value<ProfileProperty>> SKIN = DummyObjectProvider.createExtendedFor(Key.class,"SKIN_UNIQUE_ID");
+    public static final Key<Value<ProfileProperty>> SKIN = DummyObjectProvider.createExtendedFor(Key.class,"SKIN");
 
     /**
      * Represents the {@link Key} for the type of skull a block or item stack
