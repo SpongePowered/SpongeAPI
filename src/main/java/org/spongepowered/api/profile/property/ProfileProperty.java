@@ -44,8 +44,9 @@ import javax.annotation.Nullable;
 public interface ProfileProperty {
 
     /**
-     * The name of the special 'textures' property. This is
-     * used with {@link SkinData} to set the skin of a {@link Humanoid}
+     * The name of the {@code textures} property.
+     *
+     * This is used with {@link SkinData} to set the skin of a {@link Humanoid}
      */
     static String TEXTURES = "textures";
 

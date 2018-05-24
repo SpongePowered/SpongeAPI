@@ -33,7 +33,7 @@ import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.profile.property.ProfileProperty;
 
 /**
- * Represents the UUID of the skin for a {@link Humanoid}.
+ * Represents the skin data for a {@link Humanoid}.
  *
  * <p>In order to be accepted by the client, all skins must be
  * signed by Mojang.</p>
