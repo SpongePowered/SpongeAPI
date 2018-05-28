@@ -1828,6 +1828,8 @@ public final class Keys {
      */
     public static final Key<Value<ProfileProperty>> SKIN = DummyObjectProvider.createExtendedFor(Key.class,"SKIN");
 
+    public static final Key<Value<Boolean>> UPDATE_GAME_PROFILE = DummyObjectProvider.createExtendedFor(Key.class, "UPDATE_GAME_PROFILE");
+
     /**
      * Represents the {@link Key} for the type of skull a block or item stack
      * has.

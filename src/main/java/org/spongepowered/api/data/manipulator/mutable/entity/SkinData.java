@@ -28,7 +28,9 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableSkinData;
 import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.living.Humanoid;
+import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.profile.property.ProfileProperty;
 
@@ -55,5 +57,28 @@ public interface SkinData extends DataManipulator<SkinData, ImmutableSkinData> {
      * @see Keys#SKIN
      */
     Value<ProfileProperty> skin();
+
+    /**
+     * Gets the {@Value} for whether or not to update the player's
+     * {@link GameProfile}
+     *
+     * <p>If this value is <code>true</code>, then the player's new skin
+     * will be automatically displayed in the tab list. Calls to
+     * {@link User#getProfile()} will return a {@link GameProfile}
+     * with its {@link ProfileProperty#TEXTURES} property
+     * set to the new skin.
+     *
+     * If it is <code>false</code>, then the tab list will not be modified,
+     * and {@link User#getProfile()} will return the user's original profile.
+     * However, all players will still see the new skin in-game.
+     *
+     * Assuming that tab list hasn't been changed by a plugin, the
+     * player's original skin will be displayed.</p>
+     *
+     * <p>For {@link Human}s, setting this to <code>false</code> will cause the human
+     * to be completely absent from the tab list.</p>
+     * @return
+     */
+    Value<Boolean> updateGameProfile();
 
 }
