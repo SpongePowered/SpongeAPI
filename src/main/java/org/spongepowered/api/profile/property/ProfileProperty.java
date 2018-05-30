@@ -47,7 +47,7 @@ public interface ProfileProperty extends DataSerializable {
     /**
      * The name of the {@code textures} property.
      *
-     * This is used with {@link SkinData} to set the skin of a {@link Humanoid}
+     * <p>This is used with {@link SkinData} to set the skin of a {@link Humanoid}.</p>
      */
     static String TEXTURES = "textures";
 

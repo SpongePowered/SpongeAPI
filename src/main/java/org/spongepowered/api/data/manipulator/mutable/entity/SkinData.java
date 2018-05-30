@@ -66,18 +66,19 @@ public interface SkinData extends DataManipulator<SkinData, ImmutableSkinData> {
      * will be automatically displayed in the tab list. Calls to
      * {@link User#getProfile()} will return a {@link GameProfile}
      * with its {@link ProfileProperty#TEXTURES} property
-     * set to the new skin.
+     * set to the new skin.</p>
      *
-     * If it is <code>false</code>, then the tab list will not be modified,
+     * <p>If it is <code>false</code>, then the tab list will not be modified,
      * and {@link User#getProfile()} will return the user's original profile.
-     * However, all players will still see the new skin in-game.
+     * However, all players will still see the new skin in-game.</p>
      *
-     * Assuming that tab list hasn't been changed by a plugin, the
+     * <p>Assuming that tab list hasn't been changed by a plugin, the
      * player's original skin will be displayed.</p>
      *
      * <p>For {@link Human}s, setting this to <code>false</code> will cause the human
      * to be completely absent from the tab list.</p>
-     * @return
+     * @return Whether to update the gameprofile
+     * @see Keys#UPDATE_GAME_PROFILE
      */
     Value<Boolean> updateGameProfile();
 

@@ -62,15 +62,16 @@ public interface ImmutableSkinData extends ImmutableDataManipulator<ImmutableSki
      * with the player's new skin
      *
      * <p>If this value is <code>true</code>, then the player's new skin
-     * will display in the tab list.
+     * will display in the tab list.</p>
      *
-     * If it is <code>false</code>, then the tab list will not be modified.
+     * <p>If it is <code>false</code>, then the tab list will not be modified.
      * Assuming that tab list hasn't been changed by a plugin, the
      * player's original skin will be displayed.</p>
      *
      * <p>For {@link Human}s, setting this to <code>false</code> will cause the human
      * to be completely absent from the tab list.</p>
-     * @return
+     * @return Whether to update the gameprofile
+     * @see Keys#UPDATE_GAME_PROFILE
      */
     ImmutableValue<Boolean> updateGameProfile();
 
