@@ -1828,6 +1828,13 @@ public final class Keys {
      */
     public static final Key<Value<ProfileProperty>> SKIN = DummyObjectProvider.createExtendedFor(Key.class,"SKIN");
 
+    /**
+     * Represents the {@link Key} for whether or not changes to {@link Keys#SKIN} should
+     * be reflected in an entitie's {@link GameProfile}.
+     *
+     * @see SkinData#updateGameProfile()
+     *
+     * */
     public static final Key<Value<Boolean>> UPDATE_GAME_PROFILE = DummyObjectProvider.createExtendedFor(Key.class, "UPDATE_GAME_PROFILE");
 
     /**
