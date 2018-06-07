@@ -1127,6 +1127,7 @@ public final class GenericArguments {
             this.returnSource = returnSource;
         }
 
+        @SuppressWarnings({"unchecked", "ConstantConditions"})
         @Nullable
         @Override
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
