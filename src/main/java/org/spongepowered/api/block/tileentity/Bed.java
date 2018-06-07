@@ -26,24 +26,24 @@ package org.spongepowered.api.block.tileentity;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.DyeableData;
-import org.spongepowered.api.data.manipulator.mutable.tileentity.BedData;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.value.mutable.Value;
 
 /**
  * Represents a Bed {@link TileEntity}.
  */
+@SuppressWarnings("deprecation")
 public interface Bed extends TileEntity {
 
     /**
-     * Gets the {@link BedData data} of this {@link Bed bed}.
+     * Gets the {@link org.spongepowered.api.data.manipulator.mutable.tileentity.BedData data} of this {@link Bed bed}.
      *
      * @return The current bed data for this bed
      * @deprecated Use {@link #getDyeableData()} instead
      */
     @Deprecated
-    default BedData getBedData() {
-        return this.get(BedData.class).get();
+    default org.spongepowered.api.data.manipulator.mutable.tileentity.BedData getBedData() {
+        return this.get(org.spongepowered.api.data.manipulator.mutable.tileentity.BedData.class).get();
     }
 
     /**

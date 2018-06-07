@@ -26,7 +26,6 @@ package org.spongepowered.api.data.manipulator.mutable.tileentity;
 
 import org.spongepowered.api.block.tileentity.Bed;
 import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableBedData;
 import org.spongepowered.api.data.manipulator.mutable.DyeableData;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -38,7 +37,8 @@ import org.spongepowered.api.data.value.mutable.Value;
  * @deprecated Use {@link DyeableData} instead
  */
 @Deprecated
-public interface BedData extends DataManipulator<BedData, ImmutableBedData> {
+@SuppressWarnings("deprecation")
+public interface BedData extends DataManipulator<BedData, org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableBedData> {
 
     /**
      * Gets the {@link Value} for the {@link DyeColor color}.
