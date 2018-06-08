@@ -29,9 +29,8 @@ import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.block.DecayableData;
-import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * An {@link ImmutableDataManipulator} for the "decayable" state of a
@@ -40,13 +39,13 @@ import org.spongepowered.api.data.value.mutable.Value;
 public interface ImmutableDecayableData extends ImmutableDataManipulator<ImmutableDecayableData, DecayableData> {
 
     /**
-     * Gets the {@link Value} for the distance at which
+     * Gets the {@link BoundedValue.Immutable} for the distance at which
      * the {@link BlockState} can start to decay.
      *
      * @return The immutable value for the decay distance
      * @see Keys#DECAY_DISTANCE
      */
-    ImmutableBoundedValue<Integer> distance();
+    BoundedValue.Immutable<Value.Immutable> distance();
 
     /**
      * Gets the {@link Value} for whether the {@link BlockState} state is
@@ -55,6 +54,5 @@ public interface ImmutableDecayableData extends ImmutableDataManipulator<Immutab
      * @return The immutable value for the persistent state
      * @see Keys#PERSISTENT
      */
-    ImmutableValue<Boolean> persistent();
-
+    Value.Immutable<Boolean> persistent();
 }

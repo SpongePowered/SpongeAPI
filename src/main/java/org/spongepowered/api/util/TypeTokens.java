@@ -31,37 +31,9 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.meta.PatternLayer;
-import org.spongepowered.api.data.type.Art;
-import org.spongepowered.api.data.type.BodyPart;
-import org.spongepowered.api.data.type.Career;
-import org.spongepowered.api.data.type.ComparatorType;
-import org.spongepowered.api.data.type.DyeColor;
-import org.spongepowered.api.data.type.HandPreference;
-import org.spongepowered.api.data.type.Hinge;
-import org.spongepowered.api.data.type.HorseColor;
-import org.spongepowered.api.data.type.HorseStyle;
-import org.spongepowered.api.data.type.LlamaVariant;
-import org.spongepowered.api.data.type.NotePitch;
-import org.spongepowered.api.data.type.OcelotType;
-import org.spongepowered.api.data.type.ParrotVariant;
-import org.spongepowered.api.data.type.PickupRule;
-import org.spongepowered.api.data.type.PortionType;
-import org.spongepowered.api.data.type.Profession;
-import org.spongepowered.api.data.type.RabbitType;
-import org.spongepowered.api.data.type.RailDirection;
-import org.spongepowered.api.data.type.SlabPortion;
-import org.spongepowered.api.data.type.StairShape;
-import org.spongepowered.api.data.type.StructureMode;
-import org.spongepowered.api.data.type.TreeType;
-import org.spongepowered.api.data.type.WireAttachmentType;
-import org.spongepowered.api.data.value.mutable.ListValue;
-import org.spongepowered.api.data.value.mutable.MapValue;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.OptionalValue;
-import org.spongepowered.api.data.value.mutable.PatternListValue;
-import org.spongepowered.api.data.value.mutable.SetValue;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.data.value.mutable.WeightedCollectionValue;
+import org.spongepowered.api.data.type.*;
+import org.spongepowered.api.data.value.*;
+import org.spongepowered.api.data.value.meta.PatternListValue;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.effect.potion.PotionEffectType;
@@ -111,11 +83,11 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<Boolean>> BOOLEAN_VALUE_TOKEN = new TypeToken<Value<Boolean>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<MutableBoundedValue<Double>> BOUNDED_DOUBLE_VALUE_TOKEN = new TypeToken<MutableBoundedValue<Double>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<BoundedValue<Double>> BOUNDED_DOUBLE_VALUE_TOKEN = new TypeToken<BoundedValue<Double>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<MutableBoundedValue<Integer>> BOUNDED_INTEGER_VALUE_TOKEN = new TypeToken<MutableBoundedValue<Integer>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<BoundedValue<Integer>> BOUNDED_INTEGER_VALUE_TOKEN = new TypeToken<BoundedValue<Integer>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<MutableBoundedValue<Short>> BOUNDED_SHORT_VALUE_TOKEN = new TypeToken<MutableBoundedValue<Short>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<BoundedValue<Short>> BOUNDED_SHORT_VALUE_TOKEN = new TypeToken<BoundedValue<Short>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Career> CAREER_TOKEN = new TypeToken<Career>() {private static final long serialVersionUID = -1;};
 
@@ -155,7 +127,7 @@ public final class TypeTokens {
 
     public static final TypeToken<Float> FLOAT_TOKEN = new TypeToken<Float>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<MutableBoundedValue<Float>> FLOAT_VALUE_TOKEN = new TypeToken<MutableBoundedValue<Float>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<BoundedValue<Float>> FLOAT_VALUE_TOKEN = new TypeToken<BoundedValue<Float>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<FluidStackSnapshot> FLUID_TOKEN = new TypeToken<FluidStackSnapshot>() {private static final long serialVersionUID = -1;};
 

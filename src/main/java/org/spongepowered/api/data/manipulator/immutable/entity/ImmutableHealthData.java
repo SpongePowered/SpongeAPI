@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.HealthData;
-import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
+import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
 
@@ -38,7 +38,7 @@ import org.spongepowered.api.entity.living.Living;
 public interface ImmutableHealthData extends ImmutableDataManipulator<ImmutableHealthData, HealthData> {
 
     /**
-     * Gets an {@link ImmutableBoundedValue} for the current health.
+     * Gets an {@link BoundedValue.Immutable} for the current health.
      *
      * <p>The range of the health depends on the object on which this
      * method is defined. For players in Minecraft, the nominal range is
@@ -49,10 +49,10 @@ public interface ImmutableHealthData extends ImmutableDataManipulator<ImmutableH
      *
      * @return Health value
      */
-    ImmutableBoundedValue<Double> health();
+    BoundedValue.Immutable<Double> health();
 
     /**
-     * Gets an {@link ImmutableBoundedValue} for the maximum health.
+     * Gets an {@link BoundedValue.Immutable} for the maximum health.
      *
      * <p>The maximum health set here may affect the attribute increasing
      * health points. The base health should be minded that it may be lower
@@ -60,6 +60,6 @@ public interface ImmutableHealthData extends ImmutableDataManipulator<ImmutableH
      *
      * @return This entities maximum health
      */
-    ImmutableBoundedValue<Double> maxHealth();
+    BoundedValue.Immutable<Double> maxHealth();
 
 }

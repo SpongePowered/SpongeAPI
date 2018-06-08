@@ -28,7 +28,7 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.block.DirectionalData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.util.Direction;
 
 /**
@@ -39,11 +39,11 @@ import org.spongepowered.api.util.Direction;
 public interface ImmutableDirectionalData extends ImmutableDataManipulator<ImmutableDirectionalData, DirectionalData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the current "facing"
+     * Gets the {@link Value.Immutable} for the current "facing"
      * {@link Direction}.
      *
      * @return The current "facing" direction value
      */
-    ImmutableValue<Direction> direction();
+    Value.Immutable<Direction> direction();
 
 }

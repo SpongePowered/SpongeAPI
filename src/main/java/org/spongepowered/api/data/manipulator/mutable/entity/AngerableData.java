@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableAngerableData;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -38,11 +38,11 @@ import org.spongepowered.api.entity.Entity;
 public interface AngerableData extends DataManipulator<AngerableData, ImmutableAngerableData> {
 
     /**
-     * Gets the {@link MutableBoundedValue} for the "anger" level.
+     * Gets the {@link BoundedValue.Mutable} for the "anger" level.
      *
      * @return The bounded value for the anger level
      * @see Keys#ANGER
      */
-    MutableBoundedValue<Integer> angerLevel();
+    BoundedValue.Mutable<Integer> angerLevel();
 
 }

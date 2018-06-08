@@ -26,12 +26,13 @@ package org.spongepowered.api.data.manipulator.immutable.common;
 
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableListData;
 import org.spongepowered.api.data.manipulator.mutable.ListData;
-import org.spongepowered.api.data.value.immutable.ImmutableListValue;
-import org.spongepowered.api.data.value.mutable.ListValue;
+import org.spongepowered.api.data.value.ListValue;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 public abstract class AbstractImmutableListData<E, I extends ImmutableListData<E, I, M>, M extends ListData<E, M, I>>
         extends AbstractImmutableSingleData<List<E>, I, M> implements ImmutableListData<E, I, M> {
 
-    private final ImmutableListValue<E> listValue;
+    private final ListValue.Immutable<E> listValue;
 
     protected AbstractImmutableListData(Key<ListValue<E>> usedKey, List<E> value) {
         this(usedKey, value, value);
@@ -55,17 +56,22 @@ public abstract class AbstractImmutableListData<E, I extends ImmutableListData<E
     }
 
     @Override
-    protected final ImmutableListValue<E> getValueGetter() {
+    protected final ListValue.Immutable<E> getValueGetter() {
         return this.listValue;
     }
 
     @Override
-    public ImmutableListValue<E> getListValue() {
+    public ListValue.Immutable<E> getListValue() {
         return getValueGetter();
     }
 
     @Override
     public List<E> asList() {
         return getValue();
+    }
+
+    @Override
+    protected DataContainer fillContainer(DataContainer dataContainer) {
+        return dataContainer.set(this.usedKey.getQuery(), new ArrayList<>(this.value));
     }
 }

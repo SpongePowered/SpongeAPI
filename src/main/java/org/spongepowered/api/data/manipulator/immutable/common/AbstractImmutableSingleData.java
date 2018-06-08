@@ -30,9 +30,7 @@ import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.value.BaseValue;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -49,7 +47,7 @@ import java.util.Set;
 public abstract class AbstractImmutableSingleData<T, I extends ImmutableDataManipulator<I, M>, M extends DataManipulator<M, I>>
         extends AbstractImmutableData<I, M> {
 
-    protected final Key<? extends BaseValue<T>> usedKey;
+    protected final Key<? extends Value<T>> usedKey;
     protected final T value;
     protected final T defaultValue;
 
@@ -64,7 +62,7 @@ public abstract class AbstractImmutableSingleData<T, I extends ImmutableDataMani
         registerGetters();
     }
 
-    protected abstract ImmutableValue<?> getValueGetter();
+    protected abstract Value.Immutable<?> getValueGetter();
 
     protected final T getValue() {
         return this.value;
@@ -81,7 +79,7 @@ public abstract class AbstractImmutableSingleData<T, I extends ImmutableDataMani
 
     @SuppressWarnings("unchecked")
     @Override
-    public <E> Optional<E> get(Key<? extends BaseValue<E>> key) {
+    public <E> Optional<E> get(Key<? extends Value<E>> key) {
         return checkNotNull(key).equals(this.usedKey) ? Optional.of((E) this.value) : Optional.empty();
     }
 

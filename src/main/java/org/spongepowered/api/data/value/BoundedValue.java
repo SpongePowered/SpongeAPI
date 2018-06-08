@@ -27,6 +27,7 @@ package org.spongepowered.api.data.value;
 import org.spongepowered.api.data.DataHolder;
 
 import java.util.Comparator;
+import java.util.function.Function;
 
 /**
  * Represents a value that may itself be {@link Comparable} or can be
@@ -39,7 +40,7 @@ import java.util.Comparator;
  *
  * @param <E> The type of value that can be compared
  */
-public interface BoundedValue<E> extends BaseValue<E> {
+public interface BoundedValue<E> extends Value<E> {
 
     /**
      * Gets the required "minimum" value such that the value is only valid if
@@ -70,4 +71,58 @@ public interface BoundedValue<E> extends BaseValue<E> {
      */
     Comparator<E> getComparator();
 
+    @Override
+    BoundedValue.Mutable<E> asMutable();
+
+    @Override
+    BoundedValue.Immutable<E> asImmutable();
+
+    /**
+     * A type of {@link BoundedValue} that is modifiable as a {@link Value.Mutable}.
+     *
+     * @param <E> The type of element
+     */
+    interface Mutable<E> extends BoundedValue<E>, Value.Mutable<E> {
+
+        @Override
+        BoundedValue.Mutable<E> set(E value);
+
+        @Override
+        BoundedValue.Mutable<E> transform(Function<E, E> function);
+
+        @Override
+        BoundedValue.Immutable<E> asImmutable();
+
+        @Override
+        default BoundedValue.Mutable<E> asMutable() {
+            return this;
+        }
+
+        @Override
+        BoundedValue.Mutable<E> copy();
+
+    }
+
+    /**
+     * A type of {@link BoundedValue} that is immutable as an
+     * {@link Value.Immutable}.
+     *
+     * @param <E> The type of element
+     */
+    interface Immutable<E> extends BoundedValue<E>, Value.Immutable<E> {
+
+        @Override
+        BoundedValue.Immutable<E> with(E value);
+
+        @Override
+        BoundedValue.Immutable<E> transform(Function<E, E> function);
+
+        @Override
+        BoundedValue.Mutable<E> asMutable();
+
+        @Override
+        default BoundedValue.Immutable<E> asImmutable() {
+            return this;
+        }
+    }
 }

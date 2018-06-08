@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.ImmutablePotionEffectData;
-import org.spongepowered.api.data.value.mutable.ListValue;
+import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.item.ItemTypes;
@@ -43,12 +43,12 @@ import java.util.List;
 public interface PotionEffectData extends ListData<PotionEffect, PotionEffectData, ImmutablePotionEffectData> {
 
     /**
-     * Gets the {@link ListValue} of the {@link PotionEffect}s.
+     * Gets the {@link ListValue.Mutable} of the {@link PotionEffect}s.
      *
      * @return The list value of all potion effects contained
      * @see Keys#POTION_EFFECTS
      */
-    default ListValue<PotionEffect> effects() {
+    default ListValue.Mutable<PotionEffect> effects() {
         return getListValue();
     }
 

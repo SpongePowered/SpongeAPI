@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableBreathingData;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.data.value.BoundedValue;
 
 /**
  * Represents the remaining air information for various entities while they
@@ -36,22 +36,22 @@ import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 public interface BreathingData extends DataManipulator<BreathingData, ImmutableBreathingData> {
 
     /**
-     * Gets the {@link MutableBoundedValue} for the remaining air. Can be
+     * Gets the {@link BoundedValue.Mutable} for the remaining air. Can be
      * changed to {@code (air >= 0 && air <= maxAir)}.
      *
      * @return The mutable value of remaining air
      * @see Keys#REMAINING_AIR
      */
-    MutableBoundedValue<Integer> remainingAir();
+    BoundedValue.Mutable<Integer> remainingAir();
 
     /**
-     * Gets the {@link MutableBoundedValue} for the maximum air capacity.
+     * Gets the {@link BoundedValue.Mutable} for the maximum air capacity.
      * The reasoning for it being bounded is that the air capacity must always
      * remain at least 1.
      *
      * @return The mutable bounded value of maximum air capacity
      * @see Keys#MAX_AIR
      */
-    MutableBoundedValue<Integer> maxAir();
+    BoundedValue.Mutable<Integer> maxAir();
 
 }

@@ -28,7 +28,7 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.block.RedstonePoweredData;
-import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
+import org.spongepowered.api.data.value.BoundedValue;
 
 /**
  * An {@link ImmutableDataManipulator} for the current output of "redstone
@@ -43,11 +43,11 @@ import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
 public interface ImmutableRedstonePoweredData extends ImmutableDataManipulator<ImmutableRedstonePoweredData, RedstonePoweredData> {
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the output of "redstone
+     * Gets the {@link BoundedValue.Immutable} for the output of "redstone
      * power".
      *
      * @return The immutable bounded value for "redstone power"
      */
-    ImmutableBoundedValue<Integer> power();
+    BoundedValue.Immutable<Integer> power();
 
 }

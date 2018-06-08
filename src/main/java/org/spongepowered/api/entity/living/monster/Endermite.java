@@ -26,7 +26,7 @@ package org.spongepowered.api.entity.living.monster;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.ExpirableData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 
 import java.time.Duration;
 
@@ -45,12 +45,12 @@ public interface Endermite extends Monster {
     }
 
     /**
-     * Gets the {@link Value} for the duration
+     * Gets the {@link Value.Mutable} for the duration
      * before the "expiration" occurs.
      *
      * @return The bounded value for the remaining duration
      */
-    default Value<Duration> expireDuration() {
-        return getValue(Keys.EXPIRATION_DURATION).get();
+    default Value.Mutable<Duration> expireDuration() {
+        return getValue(Keys.EXPIRATION_DURATION).get().asMutable();
     }
 }

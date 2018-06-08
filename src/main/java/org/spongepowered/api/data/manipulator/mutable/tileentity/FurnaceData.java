@@ -28,7 +28,7 @@ import org.spongepowered.api.block.tileentity.carrier.Furnace;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableFurnaceData;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
@@ -37,17 +37,17 @@ import org.spongepowered.api.item.inventory.ItemStack;
 public interface FurnaceData extends DataManipulator<FurnaceData, ImmutableFurnaceData> {
 
     /**
-     * Gets the {@link MutableBoundedValue} for the already passed burn time of
+     * Gets the {@link BoundedValue.Mutable} for the already passed burn time of
      * the {@link Furnace}. When this is equal to the {@link #maxBurnTime()},
      * the current used fuel is depleted.
      *
      * @return The value for the already passed burn time
      * @see Keys#PASSED_BURN_TIME
      */
-    MutableBoundedValue<Integer> passedBurnTime();
+    BoundedValue.Mutable<Integer> passedBurnTime();
 
     /**
-     * Gets the {@link MutableBoundedValue} for the maximum amount of fuel that
+     * Gets the {@link BoundedValue.Mutable} for the maximum amount of fuel that
      * can be supplied with the used fuel item.
      *
      * <p>This is represented by the flame icon in the {@link Furnace}, if the
@@ -58,20 +58,20 @@ public interface FurnaceData extends DataManipulator<FurnaceData, ImmutableFurna
      *     with the used fuel item
      * @see Keys#MAX_BURN_TIME
      */
-    MutableBoundedValue<Integer> maxBurnTime();
+    BoundedValue.Mutable<Integer> maxBurnTime();
 
     /**
-     * Gets the {@link MutableBoundedValue} for the already passed cook time of
+     * Gets the {@link BoundedValue.Mutable} for the already passed cook time of
      * the {@link ItemStack} in the {@link Furnace}. When this is equal to the
      * {@link #maxCookTime()}, the {@link ItemStack} is cooked.
      *
      * @return The value for the already passed cook time
      * @see Keys#PASSED_COOK_TIME
      */
-    MutableBoundedValue<Integer> passedCookTime();
+    BoundedValue.Mutable<Integer> passedCookTime();
 
     /**
-     * Gets the {@link MutableBoundedValue} for the total time the
+     * Gets the {@link BoundedValue.Mutable} for the total time the
      * {@link ItemStack} has to cook until it is cooked.
      *
      * <p>This is represented by the arrow icon in the {@link Furnace}, if the
@@ -81,5 +81,5 @@ public interface FurnaceData extends DataManipulator<FurnaceData, ImmutableFurna
      * @return The value for the time the item has to cook
      * @see Keys#MAX_COOK_TIME
      */
-    MutableBoundedValue<Integer> maxCookTime();
+    BoundedValue.Mutable<Integer> maxCookTime();
 }

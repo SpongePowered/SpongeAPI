@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.GriefingData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.monster.Enderman;
@@ -40,10 +40,10 @@ import org.spongepowered.api.entity.living.monster.Enderman;
 public interface ImmutableGriefingData extends ImmutableDataManipulator<ImmutableGriefingData, GriefingData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the "griefing" state.
+     * Gets the {@link Value.Immutable} for the "griefing" state.
      *
      * @return The immutable value of the griefing state
      */
-    ImmutableValue<Boolean> canGrief();
+    Value.Immutable<Boolean> canGrief();
 
 }

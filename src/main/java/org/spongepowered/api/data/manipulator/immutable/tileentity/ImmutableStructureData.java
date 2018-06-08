@@ -29,7 +29,7 @@ import org.spongepowered.api.block.tileentity.Structure;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.StructureData;
 import org.spongepowered.api.data.type.StructureMode;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * An {@link ImmutableDataManipulator} representing the {@link Structure}.
@@ -37,73 +37,73 @@ import org.spongepowered.api.data.value.immutable.ImmutableValue;
 public interface ImmutableStructureData extends ImmutableDataManipulator<ImmutableStructureData, StructureData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the author of the {@link Structure}.
+     * Gets the {@link Value.Immutable} for the author of the {@link Structure}.
      *
      * @return The value for the author
      */
-    ImmutableValue<String> author();
+    Value.Immutable<String> author();
 
     /**
-     * Gets the {@link ImmutableValue} for the ignore entities state of the {@link Structure}.
+     * Gets the {@link Value.Immutable} for the ignore entities state of the {@link Structure}.
      *
      * @return The value for the ignore entities state
      */
-    ImmutableValue<Boolean> ignoreEntities();
+    Value.Immutable<Boolean> ignoreEntities();
 
     /**
-     * Gets the {@link ImmutableValue} for the integrity of the {@link Structure}.
+     * Gets the {@link Value.Immutable} for the integrity of the {@link Structure}.
      *
      * @return The value for the integrity
      */
-    ImmutableValue<Float> integrity();
+    Value.Immutable<Float> integrity();
 
     /**
-     * Gets the {@link ImmutableValue} for the mode of the {@link Structure}.
+     * Gets the {@link Value.Immutable} for the mode of the {@link Structure}.
      *
      * @return The value for the mode
      */
-    ImmutableValue<StructureMode> mode();
+    Value.Immutable<StructureMode> mode();
 
     /**
-     * Gets the {@link ImmutableValue} for the position of the {@link Structure}.
+     * Gets the {@link Value.Immutable} for the position of the {@link Structure}.
      *
      * @return The value for the position
      */
-    ImmutableValue<Vector3i> position();
+    Value.Immutable<Vector3i> position();
 
     /**
-     * Gets the {@link ImmutableValue} for the powered state of the {@link Structure}.
+     * Gets the {@link Value.Immutable} for the powered state of the {@link Structure}.
      *
      * @return The value for the powered state
      */
-    ImmutableValue<Boolean> powered();
+    Value.Immutable<Boolean> powered();
 
     /**
-     * Gets the {@link ImmutableValue} for the seed of the {@link Structure}.
+     * Gets the {@link Value.Immutable} for the seed of the {@link Structure}.
      *
      * @return The value for the seed
      */
-    ImmutableValue<Long> seed();
+    Value.Immutable<Long> seed();
 
     /**
-     * Gets the {@link ImmutableValue} for the show air state of the {@link Structure}.
+     * Gets the {@link Value.Immutable} for the show air state of the {@link Structure}.
      *
      * @return The value for the show air state
      */
-    ImmutableValue<Boolean> showAir();
+    Value.Immutable<Boolean> showAir();
 
     /**
-     * Gets the {@link ImmutableValue} for the show bounding box state of the {@link Structure}.
+     * Gets the {@link Value.Immutable} for the show bounding box state of the {@link Structure}.
      *
      * @return The value for the show bounding box state
      */
-    ImmutableValue<Boolean> showBoundingBox();
+    Value.Immutable<Boolean> showBoundingBox();
 
     /**
-     * Gets the {@link ImmutableValue} for the size of the {@link Structure}.
+     * Gets the {@link Value.Immutable} for the size of the {@link Structure}.
      *
      * @return The value for the size
      */
-    ImmutableValue<Vector3i> size();
+    Value.Immutable<Vector3i> size();
 
 }

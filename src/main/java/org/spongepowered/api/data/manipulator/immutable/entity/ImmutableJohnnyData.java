@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.JohnnyData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.monster.Vindicator;
 
 /**
@@ -40,12 +40,12 @@ import org.spongepowered.api.entity.living.monster.Vindicator;
 public interface ImmutableJohnnyData extends ImmutableDataManipulator<ImmutableJohnnyData, JohnnyData> {
 
     /**
-     * Gets the {@link ImmutableValue} for whether this mob is exhibiting
+     * Gets the {@link Value.Immutable} for whether this mob is exhibiting
      * "johnny" behavior.
      *
      * @return The immutable value for whether this mob is exhibiting
      *     "johnny" behavior
      */
-    ImmutableValue<Boolean> johnny();
+    Value.Immutable<Boolean> johnny();
 
 }

@@ -28,7 +28,7 @@ import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableLitData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents the {@link DataManipulator} for the state that something is "lit",
@@ -37,11 +37,11 @@ import org.spongepowered.api.data.value.mutable.Value;
 public interface LitData extends DataManipulator<LitData, ImmutableLitData> {
 
     /**
-     * Gets the {@link Value} for the lit state.
+     * Gets the {@link Value.Mutable} for the lit state.
      *
      * @return The value for the lit state
      * @see Keys#LIT
      */
-    Value<Boolean> lit();
+    Value.Mutable<Boolean> lit();
 
 }

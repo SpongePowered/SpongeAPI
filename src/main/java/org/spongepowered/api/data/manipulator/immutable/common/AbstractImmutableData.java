@@ -32,8 +32,7 @@ import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.value.BaseValue;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -54,7 +53,7 @@ import java.util.stream.Collectors;
 public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I, M>, M extends DataManipulator<M, I>>
         implements ImmutableDataManipulator<I, M> {
 
-    private final Map<Key<?>, Supplier<ImmutableValue<?>>> keyValueMap = new HashMap<>();
+    private final Map<Key<?>, Supplier<Value.Immutable<?>>> keyValueMap = new HashMap<>();
     private final Map<Key<?>, Supplier<?>> keyFieldGetterMap = new HashMap<>();
 
     protected AbstractImmutableData() {
@@ -69,7 +68,7 @@ public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I
      * @param key The key for the value return type
      * @param function The function for getting the value
      */
-    protected final void registerKeyValue(Key<?> key, Supplier<ImmutableValue<?>> function) {
+    protected final void registerKeyValue(Key<?> key, Supplier<Value.Immutable<?>> function) {
         this.keyValueMap.put(checkNotNull(key), checkNotNull(function));
     }
 
@@ -97,7 +96,7 @@ public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I
     // implementation required.
 
     @Override
-    public <E> Optional<E> get(Key<? extends BaseValue<E>> key) {
+    public <E> Optional<E> get(Key<? extends Value<E>> key) {
         final Supplier<?> supplier = this.keyFieldGetterMap.get(checkNotNull(key));
         if (supplier == null) {
             return Optional.empty();
@@ -106,8 +105,8 @@ public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I
     }
 
     @Override
-    public <E, V extends BaseValue<E>> Optional<V> getValue(Key<V> key) {
-        final Supplier<ImmutableValue<?>> supplier = this.keyValueMap.get(checkNotNull(key));
+    public <E, V extends Value<E>> Optional<V> getValue(Key<V> key) {
+        final Supplier<Value.Immutable<?>> supplier = this.keyValueMap.get(checkNotNull(key));
         if (supplier == null) {
             return Optional.empty();
         }
@@ -125,9 +124,9 @@ public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I
     }
 
     @Override
-    public Set<ImmutableValue<?>> getValues() {
-        ImmutableSet.Builder<ImmutableValue<?>> builder = ImmutableSet.builder();
-        for (Supplier<ImmutableValue<?>> function : this.keyValueMap.values()) {
+    public Set<Value.Immutable<?>> getValues() {
+        ImmutableSet.Builder<Value.Immutable<?>> builder = ImmutableSet.builder();
+        for (Supplier<Value.Immutable<?>> function : this.keyValueMap.values()) {
             builder.add(checkNotNull(function.get()));
         }
         return builder.build();

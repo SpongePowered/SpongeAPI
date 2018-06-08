@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableStuckArrowsData;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.entity.living.Living;
 
 /**
@@ -37,11 +37,11 @@ import org.spongepowered.api.entity.living.Living;
 public interface StuckArrowsData extends DataManipulator<StuckArrowsData, ImmutableStuckArrowsData> {
 
     /**
-     * Gets the {@link MutableBoundedValue} for the stuck arrows.
+     * Gets the {@link BoundedValue.Mutable} for the stuck arrows.
      *
      * @return The mutable value of stuck arrows
      * @see Keys#STUCK_ARROWS
      */
-    MutableBoundedValue<Integer> stuckArrows();
+    BoundedValue.Mutable<Integer> stuckArrows();
 
 }

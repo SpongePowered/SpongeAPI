@@ -26,8 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.InvisibilityData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -37,7 +36,7 @@ import org.spongepowered.api.entity.Entity;
 public interface ImmutableInvisibilityData extends ImmutableDataManipulator<ImmutableInvisibilityData, InvisibilityData> {
 
     /**
-     * Gets the {@link ImmutableValue} of the "invisible" state of an
+     * Gets the {@link Value.Immutable} of the "invisible" state of an
      * {@link Entity}.
      *
      * <p>Note that this is different from the {@link #vanish()} state as when an
@@ -46,33 +45,33 @@ public interface ImmutableInvisibilityData extends ImmutableDataManipulator<Immu
      *
      * @return The immutable value of the invisible state
      */
-    ImmutableValue<Boolean> invisible();
+    Value.Immutable<Boolean> invisible();
 
     /**
-     * Gets the {@link ImmutableValue} of the "vanish" state of an
+     * Gets the {@link Value.Immutable} of the "vanish" state of an
      * {@link Entity}.
      *
      * @return The immutable value of the vanish state
      */
-    ImmutableValue<Boolean> vanish();
+    Value.Immutable<Boolean> vanish();
 
 
     /**
-     * Gets the {@link Value} of whether an {@link Entity} that is "vanished" will
+     * Gets the {@link Value.Mutable} of whether an {@link Entity} that is "vanished" will
      * be ignored for collision detection. The collision detection can affect
      * collisions with other {@link Entity entities}, blocks, etc.
      *
      * @return The value of the collision detection state
      */
-    ImmutableValue<Boolean> ignoresCollisionDetection();
+    Value.Immutable<Boolean> ignoresCollisionDetection();
 
     /**
-     * Gets the {@link Value} of whether an {@link Entity} that is "vanished" will
+     * Gets the {@link Value.Mutable} of whether an {@link Entity} that is "vanished" will
      * be ignored when other {@link Entity entities} are processing possible "targets"
      * for their AI.
      *
      * @return The value of the targetable detection state
      */
-    ImmutableValue<Boolean> untargetable();
+    Value.Immutable<Boolean> untargetable();
 
 }

@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.ChargedData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.monster.Creeper;
 
 /**
@@ -36,10 +36,10 @@ import org.spongepowered.api.entity.living.monster.Creeper;
 public interface ImmutableChargedData extends ImmutableDataManipulator<ImmutableChargedData, ChargedData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the current "charged" state.
+     * Gets the {@link Value.Immutable} for the current "charged" state.
      *
      * @return The value for the "charged" state
      */
-    ImmutableValue<Boolean> charged();
+    Value.Immutable<Boolean> charged();
 
 }

@@ -26,7 +26,6 @@ package org.spongepowered.api.world.gen;
 
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.chunk.ProtoChunk;
-import org.spongepowered.api.world.volume.block.MutableBlockVolume;
 
 import java.util.Random;
 
@@ -42,5 +41,4 @@ import java.util.Random;
 public interface SurfacePainter {
 
     void paintSurface(Random random, ProtoChunk<?> chunk, BiomeType biomeType, GenerationConfig config);
-
 }

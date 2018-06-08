@@ -29,7 +29,7 @@ import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.item.BlockItemData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
@@ -48,11 +48,11 @@ import org.spongepowered.api.item.inventory.ItemStack;
 public interface ImmutableBlockItemData extends ImmutableDataManipulator<ImmutableBlockItemData, BlockItemData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the currently represented
+     * Gets the {@link Value.Immutable} for the currently represented
      * {@link BlockState}.
      *
      * @return The immutable value for the currently represented block state
      */
-    ImmutableValue<BlockState> state();
+    Value.Immutable<BlockState> state();
 
 }

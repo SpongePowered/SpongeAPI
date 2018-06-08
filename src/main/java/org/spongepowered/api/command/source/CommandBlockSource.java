@@ -28,8 +28,8 @@ import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.CommandData;
-import org.spongepowered.api.data.value.mutable.OptionalValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.OptionalValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.world.Locatable;
 
@@ -56,8 +56,8 @@ public interface CommandBlockSource extends Locatable, CommandSource, DataHolder
      *
      * @return The command
      */
-    default Value<String> storedCommand() {
-        return getValue(Keys.COMMAND).get();
+    default Value.Mutable<String> storedCommand() {
+        return getValue(Keys.COMMAND).get().asMutable();
     }
 
     /**
@@ -72,8 +72,8 @@ public interface CommandBlockSource extends Locatable, CommandSource, DataHolder
      *
      * @return The last success count
      */
-    default Value<Integer> successCount() {
-        return getValue(Keys.SUCCESS_COUNT).get();
+    default Value.Mutable<Integer> successCount() {
+        return getValue(Keys.SUCCESS_COUNT).get().asMutable();
     }
 
     /**
@@ -82,8 +82,8 @@ public interface CommandBlockSource extends Locatable, CommandSource, DataHolder
      *
      * @return Whether the command output is tracked
      */
-    default Value<Boolean> doesTrackOutput() {
-        return getValue(Keys.TRACKS_OUTPUT).get();
+    default Value.Mutable<Boolean> doesTrackOutput() {
+        return getValue(Keys.TRACKS_OUTPUT).get().asMutable();
     }
 
     /**
@@ -94,8 +94,8 @@ public interface CommandBlockSource extends Locatable, CommandSource, DataHolder
      *
      * @return The last command output, if available
      */
-    default OptionalValue<Text> lastOutput() {
-        return getValue(Keys.LAST_COMMAND_OUTPUT).get();
+    default OptionalValue.Mutable<Text> lastOutput() {
+        return getValue(Keys.LAST_COMMAND_OUTPUT).get().asMutable();
     }
 
 }

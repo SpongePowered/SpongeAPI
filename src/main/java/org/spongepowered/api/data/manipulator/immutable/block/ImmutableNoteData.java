@@ -29,7 +29,7 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.block.NoteData;
 import org.spongepowered.api.data.type.NotePitch;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * An {@link ImmutableDataManipulator} handling the {@link NotePitch} for a {@link BlockTypes#NOTE_BLOCK}.
@@ -37,11 +37,11 @@ import org.spongepowered.api.data.value.immutable.ImmutableValue;
 public interface ImmutableNoteData extends ImmutableDataManipulator<ImmutableNoteData, NoteData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the {@link NotePitch}.
+     * Gets the {@link Value.Immutable} for the {@link NotePitch}.
      *
      * @return The immutable value for the note pitch
      * @see Keys#NOTE_PITCH
      */
-    ImmutableValue<NotePitch> note();
+    Value.Immutable<NotePitch> note();
 
 }

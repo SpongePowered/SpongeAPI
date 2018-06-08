@@ -26,7 +26,7 @@ package org.spongepowered.api.entity.projectile.arrow;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.KnockbackData;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.entity.projectile.DamagingProjectile;
 
 /**
@@ -45,13 +45,13 @@ public interface Arrow extends DamagingProjectile {
     }
 
     /**
-     * Gets the {@link MutableBoundedValue} for the "knockback strength"
+     * Gets the {@link BoundedValue.Mutable} for the "knockback strength"
      * that this arrow has.
      *
      * @return The immutable value for the knockback strength
      */
-    default MutableBoundedValue<Integer> knockbackStrength() {
-        return getValue(Keys.KNOCKBACK_STRENGTH).get();
+    default BoundedValue.Mutable<Integer> knockbackStrength() {
+        return getValue(Keys.KNOCKBACK_STRENGTH).get().asMutable();
     }
 
 }

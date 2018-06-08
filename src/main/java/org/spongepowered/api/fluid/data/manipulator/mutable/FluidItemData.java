@@ -27,7 +27,7 @@ package org.spongepowered.api.fluid.data.manipulator.mutable;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.fluid.FluidStackSnapshot;
 import org.spongepowered.api.fluid.data.manipulator.immutable.ImmutableFluidItemData;
@@ -53,6 +53,6 @@ public interface FluidItemData extends DataManipulator<FluidItemData, ImmutableF
      *
      * @see Keys#FLUID_ITEM_STACK
      */
-    Value<FluidStackSnapshot> fluid();
+    Value.Mutable<FluidStackSnapshot> fluid();
 
 }

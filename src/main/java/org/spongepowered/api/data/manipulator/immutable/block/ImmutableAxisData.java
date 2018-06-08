@@ -28,20 +28,20 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableVariantData;
 import org.spongepowered.api.data.manipulator.mutable.block.AxisData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.util.Axis;
 
 /**
- * An {@link ImmutableDataManipulator} containing the {@link ImmutableValue}
+ * An {@link ImmutableDataManipulator} containing the {@link Value.Immutable}
  * for the {@link Axis} a {@link BlockState} may have.
  */
 public interface ImmutableAxisData extends ImmutableVariantData<Axis, ImmutableAxisData, AxisData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the {@link Axis} value.
+     * Gets the {@link Value.Immutable} for the {@link Axis} value.
      *
      * @return The immutable value for the axis
      */
-    ImmutableValue<Axis> axis();
+    Value.Immutable<Axis> axis();
 
 }

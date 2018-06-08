@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableFoodData;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.entity.living.Humanoid;
 
 /**
@@ -37,7 +37,7 @@ import org.spongepowered.api.entity.living.Humanoid;
 public interface FoodData extends DataManipulator<FoodData, ImmutableFoodData> {
 
     /**
-     * Gets the current food level as an {@link MutableBoundedValue}.
+     * Gets the current food level as an {@link BoundedValue.Mutable}.
      *
      * <p>Food level has health effects, depending on game difficulty and
      * hunger levels. If the food level is high enough, the human entity
@@ -46,10 +46,10 @@ public interface FoodData extends DataManipulator<FoodData, ImmutableFoodData> {
      * @return The current food level
      * @see Keys#FOOD_LEVEL
      */
-    MutableBoundedValue<Integer> foodLevel();
+    BoundedValue.Mutable<Integer> foodLevel();
 
     /**
-     * Gets the {@link MutableBoundedValue} for the "exhaustion" level.
+     * Gets the {@link BoundedValue.Mutable} for the "exhaustion" level.
      *
      * <p>When the exhaustion level reaches 0, saturation is usually diminished
      * such that saturation is decreased and then exhaustion is reset to the
@@ -59,10 +59,10 @@ public interface FoodData extends DataManipulator<FoodData, ImmutableFoodData> {
      * @return The immutable bounded value of exhaustion
      * @see Keys#EXHAUSTION
      */
-    MutableBoundedValue<Double> exhaustion();
+    BoundedValue.Mutable<Double> exhaustion();
 
     /**
-     * Gets the {@link MutableBoundedValue} for the "saturation" level.
+     * Gets the {@link BoundedValue.Mutable} for the "saturation" level.
      *
      * <p>When the saturation level reaches 0, the food level is usually
      * diminished such that the food level is decreased by 1, then
@@ -73,6 +73,6 @@ public interface FoodData extends DataManipulator<FoodData, ImmutableFoodData> {
      * @return The immutable bounded value of saturation
      * @see Keys#SATURATION
      */
-    MutableBoundedValue<Double> saturation();
+    BoundedValue.Mutable<Double> saturation();
 
 }

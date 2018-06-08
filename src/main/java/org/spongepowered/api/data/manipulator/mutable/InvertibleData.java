@@ -28,7 +28,7 @@ import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableInvertibleData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents an {@link DataManipulator} for the "inverted" state of
@@ -37,11 +37,11 @@ import org.spongepowered.api.data.value.mutable.Value;
 public interface InvertibleData extends DataManipulator<InvertibleData, ImmutableInvertibleData> {
 
     /**
-     * Gets the {@link Value} for the "inverted" state.
+     * Gets the {@link Value.Mutable} for the "inverted" state.
      *
      * @return The value for the "inverted" state
      * @see Keys#INVERTED
      */
-    Value<Boolean> inverted();
+    Value.Mutable<Boolean> inverted();
 
 }

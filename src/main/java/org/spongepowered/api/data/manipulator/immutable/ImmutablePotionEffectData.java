@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.PotionEffectData;
-import org.spongepowered.api.data.value.immutable.ImmutableListValue;
+import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.item.ItemTypes;
@@ -40,11 +40,11 @@ import org.spongepowered.api.item.inventory.ItemStack;
 public interface ImmutablePotionEffectData extends ImmutableListData<PotionEffect, ImmutablePotionEffectData, PotionEffectData> {
 
     /**
-     * Gets the {@link ImmutableListValue} of the {@link PotionEffect}s.
+     * Gets the {@link ListValue.Immutable} of the {@link PotionEffect}s.
      *
      * @return The immutable list value of all potion effects contained
      */
-    default ImmutableListValue<PotionEffect> effects() {
+    default ListValue.Immutable<PotionEffect> effects() {
         return getListValue();
     }
 

@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.immutable.block;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.block.FluidLevelData;
-import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
+import org.spongepowered.api.data.value.BoundedValue;
 
 /**
  * An {@link ImmutableDataManipulator} for the "fluid level" state. Usually,
@@ -39,10 +39,10 @@ import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
 public interface ImmutableFluidLevelData extends ImmutableDataManipulator<ImmutableFluidLevelData, FluidLevelData> {
 
     /**
-     * Gets the {@link ImmutableBoundedValue} of the "fluid level" state.
+     * Gets the {@link BoundedValue.Immutable} of the "fluid level" state.
      *
      * @return The immutable bounded value for the fluid level state
      */
-    ImmutableBoundedValue<Integer> level();
+    BoundedValue.Immutable<Integer> level();
 
 }

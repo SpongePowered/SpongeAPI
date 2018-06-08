@@ -29,14 +29,14 @@ import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.data.ImmutableDataBuilder;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.property.DirectionRelativePropertyHolder;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.fluid.FluidState;
 import org.spongepowered.api.state.State;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.world.Location;
 
 /**
  * Represents a particular "state" that can exist at a {@link Location} with
- * a particular {@link BlockType} and various {@link ImmutableValue}s defining
+ * a particular {@link BlockType} and various {@link Value.Immutable}s defining
  * the information for the "block". Note that normally, there may exist only
  * a single instance of a particular {@link BlockState} as they are immutable,
  * a particular instance may be cached for various uses.
@@ -77,7 +77,7 @@ public interface BlockState extends State<BlockState>, DirectionRelativeProperty
      * Depending on whether this block state is considered "waterlogged"
      * or not, and with which fluid.
      *
-     * @return
+     * @return The fluid state
      */
     FluidState getFluidState();
 

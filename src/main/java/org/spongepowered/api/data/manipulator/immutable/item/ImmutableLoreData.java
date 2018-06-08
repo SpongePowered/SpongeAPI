@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.immutable.item;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableListData;
 import org.spongepowered.api.data.manipulator.mutable.item.LoreData;
-import org.spongepowered.api.data.value.immutable.ImmutableListValue;
+import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.Text;
 
@@ -39,11 +39,11 @@ import org.spongepowered.api.text.Text;
 public interface ImmutableLoreData extends ImmutableListData<Text, ImmutableLoreData, LoreData> {
 
     /**
-     * Gets the {@link ImmutableListValue} of the "lore" {@link Text}.
+     * Gets the {@link ListValue.Immutable} of the "lore" {@link Text}.
      *
      * @return The immutable list value of text lore
      */
-    default ImmutableListValue<Text> lore() {
+    default ListValue.Immutable<Text> lore() {
         return getListValue();
     }
 

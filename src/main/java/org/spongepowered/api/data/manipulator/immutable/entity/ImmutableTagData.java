@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.TagData;
-import org.spongepowered.api.data.value.immutable.ImmutableSetValue;
+import org.spongepowered.api.data.value.SetValue;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -39,11 +39,11 @@ import org.spongepowered.api.entity.Entity;
 public interface ImmutableTagData extends ImmutableDataManipulator<ImmutableTagData, TagData> {
 
     /**
-     * Gets the {@link ImmutableSetValue} of the scoreboard tags applied to
+     * Gets the {@link SetValue.Immutable} of the scoreboard tags applied to
      * this {@link Entity}.
      *
      * @return The immutable set value of scoreboard tags
      */
-    ImmutableSetValue<String> tags();
+    SetValue.Immutable<String> tags();
 
 }

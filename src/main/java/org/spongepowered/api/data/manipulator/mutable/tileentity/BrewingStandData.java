@@ -28,7 +28,7 @@ import org.spongepowered.api.block.tileentity.carrier.BrewingStand;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableBrewingStandData;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.data.value.BoundedValue;
 
 /**
  * An {@link DataManipulator} handling the {@link BrewingStand}
@@ -37,13 +37,13 @@ import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 public interface BrewingStandData extends DataManipulator<BrewingStandData, ImmutableBrewingStandData> {
 
     /**
-     * Gets the {@link MutableBoundedValue} for the remaining brew time.
+     * Gets the {@link BoundedValue.Mutable} for the remaining brew time.
      *
      * <p>If nothing is brewing the value is 0.</p>
      *
      * @return The value for the remaining brew time
      * @see Keys#REMAINING_BREW_TIME
      */
-    MutableBoundedValue<Integer> remainingBrewTime();
+    BoundedValue.Mutable<Integer> remainingBrewTime();
 
 }

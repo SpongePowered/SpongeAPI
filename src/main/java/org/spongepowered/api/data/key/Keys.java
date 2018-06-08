@@ -36,9 +36,9 @@ import org.spongepowered.api.data.manipulator.mutable.block.*;
 import org.spongepowered.api.data.manipulator.mutable.entity.*;
 import org.spongepowered.api.data.manipulator.mutable.item.*;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.*;
+import org.spongepowered.api.data.meta.PatternLayer;
 import org.spongepowered.api.data.type.*;
-import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.*;
+import org.spongepowered.api.data.value.*;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.effect.potion.PotionEffectType;
@@ -136,7 +136,7 @@ public final class Keys {
      *
      * @see AgeableData#age()
      */
-    public static final Key<MutableBoundedValue<Integer>> AGE = DummyObjectProvider.createExtendedFor(Key.class,"AGE");
+    public static final Key<BoundedValue<Integer>> AGE = DummyObjectProvider.createExtendedFor(Key.class,"AGE");
 
     /**
      * Represents the {@link Key} for whether an {@link Agent}s AI is enabled.
@@ -155,7 +155,7 @@ public final class Keys {
      *
      * @see AngerableData#angerLevel()
      */
-    public static final Key<MutableBoundedValue<Integer>> ANGER = DummyObjectProvider.createExtendedFor(Key.class,"ANGER");
+    public static final Key<BoundedValue<Integer>> ANGER = DummyObjectProvider.createExtendedFor(Key.class,"ANGER");
 
     /**
      * Represents the {@link Key} for whether an {@link Entity} is currently
@@ -171,7 +171,7 @@ public final class Keys {
      *
      * @see AreaEffectCloudData#age()
      */
-    public static final Key<MutableBoundedValue<Integer>> AREA_EFFECT_CLOUD_AGE = DummyObjectProvider.createExtendedFor(Key.class,"AREA_EFFECT_CLOUD_AGE");
+    public static final Key<BoundedValue<Integer>> AREA_EFFECT_CLOUD_AGE = DummyObjectProvider.createExtendedFor(Key.class,"AREA_EFFECT_CLOUD_AGE");
 
     /**
      * Represents the {@link Key} for the color of an {@link AreaEffectCloud}
@@ -187,7 +187,7 @@ public final class Keys {
      *
      * @see AreaEffectCloudData#duration()
      */
-    public static final Key<MutableBoundedValue<Integer>> AREA_EFFECT_CLOUD_DURATION = DummyObjectProvider.createExtendedFor(Key.class,"AREA_EFFECT_CLOUD_DURATION");
+    public static final Key<BoundedValue<Integer>> AREA_EFFECT_CLOUD_DURATION = DummyObjectProvider.createExtendedFor(Key.class,"AREA_EFFECT_CLOUD_DURATION");
 
     /**
      * Represents the {@link Key} for the amount of ticks the duration of an
@@ -196,7 +196,7 @@ public final class Keys {
      *
      * @see AreaEffectCloudData#durationOnUse()
      */
-    public static final Key<MutableBoundedValue<Integer>> AREA_EFFECT_CLOUD_DURATION_ON_USE = DummyObjectProvider.createExtendedFor(Key.class,"AREA_EFFECT_CLOUD_DURATION_ON_USE");
+    public static final Key<BoundedValue<Integer>> AREA_EFFECT_CLOUD_DURATION_ON_USE = DummyObjectProvider.createExtendedFor(Key.class,"AREA_EFFECT_CLOUD_DURATION_ON_USE");
 
     /**
      * Represents the {@link Key} for the particle type of an
@@ -211,7 +211,7 @@ public final class Keys {
      *
      * @see AreaEffectCloudData#radius()
      */
-    public static final Key<MutableBoundedValue<Double>> AREA_EFFECT_CLOUD_RADIUS = DummyObjectProvider.createExtendedFor(Key.class,"AREA_EFFECT_CLOUD_RADIUS");
+    public static final Key<BoundedValue<Double>> AREA_EFFECT_CLOUD_RADIUS = DummyObjectProvider.createExtendedFor(Key.class,"AREA_EFFECT_CLOUD_RADIUS");
 
     /**
      * Represents the {@link Key} for the amount the radius of an
@@ -220,7 +220,7 @@ public final class Keys {
      *
      * @see AreaEffectCloudData#radiusOnUse()
      */
-    public static final Key<MutableBoundedValue<Double>> AREA_EFFECT_CLOUD_RADIUS_ON_USE = DummyObjectProvider.createExtendedFor(Key.class,"AREA_EFFECT_CLOUD_RADIUS_ON_USE");
+    public static final Key<BoundedValue<Double>> AREA_EFFECT_CLOUD_RADIUS_ON_USE = DummyObjectProvider.createExtendedFor(Key.class,"AREA_EFFECT_CLOUD_RADIUS_ON_USE");
 
     /**
      * Represents the {@link Key} for the amount the radius of an
@@ -228,7 +228,7 @@ public final class Keys {
      *
      * @see AreaEffectCloudData#radiusOnUse()
      */
-    public static final Key<MutableBoundedValue<Double>> AREA_EFFECT_CLOUD_RADIUS_PER_TICK = DummyObjectProvider.createExtendedFor(Key.class,"AREA_EFFECT_CLOUD_RADIUS_PER_TICK");
+    public static final Key<BoundedValue<Double>> AREA_EFFECT_CLOUD_RADIUS_PER_TICK = DummyObjectProvider.createExtendedFor(Key.class,"AREA_EFFECT_CLOUD_RADIUS_PER_TICK");
 
     /**
      * Represents the {@link Key} for the delay (in ticks) after which an
@@ -237,7 +237,7 @@ public final class Keys {
      *
      * @see AreaEffectCloudData#applicationDelay()
      */
-    public static final Key<MutableBoundedValue<Integer>> AREA_EFFECT_CLOUD_REAPPLICATION_DELAY = DummyObjectProvider.createExtendedFor(Key.class,"AREA_EFFECT_CLOUD_REAPPLICATION_DELAY");
+    public static final Key<BoundedValue<Integer>> AREA_EFFECT_CLOUD_REAPPLICATION_DELAY = DummyObjectProvider.createExtendedFor(Key.class,"AREA_EFFECT_CLOUD_REAPPLICATION_DELAY");
 
     /**
      * Represents the {@link Key} for the duration in ticks after which an
@@ -245,7 +245,7 @@ public final class Keys {
      *
      * @see AreaEffectCloudData#waitTime()
      */
-    public static final Key<MutableBoundedValue<Integer>> AREA_EFFECT_CLOUD_WAIT_TIME = DummyObjectProvider.createExtendedFor(Key.class,"AREA_EFFECT_CLOUD_WAIT_TIME");
+    public static final Key<BoundedValue<Integer>> AREA_EFFECT_CLOUD_WAIT_TIME = DummyObjectProvider.createExtendedFor(Key.class,"AREA_EFFECT_CLOUD_WAIT_TIME");
 
     /**
      * Represents the {@link Key} for whether an {@link ArmorStand}'s arms are
@@ -308,7 +308,7 @@ public final class Keys {
      *
      * @see DamagingData#damage()
      */
-    public static final Key<MutableBoundedValue<Double>> ATTACK_DAMAGE = DummyObjectProvider.createExtendedFor(Key.class,"ATTACK_DAMAGE");
+    public static final Key<BoundedValue<Double>> ATTACK_DAMAGE = DummyObjectProvider.createExtendedFor(Key.class,"ATTACK_DAMAGE");
 
     /**
      * Represents the {@link Key} for representing the {@link Axis} direction
@@ -330,7 +330,7 @@ public final class Keys {
      *
      * @see BannerData#patternsList()
      */
-    public static final Key<PatternListValue> BANNER_PATTERNS = DummyObjectProvider.createExtendedFor(Key.class,"BANNER_PATTERNS");
+    public static final Key<ListValue<PatternLayer>> BANNER_PATTERNS = DummyObjectProvider.createExtendedFor(Key.class,"BANNER_PATTERNS");
 
     /**
      * Represents the {@link Key} for the width of the physical form of an
@@ -341,7 +341,7 @@ public final class Keys {
      *
      * @see SizeData#base()
      */
-    public static final Key<MutableBoundedValue<Float>> BASE_SIZE = DummyObjectProvider.createExtendedFor(Key.class,"BASE_SIZE");
+    public static final Key<BoundedValue<Float>> BASE_SIZE = DummyObjectProvider.createExtendedFor(Key.class,"BASE_SIZE");
 
     /**
      * Represents the {@link Key} for the base vehicle a passenger is riding
@@ -604,7 +604,7 @@ public final class Keys {
      *
      * @see ExpOrbData#experience()
      */
-    public static final Key<MutableBoundedValue<Integer>> CONTAINED_EXPERIENCE = DummyObjectProvider.createExtendedFor(Key.class,"CONTAINED_EXPERIENCE");
+    public static final Key<BoundedValue<Integer>> CONTAINED_EXPERIENCE = DummyObjectProvider.createExtendedFor(Key.class,"CONTAINED_EXPERIENCE");
 
     /**
      * Represents the {@link Key} for the amount of ticks a {@link Hopper} has
@@ -612,7 +612,7 @@ public final class Keys {
      *
      * @see CooldownData#cooldown()
      */
-    public static final Key<MutableBoundedValue<Integer>> COOLDOWN = DummyObjectProvider.createExtendedFor(Key.class,"COOLDOWN");
+    public static final Key<BoundedValue<Integer>> COOLDOWN = DummyObjectProvider.createExtendedFor(Key.class,"COOLDOWN");
 
     /**
      * Represents the {@link Key} for whether a {@link Creeper} is charged.
@@ -652,14 +652,14 @@ public final class Keys {
      *
      * @see DecayableData#distance()
      */
-    public static final Key<MutableBoundedValue<Integer>> DECAY_DISTANCE = DummyObjectProvider.createExtendedFor(Key.class,"DECAY_DISTANCE");
+    public static final Key<BoundedValue<Integer>> DECAY_DISTANCE = DummyObjectProvider.createExtendedFor(Key.class,"DECAY_DISTANCE");
 
     /**
      * Represents the {@link Key} for the delay on a redstone repeater.
      *
      * @see DelayableData#delay()
      */
-    public static final Key<MutableBoundedValue<Integer>> DELAY = DummyObjectProvider.createExtendedFor(Key.class,"DELAY");
+    public static final Key<BoundedValue<Integer>> DELAY = DummyObjectProvider.createExtendedFor(Key.class,"DELAY");
 
     /**
      * Represents the {@link Key} for representing the despawn delay
@@ -667,7 +667,7 @@ public final class Keys {
      *
      * @see DespawnDelayData#delay()
      */
-    public static final Key<MutableBoundedValue<Integer>> DESPAWN_DELAY = DummyObjectProvider.createExtendedFor(Key.class,"DESPAWN_DELAY");
+    public static final Key<BoundedValue<Integer>> DESPAWN_DELAY = DummyObjectProvider.createExtendedFor(Key.class,"DESPAWN_DELAY");
 
     /**
      * Represents the {@link Key} for representing the {@link Direction}
@@ -751,7 +751,7 @@ public final class Keys {
      *
      * @see FoodData#exhaustion()
      */
-    public static final Key<MutableBoundedValue<Double>> EXHAUSTION = DummyObjectProvider.createExtendedFor(Key.class,"EXHAUSTION");
+    public static final Key<BoundedValue<Double>> EXHAUSTION = DummyObjectProvider.createExtendedFor(Key.class,"EXHAUSTION");
 
     /**
      * Represents the {@link Key} for representing the exit
@@ -767,14 +767,14 @@ public final class Keys {
      *
      * @see ExperienceHolderData#getExperienceBetweenLevels()
      */
-    public static final Key<ImmutableBoundedValue<Integer>> EXPERIENCE_FROM_START_OF_LEVEL = DummyObjectProvider.createExtendedFor(Key.class,"EXPERIENCE_FROM_START_OF_LEVEL");
+    public static final Key<BoundedValue<Integer>> EXPERIENCE_FROM_START_OF_LEVEL = DummyObjectProvider.createExtendedFor(Key.class,"EXPERIENCE_FROM_START_OF_LEVEL");
 
     /**
      * Represents the {@link Key} for the current level a {@link Player} has.
      *
      * @see ExperienceHolderData#level()
      */
-    public static final Key<MutableBoundedValue<Integer>> EXPERIENCE_LEVEL = DummyObjectProvider.createExtendedFor(Key.class,"EXPERIENCE_LEVEL");
+    public static final Key<BoundedValue<Integer>> EXPERIENCE_LEVEL = DummyObjectProvider.createExtendedFor(Key.class,"EXPERIENCE_LEVEL");
 
     /**
      * Represents the {@link Key} for the amount of experience a {@link Player}
@@ -782,7 +782,7 @@ public final class Keys {
      *
      * @see ExperienceHolderData#experienceSinceLevel()
      */
-    public static final Key<MutableBoundedValue<Integer>> EXPERIENCE_SINCE_LEVEL = DummyObjectProvider.createExtendedFor(Key.class,"EXPERIENCE_SINCE_LEVEL");
+    public static final Key<BoundedValue<Integer>> EXPERIENCE_SINCE_LEVEL = DummyObjectProvider.createExtendedFor(Key.class,"EXPERIENCE_SINCE_LEVEL");
 
     /**
      * Represents the {@link Key} for how long an entity or
@@ -838,7 +838,7 @@ public final class Keys {
      *
      * @see FallingBlockData#fallDamagePerBlock()
      */
-    public static final Key<MutableBoundedValue<Double>> FALL_DAMAGE_PER_BLOCK = DummyObjectProvider.createExtendedFor(Key.class,"FALL_DAMAGE_PER_BLOCK");
+    public static final Key<BoundedValue<Double>> FALL_DAMAGE_PER_BLOCK = DummyObjectProvider.createExtendedFor(Key.class,"FALL_DAMAGE_PER_BLOCK");
 
     /**
      * Represents the {@link Key} for representing the distance an entity has
@@ -846,7 +846,7 @@ public final class Keys {
      *
      * @see FallDistanceData#fallDistance()
      */
-    public static final Key<MutableBoundedValue<Float>> FALL_DISTANCE = DummyObjectProvider.createExtendedFor(Key.class,"FALL_DISTANCE");
+    public static final Key<BoundedValue<Float>> FALL_DISTANCE = DummyObjectProvider.createExtendedFor(Key.class,"FALL_DISTANCE");
 
     /**
      * Represents the {@link Key} for the amount of ticks a
@@ -884,7 +884,7 @@ public final class Keys {
      *
      * @see FireworkRocketData#flightModifier()
      */
-    public static final Key<MutableBoundedValue<Integer>> FIREWORK_FLIGHT_MODIFIER = DummyObjectProvider.createExtendedFor(Key.class,"FIREWORK_FLIGHT_MODIFIER");
+    public static final Key<BoundedValue<Integer>> FIREWORK_FLIGHT_MODIFIER = DummyObjectProvider.createExtendedFor(Key.class,"FIREWORK_FLIGHT_MODIFIER");
 
     /**
      * Represents the {@link Key} for the delay in ticks until the
@@ -892,7 +892,7 @@ public final class Keys {
      *
      * @see IgniteableData#fireDelay()
      */
-    public static final Key<MutableBoundedValue<Integer>> FIRE_DAMAGE_DELAY = DummyObjectProvider.createExtendedFor(Key.class,"FIRE_DAMAGE_DELAY");
+    public static final Key<BoundedValue<Integer>> FIRE_DAMAGE_DELAY = DummyObjectProvider.createExtendedFor(Key.class,"FIRE_DAMAGE_DELAY");
 
     /**
      * Represents the {@link Key} for the amount of ticks an
@@ -900,7 +900,7 @@ public final class Keys {
      *
      * @see IgniteableData#fireTicks()
      */
-    public static final Key<MutableBoundedValue<Integer>> FIRE_TICKS = DummyObjectProvider.createExtendedFor(Key.class,"FIRE_TICKS");
+    public static final Key<BoundedValue<Integer>> FIRE_TICKS = DummyObjectProvider.createExtendedFor(Key.class,"FIRE_TICKS");
 
     /**
      * Represents the {@link Key} for the time a {@link Player} first played
@@ -925,7 +925,7 @@ public final class Keys {
      *
      * @see FluidLevelData#level()
      */
-    public static final Key<MutableBoundedValue<Integer>> FLUID_LEVEL = DummyObjectProvider.createExtendedFor(Key.class,"FLUID_LEVEL");
+    public static final Key<BoundedValue<Integer>> FLUID_LEVEL = DummyObjectProvider.createExtendedFor(Key.class,"FLUID_LEVEL");
 
     /**
      * Represents the {@link Key} for representing the directional tank
@@ -947,7 +947,7 @@ public final class Keys {
      *
      * @see FoodData#foodLevel()
      */
-    public static final Key<MutableBoundedValue<Integer>> FOOD_LEVEL = DummyObjectProvider.createExtendedFor(Key.class,"FOOD_LEVEL");
+    public static final Key<BoundedValue<Integer>> FOOD_LEVEL = DummyObjectProvider.createExtendedFor(Key.class,"FOOD_LEVEL");
 
     /**
      * Represents the {@link Key} for the time a {@link FusedExplosive}'s fuse
@@ -972,7 +972,7 @@ public final class Keys {
      *
      * @see GenerationData#generation()
      */
-    public static final Key<MutableBoundedValue<Integer>> GENERATION = DummyObjectProvider.createExtendedFor(Key.class,"GENERATION");
+    public static final Key<BoundedValue<Integer>> GENERATION = DummyObjectProvider.createExtendedFor(Key.class,"GENERATION");
 
     /**
      * Represents the {@link Key} for representing whether an entity has a
@@ -988,7 +988,7 @@ public final class Keys {
      *
      * @see GrowthData#growthStage()
      */
-    public static final Key<MutableBoundedValue<Integer>> GROWTH_STAGE = DummyObjectProvider.createExtendedFor(Key.class,"GROWTH_STAGE");
+    public static final Key<BoundedValue<Integer>> GROWTH_STAGE = DummyObjectProvider.createExtendedFor(Key.class,"GROWTH_STAGE");
 
     /**
      * Represents the {@link Key} for whether an {@link Entity} is affected by
@@ -1011,7 +1011,7 @@ public final class Keys {
      *
      * @see HealthData#health()
      */
-    public static final Key<MutableBoundedValue<Double>> HEALTH = DummyObjectProvider.createExtendedFor(Key.class,"HEALTH");
+    public static final Key<BoundedValue<Double>> HEALTH = DummyObjectProvider.createExtendedFor(Key.class,"HEALTH");
 
     /**
      * Represents the {@link Key} for how much health a half-heart on a
@@ -1019,7 +1019,7 @@ public final class Keys {
      *
      * @see HealthScalingData#healthScale()
      */
-    public static final Key<MutableBoundedValue<Double>> HEALTH_SCALE = DummyObjectProvider.createExtendedFor(Key.class,"HEALTH_SCALE");
+    public static final Key<BoundedValue<Double>> HEALTH_SCALE = DummyObjectProvider.createExtendedFor(Key.class,"HEALTH_SCALE");
 
     /**
      * Represents the {@link Key} for the height of the physical form of an
@@ -1030,7 +1030,7 @@ public final class Keys {
      *
      * @see SizeData#height()
      */
-    public static final Key<MutableBoundedValue<Float>> HEIGHT = DummyObjectProvider.createExtendedFor(Key.class,"HEIGHT");
+    public static final Key<BoundedValue<Float>> HEIGHT = DummyObjectProvider.createExtendedFor(Key.class,"HEIGHT");
 
     /**
      * Represents the {@link Key} for representing the "attributes hidden"
@@ -1150,7 +1150,7 @@ public final class Keys {
      *
      * @see InvulnerabilityData#invulnerableTicks()
      */
-    public static final Key<MutableBoundedValue<Integer>> INVULNERABILITY_TICKS = DummyObjectProvider.createExtendedFor(Key.class,"INVULNERABILITY_TICKS");
+    public static final Key<BoundedValue<Integer>> INVULNERABILITY_TICKS = DummyObjectProvider.createExtendedFor(Key.class,"INVULNERABILITY_TICKS");
 
     /**
      * Represents the {@link Key} for representing if an {@link Entity}
@@ -1312,7 +1312,7 @@ public final class Keys {
      *
      * @see DurabilityData#durability()
      */
-    public static final Key<MutableBoundedValue<Integer>> ITEM_DURABILITY = DummyObjectProvider.createExtendedFor(Key.class,"ITEM_DURABILITY");
+    public static final Key<BoundedValue<Integer>> ITEM_DURABILITY = DummyObjectProvider.createExtendedFor(Key.class,"ITEM_DURABILITY");
 
     /**
      * Represents the {@link Key} for the enchantments applied to an
@@ -1349,7 +1349,7 @@ public final class Keys {
      *
      * @see KnockbackData#knockbackStrength()
      */
-    public static final Key<MutableBoundedValue<Integer>> KNOCKBACK_STRENGTH = DummyObjectProvider.createExtendedFor(Key.class,"KNOCKBACK_STRENGTH");
+    public static final Key<BoundedValue<Integer>> KNOCKBACK_STRENGTH = DummyObjectProvider.createExtendedFor(Key.class,"KNOCKBACK_STRENGTH");
 
     /**
      * Represents the {@link Key} for the output yielded by the last command of
@@ -1373,7 +1373,7 @@ public final class Keys {
      *
      * @see LayeredData#layer()
      */
-    public static final Key<MutableBoundedValue<Integer>> LAYER = DummyObjectProvider.createExtendedFor(Key.class,"LAYER");
+    public static final Key<BoundedValue<Integer>> LAYER = DummyObjectProvider.createExtendedFor(Key.class,"LAYER");
 
     /**
      * Represents the {@link Key} for the rotation of an {@link Entity}'s left
@@ -1403,7 +1403,7 @@ public final class Keys {
      * Represents the {@link Key} for a {@link Llama}s carrying strength. The higher the strength,
      * the more items it can carry (effectively the size of inventory).
      */
-    public static final Key<MutableBoundedValue<Integer>> LLAMA_STRENGTH = DummyObjectProvider.createExtendedFor(Key.class,"LLAMA_STRENGTH");
+    public static final Key<BoundedValue<Integer>> LLAMA_STRENGTH = DummyObjectProvider.createExtendedFor(Key.class,"LLAMA_STRENGTH");
 
     /**
      * Represents the {@link Key} for a {@link Llama}'s {@link LlamaVariant}.
@@ -1426,7 +1426,7 @@ public final class Keys {
      *
      * @see BreathingData#maxAir()
      */
-    public static final Key<MutableBoundedValue<Integer>> MAX_AIR = DummyObjectProvider.createExtendedFor(Key.class,"MAX_AIR");
+    public static final Key<BoundedValue<Integer>> MAX_AIR = DummyObjectProvider.createExtendedFor(Key.class,"MAX_AIR");
 
     /**
      * Represents the {@link Key} for the maximum amount of ticks a
@@ -1434,7 +1434,7 @@ public final class Keys {
      *
      * @see FurnaceData#maxBurnTime()
      */
-    public static final Key<MutableBoundedValue<Integer>> MAX_BURN_TIME = DummyObjectProvider.createExtendedFor(Key.class,"MAX_BURN_TIME");
+    public static final Key<BoundedValue<Integer>> MAX_BURN_TIME = DummyObjectProvider.createExtendedFor(Key.class,"MAX_BURN_TIME");
 
     /**
      * Represents the {@link Key} for the total time the current
@@ -1442,7 +1442,7 @@ public final class Keys {
      *
      * @see FurnaceData#maxCookTime()
      */
-    public static final Key<MutableBoundedValue<Integer>> MAX_COOK_TIME = DummyObjectProvider.createExtendedFor(Key.class,"MAX_COOK_TIME");
+    public static final Key<BoundedValue<Integer>> MAX_COOK_TIME = DummyObjectProvider.createExtendedFor(Key.class,"MAX_COOK_TIME");
 
     /**
      * Represents the {@link Key} for the maximum damage a {@link FallingBlock}
@@ -1450,14 +1450,14 @@ public final class Keys {
      *
      * @see FallingBlockData#maxFallDamage()
      */
-    public static final Key<MutableBoundedValue<Double>> MAX_FALL_DAMAGE = DummyObjectProvider.createExtendedFor(Key.class,"MAX_FALL_DAMAGE");
+    public static final Key<BoundedValue<Double>> MAX_FALL_DAMAGE = DummyObjectProvider.createExtendedFor(Key.class,"MAX_FALL_DAMAGE");
 
     /**
      * Represents the {@link Key} for the maximum health of a {@link Living}.
      *
      * @see HealthData#maxHealth()
      */
-    public static final Key<MutableBoundedValue<Double>> MAX_HEALTH = DummyObjectProvider.createExtendedFor(Key.class,"MAX_HEALTH");
+    public static final Key<BoundedValue<Double>> MAX_HEALTH = DummyObjectProvider.createExtendedFor(Key.class,"MAX_HEALTH");
 
     /**
      * Represents the {@link Key} for representing the "moisture" state of
@@ -1465,7 +1465,7 @@ public final class Keys {
      *
      * @see MoistureData#moisture()
      */
-    public static final Key<MutableBoundedValue<Integer>> MOISTURE = DummyObjectProvider.createExtendedFor(Key.class,"MOISTURE");
+    public static final Key<BoundedValue<Integer>> MOISTURE = DummyObjectProvider.createExtendedFor(Key.class,"MOISTURE");
 
     /**
      * Represents the {@link Key} for the pitch of a {@link BlockTypes#NOTE_BLOCK}.
@@ -1521,7 +1521,7 @@ public final class Keys {
      *
      * @see FurnaceData#passedBurnTime()
      */
-    public static final Key<MutableBoundedValue<Integer>> PASSED_BURN_TIME = DummyObjectProvider.createExtendedFor(Key.class,"PASSED_BURN_TIME");
+    public static final Key<BoundedValue<Integer>> PASSED_BURN_TIME = DummyObjectProvider.createExtendedFor(Key.class,"PASSED_BURN_TIME");
 
     /**
      * Represents the {@link Key} for the amount of ticks a {@link Furnace} has
@@ -1532,7 +1532,7 @@ public final class Keys {
      *
      * @see FurnaceData#passedCookTime()
      */
-    public static final Key<MutableBoundedValue<Integer>> PASSED_COOK_TIME = DummyObjectProvider.createExtendedFor(Key.class,"PASSED_COOK_TIME");
+    public static final Key<BoundedValue<Integer>> PASSED_COOK_TIME = DummyObjectProvider.createExtendedFor(Key.class,"PASSED_COOK_TIME");
 
     /**
      * Represents the {@link Key} for the entities that act as passengers for
@@ -1563,7 +1563,7 @@ public final class Keys {
      *
      * @see PickupDelayData#delay()
      */
-    public static final Key<MutableBoundedValue<Integer>> PICKUP_DELAY = DummyObjectProvider.createExtendedFor(Key.class,"PICKUP_DELAY");
+    public static final Key<BoundedValue<Integer>> PICKUP_DELAY = DummyObjectProvider.createExtendedFor(Key.class,"PICKUP_DELAY");
 
     /**
      * Represents the {@link Key} for the "pickup rule" of an {@link Arrow}.
@@ -1640,7 +1640,7 @@ public final class Keys {
      *
      * @see RedstonePoweredData#power()
      */
-    public static final Key<MutableBoundedValue<Integer>> POWER = DummyObjectProvider.createExtendedFor(Key.class,"POWER");
+    public static final Key<BoundedValue<Integer>> POWER = DummyObjectProvider.createExtendedFor(Key.class,"POWER");
 
     /**
      * Represents the {@link Key} for representing the "powered" state
@@ -1676,7 +1676,7 @@ public final class Keys {
      *
      * @see BreathingData#remainingAir()
      */
-    public static final Key<MutableBoundedValue<Integer>> REMAINING_AIR = DummyObjectProvider.createExtendedFor(Key.class,"REMAINING_AIR");
+    public static final Key<BoundedValue<Integer>> REMAINING_AIR = DummyObjectProvider.createExtendedFor(Key.class,"REMAINING_AIR");
 
     /**
      * Represents the {@link Key} for how many more ticks the current brewing
@@ -1686,7 +1686,7 @@ public final class Keys {
      *
      * @see BrewingStandData#remainingBrewTime()
      */
-    public static final Key<MutableBoundedValue<Integer>> REMAINING_BREW_TIME = DummyObjectProvider.createExtendedFor(Key.class,"REMAINING_BREW_TIME");
+    public static final Key<BoundedValue<Integer>> REMAINING_BREW_TIME = DummyObjectProvider.createExtendedFor(Key.class,"REMAINING_BREW_TIME");
 
     /**
      * Represents the {@link Key} for representing the {@link BlockState}
@@ -1753,7 +1753,7 @@ public final class Keys {
      *
      * @see FoodData#saturation()
      */
-    public static final Key<MutableBoundedValue<Double>> SATURATION = DummyObjectProvider.createExtendedFor(Key.class,"SATURATION");
+    public static final Key<BoundedValue<Double>> SATURATION = DummyObjectProvider.createExtendedFor(Key.class,"SATURATION");
 
     /**
      * Represents the {@link Key} for the "scale" for the size of an
@@ -1761,7 +1761,7 @@ public final class Keys {
      *
      * @see SizeData#scale()
      */
-    public static final Key<MutableBoundedValue<Float>> SCALE = DummyObjectProvider.createExtendedFor(Key.class,"SCALE");
+    public static final Key<BoundedValue<Float>> SCALE = DummyObjectProvider.createExtendedFor(Key.class,"SCALE");
 
     /**
      * Represents the {@link Key} for representing the "should drop" state
@@ -1802,7 +1802,7 @@ public final class Keys {
      *
      * @see SlimeData#size()
      */
-    public static final Key<MutableBoundedValue<Integer>> SLIME_SIZE = DummyObjectProvider.createExtendedFor(Key.class,"SLIME_SIZE");
+    public static final Key<BoundedValue<Integer>> SLIME_SIZE = DummyObjectProvider.createExtendedFor(Key.class,"SLIME_SIZE");
 
     /**
      * Represents the {@link Key} for representing the "snowed" state
@@ -1838,7 +1838,7 @@ public final class Keys {
      *
      * @see MobSpawnerData#maximumSpawnDelay()
      */
-    public static final Key<MutableBoundedValue<Short>> SPAWNER_MAXIMUM_DELAY = DummyObjectProvider.createExtendedFor(Key.class,"SPAWNER_MAXIMUM_DELAY");
+    public static final Key<BoundedValue<Short>> SPAWNER_MAXIMUM_DELAY = DummyObjectProvider.createExtendedFor(Key.class,"SPAWNER_MAXIMUM_DELAY");
 
     /**
      * Represents the {@link Key} for the maximum number of entities around a
@@ -1847,7 +1847,7 @@ public final class Keys {
      *
      * @see MobSpawnerData#maximumNearbyEntities()
      */
-    public static final Key<MutableBoundedValue<Short>> SPAWNER_MAXIMUM_NEARBY_ENTITIES = DummyObjectProvider.createExtendedFor(Key.class,"SPAWNER_MAXIMUM_NEARBY_ENTITIES");
+    public static final Key<BoundedValue<Short>> SPAWNER_MAXIMUM_NEARBY_ENTITIES = DummyObjectProvider.createExtendedFor(Key.class,"SPAWNER_MAXIMUM_NEARBY_ENTITIES");
 
     /**
      * Represents the {@link Key} for the minimum amount of ticks between two
@@ -1855,7 +1855,7 @@ public final class Keys {
      *
      * @see MobSpawnerData#minimumSpawnDelay()
      */
-    public static final Key<MutableBoundedValue<Short>> SPAWNER_MINIMUM_DELAY = DummyObjectProvider.createExtendedFor(Key.class,"SPAWNER_MINIMUM_DELAY");
+    public static final Key<BoundedValue<Short>> SPAWNER_MINIMUM_DELAY = DummyObjectProvider.createExtendedFor(Key.class,"SPAWNER_MINIMUM_DELAY");
 
     /**
      * Represents the {@link Key} for the next entity that will be spawned
@@ -1875,7 +1875,7 @@ public final class Keys {
      *
      * @see MobSpawnerData#remainingDelay()
      */
-    public static final Key<MutableBoundedValue<Short>> SPAWNER_REMAINING_DELAY = DummyObjectProvider.createExtendedFor(Key.class,"SPAWNER_REMAINING_DELAY");
+    public static final Key<BoundedValue<Short>> SPAWNER_REMAINING_DELAY = DummyObjectProvider.createExtendedFor(Key.class,"SPAWNER_REMAINING_DELAY");
 
     /**
      * Represents the {@link Key} for how close a {@link Player} has to be
@@ -1884,7 +1884,7 @@ public final class Keys {
      *
      * @see MobSpawnerData#requiredPlayerRange()
      */
-    public static final Key<MutableBoundedValue<Short>> SPAWNER_REQUIRED_PLAYER_RANGE = DummyObjectProvider.createExtendedFor(Key.class,"SPAWNER_REQUIRED_PLAYER_RANGE");
+    public static final Key<BoundedValue<Short>> SPAWNER_REQUIRED_PLAYER_RANGE = DummyObjectProvider.createExtendedFor(Key.class,"SPAWNER_REQUIRED_PLAYER_RANGE");
 
     /**
      * Represents the {@link Key} for how many entities a {@link MobSpawner} has
@@ -1892,7 +1892,7 @@ public final class Keys {
      *
      * @see MobSpawnerData#spawnCount()
      */
-    public static final Key<MutableBoundedValue<Short>> SPAWNER_SPAWN_COUNT = DummyObjectProvider.createExtendedFor(Key.class,"SPAWNER_SPAWN_COUNT");
+    public static final Key<BoundedValue<Short>> SPAWNER_SPAWN_COUNT = DummyObjectProvider.createExtendedFor(Key.class,"SPAWNER_SPAWN_COUNT");
 
     /**
      * Represents the {@link Key} for how far away from the
@@ -1900,7 +1900,7 @@ public final class Keys {
      *
      * @see MobSpawnerData#spawnRange()
      */
-    public static final Key<MutableBoundedValue<Short>> SPAWNER_SPAWN_RANGE = DummyObjectProvider.createExtendedFor(Key.class,"SPAWNER_SPAWN_RANGE");
+    public static final Key<BoundedValue<Short>> SPAWNER_SPAWN_RANGE = DummyObjectProvider.createExtendedFor(Key.class,"SPAWNER_SPAWN_RANGE");
 
     /**
      * Represents the {@link Key} for representing the {@link StairShape}
@@ -2006,7 +2006,7 @@ public final class Keys {
      *
      * @see StuckArrowsData#stuckArrows()
      */
-    public static final Key<MutableBoundedValue<Integer>> STUCK_ARROWS = DummyObjectProvider.createExtendedFor(Key.class,"STUCK_ARROWS");
+    public static final Key<BoundedValue<Integer>> STUCK_ARROWS = DummyObjectProvider.createExtendedFor(Key.class,"STUCK_ARROWS");
 
     /**
      * Represents a key for the amount of successful executions of a command
@@ -2014,7 +2014,7 @@ public final class Keys {
      *
      * @see CommandData#successCount()
      */
-    public static final Key<MutableBoundedValue<Integer>> SUCCESS_COUNT = DummyObjectProvider.createExtendedFor(Key.class,"SUCCESS_COUNT");
+    public static final Key<BoundedValue<Integer>> SUCCESS_COUNT = DummyObjectProvider.createExtendedFor(Key.class,"SUCCESS_COUNT");
 
     /**
      * Represents the {@link Key} for representing the "suspended" state
@@ -2065,7 +2065,7 @@ public final class Keys {
      *
      * @see ExperienceHolderData#totalExperience()
      */
-    public static final Key<MutableBoundedValue<Integer>> TOTAL_EXPERIENCE = DummyObjectProvider.createExtendedFor(Key.class,"TOTAL_EXPERIENCE");
+    public static final Key<BoundedValue<Integer>> TOTAL_EXPERIENCE = DummyObjectProvider.createExtendedFor(Key.class,"TOTAL_EXPERIENCE");
 
     /**
      * Represents the {@link Key} for whether a {@link CommandBlock} does track

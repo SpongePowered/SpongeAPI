@@ -28,7 +28,7 @@ import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.WetData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.animal.Wolf;
 
 /**
@@ -39,10 +39,10 @@ import org.spongepowered.api.entity.living.animal.Wolf;
 public interface ImmutableWetData extends ImmutableDataManipulator<ImmutableWetData, WetData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the "wet" state.
+     * Gets the {@link Value.Immutable} for the "wet" state.
      *
      * @return The immutable value for the wet state
      */
-    ImmutableValue<Boolean> wet();
+    Value.Immutable<Boolean> wet();
 
 }

@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.immutable.tileentity;
 import org.spongepowered.api.block.tileentity.carrier.Furnace;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.FurnaceData;
-import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
+import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
@@ -36,16 +36,16 @@ import org.spongepowered.api.item.inventory.ItemStack;
 public interface ImmutableFurnaceData extends ImmutableDataManipulator<ImmutableFurnaceData, FurnaceData> {
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the already passed burn
+     * Gets the {@link BoundedValue.Immutable} for the already passed burn
      * time of the {@link Furnace}. When the {@code #passedBurnTime()} is equal
      * to the {@link #maxBurnTime()}, the current used fuel is depleted.
      *
      * @return The immutable value for the already passed burn time
      */
-    ImmutableBoundedValue<Integer> passedBurnTime();
+    BoundedValue.Immutable<Integer> passedBurnTime();
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the maximum amount of fuel
+     * Gets the {@link BoundedValue.Immutable} for the maximum amount of fuel
      * that can be supplied with the used fuel item.
      *
      * <p>This is represented by the flame icon in the {@link Furnace}, if the
@@ -55,22 +55,22 @@ public interface ImmutableFurnaceData extends ImmutableDataManipulator<Immutable
      * @return The immutable value for the maximum amount of fuel that can be
      *      supplied with the used fuel item
      */
-    ImmutableBoundedValue<Integer> maxBurnTime();
+    BoundedValue.Immutable<Integer> maxBurnTime();
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the already passed cook time
+     * Gets the {@link BoundedValue.Immutable} for the already passed cook time
      * of the {@link ItemStack} in the {@link Furnace}. When this is equal
      * to the {@link #maxCookTime()}, the {@link ItemStack} is cooked.
      *
      * @return The immutable value for the already passed cook time
      */
-    ImmutableBoundedValue<Integer> passedCookTime();
+    BoundedValue.Immutable<Integer> passedCookTime();
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the total time the
+     * Gets the {@link BoundedValue.Immutable} for the total time the
      * {@link ItemStack} has to cook until it is cooked.
      *
      * @return The immutable value for the time the item has to cook
      */
-    ImmutableBoundedValue<Integer> maxCookTime();
+    BoundedValue.Immutable<Integer> maxCookTime();
 }

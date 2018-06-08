@@ -29,8 +29,7 @@ import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * An abstract implementation of an {@link ImmutableDataManipulator} dealing
@@ -44,7 +43,7 @@ import org.spongepowered.api.data.value.mutable.Value;
 public abstract class AbstractImmutableSingleEnumData<E extends Enum<E>, I extends ImmutableDataManipulator<I, M>, M extends DataManipulator<M, I>>
         extends AbstractImmutableSingleData<E, I, M> {
 
-    private final ImmutableValue<E> cachedValue;
+    private final Value.Immutable<E> cachedValue;
 
     protected AbstractImmutableSingleEnumData(Key<Value<E>> usedKey, E value) {
         this(usedKey, value, value);
@@ -56,7 +55,7 @@ public abstract class AbstractImmutableSingleEnumData<E extends Enum<E>, I exten
     }
 
     @Override
-    protected final ImmutableValue<E> getValueGetter() {
+    protected final Value.Immutable<E> getValueGetter() {
         return this.cachedValue;
     }
 

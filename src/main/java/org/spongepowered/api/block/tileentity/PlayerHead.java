@@ -26,8 +26,8 @@ package org.spongepowered.api.block.tileentity;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.RepresentedPlayerData;
-import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.profile.GameProfile;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents a player head.
@@ -39,8 +39,8 @@ public interface PlayerHead extends TileEntity {
      *
      * @return The current represented player value
      */
-    default Value<GameProfile> representedPlayer() {
-        return getValue(Keys.REPRESENTED_PLAYER).get();
+    default Value.Mutable<GameProfile> representedPlayer() {
+        return getValue(Keys.REPRESENTED_PLAYER).get().asMutable();
     }
 
     /**

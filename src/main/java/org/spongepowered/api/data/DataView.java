@@ -30,7 +30,7 @@ import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.DataTranslator;
-import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.Value;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -198,7 +198,7 @@ public interface DataView {
      * @param <E> The type of value
      * @return This view, for chaining
      */
-    <E> DataView set(Key<? extends BaseValue<E>> key, E value);
+    <E> DataView set(Key<? extends Value<E>> key, E value);
 
     /**
      * Removes the data associated to the given path relative to this

@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.FuseData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.explosive.FusedExplosive;
 
 /**
@@ -40,7 +40,7 @@ public interface ImmutableFuseData extends ImmutableDataManipulator<ImmutableFus
      *
      * @return Amount of ticks before detonation when primed
      */
-    ImmutableValue<Integer> fuseDuration();
+    Value.Immutable<Integer> fuseDuration();
 
     /**
      * The amount of ticks before {@link FusedExplosive} detonates. This value
@@ -50,6 +50,6 @@ public interface ImmutableFuseData extends ImmutableDataManipulator<ImmutableFus
      *
      * @return Amount of ticks before impending detonation
      */
-    ImmutableValue<Integer> ticksRemaining();
+    Value.Immutable<Integer> ticksRemaining();
 
 }

@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.ExpirableData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.explosive.PrimedTNT;
 import org.spongepowered.api.entity.living.monster.Endermite;
@@ -41,11 +41,11 @@ import java.time.Duration;
 public interface ImmutableExpirableData extends ImmutableDataManipulator<ImmutableExpirableData, ExpirableData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the duration
+     * Gets the {@link Value.Immutable} for the duration
      * before the "expiration" occurs.
      *
      * @return The immutable bounded value for the remaining duration
      */
-    ImmutableValue<Duration> expireDuration();
+    Value.Immutable<Duration> expireDuration();
 
 }

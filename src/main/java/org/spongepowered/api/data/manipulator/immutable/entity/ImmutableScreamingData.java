@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.ScreamingData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.monster.Enderman;
 
 /**
@@ -37,11 +37,11 @@ import org.spongepowered.api.entity.living.monster.Enderman;
 public interface ImmutableScreamingData extends ImmutableDataManipulator<ImmutableScreamingData, ScreamingData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the "screaming" state.
+     * Gets the {@link Value.Immutable} for the "screaming" state.
      *
      * @return The immutable value for the screaming state
      */
-    ImmutableValue<Boolean> screaming();
+    Value.Immutable<Boolean> screaming();
 
 }
 

@@ -28,8 +28,7 @@ import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.block.BigMushroomPoresData;
-import org.spongepowered.api.data.value.immutable.ImmutableSetValue;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.SetValue;
 import org.spongepowered.api.util.Direction;
 
 /**
@@ -41,66 +40,66 @@ import org.spongepowered.api.util.Direction;
 public interface ImmutableBigMushroomPoresData extends ImmutableDataManipulator<ImmutableBigMushroomPoresData, BigMushroomPoresData> {
 
     /**
-     * Gets the {@link ImmutableSetValue} for the currently {@link Direction} sides
+     * Gets the {@link SetValue.Immutable} for the currently {@link Direction} sides
      * with pores.
      *
      * @return The immutable set value for the sides with pores
      * @see Keys#BIG_MUSHROOM_PORES
      */
-    ImmutableSetValue<Direction> sides();
+    SetValue.Immutable<Direction> sides();
 
     /**
-     * Gets the {@link ImmutableValue} for whether the {@link Direction#NORTH}
+     * Gets the {@link SetValue.Immutable} for whether the {@link Direction#NORTH}
      * side has pores.
      *
      * @return The value for the northern side
      * @see Keys#BIG_MUSHROOM_PORES_NORTH
      */
-    ImmutableValue<Boolean> north();
+    SetValue.Immutable<Boolean> north();
 
     /**
-     * Gets the {@link ImmutableValue} for whether the {@link Direction#SOUTH}
+     * Gets the {@link SetValue.Immutable} for whether the {@link Direction#SOUTH}
      * side has pores.
      *
      * @return The value for the southern side
      * @see Keys#BIG_MUSHROOM_PORES_SOUTH
      */
-    ImmutableValue<Boolean> south();
+    SetValue.Immutable<Boolean> south();
 
     /**
-     * Gets the {@link ImmutableValue} for whether the {@link Direction#EAST}
+     * Gets the {@link SetValue.Immutable} for whether the {@link Direction#EAST}
      * side has pores.
      *
      * @return The value for the eastern side
      * @see Keys#BIG_MUSHROOM_PORES_EAST
      */
-    ImmutableValue<Boolean> east();
+    SetValue.Immutable<Boolean> east();
 
     /**
-     * Gets the {@link ImmutableValue} for whether the {@link Direction#WEST}
+     * Gets the {@link SetValue.Immutable} for whether the {@link Direction#WEST}
      * side has pores.
      *
      * @return The value for the western side
      * @see Keys#BIG_MUSHROOM_PORES_WEST
      */
-    ImmutableValue<Boolean> west();
+    SetValue.Immutable<Boolean> west();
 
     /**
-     * Gets the {@link ImmutableValue} for whether the {@link Direction#UP} (top)
+     * Gets the {@link SetValue.Immutable} for whether the {@link Direction#UP} (top)
      * side has pores.
      *
      * @return The value for the up/top side
      * @see Keys#BIG_MUSHROOM_PORES_UP
      */
-    ImmutableValue<Boolean> up();
+    SetValue.Immutable<Boolean> up();
 
     /**
-     * Gets the {@link ImmutableValue} for whether the {@link Direction#DOWN} (bottom)
+     * Gets the {@link SetValue.Immutable} for whether the {@link Direction#DOWN} (bottom)
      * side has pores.
      *
      * @return The value for the down/bottom side
      * @see Keys#BIG_MUSHROOM_PORES_DOWN
      */
-    ImmutableValue<Boolean> down();
+    SetValue.Immutable<Boolean> down();
 
 }

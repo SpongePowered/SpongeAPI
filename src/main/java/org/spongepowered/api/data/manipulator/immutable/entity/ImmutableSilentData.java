@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.SilentData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -38,10 +38,10 @@ import org.spongepowered.api.entity.Entity;
 public interface ImmutableSilentData extends ImmutableDataManipulator<ImmutableSilentData, SilentData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the "silent state".
+     * Gets the {@link Value.Immutable} for the "silent state".
      *
      * @return The immutable value for the silent state
      */
-    ImmutableValue<Boolean> silent();
+    Value.Immutable<Boolean> silent();
 
 }

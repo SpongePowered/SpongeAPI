@@ -26,7 +26,7 @@ package org.spongepowered.api.entity.hanging;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.block.DirectionalData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.Direction;
 
@@ -46,11 +46,11 @@ public interface Hanging extends Entity {
     }
 
     /**
-     * Gets the {@link Value} for the current "facing" {@link Direction}.
+     * Gets the {@link Value.Mutable} for the current "facing" {@link Direction}.
      *
      * @return The current "facing" direction value
      */
-    default Value<Direction> direction() {
-        return getValue(Keys.DIRECTION).get();
+    default Value.Mutable<Direction> direction() {
+        return getValue(Keys.DIRECTION).get().asMutable();
     }
 }

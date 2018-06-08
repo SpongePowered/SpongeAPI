@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.ActiveItemData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
@@ -48,6 +48,6 @@ public interface ImmutableActiveItemData extends ImmutableDataManipulator<Immuta
      *
      * @return The immutable value of the snapshot of the item being used
      */
-    ImmutableValue<ItemStackSnapshot> activeItem();
+    Value.Immutable<ItemStackSnapshot> activeItem();
 
 }

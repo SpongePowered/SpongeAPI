@@ -47,8 +47,7 @@ import org.spongepowered.api.data.merge.MergeFunction;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.property.DirectionRelativePropertyHolder;
 import org.spongepowered.api.data.property.Property;
-import org.spongepowered.api.data.value.BaseValue;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.event.cause.Cause;
@@ -816,7 +815,7 @@ public final class Location implements DataHolder, DirectionRelativePropertyHold
     }
 
     @Override
-    public <E> DataTransactionResult offer(Key<? extends BaseValue<E>> key, E value) {
+    public <E> DataTransactionResult offer(Key<? extends Value<E>> key, E value) {
         return getWorld().offer(getBlockPosition(), key, value);
     }
 
@@ -831,7 +830,7 @@ public final class Location implements DataHolder, DirectionRelativePropertyHold
     }
 
     @Override
-    public DataTransactionResult remove(BaseValue<?> value) {
+    public DataTransactionResult remove(Value<?> value) {
         return getWorld().remove(getBlockPosition(), value.getKey());
     }
 
@@ -1037,12 +1036,12 @@ public final class Location implements DataHolder, DirectionRelativePropertyHold
     }
 
     @Override
-    public <E> Optional<E> get(Key<? extends BaseValue<E>> key) {
+    public <E> Optional<E> get(Key<? extends Value<E>> key) {
         return getWorld().get(getBlockPosition(), key);
     }
 
     @Override
-    public <E, V extends BaseValue<E>> Optional<V> getValue(Key<V> key) {
+    public <E, V extends Value<E>> Optional<V> getValue(Key<V> key) {
         return getWorld().getValue(getBlockPosition(), key);
     }
 
@@ -1062,7 +1061,7 @@ public final class Location implements DataHolder, DirectionRelativePropertyHold
     }
 
     @Override
-    public Set<ImmutableValue<?>> getValues() {
+    public Set<Value.Immutable<?>> getValues() {
         return getWorld().getValues(getBlockPosition());
     }
 

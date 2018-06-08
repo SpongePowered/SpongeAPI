@@ -22,13 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.value.immutable;
+package org.spongepowered.api.data.value;
 
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.merge.MergeFunction;
-import org.spongepowered.api.data.value.BaseValue;
-import org.spongepowered.api.data.value.ValueContainer;
 
 import java.util.List;
 import java.util.Optional;
@@ -93,7 +91,7 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I, H>, H exte
     /**
      * <p>Gets the desired {@link ValueContainer} of type <code>H</code> if the
      * {@link ValueContainer} is compatible. If insufficient data is available
-     * to provide a {@link ValueContainer} with all {@link ImmutableValue}s
+     * to provide a {@link ValueContainer} with all {@link Value.Immutable}s
      * preset, a new instance of the {@link ValueContainer} is returned with
      * "default" values. Since the return type is an {@link Optional}, a short
      * way of checking compatibility and presence of the requested data is to
@@ -137,7 +135,7 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I, H>, H exte
 
     /**
      * Checks if the given {@link Class} of type {@link ValueContainer} is
-     * supported by this {@link ImmutableValueStore}.
+     * supported by this {@link org.spongepowered.api.data.value.ImmutableValueStore}.
      *
      * @param containerClass The container class
      * @return True if the class is supported
@@ -145,19 +143,19 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I, H>, H exte
     boolean supports(Class<? extends H> containerClass);
 
     /**
-     * Applies a transformation on the provided {@link BaseValue} such that
+     * Applies a transformation on the provided {@link Value} such that
      * the return value of {@link Function#apply(Object)} will become the end
-     * resulting value set into the newly created {@link ImmutableValueStore}.
+     * resulting value set into the newly created {@link org.spongepowered.api.data.value.ImmutableValueStore}.
      *
      * @param key The key linked to
      * @param function The function to manipulate the value
      * @param <E> The type of value
      * @return The newly created immutable value store
      */
-    <E> Optional<I> transform(Key<? extends BaseValue<E>> key, Function<E, E> function);
+    <E> Optional<I> transform(Key<? extends Value<E>> key, Function<E, E> function);
 
     /**
-     * Creates a new {@link ImmutableValueStore} with the provided
+     * Creates a new {@link org.spongepowered.api.data.value.ImmutableValueStore} with the provided
      * value by {@link Key}. If the key is supported by this value store,
      * the returned value store will be present.
      *
@@ -166,22 +164,22 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I, H>, H exte
      * @param <E> The type of value
      * @return The new immutable value store
      */
-    <E> Optional<I> with(Key<? extends BaseValue<E>> key, E value);
+    <E> Optional<I> with(Key<? extends Value<E>> key, E value);
 
     /**
      * Offers the given {@code value} as defined by the provided {@link Key}
      * such that if the {@link Key} is supported, a new
-     * {@link ImmutableValueStore} is created.
+     * {@link org.spongepowered.api.data.value.ImmutableValueStore} is created.
      *
      * @param value The value to set
      * @return The new immutable value store
      */
-    Optional<I> with(BaseValue<?> value);
+    Optional<I> with(Value<?> value);
 
     /**
      * Offers the given {@link ValueContainer} such that all of the available
-     * {@link BaseValue}s from the given {@link ValueContainer} are offered
-     * to the newly created {@link ImmutableValueStore}.
+     * {@link Value}s from the given {@link ValueContainer} are offered
+     * to the newly created {@link org.spongepowered.api.data.value.ImmutableValueStore}.
      *
      * @param valueContainer The value to set
      * @return The transaction result
@@ -189,11 +187,11 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I, H>, H exte
     Optional<I> with(H valueContainer);
 
     /**
-     * Gets an altered copy of this {@link ImmutableValueStore} with the given
+     * Gets an altered copy of this {@link org.spongepowered.api.data.value.ImmutableValueStore} with the given
      * {@link DataManipulator} modified data. If the data is not compatible for
      * any reason, {@link Optional#empty()} is returned.
      *
-     * <p>This does not alter the current {@link ImmutableValueStore}.</p>
+     * <p>This does not alter the current {@link org.spongepowered.api.data.value.ImmutableValueStore}.</p>
      *
      * @param valueContainers The new manipulator containing data
      * @return A new immutable value store with the given value holders
@@ -201,7 +199,7 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I, H>, H exte
     Optional<I> with(Iterable<H> valueContainers);
 
     /**
-     * Gets an altered copy of this {@link ImmutableValueStore} without the
+     * Gets an altered copy of this {@link org.spongepowered.api.data.value.ImmutableValueStore} without the
      * given {@link ValueContainer} class. If the data represented by the
      * manipulator can not exist without a "default state" of the
      * {@link ValueContainer}, the {@link ValueContainer} is reset to the
@@ -213,8 +211,8 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I, H>, H exte
     Optional<I> without(Class<? extends H> containerClass);
 
     /**
-     * Attempts to merge the {@link ImmutableValue}s from this
-     * {@link ImmutableValueStore} and the given {@link ImmutableValueStore} to
+     * Attempts to merge the {@link Value.Immutable}s from this
+     * {@link org.spongepowered.api.data.value.ImmutableValueStore} and the given {@link org.spongepowered.api.data.value.ImmutableValueStore} to
      * produce a new instance of the merged result.
      *
      * @param that The other immutable value store to gather values from
@@ -223,8 +221,8 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I, H>, H exte
     I merge(I that);
 
     /**
-     * Attempts to merge the {@link ImmutableValue}s from this
-     * {@link ImmutableValueStore} and the given {@link ImmutableValueStore} to
+     * Attempts to merge the {@link Value.Immutable}s from this
+     * {@link org.spongepowered.api.data.value.ImmutableValueStore} and the given {@link org.spongepowered.api.data.value.ImmutableValueStore} to
      * produce a new instance of the merged result. Any overlapping
      * {@link ValueContainer}s are merged through the {@link MergeFunction}.
      *
@@ -236,7 +234,7 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I, H>, H exte
 
     /**
      * Gets an copied collection of all known {@link ValueContainer}s
-     * belonging to this {@link ImmutableValueStore}. An individual
+     * belonging to this {@link org.spongepowered.api.data.value.ImmutableValueStore}. An individual
      * {@link ValueContainer} can be used for data processing for various
      * purposes.
      *

@@ -27,9 +27,9 @@ package org.spongepowered.api.data.manipulator.immutable;
 import org.spongepowered.api.block.tileentity.MobSpawner;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
-import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.immutable.ImmutableWeightedCollectionValue;
+import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.WeightedCollectionValue;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.entity.living.player.Player;
@@ -46,51 +46,51 @@ import java.util.Random;
 public interface ImmutableMobSpawnerData extends ImmutableDataManipulator<ImmutableMobSpawnerData, MobSpawnerData> {
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the remaining delay before
+     * Gets the {@link BoundedValue.Immutable} for the remaining delay before
      * a new attempt at spawning an {@link Entity} is made.
      *
      * @return The immutable bounded value for the remaining delay
      */
-    ImmutableBoundedValue<Short> remainingDelay();
+    BoundedValue.Immutable<Short> remainingDelay();
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the minimum spawn delay
+     * Gets the {@link BoundedValue.Immutable} for the minimum spawn delay
      * required between attempts to spawn an {@link Entity}.
      *
      * @return The immutable bounded value of the minimum spawn delay
      */
-    ImmutableBoundedValue<Short> minimumSpawnDelay();
+    BoundedValue.Immutable<Short> minimumSpawnDelay();
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the maximum spawn delay
+     * Gets the {@link BoundedValue.Immutable} for the maximum spawn delay
      * required between attempts to spawn an {@link Entity}.
      *
      * @return The immutable bounded value of the maximum spawn delay
      */
-    ImmutableBoundedValue<Short> maximumSpawnDelay();
+    BoundedValue.Immutable<Short> maximumSpawnDelay();
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the count of successful
+     * Gets the {@link BoundedValue.Immutable} for the count of successful
      * spawns of all {@link Entity} instances from the owning spawner. This
      * count is simply a total count, there is no limitation on how many
      * attempts are made to spawn an {@link Entity}.
      *
      * @return The immutable bounded value
      */
-    ImmutableBoundedValue<Short> spawnCount();
+    BoundedValue.Immutable<Short> spawnCount();
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the limitation on the number
+     * Gets the {@link BoundedValue.Immutable} for the limitation on the number
      * of nearby {@link Entity} instances can exist near the owning spawner. The
      * limitation is that if there are more {@link Entity} instances than the
      * provided value, no attempts to spawn a new {@link Entity} will be made.
      *
      * @return The immutable value of the maximum supported nearby entities
      */
-    ImmutableBoundedValue<Short> maximumNearbyEntities();
+    BoundedValue.Immutable<Short> maximumNearbyEntities();
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the minimum range a
+     * Gets the {@link BoundedValue.Immutable} for the minimum range a
      * {@link Player} must remain in proximity of the spawner, such that if a
      * {@link Player} is NOT within the provided range, no attempts to spawn an
      * {@link Entity} is made.
@@ -98,29 +98,29 @@ public interface ImmutableMobSpawnerData extends ImmutableDataManipulator<Immuta
      * @return The immutable value of the required player range to spawn
      *     entities
      */
-    ImmutableBoundedValue<Short> requiredPlayerRange();
+    BoundedValue.Immutable<Short> requiredPlayerRange();
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the maximum range that an
+     * Gets the {@link BoundedValue.Immutable} for the maximum range that an
      * {@link Entity} can be spawned from the spawner.
      *
      * @return The immutable value of the maximum spawn range an entity can be
      *     spawned
      */
-    ImmutableBoundedValue<Short> spawnRange();
+    BoundedValue.Immutable<Short> spawnRange();
 
     /**
-     * Gets the {@link ImmutableValue} for the overridden
+     * Gets the {@link Value.Immutable} for the overridden
      * {@link WeightedSerializableObject}{@code <EntityArchetype>} to spawn next. If possible, the next entity to
      * spawn may be chosen from the already provided
      * {@link #possibleEntitiesToSpawn()}.
      *
      * @return The next possible entity to spawn
      */
-    ImmutableValue<WeightedSerializableObject<EntityArchetype>> nextEntityToSpawn();
+    Value.Immutable<WeightedSerializableObject<EntityArchetype>> nextEntityToSpawn();
 
     /**
-     * Gets the {@link ImmutableWeightedCollectionValue} of all possible
+     * Gets the {@link WeightedCollectionValue.Immutable} of all possible
      * {@link Entity} instances that can be spawned by the spawner. As they
      * are all {@link WeightedSerializableObject} instances, their weight is
      * defined as a {@link Random} to determine the next {@link Entity} that
@@ -128,5 +128,5 @@ public interface ImmutableMobSpawnerData extends ImmutableDataManipulator<Immuta
      *
      * @return The immutable weighted entity collection value of entities
      */
-    ImmutableWeightedCollectionValue<EntityArchetype> possibleEntitiesToSpawn();
+    WeightedCollectionValue.Immutable<EntityArchetype> possibleEntitiesToSpawn();
 }

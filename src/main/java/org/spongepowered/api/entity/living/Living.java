@@ -29,7 +29,7 @@ import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.HealthData;
 import org.spongepowered.api.data.property.Properties;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
@@ -68,8 +68,8 @@ public interface Living extends Entity, ProjectileSource, TeamMember {
      *
      * @return Health value
      */
-    default MutableBoundedValue<Double> health() {
-        return getValue(Keys.HEALTH).get();
+    default BoundedValue.Mutable<Double> health() {
+        return getValue(Keys.HEALTH).get().asMutable();
     }
 
     /**
@@ -81,8 +81,8 @@ public interface Living extends Entity, ProjectileSource, TeamMember {
      *
      * @return This entities maximum health
      */
-    default MutableBoundedValue<Double> maxHealth() {
-        return getValue(Keys.MAX_HEALTH).get();
+    default BoundedValue.Mutable<Double> maxHealth() {
+        return getValue(Keys.MAX_HEALTH).get().asMutable();
     }
 
     /**
@@ -100,7 +100,7 @@ public interface Living extends Entity, ProjectileSource, TeamMember {
     void setLastAttacker(Entity entity);
 
     /**
-     * Gets the last amount of damage that was dealt to this entity
+     * Gets the last amount of damage that was dealt to this entity.
      *
      * @return The last damage, if present
      */

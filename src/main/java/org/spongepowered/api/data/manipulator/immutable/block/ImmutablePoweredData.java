@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.immutable.block;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.block.PoweredData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * An {@link ImmutableDataManipulator} for the "powered" state. For
@@ -38,10 +38,10 @@ import org.spongepowered.api.data.value.immutable.ImmutableValue;
 public interface ImmutablePoweredData extends ImmutableDataManipulator<ImmutablePoweredData, PoweredData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the "powered" state.
+     * Gets the {@link Value.Immutable} for the "powered" state.
      *
      * @return The immutable value for the "powered" state
      */
-    ImmutableValue<Boolean> powered();
+    Value.Immutable<Boolean> powered();
 
 }

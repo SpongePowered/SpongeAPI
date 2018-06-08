@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.CriticalHitData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.projectile.arrow.Arrow;
 
 /**
@@ -36,10 +36,10 @@ import org.spongepowered.api.entity.projectile.arrow.Arrow;
 public interface ImmutableCriticalHitData extends ImmutableDataManipulator<ImmutableCriticalHitData, CriticalHitData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the "critical hit" state.
+     * Gets the {@link Value.Immutable} for the "critical hit" state.
      *
      * @return The immutable value for the "critical hit" state
      */
-    ImmutableValue<Boolean> criticalHit();
+    Value.Immutable<Boolean> criticalHit();
 
 }

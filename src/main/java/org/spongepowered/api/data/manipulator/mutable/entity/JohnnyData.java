@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableJohnnyData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.monster.Vindicator;
 
 /**
@@ -41,12 +41,12 @@ import org.spongepowered.api.entity.living.monster.Vindicator;
 public interface JohnnyData extends DataManipulator<JohnnyData, ImmutableJohnnyData> {
 
     /**
-     * Gets the {@link Value} for whether this mob is exhibiting
+     * Gets the {@link Value.Mutable} for whether this mob is exhibiting
      * "johnny" behavior.
      *
      * @return The value for whether this mob is exhibiting "johnny" behavior
      * @see Keys#IS_JOHNNY
      */
-    Value<Boolean> johnny();
+    Value.Mutable<Boolean> johnny();
 
 }

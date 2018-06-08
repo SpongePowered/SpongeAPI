@@ -26,9 +26,8 @@ package org.spongepowered.api.data.manipulator.immutable.item;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableListData;
-import org.spongepowered.api.data.manipulator.mutable.item.PagedData;
 import org.spongepowered.api.data.manipulator.mutable.item.PlainPagedData;
-import org.spongepowered.api.data.value.immutable.ImmutableListValue;
+import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.Text;
@@ -43,11 +42,11 @@ import java.util.List;
 public interface ImmutablePlainPagedData extends ImmutableListData<String, ImmutablePlainPagedData, PlainPagedData> {
 
     /**
-     * Gets the {@link ImmutableListValue} for the {@link Text} pages.
+     * Gets the {@link ListValue.Immutable} for the {@link Text} pages.
      *
      * @return The immutable list value of text pages
      */
-    default ImmutableListValue<String> pages() {
+    default ListValue.Immutable<String> pages() {
         return getListValue();
     }
 

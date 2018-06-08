@@ -28,8 +28,8 @@ import org.spongepowered.api.block.tileentity.CommandBlock;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.CommandData;
-import org.spongepowered.api.data.value.immutable.ImmutableOptionalValue;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.OptionalValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.vehicle.minecart.CommandBlockMinecart;
 import org.spongepowered.api.text.Text;
 
@@ -37,7 +37,7 @@ import java.util.Optional;
 
 /**
  * An {@link ImmutableDataManipulator} handling all related
- * {@link ImmutableValue}s for command related {@link DataHolder}s, such as
+ * {@link Value.Immutable}s for command related {@link DataHolder}s, such as
  * {@link CommandBlock}s and {@link CommandBlockMinecart}s.
  */
 public interface ImmutableCommandData extends ImmutableDataManipulator<ImmutableCommandData, CommandData> {
@@ -47,7 +47,7 @@ public interface ImmutableCommandData extends ImmutableDataManipulator<Immutable
      *
      * @return The command
      */
-    ImmutableValue<String> storedCommand();
+    Value.Immutable<String> storedCommand();
 
     /**
      * Gets the success count of the last executed command.
@@ -61,7 +61,7 @@ public interface ImmutableCommandData extends ImmutableDataManipulator<Immutable
      *
      * @return The last success count
      */
-    ImmutableValue<Integer> successCount();
+    Value.Immutable<Integer> successCount();
 
     /**
      * Gets whether this command block will keep track of the output from the
@@ -69,7 +69,7 @@ public interface ImmutableCommandData extends ImmutableDataManipulator<Immutable
      *
      * @return Whether the command output is tracked
      */
-    ImmutableValue<Boolean> doesTrackOutput();
+    Value.Immutable<Boolean> doesTrackOutput();
 
     /**
      * Gets the last command output.
@@ -79,5 +79,5 @@ public interface ImmutableCommandData extends ImmutableDataManipulator<Immutable
      *
      * @return The last command output, if available
      */
-    ImmutableOptionalValue<Text> lastOutput();
+    OptionalValue.Immutable<Text> lastOutput();
 }

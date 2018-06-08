@@ -33,11 +33,9 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.value.BaseValue;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.CompositeValueStore;
-import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.util.CopyableBuilder;
+import org.spongepowered.api.data.value.CompositeValueStore;
+import org.spongepowered.api.data.value.Value;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -80,107 +78,107 @@ public final class DataTransactionResult {
 
     /**
      * Creates a new {@link DataTransactionResult} with the provided
-     * {@link ImmutableValue} being the successful addition. The result type is
-     * still {@link Type#SUCCESS}. If a {@link Value} is
-     * necessary, use {@link Value#asImmutable()} to use this method. A
+     * {@link Value.Immutable} being the successful addition. The result type is
+     * still {@link Type#SUCCESS}. If a {@link Value.Mutable} is
+     * necessary, use {@link Value.Mutable#asImmutable()} to use this method. A
      * {@link DataTransactionResult} is always immutable once created, and any
-     * {@link BaseValue}s should be provided as {@link ImmutableValue}s or
-     * transformed into {@link ImmutableValue}s.
+     * {@link Value}s should be provided as {@link Value.Immutable}s or
+     * transformed into {@link Value.Immutable}s.
      *
      * @param value The successfully added immutable value
      * @return The new data transaction result
      */
-    public static DataTransactionResult successResult(final ImmutableValue<?> value) {
+    public static DataTransactionResult successResult(final Value.Immutable<?> value) {
         return builder().success(value).result(Type.SUCCESS).build();
     }
 
     /**
      * Creates a new {@link DataTransactionResult} with the provided
-     * {@link ImmutableValue} being the successful addition. The result type is
-     * still {@link Type#SUCCESS}. If a {@link Value} is
-     * necessary, use {@link Value#asImmutable()} to use this method. A
+     * {@link Value.Immutable} being the successful addition. The result type is
+     * still {@link Type#SUCCESS}. If a {@link Value.Mutable} is
+     * necessary, use {@link Value.Mutable#asImmutable()} to use this method. A
      * {@link DataTransactionResult} is always immutable once created, and any
-     * {@link BaseValue}s should be provided as {@link ImmutableValue}s or
-     * transformed into {@link ImmutableValue}s.
+     * {@link Value}s should be provided as {@link Value.Immutable}s or
+     * transformed into {@link Value.Immutable}s.
      *
      * @param successful The successfully added immutable value
      * @param replaced The replaced value
      * @return The new data transaction result
      */
-    public static DataTransactionResult successReplaceResult(final ImmutableValue<?> successful, final ImmutableValue<?> replaced) {
+    public static DataTransactionResult successReplaceResult(final Value.Immutable<?> successful, final Value.Immutable<?> replaced) {
         return builder().result(Type.SUCCESS).success(successful).replace(replaced).build();
     }
 
     /**
      * Creates a new {@link DataTransactionResult} with the provided
-     * {@link ImmutableValue}s being the successful additions and
-     * the provided {@link ImmutableValue}s that were replaced. The result type
-     * is still {@link Type#SUCCESS}. If a {@link Value}
-     * is necessary, use {@link Value#asImmutable()} to use this method. A
+     * {@link Value.Immutable}s being the successful additions and
+     * the provided {@link Value.Immutable}s that were replaced. The result type
+     * is still {@link Type#SUCCESS}. If a {@link Value.Mutable}
+     * is necessary, use {@link Value.Mutable#asImmutable()} to use this method. A
      * {@link DataTransactionResult} is always immutable once created, and any
-     * {@link BaseValue}s should be provided as {@link ImmutableValue}s or
-     * transformed into {@link ImmutableValue}s.
+     * {@link Value}s should be provided as {@link Value.Immutable}s or
+     * transformed into {@link Value.Immutable}s.
      *
      * @param successful The successfully added immutable values
      * @param replaced The successfully replaced immutable values
      * @return The new data transaction result
      */
-    public static DataTransactionResult successReplaceResult(Collection<ImmutableValue<?>> successful, Collection<ImmutableValue<?>> replaced) {
+    public static DataTransactionResult successReplaceResult(Collection<Value.Immutable<?>> successful, Collection<Value.Immutable<?>> replaced) {
         return builder().success(successful).replace(replaced).result(Type.SUCCESS).build();
     }
 
     /**
      * Creates a {@link DataTransactionResult} with the provided
-     * {@link ImmutableValue}s being successfully removed. The result type is
-     * still {@link Type#SUCCESS}. If a {@link Value} is necessary, use
-     * {@link Value#asImmutable()} to use this method. A {@link DataTransactionResult}
-     * is always immutable once created, and any {@link BaseValue}s should be provided
-     * as {@link ImmutableValue}s or transformed into {@link ImmutableValue}s.
+     * {@link Value.Immutable}s being successfully removed. The result type is
+     * still {@link Type#SUCCESS}. If a {@link Value.Mutable} is necessary, use
+     * {@link Value.Mutable#asImmutable()} to use this method. A {@link DataTransactionResult}
+     * is always immutable once created, and any {@link Value}s should be provided
+     * as {@link Value.Immutable}s or transformed into {@link Value.Immutable}s.
      *
      * @param removed The successfully removed values
      * @return The new data transaction result
      */
-    public static DataTransactionResult successRemove(Collection<ImmutableValue<?>> removed) {
+    public static DataTransactionResult successRemove(Collection<Value.Immutable<?>> removed) {
         return builder().replace(removed).result(Type.SUCCESS).build();
     }
 
     /**
      * Creates a {@link DataTransactionResult} with the provided
-     * {@link ImmutableValue} being successfully removed. The result type is
-     * still {@link Type#SUCCESS}. If a {@link Value} is necessary, use
-     * {@link Value#asImmutable()} to use this method. A
+     * {@link Value.Immutable} being successfully removed. The result type is
+     * still {@link Type#SUCCESS}. If a {@link Value.Mutable} is necessary, use
+     * {@link Value.Mutable#asImmutable()} to use this method. A
      * {@link DataTransactionResult} is always immutable once created, and a
-     * {@link BaseValue} should be provided as an {@link ImmutableValue} or
-     * transformed into an {@link ImmutableValue}.
+     * {@link Value} should be provided as an {@link Value.Immutable} or
+     * transformed into an {@link Value.Immutable}.
      *
      * @param removed The successfully removed value
      * @return The new data transaction result
      */
-    public static DataTransactionResult successRemove(ImmutableValue<?> removed) {
+    public static DataTransactionResult successRemove(Value.Immutable<?> removed) {
         return builder().replace(removed).result(Type.SUCCESS).build();
     }
 
     /**
      * Creates a new {@link DataTransactionResult} that ends in failure. The
-     * provided {@link ImmutableValue} is considered "rejected" and was not
+     * provided {@link Value.Immutable} is considered "rejected" and was not
      * successfully added.
      *
      * @param value The value that was rejected
      * @return The new data transaction result
      */
-    public static DataTransactionResult failResult(final ImmutableValue<?> value) {
+    public static DataTransactionResult failResult(final Value.Immutable<?> value) {
         return builder().reject(value).result(Type.FAILURE).build();
     }
 
     /**
      * Creates a new {@link DataTransactionResult} that ends in failure. The
-     * provided {@link ImmutableValue}s are considered "rejected" and were not
+     * provided {@link Value.Immutable}s are considered "rejected" and were not
      * successfully added.
      *
      * @param values The values that were rejected
      * @return The new data transaction result
      */
-    public static DataTransactionResult failResult(final Iterable<ImmutableValue<?>> values) {
+    public static DataTransactionResult failResult(final Iterable<Value.Immutable<?>> values) {
         return builder().reject(values).result(Type.FAILURE).build();
     }
 
@@ -196,13 +194,13 @@ public final class DataTransactionResult {
 
     /**
      * Creates a new {@link DataTransactionResult} that ends in failure. The
-     * provided {@link ImmutableValue} is considered "incompatible" and was not
+     * provided {@link Value.Immutable} is considered "incompatible" and was not
      * successfully added.
      *
      * @param value The value that was incompatible or errored
      * @return The new data transaction result
      */
-    public static DataTransactionResult errorResult(final ImmutableValue<?> value) {
+    public static DataTransactionResult errorResult(final Value.Immutable<?> value) {
         return builder().result(Type.ERROR).reject(value).build();
     }
 
@@ -249,9 +247,9 @@ public final class DataTransactionResult {
     }
 
     final Type type;
-    private final ImmutableList<ImmutableValue<?>> rejected;
-    private final ImmutableList<ImmutableValue<?>> replaced;
-    private final ImmutableList<ImmutableValue<?>> success;
+    private final ImmutableList<Value.Immutable<?>> rejected;
+    private final ImmutableList<Value.Immutable<?>> replaced;
+    private final ImmutableList<Value.Immutable<?>> success;
 
     DataTransactionResult(final Builder builder) {
         this.type = builder.resultType;
@@ -292,33 +290,33 @@ public final class DataTransactionResult {
     }
 
     /**
-     * If any {@link BaseValue}s applied onto a {@link CompositeValueStore} were
+     * If any {@link Value}s applied onto a {@link CompositeValueStore} were
      * successful, they'll be stored in the given list.
      *
      * @return An immutable list of the values successfully offered
      */
-    public List<ImmutableValue<?>> getSuccessfulData() {
+    public List<Value.Immutable<?>> getSuccessfulData() {
         return this.success;
     }
 
     /**
-     * If {@link Value}s were supplied to the operation, this
-     * collection will return any {@link ImmutableValue}s which were rejected
+     * If {@link Value.Mutable}s were supplied to the operation, this
+     * collection will return any {@link Value.Immutable}s which were rejected
      * by the target {@link DataHolder}.
      *
      * @return Any data that was rejected from the operation
      */
-    public List<ImmutableValue<?>> getRejectedData() {
+    public List<Value.Immutable<?>> getRejectedData() {
         return this.rejected;
     }
 
     /**
-     * If the operation replaced any {@link Value}s, this returns a collection
-     * of the replaced {@link ImmutableValue}s.
+     * If the operation replaced any {@link Value.Mutable}s, this returns a collection
+     * of the replaced {@link Value.Immutable}s.
      *
      * @return Any data that was replaced
      */
-    public List<ImmutableValue<?>> getReplacedData() {
+    public List<Value.Immutable<?>> getReplacedData() {
         return this.replaced;
     }
 
@@ -329,7 +327,7 @@ public final class DataTransactionResult {
      *
      * @param consumer The consumer to call
      */
-    public void ifSuccessful(Consumer<List<ImmutableValue<?>>> consumer) {
+    public void ifSuccessful(Consumer<List<Value.Immutable<?>>> consumer) {
         if (isSuccessful()) {
             consumer.accept(this.success);
         }
@@ -387,9 +385,9 @@ public final class DataTransactionResult {
      */
     public static final class Builder implements CopyableBuilder<DataTransactionResult, Builder> {
 
-        List<ImmutableValue<?>> rejected;
-        List<ImmutableValue<?>> replaced;
-        List<ImmutableValue<?>> successful;
+        List<Value.Immutable<?>> rejected;
+        List<Value.Immutable<?>> replaced;
+        List<Value.Immutable<?>> successful;
         Type resultType;
 
         Builder() {
@@ -409,17 +407,17 @@ public final class DataTransactionResult {
         }
 
         /**
-         * Adds the provided {@link ImmutableValue} to the {@link List} of
-         * "replaced" {@link ImmutableValue}s. The replaced values are always
+         * Adds the provided {@link Value.Immutable} to the {@link List} of
+         * "replaced" {@link Value.Immutable}s. The replaced values are always
          * copied for every {@link DataTransactionResult} for referencing. It is
-         * also possible to retrieve these replaced {@link ImmutableValue}s to
+         * also possible to retrieve these replaced {@link Value.Immutable}s to
          * {@link DataHolder#undo(DataTransactionResult)} at a later point in
          * the lifespan of the {@link DataHolder}.
          *
          * @param value The value to replace
          * @return This builder, for chaining
          */
-        public Builder replace(final ImmutableValue<?> value) {
+        public Builder replace(final Value.Immutable<?> value) {
             if (this.replaced == null) {
                 this.replaced = Lists.newArrayList();
             }
@@ -428,35 +426,35 @@ public final class DataTransactionResult {
         }
 
         /**
-         * Adds the provided {@link ImmutableValue}s to the {@link List} of
-         * "replaced" {@link ImmutableValue}s. The replaced values are always
+         * Adds the provided {@link Value.Immutable}s to the {@link List} of
+         * "replaced" {@link Value.Immutable}s. The replaced values are always
          * copied for every {@link DataTransactionResult} for referencing. It is
-         * also possible to retrieve these replaced {@link ImmutableValue}s to
+         * also possible to retrieve these replaced {@link Value.Immutable}s to
          * {@link DataHolder#undo(DataTransactionResult)} at a later point in
          * the lifespan of the {@link DataHolder}.
          *
          * @param values The values to replace
          * @return This builder, for chaining
          */
-        public Builder replace(final Iterable<ImmutableValue<?>> values) {
-            for (ImmutableValue<?> value : values) {
+        public Builder replace(final Iterable<Value.Immutable<?>> values) {
+            for (Value.Immutable<?> value : values) {
                 replace(checkNotNull(value));
             }
             return this;
         }
 
         /**
-         * Adds the provided {@link ImmutableValue} to the {@link List} of
-         * "rejected" {@link ImmutableValue}s. The rejected values are always
+         * Adds the provided {@link Value.Immutable} to the {@link List} of
+         * "rejected" {@link Value.Immutable}s. The rejected values are always
          * copied for every {@link DataTransactionResult} for referencing. It is
-         * also possible to retrieve these rejected {@link ImmutableValue}s to
+         * also possible to retrieve these rejected {@link Value.Immutable}s to
          * {@link DataHolder#undo(DataTransactionResult)} at a later point in
          * the lifespan of the {@link DataHolder}.
          *
          * @param value The values to reject
          * @return This builder, for chaining
          */
-        public Builder reject(final ImmutableValue<?> value) {
+        public Builder reject(final Value.Immutable<?> value) {
             if (this.rejected == null) {
                 this.rejected = Lists.newArrayList();
             }
@@ -465,35 +463,35 @@ public final class DataTransactionResult {
         }
 
         /**
-         * Adds the provided {@link ImmutableValue}s to the {@link List} of
-         * "rejected" {@link ImmutableValue}s. The rejected values are always
+         * Adds the provided {@link Value.Immutable}s to the {@link List} of
+         * "rejected" {@link Value.Immutable}s. The rejected values are always
          * copied for every {@link DataTransactionResult} for referencing. It is
-         * also possible to retrieve these rejected {@link ImmutableValue}s to
+         * also possible to retrieve these rejected {@link Value.Immutable}s to
          * {@link DataHolder#undo(DataTransactionResult)} at a later point in
          * the lifespan of the {@link DataHolder}.
          *
          * @param values The values to reject
          * @return This builder, for chaining
          */
-        public Builder reject(final Iterable<ImmutableValue<?>> values) {
-            for (ImmutableValue<?> value : values) {
+        public Builder reject(final Iterable<Value.Immutable<?>> values) {
+            for (Value.Immutable<?> value : values) {
                 reject(checkNotNull(value));
             }
             return this;
         }
 
         /**
-         * Adds the provided {@link ImmutableValue} to the {@link List} of
-         * "successful" {@link ImmutableValue}s. The rejected values are always
+         * Adds the provided {@link Value.Immutable} to the {@link List} of
+         * "successful" {@link Value.Immutable}s. The rejected values are always
          * copied for every {@link DataTransactionResult} for referencing. It is
-         * also possible to retrieve these successful {@link ImmutableValue}s to
+         * also possible to retrieve these successful {@link Value.Immutable}s to
          * {@link DataHolder#undo(DataTransactionResult)} at a later point in
          * the lifespan of the {@link DataHolder}.
          *
          * @param value The value that was successfully provided
          * @return This builder, for chaining
          */
-        public Builder success(final ImmutableValue<?> value) {
+        public Builder success(final Value.Immutable<?> value) {
             if (this.successful == null) {
                 this.successful = Lists.newArrayList();
             }
@@ -502,18 +500,18 @@ public final class DataTransactionResult {
         }
 
         /**
-         * Adds the provided {@link ImmutableValue}s to the {@link List} of
-         * "successful" {@link ImmutableValue}s. The rejected values are always
+         * Adds the provided {@link Value.Immutable}s to the {@link List} of
+         * "successful" {@link Value.Immutable}s. The rejected values are always
          * copied for every {@link DataTransactionResult} for referencing. It is
-         * also possible to retrieve these successful {@link ImmutableValue}s to
+         * also possible to retrieve these successful {@link Value.Immutable}s to
          * {@link DataHolder#undo(DataTransactionResult)} at a later point in
          * the lifespan of the {@link DataHolder}.
          *
          * @param values The values that were successfully provided
          * @return This builder, for chaining
          */
-        public Builder success(final Iterable<ImmutableValue<?>> values) {
-            for (ImmutableValue<?> value : values) {
+        public Builder success(final Iterable<Value.Immutable<?>> values) {
+            for (Value.Immutable<?> value : values) {
                 success(checkNotNull(value));
             }
             return this;
@@ -522,10 +520,10 @@ public final class DataTransactionResult {
         /**
          * Combines the currently building {@link DataTransactionResult} with the
          * one provided. Usually, this means that there is some merging of the
-         * {@link ImmutableValue}s based on {@link Key}. If this builder already
-         * has an {@link ImmutableValue} as being successfully offered, and the
+         * {@link Value.Immutable}s based on {@link Key}. If this builder already
+         * has an {@link Value.Immutable} as being successfully offered, and the
          * provided result shows the same key as being rejected, the rejected
-         * {@link ImmutableValue} will remain in the final result.
+         * {@link Value.Immutable} will remain in the final result.
          *
          * @param result The result to merge
          * @return This builder, for chaining
@@ -539,26 +537,26 @@ public final class DataTransactionResult {
                     this.resultType = result.getType();
                 }
             }
-            final List<ImmutableValue<?>> newSuccessful = Lists.newArrayList();
-            final List<ImmutableValue<?>> newReplaced = Lists.newArrayList();
-            final List<ImmutableValue<?>> newRejected = Lists.newArrayList();
+            final List<Value.Immutable<?>> newSuccessful = Lists.newArrayList();
+            final List<Value.Immutable<?>> newReplaced = Lists.newArrayList();
+            final List<Value.Immutable<?>> newRejected = Lists.newArrayList();
             // Now let's handle the successful data
             if (this.successful != null) {
                 dance:
-                for (final ImmutableValue<?> value : this.successful) {
-                    for (final ImmutableValue<?> rejected : result.getRejectedData()) {
+                for (final Value.Immutable<?> value : this.successful) {
+                    for (final Value.Immutable<?> rejected : result.getRejectedData()) {
                         if (value.getKey().equals(rejected.getKey())) {
                             newRejected.add(rejected);
                             continue dance;
                         }
                     }
-                    for (final ImmutableValue<?> replaced : result.getReplacedData()) {
+                    for (final Value.Immutable<?> replaced : result.getReplacedData()) {
                         if (value.getKey().equals(replaced.getKey())) {
                             newReplaced.add(value);
                             continue dance;
                         }
                     }
-                    for (final ImmutableValue<?> successful : result.getSuccessfulData()) {
+                    for (final Value.Immutable<?> successful : result.getSuccessfulData()) {
                         if (value.getKey().equals(successful.getKey())) {
                             newSuccessful.add(successful);
                             continue dance;
@@ -569,20 +567,20 @@ public final class DataTransactionResult {
             }
             if (this.replaced != null) {
                 dance:
-                for (final ImmutableValue<?> value : this.replaced) {
-                    for (final ImmutableValue<?> rejected : result.getRejectedData()) {
+                for (final Value.Immutable<?> value : this.replaced) {
+                    for (final Value.Immutable<?> rejected : result.getRejectedData()) {
                         if (value.getKey().equals(rejected.getKey())) {
                             newRejected.add(rejected);
                             continue dance;
                         }
                     }
-                    for (final ImmutableValue<?> replaced : result.getReplacedData()) {
+                    for (final Value.Immutable<?> replaced : result.getReplacedData()) {
                         if (value.getKey().equals(replaced.getKey())) {
                             newReplaced.add(value);
                             continue dance;
                         }
                     }
-                    for (final ImmutableValue<?> successful : result.getSuccessfulData()) {
+                    for (final Value.Immutable<?> successful : result.getSuccessfulData()) {
                         if (value.getKey().equals(successful.getKey())) {
                             newSuccessful.add(successful);
                             continue dance;
@@ -593,20 +591,20 @@ public final class DataTransactionResult {
             }
             if (this.rejected != null) {
                 dance:
-                for (final ImmutableValue<?> value : this.rejected) {
-                    for (final ImmutableValue<?> rejected : result.getRejectedData()) {
+                for (final Value.Immutable<?> value : this.rejected) {
+                    for (final Value.Immutable<?> rejected : result.getRejectedData()) {
                         if (value.getKey().equals(rejected.getKey())) {
                             newRejected.add(rejected);
                             continue dance;
                         }
                     }
-                    for (final ImmutableValue<?> replaced : result.getReplacedData()) {
+                    for (final Value.Immutable<?> replaced : result.getReplacedData()) {
                         if (value.getKey().equals(replaced.getKey())) {
                             newReplaced.add(value);
                             continue dance;
                         }
                     }
-                    for (final ImmutableValue<?> successful : result.getSuccessfulData()) {
+                    for (final Value.Immutable<?> successful : result.getSuccessfulData()) {
                         if (value.getKey().equals(successful.getKey())) {
                             newSuccessful.add(successful);
                             continue dance;
@@ -616,18 +614,18 @@ public final class DataTransactionResult {
                 }
             }
             dance:
-            for (final ImmutableValue<?> value : result.getSuccessfulData()) {
-                for (final ImmutableValue<?> rejected : newRejected) {
+            for (final Value.Immutable<?> value : result.getSuccessfulData()) {
+                for (final Value.Immutable<?> rejected : newRejected) {
                     if (value.getKey().equals(rejected.getKey())) {
                         continue dance;
                     }
                 }
-                for (final ImmutableValue<?> replaced : newReplaced) {
+                for (final Value.Immutable<?> replaced : newReplaced) {
                     if (value.getKey().equals(replaced.getKey())) {
                         continue dance;
                     }
                 }
-                for (final ImmutableValue<?> successful : newSuccessful) {
+                for (final Value.Immutable<?> successful : newSuccessful) {
                     if (value.getKey().equals(successful.getKey())) {
                         continue dance;
                     }
@@ -635,18 +633,18 @@ public final class DataTransactionResult {
                 newSuccessful.add(value);
             }
             dance:
-            for (final ImmutableValue<?> value : result.getRejectedData()) {
-                for (final ImmutableValue<?> rejected : newRejected) {
+            for (final Value.Immutable<?> value : result.getRejectedData()) {
+                for (final Value.Immutable<?> rejected : newRejected) {
                     if (value.getKey().equals(rejected.getKey())) {
                         continue dance;
                     }
                 }
-                for (final ImmutableValue<?> replaced : newReplaced) {
+                for (final Value.Immutable<?> replaced : newReplaced) {
                     if (value.getKey().equals(replaced.getKey())) {
                         continue dance;
                     }
                 }
-                for (final ImmutableValue<?> successful : newSuccessful) {
+                for (final Value.Immutable<?> successful : newSuccessful) {
                     if (value.getKey().equals(successful.getKey())) {
                         continue dance;
                     }
@@ -654,18 +652,18 @@ public final class DataTransactionResult {
                 newRejected.add(value);
             }
             dance:
-            for (final ImmutableValue<?> value : result.getReplacedData()) {
-                for (final ImmutableValue<?> rejected : newRejected) {
+            for (final Value.Immutable<?> value : result.getReplacedData()) {
+                for (final Value.Immutable<?> rejected : newRejected) {
                     if (value.getKey().equals(rejected.getKey())) {
                         continue dance;
                     }
                 }
-                for (final ImmutableValue<?> replaced : newReplaced) {
+                for (final Value.Immutable<?> replaced : newReplaced) {
                     if (value.getKey().equals(replaced.getKey())) {
                         continue dance;
                     }
                 }
-                for (final ImmutableValue<?> successful : newSuccessful) {
+                for (final Value.Immutable<?> successful : newSuccessful) {
                     if (value.getKey().equals(successful.getKey())) {
                         continue dance;
                     }
@@ -680,9 +678,9 @@ public final class DataTransactionResult {
 
         /**
          * Builds a new {@link DataTransactionResult} with the providing
-         * {@link List}s of {@link ImmutableValue}s that are successfully
-         * offered, {@link ImmutableValue}s that were replaced, and
-         * {@link ImmutableValue}s that were rejected.
+         * {@link List}s of {@link Value.Immutable}s that are successfully
+         * offered, {@link Value.Immutable}s that were replaced, and
+         * {@link Value.Immutable}s that were rejected.
          *
          * @return The newly created transaction result
          */

@@ -30,7 +30,7 @@ import org.spongepowered.api.data.ImmutableDataHolder;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableDropData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * A {@link DataManipulator} for representing the "droppable" state.
@@ -41,11 +41,11 @@ import org.spongepowered.api.data.value.mutable.Value;
 public interface DropData extends DataManipulator<DropData, ImmutableDropData> {
 
     /**
-     * Gets the {@link Value} for the "droppable" state.
+     * Gets the {@link Value.Mutable} for the "droppable" state.
      *
      * @return The value for the "droppable" state
      * @see Keys#SHOULD_DROP
      */
-    Value<Boolean> willDrop();
+    Value.Mutable<Boolean> willDrop();
 
 }
