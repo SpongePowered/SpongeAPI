@@ -32,11 +32,11 @@ import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.merge.MergeFunction;
-import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.data.value.mutable.CompositeValueStore;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 import org.spongepowered.api.util.annotation.eventgen.TransformWith;
 
 import java.util.Optional;
@@ -109,9 +109,9 @@ public interface DataManipulator<M extends DataManipulator<M, I>, I extends Immu
     /**
      * Sets the supported {@link Key}'s value such that the value is set on
      * this {@link DataManipulator} without having to directly set the
-     * {@link Value} and {@link #set(BaseValue)} afterwards. The requirement
+     * {@link MutableValue} and {@link #set(Value)} afterwards. The requirement
      * for this to succeed is that the {@link Key} must be checked that it is
-     * supported via {@link #supports(BaseValue)} or {@link #supports(Key)}
+     * supported via {@link #supports(Value)} or {@link #supports(Key)}
      * otherwise an {@link IllegalArgumentException} may be thrown. For
      * fluency, after setting, this {@link DataManipulator} is returned.
      *
@@ -120,12 +120,12 @@ public interface DataManipulator<M extends DataManipulator<M, I>, I extends Immu
      * @param <E> The type of value
      * @return This manipulator, for chaining
      */
-    <E> M set(Key<? extends BaseValue<E>> key, E value);
+    <E> M set(Key<? extends Value<E>> key, E value);
 
     /**
-     * Sets the supported {@link BaseValue} onto this {@link DataManipulator}.
-     * The requirement for this to succeed is that the {@link BaseValue} is
-     * checked for support via {@link #supports(BaseValue)} or
+     * Sets the supported {@link Value} onto this {@link DataManipulator}.
+     * The requirement for this to succeed is that the {@link Value} is
+     * checked for support via {@link #supports(Value)} or
      * {@link #supports(Key)} otherwise an {@link IllegalArgumentException}
      * may be thrown. For fluency, after setting, this {@link DataManipulator}
      * is returned.
@@ -134,14 +134,14 @@ public interface DataManipulator<M extends DataManipulator<M, I>, I extends Immu
      * @return This manipulator, for chaining
      */
     @SuppressWarnings("unchecked")
-    default M set(BaseValue<?> value) {
-        return set((Key<? extends BaseValue<Object>>) value.getKey(), value.get());
+    default M set(Value<?> value) {
+        return set((Key<? extends Value<Object>>) value.getKey(), value.get());
     }
 
     /**
-     * Sets the supported {@link BaseValue}s onto this {@link DataManipulator}.
-     * The requirement for this to succeed is that the {@link BaseValue} is
-     * checked for support via {@link #supports(BaseValue)} or
+     * Sets the supported {@link Value}s onto this {@link DataManipulator}.
+     * The requirement for this to succeed is that the {@link Value} is
+     * checked for support via {@link #supports(Value)} or
      * {@link #supports(Key)} otherwise an {@link IllegalArgumentException}
      * may be thrown. For fluency, after setting, this {@link DataManipulator}
      * is returned.
@@ -150,8 +150,8 @@ public interface DataManipulator<M extends DataManipulator<M, I>, I extends Immu
      * @return This manipulator, for chaining
      */
     @SuppressWarnings("unchecked")
-    default M set(BaseValue<?>... values) {
-        for (BaseValue<?> value : checkNotNull(values)) {
+    default M set(Value<?>... values) {
+        for (Value<?> value : checkNotNull(values)) {
             try {
                 set(checkNotNull(value, "A null value was provided!"));
             } catch (IllegalArgumentException e) {
@@ -162,9 +162,9 @@ public interface DataManipulator<M extends DataManipulator<M, I>, I extends Immu
     }
 
     /**
-     * Sets the supported {@link BaseValue}s onto this {@link DataManipulator}.
-     * The requirement for this to succeed is that the {@link BaseValue} is
-     * checked for support via {@link #supports(BaseValue)} or
+     * Sets the supported {@link Value}s onto this {@link DataManipulator}.
+     * The requirement for this to succeed is that the {@link Value} is
+     * checked for support via {@link #supports(Value)} or
      * {@link #supports(Key)} otherwise an {@link IllegalArgumentException}
      * may be thrown. For fluency, after setting, this {@link DataManipulator}
      * is returned.
@@ -173,8 +173,8 @@ public interface DataManipulator<M extends DataManipulator<M, I>, I extends Immu
      * @return This manipulator, for chaining
      */
     @SuppressWarnings("unchecked")
-    default M set(Iterable<? extends BaseValue<?>> values) {
-        for (BaseValue<?> value : checkNotNull(values)) {
+    default M set(Iterable<? extends Value<?>> values) {
+        for (Value<?> value : checkNotNull(values)) {
             try {
                 set(checkNotNull(value, "A null value was provided!"));
             } catch (IllegalArgumentException e) {
@@ -193,7 +193,7 @@ public interface DataManipulator<M extends DataManipulator<M, I>, I extends Immu
      * @param <E> The type of element
      * @return This manipulator, for chaining
      */
-    default <E> M transform(Key<? extends BaseValue<E>> key, Function<E, E> function) {
+    default <E> M transform(Key<? extends Value<E>> key, Function<E, E> function) {
         checkArgument(supports(key), "The provided key is not supported!" + key.toString());
         return set(key, checkNotNull(function.apply(get(key).get()), "The function can not be returning null!"));
     }
@@ -204,7 +204,7 @@ public interface DataManipulator<M extends DataManipulator<M, I>, I extends Immu
 
     /**
      * Gets an {@link ImmutableDataManipulator} copy of this
-     * {@link DataManipulator} such that all backed {@link Value}s are copied
+     * {@link DataManipulator} such that all backed {@link MutableValue}s are copied
      * into {@link ImmutableValue} counterparts. Any changes to this
      * {@link DataManipulator} will NOT be reflected on the returned
      * {@link ImmutableDataManipulator} and vice versa.

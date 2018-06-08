@@ -24,14 +24,14 @@
  */
 package org.spongepowered.api.data.value.immutable;
 
-import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 
 import java.util.function.Function;
 
 /**
- * Represents an immutable representation of a {@link BaseValue} where any
+ * Represents an immutable representation of a {@link Value} where any
  * modifications of the underlying value result in a new instance of an
  * {@link ImmutableValue} and/or the {@link ValueContainer} if the
  * {@link ValueContainer} too is immutable.
@@ -47,7 +47,7 @@ import java.util.function.Function;
  *
  * @param <E> The type of value
  */
-public interface ImmutableValue<E> extends BaseValue<E> {
+public interface ImmutableValue<E, I extends ImmutableValue<E, I, M>, M extends MutableValue<E, M, I>> extends Value<E> {
 
     /**
      * Creates a new {@link ImmutableValue} with the given <code>E</code> typed
@@ -59,7 +59,7 @@ public interface ImmutableValue<E> extends BaseValue<E> {
      * @return The owning {@link ValueContainer}, a new instance if it too is
      *     immutable
      */
-    ImmutableValue<E> with(E value);
+    I with(E value);
 
     /**
      * Retrieves the underlying value for this {@link ImmutableValue} and
@@ -75,12 +75,12 @@ public interface ImmutableValue<E> extends BaseValue<E> {
      * @return The owning {@link ValueContainer}, a new instance if it too is
      *     immutable
      */
-    ImmutableValue<E> transform(Function<E, E> function);
+    I transform(Function<E, E> function);
 
     /**
-     * Creates a mutable {@link Value} for this {@link ImmutableValue}.
+     * Creates a mutable {@link MutableValue} for this {@link ImmutableValue}.
      *
      * @return A mutable value
      */
-    Value<E> asMutable();
+    M asMutable();
 }

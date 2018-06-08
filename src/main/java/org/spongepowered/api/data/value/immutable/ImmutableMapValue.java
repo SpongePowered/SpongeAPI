@@ -24,13 +24,11 @@
  */
 package org.spongepowered.api.data.value.immutable;
 
-import com.google.common.collect.ImmutableCollection;
-import com.google.common.collect.ImmutableSet;
-import org.spongepowered.api.data.value.mutable.MapValue;
+import org.spongepowered.api.data.value.MapValue;
+import org.spongepowered.api.data.value.mutable.MutableMapValue;
 
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
@@ -42,14 +40,8 @@ import java.util.function.Predicate;
  * @param <K> The type of the key
  * @param <V> The type of the value
  */
-public interface ImmutableMapValue<K, V> extends ImmutableValue<Map<K, V>> {
+public interface ImmutableMapValue<K, V> extends MapValue<K, V>, ImmutableValue<Map<K, V>, ImmutableMapValue<K, V>, MutableMapValue<K, V>> {
 
-    /**
-     * Gets the size of this map.
-     *
-     * @return The size of this map
-     */
-    int size();
 
     /**
      * Associates the provided key to the provided value in the new map. If
@@ -104,48 +96,11 @@ public interface ImmutableMapValue<K, V> extends ImmutableValue<Map<K, V>> {
      */
     ImmutableMapValue<K, V> withoutAll(Predicate<Entry<K, V>> predicate);
 
-    /**
-     * Checks if the provided key is contained within this map.
-     *
-     * @param key The key to check
-     * @return True if the key is contained
-     */
-    boolean containsKey(K key);
-
-    /**
-     * Checks if the provided value is contained within this map.
-     *
-     * @param value The value to check
-     * @return True if the value is contained
-     */
-    boolean containsValue(V value);
-
-    /**
-     * Gets an {@link ImmutableSet} of all keys contained in this map value.
-     *
-     * @return The set of keys
-     */
-    ImmutableSet<K> keySet();
-
-    /**
-     * Retrieves an {@link ImmutableSet} of the {@link Entry}s contained
-     * within this map value.
-     *
-     * @return The immutable set of entries
-     */
-    ImmutableSet<Entry<K, V>> entrySet();
-
-    /**
-     * Retrieves an {@link ImmutableCollection} of all available values within
-     * this map.
-     *
-     * @return The collection of values
-     */
-    ImmutableCollection<V> values();
+    @Override
+    MutableMapValue<K, V> asMutable();
 
     @Override
-    ImmutableMapValue<K, V> transform(Function<Map<K, V>, Map<K, V>> function);
-
-    @Override
-    MapValue<K, V> asMutable();
+    default ImmutableMapValue<K, V> asImmutable() {
+        return this;
+    }
 }

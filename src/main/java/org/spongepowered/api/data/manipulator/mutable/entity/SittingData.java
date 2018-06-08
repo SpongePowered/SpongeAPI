@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableSittingData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.animal.Ocelot;
 import org.spongepowered.api.entity.living.animal.Wolf;
@@ -39,11 +39,11 @@ import org.spongepowered.api.entity.living.animal.Wolf;
 public interface SittingData extends DataManipulator<SittingData, ImmutableSittingData> {
 
     /**
-     * Gets the {@link Value} for the "sitting" state.
+     * Gets the {@link MutableValue} for the "sitting" state.
      *
      * @return The value for the sitting states
      * @see Keys#IS_SITTING
      */
-    Value<Boolean> sitting();
+    MutableValue<Boolean> sitting();
 
 }

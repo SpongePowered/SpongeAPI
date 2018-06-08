@@ -27,7 +27,7 @@ package org.spongepowered.api.block.tileentity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.DyeableData;
 import org.spongepowered.api.data.type.DyeColor;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 
 /**
  * Represents a Bed {@link TileEntity}.
@@ -44,11 +44,11 @@ public interface Bed extends TileEntity {
     }
 
     /**
-     * Gets the {@link Value} for the {@link DyeColor color}.
+     * Gets the {@link MutableValue} for the {@link DyeColor color}.
      *
      * @return The value for the color
      */
-    default Value<DyeColor> color() {
+    default MutableValue<DyeColor> color() {
         return this.getValue(Keys.DYE_COLOR).get();
     }
 

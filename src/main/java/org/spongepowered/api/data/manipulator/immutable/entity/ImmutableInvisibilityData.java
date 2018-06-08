@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.InvisibilityData;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -58,7 +58,7 @@ public interface ImmutableInvisibilityData extends ImmutableDataManipulator<Immu
 
 
     /**
-     * Gets the {@link Value} of whether an {@link Entity} that is "vanished" will
+     * Gets the {@link MutableValue} of whether an {@link Entity} that is "vanished" will
      * be ignored for collision detection. The collision detection can affect
      * collisions with other {@link Entity entities}, blocks, etc.
      *
@@ -67,7 +67,7 @@ public interface ImmutableInvisibilityData extends ImmutableDataManipulator<Immu
     ImmutableValue<Boolean> ignoresCollisionDetection();
 
     /**
-     * Gets the {@link Value} of whether an {@link Entity} that is "vanished" will
+     * Gets the {@link MutableValue} of whether an {@link Entity} that is "vanished" will
      * be ignored when other {@link Entity entities} are processing possible "targets"
      * for their AI.
      *

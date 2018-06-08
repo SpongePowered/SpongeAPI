@@ -28,7 +28,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.data.manipulator.immutable.ImmutableMappedData;
 import org.spongepowered.api.data.value.immutable.ImmutableMapValue;
-import org.spongepowered.api.data.value.mutable.MapValue;
+import org.spongepowered.api.data.value.mutable.MutableMapValue;
 import org.spongepowered.api.extra.fluid.FluidStack;
 import org.spongepowered.api.extra.fluid.FluidStackSnapshot;
 import org.spongepowered.api.extra.fluid.data.manipulator.mutable.FluidTankData;
@@ -41,7 +41,7 @@ import java.util.Optional;
 public interface ImmutableFluidTankData extends ImmutableMappedData<Direction, List<FluidStackSnapshot>, ImmutableFluidTankData, FluidTankData> {
 
     /**
-     * Gets the {@link MapValue} of the various {@link FluidStackSnapshot}s
+     * Gets the {@link MutableMapValue} of the various {@link FluidStackSnapshot}s
      * available from the owner. Note that a fluid tank may have multiple
      * {@link FluidStack}s differing based on {@link Direction}.
      *

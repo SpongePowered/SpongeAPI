@@ -38,7 +38,7 @@ import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.persistence.DataBuilder;
-import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.text.translation.Translatable;
@@ -216,7 +216,7 @@ public interface ItemStack extends DataHolder, Translatable {
          * @return This builder, for chaining
          * @throws IllegalArgumentException If the item data is incompatible
          */
-        <V> Builder add(Key<? extends BaseValue<V>> key, V value) throws IllegalArgumentException;
+        <V> Builder add(Key<? extends Value<V>> key, V value) throws IllegalArgumentException;
 
         /**
          * Sets all the settings in this builder from the item stack blueprint.

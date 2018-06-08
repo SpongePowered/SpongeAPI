@@ -39,7 +39,7 @@ import java.util.Comparator;
  *
  * @param <E> The type of value that can be compared
  */
-public interface BoundedValue<E> extends BaseValue<E> {
+public interface BoundedValue<E> extends Value<E> {
 
     /**
      * Gets the required "minimum" value such that the value is only valid if

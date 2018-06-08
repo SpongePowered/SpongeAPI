@@ -24,7 +24,8 @@
  */
 package org.spongepowered.api.data.value.immutable;
 
-import org.spongepowered.api.data.value.mutable.ListValue;
+import org.spongepowered.api.data.value.ListValue;
+import org.spongepowered.api.data.value.mutable.MutableListValue;
 
 import java.util.List;
 
@@ -35,7 +36,7 @@ import java.util.List;
  *
  * @param <E> The type of element of this list value
  */
-public interface ImmutableListValue<E> extends ImmutableCollectionValue<E, List<E>, ImmutableListValue<E>, ListValue<E>> {
+public interface ImmutableListValue<E> extends ListValue<E, ImmutableListValue<E>>, ImmutableCollectionValue<E, List<E>, ImmutableListValue<E>, MutableListValue<E>> {
 
     /**
      * Gets the desired element at the desired index.

@@ -27,7 +27,7 @@ package org.spongepowered.api.data.value.immutable;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.merge.MergeFunction;
-import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
 
 import java.util.List;
@@ -145,7 +145,7 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I, H>, H exte
     boolean supports(Class<? extends H> containerClass);
 
     /**
-     * Applies a transformation on the provided {@link BaseValue} such that
+     * Applies a transformation on the provided {@link Value} such that
      * the return value of {@link Function#apply(Object)} will become the end
      * resulting value set into the newly created {@link ImmutableValueStore}.
      *
@@ -154,7 +154,7 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I, H>, H exte
      * @param <E> The type of value
      * @return The newly created immutable value store
      */
-    <E> Optional<I> transform(Key<? extends BaseValue<E>> key, Function<E, E> function);
+    <E> Optional<I> transform(Key<? extends Value<E>> key, Function<E, E> function);
 
     /**
      * Creates a new {@link ImmutableValueStore} with the provided
@@ -166,7 +166,7 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I, H>, H exte
      * @param <E> The type of value
      * @return The new immutable value store
      */
-    <E> Optional<I> with(Key<? extends BaseValue<E>> key, E value);
+    <E> Optional<I> with(Key<? extends Value<E>> key, E value);
 
     /**
      * Offers the given {@code value} as defined by the provided {@link Key}
@@ -176,11 +176,11 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I, H>, H exte
      * @param value The value to set
      * @return The new immutable value store
      */
-    Optional<I> with(BaseValue<?> value);
+    Optional<I> with(Value<?> value);
 
     /**
      * Offers the given {@link ValueContainer} such that all of the available
-     * {@link BaseValue}s from the given {@link ValueContainer} are offered
+     * {@link Value}s from the given {@link ValueContainer} are offered
      * to the newly created {@link ImmutableValueStore}.
      *
      * @param valueContainer The value to set

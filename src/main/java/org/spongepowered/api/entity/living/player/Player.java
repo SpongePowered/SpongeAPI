@@ -37,7 +37,7 @@ import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
 import org.spongepowered.api.data.manipulator.mutable.entity.GameModeData;
 import org.spongepowered.api.data.manipulator.mutable.entity.JoinData;
 import org.spongepowered.api.data.type.SkinPart;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Humanoid;
@@ -241,22 +241,22 @@ public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMe
     }
 
     /**
-     * Gets the {@link Value} of the {@link Instant} that a {@link Player}
+     * Gets the {@link MutableValue} of the {@link Instant} that a {@link Player}
      * joined the {@link Server} the first time.
      *
      * @return The value for the first time a player joined
      */
-    default Value<Instant> firstPlayed() {
+    default MutableValue<Instant> firstPlayed() {
         return getValue(Keys.FIRST_DATE_PLAYED).get();
     }
 
     /**
-     * Gets the {@link Value} of the {@link Instant} that a {@link Player}
+     * Gets the {@link MutableValue} of the {@link Instant} that a {@link Player}
      * joined the {@link Server} the last time.
      *
      * @return The value for the last time a player joined
      */
-    default Value<Instant> lastPlayed() {
+    default MutableValue<Instant> lastPlayed() {
         return getValue(Keys.LAST_DATE_PLAYED).get();
     }
 
@@ -294,7 +294,7 @@ public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMe
      *
      * @return The current game mode value
      */
-    default Value<GameMode> gameMode() {
+    default MutableValue<GameMode> gameMode() {
         return getValue(Keys.GAME_MODE).get();
     }
 

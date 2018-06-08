@@ -28,7 +28,7 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableSizeData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -43,7 +43,7 @@ public interface SizeData extends DataManipulator<SizeData, ImmutableSizeData> {
      * @return The width of this entity
      * @see Keys#BASE_SIZE
      */
-    Value<Float> base();
+    MutableValue<Float> base();
 
     /**
      * Gets the current y height of this entity.
@@ -51,7 +51,7 @@ public interface SizeData extends DataManipulator<SizeData, ImmutableSizeData> {
      * @return The current y height
      * @see Keys#HEIGHT
      */
-    Value<Float> height();
+    MutableValue<Float> height();
 
     /**
      * Gets the {@link MutableBoundedValue} for the "scale" size.

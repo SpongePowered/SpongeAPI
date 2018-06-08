@@ -34,8 +34,8 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableListData;
 import org.spongepowered.api.data.manipulator.mutable.ListData;
-import org.spongepowered.api.data.value.BaseValue;
-import org.spongepowered.api.data.value.mutable.ListValue;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.mutable.MutableListValue;
 
 import java.util.List;
 import java.util.Optional;
@@ -51,17 +51,17 @@ import java.util.Optional;
 public abstract class AbstractListData<E, M extends ListData<E, M, I>, I extends ImmutableListData<E, I, M>>
         extends AbstractSingleData<List<E>, M, I> implements ListData<E, M, I> {
 
-    protected AbstractListData(List<E> value, Key<? extends BaseValue<List<E>>> usedKey) {
+    protected AbstractListData(List<E> value, Key<? extends Value<List<E>>> usedKey) {
         super(Lists.newArrayList(value), usedKey);
     }
 
     @Override
-    protected ListValue<E> getValueGetter() {
-        return Sponge.getRegistry().getValueFactory().createListValue((Key<ListValue<E>>) this.usedKey, this.getValue());
+    protected MutableListValue<E> getValueGetter() {
+        return Sponge.getRegistry().getValueFactory().createListValue((Key<MutableListValue<E>>) this.usedKey, this.getValue());
     }
 
     @Override
-    public <V> Optional<V> get(Key<? extends BaseValue<V>> key) {
+    public <V> Optional<V> get(Key<? extends Value<V>> key) {
         // we can delegate this since we have a direct value check as this is
         // a Single value.
         return key == this.usedKey ? Optional.of((V) this.getValue()) : super.get(key);
@@ -108,7 +108,7 @@ public abstract class AbstractListData<E, M extends ListData<E, M, I>, I extends
     }
 
     @Override
-    public ListValue<E> getListValue() {
+    public MutableListValue<E> getListValue() {
         return getValueGetter();
     }
 

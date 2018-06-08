@@ -29,7 +29,7 @@ import org.spongepowered.api.block.tileentity.Structure;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableStructureData;
 import org.spongepowered.api.data.type.StructureMode;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 
 /**
  * Represents the data for an {@link Structure}.
@@ -37,73 +37,73 @@ import org.spongepowered.api.data.value.mutable.Value;
 public interface StructureData extends DataManipulator<StructureData, ImmutableStructureData> {
 
     /**
-     * Gets the {@link Value} for the author of the {@link Structure}.
+     * Gets the {@link MutableValue} for the author of the {@link Structure}.
      *
      * @return The value for the author
      */
-    Value<String> author();
+    MutableValue<String> author();
 
     /**
-     * Gets the {@link Value} for the ignore entities state of the {@link Structure}.
+     * Gets the {@link MutableValue} for the ignore entities state of the {@link Structure}.
      *
      * @return The value for the ignore entities state
      */
-    Value<Boolean> ignoreEntities();
+    MutableValue<Boolean> ignoreEntities();
 
     /**
-     * Gets the {@link Value} for the integrity of the {@link Structure}.
+     * Gets the {@link MutableValue} for the integrity of the {@link Structure}.
      *
      * @return The value for the integrity
      */
-    Value<Float> integrity();
+    MutableValue<Float> integrity();
 
     /**
-     * Gets the {@link Value} for the mode of the {@link Structure}.
+     * Gets the {@link MutableValue} for the mode of the {@link Structure}.
      *
      * @return The value for the mode
      */
-    Value<StructureMode> mode();
+    MutableValue<StructureMode> mode();
 
     /**
-     * Gets the {@link Value} for the position of the {@link Structure}.
+     * Gets the {@link MutableValue} for the position of the {@link Structure}.
      *
      * @return The value for the position
      */
-    Value<Vector3i> position();
+    MutableValue<Vector3i> position();
 
     /**
-     * Gets the {@link Value} for the powered state of the {@link Structure}.
+     * Gets the {@link MutableValue} for the powered state of the {@link Structure}.
      *
      * @return The value for the powered state
      */
-    Value<Boolean> powered();
+    MutableValue<Boolean> powered();
 
     /**
-     * Gets the {@link Value} for the seed of the {@link Structure}.
+     * Gets the {@link MutableValue} for the seed of the {@link Structure}.
      *
      * @return The value for the seed
      */
-    Value<Long> seed();
+    MutableValue<Long> seed();
 
     /**
-     * Gets the {@link Value} for the show air state of the {@link Structure}.
+     * Gets the {@link MutableValue} for the show air state of the {@link Structure}.
      *
      * @return The value for the show air state
      */
-    Value<Boolean> showAir();
+    MutableValue<Boolean> showAir();
 
     /**
-     * Gets the {@link Value} for the show bounding box state of the {@link Structure}.
+     * Gets the {@link MutableValue} for the show bounding box state of the {@link Structure}.
      *
      * @return The value for the show bounding box state
      */
-    Value<Boolean> showBoundingBox();
+    MutableValue<Boolean> showBoundingBox();
 
     /**
-     * Gets the {@link Value} for the size of the {@link Structure}.
+     * Gets the {@link MutableValue} for the size of the {@link Structure}.
      *
      * @return The value for the size
      */
-    Value<Vector3i> size();
+    MutableValue<Vector3i> size();
 
 }

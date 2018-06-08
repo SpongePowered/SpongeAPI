@@ -30,13 +30,13 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 
 import java.util.Comparator;
 
 /**
  * An abstracted {@link ImmutableDataManipulator} that focuses solely on an
- * {@link ImmutableBoundedValue} as it's {@link Value} return type.
+ * {@link ImmutableBoundedValue} as it's {@link MutableValue} return type.
  *
  * @param <T> The type of comparable element
  * @param <I> The immutable data manipulator type

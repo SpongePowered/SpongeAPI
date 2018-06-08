@@ -28,7 +28,7 @@ import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableSeamlessData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 
 /**
  * A {@link DataManipulator} for the "seamless" state. This is normally a
@@ -39,11 +39,11 @@ import org.spongepowered.api.data.value.mutable.Value;
 public interface SeamlessData extends DataManipulator<SeamlessData, ImmutableSeamlessData> {
 
     /**
-     * Gets the {@link Value} for the "seamless" state.
+     * Gets the {@link MutableValue} for the "seamless" state.
      *
      * @return The immutable value for the "seamless" state
      * @see Keys#SEAMLESS
      */
-    Value<Boolean> seamless();
+    MutableValue<Boolean> seamless();
 
 }

@@ -24,7 +24,8 @@
  */
 package org.spongepowered.api.data.value.immutable;
 
-import org.spongepowered.api.data.value.mutable.SetValue;
+import org.spongepowered.api.data.value.SetValue;
+import org.spongepowered.api.data.value.mutable.MutableSetValue;
 
 import java.util.Set;
 
@@ -35,6 +36,6 @@ import java.util.Set;
  *
  * @param <E> The type of elements supported
  */
-public interface ImmutableSetValue<E> extends ImmutableCollectionValue<E, Set<E>, ImmutableSetValue<E>, SetValue<E>> {
+public interface ImmutableSetValue<E> extends SetValue<E, ImmutableSetValue<E>>, ImmutableCollectionValue<E, Set<E>, ImmutableSetValue<E>, MutableSetValue<E>> {
 
 }

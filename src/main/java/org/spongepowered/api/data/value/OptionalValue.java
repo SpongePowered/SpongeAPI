@@ -22,19 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.value.mutable;
+package org.spongepowered.api.data.value;
 
-import org.spongepowered.api.data.value.immutable.ImmutableSetValue;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 
-import java.util.Set;
+import java.util.Optional;
 
-/**
- * Represents a type of {@link CollectionValue} backed by a {@link Set}. The
- * reasoning is that a {@link Set} retains no ordering of the elements it
- * contains.
- *
- * @param <E> The type of elements supported
- */
-public interface SetValue<E> extends CollectionValue<E, Set<E>, SetValue<E>, ImmutableSetValue<E>> {
+public interface OptionalValue<E> extends Value<Optional<E>> {
+
+
+    /**
+     * Provides the value such that if the underlying value is
+     * {@code null}, the default value is returned as a {@link Value}, if
+     * the underlying value is present, the underlying value is returned
+     * as a {@link Value}.
+     *
+     * @param defaultValue The value to substitute, if the underlying value is
+     *      null
+     * @return A new {@link MutableValue} with a non-null value
+     */
+    Value<E> orElse(E defaultValue);
 
 }

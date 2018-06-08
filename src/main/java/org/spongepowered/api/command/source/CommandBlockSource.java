@@ -28,8 +28,8 @@ import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.CommandData;
-import org.spongepowered.api.data.value.mutable.OptionalValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.MutableOptionalValue;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.world.Locatable;
 
@@ -56,7 +56,7 @@ public interface CommandBlockSource extends Locatable, CommandSource, DataHolder
      *
      * @return The command
      */
-    default Value<String> storedCommand() {
+    default MutableValue<String> storedCommand() {
         return getValue(Keys.COMMAND).get();
     }
 
@@ -72,7 +72,7 @@ public interface CommandBlockSource extends Locatable, CommandSource, DataHolder
      *
      * @return The last success count
      */
-    default Value<Integer> successCount() {
+    default MutableValue<Integer> successCount() {
         return getValue(Keys.SUCCESS_COUNT).get();
     }
 
@@ -82,7 +82,7 @@ public interface CommandBlockSource extends Locatable, CommandSource, DataHolder
      *
      * @return Whether the command output is tracked
      */
-    default Value<Boolean> doesTrackOutput() {
+    default MutableValue<Boolean> doesTrackOutput() {
         return getValue(Keys.TRACKS_OUTPUT).get();
     }
 
@@ -94,7 +94,7 @@ public interface CommandBlockSource extends Locatable, CommandSource, DataHolder
      *
      * @return The last command output, if available
      */
-    default OptionalValue<Text> lastOutput() {
+    default MutableOptionalValue<Text> lastOutput() {
         return getValue(Keys.LAST_COMMAND_OUTPUT).get();
     }
 

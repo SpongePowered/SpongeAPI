@@ -34,7 +34,7 @@ import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.InvalidDataException;
-import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
@@ -122,9 +122,9 @@ public interface TileEntityArchetype extends Archetype<BlockSnapshot, TileEntity
 
         Builder setData(DataManipulator<?, ?> manipulator);
 
-        <E, V extends BaseValue<E>> Builder set(V value);
+        <E, V extends Value<E>> Builder set(V value);
 
-        <E, V extends BaseValue<E>> Builder set(Key<V> key, E value);
+        <E, V extends Value<E>> Builder set(Key<V> key, E value);
 
         /**
          * Creates a new {@link TileEntityArchetype} from this builder.

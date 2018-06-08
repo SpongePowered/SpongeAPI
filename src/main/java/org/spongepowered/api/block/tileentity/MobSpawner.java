@@ -27,8 +27,8 @@ package org.spongepowered.api.block.tileentity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.data.value.mutable.WeightedCollectionValue;
+import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.mutable.MutableWeightedCollectionValue;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.entity.living.player.Player;
@@ -138,7 +138,7 @@ public interface MobSpawner extends TileEntity {
     }
 
     /**
-     * Gets the {@link Value}
+     * Gets the {@link MutableValue}
      * for the overridden
      * {@link WeightedSerializableObject}{@code <EntitySnapshot>} to spawn
      * next. If possible, the next entity to spawn may be chosen from the
@@ -146,12 +146,12 @@ public interface MobSpawner extends TileEntity {
      *
      * @return The next possible entity to spawn
      */
-    default Value<WeightedSerializableObject<EntityArchetype>> nextEntityToSpawn() {
+    default MutableValue<WeightedSerializableObject<EntityArchetype>> nextEntityToSpawn() {
         return getValue(Keys.SPAWNER_NEXT_ENTITY_TO_SPAWN).get();
     }
 
     /**
-     * Gets the {@link WeightedCollectionValue} of all possible
+     * Gets the {@link MutableWeightedCollectionValue} of all possible
      * {@link Entity} instances that can be spawned by the spawner. As they
      * are all {@link WeightedSerializableObject}{@code <EntitySnapshot>}
      * instances, their weight is defined as a {@link Random} to determine
@@ -160,7 +160,7 @@ public interface MobSpawner extends TileEntity {
      *
      * @return The immutable weighted entity collection value of entities
      */
-    default WeightedCollectionValue<EntityArchetype> possibleEntitiesToSpawn() {
+    default MutableWeightedCollectionValue<EntityArchetype> possibleEntitiesToSpawn() {
         return getValue(Keys.SPAWNER_ENTITIES).get();
     }
 

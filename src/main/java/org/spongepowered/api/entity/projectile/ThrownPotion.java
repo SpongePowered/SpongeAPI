@@ -26,7 +26,7 @@ package org.spongepowered.api.entity.projectile;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.RepresentedItemData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
@@ -45,12 +45,12 @@ public interface ThrownPotion extends Projectile {
     }
 
     /**
-     * Gets the {@link Value} for the represented {@link ItemStack} as an
+     * Gets the {@link MutableValue} for the represented {@link ItemStack} as an
      * {@link ItemStackSnapshot}.
      *
      * @return The value for the item stack snapshot
      */
-    default Value<ItemStackSnapshot> item() {
+    default MutableValue<ItemStackSnapshot> item() {
         return getValue(Keys.REPRESENTED_ITEM).get();
     }
 

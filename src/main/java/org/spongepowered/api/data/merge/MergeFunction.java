@@ -26,7 +26,7 @@ package org.spongepowered.api.data.merge;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.data.value.mutable.CompositeValueStore;
 
@@ -45,7 +45,7 @@ public interface MergeFunction {
 
     /**
      * Performs a merge of a type of {@link ValueContainer} such that a merge
-     * of the contained {@link BaseValue}s has been performed and the resulting
+     * of the contained {@link Value}s has been performed and the resulting
      * merged {@link ValueContainer} is returned. It is suffice to say that
      * only one of the {@link ValueContainer} containers may be {@code null},
      * such that <pre> {@code

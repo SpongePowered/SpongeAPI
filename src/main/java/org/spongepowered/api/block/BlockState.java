@@ -40,9 +40,9 @@ import org.spongepowered.api.data.ImmutableDataHolder;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.property.DirectionRelativePropertyHolder;
-import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 import org.spongepowered.api.util.Cycleable;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.Location;
@@ -120,14 +120,14 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
 
     /**
      * Gets the associated {@link BlockState} with the cycled
-     * {@link BaseValue}. Note that only {@link Cycleable} values can be
-     * cycled. To change a particular {@link Key}'ed {@link Value}, usage
+     * {@link Value}. Note that only {@link Cycleable} values can be
+     * cycled. To change a particular {@link Key}'ed {@link MutableValue}, usage
      * of the {@link BlockState#with(Key, Object)} is recommended.
      *
      * @param key The key to cycle
      * @return The blockstate instance with the cycled value
      */
-    BlockState cycleValue(Key<? extends BaseValue<? extends Cycleable<?>>> key);
+    BlockState cycleValue(Key<? extends Value<? extends Cycleable<?>>> key);
 
     /**
      * Creates a new {@link BlockSnapshot} with this current {@link BlockState}

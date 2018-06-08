@@ -29,7 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.merge.MergeFunction;
-import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
 
 import java.util.Collection;
@@ -114,7 +114,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
     /**
      * <p>Gets the desired {@link ValueContainer} of type <code>H</code> if the
      * {@link ValueContainer} is compatible. If insufficient data is available
-     * to provide a {@link ValueContainer} with all {@link Value}s preset, a
+     * to provide a {@link ValueContainer} with all {@link MutableValue}s preset, a
      * new instance of the {@link ValueContainer} is returned with "default"
      * values. Since the return type is an {@link Optional}, a short way of
      * checking compatibility and presence of the requested data is to mimic
@@ -167,7 +167,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
     boolean supports(Class<? extends H> holderClass);
 
     /**
-     * Applies a transformation on the provided {@link BaseValue} such that
+     * Applies a transformation on the provided {@link Value} such that
      * the return value of {@link Function#apply(Object)} will become the end
      * resulting value set into this {@link CompositeValueStore}. It is not
      * necessary that the input is actually present, in which case the
@@ -180,7 +180,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      * @param <E> The type of value
      * @return The end resulting value
      */
-    default <E> DataTransactionResult transform(Key<? extends BaseValue<E>> key, Function<E, E> function) {
+    default <E> DataTransactionResult transform(Key<? extends Value<E>> key, Function<E, E> function) {
         if (supports(key)) {
             return offer(key, checkNotNull(function.apply(get(key).orElse(null))));
         }
@@ -190,7 +190,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
     /**
      * Offers the given {@code value} as defined by the provided {@link Key}
      * such that a {@link DataTransactionResult} is returned for any
-     * successful, rejected, and replaced {@link BaseValue}s from this
+     * successful, rejected, and replaced {@link Value}s from this
      * {@link CompositeValueStore}.
      *
      * @param key The key to the value to set
@@ -198,25 +198,25 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      * @param <E> The type of value
      * @return The transaction result
      */
-    <E> DataTransactionResult offer(Key<? extends BaseValue<E>> key, E value);
+    <E> DataTransactionResult offer(Key<? extends Value<E>> key, E value);
 
     /**
-     * Offers the given {@link BaseValue} as defined by the provided
+     * Offers the given {@link Value} as defined by the provided
      * {@link Key} such that a {@link DataTransactionResult} is returned for
-     * any successful, rejected, and replaced {@link BaseValue}s from this
+     * any successful, rejected, and replaced {@link Value}s from this
      * {@link CompositeValueStore}.
      *
      * @param value The value to set
      * @param <E> The type of the element wrapped by the value
      * @return The transaction result
      */
-    default <E> DataTransactionResult offer(BaseValue<E> value) {
+    default <E> DataTransactionResult offer(Value<E> value) {
         return offer(value.getKey(), value.get());
     }
 
     /**
      * Offers the given {@link ValueContainer} such that all of the available
-     * {@link BaseValue}s from the given {@link ValueContainer} are offered
+     * {@link Value}s from the given {@link ValueContainer} are offered
      * to this {@link CompositeValueStore}. The end result of the values
      * successfully offered, rejected, and replaced are stored in the returned
      * {@link DataTransactionResult}.
@@ -230,7 +230,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
 
     /**
      * Offers the given {@link ValueContainer} such that all of the available
-     * {@link BaseValue}s from the given {@link ValueContainer} are offered
+     * {@link Value}s from the given {@link ValueContainer} are offered
      * to this {@link CompositeValueStore}. The end result of the values
      * successfully offered, rejected, and replaced are stored in the returned
      * {@link DataTransactionResult}. Any overlaps of data are merged via
@@ -280,7 +280,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
     /**
      * Offers the given {@code value} as defined by the provided {@link Key}
      * such that a {@link DataTransactionResult} is returned for any
-     * successful {@link BaseValue}s from this {@link CompositeValueStore}.
+     * successful {@link Value}s from this {@link CompositeValueStore}.
      * Intentionally, however, this differs from {@link #offer(Key, Object)}
      * as it will intentionally throw an exception if the result was a failure.
      *
@@ -291,7 +291,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      * @throws IllegalArgumentException If the result is a failure likely due to
      *     incompatibility
      */
-    default <E> DataTransactionResult tryOffer(Key<? extends BaseValue<E>> key, E value) throws IllegalArgumentException {
+    default <E> DataTransactionResult tryOffer(Key<? extends Value<E>> key, E value) throws IllegalArgumentException {
         final DataTransactionResult result = offer(key, value);
         if (!result.isSuccessful()) {
             throw new IllegalArgumentException("Failed offer transaction!");
@@ -302,7 +302,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
     /**
      * Offers the given {@code value} as defined by the provided {@link Key}
      * such that a {@link DataTransactionResult} is returned for any
-     * successful {@link BaseValue}s from this {@link CompositeValueStore}.
+     * successful {@link Value}s from this {@link CompositeValueStore}.
      * Intentionally, however, this differs from {@link #offer(Key, Object)}
      * as it will intentionally throw an exception if the result was a failure.
      *
@@ -312,7 +312,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      * @throws IllegalArgumentException If the result is a failure likely due to
      *     incompatibility
      */
-    default <E> DataTransactionResult tryOffer(BaseValue<E> value) throws IllegalArgumentException {
+    default <E> DataTransactionResult tryOffer(Value<E> value) throws IllegalArgumentException {
         final DataTransactionResult result = offer(value.getKey(), value.get());
         if (!result.isSuccessful()) {
             throw new IllegalArgumentException("Failed offer transaction!");
@@ -322,7 +322,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
 
     /**
      * Offers the given {@link ValueContainer} such that all of the available
-     * {@link BaseValue}s from the given {@link ValueContainer} are offered
+     * {@link Value}s from the given {@link ValueContainer} are offered
      * to this {@link CompositeValueStore}. Intentionally, however, this differs
      * from {@link #offer(ValueContainer)} as it will intentionally throw an
      * exception if the result was a failure.
@@ -342,7 +342,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
 
     /**
      * Offers the given {@link ValueContainer} such that all of the available
-     * {@link BaseValue}s from the given {@link ValueContainer} are offered
+     * {@link Value}s from the given {@link ValueContainer} are offered
      * to this {@link CompositeValueStore}. Any overlaps of data are merged via
      * the {@link MergeFunction}. Intentionally, however, this differs
      * from {@link #offer(ValueContainer)} as it will intentionally throw an
@@ -363,7 +363,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
     }
 
     /**
-     * Attempts to remove all {@link Value}s associated with the class of the
+     * Attempts to remove all {@link MutableValue}s associated with the class of the
      * provided {@link ValueContainer} class. All values that were successfully
      * removed will be provided in
      * {@link DataTransactionResult#getReplacedData()}. If the data can not be
@@ -376,7 +376,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
     DataTransactionResult remove(Class<? extends H> containerClass);
 
     /**
-     * Attempts to remove the provided {@link BaseValue}. All values that were
+     * Attempts to remove the provided {@link Value}. All values that were
      * successfully removed will be provided in
      * {@link DataTransactionResult#getReplacedData()}. If the data can not be
      * removed, the result will be an expected
@@ -385,7 +385,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      * @param value The value to remove
      * @return The transaction result
      */
-    default DataTransactionResult remove(BaseValue<?> value) {
+    default DataTransactionResult remove(Value<?> value) {
         return remove(value.getKey());
     }
 
@@ -414,9 +414,9 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
     DataTransactionResult undo(DataTransactionResult result);
 
     /**
-     * Performs an absolute copy of all {@link Value}s and
+     * Performs an absolute copy of all {@link MutableValue}s and
      * {@link ValueContainer}s to this {@link CompositeValueStore} such that
-     * any overlapping {@link Value}s are offered for replacement. The
+     * any overlapping {@link MutableValue}s are offered for replacement. The
      * result is provided as a {@link DataTransactionResult}.
      *
      * @param that The other {@link CompositeValueStore} to copy values from
@@ -427,9 +427,9 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
     }
 
     /**
-     * Performs an absolute copy of all {@link Value}s and
+     * Performs an absolute copy of all {@link MutableValue}s and
      * {@link ValueContainer}s to this {@link CompositeValueStore} such that
-     * any overlapping {@link Value}s are offered for replacement. The
+     * any overlapping {@link MutableValue}s are offered for replacement. The
      * result is provided as a {@link DataTransactionResult}.
      *
      * @param that The other {@link CompositeValueStore} to copy values from

@@ -27,22 +27,21 @@ package org.spongepowered.api.data.value.mutable;
 import org.spongepowered.api.data.meta.PatternLayer;
 import org.spongepowered.api.data.type.BannerPatternShape;
 import org.spongepowered.api.data.type.DyeColor;
-import org.spongepowered.api.data.value.immutable.ImmutablePatternListValue;
 
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
- * Represents a customized {@link ListValue} handling {@link PatternLayer}s.
- * Virtually, this is the same as a {@link ListValue}; however, the core
+ * Represents a customized {@link MutableListValue} handling {@link PatternLayer}s.
+ * Virtually, this is the same as a {@link MutableListValue}; however, the core
  * difference is the ability to add a {@link BannerPatternShape} and
  * {@link DyeColor} to create a new {@link PatternLayer}.
  */
-public interface PatternListValue extends ListValue<PatternLayer> {
+public interface PatternMutableListValue extends MutableListValue<PatternLayer> {
 
     @Override
-    PatternListValue add(PatternLayer element);
+    PatternMutableListValue add(PatternLayer element);
 
     /**
      * Creates and adds a new {@link PatternLayer} based on the provided
@@ -52,10 +51,10 @@ public interface PatternListValue extends ListValue<PatternLayer> {
      * @param color The color
      * @return This value, for chaining
      */
-    PatternListValue add(BannerPatternShape patternShape, DyeColor color);
+    PatternMutableListValue add(BannerPatternShape patternShape, DyeColor color);
 
     @Override
-    PatternListValue add(int index, PatternLayer value);
+    PatternMutableListValue add(int index, PatternLayer value);
 
     /**
      * Creates and adds a {@link PatternLayer} based on the
@@ -67,38 +66,38 @@ public interface PatternListValue extends ListValue<PatternLayer> {
      * @param color The color of the pattern
      * @return This value, for chaining
      */
-    PatternListValue add(int index, BannerPatternShape patternShape, DyeColor color);
+    PatternMutableListValue add(int index, BannerPatternShape patternShape, DyeColor color);
 
     @Override
-    PatternListValue add(int index, Iterable<PatternLayer> values);
+    PatternMutableListValue add(int index, Iterable<PatternLayer> values);
 
     @Override
-    PatternListValue set(int index, PatternLayer element);
+    PatternMutableListValue set(int index, PatternLayer element);
 
     @Override
-    PatternListValue set(List<PatternLayer> value);
+    PatternMutableListValue set(List<PatternLayer> value);
 
     @Override
-    PatternListValue transform(Function<List<PatternLayer>, List<PatternLayer>> function);
+    PatternMutableListValue transform(Function<List<PatternLayer>, List<PatternLayer>> function);
 
     @Override
-    PatternListValue addAll(Iterable<PatternLayer> elements);
+    PatternMutableListValue addAll(Iterable<PatternLayer> elements);
 
     @Override
-    PatternListValue remove(int index);
+    PatternMutableListValue remove(int index);
 
     @Override
-    PatternListValue remove(PatternLayer element);
+    PatternMutableListValue remove(PatternLayer element);
 
     @Override
-    PatternListValue removeAll(Iterable<PatternLayer> elements);
+    PatternMutableListValue removeAll(Iterable<PatternLayer> elements);
 
     @Override
-    PatternListValue removeAll(Predicate<PatternLayer> predicate);
+    PatternMutableListValue removeAll(Predicate<PatternLayer> predicate);
 
     @Override
-    PatternListValue filter(Predicate<? super PatternLayer> predicate);
+    PatternMutableListValue filter(Predicate<? super PatternLayer> predicate);
 
     @Override
-    ImmutablePatternListValue asImmutable();
+    I asImmutable();
 }

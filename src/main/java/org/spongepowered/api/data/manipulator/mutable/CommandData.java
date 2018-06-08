@@ -29,15 +29,15 @@ import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableCommandData;
-import org.spongepowered.api.data.value.mutable.OptionalValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.mutable.MutableOptionalValue;
 import org.spongepowered.api.entity.vehicle.minecart.CommandBlockMinecart;
 import org.spongepowered.api.text.Text;
 
 import java.util.Optional;
 
 /**
- * An {@link DataManipulator} handling all related {@link Value}s for command
+ * An {@link DataManipulator} handling all related {@link MutableValue}s for command
  * related {@link DataHolder}s, such as {@link CommandBlock}s and
  * {@link CommandBlockMinecart}s.
  */
@@ -49,7 +49,7 @@ public interface CommandData extends DataManipulator<CommandData, ImmutableComma
      * @return The command
      * @see Keys#COMMAND
      */
-    Value<String> storedCommand();
+    MutableValue<String> storedCommand();
 
     /**
      * Gets the success count of the last executed command.
@@ -64,7 +64,7 @@ public interface CommandData extends DataManipulator<CommandData, ImmutableComma
      * @return The last success count
      * @see Keys#SUCCESS_COUNT
      */
-    Value<Integer> successCount();
+    MutableValue<Integer> successCount();
 
     /**
      * Gets whether this command block will keep track of the output from the
@@ -73,7 +73,7 @@ public interface CommandData extends DataManipulator<CommandData, ImmutableComma
      * @return Whether the command output is tracked
      * @see Keys#TRACKS_OUTPUT
      */
-    Value<Boolean> doesTrackOutput();
+    MutableValue<Boolean> doesTrackOutput();
 
     /**
      * Gets the last command output.
@@ -84,6 +84,6 @@ public interface CommandData extends DataManipulator<CommandData, ImmutableComma
      * @return The last command output, if available
      * @see Keys#LAST_COMMAND_OUTPUT
      */
-    OptionalValue<Text> lastOutput();
+    MutableOptionalValue<Text> lastOutput();
 
 }

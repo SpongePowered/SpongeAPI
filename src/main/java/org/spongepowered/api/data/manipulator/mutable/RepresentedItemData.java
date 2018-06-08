@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableRepresentedItemData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 import org.spongepowered.api.entity.hanging.ItemFrame;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
@@ -41,12 +41,12 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 public interface RepresentedItemData extends DataManipulator<RepresentedItemData, ImmutableRepresentedItemData> {
 
     /**
-     * Gets the {@link Value} for the represented {@link ItemStack} as
+     * Gets the {@link MutableValue} for the represented {@link ItemStack} as
      * an {@link ItemStackSnapshot}.
      *
      * @return The value for the item stack snapshot
      * @see Keys#REPRESENTED_ITEM
      */
-    Value<ItemStackSnapshot> item();
+    MutableValue<ItemStackSnapshot> item();
 
 }

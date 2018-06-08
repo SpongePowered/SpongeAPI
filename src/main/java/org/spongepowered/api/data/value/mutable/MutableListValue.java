@@ -24,27 +24,19 @@
  */
 package org.spongepowered.api.data.value.mutable;
 
+import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.immutable.ImmutableListValue;
 
 import java.util.List;
 
 /**
- * A type of {@link CollectionValue} that is backed by a {@link List}. All
+ * A type of {@link MutableCollectionValue} that is backed by a {@link List}. All
  * mutator methods provided are similar to those existing in {@link List} with
  * the difference of returning itself, for fluency.
  *
  * @param <E> The type of element of this list value
  */
-public interface ListValue<E> extends CollectionValue<E, List<E>, ListValue<E>, ImmutableListValue<E>> {
-
-    /**
-     * Gets the desired element at the desired index.
-     *
-     * @param index The index of the element to return
-     * @return The element at the desired index
-     * @throws IndexOutOfBoundsException if the index is out of range
-     */
-    E get(int index);
+public interface MutableListValue<E> extends ListValue<E, MutableListValue<E>>, MutableCollectionValue<E, List<E>, MutableListValue<E>, ImmutableListValue<E>> {
 
     /**
      * Adds the specified element at the specified position in the list.
@@ -55,7 +47,7 @@ public interface ListValue<E> extends CollectionValue<E, List<E>, ListValue<E>, 
      * @param value The element to add
      * @return This value, for chaining
      */
-    ListValue<E> add(int index, E value);
+    MutableListValue<E> add(int index, E value);
 
     /**
      * Adds the specified elements in the order that they are iterated
@@ -67,7 +59,7 @@ public interface ListValue<E> extends CollectionValue<E, List<E>, ListValue<E>, 
      * @param values The elements to add
      * @return This value, for chaining
      */
-    ListValue<E> add(int index, Iterable<E> values);
+    MutableListValue<E> add(int index, Iterable<E> values);
 
     /**
      * Removes the element at the specified position in this list (optional
@@ -77,7 +69,7 @@ public interface ListValue<E> extends CollectionValue<E, List<E>, ListValue<E>, 
      * @param index The index of the element to remove
      * @return This value, for chaining
      */
-    ListValue<E> remove(int index);
+    MutableListValue<E> remove(int index);
 
     /**
      * Replaces the element at the specified index in this list with the
@@ -87,15 +79,12 @@ public interface ListValue<E> extends CollectionValue<E, List<E>, ListValue<E>, 
      * @param element The element to set
      * @return This value, for chaining
      */
-    ListValue<E> set(int index, E element);
+    MutableListValue<E> set(int index, E element);
 
-    /**
-     * Queries for the index of the provided element. If the element is
-     * not contained in this list, -1 is returned.
-     *
-     * @param element The element to get the index from
-     * @return The index of the element, -1 if not available
-     */
-    int indexOf(E element);
+    @Override
+    MutableListValue<E> asMutable();
+
+    @Override
+    ImmutableListValue<E> asImmutable();
 
 }

@@ -27,7 +27,7 @@ package org.spongepowered.api.data.value.immutable;
 import org.spongepowered.api.data.meta.PatternLayer;
 import org.spongepowered.api.data.type.BannerPatternShape;
 import org.spongepowered.api.data.type.DyeColor;
-import org.spongepowered.api.data.value.mutable.PatternListValue;
+import org.spongepowered.api.data.value.mutable.PatternMutableListValue;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -101,5 +101,5 @@ public interface ImmutablePatternListValue extends ImmutableListValue<PatternLay
     ImmutablePatternListValue withoutAll(Predicate<PatternLayer> predicate);
 
     @Override
-    PatternListValue asMutable();
+    PatternMutableListValue asMutable();
 }

@@ -33,7 +33,7 @@ import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 
 import java.util.Map;
@@ -98,7 +98,7 @@ public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I
     // implementation required.
 
     @Override
-    public <E> Optional<E> get(Key<? extends BaseValue<E>> key) {
+    public <E> Optional<E> get(Key<? extends Value<E>> key) {
         if (!supports(key)) {
             return Optional.empty();
         }
@@ -106,7 +106,7 @@ public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I
     }
 
     @Override
-    public <E, V extends BaseValue<E>> Optional<V> getValue(Key<V> key) {
+    public <E, V extends Value<E>> Optional<V> getValue(Key<V> key) {
         if (!this.keyValueMap.containsKey(key)) {
             return Optional.empty();
         }

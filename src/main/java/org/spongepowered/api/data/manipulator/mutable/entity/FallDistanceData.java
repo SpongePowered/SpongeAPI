@@ -28,7 +28,7 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableFallDistanceData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 
 /**
  * A {@link DataManipulator} that represents the distance an entity has fallen
@@ -38,7 +38,7 @@ import org.spongepowered.api.data.value.mutable.Value;
 public interface FallDistanceData extends DataManipulator<FallDistanceData, ImmutableFallDistanceData> {
 
     /**
-     * Gets the {@link Value} for the current fall distance.
+     * Gets the {@link MutableValue} for the current fall distance.
      *
      * @return The value for the fall distance
      * @see Keys#FALL_DISTANCE

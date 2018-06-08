@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableAbsorptionData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 import org.spongepowered.api.entity.living.Living;
 
 /**
@@ -36,10 +36,10 @@ import org.spongepowered.api.entity.living.Living;
 public interface AbsorptionData extends DataManipulator<AbsorptionData, ImmutableAbsorptionData> {
 
     /**
-     * Gets the {@link Value} for the absorption.
+     * Gets the {@link MutableValue} for the absorption.
      *
      * @return The value for the absorption
      */
-    Value<Double> absorption();
+    MutableValue<Double> absorption();
 
 }

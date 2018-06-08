@@ -28,15 +28,10 @@ import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
 
 /**
- * A type of {@link BoundedValue} that is modifiable as a {@link Value}.
+ * A type of {@link BoundedValue} that is modifiable as a {@link MutableValue}.
  *
  * @param <E> The type of element
  */
-public interface MutableBoundedValue<E> extends BoundedValue<E>, Value<E> {
+public interface MutableBoundedValue<E> extends BoundedValue<E>, MutableValue<E, MutableBoundedValue<E>, ImmutableBoundedValue<E>> {
 
-    @Override
-    ImmutableBoundedValue<E> asImmutable();
-
-    @Override
-    MutableBoundedValue<E> copy();
 }

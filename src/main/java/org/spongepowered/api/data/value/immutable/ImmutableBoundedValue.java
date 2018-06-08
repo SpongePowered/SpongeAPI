@@ -35,7 +35,7 @@ import java.util.function.Function;
  *
  * @param <E> The type of element
  */
-public interface ImmutableBoundedValue<E> extends BoundedValue<E>, ImmutableValue<E> {
+public interface ImmutableBoundedValue<E> extends BoundedValue<E>, ImmutableValue<E, ImmutableBoundedValue<E>, MutableBoundedValue<E>> {
 
     @Override
     ImmutableBoundedValue<E> transform(Function<E, E> function);

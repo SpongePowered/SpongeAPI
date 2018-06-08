@@ -32,9 +32,9 @@ import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableVariantData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
-import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 
 /**
  * An abstract implementation of an {@link ImmutableVariantData} extending
@@ -51,11 +51,11 @@ public abstract class AbstractImmutableSingleCatalogData<E extends CatalogType, 
     private final ImmutableValue<E> immutableValue;
 
     @SuppressWarnings({"unchecked", "rawtypes"})
-    protected AbstractImmutableSingleCatalogData(E value, E defaultValue, Key<? extends BaseValue<E>> usedKey) {
+    protected AbstractImmutableSingleCatalogData(E value, E defaultValue, Key<? extends Value<E>> usedKey) {
         super(value, usedKey);
         this.defaultValue = checkNotNull(defaultValue, "The default value was null! This is unacceptable! Maybe the value was not registered?");
         this.immutableValue = Sponge.getRegistry().getValueFactory()
-                .createValue((Key<Value<E>>) (Key) this.usedKey, this.defaultValue, this.value)
+                .createValue((Key<MutableValue<E>>) (Key) this.usedKey, this.defaultValue, this.value)
                 .asImmutable();
 
     }

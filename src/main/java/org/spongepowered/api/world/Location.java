@@ -48,7 +48,7 @@ import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.merge.MergeFunction;
 import org.spongepowered.api.data.persistence.InvalidDataException;
-import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
@@ -703,7 +703,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     @Override
-    public DataTransactionResult remove(BaseValue<?> value) {
+    public DataTransactionResult remove(Value<?> value) {
         return getExtent().remove(getBlockPosition(), value.getKey());
     }
 
@@ -805,7 +805,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     @Override
-    public <T> Optional<T> get(Key<? extends BaseValue<T>> key) {
+    public <T> Optional<T> get(Key<? extends Value<T>> key) {
         return getExtent().get(getBlockPosition(), key);
     }
 
@@ -815,7 +815,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     @Override
-    public <T> DataTransactionResult offer(Key<? extends BaseValue<T>> key, T value) {
+    public <T> DataTransactionResult offer(Key<? extends Value<T>> key, T value) {
         return getExtent().offer(getBlockPosition(), key, value);
     }
 
@@ -830,7 +830,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     @Override
-    public <T> DataTransactionResult offer(BaseValue<T> value) {
+    public <T> DataTransactionResult offer(Value<T> value) {
         return getExtent().offer(getBlockPosition(), value);
     }
 
@@ -860,7 +860,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     @Override
-    public <T> DataTransactionResult transform(Key<? extends BaseValue<T>> key, Function<T, T> function) {
+    public <T> DataTransactionResult transform(Key<? extends Value<T>> key, Function<T, T> function) {
         return getExtent().transform(getBlockPosition(), key, function);
     }
 
@@ -880,7 +880,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     @Override
-    public <T, V extends BaseValue<T>> Optional<V> getValue(Key<V> key) {
+    public <T, V extends Value<T>> Optional<V> getValue(Key<V> key) {
         return getExtent().getValue(getBlockPosition(), key);
     }
 

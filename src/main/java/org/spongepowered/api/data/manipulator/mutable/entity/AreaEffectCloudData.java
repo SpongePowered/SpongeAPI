@@ -27,9 +27,9 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableAreaEffectCloudData;
-import org.spongepowered.api.data.value.mutable.ListValue;
+import org.spongepowered.api.data.value.mutable.MutableListValue;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.Entity;
@@ -43,7 +43,7 @@ public interface AreaEffectCloudData extends DataManipulator<AreaEffectCloudData
      * @return The color of this cloud
      * @see Keys#AREA_EFFECT_CLOUD_COLOR
      */
-    Value<Color> color();
+    MutableValue<Color> color();
 
     /**
      * Gets the {@code radius} value of this cloud.
@@ -59,7 +59,7 @@ public interface AreaEffectCloudData extends DataManipulator<AreaEffectCloudData
      * @return The particle type of this cloud
      * @see Keys#AREA_EFFECT_CLOUD_PARTICLE_TYPE
      */
-    Value<ParticleType> particleType();
+    MutableValue<ParticleType> particleType();
 
     /**
      * Gets the bounded {@code duration} value of this cloud.
@@ -128,14 +128,14 @@ public interface AreaEffectCloudData extends DataManipulator<AreaEffectCloudData
     MutableBoundedValue<Integer> applicationDelay();
 
     /**
-     * Gets the {@link ListValue} of {@link PotionEffect}s of this cloud.
+     * Gets the {@link MutableListValue} of {@link PotionEffect}s of this cloud.
      * The potion effects will affect any {@link Entity} according to the
      * various delays and ticks remaining of this cloud.
      *
      * @return The list of potion effects
      * @see Keys#POTION_EFFECTS
      */
-    ListValue<PotionEffect> effects();
+    MutableListValue<PotionEffect> effects();
 
     /**
      * Gets the bounded {@code age} value of this cloud.

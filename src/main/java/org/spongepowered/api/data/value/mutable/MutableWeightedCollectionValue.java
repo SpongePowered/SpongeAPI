@@ -24,41 +24,28 @@
  */
 package org.spongepowered.api.data.value.mutable;
 
-import java.util.Optional;
+import org.spongepowered.api.data.value.WeightedCollectionValue;
+import org.spongepowered.api.data.value.immutable.ImmutableWeightedCollectionValue;
+import org.spongepowered.api.util.weighted.TableEntry;
+import org.spongepowered.api.util.weighted.WeightedTable;
+
+import java.util.List;
+import java.util.Random;
 
 import javax.annotation.Nullable;
 
 /**
- * Represents a {@link Value} that can be {@link Optional} such that the
- * underlying value may be present or {@code null}.
+ * Represents a particular type of {@link MutableCollectionValue} that is backed by
+ * a {@link WeightedTable}.
  *
- * @param <E> The type of element
+ * @param <E> The type of weighted object
  */
-public interface OptionalValue<E> extends Value<Optional<E>> {
+public interface MutableWeightedCollectionValue<E> extends WeightedCollectionValue<E, MutableWeightedCollectionValue<E>>,
+    MutableCollectionValue<TableEntry<E>, WeightedTable<E>, MutableWeightedCollectionValue<E>, ImmutableWeightedCollectionValue<E>> {
 
     @Override
-    OptionalValue<E> set(Optional<E> value);
+    default MutableWeightedCollectionValue<E> asMutable() {
+        return this;
+    }
 
-    /**
-     * Sets the underlying value, may be null.
-     *
-     * @param value The value to set
-     * @return This value, for chaining
-     */
-    OptionalValue<E> setTo(@Nullable E value);
-
-    /**
-     * Provides the value such that if the underlying value is
-     * {@code null}, the default value is returned as a {@link Value}, if
-     * the underlying value is present, the underlying value is returned
-     * as a {@link Value}.
-     *
-     * @param defaultValue The value to substitute, if the underlying value is
-     *      null
-     * @return A new {@link Value} with a non-null value
-     */
-    Value<E> or(E defaultValue);
-
-    @Override
-    OptionalValue<E> copy();
 }

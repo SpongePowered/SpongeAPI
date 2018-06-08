@@ -29,9 +29,9 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableListData;
 import org.spongepowered.api.data.manipulator.mutable.ListData;
-import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.immutable.ImmutableListValue;
-import org.spongepowered.api.data.value.mutable.ListValue;
+import org.spongepowered.api.data.value.mutable.MutableListValue;
 
 import java.util.List;
 
@@ -41,9 +41,9 @@ public abstract class AbstractImmutableListData<E, I extends ImmutableListData<E
     private final ImmutableListValue<E> listValue;
 
     @SuppressWarnings("unchecked")
-    protected AbstractImmutableListData(List<E> value, Key<? extends BaseValue<List<E>>> usedKey) {
+    protected AbstractImmutableListData(List<E> value, Key<? extends Value<List<E>>> usedKey) {
         super(ImmutableList.copyOf(value), usedKey);
-        this.listValue = Sponge.getRegistry().getValueFactory().createListValue((Key<ListValue<E>>) this.usedKey, this.value).asImmutable();
+        this.listValue = Sponge.getRegistry().getValueFactory().createListValue((Key<MutableListValue<E>>) this.usedKey, this.value).asImmutable();
     }
 
     @Override

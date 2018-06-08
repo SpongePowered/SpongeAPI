@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableFlyingData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Humanoid;
 
@@ -39,11 +39,11 @@ import org.spongepowered.api.entity.living.Humanoid;
 public interface FlyingData extends DataManipulator<FlyingData, ImmutableFlyingData> {
 
     /**
-     * Gets the {@link Value} for the "flying" state.
+     * Gets the {@link MutableValue} for the "flying" state.
      *
      * @return The value for the flying state
      * @see Keys#IS_FLYING
      */
-    Value<Boolean> flying();
+    MutableValue<Boolean> flying();
 
 }

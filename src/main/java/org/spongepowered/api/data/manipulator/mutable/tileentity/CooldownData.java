@@ -28,7 +28,7 @@ import org.spongepowered.api.block.tileentity.carrier.Hopper;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableCooldownData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 
@@ -40,11 +40,11 @@ import org.spongepowered.api.item.inventory.ItemStack;
 public interface CooldownData extends DataManipulator<CooldownData, ImmutableCooldownData> {
 
     /**
-     * Gets the {@link Value} for the "cooldown" remaining.
+     * Gets the {@link MutableValue} for the "cooldown" remaining.
      *
      * @return The value for the cooldown remaining
      * @see Keys#COOLDOWN
      */
-    Value<Integer> cooldown();
+    MutableValue<Integer> cooldown();
 
 }

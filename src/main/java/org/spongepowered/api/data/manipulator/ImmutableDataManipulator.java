@@ -26,16 +26,16 @@ package org.spongepowered.api.data.manipulator;
 
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 
 import java.util.Optional;
 
 /**
  * An {@code ImmutableDataManipulator} is an immutable {@link ValueContainer}
- * such that once it is created, any {@link BaseValue}s exist as
+ * such that once it is created, any {@link Value}s exist as
  * {@link ImmutableValue}s. Any modification methods result in new instances of
  * the same typed {@link ImmutableDataManipulator}.
  *
@@ -59,24 +59,24 @@ public interface ImmutableDataManipulator<I extends ImmutableDataManipulator<I, 
      * @param <E> The type of value
      * @return The new immutable data manipulator, if compatible
      */
-    default <E> Optional<I> with(Key<? extends BaseValue<E>> key, E value) {
+    default <E> Optional<I> with(Key<? extends Value<E>> key, E value) {
         M data = asMutable();
         return data.supports(key) ? Optional.of(data.set(key, value).asImmutable()) : Optional.empty();
     }
 
     /**
      * Creates a new {@link ImmutableDataManipulator} with the provided
-     * {@link BaseValue} provided that the {@link BaseValue} is supported by
+     * {@link Value} provided that the {@link Value} is supported by
      * this {@link ImmutableDataManipulator}. A simple check can be called for
-     * {@link #supports(BaseValue)} prior to ensure
+     * {@link #supports(Value)} prior to ensure
      * {@link Optional#isPresent()} returns {@code true}.
      *
      * @param value The value to set
      * @return The new immutable data manipulator, if compatible
      */
     @SuppressWarnings("unchecked")
-    default Optional<I> with(BaseValue<?> value) {
-        return with((Key<? extends BaseValue<Object>>) value.getKey(), value.get());
+    default Optional<I> with(Value<?> value) {
+        return with((Key<? extends Value<Object>>) value.getKey(), value.get());
     }
 
     @SuppressWarnings("unchecked")
@@ -88,7 +88,7 @@ public interface ImmutableDataManipulator<I extends ImmutableDataManipulator<I, 
     /**
      * Gets a {@link DataManipulator} copy of this
      * {@link ImmutableDataManipulator} such that all backed
-     * {@link ImmutableValue}s are copied into their {@link Value}
+     * {@link ImmutableValue}s are copied into their {@link MutableValue}
      * counterparts. Any changes to this {@link ImmutableDataManipulator} will
      * NOT be reflected on the returned {@link DataManipulator} and vice versa.
      *

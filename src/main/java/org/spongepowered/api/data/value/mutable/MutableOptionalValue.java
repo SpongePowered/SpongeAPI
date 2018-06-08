@@ -24,33 +24,28 @@
  */
 package org.spongepowered.api.data.value.mutable;
 
-import org.spongepowered.api.data.value.immutable.ImmutableWeightedCollectionValue;
-import org.spongepowered.api.util.weighted.TableEntry;
-import org.spongepowered.api.util.weighted.WeightedTable;
+import org.spongepowered.api.data.value.OptionalValue;
+import org.spongepowered.api.data.value.immutable.ImmutableOptionalValue;
 
-import java.util.List;
-import java.util.Random;
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 
 /**
- * Represents a particular type of {@link CollectionValue} that is backed by
- * a {@link WeightedTable}.
+ * Represents a {@link MutableValue} that can be {@link Optional} such that the
+ * underlying value may be present or {@code null}.
  *
- * @param <E> The type of weighted object
+ * @param <E> The type of element
  */
-public interface WeightedCollectionValue<E> extends CollectionValue<TableEntry<E>, WeightedTable<E>, WeightedCollectionValue<E>,
-        ImmutableWeightedCollectionValue<E>> {
+public interface MutableOptionalValue<E> extends OptionalValue<E>, MutableValue<Optional<E>, MutableOptionalValue<E>, ImmutableOptionalValue<E>> {
+
 
     /**
-     * Selects a random value from this list based on their weight.
+     * Sets the underlying value, may be null.
      *
-     * <p>If the list is empty then null will be returned.</p>
-     *
-     * @param random The random object to use for selection
-     * @return The selected value
+     * @param value The value to set
+     * @return This value, for chaining
      */
-    @Nullable
-    List<E> get(Random random);
+    MutableOptionalValue<E> setTo(@Nullable E value);
 
 }

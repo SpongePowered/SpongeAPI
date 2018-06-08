@@ -29,8 +29,8 @@ import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.value.BaseValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 
 /**
  * An abstract {@link DataManipulator} dealing specifically with a
@@ -44,15 +44,15 @@ public abstract class AbstractBooleanData<M extends DataManipulator<M, I>, I ext
 
     private final boolean defaultValue;
 
-    protected AbstractBooleanData(boolean value, Key<? extends BaseValue<Boolean>> usedKey, boolean defaultValue) {
+    protected AbstractBooleanData(boolean value, Key<? extends Value<Boolean>> usedKey, boolean defaultValue) {
         super(value, usedKey);
         this.defaultValue = defaultValue;
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    protected Value<Boolean> getValueGetter() {
-        return Sponge.getRegistry().getValueFactory().createValue((Key<Value<Boolean>>) this.usedKey, this.getValue(), this.defaultValue);
+    protected MutableValue<Boolean> getValueGetter() {
+        return Sponge.getRegistry().getValueFactory().createValue((Key<MutableValue<Boolean>>) this.usedKey, this.getValue(), this.defaultValue);
     }
 
     @Override

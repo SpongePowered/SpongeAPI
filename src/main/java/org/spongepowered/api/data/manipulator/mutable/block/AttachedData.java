@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable.block;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableAttachedData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 
 /**
  * Signifies that the owning data holder is "attached" to something.
@@ -37,11 +37,11 @@ import org.spongepowered.api.data.value.mutable.Value;
 public interface AttachedData extends DataManipulator<AttachedData, ImmutableAttachedData> {
 
     /**
-     * Gets the {@link Value} for the "attached" state.
+     * Gets the {@link MutableValue} for the "attached" state.
      *
      * @return The "attached" value state
      * @see Keys#ATTACHED
      */
-    Value<Boolean> attached();
+    MutableValue<Boolean> attached();
 
 }

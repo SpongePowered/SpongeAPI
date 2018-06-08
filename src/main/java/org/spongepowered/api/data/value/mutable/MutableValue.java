@@ -24,19 +24,19 @@
  */
 package org.spongepowered.api.data.value.mutable;
 
-import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 
 import java.util.function.Function;
 
 /**
- * Represents a type of {@link BaseValue} that is mutable. Simply put, the
- * underlying value can always be changed without creating a new {@link Value}.
+ * Represents a type of {@link Value} that is mutable. Simply put, the
+ * underlying value can always be changed without creating a new {@link MutableValue}.
  *
  * @param <E> The type of element
  */
-public interface Value<E> extends BaseValue<E> {
+public interface MutableValue<E, V extends MutableValue<E, V, I>, I extends ImmutableValue<E, I, V>> extends Value<E> {
 
     /**
      * Sets the underlying value to the provided {@code value}.
@@ -44,7 +44,7 @@ public interface Value<E> extends BaseValue<E> {
      * @param value The value to set
      * @return The owning {@link ValueContainer}
      */
-    Value<E> set(E value);
+    V set(E value);
 
     /**
      * Attempts to transform the underlying value based on the provided
@@ -54,23 +54,32 @@ public interface Value<E> extends BaseValue<E> {
      * @param function The function to apply on the existing value
      * @return The owning {@link ValueContainer}
      */
-    Value<E> transform(Function<E, E> function);
+    MutableValue transform(Function<E, E> function);
 
     /**
-     * Gets the {@link ImmutableValue} version of this {@link Value} such that
+     * Gets the {@link ImmutableValue} version of this {@link MutableValue} such that
      * all data is duplicated across to the new {@link ImmutableValue}. Note
      * that once created, the {@link ImmutableValue} is not going to change.
      *
      * @return A new {@link ImmutableValue} instance
      */
-    ImmutableValue<E> asImmutable();
+    I asImmutable();
 
     /**
-     * Makes an independent copy of this {@link Value} with the same initial
+     * Makes an independent copy of this {@link MutableValue} with the same initial
      * data. Both this value and the new value will refer to the same object
      * initially.
      *
-     * @return A new copy of this {@link Value}
+     * @return A new copy of this {@link MutableValue}
      */
-    Value<E> copy();
+    V copy();
+
+    @SuppressWarnings("unchecked")
+    @Override
+    default V asMutable() {
+        return (V) this;
+    }
+
+
+
 }

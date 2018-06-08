@@ -29,7 +29,7 @@ import org.spongepowered.api.data.manipulator.mutable.entity.AreaEffectCloudData
 import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
 import org.spongepowered.api.data.value.immutable.ImmutableListValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.ListValue;
+import org.spongepowered.api.data.value.mutable.MutableListValue;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.Entity;
@@ -112,7 +112,7 @@ public interface ImmutableAreaEffectCloudData extends ImmutableDataManipulator<I
     ImmutableBoundedValue<Integer> applicationDelay();
 
     /**
-     * Gets the {@link ListValue} of {@link PotionEffect}s of this cloud.
+     * Gets the {@link MutableListValue} of {@link PotionEffect}s of this cloud.
      * The potion effects will affect any {@link Entity} according to the
      * various delays and ticks remaining of this cloud.
      *

@@ -30,8 +30,8 @@ import com.google.common.base.Objects;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.value.BaseValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -52,10 +52,10 @@ import java.util.function.Supplier;
 public abstract class AbstractSingleData<T, M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>>
         extends AbstractData<M, I> {
 
-    protected final Key<? extends BaseValue<T>> usedKey;
+    protected final Key<? extends Value<T>> usedKey;
     private T value;
 
-    protected AbstractSingleData(T value, Key<? extends BaseValue<T>> usedKey) {
+    protected AbstractSingleData(T value, Key<? extends Value<T>> usedKey) {
         this.value = checkNotNull(value);
         this.usedKey = checkNotNull(usedKey);
         registerGettersAndSetters();
@@ -69,15 +69,15 @@ public abstract class AbstractSingleData<T, M extends DataManipulator<M, I>, I e
     }
 
     /**
-     * Gets the {@link Value} as a method since this manipulator only focuses
+     * Gets the {@link MutableValue} as a method since this manipulator only focuses
      * on a single value.
      *
      * @return The constructed value
      */
-    protected abstract Value<?> getValueGetter();
+    protected abstract MutableValue<?> getValueGetter();
 
     @Override
-    public <E> Optional<E> get(Key<? extends BaseValue<E>> key) {
+    public <E> Optional<E> get(Key<? extends Value<E>> key) {
         // we can delegate this since we have a direct value check as this is
         // a Single value.
         return key == this.usedKey ? Optional.of((E) this.value) : super.get(key);

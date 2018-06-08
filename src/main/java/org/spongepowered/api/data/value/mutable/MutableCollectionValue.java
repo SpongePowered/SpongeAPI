@@ -24,47 +24,30 @@
  */
 package org.spongepowered.api.data.value.mutable;
 
+import org.spongepowered.api.data.value.CollectionValue;
 import org.spongepowered.api.data.value.immutable.ImmutableCollectionValue;
 
 import java.util.Collection;
-import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
- * Represents a {@link Value} that is backed by a {@link Collection} of
+ * Represents a {@link MutableValue} that is backed by a {@link Collection} of
  * elements.
  *
  * @param <E> The type of element
  * @param <C> The type of collection, for chaining
- * @param <V> The type of {@linkplain CollectionValue}
+ * @param <V> The type of {@linkplain MutableCollectionValue}
  * @param <I> The type of {@link ImmutableCollectionValue}
  */
-public interface CollectionValue<E, C extends Collection<E>, V extends CollectionValue<E, C, V, I>, I extends ImmutableCollectionValue<E, C, I, V>>
-    extends Value<C>, Iterable<E> {
+public interface MutableCollectionValue<E,
+    C extends Collection<E>,
+    V extends MutableCollectionValue<E, C, V, I>,
+    I extends ImmutableCollectionValue<E, C, I, V>>
+    extends MutableValue<C, V, I>, CollectionValue<E, C, V>, Iterable<E> {
 
-    @Override
-    V set(C value);
-
-    @Override
-    V transform(Function<C, C> function);
 
     /**
-     * Gets the size of the underlying collection of elements.
-     *
-     * @return The size
-     */
-    int size();
-
-    /**
-     * Checks if the backed {@link Collection} is empty.
-     *
-     * @see Collection#isEmpty()
-     * @return True if the collection is empty
-     */
-    boolean isEmpty();
-
-    /**
-     * Adds the given {@code element} to this {@link CollectionValue}.
+     * Adds the given {@code element} to this {@link MutableCollectionValue}.
      *
      * @param element The element to add
      * @return This value, for chaining
@@ -108,51 +91,12 @@ public interface CollectionValue<E, C extends Collection<E>, V extends Collectio
      */
     V removeAll(Predicate<E> predicate);
 
-    /**
-     * Checks if the given <code>E</code> element is contained within the backed
-     * {@link Collection}.
-     *
-     * @param element The element to check
-     * @return True if the element is contained in this collection
-     */
-    boolean contains(E element);
-
-    /**
-     * Checks if all of the given {@link Iterable} elements are contained
-     * within the backed {@link Collection}.
-     *
-     * @param iterable The iterable elements
-     * @return True if all elements are contained in this value
-     */
-    boolean containsAll(Collection<E> iterable);
-
-    /**
-     * Applies a {@link Predicate} to filter the underlying elements in the
-     * backed {@link Collection} to create a new {@link CollectionValue}
-     * separate from this {@link CollectionValue}. This value is not modified,
-     * nor is the underlying {@link Collection}. Elements that return
-     * <code>true</code> from {@link Predicate#test(Object)} are kept, and
-     * those that return <code>false</code> are excluded.
-     *
-     * @param predicate The predicate to filter
-     * @return This value, for chaining
-     */
-    V filter(Predicate<? super E> predicate);
-
-    /**
-     * Creates a new {@link Collection} of the proper type <code>C</code> with
-     * all elements copied to the new collection. Any modifications to the new
-     * collection are not reflected to this {@link CollectionValue}. Likewise,
-     * no modifications to this {@link CollectionValue} are reflected to the
-     * returned {@link Collection}.
-     *
-     * @return A new collection with all elements copied
-     */
-    C getAll();
-
-    @Override
-    I asImmutable();
-
     @Override
     V copy();
+
+    @SuppressWarnings("unchecked")
+    @Override
+    default V asMutable() {
+        return (V) this;
+    }
 }

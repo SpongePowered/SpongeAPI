@@ -24,7 +24,8 @@
  */
 package org.spongepowered.api.data.value.immutable;
 
-import org.spongepowered.api.data.value.mutable.OptionalValue;
+import org.spongepowered.api.data.value.OptionalValue;
+import org.spongepowered.api.data.value.mutable.MutableOptionalValue;
 
 import java.util.Optional;
 import java.util.function.Function;
@@ -37,13 +38,7 @@ import javax.annotation.Nullable;
  *
  * @param <E> The type of element
  */
-public interface ImmutableOptionalValue<E> extends ImmutableValue<Optional<E>> {
-
-    @Override
-    ImmutableOptionalValue<E> with(Optional<E> value);
-
-    @Override
-    ImmutableOptionalValue<E> transform(Function<Optional<E>, Optional<E>> function);
+public interface ImmutableOptionalValue<E> extends OptionalValue<E>, ImmutableValue<Optional<E>, ImmutableOptionalValue<E>, MutableOptionalValue<E>> {
 
     /**
      * Creates a new {@link ImmutableOptionalValue} with the provided value,
@@ -54,18 +49,4 @@ public interface ImmutableOptionalValue<E> extends ImmutableValue<Optional<E>> {
      */
     ImmutableOptionalValue<E> instead(@Nullable E value);
 
-    /**
-     * Provides the value such that if the underlying value is
-     * {@code null}, the default value is returned as an
-     * {@link ImmutableValue}, if the underlying value is present, the
-     * underlying value is returned as a {@link ImmutableValue}.
-     *
-     * @param value The value to substitute, if the underlying value is
-     *      null
-     * @return A new {@link ImmutableValue} with a non-null value
-     */
-    ImmutableValue<E> or(E value);
-
-    @Override
-    OptionalValue<E> asMutable();
 }

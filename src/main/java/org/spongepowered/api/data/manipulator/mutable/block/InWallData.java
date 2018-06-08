@@ -29,7 +29,7 @@ import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableInWallData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 
 /**
  * An {@link DataManipulator} for the "in-wall" state. Usually means that a
@@ -40,11 +40,11 @@ import org.spongepowered.api.data.value.mutable.Value;
 public interface InWallData extends DataManipulator<InWallData, ImmutableInWallData> {
 
     /**
-     * Gets the {@link Value} for the "in-wall" state.
+     * Gets the {@link MutableValue} for the "in-wall" state.
      *
      * @return The value for the in "in-wall" state
      * @see Keys#IN_WALL
      */
-    Value<Boolean> inWall();
+    MutableValue<Boolean> inWall();
 
 }

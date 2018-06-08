@@ -24,8 +24,9 @@
  */
 package org.spongepowered.api.data.value.immutable;
 
+import org.spongepowered.api.data.value.CollectionValue;
 import org.spongepowered.api.data.value.ValueContainer;
-import org.spongepowered.api.data.value.mutable.CollectionValue;
+import org.spongepowered.api.data.value.mutable.MutableCollectionValue;
 
 import java.util.Collection;
 import java.util.function.Function;
@@ -40,10 +41,14 @@ import java.util.function.Predicate;
  * @param <E> The type of element
  * @param <C> The type of {@link Collection}
  * @param <I> The extended {@link ImmutableCollectionValue} for self referencing
- * @param <M> The mutable {@link CollectionValue} counterpart for {@link #asMutable()}
+ * @param <M> The mutable {@link MutableCollectionValue} counterpart for {@link #asMutable()}
  */
-public interface ImmutableCollectionValue<E, C extends Collection<E>, I extends ImmutableCollectionValue<E, C, I, M>,
-    M extends CollectionValue<E, C, M, I>> extends ImmutableValue<C> {
+public interface ImmutableCollectionValue<
+    E,
+    C extends Collection<E>,
+    I extends ImmutableCollectionValue<E, C, I, M>,
+    M extends MutableCollectionValue<E, C, M, I>>
+    extends ImmutableValue<C, I, M>, CollectionValue<E, C, I> {
 
     /**
      * Gets the size of the underlying collection of elements.
@@ -60,9 +65,6 @@ public interface ImmutableCollectionValue<E, C extends Collection<E>, I extends 
      */
     boolean isEmpty();
 
-    @Override
-    I with(C collection);
-
     /**
      * Creates a new {@link ImmutableCollectionValue} with the given values
      * along with any pre-existing values within this value.
@@ -71,9 +73,6 @@ public interface ImmutableCollectionValue<E, C extends Collection<E>, I extends 
      * @return The new value
      */
     I withElement(E elements);
-
-    @Override
-    I transform(Function<C, C> function);
 
     /**
      * Creates a new {@link ImmutableCollectionValue} with the given elements
@@ -144,6 +143,4 @@ public interface ImmutableCollectionValue<E, C extends Collection<E>, I extends 
      */
     C getAll();
 
-    @Override
-    M asMutable();
 }

@@ -33,8 +33,8 @@ import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableMappedData;
 import org.spongepowered.api.data.manipulator.mutable.ListData;
 import org.spongepowered.api.data.manipulator.mutable.MappedData;
-import org.spongepowered.api.data.value.BaseValue;
-import org.spongepowered.api.data.value.mutable.MapValue;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.mutable.MutableMapValue;
 import org.spongepowered.api.util.CollectionUtils;
 
 import java.util.Map;
@@ -51,13 +51,13 @@ import java.util.Map;
 public abstract class AbstractMappedData<K, V, M extends MappedData<K, V, M, I>, I extends ImmutableMappedData<K, V, I, M>>
         extends AbstractSingleData<Map<K, V>, M, I> implements MappedData<K, V, M, I> {
 
-    protected AbstractMappedData(Map<K, V> value, Key<? extends BaseValue<Map<K, V>>> usedKey) {
+    protected AbstractMappedData(Map<K, V> value, Key<? extends Value<Map<K, V>>> usedKey) {
         super(CollectionUtils.copyMap(value), usedKey);
     }
 
     @Override
-    protected MapValue<K, V> getValueGetter() {
-        return Sponge.getRegistry().getValueFactory().createMapValue((Key<MapValue<K, V>>) this.usedKey, this.getValue());
+    protected MutableMapValue<K, V> getValueGetter() {
+        return Sponge.getRegistry().getValueFactory().createMapValue((Key<MutableMapValue<K, V>>) this.usedKey, this.getValue());
     }
 
     @Override
@@ -92,7 +92,7 @@ public abstract class AbstractMappedData<K, V, M extends MappedData<K, V, M, I>,
     }
 
     @Override
-    public MapValue<K, V> getMapValue() {
+    public MutableMapValue<K, V> getMapValue() {
         return getValueGetter();
     }
 

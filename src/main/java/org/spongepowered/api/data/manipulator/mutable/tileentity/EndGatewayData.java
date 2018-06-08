@@ -28,7 +28,7 @@ import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.tileentity.EndGateway;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableEndGatewayData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 
 /**
  * Represents the data for an {@link EndGateway}.
@@ -36,33 +36,33 @@ import org.spongepowered.api.data.value.mutable.Value;
 public interface EndGatewayData extends DataManipulator<EndGatewayData, ImmutableEndGatewayData> {
 
     /**
-     * Gets the {@link Value} for the exit portal location of
+     * Gets the {@link MutableValue} for the exit portal location of
      * the {@link EndGateway}.
      *
      * @return The value for the exit portal location
      */
-    Value<Vector3i> exitPosition();
+    MutableValue<Vector3i> exitPosition();
 
     /**
-     * Gets the {@link Value} for the "should use exact teleport location"
+     * Gets the {@link MutableValue} for the "should use exact teleport location"
      * state of the {@link EndGateway}.
      *
      * @return The value for the "should use exact teleport location" state
      */
-    Value<Boolean> exactTeleport();
+    MutableValue<Boolean> exactTeleport();
 
     /**
-     * Gets the {@link Value} for the age of the {@link EndGateway}.
+     * Gets the {@link MutableValue} for the age of the {@link EndGateway}.
      *
      * @return The value for the age
      */
-    Value<Long> age();
+    MutableValue<Long> age();
 
     /**
-     * Gets the {@link Value} for the teleport cooldown of the {@link EndGateway}.
+     * Gets the {@link MutableValue} for the teleport cooldown of the {@link EndGateway}.
      *
      * @return The value for the teleport cooldown
      */
-    Value<Integer> teleportCooldown();
+    MutableValue<Integer> teleportCooldown();
 
 }

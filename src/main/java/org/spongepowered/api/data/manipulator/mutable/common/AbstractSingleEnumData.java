@@ -31,8 +31,8 @@ import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.value.BaseValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 
 /**
  * Another abstract helper class further simplifying implementing various
@@ -47,7 +47,7 @@ public abstract class AbstractSingleEnumData<E extends Enum<E>, M extends DataMa
 
     private final E defaultValue;
 
-    protected AbstractSingleEnumData(E value, Key<? extends BaseValue<E>> usedKey, E defaultValue) {
+    protected AbstractSingleEnumData(E value, Key<? extends Value<E>> usedKey, E defaultValue) {
         super(value, usedKey);
         this.defaultValue = checkNotNull(defaultValue);
     }
@@ -59,7 +59,7 @@ public abstract class AbstractSingleEnumData<E extends Enum<E>, M extends DataMa
 
     @SuppressWarnings("unchecked")
     @Override
-    protected Value<E> getValueGetter() {
-        return Sponge.getRegistry().getValueFactory().createValue((Key<Value<E>>) this.usedKey, this.getValue(), this.defaultValue);
+    protected MutableValue<E> getValueGetter() {
+        return Sponge.getRegistry().getValueFactory().createValue((Key<MutableValue<E>>) this.usedKey, this.getValue(), this.defaultValue);
     }
 }

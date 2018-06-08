@@ -28,8 +28,8 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableMobSpawnerData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.data.value.mutable.WeightedCollectionValue;
+import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.mutable.MutableWeightedCollectionValue;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.entity.living.player.Player;
@@ -114,7 +114,7 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData, Immutabl
     MutableBoundedValue<Short> spawnRange();
 
     /**
-     * Gets the {@link Value} for the overridden
+     * Gets the {@link MutableValue} for the overridden
      * {@link WeightedSerializableObject}{@code <EntityArchetype>} to spawn
      * next. If possible, the next entity to spawn may be chosen from the
      * already provided {@link #possibleEntitiesToSpawn()}.
@@ -122,10 +122,10 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData, Immutabl
      * @return The next possible entity to spawn
      * @see Keys#SPAWNER_NEXT_ENTITY_TO_SPAWN
      */
-    Value<WeightedSerializableObject<EntityArchetype>> nextEntityToSpawn();
+    MutableValue<WeightedSerializableObject<EntityArchetype>> nextEntityToSpawn();
 
     /**
-     * Gets the {@link WeightedCollectionValue} of all possible
+     * Gets the {@link MutableWeightedCollectionValue} of all possible
      * {@link Entity} instances that can be spawned by the spawner. As they
      * are all {@link WeightedSerializableObject}{@code <EntityArchetype>}
      * instances, their weight is defined as a {@link Random} to determine
@@ -135,6 +135,6 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData, Immutabl
      * @return The immutable weighted entity collection value of entities
      * @see Keys#SPAWNER_ENTITIES
      */
-    WeightedCollectionValue<EntityArchetype> possibleEntitiesToSpawn();
+    MutableWeightedCollectionValue<EntityArchetype> possibleEntitiesToSpawn();
 
 }

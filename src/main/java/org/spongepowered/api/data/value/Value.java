@@ -25,7 +25,8 @@
 package org.spongepowered.api.data.value;
 
 import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
 
@@ -33,7 +34,7 @@ import java.util.Optional;
 
 /**
  * The abstract base interface for all of the "Value API". In short, a
- * {@link BaseValue} is a "wrapper" around an actual value from a
+ * {@link Value} is a "wrapper" around an actual value from a
  * {@link ValueContainer}. The actual value may come from various sources of
  * the {@link ValueContainer}, but usually it's a generic dynamic system for
  * being able to fetch values from object fields without having to know the
@@ -46,16 +47,16 @@ import java.util.Optional;
  * a {@link ValueContainer}, nothing more, nothing less.
  *
  * <p>The advantage of this is that now, these various known and unknown
- * {@link Value}s can be retrieved by simple java generics:
- * {@link ValueContainer#getValue(Key)}. While having a {@link Value} for
+ * {@link MutableValue}s can be retrieved by simple java generics:
+ * {@link ValueContainer#getValue(Key)}. While having a {@link MutableValue} for
  * something so primitive as the current health of a {@link Living} entity,
- * the power is wielded when a {@link Value} can be offered up to multiple
+ * the power is wielded when a {@link MutableValue} can be offered up to multiple
  * {@link ValueContainer}s without worrying about whether it's supported or not,
  * or getting the right cast information.</p>
  *
  * @param <E> The type of element wrapped by this value
  */
-public interface BaseValue<E> {
+public interface Value<E> {
 
     /**
      * Gets the held value. Usually all held values are "filled" and not
@@ -93,10 +94,14 @@ public interface BaseValue<E> {
     Optional<E> getDirect();
 
     /**
-     * Gets the key for this {@link BaseValue}.
+     * Gets the key for this {@link Value}.
      *
      * @return The key for this value
      */
-    Key<? extends BaseValue<E>> getKey();
+    Key<? extends Value<E>> getKey();
+
+    MutableValue<E, ?, ?> asMutable();
+
+    ImmutableValue<E, ?, ?> asImmutable();
 
 }

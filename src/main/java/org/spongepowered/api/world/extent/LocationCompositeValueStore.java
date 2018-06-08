@@ -36,7 +36,7 @@ import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.merge.MergeFunction;
 import org.spongepowered.api.data.persistence.InvalidDataException;
-import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.world.Location;
 
@@ -62,7 +62,7 @@ public interface LocationCompositeValueStore {
      * @param <E> The type of element of data
      * @return The data, if available
      */
-    default <E> Optional<E> get(Vector3i coordinates, Key<? extends BaseValue<E>> key) {
+    default <E> Optional<E> get(Vector3i coordinates, Key<? extends Value<E>> key) {
         return get(coordinates.getX(), coordinates.getY(), coordinates.getZ(), key);
     }
 
@@ -77,7 +77,7 @@ public interface LocationCompositeValueStore {
      * @param <E> The type of element of data
      * @return The data, if available
      */
-    <E> Optional<E> get(int x, int y, int z, Key<? extends BaseValue<E>> key);
+    <E> Optional<E> get(int x, int y, int z, Key<? extends Value<E>> key);
 
     /**
      * Gets an instance of the given data class for given block at the location.
@@ -158,7 +158,7 @@ public interface LocationCompositeValueStore {
      * @return The data or null
      */
     @Nullable
-    default <E> E getOrNull(Vector3i coordinates, Key<? extends BaseValue<E>> key) {
+    default <E> E getOrNull(Vector3i coordinates, Key<? extends Value<E>> key) {
         return get(coordinates.getX(), coordinates.getY(), coordinates.getZ(), key).orElse(null);
     }
 
@@ -175,7 +175,7 @@ public interface LocationCompositeValueStore {
      * @return The data or null
      */
     @Nullable
-    default <E> E getOrNull(int x, int y, int z, Key<? extends BaseValue<E>> key) {
+    default <E> E getOrNull(int x, int y, int z, Key<? extends Value<E>> key) {
         return get(x, y, z, key).orElse(null);
     }
 
@@ -190,7 +190,7 @@ public interface LocationCompositeValueStore {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> E getOrElse(Vector3i coordinates, Key<? extends BaseValue<E>> key, E defaultValue) {
+    default <E> E getOrElse(Vector3i coordinates, Key<? extends Value<E>> key, E defaultValue) {
         return get(coordinates.getX(), coordinates.getY(), coordinates.getZ(), key).orElse(checkNotNull(defaultValue));
     }
 
@@ -207,7 +207,7 @@ public interface LocationCompositeValueStore {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> E getOrElse(int x, int y, int z, Key<? extends BaseValue<E>> key, E defaultValue) {
+    default <E> E getOrElse(int x, int y, int z, Key<? extends Value<E>> key, E defaultValue) {
         return get(x, y, z, key).orElse(checkNotNull(defaultValue));
     }
 
@@ -222,7 +222,7 @@ public interface LocationCompositeValueStore {
      * @param <V> The type of value
      * @return The base value, if available
      */
-    default <E, V extends BaseValue<E>> Optional<V> getValue(Vector3i coordinates, Key<V> key) {
+    default <E, V extends Value<E>> Optional<V> getValue(Vector3i coordinates, Key<V> key) {
         return getValue(coordinates.getX(), coordinates.getY(), coordinates.getZ(), key);
     }
 
@@ -238,7 +238,7 @@ public interface LocationCompositeValueStore {
      * @param <V> The type of value
      * @return The base value, if available
      */
-    <E, V extends BaseValue<E>> Optional<V> getValue(int x, int y, int z, Key<V> key);
+    <E, V extends Value<E>> Optional<V> getValue(int x, int y, int z, Key<V> key);
 
     /**
      * Checks if the provided {@link Key} to the data is supported by the block
@@ -265,19 +265,19 @@ public interface LocationCompositeValueStore {
     boolean supports(int x, int y, int z, Key<?> key);
 
     /**
-     * Checks if the provided {@link BaseValue} is supported by the block at the
+     * Checks if the provided {@link Value} is supported by the block at the
      * provided location.
      *
      * @param coordinates The position of the block
      * @param value The value of data
      * @return True if the block supports the data
      */
-    default boolean supports(Vector3i coordinates, BaseValue<?> value) {
+    default boolean supports(Vector3i coordinates, Value<?> value) {
         return supports(coordinates.getX(), coordinates.getY(), coordinates.getZ(), value.getKey());
     }
 
     /**
-     * Checks if the provided {@link BaseValue} is supported by the block at the
+     * Checks if the provided {@link Value} is supported by the block at the
      * provided location.
      *
      * @param x The X coordinate
@@ -286,7 +286,7 @@ public interface LocationCompositeValueStore {
      * @param value The value of data
      * @return True if the block supports the data
      */
-    default boolean supports(int x, int y, int z, BaseValue<?> value) {
+    default boolean supports(int x, int y, int z, Value<?> value) {
         return supports(x, y, z, value.getKey());
     }
 
@@ -401,7 +401,7 @@ public interface LocationCompositeValueStore {
      * @param <E> The type of data
      * @return The transaction result
      */
-    default <E> DataTransactionResult transform(Vector3i coordinates, Key<? extends BaseValue<E>> key, Function<E, E> function) {
+    default <E> DataTransactionResult transform(Vector3i coordinates, Key<? extends Value<E>> key, Function<E, E> function) {
         return transform(coordinates.getX(), coordinates.getY(), coordinates.getZ(), key, function);
     }
 
@@ -418,7 +418,7 @@ public interface LocationCompositeValueStore {
      * @param <E> The type of data
      * @return The transaction result
      */
-    default <E> DataTransactionResult transform(int x, int y, int z, Key<? extends BaseValue<E>> key, Function<E, E> function) {
+    default <E> DataTransactionResult transform(int x, int y, int z, Key<? extends Value<E>> key, Function<E, E> function) {
         if (supports(x, y, z, key)) {
             final Optional<E> optional = get(x, y, z, key);
             if (optional.isPresent()) {
@@ -442,7 +442,7 @@ public interface LocationCompositeValueStore {
      * @param <E> The type of data being offered
      * @return The transaction result
      */
-    default <E> DataTransactionResult offer(Vector3i coordinates, Key<? extends BaseValue<E>> key, E value) {
+    default <E> DataTransactionResult offer(Vector3i coordinates, Key<? extends Value<E>> key, E value) {
         return offer(coordinates.getX(), coordinates.getY(), coordinates.getZ(), key, value);
     }
 
@@ -462,10 +462,10 @@ public interface LocationCompositeValueStore {
      * @param <E> The type of data being offered
      * @return The transaction result
      */
-    <E> DataTransactionResult offer(int x, int y, int z, Key<? extends BaseValue<E>> key, E value);
+    <E> DataTransactionResult offer(int x, int y, int z, Key<? extends Value<E>> key, E value);
 
     /**
-     * Offers the given {@link BaseValue} to the block at the given position.
+     * Offers the given {@link Value} to the block at the given position.
      *
      * <p>If any data is rejected or existing data is replaced, the
      * {@link DataTransactionResult} will retain the rejected and replaced
@@ -476,12 +476,12 @@ public interface LocationCompositeValueStore {
      * @param <E> The type of the element wrapped by the value
      * @return The transaction result
      */
-    default <E> DataTransactionResult offer(Vector3i coordinates, BaseValue<E> value) {
+    default <E> DataTransactionResult offer(Vector3i coordinates, Value<E> value) {
         return offer(coordinates.getX(), coordinates.getY(), coordinates.getZ(), value.getKey(), value.get());
     }
 
     /**
-     * Offers the given {@link BaseValue} to the block at the given position.
+     * Offers the given {@link Value} to the block at the given position.
      *
      * <p>If any data is rejected or existing data is replaced, the
      * {@link DataTransactionResult} will retain the rejected and replaced
@@ -494,7 +494,7 @@ public interface LocationCompositeValueStore {
      * @param <E> The type of the element wrapped by the value
      * @return The transaction result
      */
-    default <E> DataTransactionResult offer(int x, int y, int z, BaseValue<E> value) {
+    default <E> DataTransactionResult offer(int x, int y, int z, Value<E> value) {
         return offer(x, y, z, value.getKey(), value.get());
     }
 

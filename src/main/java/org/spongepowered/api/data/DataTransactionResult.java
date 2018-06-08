@@ -33,10 +33,10 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.data.value.mutable.CompositeValueStore;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.ArrayList;
@@ -81,10 +81,10 @@ public final class DataTransactionResult {
     /**
      * Creates a new {@link DataTransactionResult} with the provided
      * {@link ImmutableValue} being the successful addition. The result type is
-     * still {@link Type#SUCCESS}. If a {@link Value} is
-     * necessary, use {@link Value#asImmutable()} to use this method. A
+     * still {@link Type#SUCCESS}. If a {@link MutableValue} is
+     * necessary, use {@link MutableValue#asImmutable()} to use this method. A
      * {@link DataTransactionResult} is always immutable once created, and any
-     * {@link BaseValue}s should be provided as {@link ImmutableValue}s or
+     * {@link Value}s should be provided as {@link ImmutableValue}s or
      * transformed into {@link ImmutableValue}s.
      *
      * @param value The successfully added immutable value
@@ -97,10 +97,10 @@ public final class DataTransactionResult {
     /**
      * Creates a new {@link DataTransactionResult} with the provided
      * {@link ImmutableValue} being the successful addition. The result type is
-     * still {@link Type#SUCCESS}. If a {@link Value} is
-     * necessary, use {@link Value#asImmutable()} to use this method. A
+     * still {@link Type#SUCCESS}. If a {@link MutableValue} is
+     * necessary, use {@link MutableValue#asImmutable()} to use this method. A
      * {@link DataTransactionResult} is always immutable once created, and any
-     * {@link BaseValue}s should be provided as {@link ImmutableValue}s or
+     * {@link Value}s should be provided as {@link ImmutableValue}s or
      * transformed into {@link ImmutableValue}s.
      *
      * @param successful The successfully added immutable value
@@ -115,10 +115,10 @@ public final class DataTransactionResult {
      * Creates a new {@link DataTransactionResult} with the provided
      * {@link ImmutableValue}s being the successful additions and
      * the provided {@link ImmutableValue}s that were replaced. The result type
-     * is still {@link Type#SUCCESS}. If a {@link Value}
-     * is necessary, use {@link Value#asImmutable()} to use this method. A
+     * is still {@link Type#SUCCESS}. If a {@link MutableValue}
+     * is necessary, use {@link MutableValue#asImmutable()} to use this method. A
      * {@link DataTransactionResult} is always immutable once created, and any
-     * {@link BaseValue}s should be provided as {@link ImmutableValue}s or
+     * {@link Value}s should be provided as {@link ImmutableValue}s or
      * transformed into {@link ImmutableValue}s.
      *
      * @param successful The successfully added immutable values
@@ -132,9 +132,9 @@ public final class DataTransactionResult {
     /**
      * Creates a {@link DataTransactionResult} with the provided
      * {@link ImmutableValue}s being successfully removed. The result type is
-     * still {@link Type#SUCCESS}. If a {@link Value} is necessary, use
-     * {@link Value#asImmutable()} to use this method. A {@link DataTransactionResult}
-     * is always immutable once created, and any {@link BaseValue}s should be provided
+     * still {@link Type#SUCCESS}. If a {@link MutableValue} is necessary, use
+     * {@link MutableValue#asImmutable()} to use this method. A {@link DataTransactionResult}
+     * is always immutable once created, and any {@link Value}s should be provided
      * as {@link ImmutableValue}s or transformed into {@link ImmutableValue}s.
      *
      * @param removed The successfully removed values
@@ -147,10 +147,10 @@ public final class DataTransactionResult {
     /**
      * Creates a {@link DataTransactionResult} with the provided
      * {@link ImmutableValue} being successfully removed. The result type is
-     * still {@link Type#SUCCESS}. If a {@link Value} is necessary, use
-     * {@link Value#asImmutable()} to use this method. A
+     * still {@link Type#SUCCESS}. If a {@link MutableValue} is necessary, use
+     * {@link MutableValue#asImmutable()} to use this method. A
      * {@link DataTransactionResult} is always immutable once created, and a
-     * {@link BaseValue} should be provided as an {@link ImmutableValue} or
+     * {@link Value} should be provided as an {@link ImmutableValue} or
      * transformed into an {@link ImmutableValue}.
      *
      * @param removed The successfully removed value
@@ -292,7 +292,7 @@ public final class DataTransactionResult {
     }
 
     /**
-     * If any {@link BaseValue}s applied onto a {@link CompositeValueStore} were
+     * If any {@link Value}s applied onto a {@link CompositeValueStore} were
      * successful, they'll be stored in the given list.
      *
      * @return An immutable list of the values successfully offered
@@ -302,7 +302,7 @@ public final class DataTransactionResult {
     }
 
     /**
-     * If {@link Value}s were supplied to the operation, this
+     * If {@link MutableValue}s were supplied to the operation, this
      * collection will return any {@link ImmutableValue}s which were rejected
      * by the target {@link DataHolder}.
      *
@@ -313,7 +313,7 @@ public final class DataTransactionResult {
     }
 
     /**
-     * If the operation replaced any {@link Value}s, this returns a collection
+     * If the operation replaced any {@link MutableValue}s, this returns a collection
      * of the replaced {@link ImmutableValue}s.
      *
      * @return Any data that was replaced

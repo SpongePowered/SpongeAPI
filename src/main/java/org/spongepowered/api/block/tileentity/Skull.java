@@ -27,7 +27,7 @@ package org.spongepowered.api.block.tileentity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.SkullData;
 import org.spongepowered.api.data.type.SkullType;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 
 /**
  * Represents a skull.
@@ -49,7 +49,7 @@ public interface Skull extends TileEntity {
      *
      * @return The current skull type value
      */
-    default Value<SkullType> skullType() {
+    default MutableValue<SkullType> skullType() {
         return getValue(Keys.SKULL_TYPE).get();
     }
 

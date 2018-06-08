@@ -26,9 +26,9 @@ package org.spongepowered.api.entity;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.AreaEffectCloudData;
-import org.spongepowered.api.data.value.mutable.ListValue;
+import org.spongepowered.api.data.value.mutable.MutableListValue;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.MutableValue;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.util.Color;
@@ -53,7 +53,7 @@ public interface AreaEffectCloud extends Entity {
      *
      * @return The color of this cloud
      */
-    default Value<Color> color() {
+    default MutableValue<Color> color() {
         return getValue(Keys.AREA_EFFECT_CLOUD_COLOR).get();
     }
 
@@ -71,7 +71,7 @@ public interface AreaEffectCloud extends Entity {
      *
      * @return The particle type of this cloud
      */
-    default Value<ParticleType> particleType() {
+    default MutableValue<ParticleType> particleType() {
         return getValue(Keys.AREA_EFFECT_CLOUD_PARTICLE_TYPE).get();
     }
 
@@ -140,13 +140,13 @@ public interface AreaEffectCloud extends Entity {
     }
 
     /**
-     * Gets the {@link ListValue} of {@link PotionEffect}s of this cloud. The
+     * Gets the {@link MutableListValue} of {@link PotionEffect}s of this cloud. The
      * potion effects will affect any {@link Entity} according to the various
      * delays and ticks remaining of this cloud.
      *
      * @return The list of potion effects
      */
-    default ListValue<PotionEffect> effects() {
+    default MutableListValue<PotionEffect> effects() {
         return getValue(Keys.POTION_EFFECTS).get();
     }
 
