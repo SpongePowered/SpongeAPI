@@ -53,6 +53,6 @@ public interface DominantHandData extends VariantData<HandPreference, DominantHa
      * @return The value for handedness
      * @see Keys#DOMINANT_HAND
      */
-    MutableValue<HandPreference> dominantHand();
+    MutableValue.Single<HandPreference> dominantHand();
 
 }

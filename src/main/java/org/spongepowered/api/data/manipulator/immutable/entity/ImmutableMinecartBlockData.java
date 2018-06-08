@@ -37,7 +37,7 @@ public interface ImmutableMinecartBlockData extends ImmutableDataManipulator<Imm
      *
      * @return The represented block
      */
-    ImmutableValue<BlockState> block();
+    ImmutableValue.Single<BlockState> block();
 
     /**
      * Gets the offset of the represented block, in "pixels".
@@ -47,6 +47,6 @@ public interface ImmutableMinecartBlockData extends ImmutableDataManipulator<Imm
      *
      * @return The block offset
      */
-    ImmutableValue<Integer> offset();
+    ImmutableValue.Single<Integer> offset();
 
 }

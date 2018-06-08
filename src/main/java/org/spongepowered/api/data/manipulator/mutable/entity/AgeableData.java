@@ -50,6 +50,6 @@ public interface AgeableData extends DataManipulator<AgeableData, ImmutableAgeab
      *
      * @return The immutable value for the "adult" state
      */
-    MutableValue<Boolean> adult();
+    MutableValue.Single<Boolean> adult();
 
 }

@@ -41,6 +41,6 @@ public interface ImmutableDisarmedData extends ImmutableDataManipulator<Immutabl
      *
      * @return The immutable value for the "disarmed" state
      */
-    ImmutableValue<Boolean> disarmed();
+    ImmutableValue.Single<Boolean> disarmed();
 
 }

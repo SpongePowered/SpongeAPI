@@ -44,6 +44,6 @@ public interface PoweredData extends DataManipulator<PoweredData, ImmutablePower
      * @return The immutable value for the "powered" state
      * @see Keys#POWERED
      */
-    MutableValue<Boolean> powered();
+    MutableValue.Single<Boolean> powered();
 
 }

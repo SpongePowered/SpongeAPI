@@ -36,7 +36,7 @@ import java.util.List;
  *
  * @param <E> The type of element of this list value
  */
-public interface MutableListValue<E> extends ListValue<E, MutableListValue<E>>, MutableCollectionValue<E, List<E>, MutableListValue<E>, ImmutableListValue<E>> {
+public interface MutableListValue<E> extends ListValue<E>, MutableCollectionValue<E, List<E>, MutableListValue<E>, ImmutableListValue<E>> {
 
     /**
      * Adds the specified element at the specified position in the list.

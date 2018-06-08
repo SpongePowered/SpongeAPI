@@ -41,6 +41,6 @@ public interface ImmutableSneakingData extends ImmutableDataManipulator<Immutabl
      *
      * @return The immutable value for the "sneaking" state
      */
-    ImmutableValue<Boolean> sneaking();
+    ImmutableValue.Single<Boolean> sneaking();
 
 }

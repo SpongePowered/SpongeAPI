@@ -48,6 +48,6 @@ public interface ImmutableTargetedLocationData extends ImmutableDataManipulator<
      *
      * @return The immutable value for the targeted location
      */
-    ImmutableValue<Vector3d> target();
+    ImmutableValue.Single<Vector3d> target();
 
 }

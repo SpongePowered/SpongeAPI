@@ -56,7 +56,7 @@ public interface ImmutableWireAttachmentData extends ImmutableDataManipulator<Im
      *
      * @return The value for the northern wire attachment type
      */
-    ImmutableValue<WireAttachmentType> wireAttachmentNorth();
+    ImmutableValue.Single<WireAttachmentType> wireAttachmentNorth();
 
     /**
      * Gets the {@link ImmutableValue} for the {@link Direction#SOUTH}'s
@@ -64,7 +64,7 @@ public interface ImmutableWireAttachmentData extends ImmutableDataManipulator<Im
      *
      * @return The value for the southern wire attachment type
      */
-    ImmutableValue<WireAttachmentType> wireAttachmentSouth();
+    ImmutableValue.Single<WireAttachmentType> wireAttachmentSouth();
 
     /**
      * Gets the {@link ImmutableValue} for the {@link Direction#EAST}'s
@@ -72,7 +72,7 @@ public interface ImmutableWireAttachmentData extends ImmutableDataManipulator<Im
      *
      * @return The value for the eastern wire attachment type
      */
-    ImmutableValue<WireAttachmentType> wireAttachmentEast();
+    ImmutableValue.Single<WireAttachmentType> wireAttachmentEast();
 
     /**
      * Gets the {@link ImmutableValue} for the {@link Direction#WEST}'s
@@ -80,7 +80,7 @@ public interface ImmutableWireAttachmentData extends ImmutableDataManipulator<Im
      *
      * @return The value for the western wire attachment type
      */
-    ImmutableValue<WireAttachmentType> wireAttachmentWest();
+    ImmutableValue.Single<WireAttachmentType> wireAttachmentWest();
 
 
 

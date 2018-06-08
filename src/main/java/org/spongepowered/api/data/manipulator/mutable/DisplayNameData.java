@@ -49,6 +49,6 @@ public interface DisplayNameData extends DataManipulator<DisplayNameData, Immuta
      * @return The display name, if available
      * @see Keys#DISPLAY_NAME
      */
-    MutableValue<Text> displayName();
+    MutableValue.Single<Text> displayName();
 
 }

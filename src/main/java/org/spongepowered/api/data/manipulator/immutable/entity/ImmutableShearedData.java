@@ -40,7 +40,7 @@ public interface ImmutableShearedData extends ImmutableDataManipulator<Immutable
      *
      * @return The immutable value for the "sheared" state
      */
-    ImmutableValue<Boolean> sheared();
+    ImmutableValue.Single<Boolean> sheared();
 
 }
 

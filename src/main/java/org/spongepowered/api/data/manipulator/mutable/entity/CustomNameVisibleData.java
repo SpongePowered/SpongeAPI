@@ -45,6 +45,6 @@ public interface CustomNameVisibleData extends DataManipulator<CustomNameVisible
      * @return Whether the display name is visible or not
      * @see Keys#CUSTOM_NAME_VISIBLE
      */
-    MutableValue<Boolean> customNameVisible();
+    MutableValue.Single<Boolean> customNameVisible();
 
 }

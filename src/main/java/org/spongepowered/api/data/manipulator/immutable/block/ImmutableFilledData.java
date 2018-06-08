@@ -40,6 +40,6 @@ public interface ImmutableFilledData extends ImmutableDataManipulator<ImmutableF
      *
      * @return The immutable value for the "filled" state
      */
-    ImmutableValue<Boolean> filled();
+    ImmutableValue.Single<Boolean> filled();
 
 }

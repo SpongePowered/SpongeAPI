@@ -41,7 +41,7 @@ public interface ImmutableEndGatewayData extends ImmutableDataManipulator<Immuta
      *
      * @return The immutable value for the exit portal location
      */
-    ImmutableValue<Vector3i> exitPortal();
+    ImmutableValue.Single<Vector3i> exitPortal();
 
     /**
      * Gets the {@link ImmutableValue} for the "should use exact teleport
@@ -50,14 +50,14 @@ public interface ImmutableEndGatewayData extends ImmutableDataManipulator<Immuta
      * @return The immutable value for the "should use exact teleport location"
      *     state
      */
-    ImmutableValue<Boolean> exactTeleport();
+    ImmutableValue.Single<Boolean> exactTeleport();
 
     /**
      * Gets the {@link ImmutableValue} for the age of the {@link EndGateway}.
      *
      * @return The immutable value for the age
      */
-    ImmutableValue<Long> age();
+    ImmutableValue.Single<Long> age();
 
     /**
      * Gets the {@link ImmutableValue} for the teleport cooldown of the
@@ -65,6 +65,6 @@ public interface ImmutableEndGatewayData extends ImmutableDataManipulator<Immuta
      *
      * @return The immutable value for the teleport cooldown
      */
-    ImmutableValue<Integer> teleportCooldown();
+    ImmutableValue.Single<Integer> teleportCooldown();
 
 }

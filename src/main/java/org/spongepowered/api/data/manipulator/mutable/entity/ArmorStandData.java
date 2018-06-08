@@ -39,7 +39,7 @@ public interface ArmorStandData extends DataManipulator<ArmorStandData, Immutabl
      * @return Whether this is a marker armor stand
      * @see Keys#ARMOR_STAND_MARKER
      */
-    MutableValue<Boolean> marker();
+    MutableValue.Single<Boolean> marker();
 
     /**
      * Returns whether this armor stand is a small armor stand or not.
@@ -47,7 +47,7 @@ public interface ArmorStandData extends DataManipulator<ArmorStandData, Immutabl
      * @return Whether this is a small armor stand
      * @see Keys#ARMOR_STAND_IS_SMALL
      */
-    MutableValue<Boolean> small();
+    MutableValue.Single<Boolean> small();
 
     /**
      * Returns whether this armor stand shows arms or not.
@@ -57,7 +57,7 @@ public interface ArmorStandData extends DataManipulator<ArmorStandData, Immutabl
      * @return Whether this armor stand shows its arms
      * @see Keys#ARMOR_STAND_HAS_ARMS
      */
-    MutableValue<Boolean> arms();
+    MutableValue.Single<Boolean> arms();
 
     /**
      * Gets whether this armor stand has a visible base plate or not.
@@ -65,6 +65,6 @@ public interface ArmorStandData extends DataManipulator<ArmorStandData, Immutabl
      * @return Whether this armor stand has a visible base plate
      * @see Keys#ARMOR_STAND_HAS_BASE_PLATE
      */
-    MutableValue<Boolean> basePlate();
+    MutableValue.Single<Boolean> basePlate();
 
 }

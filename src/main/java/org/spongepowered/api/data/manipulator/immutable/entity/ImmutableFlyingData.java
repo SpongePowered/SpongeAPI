@@ -43,6 +43,6 @@ public interface ImmutableFlyingData extends ImmutableDataManipulator<ImmutableF
      *
      * @return The immutable value for the flying state
      */
-    ImmutableValue<Boolean> flying();
+    ImmutableValue.Single<Boolean> flying();
 
 }

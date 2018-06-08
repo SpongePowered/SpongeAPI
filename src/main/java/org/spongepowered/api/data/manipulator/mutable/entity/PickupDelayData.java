@@ -52,6 +52,6 @@ public interface PickupDelayData extends DataManipulator<PickupDelayData, Immuta
      * @return The value for the "is infinite" state
      * @see Keys#INFINITE_PICKUP_DELAY
      */
-    MutableValue<Boolean> infinite();
+    MutableValue.Single<Boolean> infinite();
 
 }

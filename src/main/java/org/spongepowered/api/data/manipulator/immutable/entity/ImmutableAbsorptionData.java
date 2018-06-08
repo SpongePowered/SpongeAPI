@@ -40,6 +40,6 @@ public interface ImmutableAbsorptionData extends ImmutableDataManipulator<Immuta
      *
      * @return The value for the absorption
      */
-    ImmutableValue<Double> absorption();
+    ImmutableValue.Single<Double> absorption();
 
 }

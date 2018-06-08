@@ -43,7 +43,7 @@ public interface MutableCollectionValue<E,
     C extends Collection<E>,
     V extends MutableCollectionValue<E, C, V, I>,
     I extends ImmutableCollectionValue<E, C, I, V>>
-    extends MutableValue<C, V, I>, CollectionValue<E, C, V>, Iterable<E> {
+    extends MutableValue<C, V, I>, CollectionValue<E, C>, Iterable<E> {
 
 
     /**
@@ -90,6 +90,8 @@ public interface MutableCollectionValue<E,
      * @return This value, for chaining
      */
     V removeAll(Predicate<E> predicate);
+
+    V filter(Predicate<? super E> predicate);
 
     @Override
     V copy();

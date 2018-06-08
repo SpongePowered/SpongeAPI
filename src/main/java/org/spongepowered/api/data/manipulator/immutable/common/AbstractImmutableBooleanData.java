@@ -43,7 +43,7 @@ public abstract class AbstractImmutableBooleanData<I extends ImmutableDataManipu
         AbstractImmutableSingleData<Boolean, I, M> {
 
     private final boolean defaultValue;
-    private final ImmutableValue<Boolean> immutableValue;
+    private final ImmutableValue.Single<Boolean> immutableValue;
 
     protected AbstractImmutableBooleanData(boolean value, Key<MutableValue<Boolean>> usedKey, boolean defaultValue) {
         super(value, usedKey);
@@ -52,7 +52,7 @@ public abstract class AbstractImmutableBooleanData<I extends ImmutableDataManipu
     }
 
     @Override
-    protected final ImmutableValue<Boolean> getValueGetter() {
+    protected final ImmutableValue.Single<Boolean> getValueGetter() {
         return this.immutableValue;
     }
 

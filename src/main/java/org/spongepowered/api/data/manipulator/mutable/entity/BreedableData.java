@@ -43,6 +43,6 @@ public interface BreedableData extends DataManipulator<BreedableData, ImmutableB
      * @return The value for the "breedable" state
      * @see Keys#CAN_BREED
      */
-    MutableValue<Boolean> breedable();
+    MutableValue.Single<Boolean> breedable();
 
 }

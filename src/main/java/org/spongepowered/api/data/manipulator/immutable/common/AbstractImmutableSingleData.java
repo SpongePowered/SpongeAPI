@@ -57,7 +57,7 @@ public abstract class AbstractImmutableSingleData<T, I extends ImmutableDataMani
         registerGetters();
     }
 
-    protected abstract ImmutableValue<?> getValueGetter();
+    protected abstract ImmutableValue.Single<?> getValueGetter();
 
     protected final T getValue() {
         return this.value;

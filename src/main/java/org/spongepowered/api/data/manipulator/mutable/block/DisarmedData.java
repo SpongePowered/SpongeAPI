@@ -43,6 +43,6 @@ public interface DisarmedData extends DataManipulator<DisarmedData, ImmutableDis
      * @return The value for the "disarmed" state
      * @see Keys#DISARMED
      */
-    MutableValue<Boolean> disarmed();
+    MutableValue.Single<Boolean> disarmed();
 
 }

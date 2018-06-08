@@ -30,8 +30,7 @@ import org.spongepowered.api.data.value.mutable.MutableCollectionValue;
 import java.util.Collection;
 import java.util.function.Predicate;
 
-public interface CollectionValue<E, C extends Collection<E>, V extends CollectionValue<E, C, V>>
-    extends Value<C>, Iterable<E> {
+public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, Iterable<E> {
 
     /**
      * Gets the size of the underlying collection of elements.
@@ -65,19 +64,6 @@ public interface CollectionValue<E, C extends Collection<E>, V extends Collectio
      * @return True if all elements are contained in this value
      */
     boolean containsAll(Collection<E> iterable);
-
-    /**
-     * Applies a {@link Predicate} to filter the underlying elements in the
-     * backed {@link Collection} to create a new {@link MutableCollectionValue}
-     * separate from this {@link MutableCollectionValue}. This value is not modified,
-     * nor is the underlying {@link Collection}. Elements that return
-     * <code>true</code> from {@link Predicate#test(Object)} are kept, and
-     * those that return <code>false</code> are excluded.
-     *
-     * @param predicate The predicate to filter
-     * @return This value, for chaining
-     */
-    V filter(Predicate<? super E> predicate);
 
     /**
      * Creates a new {@link Collection} of the proper type <code>C</code> with

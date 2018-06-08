@@ -45,7 +45,7 @@ public interface ImmutableDamagingData extends ImmutableDataManipulator<Immutabl
      *
      * @return The damage to deal as a value
      */
-    ImmutableValue<Double> damage();
+    ImmutableValue.Single<Double> damage();
 
     /**
      * Gets the {@link ImmutableMapValue} for representing the custom damage

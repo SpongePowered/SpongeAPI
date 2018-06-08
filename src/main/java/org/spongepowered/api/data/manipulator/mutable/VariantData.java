@@ -45,6 +45,6 @@ public interface VariantData<E, T extends VariantData<E, T, I>, I extends Immuta
      *
      * @return The value of the element type
      */
-    MutableValue<E> type();
+    MutableValue.Single<E> type();
 
 }

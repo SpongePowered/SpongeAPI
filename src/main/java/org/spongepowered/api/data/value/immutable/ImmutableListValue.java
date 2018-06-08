@@ -36,7 +36,7 @@ import java.util.List;
  *
  * @param <E> The type of element of this list value
  */
-public interface ImmutableListValue<E> extends ListValue<E, ImmutableListValue<E>>, ImmutableCollectionValue<E, List<E>, ImmutableListValue<E>, MutableListValue<E>> {
+public interface ImmutableListValue<E> extends ListValue<E>, ImmutableCollectionValue<E, List<E>, ImmutableListValue<E>, MutableListValue<E>> {
 
     /**
      * Gets the desired element at the desired index.

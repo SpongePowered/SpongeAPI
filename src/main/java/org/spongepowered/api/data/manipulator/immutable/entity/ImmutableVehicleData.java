@@ -42,7 +42,7 @@ public interface ImmutableVehicleData extends ImmutableDataManipulator<Immutable
      *
      * @return The immutable value for the vehicle being ridden
      */
-    ImmutableValue<EntitySnapshot> vehicle();
+    ImmutableValue.Single<EntitySnapshot> vehicle();
 
     /**
      * Gets the base {@link ImmutableValue} for the "base vehicle" being ridden
@@ -51,7 +51,7 @@ public interface ImmutableVehicleData extends ImmutableDataManipulator<Immutable
      *
      * @return The immutable value for the base vehicle
      */
-    ImmutableValue<EntitySnapshot> baseVehicle();
+    ImmutableValue.Single<EntitySnapshot> baseVehicle();
 
 
 }

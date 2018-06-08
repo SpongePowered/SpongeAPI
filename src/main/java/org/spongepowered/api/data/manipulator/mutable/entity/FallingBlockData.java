@@ -43,7 +43,7 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData, Immu
      * @return The immutable value for the damage per block of falling
      * @see Keys#FALL_DAMAGE_PER_BLOCK
      */
-    MutableValue<Double> fallDamagePerBlock();
+    MutableValue.Single<Double> fallDamagePerBlock();
 
     /**
      * Gets the maximum damage the {@link FallingBlock} can deal to another
@@ -52,7 +52,7 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData, Immu
      * @return The maximum damage the block can deal
      * @see Keys#MAX_FALL_DAMAGE
      */
-    MutableValue<Double> maxFallDamage();
+    MutableValue.Single<Double> maxFallDamage();
 
     /**
      * Gets the {@link BlockState} the falling block is representing.
@@ -60,7 +60,7 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData, Immu
      * @return The falling block's block state
      * @see Keys#FALLING_BLOCK_STATE
      */
-    MutableValue<BlockState> blockState();
+    MutableValue.Single<BlockState> blockState();
 
     /**
      * Gets whether this falling block will try to place itself where
@@ -69,7 +69,7 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData, Immu
      * @return True if this block will attempt to place itself when it lands
      * @see Keys#CAN_PLACE_AS_BLOCK
      */
-    MutableValue<Boolean> canPlaceAsBlock();
+    MutableValue.Single<Boolean> canPlaceAsBlock();
 
     /**
      * Gets whether this falling block can drop as an item if it lands in a
@@ -78,7 +78,7 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData, Immu
      * @return Whether this falling block can drop as an item
      * @see Keys#CAN_DROP_AS_ITEM
      */
-    MutableValue<Boolean> canDropAsItem();
+    MutableValue.Single<Boolean> canDropAsItem();
 
     /**
      * Gets the number of ticks the block has been falling for.
@@ -86,7 +86,7 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData, Immu
      * @return The time the block has been falling
      * @see Keys#FALL_TIME
      */
-    MutableValue<Integer> fallTime();
+    MutableValue.Single<Integer> fallTime();
 
     /**
      * Gets whether this falling block will damage entities where it lands.
@@ -94,6 +94,6 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData, Immu
      * @return Whether this falling block will damage entities where it lands
      * @see Keys#FALLING_BLOCK_CAN_HURT_ENTITIES
      */
-    MutableValue<Boolean> canHurtEntities();
+    MutableValue.Single<Boolean> canHurtEntities();
 
 }

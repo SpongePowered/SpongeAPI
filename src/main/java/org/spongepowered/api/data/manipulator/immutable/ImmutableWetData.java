@@ -43,6 +43,6 @@ public interface ImmutableWetData extends ImmutableDataManipulator<ImmutableWetD
      *
      * @return The immutable value for the wet state
      */
-    ImmutableValue<Boolean> wet();
+    ImmutableValue.Single<Boolean> wet();
 
 }

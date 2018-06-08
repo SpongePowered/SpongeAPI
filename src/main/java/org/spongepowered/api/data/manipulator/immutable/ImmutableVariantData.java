@@ -47,6 +47,6 @@ public interface ImmutableVariantData<E, I extends ImmutableVariantData<E, I, M>
      *
      * @return The immutable value of the element type
      */
-    ImmutableValue<E> type();
+    ImmutableValue.Single<E> type();
 
 }

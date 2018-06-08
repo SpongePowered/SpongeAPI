@@ -45,6 +45,6 @@ public interface FlyingAbilityData extends DataManipulator<FlyingAbilityData, Im
      * @return The value for being able to toggle "flying"
      * @see Keys#CAN_FLY
      */
-    MutableValue<Boolean> canFly();
+    MutableValue.Single<Boolean> canFly();
 
 }

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.value;
 
-import org.spongepowered.api.data.value.immutable.ImmutableCollectionValue;
 import org.spongepowered.api.data.value.immutable.ImmutableWeightedCollectionValue;
 import org.spongepowered.api.data.value.mutable.MutableWeightedCollectionValue;
 import org.spongepowered.api.util.weighted.TableEntry;
@@ -35,7 +34,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-public interface WeightedCollectionValue<E, W extends WeightedCollectionValue<E, W>> extends CollectionValue<TableEntry<E>, WeightedTable<E>, W>  {
+public interface WeightedCollectionValue<E> extends CollectionValue<TableEntry<E>, WeightedTable<E>>  {
 
     /**
      * Selects a random value from this list based on their weight.

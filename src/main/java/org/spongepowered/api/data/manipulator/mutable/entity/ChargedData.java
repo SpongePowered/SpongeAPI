@@ -41,6 +41,6 @@ public interface ChargedData extends DataManipulator<ChargedData, ImmutableCharg
      * @return The value for the "charged" state
      * @see Keys#CREEPER_CHARGED
      */
-    MutableValue<Boolean> charged();
+    MutableValue.Single<Boolean> charged();
 
 }

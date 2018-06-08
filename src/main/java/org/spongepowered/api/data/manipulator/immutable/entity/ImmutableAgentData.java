@@ -39,6 +39,6 @@ public interface ImmutableAgentData extends ImmutableDataManipulator<ImmutableAg
      *
      * @return The immutable value for the current "enabled" state of ai tasks
      */
-    ImmutableValue<Boolean> aiEnabled();
+    ImmutableValue.Single<Boolean> aiEnabled();
 
 }

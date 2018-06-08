@@ -48,6 +48,6 @@ public interface RepresentedPlayerData extends DataManipulator<RepresentedPlayer
      * @return The value of the game profile
      * @see Keys#REPRESENTED_PLAYER
      */
-    MutableValue<GameProfile> owner();
+    MutableValue.Single<GameProfile> owner();
 
 }

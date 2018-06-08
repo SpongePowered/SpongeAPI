@@ -41,6 +41,6 @@ public interface ImmutableAuthorData extends ImmutableDataManipulator<ImmutableA
      *
      * @return The immutable value for the author
      */
-    ImmutableValue<Text> author();
+    ImmutableValue.Single<Text> author();
 
 }

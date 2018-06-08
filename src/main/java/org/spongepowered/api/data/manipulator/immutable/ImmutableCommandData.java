@@ -47,7 +47,7 @@ public interface ImmutableCommandData extends ImmutableDataManipulator<Immutable
      *
      * @return The command
      */
-    ImmutableValue<String> storedCommand();
+    ImmutableValue.Single<String> storedCommand();
 
     /**
      * Gets the success count of the last executed command.
@@ -61,7 +61,7 @@ public interface ImmutableCommandData extends ImmutableDataManipulator<Immutable
      *
      * @return The last success count
      */
-    ImmutableValue<Integer> successCount();
+    ImmutableValue.Single<Integer> successCount();
 
     /**
      * Gets whether this command block will keep track of the output from the
@@ -69,7 +69,7 @@ public interface ImmutableCommandData extends ImmutableDataManipulator<Immutable
      *
      * @return Whether the command output is tracked
      */
-    ImmutableValue<Boolean> doesTrackOutput();
+    ImmutableValue.Single<Boolean> doesTrackOutput();
 
     /**
      * Gets the last command output.

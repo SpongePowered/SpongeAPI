@@ -43,6 +43,6 @@ public interface ImmutableShatteringData extends ImmutableDataManipulator<Immuta
      *
      * @return The immutable value for the "shattering" state
      */
-    ImmutableValue<Boolean> willShatter();
+    ImmutableValue.Single<Boolean> willShatter();
 
 }

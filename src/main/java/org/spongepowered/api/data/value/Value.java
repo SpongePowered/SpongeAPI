@@ -60,20 +60,15 @@ public interface Value<E> {
 
     /**
      * Gets the held value. Usually all held values are "filled" and not
-     * "defaulted"; however, in the case that the actual value is not set or
-     * {@link #exists()} returns false, the {@link #getDefault()} value is
-     * returned.
+     * "defaulted", in some cases however, the default and existing value
+     * are one and the same. Occasionally there are multiple value types
+     * that are not "singular" in the sense, like {@link CollectionValue}s,
+     * or {@link MapValue}s that contain complex types. In these collection
+     * types, usually the default will be an empty collection.
      *
      * @return The held value
      */
     E get();
-
-    /**
-     * Checks that the underlying value exists (or "set").
-     *
-     * @return True if the value exists or was set
-     */
-    boolean exists();
 
     /**
      * Gets the default value. There is always a default value, however,

@@ -26,6 +26,6 @@ package org.spongepowered.api.data.value;
 
 import java.util.Set;
 
-public interface SetValue<E, S extends SetValue<E, S>> extends CollectionValue<E, Set<E>, S> {
+public interface SetValue<E> extends CollectionValue<E, Set<E>> {
 
 }

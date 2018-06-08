@@ -52,7 +52,7 @@ public interface ImmutableConnectedDirectionData extends ImmutableDataManipulato
      *
      * @return The immutable value for the north direction
      */
-    ImmutableValue<Boolean> connectedNorth();
+    ImmutableValue.Single<Boolean> connectedNorth();
 
 
     /**
@@ -61,7 +61,7 @@ public interface ImmutableConnectedDirectionData extends ImmutableDataManipulato
      *
      * @return The immutable value for the south direction
      */
-    ImmutableValue<Boolean> connectedSouth();
+    ImmutableValue.Single<Boolean> connectedSouth();
 
 
     /**
@@ -70,7 +70,7 @@ public interface ImmutableConnectedDirectionData extends ImmutableDataManipulato
      *
      * @return The immutable value for the east direction
      */
-    ImmutableValue<Boolean> connectedEast();
+    ImmutableValue.Single<Boolean> connectedEast();
 
     /**
      * Gets the {@link ImmutableValue} for whether {@link Direction#WEST} is
@@ -78,6 +78,6 @@ public interface ImmutableConnectedDirectionData extends ImmutableDataManipulato
      *
      * @return The immutable value for the west direction
      */
-    ImmutableValue<Boolean> connectedWest();
+    ImmutableValue.Single<Boolean> connectedWest();
 
 }

@@ -36,7 +36,7 @@ import java.util.Set;
  *
  * @param <E> The type of elements supported
  */
-public interface MutableSetValue<E> extends SetValue<E, MutableSetValue<E>>, MutableCollectionValue<E, Set<E>, MutableSetValue<E>, ImmutableSetValue<E>> {
+public interface MutableSetValue<E> extends SetValue<E>, MutableCollectionValue<E, Set<E>, MutableSetValue<E>, ImmutableSetValue<E>> {
 
     @Override
     default MutableSetValue<E> asMutable() {

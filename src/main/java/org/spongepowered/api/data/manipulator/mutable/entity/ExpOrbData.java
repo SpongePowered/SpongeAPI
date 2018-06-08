@@ -42,6 +42,6 @@ public interface ExpOrbData extends DataManipulator<ExpOrbData, ImmutableExpOrbD
      * @return The immutable value for the amount of "experience" stored
      * @see Keys#CONTAINED_EXPERIENCE
      */
-    MutableValue<Integer> experience();
+    MutableValue.Single<Integer> experience();
 
 }

@@ -41,6 +41,6 @@ public interface ImmutableGravityData extends ImmutableDataManipulator<Immutable
      *
      * @return The immutable value of the gravity
      */
-    ImmutableValue<Boolean> gravity();
+    ImmutableValue.Single<Boolean> gravity();
 
 }

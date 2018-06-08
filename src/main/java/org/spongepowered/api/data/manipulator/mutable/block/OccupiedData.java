@@ -42,6 +42,6 @@ public interface OccupiedData extends DataManipulator<OccupiedData, ImmutableOcc
      * @return The value for the "occupied" state
      * @see Keys#OCCUPIED
      */
-    MutableValue<Boolean> occupied();
+    MutableValue.Single<Boolean> occupied();
 
 }

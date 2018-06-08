@@ -44,6 +44,6 @@ public interface ImmutableDropData extends ImmutableDataManipulator<ImmutableDro
      *
      * @return The value for the "droppable" state
      */
-    ImmutableValue<Boolean> willDrop();
+    ImmutableValue.Single<Boolean> willDrop();
 
 }

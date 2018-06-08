@@ -55,7 +55,7 @@ public interface ConnectedDirectionData extends DataManipulator<ConnectedDirecti
      * @return The value for the north direction
      * @see Keys#CONNECTED_NORTH
      */
-    MutableValue<Boolean> connectedNorth();
+    MutableValue.Single<Boolean> connectedNorth();
 
     /**
      * Gets the {@link MutableValue} for whether {@link Direction#SOUTH} is
@@ -64,7 +64,7 @@ public interface ConnectedDirectionData extends DataManipulator<ConnectedDirecti
      * @return The value for the south direction
      * @see Keys#CONNECTED_SOUTH
      */
-    MutableValue<Boolean> connectedSouth();
+    MutableValue.Single<Boolean> connectedSouth();
 
     /**
      * Gets the {@link MutableValue} for whether {@link Direction#EAST} is
@@ -73,7 +73,7 @@ public interface ConnectedDirectionData extends DataManipulator<ConnectedDirecti
      * @return The value for the east direction
      * @see Keys#CONNECTED_WEST
      */
-    MutableValue<Boolean> connectedEast();
+    MutableValue.Single<Boolean> connectedEast();
 
     /**
      * Gets the {@link MutableValue} for whether {@link Direction#WEST} is
@@ -82,6 +82,6 @@ public interface ConnectedDirectionData extends DataManipulator<ConnectedDirecti
      * @return The value for the west direction
      * @see Keys#CONNECTED_EAST
      */
-    MutableValue<Boolean> connectedWest();
+    MutableValue.Single<Boolean> connectedWest();
 
 }

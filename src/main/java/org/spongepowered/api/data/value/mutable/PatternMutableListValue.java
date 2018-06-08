@@ -27,6 +27,8 @@ package org.spongepowered.api.data.value.mutable;
 import org.spongepowered.api.data.meta.PatternLayer;
 import org.spongepowered.api.data.type.BannerPatternShape;
 import org.spongepowered.api.data.type.DyeColor;
+import org.spongepowered.api.data.value.immutable.ImmutablePatternListValue;
+import org.spongepowered.api.data.value.meta.PatternListValue;
 
 import java.util.List;
 import java.util.function.Function;
@@ -38,7 +40,7 @@ import java.util.function.Predicate;
  * difference is the ability to add a {@link BannerPatternShape} and
  * {@link DyeColor} to create a new {@link PatternLayer}.
  */
-public interface PatternMutableListValue extends MutableListValue<PatternLayer> {
+public interface PatternMutableListValue extends PatternListValue, MutableListValue<PatternLayer> {
 
     @Override
     PatternMutableListValue add(PatternLayer element);
@@ -99,5 +101,5 @@ public interface PatternMutableListValue extends MutableListValue<PatternLayer> 
     PatternMutableListValue filter(Predicate<? super PatternLayer> predicate);
 
     @Override
-    I asImmutable();
+    ImmutablePatternListValue asImmutable();
 }

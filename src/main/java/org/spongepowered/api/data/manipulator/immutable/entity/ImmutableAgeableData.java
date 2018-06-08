@@ -49,6 +49,6 @@ public interface ImmutableAgeableData extends ImmutableDataManipulator<Immutable
      *
      * @return The immutable value for the "adult" state
      */
-    ImmutableValue<Boolean> adult();
+    ImmutableValue.Single<Boolean> adult();
 
 }

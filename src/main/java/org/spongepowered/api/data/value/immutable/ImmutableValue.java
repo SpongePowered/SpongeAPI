@@ -83,4 +83,9 @@ public interface ImmutableValue<E, I extends ImmutableValue<E, I, M>, M extends 
      * @return A mutable value
      */
     M asMutable();
+
+    interface Single<E> extends ImmutableValue<E, Single<E>, MutableValue.Single<E>> {
+
+    }
+
 }

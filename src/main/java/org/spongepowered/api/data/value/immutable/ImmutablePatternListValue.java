@@ -27,12 +27,13 @@ package org.spongepowered.api.data.value.immutable;
 import org.spongepowered.api.data.meta.PatternLayer;
 import org.spongepowered.api.data.type.BannerPatternShape;
 import org.spongepowered.api.data.type.DyeColor;
+import org.spongepowered.api.data.value.meta.PatternListValue;
 import org.spongepowered.api.data.value.mutable.PatternMutableListValue;
 
 import java.util.List;
 import java.util.function.Predicate;
 
-public interface ImmutablePatternListValue extends ImmutableListValue<PatternLayer> {
+public interface ImmutablePatternListValue extends ImmutableListValue<PatternLayer>, PatternListValue {
 
     /**
      * Creates and adds a {@link PatternLayer} based on the

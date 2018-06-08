@@ -55,7 +55,7 @@ public interface BodyPartRotationalData extends DataManipulator<BodyPartRotation
      * @return The direction the headpiece is aiming at
      * @see Keys#HEAD_ROTATION
      */
-    MutableValue<Vector3d> headDirection();
+    MutableValue.Single<Vector3d> headDirection();
 
     /**
      * Gets the direction the body is aiming at.
@@ -63,7 +63,7 @@ public interface BodyPartRotationalData extends DataManipulator<BodyPartRotation
      * @return The direction the body is aiming at
      * @see Keys#CHEST_ROTATION
      */
-    MutableValue<Vector3d> bodyRotation();
+    MutableValue.Single<Vector3d> bodyRotation();
 
     /**
      * Gets the direction the left arm is aiming at.
@@ -71,7 +71,7 @@ public interface BodyPartRotationalData extends DataManipulator<BodyPartRotation
      * @return The direction the left arm is aiming at
      * @see Keys#LEFT_ARM_ROTATION
      */
-    MutableValue<Vector3d> leftArmDirection();
+    MutableValue.Single<Vector3d> leftArmDirection();
 
     /**
      * Gets the direction the right arm is aiming at.
@@ -79,7 +79,7 @@ public interface BodyPartRotationalData extends DataManipulator<BodyPartRotation
      * @return The direction the right arm is aiming at
      * @see Keys#RIGHT_ARM_ROTATION
      */
-    MutableValue<Vector3d> rightArmDirection();
+    MutableValue.Single<Vector3d> rightArmDirection();
 
     /**
      * Gets the direction the left leg is aiming at.
@@ -87,7 +87,7 @@ public interface BodyPartRotationalData extends DataManipulator<BodyPartRotation
      * @return The direction the left leg is aiming at
      * @see Keys#LEFT_LEG_ROTATION
      */
-    MutableValue<Vector3d> leftLegDirection();
+    MutableValue.Single<Vector3d> leftLegDirection();
 
     /**
      * Gets the direction the right leg is aiming at.
@@ -95,6 +95,6 @@ public interface BodyPartRotationalData extends DataManipulator<BodyPartRotation
      * @return The direction the right leg is aiming at
      * @see Keys#RIGHT_LEG_ROTATION
      */
-    MutableValue<Vector3d> rightLegDirection();
+    MutableValue.Single<Vector3d> rightLegDirection();
 
 }

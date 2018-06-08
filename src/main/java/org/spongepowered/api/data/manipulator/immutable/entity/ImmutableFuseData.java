@@ -40,7 +40,7 @@ public interface ImmutableFuseData extends ImmutableDataManipulator<ImmutableFus
      *
      * @return Amount of ticks before detonation when primed
      */
-    ImmutableValue<Integer> fuseDuration();
+    ImmutableValue.Single<Integer> fuseDuration();
 
     /**
      * The amount of ticks before {@link FusedExplosive} detonates. This value
@@ -50,6 +50,6 @@ public interface ImmutableFuseData extends ImmutableDataManipulator<ImmutableFus
      *
      * @return Amount of ticks before impending detonation
      */
-    ImmutableValue<Integer> ticksRemaining();
+    ImmutableValue.Single<Integer> ticksRemaining();
 
 }

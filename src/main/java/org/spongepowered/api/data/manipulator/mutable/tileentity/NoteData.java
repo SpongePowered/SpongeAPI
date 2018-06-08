@@ -43,6 +43,6 @@ public interface NoteData extends DataManipulator<NoteData, ImmutableNoteData> {
      * @return The value for the note pitch
      * @see Keys#NOTE_PITCH
      */
-    MutableValue<NotePitch> note();
+    MutableValue.Single<NotePitch> note();
 
 }

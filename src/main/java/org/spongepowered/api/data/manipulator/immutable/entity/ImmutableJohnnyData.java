@@ -46,6 +46,6 @@ public interface ImmutableJohnnyData extends ImmutableDataManipulator<ImmutableJ
      * @return The immutable value for whether this mob is exhibiting
      *     "johnny" behavior
      */
-    ImmutableValue<Boolean> johnny();
+    ImmutableValue.Single<Boolean> johnny();
 
 }

@@ -61,7 +61,7 @@ import java.util.stream.Collectors;
  * @param <I> The immutable data manipulator type
  */
 @SuppressWarnings("unchecked")
-public abstract class AbstractData<M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>> implements DataManipulator<M, I> {
+public abstract class AbstractData<M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>> implements DataManipulator<M,I> {
 
 
     // Ok, so, you're probably asking "Why the hell are you doing this type of hackery?"
@@ -77,7 +77,7 @@ public abstract class AbstractData<M extends DataManipulator<M, I>, I extends Im
     // The largest issue was implementation. Since most fields are simple to get and
     // set, other values, such as ItemStacks require a bit of finer tuning.
     //
-    private final Map<Key<?>, Supplier<MutableValue<?>>> keyValueMap = Maps.newHashMap();
+    private final Map<Key<?>, Supplier<Value<?>>> keyValueMap = Maps.newHashMap();
     private final Map<Key<?>, Supplier<?>> keyFieldGetterMap = Maps.newHashMap();
     private final Map<Key<?>, Consumer<Object>> keyFieldSetterMap = Maps.newHashMap();
 
@@ -93,7 +93,7 @@ public abstract class AbstractData<M extends DataManipulator<M, I>, I extends Im
      * @param key The key for the value return type
      * @param function The function for getting the value
      */
-    protected final void registerKeyValue(Key<?> key, Supplier<MutableValue<?>> function) {
+    protected final void registerKeyValue(Key<?> key, Supplier<Value<?>> function) {
         this.keyValueMap.put(checkNotNull(key), checkNotNull(function));
     }
 
@@ -175,9 +175,9 @@ public abstract class AbstractData<M extends DataManipulator<M, I>, I extends Im
     }
 
     @Override
-    public Set<ImmutableValue<?>> getValues() {
-        ImmutableSet.Builder<ImmutableValue<?>> builder = ImmutableSet.builder();
-        for (Supplier<MutableValue<?>> function : this.keyValueMap.values()) {
+    public Set<ImmutableValue<?, ?, ?>> getValues() {
+        ImmutableSet.Builder<ImmutableValue<?, ?, ?>> builder = ImmutableSet.builder();
+        for (Supplier<Value<?>> function : this.keyValueMap.values()) {
             builder.add(checkNotNull(function.get()).asImmutable());
         }
         return builder.build();

@@ -45,6 +45,6 @@ public interface WetData extends DataManipulator<WetData, ImmutableWetData> {
      * @return The value for the wet state
      * @see Keys#IS_WET
      */
-    MutableValue<Boolean> wet();
+    MutableValue.Single<Boolean> wet();
 
 }

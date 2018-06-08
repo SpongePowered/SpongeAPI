@@ -41,69 +41,69 @@ public interface ImmutableStructureData extends ImmutableDataManipulator<Immutab
      *
      * @return The value for the author
      */
-    ImmutableValue<String> author();
+    ImmutableValue.Single<String> author();
 
     /**
      * Gets the {@link ImmutableValue} for the ignore entities state of the {@link Structure}.
      *
      * @return The value for the ignore entities state
      */
-    ImmutableValue<Boolean> ignoreEntities();
+    ImmutableValue.Single<Boolean> ignoreEntities();
 
     /**
      * Gets the {@link ImmutableValue} for the integrity of the {@link Structure}.
      *
      * @return The value for the integrity
      */
-    ImmutableValue<Float> integrity();
+    ImmutableValue.Single<Float> integrity();
 
     /**
      * Gets the {@link ImmutableValue} for the mode of the {@link Structure}.
      *
      * @return The value for the mode
      */
-    ImmutableValue<StructureMode> mode();
+    ImmutableValue.Single<StructureMode> mode();
 
     /**
      * Gets the {@link ImmutableValue} for the position of the {@link Structure}.
      *
      * @return The value for the position
      */
-    ImmutableValue<Vector3i> position();
+    ImmutableValue.Single<Vector3i> position();
 
     /**
      * Gets the {@link ImmutableValue} for the powered state of the {@link Structure}.
      *
      * @return The value for the powered state
      */
-    ImmutableValue<Boolean> powered();
+    ImmutableValue.Single<Boolean> powered();
 
     /**
      * Gets the {@link ImmutableValue} for the seed of the {@link Structure}.
      *
      * @return The value for the seed
      */
-    ImmutableValue<Long> seed();
+    ImmutableValue.Single<Long> seed();
 
     /**
      * Gets the {@link ImmutableValue} for the show air state of the {@link Structure}.
      *
      * @return The value for the show air state
      */
-    ImmutableValue<Boolean> showAir();
+    ImmutableValue.Single<Boolean> showAir();
 
     /**
      * Gets the {@link ImmutableValue} for the show bounding box state of the {@link Structure}.
      *
      * @return The value for the show bounding box state
      */
-    ImmutableValue<Boolean> showBoundingBox();
+    ImmutableValue.Single<Boolean> showBoundingBox();
 
     /**
      * Gets the {@link ImmutableValue} for the size of the {@link Structure}.
      *
      * @return The value for the size
      */
-    ImmutableValue<Vector3i> size();
+    ImmutableValue.Single<Vector3i> size();
 
 }

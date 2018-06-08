@@ -42,6 +42,6 @@ public interface GlowingData extends DataManipulator<GlowingData, ImmutableGlowi
      * @return Whether the entity is glowing
      * @see Keys#GLOWING
      */
-    MutableValue<Boolean> glowing();
+    MutableValue.Single<Boolean> glowing();
 
 }

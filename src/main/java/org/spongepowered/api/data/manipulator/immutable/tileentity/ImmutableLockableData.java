@@ -43,6 +43,6 @@ public interface ImmutableLockableData extends ImmutableDataManipulator<Immutabl
      *
      * @return The immutable value for the lock token
      */
-    ImmutableValue<String> lockToken();
+    ImmutableValue.Single<String> lockToken();
 
 }

@@ -46,6 +46,6 @@ public interface SleepingData extends DataManipulator<SleepingData, ImmutableSle
      * @return The immutable value for ignoring sleep
      * @see Keys#IS_SLEEPING
      */
-    MutableValue<Boolean> sleeping();
+    MutableValue.Single<Boolean> sleeping();
 
 }

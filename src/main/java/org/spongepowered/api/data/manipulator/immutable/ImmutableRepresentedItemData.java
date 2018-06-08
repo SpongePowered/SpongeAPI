@@ -45,6 +45,6 @@ public interface ImmutableRepresentedItemData extends ImmutableDataManipulator<I
      *
      * @return The immutable value for the item stack snapshot
      */
-    ImmutableValue<ItemStackSnapshot> item();
+    ImmutableValue.Single<ItemStackSnapshot> item();
 
 }

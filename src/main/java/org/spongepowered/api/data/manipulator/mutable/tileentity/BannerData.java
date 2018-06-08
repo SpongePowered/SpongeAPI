@@ -46,7 +46,7 @@ public interface BannerData extends DataManipulator<BannerData, ImmutableBannerD
      * @return The value for the base color
      * @see Keys#BANNER_BASE_COLOR
      */
-    MutableValue<DyeColor> baseColor();
+    MutableValue.Single<DyeColor> baseColor();
 
     /**
      * Gets the {@link PatternMutableListValue} of all patterns for the

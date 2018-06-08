@@ -41,6 +41,6 @@ public interface AggressiveData extends DataManipulator<AggressiveData, Immutabl
      * @return The value for the aggressive state
      * @see Keys#ANGRY
      */
-    MutableValue<Boolean> aggressive();
+    MutableValue.Single<Boolean> aggressive();
 
 }

@@ -43,6 +43,6 @@ public interface ImmutableCooldownData extends ImmutableDataManipulator<Immutabl
      *
      * @return The immutable value for the cooldown remaining
      */
-    ImmutableValue<Integer> cooldown();
+    ImmutableValue.Single<Integer> cooldown();
 
 }

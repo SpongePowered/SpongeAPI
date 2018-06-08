@@ -42,6 +42,6 @@ public interface ShearedData extends DataManipulator<ShearedData, ImmutableShear
      * @return The value for the "sheared" state
      * @see Keys#IS_SHEARED
      */
-    MutableValue<Boolean> sheared();
+    MutableValue.Single<Boolean> sheared();
 
 }

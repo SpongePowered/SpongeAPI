@@ -42,6 +42,6 @@ public interface SnowedData extends DataManipulator<SnowedData, ImmutableSnowedD
      * @return The immutable value for the "snowed" state
      * @see Keys#SNOWED
      */
-    MutableValue<Boolean> hasSnow();
+    MutableValue.Single<Boolean> hasSnow();
 
 }

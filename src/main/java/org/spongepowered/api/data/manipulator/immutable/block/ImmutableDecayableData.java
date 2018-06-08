@@ -42,6 +42,6 @@ public interface ImmutableDecayableData extends ImmutableDataManipulator<Immutab
      *
      * @return The immutable value for the "decayable" state
      */
-    ImmutableValue<Boolean> decayable();
+    ImmutableValue.Single<Boolean> decayable();
 
 }

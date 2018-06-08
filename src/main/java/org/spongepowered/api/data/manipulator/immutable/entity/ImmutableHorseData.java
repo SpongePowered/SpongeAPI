@@ -42,13 +42,13 @@ public interface ImmutableHorseData extends ImmutableDataManipulator<ImmutableHo
      *
      * @return The immutable value for the horse color
      */
-    ImmutableValue<HorseColor> color();
+    ImmutableValue.Single<HorseColor> color();
 
     /**
      * Gets an {@link ImmutableValue} for the {@link HorseStyle}.
      *
      * @return The immutable value for the horse style
      */
-    ImmutableValue<HorseStyle> style();
+    ImmutableValue.Single<HorseStyle> style();
 
 }

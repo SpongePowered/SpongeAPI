@@ -44,7 +44,7 @@ public interface ImmutableBannerData extends ImmutableDataManipulator<ImmutableB
      *
      * @return The immutable value for the base color
      */
-    ImmutableValue<DyeColor> baseColor();
+    ImmutableValue.Single<DyeColor> baseColor();
 
     /**
      * Gets the {@link ImmutablePatternListValue} of all patterns for the

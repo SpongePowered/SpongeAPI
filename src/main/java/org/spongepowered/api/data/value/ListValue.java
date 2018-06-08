@@ -29,7 +29,7 @@ import org.spongepowered.api.data.value.mutable.MutableListValue;
 
 import java.util.List;
 
-public interface ListValue<E, V extends ListValue<E, V>> extends CollectionValue<E, List<E>, V> {
+public interface ListValue<E> extends CollectionValue<E, List<E>> {
 
     /**
      * Gets the desired element at the desired index.

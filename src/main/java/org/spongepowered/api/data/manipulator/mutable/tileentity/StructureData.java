@@ -41,69 +41,69 @@ public interface StructureData extends DataManipulator<StructureData, ImmutableS
      *
      * @return The value for the author
      */
-    MutableValue<String> author();
+    MutableValue.Single<String> author();
 
     /**
      * Gets the {@link MutableValue} for the ignore entities state of the {@link Structure}.
      *
      * @return The value for the ignore entities state
      */
-    MutableValue<Boolean> ignoreEntities();
+    MutableValue.Single<Boolean> ignoreEntities();
 
     /**
      * Gets the {@link MutableValue} for the integrity of the {@link Structure}.
      *
      * @return The value for the integrity
      */
-    MutableValue<Float> integrity();
+    MutableValue.Single<Float> integrity();
 
     /**
      * Gets the {@link MutableValue} for the mode of the {@link Structure}.
      *
      * @return The value for the mode
      */
-    MutableValue<StructureMode> mode();
+    MutableValue.Single<StructureMode> mode();
 
     /**
      * Gets the {@link MutableValue} for the position of the {@link Structure}.
      *
      * @return The value for the position
      */
-    MutableValue<Vector3i> position();
+    MutableValue.Single<Vector3i> position();
 
     /**
      * Gets the {@link MutableValue} for the powered state of the {@link Structure}.
      *
      * @return The value for the powered state
      */
-    MutableValue<Boolean> powered();
+    MutableValue.Single<Boolean> powered();
 
     /**
      * Gets the {@link MutableValue} for the seed of the {@link Structure}.
      *
      * @return The value for the seed
      */
-    MutableValue<Long> seed();
+    MutableValue.Single<Long> seed();
 
     /**
      * Gets the {@link MutableValue} for the show air state of the {@link Structure}.
      *
      * @return The value for the show air state
      */
-    MutableValue<Boolean> showAir();
+    MutableValue.Single<Boolean> showAir();
 
     /**
      * Gets the {@link MutableValue} for the show bounding box state of the {@link Structure}.
      *
      * @return The value for the show bounding box state
      */
-    MutableValue<Boolean> showBoundingBox();
+    MutableValue.Single<Boolean> showBoundingBox();
 
     /**
      * Gets the {@link MutableValue} for the size of the {@link Structure}.
      *
      * @return The value for the size
      */
-    MutableValue<Vector3i> size();
+    MutableValue.Single<Vector3i> size();
 
 }

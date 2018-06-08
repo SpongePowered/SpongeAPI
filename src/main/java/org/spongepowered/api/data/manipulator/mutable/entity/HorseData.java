@@ -44,7 +44,7 @@ public interface HorseData extends DataManipulator<HorseData, ImmutableHorseData
      * @return The value for the horse color
      * @see Keys#HORSE_COLOR
      */
-    MutableValue<HorseColor> color();
+    MutableValue.Single<HorseColor> color();
 
 
     /**
@@ -53,6 +53,6 @@ public interface HorseData extends DataManipulator<HorseData, ImmutableHorseData
      * @return The value for the horse style
      * @see Keys#HORSE_STYLE
      */
-    MutableValue<HorseStyle> style();
+    MutableValue.Single<HorseStyle> style();
 
 }

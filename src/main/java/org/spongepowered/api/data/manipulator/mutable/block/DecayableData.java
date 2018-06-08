@@ -43,6 +43,6 @@ public interface DecayableData extends DataManipulator<DecayableData, ImmutableD
      * @return The value for the "decayable" state
      * @see Keys#DECAYABLE
      */
-    MutableValue<Boolean> decayable();
+    MutableValue.Single<Boolean> decayable();
 
 }

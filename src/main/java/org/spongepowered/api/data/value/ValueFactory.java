@@ -51,7 +51,7 @@ public interface ValueFactory {
      * @param <E> The type of element
      * @return The newly created value
      */
-    <E> MutableValue<E> createValue(Key<MutableValue<E>> key, E element);
+    <E> MutableValue.Single<E> createValue(Key<Value<E>> key, E element);
 
     /**
      * Creates a new {@link MutableValue} with the provided {@link Key} and the
@@ -63,7 +63,7 @@ public interface ValueFactory {
      * @param <E> The type of element
      * @return The newly created value
      */
-    <E> MutableValue<E> createValue(Key<MutableValue<E>> key, E element, E defaultValue);
+    <E> MutableValue.Single<E> createValue(Key<Value<E>> key, E element, E defaultValue);
 
     /**
      * Creates a new {@link MutableListValue} with the provided {@link Key} and

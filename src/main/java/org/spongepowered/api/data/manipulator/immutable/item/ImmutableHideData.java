@@ -40,41 +40,41 @@ public interface ImmutableHideData extends ImmutableDataManipulator<ImmutableHid
      *
      * @return The immutable value for the enchantments hidden state
      */
-    ImmutableValue<Boolean> hideEnchantments();
+    ImmutableValue.Single<Boolean> hideEnchantments();
 
     /**
      * Gets the {@link ImmutableValue} for the "attributes hidden" state of an itemstack.
      *
      * @return The immutable value for the attributes hidden state
      */
-    ImmutableValue<Boolean> hideAttributes();
+    ImmutableValue.Single<Boolean> hideAttributes();
 
     /**
      * Gets the {@link ImmutableValue} for the "unbreakable hidden" state of an itemstack.
      *
      * @return The immutable value for the unbreakable hidden state
      */
-    ImmutableValue<Boolean> hideUnbreakable();
+    ImmutableValue.Single<Boolean> hideUnbreakable();
 
     /**
      * Gets the {@link ImmutableValue} for the "can destroy hidden" state of an itemstack.
      *
      * @return The immutable value for the can destroy hidden state
      */
-    ImmutableValue<Boolean> hideCanDestroy();
+    ImmutableValue.Single<Boolean> hideCanDestroy();
 
     /**
      * Gets the {@link ImmutableValue} for the "can destroy hidden" state of an itemstack.
      *
      * @return The immutable value for the can place hidden state
      */
-    ImmutableValue<Boolean> hideCanPlace();
+    ImmutableValue.Single<Boolean> hideCanPlace();
 
     /**
      * Gets the {@link ImmutableValue} for the "miscellaneous hidden" state of an itemstack.
      *
      * @return The immutable value for the miscellaneous hidden state
      */
-    ImmutableValue<Boolean> hideMiscellaneous();
+    ImmutableValue.Single<Boolean> hideMiscellaneous();
 
 }

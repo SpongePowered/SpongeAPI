@@ -37,14 +37,14 @@ public interface ImmutableArmorStandData extends ImmutableDataManipulator<Immuta
      *
      * @return Whether this armor stand is a marker
      */
-    ImmutableValue<Boolean> marker();
+    ImmutableValue.Single<Boolean> marker();
 
     /**
      * Returns whether this armor stand is a small armor stand or not.
      *
      * @return Whether this is a small armor stand
      */
-    ImmutableValue<Boolean> small();
+    ImmutableValue.Single<Boolean> small();
 
     /**
      * Returns whether this armor stand shows arms or not.
@@ -52,13 +52,13 @@ public interface ImmutableArmorStandData extends ImmutableDataManipulator<Immuta
      *
      * @return Whether this armor stand shows its arms
      */
-    ImmutableValue<Boolean> arms();
+    ImmutableValue.Single<Boolean> arms();
 
     /**
      * Gets whether this armor stand has a visible base plate or not.
      *
      * @return Whether this armor stand has a visible base plate
      */
-    ImmutableValue<Boolean> basePlate();
+    ImmutableValue.Single<Boolean> basePlate();
 
 }

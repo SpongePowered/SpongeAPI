@@ -42,7 +42,7 @@ public interface ImmutableAreaEffectCloudData extends ImmutableDataManipulator<I
      *
      * @return The color of this cloud
      */
-    ImmutableValue<Color> color();
+    ImmutableValue.Single<Color> color();
 
     /**
      * Gets the {@code radius} value of this cloud.
@@ -56,7 +56,7 @@ public interface ImmutableAreaEffectCloudData extends ImmutableDataManipulator<I
      *
      * @return The particle type of this cloud
      */
-    ImmutableValue<ParticleType> particleType();
+    ImmutableValue.Single<ParticleType> particleType();
 
     /**
      * Gets the bounded {@code duration} value of this cloud.

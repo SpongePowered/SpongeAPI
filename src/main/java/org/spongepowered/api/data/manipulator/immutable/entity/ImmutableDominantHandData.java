@@ -51,6 +51,6 @@ public interface ImmutableDominantHandData extends ImmutableVariantData<HandPref
      *
      * @return The value for handedness
      */
-    ImmutableValue<HandPreference> dominantHand();
+    ImmutableValue.Single<HandPreference> dominantHand();
 
 }

@@ -43,7 +43,7 @@ public interface AreaEffectCloudData extends DataManipulator<AreaEffectCloudData
      * @return The color of this cloud
      * @see Keys#AREA_EFFECT_CLOUD_COLOR
      */
-    MutableValue<Color> color();
+    MutableValue.Single<Color> color();
 
     /**
      * Gets the {@code radius} value of this cloud.
@@ -59,7 +59,7 @@ public interface AreaEffectCloudData extends DataManipulator<AreaEffectCloudData
      * @return The particle type of this cloud
      * @see Keys#AREA_EFFECT_CLOUD_PARTICLE_TYPE
      */
-    MutableValue<ParticleType> particleType();
+    MutableValue.Single<ParticleType> particleType();
 
     /**
      * Gets the bounded {@code duration} value of this cloud.

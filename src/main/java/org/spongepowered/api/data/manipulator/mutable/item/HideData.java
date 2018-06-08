@@ -42,7 +42,7 @@ public interface HideData extends DataManipulator<HideData, ImmutableHideData> {
      * @return The value for the enchantments hidden state
      * @see Keys#HIDE_ENCHANTMENTS
      */
-    MutableValue<Boolean> hideEnchantments();
+    MutableValue.Single<Boolean> hideEnchantments();
 
     /**
      * Gets the {@link MutableValue} for the "attributes hidden" state of an itemstack.
@@ -50,7 +50,7 @@ public interface HideData extends DataManipulator<HideData, ImmutableHideData> {
      * @return The value for the attributes hidden state
      * @see Keys#HIDE_ATTRIBUTES
      */
-    MutableValue<Boolean> hideAttributes();
+    MutableValue.Single<Boolean> hideAttributes();
 
     /**
      * Gets the {@link MutableValue} for the "unbreakable hidden" state of an itemstack.
@@ -58,7 +58,7 @@ public interface HideData extends DataManipulator<HideData, ImmutableHideData> {
      * @return The value for the unbreakable hidden state
      * @see Keys#HIDE_UNBREAKABLE
      */
-    MutableValue<Boolean> hideUnbreakable();
+    MutableValue.Single<Boolean> hideUnbreakable();
 
     /**
      * Gets the {@link MutableValue} for the "can destroy hidden" state of an itemstack.
@@ -66,7 +66,7 @@ public interface HideData extends DataManipulator<HideData, ImmutableHideData> {
      * @return The value for the can destroy hidden state
      * @see Keys#HIDE_CAN_DESTROY
      */
-    MutableValue<Boolean> hideCanDestroy();
+    MutableValue.Single<Boolean> hideCanDestroy();
 
     /**
      * Gets the {@link MutableValue} for the "can place hidden" state of an itemstack.
@@ -74,7 +74,7 @@ public interface HideData extends DataManipulator<HideData, ImmutableHideData> {
      * @return The value for the can place hidden state
      * @see Keys#HIDE_CAN_PLACE
      */
-    MutableValue<Boolean> hideCanPlace();
+    MutableValue.Single<Boolean> hideCanPlace();
 
     /**
      * Gets the {@link MutableValue} for the "miscellaneous hidden" state of an itemstack.
@@ -82,6 +82,6 @@ public interface HideData extends DataManipulator<HideData, ImmutableHideData> {
      * @return The value for the miscellaneous hidden state
      * @see Keys#HIDE_MISCELLANEOUS
      */
-    MutableValue<Boolean> hideMiscellaneous();
+    MutableValue.Single<Boolean> hideMiscellaneous();
 
 }

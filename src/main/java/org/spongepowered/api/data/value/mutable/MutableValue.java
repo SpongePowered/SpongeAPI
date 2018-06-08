@@ -80,6 +80,9 @@ public interface MutableValue<E, V extends MutableValue<E, V, I>, I extends Immu
         return (V) this;
     }
 
+    interface Single<E> extends MutableValue<E, Single<E>, ImmutableValue.Single<E>> {
+
+    }
 
 
 }

@@ -41,7 +41,7 @@ public interface ImmutableSlimeData extends ImmutableDataManipulator<ImmutableSl
      *
      * @return The immutable value for a slime
      */
-    ImmutableValue<Integer> size();
+    ImmutableValue.Single<Integer> size();
 
 }
 

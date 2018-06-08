@@ -43,6 +43,6 @@ public interface SneakingData extends DataManipulator<SneakingData, ImmutableSne
      * @return The value for the "sneaking" state
      * @see Keys#IS_SNEAKING
      */
-    MutableValue<Boolean> sneaking();
+    MutableValue.Single<Boolean> sneaking();
 
 }

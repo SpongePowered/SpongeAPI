@@ -40,6 +40,6 @@ public interface ImmutableExtendedData extends ImmutableDataManipulator<Immutabl
      *
      * @return The immutable value for the "extended" state
      */
-    ImmutableValue<Boolean> extended();
+    ImmutableValue.Single<Boolean> extended();
 
 }

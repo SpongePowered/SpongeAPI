@@ -46,6 +46,6 @@ public interface DropData extends DataManipulator<DropData, ImmutableDropData> {
      * @return The value for the "droppable" state
      * @see Keys#SHOULD_DROP
      */
-    MutableValue<Boolean> willDrop();
+    MutableValue.Single<Boolean> willDrop();
 
 }

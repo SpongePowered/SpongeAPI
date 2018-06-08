@@ -43,6 +43,6 @@ public interface PlayerCreatedData extends DataManipulator<PlayerCreatedData, Im
      * @return The value for the "player created" state
      * @see Keys#PLAYER_CREATED
      */
-    MutableValue<Boolean> playerCreated();
+    MutableValue.Single<Boolean> playerCreated();
 
 }

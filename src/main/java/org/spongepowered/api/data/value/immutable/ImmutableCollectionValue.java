@@ -29,7 +29,6 @@ import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.data.value.mutable.MutableCollectionValue;
 
 import java.util.Collection;
-import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
@@ -48,7 +47,7 @@ public interface ImmutableCollectionValue<
     C extends Collection<E>,
     I extends ImmutableCollectionValue<E, C, I, M>,
     M extends MutableCollectionValue<E, C, M, I>>
-    extends ImmutableValue<C, I, M>, CollectionValue<E, C, I> {
+    extends ImmutableValue<C, I, M>, CollectionValue<E, C> {
 
     /**
      * Gets the size of the underlying collection of elements.

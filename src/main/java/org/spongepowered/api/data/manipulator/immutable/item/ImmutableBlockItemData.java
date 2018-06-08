@@ -53,6 +53,6 @@ public interface ImmutableBlockItemData extends ImmutableDataManipulator<Immutab
      *
      * @return The immutable value for the currently represented block state
      */
-    ImmutableValue<BlockState> state();
+    ImmutableValue.Single<BlockState> state();
 
 }

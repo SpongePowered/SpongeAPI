@@ -41,7 +41,7 @@ public interface ColoredData extends DataManipulator<ColoredData, ImmutableColor
      * @return The value for the color
      * @see Keys#COLOR
      */
-    MutableValue<Color> color();
+    MutableValue.Single<Color> color();
 
 
 }

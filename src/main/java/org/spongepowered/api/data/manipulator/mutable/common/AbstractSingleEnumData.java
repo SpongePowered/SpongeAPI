@@ -59,7 +59,7 @@ public abstract class AbstractSingleEnumData<E extends Enum<E>, M extends DataMa
 
     @SuppressWarnings("unchecked")
     @Override
-    protected MutableValue<E> getValueGetter() {
-        return Sponge.getRegistry().getValueFactory().createValue((Key<MutableValue<E>>) this.usedKey, this.getValue(), this.defaultValue);
+    protected MutableValue.Single<E> getValueGetter() {
+        return Sponge.getRegistry().getValueFactory().createValue((Key<MutableValue.Single<E>>) this.usedKey, this.getValue(), this.defaultValue);
     }
 }

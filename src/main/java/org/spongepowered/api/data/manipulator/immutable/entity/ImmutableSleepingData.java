@@ -42,7 +42,7 @@ public interface ImmutableSleepingData extends ImmutableDataManipulator<Immutabl
      *
      * @return The immutable value for the "sleeping" state
      */
-    ImmutableValue<Boolean> sleeping();
+    ImmutableValue.Single<Boolean> sleeping();
 
     /**
      * Gets the {@link ImmutableValue} for whether the owning {@link Player}'s
@@ -51,7 +51,7 @@ public interface ImmutableSleepingData extends ImmutableDataManipulator<Immutabl
      *
      * @return The immutable value for ignoring sleep
      */
-    ImmutableValue<Boolean> ignoreSleeping();
+    ImmutableValue.Single<Boolean> ignoreSleeping();
 
 }
 
