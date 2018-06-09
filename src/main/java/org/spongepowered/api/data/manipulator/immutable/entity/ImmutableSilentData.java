@@ -42,6 +42,6 @@ public interface ImmutableSilentData extends ImmutableDataManipulator<ImmutableS
      *
      * @return The immutable value for the silent state
      */
-    Value.Immutable.Single<Boolean> silent();
+    Value.Immutable<Boolean> silent();
 
 }

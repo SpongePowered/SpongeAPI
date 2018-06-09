@@ -44,7 +44,7 @@ public abstract class AbstractImmutableSingleEnumData<E extends Enum<E>, I exten
         extends AbstractImmutableSingleData<E, I, M> {
 
     private final E defaultValue;
-    private final Value.Immutable.Single<E> cachedValue;
+    private final Value.Immutable<E> cachedValue;
 
     protected AbstractImmutableSingleEnumData(E value, E defaultValue, Key<Value.Mutable<E>> usedKey) {
         super(value, usedKey);
@@ -52,12 +52,12 @@ public abstract class AbstractImmutableSingleEnumData<E extends Enum<E>, I exten
         this.cachedValue = Sponge.getRegistry().getValueFactory().createValue(usedKey, this.defaultValue, this.value).asImmutable();
     }
 
-    protected final Value.Immutable.Single<E> enumType() {
+    protected final Value.Immutable<E> enumType() {
         return this.cachedValue;
     }
 
     @Override
-    protected final Value.Immutable.Single<E> getValueGetter() {
+    protected final Value.Immutable<E> getValueGetter() {
         return this.cachedValue;
     }
 

@@ -44,7 +44,7 @@ public interface ImmutableJoinData extends ImmutableDataManipulator<ImmutableJoi
      *
      * @return The immutable value for the first time a player joined
      */
-    Value.Immutable.Single<Instant> firstPlayed();
+    Value.Immutable<Instant> firstPlayed();
 
     /**
      * Gets the {@link Value.Immutable} of the {@link Instant} that a
@@ -52,6 +52,6 @@ public interface ImmutableJoinData extends ImmutableDataManipulator<ImmutableJoi
      *
      * @return The immutable value for the last time a player joined
      */
-    Value.Immutable.Single<Instant> lastPlayed();
+    Value.Immutable<Instant> lastPlayed();
 
 }

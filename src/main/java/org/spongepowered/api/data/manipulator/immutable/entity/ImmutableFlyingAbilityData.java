@@ -43,6 +43,6 @@ public interface ImmutableFlyingAbilityData extends ImmutableDataManipulator<Imm
      *
      * @return The immutable value for being able to toggle "flying"
      */
-    Value.Immutable.Single<Boolean> canFly();
+    Value.Immutable<Boolean> canFly();
 
 }

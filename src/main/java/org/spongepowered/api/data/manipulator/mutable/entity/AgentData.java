@@ -40,6 +40,6 @@ public interface AgentData extends DataManipulator<AgentData, ImmutableAgentData
      * @return The value for the current "enabled" state of ai tasks
      * @see Keys#AI_ENABLED
      */
-    Value.Mutable.Single<Boolean> aiEnabled();
+    Value.Mutable<Boolean> aiEnabled();
 
 }

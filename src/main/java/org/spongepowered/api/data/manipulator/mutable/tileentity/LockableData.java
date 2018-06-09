@@ -45,6 +45,6 @@ public interface LockableData extends DataManipulator<LockableData, ImmutableLoc
      * @return The immutable value for the lock token
      * @see Keys#LOCK_TOKEN
      */
-    Value.Mutable.Single<String> lockToken();
+    Value.Mutable<String> lockToken();
 
 }

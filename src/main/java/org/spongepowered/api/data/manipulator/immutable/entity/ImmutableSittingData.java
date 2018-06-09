@@ -43,6 +43,6 @@ public interface ImmutableSittingData extends ImmutableDataManipulator<Immutable
      *
      * @return The immutable value for the sitting states
      */
-    Value.Immutable.Single<Boolean> sitting();
+    Value.Immutable<Boolean> sitting();
 
 }

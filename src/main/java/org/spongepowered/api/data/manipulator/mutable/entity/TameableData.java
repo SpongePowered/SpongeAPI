@@ -44,12 +44,12 @@ import java.util.UUID;
 public interface TameableData extends DataManipulator<TameableData, ImmutableTameableData> {
 
     /**
-     * Gets the {@link OptionalValue.MutableOptionalValue} for the {@link UUID} of the
+     * Gets the {@link OptionalValue.Mutable} for the {@link UUID} of the
      * {@link Tamer}.
      *
      * @return The optional value for the uuid of the tamer
      * @see Keys#TAMED_OWNER
      */
-    OptionalValue.MutableOptionalValue<UUID> owner();
+    OptionalValue.Mutable<UUID> owner();
 
 }

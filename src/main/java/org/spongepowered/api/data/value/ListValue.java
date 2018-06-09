@@ -46,6 +46,11 @@ public interface ListValue<E> extends CollectionValue<E, List<E>> {
      */
     int indexOf(E element);
 
+    @Override
+    ListValue.Mutable<E> asMutable();
+    @Override
+    ListValue.Immutable<E> asImmutable();
+
     /**
      * A type of {@link CollectionValue.Mutable} that is backed by a {@link List}. All
      * mutator methods provided are similar to those existing in {@link List} with
@@ -98,6 +103,13 @@ public interface ListValue<E> extends CollectionValue<E, List<E>> {
          */
         ListValue.Mutable<E> set(int index, E element);
 
+        @Override
+        default ListValue.Mutable<E> asMutable() {
+            return this;
+        }
+
+        @Override
+        ListValue.Immutable<E> asImmutable();
     }
 
     /**
@@ -154,5 +166,12 @@ public interface ListValue<E> extends CollectionValue<E, List<E>> {
          */
         ListValue.Immutable<E> set(int index, E element);
 
+        @Override
+        ListValue.Mutable<E> asMutable();
+
+        @Override
+        default ListValue.Immutable<E> asImmutable() {
+            return this;
+        }
     }
 }

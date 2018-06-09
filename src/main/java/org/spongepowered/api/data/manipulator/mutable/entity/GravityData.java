@@ -43,6 +43,6 @@ public interface GravityData extends DataManipulator<GravityData, ImmutableGravi
      * @return Whether the entity is affected by gravity
      * @see Keys#HAS_GRAVITY
      */
-    Value.Mutable.Single<Boolean> gravity();
+    Value.Mutable<Boolean> gravity();
 
 }

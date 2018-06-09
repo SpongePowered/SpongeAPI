@@ -94,7 +94,7 @@ public interface CommandBlockSource extends Locatable, CommandSource, DataHolder
      *
      * @return The last command output, if available
      */
-    default OptionalValue.MutableOptionalValue<Text> lastOutput() {
+    default OptionalValue.Mutable<Text> lastOutput() {
         return getValue(Keys.LAST_COMMAND_OUTPUT).get();
     }
 

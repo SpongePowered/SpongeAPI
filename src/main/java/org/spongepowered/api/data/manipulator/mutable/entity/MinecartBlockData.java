@@ -39,7 +39,7 @@ public interface MinecartBlockData extends DataManipulator<MinecartBlockData, Im
      * @return The represented block
      * @see Keys#REPRESENTED_BLOCK
      */
-    Value.Mutable.Single<BlockState> block();
+    Value.Mutable<BlockState> block();
 
     /**
      * Gets the offset of the represented block, in "pixels".
@@ -50,6 +50,6 @@ public interface MinecartBlockData extends DataManipulator<MinecartBlockData, Im
      * @return The block offset
      * @see Keys#OFFSET
      */
-    Value.Mutable.Single<Integer> offset();
+    Value.Mutable<Integer> offset();
 
 }

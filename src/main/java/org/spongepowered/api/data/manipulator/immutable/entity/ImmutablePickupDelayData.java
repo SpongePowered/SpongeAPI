@@ -49,6 +49,6 @@ public interface ImmutablePickupDelayData extends ImmutableDataManipulator<Immut
      *
      * @return The value for the "is infinite" state
      */
-    Value.Immutable.Single<Boolean> infinite();
+    Value.Immutable<Boolean> infinite();
 
 }

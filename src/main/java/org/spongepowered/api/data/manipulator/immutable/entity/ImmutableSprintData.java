@@ -41,6 +41,6 @@ public interface ImmutableSprintData extends ImmutableDataManipulator<ImmutableS
      *
      * @return The immutable value for the sprinting state
      */
-    Value.Immutable.Single<Boolean> sprinting();
+    Value.Immutable<Boolean> sprinting();
 
 }

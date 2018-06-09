@@ -42,6 +42,6 @@ public interface ImmutablePoweredData extends ImmutableDataManipulator<Immutable
      *
      * @return The immutable value for the "powered" state
      */
-    Value.Immutable.Single<Boolean> powered();
+    Value.Immutable<Boolean> powered();
 
 }

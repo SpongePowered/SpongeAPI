@@ -94,9 +94,27 @@ public interface Value<E> {
      */
     Key<? extends Value<E>> getKey();
 
-    Mutable<E, ?, ?> asMutable();
+    /**
+     * Retrieves a mutable form of this value. Due to the vague nature of the
+     * value itself, some cases can already provide a {@link Mutable} instance
+     * where this would simply return itself. In other cases, where the retrieved
+     * value is an {@link Immutable} instance, a new mutable value is created
+     * with the same key, values, and defaults.
+     *
+     * @return A mutable value
+     */
+    Mutable<E> asMutable();
 
-    Immutable<E, ?, ?> asImmutable();
+    /**
+     * Retrieves an immutable form of this value. Due to the vague nature of the
+     * value itself, some cases can already provide a {@link Immutable} instance
+     * where this would simply return itself. In other cases, where the retrieved
+     * value is a {@link Mutable} instance, a new immutable value is created
+     * with the same key, values, and defaults.
+     *
+     * @return An immutable value
+     */
+    Immutable<E> asImmutable();
 
     /**
      * Represents a type of {@link Value} that is mutable. Simply put, the
@@ -104,7 +122,7 @@ public interface Value<E> {
      *
      * @param <E> The type of element
      */
-    interface Mutable<E, V extends Mutable<E, V, I>, I extends Immutable<E, I, V>> extends Value<E> {
+    interface Mutable<E> extends Value<E> {
 
         /**
          * Sets the underlying value to the provided {@code value}.
@@ -112,7 +130,7 @@ public interface Value<E> {
          * @param value The value to set
          * @return The owning {@link ValueContainer}
          */
-        V set(E value);
+        Mutable<E> set(E value);
 
         /**
          * Attempts to transform the underlying value based on the provided
@@ -122,7 +140,7 @@ public interface Value<E> {
          * @param function The function to apply on the existing value
          * @return The owning {@link ValueContainer}
          */
-        Mutable transform(Function<E, E> function);
+        Mutable<E> transform(Function<E, E> function);
 
         /**
          * Gets the {@link Immutable} version of this {@link Mutable} such that
@@ -132,13 +150,13 @@ public interface Value<E> {
          * @return A new {@link Immutable} instance
          */
         @Override
-        I asImmutable();
+        Immutable<E> asImmutable();
 
 
         @SuppressWarnings("unchecked")
         @Override
-        default V asMutable() {
-            return (V) this;
+        default Mutable<E> asMutable() {
+            return this;
         }
 
         /**
@@ -148,12 +166,7 @@ public interface Value<E> {
          *
          * @return A new copy of this {@link Mutable}
          */
-        V copy();
-
-        interface Single<E> extends Mutable<E, Single<E>, Immutable.Single<E>> {
-
-        }
-
+        Mutable<E> copy();
 
     }
 
@@ -174,7 +187,7 @@ public interface Value<E> {
      *
      * @param <E> The type of value
      */
-    interface Immutable<E, I extends Immutable<E, I, M>, M extends Mutable<E, M, I>> extends Value<E> {
+    interface Immutable<E> extends Value<E> {
 
         /**
          * Creates a new {@link Immutable} with the given <code>E</code> typed
@@ -186,7 +199,7 @@ public interface Value<E> {
          * @return The owning {@link ValueContainer}, a new instance if it too is
          *     immutable
          */
-        I with(E value);
+        Immutable<E> with(E value);
 
         /**
          * Retrieves the underlying value for this {@link Immutable} and
@@ -202,7 +215,7 @@ public interface Value<E> {
          * @return The owning {@link ValueContainer}, a new instance if it too is
          *     immutable
          */
-        I transform(Function<E, E> function);
+        Immutable<E> transform(Function<E, E> function);
 
         /**
          * Creates a mutable {@link Mutable} for this {@link Immutable}.
@@ -210,16 +223,12 @@ public interface Value<E> {
          * @return A mutable value
          */
         @Override
-        M asMutable();
+        Mutable<E> asMutable();
 
         @SuppressWarnings("unchecked")
         @Override
-        default I asImmutable() {
-            return (I) this;
-        }
-
-        interface Single<E> extends Immutable<E, Single<E>, Mutable.Single<E>> {
-
+        default Immutable<E> asImmutable() {
+            return this;
         }
 
     }

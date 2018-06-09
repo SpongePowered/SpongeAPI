@@ -43,6 +43,6 @@ public interface ImmutableNoteData extends ImmutableDataManipulator<ImmutableNot
      * @return The immutable value for the note pitch
      * @see Keys#NOTE_PITCH
      */
-    Value.Immutable.Single<NotePitch> note();
+    Value.Immutable<NotePitch> note();
 
 }

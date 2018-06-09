@@ -44,6 +44,6 @@ public interface SittingData extends DataManipulator<SittingData, ImmutableSitti
      * @return The value for the sitting states
      * @see Keys#IS_SITTING
      */
-    Value.Mutable.Single<Boolean> sitting();
+    Value.Mutable<Boolean> sitting();
 
 }

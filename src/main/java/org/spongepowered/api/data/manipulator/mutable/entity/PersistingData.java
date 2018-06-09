@@ -47,6 +47,6 @@ public interface PersistingData extends DataManipulator<PersistingData, Immutabl
      * @return The value for the persisting state
      * @see Keys#PERSISTS
      */
-    Value.Mutable.Single<Boolean> persists();
+    Value.Mutable<Boolean> persists();
 
 }

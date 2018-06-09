@@ -44,6 +44,6 @@ public interface ElytraFlyingData extends DataManipulator<ElytraFlyingData, Immu
      * @return The elytra flying state value
      * @see Keys#IS_ELYTRA_FLYING
      */
-    Value.Mutable.Single<Boolean> elytraFlying();
+    Value.Mutable<Boolean> elytraFlying();
 
 }

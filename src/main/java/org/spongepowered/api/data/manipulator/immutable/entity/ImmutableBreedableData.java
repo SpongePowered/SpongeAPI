@@ -41,6 +41,6 @@ public interface ImmutableBreedableData extends ImmutableDataManipulator<Immutab
      *
      * @return The value for the "breedable" state
      */
-    Value.Immutable.Single<Boolean> breedable();
+    Value.Immutable<Boolean> breedable();
 
 }

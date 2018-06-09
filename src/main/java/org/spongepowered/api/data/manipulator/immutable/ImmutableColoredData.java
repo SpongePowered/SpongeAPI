@@ -42,6 +42,6 @@ public interface ImmutableColoredData extends ImmutableDataManipulator<Immutable
      *
      * @return The immutable value for the color
      */
-    Value.Immutable.Single<Color> color();
+    Value.Immutable<Color> color();
 
 }

@@ -42,6 +42,6 @@ public interface ImmutableVelocityData extends ImmutableDataManipulator<Immutabl
      *
      * @return The immutable value for the current velocity
      */
-    Value.Immutable.Single<Vector3d> velocity();
+    Value.Immutable<Vector3d> velocity();
 
 }

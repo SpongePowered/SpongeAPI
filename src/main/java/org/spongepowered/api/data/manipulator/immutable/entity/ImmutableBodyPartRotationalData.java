@@ -54,7 +54,7 @@ public interface ImmutableBodyPartRotationalData extends ImmutableDataManipulato
      *
      * @return The immutable rotation value for the head rotation
      */
-    Value.Immutable.Single<Vector3d> headDirection();
+    Value.Immutable<Vector3d> headDirection();
 
     /**
      * Gets the individual {@link Value.Immutable} of the {@link Vector3d}
@@ -62,7 +62,7 @@ public interface ImmutableBodyPartRotationalData extends ImmutableDataManipulato
      *
      * @return The immutable rotation value for the chest rotation
      */
-    Value.Immutable.Single<Vector3d> bodyRotation();
+    Value.Immutable<Vector3d> bodyRotation();
 
     /**
      * Gets the individual {@link Value.Immutable} of the {@link Vector3d}
@@ -70,7 +70,7 @@ public interface ImmutableBodyPartRotationalData extends ImmutableDataManipulato
      *
      * @return The immutable rotation value for the left arm rotation
      */
-    Value.Immutable.Single<Vector3d> leftArmDirection();
+    Value.Immutable<Vector3d> leftArmDirection();
 
     /**
      * Gets the individual {@link Value.Immutable} of the {@link Vector3d}
@@ -78,7 +78,7 @@ public interface ImmutableBodyPartRotationalData extends ImmutableDataManipulato
      *
      * @return The immutable rotation value for the right arm rotation
      */
-    Value.Immutable.Single<Vector3d> rightArmDirection();
+    Value.Immutable<Vector3d> rightArmDirection();
 
     /**
      * Gets the individual {@link Value.Immutable} of the {@link Vector3d}
@@ -86,7 +86,7 @@ public interface ImmutableBodyPartRotationalData extends ImmutableDataManipulato
      *
      * @return The immutable rotation value for the left leg rotation
      */
-    Value.Immutable.Single<Vector3d> leftLegDirection();
+    Value.Immutable<Vector3d> leftLegDirection();
 
     /**
      * Gets the individual {@link Value.Immutable} of the {@link Vector3d}
@@ -94,6 +94,6 @@ public interface ImmutableBodyPartRotationalData extends ImmutableDataManipulato
      *
      * @return The immutable rotation value for the right leg rotation
      */
-    Value.Immutable.Single<Vector3d> rightLegDirection();
+    Value.Immutable<Vector3d> rightLegDirection();
 
 }

@@ -52,6 +52,6 @@ public interface DespawnDelayData extends DataManipulator<DespawnDelayData, Immu
      * @return The value for the "is infinite" state
      * @see Keys#INFINITE_DESPAWN_DELAY
      */
-    Value.Mutable.Single<Boolean> infinite();
+    Value.Mutable<Boolean> infinite();
 
 }

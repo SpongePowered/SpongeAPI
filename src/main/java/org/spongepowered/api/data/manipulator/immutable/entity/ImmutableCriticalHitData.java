@@ -40,6 +40,6 @@ public interface ImmutableCriticalHitData extends ImmutableDataManipulator<Immut
      *
      * @return The immutable value for the "critical hit" state
      */
-    Value.Immutable.Single<Boolean> criticalHit();
+    Value.Immutable<Boolean> criticalHit();
 
 }

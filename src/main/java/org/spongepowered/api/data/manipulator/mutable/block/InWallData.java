@@ -45,6 +45,6 @@ public interface InWallData extends DataManipulator<InWallData, ImmutableInWallD
      * @return The value for the in "in-wall" state
      * @see Keys#IN_WALL
      */
-    Value.Mutable.Single<Boolean> inWall();
+    Value.Mutable<Boolean> inWall();
 
 }

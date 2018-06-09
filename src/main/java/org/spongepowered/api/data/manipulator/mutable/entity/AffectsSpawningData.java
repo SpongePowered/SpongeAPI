@@ -48,6 +48,6 @@ public interface AffectsSpawningData extends DataManipulator<AffectsSpawningData
      * @return The value for the affects spawning state
      * @see Keys#AFFECTS_SPAWNING
      */
-    Value.Mutable.Single<Boolean> affectsSpawning();
+    Value.Mutable<Boolean> affectsSpawning();
 
 }

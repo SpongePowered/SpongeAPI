@@ -40,6 +40,6 @@ public interface ImmutablePlayingData extends ImmutableDataManipulator<Immutable
      *
      * @return The immutable value for the playing state
      */
-    Value.Immutable.Single<Boolean> playing();
+    Value.Immutable<Boolean> playing();
 
 }

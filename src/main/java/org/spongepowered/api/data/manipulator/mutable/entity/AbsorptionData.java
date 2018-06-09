@@ -40,6 +40,6 @@ public interface AbsorptionData extends DataManipulator<AbsorptionData, Immutabl
      *
      * @return The value for the absorption
      */
-    Value.Mutable.Single<Double> absorption();
+    Value.Mutable<Double> absorption();
 
 }

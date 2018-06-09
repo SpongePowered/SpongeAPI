@@ -42,6 +42,6 @@ public interface ExtendedData extends DataManipulator<ExtendedData, ImmutableExt
      * @return The value for the "extended" state
      * @see Keys#EXTENDED
      */
-    Value.Mutable.Single<Boolean> extended();
+    Value.Mutable<Boolean> extended();
 
 }

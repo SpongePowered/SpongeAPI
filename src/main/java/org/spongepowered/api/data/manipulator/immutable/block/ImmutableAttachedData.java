@@ -38,6 +38,6 @@ public interface ImmutableAttachedData extends ImmutableDataManipulator<Immutabl
      *
      * @return The "attached" immutable value state
      */
-    Value.Immutable.Single<Boolean> attached();
+    Value.Immutable<Boolean> attached();
 
 }

@@ -173,8 +173,8 @@ public abstract class AbstractData<M extends DataManipulator<M, I>, I extends Im
     }
 
     @Override
-    public Set<Value.Immutable<?, ?, ?>> getValues() {
-        ImmutableSet.Builder<Value.Immutable<?, ?, ?>> builder = ImmutableSet.builder();
+    public Set<Value.Immutable<?>> getValues() {
+        ImmutableSet.Builder<Value.Immutable<?>> builder = ImmutableSet.builder();
         for (Supplier<Value<?>> function : this.keyValueMap.values()) {
             builder.add(checkNotNull(function.get()).asImmutable());
         }

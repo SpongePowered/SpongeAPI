@@ -39,6 +39,6 @@ public interface ImmutableGlowingData extends ImmutableDataManipulator<Immutable
      * Gets the {@link Value.Mutable} representing whether something is glowing.
      * @return The value for glowing
      */
-    Value.Immutable.Single<Boolean> glowing();
+    Value.Immutable<Boolean> glowing();
 
 }

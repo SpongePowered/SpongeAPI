@@ -44,6 +44,6 @@ public interface ImmutableGriefingData extends ImmutableDataManipulator<Immutabl
      *
      * @return The immutable value of the griefing state
      */
-    Value.Immutable.Single<Boolean> canGrief();
+    Value.Immutable<Boolean> canGrief();
 
 }

@@ -40,6 +40,6 @@ public interface ImmutableOpenData extends ImmutableDataManipulator<ImmutableOpe
      *
      * @return The immutable value for the "open" state
      */
-    Value.Immutable.Single<Boolean> open();
+    Value.Immutable<Boolean> open();
 
 }

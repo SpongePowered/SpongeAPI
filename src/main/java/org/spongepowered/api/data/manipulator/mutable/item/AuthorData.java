@@ -38,6 +38,6 @@ public interface AuthorData extends DataManipulator<AuthorData, ImmutableAuthorD
      * @return The author of the item
      * @see Keys#BOOK_AUTHOR
      */
-    Value.Mutable.Single<Text> author();
+    Value.Mutable<Text> author();
 
 }

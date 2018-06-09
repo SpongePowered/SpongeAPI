@@ -25,8 +25,19 @@
 package org.spongepowered.api.data.value;
 
 import java.util.Collection;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
+/**
+ * A {@link Collection} based {@link Value} type. Since some collections
+ * are complex, or can be {@link Collection#isEmpty() empty}, this exposes
+ * some of the common methods found in {@link Collection} and it itself
+ * is {@link Iterable}. This is the base class for the common collections,
+ * like {@link ListValue} and {@link SetValue}.
+ *
+ * @param <E> The type of element
+ * @param <C> The type of collection
+ */
 public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, Iterable<E> {
 
     /**
@@ -73,6 +84,12 @@ public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, I
      */
     C getAll();
 
+    @Override
+    CollectionValue.Mutable<E, C, ?, ?> asMutable();
+
+    @Override
+    CollectionValue.Immutable<E, C, ?, ?> asImmutable();
+
     /**
      * A {@link Value.Immutable} type that handles a {@link Collection} of elements
      * type <code>E</code>. All of the methods provided for modification return new
@@ -89,7 +106,7 @@ public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, I
         C extends Collection<E>,
         I extends Immutable<E, C, I, M>,
         M extends Mutable<E, C, M, I>>
-        extends Value.Immutable<C, I, M>, CollectionValue<E, C> {
+        extends Value.Immutable<C>, CollectionValue<E, C> {
 
 
         /**
@@ -150,6 +167,20 @@ public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, I
          */
         boolean containsAll(Iterable<E> iterable);
 
+        @Override
+        I with(C value);
+
+        @Override
+        I transform(Function<C, C> function);
+
+        @Override
+        M asMutable();
+
+        @SuppressWarnings("unchecked")
+        @Override
+        default I asImmutable() {
+            return (I) this;
+        }
     }
 
     /**
@@ -165,7 +196,7 @@ public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, I
         C extends Collection<E>,
         V extends Mutable<E, C, V, I>,
         I extends Immutable<E, C, I, V>>
-        extends Value.Mutable<C, V, I>, CollectionValue<E, C>, Iterable<E> {
+        extends Value.Mutable<C>, CollectionValue<E, C>, Iterable<E> {
 
 
         /**
@@ -215,5 +246,22 @@ public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, I
 
         V filter(Predicate<? super E> predicate);
 
+        @Override
+        V set(C value);
+
+        @Override
+        V transform(Function<C, C> function);
+
+        @Override
+        V copy();
+
+        @SuppressWarnings("unchecked")
+        @Override
+        default V asMutable() {
+            return (V) this;
+        }
+
+        @Override
+        I asImmutable();
     }
 }

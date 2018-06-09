@@ -42,6 +42,6 @@ public interface ImmutableSeamlessData extends ImmutableDataManipulator<Immutabl
      *
      * @return The immutable value for the "seamless" state
      */
-    Value.Immutable.Single<Boolean> seamless();
+    Value.Immutable<Boolean> seamless();
 
 }

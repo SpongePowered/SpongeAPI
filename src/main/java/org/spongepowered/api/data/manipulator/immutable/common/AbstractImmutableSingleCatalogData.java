@@ -46,7 +46,7 @@ public abstract class AbstractImmutableSingleCatalogData<E extends CatalogType, 
         M extends VariantData<E, M, I>> extends AbstractImmutableSingleData<E, I, M> implements ImmutableVariantData<E, I, M> {
 
     private final E defaultValue;
-    private final Value.Immutable.Single<E> immutableValue;
+    private final Value.Immutable<E> immutableValue;
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     protected AbstractImmutableSingleCatalogData(E value, E defaultValue, Key<? extends Value<E>> usedKey) {
@@ -59,7 +59,7 @@ public abstract class AbstractImmutableSingleCatalogData<E extends CatalogType, 
     }
 
     @Override
-    protected Value.Immutable.Single<E> getValueGetter() {
+    protected Value.Immutable<E> getValueGetter() {
         return this.immutableValue;
     }
 
@@ -70,7 +70,7 @@ public abstract class AbstractImmutableSingleCatalogData<E extends CatalogType, 
     }
 
     @Override
-    public Value.Immutable.Single<E> type() {
+    public Value.Immutable<E> type() {
         return this.immutableValue;
     }
 }

@@ -47,6 +47,6 @@ public interface RepresentedItemData extends DataManipulator<RepresentedItemData
      * @return The value for the item stack snapshot
      * @see Keys#REPRESENTED_ITEM
      */
-    Value.Mutable.Single<ItemStackSnapshot> item();
+    Value.Mutable<ItemStackSnapshot> item();
 
 }

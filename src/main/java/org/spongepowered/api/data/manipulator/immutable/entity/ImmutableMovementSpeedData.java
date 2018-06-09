@@ -41,13 +41,13 @@ public interface ImmutableMovementSpeedData extends ImmutableDataManipulator<Imm
      *
      * @return The immutable value for the walking speed
      */
-    Value.Immutable.Single<Double> walkSpeed();
+    Value.Immutable<Double> walkSpeed();
 
     /**
      * Gets the {@link BoundedValue.Immutable} for the "flying" speed.
      *
      * @return The immutable value for the flying speed
      */
-    Value.Immutable.Single<Double> flySpeed();
+    Value.Immutable<Double> flySpeed();
 
 }

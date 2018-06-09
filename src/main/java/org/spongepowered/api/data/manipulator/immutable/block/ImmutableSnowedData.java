@@ -40,6 +40,6 @@ public interface ImmutableSnowedData extends ImmutableDataManipulator<ImmutableS
      *
      * @return The immutable value for the "snowed" state
      */
-    Value.Immutable.Single<Boolean> hasSnow();
+    Value.Immutable<Boolean> hasSnow();
 
 }

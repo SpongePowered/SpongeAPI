@@ -41,6 +41,6 @@ public interface ImmutableExplosionRadiusData extends ImmutableDataManipulator<I
      *
      * @return Explosion radius
      */
-    OptionalValue.ImmutableOptionalValue<Integer> explosionRadius();
+    OptionalValue.Immutable<Integer> explosionRadius();
 
 }

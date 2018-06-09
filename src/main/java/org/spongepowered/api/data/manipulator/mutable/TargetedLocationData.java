@@ -51,6 +51,6 @@ public interface TargetedLocationData extends DataManipulator<TargetedLocationDa
      * @return The value for the targeted location
      * @see Keys#TARGETED_LOCATION
      */
-    Value.Mutable.Single<Vector3d> target();
+    Value.Mutable<Vector3d> target();
 
 }

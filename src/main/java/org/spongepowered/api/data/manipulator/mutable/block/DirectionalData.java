@@ -45,6 +45,6 @@ public interface DirectionalData extends DataManipulator<DirectionalData, Immuta
      * @return The current "facing" direction value
      * @see Keys#DIRECTION
      */
-    Value.Mutable.Single<Direction> direction();
+    Value.Mutable<Direction> direction();
 
 }

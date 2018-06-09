@@ -122,7 +122,7 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData, Immutabl
      * @return The next possible entity to spawn
      * @see Keys#SPAWNER_NEXT_ENTITY_TO_SPAWN
      */
-    Value.Mutable.Single<WeightedSerializableObject<EntityArchetype>> nextEntityToSpawn();
+    Value.Mutable<WeightedSerializableObject<EntityArchetype>> nextEntityToSpawn();
 
     /**
      * Gets the {@link WeightedCollectionValue.Mutable} of all possible

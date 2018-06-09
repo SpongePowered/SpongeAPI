@@ -42,6 +42,6 @@ public interface FilledData extends DataManipulator<FilledData, ImmutableFilledD
      * @return The value for the "filled" state
      * @see Keys#FILLED
      */
-    Value.Mutable.Single<Boolean> filled();
+    Value.Mutable<Boolean> filled();
 
 }

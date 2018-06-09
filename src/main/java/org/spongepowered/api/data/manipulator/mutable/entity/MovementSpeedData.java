@@ -43,7 +43,7 @@ public interface MovementSpeedData extends DataManipulator<MovementSpeedData, Im
      * @return The value for the walking speed
      * @see Keys#WALKING_SPEED
      */
-    Value.Mutable.Single<Double> walkSpeed();
+    Value.Mutable<Double> walkSpeed();
 
     /**
      * Gets the {@link BoundedValue.Mutable} for the "flying" speed.
@@ -51,6 +51,6 @@ public interface MovementSpeedData extends DataManipulator<MovementSpeedData, Im
      * @return The value for the flying speed
      * @see Keys#FLYING_SPEED
      */
-    Value.Mutable.Single<Double> flySpeed();
+    Value.Mutable<Double> flySpeed();
 
 }

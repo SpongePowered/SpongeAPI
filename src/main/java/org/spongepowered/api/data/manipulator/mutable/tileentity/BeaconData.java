@@ -42,22 +42,22 @@ import java.util.Optional;
 public interface BeaconData extends DataManipulator<BeaconData, ImmutableBeaconData> {
 
     /**
-     * Gets the {@link OptionalValue.MutableOptionalValue} for the primary
+     * Gets the {@link OptionalValue.Mutable} for the primary
      * {@link PotionEffectType}.
      *
      * @return The optional value for the primary potion effect
      * @see Keys#BEACON_PRIMARY_EFFECT
      */
-    OptionalValue.MutableOptionalValue<PotionEffectType> primaryEffect();
+    OptionalValue.Mutable<PotionEffectType> primaryEffect();
 
     /**
-     * Gets the {@link OptionalValue.MutableOptionalValue} for the secondary
+     * Gets the {@link OptionalValue.Mutable} for the secondary
      * {@link PotionEffectType}.
      *
      * @return The optional value for the secondary potion effect
      * @see Keys#BEACON_SECONDARY_EFFECT
      */
-    OptionalValue.MutableOptionalValue<PotionEffectType> secondaryEffect();
+    OptionalValue.Mutable<PotionEffectType> secondaryEffect();
 
     /**
      * Fills the primary and secondary {@link PotionEffectType}s

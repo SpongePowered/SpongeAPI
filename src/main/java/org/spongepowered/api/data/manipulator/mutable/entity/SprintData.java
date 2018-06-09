@@ -43,6 +43,6 @@ public interface SprintData extends DataManipulator<SprintData, ImmutableSprintD
      * @return The value for the sprinting state
      * @see Keys#IS_SPRINTING
      */
-    Value.Mutable.Single<Boolean> sprinting();
+    Value.Mutable<Boolean> sprinting();
 
 }

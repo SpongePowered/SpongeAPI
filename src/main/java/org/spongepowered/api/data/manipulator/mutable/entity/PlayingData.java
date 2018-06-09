@@ -42,6 +42,6 @@ public interface PlayingData extends DataManipulator<PlayingData, ImmutablePlayi
      * @return The value for the playing state
      * @see Keys#IS_PLAYING
      */
-    Value.Mutable.Single<Boolean> playing();
+    Value.Mutable<Boolean> playing();
 
 }

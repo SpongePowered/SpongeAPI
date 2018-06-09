@@ -76,7 +76,24 @@ public interface BoundedValue<E> extends Value<E> {
      *
      * @param <E> The type of element
      */
-    interface Mutable<E> extends BoundedValue<E>, Value.Mutable<E, Mutable<E>, Immutable<E>> {
+    interface Mutable<E> extends BoundedValue<E>, Value.Mutable<E> {
+
+        @Override
+        BoundedValue.Mutable<E> set(E value);
+
+        @Override
+        BoundedValue.Mutable<E> transform(Function<E, E> function);
+
+        @Override
+        BoundedValue.Immutable<E> asImmutable();
+
+        @Override
+        default BoundedValue.Mutable<E> asMutable() {
+            return this;
+        }
+
+        @Override
+        BoundedValue.Mutable<E> copy();
 
     }
 
@@ -86,7 +103,20 @@ public interface BoundedValue<E> extends Value<E> {
      *
      * @param <E> The type of element
      */
-    interface Immutable<E> extends BoundedValue<E>, Value.Immutable<E, Immutable<E>, Mutable<E>> {
+    interface Immutable<E> extends BoundedValue<E>, Value.Immutable<E> {
 
+        @Override
+        BoundedValue.Immutable<E> with(E value);
+
+        @Override
+        BoundedValue.Immutable<E> transform(Function<E, E> function);
+
+        @Override
+        BoundedValue.Mutable<E> asMutable();
+
+        @Override
+        default BoundedValue.Immutable<E> asImmutable() {
+            return this;
+        }
     }
 }

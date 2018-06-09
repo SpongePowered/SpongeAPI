@@ -43,6 +43,6 @@ public interface ScreamingData extends DataManipulator<ScreamingData, ImmutableS
      * @return The value for the screaming state
      * @see Keys#IS_SCREAMING
      */
-    Value.Mutable.Single<Boolean> screaming();
+    Value.Mutable<Boolean> screaming();
 
 }

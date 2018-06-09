@@ -54,7 +54,7 @@ public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I
         implements ImmutableDataManipulator<I, M> {
 
 
-    private final Map<Key<?>, Supplier<Value.Immutable.Single<?>>> keyValueMap = Maps.newHashMap();
+    private final Map<Key<?>, Supplier<Value.Immutable<?>>> keyValueMap = Maps.newHashMap();
     private final Map<Key<?>, Supplier<?>> keyFieldGetterMap = Maps.newHashMap();
 
     protected AbstractImmutableData() {
@@ -69,7 +69,7 @@ public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I
      * @param key The key for the value return type
      * @param function The function for getting the value
      */
-    protected final void registerKeyValue(Key<?> key, Supplier<Value.Immutable.Single<?>> function) {
+    protected final void registerKeyValue(Key<?> key, Supplier<Value.Immutable<?>> function) {
         this.keyValueMap.put(checkNotNull(key), checkNotNull(function));
     }
 
@@ -123,9 +123,9 @@ public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I
     }
 
     @Override
-    public Set<Value.Immutable.Single<?>> getValues() {
-        ImmutableSet.Builder<Value.Immutable.Single<?>> builder = ImmutableSet.builder();
-        for (Supplier<Value.Immutable.Single<?>> function : this.keyValueMap.values()) {
+    public Set<Value.Immutable<?>> getValues() {
+        ImmutableSet.Builder<Value.Immutable<?>> builder = ImmutableSet.builder();
+        for (Supplier<Value.Immutable<?>> function : this.keyValueMap.values()) {
             builder.add(checkNotNull(function.get()));
         }
         return builder.build();

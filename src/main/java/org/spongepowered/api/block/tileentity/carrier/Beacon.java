@@ -56,22 +56,22 @@ public interface Beacon extends TileEntityCarrier {
     }
 
     /**
-     * Gets the {@link OptionalValue.MutableOptionalValue} for the primary
+     * Gets the {@link OptionalValue.Mutable} for the primary
      * {@link PotionEffectType}.
      *
      * @return The optional value for the primary potion effect
      */
-    default OptionalValue.MutableOptionalValue<PotionEffectType> primaryEffect() {
+    default OptionalValue.Mutable<PotionEffectType> primaryEffect() {
         return getValue(Keys.BEACON_PRIMARY_EFFECT).get();
     }
 
     /**
-     * Gets the {@link OptionalValue.MutableOptionalValue} for the secondary
+     * Gets the {@link OptionalValue.Mutable} for the secondary
      * {@link PotionEffectType}.
      *
      * @return The optional value for the secondary potion effect
      */
-    default OptionalValue.MutableOptionalValue<PotionEffectType> secondaryEffect() {
+    default OptionalValue.Mutable<PotionEffectType> secondaryEffect() {
         return getValue(Keys.BEACON_SECONDARY_EFFECT).get();
     }
 

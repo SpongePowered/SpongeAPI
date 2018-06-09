@@ -28,10 +28,10 @@ import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableSet;
 
 import java.util.Map;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 public interface MapValue<K, V> extends Value<Map<K, V>> {
-
 
     /**
      * Gets the size of this map.
@@ -79,6 +79,12 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
      */
     ImmutableCollection<V> values();
 
+    @Override
+    MapValue.Mutable<K, V> asMutable();
+
+    @Override
+    MapValue.Immutable<K, V> asImmutable();
+
     /**
      * Represents a specialized type of {@link Value.Mutable} that is different from
      * a {@link CollectionValue.Mutable} such that the "elements" are
@@ -88,8 +94,7 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
      * @param <K> The type of the key
      * @param <V> The type of the value
      */
-    interface Mutable<K, V> extends MapValue<K, V>, Value.Mutable<Map<K, V>, Mutable<K, V>, Immutable<K, V>> {
-
+    interface Mutable<K, V> extends MapValue<K, V>, Value.Mutable<Map<K, V>> {
 
         /**
          * Associates the provided key to the provided value. If there already
@@ -136,6 +141,22 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
          */
         MapValue.Mutable<K, V> removeAll(Predicate<Map.Entry<K, V>> predicate);
 
+        @Override
+        MapValue.Mutable<K, V> set(Map<K, V> value);
+
+        @Override
+        MapValue.Mutable<K, V> transform(Function<Map<K, V>, Map<K, V>> function);
+
+        @Override
+        MapValue.Mutable<K, V> copy();
+
+        @Override
+        default MapValue.Mutable<K, V> asMutable() {
+            return this;
+        }
+
+        @Override
+        MapValue.Immutable<K, V> asImmutable();
     }
 
     /**
@@ -147,7 +168,7 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
      * @param <K> The type of the key
      * @param <V> The type of the value
      */
-    interface Immutable<K, V> extends MapValue<K, V>, Value.Immutable<Map<K, V>, Immutable<K, V>, Mutable<K, V>> {
+    interface Immutable<K, V> extends MapValue<K, V>, Value.Immutable<Map<K, V>> {
 
         /**
          * Associates the provided key to the provided value in the new map. If
@@ -199,5 +220,18 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
          */
         MapValue.Immutable<K, V> withoutAll(Predicate<Map.Entry<K, V>> predicate);
 
+        @Override
+        MapValue.Immutable<K, V> with(Map<K, V> value);
+
+        @Override
+        MapValue.Immutable<K, V> transform(Function<Map<K, V>, Map<K, V>> function);
+
+        @Override
+        MapValue.Mutable<K, V> asMutable();
+
+        @Override
+        default MapValue.Immutable<K, V> asImmutable() {
+            return this;
+        }
     }
 }

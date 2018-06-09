@@ -43,6 +43,6 @@ public interface FlammableData extends DataManipulator<FlammableData, ImmutableF
      * @return The value for the aflame state
      * @see Keys#IS_AFLAME
      */
-    Value.Mutable.Single<Boolean> flammable();
+    Value.Mutable<Boolean> flammable();
 
 }

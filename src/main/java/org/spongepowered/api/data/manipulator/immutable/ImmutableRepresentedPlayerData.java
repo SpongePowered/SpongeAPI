@@ -46,6 +46,6 @@ public interface ImmutableRepresentedPlayerData extends ImmutableDataManipulator
      *
      * @return The immutable value of the game profile
      */
-    Value.Immutable.Single<GameProfile> owner();
+    Value.Immutable<GameProfile> owner();
 
 }

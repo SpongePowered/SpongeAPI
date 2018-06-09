@@ -47,7 +47,7 @@ public interface JoinData extends DataManipulator<JoinData, ImmutableJoinData> {
      * @return The value for the first time a player joined
      * @see Keys#FIRST_DATE_PLAYED
      */
-    Value.Mutable.Single<Instant> firstPlayed();
+    Value.Mutable<Instant> firstPlayed();
 
     /**
      * Gets the {@link Value.Mutable} of the {@link Instant} that a {@link Player} joined
@@ -56,7 +56,7 @@ public interface JoinData extends DataManipulator<JoinData, ImmutableJoinData> {
      * @return The value for the last time a player joined
      * @see Keys#LAST_DATE_PLAYED
      */
-    Value.Mutable.Single<Instant> lastPlayed();
+    Value.Mutable<Instant> lastPlayed();
 
 
 }

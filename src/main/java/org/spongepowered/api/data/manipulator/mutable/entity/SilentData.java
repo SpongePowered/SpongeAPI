@@ -44,6 +44,6 @@ public interface SilentData extends DataManipulator<SilentData, ImmutableSilentD
      * @return The value for the silent state
      * @see Keys#IS_SILENT
      */
-    Value.Mutable.Single<Boolean> silent();
+    Value.Mutable<Boolean> silent();
 
 }

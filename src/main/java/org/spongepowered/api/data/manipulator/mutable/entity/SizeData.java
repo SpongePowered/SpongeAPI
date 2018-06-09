@@ -43,7 +43,7 @@ public interface SizeData extends DataManipulator<SizeData, ImmutableSizeData> {
      * @return The width of this entity
      * @see Keys#BASE_SIZE
      */
-    Value.Mutable.Single<Float> base();
+    Value.Mutable<Float> base();
 
     /**
      * Gets the current y height of this entity.
@@ -51,7 +51,7 @@ public interface SizeData extends DataManipulator<SizeData, ImmutableSizeData> {
      * @return The current y height
      * @see Keys#HEIGHT
      */
-    Value.Mutable.Single<Float> height();
+    Value.Mutable<Float> height();
 
     /**
      * Gets the {@link BoundedValue.Mutable} for the "scale" size.

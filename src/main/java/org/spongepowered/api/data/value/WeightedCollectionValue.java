@@ -45,6 +45,12 @@ public interface WeightedCollectionValue<E> extends CollectionValue<TableEntry<E
     @Nullable
     List<E> get(Random random);
 
+    @Override
+    WeightedCollectionValue.Mutable<E> asMutable();
+
+    @Override
+    WeightedCollectionValue.Immutable<E> asImmutable();
+
     /**
      * Represents a particular type of {@link CollectionValue.Immutable} that is
      * backed by a {@link WeightedTable}.
@@ -54,7 +60,13 @@ public interface WeightedCollectionValue<E> extends CollectionValue<TableEntry<E
     interface Immutable<E> extends WeightedCollectionValue<E>,
         CollectionValue.Immutable<TableEntry<E>, WeightedTable<E>, Immutable<E>, Mutable<E>> {
 
+        @Override
+        WeightedCollectionValue.Mutable<E> asMutable();
 
+        @Override
+        default WeightedCollectionValue.Immutable<E> asImmutable() {
+            return this;
+        }
     }
 
     /**
@@ -66,6 +78,12 @@ public interface WeightedCollectionValue<E> extends CollectionValue<TableEntry<E
     interface Mutable<E> extends WeightedCollectionValue<E>,
         CollectionValue.Mutable<TableEntry<E>, WeightedTable<E>, Mutable<E>, Immutable<E>> {
 
+        @Override
+        default WeightedCollectionValue.Mutable<E> asMutable() {
+            return this;
+        }
 
+        @Override
+        WeightedCollectionValue.Immutable<E> asImmutable();
     }
 }

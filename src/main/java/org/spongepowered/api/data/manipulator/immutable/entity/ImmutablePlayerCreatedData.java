@@ -41,6 +41,6 @@ public interface ImmutablePlayerCreatedData extends ImmutableDataManipulator<Imm
      *
      * @return The immutable value for the "player created" state
      */
-    Value.Immutable.Single<Boolean> playerCreated();
+    Value.Immutable<Boolean> playerCreated();
 
 }

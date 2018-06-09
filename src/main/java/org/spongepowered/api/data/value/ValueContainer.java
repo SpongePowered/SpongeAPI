@@ -183,7 +183,7 @@ public interface ValueContainer<C extends ValueContainer<C>> {
      *
      * @return An immutable set of copied values
      */
-    Set<Value.Immutable<?, ?, ?>> getValues();
+    Set<Value.Immutable<?>> getValues();
 
     /**
      * Represents a {@link ValueContainer} that contains a various bundle of

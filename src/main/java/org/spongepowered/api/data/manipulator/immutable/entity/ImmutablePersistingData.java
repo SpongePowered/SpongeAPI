@@ -45,7 +45,7 @@ public interface ImmutablePersistingData extends ImmutableDataManipulator<Immuta
      *
      * @return The immutable value for the persisting state
      */
-    Value.Immutable.Single<Boolean> persists();
+    Value.Immutable<Boolean> persists();
 
 }
 

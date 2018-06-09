@@ -45,7 +45,7 @@ public interface ValueFactory {
      * @param <E> The type of element
      * @return The newly created value
      */
-    <E> Value.Mutable.Single<E> createValue(Key<Value<E>> key, E element);
+    <E> Value.Mutable<E> createValue(Key<Value<E>> key, E element);
 
     /**
      * Creates a new {@link Value.Mutable} with the provided {@link Key} and the
@@ -57,7 +57,7 @@ public interface ValueFactory {
      * @param <E> The type of element
      * @return The newly created value
      */
-    <E> Value.Mutable.Single<E> createValue(Key<Value<E>> key, E element, E defaultValue);
+    <E> Value.Mutable<E> createValue(Key<Value<E>> key, E element, E defaultValue);
 
     /**
      * Creates a new {@link ListValue.Mutable} with the provided {@link Key} and
@@ -141,7 +141,7 @@ public interface ValueFactory {
     <E> BoundedValueBuilder<E> createBoundedValueBuilder(Key<BoundedValue.Mutable<E>> key);
 
     /**
-     * Creates an {@link OptionalValue.MutableOptionalValue} where even the default value may be
+     * Creates an {@link OptionalValue.Mutable} where even the default value may be
      * {@link Optional#empty()}. These types of values should be restricted
      * to values that are live, that can be potentially large to retain a
      * reference to, and otherwise, not thread safe.
@@ -151,10 +151,10 @@ public interface ValueFactory {
      * @param <E> The type of element
      * @return The newly created value
      */
-    <E> OptionalValue.MutableOptionalValue<E> createOptionalValue(Key<OptionalValue.MutableOptionalValue<E>> key, @Nullable E element);
+    <E> OptionalValue.Mutable<E> createOptionalValue(Key<OptionalValue.Mutable<E>> key, @Nullable E element);
 
     /**
-     * Creates an {@link OptionalValue.MutableOptionalValue} where the default is NOT
+     * Creates an {@link OptionalValue.Mutable} where the default is NOT
      * <code>null</code>, such that the actual value may be retained as
      * <code>null</code>.
      *
@@ -164,7 +164,7 @@ public interface ValueFactory {
      * @param <E> The type of element
      * @return The newly created value
      */
-    <E> OptionalValue.MutableOptionalValue<E> createOptionalValue(Key<OptionalValue.MutableOptionalValue<E>> key, @Nullable E element, E defaultElement);
+    <E> OptionalValue.Mutable<E> createOptionalValue(Key<OptionalValue.Mutable<E>> key, @Nullable E element, E defaultElement);
 
     /**
      * A builder pattern for constructing {@link BoundedValue.Mutable}s without the hassle of

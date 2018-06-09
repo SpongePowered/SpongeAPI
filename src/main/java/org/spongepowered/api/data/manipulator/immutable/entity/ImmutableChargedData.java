@@ -40,6 +40,6 @@ public interface ImmutableChargedData extends ImmutableDataManipulator<Immutable
      *
      * @return The value for the "charged" state
      */
-    Value.Immutable.Single<Boolean> charged();
+    Value.Immutable<Boolean> charged();
 
 }

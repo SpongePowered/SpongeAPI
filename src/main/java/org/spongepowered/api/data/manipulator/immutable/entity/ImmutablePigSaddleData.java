@@ -43,6 +43,6 @@ public interface ImmutablePigSaddleData extends ImmutableDataManipulator<Immutab
      *
      * @return The immutable value for the saddle state
      */
-    Value.Immutable.Single<Boolean> saddle();
+    Value.Immutable<Boolean> saddle();
 
 }

@@ -50,8 +50,8 @@ public abstract class AbstractBooleanData<M extends DataManipulator<M, I>, I ext
 
     @SuppressWarnings("unchecked")
     @Override
-    protected Value.Mutable.Single<Boolean> getValueGetter() {
-        return Sponge.getRegistry().getValueFactory().createValue((Key<Value.Mutable.Single<Boolean>>) this.usedKey, this.getValue(), this.defaultValue);
+    protected Value.Mutable<Boolean> getValueGetter() {
+        return Sponge.getRegistry().getValueFactory().createValue((Key<Value.Mutable<Boolean>>) this.usedKey, this.getValue(), this.defaultValue);
     }
 
     @Override

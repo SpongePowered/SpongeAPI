@@ -42,6 +42,6 @@ public interface CriticalHitData extends DataManipulator<CriticalHitData, Immuta
      * @return The value for the "critical hit" state
      * @see Keys#CRITICAL_HIT
      */
-    Value.Mutable.Single<Boolean> criticalHit();
+    Value.Mutable<Boolean> criticalHit();
 
 }

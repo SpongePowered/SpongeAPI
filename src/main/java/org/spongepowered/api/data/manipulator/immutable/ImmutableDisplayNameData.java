@@ -37,6 +37,6 @@ public interface ImmutableDisplayNameData extends ImmutableDataManipulator<Immut
      *
      * @return The display name, if available
      */
-    Value.Immutable.Single<Text> displayName();
+    Value.Immutable<Text> displayName();
 
 }

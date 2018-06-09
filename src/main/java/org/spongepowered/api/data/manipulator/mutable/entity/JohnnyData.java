@@ -47,6 +47,6 @@ public interface JohnnyData extends DataManipulator<JohnnyData, ImmutableJohnnyD
      * @return The value for whether this mob is exhibiting "johnny" behavior
      * @see Keys#IS_JOHNNY
      */
-    Value.Mutable.Single<Boolean> johnny();
+    Value.Mutable<Boolean> johnny();
 
 }

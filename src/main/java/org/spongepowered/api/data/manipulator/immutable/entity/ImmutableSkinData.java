@@ -46,6 +46,6 @@ public interface ImmutableSkinData extends ImmutableDataManipulator<ImmutableSki
      *
      * @return The immutable value for the skin uuid
      */
-    Value.Immutable.Single<UUID> skinUniqueId();
+    Value.Immutable<UUID> skinUniqueId();
 
 }

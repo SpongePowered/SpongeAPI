@@ -42,14 +42,14 @@ public interface ImmutableSizeData extends ImmutableDataManipulator<ImmutableSiz
      *
      * @return The immutable value for the base
      */
-    Value.Immutable.Single<Float> base();
+    Value.Immutable<Float> base();
 
     /**
      * Gets the {@link Value.Immutable} for the "height" size.
      *
      * @return The immutable value for the height
      */
-    Value.Immutable.Single<Float> height();
+    Value.Immutable<Float> height();
 
 
     /**

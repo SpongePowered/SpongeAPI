@@ -58,6 +58,6 @@ public interface ImmutableDurabilityData extends ImmutableDataManipulator<Immuta
      *
      * @return The immutable value for the "unbreakable" state
      */
-    Value.Immutable.Single<Boolean> unbreakable();
+    Value.Immutable<Boolean> unbreakable();
 
 }

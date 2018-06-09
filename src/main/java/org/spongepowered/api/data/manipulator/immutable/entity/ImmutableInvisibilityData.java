@@ -45,7 +45,7 @@ public interface ImmutableInvisibilityData extends ImmutableDataManipulator<Immu
      *
      * @return The immutable value of the invisible state
      */
-    Value.Immutable.Single<Boolean> invisible();
+    Value.Immutable<Boolean> invisible();
 
     /**
      * Gets the {@link Value.Immutable} of the "vanish" state of an
@@ -53,7 +53,7 @@ public interface ImmutableInvisibilityData extends ImmutableDataManipulator<Immu
      *
      * @return The immutable value of the vanish state
      */
-    Value.Immutable.Single<Boolean> vanish();
+    Value.Immutable<Boolean> vanish();
 
 
     /**
@@ -63,7 +63,7 @@ public interface ImmutableInvisibilityData extends ImmutableDataManipulator<Immu
      *
      * @return The value of the collision detection state
      */
-    Value.Immutable.Single<Boolean> ignoresCollisionDetection();
+    Value.Immutable<Boolean> ignoresCollisionDetection();
 
     /**
      * Gets the {@link Value.Mutable} of whether an {@link Entity} that is "vanished" will
@@ -72,6 +72,6 @@ public interface ImmutableInvisibilityData extends ImmutableDataManipulator<Immu
      *
      * @return The value of the targetable detection state
      */
-    Value.Immutable.Single<Boolean> untargetable();
+    Value.Immutable<Boolean> untargetable();
 
 }

@@ -44,6 +44,6 @@ public interface FlyingData extends DataManipulator<FlyingData, ImmutableFlyingD
      * @return The value for the flying state
      * @see Keys#IS_FLYING
      */
-    Value.Mutable.Single<Boolean> flying();
+    Value.Mutable<Boolean> flying();
 
 }

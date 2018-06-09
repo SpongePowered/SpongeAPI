@@ -45,6 +45,6 @@ public interface CooldownData extends DataManipulator<CooldownData, ImmutableCoo
      * @return The value for the cooldown remaining
      * @see Keys#COOLDOWN
      */
-    Value.Mutable.Single<Integer> cooldown();
+    Value.Mutable<Integer> cooldown();
 
 }

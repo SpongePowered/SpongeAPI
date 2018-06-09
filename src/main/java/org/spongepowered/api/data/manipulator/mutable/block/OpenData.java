@@ -42,6 +42,6 @@ public interface OpenData extends DataManipulator<OpenData, ImmutableOpenData> {
      * @return The value for the "open" state
      * @see Keys#OPEN
      */
-    Value.Mutable.Single<Boolean> open();
+    Value.Mutable<Boolean> open();
 
 }

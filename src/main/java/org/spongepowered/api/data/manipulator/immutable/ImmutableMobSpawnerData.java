@@ -117,7 +117,7 @@ public interface ImmutableMobSpawnerData extends ImmutableDataManipulator<Immuta
      *
      * @return The next possible entity to spawn
      */
-    Value.Immutable.Single<WeightedSerializableObject<EntityArchetype>> nextEntityToSpawn();
+    Value.Immutable<WeightedSerializableObject<EntityArchetype>> nextEntityToSpawn();
 
     /**
      * Gets the {@link WeightedCollectionValue.Immutable} of all possible

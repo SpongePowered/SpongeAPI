@@ -43,6 +43,6 @@ public interface ImmutableInWallData extends ImmutableDataManipulator<ImmutableI
      *
      * @return The immutable value for the in "in-wall" state
      */
-    Value.Immutable.Single<Boolean> inWall();
+    Value.Immutable<Boolean> inWall();
 
 }

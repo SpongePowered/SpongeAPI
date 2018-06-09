@@ -44,7 +44,7 @@ import java.util.Optional;
 public interface ImmutableDamageableData extends ImmutableDataManipulator<ImmutableDamageableData, DamageableData> {
 
     /**
-     * Gets the {@link OptionalValue.ImmutableOptionalValue} for the last attacker.
+     * Gets the {@link OptionalValue.Immutable} for the last attacker.
      *
      * <p>This will usually be an entity snapshot of a {@link Living}.</p>
      *
@@ -53,7 +53,7 @@ public interface ImmutableDamageableData extends ImmutableDataManipulator<Immuta
      *
      * @return The last attacker as an optional value
      */
-    OptionalValue.ImmutableOptionalValue<EntitySnapshot> lastAttacker();
+    OptionalValue.Immutable<EntitySnapshot> lastAttacker();
 
     /**
      * Gets the last amount of damage taken by this entity as an optional value.
@@ -63,6 +63,6 @@ public interface ImmutableDamageableData extends ImmutableDataManipulator<Immuta
      *
      * @return The last damage dealt as an optional value
      */
-    OptionalValue.ImmutableOptionalValue<Double> lastDamage();
+    OptionalValue.Immutable<Double> lastDamage();
 
 }

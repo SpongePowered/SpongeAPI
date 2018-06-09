@@ -42,6 +42,6 @@ public interface AttachedData extends DataManipulator<AttachedData, ImmutableAtt
      * @return The "attached" value state
      * @see Keys#ATTACHED
      */
-    Value.Mutable.Single<Boolean> attached();
+    Value.Mutable<Boolean> attached();
 
 }

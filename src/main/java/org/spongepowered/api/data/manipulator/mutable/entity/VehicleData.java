@@ -44,7 +44,7 @@ public interface VehicleData extends DataManipulator<VehicleData, ImmutableVehic
      * @return The value for the vehicle being ridden
      * @see Keys#VEHICLE
      */
-    Value.Mutable.Single<EntitySnapshot> vehicle();
+    Value.Mutable<EntitySnapshot> vehicle();
 
     /**
      * Gets the base {@link Value.Mutable} for the "base vehicle" being ridden
@@ -54,7 +54,7 @@ public interface VehicleData extends DataManipulator<VehicleData, ImmutableVehic
      * @return The value for the base vehicle
      * @see Keys#BASE_VEHICLE
      */
-    Value.Mutable.Single<EntitySnapshot> baseVehicle();
+    Value.Mutable<EntitySnapshot> baseVehicle();
 
 
 }

@@ -42,6 +42,6 @@ public interface LeashData extends DataManipulator<LeashData, ImmutableLeashData
      *
      * @return The value for the leash holder
      */
-    Value.Mutable.Single<Entity> leashHolder();
+    Value.Mutable<Entity> leashHolder();
 
 }

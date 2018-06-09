@@ -43,6 +43,6 @@ public interface ImmutableCustomNameVisibleData extends ImmutableDataManipulator
      *
      * @return Whether the display name is visible or not
      */
-    Value.Immutable.Single<Boolean> customNameVisible();
+    Value.Immutable<Boolean> customNameVisible();
 
 }

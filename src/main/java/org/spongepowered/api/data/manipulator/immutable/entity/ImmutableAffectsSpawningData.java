@@ -40,6 +40,6 @@ public interface ImmutableAffectsSpawningData extends ImmutableDataManipulator<I
      *
      * @return The immutable value for the affects spawning state
      */
-    Value.Immutable.Single<Boolean> affectsSpawning();
+    Value.Immutable<Boolean> affectsSpawning();
 
 }

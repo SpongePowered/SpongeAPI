@@ -51,7 +51,7 @@ public interface Explosive extends Entity {
      *
      * @return Explosion radius
      */
-    default OptionalValue.MutableOptionalValue<Integer> explosionRadius() {
+    default OptionalValue.Mutable<Integer> explosionRadius() {
         return getValue(Keys.EXPLOSION_RADIUS).get();
     }
 

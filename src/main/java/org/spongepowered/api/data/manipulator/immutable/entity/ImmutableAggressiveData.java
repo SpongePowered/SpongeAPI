@@ -40,6 +40,6 @@ public interface ImmutableAggressiveData extends ImmutableDataManipulator<Immuta
      *
      * @return The immutable value for the aggressive state
      */
-    Value.Immutable.Single<Boolean> aggressive();
+    Value.Immutable<Boolean> aggressive();
 
 }

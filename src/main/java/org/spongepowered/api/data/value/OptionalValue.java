@@ -25,11 +25,11 @@
 package org.spongepowered.api.data.value;
 
 import java.util.Optional;
+import java.util.function.Function;
 
 import javax.annotation.Nullable;
 
 public interface OptionalValue<E> extends Value<Optional<E>> {
-
 
     /**
      * Provides the value such that if the underlying value is
@@ -39,19 +39,24 @@ public interface OptionalValue<E> extends Value<Optional<E>> {
      *
      * @param defaultValue The value to substitute, if the underlying value is
      *      null
-     * @return A new {@link Mutable} with a non-null value
+     * @return A new {@link Value.Mutable} with a non-null value
      */
     Value<E> orElse(E defaultValue);
 
+    @Override
+    OptionalValue.Mutable<E> asMutable();
+
+    @Override
+    OptionalValue.Immutable<E> asImmutable();
+
     /**
-     * Represents a {@link Mutable} that can be {@link Optional} such that the
+     * Represents a {@link Value.Mutable} that can be {@link Optional} such that the
      * underlying value may be present or {@code null}.
      *
      * @param <E> The type of element
      */
-    interface MutableOptionalValue<E> extends OptionalValue<E>,
-        Mutable<Optional<E>, MutableOptionalValue<E>, ImmutableOptionalValue<E>> {
-
+    interface Mutable<E> extends OptionalValue<E>,
+        Value.Mutable<Optional<E>> {
 
         /**
          * Sets the underlying value, may be null.
@@ -59,27 +64,56 @@ public interface OptionalValue<E> extends Value<Optional<E>> {
          * @param value The value to set
          * @return This value, for chaining
          */
-        MutableOptionalValue<E> setTo(@Nullable E value);
+        OptionalValue.Mutable<E> setTo(@Nullable E value);
 
+        @Override
+        OptionalValue.Mutable<E> set(Optional<E> value);
+
+        @Override
+        OptionalValue.Mutable<E> transform(Function<Optional<E>, Optional<E>> function);
+
+        @Override
+        OptionalValue.Mutable<E> copy();
+
+        @Override
+        default OptionalValue.Mutable<E> asMutable() {
+            return this;
+        }
+
+        @Override
+        OptionalValue.Immutable<E> asImmutable();
     }
 
     /**
-     * Represents a {@link Immutable} that can be {@link Optional} such that
+     * Represents a {@link Value.Immutable} that can be {@link Optional} such that
      * the underlying value may be present or {@code null}.
      *
      * @param <E> The type of element
      */
-    interface ImmutableOptionalValue<E> extends OptionalValue<E>,
-        Immutable<Optional<E>, ImmutableOptionalValue<E>, MutableOptionalValue<E>> {
+    interface Immutable<E> extends OptionalValue<E>,
+        Value.Immutable<Optional<E>> {
 
         /**
-         * Creates a new {@link ImmutableOptionalValue} with the provided value,
+         * Creates a new {@link OptionalValue.Immutable} with the provided value,
          * may be null.
          *
          * @param value The value
          * @return The new value, for chaining
          */
-        ImmutableOptionalValue<E> instead(@Nullable E value);
+        OptionalValue.Immutable<E> instead(@Nullable E value);
 
+        @Override
+        OptionalValue.Immutable<E> with(Optional<E> value);
+
+        @Override
+        OptionalValue.Immutable<E> transform(Function<Optional<E>, Optional<E>> function);
+
+        @Override
+        OptionalValue.Mutable<E> asMutable();
+
+        @Override
+        default OptionalValue.Immutable<E> asImmutable() {
+            return this;
+        }
     }
 }

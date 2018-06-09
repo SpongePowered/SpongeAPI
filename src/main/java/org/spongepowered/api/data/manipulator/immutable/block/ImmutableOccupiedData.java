@@ -40,6 +40,6 @@ public interface ImmutableOccupiedData extends ImmutableDataManipulator<Immutabl
      *
      * @return The immutable value for the "occupied" state
      */
-    Value.Immutable.Single<Boolean> occupied();
+    Value.Immutable<Boolean> occupied();
 
 }

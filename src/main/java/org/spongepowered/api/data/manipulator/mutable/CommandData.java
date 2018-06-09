@@ -49,7 +49,7 @@ public interface CommandData extends DataManipulator<CommandData, ImmutableComma
      * @return The command
      * @see Keys#COMMAND
      */
-    Value.Mutable.Single<String> storedCommand();
+    Value.Mutable<String> storedCommand();
 
     /**
      * Gets the success count of the last executed command.
@@ -64,7 +64,7 @@ public interface CommandData extends DataManipulator<CommandData, ImmutableComma
      * @return The last success count
      * @see Keys#SUCCESS_COUNT
      */
-    Value.Mutable.Single<Integer> successCount();
+    Value.Mutable<Integer> successCount();
 
     /**
      * Gets whether this command block will keep track of the output from the
@@ -73,7 +73,7 @@ public interface CommandData extends DataManipulator<CommandData, ImmutableComma
      * @return Whether the command output is tracked
      * @see Keys#TRACKS_OUTPUT
      */
-    Value.Mutable.Single<Boolean> doesTrackOutput();
+    Value.Mutable<Boolean> doesTrackOutput();
 
     /**
      * Gets the last command output.
@@ -84,6 +84,6 @@ public interface CommandData extends DataManipulator<CommandData, ImmutableComma
      * @return The last command output, if available
      * @see Keys#LAST_COMMAND_OUTPUT
      */
-    OptionalValue.MutableOptionalValue<Text> lastOutput();
+    OptionalValue.Mutable<Text> lastOutput();
 
 }

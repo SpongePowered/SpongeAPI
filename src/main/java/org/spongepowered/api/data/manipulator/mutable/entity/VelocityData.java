@@ -44,6 +44,6 @@ public interface VelocityData extends DataManipulator<VelocityData, ImmutableVel
      * @return The value for the current velocity
      * @see Keys#VELOCITY
      */
-    Value.Mutable.Single<Vector3d> velocity();
+    Value.Mutable<Vector3d> velocity();
 
 }

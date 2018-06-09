@@ -40,6 +40,6 @@ public interface ImmutableCareerData extends ImmutableVariantData<Career, Immuta
      *
      * @return The immutable value for the career
      */
-    Value.Immutable.Single<Career> career();
+    Value.Immutable<Career> career();
 
 }

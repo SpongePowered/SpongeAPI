@@ -61,6 +61,6 @@ public interface DurabilityData extends DataManipulator<DurabilityData, Immutabl
      * @return The immutable value for the "unbreakable" state
      * @see Keys#UNBREAKABLE
      */
-    Value.Mutable.Single<Boolean> unbreakable();
+    Value.Mutable<Boolean> unbreakable();
 
 }

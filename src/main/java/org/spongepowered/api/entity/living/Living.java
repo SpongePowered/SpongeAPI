@@ -95,13 +95,13 @@ public interface Living extends Entity, ProjectileSource, TeamMember {
     }
 
     /**
-     * Gets the {@link OptionalValue.MutableOptionalValue} for the last attacker.
+     * Gets the {@link OptionalValue.Mutable} for the last attacker.
      *
      * <p>This is generally an entity snapshot of a {@link Living}.</p>
      *
      * @return The last attacker as an optional value
      */
-    default OptionalValue.MutableOptionalValue<EntitySnapshot> lastAttacker() {
+    default OptionalValue.Mutable<EntitySnapshot> lastAttacker() {
         return getValue(Keys.LAST_ATTACKER).get();
     }
 
@@ -110,7 +110,7 @@ public interface Living extends Entity, ProjectileSource, TeamMember {
      *
      * @return The last damage dealt as an optional value
      */
-    default OptionalValue.MutableOptionalValue<Double> lastDamage() {
+    default OptionalValue.Mutable<Double> lastDamage() {
         return getValue(Keys.LAST_DAMAGE).get();
     }
 

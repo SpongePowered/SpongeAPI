@@ -49,6 +49,6 @@ public interface ImmutableAxisData extends ImmutableVariantData<Axis, ImmutableA
      *
      * @return The immutable value for the axis
      */
-    Value.Immutable.Single<Axis> axis();
+    Value.Immutable<Axis> axis();
 
 }

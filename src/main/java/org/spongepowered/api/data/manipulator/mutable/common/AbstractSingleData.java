@@ -73,7 +73,7 @@ public abstract class AbstractSingleData<T, M extends DataManipulator<M, I>, I e
      *
      * @return The constructed value
      */
-    protected abstract Value.Mutable.Single<?> getValueGetter();
+    protected abstract Value.Mutable<?> getValueGetter();
 
     @Override
     public <E> Optional<E> get(Key<? extends Value<E>> key) {

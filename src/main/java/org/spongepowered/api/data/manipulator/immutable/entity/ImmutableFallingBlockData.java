@@ -43,7 +43,7 @@ public interface ImmutableFallingBlockData extends ImmutableDataManipulator<Immu
      *
      * @return The immutable value for the damage per block of falling
      */
-    Value.Immutable.Single<Double> fallDamagePerBlock();
+    Value.Immutable<Double> fallDamagePerBlock();
 
     /**
      * Gets the maximum damage the {@link FallingBlock} can deal to another
@@ -51,14 +51,14 @@ public interface ImmutableFallingBlockData extends ImmutableDataManipulator<Immu
      *
      * @return The maximum damage the block can deal
      */
-    Value.Immutable.Single<Double> maxFallDamage();
+    Value.Immutable<Double> maxFallDamage();
 
     /**
      * Gets the {@link BlockState} the falling block is representing.
      *
      * @return The falling block's block state
      */
-    Value.Immutable.Single<BlockState> blockState();
+    Value.Immutable<BlockState> blockState();
 
     /**
      * Gets whether this falling block will try to place itself where
@@ -66,7 +66,7 @@ public interface ImmutableFallingBlockData extends ImmutableDataManipulator<Immu
      *
      * @return True if this block will attempt to place itself when it lands
      */
-    Value.Immutable.Single<Boolean> canPlaceAsBlock();
+    Value.Immutable<Boolean> canPlaceAsBlock();
 
     /**
      * Gets whether this falling block can drop as an item if it lands in a
@@ -74,7 +74,7 @@ public interface ImmutableFallingBlockData extends ImmutableDataManipulator<Immu
      *
      * @return Whether this falling block can drop as an item
      */
-    Value.Immutable.Single<Boolean> canDropAsItem();
+    Value.Immutable<Boolean> canDropAsItem();
 
     /**
      * Gets the time the block has been falling if spawning a entity in air
@@ -82,13 +82,13 @@ public interface ImmutableFallingBlockData extends ImmutableDataManipulator<Immu
      *
      * @return The time the block has been falling
      */
-    Value.Immutable.Single<Integer> fallTime();
+    Value.Immutable<Integer> fallTime();
 
     /**
      * Gets whether this falling block will damage entities where it lands.
      *
      * @return Whether this falling block will damage entities where it lands
      */
-    Value.Immutable.Single<Boolean> canHurtEntities();
+    Value.Immutable<Boolean> canHurtEntities();
 
 }

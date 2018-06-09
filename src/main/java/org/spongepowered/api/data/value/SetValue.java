@@ -28,6 +28,12 @@ import java.util.Set;
 
 public interface SetValue<E> extends CollectionValue<E, Set<E>> {
 
+    @Override
+    SetValue.Mutable<E> asMutable();
+
+    @Override
+    SetValue.Immutable<E> asImmutable();
+
     /**
      * Represents a type of {@link CollectionValue.Mutable} backed by a {@link Set}. The
      * reasoning is that a {@link Set} retains no ordering of the elements it
@@ -37,6 +43,13 @@ public interface SetValue<E> extends CollectionValue<E, Set<E>> {
      */
     interface Mutable<E> extends SetValue<E>, CollectionValue.Mutable<E, Set<E>, Mutable<E>, Immutable<E>> {
 
+        @Override
+        default SetValue.Mutable<E> asMutable() {
+            return this;
+        }
+
+        @Override
+        SetValue.Immutable<E> asImmutable();
     }
 
     /**
@@ -48,5 +61,12 @@ public interface SetValue<E> extends CollectionValue<E, Set<E>> {
      */
     interface Immutable<E> extends SetValue<E>, CollectionValue.Immutable<E, Set<E>, Immutable<E>, Mutable<E>> {
 
+        @Override
+        SetValue.Mutable<E> asMutable();
+
+        @Override
+        default SetValue.Immutable<E> asImmutable() {
+            return this;
+        }
     }
 }

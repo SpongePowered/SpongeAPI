@@ -42,7 +42,7 @@ public interface FuseData extends DataManipulator<FuseData, ImmutableFuseData> {
      * @return Amount of ticks before detonation when primed
      * @see Keys#FUSE_DURATION
      */
-    Value.Mutable.Single<Integer> fuseDuration();
+    Value.Mutable<Integer> fuseDuration();
 
     /**
      * The amount of ticks before {@link FusedExplosive} detonates. Setting
@@ -56,6 +56,6 @@ public interface FuseData extends DataManipulator<FuseData, ImmutableFuseData> {
      * @return Amount of ticks before impending detonation
      * @see Keys#TICKS_REMAINING
      */
-    Value.Mutable.Single<Integer> ticksRemaining();
+    Value.Mutable<Integer> ticksRemaining();
 
 }

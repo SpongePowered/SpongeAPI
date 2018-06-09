@@ -41,7 +41,7 @@ public interface ImmutableScreamingData extends ImmutableDataManipulator<Immutab
      *
      * @return The immutable value for the screaming state
      */
-    Value.Immutable.Single<Boolean> screaming();
+    Value.Immutable<Boolean> screaming();
 
 }
 
