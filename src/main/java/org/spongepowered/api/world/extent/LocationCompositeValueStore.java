@@ -37,7 +37,6 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.merge.MergeFunction;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.world.Location;
 
 import java.util.Collection;
@@ -369,18 +368,18 @@ public interface LocationCompositeValueStore {
     Set<Key<?>> getKeys(int x, int y, int z);
 
     /**
-     * Gets an {@link ImmutableSet} of {@link ImmutableValue}s for the block at
+     * Gets an {@link ImmutableSet} of {@link Value.Immutable}s for the block at
      * the given location.
      *
      * @param coordinates The position of the block
      * @return The immutable set of values for the block
      */
-    default Set<ImmutableValue<?>> getValues(Vector3i coordinates) {
+    default Set<Value.Immutable<?>> getValues(Vector3i coordinates) {
         return getValues(coordinates.getX(), coordinates.getY(), coordinates.getZ());
     }
 
     /**
-     * Gets an {@link ImmutableSet} of {@link ImmutableValue}s for the block at
+     * Gets an {@link ImmutableSet} of {@link Value.Immutable}s for the block at
      * the given location.
      *
      * @param x The X position
@@ -388,7 +387,7 @@ public interface LocationCompositeValueStore {
      * @param z The Z position
      * @return The immutable set of values for the block
      */
-    Set<ImmutableValue<?>> getValues(int x, int y, int z);
+    Set<Value.Immutable<?>> getValues(int x, int y, int z);
 
     /**
      * Applies a transformation on the pre-existing value of the data keyed by
@@ -688,8 +687,8 @@ public interface LocationCompositeValueStore {
 
     /**
      * Attempts to undo a {@link DataTransactionResult}. Specifically, all
-     * {@link ImmutableValue}s that were successfully added are removed, and all
-     * replaced {@link ImmutableValue}s are offered.
+     * {@link Value.Immutable}s that were successfully added are removed, and all
+     * replaced {@link Value.Immutable}s are offered.
      *
      * @param coordinates The position of the block
      * @param result The transaction result to undo
@@ -701,8 +700,8 @@ public interface LocationCompositeValueStore {
 
     /**
      * Attempts to undo a {@link DataTransactionResult}. Specifically, all
-     * {@link ImmutableValue}s that were successfully added are removed, and all
-     * replaced {@link ImmutableValue}s are offered.
+     * {@link Value.Immutable}s that were successfully added are removed, and all
+     * replaced {@link Value.Immutable}s are offered.
      *
      * @param x The X position
      * @param y The Y position
@@ -751,7 +750,7 @@ public interface LocationCompositeValueStore {
     }
 
     /**
-     * Attempts to copy all {@link ImmutableValue}s from the provided block to
+     * Attempts to copy all {@link Value.Immutable}s from the provided block to
      * provided block to the provided block coordinates.
      *
      * @param xTo The X position of the block to copy data to
@@ -767,7 +766,7 @@ public interface LocationCompositeValueStore {
     }
 
     /**
-     * Attempts to copy all {@link ImmutableValue}s from the provided block to
+     * Attempts to copy all {@link Value.Immutable}s from the provided block to
      * provided block to the provided block coordinates. Any conflicting data is
      * handled through the provided {@link MergeFunction}.
      *
@@ -781,7 +780,7 @@ public interface LocationCompositeValueStore {
     }
 
     /**
-     * Attempts to copy all {@link ImmutableValue}s from the provided block to
+     * Attempts to copy all {@link Value.Immutable}s from the provided block to
      * provided block to the provided block coordinates. Any conflicting data is
      * handled through the provided {@link MergeFunction}.
      *
@@ -795,7 +794,7 @@ public interface LocationCompositeValueStore {
     DataTransactionResult copyFrom(int xTo, int yTo, int zTo, DataHolder from, MergeFunction function);
 
     /**
-     * Attempts to copy all {@link ImmutableValue}s from the provided block to
+     * Attempts to copy all {@link Value.Immutable}s from the provided block to
      * provided block to the provided block coordinates. Any conflicting data is
      * handled through the provided {@link MergeFunction}.
      *
@@ -810,7 +809,7 @@ public interface LocationCompositeValueStore {
     }
 
     /**
-     * Attempts to copy all {@link ImmutableValue}s from the provided block to
+     * Attempts to copy all {@link Value.Immutable}s from the provided block to
      * provided block to the provided block coordinates. Any conflicting data is
      * handled through the provided {@link MergeFunction}.
      *

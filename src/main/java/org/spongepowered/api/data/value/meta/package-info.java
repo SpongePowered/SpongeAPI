@@ -22,31 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.value.immutable;
-
-import org.spongepowered.api.data.value.OptionalValue;
-import org.spongepowered.api.data.value.mutable.MutableOptionalValue;
-
-import java.util.Optional;
-import java.util.function.Function;
-
-import javax.annotation.Nullable;
-
-/**
- * Represents a {@link ImmutableValue} that can be {@link Optional} such that
- * the underlying value may be present or {@code null}.
- *
- * @param <E> The type of element
- */
-public interface ImmutableOptionalValue<E> extends OptionalValue<E>, ImmutableValue<Optional<E>, ImmutableOptionalValue<E>, MutableOptionalValue<E>> {
-
-    /**
-     * Creates a new {@link ImmutableOptionalValue} with the provided value,
-     * may be null.
-     *
-     * @param value The value
-     * @return The new value, for chaining
-     */
-    ImmutableOptionalValue<E> instead(@Nullable E value);
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.data.value.meta;

@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.data.value;
 
-import org.spongepowered.api.data.value.immutable.ImmutableWeightedCollectionValue;
-import org.spongepowered.api.data.value.mutable.MutableWeightedCollectionValue;
 import org.spongepowered.api.util.weighted.TableEntry;
 import org.spongepowered.api.util.weighted.WeightedTable;
 
@@ -47,9 +45,27 @@ public interface WeightedCollectionValue<E> extends CollectionValue<TableEntry<E
     @Nullable
     List<E> get(Random random);
 
-    @Override
-    MutableWeightedCollectionValue<E> asMutable();
+    /**
+     * Represents a particular type of {@link CollectionValue.Immutable} that is
+     * backed by a {@link WeightedTable}.
+     *
+     * @param <E> The type of weighted object
+     */
+    interface Immutable<E> extends WeightedCollectionValue<E>,
+        CollectionValue.Immutable<TableEntry<E>, WeightedTable<E>, Immutable<E>, Mutable<E>> {
 
-    @Override
-    ImmutableWeightedCollectionValue<E> asImmutable();
+
+    }
+
+    /**
+     * Represents a particular type of {@link CollectionValue.Mutable} that is backed by
+     * a {@link WeightedTable}.
+     *
+     * @param <E> The type of weighted object
+     */
+    interface Mutable<E> extends WeightedCollectionValue<E>,
+        CollectionValue.Mutable<TableEntry<E>, WeightedTable<E>, Mutable<E>, Immutable<E>> {
+
+
+    }
 }

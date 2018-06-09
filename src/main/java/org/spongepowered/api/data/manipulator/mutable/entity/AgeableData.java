@@ -27,8 +27,8 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableAgeableData;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents data that defines the owner as having a growing
@@ -37,19 +37,19 @@ import org.spongepowered.api.data.value.mutable.MutableValue;
 public interface AgeableData extends DataManipulator<AgeableData, ImmutableAgeableData> {
 
     /**
-     * Gets the {@link MutableBoundedValue} for the "age" state.
+     * Gets the {@link BoundedValue.Mutable} for the "age" state.
      *
      * @return The mutable bounded value for the "age"
      * @see Keys#AGE
      */
-    MutableBoundedValue<Integer> age();
+    BoundedValue.Mutable<Integer> age();
 
     /**
-     * Gets the {@link MutableValue} for whether the {@link #age()} is
+     * Gets the {@link Value.Mutable} for whether the {@link #age()} is
      * considered to be an "adult".
      *
      * @return The immutable value for the "adult" state
      */
-    MutableValue.Single<Boolean> adult();
+    Value.Mutable.Single<Boolean> adult();
 
 }

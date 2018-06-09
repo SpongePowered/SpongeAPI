@@ -28,7 +28,7 @@ import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableExtendedData;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Signifies that the holder is "extended". Usually applicable to
@@ -37,11 +37,11 @@ import org.spongepowered.api.data.value.mutable.MutableValue;
 public interface ExtendedData extends DataManipulator<ExtendedData, ImmutableExtendedData> {
 
     /**
-     * Gets the {@link MutableValue} for the "extended" state.
+     * Gets the {@link Value.Mutable} for the "extended" state.
      *
      * @return The value for the "extended" state
      * @see Keys#EXTENDED
      */
-    MutableValue.Single<Boolean> extended();
+    Value.Mutable.Single<Boolean> extended();
 
 }

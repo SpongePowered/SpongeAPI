@@ -27,7 +27,7 @@ package org.spongepowered.api.entity.projectile;
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.TargetedLocationData;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.world.Location;
 
 /**
@@ -46,11 +46,11 @@ public interface EyeOfEnder extends Projectile {
     }
 
     /**
-     * Gets the {@link MutableValue} for the targeted {@link Location}.
+     * Gets the {@link Value.Mutable} for the targeted {@link Location}.
      *
      * @return The value for the targeted location
      */
-    default MutableValue<Vector3d> target() {
+    default Value.Mutable<Vector3d> target() {
         return getValue(Keys.TARGETED_LOCATION).get();
     }
 

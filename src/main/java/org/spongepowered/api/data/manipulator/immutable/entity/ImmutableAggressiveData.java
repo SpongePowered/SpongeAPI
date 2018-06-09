@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.AggressiveData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -36,10 +36,10 @@ import org.spongepowered.api.entity.Entity;
 public interface ImmutableAggressiveData extends ImmutableDataManipulator<ImmutableAggressiveData, AggressiveData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the "aggressive" state.
+     * Gets the {@link Value.Immutable} for the "aggressive" state.
      *
      * @return The immutable value for the aggressive state
      */
-    ImmutableValue.Single<Boolean> aggressive();
+    Value.Immutable.Single<Boolean> aggressive();
 
 }

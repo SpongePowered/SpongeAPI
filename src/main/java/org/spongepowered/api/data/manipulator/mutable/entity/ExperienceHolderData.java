@@ -27,8 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableExperienceHolderData;
-import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.entity.living.Humanoid;
 
 /**
@@ -38,7 +37,7 @@ import org.spongepowered.api.entity.living.Humanoid;
 public interface ExperienceHolderData extends DataManipulator<ExperienceHolderData, ImmutableExperienceHolderData> {
 
     /**
-     * Gets the {@link MutableBoundedValue}  for the amount of experience
+     * Gets the {@link BoundedValue.Mutable}  for the amount of experience
      * gained since the beginning of the current {@link #level()}. Normally,
      * the higher the level, the more "experience" required to gain another
      * level.
@@ -47,10 +46,10 @@ public interface ExperienceHolderData extends DataManipulator<ExperienceHolderDa
      *     current level
      * @see Keys#EXPERIENCE_SINCE_LEVEL
      */
-    MutableBoundedValue<Integer> experienceSinceLevel();
+    BoundedValue.Mutable<Integer> experienceSinceLevel();
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the amount of experience
+     * Gets the {@link BoundedValue.Immutable} for the amount of experience
      * required between the current {@link #level()} and the next level.
      * This can be presumed to be the supposed "maximum" for the
      * {@link #experienceSinceLevel()} amount.
@@ -58,10 +57,10 @@ public interface ExperienceHolderData extends DataManipulator<ExperienceHolderDa
      * @return The immutable bounded required experience between levels
      * @see Keys#EXPERIENCE_FROM_START_OF_LEVEL
      */
-    ImmutableBoundedValue<Integer> getExperienceBetweenLevels();
+    BoundedValue.Immutable<Integer> getExperienceBetweenLevels();
 
     /**
-     * Gets the {@link MutableBoundedValue} for the current "level" of
+     * Gets the {@link BoundedValue.Mutable} for the current "level" of
      * experience deserved according to the {@link #totalExperience()} and
      * a function from implementation defining how much experience required
      * per level.
@@ -69,7 +68,7 @@ public interface ExperienceHolderData extends DataManipulator<ExperienceHolderDa
      * @return The current level according to the amount of total experience
      * @see Keys#EXPERIENCE_LEVEL
      */
-    MutableBoundedValue<Integer> level();
+    BoundedValue.Mutable<Integer> level();
 
     /**
      * Gets the total amount of experience stored.
@@ -77,6 +76,6 @@ public interface ExperienceHolderData extends DataManipulator<ExperienceHolderDa
      * @return The value of total amount of experience
      * @see Keys#TOTAL_EXPERIENCE
      */
-    MutableBoundedValue<Integer> totalExperience();
+    BoundedValue.Mutable<Integer> totalExperience();
 
 }

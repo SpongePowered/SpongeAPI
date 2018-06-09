@@ -27,8 +27,7 @@ package org.spongepowered.api.data;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.immutable.ImmutableValueStore;
+import org.spongepowered.api.data.value.ValueContainer;
 
 import java.util.List;
 
@@ -39,13 +38,13 @@ import java.util.List;
  * belonging to this {@link ImmutableDataHolder}. It should be considered that
  * an {@link ImmutableDataHolder} is considered "safe" to process
  * asynchronously as all {@link Value}s are copied into
- * {@link ImmutableValue} counterparts.
+ * {@link Value.Immutable} counterparts.
  *
  * @see DataHolder
  * @param <T> The sub type of immutable data holder
  */
 public interface ImmutableDataHolder<T extends ImmutableDataHolder<T>> extends DataSerializable, PropertyHolder,
-                                                                               ImmutableValueStore<T, ImmutableDataManipulator<?, ?>> {
+    ValueContainer.ImmutableValueStore<T, ImmutableDataManipulator<?, ?>> {
 
     /**
      * Gets a copy of all properties defined on this

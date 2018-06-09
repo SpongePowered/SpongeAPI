@@ -29,7 +29,7 @@ import org.spongepowered.api.block.tileentity.Structure;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.StructureData;
 import org.spongepowered.api.data.type.StructureMode;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * An {@link ImmutableDataManipulator} representing the {@link Structure}.
@@ -37,73 +37,73 @@ import org.spongepowered.api.data.value.immutable.ImmutableValue;
 public interface ImmutableStructureData extends ImmutableDataManipulator<ImmutableStructureData, StructureData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the author of the {@link Structure}.
+     * Gets the {@link Value.Immutable} for the author of the {@link Structure}.
      *
      * @return The value for the author
      */
-    ImmutableValue.Single<String> author();
+    Value.Immutable.Single<String> author();
 
     /**
-     * Gets the {@link ImmutableValue} for the ignore entities state of the {@link Structure}.
+     * Gets the {@link Value.Immutable} for the ignore entities state of the {@link Structure}.
      *
      * @return The value for the ignore entities state
      */
-    ImmutableValue.Single<Boolean> ignoreEntities();
+    Value.Immutable.Single<Boolean> ignoreEntities();
 
     /**
-     * Gets the {@link ImmutableValue} for the integrity of the {@link Structure}.
+     * Gets the {@link Value.Immutable} for the integrity of the {@link Structure}.
      *
      * @return The value for the integrity
      */
-    ImmutableValue.Single<Float> integrity();
+    Value.Immutable.Single<Float> integrity();
 
     /**
-     * Gets the {@link ImmutableValue} for the mode of the {@link Structure}.
+     * Gets the {@link Value.Immutable} for the mode of the {@link Structure}.
      *
      * @return The value for the mode
      */
-    ImmutableValue.Single<StructureMode> mode();
+    Value.Immutable.Single<StructureMode> mode();
 
     /**
-     * Gets the {@link ImmutableValue} for the position of the {@link Structure}.
+     * Gets the {@link Value.Immutable} for the position of the {@link Structure}.
      *
      * @return The value for the position
      */
-    ImmutableValue.Single<Vector3i> position();
+    Value.Immutable.Single<Vector3i> position();
 
     /**
-     * Gets the {@link ImmutableValue} for the powered state of the {@link Structure}.
+     * Gets the {@link Value.Immutable} for the powered state of the {@link Structure}.
      *
      * @return The value for the powered state
      */
-    ImmutableValue.Single<Boolean> powered();
+    Value.Immutable.Single<Boolean> powered();
 
     /**
-     * Gets the {@link ImmutableValue} for the seed of the {@link Structure}.
+     * Gets the {@link Value.Immutable} for the seed of the {@link Structure}.
      *
      * @return The value for the seed
      */
-    ImmutableValue.Single<Long> seed();
+    Value.Immutable.Single<Long> seed();
 
     /**
-     * Gets the {@link ImmutableValue} for the show air state of the {@link Structure}.
+     * Gets the {@link Value.Immutable} for the show air state of the {@link Structure}.
      *
      * @return The value for the show air state
      */
-    ImmutableValue.Single<Boolean> showAir();
+    Value.Immutable.Single<Boolean> showAir();
 
     /**
-     * Gets the {@link ImmutableValue} for the show bounding box state of the {@link Structure}.
+     * Gets the {@link Value.Immutable} for the show bounding box state of the {@link Structure}.
      *
      * @return The value for the show bounding box state
      */
-    ImmutableValue.Single<Boolean> showBoundingBox();
+    Value.Immutable.Single<Boolean> showBoundingBox();
 
     /**
-     * Gets the {@link ImmutableValue} for the size of the {@link Structure}.
+     * Gets the {@link Value.Immutable} for the size of the {@link Structure}.
      *
      * @return The value for the size
      */
-    ImmutableValue.Single<Vector3i> size();
+    Value.Immutable.Single<Vector3i> size();
 
 }

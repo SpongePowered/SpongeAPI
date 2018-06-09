@@ -26,8 +26,8 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.AgeableData;
-import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -37,18 +37,18 @@ import org.spongepowered.api.entity.Entity;
 public interface ImmutableAgeableData extends ImmutableDataManipulator<ImmutableAgeableData, AgeableData> {
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the "age" state.
+     * Gets the {@link BoundedValue.Immutable} for the "age" state.
      *
      * @return The immutable bounded value for the "age"
      */
-    ImmutableBoundedValue<Integer> age();
+    BoundedValue.Immutable<Integer> age();
 
     /**
-     * Gets the {@link ImmutableValue} for whether the {@link #age()} is
+     * Gets the {@link Value.Immutable} for whether the {@link #age()} is
      * considered to be an "adult".
      *
      * @return The immutable value for the "adult" state
      */
-    ImmutableValue.Single<Boolean> adult();
+    Value.Immutable.Single<Boolean> adult();
 
 }

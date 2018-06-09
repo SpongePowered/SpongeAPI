@@ -41,8 +41,6 @@ import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.property.DirectionRelativePropertyHolder;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.MutableValue;
 import org.spongepowered.api.util.Cycleable;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.Location;
@@ -59,7 +57,7 @@ import javax.annotation.Nullable;
 
 /**
  * Represents a particular "state" that can exist at a {@link Location} with
- * a particular {@link BlockType} and various {@link ImmutableValue}s defining
+ * a particular {@link BlockType} and various {@link Value.Immutable}s defining
  * the information for the "block". Note that normally, there may exist only
  * a single instance of a particular {@link BlockState} as they are immutable,
  * a particular instance may be cached for various uses.
@@ -121,7 +119,7 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
     /**
      * Gets the associated {@link BlockState} with the cycled
      * {@link Value}. Note that only {@link Cycleable} values can be
-     * cycled. To change a particular {@link Key}'ed {@link MutableValue}, usage
+     * cycled. To change a particular {@link Key}'ed {@link Value.Mutable}, usage
      * of the {@link BlockState#with(Key, Object)} is recommended.
      *
      * @param key The key to cycle

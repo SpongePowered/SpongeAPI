@@ -28,7 +28,7 @@ import org.spongepowered.api.block.tileentity.MobSpawner;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableAffectsSpawningData;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.player.Player;
 
 /**
@@ -38,7 +38,7 @@ import org.spongepowered.api.entity.living.player.Player;
 public interface AffectsSpawningData extends DataManipulator<AffectsSpawningData, ImmutableAffectsSpawningData> {
 
     /**
-     * Gets the {@link MutableValue} for the "affects spawning" state.
+     * Gets the {@link Value.Mutable} for the "affects spawning" state.
      *
      * <p>A {@link Player} who does not affect spawning will be treated as a
      * spectator in regards to spawning. A {@link MobSpawner} will not be
@@ -48,6 +48,6 @@ public interface AffectsSpawningData extends DataManipulator<AffectsSpawningData
      * @return The value for the affects spawning state
      * @see Keys#AFFECTS_SPAWNING
      */
-    MutableValue.Single<Boolean> affectsSpawning();
+    Value.Mutable.Single<Boolean> affectsSpawning();
 
 }

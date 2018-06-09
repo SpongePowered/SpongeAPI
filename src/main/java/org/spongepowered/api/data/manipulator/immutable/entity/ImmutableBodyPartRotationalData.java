@@ -29,12 +29,11 @@ import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.BodyPartRotationalData;
 import org.spongepowered.api.data.type.BodyPart;
 import org.spongepowered.api.data.type.BodyParts;
-import org.spongepowered.api.data.value.immutable.ImmutableMapValue;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.CompositeValueStore;
+import org.spongepowered.api.data.value.MapValue;
+import org.spongepowered.api.data.value.Value;
 
 /**
- * An {@link ImmutableDataManipulator} containing an {@link ImmutableMapValue}
+ * An {@link ImmutableDataManipulator} containing an {@link MapValue.Immutable}
  * matching {@link BodyPart}s to {@link Vector3d} rotations. Depending on the
  * owning {@link CompositeValueStore}, certain {@link BodyPart}s may not be
  * usable or valid.
@@ -42,59 +41,59 @@ import org.spongepowered.api.data.value.mutable.CompositeValueStore;
 public interface ImmutableBodyPartRotationalData extends ImmutableDataManipulator<ImmutableBodyPartRotationalData, BodyPartRotationalData> {
 
     /**
-     * Gets the {@link ImmutableMapValue} of {@link BodyPart}s to
+     * Gets the {@link MapValue.Immutable} of {@link BodyPart}s to
      * {@link Vector3d} rotations.
      *
      * @return The immutable map value of body parts to rotations
      */
-    ImmutableMapValue<BodyPart, Vector3d> partRotation();
+    MapValue.Immutable<BodyPart, Vector3d> partRotation();
 
     /**
-     * Gets the individual {@link ImmutableValue} of the {@link Vector3d}
+     * Gets the individual {@link Value.Immutable} of the {@link Vector3d}
      * rotation for {@link BodyParts#HEAD}.
      *
      * @return The immutable rotation value for the head rotation
      */
-    ImmutableValue.Single<Vector3d> headDirection();
+    Value.Immutable.Single<Vector3d> headDirection();
 
     /**
-     * Gets the individual {@link ImmutableValue} of the {@link Vector3d}
+     * Gets the individual {@link Value.Immutable} of the {@link Vector3d}
      * rotation for {@link BodyParts#CHEST}.
      *
      * @return The immutable rotation value for the chest rotation
      */
-    ImmutableValue.Single<Vector3d> bodyRotation();
+    Value.Immutable.Single<Vector3d> bodyRotation();
 
     /**
-     * Gets the individual {@link ImmutableValue} of the {@link Vector3d}
+     * Gets the individual {@link Value.Immutable} of the {@link Vector3d}
      * rotation for {@link BodyParts#LEFT_ARM}.
      *
      * @return The immutable rotation value for the left arm rotation
      */
-    ImmutableValue.Single<Vector3d> leftArmDirection();
+    Value.Immutable.Single<Vector3d> leftArmDirection();
 
     /**
-     * Gets the individual {@link ImmutableValue} of the {@link Vector3d}
+     * Gets the individual {@link Value.Immutable} of the {@link Vector3d}
      * rotation for {@link BodyParts#RIGHT_ARM}.
      *
      * @return The immutable rotation value for the right arm rotation
      */
-    ImmutableValue.Single<Vector3d> rightArmDirection();
+    Value.Immutable.Single<Vector3d> rightArmDirection();
 
     /**
-     * Gets the individual {@link ImmutableValue} of the {@link Vector3d}
+     * Gets the individual {@link Value.Immutable} of the {@link Vector3d}
      * rotation for {@link BodyParts#LEFT_LEG}.
      *
      * @return The immutable rotation value for the left leg rotation
      */
-    ImmutableValue.Single<Vector3d> leftLegDirection();
+    Value.Immutable.Single<Vector3d> leftLegDirection();
 
     /**
-     * Gets the individual {@link ImmutableValue} of the {@link Vector3d}
+     * Gets the individual {@link Value.Immutable} of the {@link Vector3d}
      * rotation for {@link BodyParts#RIGHT_LEG}.
      *
      * @return The immutable rotation value for the right leg rotation
      */
-    ImmutableValue.Single<Vector3d> rightLegDirection();
+    Value.Immutable.Single<Vector3d> rightLegDirection();
 
 }

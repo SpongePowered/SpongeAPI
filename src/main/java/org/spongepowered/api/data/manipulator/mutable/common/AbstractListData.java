@@ -34,8 +34,8 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableListData;
 import org.spongepowered.api.data.manipulator.mutable.ListData;
+import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.data.value.mutable.MutableListValue;
 
 import java.util.List;
 import java.util.Optional;
@@ -56,8 +56,8 @@ public abstract class AbstractListData<E, M extends ListData<E, M, I>, I extends
     }
 
     @Override
-    protected MutableListValue<E> getValueGetter() {
-        return Sponge.getRegistry().getValueFactory().createListValue((Key<MutableListValue<E>>) this.usedKey, this.getValue());
+    protected ListValue.Mutable<E> getValueGetter() {
+        return Sponge.getRegistry().getValueFactory().createListValue((Key<ListValue.Mutable<E>>) this.usedKey, this.getValue());
     }
 
     @Override
@@ -108,7 +108,7 @@ public abstract class AbstractListData<E, M extends ListData<E, M, I>, I extends
     }
 
     @Override
-    public MutableListValue<E> getListValue() {
+    public ListValue.Mutable<E> getListValue() {
         return getValueGetter();
     }
 

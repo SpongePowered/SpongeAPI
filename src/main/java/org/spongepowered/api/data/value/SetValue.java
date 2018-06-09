@@ -28,4 +28,25 @@ import java.util.Set;
 
 public interface SetValue<E> extends CollectionValue<E, Set<E>> {
 
+    /**
+     * Represents a type of {@link CollectionValue.Mutable} backed by a {@link Set}. The
+     * reasoning is that a {@link Set} retains no ordering of the elements it
+     * contains.
+     *
+     * @param <E> The type of elements supported
+     */
+    interface Mutable<E> extends SetValue<E>, CollectionValue.Mutable<E, Set<E>, Mutable<E>, Immutable<E>> {
+
+    }
+
+    /**
+     * Represents a type of {@link CollectionValue.Immutable} backed by a
+     * {@link Set}. The reasoning is that a {@link Set} retains no ordering of the
+     * elements it contains.
+     *
+     * @param <E> The type of elements supported
+     */
+    interface Immutable<E> extends SetValue<E>, CollectionValue.Immutable<E, Set<E>, Immutable<E>, Mutable<E>> {
+
+    }
 }

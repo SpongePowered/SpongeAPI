@@ -28,15 +28,14 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.value.Value;
 
 import java.util.Comparator;
 
 /**
  * An abstracted {@link ImmutableDataManipulator} that focuses solely on an
- * {@link ImmutableBoundedValue} as it's {@link MutableValue} return type.
+ * {@link BoundedValue.Immutable} as it's {@link Value.Mutable} return type.
  *
  * @param <T> The type of comparable element
  * @param <I> The immutable data manipulator type
@@ -49,10 +48,10 @@ public abstract class AbstractImmutableBoundedComparableData<T extends Comparabl
     protected final T lowerBound;
     protected final T upperBound;
     protected final T defaultValue;
-    private final ImmutableBoundedValue<T> immutableBoundedValue;
+    private final BoundedValue.Immutable<T> immutableBoundedValue;
 
     @SuppressWarnings("unchecked")
-    protected AbstractImmutableBoundedComparableData(T value, Key<MutableBoundedValue<T>> usedKey,
+    protected AbstractImmutableBoundedComparableData(T value, Key<BoundedValue.Mutable<T>> usedKey,
                                                      Comparator<T> comparator, T lowerBound,
                                                      T upperBound, T defaultValue) {
         super(value, usedKey);
@@ -61,7 +60,7 @@ public abstract class AbstractImmutableBoundedComparableData<T extends Comparabl
         this.upperBound = upperBound;
         this.defaultValue = defaultValue;
         this.immutableBoundedValue = Sponge.getRegistry().getValueFactory()
-            .createBoundedValueBuilder((Key<MutableBoundedValue<T>>) this.usedKey)
+            .createBoundedValueBuilder((Key<BoundedValue.Mutable<T>>) this.usedKey)
             .defaultValue(this.defaultValue)
             .actualValue(this.value)
             .minimum(this.lowerBound)
@@ -72,7 +71,7 @@ public abstract class AbstractImmutableBoundedComparableData<T extends Comparabl
     }
 
     @Override
-    protected final ImmutableBoundedValue<T> getValueGetter() {
+    protected final BoundedValue.Immutable<T> getValueGetter() {
         return this.immutableBoundedValue;
     }
 

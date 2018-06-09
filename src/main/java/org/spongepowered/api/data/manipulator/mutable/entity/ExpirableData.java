@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableExpirableData;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.living.monster.Endermite;
 import org.spongepowered.api.world.weather.Weather;
@@ -40,12 +40,12 @@ import org.spongepowered.api.world.weather.Weather;
 public interface ExpirableData extends DataManipulator<ExpirableData, ImmutableExpirableData> {
 
     /**
-     * Gets the {@link MutableBoundedValue} for the amount of "ticks"
+     * Gets the {@link BoundedValue.Mutable} for the amount of "ticks"
      * remaining before the "expiration" occurs.
      *
      * @return The immutable bounded value for the amount of ticks remaining
      * @see Keys#EXPIRATION_TICKS
      */
-    MutableBoundedValue<Integer> expireTicks();
+    BoundedValue.Mutable<Integer> expireTicks();
 
 }

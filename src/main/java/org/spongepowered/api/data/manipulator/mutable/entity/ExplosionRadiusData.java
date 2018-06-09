@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableExplosionRadiusData;
-import org.spongepowered.api.data.value.mutable.MutableOptionalValue;
+import org.spongepowered.api.data.value.OptionalValue;
 
 /**
  * Represents the radius of an explosion.
@@ -43,6 +43,6 @@ public interface ExplosionRadiusData extends DataManipulator<ExplosionRadiusData
      * @return Explosion radius
      * @see Keys#EXPLOSION_RADIUS
      */
-    MutableOptionalValue<Integer> explosionRadius();
+    OptionalValue.MutableOptionalValue<Integer> explosionRadius();
 
 }

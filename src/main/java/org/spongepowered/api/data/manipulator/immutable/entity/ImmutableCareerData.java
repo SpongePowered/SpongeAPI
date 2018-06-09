@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableVariantData;
 import org.spongepowered.api.data.manipulator.mutable.entity.CareerData;
 import org.spongepowered.api.data.type.Career;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Villager;
 
 /**
@@ -36,10 +36,10 @@ import org.spongepowered.api.entity.living.Villager;
 public interface ImmutableCareerData extends ImmutableVariantData<Career, ImmutableCareerData, CareerData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the {@link Career}.
+     * Gets the {@link Value.Immutable} for the {@link Career}.
      *
      * @return The immutable value for the career
      */
-    ImmutableValue.Single<Career> career();
+    Value.Immutable.Single<Career> career();
 
 }

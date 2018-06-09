@@ -32,13 +32,13 @@ import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.data.value.BoundedValue;
 
 import java.util.Comparator;
 
 /**
  * An abstract implementation of a {@link DataManipulator} that deals
- * specifically with a {@link MutableBoundedValue}. Similar to
+ * specifically with a {@link BoundedValue.Mutable}. Similar to
  * {@link AbstractSingleData} in that it focuses on a single value,
  * it adds the certainty that the value can only accept values of which
  * the bounds are met.
@@ -55,7 +55,7 @@ public abstract class AbstractBoundedComparableData<T extends Comparable<T>, M e
     protected final T upperBound;
     protected final T defaultValue;
 
-    protected AbstractBoundedComparableData(T value, Key<MutableBoundedValue<T>> usedKey, Comparator<T> comparator, T lowerBound, T upperBound,
+    protected AbstractBoundedComparableData(T value, Key<BoundedValue.Mutable<T>> usedKey, Comparator<T> comparator, T lowerBound, T upperBound,
                                             T defaultValue) {
         super(value, usedKey);
         this.comparator = checkNotNull(comparator);
@@ -66,9 +66,9 @@ public abstract class AbstractBoundedComparableData<T extends Comparable<T>, M e
 
     @SuppressWarnings("unchecked")
     @Override
-    protected MutableBoundedValue<T> getValueGetter() {
+    protected BoundedValue.Mutable<T> getValueGetter() {
         return Sponge.getRegistry().getValueFactory()
-            .createBoundedValueBuilder((Key<MutableBoundedValue<T>>) this.usedKey)
+            .createBoundedValueBuilder((Key<BoundedValue.Mutable<T>>) this.usedKey)
             .defaultValue(this.defaultValue)
             .comparator(this.comparator)
             .minimum(this.lowerBound)

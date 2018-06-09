@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutablePlayingData;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Villager;
 
 /**
@@ -37,11 +37,11 @@ import org.spongepowered.api.entity.living.Villager;
 public interface PlayingData extends DataManipulator<PlayingData, ImmutablePlayingData> {
 
     /**
-     * Gets the {@link MutableValue} for the "playing" state.
+     * Gets the {@link Value.Mutable} for the "playing" state.
      *
      * @return The value for the playing state
      * @see Keys#IS_PLAYING
      */
-    MutableValue.Single<Boolean> playing();
+    Value.Mutable.Single<Boolean> playing();
 
 }

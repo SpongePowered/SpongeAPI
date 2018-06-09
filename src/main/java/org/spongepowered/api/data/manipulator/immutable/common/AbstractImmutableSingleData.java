@@ -31,7 +31,6 @@ import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
 
 import java.util.Optional;
 import java.util.Set;
@@ -57,7 +56,7 @@ public abstract class AbstractImmutableSingleData<T, I extends ImmutableDataMani
         registerGetters();
     }
 
-    protected abstract ImmutableValue.Single<?> getValueGetter();
+    protected abstract Value.Immutable.Single<?> getValueGetter();
 
     protected final T getValue() {
         return this.value;

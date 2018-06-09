@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.item;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.item.HideData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
@@ -36,45 +36,45 @@ import org.spongepowered.api.item.inventory.ItemStack;
 public interface ImmutableHideData extends ImmutableDataManipulator<ImmutableHideData, HideData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the "enchantments hidden" state of an itemstack.
+     * Gets the {@link Value.Immutable} for the "enchantments hidden" state of an itemstack.
      *
      * @return The immutable value for the enchantments hidden state
      */
-    ImmutableValue.Single<Boolean> hideEnchantments();
+    Value.Immutable.Single<Boolean> hideEnchantments();
 
     /**
-     * Gets the {@link ImmutableValue} for the "attributes hidden" state of an itemstack.
+     * Gets the {@link Value.Immutable} for the "attributes hidden" state of an itemstack.
      *
      * @return The immutable value for the attributes hidden state
      */
-    ImmutableValue.Single<Boolean> hideAttributes();
+    Value.Immutable.Single<Boolean> hideAttributes();
 
     /**
-     * Gets the {@link ImmutableValue} for the "unbreakable hidden" state of an itemstack.
+     * Gets the {@link Value.Immutable} for the "unbreakable hidden" state of an itemstack.
      *
      * @return The immutable value for the unbreakable hidden state
      */
-    ImmutableValue.Single<Boolean> hideUnbreakable();
+    Value.Immutable.Single<Boolean> hideUnbreakable();
 
     /**
-     * Gets the {@link ImmutableValue} for the "can destroy hidden" state of an itemstack.
+     * Gets the {@link Value.Immutable} for the "can destroy hidden" state of an itemstack.
      *
      * @return The immutable value for the can destroy hidden state
      */
-    ImmutableValue.Single<Boolean> hideCanDestroy();
+    Value.Immutable.Single<Boolean> hideCanDestroy();
 
     /**
-     * Gets the {@link ImmutableValue} for the "can destroy hidden" state of an itemstack.
+     * Gets the {@link Value.Immutable} for the "can destroy hidden" state of an itemstack.
      *
      * @return The immutable value for the can place hidden state
      */
-    ImmutableValue.Single<Boolean> hideCanPlace();
+    Value.Immutable.Single<Boolean> hideCanPlace();
 
     /**
-     * Gets the {@link ImmutableValue} for the "miscellaneous hidden" state of an itemstack.
+     * Gets the {@link Value.Immutable} for the "miscellaneous hidden" state of an itemstack.
      *
      * @return The immutable value for the miscellaneous hidden state
      */
-    ImmutableValue.Single<Boolean> hideMiscellaneous();
+    Value.Immutable.Single<Boolean> hideMiscellaneous();
 
 }

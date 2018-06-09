@@ -27,8 +27,8 @@ package org.spongepowered.api.data.manipulator.immutable.block;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.block.ConnectedDirectionData;
-import org.spongepowered.api.data.value.immutable.ImmutableSetValue;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.SetValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.util.Direction;
 
 /**
@@ -39,45 +39,45 @@ import org.spongepowered.api.util.Direction;
 public interface ImmutableConnectedDirectionData extends ImmutableDataManipulator<ImmutableConnectedDirectionData, ConnectedDirectionData> {
 
     /**
-     * Gets the {@link ImmutableSetValue} for the currently "connected"
+     * Gets the {@link SetValue.Immutable} for the currently "connected"
      * {@link Direction}s.
      *
      * @return The immutable set value for connected directions
      */
-    ImmutableSetValue<Direction> connectedDirections();
+    SetValue.Immutable<Direction> connectedDirections();
 
     /**
-     * Gets the {@link ImmutableValue} for whether {@link Direction#NORTH} is
+     * Gets the {@link Value.Immutable} for whether {@link Direction#NORTH} is
      * "connected".
      *
      * @return The immutable value for the north direction
      */
-    ImmutableValue.Single<Boolean> connectedNorth();
+    Value.Immutable.Single<Boolean> connectedNorth();
 
 
     /**
-     * Gets the {@link ImmutableValue} for whether {@link Direction#SOUTH} is
+     * Gets the {@link Value.Immutable} for whether {@link Direction#SOUTH} is
      * "connected".
      *
      * @return The immutable value for the south direction
      */
-    ImmutableValue.Single<Boolean> connectedSouth();
+    Value.Immutable.Single<Boolean> connectedSouth();
 
 
     /**
-     * Gets the {@link ImmutableValue} for whether {@link Direction#EAST} is
+     * Gets the {@link Value.Immutable} for whether {@link Direction#EAST} is
      * "connected".
      *
      * @return The immutable value for the east direction
      */
-    ImmutableValue.Single<Boolean> connectedEast();
+    Value.Immutable.Single<Boolean> connectedEast();
 
     /**
-     * Gets the {@link ImmutableValue} for whether {@link Direction#WEST} is
+     * Gets the {@link Value.Immutable} for whether {@link Direction#WEST} is
      * "connected".
      *
      * @return The immutable value for the west direction
      */
-    ImmutableValue.Single<Boolean> connectedWest();
+    Value.Immutable.Single<Boolean> connectedWest();
 
 }

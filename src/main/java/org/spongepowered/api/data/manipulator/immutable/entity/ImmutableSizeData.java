@@ -26,8 +26,8 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.SizeData;
-import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -38,25 +38,25 @@ import org.spongepowered.api.entity.Entity;
 public interface ImmutableSizeData extends ImmutableDataManipulator<ImmutableSizeData, SizeData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the "base" size.
+     * Gets the {@link Value.Immutable} for the "base" size.
      *
      * @return The immutable value for the base
      */
-    ImmutableValue.Single<Float> base();
+    Value.Immutable.Single<Float> base();
 
     /**
-     * Gets the {@link ImmutableValue} for the "height" size.
+     * Gets the {@link Value.Immutable} for the "height" size.
      *
      * @return The immutable value for the height
      */
-    ImmutableValue.Single<Float> height();
+    Value.Immutable.Single<Float> height();
 
 
     /**
-     * Gets the {@link ImmutableValue} for the "scale" size.
+     * Gets the {@link Value.Immutable} for the "scale" size.
      *
      * @return The immutable value for the scale
      */
-    ImmutableBoundedValue<Float> scale();
+    BoundedValue.Immutable<Float> scale();
 
 }

@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableBreedableData;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.animal.Animal;
 
@@ -38,11 +38,11 @@ import org.spongepowered.api.entity.living.animal.Animal;
 public interface BreedableData extends DataManipulator<BreedableData, ImmutableBreedableData> {
 
     /**
-     * Gets the {@link MutableValue} for the "breedable" state.
+     * Gets the {@link Value.Mutable} for the "breedable" state.
      *
      * @return The value for the "breedable" state
      * @see Keys#CAN_BREED
      */
-    MutableValue.Single<Boolean> breedable();
+    Value.Mutable.Single<Boolean> breedable();
 
 }

@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.immutable.block;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.block.SnowedData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * An {@link ImmutableDataManipulator} for handling the "snowed" state. Usually
@@ -36,10 +36,10 @@ import org.spongepowered.api.data.value.immutable.ImmutableValue;
 public interface ImmutableSnowedData extends ImmutableDataManipulator<ImmutableSnowedData, SnowedData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the "snowed" state.
+     * Gets the {@link Value.Immutable} for the "snowed" state.
      *
      * @return The immutable value for the "snowed" state
      */
-    ImmutableValue.Single<Boolean> hasSnow();
+    Value.Immutable.Single<Boolean> hasSnow();
 
 }

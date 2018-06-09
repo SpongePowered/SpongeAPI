@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.VehicleData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 
@@ -38,20 +38,20 @@ import org.spongepowered.api.entity.EntitySnapshot;
 public interface ImmutableVehicleData extends ImmutableDataManipulator<ImmutableVehicleData, VehicleData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the current "vehicle" being ridden.
+     * Gets the {@link Value.Immutable} for the current "vehicle" being ridden.
      *
      * @return The immutable value for the vehicle being ridden
      */
-    ImmutableValue.Single<EntitySnapshot> vehicle();
+    Value.Immutable.Single<EntitySnapshot> vehicle();
 
     /**
-     * Gets the base {@link ImmutableValue} for the "base vehicle" being ridden
+     * Gets the base {@link Value.Immutable} for the "base vehicle" being ridden
      * such that the current vehicle may be riding another {@link Entity},
      * causing that entity to be called the "base vehicle".
      *
      * @return The immutable value for the base vehicle
      */
-    ImmutableValue.Single<EntitySnapshot> baseVehicle();
+    Value.Immutable.Single<EntitySnapshot> baseVehicle();
 
 
 }

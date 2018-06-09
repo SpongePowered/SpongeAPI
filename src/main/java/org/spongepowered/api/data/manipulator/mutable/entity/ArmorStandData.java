@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableArmorStandData;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.Value;
 
 public interface ArmorStandData extends DataManipulator<ArmorStandData, ImmutableArmorStandData> {
 
@@ -39,7 +39,7 @@ public interface ArmorStandData extends DataManipulator<ArmorStandData, Immutabl
      * @return Whether this is a marker armor stand
      * @see Keys#ARMOR_STAND_MARKER
      */
-    MutableValue.Single<Boolean> marker();
+    Value.Mutable.Single<Boolean> marker();
 
     /**
      * Returns whether this armor stand is a small armor stand or not.
@@ -47,7 +47,7 @@ public interface ArmorStandData extends DataManipulator<ArmorStandData, Immutabl
      * @return Whether this is a small armor stand
      * @see Keys#ARMOR_STAND_IS_SMALL
      */
-    MutableValue.Single<Boolean> small();
+    Value.Mutable.Single<Boolean> small();
 
     /**
      * Returns whether this armor stand shows arms or not.
@@ -57,7 +57,7 @@ public interface ArmorStandData extends DataManipulator<ArmorStandData, Immutabl
      * @return Whether this armor stand shows its arms
      * @see Keys#ARMOR_STAND_HAS_ARMS
      */
-    MutableValue.Single<Boolean> arms();
+    Value.Mutable.Single<Boolean> arms();
 
     /**
      * Gets whether this armor stand has a visible base plate or not.
@@ -65,6 +65,6 @@ public interface ArmorStandData extends DataManipulator<ArmorStandData, Immutabl
      * @return Whether this armor stand has a visible base plate
      * @see Keys#ARMOR_STAND_HAS_BASE_PLATE
      */
-    MutableValue.Single<Boolean> basePlate();
+    Value.Mutable.Single<Boolean> basePlate();
 
 }

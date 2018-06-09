@@ -27,7 +27,7 @@ package org.spongepowered.api.entity.living;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.ArmorStandData;
 import org.spongepowered.api.data.manipulator.mutable.entity.BodyPartRotationalData;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.ArmorEquipable;
 
 /**
@@ -46,7 +46,7 @@ public interface ArmorStand extends Living, ArmorEquipable {
     }
 
     /**
-     * Gets the {@link Boolean} {@link MutableValue} of whether this
+     * Gets the {@link Boolean} {@link Value.Mutable} of whether this
      * {@link ArmorStand} is considered a "marker" stand. If
      * {@code true}, the armor stand's bounding box is near
      * impossible to see, and the armor stand can no longer be
@@ -54,38 +54,38 @@ public interface ArmorStand extends Living, ArmorEquipable {
      *
      * @return The value for the marker state
      */
-    default MutableValue<Boolean> marker() {
+    default Value.Mutable<Boolean> marker() {
         return getValue(Keys.ARMOR_STAND_MARKER).get();
     }
 
     /**
-     * Gets the {@link Boolean} {@link MutableValue} of whether this
+     * Gets the {@link Boolean} {@link Value.Mutable} of whether this
      * {@link ArmorStand} is considered a "small" armor stand.
      *
      * @return The value for the small state
      */
-    default MutableValue<Boolean> small() {
+    default Value.Mutable<Boolean> small() {
         return getValue(Keys.ARMOR_STAND_IS_SMALL).get();
     }
 
     /**
-     * Gets the {@link Boolean} {@link MutableValue} of whether this
+     * Gets the {@link Boolean} {@link Value.Mutable} of whether this
      * {@link ArmorStand} will show that it has a base plate
      * visible to players.
      *
      * @return The value for the base plate state
      */
-    default MutableValue<Boolean> basePlate() {
+    default Value.Mutable<Boolean> basePlate() {
         return getValue(Keys.ARMOR_STAND_HAS_BASE_PLATE).get();
     }
 
     /**
-     * Gets the {@link Boolean} {@link MutableValue} of whether this
+     * Gets the {@link Boolean} {@link Value.Mutable} of whether this
      * {@link ArmorStand} will show that it has "arms".
      *
      * @return The value for the arms state
      */
-    default MutableValue<Boolean> arms() {
+    default Value.Mutable<Boolean> arms() {
         return getValue(Keys.ARMOR_STAND_HAS_ARMS).get();
     }
 

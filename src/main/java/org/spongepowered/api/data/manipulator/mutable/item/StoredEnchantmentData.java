@@ -28,7 +28,7 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.item.ImmutableStoredEnchantmentData;
 import org.spongepowered.api.data.manipulator.mutable.ListData;
-import org.spongepowered.api.data.value.mutable.MutableListValue;
+import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -42,13 +42,13 @@ import org.spongepowered.api.item.inventory.ItemStack;
 public interface StoredEnchantmentData extends ListData<Enchantment, StoredEnchantmentData, ImmutableStoredEnchantmentData> {
 
     /**
-     * Gets the {@link MutableListValue} of {@link Enchantment}s stored such
+     * Gets the {@link ListValue.Mutable} of {@link Enchantment}s stored such
      * that it can be applied to an {@link ItemStack}.
      *
      * @return The list value of item enchantments
      * @see Keys#STORED_ENCHANTMENTS
      */
-    default MutableListValue<Enchantment> enchantments() {
+    default ListValue.Mutable<Enchantment> enchantments() {
         return getListValue();
     }
 

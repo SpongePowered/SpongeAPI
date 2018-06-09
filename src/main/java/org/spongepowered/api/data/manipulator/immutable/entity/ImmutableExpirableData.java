@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.ExpirableData;
-import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
+import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.explosive.PrimedTNT;
 import org.spongepowered.api.entity.living.monster.Endermite;
@@ -39,11 +39,11 @@ import org.spongepowered.api.entity.living.monster.Endermite;
 public interface ImmutableExpirableData extends ImmutableDataManipulator<ImmutableExpirableData, ExpirableData> {
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the amount of "ticks"
+     * Gets the {@link BoundedValue.Immutable} for the amount of "ticks"
      * remaining before the "expiration" occurs.
      *
      * @return The immutable bounded value for the amount of ticks remaining
      */
-    ImmutableBoundedValue<Integer> expireTicks();
+    BoundedValue.Immutable<Integer> expireTicks();
 
 }

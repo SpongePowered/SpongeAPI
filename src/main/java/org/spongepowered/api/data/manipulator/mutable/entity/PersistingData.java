@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutablePersistingData;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -41,12 +41,12 @@ import org.spongepowered.api.entity.Entity;
 public interface PersistingData extends DataManipulator<PersistingData, ImmutablePersistingData> {
 
     /**
-     * Gets the {@link MutableValue} for the "persist" state of an
+     * Gets the {@link Value.Mutable} for the "persist" state of an
      * {@link Entity}.
      *
      * @return The value for the persisting state
      * @see Keys#PERSISTS
      */
-    MutableValue.Single<Boolean> persists();
+    Value.Mutable.Single<Boolean> persists();
 
 }

@@ -27,8 +27,8 @@ package org.spongepowered.api.data.manipulator.immutable.item;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.item.DurabilityData;
 import org.spongepowered.api.data.property.item.UseLimitProperty;
-import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
@@ -43,21 +43,21 @@ import org.spongepowered.api.item.inventory.ItemStack;
 public interface ImmutableDurabilityData extends ImmutableDataManipulator<ImmutableDurabilityData, DurabilityData> {
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the "durability" remaining.
+     * Gets the {@link BoundedValue.Immutable} for the "durability" remaining.
      * The durability is a number signifying how many "uses' remain on the
      * item. When the durability reaches 0, usually, the item breaks.
      *
      * @return The immutable bounded value of durability remaining
      */
-    ImmutableBoundedValue<Integer> durability();
+    BoundedValue.Immutable<Integer> durability();
 
     /**
-     * Gets the {@link ImmutableValue} for the "unbreakable" state of the
+     * Gets the {@link Value.Immutable} for the "unbreakable" state of the
      * {@link ItemStack}. While the {@link ItemStack} is "unbreakable",
      * the durability can not change.
      *
      * @return The immutable value for the "unbreakable" state
      */
-    ImmutableValue.Single<Boolean> unbreakable();
+    Value.Immutable.Single<Boolean> unbreakable();
 
 }

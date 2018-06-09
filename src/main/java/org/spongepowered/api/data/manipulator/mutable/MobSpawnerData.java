@@ -27,9 +27,9 @@ package org.spongepowered.api.data.manipulator.mutable;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableMobSpawnerData;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.MutableValue;
-import org.spongepowered.api.data.value.mutable.MutableWeightedCollectionValue;
+import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.WeightedCollectionValue;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.entity.living.player.Player;
@@ -44,34 +44,34 @@ import java.util.Random;
 public interface MobSpawnerData extends DataManipulator<MobSpawnerData, ImmutableMobSpawnerData> {
 
     /**
-     * Gets the {@link MutableBoundedValue} for the remaining delay before
+     * Gets the {@link BoundedValue.Mutable} for the remaining delay before
      * a new attempt at spawning an {@link Entity} is made.
      *
      * @return The immutable bounded value for the remaining delay
      * @see Keys#SPAWNER_REMAINING_DELAY
      */
-    MutableBoundedValue<Short> remainingDelay();
+    BoundedValue.Mutable<Short> remainingDelay();
 
     /**
-     * Gets the {@link MutableBoundedValue} for the minimum spawn delay
+     * Gets the {@link BoundedValue.Mutable} for the minimum spawn delay
      * required between attempts to spawn an {@link Entity}.
      *
      * @return The bounded value of the minimum spawn delay
      * @see Keys#SPAWNER_MINIMUM_DELAY
      */
-    MutableBoundedValue<Short> minimumSpawnDelay();
+    BoundedValue.Mutable<Short> minimumSpawnDelay();
 
     /**
-     * Gets the {@link MutableBoundedValue} for the maximum spawn delay
+     * Gets the {@link BoundedValue.Mutable} for the maximum spawn delay
      * required between attempts to spawn an {@link Entity}.
      *
      * @return The bounded value of the maximum spawn delay
      * @see Keys#SPAWNER_MAXIMUM_DELAY
      */
-    MutableBoundedValue<Short> maximumSpawnDelay();
+    BoundedValue.Mutable<Short> maximumSpawnDelay();
 
     /**
-     * Gets the {@link MutableBoundedValue} for the count of successful
+     * Gets the {@link BoundedValue.Mutable} for the count of successful
      * spawns of all {@link Entity} instances from the owning spawner. This
      * count is simply a total count, there is no limitation on how many
      * attempts are made to spawn an {@link Entity}.
@@ -79,10 +79,10 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData, Immutabl
      * @return The immutable bounded value
      * @see Keys#SPAWNER_SPAWN_COUNT
      */
-    MutableBoundedValue<Short> spawnCount();
+    BoundedValue.Mutable<Short> spawnCount();
 
     /**
-     * Gets the {@link MutableBoundedValue} for the limitation on the number
+     * Gets the {@link BoundedValue.Mutable} for the limitation on the number
      * of nearby {@link Entity} instances can exist near the owning spawner. The
      * limitation is that if there are more {@link Entity} instances than the
      * provided value, no attempts to spawn a new {@link Entity} will be made.
@@ -90,10 +90,10 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData, Immutabl
      * @return The bounded value of the maximum supported nearby entities
      * @see Keys#SPAWNER_MAXIMUM_NEARBY_ENTITIES
      */
-    MutableBoundedValue<Short> maximumNearbyEntities();
+    BoundedValue.Mutable<Short> maximumNearbyEntities();
 
     /**
-     * Gets the {@link MutableBoundedValue} for the minimum range a
+     * Gets the {@link BoundedValue.Mutable} for the minimum range a
      * {@link Player} must remain in proximity of the spawner, such that if a
      * {@link Player} is NOT within the provided range, no attempts to spawn an
      * {@link Entity} is made.
@@ -101,20 +101,20 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData, Immutabl
      * @return The value of the required player range to spawn entities
      * @see Keys#SPAWNER_REQUIRED_PLAYER_RANGE
      */
-    MutableBoundedValue<Short> requiredPlayerRange();
+    BoundedValue.Mutable<Short> requiredPlayerRange();
 
     /**
-     * Gets the {@link MutableBoundedValue} for the maximum range that an
+     * Gets the {@link BoundedValue.Mutable} for the maximum range that an
      * {@link Entity} can be spawned from the spawner.
      *
      * @return The immutable value of the maximum spawn range an entity can be
      *     spawned
      * @see Keys#SPAWNER_SPAWN_RANGE
      */
-    MutableBoundedValue<Short> spawnRange();
+    BoundedValue.Mutable<Short> spawnRange();
 
     /**
-     * Gets the {@link MutableValue} for the overridden
+     * Gets the {@link Value.Mutable} for the overridden
      * {@link WeightedSerializableObject}{@code <EntityArchetype>} to spawn
      * next. If possible, the next entity to spawn may be chosen from the
      * already provided {@link #possibleEntitiesToSpawn()}.
@@ -122,10 +122,10 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData, Immutabl
      * @return The next possible entity to spawn
      * @see Keys#SPAWNER_NEXT_ENTITY_TO_SPAWN
      */
-    MutableValue.Single<WeightedSerializableObject<EntityArchetype>> nextEntityToSpawn();
+    Value.Mutable.Single<WeightedSerializableObject<EntityArchetype>> nextEntityToSpawn();
 
     /**
-     * Gets the {@link MutableWeightedCollectionValue} of all possible
+     * Gets the {@link WeightedCollectionValue.Mutable} of all possible
      * {@link Entity} instances that can be spawned by the spawner. As they
      * are all {@link WeightedSerializableObject}{@code <EntityArchetype>}
      * instances, their weight is defined as a {@link Random} to determine
@@ -135,6 +135,6 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData, Immutabl
      * @return The immutable weighted entity collection value of entities
      * @see Keys#SPAWNER_ENTITIES
      */
-    MutableWeightedCollectionValue<EntityArchetype> possibleEntitiesToSpawn();
+    WeightedCollectionValue.Mutable<EntityArchetype> possibleEntitiesToSpawn();
 
 }

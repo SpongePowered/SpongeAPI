@@ -28,7 +28,7 @@ import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.tileentity.EndGateway;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableEndGatewayData;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents the data for an {@link EndGateway}.
@@ -36,33 +36,33 @@ import org.spongepowered.api.data.value.mutable.MutableValue;
 public interface EndGatewayData extends DataManipulator<EndGatewayData, ImmutableEndGatewayData> {
 
     /**
-     * Gets the {@link MutableValue} for the exit portal location of
+     * Gets the {@link Value.Mutable} for the exit portal location of
      * the {@link EndGateway}.
      *
      * @return The value for the exit portal location
      */
-    MutableValue.Single<Vector3i> exitPosition();
+    Value.Mutable.Single<Vector3i> exitPosition();
 
     /**
-     * Gets the {@link MutableValue} for the "should use exact teleport location"
+     * Gets the {@link Value.Mutable} for the "should use exact teleport location"
      * state of the {@link EndGateway}.
      *
      * @return The value for the "should use exact teleport location" state
      */
-    MutableValue.Single<Boolean> exactTeleport();
+    Value.Mutable.Single<Boolean> exactTeleport();
 
     /**
-     * Gets the {@link MutableValue} for the age of the {@link EndGateway}.
+     * Gets the {@link Value.Mutable} for the age of the {@link EndGateway}.
      *
      * @return The value for the age
      */
-    MutableValue.Single<Long> age();
+    Value.Mutable.Single<Long> age();
 
     /**
-     * Gets the {@link MutableValue} for the teleport cooldown of the {@link EndGateway}.
+     * Gets the {@link Value.Mutable} for the teleport cooldown of the {@link EndGateway}.
      *
      * @return The value for the teleport cooldown
      */
-    MutableValue.Single<Integer> teleportCooldown();
+    Value.Mutable.Single<Integer> teleportCooldown();
 
 }

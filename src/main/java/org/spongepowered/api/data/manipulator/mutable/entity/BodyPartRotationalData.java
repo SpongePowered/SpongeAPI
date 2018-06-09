@@ -29,8 +29,8 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableBodyPartRotationalData;
 import org.spongepowered.api.data.type.BodyPart;
-import org.spongepowered.api.data.value.mutable.MutableMapValue;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.MapValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.ArmorStand;
 import org.spongepowered.api.entity.living.Humanoid;
 
@@ -41,13 +41,13 @@ import org.spongepowered.api.entity.living.Humanoid;
 public interface BodyPartRotationalData extends DataManipulator<BodyPartRotationalData, ImmutableBodyPartRotationalData> {
 
     /**
-     * Gets the {@link MutableMapValue} of {@link BodyPart}s to {@link Vector3d}
+     * Gets the {@link MapValue.Mutable} of {@link BodyPart}s to {@link Vector3d}
      * rotations.
      *
      * @return The map value of body parts to rotations
      * @see Keys#BODY_ROTATIONS
      */
-    MutableMapValue<BodyPart, Vector3d> partRotation();
+    MapValue.Mutable<BodyPart, Vector3d> partRotation();
 
     /**
      * Gets the direction the headpiece is aiming at.
@@ -55,7 +55,7 @@ public interface BodyPartRotationalData extends DataManipulator<BodyPartRotation
      * @return The direction the headpiece is aiming at
      * @see Keys#HEAD_ROTATION
      */
-    MutableValue.Single<Vector3d> headDirection();
+    Value.Mutable.Single<Vector3d> headDirection();
 
     /**
      * Gets the direction the body is aiming at.
@@ -63,7 +63,7 @@ public interface BodyPartRotationalData extends DataManipulator<BodyPartRotation
      * @return The direction the body is aiming at
      * @see Keys#CHEST_ROTATION
      */
-    MutableValue.Single<Vector3d> bodyRotation();
+    Value.Mutable.Single<Vector3d> bodyRotation();
 
     /**
      * Gets the direction the left arm is aiming at.
@@ -71,7 +71,7 @@ public interface BodyPartRotationalData extends DataManipulator<BodyPartRotation
      * @return The direction the left arm is aiming at
      * @see Keys#LEFT_ARM_ROTATION
      */
-    MutableValue.Single<Vector3d> leftArmDirection();
+    Value.Mutable.Single<Vector3d> leftArmDirection();
 
     /**
      * Gets the direction the right arm is aiming at.
@@ -79,7 +79,7 @@ public interface BodyPartRotationalData extends DataManipulator<BodyPartRotation
      * @return The direction the right arm is aiming at
      * @see Keys#RIGHT_ARM_ROTATION
      */
-    MutableValue.Single<Vector3d> rightArmDirection();
+    Value.Mutable.Single<Vector3d> rightArmDirection();
 
     /**
      * Gets the direction the left leg is aiming at.
@@ -87,7 +87,7 @@ public interface BodyPartRotationalData extends DataManipulator<BodyPartRotation
      * @return The direction the left leg is aiming at
      * @see Keys#LEFT_LEG_ROTATION
      */
-    MutableValue.Single<Vector3d> leftLegDirection();
+    Value.Mutable.Single<Vector3d> leftLegDirection();
 
     /**
      * Gets the direction the right leg is aiming at.
@@ -95,6 +95,6 @@ public interface BodyPartRotationalData extends DataManipulator<BodyPartRotation
      * @return The direction the right leg is aiming at
      * @see Keys#RIGHT_LEG_ROTATION
      */
-    MutableValue.Single<Vector3d> rightLegDirection();
+    Value.Mutable.Single<Vector3d> rightLegDirection();
 
 }

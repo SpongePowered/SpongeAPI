@@ -26,7 +26,7 @@ package org.spongepowered.api.entity.living.monster;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.ExpirableData;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.data.value.BoundedValue;
 
 /**
  * Represents an endermite.
@@ -43,12 +43,12 @@ public interface Endermite extends Monster {
     }
 
     /**
-     * Gets the {@link MutableBoundedValue} for the amount of "ticks"
+     * Gets the {@link BoundedValue.Mutable} for the amount of "ticks"
      * remaining before the "expiration" occurs.
      *
      * @return The immutable bounded value for the amount of ticks remaining
      */
-    default MutableBoundedValue<Integer> expireTicks() {
+    default BoundedValue.Mutable<Integer> expireTicks() {
         return getValue(Keys.EXPIRATION_TICKS).get();
     }
 }

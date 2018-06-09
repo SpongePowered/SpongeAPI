@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutablePigSaddleData;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.animal.Pig;
 
@@ -38,11 +38,11 @@ import org.spongepowered.api.entity.living.animal.Pig;
 public interface PigSaddleData extends DataManipulator<PigSaddleData, ImmutablePigSaddleData> {
 
     /**
-     * Gets the {@link MutableValue} for the the "saddled" state.
+     * Gets the {@link Value.Mutable} for the the "saddled" state.
      *
      * @return The value for the saddle state
      * @see Keys#PIG_SADDLE
      */
-    MutableValue.Single<Boolean> saddle();
+    Value.Mutable.Single<Boolean> saddle();
 
 }

@@ -30,8 +30,8 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.DamageableData;
 import org.spongepowered.api.data.manipulator.mutable.entity.HealthData;
 import org.spongepowered.api.data.property.entity.EyeLocationProperty;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.MutableOptionalValue;
+import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
@@ -68,7 +68,7 @@ public interface Living extends Entity, ProjectileSource, TeamMember {
      *
      * @return Health value
      */
-    default MutableBoundedValue<Double> health() {
+    default BoundedValue.Mutable<Double> health() {
         return getValue(Keys.HEALTH).get();
     }
 
@@ -81,7 +81,7 @@ public interface Living extends Entity, ProjectileSource, TeamMember {
      *
      * @return This entities maximum health
      */
-    default MutableBoundedValue<Double> maxHealth() {
+    default BoundedValue.Mutable<Double> maxHealth() {
         return getValue(Keys.MAX_HEALTH).get();
     }
 
@@ -95,13 +95,13 @@ public interface Living extends Entity, ProjectileSource, TeamMember {
     }
 
     /**
-     * Gets the {@link MutableOptionalValue} for the last attacker.
+     * Gets the {@link OptionalValue.MutableOptionalValue} for the last attacker.
      *
      * <p>This is generally an entity snapshot of a {@link Living}.</p>
      *
      * @return The last attacker as an optional value
      */
-    default MutableOptionalValue<EntitySnapshot> lastAttacker() {
+    default OptionalValue.MutableOptionalValue<EntitySnapshot> lastAttacker() {
         return getValue(Keys.LAST_ATTACKER).get();
     }
 
@@ -110,7 +110,7 @@ public interface Living extends Entity, ProjectileSource, TeamMember {
      *
      * @return The last damage dealt as an optional value
      */
-    default MutableOptionalValue<Double> lastDamage() {
+    default OptionalValue.MutableOptionalValue<Double> lastDamage() {
         return getValue(Keys.LAST_DAMAGE).get();
     }
 

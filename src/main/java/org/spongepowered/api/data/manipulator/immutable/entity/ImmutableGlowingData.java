@@ -26,8 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.GlowingData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -37,9 +36,9 @@ import org.spongepowered.api.entity.Entity;
 public interface ImmutableGlowingData extends ImmutableDataManipulator<ImmutableGlowingData, GlowingData> {
 
     /**
-     * Gets the {@link MutableValue} representing whether something is glowing.
+     * Gets the {@link Value.Mutable} representing whether something is glowing.
      * @return The value for glowing
      */
-    ImmutableValue.Single<Boolean> glowing();
+    Value.Immutable.Single<Boolean> glowing();
 
 }

@@ -27,6 +27,7 @@ package org.spongepowered.api.data.value;
 import org.spongepowered.api.data.DataHolder;
 
 import java.util.Comparator;
+import java.util.function.Function;
 
 /**
  * Represents a value that may itself be {@link Comparable} or can be
@@ -70,4 +71,22 @@ public interface BoundedValue<E> extends Value<E> {
      */
     Comparator<E> getComparator();
 
+    /**
+     * A type of {@link BoundedValue} that is modifiable as a {@link Value.Mutable}.
+     *
+     * @param <E> The type of element
+     */
+    interface Mutable<E> extends BoundedValue<E>, Value.Mutable<E, Mutable<E>, Immutable<E>> {
+
+    }
+
+    /**
+     * A type of {@link BoundedValue} that is immutable as an
+     * {@link Value.Immutable}.
+     *
+     * @param <E> The type of element
+     */
+    interface Immutable<E> extends BoundedValue<E>, Value.Immutable<E, Immutable<E>, Mutable<E>> {
+
+    }
 }

@@ -26,8 +26,8 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.PickupDelayData;
-import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Item;
 
 /**
@@ -37,18 +37,18 @@ import org.spongepowered.api.entity.Item;
 public interface ImmutablePickupDelayData extends ImmutableDataManipulator<ImmutablePickupDelayData, PickupDelayData> {
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the "pickup delay".
+     * Gets the {@link BoundedValue.Immutable} for the "pickup delay".
      *
      * @return The immutable bounded value for the "pickup delay"
      */
-    ImmutableBoundedValue<Integer> delay();
+    BoundedValue.Immutable<Integer> delay();
 
     /**
-     * Gets the {@link ImmutableValue} for the "is infinite" state of
+     * Gets the {@link Value.Immutable} for the "is infinite" state of
      * the pickup delay.
      *
      * @return The value for the "is infinite" state
      */
-    ImmutableValue.Single<Boolean> infinite();
+    Value.Immutable.Single<Boolean> infinite();
 
 }

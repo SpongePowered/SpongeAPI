@@ -29,15 +29,15 @@ import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableCommandData;
-import org.spongepowered.api.data.value.mutable.MutableValue;
-import org.spongepowered.api.data.value.mutable.MutableOptionalValue;
+import org.spongepowered.api.data.value.OptionalValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.vehicle.minecart.CommandBlockMinecart;
 import org.spongepowered.api.text.Text;
 
 import java.util.Optional;
 
 /**
- * An {@link DataManipulator} handling all related {@link MutableValue}s for command
+ * An {@link DataManipulator} handling all related {@link Value.Mutable}s for command
  * related {@link DataHolder}s, such as {@link CommandBlock}s and
  * {@link CommandBlockMinecart}s.
  */
@@ -49,7 +49,7 @@ public interface CommandData extends DataManipulator<CommandData, ImmutableComma
      * @return The command
      * @see Keys#COMMAND
      */
-    MutableValue.Single<String> storedCommand();
+    Value.Mutable.Single<String> storedCommand();
 
     /**
      * Gets the success count of the last executed command.
@@ -64,7 +64,7 @@ public interface CommandData extends DataManipulator<CommandData, ImmutableComma
      * @return The last success count
      * @see Keys#SUCCESS_COUNT
      */
-    MutableValue.Single<Integer> successCount();
+    Value.Mutable.Single<Integer> successCount();
 
     /**
      * Gets whether this command block will keep track of the output from the
@@ -73,7 +73,7 @@ public interface CommandData extends DataManipulator<CommandData, ImmutableComma
      * @return Whether the command output is tracked
      * @see Keys#TRACKS_OUTPUT
      */
-    MutableValue.Single<Boolean> doesTrackOutput();
+    Value.Mutable.Single<Boolean> doesTrackOutput();
 
     /**
      * Gets the last command output.
@@ -84,6 +84,6 @@ public interface CommandData extends DataManipulator<CommandData, ImmutableComma
      * @return The last command output, if available
      * @see Keys#LAST_COMMAND_OUTPUT
      */
-    MutableOptionalValue<Text> lastOutput();
+    OptionalValue.MutableOptionalValue<Text> lastOutput();
 
 }

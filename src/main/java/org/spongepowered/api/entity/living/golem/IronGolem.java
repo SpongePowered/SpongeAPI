@@ -25,7 +25,7 @@
 package org.spongepowered.api.entity.living.golem;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.player.Player;
 
 /**
@@ -34,12 +34,12 @@ import org.spongepowered.api.entity.living.player.Player;
 public interface IronGolem extends Golem {
 
     /**
-     * Gets the {@link MutableValue} for whether this {@link IronGolem} was created
+     * Gets the {@link Value.Mutable} for whether this {@link IronGolem} was created
      * by a {@link Player}.
      *
      * @return The value whether this golem was created by a player
      */
-    default MutableValue<Boolean> playerCreated() {
+    default Value.Mutable<Boolean> playerCreated() {
         return getValue(Keys.PLAYER_CREATED).get();
     }
 

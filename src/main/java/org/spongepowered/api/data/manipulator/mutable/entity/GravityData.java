@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableGravityData;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -37,12 +37,12 @@ import org.spongepowered.api.entity.Entity;
 public interface GravityData extends DataManipulator<GravityData, ImmutableGravityData> {
 
     /**
-     * Gets the {@link MutableValue} of the gravity of an {@link Entity}. Returns true
+     * Gets the {@link Value.Mutable} of the gravity of an {@link Entity}. Returns true
      * when the {@link Entity} has gravity.
      *
      * @return Whether the entity is affected by gravity
      * @see Keys#HAS_GRAVITY
      */
-    MutableValue.Single<Boolean> gravity();
+    Value.Mutable.Single<Boolean> gravity();
 
 }

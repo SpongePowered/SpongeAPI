@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableSneakingData;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -38,11 +38,11 @@ import org.spongepowered.api.entity.Entity;
 public interface SneakingData extends DataManipulator<SneakingData, ImmutableSneakingData> {
 
     /**
-     * Gets the {@link MutableValue} for the "sneaking" state.
+     * Gets the {@link Value.Mutable} for the "sneaking" state.
      *
      * @return The value for the "sneaking" state
      * @see Keys#IS_SNEAKING
      */
-    MutableValue.Single<Boolean> sneaking();
+    Value.Mutable.Single<Boolean> sneaking();
 
 }

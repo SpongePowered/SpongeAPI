@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.SprintData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -37,10 +37,10 @@ import org.spongepowered.api.entity.Entity;
 public interface ImmutableSprintData extends ImmutableDataManipulator<ImmutableSprintData, SprintData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the "sprinting" state.
+     * Gets the {@link Value.Immutable} for the "sprinting" state.
      *
      * @return The immutable value for the sprinting state
      */
-    ImmutableValue.Single<Boolean> sprinting();
+    Value.Immutable.Single<Boolean> sprinting();
 
 }

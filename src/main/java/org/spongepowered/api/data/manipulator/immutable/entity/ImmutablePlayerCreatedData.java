@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.PlayerCreatedData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.golem.IronGolem;
 
 /**
@@ -36,11 +36,11 @@ import org.spongepowered.api.entity.living.golem.IronGolem;
 public interface ImmutablePlayerCreatedData extends ImmutableDataManipulator<ImmutablePlayerCreatedData, PlayerCreatedData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the "player created" state of an
+     * Gets the {@link Value.Immutable} for the "player created" state of an
      * {@link IronGolem}.
      *
      * @return The immutable value for the "player created" state
      */
-    ImmutableValue.Single<Boolean> playerCreated();
+    Value.Immutable.Single<Boolean> playerCreated();
 
 }

@@ -27,7 +27,7 @@ package org.spongepowered.api.block.tileentity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.NoteData;
 import org.spongepowered.api.data.type.NotePitch;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents a note block.
@@ -52,12 +52,12 @@ public interface Note extends TileEntity {
     }
 
     /**
-     * Gets the {@link MutableValue} for the {@link NotePitch}.
+     * Gets the {@link Value.Mutable} for the {@link NotePitch}.
      *
      * @return The value for the note pitch
      * @see Keys#NOTE_PITCH
      */
-    default MutableValue<NotePitch> note() {
+    default Value.Mutable<NotePitch> note() {
         return getValue(Keys.NOTE_PITCH).get();
     }
 

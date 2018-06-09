@@ -24,9 +24,6 @@
  */
 package org.spongepowered.api.data.value;
 
-import org.spongepowered.api.data.value.immutable.ImmutableListValue;
-import org.spongepowered.api.data.value.mutable.MutableListValue;
-
 import java.util.List;
 
 public interface ListValue<E> extends CollectionValue<E, List<E>> {
@@ -49,10 +46,113 @@ public interface ListValue<E> extends CollectionValue<E, List<E>> {
      */
     int indexOf(E element);
 
-    @Override
-    MutableListValue<E> asMutable();
+    /**
+     * A type of {@link CollectionValue.Mutable} that is backed by a {@link List}. All
+     * mutator methods provided are similar to those existing in {@link List} with
+     * the difference of returning itself, for fluency.
+     *
+     * @param <E> The type of element of this list value
+     */
+    interface Mutable<E> extends ListValue<E>, CollectionValue.Mutable<E, List<E>, Mutable<E>, Immutable<E>> {
 
-    @Override
-    ImmutableListValue<E> asImmutable();
+        /**
+         * Adds the specified element at the specified position in the list.
+         * As well, the element at the provided index is shifted to the right,
+         * increasing its and the elements thereafter their indices by one.
+         *
+         * @param index The index to add the provided element at
+         * @param value The element to add
+         * @return This value, for chaining
+         */
+        ListValue.Mutable<E> add(int index, E value);
 
+        /**
+         * Adds the specified elements in the order that they are iterated
+         * to the list at the specified index. The element at the provided
+         * index and elements thereafter are shifted to the right, increasing
+         * their indices by one.
+         *
+         * @param index The index to add the elements at
+         * @param values The elements to add
+         * @return This value, for chaining
+         */
+        ListValue.Mutable<E> add(int index, Iterable<E> values);
+
+        /**
+         * Removes the element at the specified position in this list (optional
+         * operation). Shifts any subsequent elements to the left, subtracts
+         * one from their indices.
+         *
+         * @param index The index of the element to remove
+         * @return This value, for chaining
+         */
+        ListValue.Mutable<E> remove(int index);
+
+        /**
+         * Replaces the element at the specified index in this list with the
+         * specified element.
+         *
+         * @param index The index to replace the element with
+         * @param element The element to set
+         * @return This value, for chaining
+         */
+        ListValue.Mutable<E> set(int index, E element);
+
+    }
+
+    /**
+     * A type of {@link CollectionValue.Immutable} that is backed by a {@link List}.
+     * All "with" and "Without" methods are returning new instances as every
+     * instance is immutable.
+     *
+     * @param <E> The type of element of this list value
+     */
+    interface Immutable<E> extends ListValue<E>, CollectionValue.Immutable<E, List<E>, Immutable<E>, Mutable<E>> {
+
+
+        /**
+         * Creates a new {@link ListValue.Immutable} with the specified element
+         * at the specified position in the list. As well, the element at the
+         * provided index is shifted to the right,  increasing its and the elements
+         * thereafter their indices by one.
+         *
+         * @param index The index to add the provided element at
+         * @param value The element to add
+         * @return The new value, for chaining
+         */
+        ListValue.Immutable<E> with(int index, E value);
+
+        /**
+         * Creates a new {@link ListValue.Immutable} with the specified elements
+         * in the order that they are iterated to the list at the specified index.
+         * The element at the provided index and elements thereafter are shifted to
+         * the right, increasing their indices by one.
+         *
+         * @param index The index to add the elements at
+         * @param values The elements to add
+         * @return The new value, for chaining
+         */
+        ListValue.Immutable<E> with(int index, Iterable<E> values);
+
+        /**
+         * Creates a new {@link ListValue.Immutable} without the element at the
+         * specified index. Shifts any subsequent elements to the left, subtracts
+         * one from their indices.
+         *
+         * @param index The index of the element to exclude
+         * @return The new value, for chaining
+         */
+        ListValue.Immutable<E> without(int index);
+
+        /**
+         * Creates a new {@link ListValue.Immutable} with the desired element at
+         * the desired index.
+         *
+         * @param index The index to replace the element
+         * @param element The element to include at the index
+         * @return The new value, for chaining
+         */
+        ListValue.Immutable<E> set(int index, E element);
+
+    }
 }

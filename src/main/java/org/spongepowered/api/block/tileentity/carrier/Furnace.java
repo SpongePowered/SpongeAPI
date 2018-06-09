@@ -26,7 +26,7 @@ package org.spongepowered.api.block.tileentity.carrier;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.FurnaceData;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.data.value.BoundedValue;
 
 /**
  * Represents a Furnace.
@@ -52,46 +52,46 @@ public interface Furnace extends TileEntityCarrier {
     }
 
     /**
-     * Gets the {@link MutableBoundedValue} for the already passed burn time.
+     * Gets the {@link BoundedValue.Mutable} for the already passed burn time.
      *
      * @return The value for the already passed burn time
      * @see FurnaceData#passedBurnTime
      */
-    default MutableBoundedValue<Integer> passedBurnTime() {
+    default BoundedValue.Mutable<Integer> passedBurnTime() {
         return getValue(Keys.PASSED_BURN_TIME).get();
     }
 
     /**
-     * Gets the {@link MutableBoundedValue} for the maximum amount of fuel that
+     * Gets the {@link BoundedValue.Mutable} for the maximum amount of fuel that
      * can be supplied with the used fuel item.
      *
      * @return The value for the maximum amount of fuel that can be supplied
      *         with the used fuel item
      * @see FurnaceData#maxBurnTime
      */
-    default MutableBoundedValue<Integer> maxBurnTime() {
+    default BoundedValue.Mutable<Integer> maxBurnTime() {
         return getValue(Keys.MAX_BURN_TIME).get();
     }
 
     /**
-     * Gets the {@link MutableBoundedValue} for the already passed cook time of
+     * Gets the {@link BoundedValue.Mutable} for the already passed cook time of
      * the item stack in this furnace.
      *
      * @return The value for the already passed cook time
      * @see FurnaceData#passedCookTime
      */
-    default MutableBoundedValue<Integer> passedCookTime() {
+    default BoundedValue.Mutable<Integer> passedCookTime() {
         return getValue(Keys.PASSED_COOK_TIME).get();
     }
 
     /**
-     * Gets the {@link MutableBoundedValue} for the total time the item stack
+     * Gets the {@link BoundedValue.Mutable} for the total time the item stack
      * has to cook until it is cooked.
      *
      * @return The value for the time the item has to cook
      * @see FurnaceData#maxCookTime
      */
-    default MutableBoundedValue<Integer> maxCookTime() {
+    default BoundedValue.Mutable<Integer> maxCookTime() {
         return getValue(Keys.MAX_COOK_TIME).get();
     }
 

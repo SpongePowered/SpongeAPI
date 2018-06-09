@@ -28,7 +28,7 @@ import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableFilledData;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * A {@link DataManipulator} for the "filled" state. Usually applicable to
@@ -37,11 +37,11 @@ import org.spongepowered.api.data.value.mutable.MutableValue;
 public interface FilledData extends DataManipulator<FilledData, ImmutableFilledData> {
 
     /**
-     * Gets the {@link MutableValue} for the "filled" state.
+     * Gets the {@link Value.Mutable} for the "filled" state.
      *
      * @return The value for the "filled" state
      * @see Keys#FILLED
      */
-    MutableValue.Single<Boolean> filled();
+    Value.Mutable.Single<Boolean> filled();
 
 }

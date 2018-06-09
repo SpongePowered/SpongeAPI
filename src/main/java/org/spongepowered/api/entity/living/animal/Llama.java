@@ -26,8 +26,8 @@ package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.type.LlamaVariant;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.projectile.ProjectileLauncher;
 
 /**
@@ -38,21 +38,21 @@ import org.spongepowered.api.entity.projectile.ProjectileLauncher;
 public interface Llama extends Horse, ProjectileLauncher {
 
     /**
-     * Gets the {@link MutableValue} for the {@link Keys#LLAMA_STRENGTH llama strength}
+     * Gets the {@link Value.Mutable} for the {@link Keys#LLAMA_STRENGTH llama strength}
      * when attacking.
      *
      * @return The strength value of the llama
      */
-    default MutableBoundedValue<Integer> strength() {
+    default BoundedValue.Mutable<Integer> strength() {
         return getValue(Keys.LLAMA_STRENGTH).get();
     }
 
     /**
-     * Gets the {@link MutableValue} for the {@link Keys#LLAMA_VARIANT llama variant}.
+     * Gets the {@link Value.Mutable} for the {@link Keys#LLAMA_VARIANT llama variant}.
      *
      * @return The variant value of the llama
      */
-    default MutableValue<LlamaVariant> llamaVariant() {
+    default Value.Mutable<LlamaVariant> llamaVariant() {
         return getValue(Keys.LLAMA_VARIANT).get();
     }
 

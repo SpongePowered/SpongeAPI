@@ -28,7 +28,7 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.item.ImmutableLoreData;
 import org.spongepowered.api.data.manipulator.mutable.ListData;
-import org.spongepowered.api.data.value.mutable.MutableListValue;
+import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.Text;
 
@@ -40,12 +40,12 @@ import org.spongepowered.api.text.Text;
 public interface LoreData extends ListData<Text, LoreData, ImmutableLoreData> {
 
     /**
-     * Gets the {@link MutableListValue} of the "lore" {@link Text}.
+     * Gets the {@link ListValue.Mutable} of the "lore" {@link Text}.
      *
      * @return The list value of text lore
      * @see Keys#ITEM_LORE
      */
-    default MutableListValue<Text> lore() {
+    default ListValue.Mutable<Text> lore() {
         return getListValue();
     }
 

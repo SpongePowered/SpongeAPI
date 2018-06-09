@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableSkinData;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Humanoid;
 
 import java.util.UUID;
@@ -41,12 +41,12 @@ import java.util.UUID;
 public interface SkinData extends DataManipulator<SkinData, ImmutableSkinData> {
 
     /**
-     * Gets the {@link MutableValue} for the {@link UUID} of the skin to display on a
+     * Gets the {@link Value.Mutable} for the {@link UUID} of the skin to display on a
      * {@link Humanoid} entity for customization.
      *
      * @return The value for the skin uuid
      * @see Keys#SKIN_UNIQUE_ID
      */
-    MutableValue.Single<UUID> skinUniqueId();
+    Value.Mutable.Single<UUID> skinUniqueId();
 
 }

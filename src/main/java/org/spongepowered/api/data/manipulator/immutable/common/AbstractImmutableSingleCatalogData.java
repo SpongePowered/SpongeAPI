@@ -33,8 +33,6 @@ import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableVariantData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.MutableValue;
 
 /**
  * An abstract implementation of an {@link ImmutableVariantData} extending
@@ -48,20 +46,20 @@ public abstract class AbstractImmutableSingleCatalogData<E extends CatalogType, 
         M extends VariantData<E, M, I>> extends AbstractImmutableSingleData<E, I, M> implements ImmutableVariantData<E, I, M> {
 
     private final E defaultValue;
-    private final ImmutableValue.Single<E> immutableValue;
+    private final Value.Immutable.Single<E> immutableValue;
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     protected AbstractImmutableSingleCatalogData(E value, E defaultValue, Key<? extends Value<E>> usedKey) {
         super(value, usedKey);
         this.defaultValue = checkNotNull(defaultValue, "The default value was null! This is unacceptable! Maybe the value was not registered?");
         this.immutableValue = Sponge.getRegistry().getValueFactory()
-                .createValue((Key<MutableValue<E>>) (Key) this.usedKey, this.defaultValue, this.value)
+                .createValue((Key<Value.Mutable<E>>) (Key) this.usedKey, this.defaultValue, this.value)
                 .asImmutable();
 
     }
 
     @Override
-    protected ImmutableValue.Single<E> getValueGetter() {
+    protected Value.Immutable.Single<E> getValueGetter() {
         return this.immutableValue;
     }
 
@@ -72,7 +70,7 @@ public abstract class AbstractImmutableSingleCatalogData<E extends CatalogType, 
     }
 
     @Override
-    public ImmutableValue.Single<E> type() {
+    public Value.Immutable.Single<E> type() {
         return this.immutableValue;
     }
 }

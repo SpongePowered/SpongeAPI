@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.text.Text;
 
 public interface ImmutableDisplayNameData extends ImmutableDataManipulator<ImmutableDisplayNameData, DisplayNameData> {
@@ -37,6 +37,6 @@ public interface ImmutableDisplayNameData extends ImmutableDataManipulator<Immut
      *
      * @return The display name, if available
      */
-    ImmutableValue.Single<Text> displayName();
+    Value.Immutable.Single<Text> displayName();
 
 }

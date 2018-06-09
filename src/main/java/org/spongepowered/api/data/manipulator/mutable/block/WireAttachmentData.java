@@ -29,8 +29,8 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableWireAttachmentData;
 import org.spongepowered.api.data.type.WireAttachmentType;
-import org.spongepowered.api.data.value.mutable.MutableMapValue;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.MapValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.util.Direction;
 
 /**
@@ -40,49 +40,49 @@ import org.spongepowered.api.util.Direction;
 public interface WireAttachmentData extends DataManipulator<WireAttachmentData, ImmutableWireAttachmentData> {
 
     /**
-     * Gets the current {@link MutableMapValue} for the available {@link Direction}s
+     * Gets the current {@link MapValue.Mutable} for the available {@link Direction}s
      * and associated{@link WireAttachmentType}s.
      *
      * @return The map value for the directions and their associated
      *     wire attachment types
      * @see Keys#WIRE_ATTACHMENTS
      */
-    MutableMapValue<Direction, WireAttachmentType> wireAttachments();
+    MapValue.Mutable<Direction, WireAttachmentType> wireAttachments();
 
     /**
-     * Gets the {@link MutableValue} for the {@link Direction#NORTH}'s
+     * Gets the {@link Value.Mutable} for the {@link Direction#NORTH}'s
      * {@link WireAttachmentType}.
      *
      * @return The value for the northern wire attachment type
      * @see Keys#WIRE_ATTACHMENT_NORTH
      */
-    MutableValue.Single<WireAttachmentType> wireAttachmentNorth();
+    Value.Mutable.Single<WireAttachmentType> wireAttachmentNorth();
 
     /**
-     * Gets the {@link MutableValue} for the {@link Direction#SOUTH}'s
+     * Gets the {@link Value.Mutable} for the {@link Direction#SOUTH}'s
      * {@link WireAttachmentType}.
      *
      * @return The value for the southern wire attachment type
      * @see Keys#WIRE_ATTACHMENT_SOUTH
      */
-    MutableValue.Single<WireAttachmentType> wireAttachmentSouth();
+    Value.Mutable.Single<WireAttachmentType> wireAttachmentSouth();
 
     /**
-     * Gets the {@link MutableValue} for the {@link Direction#EAST}'s
+     * Gets the {@link Value.Mutable} for the {@link Direction#EAST}'s
      * {@link WireAttachmentType}.
      *
      * @return The value for the eastern wire attachment type
      * @see Keys#WIRE_ATTACHMENT_EAST
      */
-    MutableValue.Single<WireAttachmentType> wireAttachmentEast();
+    Value.Mutable.Single<WireAttachmentType> wireAttachmentEast();
 
     /**
-     * Gets the {@link MutableValue} for the {@link Direction#WEST}'s
+     * Gets the {@link Value.Mutable} for the {@link Direction#WEST}'s
      * {@link WireAttachmentType}.
      *
      * @return The value for the western wire attachment type
      * @see Keys#WIRE_ATTACHMENT_WEST
      */
-    MutableValue.Single<WireAttachmentType> wireAttachmentWest();
+    Value.Mutable.Single<WireAttachmentType> wireAttachmentWest();
 
 }

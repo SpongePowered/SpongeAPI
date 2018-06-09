@@ -27,7 +27,7 @@ package org.spongepowered.api.entity.living;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.CareerData;
 import org.spongepowered.api.data.type.Career;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.merchant.Merchant;
 
 /**
@@ -59,7 +59,7 @@ public interface Villager extends Ageable, Merchant {
      *
      * @return The current career value
      */
-    default MutableValue<Career> career() {
+    default Value.Mutable<Career> career() {
         return getValue(Keys.CAREER).get();
     }
 

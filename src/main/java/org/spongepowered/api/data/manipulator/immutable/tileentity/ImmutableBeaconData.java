@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.immutable.tileentity;
 import org.spongepowered.api.block.tileentity.carrier.Beacon;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.BeaconData;
-import org.spongepowered.api.data.value.immutable.ImmutableOptionalValue;
+import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.entity.Entity;
 
@@ -41,20 +41,20 @@ import java.util.Optional;
 public interface ImmutableBeaconData extends ImmutableDataManipulator<ImmutableBeaconData, BeaconData> {
 
     /**
-     * Gets the {@link ImmutableOptionalValue} for the primary
+     * Gets the {@link OptionalValue.ImmutableOptionalValue} for the primary
      * {@link PotionEffectType}.
      *
      * @return The immutable optional value for the primary potion effect
      */
-    ImmutableOptionalValue<PotionEffectType> primaryEffect();
+    OptionalValue.ImmutableOptionalValue<PotionEffectType> primaryEffect();
 
     /**
-     * Gets the {@link ImmutableOptionalValue} for the secondary
+     * Gets the {@link OptionalValue.ImmutableOptionalValue} for the secondary
      * {@link PotionEffectType}.
      *
      * @return The immutable optional value for the secondary potion effect
      */
-    ImmutableOptionalValue<PotionEffectType> secondaryEffect();
+    OptionalValue.ImmutableOptionalValue<PotionEffectType> secondaryEffect();
 
     /**
      * Creates a new {@link ImmutableBeaconData} with {@link Optional#empty()}

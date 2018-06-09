@@ -34,9 +34,6 @@ import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.merge.MergeFunction;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.CompositeValueStore;
-import org.spongepowered.api.data.value.mutable.MutableValue;
 import org.spongepowered.api.util.annotation.eventgen.TransformWith;
 
 import java.util.Optional;
@@ -109,7 +106,7 @@ public interface DataManipulator<M extends DataManipulator<M, I>, I extends Immu
     /**
      * Sets the supported {@link Key}'s value such that the value is set on
      * this {@link DataManipulator} without having to directly set the
-     * {@link MutableValue} and {@link #set(Value)} afterwards. The requirement
+     * {@link Value.Mutable} and {@link #set(Value)} afterwards. The requirement
      * for this to succeed is that the {@link Key} must be checked that it is
      * supported via {@link #supports(Value)} or {@link #supports(Key)}
      * otherwise an {@link IllegalArgumentException} may be thrown. For
@@ -204,8 +201,8 @@ public interface DataManipulator<M extends DataManipulator<M, I>, I extends Immu
 
     /**
      * Gets an {@link ImmutableDataManipulator} copy of this
-     * {@link DataManipulator} such that all backed {@link MutableValue}s are copied
-     * into {@link ImmutableValue} counterparts. Any changes to this
+     * {@link DataManipulator} such that all backed {@link Value.Mutable}s are copied
+     * into {@link Value.Immutable} counterparts. Any changes to this
      * {@link DataManipulator} will NOT be reflected on the returned
      * {@link ImmutableDataManipulator} and vice versa.
      *

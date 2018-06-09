@@ -28,15 +28,13 @@ import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.MutableValue;
 
 import java.util.Optional;
 
 /**
  * An {@code ImmutableDataManipulator} is an immutable {@link ValueContainer}
  * such that once it is created, any {@link Value}s exist as
- * {@link ImmutableValue}s. Any modification methods result in new instances of
+ * {@link Value.Immutable}s. Any modification methods result in new instances of
  * the same typed {@link ImmutableDataManipulator}.
  *
  * <p>As with {@link DataManipulator}, it is always possible to translate back
@@ -88,7 +86,7 @@ public interface ImmutableDataManipulator<I extends ImmutableDataManipulator<I, 
     /**
      * Gets a {@link DataManipulator} copy of this
      * {@link ImmutableDataManipulator} such that all backed
-     * {@link ImmutableValue}s are copied into their {@link MutableValue}
+     * {@link Value.Immutable}s are copied into their {@link Value.Mutable}
      * counterparts. Any changes to this {@link ImmutableDataManipulator} will
      * NOT be reflected on the returned {@link DataManipulator} and vice versa.
      *

@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.SleepingData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Bat;
 import org.spongepowered.api.entity.living.player.Player;
 
@@ -38,20 +38,20 @@ import org.spongepowered.api.entity.living.player.Player;
 public interface ImmutableSleepingData extends ImmutableDataManipulator<ImmutableSleepingData, SleepingData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the "sleeping" state.
+     * Gets the {@link Value.Immutable} for the "sleeping" state.
      *
      * @return The immutable value for the "sleeping" state
      */
-    ImmutableValue.Single<Boolean> sleeping();
+    Value.Immutable.Single<Boolean> sleeping();
 
     /**
-     * Gets the {@link ImmutableValue} for whether the owning {@link Player}'s
+     * Gets the {@link Value.Immutable} for whether the owning {@link Player}'s
      * "sleeping" state is ignored when vanilla mechanics dictate that all
      * {@link Player}s must be sleeping to advance through the night.
      *
      * @return The immutable value for ignoring sleep
      */
-    ImmutableValue.Single<Boolean> ignoreSleeping();
+    Value.Immutable.Single<Boolean> ignoreSleeping();
 
 }
 

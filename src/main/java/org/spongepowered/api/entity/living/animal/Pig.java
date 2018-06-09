@@ -26,7 +26,7 @@ package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.PigSaddleData;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents a Pig.
@@ -43,11 +43,11 @@ public interface Pig extends Animal {
     }
 
     /**
-     * Gets the {@link MutableValue} for whether this {@link Pig} is saddled.
+     * Gets the {@link Value.Mutable} for whether this {@link Pig} is saddled.
      *
      * @return The value whether this pig is saddled
      */
-    default MutableValue<Boolean> saddled() {
+    default Value.Mutable<Boolean> saddled() {
         return getValue(Keys.PIG_SADDLE).get();
     }
 

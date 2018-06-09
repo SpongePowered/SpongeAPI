@@ -29,7 +29,7 @@ import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableWetData;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.animal.Wolf;
 
 /**
@@ -40,11 +40,11 @@ import org.spongepowered.api.entity.living.animal.Wolf;
 public interface WetData extends DataManipulator<WetData, ImmutableWetData> {
 
     /**
-     * Gets the {@link MutableValue} for the "wet" state.
+     * Gets the {@link Value.Mutable} for the "wet" state.
      *
      * @return The value for the wet state
      * @see Keys#IS_WET
      */
-    MutableValue.Single<Boolean> wet();
+    Value.Mutable.Single<Boolean> wet();
 
 }

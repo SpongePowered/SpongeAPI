@@ -27,8 +27,7 @@ package org.spongepowered.api.extra.fluid.data.manipulator.immutable;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.data.manipulator.immutable.ImmutableMappedData;
-import org.spongepowered.api.data.value.immutable.ImmutableMapValue;
-import org.spongepowered.api.data.value.mutable.MutableMapValue;
+import org.spongepowered.api.data.value.MapValue;
 import org.spongepowered.api.extra.fluid.FluidStack;
 import org.spongepowered.api.extra.fluid.FluidStackSnapshot;
 import org.spongepowered.api.extra.fluid.data.manipulator.mutable.FluidTankData;
@@ -41,13 +40,13 @@ import java.util.Optional;
 public interface ImmutableFluidTankData extends ImmutableMappedData<Direction, List<FluidStackSnapshot>, ImmutableFluidTankData, FluidTankData> {
 
     /**
-     * Gets the {@link MutableMapValue} of the various {@link FluidStackSnapshot}s
+     * Gets the {@link MapValue.Mutable} of the various {@link FluidStackSnapshot}s
      * available from the owner. Note that a fluid tank may have multiple
      * {@link FluidStack}s differing based on {@link Direction}.
      *
      * @return The map value of direction to list of fluid snapshots
      */
-    ImmutableMapValue<Direction, List<FluidStackSnapshot>> fluids();
+    MapValue.Immutable<Direction, List<FluidStackSnapshot>> fluids();
 
     /**
      * Gets the {@link List} of {@link FluidStackSnapshot}s at a defined
@@ -57,7 +56,7 @@ public interface ImmutableFluidTankData extends ImmutableMappedData<Direction, L
      * @return The list of fluid stack snapshots, if available
      */
     default Optional<List<FluidStackSnapshot>> fluidAtDirection(Direction direction) {
-        ImmutableMapValue<Direction, List<FluidStackSnapshot>> fluids = fluids();
+        MapValue.Immutable<Direction, List<FluidStackSnapshot>> fluids = fluids();
         if (fluids.containsKey(checkNotNull(direction, "Direction was null!"))) {
             return Optional.of(new ArrayList<>(fluids.get().get(direction)));
         }

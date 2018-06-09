@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.block;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.block.AttachedData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * An {@link ImmutableDataManipulator} representing the "attached".
@@ -34,10 +34,10 @@ import org.spongepowered.api.data.value.immutable.ImmutableValue;
 public interface ImmutableAttachedData extends ImmutableDataManipulator<ImmutableAttachedData, AttachedData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the "attached" state.
+     * Gets the {@link Value.Immutable} for the "attached" state.
      *
      * @return The "attached" immutable value state
      */
-    ImmutableValue.Single<Boolean> attached();
+    Value.Immutable.Single<Boolean> attached();
 
 }

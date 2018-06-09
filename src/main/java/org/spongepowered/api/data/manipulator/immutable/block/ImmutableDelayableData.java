@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.block;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.block.DelayableData;
-import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
+import org.spongepowered.api.data.value.BoundedValue;
 
 /**
  * An {@link ImmutableDataManipulator} that represents the delay on a redstone repeater.
@@ -34,10 +34,10 @@ import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
 public interface ImmutableDelayableData extends ImmutableDataManipulator<ImmutableDelayableData, DelayableData> {
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the delay.
+     * Gets the {@link BoundedValue.Immutable} for the delay.
      *
      * @return The Immutable bounded value delay.
      */
-    ImmutableBoundedValue<Integer> delay();
+    BoundedValue.Immutable<Integer> delay();
 
 }

@@ -29,7 +29,7 @@ import org.spongepowered.api.block.tileentity.Structure;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableStructureData;
 import org.spongepowered.api.data.type.StructureMode;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents the data for an {@link Structure}.
@@ -37,73 +37,73 @@ import org.spongepowered.api.data.value.mutable.MutableValue;
 public interface StructureData extends DataManipulator<StructureData, ImmutableStructureData> {
 
     /**
-     * Gets the {@link MutableValue} for the author of the {@link Structure}.
+     * Gets the {@link Value.Mutable} for the author of the {@link Structure}.
      *
      * @return The value for the author
      */
-    MutableValue.Single<String> author();
+    Value.Mutable.Single<String> author();
 
     /**
-     * Gets the {@link MutableValue} for the ignore entities state of the {@link Structure}.
+     * Gets the {@link Value.Mutable} for the ignore entities state of the {@link Structure}.
      *
      * @return The value for the ignore entities state
      */
-    MutableValue.Single<Boolean> ignoreEntities();
+    Value.Mutable.Single<Boolean> ignoreEntities();
 
     /**
-     * Gets the {@link MutableValue} for the integrity of the {@link Structure}.
+     * Gets the {@link Value.Mutable} for the integrity of the {@link Structure}.
      *
      * @return The value for the integrity
      */
-    MutableValue.Single<Float> integrity();
+    Value.Mutable.Single<Float> integrity();
 
     /**
-     * Gets the {@link MutableValue} for the mode of the {@link Structure}.
+     * Gets the {@link Value.Mutable} for the mode of the {@link Structure}.
      *
      * @return The value for the mode
      */
-    MutableValue.Single<StructureMode> mode();
+    Value.Mutable.Single<StructureMode> mode();
 
     /**
-     * Gets the {@link MutableValue} for the position of the {@link Structure}.
+     * Gets the {@link Value.Mutable} for the position of the {@link Structure}.
      *
      * @return The value for the position
      */
-    MutableValue.Single<Vector3i> position();
+    Value.Mutable.Single<Vector3i> position();
 
     /**
-     * Gets the {@link MutableValue} for the powered state of the {@link Structure}.
+     * Gets the {@link Value.Mutable} for the powered state of the {@link Structure}.
      *
      * @return The value for the powered state
      */
-    MutableValue.Single<Boolean> powered();
+    Value.Mutable.Single<Boolean> powered();
 
     /**
-     * Gets the {@link MutableValue} for the seed of the {@link Structure}.
+     * Gets the {@link Value.Mutable} for the seed of the {@link Structure}.
      *
      * @return The value for the seed
      */
-    MutableValue.Single<Long> seed();
+    Value.Mutable.Single<Long> seed();
 
     /**
-     * Gets the {@link MutableValue} for the show air state of the {@link Structure}.
+     * Gets the {@link Value.Mutable} for the show air state of the {@link Structure}.
      *
      * @return The value for the show air state
      */
-    MutableValue.Single<Boolean> showAir();
+    Value.Mutable.Single<Boolean> showAir();
 
     /**
-     * Gets the {@link MutableValue} for the show bounding box state of the {@link Structure}.
+     * Gets the {@link Value.Mutable} for the show bounding box state of the {@link Structure}.
      *
      * @return The value for the show bounding box state
      */
-    MutableValue.Single<Boolean> showBoundingBox();
+    Value.Mutable.Single<Boolean> showBoundingBox();
 
     /**
-     * Gets the {@link MutableValue} for the size of the {@link Structure}.
+     * Gets the {@link Value.Mutable} for the size of the {@link Structure}.
      *
      * @return The value for the size
      */
-    MutableValue.Single<Vector3i> size();
+    Value.Mutable.Single<Vector3i> size();
 
 }

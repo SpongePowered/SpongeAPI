@@ -28,7 +28,7 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.block.DecayableData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * An {@link ImmutableDataManipulator} for the "decayable" state of a
@@ -37,11 +37,11 @@ import org.spongepowered.api.data.value.immutable.ImmutableValue;
 public interface ImmutableDecayableData extends ImmutableDataManipulator<ImmutableDecayableData, DecayableData> {
 
     /**
-     * Gets the {@link ImmutableValue} for whether the "decayable" state is
+     * Gets the {@link Value.Immutable} for whether the "decayable" state is
      * {@code true} or {@code false}.
      *
      * @return The immutable value for the "decayable" state
      */
-    ImmutableValue.Single<Boolean> decayable();
+    Value.Immutable.Single<Boolean> decayable();
 
 }

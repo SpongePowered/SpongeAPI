@@ -28,7 +28,7 @@ import org.spongepowered.api.block.tileentity.Sign;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableListData;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.SignData;
-import org.spongepowered.api.data.value.immutable.ImmutableListValue;
+import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 
@@ -41,12 +41,12 @@ import java.util.List;
 public interface ImmutableSignData extends ImmutableListData<Text, ImmutableSignData, SignData> {
 
     /**
-     * Gets the {@link ImmutableListValue} of {@link Text} for the {@link Sign}
+     * Gets the {@link ListValue.Immutable} of {@link Text} for the {@link Sign}
      * to show.
      *
      * @return The immutable list of text lines
      */
-    default ImmutableListValue<Text> lines() {
+    default ListValue.Immutable<Text> lines() {
         return getListValue();
     }
 

@@ -31,11 +31,11 @@ import org.spongepowered.api.data.manipulator.immutable.ImmutableVariantData;
 import org.spongepowered.api.data.manipulator.mutable.block.AxisData;
 import org.spongepowered.api.data.type.LogAxes;
 import org.spongepowered.api.data.type.LogAxis;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.util.Axis;
 
 /**
- * An {@link ImmutableDataManipulator} containing the {@link ImmutableValue}
+ * An {@link ImmutableDataManipulator} containing the {@link Value.Immutable}
  * for the {@link Axis} a {@link BlockState} may have.
  *
  * <p>Note that {@link BlockTypes#LOG} and {@link BlockTypes#LOG2} do NOT
@@ -45,10 +45,10 @@ import org.spongepowered.api.util.Axis;
 public interface ImmutableAxisData extends ImmutableVariantData<Axis, ImmutableAxisData, AxisData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the {@link Axis} value.
+     * Gets the {@link Value.Immutable} for the {@link Axis} value.
      *
      * @return The immutable value for the axis
      */
-    ImmutableValue.Single<Axis> axis();
+    Value.Immutable.Single<Axis> axis();
 
 }

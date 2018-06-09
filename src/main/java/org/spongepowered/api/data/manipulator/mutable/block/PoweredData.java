@@ -28,7 +28,7 @@ import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutablePoweredData;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * An {@link DataManipulator} for the "powered" state. For redstone based
@@ -39,11 +39,11 @@ import org.spongepowered.api.data.value.mutable.MutableValue;
 public interface PoweredData extends DataManipulator<PoweredData, ImmutablePoweredData> {
 
     /**
-     * Gets the {@link MutableValue} for the "powered" state.
+     * Gets the {@link Value.Mutable} for the "powered" state.
      *
      * @return The immutable value for the "powered" state
      * @see Keys#POWERED
      */
-    MutableValue.Single<Boolean> powered();
+    Value.Mutable.Single<Boolean> powered();
 
 }

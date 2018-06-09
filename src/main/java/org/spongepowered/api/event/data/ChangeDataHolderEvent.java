@@ -27,7 +27,6 @@ package org.spongepowered.api.event.data;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.data.value.mutable.MutableValue;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.impl.AbstractValueChangeEvent;
@@ -53,7 +52,7 @@ public interface ChangeDataHolderEvent extends Event, Cancellable {
     interface ValueChange extends ChangeDataHolderEvent {
 
         /**
-         * Gets the original {@link DataTransactionResult} of the {@link MutableValue}s
+         * Gets the original {@link DataTransactionResult} of the {@link Value.Mutable}s
          * that have changed in this event.
          *
          * @return The original changes of values
@@ -62,7 +61,7 @@ public interface ChangeDataHolderEvent extends Event, Cancellable {
 
         /**
          * Submits a new {@link DataTransactionResult} as a proposal of various
-         * {@link MutableValue}s to be successfully offered/changed on the original
+         * {@link Value.Mutable}s to be successfully offered/changed on the original
          * {@link DataHolder}.
          *
          * <p>If the proposed {@link DataTransactionResult} provides additional

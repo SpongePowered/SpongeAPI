@@ -35,8 +35,6 @@ import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.MutableValue;
 
 import java.util.Map;
 import java.util.Objects;
@@ -127,7 +125,7 @@ public abstract class AbstractData<M extends DataManipulator<M, I>, I extends Im
     /**
      * A required registration method for registering the various fields and
      * value getters. It's suggested that if multiple fields are used, each
-     * field can be represented as a {@link MutableValue} such that there is an
+     * field can be represented as a {@link Value.Mutable} such that there is an
      * associated {@link Key} to "get" that field value.
      */
     protected abstract void registerGettersAndSetters();
@@ -175,8 +173,8 @@ public abstract class AbstractData<M extends DataManipulator<M, I>, I extends Im
     }
 
     @Override
-    public Set<ImmutableValue<?, ?, ?>> getValues() {
-        ImmutableSet.Builder<ImmutableValue<?, ?, ?>> builder = ImmutableSet.builder();
+    public Set<Value.Immutable<?, ?, ?>> getValues() {
+        ImmutableSet.Builder<Value.Immutable<?, ?, ?>> builder = ImmutableSet.builder();
         for (Supplier<Value<?>> function : this.keyValueMap.values()) {
             builder.add(checkNotNull(function.get()).asImmutable());
         }

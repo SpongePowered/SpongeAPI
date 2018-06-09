@@ -31,7 +31,6 @@ import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.data.value.mutable.MutableValue;
 
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -69,12 +68,12 @@ public abstract class AbstractSingleData<T, M extends DataManipulator<M, I>, I e
     }
 
     /**
-     * Gets the {@link MutableValue} as a method since this manipulator only focuses
+     * Gets the {@link Value.Mutable} as a method since this manipulator only focuses
      * on a single value.
      *
      * @return The constructed value
      */
-    protected abstract MutableValue.Single<?> getValueGetter();
+    protected abstract Value.Mutable.Single<?> getValueGetter();
 
     @Override
     public <E> Optional<E> get(Key<? extends Value<E>> key) {

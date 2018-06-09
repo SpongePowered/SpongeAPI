@@ -25,12 +25,6 @@
 package org.spongepowered.api.data.value;
 
 import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.value.mutable.MutableListValue;
-import org.spongepowered.api.data.value.mutable.MutableMapValue;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.MutableValue;
-import org.spongepowered.api.data.value.mutable.MutableOptionalValue;
-import org.spongepowered.api.data.value.mutable.MutableSetValue;
 
 import java.util.Comparator;
 import java.util.List;
@@ -43,7 +37,7 @@ import javax.annotation.Nullable;
 public interface ValueFactory {
 
     /**
-     * Creates a new {@link MutableValue} with the provided {@link Key} and the
+     * Creates a new {@link Value.Mutable} with the provided {@link Key} and the
      * <code>E</code> element.
      *
      * @param key The key for the value
@@ -51,10 +45,10 @@ public interface ValueFactory {
      * @param <E> The type of element
      * @return The newly created value
      */
-    <E> MutableValue.Single<E> createValue(Key<Value<E>> key, E element);
+    <E> Value.Mutable.Single<E> createValue(Key<Value<E>> key, E element);
 
     /**
-     * Creates a new {@link MutableValue} with the provided {@link Key} and the
+     * Creates a new {@link Value.Mutable} with the provided {@link Key} and the
      * <code>E</code> element and the provided <code>E</code> default value.
      *
      * @param key The key for the value
@@ -63,10 +57,10 @@ public interface ValueFactory {
      * @param <E> The type of element
      * @return The newly created value
      */
-    <E> MutableValue.Single<E> createValue(Key<Value<E>> key, E element, E defaultValue);
+    <E> Value.Mutable.Single<E> createValue(Key<Value<E>> key, E element, E defaultValue);
 
     /**
-     * Creates a new {@link MutableListValue} with the provided {@link Key} and
+     * Creates a new {@link ListValue.Mutable} with the provided {@link Key} and
      * {@link List} of elements. The default value will be an empty list.
      *
      * @param key The key for the value
@@ -74,10 +68,10 @@ public interface ValueFactory {
      * @param <E> The type of element
      * @return The list value
      */
-    <E> MutableListValue<E> createListValue(Key<MutableListValue<E>> key, List<E> elements);
+    <E> ListValue.Mutable<E> createListValue(Key<ListValue.Mutable<E>> key, List<E> elements);
 
     /**
-     * Creates a new {@link MutableListValue} with the provided {@link Key} and
+     * Creates a new {@link ListValue.Mutable} with the provided {@link Key} and
      * {@link List} of elements.
      *
      * @param key The key for the value
@@ -86,10 +80,10 @@ public interface ValueFactory {
      * @param <E> The type of element
      * @return The list value
      */
-    <E> MutableListValue<E> createListValue(Key<MutableListValue<E>> key, List<E> elements, List<E> defaults);
+    <E> ListValue.Mutable<E> createListValue(Key<ListValue.Mutable<E>> key, List<E> elements, List<E> defaults);
 
     /**
-     * Creates a new {@link MutableSetValue} with the provided {@link Key} and
+     * Creates a new {@link SetValue.Mutable} with the provided {@link Key} and
      * {@link Set} of elements.
      *
      * @param key The key for the value
@@ -97,10 +91,10 @@ public interface ValueFactory {
      * @param <E> The type of element
      * @return The set value
      */
-    <E> MutableSetValue<E> createSetValue(Key<MutableSetValue<E>> key, Set<E> elements);
+    <E> SetValue.Mutable<E> createSetValue(Key<SetValue.Mutable<E>> key, Set<E> elements);
 
     /**
-     * Creates a new {@link MutableSetValue} with the provided {@link Key} and
+     * Creates a new {@link SetValue.Mutable} with the provided {@link Key} and
      * {@link Set} of elements.
      *
      * @param key The key for the value
@@ -109,10 +103,10 @@ public interface ValueFactory {
      * @param <E> The type of element
      * @return The set value
      */
-    <E> MutableSetValue<E> createSetValue(Key<MutableSetValue<E>> key, Set<E> elements, Set<E> defaults);
+    <E> SetValue.Mutable<E> createSetValue(Key<SetValue.Mutable<E>> key, Set<E> elements, Set<E> defaults);
 
     /**
-     * Creates a new {@link MutableMapValue} of the provided {@link Key} with the
+     * Creates a new {@link MapValue.Mutable} of the provided {@link Key} with the
      * types <code>K</code> and <code>V</code>.
      *
      * @param key The key for the value
@@ -121,10 +115,10 @@ public interface ValueFactory {
      * @param <V> The type of value
      * @return The map value
      */
-    <K, V> MutableMapValue<K, V> createMapValue(Key<MutableMapValue<K, V>> key, Map<K, V> map);
+    <K, V> MapValue.Mutable<K, V> createMapValue(Key<MapValue.Mutable<K, V>> key, Map<K, V> map);
 
     /**
-     * Creates a new {@link MutableMapValue} of the provided {@link Key} with the
+     * Creates a new {@link MapValue.Mutable} of the provided {@link Key} with the
      * types <code>K</code> and <code>V</code> along with the provided
      * {@link Map} defaults.
      *
@@ -135,7 +129,7 @@ public interface ValueFactory {
      * @param <V> The type of value
      * @return The map value
      */
-    <K, V> MutableMapValue<K, V> createMapValue(Key<MutableMapValue<K, V>> key, Map<K, V> map, Map<K, V> defaults);
+    <K, V> MapValue.Mutable<K, V> createMapValue(Key<MapValue.Mutable<K, V>> key, Map<K, V> map, Map<K, V> defaults);
 
     /**
      * Creates a {@link BoundedValueBuilder}
@@ -144,10 +138,10 @@ public interface ValueFactory {
      * @param <E> The type of value
      * @return The newly created value
      */
-    <E> BoundedValueBuilder<E> createBoundedValueBuilder(Key<MutableBoundedValue<E>> key);
+    <E> BoundedValueBuilder<E> createBoundedValueBuilder(Key<BoundedValue.Mutable<E>> key);
 
     /**
-     * Creates an {@link MutableOptionalValue} where even the default value may be
+     * Creates an {@link OptionalValue.MutableOptionalValue} where even the default value may be
      * {@link Optional#empty()}. These types of values should be restricted
      * to values that are live, that can be potentially large to retain a
      * reference to, and otherwise, not thread safe.
@@ -157,10 +151,10 @@ public interface ValueFactory {
      * @param <E> The type of element
      * @return The newly created value
      */
-    <E> MutableOptionalValue<E> createOptionalValue(Key<MutableOptionalValue<E>> key, @Nullable E element);
+    <E> OptionalValue.MutableOptionalValue<E> createOptionalValue(Key<OptionalValue.MutableOptionalValue<E>> key, @Nullable E element);
 
     /**
-     * Creates an {@link MutableOptionalValue} where the default is NOT
+     * Creates an {@link OptionalValue.MutableOptionalValue} where the default is NOT
      * <code>null</code>, such that the actual value may be retained as
      * <code>null</code>.
      *
@@ -170,10 +164,10 @@ public interface ValueFactory {
      * @param <E> The type of element
      * @return The newly created value
      */
-    <E> MutableOptionalValue<E> createOptionalValue(Key<MutableOptionalValue<E>> key, @Nullable E element, E defaultElement);
+    <E> OptionalValue.MutableOptionalValue<E> createOptionalValue(Key<OptionalValue.MutableOptionalValue<E>> key, @Nullable E element, E defaultElement);
 
     /**
-     * A builder pattern for constructing {@link MutableBoundedValue}s without the hassle of
+     * A builder pattern for constructing {@link BoundedValue.Mutable}s without the hassle of
      * keeping track of the order of arguments.
      *
      * @param <E> The type of element
@@ -229,13 +223,13 @@ public interface ValueFactory {
         BoundedValueBuilder<E> actualValue(E actual);
 
         /**
-         * Builds a new {@link MutableBoundedValue}. The requirements are
+         * Builds a new {@link BoundedValue.Mutable}. The requirements are
          * that the {@link #minimum(Object)}, {@link #maximum(Object)},
          * {@link #defaultValue(Object)} are set, and if the <code>E</code> is
          * not {@link Comparable}, {@link #comparator(Comparator)} is set.
          *
          * @return The newly constructed value
          */
-        MutableBoundedValue<E> build();
+        BoundedValue.Mutable<E> build();
     }
 }

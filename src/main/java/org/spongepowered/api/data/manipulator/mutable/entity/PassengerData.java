@@ -27,8 +27,8 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutablePassengerData;
 import org.spongepowered.api.data.manipulator.mutable.ListData;
-import org.spongepowered.api.data.value.mutable.MutableListValue;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.ListValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 
 import java.util.UUID;
@@ -39,12 +39,12 @@ import java.util.UUID;
 public interface PassengerData extends ListData<UUID, PassengerData, ImmutablePassengerData> {
 
     /**
-     * Gets the {@link MutableValue} for the current {@link Entity} acting
+     * Gets the {@link Value.Mutable} for the current {@link Entity} acting
      * as a passenger.
      *
      * @return The value for the passenger entity
      * @see Keys#PASSENGERS
      */
-    MutableListValue<UUID> passengers();
+    ListValue.Mutable<UUID> passengers();
 
 }

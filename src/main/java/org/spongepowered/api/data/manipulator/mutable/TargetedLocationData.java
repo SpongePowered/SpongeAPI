@@ -28,7 +28,7 @@ import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableTargetedLocationData;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.projectile.EyeOfEnder;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -46,11 +46,11 @@ import org.spongepowered.api.item.inventory.ItemStack;
 public interface TargetedLocationData extends DataManipulator<TargetedLocationData, ImmutableTargetedLocationData> {
 
     /**
-     * Gets the {@link MutableValue} for the targeted {@link Vector3d}.
+     * Gets the {@link Value.Mutable} for the targeted {@link Vector3d}.
      *
      * @return The value for the targeted location
      * @see Keys#TARGETED_LOCATION
      */
-    MutableValue.Single<Vector3d> target();
+    Value.Mutable.Single<Vector3d> target();
 
 }

@@ -27,7 +27,7 @@ package org.spongepowered.api.entity;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.FallingBlockData;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents a falling block. A falling block may harm entities where it lands,
@@ -45,12 +45,12 @@ public interface FallingBlock extends Entity {
     }
 
     /**
-     * Gets the {@link MutableValue} for the damage to deal per block the
+     * Gets the {@link Value.Mutable} for the damage to deal per block the
      * {@link FallingBlock} has fallen.
      *
      * @return The immutable value for the damage per block of falling
      */
-    default MutableValue<Double> fallDamagePerBlock() {
+    default Value.Mutable<Double> fallDamagePerBlock() {
         return getValue(Keys.FALL_DAMAGE_PER_BLOCK).get();
     }
 
@@ -60,7 +60,7 @@ public interface FallingBlock extends Entity {
      *
      * @return The maximum damage the block can deal
      */
-    default MutableValue<Double> maxFallDamage() {
+    default Value.Mutable<Double> maxFallDamage() {
         return getValue(Keys.MAX_FALL_DAMAGE).get();
     }
 
@@ -69,7 +69,7 @@ public interface FallingBlock extends Entity {
      *
      * @return The falling block's block state
      */
-    default MutableValue<BlockState> blockState() {
+    default Value.Mutable<BlockState> blockState() {
         return getValue(Keys.FALLING_BLOCK_STATE).get();
     }
 
@@ -78,7 +78,7 @@ public interface FallingBlock extends Entity {
      *
      * @return True if this block will attempt to place itself when it lands
      */
-    default MutableValue<Boolean> canPlaceAsBlock() {
+    default Value.Mutable<Boolean> canPlaceAsBlock() {
         return getValue(Keys.CAN_PLACE_AS_BLOCK).get();
     }
 
@@ -88,7 +88,7 @@ public interface FallingBlock extends Entity {
      *
      * @return Whether this falling block can drop as an item
      */
-    default MutableValue<Boolean> canDropAsItem() {
+    default Value.Mutable<Boolean> canDropAsItem() {
         return getValue(Keys.CAN_DROP_AS_ITEM).get();
     }
 
@@ -97,7 +97,7 @@ public interface FallingBlock extends Entity {
      *
      * @return The time the block has been falling
      */
-    default MutableValue<Integer> fallTime() {
+    default Value.Mutable<Integer> fallTime() {
         return getValue(Keys.FALL_TIME).get();
     }
 
@@ -106,7 +106,7 @@ public interface FallingBlock extends Entity {
      *
      * @return Whether this falling block will damage entities where it lands
      */
-    default MutableValue<Boolean> canHurtEntities() {
+    default Value.Mutable<Boolean> canHurtEntities() {
         return getValue(Keys.FALLING_BLOCK_CAN_HURT_ENTITIES).get();
     }
 

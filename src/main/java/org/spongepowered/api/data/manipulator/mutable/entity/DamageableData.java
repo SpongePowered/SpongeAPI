@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableDamageableData;
-import org.spongepowered.api.data.value.mutable.MutableOptionalValue;
+import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.living.Living;
@@ -45,7 +45,7 @@ import java.util.Optional;
 public interface DamageableData extends DataManipulator<DamageableData, ImmutableDamageableData> {
 
     /**
-     * Gets the {@link MutableOptionalValue} for the last attacker.
+     * Gets the {@link OptionalValue.MutableOptionalValue} for the last attacker.
      *
      * <p>This will usually be an entity snapshot of a {@link Living}.</p>
      *
@@ -55,7 +55,7 @@ public interface DamageableData extends DataManipulator<DamageableData, Immutabl
      * @return The last attacker as an optional value
      * @see Keys#LAST_ATTACKER
      */
-    MutableOptionalValue<EntitySnapshot> lastAttacker();
+    OptionalValue.MutableOptionalValue<EntitySnapshot> lastAttacker();
 
     /**
      * Gets the last amount of damage taken by this entity as an optional value.
@@ -66,6 +66,6 @@ public interface DamageableData extends DataManipulator<DamageableData, Immutabl
      * @return The last damage dealt as an optional value
      * @see Keys#LAST_DAMAGE
      */
-    MutableOptionalValue<Double> lastDamage();
+    OptionalValue.MutableOptionalValue<Double> lastDamage();
 
 }

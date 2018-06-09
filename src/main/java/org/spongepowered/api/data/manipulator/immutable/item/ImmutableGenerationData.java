@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.item;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.item.GenerationData;
-import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
+import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 
@@ -38,11 +38,11 @@ import org.spongepowered.api.item.inventory.ItemStack;
 public interface ImmutableGenerationData extends ImmutableDataManipulator<ImmutableGenerationData, GenerationData> {
 
     /**
-     * Gets the {@link ImmutableBoundedValue} that represents the "generation"
+     * Gets the {@link BoundedValue.Immutable} that represents the "generation"
      * state of a book.
      *
      * @return The immutable bounded value for the generation state
      */
-    ImmutableBoundedValue<Integer> generation();
+    BoundedValue.Immutable<Integer> generation();
 
 }

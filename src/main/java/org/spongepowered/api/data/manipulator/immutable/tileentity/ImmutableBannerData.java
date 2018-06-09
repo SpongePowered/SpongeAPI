@@ -29,8 +29,8 @@ import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.BannerData;
 import org.spongepowered.api.data.meta.PatternLayer;
 import org.spongepowered.api.data.type.DyeColor;
-import org.spongepowered.api.data.value.immutable.ImmutablePatternListValue;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.meta.PatternListValue;
 
 /**
  * An {@link ImmutableDataManipulator} handling the various information for a
@@ -40,18 +40,18 @@ import org.spongepowered.api.data.value.immutable.ImmutableValue;
 public interface ImmutableBannerData extends ImmutableDataManipulator<ImmutableBannerData, BannerData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the base {@link DyeColor}.
+     * Gets the {@link Value.Immutable} for the base {@link DyeColor}.
      *
      * @return The immutable value for the base color
      */
-    ImmutableValue.Single<DyeColor> baseColor();
+    Value.Immutable.Single<DyeColor> baseColor();
 
     /**
-     * Gets the {@link ImmutablePatternListValue} of all patterns for the
+     * Gets the {@link PatternListValue.Immutable} of all patterns for the
      * {@link Banner}.
      *
      * @return The immutable pattern list
      */
-    ImmutablePatternListValue patterns();
+    PatternListValue.Immutable patterns();
 
 }

@@ -30,7 +30,6 @@ import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.data.value.mutable.MutableValue;
 
 /**
  * An abstract {@link DataManipulator} dealing specifically with a
@@ -51,8 +50,8 @@ public abstract class AbstractBooleanData<M extends DataManipulator<M, I>, I ext
 
     @SuppressWarnings("unchecked")
     @Override
-    protected MutableValue.Single<Boolean> getValueGetter() {
-        return Sponge.getRegistry().getValueFactory().createValue((Key<MutableValue.Single<Boolean>>) this.usedKey, this.getValue(), this.defaultValue);
+    protected Value.Mutable.Single<Boolean> getValueGetter() {
+        return Sponge.getRegistry().getValueFactory().createValue((Key<Value.Mutable.Single<Boolean>>) this.usedKey, this.getValue(), this.defaultValue);
     }
 
     @Override

@@ -26,7 +26,7 @@ package org.spongepowered.api.entity.explosive;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.ExplosionRadiusData;
-import org.spongepowered.api.data.value.mutable.MutableOptionalValue;
+import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -51,7 +51,7 @@ public interface Explosive extends Entity {
      *
      * @return Explosion radius
      */
-    default MutableOptionalValue<Integer> explosionRadius() {
+    default OptionalValue.MutableOptionalValue<Integer> explosionRadius() {
         return getValue(Keys.EXPLOSION_RADIUS).get();
     }
 

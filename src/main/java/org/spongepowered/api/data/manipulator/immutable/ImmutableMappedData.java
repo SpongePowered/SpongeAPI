@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.MappedData;
-import org.spongepowered.api.data.value.immutable.ImmutableMapValue;
+import org.spongepowered.api.data.value.MapValue;
 
 import java.util.Map;
 import java.util.Optional;
@@ -63,11 +63,11 @@ public interface ImmutableMappedData<K, V, I extends ImmutableMappedData<K, V, I
     }
 
     /**
-     * Gets the {@link ImmutableMapValue} of this manipulator.
+     * Gets the {@link MapValue.Immutable} of this manipulator.
      *
      * @return The map value of this manipulator
      */
-    ImmutableMapValue<K, V> getMapValue();
+    MapValue.Immutable<K, V> getMapValue();
 
     /**
      * Gets this manipulator as a {@link Map}.

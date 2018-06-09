@@ -26,7 +26,7 @@ package org.spongepowered.api.block.tileentity;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.SignData;
-import org.spongepowered.api.data.value.mutable.MutableListValue;
+import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.text.Text;
 
 /**
@@ -44,12 +44,12 @@ public interface Sign extends TileEntity {
     }
 
     /**
-     * Gets the {@link MutableListValue} of {@link Text} for the {@link Sign}
+     * Gets the {@link ListValue.Mutable} of {@link Text} for the {@link Sign}
      * to show.
      *
      * @return The list of text lines
      */
-    default MutableListValue<Text> lines() {
+    default ListValue.Mutable<Text> lines() {
         return getValue(Keys.SIGN_LINES).get();
     }
 

@@ -34,7 +34,6 @@ import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
 
 import java.util.Map;
 import java.util.Objects;
@@ -55,7 +54,7 @@ public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I
         implements ImmutableDataManipulator<I, M> {
 
 
-    private final Map<Key<?>, Supplier<ImmutableValue.Single<?>>> keyValueMap = Maps.newHashMap();
+    private final Map<Key<?>, Supplier<Value.Immutable.Single<?>>> keyValueMap = Maps.newHashMap();
     private final Map<Key<?>, Supplier<?>> keyFieldGetterMap = Maps.newHashMap();
 
     protected AbstractImmutableData() {
@@ -70,7 +69,7 @@ public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I
      * @param key The key for the value return type
      * @param function The function for getting the value
      */
-    protected final void registerKeyValue(Key<?> key, Supplier<ImmutableValue.Single<?>> function) {
+    protected final void registerKeyValue(Key<?> key, Supplier<Value.Immutable.Single<?>> function) {
         this.keyValueMap.put(checkNotNull(key), checkNotNull(function));
     }
 
@@ -124,9 +123,9 @@ public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I
     }
 
     @Override
-    public Set<ImmutableValue.Single<?>> getValues() {
-        ImmutableSet.Builder<ImmutableValue.Single<?>> builder = ImmutableSet.builder();
-        for (Supplier<ImmutableValue.Single<?>> function : this.keyValueMap.values()) {
+    public Set<Value.Immutable.Single<?>> getValues() {
+        ImmutableSet.Builder<Value.Immutable.Single<?>> builder = ImmutableSet.builder();
+        for (Supplier<Value.Immutable.Single<?>> function : this.keyValueMap.values()) {
             builder.add(checkNotNull(function.get()));
         }
         return builder.build();

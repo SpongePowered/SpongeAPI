@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.immutable;
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.TargetedLocationData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.projectile.EnderPearl;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -44,10 +44,10 @@ import org.spongepowered.api.item.inventory.ItemStack;
 public interface ImmutableTargetedLocationData extends ImmutableDataManipulator<ImmutableTargetedLocationData, TargetedLocationData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the targeted {@link Vector3d}.
+     * Gets the {@link Value.Immutable} for the targeted {@link Vector3d}.
      *
      * @return The immutable value for the targeted location
      */
-    ImmutableValue.Single<Vector3d> target();
+    Value.Immutable.Single<Vector3d> target();
 
 }

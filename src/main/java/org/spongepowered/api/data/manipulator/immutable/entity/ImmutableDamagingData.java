@@ -26,8 +26,8 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.DamagingData;
-import org.spongepowered.api.data.value.immutable.ImmutableMapValue;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.MapValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.projectile.Projectile;
@@ -45,10 +45,10 @@ public interface ImmutableDamagingData extends ImmutableDataManipulator<Immutabl
      *
      * @return The damage to deal as a value
      */
-    ImmutableValue.Single<Double> damage();
+    Value.Immutable.Single<Double> damage();
 
     /**
-     * Gets the {@link ImmutableMapValue} for representing the custom damage
+     * Gets the {@link MapValue.Immutable} for representing the custom damage
      * values to use if the owner strikes an entity of that type.
      *
      * <p>Note that in events, the damage defined for the provided
@@ -57,6 +57,6 @@ public interface ImmutableDamagingData extends ImmutableDataManipulator<Immutabl
      *
      * @return The immutable map value for the entity damage values
      */
-    ImmutableMapValue<EntityType, Double> damageForEntityTypes();
+    MapValue.Immutable<EntityType, Double> damageForEntityTypes();
 
 }

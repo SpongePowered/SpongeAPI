@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.VelocityData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -37,11 +37,11 @@ import org.spongepowered.api.entity.Entity;
 public interface ImmutableVelocityData extends ImmutableDataManipulator<ImmutableVelocityData, VelocityData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the current velocity as a
+     * Gets the {@link Value.Immutable} for the current velocity as a
      * {@link Vector3d}.
      *
      * @return The immutable value for the current velocity
      */
-    ImmutableValue.Single<Vector3d> velocity();
+    Value.Immutable.Single<Vector3d> velocity();
 
 }

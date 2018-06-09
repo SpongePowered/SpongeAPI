@@ -28,8 +28,8 @@ import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableConnectedDirectionData;
-import org.spongepowered.api.data.value.mutable.MutableValue;
-import org.spongepowered.api.data.value.mutable.MutableSetValue;
+import org.spongepowered.api.data.value.SetValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.util.Direction;
 
 /**
@@ -40,48 +40,48 @@ import org.spongepowered.api.util.Direction;
 public interface ConnectedDirectionData extends DataManipulator<ConnectedDirectionData, ImmutableConnectedDirectionData> {
 
     /**
-     * Gets the {@link MutableSetValue} for the currently "connected"
+     * Gets the {@link SetValue.Mutable} for the currently "connected"
      * {@link Direction}s.
      *
      * @return The immutable set value for connected directions
      * @see Keys#CONNECTED_DIRECTIONS
      */
-    MutableSetValue<Direction> connectedDirections();
+    SetValue.Mutable<Direction> connectedDirections();
 
     /**
-     * Gets the {@link MutableValue} for whether {@link Direction#NORTH} is
+     * Gets the {@link Value.Mutable} for whether {@link Direction#NORTH} is
      * "connected".
      *
      * @return The value for the north direction
      * @see Keys#CONNECTED_NORTH
      */
-    MutableValue.Single<Boolean> connectedNorth();
+    Value.Mutable.Single<Boolean> connectedNorth();
 
     /**
-     * Gets the {@link MutableValue} for whether {@link Direction#SOUTH} is
+     * Gets the {@link Value.Mutable} for whether {@link Direction#SOUTH} is
      * "connected".
      *
      * @return The value for the south direction
      * @see Keys#CONNECTED_SOUTH
      */
-    MutableValue.Single<Boolean> connectedSouth();
+    Value.Mutable.Single<Boolean> connectedSouth();
 
     /**
-     * Gets the {@link MutableValue} for whether {@link Direction#EAST} is
+     * Gets the {@link Value.Mutable} for whether {@link Direction#EAST} is
      * "connected".
      *
      * @return The value for the east direction
      * @see Keys#CONNECTED_WEST
      */
-    MutableValue.Single<Boolean> connectedEast();
+    Value.Mutable.Single<Boolean> connectedEast();
 
     /**
-     * Gets the {@link MutableValue} for whether {@link Direction#WEST} is
+     * Gets the {@link Value.Mutable} for whether {@link Direction#WEST} is
      * "connected".
      *
      * @return The value for the west direction
      * @see Keys#CONNECTED_EAST
      */
-    MutableValue.Single<Boolean> connectedWest();
+    Value.Mutable.Single<Boolean> connectedWest();
 
 }

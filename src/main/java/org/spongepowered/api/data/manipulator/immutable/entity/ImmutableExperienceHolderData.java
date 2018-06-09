@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.ExperienceHolderData;
-import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
+import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -41,7 +41,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 public interface ImmutableExperienceHolderData extends ImmutableDataManipulator<ImmutableExperienceHolderData, ExperienceHolderData> {
 
     /**
-     * Gets the {@link ImmutableBoundedValue}  for the amount of experience
+     * Gets the {@link BoundedValue.Immutable}  for the amount of experience
      * gained since the beginning of the current {@link #level()}. Normally,
      * the higher the level, the more "experience" required to gain another
      * level.
@@ -49,33 +49,33 @@ public interface ImmutableExperienceHolderData extends ImmutableDataManipulator<
      * @return The bounded value of experience since the beginning of the
      *     current level
      */
-    ImmutableBoundedValue<Integer> experienceSinceLevel();
+    BoundedValue.Immutable<Integer> experienceSinceLevel();
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the amount of experience
+     * Gets the {@link BoundedValue.Immutable} for the amount of experience
      * required between the current {@link #level()} and the next level.
      * This can be presumed to be the supposed "maximum" for the
      * {@link #experienceSinceLevel()} amount.
      *
      * @return The immutable bounded required experience between levels
      */
-    ImmutableBoundedValue<Integer> experienceBetweenLevels();
+    BoundedValue.Immutable<Integer> experienceBetweenLevels();
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the current "level" of
+     * Gets the {@link BoundedValue.Immutable} for the current "level" of
      * experience deserved according to the {@link #totalExperience()} and
      * a function from implementation defining how much experience required
      * per level.
      *
      * @return The current level according to the amount of total experience
      */
-    ImmutableBoundedValue<Integer> level();
+    BoundedValue.Immutable<Integer> level();
 
     /**
      * Gets the total amount of experience stored.
      *
      * @return The immutable value of total amount of experience
      */
-    ImmutableBoundedValue<Integer> totalExperience();
+    BoundedValue.Immutable<Integer> totalExperience();
 
 }

@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableShatteringData;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.projectile.EyeOfEnder;
 import org.spongepowered.api.item.inventory.ItemStack;
 
@@ -39,12 +39,12 @@ import org.spongepowered.api.item.inventory.ItemStack;
 public interface ShatteringData extends DataManipulator<ShatteringData, ImmutableShatteringData> {
 
     /**
-     * Gets the {@link MutableValue} for the "shattering" state of an
+     * Gets the {@link Value.Mutable} for the "shattering" state of an
      * {@link EyeOfEnder}.
      *
      * @return The immutable value for the "shattering" state
      * @see Keys#WILL_SHATTER
      */
-    MutableValue.Single<Boolean> willShatter();
+    Value.Mutable.Single<Boolean> willShatter();
 
 }

@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.AgentData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Agent;
 
 /**
@@ -35,10 +35,10 @@ import org.spongepowered.api.entity.living.Agent;
 public interface ImmutableAgentData extends ImmutableDataManipulator<ImmutableAgentData, AgentData> {
 
     /**
-     * Gets the {@link ImmutableValue} for whether AI tasks are enabled or not.
+     * Gets the {@link Value.Immutable} for whether AI tasks are enabled or not.
      *
      * @return The immutable value for the current "enabled" state of ai tasks
      */
-    ImmutableValue.Single<Boolean> aiEnabled();
+    Value.Immutable.Single<Boolean> aiEnabled();
 
 }

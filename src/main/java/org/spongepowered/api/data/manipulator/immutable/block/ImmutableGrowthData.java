@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.immutable.block;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.block.GrowthData;
-import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
+import org.spongepowered.api.data.value.BoundedValue;
 
 /**
  * An {@link ImmutableDataManipulator} that tracks the "growth" stage. Usually
@@ -38,10 +38,10 @@ import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
 public interface ImmutableGrowthData extends ImmutableDataManipulator<ImmutableGrowthData, GrowthData> {
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the "growth" stage.
+     * Gets the {@link BoundedValue.Immutable} for the "growth" stage.
      *
      * @return The immutable bounded value growth stage
      */
-    ImmutableBoundedValue<Integer> growthStage();
+    BoundedValue.Immutable<Integer> growthStage();
 
 }

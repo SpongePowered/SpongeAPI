@@ -28,7 +28,7 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.block.LayeredData;
-import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
+import org.spongepowered.api.data.value.BoundedValue;
 
 /**
  * An {@link ImmutableDataManipulator} for the "layer" of a block. Usually this
@@ -39,10 +39,10 @@ import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
 public interface ImmutableLayeredData extends ImmutableDataManipulator<ImmutableLayeredData, LayeredData> {
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the "layer" state.
+     * Gets the {@link BoundedValue.Immutable} for the "layer" state.
      *
      * @return The immutable bounded value for the "layer" state
      */
-    ImmutableBoundedValue<Integer> layer();
+    BoundedValue.Immutable<Integer> layer();
 
 }

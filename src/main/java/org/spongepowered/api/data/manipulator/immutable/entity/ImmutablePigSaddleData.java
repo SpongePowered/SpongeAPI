@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.PigSaddleData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.animal.Pig;
 import org.spongepowered.api.entity.living.animal.RideableHorse;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -39,10 +39,10 @@ import org.spongepowered.api.item.inventory.ItemStack;
 public interface ImmutablePigSaddleData extends ImmutableDataManipulator<ImmutablePigSaddleData, PigSaddleData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the "saddled" state.
+     * Gets the {@link Value.Immutable} for the "saddled" state.
      *
      * @return The immutable value for the saddle state
      */
-    ImmutableValue.Single<Boolean> saddle();
+    Value.Immutable.Single<Boolean> saddle();
 
 }

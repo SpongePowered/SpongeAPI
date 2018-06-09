@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableInvisibilityData;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -37,7 +37,7 @@ import org.spongepowered.api.entity.Entity;
 public interface InvisibilityData extends DataManipulator<InvisibilityData, ImmutableInvisibilityData> {
 
     /**
-     * Gets the {@link MutableValue} of the "invisible" state of an {@link Entity}.
+     * Gets the {@link Value.Mutable} of the "invisible" state of an {@link Entity}.
      *
      * <p>Note that this is different from the {@link #vanish()} state as when an
      * {@link Entity} is "invisible", update packets are still sent to all clients
@@ -46,10 +46,10 @@ public interface InvisibilityData extends DataManipulator<InvisibilityData, Immu
      * @return The value of the invisible state
      * @see Keys#INVISIBLE
      */
-    MutableValue.Single<Boolean> invisible();
+    Value.Mutable.Single<Boolean> invisible();
 
     /**
-     * Gets the {@link MutableValue} of the "vanish" state of an {@link Entity}.
+     * Gets the {@link Value.Mutable} of the "vanish" state of an {@link Entity}.
      *
      * <p>The presence of a vanished entity will not be made known to a client;
      * no packets pertaining to this entity are sent. Client-side, this entity
@@ -62,26 +62,26 @@ public interface InvisibilityData extends DataManipulator<InvisibilityData, Immu
      * @return The value of the vanish state
      * @see Keys#VANISH
      */
-    MutableValue.Single<Boolean> vanish();
+    Value.Mutable.Single<Boolean> vanish();
 
     /**
-     * Gets the {@link MutableValue} of whether an {@link Entity} that is "vanished" will
+     * Gets the {@link Value.Mutable} of whether an {@link Entity} that is "vanished" will
      * be ignored for collision detection. The collision detection can affect
      * collisions with other {@link Entity entities}, blocks, etc.
      *
      * @return The value of the ignore collision detection state
      * @see Keys#VANISH_IGNORES_COLLISION
      */
-    MutableValue.Single<Boolean> ignoresCollisionDetection();
+    Value.Mutable.Single<Boolean> ignoresCollisionDetection();
 
     /**
-     * Gets the {@link MutableValue} of whether an {@link Entity} that is "vanished" will
+     * Gets the {@link Value.Mutable} of whether an {@link Entity} that is "vanished" will
      * be ignored when other {@link Entity entities} are processing possible "targets"
      * for their AI.
      *
      * @return The value of the targetable detection state
      * @see Keys#VANISH_PREVENTS_TARGETING
      */
-    MutableValue.Single<Boolean> untargetable();
+    Value.Mutable.Single<Boolean> untargetable();
 
 }

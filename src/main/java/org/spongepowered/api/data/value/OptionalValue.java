@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.data.value;
 
-import org.spongepowered.api.data.value.mutable.MutableValue;
-
 import java.util.Optional;
+
+import javax.annotation.Nullable;
 
 public interface OptionalValue<E> extends Value<Optional<E>> {
 
@@ -39,8 +39,47 @@ public interface OptionalValue<E> extends Value<Optional<E>> {
      *
      * @param defaultValue The value to substitute, if the underlying value is
      *      null
-     * @return A new {@link MutableValue} with a non-null value
+     * @return A new {@link Mutable} with a non-null value
      */
     Value<E> orElse(E defaultValue);
 
+    /**
+     * Represents a {@link Mutable} that can be {@link Optional} such that the
+     * underlying value may be present or {@code null}.
+     *
+     * @param <E> The type of element
+     */
+    interface MutableOptionalValue<E> extends OptionalValue<E>,
+        Mutable<Optional<E>, MutableOptionalValue<E>, ImmutableOptionalValue<E>> {
+
+
+        /**
+         * Sets the underlying value, may be null.
+         *
+         * @param value The value to set
+         * @return This value, for chaining
+         */
+        MutableOptionalValue<E> setTo(@Nullable E value);
+
+    }
+
+    /**
+     * Represents a {@link Immutable} that can be {@link Optional} such that
+     * the underlying value may be present or {@code null}.
+     *
+     * @param <E> The type of element
+     */
+    interface ImmutableOptionalValue<E> extends OptionalValue<E>,
+        Immutable<Optional<E>, ImmutableOptionalValue<E>, MutableOptionalValue<E>> {
+
+        /**
+         * Creates a new {@link ImmutableOptionalValue} with the provided value,
+         * may be null.
+         *
+         * @param value The value
+         * @return The new value, for chaining
+         */
+        ImmutableOptionalValue<E> instead(@Nullable E value);
+
+    }
 }

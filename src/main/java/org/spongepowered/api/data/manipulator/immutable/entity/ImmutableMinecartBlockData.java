@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.MinecartBlockData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.vehicle.minecart.Minecart;
 
 public interface ImmutableMinecartBlockData extends ImmutableDataManipulator<ImmutableMinecartBlockData, MinecartBlockData> {
@@ -37,7 +37,7 @@ public interface ImmutableMinecartBlockData extends ImmutableDataManipulator<Imm
      *
      * @return The represented block
      */
-    ImmutableValue.Single<BlockState> block();
+    Value.Immutable.Single<BlockState> block();
 
     /**
      * Gets the offset of the represented block, in "pixels".
@@ -47,6 +47,6 @@ public interface ImmutableMinecartBlockData extends ImmutableDataManipulator<Imm
      *
      * @return The block offset
      */
-    ImmutableValue.Single<Integer> offset();
+    Value.Immutable.Single<Integer> offset();
 
 }

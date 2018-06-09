@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableFlyingAbilityData;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Humanoid;
 
@@ -40,11 +40,11 @@ public interface FlyingAbilityData extends DataManipulator<FlyingAbilityData, Im
 
 
     /**
-     * Gets the {@link MutableValue} for whether the owner can "fly".
+     * Gets the {@link Value.Mutable} for whether the owner can "fly".
      *
      * @return The value for being able to toggle "flying"
      * @see Keys#CAN_FLY
      */
-    MutableValue.Single<Boolean> canFly();
+    Value.Mutable.Single<Boolean> canFly();
 
 }

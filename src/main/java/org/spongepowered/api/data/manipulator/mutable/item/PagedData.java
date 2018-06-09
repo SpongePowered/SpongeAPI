@@ -28,7 +28,7 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.item.ImmutablePagedData;
 import org.spongepowered.api.data.manipulator.mutable.ListData;
-import org.spongepowered.api.data.value.mutable.MutableListValue;
+import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.Text;
@@ -43,12 +43,12 @@ import java.util.List;
 public interface PagedData extends ListData<Text, PagedData, ImmutablePagedData> {
 
     /**
-     * Gets the {@link MutableListValue} for the {@link Text} pages.
+     * Gets the {@link ListValue.Mutable} for the {@link Text} pages.
      *
      * @return The list value of text pages
      * @see Keys#BOOK_PAGES
      */
-    default MutableListValue<Text> pages() {
+    default ListValue.Mutable<Text> pages() {
         return getListValue();
     }
 

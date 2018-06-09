@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.GravityData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -36,11 +36,11 @@ import org.spongepowered.api.entity.Entity;
 public interface ImmutableGravityData extends ImmutableDataManipulator<ImmutableGravityData, GravityData> {
 
     /**
-     * Gets the {@link ImmutableValue} of the gravity of an {@link Entity}.
+     * Gets the {@link Value.Immutable} of the gravity of an {@link Entity}.
      * Returns true when the {@link Entity} has gravity.
      *
      * @return The immutable value of the gravity
      */
-    ImmutableValue.Single<Boolean> gravity();
+    Value.Immutable.Single<Boolean> gravity();
 
 }

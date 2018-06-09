@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableExpOrbData;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.ExperienceOrb;
 
 /**
@@ -37,11 +37,11 @@ import org.spongepowered.api.entity.ExperienceOrb;
 public interface ExpOrbData extends DataManipulator<ExpOrbData, ImmutableExpOrbData> {
 
     /**
-     * Gets the {@link MutableValue} for the amount of "experience" stored.
+     * Gets the {@link Value.Mutable} for the amount of "experience" stored.
      *
      * @return The immutable value for the amount of "experience" stored
      * @see Keys#CONTAINED_EXPERIENCE
      */
-    MutableValue.Single<Integer> experience();
+    Value.Mutable.Single<Integer> experience();
 
 }

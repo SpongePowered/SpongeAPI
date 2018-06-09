@@ -28,7 +28,7 @@ import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableOccupiedData;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Signifies that the block is considered "occupied". Usually applicable to
@@ -37,11 +37,11 @@ import org.spongepowered.api.data.value.mutable.MutableValue;
 public interface OccupiedData extends DataManipulator<OccupiedData, ImmutableOccupiedData> {
 
     /**
-     * Gets the {@link MutableValue} for the "occupied" state.
+     * Gets the {@link Value.Mutable} for the "occupied" state.
      *
      * @return The value for the "occupied" state
      * @see Keys#OCCUPIED
      */
-    MutableValue.Single<Boolean> occupied();
+    Value.Mutable.Single<Boolean> occupied();
 
 }

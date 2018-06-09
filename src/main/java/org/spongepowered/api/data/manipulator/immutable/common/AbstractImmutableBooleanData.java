@@ -28,8 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.MutableValue;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * An abstract implementation of an {@link ImmutableDataManipulator} handling
@@ -43,16 +42,16 @@ public abstract class AbstractImmutableBooleanData<I extends ImmutableDataManipu
         AbstractImmutableSingleData<Boolean, I, M> {
 
     private final boolean defaultValue;
-    private final ImmutableValue.Single<Boolean> immutableValue;
+    private final Value.Immutable.Single<Boolean> immutableValue;
 
-    protected AbstractImmutableBooleanData(boolean value, Key<MutableValue<Boolean>> usedKey, boolean defaultValue) {
+    protected AbstractImmutableBooleanData(boolean value, Key<Value.Mutable<Boolean>> usedKey, boolean defaultValue) {
         super(value, usedKey);
         this.defaultValue = defaultValue;
         this.immutableValue = Sponge.getRegistry().getValueFactory().createValue(usedKey, defaultValue, value).asImmutable();
     }
 
     @Override
-    protected final ImmutableValue.Single<Boolean> getValueGetter() {
+    protected final Value.Immutable.Single<Boolean> getValueGetter() {
         return this.immutableValue;
     }
 

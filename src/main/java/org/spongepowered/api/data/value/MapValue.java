@@ -26,10 +26,9 @@ package org.spongepowered.api.data.value;
 
 import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableSet;
-import org.spongepowered.api.data.value.immutable.ImmutableMapValue;
-import org.spongepowered.api.data.value.mutable.MutableMapValue;
 
 import java.util.Map;
+import java.util.function.Predicate;
 
 public interface MapValue<K, V> extends Value<Map<K, V>> {
 
@@ -80,10 +79,125 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
      */
     ImmutableCollection<V> values();
 
-    @Override
-    MutableMapValue<K, V> asMutable();
+    /**
+     * Represents a specialized type of {@link Value.Mutable} that is different from
+     * a {@link CollectionValue.Mutable} such that the "elements" are
+     * {@link Map.Entry}. Usually, this type of value is used to represent
+     * a particular "type" of "key" that is associated to a particular "value".
+     *
+     * @param <K> The type of the key
+     * @param <V> The type of the value
+     */
+    interface Mutable<K, V> extends MapValue<K, V>, Value.Mutable<Map<K, V>, Mutable<K, V>, Immutable<K, V>> {
 
-    @Override
-    ImmutableMapValue<K, V> asImmutable();
 
+        /**
+         * Associates the provided key to the provided value. If there already
+         * exists a value for the provided key, the value is replaced.
+         *
+         * @param key The key to associate to the value
+         * @param value The value associated with the key
+         * @return This map value, for chaining
+         */
+        MapValue.Mutable<K, V> put(K key, V value);
+
+        /**
+         * Associates all provided {@link Map.Entry} to this map value.
+         *
+         * @param map The map of key values to set
+         * @return This map value, for chaining
+         */
+        MapValue.Mutable<K, V> putAll(Map<K, V> map);
+
+        /**
+         * Removes the association of the provided key to the value currently
+         * associated.
+         *
+         * @param key The key to remove
+         * @return This map value, for chaining
+         */
+        MapValue.Mutable<K, V> remove(K key);
+
+        /**
+         * Removes all key value associations of the provided keys.
+         *
+         * @param keys The keys to remove
+         * @return This map value, for chaining
+         */
+        MapValue.Mutable<K, V> removeAll(Iterable<K> keys);
+
+        /**
+         * Applies the {@link Predicate} to all {@link Map.Entry} within this
+         * {@link MapValue.Mutable}. Any entries that are false will be removed from the
+         * map value.
+         *
+         * @param predicate The predicate to filer
+         * @return This map value, for chaining
+         */
+        MapValue.Mutable<K, V> removeAll(Predicate<Map.Entry<K, V>> predicate);
+
+    }
+
+    /**
+     * Represents a specialized type of {@link Value.Immutable} that is different
+     * from an {@link CollectionValue.Immutable} such that the "elements" are
+     * {@link Map.Entry}. Usually, this type of value is used to represent
+     * a particular "type" of "key" that is associated to a particular "value".
+     *
+     * @param <K> The type of the key
+     * @param <V> The type of the value
+     */
+    interface Immutable<K, V> extends MapValue<K, V>, Value.Immutable<Map<K, V>, Immutable<K, V>, Mutable<K, V>> {
+
+        /**
+         * Associates the provided key to the provided value in the new map. If
+         * there already exists a value for the provided key, the value is
+         * replaced.
+         *
+         * @param key The key to associate to the value
+         * @param value The value associated with the key
+         * @return The new value, for chaining
+         */
+        MapValue.Immutable<K, V> with(K key, V value);
+
+        /**
+         * Associates all provided {@link Map.Entry} along with all pre-existing
+         * map entries in a new {@link MapValue.Immutable}.
+         *
+         * @param map The map of key values to set
+         * @return The new value, for chaining
+         */
+        MapValue.Immutable<K, V> withAll(Map<K, V> map);
+
+        /**
+         * Creates a new {@link MapValue.Immutable} without the provided key and the
+         * associated value.
+         *
+         * @param key The key to exclude the association
+         * @return The new value, for chaining
+         */
+        MapValue.Immutable<K, V> without(K key);
+
+        /**
+         * Creates a new {@link MapValue.Immutable} without the provided keys and
+         * their associated values.
+         *
+         * @param keys The keys to exclude
+         * @return The new value, for chaining
+         */
+        MapValue.Immutable<K, V> withoutAll(Iterable<K> keys);
+
+        /**
+         * Creates a new {@link MapValue.Immutable} such that all entries are
+         * filtered by the provided {@link Predicate}, any that return
+         * {@code true} are retained in the new value. Elements that return
+         * <code>true</code> from {@link Predicate#test(Object)} are kept, and
+         * those that return <code>false</code> are excluded.
+         *
+         * @param predicate The predicate to filter
+         * @return The new value, for chaining
+         */
+        MapValue.Immutable<K, V> withoutAll(Predicate<Map.Entry<K, V>> predicate);
+
+    }
 }
