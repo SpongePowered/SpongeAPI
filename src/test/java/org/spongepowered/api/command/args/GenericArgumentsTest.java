@@ -30,6 +30,7 @@ import static org.junit.Assert.assertTrue;
 import static org.spongepowered.api.command.args.GenericArguments.allOf;
 import static org.spongepowered.api.command.args.GenericArguments.bool;
 import static org.spongepowered.api.command.args.GenericArguments.choices;
+import static org.spongepowered.api.command.args.GenericArguments.choicesInsensitive;
 import static org.spongepowered.api.command.args.GenericArguments.enumValue;
 import static org.spongepowered.api.command.args.GenericArguments.firstParsing;
 import static org.spongepowered.api.command.args.GenericArguments.integer;
@@ -56,6 +57,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.command.args.parsing.InputTokenizer;
 import org.spongepowered.api.command.args.parsing.SingleArg;
 import org.spongepowered.api.command.spec.CommandExecutor;
 import org.spongepowered.api.command.spec.CommandSpec;
@@ -122,6 +124,16 @@ public class GenericArgumentsTest {
     public void testChoices() throws ArgumentParseException {
         CommandElement el = choices(untr("val"), ImmutableMap.of("a", "one", "b", "two"));
         CommandContext context = parseForInput("a", el);
+        assertEquals("one", context.getOne("val").get());
+
+        this.expected.expect(ArgumentParseException.class);
+        parseForInput("A", el);
+    }
+
+    @Test
+    public void testChoicesInsensitive() throws ArgumentParseException {
+        CommandElement el = choicesInsensitive(untr("val"), ImmutableMap.of("a", "one", "b", "two"));
+        CommandContext context = parseForInput("A", el);
         assertEquals("one", context.getOne("val").get());
 
         this.expected.expect(ArgumentParseException.class);
@@ -273,6 +285,44 @@ public class GenericArgumentsTest {
         Collection<String> s = cpl.stream().map(User::getName).collect(Collectors.toList());
         assertTrue(s.contains("test1"));
         assertTrue(s.contains("test2"));
+    }
+
+    @Test
+    public void testFirstParsingWhenFirstSequenceSucceeds() throws ArgumentParseException {
+        CommandArgs args = new CommandArgs("test test",
+                InputTokenizer.spaceSplitString().tokenize("test test", true));
+        CommandContext context = new CommandContext();
+        CommandElement sut = GenericArguments.firstParsing(
+                GenericArguments.seq(GenericArguments.literal(Text.of("test"), "test"),
+                        GenericArguments.literal(Text.of("test1"), "test")),
+                GenericArguments.seq(GenericArguments.literal(Text.of("test2"), "test"),
+                        GenericArguments.literal(Text.of("test3"), "test"))
+        );
+
+        sut.parse(MOCK_SOURCE, args, context);
+        assertFalse(context.hasAny("test2"));
+        assertFalse(context.hasAny("test3"));
+        assertTrue(context.hasAny("test"));
+        assertTrue(context.hasAny("test"));
+    }
+
+    @Test
+    public void testFirstParsingWhenFirstSequenceFails() throws ArgumentParseException {
+        CommandArgs args = new CommandArgs("test test",
+                InputTokenizer.spaceSplitString().tokenize("test test", true));
+        CommandContext context = new CommandContext();
+        CommandElement sut = GenericArguments.firstParsing(
+                GenericArguments.seq(GenericArguments.literal(Text.of("test"), "test"),
+                        GenericArguments.literal(Text.of("test1"), "notatest")),
+                GenericArguments.seq(GenericArguments.literal(Text.of("test2"), "test"),
+                        GenericArguments.literal(Text.of("test3"), "test"))
+        );
+
+        sut.parse(MOCK_SOURCE, args, context);
+        assertTrue(context.hasAny("test2"));
+        assertTrue(context.hasAny("test3"));
+        assertFalse(context.hasAny("test"));
+        assertFalse(context.hasAny("test1"));
     }
 
 }
