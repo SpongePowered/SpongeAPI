@@ -267,7 +267,7 @@ public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMe
      * @return True if played before, false otherwise
      */
     default boolean hasPlayedBefore() {
-        return !firstPlayed().equals(lastPlayed());
+        return !firstPlayed().get().equals(lastPlayed().get());
     }
 
     /**
