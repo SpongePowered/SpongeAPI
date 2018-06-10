@@ -87,10 +87,10 @@ import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
@@ -374,15 +374,58 @@ public final class GenericArguments {
      * in the command usage. Otherwise, the usage will only display only the
      * key.</p>
      *
-     * <p>To override this behavior, see {@link #choices(Text, Map, boolean)}.
-     * </p>
+     * <p>Choices are <strong>case sensitive</strong>. If you do not require
+     * case sensitivity, see {@link #choicesInsensitive(Text, Map)}.</p>
+     *
+     * <p>To override this behavior, see
+     * {@link #choices(Text, Map, boolean, boolean)}.</p>
      *
      * @param key The key to store the resulting value under
      * @param choices The choices users can choose from
      * @return the element to match the input
      */
     public static CommandElement choices(Text key, Map<String, ?> choices) {
-        return choices(key, choices, choices.size() <= ChoicesCommandElement.CUTOFF);
+        return choices(key, choices, choices.size() <= ChoicesCommandElement.CUTOFF, true);
+    }
+
+    /**
+     * Return an argument that allows selecting from a limited set of values.
+     *
+     * <p>If there are 5 or fewer choices available, the choices will be shown
+     * in the command usage. Otherwise, the usage will only display only the
+     * key.</p>
+     *
+     * <p>Choices are <strong>not case sensitive</strong>. If you require
+     * case sensitivity, see {@link #choices(Text, Map)}</p>
+     *
+     * <p>To override this behavior, see
+     * {@link #choices(Text, Map, boolean, boolean)}.</p>
+     *
+     * @param key The key to store the resulting value under
+     * @param choices The choices users can choose from
+     * @return the element to match the input
+     */
+    public static CommandElement choicesInsensitive(Text key, Map<String, ?> choices) {
+        return choices(key, choices, choices.size() <= ChoicesCommandElement.CUTOFF, false);
+    }
+
+    /**
+     * Return an argument that allows selecting from a limited set of values.
+     *
+     * <p>Unless {@code choicesInUsage} is true, general command usage will only
+     * display the provided key.</p>
+     *
+     * <p>Choices are <strong>case sensitive</strong>. If you do not require
+     * case sensitivity, see {@link #choices(Text, Map, boolean, boolean)}</p>
+     *
+     * @param key The key to store the resulting value under
+     * @param choices The choices users can choose from
+     * @param choicesInUsage Whether to display the available choices, or simply
+     *      the provided key, as part of usage
+     * @return the element to match the input
+     */
+    public static CommandElement choices(Text key, Map<String, ?> choices, boolean choicesInUsage) {
+        return choices(key, choices, choicesInUsage, true);
     }
 
     /**
@@ -395,9 +438,15 @@ public final class GenericArguments {
      * @param choices The choices users can choose from
      * @param choicesInUsage Whether to display the available choices, or simply
      *      the provided key, as part of usage
+     * @param caseSensitive Whether the matches should be case sensitive
      * @return the element to match the input
      */
-    public static CommandElement choices(Text key, Map<String, ?> choices, boolean choicesInUsage) {
+    public static CommandElement choices(Text key, Map<String, ?> choices, boolean choicesInUsage, boolean caseSensitive) {
+        if (!caseSensitive) {
+            Map<String, Object> immChoices = choices.entrySet().stream()
+                    .collect(ImmutableMap.toImmutableMap(x -> x.getKey().toLowerCase(), Map.Entry::getValue));
+            return choices(key, immChoices::keySet, selection -> immChoices.get(selection.toLowerCase()), choicesInUsage);
+        }
         Map<String, Object> immChoices = ImmutableMap.copyOf(choices);
         return choices(key, immChoices::keySet, immChoices::get, choicesInUsage);
     }
@@ -512,12 +561,14 @@ public final class GenericArguments {
             ArgumentParseException lastException = null;
             for (CommandElement element : this.elements) {
                 Object startState = args.getState();
+                CommandContext.Snapshot contextSnapshot = context.createSnapshot();
                 try {
                     element.parse(source, args, context);
                     return;
                 } catch (ArgumentParseException ex) {
                     lastException = ex;
                     args.setState(startState);
+                    context.applySnapshot(contextSnapshot);
                 }
             }
             if (lastException != null) {
@@ -1805,24 +1856,30 @@ public final class GenericArguments {
 
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
-            Set<Iterable<Entity>> worldEntities = Sponge.getServer().getWorlds().stream().map(World::getEntities).collect(Collectors.toSet());
-            return Iterables.filter(Iterables.transform(Iterables.concat(worldEntities), input -> {
-                if (input == null) {
-                    return null;
-                }
-                if (!this.checkEntity(input)) {
-                    return null;
-                }
-                if (input instanceof Player) {
-                    return ((Player)input).getName();
-                }
-                return input.getUniqueId().toString();
-            }), Objects::nonNull);
+            Set<String> worldEntities = Sponge.getServer().getWorlds().stream().flatMap(x -> x.getEntities().stream())
+                    .filter(this::checkEntity)
+                    .map(x -> x.getUniqueId().toString())
+                    .collect(Collectors.toSet());
+            Collection<Player> players = Sponge.getServer().getOnlinePlayers();
+            if (!players.isEmpty() && checkEntity(players.iterator().next())) {
+                final Set<String> setToReturn = new HashSet<>(worldEntities); // to ensure mutability
+                players.forEach(x -> setToReturn.add(x.getName()));
+                return setToReturn;
+            }
+
+            return worldEntities;
         }
 
         @Override
         protected Object getValue(String choice) throws IllegalArgumentException {
-            UUID uuid = UUID.fromString(choice);
+            UUID uuid;
+            try {
+                uuid = UUID.fromString(choice);
+            } catch (IllegalArgumentException ignored) {
+                // Player could be a name
+                return Sponge.getServer().getPlayer(choice)
+                        .orElseThrow(() -> new IllegalArgumentException("Input value " + choice + " does not represent a valid entity"));
+            }
             boolean found = false;
             for (World world : Sponge.getServer().getWorlds()) {
                 Optional<Entity> ret = world.getEntity(uuid);
