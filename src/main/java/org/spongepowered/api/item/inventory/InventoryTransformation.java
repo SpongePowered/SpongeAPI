@@ -31,10 +31,13 @@ import org.spongepowered.api.util.ResettableBuilder;
 /**
  * A transformation can filter and order an inventory.
  *
- * <p>See {@link InventoryTransformations} for some predefined transformations</p>
+ * <p>See {@link InventoryTransformations} for some predefined
+ * transformations</p>
  *
- * <p>Transformations built from the {@link Builder} use a combination of {@link Inventory#query(QueryOperation[])} and
- * {@link Inventory#union(Inventory)}. Thus the transformed inventory will consist of only slots and will never contain duplicate slots.</p>
+ * <p>Transformations built from the {@link Builder} use a combination of
+ * {@link Inventory#query(QueryOperation[])} and
+ * {@link Inventory#union(Inventory)}. Thus the transformed inventory will
+ * consist of only slots and will never contain duplicate slots.</p>
  */
 public interface InventoryTransformation {
 
@@ -58,6 +61,7 @@ public interface InventoryTransformation {
      *
      * @return The new transformation
      */
+    @SuppressWarnings("rawtypes")
     static InventoryTransformation of(QueryOperation... operations) {
         if (operations.length == 0) {
             return InventoryTransformations.NO_OP;
@@ -74,6 +78,7 @@ public interface InventoryTransformation {
          *
          * @return Fluent pattern
          */
+        @SuppressWarnings("rawtypes")
         Builder append(QueryOperation... operation);
 
         /**

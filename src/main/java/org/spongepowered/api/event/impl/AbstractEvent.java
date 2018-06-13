@@ -27,6 +27,8 @@ package org.spongepowered.api.event.impl;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.Order;
 
+import javax.annotation.Nullable;
+
 /**
  * An abstract event that can be extended for any and all custom events as
  * necessary.
@@ -49,6 +51,7 @@ public abstract class AbstractEvent implements Event {
      * processing the event. When no handler is processing the event,
      * it will be set to <code>null</code>
      */
+    @Nullable
     public Order currentOrder;
 
 }
