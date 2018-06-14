@@ -96,7 +96,8 @@ public interface PermissionDescription {
      * <li>"myplugin.give.type" - Grants all ItemTypes</li>
      * <li>"myplugin.give.type.&ltItemType&gt" - A template should not be
      * granted to anybody</li>
-     * <li>"myplugin.give.type.DIAMOND" - Only grants DIAMOND</li>
+     * <li>"myplugin.give.type.minecraft.diamond" - Only
+     * grants minecraft:diamond</li>
      * <li>"myplugin.give.enchantment" - Grants all Enchantments</li>
      * <li>"myplugin.give.others" - Allow giving to other players</li>
      * </ul>

@@ -55,7 +55,7 @@ import java.net.InetAddress;
  *
  * <p>{@link SpawnEntityEvent} is still fired for players, for consistency.
  * However, the player is not at a well-defined state at that point. It's
- * recommended to use the this event's subinterfaces to interact with the player
+ * recommended to use the event's subinterfaces to interact with the player
  * at well-defined moments during the connection process.</p>
  */
 public interface ClientConnectionEvent extends Event {
