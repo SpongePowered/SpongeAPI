@@ -332,19 +332,24 @@ public final class GenericArguments {
                 Object state = args.getState();
                 try {
                     element.parse(src, args, context);
-                    if (args.hasNext()) {
-                        if (args.getState().equals(state)) {
-                            completions.addAll(element.complete(src, args, context));
-                            args.setState(state);
-                        } else {
-                            completions.clear();
+                    if (state.equals(args.getState())) {
+                        completions.addAll(element.complete(src, args, context));
+                        args.setState(state);
+                    } else if (args.hasNext()) {
+                        completions.clear();
+                    } else {
+                        args.setState(state);
+                        completions.addAll(element.complete(src, args, context));
+                        if (!(element instanceof OptionalCommandElement)) {
+                            break;
                         }
-                        continue;
+                        args.setState(state);
                     }
-                } catch (ArgumentParseException ignored) {}
-                args.setState(state);
-                completions.addAll(element.complete(src, args, context));
-                break;
+                } catch (ArgumentParseException ignored) {
+                    args.setState(state);
+                    completions.addAll(element.complete(src, args, context));
+                    break;
+                }
             }
             return Lists.newArrayList(completions);
         }
@@ -624,7 +629,7 @@ public final class GenericArguments {
         private final boolean considerInvalidFormatEmpty;
 
         OptionalCommandElement(CommandElement element, @Nullable Object value, boolean considerInvalidFormatEmpty) {
-            super(null);
+            super(element.getKey());
             this.element = element;
             this.value = value;
             this.considerInvalidFormatEmpty = considerInvalidFormatEmpty;

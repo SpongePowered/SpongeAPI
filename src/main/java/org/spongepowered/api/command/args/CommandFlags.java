@@ -26,7 +26,6 @@ package org.spongepowered.api.command.args;
 
 import static org.spongepowered.api.command.args.GenericArguments.markTrue;
 import static org.spongepowered.api.command.args.GenericArguments.requiringPermission;
-import static org.spongepowered.api.command.args.GenericArguments.string;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.google.common.collect.ImmutableList;
@@ -39,7 +38,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
