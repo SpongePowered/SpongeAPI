@@ -24,34 +24,14 @@
  */
 package org.spongepowered.api.item.inventory.property;
 
-import org.spongepowered.api.data.Property;
-import org.spongepowered.api.item.inventory.Inventory;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.item.inventory.InventoryProperty;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.Coerce;
 
 /**
  * The Title of an Inventory, viewable by players looking at the Inventory.
  */
-public class InventoryTitle extends AbstractInventoryProperty<String, Text> {
-
-    public static final String PROPERTY_NAME = "inventorytitle";
-
-    /**
-     * Creates a new {@link InventoryTitle} to be displayed on an {@link Inventory}.
-     *
-     * @param value The text value to display
-     */
-    public InventoryTitle(Text value) {
-        super(value);
-    }
-
-    @Override
-    public int compareTo(Property<?, ?> other) {
-        if (other == null) {
-            return 1;
-        }
-        return this.getValue().toString().compareTo(Coerce.toString(other.getValue()));
-    }
+public interface InventoryTitle extends InventoryProperty<String, Text> {
 
     /**
      * Creates a new {@link InventoryTitle} with the provided {@link Text}.
@@ -59,8 +39,28 @@ public class InventoryTitle extends AbstractInventoryProperty<String, Text> {
      * @param value The text value to display
      * @return The new inventory title
      */
-    public static InventoryTitle of(Text value) {
-        return new InventoryTitle(value);
+    static InventoryTitle of(Text value) {
+        return builder().value(value).operator(Operator.EQUAL).build();
     }
+
+    static InventoryTitle of(Text value, Operator operator) {
+        return builder().value(value).operator(operator).build();
+    }
+
+    /**
+     * Creates a new {@link Builder} to create {@link InventoryTitle}s.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    /**
+     * Represents a builder class to create {@link InventoryTitle}s.
+     */
+    interface Builder extends InventoryProperty.Builder<Text, InventoryTitle, Builder> {
+    }
+
 
 }

@@ -24,31 +24,14 @@
  */
 package org.spongepowered.api.item.inventory.property;
 
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.item.inventory.InventoryProperty;
+
 /**
  * Property for inventories of a particular capacity. For example to allow
  * querying for Inventories with 5 Slots.
  */
-public class InventoryCapacity extends IntProperty {
-
-    /**
-     * Creates a new InventoryCapacity property with the specified value.
-     *
-     * @param capacity Capacity to match
-     */
-    public InventoryCapacity(int capacity) {
-        super(capacity);
-    }
-
-    /**
-     * Create a new InventoryCapacity property with the specified value.
-     *
-     * @param capacity size to match
-     * @param operator logical operator to use when comparing this property with
-     *      other properties
-     */
-    public InventoryCapacity(int capacity, Operator operator) {
-        super(capacity, operator);
-    }
+public interface InventoryCapacity extends IntProperty {
 
     /**
      * Create an InventoryCapacity property which matches InventoryCapacity
@@ -57,7 +40,22 @@ public class InventoryCapacity extends IntProperty {
      * @param capacity value to match
      * @return new property
      */
-    public static InventoryCapacity of(int capacity) {
-        return new InventoryCapacity(capacity, Operator.EQUAL);
+    static InventoryCapacity of(int capacity) {
+        return builder().value(capacity).operator(Operator.EQUAL).build();
+    }
+
+    /**
+     * Creates a new {@link SlotIndex.Builder} to create {@link SlotIndex}s.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(InventoryCapacity.Builder.class);
+    }
+
+    /**
+     * Represents a builder class to create {@link InventoryCapacity}s.
+     */
+    interface Builder extends InventoryProperty.Builder<Integer, InventoryCapacity, Builder> {
     }
 }

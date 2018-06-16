@@ -26,6 +26,7 @@ package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.Property;
 import org.spongepowered.api.item.inventory.property.InventoryTitle;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.translation.Translation;
@@ -117,7 +118,7 @@ public interface InventoryArchetype extends CatalogType {
          */
         // TODO Decide if Translation should be forced / Colors seem to be possible using the old colorcodes
         default Builder title(Text title) {
-            property(new InventoryTitle(title));
+            property(InventoryTitle.builder().value(title).operator(Property.Operator.DELEGATE).build());
             return this;
         }
 

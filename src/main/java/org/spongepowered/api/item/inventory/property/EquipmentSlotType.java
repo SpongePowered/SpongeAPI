@@ -24,62 +24,15 @@
  */
 package org.spongepowered.api.item.inventory.property;
 
-import org.spongepowered.api.data.Property;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.item.inventory.InventoryProperty;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
-import org.spongepowered.api.item.inventory.equipment.EquipmentTypes;
-import org.spongepowered.api.util.Coerce;
 
 /**
  * Inventory property which allows queries to be constructed for a particular
  * equipment slot type.
  */
-public class EquipmentSlotType extends AbstractInventoryProperty<String, EquipmentType> {
-
-    /**
-     * Create a new EquipmentSlotType property to match items of the specified
-     * value.
-     * 
-     * @param value EquipmentType to match
-     */
-    public EquipmentSlotType(EquipmentType value) {
-        super(value);
-    }
-
-    /**
-     * Create a new EquipmentSlotType property to match items of the specified
-     * value.
-     * 
-     * @param value EquipmentType to match
-     * @param operator logical operator to apply when comparing with other
-     *      properties
-     */
-    public EquipmentSlotType(EquipmentType value, Operator operator) {
-        super(value, operator);
-    }
-
-    /**
-     * Create a new EquipmentSlotType property to match items of the specified
-     * value.
-     * 
-     * @param value EquipmentType to match
-     * @param operator logical operator to apply when comparing with other
-     *      properties
-     */
-    public EquipmentSlotType(Object value, Operator operator) {
-        super(Coerce.<EquipmentType>toPseudoEnum(value, EquipmentType.class, EquipmentTypes.class, EquipmentTypes.WORN), operator);
-    }
-
-    @Override
-    public int compareTo(Property<?, ?> other) {
-        if (other == null) {
-            return 1;
-        }
-
-        EquipmentType
-                otherValue =
-                Coerce.<EquipmentType>toPseudoEnum(other.getValue(), EquipmentType.class, EquipmentTypes.class, EquipmentTypes.WORN);
-        return this.getValue().getName().compareTo(otherValue.getName());
-    }
+public interface EquipmentSlotType extends InventoryProperty<String, EquipmentType> {
 
     /**
      * Create an EquipmentSlotType property which matches EquipmentSlotType
@@ -88,19 +41,23 @@ public class EquipmentSlotType extends AbstractInventoryProperty<String, Equipme
      * @param value EquipmentType to match
      * @return new property
      */
-    public static EquipmentSlotType of(Object value) {
-        return new EquipmentSlotType(value, Operator.EQUAL);
+    static EquipmentSlotType of(EquipmentType value) {
+        return builder().value(value).operator(Operator.EQUAL).build();
     }
 
     /**
-     * Create an EquipmentSlotType property which matches EquipmentSlotType
-     * properties with unequal value.
-     * 
-     * @param value EquipmentType to match
-     * @return new property
+     * Creates a new {@link Builder} to create {@link EquipmentSlotType}s.
+     *
+     * @return The new builder
      */
-    public static EquipmentSlotType not(Object value) {
-        return new EquipmentSlotType(value, Operator.NOTEQUAL);
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    /**
+     * Represents a builder class to create {@link EquipmentSlotType}s.
+     */
+    interface Builder extends InventoryProperty.Builder<EquipmentType, EquipmentSlotType, Builder> {
     }
 
 }
