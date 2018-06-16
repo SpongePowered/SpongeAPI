@@ -24,51 +24,13 @@
  */
 package org.spongepowered.api.item.inventory.property;
 
-import org.spongepowered.api.data.Property;
-import org.spongepowered.api.util.Coerce;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.item.inventory.InventoryProperty;
 
 /**
  * A generic integer property.
  */
-public class IntProperty extends AbstractInventoryProperty<String, Integer> {
-
-    /**
-     * Create a new integer property with the specified value.
-     * 
-     * @param value value to match
-     */
-    public IntProperty(int value) {
-        super(Coerce.toInteger(value));
-    }
-
-    /**
-     * Create a new integer property with the specified value and logical
-     * operator.
-     * 
-     * @param value value to match
-     * @param operator logical operator to use when comparing to other
-     *      properties
-     */
-    public IntProperty(int value, Operator operator) {
-        super(value, operator);
-    }
-
-    /**
-     * Create a new integer property with the specified value and logical
-     * operator.
-     * 
-     * @param value value to match
-     * @param operator logical operator to use when comparing to other
-     *      properties
-     */
-    public IntProperty(Object value, Operator operator) {
-        super(Coerce.toInteger(value), operator);
-    }
-
-    @Override
-    public int compareTo(Property<?, ?> other) {
-        return this.getValue().compareTo(other == null ? 1 : Coerce.toInteger(other.getValue()));
-    }
+public interface IntProperty extends InventoryProperty<String, Integer> {
 
     /**
      * Create an {@link IntProperty} property which matches {@link IntProperty}
@@ -77,63 +39,23 @@ public class IntProperty extends AbstractInventoryProperty<String, Integer> {
      * @param value value to match
      * @return new property
      */
-    public static IntProperty of(Object value) {
-        return new IntProperty(value, Operator.EQUAL);
+    static IntProperty of(Integer value) {
+        return builder().value(value).operator(Operator.EQUAL).build();
     }
 
     /**
-     * Create an {@link IntProperty} property which matches {@link IntProperty}
-     * properties with unequal value.
-     * 
-     * @param value value to match
-     * @return new property
+     * Creates a new {@link StringProperty.Builder} to create {@link StringProperty}s.
+     *
+     * @return The new builder
      */
-    public static IntProperty not(Object value) {
-        return new IntProperty(value, Operator.NOTEQUAL);
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(IntProperty.Builder.class);
     }
 
     /**
-     * Create an {@link IntProperty} property which matches {@link IntProperty}
-     * properties with value greater than this value.
-     * 
-     * @param value value to match
-     * @return new property
+     * Represents a builder class to create {@link StringProperty}s.
      */
-    public static IntProperty greaterThan(Object value) {
-        return new IntProperty(value, Operator.GREATER);
-    }
-
-    /**
-     * Create an {@link IntProperty} property which matches {@link IntProperty}
-     * properties with value greater than or equal to this value.
-     * 
-     * @param value value to match
-     * @return new property
-     */
-    public static IntProperty greaterThanOrEqual(Object value) {
-        return new IntProperty(value, Operator.GEQUAL);
-    }
-
-    /**
-     * Create an {@link IntProperty} property which matches {@link IntProperty}
-     * properties with value less than this value.
-     * 
-     * @param value value to match
-     * @return new property
-     */
-    public static IntProperty lessThan(Object value) {
-        return new IntProperty(value, Operator.LESS);
-    }
-
-    /**
-     * Create an {@link IntProperty} property which matches {@link IntProperty}
-     * properties with value less than or equal to this value.
-     * 
-     * @param value value to match
-     * @return new property
-     */
-    public static IntProperty lessThanOrEqual(Object value) {
-        return new IntProperty(value, Operator.LEQUAL);
+    interface Builder extends InventoryProperty.Builder<Integer, IntProperty, Builder> {
     }
 
 }

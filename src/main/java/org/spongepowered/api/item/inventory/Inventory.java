@@ -26,6 +26,8 @@ package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.Nameable;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.Property;
+import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.event.item.inventory.InteractInventoryEvent;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.query.QueryOperation;
@@ -41,7 +43,7 @@ import java.util.function.Consumer;
 /**
  * Base interface for queryable inventories.
  */
-public interface Inventory extends Iterable<Inventory>, Nameable {
+public interface Inventory extends Iterable<Inventory>, Nameable, PropertyHolder {
 
     /**
      * Creates a new {@link Inventory.Builder} to build an {@link Inventory}.
@@ -386,7 +388,6 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      */
     <T extends InventoryProperty<?, ?>> Optional<T> getProperty(Class<T> property, Object key);
 
-
     /**
      * Gets the property with the default key defined in <em>this</em>
      * inventory for the specified (immediate) sub-inventory.
@@ -398,7 +399,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * @return matching properties, may be absent if no property matched the
      *      supplied criteria
      */
-    <T extends InventoryProperty<?, ?>> Optional<T> getInventoryProperty(Inventory child, Class<T> property);
+    <T extends InventoryProperty<?, ?>> Optional<T> getProperty(Inventory child, Class<T> property);
 
     /**
      * Gets a property with the default key defined directly on this Inventory
@@ -413,7 +414,8 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * @return matching properties, may be absent if no property matched the
      *      supplied criteria
      */
-    <T extends InventoryProperty<?, ?>> Optional<T> getInventoryProperty(Class<T> property);
+    @Override
+    <T extends Property<?, ?>> Optional<T> getProperty(Class<T> property);
 
     /**
      * Query this inventory for inventories matching any of the supplied
