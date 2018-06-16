@@ -232,7 +232,7 @@ public interface Property<K, V> extends Comparable<Property<?, ?>> {
      * @param <T> The inventory property type
      * @param <B> The builder type
      */
-    interface Builder<V, T extends InventoryProperty<?, V>, B extends Builder<V, T, B>> extends ResettableBuilder<T, B> {
+    interface Builder<V, T extends Property<?, V>, B extends Builder<V, T, B>> extends ResettableBuilder<T, B> {
 
         /**
          * Sets the value.
