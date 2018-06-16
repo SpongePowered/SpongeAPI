@@ -24,50 +24,14 @@
  */
 package org.spongepowered.api.item.inventory;
 
-import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.item.inventory.type.Interactable;
-import org.spongepowered.api.plugin.PluginContainer;
-
-import java.util.Set;
-
 /**
  * A Container is effectively a <em>ViewModel</em> for a particular set of
  * {@link Inventory} objects used to allow players to interact
  * with the Inventories, usually via a GUI (the View).
  */
-public interface Container extends Interactable {
+public interface Container extends Inventory {
 
-    /**
-     * Gets the current viewers looking at this Inventory.
-     *
-     * @return The current viewers of this inventory
-     */
-    Set<Player> getViewers();
-
-    /**
-     * Checks for whether this Inventory currently has viewers.
-     *
-     * @return True if viewers are currently looking at this inventory
-     */
-    boolean hasViewers();
-
-    /**
-     * Shows this Inventory to the given viewer.
-     *
-     * @param viewer The viewer to show this inventory to
-     * @throws IllegalArgumentException if a {@link PluginContainer} is not the root of the cause
-     */
-    void open(Player viewer) throws IllegalArgumentException;
-
-    /**
-     * Stops showing this Inventory to the given viewer.
-     *
-     * @param viewer The viewer to stop showing this inventory to
-     * @throws IllegalArgumentException if a {@link PluginContainer} is not the root of the cause
-     */
-    void close(Player viewer) throws IllegalArgumentException;
-
-    /**
+     /**
      * Returns whether given slot is part of the viewed inventories
      * but not part of the viewers own inventory.
      *
