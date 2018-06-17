@@ -32,6 +32,7 @@ import org.spongepowered.api.event.item.inventory.InteractInventoryEvent;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.query.QueryOperation;
 import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult;
+import org.spongepowered.api.item.inventory.type.Interactable;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.ResettableBuilder;
 
@@ -497,6 +498,15 @@ public interface Inventory extends Iterable<Inventory>, Nameable, PropertyHolder
     default Inventory transform(InventoryTransformation transformation) {
         return transformation.transform(this);
     }
+
+    /**
+     * Returns this inventory as an interactable inventory if possible.
+     *
+     * <p>Not all inventories are interactable (e.g. a custom inventory of size 5x5)</p>
+     *
+     * @return This inventory as an interactable inventory if possible.
+     */
+    Optional<Interactable> asInteractable();
 
     /**
      * A Builder for Inventories based on {@link InventoryArchetype}s.
