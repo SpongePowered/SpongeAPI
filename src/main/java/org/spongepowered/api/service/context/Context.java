@@ -31,15 +31,24 @@ import com.google.common.collect.Maps;
 import java.util.Map;
 
 /**
- * The context that a given service check occurs in.
+ * Encapsulates a single attribute about the state or circumstances of a
+ * {@link Contextual}.
  *
- * <p>Instances of a context are designed to function as cache keys, meaning
- * they should be fairly lightweight and not hold references to large
- * objects.</p>
+ * <p>A {@link Contextual}'s overall "context" is made up multiple
+ * {@link Context} instances, usually stored together in a
+ * {@link java.util.Set}.</p>
  *
- * <p>Contexts consist of a "type" (or key) and a "name" (or value).</p>
+ * <p>Any single {@link Context} attribute is made up of a <b>key</b> and a
+ * <b>value</b>. The key represents the type of context, and the value is just
+ * that, the value associated with the key. Some common/shared keys are
+ * expressed as static fields on this class for convenience.</p>
  *
- * <p>Some common context keys are expressed as static parameters.</p>
+ * <p>For example, a context encapsulating a {@link Contextual}s circumstance
+ * within a given world would have key of "world" and a value equal to the name
+ * of the world.</p>
+ *
+ * <p>{@link Context} is immutable. The {@link #setValue(String)} inherited from
+ * {@link Map.Entry} is not supported.</p>
  */
 public final class Context implements Map.Entry<String, String> {
     public static final String USER_KEY = "user";
@@ -55,50 +64,64 @@ public final class Context implements Map.Entry<String, String> {
     /**
      * Create a new context instance.
      *
-     * @param type Context type. Must not be null.
-     * @param name Context name. Must not be null.
+     * @param key Context key. Must not be null.
+     * @param value Context value. Must not be null.
      */
-    public Context(String type, String name) {
-        checkNotNull(type, "type");
-        checkNotNull(name, "name");
-        this.wrapped = Maps.immutableEntry(type, name);
+    public Context(String key, String value) {
+        checkNotNull(key, "key");
+        checkNotNull(value, "value");
+        this.wrapped = Maps.immutableEntry(key, value);
     }
 
     /**
-     * Gets the context type.
+     * Gets the context key.
      *
-     * <p>For example, if the context represented a world, the type would be
-     * {@code world}</p>
-     *
-     * @return The type of item this context represents
+     * @return The key
      */
-    public String getType() {
-        return getKey();
-    }
-
-    /**
-     * Gets the context name.
-     *
-     * <p>For example, if the context represented a world, the name would be
-     * the name of the world.</p>
-     *
-     * @return The specific name of the item involved in this context
-     */
-    public String getName() {
-        return getValue();
-    }
-
     @Override
     public String getKey() {
         return this.wrapped.getKey();
     }
 
+    /**
+     * Gets the context value.
+     *
+     * @return The value
+     */
     @Override
     public String getValue() {
         return this.wrapped.getValue();
     }
 
+    /**
+     * Alias method for {@link #getKey()}.
+     *
+     * @return The type of the context
+     * @deprecated The presence of this method is misleading - the context
+     *             "type" is the same value as the "key". They are not separate
+     *             attributes, as the presence of two distinct methods would
+     *             otherwise suggest.
+     */
+    @Deprecated
+    public String getType() {
+        return getKey();
+    }
+
+    /**
+     * Alias method for {@link #getValue()}.
+     *
+     * @return The specific name of the item involved in this context
+     * @deprecated This method name is misleading - contexts only have a "key"
+     *             and "value". It is not immediately clear what "name" relates
+     *             to. (it could reasonably be either key or value)
+     */
+    @Deprecated
+    public String getName() {
+        return getValue();
+    }
+
     @Override
+    @Deprecated
     public String setValue(String value) {
         throw new UnsupportedOperationException("Contexts are immutable");
     }
@@ -118,6 +141,6 @@ public final class Context implements Map.Entry<String, String> {
 
     @Override
     public String toString() {
-        return this.wrapped.toString();
+        return getKey() + "=" + getValue();
     }
 }
