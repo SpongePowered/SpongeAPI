@@ -33,6 +33,8 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.hocon.HoconConfigurationLoader;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
@@ -120,8 +122,14 @@ public final class GenericArguments {
         return NONE;
     }
 
-    static CommandElement markTrue(String flag) {
-        return new MarkTrueCommandElement(flag);
+    /**
+     * Expects no arguments. Adds 'true' to the context when parsed.
+     *
+     * @param key the key to store 'true' under
+     * @return the argument
+     */
+    public static CommandElement markTrue(Text key) {
+        return new MarkTrueCommandElement(key);
     }
 
     /**
@@ -258,8 +266,8 @@ public final class GenericArguments {
 
     static class MarkTrueCommandElement extends CommandElement {
 
-        MarkTrueCommandElement(String flag) {
-            super(Text.of(flag));
+        MarkTrueCommandElement(Text key) {
+            super(key);
         }
 
         @Override
@@ -319,33 +327,31 @@ public final class GenericArguments {
 
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            for (Iterator<CommandElement> it = this.elements.iterator(); it.hasNext(); ) {
-                CommandElement element = it.next();
-                Object startState = args.getState();
+            Set<String> completions = Sets.newHashSet();
+            for (CommandElement element : elements) {
+                Object state = args.getState();
                 try {
                     element.parse(src, args, context);
-                    Object endState = args.getState();
-                    if (!args.hasNext()) {
-                        args.setState(startState);
-                        List<String> inputs = element.complete(src, args, context);
-                        args.previous();
-                        if (!inputs.contains(args.next())) { // Tabcomplete returns results to complete the last word in an argument.
-                            // If the last word is one of the completions, the command is most likely complete
-                            return inputs;
+                    if (state.equals(args.getState())) {
+                        completions.addAll(element.complete(src, args, context));
+                        args.setState(state);
+                    } else if (args.hasNext()) {
+                        completions.clear();
+                    } else {
+                        args.setState(state);
+                        completions.addAll(element.complete(src, args, context));
+                        if (!(element instanceof OptionalCommandElement)) {
+                            break;
                         }
-
-                        args.setState(endState);
+                        args.setState(state);
                     }
-                } catch (ArgumentParseException e) {
-                    args.setState(startState);
-                    return element.complete(src, args, context);
-                }
-
-                if (!it.hasNext()) {
-                    args.setState(startState);
+                } catch (ArgumentParseException ignored) {
+                    args.setState(state);
+                    completions.addAll(element.complete(src, args, context));
+                    break;
                 }
             }
-            return Collections.emptyList();
+            return Lists.newArrayList(completions);
         }
 
         @Override
@@ -623,7 +629,7 @@ public final class GenericArguments {
         private final boolean considerInvalidFormatEmpty;
 
         OptionalCommandElement(CommandElement element, @Nullable Object value, boolean considerInvalidFormatEmpty) {
-            super(null);
+            super(element.getKey());
             this.element = element;
             this.value = value;
             this.considerInvalidFormatEmpty = considerInvalidFormatEmpty;
