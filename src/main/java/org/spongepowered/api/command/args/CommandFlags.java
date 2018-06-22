@@ -202,32 +202,58 @@ public final class CommandFlags extends CommandElement {
             }
         }
         args.setState(state);
+
+        // Prevent tab completion gobbling up an argument if the value parsed.
+        if (!args.hasNext() && !args.getRaw().matches("\\s+$")) {
+            return ImmutableList.of();
+        }
         return this.childElement != null ? childElement.complete(src, args, context) : ImmutableList.of();
     }
 
     @Nullable
     private List<String> tabCompleteLongFlag(String longFlag, CommandSource src, CommandArgs args, CommandContext context) {
         String[] flagSplit = longFlag.split("=", 2);
+        boolean isSplitFlag = flagSplit.length == 2;
         CommandElement element = this.longFlags.get(flagSplit[0].toLowerCase());
-        if (element == null || flagSplit.length == 1 && !args.hasNext()) {
+        if (element == null || !isSplitFlag && !args.hasNext()) {
             return this.longFlags.keySet().stream()
                     .filter(new StartsWithPredicate(flagSplit[0]))
                     .map(f -> "--" + f)
                     .collect(Collectors.toList());
-        } else if (flagSplit.length == 2) {
+        } else if (isSplitFlag) {
             args.insertArg(flagSplit[1]);
         }
         Object state = args.getState();
+        List<String> completion;
         try {
             element.parse(src, args, context);
-            return null;
+            if (args.getState().equals(state)) {
+                // Not iterated, but succeeded. Check completions to account for optionals
+                completion = element.complete(src, args, context);
+            } else {
+                args.previous();
+                String res = args.peek();
+                completion = element.complete(src, args, context);
+                if (!completion.contains(res)) {
+                    completion = ImmutableList.<String>builder().addAll(completion).add(res).build();
+                }
+            }
         } catch (ArgumentParseException ex) {
             args.setState(state);
-            String prefix = flagSplit.length == 2 ? flagSplit[0] + "=" : "";
-            return element.complete(src, args, context).stream()
-                    .map(s -> prefix + s)
-                    .collect(Collectors.toList());
+            completion = element.complete(src, args, context);
         }
+
+        if (completion.isEmpty()) {
+            if (isSplitFlag) {
+                return ImmutableList.of(); // so we don't overwrite the flag
+            }
+            return null;
+        }
+
+        if (isSplitFlag) {
+            return completion.stream().map(x -> "--" + flagSplit[0] + "=" + x).collect(Collectors.toList());
+        }
+        return completion;
     }
 
     @Nullable
@@ -243,6 +269,23 @@ public final class CommandFlags extends CommandElement {
                 Object start = args.getState();
                 try {
                     element.parse(src, args, context);
+
+                    // if the iterator hasn't moved, then just try to complete, no point going backwards.
+                    if (args.getState().equals(start)) {
+                        return element.complete(src, args, context);
+                    }
+
+                    // if we managed to parse this, then go back to get the completions for it.
+                    args.previous();
+                    String currentText = args.peek();
+
+                    // ensure this is returned as a valid option
+                    List<String> elements = element.complete(src, args, context);
+                    if (!elements.contains(currentText)) {
+                        return ImmutableList.<String>builder().add(args.peek()).addAll(element.complete(src, args, context)).build();
+                    } else {
+                        return elements;
+                    }
                 } catch (ArgumentParseException ex) {
                     args.setState(start);
                     return element.complete(src, args, context);
