@@ -1137,10 +1137,12 @@ public final class GenericArguments {
         @Nullable
         @Override
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            Object state = args.getState();
             try {
                 return Iterables.filter((Iterable<User>) super.parseValue(source, args), e -> e instanceof User);
             } catch (ArgumentParseException ex2) {
                 if (this.returnSource) {
+                    args.setState(state);
                     return tryReturnSource(source, args);
                 }
                 throw ex2;
