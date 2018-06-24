@@ -1140,8 +1140,8 @@ public final class GenericArguments {
             try {
                 return Iterables.filter((Iterable<User>) super.parseValue(source, args), e -> e instanceof User);
             } catch (ArgumentParseException ex2) {
-                if (this.returnSource && source instanceof User) {
-                    return source;
+                if (this.returnSource) {
+                    return tryReturnSource(source, args);
                 }
                 throw ex2;
             }
@@ -1165,13 +1165,19 @@ public final class GenericArguments {
         public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
             // If we're not completing, then we want to use the UserStorageService directly
             // to get any direct match.
-            if (getKey() != null && !context.hasAny(CommandContext.TAB_COMPLETION)) {
+            @Nullable Text key = getKey();
+            if (key != null && !context.hasAny(CommandContext.TAB_COMPLETION)) {
+                if (this.returnSource && !args.hasNext()) {
+                    context.putArg(key, tryReturnSource(source, args));
+                    return;
+                }
+
                 Object state = args.getState();
                 String element = args.next();
                 try {
                     Optional<User> match = Sponge.getServiceManager().provideUnchecked(UserStorageService.class).get(element);
                     if (match.isPresent()) {
-                        context.putArg(getKey(), match.get());
+                        context.putArg(key, match.get());
                         return;
                     }
                 } catch (IllegalArgumentException ignored) {
@@ -1183,6 +1189,16 @@ public final class GenericArguments {
             }
 
             super.parse(source, args, context);
+        }
+
+        private User tryReturnSource(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            if (source instanceof User) {
+                return ((User) source);
+            } else if (source instanceof ProxySource && ((ProxySource) source).getOriginalSource() instanceof User) {
+                return (User) ((ProxySource) source).getOriginalSource();
+            } else {
+                throw args.createError(t("No users matched and source was not a user!"));
+            }
         }
     }
 
