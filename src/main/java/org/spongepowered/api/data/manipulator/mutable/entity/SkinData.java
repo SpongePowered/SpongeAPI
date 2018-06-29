@@ -59,7 +59,7 @@ public interface SkinData extends DataManipulator<SkinData, ImmutableSkinData> {
     Value<ProfileProperty> skin();
 
     /**
-     * Gets the {@Value} for whether or not to update the player's
+     * Gets the {@link Value} for whether or not to update the player's
      * {@link GameProfile}
      *
      * <p>If this value is <code>true</code>, then the player's new skin
