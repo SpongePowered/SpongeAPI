@@ -190,21 +190,21 @@ public class SpongeEventFactoryTest {
     }
 
     public static Object mockParam(final Class<?> paramType, @Nullable final Class<?> target) {
-        if (paramType == byte.class) {
+        if (paramType == byte.class || paramType == Byte.class) {
             return (byte) 0;
-        } else if (paramType == short.class) {
+        } else if (paramType == short.class || paramType == Short.class) {
             return (short) 0;
-        } else if (paramType == int.class) {
+        } else if (paramType == int.class || paramType == Integer.class) {
             return 0;
-        } else if (paramType == long.class) {
+        } else if (paramType == long.class || paramType == Long.class) {
             return (long) 0;
-        } else if (paramType == float.class) {
+        } else if (paramType == float.class || paramType == Float.class) {
             return (float) 0;
-        } else if (paramType == double.class) {
+        } else if (paramType == double.class || paramType == Double.class) {
             return (double) 0;
-        } else if (paramType == char.class) {
+        } else if (paramType == char.class || paramType == Character.class) {
             return (char) 0;
-        } else if (paramType == boolean.class) {
+        } else if (paramType == boolean.class || paramType == Boolean.class) {
             return false;
         } else if (paramType == String.class) {
             return "Cupcakes";
