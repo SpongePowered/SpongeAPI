@@ -88,7 +88,8 @@ public class SpongeEventFactoryTest {
         } else if (clazz.equals(Text.class)) {
             return Text.of();
         }
-        return Mockito.RETURNS_MOCKS.answer(invoc);
+        return mockParam(clazz);
+        //return Mockito.RETURNS_MOCKS.answer(invoc);
     });
 
     @Parameterized.Parameters(name = "{0}")
@@ -185,10 +186,12 @@ public class SpongeEventFactoryTest {
         }
     }
 
+    @Nullable
     public static Object mockParam(final Class<?> paramType) {
         return mockParam(paramType, null);
     }
 
+    @Nullable
     public static Object mockParam(final Class<?> paramType, @Nullable final Class<?> target) {
         if (paramType == byte.class || paramType == Byte.class) {
             return (byte) 0;
@@ -206,7 +209,9 @@ public class SpongeEventFactoryTest {
             return (char) 0;
         } else if (paramType == boolean.class || paramType == Boolean.class) {
             return false;
-        } else if (paramType == String.class) {
+        } else if (paramType == void.class || paramType == Void.class) {
+            return null;
+        }else if (paramType == String.class) {
             return "Cupcakes";
         } else if (paramType == Optional.class) {
             return Optional.empty();
