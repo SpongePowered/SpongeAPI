@@ -48,7 +48,12 @@ import org.spongepowered.api.event.entity.ai.AITaskEvent;
 import org.spongepowered.api.event.game.GameRegistryEvent;
 import org.spongepowered.api.event.impl.AbstractEvent;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.action.ClickAction;
+import org.spongepowered.api.text.action.HoverAction;
+import org.spongepowered.api.text.action.ShiftClickAction;
+import org.spongepowered.api.text.action.TextActions;
 import org.spongepowered.api.text.format.TextFormat;
+import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.PEBKACException;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;
@@ -250,12 +255,20 @@ public class SpongeEventFactoryTest {
             return Text.of();
         } else if (paramType == TextFormat.class) {
             return TextFormat.of();
+        } else if (paramType == ShiftClickAction.class) {
+            return TextActions.insertText("MOCK_SPONGE_SHIFT_CLICK_INSERT");
+        } else if (paramType == HoverAction.class) {
+            return TextActions.showText(Text.of("MOCK_SPONGE_HOVER_ACTION_SHOW_TEXT"));
+        } else if (paramType == ClickAction.class) {
+            return TextActions.runCommand("MOCK_SPONGE_EVENT_FACTORY_RUN_COMMAND");
         } else if (paramType == Duration.class) {
             return Duration.ZERO;
         } else if (paramType == Instant.class) {
             return Instant.now();
         } else if (paramType == TypeToken.class) {
             return TypeToken.of(Object.class);
+        } else if (paramType == Color.class) {
+            return Color.BLACK;
         } else {
             return mock(paramType, withSettings().defaultAnswer(EVENT_MOCKING_ANSWER));
         }
