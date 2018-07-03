@@ -48,6 +48,7 @@ import org.spongepowered.api.event.entity.ai.AITaskEvent;
 import org.spongepowered.api.event.game.GameRegistryEvent;
 import org.spongepowered.api.event.impl.AbstractEvent;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.format.TextFormat;
 import org.spongepowered.api.util.PEBKACException;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;
@@ -247,6 +248,8 @@ public class SpongeEventFactoryTest {
             return Locale.ROOT;
         } else if (paramType == Text.class) {
             return Text.of();
+        } else if (paramType == TextFormat.class) {
+            return TextFormat.of();
         } else if (paramType == Duration.class) {
             return Duration.ZERO;
         } else if (paramType == Instant.class) {
