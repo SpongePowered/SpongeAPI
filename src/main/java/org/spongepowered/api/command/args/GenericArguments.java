@@ -1160,7 +1160,8 @@ public final class GenericArguments {
 
         @Override
         protected Object getValue(String choice) throws IllegalArgumentException {
-            return Sponge.getGame().getServiceManager().provideUnchecked(UserStorageService.class).get(choice).get();
+            return Sponge.getGame().getServiceManager().provideUnchecked(UserStorageService.class).get(choice)
+                    .orElseThrow(() -> new IllegalArgumentException("Input value '" + choice + "' was not a user!"));
         }
 
         @Override
