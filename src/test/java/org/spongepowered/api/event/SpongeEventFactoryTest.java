@@ -52,12 +52,14 @@ import org.spongepowered.api.util.PEBKACException;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.net.InetSocketAddress;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -211,7 +213,11 @@ public class SpongeEventFactoryTest {
             return false;
         } else if (paramType == void.class || paramType == Void.class) {
             return null;
-        }else if (paramType == String.class) {
+        } else if (paramType.isArray()) {
+            Object array = Array.newInstance(paramType.getComponentType(), 1);
+            Array.set(array, 0, mockParam(paramType.getComponentType()));
+            return array;
+        } else if (paramType == String.class) {
             return "Cupcakes";
         } else if (paramType == Optional.class) {
             return Optional.empty();
@@ -227,8 +233,6 @@ public class SpongeEventFactoryTest {
             return new Location<>(extent, 0, 0, 0);
         } else if (paramType == Transform.class) {
             return new Transform<>((Extent) mockParam(Extent.class));
-        } else if (paramType == Text[].class) {
-            return new Text[] {};
         } else if (InetSocketAddress.class.isAssignableFrom(paramType)) {
             return new InetSocketAddress(12345);
         } else if (paramType == UUID.class) {
