@@ -28,6 +28,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.source.ConsoleSource;
+import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 import javax.annotation.Nullable;
@@ -212,6 +213,16 @@ public final class Timings {
      */
     public static void generateReport(@Nullable CommandSource source) {
         factory.generateReport(source);
+    }
+
+    /**
+     * Generates a report and sends it to the specified
+     * {@link MessageChannel}.
+     *
+     * @param channel The channel to send report to
+     */
+    public static void generateReport(MessageChannel channel) {
+        factory.generateReport(channel);
     }
 
 }
