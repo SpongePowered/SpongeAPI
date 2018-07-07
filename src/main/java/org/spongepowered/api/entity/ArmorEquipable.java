@@ -26,16 +26,11 @@ package org.spongepowered.api.entity;
 
 import org.spongepowered.api.data.type.HandType;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.equipment.EquipmentTypes;
-
-import java.util.Optional;
-
-import javax.annotation.Nullable;
 
 /**
- * <p>Represents an entity that can be equipped with armor and a held item. Each
- * method here is a shorthand for the appropriate {@link #getEquipped} or
- * {@link #equip} method call.</p>
+ * <p>Represents an entity that can be equipped with armor, main hand and off hand items.
+ * Each method here is a shorthand for the appropriate {@link #getEquipped}
+ * or {@link #equip} method call.</p>
  *
  * <p>Classes implementing this interface should provide <b>all</b> of the
  * supplied equipment slot types. Classes which do not support all slot types in
@@ -46,119 +41,73 @@ public interface ArmorEquipable extends Equipable {
     /**
      * Gets the helmet currently being worn by this entity.
      *
-     * <p>Having the helmet as null will result in having nothing equipped in
-     * the helmet slot.</p>
-     *
      * @return The helmet, if available
      */
-    default Optional<ItemStack> getHelmet() {
-        return this.getEquipped(EquipmentTypes.HEADWEAR);
-    }
+    ItemStack getHelmet();
 
     /**
      * Sets the helmet currently being worn by this entity.
      *
-     * <p>Having the helmet as null will result in having nothing equipped in
-     * the helmet slot.</p>
-     *
      * @param helmet The helmet to put on the entity
      */
-    default void setHelmet(@Nullable ItemStack helmet) {
-        this.equip(EquipmentTypes.HEADWEAR, helmet);
-    }
+    void setHelmet(ItemStack helmet);
 
     /**
      * Gets the chestplate currently being worn by this entity.
      *
-     * <p>Having the chestplate as null will result in having nothing equipped
-     * in the chestplate slot.</p>
-     *
      * @return The chestplate, if available
      */
-    default Optional<ItemStack> getChestplate() {
-        return this.getEquipped(EquipmentTypes.CHESTPLATE);
-    }
+    ItemStack getChestplate();
 
     /**
      * Sets the chestplate currently being worn by this entity.
      *
-     * <p>Having the chestplate as null will result in having nothing equipped
-     * in the chestplate slot.</p>
-     *
      * @param chestplate The chestplate to put on the entity
      */
-    default void setChestplate(@Nullable ItemStack chestplate) {
-        this.equip(EquipmentTypes.CHESTPLATE, chestplate);
-    }
+    void setChestplate(ItemStack chestplate);
 
     /**
      * Gets the leggings currently being worn by this entity.
      *
-     * <p>Having the leggings as null will result in having nothing equipped in
-     * the leggings slot.</p>
-     *
      * @return The leggings, if available
      */
-    default Optional<ItemStack> getLeggings() {
-        return this.getEquipped(EquipmentTypes.LEGGINGS);
-    }
+    ItemStack getLeggings();
 
     /**
      * Sets the leggings currently being worn by this entity.
      *
-     * <p>Having the leggings as null will result in having nothing equipped in
-     * the leggings slot.</p>
-     *
      * @param leggings The leggings to put on the entity
      */
-    default void setLeggings(@Nullable ItemStack leggings) {
-        this.equip(EquipmentTypes.LEGGINGS, leggings);
-    }
+    void setLeggings(ItemStack leggings);
 
     /**
      * Gets the boots currently being worn by this entity.
      *
-     * <p>Having the boots as null will result in having nothing equipped in the
-     * boots slot.</p>
-     *
      * @return The boots, if available
      */
-    default Optional<ItemStack> getBoots() {
-        return this.getEquipped(EquipmentTypes.BOOTS);
-    }
+    ItemStack getBoots();
 
     /**
      * Sets the boots currently being worn by this entity.
      *
-     * <p>Having the boots as null will result in having nothing equipped in the
-     * boots slot.</p>
-     *
      * @param boots The boots to put on the entity
      */
-    default void setBoots(@Nullable ItemStack boots) {
-        this.equip(EquipmentTypes.BOOTS, boots);
-    }
+    void setBoots(ItemStack boots);
 
     /**
      * Gets the current equipped item in hand if available.
      *
-     * <p>Having the item in hand as null will result in having nothing equipped
-     * in the item in hand slot.</p>
-     *
      * @param handType The hand type to retrieve from
      * @return The current item in hand, if available
      */
-    Optional<ItemStack> getItemInHand(HandType handType);
+    ItemStack getItemInHand(HandType handType);
 
     /**
      * Sets the item in hand for this entity.
      *
-     * <p>Having the item in hand as null will result in having nothing equipped
-     * in the item in hand slot.</p>
-     *
      * @param hand The hand type to set to
      * @param itemInHand The item in hand
      */
-    void setItemInHand(HandType hand, @Nullable ItemStack itemInHand);
+    void setItemInHand(HandType hand, ItemStack itemInHand);
 
 }
