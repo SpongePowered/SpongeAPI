@@ -25,12 +25,13 @@
 package org.spongepowered.api.item.inventory.entity;
 
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.type.GridInventory;
 
 /**
- * A {@link Player}'s main inventory including the {@link Hotbar}.
+ * A {@link Player}'s primary inventory including the {@link Hotbar}.
  */
-public interface MainPlayerInventory extends GridInventory {
+public interface PrimaryPlayerInventory extends Inventory {
 
     /**
      * Gets the hotbar of the player.
@@ -40,10 +41,17 @@ public interface MainPlayerInventory extends GridInventory {
     Hotbar getHotbar();
 
     /**
-     * Gets the grid of the player's main inventory.
+     * Gets the (4x9) grid of the players main inventory.
      *
-     * @return The grid of the player's main inventory
+     * @return The grid of the players main inventory
      */
-    GridInventory getGrid();
+    GridInventory asGrid();
+
+    /**
+     * Gets the (3x9) grid of the players main inventory.
+     *
+     * @return The grid of the players main inventory
+     */
+    GridInventory getStorage();
 
 }

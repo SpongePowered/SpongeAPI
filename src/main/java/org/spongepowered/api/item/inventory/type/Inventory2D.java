@@ -35,7 +35,7 @@ import java.util.Optional;
 /**
  * Base interface for inventories with slots obtainable via SlotPos queries.
  */
-public interface Inventory2D extends OrderedInventory {
+public interface Inventory2D extends Inventory {
 
     /**
      * Gets and remove the stack at the supplied position in this Inventory.

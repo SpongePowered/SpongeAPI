@@ -27,10 +27,27 @@ package org.spongepowered.api.item.inventory.type;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.item.inventory.Inventory;
 
+import java.util.Set;
+
 /**
  * Interface for inventories which may be interacted with by Players.
+ * <p>e.g. the inventory of a Chest</p>
  */
-public interface Interactable extends Inventory {
+public interface ViewableInventory extends Inventory {
+
+    /**
+     * Gets the current viewers looking at this Inventory.
+     *
+     * @return The current viewers of this inventory
+     */
+    Set<Player> getViewers();
+
+    /**
+     * Checks for whether this Inventory currently has viewers.
+     *
+     * @return True if viewers are currently looking at this inventory
+     */
+    boolean hasViewers();
 
     /**
      * Gets whether the specified player can interact with this object.

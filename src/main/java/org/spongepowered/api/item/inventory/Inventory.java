@@ -30,20 +30,22 @@ import org.spongepowered.api.data.Property;
 import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.event.item.inventory.InteractInventoryEvent;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.inventory.property.SlotIndex;
 import org.spongepowered.api.item.inventory.query.QueryOperation;
 import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult;
+import org.spongepowered.api.item.inventory.type.ViewableInventory;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
-import java.util.Queue;
 import java.util.function.Consumer;
 
 /**
  * Base interface for queryable inventories.
  */
-public interface Inventory extends Iterable<Inventory>, Nameable, PropertyHolder {
+public interface Inventory extends Nameable, PropertyHolder {
 
     /**
      * Creates a new {@link Inventory.Builder} to build an {@link Inventory}.
@@ -72,69 +74,38 @@ public interface Inventory extends Iterable<Inventory>, Nameable, PropertyHolder
     Inventory root();
 
     /**
-     * Returns an iterable view of all {@link Slot}s (leaf nodes) in this
-     * Inventory.
+     * Returns a list of all {@link Slot}s (leaf nodes) in this Inventory.
      *
-     * @param <T> expected inventory type, specified as generic to allow easy
-     *      pseudo-duck-typing
-     * @return an iterable view of all Slots (leaf nodes) in this inventory
+     * @return a list of all Slots (leaf nodes) in this inventory
      */
-    <T extends Inventory> Iterable<T> slots();
+    List<Slot> slots();
 
     /**
-     * Return the first child inventory, effectively the same as
-     * <code>Inventory::iterator().next()</code> but more convenient when we are
-     * expecting a result set with only a single entry. Also use type specifier
-     * to allow easy pseudo-duck-typing. If no children, then returns
-     * <code>this</code>.
+     * Returns a list of all direct child inventories.
      *
-     * @param <T> expected inventory type, specified as generic to allow easy
-     *      pseudo-duck-typing
-     * @return the first child inventory, if there are no children then simply
-     *      returns <code>this</code>
+     * @return a list of all direct child inventories.
      */
-    <T extends Inventory> T first();
+    List<Inventory> children();
 
     /**
-     * Return the next sibling inventory, allows traversing the inventory
-     * hierarchy without using an iterator. If no more siblings, returns an
-     * {@link EmptyInventory}.
+     * Gets and remove the first non empty stack from this Inventory.
      *
-     * @param <T> expected inventory type, specified as generic to allow easy
-     *      pseudo-duck-typing
-     * @return the next sibling inventory, or an {@link EmptyInventory} if
-     *      there are no further siblings
+     * <p>If this inventory is empty {@link ItemStack#empty()} is returned</p>
+     *
+     * @return The first available item stack, or {@link ItemStack#empty()} if unavailable
      */
-    <T extends Inventory> T next();
+    ItemStack poll();
 
     /**
-     * Gets and remove the first available stack from this Inventory.
+     * Get and remove up to <code>limit</code> items of the type in the first
+     * non empty stack in this Inventory from all stacks in this Inventory.
      *
-     * <p>'Available' has a different meaning for different inventory types. In
-     * a single-slot inventory this has a fixed implication. However larger and
-     * more complex inventories are at liberty to implement whatever logic they
-     * wish to back this method. If an inventory cannot provide a meaningful
-     * implementation of this method then it should return
-     * {@link Optional#empty()} instead.</p>
+     * <p>If this inventory is empty {@link ItemStack#empty()} is returned
+     * otherwise otherwise a new {@link ItemStack} is returned containing
+     * the removed items.</p>
      *
-     * <p>For consumers, this means that just because an inventory doesn't
-     * return anything here, this does not imply that the inventory is empty,
-     * just that a more specific query is required to obtain items from it.</p>
-     *
-     * @return The first available item stack, or {@link Optional#empty()} if
-     *      unavailable or unsupported
-     */
-    Optional<ItemStack> poll();
-
-    /**
-     * <p>Get and remove up to <code>limit</code> items of the type in the first
-     * available stack in this Inventory from all stacks in this Inventory. If
-     * no stack is available then {@link Optional#empty()} is returned (as per
-     * the usual behaviour of {@link #poll()}, otherwise a new {@link ItemStack}
-     * is returned containing the removed items, the contents of the stack in
-     * the inventory are reduced by the number of items consumed. Note that this
-     * method attempts to consume items into the output up to
-     * <code>limit</code>, which may consume items from an arbitrary number
+     * <p>Note that this method attempts to consume items into the output up
+     * to <code>limit</code>, which may consume items from an arbitrary number
      * of internal slots.</p>
      *
      * <p>For example, assume an inventory containing 4 slots contains stacks as
@@ -152,96 +123,144 @@ public interface Inventory extends Iterable<Inventory>, Nameable, PropertyHolder
      * which returns a set of slots containing a specific item type:</p>
      *
      * <blockquote>
-     *     <pre>Optional&lt;ItemStack&gt; q = inv.query(ItemTypes.DIRT).poll(1);
+     *     <pre>ItemStack q = inv.query(ItemTypes.DIRT).poll(1);
      *     </pre>
      * </blockquote>
      *
-     * @see #poll
      * @param limit Maximum number of items to consume from the inventory
      * @return Matching {@link ItemStack} guaranteed to have items less than or
      *      equal to the specified <em>limit</em>.
      */
-    Optional<ItemStack> poll(int limit);
+    ItemStack poll(int limit);
 
     /**
-     * Gets without removing the first available stack from this Inventory. For
-     * the definition of 'available', see {@link #poll}.
+     * Gets without removing the first non empty stack from this Inventory.
      *
-     * @return First available itemstack, or {@link Optional#empty()} if
-     *      unavailable or unsupported
+     * @return First non empty itemstack, or {@link ItemStack#empty()} if unavailable
      */
-    Optional<ItemStack> peek();
+    ItemStack peek();
 
     /**
-     * Uses the same semantics as {@link #poll(int)} but <b>does not remove the
-     * items from the inventory</b>. The {@link ItemStack} returned is thus a
-     * new ItemStack containing <b>a copy of</b> the items in inventory. Use
-     * this method only if you wish to determine whether a call to
-     * {@link #poll(int)} is likely to succeed.
+     * Gets without removing up to <code>limit</code> items of the type in the first
+     * non empty stack in this Inventory from all stacks in this Inventory.
      *
      * @see #peek
      * @param limit Maximum number of items to consume from the inventory
      * @return Matching {@link ItemStack} guaranteed to have items less than or
      *      equal to the specified <em>limit</em>.
      */
-    Optional<ItemStack> peek(int limit);
+    ItemStack peek(int limit);
 
     /**
-     * Try to put an ItemStack into this Inventory. Just like
-     * {@link Queue}, this method returns true if the Inventory
-     * accepted the stack and false if not, the size of the supplied stack is
-     * reduced by the number of items successfully consumed by the Inventory.
+     * Try to put an ItemStack into this Inventory. The {@link InventoryTransactionResult}
+     * will be a success only when the entire itemstack fits the inventory.
+     *
+     * <p>The size of the supplied stack is reduced by the number of items
+     * successfully consumed by the inventory.</p>
+     *
+     * <p>Any rejected items are also available in the transaction result.</p>
      *
      * <p>Unlike {@link #set}, this method's general contract does not permit
-     * items in the Inventory to be replaced. However trying to insert items
-     * that an Inventory cannot accept is not an error condition, the size of
-     * the supplied stack will simply not be reduced if no items are consumed by
-     * the Inventory.</p>
+     * items in the Inventory to be replaced.</p>
      *
      * @param stack A stack of items to attempt to insert into the Inventory,
      *      note that upon successful insertion the supplied ItemStack itself
-     *      will be mutated and returned with size reduced by the number of
-     *      items successfully consumed by the Inventory
-     * @return true if <em>one or more</em> (up to the total number of items in
-     *      the supplied stack) items were consumed. False if no items were
-     *      consumed by the target inventory.
+     *      will be reduced by the number of items successfully consumed by the
+     *      Inventory
+     * @return A SUCCESS transactionresult if the entire stack was consumed and
+     *      FAILURE when the stack was not or partially consumed.
      */
     InventoryTransactionResult offer(ItemStack stack);
 
     /**
      * Forcibly put the supplied stack into this inventory. Overwrites existing
-     * objects in the inventory as required to accommodate the entire stack. The
-     * entire stack is always consumed.
+     * objects in the inventory as required to accommodate the entire stack.
      *
      * <p>The general contract of this method is to prioritise insertion of the
      * supplied items over items already in the Inventory. However the Inventory
-     * may still reject the supplied items if they are of an unsupported type
-     * for the target (for example trying to insert non-fuel items into a fuel
-     * slot) or if the number of items is larger than the total capacity of the
-     * inventory and not all items from the supplied stack can be consumed.</p>
+     * may still reject the supplied items for example if the number of items is
+     * larger than the total capacity of the inventory and not all items from the
+     * supplied stack can be consumed.</p>
      *
-     * <p>For {@link Slot}s, the supplied stack is generally consumed and the
-     * existing contents ejected (at the discretion of the target Inventory).
-     * For multi-slot inventories the insertion order is up to the target
-     * inventory to decide, and does not have to match the traversal order of
-     * the leaf nodes as supplied by {@link #slots()}, although this is
-     * generally recommended. Inventories should document their specific
-     * insertion logic where the insertion order differs from the traversal
-     * order.</p>
+     * <p>The size of the supplied stack is reduced by the number of items
+     * successfully consumed by the inventory.</p>
      *
-     * <p>Consumers should inspect the returned
-     * {@link InventoryTransactionResult} and act accordingly. Ejected items
-     * should generally be "thrown" into the world or deposited into another
-     * Inventory (depending on the operation in question. The supplied stack is
-     * not adjusted, any rejected items are returned in the operation result
-     * struct.</p>
+     * <p>Any rejected items are also available in the transaction result.</p>
      *
-     * @param stack the stack to insert into the Inventory, will be mutated by
+     * @param stack The stack to insert into the Inventory, will be reduced by
      *      the number of items successfully consumed
-     * @return operation result indicating the success state of the operation
-     *      and any items rejected or ejected as a result of the operation
+     * @return A SUCCESS transactionresult if the entire stack was consumed and
+     *      FAILURE when the stack was not or partially consumed.
      */
     InventoryTransactionResult set(ItemStack stack);
+
+    /**
+     * Gets and remove the stack at the supplied index in this Inventory.
+     *
+     * <p>Returns {@link Optional#empty()} when there is not Slot at {@link SlotIndex}</p>
+     *
+     * @see Inventory#poll()
+     * @param index slot index to query
+     * @return matching stacks, as per the semantics of {@link Inventory#poll()}
+     */
+    Optional<ItemStack> poll(SlotIndex index);
+
+    /**
+     * Gets and remove the stack at the supplied index in this Inventory.
+     *
+     * <p>Returns {@link Optional#empty()} when there is not Slot at {@link SlotIndex}</p>
+     *
+     * @see Inventory#poll()
+     * @param index slot index to query
+     * @param limit item limit
+     * @return matching stacks, as per the semantics of {@link Inventory#poll()}
+     */
+    Optional<ItemStack> poll(SlotIndex index, int limit);
+
+    /**
+     * Gets without removing the stack at the supplied index in this Inventory.
+     *
+     * <p>Returns {@link Optional#empty()} when there is not Slot at {@link SlotIndex}</p>
+     *
+     * @see Inventory#peek()
+     * @param index slot index to query
+     * @return matching stacks, as per the semantics of {@link Inventory#peek()}
+     */
+    Optional<ItemStack> peek(SlotIndex index);
+
+    /**
+     * Gets without removing the stack at the supplied index in this Inventory.
+     *
+     * <p>Returns {@link Optional#empty()} when there is not Slot at {@link SlotIndex}</p>
+     *
+     * @see Inventory#peek()
+     * @param index slot index to query
+     * @param limit item limit
+     * @return matching stacks, as per the semantics of {@link Inventory#peek()}
+     */
+    Optional<ItemStack> peek(SlotIndex index, int limit);
+
+    /**
+     * Sets the item in the specified slot.
+     *
+     * <p>Always returns a {@link InventoryTransactionResult.Type#FAILURE} when
+     * there is not Slot at {@link SlotIndex}</p>
+     *
+     * @see Inventory#set(ItemStack)
+     * @param index Slot index to set
+     * @param stack Stack to insert
+     * @return matching stacks, as per the semantics of {@link Inventory#set}
+     */
+    InventoryTransactionResult set(SlotIndex index, ItemStack stack);
+
+    /**
+     * Gets the {@link Slot} at the specified position.
+     *
+     * @param index Slot index to retrieve
+     * @return slot at the specified position, or {@link Optional#empty()} if
+     *      no matching slot
+     */
+    Optional<Slot> getSlot(SlotIndex index);
 
     /**
      * Clears this inventory if it is clearable.
@@ -414,19 +433,27 @@ public interface Inventory extends Iterable<Inventory>, Nameable, PropertyHolder
      * @return matching properties, may be absent if no property matched the
      *      supplied criteria
      */
-    @Override
-    <T extends Property<?, ?>> Optional<T> getProperty(Class<T> property);
+    @Override <T extends Property<?, ?>> Optional<T> getProperty(Class<T> property);
 
     /**
      * Query this inventory for inventories matching any of the supplied
      * queries. Logical <code>OR</code> is applied between operands.
      *
-     * @param <T> expected inventory type, specified as generic to allow easy
-     *      pseudo-duck-typing
      * @param operations queries to check against
      * @return the query result
      */
-    <T extends Inventory> T query(QueryOperation<?>... operations);
+    Inventory query(QueryOperation<?>... operations);
+
+    /**
+     * Query this inventory for a single inventory matching the supplied inventory type.
+     * This query will return {@link Optional#empty()} when the query does not return a
+     * single inventory matching the supplied inventory type.
+     *
+     * @param inventoryType The inventory type to query for
+     * @param <T> The Type of inventory
+     * @return the query result
+     */
+    <T extends Inventory> Optional<T> query(Class<T> inventoryType);
 
     /**
      * Returns the {@link PluginContainer} who built this inventory.
@@ -497,6 +524,15 @@ public interface Inventory extends Iterable<Inventory>, Nameable, PropertyHolder
     default Inventory transform(InventoryTransformation transformation) {
         return transformation.transform(this);
     }
+
+    /**
+     * Returns this inventory as a viewable inventory if possible.
+     *
+     * <p>Not all inventories are viewable (e.g. a custom inventory of size 5x5)</p>
+     *
+     * @return This inventory as an viewable inventory if possible.
+     */
+    Optional<ViewableInventory> asViewable();
 
     /**
      * A Builder for Inventories based on {@link InventoryArchetype}s.
