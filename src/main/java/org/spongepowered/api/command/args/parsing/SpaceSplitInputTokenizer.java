@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.command.args.parsing;
 
-import org.spongepowered.api.command.args.ArgumentParseException;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 
-import java.util.ArrayList;
 import java.util.List;
 
 class SpaceSplitInputTokenizer implements InputTokenizer {
@@ -35,14 +35,18 @@ class SpaceSplitInputTokenizer implements InputTokenizer {
     private SpaceSplitInputTokenizer() {}
 
     @Override
-    public List<SingleArg> tokenize(String arguments, boolean lenient) throws ArgumentParseException {
-        List<SingleArg> ret = new ArrayList<>();
-        int lastIndex = 0;
-        int spaceIndex;
-        while ((spaceIndex = arguments.indexOf(" ")) != -1) {
-            ret.add(new SingleArg((arguments = arguments.substring(0, spaceIndex)), lastIndex, lastIndex + spaceIndex));
-            lastIndex += spaceIndex + 1;
+    public List<SingleArg> tokenize(String arguments, boolean lenient) {
+        if (arguments.isEmpty()) {
+            return ImmutableList.of();
         }
-        return ret;
+        List<SingleArg> args = Lists.newArrayList();
+        int index = 0;
+        for (String arg : arguments.split(" ", -1)) {
+            if (!arg.isEmpty() || index == arguments.length()) {
+                args.add(new SingleArg(arg, index, index + arg.length()));
+            }
+            index += arg.length() + 1;
+        }
+        return args;
     }
 }

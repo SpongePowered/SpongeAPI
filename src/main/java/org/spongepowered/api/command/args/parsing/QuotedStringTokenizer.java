@@ -46,17 +46,15 @@ import java.util.List;
  * ARGS := ((UNQUOTED_ARG | QUOTED_ARG) WHITESPACE+)+</pre></blockquote>
  */
 class QuotedStringTokenizer implements InputTokenizer {
+    public static final QuotedStringTokenizer INSTANCE = new QuotedStringTokenizer(false);
+    public static final QuotedStringTokenizer LENIENT_INSTANCE = new QuotedStringTokenizer(true);
     private static final int CHAR_BACKSLASH = '\\';
     private static final int CHAR_SINGLE_QUOTE = '\'';
     private static final int CHAR_DOUBLE_QUOTE = '"';
-    private final boolean handleQuotedStrings;
     private final boolean forceLenient;
-    private final boolean trimTrailingSpace;
 
-    QuotedStringTokenizer(boolean handleQuotedStrings, boolean forceLenient, boolean trimTrailingSpace) {
-        this.handleQuotedStrings = handleQuotedStrings;
+    private QuotedStringTokenizer(boolean forceLenient) {
         this.forceLenient = forceLenient;
-        this.trimTrailingSpace = trimTrailingSpace;
     }
 
     @Override
@@ -67,19 +65,11 @@ class QuotedStringTokenizer implements InputTokenizer {
 
         final TokenizerState state = new TokenizerState(arguments, lenient);
         List<SingleArg> returnedArgs = new ArrayList<>(arguments.length() / 4);
-        if (this.trimTrailingSpace) {
-            skipWhiteSpace(state);
-        }
         while (state.hasMore()) {
-            if (!this.trimTrailingSpace) {
-                skipWhiteSpace(state);
-            }
+            skipWhiteSpace(state);
             int startIdx = state.getIndex() + 1;
             String arg = nextArg(state);
-            returnedArgs.add(new SingleArg(arg, startIdx, state.getIndex()));
-            if (this.trimTrailingSpace) {
-                skipWhiteSpace(state);
-            }
+            returnedArgs.add(new SingleArg(arg, startIdx, arg.isEmpty() ? startIdx : state.getIndex()));
         }
         return returnedArgs;
     }
@@ -99,7 +89,7 @@ class QuotedStringTokenizer implements InputTokenizer {
         StringBuilder argBuilder = new StringBuilder();
         if (state.hasMore()) {
             int codePoint = state.peek();
-            if (this.handleQuotedStrings && (codePoint == CHAR_DOUBLE_QUOTE || codePoint == CHAR_SINGLE_QUOTE)) {
+            if (codePoint == CHAR_DOUBLE_QUOTE || codePoint == CHAR_SINGLE_QUOTE) {
                 // quoted string
                 parseQuotedString(state, codePoint, argBuilder);
             } else {

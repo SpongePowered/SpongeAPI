@@ -24,18 +24,16 @@
  */
 package org.spongepowered.api.command.args.parsing;
 
-import org.spongepowered.api.command.args.ArgumentParseException;
-
 import java.util.Collections;
 import java.util.List;
 
 class RawStringInputTokenizer implements InputTokenizer {
-    static final RawStringInputTokenizer INSTANCE = new RawStringInputTokenizer();
+    public static final RawStringInputTokenizer INSTANCE = new RawStringInputTokenizer();
 
     private RawStringInputTokenizer() {}
 
     @Override
-    public List<SingleArg> tokenize(String arguments, boolean lenient) throws ArgumentParseException {
+    public List<SingleArg> tokenize(String arguments, boolean lenient) {
         return Collections.singletonList(new SingleArg(arguments, 0, arguments.length()));
     }
 }

@@ -46,7 +46,7 @@ public interface InputTokenizer {
      * @return the appropriate tokenizer
      */
     static InputTokenizer quotedStrings(boolean forceLenient) {
-        return new QuotedStringTokenizer(true, forceLenient, false);
+        return forceLenient ? QuotedStringTokenizer.LENIENT_INSTANCE : QuotedStringTokenizer.INSTANCE;
     }
 
     /**

@@ -26,9 +26,7 @@ package org.spongepowered.api.command.args.parsing;
 
 import static org.junit.Assert.assertEquals;
 
-import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -38,19 +36,12 @@ import org.spongepowered.api.text.TestPlainTextSerializer;
 
 import java.util.Collections;
 import java.util.List;
-
-import javax.annotation.Nullable;
+import java.util.stream.Collectors;
 
 public class QuotedStringTokenizerTest {
 
     private static List<String> parseFrom(String args) throws ArgumentParseException {
-        return Lists.transform(new QuotedStringTokenizer(true, false, false).tokenize(args, false), new Function<SingleArg, String>() {
-            @Nullable
-            @Override
-            public String apply(SingleArg input) {
-                return input.getValue();
-            }
-        });
+        return InputTokenizer.quotedStrings(false).tokenize(args, false).stream().map(SingleArg::getValue).collect(Collectors.toList());
     }
 
     @Rule
@@ -64,6 +55,11 @@ public class QuotedStringTokenizerTest {
     @Test
     public void testEmptyString() throws ArgumentParseException {
         assertEquals(Collections.<String>emptyList(), parseFrom(""));
+    }
+
+    @Test
+    public void testSpaceString() throws ArgumentParseException {
+        assertEquals(ImmutableList.of(""), parseFrom(" "));
     }
 
     @Test
