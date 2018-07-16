@@ -62,6 +62,13 @@ public interface ItemType extends CatalogType, Translatable, GameDictionary.Entr
     String getName();
 
     /**
+     * Gets the {@link ItemGroup} that contains this item.
+     *
+     * @return The item group or {@link Optional#empty()} otherwise
+     */
+    Optional<ItemGroup> getItemGroup();
+
+    /**
      * Gets the default maximum quantity for
      * {@link ItemStack}s of this item.
      *
