@@ -34,4 +34,8 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 @CatalogedBy(ItemGroups.class)
 public interface ItemGroup extends CatalogType, Translatable {
 
+    default boolean contains(ItemType itemType) {
+        return itemType.getItemGroups().contains(this);
+    }
+
 }

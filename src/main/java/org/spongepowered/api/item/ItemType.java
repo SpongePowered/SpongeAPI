@@ -35,6 +35,7 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
+import java.util.Collection;
 import java.util.Optional;
 
 /**
@@ -62,11 +63,11 @@ public interface ItemType extends CatalogType, Translatable, GameDictionary.Entr
     String getName();
 
     /**
-     * Gets the {@link ItemGroup} that contains this item.
+     * Gets the {@link ItemGroup}s that contain this item.
      *
-     * @return The item group or {@link Optional#empty()} otherwise
+     * @return A collection of item groups, possibly empty
      */
-    Optional<ItemGroup> getItemGroup();
+    Collection<ItemGroup> getItemGroups();
 
     /**
      * Gets the default maximum quantity for
