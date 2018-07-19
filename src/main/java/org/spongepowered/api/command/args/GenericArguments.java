@@ -329,24 +329,24 @@ public final class GenericArguments {
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
             Set<String> completions = Sets.newHashSet();
             for (CommandElement element : elements) {
-                Object state = args.getState();
+                CommandArgs.Snapshot state = args.getSnapshot();
                 try {
                     element.parse(src, args, context);
-                    if (state.equals(args.getState())) {
+                    if (state.equals(args.getSnapshot())) {
                         completions.addAll(element.complete(src, args, context));
-                        args.setState(state);
+                        args.applySnapshot(state);
                     } else if (args.hasNext()) {
                         completions.clear();
                     } else {
-                        args.setState(state);
+                        args.applySnapshot(state);
                         completions.addAll(element.complete(src, args, context));
                         if (!(element instanceof OptionalCommandElement)) {
                             break;
                         }
-                        args.setState(state);
+                        args.applySnapshot(state);
                     }
                 } catch (ArgumentParseException ignored) {
-                    args.setState(state);
+                    args.applySnapshot(state);
                     completions.addAll(element.complete(src, args, context));
                     break;
                 }
@@ -560,14 +560,14 @@ public final class GenericArguments {
         public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
             ArgumentParseException lastException = null;
             for (CommandElement element : this.elements) {
-                Object startState = args.getState();
+                CommandArgs.Snapshot startState = args.getSnapshot();
                 CommandContext.Snapshot contextSnapshot = context.createSnapshot();
                 try {
                     element.parse(source, args, context);
                     return;
                 } catch (ArgumentParseException ex) {
                     lastException = ex;
-                    args.setState(startState);
+                    args.applySnapshot(startState);
                     context.applySnapshot(contextSnapshot);
                 }
             }
@@ -589,9 +589,9 @@ public final class GenericArguments {
                         return ImmutableList.of();
                     }
 
-                    Object startState = args.getState();
+                    CommandArgs.Snapshot snapshot = args.getSnapshot();
                     List<String> ret = input.complete(src, args, context);
-                    args.setState(startState);
+                    args.applySnapshot(snapshot);
                     return ret;
                 })));
         }
@@ -695,12 +695,12 @@ public final class GenericArguments {
                 }
                 return;
             }
-            Object startState = args.getState();
+            CommandArgs.Snapshot startState = args.getSnapshot();
             try {
                 this.element.parse(source, args, context);
             } catch (ArgumentParseException ex) {
                 if (this.considerInvalidFormatEmpty || args.hasNext()) { // If there are more args, suppress. Otherwise, throw the error
-                    args.setState(startState);
+                    args.applySnapshot(startState);
                     if (this.element.getKey() != null && this.value != null) {
                         context.putArg(this.element.getUntranslatedKey(), this.value);
                     }
@@ -766,11 +766,11 @@ public final class GenericArguments {
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
             for (int i = 0; i < this.times; ++i) {
-                Object startState = args.getState();
+                CommandArgs.Snapshot startState = args.getSnapshot();
                 try {
                     this.element.parse(src, args, context);
                 } catch (ArgumentParseException e) {
-                    args.setState(startState);
+                    args.applySnapshot(startState);
                     return this.element.complete(src, args, context);
                 }
             }
@@ -819,11 +819,11 @@ public final class GenericArguments {
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
             while (args.hasNext()) {
-                Object startState = args.getState();
+                CommandArgs.Snapshot startState = args.getSnapshot();
                 try {
                     this.element.parse(src, args, context);
                 } catch (ArgumentParseException e) {
-                    args.setState(startState);
+                    args.applySnapshot(startState);
                     return this.element.complete(src, args, context);
                 }
             }
@@ -1188,12 +1188,12 @@ public final class GenericArguments {
         @Nullable
         @Override
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
-            Object state = args.getState();
+            CommandArgs.Snapshot state = args.getSnapshot();
             try {
                 return Iterables.filter((Iterable<User>) super.parseValue(source, args), e -> e instanceof User);
             } catch (ArgumentParseException ex2) {
                 if (this.returnSource) {
-                    args.setState(state);
+                    args.applySnapshot(state);
                     return tryReturnSource(source, args);
                 }
                 throw ex2;
@@ -1226,7 +1226,7 @@ public final class GenericArguments {
                     return;
                 }
 
-                Object state = args.getState();
+                CommandArgs.Snapshot state = args.getSnapshot();
                 String element = args.next();
                 try {
                     Optional<User> match = Sponge.getServiceManager().provideUnchecked(UserStorageService.class).get(element);
@@ -1239,7 +1239,7 @@ public final class GenericArguments {
                     // If it's not an exact match, we just let this carry on to parse using the pattern element
                 }
 
-                args.setState(state);
+                args.applySnapshot(state);
             }
 
             super.parse(source, args, context);
@@ -1272,12 +1272,12 @@ public final class GenericArguments {
                 return tryReturnSource(source, args);
             }
 
-            Object state = args.getState();
+            CommandArgs.Snapshot state = args.getSnapshot();
             try {
                 return Iterables.filter((Iterable<Entity>)super.parseValue(source, args), e -> e instanceof Player);
             } catch (ArgumentParseException ex) {
                 if (this.returnSource) {
-                    args.setState(state);
+                    args.applySnapshot(state);
                     return tryReturnSource(source, args);
                 }
                 throw ex;
@@ -1519,7 +1519,7 @@ public final class GenericArguments {
 
         @Override
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
-            Object state = args.getState();
+            CommandArgs.Snapshot state = args.getSnapshot();
             if (args.peek().startsWith("@")) { // We are a selector
                 return Selector.parse(args.next()).resolve(source).stream()
                         .map(Entity::getLocation)
@@ -1531,7 +1531,7 @@ public final class GenericArguments {
             try {
                 world = checkNotNull(this.worldParser.parseValue(source, args), "worldVal");
             } catch (ArgumentParseException ex) {
-                args.setState(state);
+                args.applySnapshot(state);
                 if (!(source instanceof Locatable)) {
                     throw args.createError(t("Source must have a location in order to have a fallback world"));
                 }
@@ -1539,7 +1539,7 @@ public final class GenericArguments {
                 try {
                     vec = checkNotNull(this.vectorParser.parseValue(source, args), "vectorVal");
                 } catch (ArgumentParseException ex2) {
-                    args.setState(state);
+                    args.applySnapshot(state);
                     throw ex;
                 }
             }
@@ -1562,15 +1562,15 @@ public final class GenericArguments {
 
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            Object state = args.getState();
+            CommandArgs.Snapshot state = args.getSnapshot();
             Optional<String> nextPossibility = args.nextIfPresent();
             if (nextPossibility.isPresent() && nextPossibility.get().startsWith("@")) {
                 return Selector.complete(nextPossibility.get());
             }
-            args.setState(state);
+            args.applySnapshot(state);
             List<String> ret;
             if ((ret = this.worldParser.complete(src, args, context)).isEmpty()) {
-                args.setState(state);
+                args.applySnapshot(state);
                 ret = this.vectorParser.complete(src, args, context);
             }
             return ret;
@@ -1827,7 +1827,7 @@ public final class GenericArguments {
                 }
             }
 
-            Object state = args.getState();
+            CommandArgs.Snapshot state = args.getSnapshot();
             try {
                 Iterable<Entity> entities = (Iterable<Entity>) super.parseValue(source, args);
                 for (Entity entity : entities) {
@@ -1847,7 +1847,7 @@ public final class GenericArguments {
                 return entities;
             } catch (ArgumentParseException ex) {
                 if (this.returnSource) {
-                    args.setState(state);
+                    args.applySnapshot(state);
                     return tryReturnSource(source, args, true);
                 }
                 throw ex;
@@ -2013,7 +2013,7 @@ public final class GenericArguments {
                     throw args.createError(Text.of("No IP address was specified!"));
                 }
             }
-            Object state = args.getState();
+            CommandArgs.Snapshot state = args.getSnapshot();
             String s = args.next();
             try {
                 return InetAddress.getByName(s);
@@ -2022,7 +2022,7 @@ public final class GenericArguments {
                     return ((Player) this.possiblePlayer.parseValue(source, args)).getConnection().getAddress().getAddress();
                 } catch (ArgumentParseException ex) {
                     if (this.self && source instanceof RemoteSource) {
-                        args.setState(state);
+                        args.applySnapshot(state);
                         return ((RemoteSource) source).getConnection().getAddress().getAddress();
                     }
                     throw args.createError(Text.of("Invalid IP address!"));
@@ -2252,7 +2252,7 @@ public final class GenericArguments {
             if (!args.hasNext() && this.returnNow) {
                 return LocalDateTime.now();
             }
-            Object state = args.getState();
+            CommandArgs.Snapshot state = args.getSnapshot();
             String date = args.next();
             try {
                 return LocalDateTime.parse(date);
@@ -2264,7 +2264,7 @@ public final class GenericArguments {
                         return LocalDateTime.of(LocalDate.parse(date), LocalTime.MIDNIGHT);
                     } catch (DateTimeParseException ex3) {
                         if (this.returnNow) {
-                            args.setState(state);
+                            args.applySnapshot(state);
                             return LocalDateTime.now();
                         }
                         throw args.createError(Text.of("Invalid date-time!"));

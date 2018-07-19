@@ -68,11 +68,11 @@ public final class CommandFlags extends CommandElement {
 
     @Override
     public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
-        Object state = args.getState();
+        CommandArgs.Snapshot state = args.getSnapshot();
         while (args.hasNext()) {
             String arg = args.next();
             if (arg.startsWith("-")) {
-                Object start = args.getState();
+                CommandArgs.Snapshot start = args.getSnapshot();
                 boolean remove;
                 if (arg.startsWith("--")) { // Long flag
                     remove = parseLongFlag(source, arg.substring(2), args, context);
@@ -80,13 +80,15 @@ public final class CommandFlags extends CommandElement {
                     remove = parseShortFlags(source, arg.substring(1), args, context);
                 }
                 if (remove) {
-                    args.removeArgs(start, args.getState());
+                    args.removeArgs(start, args.getSnapshot());
                 }
             } else if (this.anchorFlags) {
                 break;
             }
         }
-        args.setState(state);
+        // We removed the arguments so we don't parse them as they have already been parsed as flags,
+        // so don't restore them here!
+        args.applySnapshot(state, false);
         if (this.childElement != null) {
             this.childElement.parse(source, args, context);
         }
@@ -182,11 +184,11 @@ public final class CommandFlags extends CommandElement {
 
     @Override
     public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-        Object state = args.getState();
+        CommandArgs.Snapshot state = args.getSnapshot();
         while (args.hasNext()) {
             String next = args.nextIfPresent().get();
             if (next.startsWith("-")) {
-                Object start = args.getState();
+                CommandArgs.Snapshot start = args.getSnapshot();
                 List<String> ret;
                 if (next.startsWith("--")) {
                     ret = tabCompleteLongFlag(next.substring(2), src, args, context);
@@ -196,12 +198,13 @@ public final class CommandFlags extends CommandElement {
                 if (ret != null) {
                     return ret;
                 }
-                args.removeArgs(start, args.getState());
+                args.removeArgs(start, args.getSnapshot());
             } else if (this.anchorFlags) {
                 break;
             }
         }
-        args.setState(state);
+        // the modifications are intentional
+        args.applySnapshot(state, false);
 
         // Prevent tab completion gobbling up an argument if the value parsed.
         if (!args.hasNext() && !args.getRaw().matches("\\s+$")) {
@@ -223,11 +226,11 @@ public final class CommandFlags extends CommandElement {
         } else if (isSplitFlag) {
             args.insertArg(flagSplit[1]);
         }
-        Object state = args.getState();
+        CommandArgs.Snapshot state = args.getSnapshot();
         List<String> completion;
         try {
             element.parse(src, args, context);
-            if (args.getState().equals(state)) {
+            if (args.getSnapshot().equals(state)) {
                 // Not iterated, but succeeded. Check completions to account for optionals
                 completion = element.complete(src, args, context);
             } else {
@@ -239,7 +242,7 @@ public final class CommandFlags extends CommandElement {
                 }
             }
         } catch (ArgumentParseException ex) {
-            args.setState(state);
+            args.applySnapshot(state);
             completion = element.complete(src, args, context);
         }
 
@@ -266,12 +269,12 @@ public final class CommandFlags extends CommandElement {
                     return null;
                 }
             } else {
-                Object start = args.getState();
+                CommandArgs.Snapshot start = args.getSnapshot();
                 try {
                     element.parse(src, args, context);
 
                     // if the iterator hasn't moved, then just try to complete, no point going backwards.
-                    if (args.getState().equals(start)) {
+                    if (args.getSnapshot().equals(start)) {
                         return element.complete(src, args, context);
                     }
 
@@ -287,7 +290,7 @@ public final class CommandFlags extends CommandElement {
                         return elements;
                     }
                 } catch (ArgumentParseException ex) {
-                    args.setState(start);
+                    args.applySnapshot(start);
                     return element.complete(src, args, context);
                 }
             }
