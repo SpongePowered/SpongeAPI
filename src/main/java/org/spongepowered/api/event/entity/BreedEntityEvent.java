@@ -26,33 +26,45 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Ageable;
+import org.spongepowered.api.entity.living.animal.Animal;
 import org.spongepowered.api.event.TristateResult;
 
-/**
- * Represents an event when two {@link Ageable} entities come together
- * to attempt to produce offspring.
- */
+// TODO Rename this to BreedingEvent in API 8 and remove InteractEntity
+@Deprecated
 public interface BreedEntityEvent extends InteractEntityEvent {
 
     /**
-     * Called when an {@link Entity} finds an {@link Entity} to mate with.
-     * 
-     * <p>If {@link org.spongepowered.api.event.TristateResult.Result#ALLOW},
-     * bypasses normal handling to force mate with {@link Entity}.</p>
+     * Called when an {@link Animal} has made it known it is ready to breed.
      */
-    interface FindMate extends BreedEntityEvent, TristateResult {}
+    interface ReadyToMate extends BreedEntityEvent {
+
+        @Override
+        Animal getTargetEntity();
+    }
 
     /**
-     * Called when an {@link Entity} begins to breed with an {@link Entity}.
+     * Called when an {@link Animal} finds an {@link Animal} to mate with.
+     */
+    interface FindMate extends BreedEntityEvent, TristateResult {
+
+        /**
+         * Returns the {@link Animal} this entity will mate with.
+         *
+         * @return the mate
+         */
+        Animal getMatingEntity();
+    }
+
+    /**
+     * Called when an {@link Animal} begins to breed with an {@link Animal}.
      */
     interface Breed extends BreedEntityEvent {
 
         /**
          * Gets the offspring {@link Entity}.
          * 
-         * @return the offspring entity
+         * @return the offspring
          */
         Ageable getOffspringEntity();
     }
-
 }
