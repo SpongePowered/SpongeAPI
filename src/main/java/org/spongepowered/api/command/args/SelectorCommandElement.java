@@ -59,9 +59,9 @@ public abstract class SelectorCommandElement extends PatternMatchingCommandEleme
 
     @Override
     public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-        Object state = args.getState();
+        CommandArgs.Snapshot state = args.getSnapshot();
         final Optional<String> nextArg = args.nextIfPresent();
-        args.setState(state);
+        args.applySnapshot(state);
         List<String> choices = nextArg.isPresent() ? Selector.complete(nextArg.get()) : ImmutableList.of();
 
         if (choices.isEmpty()) {

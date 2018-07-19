@@ -123,9 +123,9 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
     public List<String> complete(final CommandSource src, CommandArgs args, CommandContext context) {
         List<String> completions = Lists.newArrayList();
         if (this.fallbackElements != null) {
-            Object state = args.getState();
+            CommandArgs.Snapshot state = args.getSnapshot();
             completions.addAll(this.fallbackElements.complete(src, args, context));
-            args.setState(state);
+            args.applySnapshot(state);
         }
 
         final Optional<String> commandComponent = args.nextIfPresent();
@@ -183,7 +183,7 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
             return; // execute the fallback regardless in this scenario.
         }
 
-        Object state = args.getState();
+        CommandArgs.Snapshot state = args.getSnapshot();
         final String key = args.next();
         Optional<CommandMapping> optionalCommandMapping = this.dispatcher.get(key, source);
         if (optionalCommandMapping.isPresent()) {
@@ -207,7 +207,7 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
                 context.putArg(getUntranslatedKey(), mapping);
             } catch (ArgumentParseException ex) {
                 // If we get here, fallback to the elements, if they exist.
-                args.setState(state);
+                args.applySnapshot(state);
                 if (this.fallbackOnFail && this.fallbackElements != null) {
                     this.fallbackElements.parse(source, args, context);
                     return;
@@ -225,7 +225,7 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
         } else {
             // Not a child, so let's continue with the fallback.
             if (this.fallbackExecutor != null && this.fallbackElements != null) {
-                args.setState(state);
+                args.applySnapshot(state);
                 this.fallbackElements.parse(source, args, context);
             } else {
                 // If we have no elements to parse, then we throw this error - this is the only element
