@@ -30,6 +30,9 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents an item group, or creative tab.
+ *
+ * <p>Item groups are signified by where they show on clients and otherwise have
+ * little usable functionality.</p>
  */
 @CatalogedBy(ItemGroups.class)
 public interface ItemGroup extends CatalogType, Translatable {

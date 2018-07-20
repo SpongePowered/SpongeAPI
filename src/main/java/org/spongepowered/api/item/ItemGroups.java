@@ -27,7 +27,8 @@ package org.spongepowered.api.item;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * An enumeration of all possible {@link ItemGroup}s in vanilla minecraft.
+ * An enumeration of the known vanilla {@link ItemGroup}s in Minecraft.
+ * Mods may change and/or introduce new groups at runtime.
  */
 public final class ItemGroups {
 
