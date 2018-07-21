@@ -30,7 +30,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.flowpowered.math.imaginary.Quaterniond;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.data.property.entity.EyeLocationProperty;
+import org.spongepowered.api.data.property.Properties;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.AABB;
 import org.spongepowered.api.world.volume.EntityHit;
@@ -142,8 +142,7 @@ public interface CollisionAwareEntityVolume extends ReadableEntityVolume {
         checkNotNull(looker, "looker");
         final Vector3d rotation = looker.getRotation();
         final Vector3d direction = Quaterniond.fromAxesAnglesDeg(rotation.getX(), -rotation.getY(), rotation.getZ()).getDirection();
-        final Optional<EyeLocationProperty> data = looker.getProperty(EyeLocationProperty.class);
-        final Vector3d start = data.map(EyeLocationProperty::getValue).orElse(looker.getLocation().getPosition());
+        final Vector3d start = looker.getProperty(Properties.EYE_POSITION).orElse(looker.getLocation().getPosition());
         return getIntersectingEntities(start, direction, distance, filter);
     }
 

@@ -36,7 +36,6 @@ import org.spongepowered.api.data.manipulator.mutable.block.*;
 import org.spongepowered.api.data.manipulator.mutable.entity.*;
 import org.spongepowered.api.data.manipulator.mutable.item.*;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.*;
-import org.spongepowered.api.data.property.entity.DominantHandProperty;
 import org.spongepowered.api.data.type.*;
 import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
 import org.spongepowered.api.data.value.mutable.*;
@@ -704,7 +703,7 @@ public final class Keys {
      *
      * <p><em>NOTE:</em> Does not apply to {@link Player}s as their
      * {@link HandPreference} can not be changed server-side.
-     * See {@link DominantHandProperty}.</p>
+     * See {@link org.spongepowered.api.data.property.Properties.Entity#DOMINANT_HAND}.</p>
      *
      * @see DominantHandData#dominantHand()
      */

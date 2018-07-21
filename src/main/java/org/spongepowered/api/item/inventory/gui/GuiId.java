@@ -22,46 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item;
+package org.spongepowered.api.item.inventory.gui;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.data.property.PropertyHolder;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.item.inventory.Container;
+import org.spongepowered.api.item.inventory.Inventory;
+import org.spongepowered.api.item.inventory.InventoryArchetype;
+import org.spongepowered.api.item.inventory.InventoryProperties;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
-import java.util.Optional;
-
 /**
- * A type of item.
+ * GuiIds are used for {@link InventoryProperties#GUI_ID} when building a
+ * custom {@link Inventory}. The GuiId defines what {@link Container} is
+ * displayed on the client side when the custom inventory is opened.
+ *
+ * <p>When using the default vanilla {@link InventoryArchetype}s the
+ * GuiIdProperty is already set, but can be overridden.</p>
+ *
+ * <p>Sponge will not allow to open a inventory that has the wrong
+ * total size for the GuiId. e.g. You can open a 1x9 Grid Inventory as
+ * a Dispenser (3x3). But a 2x9 inventory will not work with it.</p>
  */
-@CatalogedBy(ItemTypes.class)
-public interface ItemType extends CatalogType, Translatable, PropertyHolder {
+@CatalogedBy(GuiIds.class)
+public interface GuiId extends CatalogType {
 
-    /**
-     * Gets the corresponding {@link BlockType} of this item if one exists.
-     * 
-     *  @return The Block
-     */
-    Optional<BlockType> getBlock();
-
-    /**
-     * Gets the id of this item.
-     *
-     * <p>Ex. Minecraft registers a golden carrot as
-     * "minecraft:golden_carrot".</p>
-     *
-     * @return The id
-     */
-    @Override
-    String getName();
-
-    /**
-     * Gets the default maximum quantity for
-     * {@link ItemStack}s of this item.
-     *
-     * @return Max stack quantity
-     */
-    int getMaxStackQuantity();
 }

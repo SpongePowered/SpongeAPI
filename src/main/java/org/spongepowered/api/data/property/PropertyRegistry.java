@@ -24,32 +24,59 @@
  */
 package org.spongepowered.api.data.property;
 
-import org.spongepowered.api.data.Property;
+import org.spongepowered.api.data.property.store.DoublePropertyStore;
+import org.spongepowered.api.data.property.store.IntPropertyStore;
+import org.spongepowered.api.data.property.store.PropertyStore;
+import org.spongepowered.api.registry.CatalogRegistryModule;
 
-import java.util.Optional;
-
-public interface PropertyRegistry {
+public interface PropertyRegistry extends CatalogRegistryModule<Property<?>> {
 
     /**
      * Registers the provided {@link PropertyStore} for the given
-     * {@link Property} {@link Class}. Note that only a single
-     * {@link PropertyStore} can be registered per {@link Property}. Multiple
+     * {@link Property}. Note that only a single {@link PropertyStore}
+     * can be registered per {@link Property}. Multiple
      * registrations will result in exceptions being thrown.
      *
-     * @param propertyClass The property class
+     * @param property The property to register the store for
      * @param propertyStore The property store
-     * @param <T> The type of property
+     * @param <V> The value type of the property
      */
-    <T extends Property<?, ?>> void register(Class<T> propertyClass, PropertyStore<T> propertyStore);
+    <V> void register(Property<V> property, PropertyStore<V> propertyStore);
 
     /**
      * Retrieves the {@link PropertyStore} associated for the provided
-     * {@link Property} class.
+     * {@link Property}.
      *
-     * @param propertyClass The property class
-     * @param <T> The type of property
-     * @return The property store, if available
+     * <p>If there are no registered {@link PropertyStore}s, then will the
+     * returned store always return empty.</p>
+     *
+     * @param property The property
+     * @param <V> The value type of the property
+     * @return The property store
      */
-    <T extends Property<?, ?>> Optional<PropertyStore<T>> getStore(Class<T> propertyClass);
+    <V> PropertyStore<V> getStore(Property<V> property);
 
+    /**
+     * Retrieves the {@link IntPropertyStore} associated for the provided
+     * {@link Property}.
+     *
+     * <p>If there are no registered {@link PropertyStore}s, then will the
+     * returned store always return empty.</p>
+     *
+     * @param property The property
+     * @return The property store
+     */
+    IntPropertyStore getIntStore(Property<Integer> property);
+
+    /**
+     * Retrieves the {@link DoublePropertyStore} associated for the provided
+     * {@link Property}.
+     *
+     * <p>If there are no registered {@link PropertyStore}s, then will the
+     * returned store always return empty.</p>
+     *
+     * @param property The property
+     * @return The property store
+     */
+    DoublePropertyStore getDoubleStore(Property<Double> property);
 }

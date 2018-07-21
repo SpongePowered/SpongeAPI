@@ -22,46 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item;
+package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.data.property.PropertyHolder;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.text.translation.Translatable;
-import org.spongepowered.api.util.annotation.CatalogedBy;
-
-import java.util.Optional;
+import org.spongepowered.api.block.BlockState;
 
 /**
- * A type of item.
+ * Represents the physical matter state, usually of a {@link BlockState}.
  */
-@CatalogedBy(ItemTypes.class)
-public interface ItemType extends CatalogType, Translatable, PropertyHolder {
-
-    /**
-     * Gets the corresponding {@link BlockType} of this item if one exists.
-     * 
-     *  @return The Block
-     */
-    Optional<BlockType> getBlock();
-
-    /**
-     * Gets the id of this item.
-     *
-     * <p>Ex. Minecraft registers a golden carrot as
-     * "minecraft:golden_carrot".</p>
-     *
-     * @return The id
-     */
-    @Override
-    String getName();
-
-    /**
-     * Gets the default maximum quantity for
-     * {@link ItemStack}s of this item.
-     *
-     * @return Max stack quantity
-     */
-    int getMaxStackQuantity();
+public enum Matter {
+    SOLID,
+    LIQUID,
+    GAS,
+    ;
 }

@@ -26,7 +26,6 @@ package org.spongepowered.api.data.manipulator.immutable.item;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.item.DurabilityData;
-import org.spongepowered.api.data.property.item.UseLimitProperty;
 import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -38,7 +37,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
  * <p>Usually, items with durability will break and disappear when their
  * durability reaches the maximum. Examples of this include pickaxes,
  * axes, swords, and shovels. It is recommended to retrieve the maximum
- * durability limit from the {@link UseLimitProperty}.</p>
+ * durability limit with the {@link org.spongepowered.api.data.property.Properties.Item#USE_LIMIT} property.</p>
  */
 public interface ImmutableDurabilityData extends ImmutableDataManipulator<ImmutableDurabilityData, DurabilityData> {
 

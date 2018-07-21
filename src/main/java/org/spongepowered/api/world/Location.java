@@ -40,12 +40,13 @@ import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.DataView;
-import org.spongepowered.api.data.Property;
 import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.merge.MergeFunction;
 import org.spongepowered.api.data.persistence.InvalidDataException;
+import org.spongepowered.api.data.property.DirectionRelativePropertyHolder;
+import org.spongepowered.api.data.property.Property;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.entity.Entity;
@@ -67,7 +68,10 @@ import java.time.Duration;
 import java.time.temporal.TemporalUnit;
 import java.util.Collection;
 import java.util.Objects;
+import java.util.Map;
 import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
 import java.util.Set;
 import java.util.UUID;
 import java.util.function.BiFunction;
@@ -89,7 +93,7 @@ import javax.annotation.Nullable;
  * <p>Locations are immutable. Methods that change the properties of the
  * location create a new instance.</p>
  */
-public final class Location implements DataHolder {
+public final class Location implements DataHolder, DirectionRelativePropertyHolder {
 
     private final UUID worldUniqueId;
     // A weak reference to the world in case it gets unloaded
@@ -970,13 +974,38 @@ public final class Location implements DataHolder {
     }
 
     @Override
-    public <T extends Property<?, ?>> Optional<T> getProperty(Class<T> propertyClass) {
-        return getWorld().getProperty(getBlockPosition(), propertyClass);
+    public <V> Optional<V> getProperty(Property<V> property) {
+        return getWorld().getProperty(getBlockPosition(), property);
     }
 
     @Override
-    public Collection<Property<?, ?>> getApplicableProperties() {
+    public OptionalInt getIntProperty(Property<Integer> property) {
+        return getWorld().getIntProperty(getBlockPosition(), property);
+    }
+
+    @Override
+    public OptionalDouble getDoubleProperty(Property<Double> property) {
+        return getWorld().getDoubleProperty(getBlockPosition(), property);
+    }
+
+    @Override
+    public Map<Property<?>, ?> getProperties() {
         return getWorld().getProperties(getBlockPosition());
+    }
+
+    @Override
+    public <V> Optional<V> getProperty(Direction direction, Property<V> property) {
+        return getWorld().getProperty(getBlockPosition(), direction, property);
+    }
+
+    @Override
+    public OptionalInt getIntProperty(Direction direction, Property<Integer> property) {
+        return getWorld().getIntProperty(getBlockPosition(), direction, property);
+    }
+
+    @Override
+    public OptionalDouble getDoubleProperty(Direction direction, Property<Double> property) {
+        return getWorld().getDoubleProperty(getBlockPosition(), direction, property);
     }
 
     @Override

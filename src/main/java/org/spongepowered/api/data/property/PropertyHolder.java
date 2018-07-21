@@ -24,38 +24,58 @@
  */
 package org.spongepowered.api.data.property;
 
-import org.spongepowered.api.data.Property;
-
-import java.util.Collection;
+import java.util.Map;
 import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
 
 public interface PropertyHolder {
 
     /**
-     * Attempts to retrieve a specific {@link Property} type of this
-     * {@link PropertyHolder}. If the property is not applicable,
-     * {@link Optional#empty()} is returned.
+     * Attempts to retrieve a value for the specified {@link Property}. If
+     * the property is not applicable, {@link Optional#empty()} is returned.
      *
      * <p>{@link Property}s can define various immutable information about a
      * {@link PropertyHolder} that is dependent on the instance of the holder.
      * As {@link Property}s cannot be changed, the {@link PropertyHolder} can
      * not change the information about it's own properties either.</p>
      *
-     * @param propertyClass The property class
-     * @param <T> The type of property
-     * @return The property, if available
+     * <p>The catalog {@link Properties} lists most of the available properties.</p>
+     *
+     * @param property The property to retrieve the value for
+     * @param <V> The property value type
+     * @return The property value, if available
      */
-    <T extends Property<?, ?>> Optional<T> getProperty(Class<T> propertyClass);
+    <V> Optional<V> getProperty(Property<V> property);
 
     /**
-     * Gets an immutable collection of all known {@link Property}s pertaining
-     * to this {@link PropertyHolder}.
+     * Attempts to retrieve a integer value for the specified int {@link Property}. If
+     * the property is not applicable, {@link Optional#empty()} is returned.
+     *
+     * @param property The property to retrieve the value for
+     * @return The integer property value, if available
+     * @see #getProperty(Property)
+     */
+    OptionalInt getIntProperty(Property<Integer> property);
+
+    /**
+     * Attempts to retrieve a double value for the specified int {@link Property}. If
+     * the property is not applicable, {@link Optional#empty()} is returned.
+     *
+     * @param property The property to retrieve the value for
+     * @return The double property value, if available
+     * @see #getProperty(Property)
+     */
+    OptionalDouble getDoubleProperty(Property<Double> property);
+
+    /**
+     * Gets an immutable map of all known {@link Property}s that
+     * are supported by this {@link PropertyHolder} mapped to their value.
      *
      * <p>{@link Property}s can not be changed such that the property is
      * attached to the instance of the residing {@link PropertyHolder}.</p>
      *
      * @return An immutable collection of all known {@link Property}s
      */
-    Collection<Property<?, ?>> getApplicableProperties();
-
+    Map<Property<?>, ?> getProperties();
 }
