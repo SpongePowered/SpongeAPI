@@ -27,8 +27,12 @@ package org.spongepowered.api.item.recipe.crafting;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.api.text.translation.Translation;
+import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.List;
@@ -102,7 +106,7 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
         /**
          * In this Step set the group of the Recipe and/or build it.
          */
-        interface EndStep extends Builder {
+        interface EndStep extends Builder, CatalogBuilder<ShapelessCraftingRecipe, Builder> {
 
             /**
              * Sets the group of the recipe.
@@ -112,6 +116,15 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
              */
             EndStep group(@Nullable String name);
 
+            @Override
+            EndStep id(String id);
+
+            @Override
+            EndStep name(String name);
+
+            @Override
+            EndStep name(Translation name);
+
             /**
              * Builds a new {@link ShapelessCraftingRecipe} from this builder.
              *
@@ -120,8 +133,22 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
              * @return A new {@link ShapelessCraftingRecipe}
              * @throws IllegalStateException If not all required options
              *     were specified
+             * @deprecated Use {@link #build()} instead in combination with {@link #id(String)}
              */
-            ShapelessCraftingRecipe build(String id, Object plugin);
+            @Deprecated
+            default ShapelessCraftingRecipe build(String id, Object plugin) {
+                try (CauseStackManager.StackFrame frame = Sponge.getCauseStackManager().pushCauseFrame()) {
+                    final PluginContainer container;
+                    if (plugin instanceof PluginContainer) {
+                        container = (PluginContainer) plugin;
+                    } else {
+                        container = Sponge.getPluginManager().fromInstance(plugin).orElseThrow(() -> new IllegalArgumentException(
+                                "Plugin must be a PluginContainer or plugin instance, not " + plugin));
+                    }
+                    frame.pushCause(container);
+                    return id(id).build();
+                }
+            }
         }
 
     }

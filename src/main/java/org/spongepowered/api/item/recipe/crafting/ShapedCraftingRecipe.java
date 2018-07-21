@@ -27,8 +27,12 @@ package org.spongepowered.api.item.recipe.crafting;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.api.text.translation.Translation;
+import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Map;
@@ -235,7 +239,7 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
         /**
          * In this Step set the group of the Recipe and/or build it.
          */
-        interface EndStep extends Builder {
+        interface EndStep extends Builder, CatalogBuilder<ShapedCraftingRecipe, Builder> {
 
             /**
              * Sets the group of the recipe.
@@ -245,6 +249,15 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
              */
             EndStep group(@Nullable String name);
 
+            @Override
+            EndStep id(String id);
+
+            @Override
+            EndStep name(String name);
+
+            @Override
+            EndStep name(Translation name);
+
             /**
              * Builds a {@link ShapedCraftingRecipe} from this builder.
              *
@@ -253,8 +266,22 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
              * @return A new {@link ShapedCraftingRecipe}
              * @throws IllegalStateException If not all required options
              *     were specified
+             * @deprecated Use {@link #build()} instead in combination with {@link #id(String)}
              */
-            ShapedCraftingRecipe build(String id, Object plugin);
+            @Deprecated
+            default ShapedCraftingRecipe build(String id, Object plugin) {
+                try (CauseStackManager.StackFrame frame = Sponge.getCauseStackManager().pushCauseFrame()) {
+                    final PluginContainer container;
+                    if (plugin instanceof PluginContainer) {
+                        container = (PluginContainer) plugin;
+                    } else {
+                        container = Sponge.getPluginManager().fromInstance(plugin).orElseThrow(() -> new IllegalArgumentException(
+                                "Plugin must be a PluginContainer or plugin instance, not " + plugin));
+                    }
+                    frame.pushCause(container);
+                    return id(id).build();
+                }
+            }
         }
     }
 

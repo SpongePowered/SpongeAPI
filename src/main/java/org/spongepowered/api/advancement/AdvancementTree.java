@@ -27,6 +27,7 @@ package org.spongepowered.api.advancement;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.ResettableBuilder;
 
 /**
@@ -64,7 +65,7 @@ public interface AdvancementTree extends CatalogType {
     /**
      * A builder to create {@link AdvancementTree}s.
      */
-    interface Builder extends ResettableBuilder<AdvancementTree, Builder> {
+    interface Builder extends CatalogBuilder<AdvancementTree, Builder> {
 
         /**
          * Sets the root {@link Advancement}. The root advancement MUST have
@@ -90,31 +91,22 @@ public interface AdvancementTree extends CatalogType {
 
         // Builder background(ResourcePath background);
 
-        /**
-         * Sets the identifier of the {@link AdvancementTree}
-         * (without the namespace).
-         *
-         * @param id The identifier
-         * @return This builder, for chaining
-         */
+        @Override
         Builder id(String id);
 
         /**
          * Sets the name of the {@link AdvancementTree}. Defaults to
          * the plain {@link DisplayInfo#getTitle()} of the root
-         * {@link Advancement} if  {@link DisplayInfo} is present.
+         * {@link Advancement} if {@link DisplayInfo} is present.
          * Otherwise will it default to the identifier ({@link #id(String)}).
          *
          * @param name The name
          * @return This builder, for chaining
          */
+        @Override
         Builder name(String name);
 
-        /**
-         * Builds the {@link AdvancementTree}.
-         *
-         * @return The advancement tree
-         */
+        @Override
         AdvancementTree build();
 
         @Override
