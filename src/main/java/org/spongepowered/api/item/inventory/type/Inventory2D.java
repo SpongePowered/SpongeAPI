@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.item.inventory.type;
 
+import com.flowpowered.math.vector.Vector2i;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.Slot;
-import org.spongepowered.api.item.inventory.property.SlotPos;
 import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult;
 
 import java.util.Optional;
@@ -44,7 +44,9 @@ public interface Inventory2D extends Inventory {
      * @param pos Slot position to query
      * @return matching stacks, as per the semantics of {@link Inventory#poll()}
      */
-    Optional<ItemStack> poll(SlotPos pos);
+    default Optional<ItemStack> poll(Vector2i pos) {
+        return getSlot(pos).map(Inventory::poll);
+    }
 
     /**
      * Gets and remove the stack at the supplied position in this Inventory.
@@ -54,7 +56,9 @@ public interface Inventory2D extends Inventory {
      * @param limit item limit
      * @return matching stacks, as per the semantics of {@link Inventory#poll()}
      */
-    Optional<ItemStack> poll(SlotPos pos, int limit);
+    default Optional<ItemStack> poll(Vector2i pos, int limit) {
+        return getSlot(pos).map(slot -> slot.poll(limit));
+    }
 
     /**
      * Gets without removing the stack at the supplied position in this
@@ -64,7 +68,9 @@ public interface Inventory2D extends Inventory {
      * @param pos Slot position to query
      * @return matching stacks, as per the semantics of {@link Inventory#peek()}
      */
-    Optional<ItemStack> peek(SlotPos pos);
+    default Optional<ItemStack> peek(Vector2i pos) {
+        return getSlot(pos).map(Inventory::peek);
+    }
 
     /**
      * Gets without removing the stack at the supplied position in this
@@ -75,7 +81,9 @@ public interface Inventory2D extends Inventory {
      * @param limit item limit
      * @return matching stacks, as per the semantics of {@link Inventory#peek()}
      */
-    Optional<ItemStack> peek(SlotPos pos, int limit);
+    default Optional<ItemStack> peek(Vector2i pos, int limit) {
+        return getSlot(pos).map(slot -> slot.peek(limit));
+    }
 
     /**
      * Sets the item in the specified slot.
@@ -85,7 +93,9 @@ public interface Inventory2D extends Inventory {
      * @param stack Stack to insert
      * @return matching stacks, as per the semantics of {@link Inventory#set}
      */
-    InventoryTransactionResult set(SlotPos pos, ItemStack stack);
+    default InventoryTransactionResult set(Vector2i pos, ItemStack stack) {
+        return getSlot(pos).map(slot -> slot.set(stack)).orElse(InventoryTransactionResult.failNoTransactions());
+    }
 
     /**
      * Gets the {@link Slot} at the specified position.
@@ -94,6 +104,6 @@ public interface Inventory2D extends Inventory {
      * @return slot at the specified position, or {@link Optional#empty()} if
      *      no matching slot
      */
-    Optional<Slot> getSlot(SlotPos pos);
+    Optional<Slot> getSlot(Vector2i pos);
 
 }

@@ -34,8 +34,7 @@ import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.property.block.FullBlockSelectionBoxProperty;
-import org.spongepowered.api.data.property.entity.EyeLocationProperty;
+import org.spongepowered.api.data.property.Properties;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.Functional;
 import org.spongepowered.api.util.Tuple;
@@ -330,8 +329,8 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
         }
 
         // Now if using the narrow phase, test on small selection boxes, if needed
-        if (this.narrowPhase && !hit.getExtent().getProperty(hit.getBlockPosition(), FullBlockSelectionBoxProperty.class)
-                .map(FullBlockSelectionBoxProperty::getValue).orElse(true)) {
+        if (this.narrowPhase && !hit.getExtent().getProperty(hit.getBlockPosition(),
+                Properties.Block.HAS_FULL_BLOCK_SELECTION_BOX).orElse(true)) {
             // Get the selection box and perform the narrow phase intersection test
             final Optional<Tuple<Vector3d, Vector3d>> intersection = hit.mapBlock(Extent::getBlockSelectionBox)
                 .flatMap(aabb -> aabb.intersects(this.position, this.direction));
@@ -545,8 +544,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
         final Vector3d rotation = entity.getRotation();
         final Vector3d direction = Quaterniond.fromAxesAnglesDeg(rotation.getX(), -rotation.getY(), rotation.getZ()).getDirection();
         final Location<World> location = entity.getLocation();
-        final Optional<EyeLocationProperty> data = entity.getProperty(EyeLocationProperty.class);
-        final Vector3d position = data.map(EyeLocationProperty::getValue).orElse(location.getPosition());
+        final Vector3d position = entity.getProperty(Properties.Entity.EYE_POSITION).orElse(location.getPosition());
         return from(location.getExtent(), position).direction(direction);
     }
 

@@ -42,12 +42,13 @@ import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.DataView;
-import org.spongepowered.api.data.Property;
 import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.merge.MergeFunction;
 import org.spongepowered.api.data.persistence.InvalidDataException;
+import org.spongepowered.api.data.property.DirectionRelativePropertyHolder;
+import org.spongepowered.api.data.property.Property;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.entity.Entity;
@@ -63,7 +64,10 @@ import org.spongepowered.api.world.extent.Extent;
 
 import java.lang.ref.WeakReference;
 import java.util.Collection;
+import java.util.Map;
 import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
 import java.util.Set;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -87,7 +91,7 @@ import javax.annotation.Nullable;
  *
  * @param <E> The type of extent containing this location
  */
-public final class Location<E extends Extent> implements DataHolder {
+public final class Location<E extends Extent> implements DataHolder, DirectionRelativePropertyHolder {
 
     private final WeakReference<E> extent;
     // Lazily computed, either position or blockPosition is set by the constructor
@@ -754,13 +758,38 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     @Override
-    public <T extends Property<?, ?>> Optional<T> getProperty(Class<T> propertyClass) {
-        return getExtent().getProperty(getBlockPosition(), propertyClass);
+    public <V> Optional<V> getProperty(Property<V> property) {
+        return getExtent().getProperty(getBlockPosition(), property);
     }
 
     @Override
-    public Collection<Property<?, ?>> getApplicableProperties() {
+    public OptionalInt getIntProperty(Property<Integer> property) {
+        return getExtent().getIntProperty(getBlockPosition(), property);
+    }
+
+    @Override
+    public OptionalDouble getDoubleProperty(Property<Double> property) {
+        return getExtent().getDoubleProperty(getBlockPosition(), property);
+    }
+
+    @Override
+    public Map<Property<?>, ?> getProperties() {
         return getExtent().getProperties(getBlockPosition());
+    }
+
+    @Override
+    public <V> Optional<V> getProperty(Direction direction, Property<V> property) {
+        return getExtent().getProperty(getBlockPosition(), direction, property);
+    }
+
+    @Override
+    public OptionalInt getIntProperty(Direction direction, Property<Integer> property) {
+        return getExtent().getIntProperty(getBlockPosition(), direction, property);
+    }
+
+    @Override
+    public OptionalDouble getDoubleProperty(Direction direction, Property<Double> property) {
+        return getExtent().getDoubleProperty(getBlockPosition(), direction, property);
     }
 
     @Override
@@ -918,5 +947,4 @@ public final class Location<E extends Extent> implements DataHolder {
         return otherLoc.getExtent().equals(getExtent())
             && otherLoc.getPosition().equals(getPosition());
     }
-
 }

@@ -32,7 +32,7 @@ import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.property.entity.EyeLocationProperty;
+import org.spongepowered.api.data.property.Properties;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
@@ -345,8 +345,7 @@ public interface EntityUniverse {
         checkNotNull(looker, "looker");
         final Vector3d rotation = looker.getRotation();
         final Vector3d direction = Quaterniond.fromAxesAnglesDeg(rotation.getX(), -rotation.getY(), rotation.getZ()).getDirection();
-        final Optional<EyeLocationProperty> data = looker.getProperty(EyeLocationProperty.class);
-        final Vector3d start = data.map(EyeLocationProperty::getValue).orElse(looker.getLocation().getPosition());
+        final Vector3d start = looker.getProperty(Properties.Entity.EYE_POSITION).orElse(looker.getLocation().getPosition());
         return getIntersectingEntities(start, direction, distance, filter);
     }
 

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.item.inventory;
 
-import org.spongepowered.api.data.Property;
+import org.spongepowered.api.data.property.Property;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.DamageableData;
 import org.spongepowered.api.item.ItemType;

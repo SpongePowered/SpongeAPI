@@ -27,7 +27,6 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableVariantData;
 import org.spongepowered.api.data.manipulator.mutable.entity.DominantHandData;
-import org.spongepowered.api.data.property.entity.DominantHandProperty;
 import org.spongepowered.api.data.type.HandPreference;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.entity.Entity;
@@ -41,7 +40,7 @@ import org.spongepowered.api.entity.living.player.Player;
  * such as tool use or block placing/breaking.</p>
  *
  * <p><i>NOTE: </i> This does not apply to {@link Player}s, for Player
- * entities see {@link DominantHandProperty}.</p>
+ * entities see {@link org.spongepowered.api.data.property.Properties.Entity#DOMINANT_HAND}.</p>
  */
 public interface ImmutableDominantHandData extends ImmutableVariantData<HandPreference, ImmutableDominantHandData, DominantHandData> {
 

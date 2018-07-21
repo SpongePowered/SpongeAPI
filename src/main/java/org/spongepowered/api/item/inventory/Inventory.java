@@ -26,18 +26,19 @@ package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.Nameable;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.Property;
+import org.spongepowered.api.data.property.Property;
 import org.spongepowered.api.data.property.PropertyHolder;
+import org.spongepowered.api.data.property.PropertyMatcher;
 import org.spongepowered.api.event.item.inventory.InteractInventoryEvent;
 import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.property.SlotIndex;
 import org.spongepowered.api.item.inventory.query.QueryOperation;
+import org.spongepowered.api.item.inventory.query.QueryOperationTypes;
+import org.spongepowered.api.item.inventory.slot.SlotIndex;
 import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult;
 import org.spongepowered.api.item.inventory.type.ViewableInventory;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.ResettableBuilder;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -251,7 +252,6 @@ public interface Inventory extends Nameable, PropertyHolder {
      */
     Optional<ItemStack> peek(SlotIndex index, int limit);
 
-
     /**
      * Try to put an ItemStack into this Inventory at the supplied index.
      * The {@link InventoryTransactionResult} will be a success only when
@@ -384,91 +384,29 @@ public interface Inventory extends Nameable, PropertyHolder {
     void setMaxStackSize(int size);
 
     /**
-     * Returns all properties matching the supplied type defined in
-     * <em>this</em> inventory for the specified (immediate) sub-inventory. If
-     * no matching properties are defined an empty collection is returned.
-     *
-     * @param child the child inventory to inspect
-     * @param property the type of property to query for
-     * @param <T> expected type of inventory property, generic to enable easy
-     *      pseudo-duck-typing
-     * @return collection of matching properties, may be an empty collection if
-     *      no properties match the supplied criterion
-     */
-    <T extends InventoryProperty<?, ?>> Collection<T> getProperties(Inventory child, Class<T> property);
-
-    /**
-     * Gets all properties of the specified type defined directly on this
-     * Inventory. For sub-inventories this is effectively the same as
-     * <code>inv.getParent().getProperty(inv, property);</code> but for
-     * top-level inventories may include properties defined on the inventory
-     * directly.
-     *
-     * @param property the type of property to query for
-     * @param <T> expected type of inventory property, generic to enable easy
-     *      pseudo-duck-typing
-     * @return collection of matching properties, may be an empty collection if
-     *      no properties match the supplied criterion
-     */
-    <T extends InventoryProperty<?, ?>> Collection<T> getProperties(Class<T> property);
-
-    /**
-     * Gets the property with the specified key defined in <em>this</em>
-     * inventory for the specified (immediate) sub-inventory.
-     *
-     * @param child the child inventory to inspect
-     * @param property the type of property to query for
-     * @param key Property key to search for
-     * @param <T> expected type of inventory property, generic to enable easy
-     *      pseudo-duck-typing
-     * @return matching properties, may be absent if no property matched the
-     *      supplied criteria
-     */
-    <T extends InventoryProperty<?, ?>> Optional<T> getProperty(Inventory child, Class<T> property, Object key);
-
-    /**
-     * Gets a property with the specified key defined directly on this Inventory
-     * if one is defined. For sub-inventories this is effectively the same as
-     * <code>inv.getParent().getProperty(inv, property, key);</code> but for
-     * top-level inventories may include properties defined on the inventory
-     * directly.
-     *
-     * @param property the type of property to query for
-     * @param key Property key to search for
-     * @param <T> expected type of inventory property, generic to enable easy
-     *      pseudo-duck-typing
-     * @return matching properties, may be absent if no property matched the
-     *      supplied criteria
-     */
-    <T extends InventoryProperty<?, ?>> Optional<T> getProperty(Class<T> property, Object key);
-
-    /**
      * Gets the property with the default key defined in <em>this</em>
      * inventory for the specified (immediate) sub-inventory.
      *
-     * @param child the child inventory to inspect
-     * @param property the type of property to query for
-     * @param <T> expected type of inventory property, generic to enable easy
-     *      pseudo-duck-typing
-     * @return matching properties, may be absent if no property matched the
-     *      supplied criteria
+     * @param child The child inventory to inspect
+     * @param property The property to retrieve the value for
+     * @param <V> The property value type
+     * @return The property value, if available
      */
-    <T extends InventoryProperty<?, ?>> Optional<T> getProperty(Inventory child, Class<T> property);
+    <V> Optional<V> getProperty(Inventory child, Property<V> property);
 
     /**
-     * Gets a property with the default key defined directly on this Inventory
-     * if one is defined. For sub-inventories this is effectively the same as
+     * Gets a property defined directly on this Inventory if one is defined.
+     * For sub-inventories this is effectively the same as
      * <code>inv.getParent().getProperty(inv, property);</code> but for
      * top-level inventories may include properties defined on the inventory
      * directly.
      *
-     * @param property the type of property to query for
-     * @param <T> expected type of inventory property, generic to enable easy
-     *      pseudo-duck-typing
-     * @return matching properties, may be absent if no property matched the
-     *      supplied criteria
+     * @param property The property to retrieve the value for
+     * @param <V> The property value type
+     * @return The property value, if available
      */
-    @Override <T extends Property<?, ?>> Optional<T> getProperty(Class<T> property);
+    @Override
+    <V> Optional<V> getProperty(Property<V> property);
 
     /**
      * Query this inventory for inventories matching any of the supplied
@@ -478,6 +416,17 @@ public interface Inventory extends Nameable, PropertyHolder {
      * @return the query result
      */
     Inventory query(QueryOperation<?>... operations);
+
+    /**
+     * Query this inventory for inventories matching
+     * the supplied {@link PropertyMatcher}.
+     *
+     * @param propertyMatcher the property matcher
+     * @return the query result
+     */
+    default Inventory query(PropertyMatcher<?> propertyMatcher) {
+        return query(QueryOperationTypes.PROPERTY.of(propertyMatcher));
+    }
 
     /**
      * Query this inventory for a single inventory matching the supplied inventory type.
@@ -583,22 +532,13 @@ public interface Inventory extends Nameable, PropertyHolder {
         Builder of(InventoryArchetype archetype);
 
         /**
-         * Sets an {@link InventoryProperty}.
-         *
-         * @param name The name
-         * @param property The property
-         * @return Fluent pattern
-         */
-        // TODO only properties declared in the archetype are allowed? IllegalArgumentException?
-        Builder property(String name, InventoryProperty<?, ?> property);
-
-        /**
-         * Sets an {@link InventoryProperty} with its default key.
+         * Adds a {@link Property} with a specific value.
          *
          * @param property The property
+         * @param value The property value
          * @return Fluent pattern
          */
-        Builder property(InventoryProperty<?, ?> property);
+        <V> Builder property(Property<V> property, V value);
 
         /**
          * Sets the {@link Carrier} that carries the Inventory.

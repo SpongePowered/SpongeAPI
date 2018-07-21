@@ -26,19 +26,17 @@ package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.Property;
-import org.spongepowered.api.item.inventory.property.InventoryTitle;
+import org.spongepowered.api.data.property.Property;
+import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 @CatalogedBy(InventoryArchetypes.class)
-public interface InventoryArchetype extends CatalogType {
+public interface InventoryArchetype extends CatalogType, PropertyHolder {
 
     /**
      * Creates a new {@link Builder} to build an {@link InventoryArchetype}.
@@ -57,42 +55,6 @@ public interface InventoryArchetype extends CatalogType {
     List<InventoryArchetype> getChildArchetypes();
 
     /**
-     * Returns all properties defined on this Archetype.
-     *
-     * @return The properties
-     */
-    Map<String, InventoryProperty<String, ?>> getProperties();
-
-    /**
-     * Returns the Property with given key.
-     *
-     * @param key The key
-     * @return The matching Property or Optional.empty() if not found
-     */
-    Optional<InventoryProperty<String, ?>> getProperty(String key);
-
-    /**
-     * Returns the property with the Properties default key.
-     *
-     * @param type The type of Property to query for
-     * @param <T> Expected Type of InventoryProperty
-     * @return The matching Property or Optional.empty() if not found
-     */
-    default <T extends InventoryProperty<String, ?>> Optional<T> getProperty(Class<T> type) {
-        return getProperty(type, type.getSimpleName().toLowerCase());
-    }
-
-    /**
-     * Returns the property
-     *
-     * @param type The type of Property to query for
-     * @param key The Property key to search for
-     * @param <T> Expected Type of InventoryProperty
-     * @return The matching Property or Optional.empty() if not found
-     */
-    <T extends InventoryProperty<String, ?>> Optional<T> getProperty(Class<T> type, String key);
-
-    /**
      * A Builder for InventoryArchetypes.
      *
      * <p>Compositions of multiple base {@link InventoryArchetypes} are
@@ -101,7 +63,7 @@ public interface InventoryArchetype extends CatalogType {
     interface Builder extends ResettableBuilder<InventoryArchetype, Builder> {
 
         /**
-         * Adds a {@link InventoryTitle} to this Archetype.
+         * Adds a {@link InventoryProperties#TITLE} to this Archetype.
          *
          * @param title The default title
          * @return Fluent pattern
@@ -111,24 +73,24 @@ public interface InventoryArchetype extends CatalogType {
         }
 
         /**
-         * Adds a {@link InventoryTitle} to this Archetype.
+         * Adds a {@link InventoryProperties#TITLE} to this Archetype.
          *
          * @param title The default title
-         * @return Fluent patternI
+         * @return Fluent pattern
          */
         // TODO Decide if Translation should be forced / Colors seem to be possible using the old colorcodes
         default Builder title(Text title) {
-            property(InventoryTitle.builder().value(title).operator(Property.Operator.DELEGATE).build());
-            return this;
+            return property(InventoryProperties.TITLE, title);
         }
 
         /**
-         * Adds an {@link InventoryProperty} to this Archetype.
+         * Adds a {@link Property} with a specific value.
          *
-         * @param property The Property to add
+         * @param property The property
+         * @param value The property value
          * @return Fluent pattern
          */
-        Builder property(InventoryProperty<String, ?> property);
+        <V> Builder property(Property<V> property, V value);
 
         /**
          * Adds an {@link InventoryArchetype} to this Archetype.

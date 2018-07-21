@@ -29,7 +29,6 @@ import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.Slot;
-import org.spongepowered.api.item.inventory.property.EquipmentSlotType;
 import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult;
 import org.spongepowered.api.item.inventory.type.CarriedInventory;
 
@@ -40,27 +39,6 @@ import java.util.Optional;
  * that can carry equipment.
  */
 public interface EquipmentInventory extends Inventory, CarriedInventory<Equipable> {
-
-    /**
-     * Gets and remove the stack for the specified equipment type in this
-     * Inventory.
-     *
-     * @see Inventory#poll()
-     * @param equipmentType Type of equipment slot to query for
-     * @return removed ItemStack, per the semantics of {@link Inventory#poll()}
-     */
-    Optional<ItemStack> poll(EquipmentSlotType equipmentType);
-
-    /**
-     * Gets and remove the items from the stack for the specified equipment type
-     * in this Inventory.
-     *
-     * @see Inventory#poll()
-     * @param equipmentType Type of equipment slot to query for
-     * @param limit item limit
-     * @return removed ItemStack, per the semantics of {@link Inventory#poll()}
-     */
-    Optional<ItemStack> poll(EquipmentSlotType equipmentType, int limit);
 
     /**
      * Gets and remove the stack for the specified equipment type in this
@@ -91,27 +69,6 @@ public interface EquipmentInventory extends Inventory, CarriedInventory<Equipabl
      * @param equipmentType Type of equipment slot to query for
      * @return removed ItemStack, per the semantics of {@link Inventory#peek()}
      */
-    Optional<ItemStack> peek(EquipmentSlotType equipmentType);
-
-    /**
-     * Gets without removing the items from the stack for the specified
-     * equipment type in this Inventory.
-     *
-     * @see Inventory#peek()
-     * @param equipmentType Type of equipment slot to query for
-     * @param limit item limit
-     * @return removed ItemStack, per the semantics of {@link Inventory#peek()}
-     */
-    Optional<ItemStack> peek(EquipmentSlotType equipmentType, int limit);
-
-    /**
-     * Gets without removing the stack for the specified equipment type in this
-     * Inventory.
-     *
-     * @see Inventory#peek()
-     * @param equipmentType Type of equipment slot to query for
-     * @return removed ItemStack, per the semantics of {@link Inventory#peek()}
-     */
     Optional<ItemStack> peek(EquipmentType equipmentType);
 
     /**
@@ -133,25 +90,7 @@ public interface EquipmentInventory extends Inventory, CarriedInventory<Equipabl
      * @param stack stack to insert
      * @return operation result, for details see {@link Inventory#set}
      */
-    InventoryTransactionResult set(EquipmentSlotType equipmentType, ItemStack stack);
-
-    /**
-     * Sets the item for the specified equipment type.
-     *
-     * @see Inventory#set(ItemStack)
-     * @param equipmentType Type of equipment slot to set
-     * @param stack stack to insert
-     * @return operation result, for details see {@link Inventory#set}
-     */
     InventoryTransactionResult set(EquipmentType equipmentType, ItemStack stack);
-
-    /**
-     * Gets the {@link Slot} for the specified equipment type.
-     *
-     * @param equipmentType Type of equipment slot to set
-     * @return matching slot or {@link Optional#empty()} if no matching slot
-     */
-    Optional<Slot> getSlot(EquipmentSlotType equipmentType);
 
     /**
      * Gets the {@link Slot} for the specified equipment type.

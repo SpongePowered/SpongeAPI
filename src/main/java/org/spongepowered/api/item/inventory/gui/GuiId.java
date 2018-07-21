@@ -22,26 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.inventory.equipment;
+package org.spongepowered.api.item.inventory.gui;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.item.inventory.Container;
+import org.spongepowered.api.item.inventory.Inventory;
+import org.spongepowered.api.item.inventory.InventoryArchetype;
+import org.spongepowered.api.item.inventory.InventoryProperties;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents a equipment type.
+ * GuiIds are used for {@link InventoryProperties#GUI_ID} when building a
+ * custom {@link Inventory}. The GuiId defines what {@link Container} is
+ * displayed on the client side when the custom inventory is opened.
+ *
+ * <p>When using the default vanilla {@link InventoryArchetype}s the
+ * GuiIdProperty is already set, but can be overridden.</p>
+ *
+ * <p>Sponge will not allow to open a inventory that has the wrong
+ * total size for the GuiId. e.g. You can open a 1x9 Grid Inventory as
+ * a Dispenser (3x3). But a 2x9 inventory will not work with it.</p>
  */
-@CatalogedBy(EquipmentTypes.class)
-public interface EquipmentType extends CatalogType {
+@CatalogedBy(GuiIds.class)
+public interface GuiId extends CatalogType {
 
-    /**
-     * Gets whether the given {@link EquipmentType}
-     * is included in this one.
-     *
-     * <p>E.g. a {@link EquipmentTypes#BOOTS} is included
-     * in {@link EquipmentTypes#WORN} and {@link EquipmentTypes#ANY}.</p>
-     *
-     * @param other The other equipment type
-     * @return Whether the other equipment type is included in this one
-     */
-    boolean includes(EquipmentType other);
 }

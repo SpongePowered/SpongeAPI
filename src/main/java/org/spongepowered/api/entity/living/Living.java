@@ -29,7 +29,7 @@ import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.DamageableData;
 import org.spongepowered.api.data.manipulator.mutable.entity.HealthData;
-import org.spongepowered.api.data.property.entity.EyeLocationProperty;
+import org.spongepowered.api.data.property.Properties;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 import org.spongepowered.api.data.value.mutable.OptionalValue;
 import org.spongepowered.api.effect.potion.PotionEffect;
@@ -151,10 +151,7 @@ public interface Living extends Entity, ProjectileSource, TeamMember {
      * @param targetPos Position to target
      */
     default void lookAt(Vector3d targetPos) {
-        Vector3d eyePos = getProperty(EyeLocationProperty.class).get().getValue();
-        if (eyePos == null) {
-            return;
-        }
+        Vector3d eyePos = getProperty(Properties.Entity.EYE_POSITION).get();
 
         Vector2d xz1 = eyePos.toVector2(true);
         Vector2d xz2 = targetPos.toVector2(true);
