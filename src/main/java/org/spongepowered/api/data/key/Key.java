@@ -36,7 +36,7 @@ import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.event.EventListener;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.TypeTokens;
 
 import java.lang.reflect.Type;
@@ -103,7 +103,7 @@ public interface Key<V extends BaseValue<?>> extends CatalogType {
      */
     <E extends DataHolder> void registerEvent(Class<E> holderFilter, EventListener<ChangeDataHolderEvent.ValueChange> listener);
 
-    interface Builder<E, V extends BaseValue<E>> extends ResettableBuilder<Key<V>, Builder<E, V>> {
+    interface Builder<E, V extends BaseValue<E>> extends CatalogBuilder<Key<V>, Builder<E, V>> {
 
         /**
          * Starter method for the builder, to be used immediately after
@@ -125,39 +125,6 @@ public interface Key<V extends BaseValue<?>> extends CatalogType {
         <T, B extends BaseValue<T>> Builder<T, B> type(TypeToken<B> token);
 
         /**
-         * Sets the string id to be used for {@link CatalogType#getKey()}.
-         *
-         * <p>This should be formatted appropriately, review {@link CatalogType}
-         * documentation for formatted ids.</p>
-         *
-         * @param id The string id
-         * @return This builder, for chaining
-         * @deprecated Use {@link #key(CatalogKey)} instead, as the catalog key
-         *      is used
-         */
-        @Deprecated
-        Builder<E, V> id(String id);
-
-        /**
-         * Sets the human readable name for the generated {@link Key}.
-         *
-         * @param name The human readable name
-         * @return This builder, for chaining
-         */
-        Builder<E, V> name(String name);
-
-        /**
-         * Sets the {@link CatalogKey} for the registration to be used.
-         *
-         * <p>Formatting for the namespace and value are lowercased as
-         * usual.</p>
-         *
-         * @param key The key to be used for serialization and registry references
-         * @return This builder, for chaining
-         */
-        Builder<E, V> key(CatalogKey key);
-
-        /**
          * Sets the {@link DataQuery} recommended for use with
          * {@link DataContainer}s. See {@link Key#getQuery()}.
          *
@@ -167,20 +134,14 @@ public interface Key<V extends BaseValue<?>> extends CatalogType {
         Builder<E, V> query(DataQuery query);
 
         /**
-         * Builds a new {@link Key}, provided that the
-         * {@link #type(TypeToken)}, {@link #id(String)},
-         * {@link #name(String)}, and {@link #query(DataQuery)}
-         * are set.
+         * Builds the {@link Key}.
          *
-         * @return The generated Key
+         * @return The built key
+         * @throws IllegalStateException If not all required options were specified; {@link #key(CatalogKey)},
+         *                               {@link #type(TypeToken)} and {@link #query(DataQuery)}.
          */
-        Key<V> build();
-
         @Override
-        @Deprecated
-        default Builder<E, V> from(Key<V> value) throws UnsupportedOperationException {
-            throw new UnsupportedOperationException("Cannot create duplicate keys!");
-        }
+        Key<V> build();
     }
 
 }

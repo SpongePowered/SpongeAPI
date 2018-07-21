@@ -24,14 +24,12 @@
  */
 package org.spongepowered.api.item.recipe.crafting;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.crafting.CraftingGridInventory;
 import org.spongepowered.api.item.recipe.Recipe;
-import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.World;
 
 import java.util.List;
@@ -50,8 +48,7 @@ import java.util.Optional;
  * <p>The requirements of a CraftingRecipe can be general, they just have to
  * eventually return a boolean given an crafting grid.</p>
  */
-@CatalogedBy(CraftingRecipes.class)
-public interface CraftingRecipe extends Recipe, CatalogType {
+public interface CraftingRecipe extends Recipe {
 
     /**
      * Checks if the given {@link CraftingGridInventory} fits the required

@@ -24,12 +24,20 @@
  */
 package org.spongepowered.api.item.recipe;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
+import org.spongepowered.api.item.recipe.smelting.SmeltingRecipe;
 
 /**
- * A general interface for recipes.
+ * A general interface for recipes. Every direct sub interface
+ * of this class will require it's own registry module. Depending
+ * for what purpose a {@link Recipe} is implemented, different
+ * sub classes will be used.
+ * <p>The currently supported recipe types are
+ * {@link CraftingRecipe} and {@link SmeltingRecipe}.
  */
-public interface Recipe {
+public interface Recipe extends CatalogType {
 
     /**
      * A general result of this recipe. This result may be customized depending
