@@ -251,16 +251,17 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
     void clear();
 
     /**
-     * The number of stacks currently in the Inventory. Either 1 or 0 for
+     * The number of non-empty slots in the Inventory. Either 1 or 0 for
      * {@link Slot}s and always 0 for {@link EmptyInventory}s.
      *
-     * @return the number of stacks in the inventory
+     * @return the number non-empty in the inventory
      */
     int size();
 
     /**
      * Returns the number total number of individual <em>items</em> in this
      * inventory.
+     * <p>This equivalent to counting up the stack sizes of all slots.</p>
      *
      * @return the total number of items in the inventory
      */
