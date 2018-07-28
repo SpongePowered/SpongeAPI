@@ -25,11 +25,13 @@
 package org.spongepowered.api.entity.living.player;
 
 import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.block.tileentity.EnderChest;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.manipulator.mutable.entity.StatisticData;
 import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.Tamer;
+import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.world.Location;
@@ -134,4 +136,12 @@ public interface User extends DataHolder, ArmorEquipable, Tamer, Subject {
     default StatisticData getStatisticData() {
         return get(StatisticData.class).get();
     }
+
+    /**
+     * Gets the {@link Inventory} available for this Player's shared {@link EnderChest}
+     * contents.
+     *
+     * @return The ender chest inventory
+     */
+    Inventory getEnderChestInventory();
 }

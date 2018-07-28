@@ -326,6 +326,7 @@ public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMe
      *
      * @return The ender chest inventory
      */
+    @Override
     Inventory getEnderChestInventory();
 
     /**
