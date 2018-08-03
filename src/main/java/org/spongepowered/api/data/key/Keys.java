@@ -105,6 +105,18 @@ public final class Keys {
      */
     public static final Key<Value<Double>> ABSORPTION = DummyObjectProvider.createExtendedFor(Key.class, "ABSORPTION");
 
+
+    /**
+     * Represents the {@link Key} for the item a {@link Living} is using.
+     * For example a player eating a food or blocking with a shield.
+     *
+     * <p>If there is no item, the snapshot will be empty. You can check this
+     * with {@link ItemStackSnapshot#isEmpty()}.</p>
+     *
+     * @see ActiveItemData#activeItem()
+     */
+    public static final Key<Value<ItemStackSnapshot>> ACTIVE_ITEM = DummyObjectProvider.createExtendedFor(Key.class, "ACTIVE_ITEM");
+
     /**
      * Represents the {@link Key} for the "affecting spawning" state of
      * {@link Player}s.
