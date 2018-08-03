@@ -24,545 +24,68 @@
  */
 package org.spongepowered.api.text.title;
 
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Optional;
 
 import javax.annotation.Nullable;
 
 /**
- * Represents an immutable configuration for an in-game title. Instances of this
- * interface can be created through the {@link Builder} by calling
- * {@link #builder()}.
+ * Represents an immutable configuration for an in-game title which can
+ * generally be sent to {@link Player}s.
  *
- * <p>All properties of a title are optional - if they are not set it will use
+ * <p>All properties of a title are optional. If they are not set it will use
  * the current default values from the client.</p>
  */
-public final class Title {
+public interface Title {
 
-    public static final Title EMPTY = new Title();
-    public static final Title CLEAR = new Title(null, null, null, null, null, null, true, false);
-    public static final Title RESET = new Title(null, null, null, null, null, null, false, true);
-
-    final Optional<Text> title;
-    final Optional<Text> subtitle;
-    final Optional<Text> actionBar;
-    final Optional<Integer> fadeIn;
-    final Optional<Integer> stay;
-    final Optional<Integer> fadeOut;
-    final boolean clear;
-    final boolean reset;
-
-    private Title() {
-        this(null, null, null, null, null, null, false, false);
+    /**
+     * Creates a new title configuration builder that will reset the
+     * currently displayed title on the client before displaying
+     * the newly configured one.
+     *
+     * @return A new title builder that will reset the current title
+     * @see #update()
+     */
+    static Builder builder() {
+        return update().reset();
     }
 
     /**
-     * Constructs a new immutable {@link Title} with the specified properties.
+     * Creates a new empty title configuration builder that will not reset
+     * the current title on the client before displaying the new one.
      *
-     * @param title The main title of the title, or {@code null} for default
-     * @param subtitle The subtitle of the title, or {@code null} for default
-     * @param actionBar The action bar text of the title, or {@code null} for
-     *     default
-     * @param fadeIn The fade in time of the title, or {@code null} for default
-     * @param stay The stay time of the title, or {@code null} for default
-     * @param fadeOut The fade out time of the title, or {@code null} for
-     *        default
-     * @param clear {@code true} if this title clears the currently displayed
-     *        one first
-     * @param reset {@code true} if this title resets all settings to default
-     *        first
+     * <p>This has less use cases but should be used if you just want to update
+     * the previously sent title.</p>
+     *
+     * @return A new title builder that will not reset the current title
+     * @see #builder()
      */
-    Title(@Nullable Text title, @Nullable Text subtitle, @Nullable Text actionBar, @Nullable Integer fadeIn, @Nullable Integer stay,
-            @Nullable Integer fadeOut, boolean clear, boolean reset) {
-        this.title = Optional.ofNullable(title);
-        this.subtitle = Optional.ofNullable(subtitle);
-        this.actionBar = Optional.ofNullable(actionBar);
-        this.fadeIn = Optional.ofNullable(fadeIn);
-        this.stay = Optional.ofNullable(stay);
-        this.fadeOut = Optional.ofNullable(fadeOut);
-        this.clear = clear;
-        this.reset = reset;
+    static Builder update() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
     /**
-     * Returns the title of this title configuration.
+     * Gets a title that will clear the currently displayed {@link Title} from
+     * the player's screen.
      *
-     * @return The {@link Text} of the title, if it was configured
+     * @return A title configuration that will clear the current title
      */
-    public Optional<Text> getTitle() {
-        return this.title;
+    static Title clear() {
+        return Title.builder().clear(true).build();
     }
 
     /**
-     * Returns the subtitle of this title configuration.
+     * Gets a title that will reset the current title back to the defaults
+     * on the client.
      *
-     * @return The {@link Text} of the subtitle, if it was configured
+     * @return A title configuration that will reset the current title
      */
-    public Optional<Text> getSubtitle() {
-        return this.subtitle;
-    }
-
-    /**
-     * Returns the action bar text of this title configuration.
-     *
-     * @return The {@link Text} of the action bar, if it was configured
-     */
-    public Optional<Text> getActionBar() {
-        return this.actionBar;
-    }
-
-    /**
-     * Returns the specified time to fade in the title on the client. Once this
-     * period of time is over, the title will stay for the amount of time from
-     * {@link #getStay}.
-     *
-     * <p>The default value for Vanilla is 20 (1 second).</p>
-     *
-     * @return The amount of ticks (1/20 second) for the fade in effect
-     */
-    public Optional<Integer> getFadeIn() {
-        return this.fadeIn;
-    }
-
-    /**
-     * Returns the specified time how long the title should stay on the client.
-     * Once this period of time is over, the title will fade out using the
-     * duration specified from {@link #getFadeOut}.
-     *
-     * <p>The default value for Vanilla is 60 (3 second).</p>
-     *
-     * @return The amount of ticks (1/20 second) for the stay effect
-     */
-    public Optional<Integer> getStay() {
-        return this.stay;
-    }
-
-    /**
-     * Returns the specified time to fade out the title on the client.
-     *
-     * <p>The default value for Vanilla is 20 (1 second).</p>
-     *
-     * @return The amount of ticks (1/20 second) for the fade out effect
-     */
-    public Optional<Integer> getFadeOut() {
-        return this.fadeOut;
-    }
-
-    /**
-     * Returns whether this configuration is clearing the current title from the
-     * screen.
-     *
-     * @return True if the current title will be removed from the client's
-     *         screen
-     */
-    public boolean isClear() {
-        return this.clear;
-    }
-
-    /**
-     * Returns whether this configuration is clearing the current title from the
-     * screen and resetting the current configuration to the default values.
-     *
-     * <p>This is recommended when you want to make sure to display a single
-     * title.</p>
-     *
-     * @return True if the current settings will be reset to the defaults
-     */
-    public boolean isReset() {
-        return this.reset;
-    }
-
-    /**
-     * Creates a new {@link Builder} using the configuration of this instance.
-     *
-     * @return A new builder to modify this Title configuration
-     */
-    public Builder toBuilder() {
-        return new Builder(this);
-    }
-
-    @Override
-    public boolean equals(@Nullable Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Title)) {
-            return false;
-        }
-
-        Title that = (Title) o;
-        return this.title.equals(that.title)
-                && this.subtitle.equals(that.subtitle)
-                && this.actionBar.equals(that.actionBar)
-                && this.fadeIn.equals(that.fadeIn)
-                && this.stay.equals(that.stay)
-                && this.fadeOut.equals(that.fadeOut)
-                && this.clear == that.clear
-                && this.reset == that.reset;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(this.title, this.subtitle, this.actionBar, this.fadeIn, this.stay, this.fadeOut, this.clear, this.reset);
-    }
-
-    @Override
-    public String toString() {
-        return MoreObjects.toStringHelper(this)
-                .omitNullValues()
-                .add("title", this.title.orElse(null))
-                .add("subtitle", this.subtitle.orElse(null))
-                .add("actionBar", this.actionBar.orElse(null))
-                .add("fadeIn", this.fadeIn.orElse(null))
-                .add("stay", this.stay.orElse(null))
-                .add("fadeOut", this.fadeOut.orElse(null))
-                .add("clear", this.clear)
-                .add("reset", this.reset)
-                .toString();
-    }
-
-    /**
-     * Represents a builder class to create immutable {@link Title}
-     * configurations.
-     *
-     * @see Title
-     */
-    public static final class Builder {
-
-        @Nullable private Text title;
-        @Nullable private Text subtitle;
-        @Nullable private Text actionBar;
-        @Nullable private Integer fadeIn;
-        @Nullable private Integer stay;
-        @Nullable private Integer fadeOut;
-        private boolean clear;
-        private boolean reset;
-
-        /**
-         * Constructs a new empty {@link Builder}.
-         */
-        Builder() {
-        }
-
-        /**
-         * Constructs a new {@link Builder} with the properties of the given
-         * {@link Title} as initial values.
-         *
-         * @param title The title to copy the values from
-         */
-        Builder(Title title) {
-            this.title = title.title.orElse(null);
-            this.subtitle = title.subtitle.orElse(null);
-            this.actionBar = title.actionBar.orElse(null);
-            this.fadeIn = title.fadeIn.orElse(null);
-            this.stay = title.stay.orElse(null);
-            this.fadeOut = title.fadeOut.orElse(null);
-            this.clear = title.clear;
-            this.reset = title.reset;
-        }
-
-        /**
-         * Returns the current title of this builder.
-         *
-         * @return The current main title, or {@link Optional#empty()} if none
-         * @see Title#getTitle()
-         */
-        public Optional<Text> getTitle() {
-            return Optional.ofNullable(this.title);
-        }
-
-        /**
-         * Sets the title to send to the player.
-         *
-         * @param title The text to use as the title, or {@code null} to reset
-         * @return This title builder
-         * @see Title#getTitle()
-         */
-        public Builder title(@Nullable Text title) {
-            this.title = title;
-            return this;
-        }
-
-        /**
-         * Returns the current subtitle of this builder.
-         *
-         * @return The current subtitle, or {@link Optional#empty()} if none
-         * @see Title#getSubtitle()
-         */
-        public Optional<Text> getSubtitle() {
-            return Optional.ofNullable(this.subtitle);
-        }
-
-        /**
-         * Sets the subtitle to send to the player.
-         *
-         * @param subtitle The text to use as the subtitle, or {@code null} to
-         *        reset
-         * @return This title builder
-         * @see Title#getSubtitle()
-         */
-        public Builder subtitle(@Nullable Text subtitle) {
-            this.subtitle = subtitle;
-            return this;
-        }
-
-        /**
-         * Returns the current action bar text of this builder.
-         *
-         * @return The current action bar text, or {@link Optional#empty()} if none
-         * @see Title#getActionBar()
-         */
-        public Optional<Text> getActionBar() {
-            return Optional.ofNullable(this.actionBar);
-        }
-
-        /**
-         * Sets the action bar text to send to the player.
-         *
-         * @param actionBar The text to use for the action bar, or {@code null}
-         *     to reset
-         * @return This title builder
-         * @see Title#getActionBar()
-         */
-        public Builder actionBar(@Nullable Text actionBar) {
-            this.actionBar = actionBar;
-            return this;
-        }
-
-        /**
-         * Returns the current fade in effect time of the title.
-         *
-         * @return The current fade in time, or {@link Optional#empty()} if none
-         * @see Title#getFadeIn()
-         */
-        public Optional<Integer> getFadeIn() {
-            return Optional.ofNullable(this.fadeIn);
-        }
-
-        /**
-         * Sets the duration in ticks of the fade in effect of the title. Once
-         * this period of time is over the title will stay for the amount of
-         * time specified in {@link #stay(Integer)}.
-         *
-         * <p>The default value for Vanilla is 20 (1 second).</p>
-         *
-         * @param fadeIn The amount of ticks (1/20 second) for the fade in
-         *        effect, or {@code null} to reset
-         * @return This title builder
-         * @see Title#getFadeIn()
-         */
-        public Builder fadeIn(@Nullable Integer fadeIn) {
-            this.fadeIn = fadeIn;
-            return this;
-        }
-
-        /**
-         * Returns the current stay effect time of the title.
-         *
-         * @return The current stay time, or {@link Optional#empty()} if none
-         * @see Title#getStay()
-         */
-        public Optional<Integer> getStay() {
-            return Optional.ofNullable(this.stay);
-        }
-
-        /**
-         * Sets the duration in ticks how long the title should stay on the
-         * screen. Once this period of time is over the title will fade out
-         * using the duration specified in {@link #fadeOut(Integer)}.
-         *
-         * <p>The default value for Vanilla is 60 (3 seconds).</p>
-         *
-         * @param stay The amount of ticks (1/20 second) to stay, or
-         *        {@code null} to reset
-         * @return This title builder
-         * @see Title#getStay()
-         */
-        public Builder stay(@Nullable Integer stay) {
-            this.stay = stay;
-            return this;
-        }
-
-        /**
-         * Returns the current fade out effect time of the title.
-         *
-         * @return The current fade out time, or {@link Optional#empty()} if
-         *         none
-         * @see Title#getFadeOut()
-         */
-        public Optional<Integer> getFadeOut() {
-            return Optional.ofNullable(this.fadeOut);
-        }
-
-        /**
-         * Sets the duration in ticks of the fade out effect of the title.
-         *
-         * <p>The default value for Vanilla is 20 (1 second).</p>
-         *
-         * @param fadeOut The amount of ticks (1/20 second) for the fade out
-         *        effect, or {@code null} to reset
-         * @return This title builder
-         * @see Title#getFadeOut()
-         */
-        public Builder fadeOut(@Nullable Integer fadeOut) {
-            this.fadeOut = fadeOut;
-            return this;
-        }
-
-        /**
-         * Returns whether this builder is currently configured to clear.
-         *
-         * @return {@code true} if the title will clear
-         * @see Title#isClear()
-         */
-        public boolean isClear() {
-            return this.clear;
-        }
-
-        /**
-         * Removes the currently displayed title from the player's screen. This
-         * will keep the currently used display times and will only remove the
-         * title.
-         *
-         * @return This title builder
-         * @see Title#isClear()
-         */
-        public Builder clear() {
-            return clear(true);
-        }
-
-        /**
-         * Sets whether the the currently displayed title should be removed from
-         * the player's screen and will keep the currently used display times.
-         *
-         * @param clear Whether this title should clear
-         * @return This title builder
-         * @see Title#isClear()
-         */
-        public Builder clear(boolean clear) {
-            if (this.clear = clear) {
-                this.title = null; // No need to send title if we clear it after
-                // that again
-            }
-            return this;
-        }
-
-        /**
-         * Returns whether this builder is currently configured to reset.
-         *
-         * @return {@code true} if the title will reset
-         * @see Title#isReset()
-         */
-        public boolean isReset() {
-            return this.reset;
-        }
-
-        /**
-         * Removes the currently displayed title from the player's screen and
-         * set the configuration back to the default values.
-         *
-         * @return This title builder
-         * @see Title#isReset()
-         */
-        public Builder reset() {
-            return reset(true);
-        }
-
-        /**
-         * Sets whether the currently displayed title should be removed from the
-         * player's screen and the configuration set back to the default values.
-         *
-         * @param reset Whether this title should reset
-         * @return This title builder
-         * @see Title#isReset()
-         */
-        public Builder reset(boolean reset) {
-            if (this.reset = reset) {
-                // No need for these if we reset it again after that
-                this.title = null;
-                this.subtitle = null;
-                this.fadeIn = null;
-                this.stay = null;
-                this.fadeOut = null;
-            }
-            return this;
-        }
-
-        /**
-         * Builds an immutable instance of the current configuration.
-         *
-         * @return An immutable {@link Title} with the currently configured
-         *         settings
-         */
-        public Title build() {
-            // If the title has no other properties and is either empty, just clears
-            // or just resets we can return a special instance
-            if (this.title == null
-                && this.subtitle == null
-                && this.actionBar == null
-                && this.fadeIn == null
-                && this.stay == null
-                && this.fadeOut == null) {
-                if (this.clear) {
-                    if (!this.reset) {
-                        return CLEAR;
-                    }
-                } else if (this.reset) {
-                    return RESET;
-                } else {
-                    return EMPTY;
-                }
-            }
-
-            return new Title(
-                    this.title, this.subtitle, this.actionBar,
-                    this.fadeIn, this.stay, this.fadeOut,
-                    this.clear, this.reset);
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) {
-                return true;
-            }
-            if (!(o instanceof Builder)) {
-                return false;
-            }
-
-            Builder that = (Builder) o;
-            return Objects.equal(this.title, that.title)
-                    && Objects.equal(this.subtitle, that.subtitle)
-                    && Objects.equal(this.actionBar, that.actionBar)
-                    && Objects.equal(this.fadeIn, that.fadeIn)
-                    && Objects.equal(this.stay, that.stay)
-                    && Objects.equal(this.fadeOut, that.fadeOut)
-                    && this.clear == that.clear
-                    && this.reset == that.reset;
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hashCode(this.title, this.subtitle, this.actionBar, this.fadeIn, this.stay, this.fadeOut, this.clear, this.reset);
-        }
-
-        @Override
-        public String toString() {
-            return MoreObjects.toStringHelper(this)
-                    .omitNullValues()
-                    .add("title", this.title)
-                    .add("subtitle", this.subtitle)
-                    .add("actionBar", this.actionBar)
-                    .add("fadeIn", this.fadeIn)
-                    .add("stay", this.stay)
-                    .add("fadeOut", this.fadeOut)
-                    .add("clear", this.clear)
-                    .add("reset", this.reset)
-                    .toString();
-        }
-
+    static Title reset() {
+        return Title.builder().reset(true).build();
     }
 
     /**
@@ -571,76 +94,243 @@ public final class Title {
      *
      * @return An empty title instance
      */
-    public static Title of() {
-        return EMPTY;
+    static Title of() {
+        return Title.update().build();
     }
 
     /**
-     * Returns a {@link Title} that will display the given main title on the
-     * player's screen.
+     * A convenience method to create a title that will display the specified
+     * main title on the player's screen.
      *
-     * @param title The title to display
-     * @return The created title
+     * @param title The main title to display
+     * @return The created title configuration
      */
-    public static Title of(Text title) {
-        return builder().title(title).build();
+    static Title of(Text title) {
+        return Title.builder().title(title).build();
     }
 
     /**
-     * Returns a {@link Title} that will display the given main and subtitle on
-     * the player's screen.
+     * A convenience method to create a title that will display the specified
+     * main title and subtitle on the player's screen.
      *
-     * @param title The title to display
+     * @param title The main title to display
      * @param subtitle The subtitle to display
-     * @return The created title
+     * @return The created title configuration
      */
-    public static Title of(Text title, Text subtitle) {
-        return builder().title(title).subtitle(subtitle).build();
+    static Title of(Text title, Text subtitle) {
+        return Title.builder().title(title).subtitle(subtitle).build();
     }
 
     /**
-     * Returns a {@link Title} that will clear the currently displayed
-     * {@link Title} from the player's screen.
+     * Gets the title that will be displayed with this title configuration.
      *
-     * @return A title configuration that will clear
+     * @return The title text of this title, if it was set
      */
-    public static Title clear() {
-        return CLEAR;
-    }
+    Optional<Text> getTitle();
 
     /**
-     * Returns a {@link Title} that will reset the current title back to default
-     * values on the client.
+     * Gets the subtitle that will be displayed with this title configuration.
      *
-     * @return A title configuration that will reset
+     * @return The subtitle text of this title, if it was set
      */
-    public static Title reset() {
-        return RESET;
-    }
+    Optional<Text> getSubtitle();
 
     /**
-     * Creates a new {@link Title} configuration builder that will reset the
-     * currently displayed Title on the client before displaying the new
-     * configured one.
+     * Gets the action bar that will be displayed with this title configuration.
      *
-     * @return A new {@link Builder}
-     * @see #update
+     * @return The action bar text of this title, if it was set
      */
-    public static Builder builder() {
-        return update().reset();
-    }
+    Optional<Text> getActionBar();
 
     /**
-     * Creates a new empty {@link Title} configuration builder. Unlike
-     * {@link #builder} this won't reset the current Title on the client before
-     * displaying the current one. This has less use cases but should be used if
-     * just the previously sent Title should be updated.
+     * Gets the specified time this title will take to fade in on the client.
      *
-     * @return A new {@link Builder}
-     * @see #builder
+     * <p>Once this period of time is over, the title text will stay
+     * for the duration from {@link #getStay()}.</p>
+     *
+     * <p>The default value in vanilla Minecraft is 20 ticks or 1 second.</p>
+     *
+     * @return The amount of ticks (1/20th of a second) this title will take
+     *     to fade in
      */
-    public static Builder update() {
-        return new Builder();
+    Optional<Integer> getFadeIn();
+
+    /**
+     * Gets the specified amount of time this title will stay on the client.
+     *
+     * <p>Once this period of time is over, the the title will fade out
+     * for the duration from {@link #getFadeOut()}.</p>
+     *
+     * <p>The default value in vanilla Minecraft is 60 ticks or 3 seconds.</p>
+     *
+     * @return The amount of ticks (1/20th of a second) this title will stay
+     *     on the client
+     */
+    Optional<Integer> getStay();
+
+    /**
+     * Gets the specified time this title should take to fade out on the client.
+     *
+     * <p>The default value in vanilla Minecraft is 20 ticks or 1 second.</p>
+     *
+     * @return The amount of ticks (1/20th of a second) this title will take
+     *     to fade out
+     */
+    Optional<Integer> getFadeOut();
+
+    /**
+     * Gets whether or not this title configuration will clear the current title
+     * from the client's screen.
+     *
+     * <p>This would keep the currently used display times and only remove
+     * the title.</p>
+     *
+     * @return Whether or not the current title will be removed from the
+     *     client's screen
+     */
+    boolean isClear();
+
+    /**
+     * Gets whether or not this title configuration will reset the current
+     * title configuration for the client, clearing the titles and resetting the
+     * other values to their defaults.
+     *
+     * @return Whether or not the the client's title configuration will be
+     *     reset to the defaults
+     */
+    boolean isReset();
+
+    /**
+     * Creates a new {@link Builder} using the configuration from this title.
+     *
+     * @return A new builder using this title's configuration
+     */
+    Builder toBuilder();
+
+    /**
+     * Used to create a {@link Title}.
+     */
+    interface Builder extends ResettableBuilder<Title, Builder> {
+
+        /**
+         * Sets the title to send to the player.
+         *
+         * @param title The text to use as the main title, or {@code null}
+         *     to reset it
+         * @return The modified builder
+         */
+        Builder title(@Nullable Text title);
+
+        /**
+         * Sets the subtitle to send to the player.
+         *
+         * @param subtitle The text to use as the subtitle, or {@code null}
+         *     to reset it
+         * @return The modified builder
+         */
+        Builder subtitle(@Nullable Text subtitle);
+
+        /**
+         * Sets the action bar text to send to the player.
+         *
+         * @param actionBar The text to use for the action bar, or {@code null}
+         *     to reset it
+         * @return The modified builder
+         */
+        Builder actionBar(@Nullable Text actionBar);
+
+        /**
+         * Sets the duration in ticks that the fade in effect of this title
+         * should last for.
+         *
+         * <p>Once this period of time is over, the title text will stay
+         * for the duration from {@link #getStay()}.</p>
+         *
+         * <p>The default value in vanilla Minecraft is
+         * 20 ticks or 1 second.</p>
+         *
+         * @param fadeIn The amount of ticks (1/20th of a second) this title
+         *     should take to fade in, or {@code null} to reset
+         * @return The modified builder
+         */
+        Builder fadeIn(@Nullable Integer fadeIn);
+
+        /**
+         * Sets the duration in ticks that the title should stay on the
+         *
+         * @param stay The amount of ticks (1/20th of a second) this title
+         *     should stay in view for, or {@code null} to reset
+         * @return The modified builder
+         */
+        Builder stay(@Nullable Integer stay);
+
+        /**
+         * Sets the duration in ticks that the fade out effect of this title
+         * should last for.
+         *
+         * @param fadeOut The amount of ticks (1/20th of a second) this title
+         *     should take to fade out, or {@code null} to reset
+         * @return The modified builder
+         */
+        Builder fadeOut(@Nullable Integer fadeOut);
+
+        /**
+         * Sets this title configuration to clear the current title from the
+         * client's screen.
+         *
+         * <p>This will keep the currently used display times and will only
+         * remove the title.</p>
+         *
+         * @return The modified builder
+         */
+        default Builder clear() {
+            return clear(true);
+        }
+
+        /**
+         * Sets whether or not this title configuration will clear the current
+         * title from the client's screen.
+         *
+         * <p>This will keep the currently used display times and will only
+         * remove the title.</p>
+         *
+         * @param clear Whether or not the current title should be removed from
+         *     the client's screen
+         * @return The modified builder
+         */
+        Builder clear(boolean clear);
+
+        /**
+         * Sets this title configuration to reset the current title
+         * configuration for the client, clearing the titles and resetting
+         * the other values to their defaults.
+         *
+         * @return The modified builder
+         */
+        default Builder reset() {
+            return reset(true);
+        }
+
+        /**
+         * Sets whether or not this title configuration will reset the current
+         * title configuration for the client, clearing the titles and resetting
+         * the other values to their defaults.
+         *
+         * @param reset Whether or not the the client's title configuration
+         *     should be reset to the defaults
+         * @return The modified builder
+         */
+        Builder reset(boolean reset);
+
+        /**
+         * Builds an immutable title using the current specified
+         * configuration.
+         *
+         * @return An immutable {@link Title} with the currently configured
+         *     settings
+         */
+        Title build();
+
     }
 
 }
