@@ -240,6 +240,30 @@ public interface Inventory extends Nameable, PropertyHolder {
      */
     Optional<ItemStack> peek(SlotIndex index, int limit);
 
+
+    /**
+     * Try to put an ItemStack into this Inventory at the supplied index.
+     * The {@link InventoryTransactionResult} will be a success only when
+     * the entire itemstack fits the slot.
+     *
+     * <p>The size of the supplied stack is reduced by the number of items
+     * successfully consumed by the inventory.</p>
+     *
+     * <p>Any rejected items are also available in the transaction result.</p>
+     *
+     * <p>Unlike {@link #set}, this method's general contract does not permit
+     * items in the Inventory to be replaced.</p>
+     *
+     * @param stack A stack of items to attempt to insert into the Slot,
+     *      note that upon successful insertion the supplied ItemStack itself
+     *      will be reduced by the number of items successfully consumed by the
+     *      Inventory
+     * @return A SUCCESS transactionresult if the entire stack was consumed and
+     *      FAILURE when the stack was not or partially consumed or no Slot exists
+     *      at given index.
+     */
+    InventoryTransactionResult offer(SlotIndex index, ItemStack stack);
+
     /**
      * Sets the item in the specified slot.
      *
