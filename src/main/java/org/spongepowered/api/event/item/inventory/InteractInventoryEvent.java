@@ -26,8 +26,12 @@ package org.spongepowered.api.event.item.inventory;
 
 import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
+/**
+ * An interaction with a open {@link Container}.
+ */
 public interface InteractInventoryEvent extends TargetContainerEvent, Cancellable {
 
     /**
@@ -37,7 +41,13 @@ public interface InteractInventoryEvent extends TargetContainerEvent, Cancellabl
      */
     Transaction<ItemStackSnapshot> getCursorTransaction();
 
+    /**
+     * The target container was opened.
+     */
     interface Open extends InteractInventoryEvent {}
 
+    /**
+     * The target container was closed.
+     */
     interface Close extends InteractInventoryEvent {}
 }

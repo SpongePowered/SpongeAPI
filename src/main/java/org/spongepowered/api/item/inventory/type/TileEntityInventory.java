@@ -51,7 +51,7 @@ import java.util.Optional;
  * @param <T> Tile entity type, the specified TE must be a {@link Carrier}
  */
 public interface TileEntityInventory<T extends TileEntity & Carrier>
-        extends PersistentInventory, Interactable, CarriedInventory<T> {
+        extends PersistentInventory, ViewableInventory, CarriedInventory<T> {
 
     /**
      * Returns the owner of this Inventory.

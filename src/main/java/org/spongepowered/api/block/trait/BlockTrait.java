@@ -30,6 +30,7 @@ import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 /**
@@ -104,7 +105,7 @@ public interface BlockTrait<T extends Comparable<T>> extends CatalogType {
     Class<T> getValueClass();
 
     /**
-     * Gets the {@link Predicate} used to determine valid values for this
+     * Gets the {@link Predicate} used to determine valid values for this.
      * {@link BlockTrait}. Any "value" that returns <code>true</code> when
      * {@link Predicate#test(Object)} is called is valid. The
      * {@link Predicate} is specific to this trait.
@@ -113,4 +114,11 @@ public interface BlockTrait<T extends Comparable<T>> extends CatalogType {
      */
     Predicate<T> getPredicate();
 
+    /**
+     * Attempts to parse the provided value as a value dictated possible by this trait or {@link Optional#empty()} otherwise.
+     *
+     * @param value The value to parse
+     * @return The actual value
+     */
+    Optional<T> parseValue(String value);
 }

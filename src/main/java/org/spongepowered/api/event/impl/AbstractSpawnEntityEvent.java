@@ -22,18 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.vehicle.minecart;
+package org.spongepowered.api.event.impl;
 
-import org.spongepowered.api.item.inventory.Carrier;
-import org.spongepowered.api.item.inventory.type.CarriedInventory;
+import com.google.common.base.Preconditions;
+import org.spongepowered.api.event.cause.EventContextKeys;
+import org.spongepowered.api.event.entity.SpawnEntityEvent;
 
-/**
- * Represents a minecart with a container inside it. Common extensions of this
- * are {@link ChestMinecart} and {@link HopperMinecart}.
- */
-public interface ContainerMinecart<M extends ContainerMinecart<M>> extends Minecart, Carrier {
+public abstract class AbstractSpawnEntityEvent extends AbstractEvent implements SpawnEntityEvent {
 
     @Override
-    CarriedInventory<M> getInventory();
-
+    protected void init() {
+        Preconditions.checkState(getContext().containsKey(EventContextKeys.SPAWN_TYPE), "SpawnType not set for SpawnEvent as required per contract!");
+    }
 }

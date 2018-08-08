@@ -71,6 +71,8 @@ public final class EventContextKeys {
 
     public static final EventContextKey<World> LIQUID_BREAK = createFor("LIQUID_BREAK");
 
+    public static final EventContextKey<World> LIQUID_FLOW = createFor("LIQUID_FLOW");
+
     public static final EventContextKey<World> LIQUID_MIX = createFor("LIQUID_MIX");
 
     public static final EventContextKey<User> NOTIFIER = createFor("NOTIFIER");
@@ -99,6 +101,11 @@ public final class EventContextKeys {
 
     public static final EventContextKey<TeleportType> TELEPORT_TYPE = createFor("TELEPORT_TYPE");
 
+    /**
+     * @deprecated this key is a duplicate of {@link #PROJECTILE_SOURCE} and will be removed in API 8.
+     * See <a href="https://github.com/SpongePowered/SpongeAPI/issues/1774">this issue on SpongeAPI</a>, Use {@link #PROJECTILE_SOURCE} instead.
+     */
+    @Deprecated
     public static final EventContextKey<ProjectileSource> THROWER = createFor("THROWER");
 
     public static final EventContextKey<ItemStackSnapshot> USED_ITEM = createFor("USED_ITEM");

@@ -22,22 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.inventory.type;
+package org.spongepowered.api.data.manipulator.immutable.entity;
 
-import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.item.inventory.Inventory;
+import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.manipulator.mutable.entity.TagData;
+import org.spongepowered.api.data.value.immutable.ImmutableSetValue;
+import org.spongepowered.api.entity.Entity;
 
 /**
- * Interface for inventories which may be interacted with by Players.
+ * An {@link ImmutableDataManipulator} representing the scoreboard tags applied
+ * to an {@link Entity}.
+ *
+ * @see <a href="https://minecraft.gamepedia.com/Scoreboard#Tags">
+ *     https://minecraft.gamepedia.com/Scoreboard#Tags</a>
  */
-public interface Interactable extends Inventory {
+public interface ImmutableTagData extends ImmutableDataManipulator<ImmutableTagData, TagData> {
 
     /**
-     * Gets whether the specified player can interact with this object.
-     * 
-     * @param player the Player wishing to interact with this Inventory
-     * @return true if the Entity is able to interact with this Inventory
+     * Gets the {@link ImmutableSetValue} of the scoreboard tags applied to
+     * this {@link Entity}.
+     *
+     * @return The immutable set value of scoreboard tags
      */
-    boolean canInteractWith(Player player);
-    
+    ImmutableSetValue<String> tags();
+
 }

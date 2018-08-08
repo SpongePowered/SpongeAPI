@@ -30,7 +30,7 @@ import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 import org.spongepowered.api.entity.projectile.DamagingProjectile;
 
 /**
- * Represents an Arrow.
+ * Represents an arrow projectile.
  */
 public interface Arrow extends DamagingProjectile {
 
@@ -45,7 +45,8 @@ public interface Arrow extends DamagingProjectile {
     }
 
     /**
-     * Gets the {@link MutableBoundedValue} for the "knockback strength.
+     * Gets the {@link MutableBoundedValue} for the "knockback strength"
+     * that this arrow has.
      *
      * @return The immutable value for the knockback strength
      */

@@ -22,28 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.inventory.entity;
+package org.spongepowered.api.data.manipulator.mutable.entity;
 
-import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.item.inventory.type.GridInventory;
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableTagData;
+import org.spongepowered.api.data.value.mutable.SetValue;
+import org.spongepowered.api.entity.Entity;
 
 /**
- * A {@link Player}'s main inventory including the {@link Hotbar}.
+ * A {@link DataManipulator} representing the scoreboard tags applied
+ * to an {@link Entity}.
+ *
+ * @see <a href="https://minecraft.gamepedia.com/Scoreboard#Tags">
+ *     https://minecraft.gamepedia.com/Scoreboard#Tags</a>
  */
-public interface MainPlayerInventory extends GridInventory {
+public interface TagData extends DataManipulator<TagData, ImmutableTagData> {
 
     /**
-     * Gets the hotbar of the player.
+     * Gets the {@link SetValue} of the scoreboard tags applied to
+     * this {@link Entity}.
      *
-     * @return The hotbar of the player
+     * @return The set value of scoreboard tags
+     * @see Keys#TAGS
      */
-    Hotbar getHotbar();
-
-    /**
-     * Gets the grid of the player's main inventory.
-     *
-     * @return The grid of the player's main inventory
-     */
-    GridInventory getGrid();
+    SetValue<String> tags();
 
 }

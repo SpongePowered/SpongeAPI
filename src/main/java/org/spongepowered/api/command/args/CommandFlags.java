@@ -26,7 +26,6 @@ package org.spongepowered.api.command.args;
 
 import static org.spongepowered.api.command.args.GenericArguments.markTrue;
 import static org.spongepowered.api.command.args.GenericArguments.requiringPermission;
-import static org.spongepowered.api.command.args.GenericArguments.string;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.google.common.collect.ImmutableList;
@@ -35,12 +34,10 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.StartsWithPredicate;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -71,100 +68,76 @@ public final class CommandFlags extends CommandElement {
 
     @Override
     public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
-        Object startIdx = args.getState();
-        String arg;
+        CommandArgs.Snapshot state = args.getSnapshot();
         while (args.hasNext()) {
-            arg = args.next();
-            boolean ignore;
+            String arg = args.next();
             if (arg.startsWith("-")) {
-                Object flagStartIdx = args.getState();
+                CommandArgs.Snapshot start = args.getSnapshot();
+                boolean remove;
                 if (arg.startsWith("--")) { // Long flag
-                    String longFlag = arg.substring(2);
-                    ignore = !parseLongFlag(source, longFlag, args, context);
+                    remove = parseLongFlag(source, arg.substring(2), args, context);
                 } else {
-                    arg = arg.substring(1);
-                    ignore = !parseShortFlags(source, arg, args, context);
+                    remove = parseShortFlags(source, arg.substring(1), args, context);
                 }
-                if (!ignore) {
-                    args.removeArgs(flagStartIdx, args.getState());
+                if (remove) {
+                    args.removeArgs(start, args.getSnapshot());
                 }
             } else if (this.anchorFlags) {
                 break;
             }
         }
-
-        args.setState(startIdx);
+        // We removed the arguments so we don't parse them as they have already been parsed as flags,
+        // so don't restore them here!
+        args.applySnapshot(state, false);
         if (this.childElement != null) {
             this.childElement.parse(source, args, context);
         }
-
     }
 
     private boolean parseLongFlag(CommandSource source, String longFlag, CommandArgs args, CommandContext context) throws ArgumentParseException {
-        if (longFlag.contains("=")) {
-            final String[] flagSplit = longFlag.split("=", 2);
-            longFlag = flagSplit[0];
-            String value = flagSplit[1];
-            CommandElement element = this.longFlags.get(longFlag.toLowerCase());
-            if (element == null) {
-                switch (this.unknownLongFlagBehavior) {
-                    case ERROR:
-                        throw args.createError(t("Unknown long flag %s specified", args));
-                    case ACCEPT_NONVALUE:
-                    case ACCEPT_VALUE:
-                        context.putArg(longFlag, value);
-                        break;
-                    case IGNORE:
-                        return false;
-                    default:
-                        throw new Error("New UnknownFlagBehavior added without corresponding case clauses");
-                }
-            } else {
-                args.insertArg(value);
-                element.parse(source, args, context);
+        String[] flagSplit = longFlag.split("=", 2);
+        String flag = flagSplit[0].toLowerCase();
+        CommandElement element = this.longFlags.get(flag);
+        if (element == null) {
+            switch (this.unknownLongFlagBehavior) {
+                case ERROR:
+                    throw args.createError(t("Unknown long flag %s specified", flagSplit[0]));
+                case ACCEPT_NONVALUE:
+                    context.putArg(flag, flagSplit.length == 2 ? flagSplit[1] : true);
+                    return true;
+                case ACCEPT_VALUE:
+                    context.putArg(flag, flagSplit.length == 2 ? flagSplit[1] : args.next());
+                    return true;
+                case IGNORE:
+                    return false;
+                default:
+                    throw new Error("New UnknownFlagBehavior added without corresponding case clauses");
             }
-        } else {
-            CommandElement element = this.longFlags.get(longFlag.toLowerCase());
-            if (element == null) {
-                switch (this.unknownLongFlagBehavior) {
-                    case ERROR:
-                        throw args.createError(t("Unknown long flag %s specified", args));
-                    case ACCEPT_NONVALUE:
-                        context.putArg(longFlag, true);
-                        break;
-                    case ACCEPT_VALUE:
-                        string(Text.of(longFlag)).parse(source, args, context);
-                        break;
-                    case IGNORE:
-                        return false;
-                    default:
-                        throw new Error("New UnknownFlagBehavior added without corresponding case clauses");
-                }
-            } else {
-                element.parse(source, args, context);
-            }
+        } else if (flagSplit.length == 2) {
+            args.insertArg(flagSplit[1]);
         }
+        element.parse(source, args, context);
         return true;
     }
 
     private boolean parseShortFlags(CommandSource source, String shortFlags, CommandArgs args, CommandContext context) throws ArgumentParseException {
-        for (int i = 0; i < shortFlags.length(); ++i) {
-            final String flagChar = shortFlags.substring(i, i + 1);
-            CommandElement element = this.shortFlags.get(flagChar);
+        for (int i = 0; i < shortFlags.length(); i++) {
+            String shortFlag = shortFlags.substring(i, i + 1);
+            CommandElement element = this.shortFlags.get(shortFlag);
             if (element == null) {
                 switch (this.unknownShortFlagBehavior) {
                     case IGNORE:
                         if (i == 0) {
                             return false;
                         }
-                        throw args.createError(t("Unknown short flag %s specified", flagChar));
+                        throw args.createError(t("Unknown short flag %s specified", shortFlag));
                     case ERROR:
-                        throw args.createError(t("Unknown short flag %s specified", flagChar));
+                        throw args.createError(t("Unknown short flag %s specified", shortFlag));
                     case ACCEPT_NONVALUE:
-                        context.putArg(flagChar, true);
+                        context.putArg(shortFlag, true);
                         break;
                     case ACCEPT_VALUE:
-                        string(Text.of(flagChar)).parse(source, args, context);
+                        context.putArg(shortFlag, args.next());
                         break;
                     default:
                         throw new Error("New UnknownFlagBehavior added without corresponding case clauses");
@@ -211,110 +184,115 @@ public final class CommandFlags extends CommandElement {
 
     @Override
     public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-        Object startIdx = args.getState();
-        Optional<String> arg;
+        CommandArgs.Snapshot state = args.getSnapshot();
         while (args.hasNext()) {
-            arg = args.nextIfPresent();
-            if (arg.get().startsWith("-")) {
-                Object flagStartIdx = args.getState();
-                if (arg.get().startsWith("--")) { // Long flag
-                    String longFlag = arg.get().substring(2);
-                    List<String> ret = tabCompleteLongFlag(longFlag, src, args, context);
-                    if (ret != null) {
-                        return ret;
-                    }
+            String next = args.nextIfPresent().get();
+            if (next.startsWith("-")) {
+                CommandArgs.Snapshot start = args.getSnapshot();
+                List<String> ret;
+                if (next.startsWith("--")) {
+                    ret = tabCompleteLongFlag(next.substring(2), src, args, context);
                 } else {
-                    final String argStr = arg.get().substring(1);
-                    List<String> ret = tabCompleteShortFlags(argStr, src, args, context);
-                    if (ret != null) {
-                        return ret;
-                    }
+                    ret = tabCompleteShortFlags(next.substring(1), src, args, context);
                 }
-                args.removeArgs(flagStartIdx, args.getState());
+                if (ret != null) {
+                    return ret;
+                }
+                args.removeArgs(start, args.getSnapshot());
             } else if (this.anchorFlags) {
                 break;
             }
         }
+        // the modifications are intentional
+        args.applySnapshot(state, false);
 
-        args.setState(startIdx);
-        if (this.childElement == null) {
-            return Collections.emptyList();
+        // Prevent tab completion gobbling up an argument if the value parsed.
+        if (!args.hasNext() && !args.getRaw().matches("\\s+$")) {
+            return ImmutableList.of();
         }
-        return this.childElement.complete(src, args, context);
+        return this.childElement != null ? childElement.complete(src, args, context) : ImmutableList.of();
     }
 
     @Nullable
     private List<String> tabCompleteLongFlag(String longFlag, CommandSource src, CommandArgs args, CommandContext context) {
-        if (longFlag.contains("=")) {
-            final String[] flagSplit = longFlag.split("=", 2);
-            longFlag = flagSplit[0];
-            String value = flagSplit[1];
-            CommandElement element = this.longFlags.get(longFlag.toLowerCase());
-            if (element == null) { // Whole flag is specified, we'll go to value
-                context.putArg(longFlag, value);
-            } else {
-                args.insertArg(value);
-                final String finalLongFlag = longFlag;
-                Object position = args.getState();
-                try {
-                    element.parse(src, args, context);
-                } catch (ArgumentParseException ex) {
-                    args.setState(position);
-                    return ImmutableList.copyOf(
-                        element.complete(src, args, context).stream().map(input -> "--" + finalLongFlag + "=" + input).collect(Collectors.toList()));
-                }
-            }
-        } else {
-            CommandElement element = this.longFlags.get(longFlag.toLowerCase());
-            if (element == null) {
-                List<String> retStrings = this.longFlags.keySet().stream()
-                    .filter(new StartsWithPredicate(longFlag))
-                    .map(arg -> "--" + arg)
-                    .collect(ImmutableList.toImmutableList());
-                if (retStrings.isEmpty() && this.unknownLongFlagBehavior == UnknownFlagBehavior.ACCEPT_VALUE) { // Then we probably have a
-                    // following arg specified, if there's anything
-                    args.nextIfPresent();
-                    return null;
-                }
-                return retStrings;
-            }
-            boolean complete = false;
-            Object state = args.getState();
-            try {
-                element.parse(src, args, context);
-            } catch (ArgumentParseException ex) {
-                complete = true;
-            }
-            if (!args.hasNext()) {
-                complete = true;
-            }
-            if (complete) {
-                args.setState(state);
-                return element.complete(src, args, context);
-            }
+        String[] flagSplit = longFlag.split("=", 2);
+        boolean isSplitFlag = flagSplit.length == 2;
+        CommandElement element = this.longFlags.get(flagSplit[0].toLowerCase());
+        if (element == null || !isSplitFlag && !args.hasNext()) {
+            return this.longFlags.keySet().stream()
+                    .filter(new StartsWithPredicate(flagSplit[0]))
+                    .map(f -> "--" + f)
+                    .collect(Collectors.toList());
+        } else if (isSplitFlag) {
+            args.insertArg(flagSplit[1]);
         }
-        return null;
+        CommandArgs.Snapshot state = args.getSnapshot();
+        List<String> completion;
+        try {
+            element.parse(src, args, context);
+            if (args.getSnapshot().equals(state)) {
+                // Not iterated, but succeeded. Check completions to account for optionals
+                completion = element.complete(src, args, context);
+            } else {
+                args.previous();
+                String res = args.peek();
+                completion = element.complete(src, args, context);
+                if (!completion.contains(res)) {
+                    completion = ImmutableList.<String>builder().addAll(completion).add(res).build();
+                }
+            }
+        } catch (ArgumentParseException ex) {
+            args.applySnapshot(state);
+            completion = element.complete(src, args, context);
+        }
+
+        if (completion.isEmpty()) {
+            if (isSplitFlag) {
+                return ImmutableList.of(); // so we don't overwrite the flag
+            }
+            return null;
+        }
+
+        if (isSplitFlag) {
+            return completion.stream().map(x -> "--" + flagSplit[0] + "=" + x).collect(Collectors.toList());
+        }
+        return completion;
     }
 
     @Nullable
     private List<String> tabCompleteShortFlags(String shortFlags, CommandSource src, CommandArgs args, CommandContext context) {
-        for (int i = 0; i < shortFlags.length(); ++i) {
-            final String flagChar = shortFlags.substring(i, i + 1);
-            CommandElement element = this.shortFlags.get(flagChar);
+        for (int i = 0; i < shortFlags.length(); i++) {
+            CommandElement element = this.shortFlags.get(shortFlags.substring(i, i+ 1));
             if (element == null) {
                 if (i == 0 && this.unknownShortFlagBehavior == UnknownFlagBehavior.ACCEPT_VALUE) {
                     args.nextIfPresent();
                     return null;
                 }
+            } else {
+                CommandArgs.Snapshot start = args.getSnapshot();
+                try {
+                    element.parse(src, args, context);
 
-                continue;
-            }
-            Object start = args.getState();
-            try {
-                element.parse(src, args, context);
-            } catch (ArgumentParseException ex) {
-                args.setState(start);
-                return element.complete(src, args, context);
+                    // if the iterator hasn't moved, then just try to complete, no point going backwards.
+                    if (args.getSnapshot().equals(start)) {
+                        return element.complete(src, args, context);
+                    }
+
+                    // if we managed to parse this, then go back to get the completions for it.
+                    args.previous();
+                    String currentText = args.peek();
+
+                    // ensure this is returned as a valid option
+                    List<String> elements = element.complete(src, args, context);
+                    if (!elements.contains(currentText)) {
+                        return ImmutableList.<String>builder().add(args.peek()).addAll(element.complete(src, args, context)).build();
+                    } else {
+                        return elements;
+                    }
+                } catch (ArgumentParseException ex) {
+                    args.applySnapshot(start);
+                    return element.complete(src, args, context);
+                }
             }
         }
         return null;
@@ -351,13 +329,7 @@ public final class CommandFlags extends CommandElement {
 
         Builder() {}
 
-        private static final Function<String, CommandElement> MARK_TRUE_FUNC = new Function<String, CommandElement>() {
-            @Nullable
-            @Override
-            public CommandElement apply(@Nullable String input) {
-                return markTrue(input);
-            }
-        };
+        private static final Function<String, CommandElement> MARK_TRUE_FUNC = input -> markTrue(Text.of(input));
 
         private Builder flag(Function<String, CommandElement> func, String... specs) {
             final List<String> availableFlags = new ArrayList<>(specs.length);
@@ -416,13 +388,7 @@ public final class CommandFlags extends CommandElement {
          * @return this
          */
         public Builder permissionFlag(final String flagPermission, String... specs) {
-            return flag(new Function<String, CommandElement>() {
-                @Nullable
-                @Override
-                public CommandElement apply(@Nullable String input) {
-                    return requiringPermission(markTrue(input), flagPermission);
-                }
-            }, specs);
+            return flag(input -> requiringPermission(markTrue(Text.of(input)), flagPermission), specs);
         }
 
         /**

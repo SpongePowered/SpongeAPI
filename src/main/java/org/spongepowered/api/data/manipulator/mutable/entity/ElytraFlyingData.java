@@ -22,18 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.vehicle.minecart;
+package org.spongepowered.api.data.manipulator.mutable.entity;
 
-import org.spongepowered.api.item.inventory.Carrier;
-import org.spongepowered.api.item.inventory.type.CarriedInventory;
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableElytraFlyingData;
+import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.item.ItemTypes;
 
 /**
- * Represents a minecart with a container inside it. Common extensions of this
- * are {@link ChestMinecart} and {@link HopperMinecart}.
+ * A {@link DataManipulator} which represents whether or not a {@link Player}
+ * is flying in elytra style, which in vanilla usually means they also have a
+ * {@link ItemTypes#ELYTRA} equipped in their chest slot.
  */
-public interface ContainerMinecart<M extends ContainerMinecart<M>> extends Minecart, Carrier {
+public interface ElytraFlyingData extends DataManipulator<ElytraFlyingData, ImmutableElytraFlyingData> {
 
-    @Override
-    CarriedInventory<M> getInventory();
+    /**
+     * Gets the {@link Value} elytra flying state.
+     *
+     * @return The elytra flying state value
+     * @see Keys#IS_ELYTRA_FLYING
+     */
+    Value<Boolean> elytraFlying();
 
 }

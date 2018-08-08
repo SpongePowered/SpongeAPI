@@ -24,25 +24,39 @@
  */
 package org.spongepowered.api.command.args.parsing;
 
+import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.command.args.ArgumentParseException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 class SpaceSplitInputTokenizer implements InputTokenizer {
     public static final SpaceSplitInputTokenizer INSTANCE = new SpaceSplitInputTokenizer();
+    private static final Pattern SPACE_REGEX = Pattern.compile("^[ ]*$");
 
     private SpaceSplitInputTokenizer() {}
 
     @Override
     public List<SingleArg> tokenize(String arguments, boolean lenient) throws ArgumentParseException {
+        if (SPACE_REGEX.matcher(arguments).matches()) {
+            return ImmutableList.of();
+        }
+
         List<SingleArg> ret = new ArrayList<>();
         int lastIndex = 0;
         int spaceIndex;
         while ((spaceIndex = arguments.indexOf(" ")) != -1) {
-            ret.add(new SingleArg((arguments = arguments.substring(0, spaceIndex)), lastIndex, lastIndex + spaceIndex));
+            if (spaceIndex != 0) {
+                ret.add(new SingleArg(arguments.substring(0, spaceIndex), lastIndex, lastIndex + spaceIndex));
+                arguments = arguments.substring(spaceIndex);
+            } else {
+                arguments = arguments.substring(1);
+            }
             lastIndex += spaceIndex + 1;
         }
+
+        ret.add(new SingleArg(arguments, lastIndex, lastIndex + arguments.length()));
         return ret;
     }
 }

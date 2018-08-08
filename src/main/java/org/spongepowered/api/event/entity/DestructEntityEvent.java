@@ -26,6 +26,7 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.entity.living.TargetLivingEvent;
 import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
@@ -33,19 +34,29 @@ import org.spongepowered.api.world.gamerule.DefaultGameRules;
 
 /**
  * An event where the {@link Entity} is being either removed usually due to
- * the {@link Entity} being marked as "dead". Happens before {@link HarvestEntityEvent}.
+ * the {@link Entity} being marked as "dead". Happens before
+ * {@link HarvestEntityEvent}.
  */
 @GenerateFactoryMethod
 public interface DestructEntityEvent extends TargetEntityEvent, MessageChannelEvent {
 
     /**
-     * A derivative of {@link DestructEntityEvent} where the removal of the {@link Living}, the {@link TargetLivingEvent#getTargetEntity()},
+     * A derivative of {@link DestructEntityEvent} where the removal of the
+     * {@link Living}, the {@link TargetLivingEvent#getTargetEntity()},
      * is due to it losing its health.
+     *
+     * <p>Note that cancelling this event will have the implication that the
+     * entity will have restored health and not enter a "death" state to
+     * play a dying animation, drop items, and drop experience. It is highly
+     * encouraged to keep the cancellation of this event at a mimium as in modded
+     * environments, cancelling this event may have other implications that mods
+     * may not consider and cause bugs.</p>
      */
-    interface Death extends DestructEntityEvent, TargetLivingEvent {
+    interface Death extends DestructEntityEvent, TargetLivingEvent, Cancellable {
 
         /**
-         * Applies the {@link DefaultGameRules#KEEP_INVENTORY} gamerule to this entity alone.
+         * Applies the {@link DefaultGameRules#KEEP_INVENTORY} gamerule to this
+         * entity alone.
          *
          * <p>This only works for players</p>
          *
@@ -56,7 +67,8 @@ public interface DestructEntityEvent extends TargetEntityEvent, MessageChannelEv
         /**
          * Returns whether the inventory is kept after death.
          *
-         * <p>By default this is the same as the {@link DefaultGameRules#KEEP_INVENTORY} gamerule</p>
+         * <p>By default this is the same as the
+         * {@link DefaultGameRules#KEEP_INVENTORY} gamerule.</p>
          *
          * @return Whether the inventory is kept after death.
          */

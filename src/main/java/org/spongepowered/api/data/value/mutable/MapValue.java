@@ -140,4 +140,7 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
 
     @Override
     ImmutableMapValue<K, V> asImmutable();
+
+    @Override
+    MapValue<K, V> copy();
 }

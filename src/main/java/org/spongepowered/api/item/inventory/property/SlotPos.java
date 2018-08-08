@@ -25,175 +25,67 @@
 package org.spongepowered.api.item.inventory.property;
 
 import com.flowpowered.math.vector.Vector2i;
-import org.spongepowered.api.data.Property;
-import org.spongepowered.api.util.Coerce;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.item.inventory.Inventory;
+import org.spongepowered.api.item.inventory.InventoryProperty;
+import org.spongepowered.api.item.inventory.query.QueryOperationTypes;
 
 /**
  * An inventory property which represents a position within a grid. Bear in mind
  * that this property should be queried against the relevant parent, since a
  * slot may have multiple parent inventories. 
  */
-public class SlotPos extends AbstractInventoryProperty<String, Vector2i> {
-
-    /**
-     * Create a new SlotPos property for matching the specified value.
-     * 
-     * @param value the value to match
-     */
-    public SlotPos(Vector2i value) {
-        super(value);
-    }
-
-    /**
-     * Create a new SlotPos property for matching the specified value.
-     * 
-     * @param x slot x position
-     * @param y slot y position
-     */
-    public SlotPos(int x, int y) {
-        super(new Vector2i(x, y));
-    }
-
-    /**
-     * Create a new SlotPos property for matching the specified value with the
-     * specified operator.
-     * 
-     * @param value the value to match
-     * @param operator the operator to use when comparing with other properties
-     */
-    public SlotPos(Vector2i value, Operator operator) {
-        super(value, operator);
-    }
-
-    /**
-     * Create a new SlotPos property for matching the specified value with the
-     * specified operator.
-     * 
-     * @param x slot x position
-     * @param y slot y position
-     * @param operator the operator to use when comparing with other properties
-     */
-    public SlotPos(int x, int y, Operator operator) {
-        super(new Vector2i(x, y), operator);
-    }
-
-    /**
-     * Creates a new SlotPos property for matching the specified value with the
-     * specified operator.
-     * 
-     * @param value the value to match
-     * @param operator the operator to use when comparing with other properties
-     */
-    public SlotPos(Object value, Operator operator) {
-        super(Coerce.toVector2i(value), operator);
-    }
-
-    /**
-     * Gets the X position of this slot within the queried parent.
-     * 
-     * @return slot x coordinate
-     */
-    public int getX() {
-        return this.getValue().getX();
-    }
-
-    /**
-     * Gets the Y position of this slot within the queried parent.
-     * 
-     * @return slot y coordinate
-     */
-    public int getY() {
-        return this.getValue().getY();
-    }
-
-    /* (non-Javadoc)
-     * @see java.lang.Comparable#compareTo(java.lang.Object)
-     */
-    @Override
-    public int compareTo(Property<?, ?> other) {
-        if (other == null) {
-            return 1;
-        }
-
-        return this.getValue().compareTo(Coerce.toVector2i(other.getValue()));
-    }
+public interface SlotPos extends InventoryProperty<String, Vector2i> {
 
     /**
      * Create an SlotPos property which matches SlotPos properties with equal
      * value.
-     * 
-     * @param value the value to match
-     * @return new property
-     */
-    public static SlotPos of(Object value) {
-        return new SlotPos(value, Operator.EQUAL);
-    }
-
-    /**
-     * Create an SlotPos property which matches SlotPos properties with equal
-     * value.
-     * 
+     *
      * @param x the x position of the slot to match
      * @param y the y position of the slot to match
      * @return new property
      */
-    public static SlotPos of(int x, int y) {
-        return new SlotPos(new Vector2i(x, y), Operator.EQUAL);
+    static SlotPos of(int x, int y) {
+        return of(new Vector2i(x, y));
     }
 
     /**
-     * Create an SlotPos property which matches SlotPos properties with unequal
+     * Create an SlotPos property which matches SlotPos properties with equal
      * value.
-     * 
+     *
      * @param value the value to match
      * @return new property
      */
-    public static SlotPos not(Object value) {
-        return new SlotPos(value, Operator.NOTEQUAL);
+    static SlotPos of(Vector2i value) {
+        return builder().value(value).operator(Operator.EQUAL).build();
     }
 
     /**
-     * Create an SlotPos property which matches SlotPos properties with value
-     * greater than this value.
-     * 
-     * @param value the value to match
-     * @return new property
+     * Creates a new {@link Builder} to create {@link SlotPos}s.
+     *
+     * @return The new builder
      */
-    public static SlotPos greaterThan(Object value) {
-        return new SlotPos(value, Operator.GREATER);
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
     /**
-     * Create an SlotPos property which matches SlotPos properties with value
-     * greater than or equal to this value.
-     * 
-     * @param value the value to match
-     * @return new property
+     * Gets the X position of this slot within the queried parent.
+     *
+     * @return slot x coordinate
      */
-    public static SlotPos greaterThanOrEqual(Object value) {
-        return new SlotPos(value, Operator.GEQUAL);
-    }
+    int getX();
 
     /**
-     * Create an SlotPos property which matches SlotPos properties with value
-     * less than this value.
-     * 
-     * @param value the value to match
-     * @return new property
+     * Gets the Y position of this slot within the queried parent.
+     *
+     * @return slot y coordinate
      */
-    public static SlotPos lessThan(Object value) {
-        return new SlotPos(value, Operator.LESS);
-    }
+    int getY();
 
     /**
-     * Create an SlotPos property which matches SlotPos properties with value
-     * less than or equal to this value.
-     * 
-     * @param value the value to match
-     * @return new property
+     * Represents a builder class to create {@link SlotPos}s.
      */
-    public static SlotPos lessThanOrEqual(Object value) {
-        return new SlotPos(value, Operator.LEQUAL);
+    interface Builder extends InventoryProperty.Builder<Vector2i, SlotPos, Builder> {
     }
-
 }

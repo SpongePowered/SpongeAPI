@@ -32,7 +32,7 @@ import org.spongepowered.api.item.inventory.type.GridInventory;
 
 /**
  * Represents the inventory of a {@link User}.
- * It consists of a {@link MainPlayerInventory} (containing the main {@link GridInventory}
+ * It consists of a {@link PrimaryPlayerInventory} (containing the main {@link GridInventory}
  * and the {@link Hotbar}) and an {@link EquipmentInventory}
  */
 public interface UserInventory<T extends User> extends CarriedInventory<T> {
@@ -42,7 +42,7 @@ public interface UserInventory<T extends User> extends CarriedInventory<T> {
      *
      * @return The main inventory
      */
-    MainPlayerInventory getMain();
+    PrimaryPlayerInventory getPrimary();
 
     /**
      * Gets the hotbar inventory.
@@ -50,7 +50,7 @@ public interface UserInventory<T extends User> extends CarriedInventory<T> {
      * @return The hotbar
      */
     default Hotbar getHotbar() {
-        return this.getMain().getHotbar();
+        return this.getPrimary().getHotbar();
     }
 
     /**
@@ -58,16 +58,16 @@ public interface UserInventory<T extends User> extends CarriedInventory<T> {
      *
      * @return The main inventory grid
      */
-    default GridInventory getMainGrid() {
-        return this.getMain().getGrid();
+    default GridInventory getStorage() {
+        return this.getPrimary().getStorage();
     }
 
     /**
-     * Gets the equipment inventory.
+     * Get the armor equipment inventory
      *
-     * @return The equipment inventory
+     * @return The armor inventory
      */
-    EquipmentInventory getEquipment();
+    EquipmentInventory getArmor();
 
     /**
      * Gets the offhand inventory.
@@ -76,4 +76,10 @@ public interface UserInventory<T extends User> extends CarriedInventory<T> {
      */
     Slot getOffhand();
 
+    /**
+     * Gets the equipment inventory.
+     *
+     * @return The equipment inventory
+     */
+    EquipmentInventory getEquipment();
 }
