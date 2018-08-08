@@ -141,11 +141,11 @@ public interface CatalogKey {
 
     interface Builder extends ResettableBuilder<CatalogKey, Builder> {
 
-        Builder nameSpace(String nameSpace);
+        Builder namespace(String namespace);
 
-        Builder nameSpace(PluginContainer container);
+        Builder namespace(PluginContainer container);
 
-        Builder nameSpace(Object pluginInstance);
+        Builder namespace(Object pluginInstance);
 
         Builder value(String value);
 
