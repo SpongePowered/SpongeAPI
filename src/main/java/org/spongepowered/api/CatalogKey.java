@@ -101,7 +101,7 @@ public interface CatalogKey extends Comparable<CatalogKey> {
      * @return A new catalog key
      */
     static CatalogKey of(final String namespace, final String value) {
-        return Sponge.getRegistry().createBuilder(Builder.class).nameSpace(namespace).value(value).build();
+        return Sponge.getRegistry().createBuilder(Builder.class).namespace(namespace).value(value).build();
     }
 
     /**
