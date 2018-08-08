@@ -36,6 +36,7 @@ import com.google.common.collect.Iterables;
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.hocon.HoconConfigurationLoader;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
+import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandMessageFormatting;
@@ -1299,13 +1300,13 @@ public final class GenericArguments {
         protected Iterable<String> getCompletionChoices(CommandSource source) {
             return Iterables.concat(getChoices(source), ImmutableSet.of("#first", "#me"),
                     Iterables.transform(Sponge.getGame().getRegistry()
-                            .getAllOf(DimensionType.class), input2 -> "#" + input2.getId()));
+                            .getAllOf(DimensionType.class), input2 -> "#" + input2.getKey().toString()));
         }
 
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
             return Sponge.getGame().getServer().getAllWorldProperties().stream()
-                    .map(input -> input.getWorldName())
+                    .map(WorldProperties::getWorldName)
                     .collect(Collectors.toList());
         }
 
@@ -1507,14 +1508,15 @@ public final class GenericArguments {
         protected Iterable<String> getChoices(CommandSource source) {
             return Sponge.getGame().getRegistry().getAllOf(this.catalogType).stream()
                 .<String>map(input -> {
-                    return input == null ? null : input.getId(); // TODO: ids or names?
+                    return input == null ? null : input.getKey().toString(); // TODO: ids or names?
                 })
                 .collect(Collectors.toList());
         }
 
         @Override
         protected Object getValue(String choice) throws IllegalArgumentException {
-            final Optional<T> ret = Sponge.getGame().getRegistry().getType(this.catalogType, choice);
+            final CatalogKey resolvedKey = CatalogKey.resolve(choice);
+            final Optional<T> ret = Sponge.getGame().getRegistry().getType(this.catalogType, resolvedKey);
             if (!ret.isPresent()) {
                 throw new IllegalArgumentException("Invalid input " + choice + " was found");
             }

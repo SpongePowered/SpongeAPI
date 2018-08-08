@@ -51,7 +51,7 @@ import org.spongepowered.api.util.ResettableBuilder;
  * their own {@link CatalogType}s and registering them is not recommended as it
  * prevents missing plugin detection by users from taking place.</p>
  */
-public interface CatalogKey {
+public interface CatalogKey extends Comparable<CatalogKey> {
 
     /**
      * The minecraft namespace.

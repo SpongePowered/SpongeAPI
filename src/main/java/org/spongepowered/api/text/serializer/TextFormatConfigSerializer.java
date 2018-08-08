@@ -57,7 +57,7 @@ public class TextFormatConfigSerializer implements TypeSerializer<TextFormat> {
         TextStyle style = TextStyles.NONE;
         ConfigurationNode styleNode = value.getNode(NODE_STYLE);
         for (TextStyle.Base component : registry.getAllOf(TextStyle.Base.class)) {
-            if (styleNode.getNode(component.getId().toLowerCase()).getBoolean()) {
+            if (styleNode.getNode(component.getKey().toString().toLowerCase()).getBoolean()) {
                 style = style.and(component);
             }
         }
@@ -67,11 +67,11 @@ public class TextFormatConfigSerializer implements TypeSerializer<TextFormat> {
 
     @Override
     public void serialize(TypeToken<?> type, TextFormat obj, ConfigurationNode value) throws ObjectMappingException {
-        value.getNode(NODE_COLOR).setValue(obj.getColor().getId());
+        value.getNode(NODE_COLOR).setValue(obj.getColor().getKey().toString());
         ConfigurationNode styleNode = value.getNode(NODE_STYLE);
         TextStyle composite = obj.getStyle();
         Sponge.getRegistry().getAllOf(TextStyle.Base.class)
-                .forEach(style -> styleNode.getNode(style.getId().toLowerCase()).setValue(composite.contains(style)));
+                .forEach(style -> styleNode.getNode(style.getKey().toString().toLowerCase()).setValue(composite.contains(style)));
     }
 
 }

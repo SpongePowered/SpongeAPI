@@ -70,7 +70,7 @@ public final class TextColors {
 
         @Override
         public String toString() {
-            return getId();
+            return getKey().toString();
         }
 
     };
