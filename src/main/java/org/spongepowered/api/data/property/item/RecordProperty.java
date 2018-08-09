@@ -52,6 +52,6 @@ public final class RecordProperty extends AbstractProperty<String, RecordType> {
         if (!(o instanceof RecordProperty)) {
             return -1;
         }
-        return getValue().getId().compareTo(((RecordProperty) o).getValue().getId());
+        return getValue().getKey().compareTo(((RecordProperty) o).getValue().getKey());
     }
 }

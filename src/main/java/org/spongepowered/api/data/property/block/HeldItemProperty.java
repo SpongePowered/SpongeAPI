@@ -61,6 +61,9 @@ public class HeldItemProperty extends AbstractProperty<String, ItemType> {
 
     @Override
     public int compareTo(Property<?, ?> o) {
-        return this.getValue().getId().compareTo(o == null ? "" : Coerce.toString(o.getValue()));
+        if (!(o instanceof HeldItemProperty)) {
+            return -1;
+        }
+        return this.getValue().getKey().compareTo(o == null ? null : ((HeldItemProperty) o).getValue().getKey());
     }
 }

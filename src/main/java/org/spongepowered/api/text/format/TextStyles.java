@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.text.format;
 
+import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.text.Text;
 
 import java.util.Optional;
@@ -96,8 +97,8 @@ public final class TextStyles {
         }
 
         @Override
-        public String getId() {
-            return "NONE";
+        public CatalogKey getKey() {
+            return CatalogKey.sponge("none");
         }
 
         @Override
@@ -201,7 +202,7 @@ public final class TextStyles {
         }
 
         @Override
-        public String getId() {
+        public CatalogKey getKey() {
             throw new UnsupportedOperationException("TextStyles." + this.name + " is not properly assigned!");
         }
 

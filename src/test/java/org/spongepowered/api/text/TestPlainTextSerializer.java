@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.text;
 
+import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.text.serializer.SafeTextSerializer;
 import org.spongepowered.api.text.serializer.TextSerializers;
 import org.spongepowered.api.text.translation.locale.Locales;
@@ -38,8 +39,8 @@ public class TestPlainTextSerializer implements SafeTextSerializer {
     }
 
     @Override
-    public String getId() {
-        return "sponge:plain";
+    public CatalogKey getKey() {
+        return CatalogKey.sponge("plain");
     }
 
     @Override

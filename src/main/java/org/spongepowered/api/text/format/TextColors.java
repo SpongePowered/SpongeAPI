@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.text.format;
 
+import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
@@ -48,6 +49,11 @@ public final class TextColors {
         private final Color color = Color.BLACK;
 
         @Override
+        public CatalogKey getKey() {
+            return CatalogKey.sponge("none");
+        }
+
+        @Override
         public String getName() {
             return "NONE";
         }
@@ -57,14 +63,10 @@ public final class TextColors {
             return this.color;
         }
 
-        @Override
-        public String getId() {
-            return "NONE";
-        }
 
         @Override
         public String toString() {
-            return getId();
+            return getKey().toString();
         }
 
     };
