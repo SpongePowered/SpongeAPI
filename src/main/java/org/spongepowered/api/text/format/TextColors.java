@@ -63,10 +63,6 @@ public final class TextColors {
             return this.color;
         }
 
-        @Override
-        public String getId() {
-            return "NONE";
-        }
 
         @Override
         public String toString() {

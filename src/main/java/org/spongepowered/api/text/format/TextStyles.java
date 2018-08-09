@@ -102,11 +102,6 @@ public final class TextStyles {
         }
 
         @Override
-        public String getId() {
-            return "NONE";
-        }
-
-        @Override
         public String getName() {
             return "NONE";
         }
@@ -208,11 +203,6 @@ public final class TextStyles {
 
         @Override
         public CatalogKey getKey() {
-            throw new UnsupportedOperationException("TextStyles." + this.name + " is not properly assigned!");
-        }
-
-        @Override
-        public String getId() {
             throw new UnsupportedOperationException("TextStyles." + this.name + " is not properly assigned!");
         }
 

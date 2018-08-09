@@ -139,6 +139,9 @@ public interface CatalogKey extends Comparable<CatalogKey> {
     @Override
     String toString();
 
+    @Override
+    int compareTo(CatalogKey o);
+
     interface Builder extends ResettableBuilder<CatalogKey, Builder> {
 
         Builder namespace(String namespace);
