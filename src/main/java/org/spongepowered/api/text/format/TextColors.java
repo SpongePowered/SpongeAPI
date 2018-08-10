@@ -24,9 +24,7 @@
  */
 package org.spongepowered.api.text.format;
 
-import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
@@ -34,42 +32,18 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
  */
 public final class TextColors {
 
-    // Suppress default constructor to ensure non-instantiability.
-    private TextColors() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
-    }
-
     /**
      * Represents a base color that is used as default if no color is specified.
      * This will result in either the default color of the receiver or inherit
      * it from a parent {@link Text}.
      */
-    public static final TextColor NONE = new TextColor() {
+    public static final TextColor NONE = DummyObjectProvider.createFor(TextColor.class, "NONE");
 
-        private final Color color = Color.BLACK;
-
-        @Override
-        public CatalogKey getKey() {
-            return CatalogKey.sponge("none");
-        }
-
-        @Override
-        public String getName() {
-            return "NONE";
-        }
-
-        @Override
-        public Color getColor() {
-            return this.color;
-        }
-
-
-        @Override
-        public String toString() {
-            return getKey().toString();
-        }
-
-    };
+    /**
+     * Resets the current color to the default one on the client. In most cases
+     * this should be the same as {@link #WHITE}.
+     */
+    public static final TextColor RESET = DummyObjectProvider.createFor(TextColor.class, "RESET");
 
     // SORTFIELDS:ON
 
@@ -101,16 +75,12 @@ public final class TextColors {
 
     public static final TextColor RED = DummyObjectProvider.createFor(TextColor.class, "RED");
 
-    /**
-     * Resets the current color to the default one on the client. In most cases
-     * this should be the same as {@link #WHITE}.
-     */
-    public static final TextColor RESET = DummyObjectProvider.createFor(TextColor.class, "RESET");
-
     public static final TextColor WHITE = DummyObjectProvider.createFor(TextColor.class, "WHITE");
 
     public static final TextColor YELLOW = DummyObjectProvider.createFor(TextColor.class, "YELLOW");
 
     // SORTFIELDS:OFF
 
+    private TextColors() {
+    }
 }

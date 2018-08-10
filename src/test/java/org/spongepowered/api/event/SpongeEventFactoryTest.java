@@ -93,8 +93,6 @@ public class SpongeEventFactoryTest {
 
         if (clazz.equals(Class.class)) {
             return PEBKACException.class;
-        } else if (clazz.equals(Text.class)) {
-            return Text.of();
         }
         return mockParam(clazz);
     });
@@ -250,16 +248,6 @@ public class SpongeEventFactoryTest {
             return new Location<>(mock(Extent.class), Vector3d.ZERO);
         } else if (paramType == Locale.class) {
             return Locale.ROOT;
-        } else if (paramType == Text.class) {
-            return Text.of();
-        } else if (paramType == TextFormat.class) {
-            return TextFormat.of();
-        } else if (paramType == ShiftClickAction.class) {
-            return TextActions.insertText("MOCK_SPONGE_SHIFT_CLICK_INSERT");
-        } else if (paramType == HoverAction.class) {
-            return TextActions.showText(Text.of("MOCK_SPONGE_HOVER_ACTION_SHOW_TEXT"));
-        } else if (paramType == ClickAction.class) {
-            return TextActions.runCommand("MOCK_SPONGE_EVENT_FACTORY_RUN_COMMAND");
         } else if (paramType == Duration.class) {
             return Duration.ZERO;
         } else if (paramType == Instant.class) {

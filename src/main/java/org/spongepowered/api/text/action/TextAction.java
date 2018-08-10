@@ -24,13 +24,8 @@
  */
 package org.spongepowered.api.text.action;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import com.google.common.base.MoreObjects;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextElement;
-
-import javax.annotation.Nullable;
 
 /**
  * Represents an action happening as a response to an event on a {@link Text}.
@@ -41,51 +36,12 @@ import javax.annotation.Nullable;
  * @see HoverAction
  * @see ShiftClickAction
  */
-public abstract class TextAction<R> implements TextElement {
-
-    protected final R result;
-
-    /**
-     * Constructs a new {@link TextAction} with the given result.
-     *
-     * @param result The result of the text action
-     */
-    protected TextAction(R result) {
-        this.result = checkNotNull(result, "result");
-    }
+public interface TextAction<R> extends TextElement {
 
     /**
      * Returns the result of this {@link TextAction}.
      *
      * @return The result
      */
-    public final R getResult() {
-        return this.result;
-    }
-
-    @Override
-    public boolean equals(@Nullable Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        TextAction<?> that = (TextAction<?>) o;
-        return this.result.equals(that.result);
-    }
-
-    @Override
-    public int hashCode() {
-        return this.result.hashCode();
-    }
-
-    @Override
-    public String toString() {
-        return MoreObjects.toStringHelper(this)
-                .addValue(this.result)
-                .toString();
-    }
-
+    R getResult();
 }

@@ -24,8 +24,10 @@
  */
 package org.spongepowered.api.text.action;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.ResettableBuilder;
 
 import java.net.URL;
 import java.util.function.Consumer;
@@ -35,106 +37,190 @@ import java.util.function.Consumer;
  *
  * @param <R> The type of the result of the action
  */
-public abstract class ClickAction<R> extends TextAction<R> {
-
-    /**
-     * Constructs a new {@link ClickAction} with the given result.
-     *
-     * @param result The result of the click action
-     */
-    ClickAction(R result) {
-        super(result);
-    }
+public interface ClickAction<R> extends TextAction<R> {
 
     @Override
-    public void applyTo(Text.Builder builder) {
+    default void applyTo(Text.Builder builder) {
         builder.onClick(this);
     }
 
     /**
      * Opens a url.
      */
-    public static final class OpenUrl extends ClickAction<URL> {
+    interface OpenUrl extends ClickAction<URL> {
 
         /**
-         * Constructs a new {@link OpenUrl} instance that will ask the player to
-         * open an URL when it is clicked.
+         * Creates a new builder.
          *
-         * @param url The url to open
+         * @return A new builder
          */
-        OpenUrl(URL url) {
-            super(url);
+        static Builder builder() {
+            return Sponge.getRegistry().createBuilder(Builder.class);
         }
 
+        /**
+         * A builder for {@link OpenUrl} click actions.
+         */
+        interface Builder extends ResettableBuilder<OpenUrl, Builder> {
+
+            /**
+             * Sets the url to open.
+             *
+             * @param url The url
+             * @return This builder
+             */
+            Builder url(URL url);
+
+            /**
+             * Builds the action.
+             *
+             * @return The built action
+             */
+            OpenUrl build();
+        }
     }
 
     /**
      * Runs a command.
      */
-    public static final class RunCommand extends ClickAction<String> {
+    interface RunCommand extends ClickAction<String> {
 
         /**
-         * Constructs a new {@link RunCommand} instance that will run a command
-         * on the client when it is clicked.
+         * Creates a new builder.
          *
-         * @param command The command to execute
+         * @return A new builder
          */
-        RunCommand(String command) {
-            super(command);
+        static Builder builder() {
+            return Sponge.getRegistry().createBuilder(Builder.class);
         }
 
+        /**
+         * A builder for {@link RunCommand} click actions.
+         */
+        interface Builder extends ResettableBuilder<RunCommand, Builder> {
+
+            /**
+             * Sets the command to run.
+             *
+             * @param command The command
+             * @return This builder
+             */
+            Builder command(String command);
+
+            /**
+             * Builds the action.
+             *
+             * @return The built action
+             */
+            RunCommand build();
+        }
     }
 
     /**
      * For books, changes pages.
      */
-    public static final class ChangePage extends ClickAction<Integer> {
+    interface ChangePage extends ClickAction<Integer> {
 
         /**
-         * Constructs a new {@link ChangePage} instance that will change the
-         * page in a book when it is clicked.
+         * Creates a new builder.
          *
-         * @param page The book page to switch to
+         * @return A new builder
          */
-        ChangePage(int page) {
-            super(page);
+        static Builder builder() {
+            return Sponge.getRegistry().createBuilder(Builder.class);
         }
 
+        /**
+         * A builder for {@link ChangePage} click actions.
+         */
+        interface Builder extends ResettableBuilder<ChangePage, Builder> {
+
+            /**
+             * Sets the page to change to.
+             *
+             * @param page The page
+             * @return This builder
+             */
+            Builder page(int page);
+
+            /**
+             * Builds the action.
+             *
+             * @return The built action
+             */
+            ChangePage build();
+        }
     }
 
     /**
      * Suggests a command in the prompt.
      */
-    public static final class SuggestCommand extends ClickAction<String> {
+    interface SuggestCommand extends ClickAction<String> {
 
         /**
-         * Constructs a new {@link SuggestCommand} instance that will suggest
-         * the player a command when it is clicked.
+         * Creates a new builder.
          *
-         * @param command The command to suggest
+         * @return A new builder
          */
-        SuggestCommand(String command) {
-            super(command);
+        static Builder builder() {
+            return Sponge.getRegistry().createBuilder(Builder.class);
         }
 
+        /**
+         * A builder for {@link SuggestCommand} click actions.
+         */
+        interface Builder extends ResettableBuilder<SuggestCommand, Builder> {
+
+            /**
+             * Sets the command to suggest.
+             *
+             * @param command The command
+             * @return This builder
+             */
+            Builder command(String command);
+
+            /**
+             * Builds the action.
+             *
+             * @return The built action
+             */
+            SuggestCommand build();
+        }
     }
 
     /**
      * Execute a callback.
      */
-    public static final class ExecuteCallback extends ClickAction<Consumer<CommandSource>> {
+    interface ExecuteCallback extends ClickAction<Consumer<CommandSource>> {
 
         /**
-         * Constructs a new {@link ExecuteCallback} that will execute the given
-         * runnable on the server when clicked. The callback will expire after
-         * some amount of time (not particularly instantly, but not like
-         * overnight really either).
+         * Creates a new builder.
          *
-         * @param result The callback
+         * @return A new builder
          */
-        ExecuteCallback(Consumer<CommandSource> result) {
-            super(result);
+        static Builder builder() {
+            return Sponge.getRegistry().createBuilder(Builder.class);
+        }
+
+        /**
+         * A builder for {@link ExecuteCallback} click actions.
+         */
+        interface Builder extends ResettableBuilder<ExecuteCallback, Builder> {
+
+            /**
+             * Sets the callback to execute.
+             *
+             * @param callback The callback
+             * @return This builder
+             */
+            Builder callback(Consumer<CommandSource> callback);
+
+            /**
+             * Builds the action.
+             *
+             * @return The built action
+             */
+            ExecuteCallback build();
         }
     }
-
 }

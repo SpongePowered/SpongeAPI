@@ -394,7 +394,7 @@ public final class SimpleDispatcher implements Dispatcher {
                     .onClick(TextActions.suggestCommand("/" + mapping.getPrimaryAlias())).build(),
                     SPACE_TEXT, description.orElse(mapping.getCallable().getUsage(source)));
             if (it.hasNext()) {
-                build.append(Text.NEW_LINE);
+                build.append(Text.newLine());
             }
         }
         return Optional.of(build.build());

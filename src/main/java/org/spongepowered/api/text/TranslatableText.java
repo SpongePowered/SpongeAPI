@@ -24,11 +24,8 @@
  */
 package org.spongepowered.api.text;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.text.action.ClickAction;
 import org.spongepowered.api.text.action.HoverAction;
 import org.spongepowered.api.text.action.ShiftClickAction;
@@ -48,35 +45,15 @@ import javax.annotation.Nullable;
  *
  * @see Builder
  */
-public final class TranslatableText extends Text {
-
-    final Translation translation;
-    final ImmutableList<Object> arguments;
-
-    TranslatableText(Translation translation, ImmutableList<Object> arguments) {
-        this.translation = checkNotNull(translation, "translation");
-        this.arguments = checkNotNull(arguments, "arguments");
-    }
+public interface TranslatableText extends Text {
 
     /**
-     * Constructs a new immutable {@link TranslatableText} for the given
-     * translation with the specified formatting and text actions applied.
+     * Creates a {@link Builder}.
      *
-     * @param format The format of the text
-     * @param children The immutable list of children of the text
-     * @param clickAction The click action of the text, or {@code null} for none
-     * @param hoverAction The hover action of the text, or {@code null} for none
-     * @param shiftClickAction The shift click action of the text, or
-     *        {@code null} for none
-     * @param translation The translation of the text
-     * @param arguments The arguments for the translation
+     * @return A new text builder
      */
-    TranslatableText(TextFormat format, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
-            @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction, Translation translation,
-            ImmutableList<Object> arguments) {
-        super(format, children, clickAction, hoverAction, shiftClickAction);
-        this.translation = checkNotNull(translation, "translation");
-        this.arguments = checkNotNull(arguments, "arguments");
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
     /**
@@ -84,9 +61,7 @@ public final class TranslatableText extends Text {
      *
      * @return The translation of this text
      */
-    public Translation getTranslation() {
-        return this.translation;
-    }
+    Translation getTranslation();
 
     /**
      * Returns the list of {@link Translation} arguments used to format this
@@ -94,40 +69,10 @@ public final class TranslatableText extends Text {
      *
      * @return The list of translation arguments
      */
-    public ImmutableList<Object> getArguments() {
-        return this.arguments;
-    }
+    ImmutableList<Object> getArguments();
 
     @Override
-    public Builder toBuilder() {
-        return new Builder(this);
-    }
-
-    @Override
-    public boolean equals(@Nullable Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof TranslatableText) || !super.equals(o)) {
-            return false;
-        }
-
-        TranslatableText that = (TranslatableText) o;
-        return this.translation.equals(that.translation)
-                && this.arguments.equals(that.arguments);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(super.hashCode(), this.translation, this.arguments);
-    }
-
-    @Override
-    MoreObjects.ToStringHelper toStringHelper() {
-        return super.toStringHelper()
-                .addValue(this.translation)
-                .add("arguments", this.arguments);
-    }
+    Builder toBuilder();
 
     /**
      * Represents a {@link Text.Builder} creating immutable
@@ -135,72 +80,7 @@ public final class TranslatableText extends Text {
      *
      * @see TranslatableText
      */
-    public static class Builder extends Text.Builder {
-
-        private Translation translation;
-        private ImmutableList<Object> arguments;
-
-        /**
-         * Constructs a new unformatted {@link Builder} with the given
-         * {@link Translation} and arguments.
-         *
-         * @param translation The translation for the builder
-         * @param args The arguments for the translation
-         */
-        Builder(Translation translation, Object... args) {
-            translation(translation, args);
-        }
-
-        /**
-         * Constructs a new unformatted {@link Builder} from the given
-         * {@link org.spongepowered.api.text.translation.Translatable} .
-         *
-         * @param translatable The translatable for the builder
-         * @param args The arguments for the translation
-         */
-        Builder(org.spongepowered.api.text.translation.Translatable translatable, Object... args) {
-            translation(translatable, args);
-        }
-
-        /**
-         * Constructs a new {@link Builder} with the formatting and actions of
-         * the specified {@link Text} and the given {@link Translation} and
-         * arguments.
-         *
-         * @param text The text to apply the properties from
-         * @param translation The translation for the builder
-         * @param args The arguments for the translation
-         */
-        Builder(Text text, Translation translation, Object... args) {
-            super(text);
-            translation(translation, args);
-        }
-
-        /**
-         * Constructs a new {@link Builder} with the formatting and actions of
-         * the specified {@link Text} and the given
-         * {@link org.spongepowered.api.text.translation.Translatable}.
-         *
-         * @param text The text to apply the properties from
-         * @param translatable The translatable for the builder
-         * @param args The arguments for the translation
-         */
-        Builder(Text text, org.spongepowered.api.text.translation.Translatable translatable, Object... args) {
-            super(text);
-            translation(translatable, args);
-        }
-
-        /**
-         * Constructs a new {@link Builder} with the formatting, actions and
-         * translation of the specified {@link TranslatableText}.
-         *
-         * @param text The text to apply the properties from
-         */
-        Builder(TranslatableText text) {
-            super(text);
-            this.translation = text.translation;
-            this.arguments = text.arguments;
-        }
+    interface Builder extends Text.Builder {
 
         /**
          * Returns the current translation of this builder.
@@ -208,9 +88,7 @@ public final class TranslatableText extends Text {
          * @return The current content
          * @see TranslatableText#getTranslation()
          */
-        public final Translation getTranslation() {
-            return this.translation;
-        }
+        Translation getTranslation();
 
         /**
          * Returns the current translation arguments of this builder.
@@ -218,9 +96,7 @@ public final class TranslatableText extends Text {
          * @return The current translation arguments
          * @see TranslatableText#getArguments()
          */
-        public final ImmutableList<Object> getArguments() {
-            return this.arguments;
-        }
+        ImmutableList<Object> getArguments();
 
         /**
          * Sets the translation of the text.
@@ -229,11 +105,7 @@ public final class TranslatableText extends Text {
          * @param args The arguments for the translation
          * @return This text builder
          */
-        public Builder translation(Translation translation, Object... args) {
-            this.translation = checkNotNull(translation, "translation");
-            this.arguments = ImmutableList.copyOf(checkNotNull(args, "args"));
-            return this;
-        }
+        Builder translation(Translation translation, Object... args);
 
         /**
          * Sets the translation of the text.
@@ -242,144 +114,69 @@ public final class TranslatableText extends Text {
          * @param args The arguments for the translation
          * @return This text builder
          */
-        public Builder translation(org.spongepowered.api.text.translation.Translatable translatable, Object... args) {
-            return translation(checkNotNull(translatable, "translatable").getTranslation(), args);
-        }
+        Builder translation(org.spongepowered.api.text.translation.Translatable translatable, Object... args);
 
         @Override
-        public TranslatableText build() {
-            return new TranslatableText(
-                    this.format,
-                    ImmutableList.copyOf(this.children),
-                    this.clickAction,
-                    this.hoverAction,
-                    this.shiftClickAction,
-                    this.translation,
-                    this.arguments);
-        }
+        Builder format(TextFormat format);
 
         @Override
-        public boolean equals(@Nullable Object o) {
-            if (this == o) {
-                return true;
-            }
-            if (!(o instanceof Builder) || !super.equals(o)) {
-                return false;
-            }
-
-            Builder that = (Builder) o;
-            return Objects.equal(this.translation, that.translation)
-                    && Objects.equal(this.arguments, that.arguments);
-
-        }
+        Builder color(TextColor color);
 
         @Override
-        public int hashCode() {
-            return Objects.hashCode(super.hashCode(), this.translation, this.arguments);
-        }
+        Builder style(TextStyle... styles);
 
         @Override
-        MoreObjects.ToStringHelper toStringHelper() {
-            return super.toStringHelper()
-                    .addValue(this.translation)
-                    .add("arguments", this.arguments);
-        }
+        Builder onClick(@Nullable ClickAction<?> clickAction);
 
         @Override
-        public Builder format(TextFormat format) {
-            return (Builder) super.format(format);
-        }
+        Builder onHover(@Nullable HoverAction<?> hoverAction);
 
         @Override
-        public Builder color(TextColor color) {
-            return (Builder) super.color(color);
-        }
+        Builder onShiftClick(@Nullable ShiftClickAction<?> shiftClickAction);
 
         @Override
-        public Builder style(TextStyle... styles) {
-            return (Builder) super.style(styles);
-        }
+        Builder append(Text... children);
 
         @Override
-        public Builder onClick(@Nullable ClickAction<?> clickAction) {
-            return (Builder) super.onClick(clickAction);
-        }
+        Builder append(Collection<? extends Text> children);
 
         @Override
-        public Builder onHover(@Nullable HoverAction<?> hoverAction) {
-            return (Builder) super.onHover(hoverAction);
-        }
+        Builder append(Iterable<? extends Text> children);
 
         @Override
-        public Builder onShiftClick(@Nullable ShiftClickAction<?> shiftClickAction) {
-            return (Builder) super.onShiftClick(shiftClickAction);
-        }
+        Builder append(Iterator<? extends Text> children);
 
         @Override
-        public Builder append(Text... children) {
-            return (Builder) super.append(children);
-        }
+        Builder insert(int pos, Text... children);
 
         @Override
-        public Builder append(Collection<? extends Text> children) {
-            return (Builder) super.append(children);
-        }
+        Builder insert(int pos, Collection<? extends Text> children);
 
         @Override
-        public Builder append(Iterable<? extends Text> children) {
-            return (Builder) super.append(children);
-        }
+        Builder insert(int pos, Iterable<? extends Text> children);
 
         @Override
-        public Builder append(Iterator<? extends Text> children) {
-            return (Builder) super.append(children);
-        }
+        Builder insert(int pos, Iterator<? extends Text> children);
 
         @Override
-        public Builder insert(int pos, Text... children) {
-            return (Builder) super.insert(pos, children);
-        }
+        Builder remove(Text... children);
 
         @Override
-        public Builder insert(int pos, Collection<? extends Text> children) {
-            return (Builder) super.insert(pos, children);
-        }
+        Builder remove(Collection<? extends Text> children);
 
         @Override
-        public Builder insert(int pos, Iterable<? extends Text> children) {
-            return (Builder) super.insert(pos, children);
-        }
+        Builder remove(Iterable<? extends Text> children);
 
         @Override
-        public Builder insert(int pos, Iterator<? extends Text> children) {
-            return (Builder) super.insert(pos, children);
-        }
+        Builder remove(Iterator<? extends Text> children);
 
         @Override
-        public Builder remove(Text... children) {
-            return (Builder) super.remove(children);
-        }
+        Builder removeAll();
 
         @Override
-        public Builder remove(Collection<? extends Text> children) {
-            return (Builder) super.remove(children);
-        }
+        TranslatableText build();
 
         @Override
-        public Builder remove(Iterable<? extends Text> children) {
-            return (Builder) super.remove(children);
-        }
-
-        @Override
-        public Builder remove(Iterator<? extends Text> children) {
-            return (Builder) super.remove(children);
-        }
-
-        @Override
-        public Builder removeAll() {
-            return (Builder) super.removeAll();
-        }
-
+        Builder from(Text value);
     }
-
 }

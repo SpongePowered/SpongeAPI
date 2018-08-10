@@ -49,10 +49,9 @@ import org.spongepowered.api.statistic.EntityStatistic;
 import org.spongepowered.api.statistic.ItemStatistic;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.StatisticType;
+import org.spongepowered.api.text.TextFactory;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.selector.SelectorFactory;
-import org.spongepowered.api.text.serializer.TextSerializerFactory;
-import org.spongepowered.api.text.serializer.TextSerializers;
 import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.rotation.Rotation;
@@ -408,13 +407,13 @@ public interface GameRegistry {
     VillagerRegistry getVillagerRegistry();
 
     /**
-     * Gets the internal {@link TextSerializerFactory}.
+     * Gets the internal {@link TextFactory}.
      *
-     * @return The text serializer factory
-     * @deprecated Use {@link TextSerializers} instead.
+     * @return The text factory
+     * @deprecated Internal use only.
      */
     @Deprecated
-    TextSerializerFactory getTextSerializerFactory();
+    TextFactory getTextFactory();
 
     /**
      * Gets the internal {@link SelectorFactory}.
