@@ -35,7 +35,6 @@ import java.util.List;
 public class TestPlainTextSerializer implements SafeTextSerializer {
 
     public static void inject() throws ReflectiveOperationException {
-        TestHooks.setCatalogElement(TextSerializers.class, "PLAIN", new TestPlainTextSerializer());
     }
 
     @Override

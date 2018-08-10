@@ -38,6 +38,7 @@ public interface TextFormat extends TextElement {
      *
      * @return The empty text format
      */
+    @SuppressWarnings("deprecation")
     static TextFormat of() {
         return Sponge.getRegistry().getTextFactory().emptyFormat();
     }
