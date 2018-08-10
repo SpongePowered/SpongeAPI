@@ -160,6 +160,10 @@ public interface Living extends Entity, ProjectileSource, TeamMember {
         Vector2d xz2 = targetPos.toVector2(true);
         double distance = xz1.distance(xz2);
 
+        if (distance == 0) {
+            return;
+        }
+
         // calculate pitch
         Vector2d p1 = Vector2d.UNIT_Y.mul(eyePos.getY());
         Vector2d p2 = new Vector2d(distance, targetPos.getY());

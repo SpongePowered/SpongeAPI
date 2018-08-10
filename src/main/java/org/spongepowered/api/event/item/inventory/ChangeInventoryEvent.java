@@ -31,13 +31,14 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.entity.item.TargetItemEvent;
 import org.spongepowered.api.item.inventory.Inventory;
-import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 import java.util.List;
 import java.util.Optional;
 
+@GenerateFactoryMethod
 public interface ChangeInventoryEvent extends TargetInventoryEvent, AffectSlotEvent {
 
     /**
@@ -48,10 +49,25 @@ public interface ChangeInventoryEvent extends TargetInventoryEvent, AffectSlotEv
     }
 
     /**
-     * Fired when a {@link Living} changes it's held {@link ItemStack}.
+     * Fired when a {@link Living} changes it's held {@link Slot}.
+     *
+     * <p>This can happen by either scrolling or pressing the number key for the slot.</p>
      */
     interface Held extends ChangeInventoryEvent {
 
+        /**
+         * The previously selected slot.
+         *
+         * @return The previously selected slot.
+         */
+        Slot getOriginalSlot();
+
+        /**
+         * The new selected slot.
+         *
+         * @return The new selected slot.
+         */
+        Slot getFinalSlot();
     }
 
     /**

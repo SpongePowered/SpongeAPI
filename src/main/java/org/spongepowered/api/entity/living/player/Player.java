@@ -107,6 +107,17 @@ public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMe
     Optional<Container> openInventory(Inventory inventory) throws IllegalArgumentException;
 
     /**
+     * Opens a given Inventory for the player to view with a custom displayName.
+     *
+     * <p>Note that not all inventories support a custom display name.</p>
+     *
+     * @param inventory The inventory to view
+     * @param displayName The display name to set
+     * @return The opened Container if the inventory was opened, otherwise {@link Optional#empty()}
+     */
+    Optional<Container> openInventory(Inventory inventory, Text displayName);
+
+    /**
      * Closes the currently viewed entity of this player, if it is currently
      * viewing one.
      *
@@ -308,14 +319,6 @@ public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMe
      *     checking whether to skip the night
      */
     void setSleepingIgnored(boolean sleepingIgnored);
-
-    /**
-     * Gets the {@link Inventory} available for this Player's shared {@link EnderChest}
-     * contents.
-     *
-     * @return The ender chest inventory
-     */
-    Inventory getEnderChestInventory();
 
     /**
      * Manually respawns the player.

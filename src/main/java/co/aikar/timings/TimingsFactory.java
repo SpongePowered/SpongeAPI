@@ -25,6 +25,7 @@
 package co.aikar.timings;
 
 import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.text.channel.MessageChannel;
 
 import javax.annotation.Nullable;
 
@@ -111,4 +112,10 @@ public interface TimingsFactory {
      */
     void generateReport(@Nullable CommandSource source);
 
+    /**
+     * Generates a report and sends to the given channel.
+     *
+     * @param channel Channel to send to
+     */
+    void generateReport(MessageChannel channel);
 }

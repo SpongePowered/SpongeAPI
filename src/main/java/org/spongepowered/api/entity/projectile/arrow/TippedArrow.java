@@ -24,6 +24,11 @@
  */
 package org.spongepowered.api.entity.projectile.arrow;
 
+/**
+ * An arrow generally "tipped" with one or more potion effects.
+ *
+ * <p>In vanilla, a normal arrow is also a tipped arrow.</p>
+ */
 public interface TippedArrow extends Arrow {
 
 }

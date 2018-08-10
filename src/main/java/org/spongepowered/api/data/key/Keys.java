@@ -72,6 +72,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.profile.GameProfile;
+import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Axis;
@@ -1154,6 +1155,14 @@ public final class Keys {
     public static final Key<Value<Boolean>> IS_AFLAME = DummyObjectProvider.createExtendedFor(Key.class,"IS_AFLAME");
 
     /**
+     * Represents the {@link Key} for whether a {@link Player} is flying with an
+     * {@link ItemTypes#ELYTRA}.
+     *
+     * @see ElytraFlyingData#elytraFlying()
+     */
+    public static final Key<Value<Boolean>> IS_ELYTRA_FLYING = DummyObjectProvider.createExtendedFor(Key.class, "IS_ELYTRA_FLYING");
+
+    /**
      * Represents the {@link Key} for whether an {@link Entity} is flying.
      *
      * <p>This key only tells whether an entity is flying at the moment. On a
@@ -1815,9 +1824,18 @@ public final class Keys {
      * having that skin. The binary skin data is signed by Mojang so fully
      * customized skins are not possible.</p>
      *
-     * @see SkinData#skinUniqueId()
+     * @see SkinData#skin()
      */
-    public static final Key<Value<UUID>> SKIN_UNIQUE_ID = DummyObjectProvider.createExtendedFor(Key.class,"SKIN_UNIQUE_ID");
+    public static final Key<Value<ProfileProperty>> SKIN = DummyObjectProvider.createExtendedFor(Key.class,"SKIN");
+
+    /**
+     * Represents the {@link Key} for whether or not changes to {@link Keys#SKIN} should
+     * be reflected in an entitie's {@link GameProfile}.
+     *
+     * @see SkinData#updateGameProfile()
+     *
+     * */
+    public static final Key<Value<Boolean>> UPDATE_GAME_PROFILE = DummyObjectProvider.createExtendedFor(Key.class, "UPDATE_GAME_PROFILE");
 
     /**
      * Represents the {@link Key} for the type of skull a block or item stack
@@ -2066,6 +2084,16 @@ public final class Keys {
      * of a {@link BlockState}.
      */
     public static final Key<Value<Boolean>> SUSPENDED = DummyObjectProvider.createExtendedFor(Key.class,"SUSPENDED");
+
+    /**
+     * Represents the {@link Key} for representing the scoreboard tags applied
+     * to an {@link Entity}.
+     *
+     * @see <a href="https://minecraft.gamepedia.com/Scoreboard#Tags">
+     *     https://minecraft.gamepedia.com/Scoreboard#Tags</a>
+     * @see TagData#tags()
+     */
+    public static final Key<SetValue<String>> TAGS = DummyObjectProvider.createExtendedFor(Key.class, "TAGS");
 
     /**
      * Represents the {@link Key} for the owner uuid of a tamed {@link Animal}.

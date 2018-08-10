@@ -25,46 +25,69 @@
 package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.item.inventory.type.Interactable;
-import org.spongepowered.api.plugin.PluginContainer;
 
-import java.util.Set;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * A Container is effectively a <em>ViewModel</em> for a particular set of
  * {@link Inventory} objects used to allow players to interact
  * with the Inventories, usually via a GUI (the View).
  */
-public interface Container extends Interactable {
+public interface Container extends Inventory {
+
+     /**
+     * Returns whether given slot is part of the viewed inventories
+     * but not part of the viewers own inventory.
+     *
+     * <p>Examples for viewed inventory slots:</p>
+     * <p>All the slots of the opened chest and not the player grid below.</p>
+     * <p>The slots of the crafting grid in the opened player inventory.</p>
+     *
+     * @param slot The slot to check.
+     * @return {@code true} when the slot is part of the viewed inventories.
+     */
+    boolean isViewedSlot(Slot slot);
 
     /**
-     * Gets the current viewers looking at this Inventory.
+     * Returns the list of viewed inventories.
+     * <p>This is usually at least the inventory a player opened and the players inventory.</p>
+     * <p>It is not necessary, that all slots of the viewed inventories are visible or interactable with.</p>
      *
-     * @return The current viewers of this inventory
+     * @return the list of viewed inventories.
      */
-    Set<Player> getViewers();
+    List<Inventory> getViewed();
 
     /**
-     * Checks for whether this Inventory currently has viewers.
+     * Sets the viewing players cursor item.
+     * <p>Returns false when the container is no longer open.</p>
      *
-     * @return True if viewers are currently looking at this inventory
+     * @param item The item to set.
+     *
+     * @return true if the cursor was set.
      */
-    boolean hasViewers();
+    boolean setCursor(ItemStack item);
 
     /**
-     * Shows this Inventory to the given viewer.
+     * Gets the viewing players cursor item.
+     * <p>Returns {@link Optional#empty()} when the container was closed.</p>
      *
-     * @param viewer The viewer to show this inventory to
-     * @throws IllegalArgumentException if a {@link PluginContainer} is not the root of the cause
+     * @return The players cursor item.
      */
-    void open(Player viewer) throws IllegalArgumentException;
+    Optional<ItemStack> getCursor();
 
     /**
-     * Stops showing this Inventory to the given viewer.
+     * Gets the viewing player.
      *
-     * @param viewer The viewer to stop showing this inventory to
-     * @throws IllegalArgumentException if a {@link PluginContainer} is not the root of the cause
+     * @return The viewing player
      */
-    void close(Player viewer) throws IllegalArgumentException;
+    Player getViewer();
+
+    /**
+     * Returns whether this Container is open.
+     *
+     * @return Whether this Container is open.
+     */
+    boolean isOpen();
 
 }

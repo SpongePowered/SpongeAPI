@@ -26,15 +26,14 @@ package org.spongepowered.api.entity;
 
 import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.equipment.EquipmentInventory;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.util.Identifiable;
 
 import java.util.Optional;
 
-import javax.annotation.Nullable;
-
 /**
- * Represents an entity that has an EquipmentInventory.
+ * Represents an entity that has an {@link EquipmentInventory}.
  */
 public interface Equipable extends Identifiable, Carrier {
 
@@ -57,7 +56,7 @@ public interface Equipable extends Identifiable, Carrier {
      * @param equipment The equipment to check for
      * @return true if can equip the supplied equipment
      */
-    boolean canEquip(EquipmentType type, @Nullable ItemStack equipment);
+    boolean canEquip(EquipmentType type, ItemStack equipment);
 
     /**
      * Gets the item currently equipped by this entity in the specified slot.
@@ -71,15 +70,13 @@ public interface Equipable extends Identifiable, Carrier {
      * Sets the item currently equipped by the entity in the specified slot, if
      * the entity has such a slot.
      *
-     * <p>Supplying null will unequip any currently equipped item.</p>
-     *
      * @param type The type of equipment slot to set
-     * @param equipment The equipment to set or null to remove any equipped item
+     * @param equipment The equipment to set the any equipped item
      * @return true if the item was successfully equipped, false if the item
      *      could not be equipped because the entity doesn't support the
      *      specified equipment type or because the item was incompatible with
      *      the specified slot.
      */
-    boolean equip(EquipmentType type, @Nullable ItemStack equipment);
+    boolean equip(EquipmentType type, ItemStack equipment);
 
 }

@@ -337,6 +337,8 @@ public final class BlockTypes {
 
     public static final BlockType OBSIDIAN = DummyObjectProvider.createFor(BlockType.class, "OBSIDIAN");
 
+    public static final BlockType ORANGE_GLAZED_TERRACOTTA = DummyObjectProvider.createFor(BlockType.class, "ORANGE_GLAZED_TERRACOTTA");
+
     public static final BlockType ORANGE_SHULKER_BOX = DummyObjectProvider.createFor(BlockType.class, "ORANGE_SHULKER_BOX");
 
     public static final BlockType PACKED_ICE = DummyObjectProvider.createFor(BlockType.class, "PACKED_ICE");

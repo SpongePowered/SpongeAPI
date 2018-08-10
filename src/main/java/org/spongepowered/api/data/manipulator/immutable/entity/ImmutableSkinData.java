@@ -24,28 +24,55 @@
  */
 package org.spongepowered.api.data.manipulator.immutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.SkinData;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.living.Humanoid;
-import org.spongepowered.api.entity.living.player.Player;
-
-import java.util.UUID;
+import org.spongepowered.api.profile.GameProfile;
+import org.spongepowered.api.profile.property.ProfileProperty;
 
 /**
- * An {@link ImmutableDataManipulator} handling the {@link UUID} for  the
- * {@link Humanoid} skin used. Usually this is meant where the {@link UUID}
- * belongs to a {@link Player} but without relying on a {@link Player},
- * the {@link Humanoid} will use the same skin url on the server.
+ * Represents the skin data for a {@link Humanoid}.
+ *
+ * <p>In order to be accepted by the client, all skins must be
+ * signed by Mojang.</p>
+ *
+ * <p>SkinData should be used instead of manipulating a {@link Humanoid}'s
+ * {@link GameProfile}. This ensures that the {@link Humanoid}'s skin is
+ * properly updated on all viewing clients.</p>
  */
 public interface ImmutableSkinData extends ImmutableDataManipulator<ImmutableSkinData, SkinData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the {@link UUID} of the skin to
-     * display on a {@link Humanoid} entity for customization.
+     * Gets the {@link ImmutableValue} for the {@link ProfileProperty} of the skin to display on a
+     * {@link Humanoid} entity for customization.
      *
-     * @return The immutable value for the skin uuid
+     * <p>The name of the {@link ProfileProperty} MUST be {@link ProfileProperty#TEXTURES},
+     * and have a valid signature, in order to be accepted by the client.</p>
+     *
+     * @return The value for the skin property
+     * @see Keys#SKIN
      */
-    ImmutableValue<UUID> skinUniqueId();
+    ImmutableValue<ProfileProperty> skin();
+
+    /**
+     * Gets the {@link ImmutableValue} for whether or not to update the tab list
+     * with the player's new skin
+     *
+     * <p>If this value is <code>true</code>, then the player's new skin
+     * will display in the tab list.</p>
+     *
+     * <p>If it is <code>false</code>, then the tab list will not be modified.
+     * Assuming that tab list hasn't been changed by a plugin, the
+     * player's original skin will be displayed.</p>
+     *
+     * <p>For {@link Human}s, setting this to <code>false</code> will cause the human
+     * to be completely absent from the tab list.</p>
+     * @return Whether to update the gameprofile
+     * @see Keys#UPDATE_GAME_PROFILE
+     */
+    ImmutableValue<Boolean> updateGameProfile();
 
 }

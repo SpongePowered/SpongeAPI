@@ -22,18 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.vehicle.minecart;
+package org.spongepowered.api.item.inventory.type;
 
-import org.spongepowered.api.item.inventory.Carrier;
-import org.spongepowered.api.item.inventory.type.CarriedInventory;
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.item.inventory.Inventory;
+
+import java.util.Set;
 
 /**
- * Represents a minecart with a container inside it. Common extensions of this
- * are {@link ChestMinecart} and {@link HopperMinecart}.
+ * Interface for inventories which may be interacted with by Players.
+ * <p>e.g. the inventory of a Chest</p>
  */
-public interface ContainerMinecart<M extends ContainerMinecart<M>> extends Minecart, Carrier {
+public interface ViewableInventory extends Inventory {
 
-    @Override
-    CarriedInventory<M> getInventory();
+    /**
+     * Gets the current viewers looking at this Inventory.
+     *
+     * @return The current viewers of this inventory
+     */
+    Set<Player> getViewers();
 
+    /**
+     * Checks for whether this Inventory currently has viewers.
+     *
+     * @return True if viewers are currently looking at this inventory
+     */
+    boolean hasViewers();
+
+    /**
+     * Gets whether the specified player can interact with this object.
+     * 
+     * @param player the Player wishing to interact with this Inventory
+     * @return true if the Entity is able to interact with this Inventory
+     */
+    boolean canInteractWith(Player player);
+    
 }

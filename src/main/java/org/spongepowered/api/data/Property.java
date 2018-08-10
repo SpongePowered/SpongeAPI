@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.data;
 
+import org.spongepowered.api.item.inventory.InventoryProperty;
+import org.spongepowered.api.util.ResettableBuilder;
+
 import javax.annotation.Nullable;
 
 /**
@@ -222,4 +225,45 @@ public interface Property<K, V> extends Comparable<Property<?, ?>> {
      */
     boolean matches(@Nullable Property<?, ?> other);
 
+    /**
+     * Represents a builder class to create Inventory Properties
+     *
+     * @param <V> The value type
+     * @param <T> The inventory property type
+     * @param <B> The builder type
+     */
+    interface Builder<V, T extends Property<?, V>, B extends Builder<V, T, B>> extends ResettableBuilder<T, B> {
+
+        /**
+         * Sets the value.
+         *
+         * @param value The value
+         * @return This builder
+         */
+        Builder<V, T, B> value(final V value);
+
+        /**
+         * Sets the key.
+         * If the key is not set the default key will be used.
+         *
+         * @param key The key
+         * @return This builder
+         */
+        Builder<V, T, B> key(final Object key);
+
+        /**
+         * Sets the operator.
+         *
+         * @param operator The operator
+         * @return This builder
+         */
+        Builder<V, T, B> operator(final Operator operator);
+
+        /**
+         * Build the string property from the values in this builder.
+         *
+         * @return The string property
+         */
+        T build();
+    }
 }

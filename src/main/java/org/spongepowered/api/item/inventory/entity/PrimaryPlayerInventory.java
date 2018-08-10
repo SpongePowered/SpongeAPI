@@ -22,18 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.vehicle.minecart;
+package org.spongepowered.api.item.inventory.entity;
 
-import org.spongepowered.api.item.inventory.Carrier;
-import org.spongepowered.api.item.inventory.type.CarriedInventory;
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.item.inventory.Inventory;
+import org.spongepowered.api.item.inventory.type.GridInventory;
 
 /**
- * Represents a minecart with a container inside it. Common extensions of this
- * are {@link ChestMinecart} and {@link HopperMinecart}.
+ * A {@link Player}'s primary inventory including the {@link Hotbar}.
  */
-public interface ContainerMinecart<M extends ContainerMinecart<M>> extends Minecart, Carrier {
+public interface PrimaryPlayerInventory extends Inventory {
 
-    @Override
-    CarriedInventory<M> getInventory();
+    /**
+     * Gets the hotbar of the player.
+     *
+     * @return The hotbar of the player
+     */
+    Hotbar getHotbar();
+
+    /**
+     * Gets the (4x9) grid of the players main inventory.
+     *
+     * @return The grid of the players main inventory
+     */
+    GridInventory asGrid();
+
+    /**
+     * Gets the (3x9) grid of the players main inventory.
+     *
+     * @return The grid of the players main inventory
+     */
+    GridInventory getStorage();
 
 }

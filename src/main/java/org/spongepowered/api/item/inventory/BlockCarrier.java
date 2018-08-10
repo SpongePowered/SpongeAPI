@@ -25,6 +25,7 @@
 package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
@@ -32,7 +33,7 @@ import org.spongepowered.api.world.World;
  * Represents a Block that is a carrier of an Inventory
  * e.g. An Anvil
  */
-public interface BlockCarrier extends Carrier {
+public interface BlockCarrier extends Carrier, Locatable {
 
     /**
      * Returns the Location of the Block.
