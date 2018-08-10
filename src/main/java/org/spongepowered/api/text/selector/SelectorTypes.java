@@ -48,6 +48,14 @@ public final class SelectorTypes {
      * The nearest player selector type.
      */
     public static final SelectorType NEAREST_PLAYER = DummyObjectProvider.createFor(SelectorType.class, "NEAREST_PLAYER");
+    
+    /**
+     * Targets only one entity: the entity that executed the command, including
+     * dead players. If the executor was not an entity, for instance if the
+     * executor was a command block or a server console, this selector will
+     * find nothing.
+     */
+    public static final SelectorType SOURCE = DummyObjectProvider.createFor(SelectorType.class, "SOURCE");
 
     /**
      * The random selector type. This targets only players by default, but may

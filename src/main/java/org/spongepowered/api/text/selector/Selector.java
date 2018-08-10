@@ -36,7 +36,6 @@ import org.spongepowered.api.world.extent.Extent;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 /**
  * Represents an immutable selector of targets, as used in commands.
@@ -50,18 +49,6 @@ import java.util.Set;
  * As an example, the all player selector is {@code @a}, and with a radius of
  * 20 it would be {@code @a[r=20]}.
  * </p>
- * </p>
- *
- * <p>
- * Additionally, Vanilla will ignore position data unless one of the following
- * arguments is present:
- * <ul>
- *   <li>{@link ArgumentTypes#POSITION}</li>
- *   <li>{@link ArgumentTypes#DIMENSION}</li>
- *   <li>{@link ArgumentTypes#RADIUS}</li>
- * </ul>
- * All {@code resolve} methods have a look-alike named {@code resolveForce}
- * which always uses the given position data.
  * </p>
  *
  * @see <a href="http://minecraft.gamepedia.com/Selector#Target_selectors">
@@ -170,7 +157,7 @@ public interface Selector {
      *        selector
      * @return The matched entities
      */
-    Set<Entity> resolve(CommandSource origin);
+    List<Entity> resolve(CommandSource origin);
 
     /**
      * Resolves this {@link Selector} to a list of entities around (0|0|0) in
@@ -179,7 +166,7 @@ public interface Selector {
      * @param extent The extents to search for targets
      * @return The matched entities
      */
-    Set<Entity> resolve(Extent... extent);
+    List<Entity> resolve(Extent... extent);
 
     /**
      * Resolves this {@link Selector} to a list of entities around (0|0|0) in
@@ -188,7 +175,7 @@ public interface Selector {
      * @param extent The extents to search for targets
      * @return The matched entities
      */
-    Set<Entity> resolve(Collection<? extends Extent> extent);
+    List<Entity> resolve(Collection<? extends Extent> extent);
 
     /**
      * Resolves this {@link Selector} to a list of entities around the given
@@ -197,7 +184,7 @@ public interface Selector {
      * @param location The location to resolve the selector around
      * @return The matched entities
      */
-    Set<Entity> resolve(Location<World> location);
+    List<Entity> resolve(Location<World> location);
 
     /**
      * Resolves this {@link Selector} to a list of entities around the origin.
@@ -205,8 +192,12 @@ public interface Selector {
      * @param origin The source that should be considered the origin of this
      *        selector
      * @return The matched entities
+     * @deprecated Use {@link #resolve(CommandSource)}
      */
-    Set<Entity> resolveForce(CommandSource origin);
+    @Deprecated
+    default List<Entity> resolveForce(CommandSource origin) {
+        return resolve(origin);
+    }
 
     /**
      * Resolves this {@link Selector} to a list of entities around (0|0|0) in
@@ -214,8 +205,12 @@ public interface Selector {
      *
      * @param extent The extents to search for targets
      * @return The matched entities
+     * @deprecated Use {@link #resolve(Extent[])}
      */
-    Set<Entity> resolveForce(Extent... extent);
+    @Deprecated
+    default List<Entity> resolveForce(Extent... extent) {
+        return resolve(extent);
+    }
 
     /**
      * Resolves this {@link Selector} to a list of entities around (0|0|0) in
@@ -223,8 +218,12 @@ public interface Selector {
      *
      * @param extent The extents to search for targets
      * @return The matched entities
+     * @deprecated Use {@link #resolve(Collection)}
      */
-    Set<Entity> resolveForce(Collection<? extends Extent> extent);
+    @Deprecated
+    default List<Entity> resolveForce(Collection<? extends Extent> extent) {
+        return resolve(extent);
+    }
 
     /**
      * Resolves this {@link Selector} to a list of entities around the given
@@ -232,8 +231,12 @@ public interface Selector {
      *
      * @param location The location to resolve the selector around
      * @return The matched entities
+     * @deprecated Use {@link #resolve(Location)}
      */
-    Set<Entity> resolveForce(Location<World> location);
+    @Deprecated
+    default List<Entity> resolveForce(Location<World> location) {
+        return resolve(location);
+    }
 
     /**
      * Converts this {@link Selector} to a valid selector string.
