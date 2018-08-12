@@ -62,11 +62,9 @@ public final class ArgumentTypes {
      * The argument type filtering based on the {@link GameMode} of a player.
      *
      * <p>In Vanilla, this is represented by the {@code m} selector key.</p>
-     *
-     * <p>Note that this element is of type {@link ArgumentType.Invertible}.</p>
      */
-    public static final ArgumentType<GameMode> GAME_MODE =
-            DummyObjectProvider.createExtendedFor(ArgumentType.class, "GAME_MODE");
+    public static final ArgumentType.Invertible<GameMode> GAME_MODE =
+            DummyObjectProvider.createExtendedFor(ArgumentType.Invertible.class, "GAME_MODE");
 
     /**
      * The argument type limiting the number of results of a {@link Selector}.
