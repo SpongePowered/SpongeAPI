@@ -67,7 +67,7 @@ import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.extent.EntityUniverse;
+import org.spongepowered.api.world.extent.EntityHit;
 import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.io.BufferedReader;
@@ -1915,7 +1915,7 @@ public final class GenericArguments {
         private Entity tryReturnTarget(CommandSource source, CommandArgs args) throws ArgumentParseException {
             Entity entity = tryReturnSource(source, args, false);
             return entity.getWorld().getIntersectingEntities(entity, 10).stream()
-                    .filter(e -> !e.getEntity().equals(entity)).map(EntityUniverse.EntityHit::getEntity)
+                    .filter(e -> !e.getEntity().equals(entity)).map(EntityHit::getEntity)
                     .filter(this::checkEntity).findFirst()
                     .orElseThrow(() -> args.createError(t("No entities matched and source was not looking at a valid entity!")));
         }
