@@ -134,64 +134,6 @@ public interface Extent extends Identifiable {
     }
 
     /**
-     * Sets the block at the given position in the world.
-     *
-     * @param position The position
-     * @param blockState The block
-     * @param flag The various change flags controlling some interactions
-     * @return Whether the block change was successful
-     * @throws PositionOutOfBoundsException If the position is outside of the
-     *         bounds of the volume
-     */
-    default boolean setBlock(Vector3i position, BlockState blockState, BlockChangeFlag flag) {
-        return setBlock(position.getX(), position.getY(), position.getZ(), blockState, flag);
-    }
-
-    /**
-     * Sets the block at the given position in the world.
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @param blockState The block
-     * @param flag The various change flags controlling some interactions
-     * @return Whether the block change was successful
-     * @throws PositionOutOfBoundsException If the position is outside of the
-     *         bounds of the volume
-     */
-    boolean setBlock(int x, int y, int z, BlockState blockState, BlockChangeFlag flag);
-
-    /**
-     * Sets the block at the given position in the world.
-     *
-     * @param position The position
-     * @param type The block type
-     * @param flag The various change flags controlling some interactions
-     * @return Whether the block change was successful
-     * @throws PositionOutOfBoundsException If the position is outside of the
-     *         bounds of the volume
-     */
-    default boolean setBlockType(Vector3i position, BlockType type, BlockChangeFlag flag) {
-        return setBlock(position.getX(), position.getY(), position.getZ(), type.getDefaultState(), flag);
-    }
-
-    /**
-     * Sets the block at the given position in the world.
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @param type The block
-     * @param flag The various change flags controlling some interactions
-     * @return Whether the block change was successful
-     * @throws PositionOutOfBoundsException If the position is outside of the
-     *         bounds of the volume
-     */
-    default boolean setBlockType(int x, int y, int z, BlockType type, BlockChangeFlag flag) {
-        return setBlock(x, y, z, type.getDefaultState(), flag);
-    }
-
-    /**
      * Gets a snapshot of this block at the current point in time.
      *
      * <p>A snapshot is disconnected from the {@link Extent} that it was taken

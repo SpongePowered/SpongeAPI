@@ -24,7 +24,11 @@
  */
 package org.spongepowered.api.world.extent.beta.world;
 
+import com.flowpowered.math.vector.Vector2i;
+import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.data.property.LocationBasePropertyHolder;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.WorldBorder;
 import org.spongepowered.api.world.extent.LocationCompositeValueStore;
 import org.spongepowered.api.world.extent.beta.InteractableVolume;
 import org.spongepowered.api.world.extent.beta.biome.MutableBiomeVolume;
@@ -32,14 +36,59 @@ import org.spongepowered.api.world.extent.beta.block.MutableBlockVolume;
 import org.spongepowered.api.world.extent.beta.entity.CollisionAwareEntityVolume;
 import org.spongepowered.api.world.extent.beta.entity.MutableEntityVolume;
 
-public interface ProtoWorld
+public interface ProtoWorld<P extends ProtoWorld<P>>
     extends
-    MutableBiomeVolume<ProtoWorld>,
-    MutableBlockVolume<ProtoWorld>,
-    MutableEntityVolume<ProtoWorld>,
+    MutableBiomeVolume<P>,
+    MutableBlockVolume<P>,
+    MutableEntityVolume<P>,
     CollisionAwareEntityVolume,
     InteractableVolume,
     LocationBasePropertyHolder,
     LocationCompositeValueStore {
+
+    /**
+     * Get the y value of the highest block that sunlight can reach in the given
+     * column.
+     *
+     * <p>This method ignores all transparent blocks, providing the highest
+     * opaque block.</p>
+     *
+     * @param x The x column value
+     * @param z The z column value
+     * @return The y value of the highest opaque block
+     */
+    int getHighestYAt(int x, int z);
+
+    /**
+     * Get the y value of the highest block that sunlight can reach in the given
+     * column.
+     *
+     * <p>This method ignores all transparent blocks, providing the highest
+     * opaque block.</p>
+     *
+     * @param column The column value
+     * @return The y value of the highest opaque block
+     */
+    default int getHighestYAt(Vector2i column) {
+        return this.getHighestYAt(column.getX(), column.getY());
+    }
+
+    /**
+     * Get the {@link Location} of the highest block that sunlight can reach in
+     * the given column.
+     *
+     * <p>This method ignores all transparent blocks, providing the highest
+     * opaque block.</p>
+     *
+     * @param position The column position
+     * @return The highest opaque position
+     */
+    default Vector3i getHighestPositionAt(Vector3i position) {
+        return new Vector3i(position.getX(), getHighestYAt(position.getX(), position.getZ()), position.getZ());
+    }
+
+    WorldBorder getBorder();
+
+
 
 }

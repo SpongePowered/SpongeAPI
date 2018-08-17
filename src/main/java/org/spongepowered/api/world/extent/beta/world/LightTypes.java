@@ -24,24 +24,19 @@
  */
 package org.spongepowered.api.world.extent.beta.world;
 
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.block.tileentity.TileEntity;
-import org.spongepowered.api.world.extent.beta.biome.MutableBiomeVolume;
-import org.spongepowered.api.world.extent.beta.block.MutableBlockVolume;
-import org.spongepowered.api.world.extent.beta.entity.MutableEntityVolume;
-import org.spongepowered.api.world.extent.beta.tileentity.MutableTileEntityVolume;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-public interface ProtoChunk
-    extends MutableBlockVolume<ProtoChunk>,
-    MutableTileEntityVolume,
-    MutableBiomeVolume<ProtoChunk>
-{
+public final class LightTypes {
 
-    void addTileEntity(Vector3i pos, TileEntity tileEntity);
-    void addTileEntity(int x, int y, int z, TileEntity tileEntity);
+    // sortfields:ON
+    public static final LightType SKY = DummyObjectProvider.createFor(LightType.class, "SKY");
 
-    Vector3i getChunkPosition();
+    public static final LightType BLOCK = DummyObjectProvider.createFor(LightType.class, "BLOCK");
 
+    // sortfields:OFF
+
+    private LightTypes() {
+    }
 
 
 }

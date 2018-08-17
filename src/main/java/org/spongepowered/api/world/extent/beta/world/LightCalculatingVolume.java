@@ -24,24 +24,10 @@
  */
 package org.spongepowered.api.world.extent.beta.world;
 
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.block.tileentity.TileEntity;
-import org.spongepowered.api.world.extent.beta.biome.MutableBiomeVolume;
-import org.spongepowered.api.world.extent.beta.block.MutableBlockVolume;
-import org.spongepowered.api.world.extent.beta.entity.MutableEntityVolume;
-import org.spongepowered.api.world.extent.beta.tileentity.MutableTileEntityVolume;
+import org.spongepowered.api.world.extent.beta.block.ReadableBlockVolume;
 
-public interface ProtoChunk
-    extends MutableBlockVolume<ProtoChunk>,
-    MutableTileEntityVolume,
-    MutableBiomeVolume<ProtoChunk>
-{
+public interface LightCalculatingVolume extends ReadableBlockVolume {
 
-    void addTileEntity(Vector3i pos, TileEntity tileEntity);
-    void addTileEntity(int x, int y, int z, TileEntity tileEntity);
-
-    Vector3i getChunkPosition();
-
-
+    int getLight(int x, int y, int z);
 
 }

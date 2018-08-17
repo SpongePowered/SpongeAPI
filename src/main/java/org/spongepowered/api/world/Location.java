@@ -582,7 +582,7 @@ public final class Location<E extends Extent> implements DataHolder {
      * @return True if the block change was successful
      */
     public boolean setBlockType(BlockType type, BlockChangeFlag flag) {
-        return getExtent().setBlockType(getBlockPosition(), type, flag);
+        return getExtent().setblock(getBlockPosition(), type.getDefaultState(), flag);
     }
 
     /**
@@ -608,7 +608,7 @@ public final class Location<E extends Extent> implements DataHolder {
      * @return True if the block change was successful
      */
     public boolean removeBlock() {
-        return getExtent().setBlockType(getBlockPosition(), BlockTypes.AIR, BlockChangeFlags.ALL);
+        return getExtent().setblock(getBlockPosition(), BlockTypes.AIR.getDefaultState(), BlockChangeFlags.ALL);
     }
 
     /**

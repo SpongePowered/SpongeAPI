@@ -24,24 +24,19 @@
  */
 package org.spongepowered.api.world.extent.beta.world;
 
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.block.tileentity.TileEntity;
-import org.spongepowered.api.world.extent.beta.biome.MutableBiomeVolume;
-import org.spongepowered.api.world.extent.beta.block.MutableBlockVolume;
-import org.spongepowered.api.world.extent.beta.entity.MutableEntityVolume;
-import org.spongepowered.api.world.extent.beta.tileentity.MutableTileEntityVolume;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-public interface ProtoChunk
-    extends MutableBlockVolume<ProtoChunk>,
-    MutableTileEntityVolume,
-    MutableBiomeVolume<ProtoChunk>
-{
+@CatalogedBy(LightTypes.class)
+public interface LightType extends CatalogType {
 
-    void addTileEntity(Vector3i pos, TileEntity tileEntity);
-    void addTileEntity(int x, int y, int z, TileEntity tileEntity);
-
-    Vector3i getChunkPosition();
-
-
+    /**
+     * Gets the default light value for this light type. Useful
+     * for defaulting a light value if there is a missing source
+     * for {@link LightCalculatingVolume#getLight(int, int, int)}.
+     *
+     * @return The default light value
+     */
+    int getDefaultLightValue();
 
 }
