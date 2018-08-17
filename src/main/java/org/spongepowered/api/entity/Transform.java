@@ -31,7 +31,6 @@ import com.flowpowered.math.matrix.Matrix4d;
 import com.flowpowered.math.vector.Vector3d;
 import com.google.common.base.MoreObjects;
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.extent.Extent;
 
 import javax.annotation.Nullable;
 
@@ -72,7 +71,7 @@ public final class Transform<E extends Extent> {
      *     extent, and position
      */
     public Transform(Location<E> location) {
-        this(location.getExtent(), location.getPosition());
+        this(location.getWorld(), location.getPosition());
     }
 
     /**
@@ -117,7 +116,7 @@ public final class Transform<E extends Extent> {
      * @param scale The scale to use
      */
     public Transform(Location<E> location, Vector3d rotation, Vector3d scale) {
-        this(location.getExtent(), location.getPosition(), rotation, scale);
+        this(location.getWorld(), location.getPosition(), rotation, scale);
     }
 
     /**

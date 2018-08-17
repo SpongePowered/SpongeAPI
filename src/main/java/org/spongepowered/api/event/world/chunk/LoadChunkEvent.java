@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.world.chunk;
 
-import org.spongepowered.api.world.Chunk;
+import org.spongepowered.api.world.chunk.Chunk;
 
 /**
  * Base event for when a {@link Chunk} is triggered to load.

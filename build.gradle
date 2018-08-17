@@ -202,7 +202,7 @@ sortClassFields {
     add 'main', 'org.spongepowered.api.world.biome.BiomeTypes'
     add 'main', 'org.spongepowered.api.world.BlockChangeFlags'
     add 'main', 'org.spongepowered.api.world.DimensionTypes'
-    add 'main', 'org.spongepowered.api.world.GeneratorTypes'
+    add 'main', 'org.spongepowered.api.world.gen.GeneratorTypes'
     add 'main', 'org.spongepowered.api.world.difficulty.Difficulties'
     add 'main', 'org.spongepowered.api.world.gen.type.BiomeTreeTypes'
     add 'main', 'org.spongepowered.api.world.gen.type.MushroomTypes'

@@ -41,7 +41,6 @@ import org.spongepowered.api.util.Functional;
 import org.spongepowered.api.util.Tuple;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.extent.Extent;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -514,7 +513,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
      */
     public static <E extends Extent> BlockRayBuilder<E> from(Location<E> start) {
         checkNotNull(start, "start");
-        return from(start.getExtent(), start.getPosition());
+        return from(start.getWorld(), start.getPosition());
     }
 
     /**
@@ -547,7 +546,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
         final Location<World> location = entity.getLocation();
         final Optional<EyeLocationProperty> data = entity.getProperty(EyeLocationProperty.class);
         final Vector3d position = data.map(EyeLocationProperty::getValue).orElse(location.getPosition());
-        return from(location.getExtent(), position).direction(direction);
+        return from(location.getWorld(), position).direction(direction);
     }
 
     /**

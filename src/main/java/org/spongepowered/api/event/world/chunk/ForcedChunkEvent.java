@@ -26,7 +26,7 @@ package org.spongepowered.api.event.world.chunk;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.world.ChunkTicketManager;
+import org.spongepowered.api.world.chunk.ChunkTicketManager;
 
 public interface ForcedChunkEvent extends Event {
 

@@ -26,20 +26,23 @@ package org.spongepowered.api.world;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.service.context.ContextSource;
 import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
 import org.spongepowered.api.text.channel.MessageReceiver;
+import org.spongepowered.api.util.Identifiable;
+import org.spongepowered.api.world.chunk.Chunk;
+import org.spongepowered.api.world.chunk.ChunkPreGenerate;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.explosion.Explosion;
-import org.spongepowered.api.world.extent.Extent;
+import org.spongepowered.api.world.extent.block.PhysicsAwareMutableBlockVolume;
 import org.spongepowered.api.world.gamerule.DefaultGameRules;
 import org.spongepowered.api.world.gen.WorldGenerator;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.storage.WorldStorage;
+import org.spongepowered.api.world.teleport.PortalAgent;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 
 import java.io.IOException;
@@ -54,7 +57,8 @@ import java.util.concurrent.Future;
 /**
  * A loaded Minecraft world.
  */
-public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, MessageReceiver, ChatTypeMessageReceiver {
+public interface World extends ProtoWorld<World>, LocationCreator<World>, PhysicsAwareMutableBlockVolume<World>, Identifiable, WeatherUniverse,
+    Viewer, ContextSource, MessageReceiver, ChatTypeMessageReceiver, TrackedVolume {
 
     /**
      * Gets an unmodifiable collection of {@link Player}s currently in this world.
@@ -62,92 +66,6 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
      * @return The players
      */
     Collection<Player> getPlayers();
-
-    @Override
-    default Location<World> getLocation(Vector3i position) {
-        return new Location<>(this, position);
-    }
-
-    @Override
-    default Location<World> getLocation(int x, int y, int z) {
-        return getLocation(new Vector3i(x, y, z));
-    }
-
-    @Override
-    default Location<World> getLocation(Vector3d position) {
-        return new Location<>(this, position);
-    }
-
-    @Override
-    default Location<World> getLocation(double x, double y, double z) {
-        return getLocation(new Vector3d(x, y, z));
-    }
-
-    /**
-     * Gets a {@link LocatableBlock} for the desired {@link Vector3i} position.
-     *
-     * @param position The position to get the locatable block
-     * @return The locatable block
-     */
-    default LocatableBlock getLocatableBlock(Vector3i position) {
-        return LocatableBlock.builder().world(this).position(position).build();
-    }
-
-    /**
-     * Gets a {@link LocatableBlock} for the desired {@code x, y, z} coordinates.
-     *
-     * @param x The x position
-     * @param y The y position
-     * @param z The z position
-     * @return The locatable block
-     */
-    default LocatableBlock getLocatableBlock(int x, int y, int z) {
-        return LocatableBlock.builder().world(this).position(x, y, z).build();
-    }
-
-    /**
-     * Gets the loaded chunk at the given block coordinate position.
-     *
-     * @param blockPosition The position
-     * @return The chunk, if available
-     */
-    default Optional<Chunk> getChunkAtBlock(Vector3i blockPosition) {
-        return getChunkAtBlock(blockPosition.getX(), blockPosition.getY(), blockPosition.getZ());
-    }
-
-    /**
-     * Gets the loaded chunk at the given block coordinate position.
-     *
-     * @param bx The x coordinate
-     * @param by The y coordinate
-     * @param bz The z coordinate
-     * @return The chunk, if available
-     */
-    default Optional<Chunk> getChunkAtBlock(int bx, int by, int bz) {
-        return getChunk(Sponge.getServer().getChunkLayout().forceToChunk(bx, by, bz));
-    }
-
-    /**
-     * Gets the loaded chunk at the given chunk coordinate position.
-     *
-     * @param chunkPosition The position
-     * @return The chunk, if available
-     */
-    default Optional<Chunk> getChunk(Vector3i chunkPosition) {
-        return getChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ());
-    }
-
-    /**
-     * Gets the loaded chunk at the given chunk coordinate position.
-     *
-     * <p>In Vanilla, the y coordinate will always be 0.</p>
-     *
-     * @param cx The x coordinate
-     * @param cy The y coordinate
-     * @param cz The z coordinate
-     * @return The chunk, if available
-     */
-    Optional<Chunk> getChunk(int cx, int cy, int cz);
 
     /**
      * Gets the chunk at the given chunk coordinate position if it exists or if
@@ -236,20 +154,6 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
      * @return The loaded chunks
      */
     Iterable<Chunk> getLoadedChunks();
-
-    /**
-     * Gets the entity whose {@link UUID} matches the provided id, possibly
-     * returning no entity if the entity is not loaded or non-existent.
-     *
-     * <p>For world implementations, only some parts of the world is usually
-     * loaded, so this method may return no entity if the entity is not
-     * loaded.</p>
-     *
-     * @param uuid The unique id
-     * @return An entity, if available
-     */
-    @Override
-    Optional<Entity> getEntity(UUID uuid);
 
     /**
      * Gets the world border for the world.
@@ -379,8 +283,8 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
      *
      * @return The location
      */
-    default Location<World> getSpawnLocation() {
-        return new Location<>(this, getProperties().getSpawnPosition());
+    default Location getSpawnLocation() {
+        return new Location(this, getProperties().getSpawnPosition());
     }
 
     /**
@@ -431,11 +335,6 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
      */
     int getSeaLevel();
 
-    @Override
-    MutableBiomeVolumeWorker<World> getBiomeWorker();
-
-    @Override
-    MutableBlockVolumeWorker<World> getBlockWorker();
 
     /**
      * Instructs the world to save all data.

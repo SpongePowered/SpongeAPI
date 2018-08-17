@@ -27,6 +27,7 @@ package org.spongepowered.api.world;
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.world.chunk.ChunkPreGenerate;
 
 /**
  * A world border is a square boundary, extending through the entire y-axis.

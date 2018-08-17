@@ -43,7 +43,7 @@ public interface Locatable {
      * @return The World
      */
     default World getWorld() {
-        return getLocation().getExtent();
+        return getLocation().getWorld();
     }
 
 }
