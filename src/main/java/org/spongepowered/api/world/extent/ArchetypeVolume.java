@@ -29,7 +29,6 @@ import org.spongepowered.api.block.tileentity.TileEntityArchetype;
 import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
 
 import java.util.Map;
 import java.util.Optional;

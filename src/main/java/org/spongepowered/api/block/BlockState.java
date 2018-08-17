@@ -26,6 +26,8 @@ package org.spongepowered.api.block;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.tileentity.TileEntity;
+import org.spongepowered.api.data.property.LocationBasePropertyHolder;
+import org.spongepowered.api.fluid.FluidState;
 import org.spongepowered.api.state.State;
 import org.spongepowered.api.data.ImmutableDataBuilder;
 import org.spongepowered.api.data.key.Key;
@@ -45,7 +47,7 @@ import org.spongepowered.api.world.World;
  * a single instance of a particular {@link BlockState} as they are immutable,
  * a particular instance may be cached for various uses.
  */
-public interface BlockState extends State<BlockState>, DirectionRelativePropertyHolder {
+public interface BlockState extends State<BlockState>, LocationBasePropertyHolder, DirectionRelativePropertyHolder {
 
     /**
      * Creates a new {@link Builder} for building {@link BlockState}s.
@@ -86,6 +88,15 @@ public interface BlockState extends State<BlockState>, DirectionRelativeProperty
      * @return The blockstate instance with the cycled value
      */
     BlockState cycleValue(Key<? extends BaseValue<? extends Cycleable<?>>> key);
+
+    /**
+     * Gets the associated {@link FluidState} for this block state.
+     * Depending on whether this block state is considered "waterlogged"
+     * or not, and with which fluid.
+     *
+     * @return
+     */
+    FluidState getFluidState();
 
     /**
      * Creates a new {@link BlockSnapshot} with this current {@link BlockState}

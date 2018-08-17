@@ -27,21 +27,17 @@ package org.spongepowered.api.world.extent;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector2i;
-import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.ScheduledBlockUpdate;
-import org.spongepowered.api.data.property.LocationBasePropertyHolder;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.AABB;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
 import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.extent.worker.MutableBiomeVolumeWorker;
-import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -55,54 +51,7 @@ import javax.annotation.Nullable;
  * A mutable object containing blocks, tile entities, entities, and possibly
  * other game objects.
  */
-public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVolume, MutableBiomeVolume,
-    LocationCompositeValueStore, Identifiable, LocationBasePropertyHolder {
-
-    /**
-     * Gets a location in this extent at the given position. Essentially, this
-     * is a 3D pointer in the extent.
-     *
-     * @param position The position
-     * @return The location in this extent
-     */
-    Location<? extends Extent> getLocation(Vector3i position);
-
-    /**
-     * Gets a location in this extent at the given position. Essentially, this
-     * is a 3D pointer in the extent.
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The location in this extent
-     */
-    default Location<? extends Extent> getLocation(int x, int y, int z) {
-        return getLocation(new Vector3i(x, y, z));
-    }
-
-    /**
-     * Gets a location in this extent at the given position. Essentially, this
-     * is a 3D pointer in the extent. This method supports sub-block positions.
-     * Block-related methods use flooring to get integer coordinates.
-     *
-     * @param position The position
-     * @return The location in this extent
-     */
-    Location<? extends Extent> getLocation(Vector3d position);
-
-    /**
-     * Gets a location in this extent at the given position. Essentially, this
-     * is a 3D pointer in the extent. This method supports sub-block positions.
-     * Block-related methods use flooring to get integer coordinates.
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The location in this extent
-     */
-    default Location<? extends Extent> getLocation(double x, double y, double z) {
-        return getLocation(new Vector3i(x, y, z));
-    }
+public interface Extent extends Identifiable {
 
     /**
      * Get the y value of the highest block that sunlight can reach in the given

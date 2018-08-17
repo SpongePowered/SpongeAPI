@@ -24,22 +24,13 @@
  */
 package org.spongepowered.api.world.extent.worker.procedure;
 
-import org.spongepowered.api.world.extent.BlockVolume;
+import org.spongepowered.api.world.extent.beta.block.WorkableBlockVolume;
+import org.spongepowered.api.world.extent.beta.worker.function.VolumeVisitor;
 
 /**
  * Visits a block given as its volume and coordinates.
  */
 @FunctionalInterface
-public interface BlockVolumeVisitor<V extends BlockVolume> {
-
-    /**
-     * Visits a block given as its volume and coordinates.
-     *
-     * @param volume The volume containing the block
-     * @param x The x coordinate of the block
-     * @param y The y coordinate of the block
-     * @param z The z coordinate of the block
-     */
-    void visit(V volume, int x, int y, int z);
+public interface BlockVolumeVisitor<V extends WorkableBlockVolume<V>> extends VolumeVisitor<V> {
 
 }

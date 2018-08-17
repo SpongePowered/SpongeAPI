@@ -28,8 +28,6 @@ import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.util.DiscreteTransform3;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
-import org.spongepowered.api.world.biome.BiomeType;
-import org.spongepowered.api.world.extent.worker.BiomeVolumeWorker;
 
 /**
  * A volume containing biomes that can be at least accessed.
@@ -74,41 +72,7 @@ public interface BiomeVolume {
         return containsBiome(position.getX(), position.getY(), position.getZ());
     }
 
-    /**
-     * Returns true if the biome volume contains a biome at the specified
-     * position. This is defined as <code>{{@link #getBiomeMin()} <= (x, y, z)
-     * <= {@link #getBiomeMax()}</code>
-     *
-     * @param x The X coordinate to check
-     * @param y The Y coordinate to check
-     * @param z The Z coordinate to check
-     * @return Whether or not the position has a biome in this volume
-     */
-    boolean containsBiome(int x, int y, int z);
 
-    /**
-     * Gets an object representing the biome at the given position.
-     *
-     * @param position The position
-     * @return The biome
-     * @throws PositionOutOfBoundsException If the position is outside of the
-     *         bounds of the volume
-     */
-    default BiomeType getBiome(Vector3i position) {
-        return getBiome(position.getX(), position.getY(), position.getZ());
-    }
-
-    /**
-     * Gets the {@link BiomeType} at the given location.
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The biome
-     * @throws PositionOutOfBoundsException If the position is outside of the
-     *         bounds of the volume
-     */
-    BiomeType getBiome(int x, int y, int z);
 
     /**
      * Returns a new volume that is the same or smaller than the current volume.

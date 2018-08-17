@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.world.extent.worker.procedure;
 
-import org.spongepowered.api.world.extent.UnmodifiableBiomeVolume;
-
 /**
  * Reduces a biome given as its volume and coordinates into the ongoing
  * reduction.

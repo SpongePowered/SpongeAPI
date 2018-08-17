@@ -58,7 +58,6 @@ import org.spongepowered.api.event.cause.entity.spawn.SpawnType;
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.biome.BiomeType;
-import org.spongepowered.api.world.extent.EntityUniverse;
 import org.spongepowered.api.world.extent.Extent;
 
 import java.lang.ref.WeakReference;
@@ -66,7 +65,6 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.BiFunction;
-import java.util.function.Function;
 
 import javax.annotation.Nullable;
 
@@ -512,18 +510,6 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Gets the base type of block.
-     *
-     * <p>The type does not include block data such as the contents of
-     * inventories.</p>
-     *
-     * @return The type of block
-     */
-    public BlockType getBlockType() {
-        return getExtent().getBlockType(getBlockPosition());
-    }
-
-    /**
      * Gets the {@link BlockState} for this position.
      *
      * @return The block state
@@ -584,7 +570,7 @@ public final class Location<E extends Extent> implements DataHolder {
      * @return True if the block change was successful
      */
     public boolean setBlockType(BlockType type) {
-        return getExtent().setBlockType(getBlockPosition(), type);
+        return getExtent().setBlock(getBlockPosition(), type.getDefaultState());
     }
 
     /**
@@ -792,7 +778,7 @@ public final class Location<E extends Extent> implements DataHolder {
                 .set(Queries.WORLD_NAME, ((Chunk) getExtent()).getWorld().getName())
                 .set(Queries.WORLD_ID, ((Chunk) getExtent()).getWorld().getUniqueId().toString());
         }
-        container.set(Queries.BLOCK_TYPE, this.getExtent().getBlockType(getBlockPosition()).getKey())
+        container.set(Queries.BLOCK_TYPE, this.getExtent().getBlock(getBlockPosition()).getKey())
             .set(Queries.POSITION_X, this.getX())
             .set(Queries.POSITION_Y, this.getY())
             .set(Queries.POSITION_Z, this.getZ());
@@ -820,26 +806,6 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     @Override
-    public DataTransactionResult offer(Iterable<DataManipulator<?, ?>> valueHolders) {
-        return getExtent().offer(getBlockPosition(), valueHolders);
-    }
-
-    @Override
-    public DataTransactionResult offer(Iterable<DataManipulator<?, ?>> values, MergeFunction function) {
-        return getExtent().offer(getBlockPosition(), values, function);
-    }
-
-    @Override
-    public <T> DataTransactionResult offer(BaseValue<T> value) {
-        return getExtent().offer(getBlockPosition(), value);
-    }
-
-    @Override
-    public DataTransactionResult offer(DataManipulator<?, ?> valueContainer) {
-        return getExtent().offer(getBlockPosition(), valueContainer);
-    }
-
-    @Override
     public DataTransactionResult offer(DataManipulator<?, ?> valueContainer, MergeFunction function) {
         return getExtent().offer(getBlockPosition(), valueContainer, function);
     }
@@ -857,16 +823,6 @@ public final class Location<E extends Extent> implements DataHolder {
     @Override
     public boolean supports(Key<?> key) {
         return getExtent().supports(getBlockPosition(), key);
-    }
-
-    @Override
-    public <T> DataTransactionResult transform(Key<? extends BaseValue<T>> key, Function<T, T> function) {
-        return getExtent().transform(getBlockPosition(), key, function);
-    }
-
-    @Override
-    public DataTransactionResult copyFrom(DataHolder that) {
-        return getExtent().copyFrom(getBlockPosition(), that);
     }
 
     @Override

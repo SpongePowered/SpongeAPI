@@ -26,7 +26,6 @@ package org.spongepowered.api.world.gen;
 
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.extent.Extent;
-import org.spongepowered.api.world.extent.ImmutableBiomeVolume;
 import org.spongepowered.api.world.gen.populator.RandomObject;
 
 import java.util.Random;

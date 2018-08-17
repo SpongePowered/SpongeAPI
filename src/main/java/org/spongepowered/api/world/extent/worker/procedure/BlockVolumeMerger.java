@@ -25,7 +25,6 @@
 package org.spongepowered.api.world.extent.worker.procedure;
 
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.world.extent.UnmodifiableBlockVolume;
 
 /**
  * Produces a new block from two original blocks given as their volumes and

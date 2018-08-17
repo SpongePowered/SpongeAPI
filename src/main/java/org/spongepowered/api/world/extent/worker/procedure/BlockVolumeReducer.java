@@ -24,14 +24,14 @@
  */
 package org.spongepowered.api.world.extent.worker.procedure;
 
-import org.spongepowered.api.world.extent.UnmodifiableBlockVolume;
+import org.spongepowered.api.world.extent.beta.worker.function.VolumeReducer;
 
 /**
  * Reduces a block given as its volume and coordinates into the ongoing
  * reduction.
  */
 @FunctionalInterface
-public interface BlockVolumeReducer<T> {
+public interface BlockVolumeReducer<T> extends VolumeReducer<T, > {
 
     /**
      * Reduces a block given as its volume and coordinates into the ongoing

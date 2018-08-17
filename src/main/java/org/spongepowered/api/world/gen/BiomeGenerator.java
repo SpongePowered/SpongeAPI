@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.world.gen;
 
-import org.spongepowered.api.world.extent.MutableBiomeVolume;
-
 /**
  * Manages the biome generation for an extent.
  */

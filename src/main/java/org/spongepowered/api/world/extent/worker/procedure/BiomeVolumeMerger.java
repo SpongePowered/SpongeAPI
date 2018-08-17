@@ -25,30 +25,13 @@
 package org.spongepowered.api.world.extent.worker.procedure;
 
 import org.spongepowered.api.world.biome.BiomeType;
-import org.spongepowered.api.world.extent.UnmodifiableBiomeVolume;
+import org.spongepowered.api.world.extent.beta.worker.function.VolumeMerger;
 
 /**
  * Produces a new biome from two original biomes given as their volume and their
  * coordinates.
  */
 @FunctionalInterface
-public interface BiomeVolumeMerger {
-
-    /**
-     * Produces a new biome from two original biomes given as their volumes and
-     * their coordinates.
-     *
-     * @param firstVolume The volume for the first biome
-     * @param xFirst The x coordinate for the first biome
-     * @param yFirst The y coordinate for the first biome
-     * @param zFirst The z coordinate for the first biome
-     * @param secondVolume The volume for the second biome
-     * @param xSecond The x coordinate for the second biome
-     * @param ySecond The y coordinate for the second biome
-     * @param zSecond The z coordinate for the second biome
-     * @return The produced biome
-     */
-    BiomeType merge(UnmodifiableBiomeVolume firstVolume, int xFirst, int yFirst, int zFirst, UnmodifiableBiomeVolume secondVolume, int xSecond,
-            int ySecond, int zSecond);
+public interface BiomeVolumeMerger extends VolumeMerger<BiomeType, UnmodifiableBiomeVolume> {
 
 }

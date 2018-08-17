@@ -25,14 +25,14 @@
 package org.spongepowered.api.world.extent.worker.procedure;
 
 import org.spongepowered.api.world.biome.BiomeType;
-import org.spongepowered.api.world.extent.UnmodifiableBiomeVolume;
+import org.spongepowered.api.world.extent.beta.worker.function.VolumeMapper;
 
 /**
  * Produces a new biome from an original biome given as its volume and
  * coordinates.
  */
 @FunctionalInterface
-public interface BiomeVolumeMapper {
+public interface BiomeVolumeMapper extends VolumeMapper<BiomeType, > {
 
     /**
      * Produces a new biome from the original biome given as its volume and
