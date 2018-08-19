@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.world.gen;
 
+import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.chunk.ProtoChunk;
-import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.gen.populator.RandomObject;
 
 import java.util.Random;

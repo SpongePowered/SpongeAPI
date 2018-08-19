@@ -22,17 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world;
+package org.spongepowered.api.scheduler;
 
-import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.fluid.FluidType;
-import org.spongepowered.api.scheduler.ScheduledTaskList;
-import org.spongepowered.api.world.extent.block.ReadableBlockVolume;
+import org.spongepowered.api.world.Locatable;
 
-public interface TickableVolume extends ReadableBlockVolume {
+/**
+ * Represents a scheduled block update. SBUs with higher priorities are
+ * processed first.
+ */
+public interface ScheduledTaskEntry<T> extends Locatable {
 
-    ScheduledTaskList<FluidType> getPendingFluidTicks();
+    T getTarget();
 
-    ScheduledTaskList<BlockType> getPendingBlockTicks();
+    /**
+     * Gets the amount of ticks until this update should cause the block to update.
+     *
+     * @return The amount of ticks until this SBU should cause the block to
+     *         update.
+     */
+    int getTicks();
+
+    /**
+     * Sets the amount of ticks until this SBU should cause the block to update.
+     *
+     * @param ticks The new amount of ticks until this SBU should cause the
+     *        block to update.
+     */
+    void setTicks(int ticks);
+
+    /**
+     * Gets the priority of this scheduled block update.
+     *
+     * @return The priority of this scheduled block update
+     */
+    TaskPriority getPriority();
 
 }

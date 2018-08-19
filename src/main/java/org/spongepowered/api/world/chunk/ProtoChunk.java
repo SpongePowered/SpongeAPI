@@ -26,6 +26,7 @@ package org.spongepowered.api.world.chunk;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.tileentity.TileEntity;
+import org.spongepowered.api.world.TickableVolume;
 import org.spongepowered.api.world.biome.MutableBiomeVolume;
 import org.spongepowered.api.world.extent.block.MutableBlockVolume;
 import org.spongepowered.api.world.extent.tileentity.MutableTileEntityVolume;
@@ -33,10 +34,12 @@ import org.spongepowered.api.world.extent.tileentity.MutableTileEntityVolume;
 public interface ProtoChunk
     extends MutableBlockVolume<ProtoChunk>,
     MutableTileEntityVolume,
-    MutableBiomeVolume<ProtoChunk>
+    MutableBiomeVolume<ProtoChunk>,
+    TickableVolume
 {
 
     void addTileEntity(Vector3i pos, TileEntity tileEntity);
+
     void addTileEntity(int x, int y, int z, TileEntity tileEntity);
 
     Vector3i getChunkPosition();

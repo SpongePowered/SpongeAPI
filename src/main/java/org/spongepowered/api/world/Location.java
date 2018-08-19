@@ -36,7 +36,6 @@ import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.block.ScheduledBlockUpdate;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
@@ -56,9 +55,12 @@ import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.EventContext;
 import org.spongepowered.api.event.cause.entity.spawn.SpawnType;
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
+import org.spongepowered.api.scheduler.ScheduledTaskEntry;
+import org.spongepowered.api.scheduler.TaskPriority;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.chunk.Chunk;
+import org.spongepowered.api.world.extent.entity.MutableEntityVolume;
 
 import java.lang.ref.WeakReference;
 import java.util.Collection;
@@ -82,8 +84,6 @@ import javax.annotation.Nullable;
  *
  * <p>Locations are immutable. Methods that change the properties of the
  * location create a new instance.</p>
- *
- * @param  The type of world containing this location
  */
 public final class Location implements DataHolder {
 
@@ -582,7 +582,7 @@ public final class Location implements DataHolder {
      * @return True if the block change was successful
      */
     public boolean setBlockType(BlockType type, BlockChangeFlag flag) {
-        return getWorld().setblock(getBlockPosition(), type.getDefaultState(), flag);
+        return getWorld().setBlock(getBlockPosition(), type.getDefaultState(), flag);
     }
 
     /**
@@ -608,7 +608,7 @@ public final class Location implements DataHolder {
      * @return True if the block change was successful
      */
     public boolean removeBlock() {
-        return getWorld().setblock(getBlockPosition(), BlockTypes.AIR.getDefaultState(), BlockChangeFlags.ALL);
+        return getWorld().removeBlock(getBlockPosition());
     }
 
     /**
@@ -626,7 +626,7 @@ public final class Location implements DataHolder {
      * @throws IllegalArgumentException If the position or entity type is not
      *     valid to create
      * @throws IllegalStateException If a constructor cannot be found
-     * @see EntityUniverse#createEntity(EntityType, Vector3d)
+     * @see MutableEntityVolume#createEntity(EntityType, Vector3d)
      */
     public Entity createEntity(EntityType type) {
         return this.getWorld().createEntity(type, this.getPosition());
@@ -644,16 +644,16 @@ public final class Location implements DataHolder {
      *
      * <p>The requirements involve that all necessary setup of states and data
      * is already preformed on the entity retrieved from the various
-     * {@link EntityUniverse#createEntity(EntityType,Vector3d)} methods. Calling
-     * this will make the now-spawned entity able to be processed by various
-     * systems.</p>
+     * {@link MutableEntityVolume#createEntity(EntityType,Vector3d)} methods.
+     * Calling this will make the now-spawned entity able to be processed by
+     * various systems.</p>
      *
      * <p>If the entity was unable to spawn, the entity is not removed, but it
      * should be taken note that there can be many reasons for a failure.</p>
      *
      * @param entity The entity to spawn
      * @return True if successful, false if not
-     * @see EntityUniverse#spawnEntity(Entity)
+     * @see MutableEntityVolume#spawnEntity(Entity)
      */
     public boolean spawnEntity(Entity entity) {
         return this.getWorld().spawnEntity(entity);
@@ -667,7 +667,7 @@ public final class Location implements DataHolder {
      *
      * @param entities The entities which spawned correctly, or empty if none
      * @return True if any of the entities were successfully spawned
-     * @see EntityUniverse#spawnEntities(Iterable)
+     * @see MutableEntityVolume#spawnEntities(Iterable)
      */
     public Collection<Entity> spawnEntities(Iterable<? extends Entity> entities) {
         return this.getWorld().spawnEntities(entities);
@@ -711,32 +711,32 @@ public final class Location implements DataHolder {
     }
 
     /**
-     * Gets a list of {@link ScheduledBlockUpdate}s on this block.
+     * Gets a list of {@link ScheduledTaskEntry}s on this block.
      *
      * @return A list of ScheduledBlockUpdates on this block
      */
-    public Collection<ScheduledBlockUpdate> getScheduledUpdates() {
-        return getWorld().getScheduledUpdates(getBlockPosition());
+    public Collection<ScheduledTaskEntry<BlockType>> getScheduledUpdates() {
+        return getWorld().getPendingBlockTicks().getScheduledUpdates(getBlockPosition());
     }
 
     /**
-     * Adds a new {@link ScheduledBlockUpdate} to this block.
+     * Adds a new {@link ScheduledTaskEntry} to this block.
      *
      * @param priority The priority of the scheduled update
      * @param ticks The ticks until the scheduled update should be processed
      * @return The newly created scheduled update
      */
-    public ScheduledBlockUpdate addScheduledUpdate(int priority, int ticks) {
-        return getWorld().addScheduledUpdate(getBlockPosition(), priority, ticks);
+    public ScheduledTaskEntry<BlockType> addScheduledUpdate(TaskPriority priority, int ticks) {
+        return getWorld().getPendingBlockTicks().scheduleUpdate(getBlockPosition(), getBlock().getType(), ticks, priority);
     }
 
     /**
-     * Removes a {@link ScheduledBlockUpdate} from this block.
+     * Removes a {@link ScheduledTaskEntry} from this block.
      *
-     * @param update The ScheduledBlockUpdate to remove
+     * @param update The ScheduledTaskEntry to remove
      */
-    public void removeScheduledUpdate(ScheduledBlockUpdate update) {
-        getWorld().removeScheduledUpdate(getBlockPosition(), update);
+    public void removeScheduledUpdate(ScheduledTaskEntry<BlockType> update) {
+        getWorld().getPendingBlockTicks().removeUpdate(getBlockPosition(), update);
     }
 
     @Override
@@ -867,10 +867,10 @@ public final class Location implements DataHolder {
 
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof Location<?>)) {
+        if (!(other instanceof Location)) {
             return false;
         }
-        Location<?> otherLoc = (Location<?>) other;
+        Location otherLoc = (Location) other;
         return otherLoc.getWorld().equals(getWorld())
             && otherLoc.getPosition().equals(getPosition());
     }

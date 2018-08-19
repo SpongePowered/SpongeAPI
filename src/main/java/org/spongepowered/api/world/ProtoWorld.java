@@ -28,13 +28,14 @@ import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.property.LocationBasePropertyHolder;
+import org.spongepowered.api.world.biome.MutableBiomeVolume;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.extent.LightCalculatingVolume;
 import org.spongepowered.api.world.extent.LocationCompositeValueStore;
-import org.spongepowered.api.world.biome.MutableBiomeVolume;
 import org.spongepowered.api.world.extent.block.MutableBlockVolume;
 import org.spongepowered.api.world.extent.entity.CollisionAwareEntityVolume;
 import org.spongepowered.api.world.extent.entity.MutableEntityVolume;
+import org.spongepowered.api.world.extent.tileentity.MutableTileEntityVolume;
 
 import java.util.Optional;
 
@@ -43,11 +44,13 @@ public interface ProtoWorld<P extends ProtoWorld<P>>
     MutableBiomeVolume<P>,
     MutableBlockVolume<P>,
     MutableEntityVolume<P>,
+    MutableTileEntityVolume<P>,
     CollisionAwareEntityVolume,
     InteractableVolume,
     LocationBasePropertyHolder,
     LocationCompositeValueStore,
-    LightCalculatingVolume
+    LightCalculatingVolume,
+    TickableVolume
 {
 
     /**

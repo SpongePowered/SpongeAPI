@@ -28,9 +28,9 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.extent.archetype.ArchetypeVolume;
+import org.spongepowered.api.world.extent.archetype.ArchetypeVolumeCreator;
 import org.spongepowered.api.world.extent.block.ReadableBlockVolume;
 import org.spongepowered.api.world.extent.tileentity.ReadableTileEntityVolume;
-import org.spongepowered.api.world.extent.archetype.ArchetypeVolumeCreator;
 
 /**
  * A special archetype volume designed to be persisted. Contains additional

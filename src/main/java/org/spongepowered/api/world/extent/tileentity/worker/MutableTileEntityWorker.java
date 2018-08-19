@@ -22,44 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block;
+package org.spongepowered.api.world.extent.tileentity.worker;
 
-import org.spongepowered.api.world.Locatable;
+import org.spongepowered.api.block.tileentity.TileEntity;
+import org.spongepowered.api.world.extent.tileentity.MutableTileEntityVolume;
+import org.spongepowered.api.world.extent.tileentity.UnmodifiableTileEntityVolume;
+import org.spongepowered.api.world.extent.worker.MutableVolumeWorker;
 
-/**
- * Represents a scheduled block update. SBUs with higher priorities are
- * processed first.
- */
-public interface ScheduledBlockUpdate extends Locatable {
-
-    /**
-     * Gets the amount of ticks until this SBU should cause the block to update.
-     *
-     * @return The amount of ticks until this SBU should cause the block to
-     *         update.
-     */
-    int getTicks();
-
-    /**
-     * Sets the amount of ticks until this SBU should cause the block to update.
-     *
-     * @param ticks The new amount of ticks until this SBU should cause the
-     *        block to update.
-     */
-    void setTicks(int ticks);
-
-    /**
-     * Gets the priority of this scheduled block update.
-     *
-     * @return The priority of this scheduled block update
-     */
-    int getPriority();
-
-    /**
-     * Sets the priority of this scheduled block update.
-     *
-     * @param priority The new priority of this scheduled block update
-     */
-    void setPriority(int priority);
+public interface MutableTileEntityWorker<E extends MutableTileEntityVolume<E>> extends TileEntityWorker<E, E>,
+    MutableVolumeWorker<E, UnmodifiableTileEntityVolume<?>, TileEntity> {
 
 }

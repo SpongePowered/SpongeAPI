@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.world.gen;
 
+import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.biome.ImmutableBiomeVolume;
 import org.spongepowered.api.world.extent.block.MutableBlockVolume;
-import org.spongepowered.api.world.ProtoWorld;
 
 /**
  * A populator which acts directly on the {@link MutableBlockVolume} during the

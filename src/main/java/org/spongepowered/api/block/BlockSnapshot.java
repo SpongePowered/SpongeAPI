@@ -179,7 +179,7 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
          * @param location The Location to copy from
          * @return This builder, for chaining
          */
-        Builder from(Location<World> location);
+        Builder from(Location location);
 
         /**
          * Sets the {@link UUID} of the user who created this

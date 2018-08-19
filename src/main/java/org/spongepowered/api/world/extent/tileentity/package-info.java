@@ -22,17 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world;
-
-import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.fluid.FluidType;
-import org.spongepowered.api.scheduler.ScheduledTaskList;
-import org.spongepowered.api.world.extent.block.ReadableBlockVolume;
-
-public interface TickableVolume extends ReadableBlockVolume {
-
-    ScheduledTaskList<FluidType> getPendingFluidTicks();
-
-    ScheduledTaskList<BlockType> getPendingBlockTicks();
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.world.extent.tileentity;

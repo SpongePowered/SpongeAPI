@@ -30,6 +30,6 @@ import org.spongepowered.api.world.extent.tileentity.UnmodifiableTileEntityVolum
 import org.spongepowered.api.world.extent.tileentity.WorkableTileEntityVolume;
 import org.spongepowered.api.world.extent.worker.VolumeWorker;
 
-public interface TileEntityWorker<E extends WorkableTileEntityVolume<E>> extends VolumeWorker<E, UnmodifiableTileEntityVolume<?>, TileEntity, MutableTileEntityVolume> {
+public interface TileEntityWorker<E extends WorkableTileEntityVolume<E>, M extends MutableTileEntityVolume<M>> extends VolumeWorker<E, UnmodifiableTileEntityVolume<?>, TileEntity, M> {
 
 }
