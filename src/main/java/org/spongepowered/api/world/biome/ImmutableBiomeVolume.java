@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.world.biome;
 
-import org.spongepowered.api.world.extent.ImmutableVolume;
+import org.spongepowered.api.world.volume.ImmutableVolume;
 
 public interface ImmutableBiomeVolume extends UnmodifiableBiomeVolume<ImmutableBiomeVolume>, ImmutableVolume {
 

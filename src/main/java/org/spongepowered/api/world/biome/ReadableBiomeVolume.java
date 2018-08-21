@@ -26,7 +26,7 @@ package org.spongepowered.api.world.biome;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
-import org.spongepowered.api.world.extent.Volume;
+import org.spongepowered.api.world.volume.Volume;
 
 public interface ReadableBiomeVolume extends Volume {
     /**

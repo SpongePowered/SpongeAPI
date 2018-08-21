@@ -32,24 +32,12 @@ import org.spongepowered.api.world.World;
 import java.util.Optional;
 
 /**
- * A chunk is a specific grid-aligned partition of a {@link Extent}.
+ * A chunk is a specific grid-aligned partition of a {@link World}.
  *
  * <p>In Minecraft, the chunk is 16 by 16 blocks on the X and Z axes. The height
  * of each chunk varies between worlds.</p>
  */
-public interface Chunk extends Extent {
-
-    /**
-     * Gets the position of the chunk.
-     *
-     * <p>The returned position is 3-dimensional with the Y-coordinate set to be
-     * the base (lowest) Y-position of the chunk. As 3-dimensional chunks do not
-     * yet exist in Minecraft, the returned position will always have a
-     * {@code y} set to 0.</p>
-     *
-     * @return The position
-     */
-    Vector3i getPosition();
+public interface Chunk extends ProtoChunk<Chunk> {
 
     /**
      * Gets the world the chunk is in.
@@ -62,8 +50,13 @@ public interface Chunk extends Extent {
      * Gets if the chunk has been populated by the generator.
      *
      * @return Whether or not the chunk has been populated.
+     * @deprecated Use {@link #getState()} to determine statefulness
      */
-    boolean isPopulated();
+    @Deprecated
+    default boolean isPopulated() {
+        return getState().isAfter(ChunkStates.DECORATED);
+    }
+
 
     /**
      * Loads this chunk, and generates if specified and required.
@@ -152,10 +145,5 @@ public interface Chunk extends Extent {
         return neighborPosition.flatMap(vector3i -> getWorld().loadChunk(vector3i, shouldLoad));
     }
 
-    @Override
-    MutableBiomeVolumeWorker<Chunk> getBiomeWorker();
-
-    @Override
-    MutableBlockVolumeWorker<Chunk> getBlockWorker();
 
 }

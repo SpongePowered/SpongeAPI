@@ -26,7 +26,7 @@ package org.spongepowered.api.world;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
-import org.spongepowered.api.world.extent.LightCalculatingVolume;
+import org.spongepowered.api.world.volume.LightCalculatingVolume;
 
 @CatalogedBy(LightTypes.class)
 public interface LightType extends CatalogType {

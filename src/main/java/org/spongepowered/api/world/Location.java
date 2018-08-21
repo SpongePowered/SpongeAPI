@@ -60,7 +60,7 @@ import org.spongepowered.api.scheduler.TaskPriority;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.chunk.Chunk;
-import org.spongepowered.api.world.extent.entity.MutableEntityVolume;
+import org.spongepowered.api.world.volume.entity.MutableEntityVolume;
 
 import java.lang.ref.WeakReference;
 import java.util.Collection;

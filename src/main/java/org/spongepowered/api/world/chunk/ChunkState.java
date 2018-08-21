@@ -50,29 +50,29 @@
 
 package org.spongepowered.api.world.chunk;
 
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.world.World;
+
 /**
- * Represents the state of a {@link Chunk}.
+ * Represents the state of a {@link ProtoChunk} that can exist
+ * through various stages of the game, including but not limited to:
+ * <ul><li>Chunk in the process of being generated</li>
+ * <li>Chunk being deserialized from storage and being prepared for addition to a {@link World}</li>
+ * <li>{@link Chunk}s already existing and loaded in a {@link World}</li>
+ * </ul>
  */
-public enum ChunkState {
+public interface ChunkState extends CatalogType {
 
     /**
-     * The chunk is not loaded into memory. Whether the chunk has been generated
-     * is unknown while in this state.
+     * Checks whether this state is considered "after"
+     * the provided {@link ChunkState}. Usually used as a check for
+     * whether the {@link ProtoChunk} providing this state is
+     * considered "usable" for consumers of {@link ProtoChunk}s with
+     * a specific {@link ChunkState} range.
+     *
+     * @param state The chunk state
+     * @return True if this state is after the provided state
      */
-    UNLOADED,
-    /**
-     * The chunk is loaded but has not yet been generated.
-     */
-    NOT_GENERATED,
-    /**
-     * The chunk has been generated (implying that the shape of the terrain has
-     * been formed out of a basic block) but none of the populators or
-     * structures have been applied yet.
-     */
-    NOT_POPULATED,
-    /**
-     * The chunk is fully generated and loaded into the world.
-     */
-    LOADED
+    boolean isAfter(ChunkState state);
 
 }

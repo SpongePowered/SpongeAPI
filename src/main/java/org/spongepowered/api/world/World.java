@@ -26,6 +26,8 @@ package org.spongepowered.api.world;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.Server;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.effect.Viewer;
@@ -36,9 +38,10 @@ import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.chunk.ChunkPreGenerate;
+import org.spongepowered.api.world.chunk.ProtoChunk;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.explosion.Explosion;
-import org.spongepowered.api.world.extent.block.PhysicsAwareMutableBlockVolume;
+import org.spongepowered.api.world.volume.block.PhysicsAwareMutableBlockVolume;
 import org.spongepowered.api.world.gamerule.DefaultGameRules;
 import org.spongepowered.api.world.gen.WorldGenerator;
 import org.spongepowered.api.world.storage.WorldProperties;
@@ -152,6 +155,77 @@ public interface World extends ProtoWorld<World>, LocationCreator<World>, Physic
      */
     boolean restoreSnapshot(int x, int y, int z, BlockSnapshot snapshot, boolean force, BlockChangeFlag flag);
 
+    /**
+     * {@inheritDoc}
+     * This gets a guaranteed {@link Chunk} at the desired block position; however,
+     * the {@link Chunk} instance may be {@link Chunk#isEmpty() empty}, and
+     * likewise, may not be generated, valid, pre-existing. It is important to
+     * check for these cases prior to attmepting to modify the chunk.
+     *
+     * <p>Note that this is still different from {@link #getChunk(Vector3i)}
+     * due to the relative block position dictated by {@link Server#getChunkLayout()},
+     * which can vary depending on implementation and other mods installed.</p>
+     *
+     * @param blockPosition The block position to be transformed for relative chunk position
+     * @return The available chunk at that position
+     */
+    @Override
+    default Chunk getChunkAtBlock(Vector3i blockPosition) {
+        final Vector3i chunkPos = Sponge.getServer().getChunkLayout().forceToChunk(blockPosition);
+        return getChunk(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ());
+    }
+
+    /**
+     * {@inheritDoc}
+     * This gets a guaranteed {@link Chunk} at the desired block position; however,
+     * the {@link Chunk} instance may be {@link Chunk#isEmpty() empty}, and
+     * likewise, may not be generated, valid, pre-existing. It is important to
+     * check for these cases prior to attmepting to modify the chunk.
+     *
+     * <p>Note that this is still different from {@link #getChunk(Vector3i)}
+     * due to the relative block position dictated by {@link Server#getChunkLayout()},
+     * which can vary depending on implementation and other mods installed.</p>
+     *
+     * @param bx The block x coordinate
+     * @param by The block y coordinate
+     * @param bz The block z coordinate
+     * @return The available chunk at that position
+     */
+    @Override
+    default Chunk getChunkAtBlock(int bx, int by, int bz) {
+        final Vector3i chunkPos = Sponge.getServer().getChunkLayout().forceToChunk(bx, by, bz);
+        return getChunk(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ());
+    }
+
+    /**
+     * {@inheritDoc}
+     * This gets a guaranteed {@link Chunk} at the desired block position; however,
+     * the {@link Chunk} instance may be {@link Chunk#isEmpty() empty}, and
+     * likewise, may not be generated, valid, pre-existing. It is important to
+     * check for these cases prior to attmepting to modify the chunk.
+     *
+     * @param chunkPos The chunk position relative to the {@link Server#getChunkLayout() chunk layout}
+     * @return The available chunk at that position
+     */
+    @Override
+    default Chunk getChunk(Vector3i chunkPos) {
+        return getChunk(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ());
+    }
+
+    /**
+     * {@inheritDoc}
+     * This gets a guaranteed {@link Chunk} at the desired block position; however,
+     * the {@link Chunk} instance may be {@link Chunk#isEmpty() empty}, and
+     * likewise, may not be generated, valid, pre-existing. It is important to
+     * check for these cases prior to attmepting to modify the chunk.
+     *
+     * @param cx The x chunk coordinate
+     * @param cy The y coordinate
+     * @param cz The z chunk coordinate
+     * @return The available chunk at the chunk position
+     */
+    @Override
+    Chunk getChunk(int cx, int cy, int cz);
 
     /**
      * Gets the chunk at the given chunk coordinate position if it exists or if

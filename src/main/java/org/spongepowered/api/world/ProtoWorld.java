@@ -28,14 +28,18 @@ import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.property.LocationBasePropertyHolder;
+import org.spongepowered.api.util.RandomProvider;
 import org.spongepowered.api.world.biome.MutableBiomeVolume;
 import org.spongepowered.api.world.chunk.Chunk;
-import org.spongepowered.api.world.extent.LightCalculatingVolume;
-import org.spongepowered.api.world.extent.LocationCompositeValueStore;
-import org.spongepowered.api.world.extent.block.MutableBlockVolume;
-import org.spongepowered.api.world.extent.entity.CollisionAwareEntityVolume;
-import org.spongepowered.api.world.extent.entity.MutableEntityVolume;
-import org.spongepowered.api.world.extent.tileentity.MutableTileEntityVolume;
+import org.spongepowered.api.world.chunk.ChunkVolume;
+import org.spongepowered.api.world.chunk.ProtoChunk;
+import org.spongepowered.api.world.volume.InteractableVolume;
+import org.spongepowered.api.world.volume.LightCalculatingVolume;
+import org.spongepowered.api.world.volume.LocationCompositeValueStore;
+import org.spongepowered.api.world.volume.block.MutableBlockVolume;
+import org.spongepowered.api.world.volume.entity.CollisionAwareEntityVolume;
+import org.spongepowered.api.world.volume.entity.MutableEntityVolume;
+import org.spongepowered.api.world.volume.tileentity.MutableTileEntityVolume;
 
 import java.util.Optional;
 
@@ -50,7 +54,9 @@ public interface ProtoWorld<P extends ProtoWorld<P>>
     LocationBasePropertyHolder,
     LocationCompositeValueStore,
     LightCalculatingVolume,
-    TickableVolume
+    TickableVolume,
+    ChunkVolume,
+    RandomProvider
 {
 
     /**
@@ -59,34 +65,50 @@ public interface ProtoWorld<P extends ProtoWorld<P>>
      * @param blockPosition The position
      * @return The chunk, if available
      */
-    default Optional<Chunk> getChunkAtBlock(Vector3i blockPosition) {
+    default ProtoChunk<?> getChunkAtBlock(Vector3i blockPosition) {
         return getChunkAtBlock(blockPosition.getX(), blockPosition.getY(), blockPosition.getZ());
     }
 
     /**
-     * Gets the loaded chunk at the given block coordinate position.
+     * Gets the loaded chunk at the given chunk coordinate position. The position
+     * is the block position relative to the {@link ProtoChunk#getChunkPosition()},
+     * and therefor is going to return a different chunk from {@link #getChunk(Vector3i)}.
+     * This is more usable from {@link Location}s or a {@link Locatable} that returns
+     * a {@link Vector3i position} in relation to a {@link ProtoWorld}.
      *
      * @param bx The x coordinate
      * @param by The y coordinate
      * @param bz The z coordinate
      * @return The chunk, if available
      */
-    default Optional<Chunk> getChunkAtBlock(int bx, int by, int bz) {
+    default ProtoChunk<?> getChunkAtBlock(int bx, int by, int bz) {
         return getChunk(Sponge.getServer().getChunkLayout().forceToChunk(bx, by, bz));
     }
 
     /**
-     * Gets the loaded chunk at the given chunk coordinate position.
+     * Gets the loaded chunk at the given chunk coordinate position. The position
+     * is the same as {@link ProtoChunk#getChunkPosition()}. The difference
+     * between a block placed within a {@link ProtoWorld} is different from a
+     * {@link ProtoChunk}'s position, and therefore care should be taken when
+     * requesting a chunk. It is not guaranteed that the returned {@link ProtoChunk}
+     * is {@link ProtoChunk#isEmpty() empty} or not, nor the {@link ProtoChunk#getState() state}
+     * of the chunk.
      *
      * @param chunkPosition The position
      * @return The chunk, if available
      */
-    default Optional<Chunk> getChunk(Vector3i chunkPosition) {
+    default ProtoChunk<?> getChunk(Vector3i chunkPosition) {
         return getChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ());
     }
 
     /**
-     * Gets the loaded chunk at the given chunk coordinate position.
+     * Gets the loaded chunk at the given chunk coordinate position. The position
+     * is the same as {@link ProtoChunk#getChunkPosition()}. The difference
+     * between a block placed within a {@link ProtoWorld} is different from a
+     * {@link ProtoChunk}'s position, and therefore care should be taken when
+     * requesting a chunk. It is not guaranteed that the returned {@link ProtoChunk}
+     * is {@link ProtoChunk#isEmpty() empty} or not, nor the {@link ProtoChunk#getState() state}
+     * of the chunk.
      *
      * <p>In Vanilla, the y coordinate will always be 0.</p>
      *
@@ -95,7 +117,13 @@ public interface ProtoWorld<P extends ProtoWorld<P>>
      * @param cz The z coordinate
      * @return The chunk, if available
      */
-    Optional<Chunk> getChunk(int cx, int cy, int cz);
+    ProtoChunk<?> getChunk(int cx, int cy, int cz);
+
+    default boolean hasWater(Vector3i pos) {
+        return hasWater(pos.getX(), pos.getY(), pos.getZ());
+    }
+
+    boolean hasWater(int x, int y, int z);
 
 
     /**

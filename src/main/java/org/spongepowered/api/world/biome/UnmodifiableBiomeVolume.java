@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.world.biome;
 
-import org.spongepowered.api.world.extent.MutableVolume;
-import org.spongepowered.api.world.extent.UnmodifiableVolume;
-import org.spongepowered.api.world.extent.block.ReadableBlockVolume;
-import org.spongepowered.api.world.extent.block.worker.BlockVolumeWorker;
+import org.spongepowered.api.world.volume.MutableVolume;
+import org.spongepowered.api.world.volume.UnmodifiableVolume;
+import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
+import org.spongepowered.api.world.volume.block.worker.BlockVolumeWorker;
 
 /**
  * Like a {@link ReadableBlockVolume} except in the case that

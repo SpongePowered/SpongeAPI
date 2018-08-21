@@ -27,8 +27,8 @@ package org.spongepowered.api.world.biome.worker;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.biome.MutableBiomeVolume;
 import org.spongepowered.api.world.biome.UnmodifiableBiomeVolume;
-import org.spongepowered.api.world.extent.block.worker.BlockVolumeWorker;
-import org.spongepowered.api.world.extent.worker.MutableVolumeWorker;
+import org.spongepowered.api.world.volume.block.worker.BlockVolumeWorker;
+import org.spongepowered.api.world.volume.worker.MutableVolumeWorker;
 
 /**
  * Similar to {@link BlockVolumeWorker} but adds support for mutating the

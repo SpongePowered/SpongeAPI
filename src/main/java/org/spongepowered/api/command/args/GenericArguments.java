@@ -67,7 +67,7 @@ import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.extent.EntityHit;
+import org.spongepowered.api.world.volume.EntityHit;
 import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.io.BufferedReader;

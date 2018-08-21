@@ -26,7 +26,7 @@ package org.spongepowered.api.world;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.world.extent.block.ReadableBlockVolume;
+import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
 
 public interface LocationCreator<E extends World> extends ReadableBlockVolume {
 

@@ -27,7 +27,7 @@ package org.spongepowered.api.world.biome;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
 import org.spongepowered.api.world.biome.worker.MutableBiomeVolumeWorker;
-import org.spongepowered.api.world.extent.MutableVolume;
+import org.spongepowered.api.world.volume.MutableVolume;
 
 public interface MutableBiomeVolume<M extends MutableBiomeVolume<M>> extends WorkableBiomeVolume<M>, MutableVolume {
 

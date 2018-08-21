@@ -26,7 +26,7 @@ package org.spongepowered.api.world;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.world.extent.block.ReadableBlockVolume;
+import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
 
 import java.util.Optional;
 import java.util.UUID;

@@ -28,7 +28,7 @@ import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.biome.MutableBiomeVolume;
 import org.spongepowered.api.world.biome.UnmodifiableBiomeVolume;
 import org.spongepowered.api.world.biome.WorkableBiomeVolume;
-import org.spongepowered.api.world.extent.worker.VolumeWorker;
+import org.spongepowered.api.world.volume.worker.VolumeWorker;
 
 /**
  * A worker for a block volume. Used to perform operations on all the blocks it
