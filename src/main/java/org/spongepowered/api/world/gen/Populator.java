@@ -24,9 +24,8 @@
  */
 package org.spongepowered.api.world.gen;
 
-import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.chunk.ProtoChunk;
+import org.spongepowered.api.world.biome.ImmutableBiomeVolume;
 import org.spongepowered.api.world.gen.populator.RandomObject;
 
 import java.util.Random;
@@ -73,12 +72,12 @@ public interface Populator<C extends PopulatorConfig> {
      * the given extent, instead your populator should override
      * {@link #populate(World, Extent, Random, ImmutableBiomeVolume)} to make use
      * of the ImmutableBiomeArea which does contain virtual biome types.</p>
+     * @param random A random number generator. This random number generator is
      * @param world The World within which the generation in happening
      * @param volume The volume to be populated
-     * @param random A random number generator. This random number generator is
      * @param config
      */
-    void populate(ProtoWorld<?> world, ProtoChunk volume, Random random, C config);
+    void populate(GenerationRegion world, PrimitiveChunk volume, ImmutableBiomeVolume biomes, C config);
 
     /**
      * Applies the populator to the given {@link Extent} volume. The entire volume

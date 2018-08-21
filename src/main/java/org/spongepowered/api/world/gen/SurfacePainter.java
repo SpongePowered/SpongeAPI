@@ -24,27 +24,23 @@
  */
 package org.spongepowered.api.world.gen;
 
-import org.spongepowered.api.world.ProtoWorld;
-import org.spongepowered.api.world.biome.ImmutableBiomeVolume;
+import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.chunk.ProtoChunk;
 import org.spongepowered.api.world.volume.block.MutableBlockVolume;
 
-/**
- * A populator which acts directly on the {@link MutableBlockVolume} during the
- * generation phase rather than the population phase.
- * 
- * <p>Unlike a normal {@link Populator}, a {@link GenerationPopulator} is
- * restricted to the chunk that is currently being generated.</p>
- */
-public interface GenerationPopulator<C extends GenerationConfig> {
+import java.util.Random;
 
-    /**
-     * Operates on a {@link MutableBlockVolume} either forming the base terrain
-     * or performing modifications during the generation phase.
-     *  @param world The world
-     * @param buffer The buffer to apply the changes to. The buffer can be of
-     *        any size.
-     * @param biomes The biomes for generation
-     */
-    void populate(GenerationRegion world, MutableBlockVolume<?> buffer, ImmutableBiomeVolume biomes, C config);
+/**
+ * Not to be confused with {@link GenerationPopulator}, a surface painter is literally
+ * as it sounds: it paints surfaces. In world generation, when a chunk has a base terrain
+ * created, the painter "overlays" a surface onto the target terrain. This is somewhat
+ * best described how grass and dirt are placed onto a moutainous biome terrain.
+ *
+ * <p>Like a {@link GenerationPopulator}, painters are restricted to the provided
+ * {@link ProtoChunk}.</p>
+ */
+public interface SurfacePainter {
+
+    void paintSurface(Random random, ProtoChunk<?> chunk, BiomeType biomeType, GenerationConfig config)
 
 }
