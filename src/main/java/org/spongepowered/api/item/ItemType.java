@@ -29,6 +29,7 @@ import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.Property;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Optional;
@@ -80,5 +81,7 @@ public interface ItemType extends CatalogType, Translatable {
      * @return The item property, if available
      */
     <T extends Property<?, ?>> Optional<T> getDefaultProperty(Class<T> propertyClass);
+
+    Translation getTranslation(ItemStack stack);
 
 }
