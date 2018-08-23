@@ -160,7 +160,7 @@ public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I
     }
 
     @Override
-    public DataContainer toContainer() {
+    public final DataContainer toContainer() {
         return this.fillContainer(DataContainer.createNew().set(Queries.CONTENT_VERSION, getContentVersion()));
     }
 
