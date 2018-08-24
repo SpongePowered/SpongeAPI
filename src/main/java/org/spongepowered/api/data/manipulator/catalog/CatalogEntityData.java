@@ -386,6 +386,10 @@ public final class CatalogEntityData {
      */
     public static final Class<StatisticData> STATISTIC_DATA = StatisticData.class;
     /**
+     * Represents the scoreboard tags applied to an {@link Entity}.
+     */
+    public static final Class<TagData> TAGS_DATA = TagData.class;
+    /**
      * Signifies that an entity is "tamed" and has an owner. Usually applicable
      * to {@link RideableHorse}s, {@link Ocelot}s, and {@link Wolf} entities.
      */

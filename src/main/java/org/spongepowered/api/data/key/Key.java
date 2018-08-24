@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.key;
 
 import com.google.common.reflect.TypeToken;
+import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataContainer;
@@ -126,14 +127,17 @@ public interface Key<V extends Value<?>> extends CatalogType {
         <T, B extends Value<T>> Builder<T, B> type(TypeToken<B> token);
 
         /**
-         * Sets the string id to be used for {@link CatalogType#getId()}.
+         * Sets the string id to be used for {@link CatalogType#getKey()}.
          *
          * <p>This should be formatted appropriately, review {@link CatalogType}
          * documentation for formatted ids.</p>
          *
          * @param id The string id
          * @return This builder, for chaining
+         * @deprecated Use {@link #key(CatalogKey)} instead, as the catalog key
+         *      is used
          */
+        @Deprecated
         Builder<E, V> id(String id);
 
         /**
@@ -143,6 +147,17 @@ public interface Key<V extends Value<?>> extends CatalogType {
          * @return This builder, for chaining
          */
         Builder<E, V> name(String name);
+
+        /**
+         * Sets the {@link CatalogKey} for the registration to be used.
+         *
+         * <p>Formatting for the namespace and value are lowercased as
+         * usual.</p>
+         *
+         * @param key The key to be used for serialization and registry references
+         * @return This builder, for chaining
+         */
+        Builder<E, V> key(CatalogKey key);
 
         /**
          * Sets the {@link DataQuery} recommended for use with

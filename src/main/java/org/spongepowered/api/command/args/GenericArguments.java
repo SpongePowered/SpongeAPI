@@ -33,9 +33,12 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.hocon.HoconConfigurationLoader;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
+import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandMessageFormatting;
@@ -85,10 +88,10 @@ import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
@@ -120,8 +123,14 @@ public final class GenericArguments {
         return NONE;
     }
 
-    static CommandElement markTrue(String flag) {
-        return new MarkTrueCommandElement(flag);
+    /**
+     * Expects no arguments. Adds 'true' to the context when parsed.
+     *
+     * @param key the key to store 'true' under
+     * @return the argument
+     */
+    public static CommandElement markTrue(Text key) {
+        return new MarkTrueCommandElement(key);
     }
 
     /**
@@ -258,8 +267,8 @@ public final class GenericArguments {
 
     static class MarkTrueCommandElement extends CommandElement {
 
-        MarkTrueCommandElement(String flag) {
-            super(Text.of(flag));
+        MarkTrueCommandElement(Text key) {
+            super(key);
         }
 
         @Override
@@ -274,7 +283,7 @@ public final class GenericArguments {
 
         @Override
         public Text getUsage(CommandSource src) {
-            return Text.EMPTY;
+            return Text.of();
         }
     }
 
@@ -319,33 +328,31 @@ public final class GenericArguments {
 
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            for (Iterator<CommandElement> it = this.elements.iterator(); it.hasNext(); ) {
-                CommandElement element = it.next();
-                Object startState = args.getState();
+            Set<String> completions = Sets.newHashSet();
+            for (CommandElement element : elements) {
+                CommandArgs.Snapshot state = args.getSnapshot();
                 try {
                     element.parse(src, args, context);
-                    Object endState = args.getState();
-                    if (!args.hasNext()) {
-                        args.setState(startState);
-                        List<String> inputs = element.complete(src, args, context);
-                        args.previous();
-                        if (!inputs.contains(args.next())) { // Tabcomplete returns results to complete the last word in an argument.
-                            // If the last word is one of the completions, the command is most likely complete
-                            return inputs;
+                    if (state.equals(args.getSnapshot())) {
+                        completions.addAll(element.complete(src, args, context));
+                        args.applySnapshot(state);
+                    } else if (args.hasNext()) {
+                        completions.clear();
+                    } else {
+                        args.applySnapshot(state);
+                        completions.addAll(element.complete(src, args, context));
+                        if (!(element instanceof OptionalCommandElement)) {
+                            break;
                         }
-
-                        args.setState(endState);
+                        args.applySnapshot(state);
                     }
-                } catch (ArgumentParseException e) {
-                    args.setState(startState);
-                    return element.complete(src, args, context);
-                }
-
-                if (!it.hasNext()) {
-                    args.setState(startState);
+                } catch (ArgumentParseException ignored) {
+                    args.applySnapshot(state);
+                    completions.addAll(element.complete(src, args, context));
+                    break;
                 }
             }
-            return Collections.emptyList();
+            return Lists.newArrayList(completions);
         }
 
         @Override
@@ -368,15 +375,58 @@ public final class GenericArguments {
      * in the command usage. Otherwise, the usage will only display only the
      * key.</p>
      *
-     * <p>To override this behavior, see {@link #choices(Text, Map, boolean)}.
-     * </p>
+     * <p>Choices are <strong>case sensitive</strong>. If you do not require
+     * case sensitivity, see {@link #choicesInsensitive(Text, Map)}.</p>
+     *
+     * <p>To override this behavior, see
+     * {@link #choices(Text, Map, boolean, boolean)}.</p>
      *
      * @param key The key to store the resulting value under
      * @param choices The choices users can choose from
      * @return the element to match the input
      */
     public static CommandElement choices(Text key, Map<String, ?> choices) {
-        return choices(key, choices, choices.size() <= ChoicesCommandElement.CUTOFF);
+        return choices(key, choices, choices.size() <= ChoicesCommandElement.CUTOFF, true);
+    }
+
+    /**
+     * Return an argument that allows selecting from a limited set of values.
+     *
+     * <p>If there are 5 or fewer choices available, the choices will be shown
+     * in the command usage. Otherwise, the usage will only display only the
+     * key.</p>
+     *
+     * <p>Choices are <strong>not case sensitive</strong>. If you require
+     * case sensitivity, see {@link #choices(Text, Map)}</p>
+     *
+     * <p>To override this behavior, see
+     * {@link #choices(Text, Map, boolean, boolean)}.</p>
+     *
+     * @param key The key to store the resulting value under
+     * @param choices The choices users can choose from
+     * @return the element to match the input
+     */
+    public static CommandElement choicesInsensitive(Text key, Map<String, ?> choices) {
+        return choices(key, choices, choices.size() <= ChoicesCommandElement.CUTOFF, false);
+    }
+
+    /**
+     * Return an argument that allows selecting from a limited set of values.
+     *
+     * <p>Unless {@code choicesInUsage} is true, general command usage will only
+     * display the provided key.</p>
+     *
+     * <p>Choices are <strong>case sensitive</strong>. If you do not require
+     * case sensitivity, see {@link #choices(Text, Map, boolean, boolean)}</p>
+     *
+     * @param key The key to store the resulting value under
+     * @param choices The choices users can choose from
+     * @param choicesInUsage Whether to display the available choices, or simply
+     *      the provided key, as part of usage
+     * @return the element to match the input
+     */
+    public static CommandElement choices(Text key, Map<String, ?> choices, boolean choicesInUsage) {
+        return choices(key, choices, choicesInUsage, true);
     }
 
     /**
@@ -389,9 +439,15 @@ public final class GenericArguments {
      * @param choices The choices users can choose from
      * @param choicesInUsage Whether to display the available choices, or simply
      *      the provided key, as part of usage
+     * @param caseSensitive Whether the matches should be case sensitive
      * @return the element to match the input
      */
-    public static CommandElement choices(Text key, Map<String, ?> choices, boolean choicesInUsage) {
+    public static CommandElement choices(Text key, Map<String, ?> choices, boolean choicesInUsage, boolean caseSensitive) {
+        if (!caseSensitive) {
+            Map<String, Object> immChoices = choices.entrySet().stream()
+                    .collect(ImmutableMap.toImmutableMap(x -> x.getKey().toLowerCase(), Map.Entry::getValue));
+            return choices(key, immChoices::keySet, selection -> immChoices.get(selection.toLowerCase()), choicesInUsage);
+        }
         Map<String, Object> immChoices = ImmutableMap.copyOf(choices);
         return choices(key, immChoices::keySet, immChoices::get, choicesInUsage);
     }
@@ -505,13 +561,15 @@ public final class GenericArguments {
         public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
             ArgumentParseException lastException = null;
             for (CommandElement element : this.elements) {
-                Object startState = args.getState();
+                CommandArgs.Snapshot startState = args.getSnapshot();
+                CommandContext.Snapshot contextSnapshot = context.createSnapshot();
                 try {
                     element.parse(source, args, context);
                     return;
                 } catch (ArgumentParseException ex) {
                     lastException = ex;
-                    args.setState(startState);
+                    args.applySnapshot(startState);
+                    context.applySnapshot(contextSnapshot);
                 }
             }
             if (lastException != null) {
@@ -532,9 +590,9 @@ public final class GenericArguments {
                         return ImmutableList.of();
                     }
 
-                    Object startState = args.getState();
+                    CommandArgs.Snapshot snapshot = args.getSnapshot();
                     List<String> ret = input.complete(src, args, context);
-                    args.setState(startState);
+                    args.applySnapshot(snapshot);
                     return ret;
                 })));
         }
@@ -638,12 +696,12 @@ public final class GenericArguments {
                 }
                 return;
             }
-            Object startState = args.getState();
+            CommandArgs.Snapshot startState = args.getSnapshot();
             try {
                 this.element.parse(source, args, context);
             } catch (ArgumentParseException ex) {
                 if (this.considerInvalidFormatEmpty || args.hasNext()) { // If there are more args, suppress. Otherwise, throw the error
-                    args.setState(startState);
+                    args.applySnapshot(startState);
                     if (this.element.getKey() != null && this.value != null) {
                         context.putArg(this.element.getUntranslatedKey(), this.value);
                     }
@@ -709,11 +767,11 @@ public final class GenericArguments {
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
             for (int i = 0; i < this.times; ++i) {
-                Object startState = args.getState();
+                CommandArgs.Snapshot startState = args.getSnapshot();
                 try {
                     this.element.parse(src, args, context);
                 } catch (ArgumentParseException e) {
-                    args.setState(startState);
+                    args.applySnapshot(startState);
                     return this.element.complete(src, args, context);
                 }
             }
@@ -762,11 +820,11 @@ public final class GenericArguments {
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
             while (args.hasNext()) {
-                Object startState = args.getState();
+                CommandArgs.Snapshot startState = args.getSnapshot();
                 try {
                     this.element.parse(src, args, context);
                 } catch (ArgumentParseException e) {
-                    args.setState(startState);
+                    args.applySnapshot(startState);
                     return this.element.complete(src, args, context);
                 }
             }
@@ -1127,14 +1185,17 @@ public final class GenericArguments {
             this.returnSource = returnSource;
         }
 
+        @SuppressWarnings({"unchecked", "ConstantConditions"})
         @Nullable
         @Override
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            CommandArgs.Snapshot state = args.getSnapshot();
             try {
                 return Iterables.filter((Iterable<User>) super.parseValue(source, args), e -> e instanceof User);
             } catch (ArgumentParseException ex2) {
-                if (this.returnSource && source instanceof User) {
-                    return source;
+                if (this.returnSource) {
+                    args.applySnapshot(state);
+                    return tryReturnSource(source, args);
                 }
                 throw ex2;
             }
@@ -1151,20 +1212,27 @@ public final class GenericArguments {
 
         @Override
         protected Object getValue(String choice) throws IllegalArgumentException {
-            return Sponge.getGame().getServiceManager().provideUnchecked(UserStorageService.class).get(choice).get();
+            return Sponge.getGame().getServiceManager().provideUnchecked(UserStorageService.class).get(choice)
+                    .orElseThrow(() -> new IllegalArgumentException("Input value '" + choice + "' was not a user!"));
         }
 
         @Override
         public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
             // If we're not completing, then we want to use the UserStorageService directly
             // to get any direct match.
-            if (getKey() != null && !context.hasAny(CommandContext.TAB_COMPLETION)) {
-                Object state = args.getState();
+            @Nullable Text key = getKey();
+            if (key != null && !context.hasAny(CommandContext.TAB_COMPLETION)) {
+                if (this.returnSource && !args.hasNext()) {
+                    context.putArg(key, tryReturnSource(source, args));
+                    return;
+                }
+
+                CommandArgs.Snapshot state = args.getSnapshot();
                 String element = args.next();
                 try {
                     Optional<User> match = Sponge.getServiceManager().provideUnchecked(UserStorageService.class).get(element);
                     if (match.isPresent()) {
-                        context.putArg(getKey(), match.get());
+                        context.putArg(key, match.get());
                         return;
                     }
                 } catch (IllegalArgumentException ignored) {
@@ -1172,10 +1240,20 @@ public final class GenericArguments {
                     // If it's not an exact match, we just let this carry on to parse using the pattern element
                 }
 
-                args.setState(state);
+                args.applySnapshot(state);
             }
 
             super.parse(source, args, context);
+        }
+
+        private User tryReturnSource(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            if (source instanceof User) {
+                return ((User) source);
+            } else if (source instanceof ProxySource && ((ProxySource) source).getOriginalSource() instanceof User) {
+                return (User) ((ProxySource) source).getOriginalSource();
+            } else {
+                throw args.createError(t("No users matched and source was not a user!"));
+            }
         }
     }
 
@@ -1195,12 +1273,12 @@ public final class GenericArguments {
                 return tryReturnSource(source, args);
             }
 
-            Object state = args.getState();
+            CommandArgs.Snapshot state = args.getSnapshot();
             try {
                 return Iterables.filter((Iterable<Entity>)super.parseValue(source, args), e -> e instanceof Player);
             } catch (ArgumentParseException ex) {
                 if (this.returnSource) {
-                    args.setState(state);
+                    args.applySnapshot(state);
                     return tryReturnSource(source, args);
                 }
                 throw ex;
@@ -1304,13 +1382,13 @@ public final class GenericArguments {
         protected Iterable<String> getCompletionChoices(CommandSource source) {
             return Iterables.concat(getChoices(source), ImmutableSet.of("#first", "#me"),
                     Iterables.transform(Sponge.getGame().getRegistry()
-                            .getAllOf(DimensionType.class), input2 -> "#" + input2.getId()));
+                            .getAllOf(DimensionType.class), input2 -> "#" + input2.getKey().toString()));
         }
 
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
             return Sponge.getGame().getServer().getAllWorldProperties().stream()
-                    .map(input -> input.getWorldName())
+                    .map(WorldProperties::getWorldName)
                     .collect(Collectors.toList());
         }
 
@@ -1442,7 +1520,7 @@ public final class GenericArguments {
 
         @Override
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
-            Object state = args.getState();
+            CommandArgs.Snapshot state = args.getSnapshot();
             if (args.peek().startsWith("@")) { // We are a selector
                 return Selector.parse(args.next()).resolve(source).stream()
                         .map(Entity::getLocation)
@@ -1454,7 +1532,7 @@ public final class GenericArguments {
             try {
                 world = checkNotNull(this.worldParser.parseValue(source, args), "worldVal");
             } catch (ArgumentParseException ex) {
-                args.setState(state);
+                args.applySnapshot(state);
                 if (!(source instanceof Locatable)) {
                     throw args.createError(t("Source must have a location in order to have a fallback world"));
                 }
@@ -1462,7 +1540,7 @@ public final class GenericArguments {
                 try {
                     vec = checkNotNull(this.vectorParser.parseValue(source, args), "vectorVal");
                 } catch (ArgumentParseException ex2) {
-                    args.setState(state);
+                    args.applySnapshot(state);
                     throw ex;
                 }
             }
@@ -1485,15 +1563,15 @@ public final class GenericArguments {
 
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            Object state = args.getState();
+            CommandArgs.Snapshot state = args.getSnapshot();
             Optional<String> nextPossibility = args.nextIfPresent();
             if (nextPossibility.isPresent() && nextPossibility.get().startsWith("@")) {
                 return Selector.complete(nextPossibility.get());
             }
-            args.setState(state);
+            args.applySnapshot(state);
             List<String> ret;
             if ((ret = this.worldParser.complete(src, args, context)).isEmpty()) {
-                args.setState(state);
+                args.applySnapshot(state);
                 ret = this.vectorParser.complete(src, args, context);
             }
             return ret;
@@ -1512,14 +1590,15 @@ public final class GenericArguments {
         protected Iterable<String> getChoices(CommandSource source) {
             return Sponge.getGame().getRegistry().getAllOf(this.catalogType).stream()
                 .<String>map(input -> {
-                    return input == null ? null : input.getId(); // TODO: ids or names?
+                    return input == null ? null : input.getKey().toString(); // TODO: ids or names?
                 })
                 .collect(Collectors.toList());
         }
 
         @Override
         protected Object getValue(String choice) throws IllegalArgumentException {
-            final Optional<T> ret = Sponge.getGame().getRegistry().getType(this.catalogType, choice);
+            final CatalogKey resolvedKey = CatalogKey.resolve(choice);
+            final Optional<T> ret = Sponge.getGame().getRegistry().getType(this.catalogType, resolvedKey);
             if (!ret.isPresent()) {
                 throw new IllegalArgumentException("Invalid input " + choice + " was found");
             }
@@ -1750,7 +1829,7 @@ public final class GenericArguments {
                 }
             }
 
-            Object state = args.getState();
+            CommandArgs.Snapshot state = args.getSnapshot();
             try {
                 Iterable<Entity> entities = (Iterable<Entity>) super.parseValue(source, args);
                 for (Entity entity : entities) {
@@ -1770,7 +1849,7 @@ public final class GenericArguments {
                 return entities;
             } catch (ArgumentParseException ex) {
                 if (this.returnSource) {
-                    args.setState(state);
+                    args.applySnapshot(state);
                     return tryReturnSource(source, args, true);
                 }
                 throw ex;
@@ -1779,24 +1858,30 @@ public final class GenericArguments {
 
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
-            Set<Iterable<Entity>> worldEntities = Sponge.getServer().getWorlds().stream().map(World::getEntities).collect(Collectors.toSet());
-            return Iterables.filter(Iterables.transform(Iterables.concat(worldEntities), input -> {
-                if (input == null) {
-                    return null;
-                }
-                if (!this.checkEntity(input)) {
-                    return null;
-                }
-                if (input instanceof Player) {
-                    return ((Player)input).getName();
-                }
-                return input.getUniqueId().toString();
-            }), Objects::nonNull);
+            Set<String> worldEntities = Sponge.getServer().getWorlds().stream().flatMap(x -> x.getEntities().stream())
+                    .filter(this::checkEntity)
+                    .map(x -> x.getUniqueId().toString())
+                    .collect(Collectors.toSet());
+            Collection<Player> players = Sponge.getServer().getOnlinePlayers();
+            if (!players.isEmpty() && checkEntity(players.iterator().next())) {
+                final Set<String> setToReturn = new HashSet<>(worldEntities); // to ensure mutability
+                players.forEach(x -> setToReturn.add(x.getName()));
+                return setToReturn;
+            }
+
+            return worldEntities;
         }
 
         @Override
         protected Object getValue(String choice) throws IllegalArgumentException {
-            UUID uuid = UUID.fromString(choice);
+            UUID uuid;
+            try {
+                uuid = UUID.fromString(choice);
+            } catch (IllegalArgumentException ignored) {
+                // Player could be a name
+                return Sponge.getServer().getPlayer(choice)
+                        .orElseThrow(() -> new IllegalArgumentException("Input value " + choice + " does not represent a valid entity"));
+            }
             boolean found = false;
             for (World world : Sponge.getServer().getWorlds()) {
                 Optional<Entity> ret = world.getEntity(uuid);
@@ -1930,7 +2015,7 @@ public final class GenericArguments {
                     throw args.createError(Text.of("No IP address was specified!"));
                 }
             }
-            Object state = args.getState();
+            CommandArgs.Snapshot state = args.getSnapshot();
             String s = args.next();
             try {
                 return InetAddress.getByName(s);
@@ -1939,7 +2024,7 @@ public final class GenericArguments {
                     return ((Player) this.possiblePlayer.parseValue(source, args)).getConnection().getAddress().getAddress();
                 } catch (ArgumentParseException ex) {
                     if (this.self && source instanceof RemoteSource) {
-                        args.setState(state);
+                        args.applySnapshot(state);
                         return ((RemoteSource) source).getConnection().getAddress().getAddress();
                     }
                     throw args.createError(Text.of("Invalid IP address!"));
@@ -2169,7 +2254,7 @@ public final class GenericArguments {
             if (!args.hasNext() && this.returnNow) {
                 return LocalDateTime.now();
             }
-            Object state = args.getState();
+            CommandArgs.Snapshot state = args.getSnapshot();
             String date = args.next();
             try {
                 return LocalDateTime.parse(date);
@@ -2181,7 +2266,7 @@ public final class GenericArguments {
                         return LocalDateTime.of(LocalDate.parse(date), LocalTime.MIDNIGHT);
                     } catch (DateTimeParseException ex3) {
                         if (this.returnNow) {
-                            args.setState(state);
+                            args.applySnapshot(state);
                             return LocalDateTime.now();
                         }
                         throw args.createError(Text.of("Invalid date-time!"));

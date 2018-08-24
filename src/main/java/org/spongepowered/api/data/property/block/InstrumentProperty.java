@@ -52,6 +52,6 @@ public final class InstrumentProperty extends AbstractProperty<String, Instrumen
         if (!(o instanceof InstrumentProperty)) {
             return -1;
         }
-        return getValue().getId().compareTo(((InstrumentProperty) o).getValue().getId());
+        return getValue().getKey().compareTo(((InstrumentProperty) o).getValue().getKey());
     }
 }

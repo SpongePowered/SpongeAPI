@@ -36,6 +36,7 @@ import org.spongepowered.api.world.Location;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 /**
@@ -92,6 +93,10 @@ public final class CommandContext {
     /**
      * Gets the value for the given key if the key has only one value.
      *
+     * <p>An empty {@link Optional} indicates that there are either zero or more
+     * than one values for the given key. Use {@link #hasAny(Text)} to verify
+     * which.</p>
+     *
      * @param key the key to get
      * @param <T> the expected type of the argument
      * @return the argument
@@ -108,12 +113,63 @@ public final class CommandContext {
     /**
      * Gets the value for the given key if the key has only one value.
      *
+     * <p>An empty {@link Optional} indicates that there are either zero or more
+     * than one values for the given key. Use {@link #hasAny(Text)} to verify
+     * which.</p>
+     *
      * @param key the key to get
      * @param <T> the expected type of the argument
      * @return the argument
      */
     public <T> Optional<T> getOne(Text key) {
         return getOne(ArgUtils.textToArgKey(key));
+    }
+
+    /**
+     * Gets the value for the given key if the key has only one value, throws an
+     * exception otherwise.
+     *
+     * @param key the key to get
+     * @param <T> the expected type of the argument
+     * @return the argument
+     * @throws java.util.NoSuchElementException if there is no element with the
+     *      associated key
+     * @throws IllegalArgumentException if there are more than one element
+     *      associated with the key (thus, the argument is illegal in this
+     *      context)
+     * @throws ClassCastException if the element type is not what is expected
+     *      by the caller
+     */
+    @SuppressWarnings("unchecked")
+    public <T> T requireOne(String key)
+            throws NoSuchElementException, IllegalArgumentException, ClassCastException {
+        Collection<Object> values = this.parsedArgs.get(key);
+        if (values.size() == 1) {
+            return (T) values.iterator().next();
+        } else if (values.isEmpty()) {
+            throw new NoSuchElementException();
+        }
+
+        throw new IllegalArgumentException();
+    }
+
+    /**
+     * Gets the value for the given key if the key has only one value, throws an
+     * exception otherwise.
+     *
+     * @param key the key to get
+     * @param <T> the expected type of the argument
+     * @return the argument
+     * @throws java.util.NoSuchElementException if there is no element with the
+     *      associated key
+     * @throws IllegalArgumentException if there are more than one element
+     *      associated with the key (thus, the argument is illegal in this
+     *      context)
+     * @throws ClassCastException if the element type is not what is expected
+     */
+    public <T> T requireOne(Text key)
+            throws NoSuchElementException, IllegalArgumentException, ClassCastException {
+        return requireOne(ArgUtils.textToArgKey(key));
     }
 
     /**
@@ -169,5 +225,46 @@ public final class CommandContext {
      */
     public boolean hasAny(Text key) {
         return hasAny(ArgUtils.textToArgKey(key));
+    }
+
+    /**
+     * Gets a snapshot of the data inside this context to allow it to be
+     * restored later.
+     *
+     * <p>This is only guaranteed to create a <em>shallow copy</em> of the
+     * backing store. If any value is mutable, any changes to that value
+     * will be reflected in this snapshot. It is therefore not recommended
+     * that you keep this snapshot around for longer than is necessary.</p>
+     *
+     * @return The {@link Snapshot} containing the current state of the
+     *      {@link CommandContext}
+     */
+    public Snapshot createSnapshot() {
+        return new Snapshot(this.parsedArgs);
+    }
+
+    /**
+     * Resets a {@link CommandContext} to a previous state using a previously
+     * created {@link Snapshot}.
+     *
+     * @param snapshot The {@link Snapshot} to restore this context with
+     */
+    public void applySnapshot(Snapshot snapshot) {
+        this.parsedArgs.clear();
+        this.parsedArgs.putAll(snapshot.args);
+    }
+
+    /**
+     * A snapshot of a {@link CommandContext}. This object does not contain any
+     * public API methods, a snapshot should be considered a black box.
+     */
+    public final class Snapshot {
+
+        final Multimap<String, Object> args;
+
+        Snapshot(Multimap<String, Object> args) {
+            this.args = ArrayListMultimap.create(args);
+        }
+
     }
 }

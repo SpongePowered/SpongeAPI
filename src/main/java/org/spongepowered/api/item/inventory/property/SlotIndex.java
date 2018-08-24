@@ -24,39 +24,13 @@
  */
 package org.spongepowered.api.item.inventory.property;
 
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.item.inventory.InventoryProperty;
+
 /**
  * An inventory property which represents an index within an ordered inventory.
  */
-public class SlotIndex extends IntProperty {
-
-    /**
-     * Creates a new SlotIndex property for the specified value.
-     *
-     * @param value value to match
-     */
-    public SlotIndex(int value) {
-        super(value);
-    }
-
-    /**
-     * Creates a new SlotIndex property for the specified value and operator.
-     *
-     * @param value value to match
-     * @param operator the operator to use when comparing with other properties
-     */
-    public SlotIndex(int value, Operator operator) {
-        super(value, operator);
-    }
-
-    /**
-     * Creates a new SlotIndex property for the specified value and operator.
-     *
-     * @param value value to match
-     * @param operator the operator to use when comparing with other properties
-     */
-    public SlotIndex(Object value, Operator operator) {
-        super(value, operator);
-    }
+public interface SlotIndex extends IntProperty {
 
     /**
      * Create a SlotIndex property which matches SlotIndex properties with
@@ -65,63 +39,22 @@ public class SlotIndex extends IntProperty {
      * @param value the value to match
      * @return new property
      */
-    public static SlotIndex of(Object value) {
-        return new SlotIndex(value, Operator.EQUAL);
+    static SlotIndex of(Integer value) {
+        return builder().value(value).operator(Operator.EQUAL).build();
     }
 
     /**
-     * Create a SlotIndex property which matches SlotIndex properties with
-     * unequal value.
+     * Creates a new {@link Builder} to create {@link SlotIndex}s.
      *
-     * @param value the value to match
-     * @return new property
+     * @return The new builder
      */
-    public static SlotIndex not(Object value) {
-        return new SlotIndex(value, Operator.NOTEQUAL);
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(SlotIndex.Builder.class);
     }
 
     /**
-     * Create a SlotIndex property which matches SlotIndex properties with
-     * value greater than this value.
-     *
-     * @param value the value to match
-     * @return new property
+     * Represents a builder class to create {@link SlotIndex}s.
      */
-    public static SlotIndex greaterThan(Object value) {
-        return new SlotIndex(value, Operator.GREATER);
+    interface Builder extends InventoryProperty.Builder<Integer, SlotIndex, Builder> {
     }
-
-    /**
-     * Create a SlotIndex property which matches SlotIndex properties with
-     * value greater than or equal to this value.
-     *
-     * @param value the value to match
-     * @return new property
-     */
-    public static SlotIndex greaterThanOrEqual(Object value) {
-        return new SlotIndex(value, Operator.GEQUAL);
-    }
-
-    /**
-     * Create a SlotIndex property which matches SlotIndex properties with
-     * value less than this value.
-     *
-     * @param value the value to match
-     * @return new property
-     */
-    public static SlotIndex lessThan(Object value) {
-        return new SlotIndex(value, Operator.LESS);
-    }
-
-    /**
-     * Create a SlotIndex property which matches SlotIndex properties with
-     * value less than or equal to this value.
-     *
-     * @param value the value to match
-     * @return new property
-     */
-    public static SlotIndex lessThanOrEqual(Object value) {
-        return new SlotIndex(value, Operator.LEQUAL);
-    }
-
 }

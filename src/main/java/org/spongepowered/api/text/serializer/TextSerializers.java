@@ -100,7 +100,7 @@ public final class TextSerializers {
         } else if (formattingChar == FORMATTING_CODE.getCharacter()) {
             return FORMATTING_CODE;
         } else {
-            return Sponge.getRegistry().getTextSerializerFactory().getFormattingCodeTextSerializer(formattingChar);
+            return Sponge.getRegistry().getTextFactory().createFormattingCodeSerializer(formattingChar);
         }
     }
 

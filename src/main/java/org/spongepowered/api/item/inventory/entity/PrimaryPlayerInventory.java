@@ -22,31 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text;
+package org.spongepowered.api.item.inventory.entity;
 
-import static org.junit.Assert.assertEquals;
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.item.inventory.Inventory;
+import org.spongepowered.api.item.inventory.type.GridInventory;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.spongepowered.api.text.translation.FixedTranslation;
+/**
+ * A {@link Player}'s primary inventory including the {@link Hotbar}.
+ */
+public interface PrimaryPlayerInventory extends Inventory {
 
-public class TestTextFactoryTest {
+    /**
+     * Gets the hotbar of the player.
+     *
+     * @return The hotbar of the player
+     */
+    Hotbar getHotbar();
 
-    @Before
-    public void initialize() throws Exception {
-        TestPlainTextSerializer.inject();
-    }
+    /**
+     * Gets the (4x9) grid of the players main inventory.
+     *
+     * @return The grid of the players main inventory
+     */
+    GridInventory asGrid();
 
-    @Test
-    public void testToPlainLiterals() {
-        Text testText = Text.builder("Hello ").append(Text.of("world"), Text.of(", this is here")).build();
-        assertEquals("Hello world, this is here", testText.toPlain());
-    }
-
-    @Test
-    public void testToPlainTranslatables() {
-        Text testText = Text.of(new FixedTranslation("This is a translated %s"), Text.of("string"));
-        assertEquals("This is a translated string", testText.toPlain());
-    }
+    /**
+     * Gets the (3x9) grid of the players main inventory.
+     *
+     * @return The grid of the players main inventory
+     */
+    GridInventory getStorage();
 
 }

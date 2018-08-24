@@ -24,48 +24,42 @@
  */
 package org.spongepowered.api.text;
 
+import org.spongepowered.api.text.format.TextColor;
+import org.spongepowered.api.text.format.TextFormat;
+import org.spongepowered.api.text.format.TextStyle;
+import org.spongepowered.api.text.serializer.FormattingCodeTextSerializer;
+
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
-import javax.annotation.Nullable;
+public interface TextFactory {
+    // Text
 
-/**
- * Represents a recursive {@link Iterator} for {@link Text} including the text
- * itself as well as all children texts.
- */
-final class TextIterator implements Iterator<Text> {
+    Text of(final Object... args);
 
-    private final Text text;
-    @Nullable private Iterator<Text> children;
-    @Nullable private Iterator<Text> currentChildIterator;
+    Text joinWith(final Text separator, final Text... texts);
+
+    Text joinWith(final Text separator, final Iterator<? extends Text> texts);
+
+    // Format
+
+    TextFormat emptyFormat();
+
+    TextFormat format(final TextColor color, final TextStyle style);
+
+    // Template
+
+    TextTemplate emptyTemplate();
+
+    TextTemplate template(String openArg, String closeArg, Object[] elements);
+
+    // Serializer
 
     /**
-     * Constructs a new {@link TextIterator} for the specified {@link Text}.
+     * Returns a representation that accepts and outputs legacy color codes,
+     * using the provided legacy character.
      *
-     * @param text The root text for the iterator
+     * @param legacyChar The legacy character to parse and output using
+     * @return The appropriate legacy representation handler
      */
-    TextIterator(Text text) {
-        this.text = text;
-    }
-
-    @Override
-    public boolean hasNext() {
-        return this.children == null || (this.currentChildIterator != null && this.currentChildIterator.hasNext()) || this.children.hasNext();
-    }
-
-    @Override
-    public Text next() {
-        if (!hasNext()) {
-            throw new NoSuchElementException();
-        }
-        if (this.children == null) {
-            this.children = this.text.children.iterator();
-            return this.text;
-        } else if (this.currentChildIterator == null || !this.currentChildIterator.hasNext()) {
-            this.currentChildIterator = this.children.next().childrenIterable.iterator();
-        }
-
-        return this.currentChildIterator.next();
-    }
-
+    FormattingCodeTextSerializer createFormattingCodeSerializer(char legacyChar);
 }

@@ -24,15 +24,19 @@
  */
 package org.spongepowered.api;
 
+import org.spongepowered.api.registry.AdditionalCatalogRegistryModule;
+
 /**
  * Represents a type of a dummy that can be used to identify types without
- * using an {@link Enum}.
+ * using an {@link Enum}, and possibly allows for extension beyond the
+ * default provided types by way of using {@link AdditionalCatalogRegistryModule}
+ * registered with the {@link GameRegistry}.
  *
  * <p>All implementing classes, including those not listed in the dummy
  * specified by the {@link org.spongepowered.api.util.annotation.CatalogedBy
  * CatalogedBy} annotation, must meet the requirement that if any of
  * <code>`a.equals(b)`</code>, <code>`a == b`</code>, or
- * <code>`a.getId().equalsIgnoreCase(b.getId())`</code> are true then all must
+ * <code>`a.getKey().equals(b.getKey())`</code> are true then all must
  * be true.</p>
  */
 public interface CatalogType {
@@ -49,16 +53,39 @@ public interface CatalogType {
      * default/vanilla minecraft types.</p>
      *
      * @return The unique identifier of this dummy type
+     * @deprecated Use {@link #getKey()} to avoid ambiguity determining what is
+     *     the plugin/mod id versus the catalog's actual id
      */
-    String getId();
+    @Deprecated
+    default String getId() {
+        return this.getKey().toString();
+    }
+
+    /**
+     * Gets the catalog key for this catalog type. Useful for storing a searchable
+     * id reference within the {@link GameRegistry}. Since the {@link GameRegistry}
+     * can effectively search for the {@link CatalogKey#getNamespace()}, a fail
+     * fast scenario can be achieved if the namespace provider (usually a plugin or
+     * mod) is unavailable.
+     *
+     * @return The catalog key
+     */
+    CatalogKey getKey();
 
     /**
      * Gets the human-readable name of this individual {@link CatalogType}. This
      * name is not guaranteed to be unique. This value should not be used for
      * serialization.
      *
+     * <p>Typically, the name is the {@link CatalogKey#getValue()} for human
+     * readable purposes, however some types may have alternate names that are
+     * used to be presented in text, messages, etc. that are otherwise different
+     * from the value provided by {@link #getKey()}.</p>
+     *
      * @return The human-readable name of this dummy type
      */
-    String getName();
+    default String getName() {
+        return this.getKey().getValue();
+    }
 
 }

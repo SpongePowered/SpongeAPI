@@ -22,20 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.serializer;
+package org.spongepowered.api.data.manipulator.mutable.entity;
+
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableTagData;
+import org.spongepowered.api.data.value.mutable.SetValue;
+import org.spongepowered.api.entity.Entity;
 
 /**
- * Internal implementation factory: Use {@link TextSerializers} instead.
+ * A {@link DataManipulator} representing the scoreboard tags applied
+ * to an {@link Entity}.
+ *
+ * @see <a href="https://minecraft.gamepedia.com/Scoreboard#Tags">
+ *     https://minecraft.gamepedia.com/Scoreboard#Tags</a>
  */
-public interface TextSerializerFactory {
+public interface TagData extends DataManipulator<TagData, ImmutableTagData> {
 
     /**
-     * Returns a representation that accepts and outputs legacy color codes,
-     * using the provided legacy character.
+     * Gets the {@link SetValue} of the scoreboard tags applied to
+     * this {@link Entity}.
      *
-     * @param legacyChar The legacy character to parse and output using
-     * @return The appropriate legacy representation handler
+     * @return The set value of scoreboard tags
+     * @see Keys#TAGS
      */
-    FormattingCodeTextSerializer getFormattingCodeTextSerializer(char legacyChar);
+    SetValue<String> tags();
 
 }

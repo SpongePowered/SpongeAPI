@@ -26,12 +26,14 @@ package org.spongepowered.api.command.args;
 
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
+import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.command.args.parsing.SingleArg;
 import org.spongepowered.api.text.Text;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -128,22 +130,29 @@ public final class CommandArgs {
      * Return this arguments object's current state. Can be used to reset with
      * the {@link #setState(Object)} method.
      *
+     * @deprecated Use {@link #getSnapshot()} and
+     *             {@link #applySnapshot(Snapshot)} instead
      * @return The current state
      */
+    @Deprecated
     public Object getState() {
-        return this.index;
+        return getSnapshot();
     }
 
     /**
      * Restore the arguments object's state to a state previously used.
      *
+     * @deprecated Use {@link #getSnapshot()} and
+     *             {@link #applySnapshot(Snapshot)} instead
      * @param state the previous state
      */
+    @Deprecated
     public void setState(Object state) {
-        if (!(state instanceof Integer)) {
+        if (!(state instanceof Snapshot)) {
             throw new IllegalArgumentException("Provided state was not of appropriate format returned by getState!");
         }
-        this.index = (Integer) state;
+
+        applySnapshot((Snapshot) state, false); // keep parity with before
     }
 
     /**
@@ -168,15 +177,31 @@ public final class CommandArgs {
     /**
      * Remove the arguments parsed between startState and endState.
      *
+     * @deprecated Use with {@link #getSnapshot()} instead of
+     *     {@link #getState()} with {@link #removeArgs(Snapshot, Snapshot)}
      * @param startState The starting state
      * @param endState The ending state
      */
+    @Deprecated
     public void removeArgs(Object startState, Object endState) {
         if (!(startState instanceof Integer) || !(endState instanceof Integer)) {
             throw new IllegalArgumentException("One of the states provided was not of the correct type!");
         }
-        int startIdx = (Integer) startState;
-        int endIdx = (Integer) endState;
+
+        removeArgs((int) startState, (int) endState);
+    }
+
+    /**
+     * Remove the arguments parsed between two snapshots.
+     *
+     * @param startSnapshot The starting state
+     * @param endSnapshot The ending state
+     */
+    public void removeArgs(Snapshot startSnapshot, Snapshot endSnapshot) {
+        removeArgs(startSnapshot.index, endSnapshot.index);
+    }
+
+    private void removeArgs(int startIdx, int endIdx) {
         if (this.index >= startIdx) {
             if (this.index < endIdx) {
                 this.index = startIdx - 1;
@@ -207,4 +232,76 @@ public final class CommandArgs {
         return this.index < 0 ? 0 : this.args.get(this.index).getStartIdx();
     }
 
+    /**
+     * Gets a snapshot of the data inside this context to allow it to be
+     * restored later.
+     *
+     * @return The {@link CommandArgs.Snapshot} containing the current state of the
+     *      {@link CommandArgs}
+     */
+    public Snapshot getSnapshot() {
+        return new Snapshot(this.index, this.args);
+    }
+
+    /**
+     * Resets a {@link CommandArgs} to a previous state using a previously
+     * created {@link CommandArgs.Snapshot}.
+     *
+     * @param snapshot The {@link CommandArgs.Snapshot} to restore this context
+     *      with
+     */
+    public void applySnapshot(Snapshot snapshot) {
+        applySnapshot(snapshot, true);
+    }
+
+    /**
+     * Resets a {@link CommandArgs} to a previous state using a previously
+     * created {@link CommandArgs.Snapshot}.
+     *
+     * <p>If resetArgs is set to false, this snapshot will not reset the
+     * argument list to its previous state, only the index.</p>
+     *
+     * @param snapshot The {@link CommandArgs.Snapshot} to restore this context
+     *      with
+     * @param resetArgs Whether to restore the argument list
+     */
+    public void applySnapshot(Snapshot snapshot, boolean resetArgs) {
+        this.index = snapshot.index;
+        if (resetArgs) {
+            this.args.clear();
+            this.args.addAll(snapshot.args);
+        }
+    }
+
+    /**
+     * A snapshot of a {@link CommandArgs}. This object does not contain any
+     * public API methods, a snapshot should be considered a black box.
+     */
+    public final class Snapshot {
+        final int index;
+        final ImmutableList<SingleArg> args;
+
+        Snapshot(int index, List<SingleArg> args) {
+            this.index = index;
+            this.args = ImmutableList.copyOf(args);
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            Snapshot snapshot = (Snapshot) o;
+            return this.index == snapshot.index &&
+                    Objects.equals(this.args, snapshot.args);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(this.index, this.args);
+        }
+    }
 }

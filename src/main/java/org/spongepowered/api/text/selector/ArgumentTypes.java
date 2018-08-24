@@ -30,6 +30,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.scoreboard.Team;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -45,7 +46,8 @@ public final class ArgumentTypes {
      * <p>In Vanilla, this is represented by the {@code x}, {@code y} and
      * {@code z} selector keys.</p>
      */
-    public static final ArgumentHolder.Vector3<Vector3i, Integer> POSITION = null;
+    public static final ArgumentHolder.Vector3<Vector3i, Integer> POSITION =
+            DummyObjectProvider.createExtendedFor(ArgumentHolder.Vector3.class, "POSITION");
 
     /**
      * The argument types representing the radius of the selector.
@@ -53,14 +55,16 @@ public final class ArgumentTypes {
      * <p>In Vanilla, this is represented by the {@code r} (for minimum) and
      * {@code rm} (for maximum) selector keys.</p>
      */
-    public static final ArgumentHolder.Limit<ArgumentType<Integer>> RADIUS = null;
+    public static final ArgumentHolder.Limit<ArgumentType<Integer>> RADIUS =
+            DummyObjectProvider.createExtendedFor(ArgumentHolder.Limit.class, "RADIUS");
 
     /**
      * The argument type filtering based on the {@link GameMode} of a player.
      *
      * <p>In Vanilla, this is represented by the {@code m} selector key.</p>
      */
-    public static final ArgumentType<GameMode> GAME_MODE = null;
+    public static final ArgumentType.Invertible<GameMode> GAME_MODE =
+            DummyObjectProvider.createExtendedFor(ArgumentType.Invertible.class, "GAME_MODE");
 
     /**
      * The argument type limiting the number of results of a {@link Selector}.
@@ -73,7 +77,8 @@ public final class ArgumentTypes {
      *
      * <p>In Vanilla, this is represented by the {@code c} selector key.</p>
      */
-    public static final ArgumentType<Integer> COUNT = null;
+    public static final ArgumentType<Integer> COUNT =
+            DummyObjectProvider.createExtendedFor(ArgumentType.class, "COUNT");
 
     /**
      * The argument types filtering based on the number of experience levels of
@@ -82,7 +87,8 @@ public final class ArgumentTypes {
      * <p>In Vanilla, this is represented by the {@code l} (for maximum) and
      * {@code lm} (for minimum) selector keys.</p>
      */
-    public static final ArgumentHolder.Limit<ArgumentType<Integer>> LEVEL = null;
+    public static final ArgumentHolder.Limit<ArgumentType<Integer>> LEVEL =
+            DummyObjectProvider.createExtendedFor(ArgumentHolder.Limit.class, "LEVEL");
 
     /**
      * The argument type filtering based on the {@link Team} of the target.
@@ -92,7 +98,8 @@ public final class ArgumentTypes {
      * <p>In Vanilla, this is represented by the {@code team} selector key with
      * the {@code !} prefix for inverted values.</p>
      */
-    public static final ArgumentType.Invertible<String> TEAM = null;
+    public static final ArgumentType.Invertible<String> TEAM =
+            DummyObjectProvider.createExtendedFor(ArgumentType.Invertible.class, "TEAM");
 
     /**
      * The argument type filtering based on the name of the target. Inverting
@@ -102,7 +109,8 @@ public final class ArgumentTypes {
      * <p>In Vanilla, this is represented by the {@code name} selector key with
      * the {@code !} prefix for inverted values.</p>
      */
-    public static final ArgumentType.Invertible<String> NAME = null;
+    public static final ArgumentType.Invertible<String> NAME =
+            DummyObjectProvider.createExtendedFor(ArgumentType.Invertible.class, "NAME");
 
     /**
      * The argument type filtering targets which aren't in the specified volume.
@@ -110,7 +118,8 @@ public final class ArgumentTypes {
      * <p>In Vanilla, this is represented by the {@code dx}, {@code dy} and
      * {@code dz} selector keys.</p>
      */
-    public static final ArgumentHolder.Vector3<Vector3i, Integer> DIMENSION = null;
+    public static final ArgumentHolder.Vector3<Vector3i, Integer> DIMENSION =
+            DummyObjectProvider.createExtendedFor(ArgumentHolder.Vector3.class, "DIMENSION");
 
     /**
      * The argument type filtering targets within a specific rotation range.
@@ -120,14 +129,16 @@ public final class ArgumentTypes {
      * {@code rx}/{@code ry} (for minimum) and {@code rxm}/{@code rym} selector
      * keys.</p>
      */
-    public static final ArgumentHolder.Limit<ArgumentHolder.Vector3<Vector3d, Double>> ROTATION = null;
+    public static final ArgumentHolder.Limit<ArgumentHolder.Vector3<Vector3d, Double>> ROTATION =
+            DummyObjectProvider.createExtendedFor(ArgumentHolder.Limit.class, "ROTATION");
 
     /**
      * The argument type filtering targets based on the {@link EntityType}.
      *
      * <p>In Vanilla, this is represented by the {@code type} selector key.</p>
      */
-    public static final ArgumentType.Invertible<EntityType> ENTITY_TYPE = null;
+    public static final ArgumentType.Invertible<EntityType> ENTITY_TYPE =
+            DummyObjectProvider.createExtendedFor(ArgumentType.Invertible.class, "ENTITY_TYPE");
 
     @SuppressWarnings("deprecation")
     static SelectorFactory getFactory() {

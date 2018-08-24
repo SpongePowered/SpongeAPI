@@ -29,6 +29,7 @@ import com.flowpowered.math.vector.Vector3i;
 import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.meta.PatternLayer;
 import org.spongepowered.api.data.type.*;
 import org.spongepowered.api.data.value.*;
@@ -45,6 +46,7 @@ import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.profile.GameProfile;
+import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.rotation.Rotation;
@@ -347,6 +349,10 @@ public final class TypeTokens {
 
     public static final TypeToken<SetValue<Direction>> SET_DIRECTION_VALUE_TOKEN = new TypeToken<SetValue<Direction>>() {private static final long serialVersionUID = -1;};
 
+    public static final TypeToken<Set<String>> SET_STRING__TOKEN = new TypeToken<Set<String>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<SetValue<String>> SET_STRING_VALUE_TOKEN = new TypeToken<SetValue<String>>() {private static final long serialVersionUID = -1;};
+
     public static final TypeToken<Short> SHORT_TOKEN = new TypeToken<Short>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<ShrubType> SHRUB_TOKEN = new TypeToken<ShrubType>() {private static final long serialVersionUID = -1;};
@@ -420,6 +426,12 @@ public final class TypeTokens {
     public static final TypeToken<WireAttachmentType> WIRE_ATTACHMENT_TYPE_TOKEN = new TypeToken<WireAttachmentType>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<WireAttachmentType>> WIRE_ATTACHMENT_TYPE_VALUE_TOKEN = new TypeToken<Value<WireAttachmentType>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<ProfileProperty> PROFILE_PROPERTY_TOKEN = new TypeToken<ProfileProperty>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Value<ProfileProperty>> PROFILE_PROPERTY_VALUE_TOKEN = new TypeToken<Value<ProfileProperty>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<List<? extends DataSerializable>> LIST_DATA_SERIALIZEABLE_TOKEN = new TypeToken<List<? extends DataSerializable>>() {private static final long serialVersionUID = -1;};
 
     // SORTFIELDS:OFF
 

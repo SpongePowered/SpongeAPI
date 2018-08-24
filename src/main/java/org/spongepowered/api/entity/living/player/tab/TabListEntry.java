@@ -168,6 +168,9 @@ public interface TabListEntry {
         /**
          * Sets the profile for entries created by this builder.
          *
+         * <p>A copy of the passed {@link GameProfile} is used,
+         * so further changes to the original object will have no effect.</p>
+         *
          * @param profile The profile
          * @return The builder
          */

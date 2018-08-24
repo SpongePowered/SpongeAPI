@@ -48,16 +48,24 @@ import org.spongepowered.api.event.entity.ai.AITaskEvent;
 import org.spongepowered.api.event.game.GameRegistryEvent;
 import org.spongepowered.api.event.impl.AbstractEvent;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.action.ClickAction;
+import org.spongepowered.api.text.action.HoverAction;
+import org.spongepowered.api.text.action.ShiftClickAction;
+import org.spongepowered.api.text.action.TextActions;
+import org.spongepowered.api.text.format.TextFormat;
+import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.PEBKACException;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.net.InetSocketAddress;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -85,10 +93,8 @@ public class SpongeEventFactoryTest {
 
         if (clazz.equals(Class.class)) {
             return PEBKACException.class;
-        } else if (clazz.equals(Text.class)) {
-            return Text.of();
         }
-        return Mockito.RETURNS_MOCKS.answer(invoc);
+        return mockParam(clazz);
     });
 
     @Parameterized.Parameters(name = "{0}")
@@ -185,27 +191,35 @@ public class SpongeEventFactoryTest {
         }
     }
 
+    @Nullable
     public static Object mockParam(final Class<?> paramType) {
         return mockParam(paramType, null);
     }
 
+    @Nullable
     public static Object mockParam(final Class<?> paramType, @Nullable final Class<?> target) {
-        if (paramType == byte.class) {
+        if (paramType == byte.class || paramType == Byte.class) {
             return (byte) 0;
-        } else if (paramType == short.class) {
+        } else if (paramType == short.class || paramType == Short.class) {
             return (short) 0;
-        } else if (paramType == int.class) {
+        } else if (paramType == int.class || paramType == Integer.class) {
             return 0;
-        } else if (paramType == long.class) {
+        } else if (paramType == long.class || paramType == Long.class) {
             return (long) 0;
-        } else if (paramType == float.class) {
+        } else if (paramType == float.class || paramType == Float.class) {
             return (float) 0;
-        } else if (paramType == double.class) {
+        } else if (paramType == double.class || paramType == Double.class) {
             return (double) 0;
-        } else if (paramType == char.class) {
+        } else if (paramType == char.class || paramType == Character.class) {
             return (char) 0;
-        } else if (paramType == boolean.class) {
+        } else if (paramType == boolean.class || paramType == Boolean.class) {
             return false;
+        } else if (paramType == void.class || paramType == Void.class) {
+            return null;
+        } else if (paramType.isArray()) {
+            Object array = Array.newInstance(paramType.getComponentType(), 1);
+            Array.set(array, 0, mockParam(paramType.getComponentType()));
+            return array;
         } else if (paramType == String.class) {
             return "Cupcakes";
         } else if (paramType == Optional.class) {
@@ -222,8 +236,6 @@ public class SpongeEventFactoryTest {
             return new Location<>(extent, 0, 0, 0);
         } else if (paramType == Transform.class) {
             return new Transform<>((Extent) mockParam(Extent.class));
-        } else if (paramType == Text[].class) {
-            return new Text[] {};
         } else if (InetSocketAddress.class.isAssignableFrom(paramType)) {
             return new InetSocketAddress(12345);
         } else if (paramType == UUID.class) {
@@ -236,14 +248,14 @@ public class SpongeEventFactoryTest {
             return new Location<>(mock(Extent.class), Vector3d.ZERO);
         } else if (paramType == Locale.class) {
             return Locale.ROOT;
-        } else if (paramType == Text.class) {
-            return Text.of();
         } else if (paramType == Duration.class) {
             return Duration.ZERO;
         } else if (paramType == Instant.class) {
             return Instant.now();
         } else if (paramType == TypeToken.class) {
             return TypeToken.of(Object.class);
+        } else if (paramType == Color.class) {
+            return Color.BLACK;
         } else {
             return mock(paramType, withSettings().defaultAnswer(EVENT_MOCKING_ANSWER));
         }

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.registry;
 
+import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.CatalogType;
 
 import java.util.Collection;
@@ -38,8 +39,22 @@ public interface CatalogRegistryModule<T extends CatalogType> extends RegistryMo
      *
      * @param id The id of the catalog type requested
      * @return The catalog type, if available
+     * @deprecated use {@link #get(CatalogKey)}
      */
-    Optional<T> getById(String id);
+    @Deprecated
+    default Optional<T> getById(String id) {
+        return this.get(CatalogKey.resolve(id));
+    }
+
+    /**
+     * Gets the desired {@link CatalogType} from the provided {@link String} id.
+     * If a {@link CatalogType catalog type} is not registered for the given {@code id},
+     * {@link Optional#empty()} is returned.
+     *
+     * @param key The key of the catalog type requested
+     * @return The catalog type, if available
+     */
+    Optional<T> get(CatalogKey key);
 
     /**
      * Gets all registered {@link CatalogType}s registered in this

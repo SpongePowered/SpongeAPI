@@ -30,6 +30,8 @@ import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
+import org.spongepowered.api.event.block.ChangeBlockEvent;
+import org.spongepowered.api.event.entity.DestructEntityEvent;
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
 import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.Inventory;
@@ -51,6 +53,9 @@ public interface DropItemEvent extends Event, Cancellable {
      *
      * <p>Note: This is not guaranteed to fire due to custom handling within
      * a mod or plugin.</p>
+     *
+     * <p>Canceling this event only prevents the items from being dropped.
+     * Inventories or blocks affected are not rolled back.</p>
      */
     interface Pre extends DropItemEvent {
 
@@ -74,6 +79,10 @@ public interface DropItemEvent extends Event, Cancellable {
     /**
      * Called when one or more {@link Item} drops are triggered by an 
      * object such as an {@link Entity} or {@link BlockType} destruction.
+     *
+     * <p>Canceling this event only prevents the items from being dropped.
+     * Inventories or blocks affected are not rolled back. You might want
+     * to listen to {@link ChangeBlockEvent.Break} or {@link DestructEntityEvent.Death}.</p>
      */
     interface Destruct extends DropItemEvent, SpawnEntityEvent {}
 
@@ -84,6 +93,9 @@ public interface DropItemEvent extends Event, Cancellable {
      * <p>This does not include cases where the holder is destroyed resulting in
      * dropped {@link Item}s.</p>
      *
+     * <p>Canceling this event does not guarantee that the associated
+     * inventory is rolled back when this event is cancelled. You might
+     * want to listen to {@link ClickInventoryEvent.Drop}.</p>
      */
     interface Dispense extends DropItemEvent, SpawnEntityEvent {}
 
