@@ -211,6 +211,17 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
     InventoryTransactionResult offer(ItemStack stack);
 
     /**
+     * Returns true if the entire stack can fit in this inventory.
+     *
+     * <p>If this returns {@code true} {@link #offer(ItemStack)} should always succeed.</p>
+     *
+     * @param stack The stack of items to check if it can fit in this inventory.
+     *
+     * @return true if the entire stack can fit in this inventory.
+     */
+    boolean canFit(ItemStack stack);
+
+    /**
      * Forcibly put the supplied stack into this inventory. Overwrites existing
      * objects in the inventory as required to accommodate the entire stack. The
      * entire stack is always consumed.
