@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.stat;
+package org.spongepowered.api.service.metric;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.plugin.PluginContainer;
@@ -31,25 +31,25 @@ import org.spongepowered.api.plugin.PluginContainer;
  * Provides information about whether a server has granted permission for
  * server data to be transmitted on a per plugin basis.
  */
-public interface StatsConfigManager {
+public interface MetricsConfigManager {
 
     /**
-     * Gets whether permission for third-party statistics gathering has been
+     * Gets whether permission for third-party metrics gathering has been
      * granted for a specific plugin (or the global permission if the plugin
      * has not got a specific permission or lack thereof).
      *
      * <p>The value returned from this <em>should not be stored</em>. As the
      * configuration/permission can be updated at any time, it is best to
-     * check this each time stats collection is due to occur.</p>
+     * check this each time metrics collection is due to occur.</p>
      *
      * @param container The {@link PluginContainer} to check for permission for
-     * @return true if statistics gathering plugins have permission to gather
+     * @return true if metrics gathering plugins have permission to gather
      *         data about this plugin
      */
-    boolean areStatsEnabled(PluginContainer container);
+    boolean areMetricsEnabled(final PluginContainer container);
 
     /**
-     * Gets whether permission for third-party statistics gathering has been
+     * Gets whether permission for third-party metrics gathering has been
      * granted for a specific plugin (or the global permission if the plugin
      * has not got a specific permission or lack thereof).
      *
@@ -61,11 +61,11 @@ public interface StatsConfigManager {
      *               {@link org.spongepowered.api.plugin.Plugin})
      * @throws IllegalArgumentException if the supplied object is not a plugin
      *                                  object
-     * @return true if statistics gathering plugins have permission to gather
+     * @return true if metrics gathering plugins have permission to gather
      *         data about this plugin
      */
-    default boolean areStatsEnabled(Object plugin) throws IllegalArgumentException {
-        return areStatsEnabled(Sponge.getPluginManager().fromInstance(plugin)
+    default boolean areMetricsEnabled(final Object plugin) throws IllegalArgumentException {
+        return this.areMetricsEnabled(Sponge.getPluginManager().fromInstance(plugin)
                 .orElseThrow(() -> new IllegalArgumentException("The supplied object is not a plugin object.")));
     }
 
