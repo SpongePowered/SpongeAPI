@@ -39,6 +39,7 @@ import org.spongepowered.api.network.ChannelRegistrar;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.scheduler.Scheduler;
 import org.spongepowered.api.service.ServiceManager;
+import org.spongepowered.api.service.metric.MetricsConfigManager;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.TeleportHelper;
 
@@ -70,6 +71,7 @@ public final class Sponge {
 
     @Inject private static TeleportHelper teleportHelper;
     @Inject private static CauseStackManager causeStackManager;
+    @Inject private static MetricsConfigManager metricsConfigManager;
 
     private static <T> T check(@Nullable T instance) {
         checkState(instance != null, "Sponge has not been initialized!");
@@ -265,6 +267,17 @@ public final class Sponge {
      */
     public static CauseStackManager getCauseStackManager() {
         return check(causeStackManager);
+    }
+
+    /**
+     * Gets the {@link MetricsConfigManager} instance, allowing data/metric gathering
+     * systems to determine whether they have permission to gather server
+     * metrics.
+     *
+     * @return The {@link MetricsConfigManager} instance
+     */
+    public static MetricsConfigManager getMetricsConfigManager() {
+        return check(metricsConfigManager);
     }
 
 }
