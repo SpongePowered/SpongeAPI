@@ -114,7 +114,7 @@ public final class GenericArguments {
     private GenericArguments() {}
 
     /**
-     * Expects no arguments.
+     * Expects no arguments, returns no values.
      *
      * @return An expectation of no arguments
      */
@@ -125,6 +125,8 @@ public final class GenericArguments {
     /**
      * Expects no arguments. Adds 'true' to the context when parsed.
      *
+     * <p>This will return only one value.</p>
+     *
      * @param key the key to store 'true' under
      * @return the argument
      */
@@ -133,11 +135,23 @@ public final class GenericArguments {
     }
 
     /**
-     * Expect an argument to represent an online player, or if nothing matches
+     * Expect an argument to represent online players, or if nothing matches
      * and the source is a {@link Player}, give the player. If nothing matches
      * and the source is not a player, throw an exception.
      *
-     * <p>Gives value of type {@link Player}.</p>
+     * <p>Gives values of type {@link Player}.</p>
+     *
+     * <p>This argument accepts the following inputs:</p>
+     *
+     * <ul>
+     *     <li>A player's name</li>
+     *     <li>A regex that matches the beginning of one or more player's names
+     *     </li>
+     *     <li>A selector</li>
+     * </ul>
+     *
+     * <p>This may return multiple players. If you must only return one, wrap
+     * this element in an {@link #onlyOne(CommandElement)} call.</p>
      *
      * @param key The key to store under
      * @return the argument
@@ -147,8 +161,20 @@ public final class GenericArguments {
     }
 
     /**
-     * Expect an argument to represent an online player.
-     * Gives value of type {@link Player}
+     * Expect an argument to represent online players. Returns values of type
+     * {@link Player}.
+     *
+     * <p>This argument accepts the following inputs:</p>
+     *
+     * <ul>
+     *     <li>A player's name</li>
+     *     <li>A regex that matches the beginning of one or more player's names
+     *     </li>
+     *     <li>A selector</li>
+     * </ul>
+     *
+     * <p>This may return multiple players. If you must only return one, wrap
+     * this element in an {@link #onlyOne(CommandElement)} call.</p>
      *
      * @param key The key to store under
      * @return the argument
@@ -158,8 +184,24 @@ public final class GenericArguments {
     }
 
     /**
-     * Expect an argument to represent a player who has been online at some
+     * Expect an argument to represent players who have been online at some
      * point, as a {@link User}.
+     *
+     * <p>This argument accepts the following inputs:</p>
+     *
+     * <ul>
+     *     <li>A player's name (offline or online)</li>
+     *     <li>A regex that matches the beginning of one or more player's names
+     *     </li>
+     *     <li>A selector</li>
+     * </ul>
+     *
+     * <p>This may return multiple {@link User}s. If you must only return one,
+     * wrap this element in an {@link #onlyOne(CommandElement)} call.</p>
+     *
+     * <p>This may not return the {@link Player} object for an online user. If
+     * you wish to operate on an associated {@link Player} object if the user is
+     * online, use {@link User#getPlayer()}.</p>
      *
      * @param key The key to store under
      * @return the argument
@@ -169,10 +211,26 @@ public final class GenericArguments {
     }
 
     /**
-     * Expect an argument to represent a player who has been online at some
+     * Expect an argument to represent players who have been online at some
      * point, as a {@link User}, or if nothing matches and the source is a
      * {@link User}, give the user. If nothing matches and the source is not
      * a {@link User}, throw an exception.
+     *
+     * <p>This argument accepts the following inputs:</p>
+     *
+     * <ul>
+     *     <li>A player's name (offline or online)</li>
+     *     <li>A regex that matches the beginning of one or more player's names
+     *     </li>
+     *     <li>A selector</li>
+     * </ul>
+     *
+     * <p>This may return multiple {@link User}s. If you must only return one,
+     * wrap this element in an {@link #onlyOne(CommandElement)} call.</p>
+     *
+     * <p>This may not return the {@link Player} object for an online user. If
+     * you wish to operate on an associated {@link Player} object if the user is
+     * online, use {@link User#getPlayer()}.</p>
      *
      * @param key The key to store under
      * @return the argument
@@ -182,9 +240,21 @@ public final class GenericArguments {
     }
 
     /**
-     * Expect an argument to represent a world. This gives a WorldProperties
-     * object rather than an actual world in order to include unloaded worlds
-     * as well. Gives values of type {@link WorldProperties}.
+     * Expect an argument to represent a world. This returns
+     * {@link WorldProperties} objects rather than an actual {@link World} in
+     * order to include unloaded worlds.
+     *
+     * <p>This argument accepts the following inputs:</p>
+     *
+     * <ul>
+     *     <li>A world's name</li>
+     *     <li>A regex that matches the beginning of one or more world's names
+     *     </li>
+     * </ul>
+     *
+     * <p>This may return multiple {@link WorldProperties}s. If you must only
+     * return one, wrap this element in an {@link #onlyOne(CommandElement)}
+     * call.</p>
      *
      * @param key The key to store under
      * @return the argument
@@ -194,8 +264,20 @@ public final class GenericArguments {
     }
 
     /**
-     * Expect an argument to represent a dimension.
-     * Gives values of tye {@link DimensionType}
+     * Expect an argument to represent a dimension. Returns values of type
+     * {@link DimensionType}.
+     *
+     * <p>This argument accepts the following inputs:</p>
+     *
+     * <ul>
+     *     <li>A dimension's id</li>
+     *     <li>A regex that matches the beginning of one or more dimension id
+     *     </li>
+     * </ul>
+     *
+     * <p>This may return multiple {@link DimensionType}s. If you must only
+     * return one, wrap this element in an {@link #onlyOne(CommandElement)}
+     * call.</p>
      *
      * @param key The key to store under
      * @return the argument
@@ -207,6 +289,8 @@ public final class GenericArguments {
     /**
      * Expect an argument to represent a {@link Vector3d}.
      *
+     * <p>This will return one value.</p>
+     *
      * @param key The key to store under
      * @return the argument
      */
@@ -217,6 +301,8 @@ public final class GenericArguments {
     /**
      * Expect an argument to represent a {@link Location}.
      *
+     * <p>This will return one value.</p>
+     *
      * @param key The key to store under
      * @return the argument
      */
@@ -225,10 +311,21 @@ public final class GenericArguments {
     }
 
     /**
-     * Expect an argument that is a member of the specified dummy type T.
+     * Expect an argument that is a member of the specified {@link CatalogType}
+     * T.
+     *
+     * <p>This argument accepts the following inputs:</p>
+     *
+     * <ul>
+     *     <li>The value's {@link CatalogType#getId()}</li>
+     *     <li>A regex that matches the beginning of one or more ids</li>
+     * </ul>
+     *
+     * <p>This may return multiple instances of T. If you must only return one,
+     * wrap this element in an {@link #onlyOne(CommandElement)} call.</p>
      *
      * @param key The key to store the resolved value under
-     * @param catalogType The type expected
+     * @param catalogType The expected {@link CatalogType}
      * @param <T> The type to return
      * @return the argument
      */
@@ -238,6 +335,17 @@ public final class GenericArguments {
 
     /**
      * Expect an argument to represent a {@link PluginContainer}'s id.
+     *
+     * <p>This argument accepts the following inputs:</p>
+     *
+     * <ul>
+     *     <li>The specified {@link PluginContainer}'s id</li>
+     *     <li>A regex that matches the beginning of one or more plugin id</li>
+     * </ul>
+     *
+     * <p>This may return multiple {@link PluginContainer}s. If you must only
+     * return one, wrap this element in an {@link #onlyOne(CommandElement)}
+     * call.</p>
      *
      * @param key The key to store under
      * @return the argument
@@ -288,6 +396,16 @@ public final class GenericArguments {
 
     /**
      * Gets a builder to create a command element that parses flags.
+     *
+     * <p>There should only be ONE of these in a command element sequence if you
+     * wish to use flags. A {@link CommandFlags.Builder} can handle multiple
+     * flags that have different behaviors. Using multiple builders in the same
+     * sequence may cause unexpected behavior.</p>
+     *
+     * <p>Any command elements that are not associated with flags should be
+     * placed into the {@link CommandFlags.Builder#buildWith(CommandElement)}
+     * parameter, allowing the flags to be used throughout the argument string.
+     * </p>
      *
      * @return the newly created builder
      */
@@ -380,6 +498,9 @@ public final class GenericArguments {
      * <p>To override this behavior, see
      * {@link #choices(Text, Map, boolean, boolean)}.</p>
      *
+     * <p>When parsing, only one choice may be selected, returning its
+     * associated value.</p>
+     *
      * @param key The key to store the resulting value under
      * @param choices The choices users can choose from
      * @return the element to match the input
@@ -401,6 +522,9 @@ public final class GenericArguments {
      * <p>To override this behavior, see
      * {@link #choices(Text, Map, boolean, boolean)}.</p>
      *
+     * <p>When parsing, only one choice may be selected, returning its
+     * associated value.</p>
+     *
      * @param key The key to store the resulting value under
      * @param choices The choices users can choose from
      * @return the element to match the input
@@ -418,6 +542,9 @@ public final class GenericArguments {
      * <p>Choices are <strong>case sensitive</strong>. If you do not require
      * case sensitivity, see {@link #choices(Text, Map, boolean, boolean)}</p>
      *
+     * <p>When parsing, only one choice may be selected, returning its
+     * associated value.</p>
+     *
      * @param key The key to store the resulting value under
      * @param choices The choices users can choose from
      * @param choicesInUsage Whether to display the available choices, or simply
@@ -433,6 +560,9 @@ public final class GenericArguments {
      *
      * <p>Unless {@code choicesInUsage} is true, general command usage will only
      * display the provided key.</p>
+     *
+     * <p>When parsing, only one choice may be selected, returning its
+     * associated value.</p>
      *
      * @param key The key to store the resulting value under
      * @param choices The choices users can choose from
@@ -461,6 +591,8 @@ public final class GenericArguments {
      * <p>To override this behavior, see {@link #choices(Text, Map, boolean)}.
      * </p>
      *
+     * <p>Only one choice may be selected, returning its associated value.</p>
+     *
      * @param key The key to store the resulting value under
      * @param keys The function that will supply available keys
      * @param values The function that maps an element of {@code key} to a value
@@ -475,6 +607,8 @@ public final class GenericArguments {
      * Return an argument that allows selecting from a limited set of values.
      * Unless {@code choicesInUsage} is true, general command usage will only
      * display the provided key.
+     *
+     * <p>Only one choice may be selected, returning its associated value.</p>
      *
      * @param key The key to store the resulting value under
      * @param keys The function that will supply available keys
@@ -839,7 +973,7 @@ public final class GenericArguments {
     // -- Argument types for basic java types
 
     /**
-     * Parent class that specifies elemenents as having no tab completions.
+     * Parent class that specifies elements as having no tab completions.
      * Useful for inputs with a very large domain, like strings and integers.
      */
     private abstract static class KeyElement extends CommandElement {
@@ -857,7 +991,8 @@ public final class GenericArguments {
      * Require an argument to be a string. Any provided argument will fit in
      * under this argument.
      *
-     * <p>Gives values of type {@link String}.</p>
+     * <p>Gives values of type {@link String}. This will return only one value.
+     * </p>
      *
      * @param key The key to store the parsed argument under
      * @return the element to match the input
@@ -882,7 +1017,8 @@ public final class GenericArguments {
     /**
      * Require an argument to be an integer (base 10).
      *
-     * <p>Gives values of type {@link Integer}.</p>
+     * <p>Gives values of type {@link Integer}. This will return only one value.
+     * </p>
      *
      * @param key The key to store the parsed argument under
      * @return the element to match the input
@@ -926,7 +1062,8 @@ public final class GenericArguments {
     /**
      * Require an argument to be a long (base 10).
      *
-     * <p>Gives values of type {@link Long}.</p>
+     * <p>Gives values of type {@link Long}. This will return only one value.
+     * </p>
      *
      * @param key The key to store the parsed argument under
      * @return the element to match the input
@@ -938,7 +1075,8 @@ public final class GenericArguments {
     /**
      * Require an argument to be an double-precision floating point number.
      *
-     * <p>Gives values of type {@link Double}.</p>
+     * <p>Gives values of type {@link Double}. This will return only one value.
+     * </p>
      *
      * @param key The key to store the parsed argument under
      * @return the element to match the input
@@ -986,7 +1124,8 @@ public final class GenericArguments {
      *     <li>notatall</li>
      * </ul>
      *
-     * <p>Gives values of type {@link Boolean}.</p>
+     * <p>Gives values of type {@link Boolean}. This will return only one value.
+     * </p>
      *
      * @param key The key to store the parsed argument under
      * @return the element to match the input
@@ -998,7 +1137,7 @@ public final class GenericArguments {
     /**
      * Require the argument to be a key under the provided enum.
      *
-     * <p>Gives values of type <tt>T</tt></p>
+     * <p>Gives values of type <tt>T</tt>. This will return only one value.</p>
      *
      * @param key The key to store the matched enum value under
      * @param type The enum class to get enum constants from
@@ -1045,7 +1184,8 @@ public final class GenericArguments {
      * Require one or more strings, which are combined into a single,
      * space-separated string.
      *
-     * <p>Gives values of type {@link String}.</p>
+     * <p>Gives values of type {@link String}. This will return only one value.
+     * </p>
      *
      * @param key The key to store the parsed argument under
      * @return the element to match the input
@@ -1058,7 +1198,8 @@ public final class GenericArguments {
      * Require one or more strings, without any processing, which are combined
      * into a single, space-separated string.
      *
-     * <p>Gives values of type {@link String}.</p>
+     * <p>Gives values of type {@link String}. This will return only one value.
+     * </p>
      *
      * @param key The key to store the parsed argument under
      * @return the element to match the input
@@ -1103,6 +1244,8 @@ public final class GenericArguments {
      * against a predefined array of arguments expected to be present,
      * case-insensitively.
      *
+     * <p>This will return only one value.</p>
+     *
      * @param key The key to add to the context. Will be set to a value of true
      *      if this element matches
      * @param expectedArgs The sequence of arguments expected
@@ -1116,6 +1259,8 @@ public final class GenericArguments {
      * Expect a literal sequence of arguments. This element matches the input
      * against a predefined array of arguments expected to be present,
      * case-insensitively.
+     *
+     * <p>This will return only one value.</p>
      *
      * @param key The key to store this argument as
      * @param putValue The value to put at key if this argument matches. May be
@@ -1608,6 +1753,10 @@ public final class GenericArguments {
      * Restricts the given command element to only insert one value into the
      * context at the provided key.
      *
+     * <p>If more than one value is returned by an element, or the target key
+     * already contains a value, this will throw an
+     * {@link ArgumentParseException}</p>
+     *
      * @param element The element to restrict
      * @return the restricted element
      */
@@ -1651,6 +1800,9 @@ public final class GenericArguments {
 
     /**
      * Checks a permission for a given command argument to be used.
+     *
+     * <p>If the element attempts to parse an argument and the user does not
+     * have the permission, a {@link ArgumentParseException} will be thrown.</p>
      *
      * @param element The element to wrap
      * @param permission The permission to check
@@ -1707,6 +1859,17 @@ public final class GenericArguments {
     /**
      * Expect an argument to represent an {@link Entity}.
      *
+     * <p>This argument accepts the following inputs:</p>
+     *
+     * <ul>
+     *     <li>A player's name</li>
+     *     <li>An entity's {@link UUID}</li>
+     *     <li>A regex that matches the beginning of one or more player's names
+     *     or entities UUIDs.
+     *     </li>
+     *     <li>A selector</li>
+     * </ul>
+     *
      * @param key The key to store under
      * @return the argument
      */
@@ -1716,6 +1879,17 @@ public final class GenericArguments {
 
     /**
      * Expect an argument to represent an {@link Entity} of the specified type.
+     *
+     * <p>This argument accepts the following inputs:</p>
+     *
+     * <ul>
+     *     <li>A player's name (if appropriate)</li>
+     *     <li>An entity's {@link UUID}</li>
+     *     <li>A regex that matches the beginning of one or more player's names
+     *     or entities UUIDs.
+     *     </li>
+     *     <li>A selector</li>
+     * </ul>
      *
      * @param key The key to store under
      * @param clazz The type which the entity must subclass
@@ -1728,6 +1902,17 @@ public final class GenericArguments {
     /**
      * Expect an argument to represent an {@link Entity} of the specified
      * {@link EntityType}.
+     *
+     * <p>This argument accepts the following inputs:</p>
+     *
+     * <ul>
+     *     <li>A player's name (if appropriate)</li>
+     *     <li>An entity's {@link UUID}</li>
+     *     <li>A regex that matches the beginning of one or more player's names
+     *     or entities UUIDs.
+     *     </li>
+     *     <li>A selector</li>
+     * </ul>
      *
      * @param key The key to store under
      * @param type The type which the entity must be
@@ -1742,6 +1927,17 @@ public final class GenericArguments {
      * not present and the {@link CommandSource} is an entity, return the
      * source.
      *
+     * <p>This argument accepts the following inputs:</p>
+     *
+     * <ul>
+     *     <li>A player's name</li>
+     *     <li>An entity's {@link UUID}</li>
+     *     <li>A regex that matches the beginning of one or more player's names
+     *     or entities UUIDs.
+     *     </li>
+     *     <li>A selector</li>
+     * </ul>
+     *
      * @param key The key to store under
      * @return the argument
      */
@@ -1754,6 +1950,17 @@ public final class GenericArguments {
      * not present and the {@link CommandSource} is looking at an entity,
      * return that entity.
      *
+     * <p>This argument accepts the following inputs:</p>
+     *
+     * <ul>
+     *     <li>A player's name</li>
+     *     <li>An entity's {@link UUID}</li>
+     *     <li>A regex that matches the beginning of one or more player's names
+     *     or entities UUIDs.
+     *     </li>
+     *     <li>A selector</li>
+     * </ul>
+     *
      * @param key The key to store under
      * @return the argument
      */
@@ -1765,6 +1972,17 @@ public final class GenericArguments {
      * Expect an argument to represent an {@link Entity} of the specified type,
      * or if the argument is not present and the {@link CommandSource} is
      * looking at an applicable entity, return that entity.
+     *
+     * <p>This argument accepts the following inputs:</p>
+     *
+     * <ul>
+     *     <li>A player's name (if appropriate)</li>
+     *     <li>An entity's {@link UUID}</li>
+     *     <li>A regex that matches the beginning of one or more player's names
+     *     or entities UUIDs.
+     *     </li>
+     *     <li>A selector</li>
+     * </ul>
      *
      * @param key The key to store under
      * @param clazz The type which the entity must subclass
@@ -1779,6 +1997,17 @@ public final class GenericArguments {
      * {@link EntityType}, or if the argument is not present and the
      * {@link CommandSource} is looking at an applicable entity, return that
      * entity.
+     *
+     * <p>This argument accepts the following inputs:</p>
+     *
+     * <ul>
+     *     <li>A player's name (if appropriate)</li>
+     *     <li>An entity's {@link UUID}</li>
+     *     <li>A regex that matches the beginning of one or more player's names
+     *     or entities UUIDs.
+     *     </li>
+     *     <li>A selector</li>
+     * </ul>
      *
      * @param key The key to store under
      * @param type The type which the entity must be
@@ -1937,6 +2166,8 @@ public final class GenericArguments {
     /**
      * Expect an argument to represent a {@link URL}.
      *
+     * <p>This will return only one value.</p>
+     *
      * @param key The key to store under
      * @return the argument
      */
@@ -1973,6 +2204,8 @@ public final class GenericArguments {
      * Expect an argument to return an IP address, in the form of an
      * {@link InetAddress}.
      *
+     * <p>This will return only one value.</p>
+     *
      * @param key The key to store under
      * @return the argument
      */
@@ -1984,6 +2217,8 @@ public final class GenericArguments {
      * Expect an argument to return an IP address, in the form of an
      * {@link InetAddress}, or if nothing matches and the source is a
      * {@link RemoteSource}, return the source's address.
+     *
+     * <p>This will return only one value.</p>
      *
      * @param key The key to store under
      * @return the argument
@@ -2068,6 +2303,8 @@ public final class GenericArguments {
     /**
      * Expect an argument to return a {@link BigInteger}.
      *
+     * <p>This will return only one value.</p>
+     *
      * @param key The key to store under
      * @return the argument
      */
@@ -2095,6 +2332,8 @@ public final class GenericArguments {
 
     /**
      * Expect an argument to be a valid {@link DataContainer}.
+     *
+     * <p>This will return only one value.</p>
      *
      * @param key The key to store under
      * @return the argument
@@ -2130,6 +2369,8 @@ public final class GenericArguments {
     /**
      * Expect an argument to be a {@link UUID}.
      *
+     * <p>This will return only one value.</p>
+     *
      * @param key The key to store under
      * @return the argument
      */
@@ -2157,6 +2398,8 @@ public final class GenericArguments {
 
     /**
      * Expect an argument to be valid {@link Text}.
+     *
+     * <p>This will return only one value.</p>
      *
      * @param key The key to store under
      * @param serializer The serializer to parse the text with
@@ -2212,6 +2455,8 @@ public final class GenericArguments {
      *
      * <p>Date-times are expected in the ISO-8601 format.</p>
      *
+     * <p>This will return only one value.</p>
+     *
      * @param key The key to store under
      * @return the argument
      * @see <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a>
@@ -2229,6 +2474,8 @@ public final class GenericArguments {
      * {@link LocalDateTime#now()}.</p>
      *
      * <p>Date-times are expected in the ISO-8601 format.</p>
+     *
+     * <p>This will return only one value.</p>
      *
      * @param key The key to store under
      * @return the argument
@@ -2298,6 +2545,8 @@ public final class GenericArguments {
      *
      * <p>Durations are expected in the following format: {@code #D#H#M#S}.
      * This is not case sensitive.</p>
+     *
+     * <p>This will return only one value.</p>
      *
      * @param key The key to store under
      * @return the argument

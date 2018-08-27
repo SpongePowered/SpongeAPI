@@ -298,9 +298,14 @@ public final class CommandFlags extends CommandElement {
         return null;
     }
 
+    /**
+     * Indicates to the flag parser how it should treat an argument that looks
+     * like a flag that it does not recognise.
+     */
     public enum UnknownFlagBehavior {
         /**
-         * Throw an {@link ArgumentParseException} when an unknown flag is encountered.
+         * Throw an {@link ArgumentParseException} when an unknown flag is
+         * encountered.
          */
         ERROR,
         /**
@@ -313,7 +318,9 @@ public final class CommandFlags extends CommandElement {
          */
         ACCEPT_VALUE,
         /**
-         * Act as if the unknown flag is an ordinary argument.
+         * Act as if the unknown flag is an ordinary argument, allowing the
+         * parsers specified in {@link Builder#buildWith(CommandElement)} to
+         * attempt to parse the element instead.
          */
         IGNORE
 
@@ -365,9 +372,12 @@ public final class CommandFlags extends CommandElement {
          * {@code specs} array:
          * <ul>
          *     <li>If the element starts with -, the remainder of the element
-         *     is interpreted as a long flag</li>
+         *     is interpreted as a long flag (so, "-flag" means "--flag" will
+         *     be matched in an argument string)</li>
          *     <li>Otherwise, each code point of the element is interpreted
-         *     as a short flag</li>
+         *     as a short flag (meaning "flag" will cause "-f", "-l", "-a" and
+         *     "-g" to be matched in an argument string, storing "true" under
+         *     the key "f".)</li>
          * </ul>
          *
          * @param specs The flag specifications
@@ -434,6 +444,12 @@ public final class CommandFlags extends CommandElement {
          * Sets how long flags that are not registered should be handled when
          * encountered.
          *
+         * <p>If a command that supports flags accepts negative numbers (or
+         * arguments that may begin with a dash), setting this to
+         * {@link UnknownFlagBehavior#IGNORE} will cause these elements to
+         * be ignored by the flag parser and will be parsed by the command's
+         * non-flag elements instead.</p>
+         *
          * @param behavior The behavior to use
          * @return this
          */
@@ -458,6 +474,9 @@ public final class CommandFlags extends CommandElement {
         /**
          * Build a flag command element using the given command element to
          * handle all non-flag arguments.
+         *
+         * <p>If you wish to add multiple elements here, wrap them in
+         * {@link GenericArguments#seq(CommandElement...)}</p>
          *
          * @param wrapped The wrapped command element
          * @return the new command element
