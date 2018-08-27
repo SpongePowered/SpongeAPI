@@ -22,14 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.metric;
+package org.spongepowered.api.util.metric;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.plugin.PluginContainer;
 
 /**
  * Provides information about whether a server has granted permission for
- * server data to be transmitted on a per plugin basis.
+ * server metric data to be transmitted on a per plugin basis.
+ *
+ * <p>This manager is {@code @Inject}able into plugin classes.</p>
  */
 public interface MetricsConfigManager {
 
@@ -55,7 +57,7 @@ public interface MetricsConfigManager {
      *
      * <p>The value returned from this <em>should not be stored</em>. As the
      * configuration/permission can be updated at any time, it is best to
-     * check this each time stats collection is due to occur.</p>
+     * check this each time server metric collection is due to occur.</p>
      *
      * @param plugin The plugin object (annotated with
      *               {@link org.spongepowered.api.plugin.Plugin})
