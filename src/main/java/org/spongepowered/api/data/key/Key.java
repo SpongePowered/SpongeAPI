@@ -35,7 +35,7 @@ import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.event.EventListener;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.TypeTokens;
 
 import java.lang.reflect.Type;
@@ -102,7 +102,7 @@ public interface Key<V extends BaseValue<?>> extends CatalogType {
      */
     <E extends DataHolder> void registerEvent(Class<E> holderFilter, EventListener<ChangeDataHolderEvent.ValueChange> listener);
 
-    interface Builder<E, V extends BaseValue<E>> extends ResettableBuilder<Key<V>, Builder<E, V>> {
+    interface Builder<E, V extends BaseValue<E>> extends CatalogBuilder<Key<V>, Builder<E, V>> {
 
         /**
          * Starter method for the builder, to be used immediately after
@@ -123,23 +123,10 @@ public interface Key<V extends BaseValue<?>> extends CatalogType {
          */
         <T, B extends BaseValue<T>> Builder<T, B> type(TypeToken<B> token);
 
-        /**
-         * Sets the string id to be used for {@link CatalogType#getId()}.
-         *
-         * <p>This should be formatted appropriately, review {@link CatalogType}
-         * documentation for formatted ids.</p>
-         *
-         * @param id The string id
-         * @return This builder, for chaining
-         */
+        @Override
         Builder<E, V> id(String id);
 
-        /**
-         * Sets the human readable name for the generated {@link Key}.
-         *
-         * @param name The human readable name
-         * @return This builder, for chaining
-         */
+        @Override
         Builder<E, V> name(String name);
 
         /**
@@ -159,6 +146,7 @@ public interface Key<V extends BaseValue<?>> extends CatalogType {
          *
          * @return The generated Key
          */
+        @Override
         Key<V> build();
 
         @Override
