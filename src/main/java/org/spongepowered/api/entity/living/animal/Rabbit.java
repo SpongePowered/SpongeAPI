@@ -50,7 +50,7 @@ public interface Rabbit extends Animal {
      * @return The rabbit type for this rabit
      */
     default Value.Mutable<RabbitType> variant() {
-        return getValue(Keys.RABBIT_TYPE).get();
+        return getValue(Keys.RABBIT_TYPE).get().asMutable();
     }
 
 }

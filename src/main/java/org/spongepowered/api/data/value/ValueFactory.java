@@ -57,7 +57,7 @@ public interface ValueFactory {
      * @param <E> The type of element
      * @return The newly created value
      */
-    <E> Value.Mutable<E> createValue(Key<Value<E>> key, E element, E defaultValue);
+    <E> Value.Mutable<E> createValue(Key<? extends Value<E>> key, E element, E defaultValue);
 
     /**
      * Creates a new {@link ListValue.Mutable} with the provided {@link Key} and
@@ -68,7 +68,7 @@ public interface ValueFactory {
      * @param <E> The type of element
      * @return The list value
      */
-    <E> ListValue.Mutable<E> createListValue(Key<ListValue.Mutable<E>> key, List<E> elements);
+    <E> ListValue.Mutable<E> createListValue(Key<? extends Value<List<E>>> key, List<E> elements);
 
     /**
      * Creates a new {@link ListValue.Mutable} with the provided {@link Key} and
@@ -80,7 +80,7 @@ public interface ValueFactory {
      * @param <E> The type of element
      * @return The list value
      */
-    <E> ListValue.Mutable<E> createListValue(Key<ListValue.Mutable<E>> key, List<E> elements, List<E> defaults);
+    <E> ListValue.Mutable<E> createListValue(Key<? extends Value<List<E>>> key, List<E> elements, List<E> defaults);
 
     /**
      * Creates a new {@link SetValue.Mutable} with the provided {@link Key} and
@@ -91,7 +91,7 @@ public interface ValueFactory {
      * @param <E> The type of element
      * @return The set value
      */
-    <E> SetValue.Mutable<E> createSetValue(Key<SetValue.Mutable<E>> key, Set<E> elements);
+    <E> SetValue.Mutable<E> createSetValue(Key<? extends Value<Set<E>>> key, Set<E> elements);
 
     /**
      * Creates a new {@link SetValue.Mutable} with the provided {@link Key} and
@@ -103,7 +103,7 @@ public interface ValueFactory {
      * @param <E> The type of element
      * @return The set value
      */
-    <E> SetValue.Mutable<E> createSetValue(Key<SetValue.Mutable<E>> key, Set<E> elements, Set<E> defaults);
+    <E> SetValue.Mutable<E> createSetValue(Key<? extends Value<Set<E>>> key, Set<E> elements, Set<E> defaults);
 
     /**
      * Creates a new {@link MapValue.Mutable} of the provided {@link Key} with the
@@ -115,7 +115,7 @@ public interface ValueFactory {
      * @param <V> The type of value
      * @return The map value
      */
-    <K, V> MapValue.Mutable<K, V> createMapValue(Key<MapValue.Mutable<K, V>> key, Map<K, V> map);
+    <K, V> MapValue.Mutable<K, V> createMapValue(Key<? extends Value<Map<K, V>>> key, Map<K, V> map);
 
     /**
      * Creates a new {@link MapValue.Mutable} of the provided {@link Key} with the
@@ -129,7 +129,7 @@ public interface ValueFactory {
      * @param <V> The type of value
      * @return The map value
      */
-    <K, V> MapValue.Mutable<K, V> createMapValue(Key<MapValue.Mutable<K, V>> key, Map<K, V> map, Map<K, V> defaults);
+    <K, V> MapValue.Mutable<K, V> createMapValue(Key<? extends Value<Map<K, V>>> key, Map<K, V> map, Map<K, V> defaults);
 
     /**
      * Creates a {@link BoundedValueBuilder}
@@ -138,7 +138,7 @@ public interface ValueFactory {
      * @param <E> The type of value
      * @return The newly created value
      */
-    <E> BoundedValueBuilder<E> createBoundedValueBuilder(Key<BoundedValue.Mutable<E>> key);
+    <E> BoundedValueBuilder<E> createBoundedValueBuilder(Key<? extends BoundedValue<E>> key);
 
     /**
      * Creates an {@link OptionalValue.Mutable} where even the default value may be
@@ -151,7 +151,7 @@ public interface ValueFactory {
      * @param <E> The type of element
      * @return The newly created value
      */
-    <E> OptionalValue.Mutable<E> createOptionalValue(Key<OptionalValue.Mutable<E>> key, @Nullable E element);
+    <E> OptionalValue.Mutable<E> createOptionalValue(Key<? extends OptionalValue<E>> key, @Nullable E element);
 
     /**
      * Creates an {@link OptionalValue.Mutable} where the default is NOT
@@ -164,7 +164,7 @@ public interface ValueFactory {
      * @param <E> The type of element
      * @return The newly created value
      */
-    <E> OptionalValue.Mutable<E> createOptionalValue(Key<OptionalValue.Mutable<E>> key, @Nullable E element, E defaultElement);
+    <E> OptionalValue.Mutable<E> createOptionalValue(Key<? extends OptionalValue<E>> key, @Nullable E element, E defaultElement);
 
     /**
      * A builder pattern for constructing {@link BoundedValue.Mutable}s without the hassle of

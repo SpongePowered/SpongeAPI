@@ -40,7 +40,7 @@ public interface IronGolem extends Golem {
      * @return The value whether this golem was created by a player
      */
     default Value.Mutable<Boolean> playerCreated() {
-        return getValue(Keys.PLAYER_CREATED).get();
+        return getValue(Keys.PLAYER_CREATED).get().asMutable();
     }
 
 }

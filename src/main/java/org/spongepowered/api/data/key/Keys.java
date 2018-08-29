@@ -40,6 +40,7 @@ import org.spongepowered.api.data.meta.PatternLayer;
 import org.spongepowered.api.data.property.entity.DominantHandProperty;
 import org.spongepowered.api.data.type.*;
 import org.spongepowered.api.data.value.*;
+import org.spongepowered.api.data.value.meta.PatternListValue;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.effect.potion.PotionEffectType;
@@ -124,7 +125,7 @@ public final class Keys {
      *
      * @see AgeableData#age()
      */
-    public static final Key<Value<Integer>> AGE = DummyObjectProvider.createExtendedFor(Key.class,"AGE");
+    public static final Key<BoundedValue<Integer>> AGE = DummyObjectProvider.createExtendedFor(Key.class,"AGE");
 
     /**
      * Represents the {@link Key} for whether an {@link Agent}s AI is enabled.
@@ -310,7 +311,7 @@ public final class Keys {
      *
      * @see BannerData#patternsList()
      */
-    public static final Key<ListValue<PatternLayer>> BANNER_PATTERNS = DummyObjectProvider.createExtendedFor(Key.class,"BANNER_PATTERNS");
+    public static final Key<PatternListValue> BANNER_PATTERNS = DummyObjectProvider.createExtendedFor(Key.class,"BANNER_PATTERNS");
 
     /**
      * Represents the {@link Key} for the width of the physical form of an

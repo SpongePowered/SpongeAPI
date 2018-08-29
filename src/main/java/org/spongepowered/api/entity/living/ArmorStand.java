@@ -55,7 +55,7 @@ public interface ArmorStand extends Living, ArmorEquipable {
      * @return The value for the marker state
      */
     default Value.Mutable<Boolean> marker() {
-        return getValue(Keys.ARMOR_STAND_MARKER).get();
+        return getValue(Keys.ARMOR_STAND_MARKER).get().asMutable();
     }
 
     /**
@@ -65,7 +65,7 @@ public interface ArmorStand extends Living, ArmorEquipable {
      * @return The value for the small state
      */
     default Value.Mutable<Boolean> small() {
-        return getValue(Keys.ARMOR_STAND_IS_SMALL).get();
+        return getValue(Keys.ARMOR_STAND_IS_SMALL).get().asMutable();
     }
 
     /**
@@ -76,7 +76,7 @@ public interface ArmorStand extends Living, ArmorEquipable {
      * @return The value for the base plate state
      */
     default Value.Mutable<Boolean> basePlate() {
-        return getValue(Keys.ARMOR_STAND_HAS_BASE_PLATE).get();
+        return getValue(Keys.ARMOR_STAND_HAS_BASE_PLATE).get().asMutable();
     }
 
     /**
@@ -86,7 +86,7 @@ public interface ArmorStand extends Living, ArmorEquipable {
      * @return The value for the arms state
      */
     default Value.Mutable<Boolean> arms() {
-        return getValue(Keys.ARMOR_STAND_HAS_ARMS).get();
+        return getValue(Keys.ARMOR_STAND_HAS_ARMS).get().asMutable();
     }
 
     /**

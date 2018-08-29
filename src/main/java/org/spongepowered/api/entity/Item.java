@@ -53,7 +53,7 @@ public interface Item extends Entity {
      * @return The value for the item stack snapshot
      */
     default Value.Mutable<ItemStackSnapshot> item() {
-        return getValue(Keys.REPRESENTED_ITEM).get();
+        return getValue(Keys.REPRESENTED_ITEM).get().asMutable();
     }
 
     /**

@@ -57,7 +57,7 @@ public interface CommandBlockSource extends Locatable, CommandSource, DataHolder
      * @return The command
      */
     default Value.Mutable<String> storedCommand() {
-        return getValue(Keys.COMMAND).get();
+        return getValue(Keys.COMMAND).get().asMutable();
     }
 
     /**
@@ -73,7 +73,7 @@ public interface CommandBlockSource extends Locatable, CommandSource, DataHolder
      * @return The last success count
      */
     default Value.Mutable<Integer> successCount() {
-        return getValue(Keys.SUCCESS_COUNT).get();
+        return getValue(Keys.SUCCESS_COUNT).get().asMutable();
     }
 
     /**
@@ -83,7 +83,7 @@ public interface CommandBlockSource extends Locatable, CommandSource, DataHolder
      * @return Whether the command output is tracked
      */
     default Value.Mutable<Boolean> doesTrackOutput() {
-        return getValue(Keys.TRACKS_OUTPUT).get();
+        return getValue(Keys.TRACKS_OUTPUT).get().asMutable();
     }
 
     /**
@@ -95,7 +95,7 @@ public interface CommandBlockSource extends Locatable, CommandSource, DataHolder
      * @return The last command output, if available
      */
     default OptionalValue.Mutable<Text> lastOutput() {
-        return getValue(Keys.LAST_COMMAND_OUTPUT).get();
+        return getValue(Keys.LAST_COMMAND_OUTPUT).get().asMutable();
     }
 
 }

@@ -50,7 +50,7 @@ public interface Banner extends TileEntity {
      * @return The value for the base color
      */
     default Value.Mutable<DyeColor> baseColor() {
-        return getValue(Keys.BANNER_BASE_COLOR).get();
+        return getValue(Keys.BANNER_BASE_COLOR).get().asMutable();
     }
 
     /**
@@ -60,6 +60,6 @@ public interface Banner extends TileEntity {
      * @return The pattern list
      */
     default PatternListValue.Mutable patternsList() {
-        return getValue(Keys.BANNER_PATTERNS).get();
+        return getValue(Keys.BANNER_PATTERNS).get().asMutable();
     }
 }

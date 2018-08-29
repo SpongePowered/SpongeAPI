@@ -58,7 +58,7 @@ public interface Furnace extends TileEntityCarrier {
      * @see FurnaceData#passedBurnTime
      */
     default BoundedValue.Mutable<Integer> passedBurnTime() {
-        return getValue(Keys.PASSED_BURN_TIME).get();
+        return getValue(Keys.PASSED_BURN_TIME).get().asMutable();
     }
 
     /**
@@ -70,7 +70,7 @@ public interface Furnace extends TileEntityCarrier {
      * @see FurnaceData#maxBurnTime
      */
     default BoundedValue.Mutable<Integer> maxBurnTime() {
-        return getValue(Keys.MAX_BURN_TIME).get();
+        return getValue(Keys.MAX_BURN_TIME).get().asMutable();
     }
 
     /**
@@ -81,7 +81,7 @@ public interface Furnace extends TileEntityCarrier {
      * @see FurnaceData#passedCookTime
      */
     default BoundedValue.Mutable<Integer> passedCookTime() {
-        return getValue(Keys.PASSED_COOK_TIME).get();
+        return getValue(Keys.PASSED_COOK_TIME).get().asMutable();
     }
 
     /**
@@ -92,7 +92,7 @@ public interface Furnace extends TileEntityCarrier {
      * @see FurnaceData#maxCookTime
      */
     default BoundedValue.Mutable<Integer> maxCookTime() {
-        return getValue(Keys.MAX_COOK_TIME).get();
+        return getValue(Keys.MAX_COOK_TIME).get().asMutable();
     }
 
 }

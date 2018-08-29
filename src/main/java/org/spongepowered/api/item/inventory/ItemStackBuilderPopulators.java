@@ -328,7 +328,7 @@ public final class ItemStackBuilderPopulators {
      * @param <E> The type of element
      * @return The new biconsumer to apply to an itemstack builder
      */
-    public static <E> BiConsumer<ItemStack.Builder, Random> listValueSuppliers(Key<? extends ListValue.Mutable<E>> key,
+    public static <E> BiConsumer<ItemStack.Builder, Random> listValueSuppliers(Key<? extends ListValue<E>> key,
             WeightedTable<Function<Random, E>> weightedTable) {
         checkNotNull(key, "Key cannot be null!");
         checkNotNull(weightedTable, "WeightedTable cannot be null!");

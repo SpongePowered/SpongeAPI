@@ -49,7 +49,7 @@ public interface ExperienceOrb extends Entity {
      * @return The immutable value for the amount of "experience" stored
      */
     default Value.Mutable<Integer> experience() {
-        return getValue(Keys.CONTAINED_EXPERIENCE).get();
+        return getValue(Keys.CONTAINED_EXPERIENCE).get().asMutable();
     }
 
 }

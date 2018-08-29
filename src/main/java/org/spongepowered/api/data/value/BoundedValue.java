@@ -71,6 +71,12 @@ public interface BoundedValue<E> extends Value<E> {
      */
     Comparator<E> getComparator();
 
+    @Override
+    BoundedValue.Mutable<E> asMutable();
+
+    @Override
+    BoundedValue.Immutable<E> asImmutable();
+
     /**
      * A type of {@link BoundedValue} that is modifiable as a {@link Value.Mutable}.
      *

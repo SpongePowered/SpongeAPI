@@ -49,6 +49,6 @@ public interface Painting extends Hanging {
      * @return The current art value
      */
     default Value.Mutable<Art> art() {
-        return getValue(Keys.ART).get();
+        return getValue(Keys.ART).get().asMutable();
     }
 }

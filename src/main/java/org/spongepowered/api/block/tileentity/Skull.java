@@ -50,7 +50,7 @@ public interface Skull extends TileEntity {
      * @return The current skull type value
      */
     default Value.Mutable<SkullType> skullType() {
-        return getValue(Keys.SKULL_TYPE).get();
+        return getValue(Keys.SKULL_TYPE).get().asMutable();
     }
 
 }

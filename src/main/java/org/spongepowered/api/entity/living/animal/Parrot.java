@@ -51,7 +51,7 @@ public interface Parrot extends Animal {
      * @return The parrot variant value
      */
     default Value.Mutable<ParrotVariant> variant() {
-        return this.getValue(Keys.PARROT_VARIANT).get();
+        return this.getValue(Keys.PARROT_VARIANT).get().asMutable();
     }
 
 }

@@ -58,7 +58,7 @@ public interface Note extends TileEntity {
      * @see Keys#NOTE_PITCH
      */
     default Value.Mutable<NotePitch> note() {
-        return getValue(Keys.NOTE_PITCH).get();
+        return getValue(Keys.NOTE_PITCH).get().asMutable();
     }
 
 }

@@ -51,7 +51,7 @@ public interface Arrow extends DamagingProjectile {
      * @return The immutable value for the knockback strength
      */
     default BoundedValue.Mutable<Integer> knockbackStrength() {
-        return getValue(Keys.KNOCKBACK_STRENGTH).get();
+        return getValue(Keys.KNOCKBACK_STRENGTH).get().asMutable();
     }
 
 }

@@ -60,7 +60,7 @@ public interface Villager extends Ageable, Merchant {
      * @return The current career value
      */
     default Value.Mutable<Career> career() {
-        return getValue(Keys.CAREER).get();
+        return getValue(Keys.CAREER).get().asMutable();
     }
 
 }

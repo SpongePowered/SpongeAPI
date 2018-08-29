@@ -46,7 +46,7 @@ import org.spongepowered.api.profile.property.ProfileProperty;
 public interface ImmutableSkinData extends ImmutableDataManipulator<ImmutableSkinData, SkinData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the {@link ProfileProperty} of the skin to display on a
+     * Gets the {@link Value.Immutable} for the {@link ProfileProperty} of the skin to display on a
      * {@link Humanoid} entity for customization.
      *
      * <p>The name of the {@link ProfileProperty} MUST be {@link ProfileProperty#TEXTURES},
@@ -54,7 +54,7 @@ public interface ImmutableSkinData extends ImmutableDataManipulator<ImmutableSki
      *
      * @return The value for the skin property
      * @see Keys#SKIN
-     */*/
+     */
     Value.Immutable<ProfileProperty> skin();
 
     /**

@@ -49,7 +49,7 @@ public interface Bed extends TileEntity {
      * @return The value for the color
      */
     default Value.Mutable<DyeColor> color() {
-        return this.getValue(Keys.DYE_COLOR).get();
+        return this.getValue(Keys.DYE_COLOR).get().asMutable();
     }
 
 }

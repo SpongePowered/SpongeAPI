@@ -69,7 +69,7 @@ public interface Living extends Entity, ProjectileSource, TeamMember {
      * @return Health value
      */
     default BoundedValue.Mutable<Double> health() {
-        return getValue(Keys.HEALTH).get();
+        return getValue(Keys.HEALTH).get().asMutable();
     }
 
     /**
@@ -82,7 +82,7 @@ public interface Living extends Entity, ProjectileSource, TeamMember {
      * @return This entities maximum health
      */
     default BoundedValue.Mutable<Double> maxHealth() {
-        return getValue(Keys.MAX_HEALTH).get();
+        return getValue(Keys.MAX_HEALTH).get().asMutable();
     }
 
     /**
@@ -102,7 +102,7 @@ public interface Living extends Entity, ProjectileSource, TeamMember {
      * @return The last attacker as an optional value
      */
     default OptionalValue.Mutable<EntitySnapshot> lastAttacker() {
-        return getValue(Keys.LAST_ATTACKER).get();
+        return getValue(Keys.LAST_ATTACKER).get().asMutable();
     }
 
     /**
@@ -111,7 +111,7 @@ public interface Living extends Entity, ProjectileSource, TeamMember {
      * @return The last damage dealt as an optional value
      */
     default OptionalValue.Mutable<Double> lastDamage() {
-        return getValue(Keys.LAST_DAMAGE).get();
+        return getValue(Keys.LAST_DAMAGE).get().asMutable();
     }
 
     /**

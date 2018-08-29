@@ -58,7 +58,7 @@ public interface Ageable extends Creature {
      * @return The mutable bounded value for the "age"
      */
     default BoundedValue.Mutable<Integer> age() {
-        return getValue(Keys.AGE).get();
+        return getValue(Keys.AGE).get().asMutable();
     }
 
     /**
@@ -67,7 +67,7 @@ public interface Ageable extends Creature {
      * @return The value for the "adult" state
      */
     default Value.Mutable<Boolean> adult() {
-        return getValue(Keys.IS_ADULT).get();
+        return getValue(Keys.IS_ADULT).get().asMutable();
     }
 
 }

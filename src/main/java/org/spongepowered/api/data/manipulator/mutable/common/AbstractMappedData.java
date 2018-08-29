@@ -57,7 +57,7 @@ public abstract class AbstractMappedData<K, V, M extends MappedData<K, V, M, I>,
 
     @Override
     protected MapValue.Mutable<K, V> getValueGetter() {
-        return Sponge.getRegistry().getValueFactory().createMapValue((Key<MapValue.Mutable<K, V>>) this.usedKey, this.getValue());
+        return Sponge.getRegistry().getValueFactory().createMapValue(this.usedKey, this.getValue());
     }
 
     @Override

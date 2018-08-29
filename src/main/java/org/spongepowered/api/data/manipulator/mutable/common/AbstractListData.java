@@ -57,7 +57,7 @@ public abstract class AbstractListData<E, M extends ListData<E, M, I>, I extends
 
     @Override
     protected ListValue.Mutable<E> getValueGetter() {
-        return Sponge.getRegistry().getValueFactory().createListValue((Key<ListValue.Mutable<E>>) this.usedKey, this.getValue());
+        return Sponge.getRegistry().getValueFactory().createListValue(this.usedKey, this.getValue());
     }
 
     @Override

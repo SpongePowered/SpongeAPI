@@ -67,7 +67,7 @@ public interface MobSpawner extends TileEntity {
      * @return The immutable bounded value for the remaining delay
      */
     default BoundedValue.Mutable<Short> remainingDelay() {
-        return getValue(Keys.SPAWNER_REMAINING_DELAY).get();
+        return getValue(Keys.SPAWNER_REMAINING_DELAY).get().asMutable();
     }
 
     /**
@@ -77,7 +77,7 @@ public interface MobSpawner extends TileEntity {
      * @return The bounded value of the minimum spawn delay
      */
     default BoundedValue.Mutable<Short> minimumSpawnDelay() {
-        return getValue(Keys.SPAWNER_MINIMUM_DELAY).get();
+        return getValue(Keys.SPAWNER_MINIMUM_DELAY).get().asMutable();
     }
 
     /**
@@ -87,7 +87,7 @@ public interface MobSpawner extends TileEntity {
      * @return The bounded value of the maximum spawn delay
      */
     default BoundedValue.Mutable<Short> maximumSpawnDelay() {
-        return getValue(Keys.SPAWNER_MAXIMUM_DELAY).get();
+        return getValue(Keys.SPAWNER_MAXIMUM_DELAY).get().asMutable();
     }
 
     /**
@@ -99,7 +99,7 @@ public interface MobSpawner extends TileEntity {
      * @return The immutable bounded value
      */
     default BoundedValue.Mutable<Short> spawnCount() {
-        return getValue(Keys.SPAWNER_SPAWN_COUNT).get();
+        return getValue(Keys.SPAWNER_SPAWN_COUNT).get().asMutable();
     }
 
     /**
@@ -111,7 +111,7 @@ public interface MobSpawner extends TileEntity {
      * @return The bounded value of the maximum supported nearby entities
      */
     default BoundedValue.Mutable<Short> maximumNearbyEntities() {
-        return getValue(Keys.SPAWNER_MAXIMUM_NEARBY_ENTITIES).get();
+        return getValue(Keys.SPAWNER_MAXIMUM_NEARBY_ENTITIES).get().asMutable();
     }
 
     /**
@@ -123,7 +123,7 @@ public interface MobSpawner extends TileEntity {
      * @return The value of the required player range to spawn entities
      */
     default BoundedValue.Mutable<Short> requiredPlayerRange() {
-        return getValue(Keys.SPAWNER_REQUIRED_PLAYER_RANGE).get();
+        return getValue(Keys.SPAWNER_REQUIRED_PLAYER_RANGE).get().asMutable();
     }
 
     /**
@@ -134,7 +134,7 @@ public interface MobSpawner extends TileEntity {
      *     spawned
      */
     default BoundedValue.Mutable<Short> spawnRange() {
-        return getValue(Keys.SPAWNER_SPAWN_RANGE).get();
+        return getValue(Keys.SPAWNER_SPAWN_RANGE).get().asMutable();
     }
 
     /**
@@ -147,7 +147,7 @@ public interface MobSpawner extends TileEntity {
      * @return The next possible entity to spawn
      */
     default Value.Mutable<WeightedSerializableObject<EntityArchetype>> nextEntityToSpawn() {
-        return getValue(Keys.SPAWNER_NEXT_ENTITY_TO_SPAWN).get();
+        return getValue(Keys.SPAWNER_NEXT_ENTITY_TO_SPAWN).get().asMutable();
     }
 
     /**
@@ -161,7 +161,7 @@ public interface MobSpawner extends TileEntity {
      * @return The immutable weighted entity collection value of entities
      */
     default WeightedCollectionValue.Mutable<EntityArchetype> possibleEntitiesToSpawn() {
-        return getValue(Keys.SPAWNER_ENTITIES).get();
+        return getValue(Keys.SPAWNER_ENTITIES).get().asMutable();
     }
 
 }

@@ -49,7 +49,7 @@ public interface ZombiePigman extends Zombie {
      * @return The current anger level value
      */
     default BoundedValue.Mutable<Integer> angerLevel() {
-        return getValue(Keys.ANGER).get();
+        return getValue(Keys.ANGER).get().asMutable();
     }
 
 }

@@ -62,7 +62,7 @@ public interface Beacon extends TileEntityCarrier {
      * @return The optional value for the primary potion effect
      */
     default OptionalValue.Mutable<PotionEffectType> primaryEffect() {
-        return getValue(Keys.BEACON_PRIMARY_EFFECT).get();
+        return getValue(Keys.BEACON_PRIMARY_EFFECT).get().asMutable();
     }
 
     /**
@@ -72,7 +72,7 @@ public interface Beacon extends TileEntityCarrier {
      * @return The optional value for the secondary potion effect
      */
     default OptionalValue.Mutable<PotionEffectType> secondaryEffect() {
-        return getValue(Keys.BEACON_SECONDARY_EFFECT).get();
+        return getValue(Keys.BEACON_SECONDARY_EFFECT).get().asMutable();
     }
 
 }

@@ -50,7 +50,7 @@ public interface RideableHorse extends Horse {
      * @return The value of the horse's style
      */
     default Value.Mutable<HorseStyle> style() {
-        return getValue(Keys.HORSE_STYLE).get();
+        return getValue(Keys.HORSE_STYLE).get().asMutable();
     }
 
     /**
@@ -59,6 +59,6 @@ public interface RideableHorse extends Horse {
      * @return The value of the horse's color
      */
     default Value.Mutable<HorseColor> color() {
-        return getValue(Keys.HORSE_COLOR).get();
+        return getValue(Keys.HORSE_COLOR).get().asMutable();
     }
 }

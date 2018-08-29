@@ -50,7 +50,7 @@ public interface Sign extends TileEntity {
      * @return The list of text lines
      */
     default ListValue.Mutable<Text> lines() {
-        return getValue(Keys.SIGN_LINES).get();
+        return getValue(Keys.SIGN_LINES).get().asMutable();
     }
 
 }

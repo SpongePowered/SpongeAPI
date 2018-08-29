@@ -51,7 +51,7 @@ public interface Sheep extends Animal {
      * @return The current value of dye color for this sheep
      */
     default Value.Mutable<DyeColor> color() {
-        return getValue(Keys.DYE_COLOR).get();
+        return getValue(Keys.DYE_COLOR).get().asMutable();
     }
 
 }

@@ -73,7 +73,7 @@ public interface Agent extends Living {
      * @return The value for the current "enabled" state of ai tasks
      */
     default Value.Mutable<Boolean> aiEnabled() {
-        return getValue(Keys.AI_ENABLED).get();
+        return getValue(Keys.AI_ENABLED).get().asMutable();
     }
 
     /**

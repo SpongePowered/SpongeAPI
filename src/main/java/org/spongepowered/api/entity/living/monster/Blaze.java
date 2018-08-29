@@ -41,7 +41,7 @@ public interface Blaze extends Monster, Aerial, ProjectileLauncher {
      * @return The value for whether this blaze is aflame
      */
     default Value.Mutable<Boolean> aflame() {
-        return getValue(Keys.IS_AFLAME).get();
+        return getValue(Keys.IS_AFLAME).get().asMutable();
     }
 
 }

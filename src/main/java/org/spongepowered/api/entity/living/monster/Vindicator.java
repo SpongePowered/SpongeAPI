@@ -38,7 +38,7 @@ public interface Vindicator extends Monster {
      * @return Whether this is a johnny vindicator
      */
     default Value.Mutable<Boolean> johnny() {
-        return getValue(Keys.IS_JOHNNY).get();
+        return getValue(Keys.IS_JOHNNY).get().asMutable();
     }
 
 }

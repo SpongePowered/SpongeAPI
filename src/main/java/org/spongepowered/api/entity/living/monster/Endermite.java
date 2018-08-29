@@ -49,6 +49,6 @@ public interface Endermite extends Monster {
      * @return The immutable bounded value for the amount of ticks remaining
      */
     default BoundedValue.Mutable<Integer> expireTicks() {
-        return getValue(Keys.EXPIRATION_TICKS).get();
+        return getValue(Keys.EXPIRATION_TICKS).get().asMutable();
     }
 }

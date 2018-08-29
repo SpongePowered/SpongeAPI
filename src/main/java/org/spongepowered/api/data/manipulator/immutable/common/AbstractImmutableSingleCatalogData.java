@@ -53,7 +53,7 @@ public abstract class AbstractImmutableSingleCatalogData<E extends CatalogType, 
         super(value, usedKey);
         this.defaultValue = checkNotNull(defaultValue, "The default value was null! This is unacceptable! Maybe the value was not registered?");
         this.immutableValue = Sponge.getRegistry().getValueFactory()
-                .createValue((Key<Value.Mutable<E>>) (Key) this.usedKey, this.defaultValue, this.value)
+                .createValue(this.usedKey, this.defaultValue, this.value)
                 .asImmutable();
 
     }

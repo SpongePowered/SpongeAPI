@@ -56,7 +56,7 @@ public interface Humanoid extends Living, ProjectileLauncher, ArmorEquipable, Ta
      * @return The current food level
      */
     default BoundedValue.Mutable<Integer> foodLevel() {
-        return getValue(Keys.FOOD_LEVEL).get();
+        return getValue(Keys.FOOD_LEVEL).get().asMutable();
     }
 
     /**
@@ -70,7 +70,7 @@ public interface Humanoid extends Living, ProjectileLauncher, ArmorEquipable, Ta
      * @return The immutable bounded value of exhaustion
      */
     default BoundedValue.Mutable<Double> exhaustion() {
-        return getValue(Keys.EXHAUSTION).get();
+        return getValue(Keys.EXHAUSTION).get().asMutable();
     }
 
     /**
@@ -85,7 +85,7 @@ public interface Humanoid extends Living, ProjectileLauncher, ArmorEquipable, Ta
      * @return The immutable bounded value of saturation
      */
     default BoundedValue.Mutable<Double> saturation() {
-        return getValue(Keys.SATURATION).get();
+        return getValue(Keys.SATURATION).get().asMutable();
     }
 
 }

@@ -51,6 +51,6 @@ public interface Ocelot extends Animal {
      * @return The ocelot variant value
      */
     default Value.Mutable<OcelotType> variant() {
-        return getValue(Keys.OCELOT_TYPE).get();
+        return getValue(Keys.OCELOT_TYPE).get().asMutable();
     }
 }

@@ -247,7 +247,7 @@ public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMe
      * @return The value for the first time a player joined
      */
     default Value.Mutable<Instant> firstPlayed() {
-        return getValue(Keys.FIRST_DATE_PLAYED).get();
+        return getValue(Keys.FIRST_DATE_PLAYED).get().asMutable();
     }
 
     /**
@@ -257,7 +257,7 @@ public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMe
      * @return The value for the last time a player joined
      */
     default Value.Mutable<Instant> lastPlayed() {
-        return getValue(Keys.LAST_DATE_PLAYED).get();
+        return getValue(Keys.LAST_DATE_PLAYED).get().asMutable();
     }
 
     /**
@@ -295,7 +295,7 @@ public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMe
      * @return The current game mode value
      */
     default Value.Mutable<GameMode> gameMode() {
-        return getValue(Keys.GAME_MODE).get();
+        return getValue(Keys.GAME_MODE).get().asMutable();
     }
 
     /**

@@ -51,7 +51,7 @@ public interface FallingBlock extends Entity {
      * @return The immutable value for the damage per block of falling
      */
     default Value.Mutable<Double> fallDamagePerBlock() {
-        return getValue(Keys.FALL_DAMAGE_PER_BLOCK).get();
+        return getValue(Keys.FALL_DAMAGE_PER_BLOCK).get().asMutable();
     }
 
     /**
@@ -61,7 +61,7 @@ public interface FallingBlock extends Entity {
      * @return The maximum damage the block can deal
      */
     default Value.Mutable<Double> maxFallDamage() {
-        return getValue(Keys.MAX_FALL_DAMAGE).get();
+        return getValue(Keys.MAX_FALL_DAMAGE).get().asMutable();
     }
 
     /**
@@ -70,7 +70,7 @@ public interface FallingBlock extends Entity {
      * @return The falling block's block state
      */
     default Value.Mutable<BlockState> blockState() {
-        return getValue(Keys.FALLING_BLOCK_STATE).get();
+        return getValue(Keys.FALLING_BLOCK_STATE).get().asMutable();
     }
 
     /**
@@ -79,7 +79,7 @@ public interface FallingBlock extends Entity {
      * @return True if this block will attempt to place itself when it lands
      */
     default Value.Mutable<Boolean> canPlaceAsBlock() {
-        return getValue(Keys.CAN_PLACE_AS_BLOCK).get();
+        return getValue(Keys.CAN_PLACE_AS_BLOCK).get().asMutable();
     }
 
     /**
@@ -89,7 +89,7 @@ public interface FallingBlock extends Entity {
      * @return Whether this falling block can drop as an item
      */
     default Value.Mutable<Boolean> canDropAsItem() {
-        return getValue(Keys.CAN_DROP_AS_ITEM).get();
+        return getValue(Keys.CAN_DROP_AS_ITEM).get().asMutable();
     }
 
     /**
@@ -98,7 +98,7 @@ public interface FallingBlock extends Entity {
      * @return The time the block has been falling
      */
     default Value.Mutable<Integer> fallTime() {
-        return getValue(Keys.FALL_TIME).get();
+        return getValue(Keys.FALL_TIME).get().asMutable();
     }
 
     /**
@@ -107,7 +107,7 @@ public interface FallingBlock extends Entity {
      * @return Whether this falling block will damage entities where it lands
      */
     default Value.Mutable<Boolean> canHurtEntities() {
-        return getValue(Keys.FALLING_BLOCK_CAN_HURT_ENTITIES).get();
+        return getValue(Keys.FALLING_BLOCK_CAN_HURT_ENTITIES).get().asMutable();
     }
 
 }

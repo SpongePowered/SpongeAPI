@@ -44,7 +44,7 @@ public interface Llama extends Horse, ProjectileLauncher {
      * @return The strength value of the llama
      */
     default BoundedValue.Mutable<Integer> strength() {
-        return getValue(Keys.LLAMA_STRENGTH).get();
+        return getValue(Keys.LLAMA_STRENGTH).get().asMutable();
     }
 
     /**
@@ -53,7 +53,7 @@ public interface Llama extends Horse, ProjectileLauncher {
      * @return The variant value of the llama
      */
     default Value.Mutable<LlamaVariant> llamaVariant() {
-        return getValue(Keys.LLAMA_VARIANT).get();
+        return getValue(Keys.LLAMA_VARIANT).get().asMutable();
     }
 
 }

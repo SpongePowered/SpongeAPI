@@ -46,7 +46,7 @@ public abstract class AbstractImmutableMappedData<K, V, I extends ImmutableMappe
     @SuppressWarnings("unchecked")
     protected AbstractImmutableMappedData(Map<K, V> value, Key<? extends Value<Map<K, V>>> usedKey) {
         super(ImmutableMap.copyOf(value), usedKey);
-        this.mapValue = Sponge.getRegistry().getValueFactory().createMapValue((Key<MapValue.Mutable<K, V>>) this.usedKey, this.value).asImmutable();
+        this.mapValue = Sponge.getRegistry().getValueFactory().createMapValue(this.usedKey, this.value).asImmutable();
     }
 
     @Override

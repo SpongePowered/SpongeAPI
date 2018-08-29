@@ -56,7 +56,7 @@ public interface DamagingProjectile extends Projectile {
      * @return The damage to deal
      */
     default BoundedValue.Mutable<Double> damage() {
-        return getValue(Keys.ATTACK_DAMAGE).get();
+        return getValue(Keys.ATTACK_DAMAGE).get().asMutable();
     }
 
     /**
@@ -70,7 +70,7 @@ public interface DamagingProjectile extends Projectile {
      * @return The immutable map value for the entity damage values
      */
     default MapValue.Mutable<EntityType, Double> damageForEntity() {
-        return getValue(Keys.DAMAGE_ENTITY_MAP).get();
+        return getValue(Keys.DAMAGE_ENTITY_MAP).get().asMutable();
     }
 
 }

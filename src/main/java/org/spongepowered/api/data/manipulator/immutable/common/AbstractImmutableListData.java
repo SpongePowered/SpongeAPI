@@ -26,12 +26,14 @@ package org.spongepowered.api.data.manipulator.immutable.common;
 
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableListData;
 import org.spongepowered.api.data.manipulator.mutable.ListData;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.Value;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractImmutableListData<E, I extends ImmutableListData<E, I, M>, M extends ListData<E, M, I>>
@@ -42,7 +44,7 @@ public abstract class AbstractImmutableListData<E, I extends ImmutableListData<E
     @SuppressWarnings("unchecked")
     protected AbstractImmutableListData(List<E> value, Key<? extends Value<List<E>>> usedKey) {
         super(ImmutableList.copyOf(value), usedKey);
-        this.listValue = Sponge.getRegistry().getValueFactory().createListValue((Key<ListValue.Mutable<E>>) this.usedKey, this.value).asImmutable();
+        this.listValue = Sponge.getRegistry().getValueFactory().createListValue(this.usedKey, this.value).asImmutable();
     }
 
     @Override
@@ -58,5 +60,10 @@ public abstract class AbstractImmutableListData<E, I extends ImmutableListData<E
     @Override
     public List<E> asList() {
         return getValue();
+    }
+
+    @Override
+    protected DataContainer fillContainer(DataContainer dataContainer) {
+        return dataContainer.set(this.usedKey.getQuery(), new ArrayList<>(this.value));
     }
 }

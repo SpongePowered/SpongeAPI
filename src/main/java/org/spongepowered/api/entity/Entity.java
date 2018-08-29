@@ -561,7 +561,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      * @return True if this entity has gravity
      */
     default Value.Mutable<Boolean> gravity() {
-        return getValue(Keys.HAS_GRAVITY).get();
+        return getValue(Keys.HAS_GRAVITY).get().asMutable();
     }
 
 }

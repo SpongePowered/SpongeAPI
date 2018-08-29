@@ -54,7 +54,7 @@ public interface AreaEffectCloud extends Entity {
      * @return The color of this cloud
      */
     default Value.Mutable<Color> color() {
-        return getValue(Keys.AREA_EFFECT_CLOUD_COLOR).get();
+        return getValue(Keys.AREA_EFFECT_CLOUD_COLOR).get().asMutable();
     }
 
     /**
@@ -63,7 +63,7 @@ public interface AreaEffectCloud extends Entity {
      * @return The radius value of this cloud
      */
     default BoundedValue.Mutable<Double> radius() {
-        return getValue(Keys.AREA_EFFECT_CLOUD_RADIUS).get();
+        return getValue(Keys.AREA_EFFECT_CLOUD_RADIUS).get().asMutable();
     }
 
     /**
@@ -72,7 +72,7 @@ public interface AreaEffectCloud extends Entity {
      * @return The particle type of this cloud
      */
     default Value.Mutable<ParticleType> particleType() {
-        return getValue(Keys.AREA_EFFECT_CLOUD_PARTICLE_TYPE).get();
+        return getValue(Keys.AREA_EFFECT_CLOUD_PARTICLE_TYPE).get().asMutable();
     }
 
     /**
@@ -81,7 +81,7 @@ public interface AreaEffectCloud extends Entity {
      * @return The bounded duration value
      */
     default BoundedValue.Mutable<Integer> duration() {
-        return getValue(Keys.AREA_EFFECT_CLOUD_DURATION).get();
+        return getValue(Keys.AREA_EFFECT_CLOUD_DURATION).get().asMutable();
     }
 
     /**
@@ -92,7 +92,7 @@ public interface AreaEffectCloud extends Entity {
      * @return The bounded wait time value
      */
     default BoundedValue.Mutable<Integer> waitTime() {
-        return getValue(Keys.AREA_EFFECT_CLOUD_WAIT_TIME).get();
+        return getValue(Keys.AREA_EFFECT_CLOUD_WAIT_TIME).get().asMutable();
     }
 
     /**
@@ -103,7 +103,7 @@ public interface AreaEffectCloud extends Entity {
      * @return The bounded radius reduced on use value
      */
     default BoundedValue.Mutable<Double> radiusOnUse() {
-        return getValue(Keys.AREA_EFFECT_CLOUD_RADIUS_ON_USE).get();
+        return getValue(Keys.AREA_EFFECT_CLOUD_RADIUS_ON_USE).get().asMutable();
     }
 
     /**
@@ -114,7 +114,7 @@ public interface AreaEffectCloud extends Entity {
      * @return The bounded radius reduction per tick value
      */
     default BoundedValue.Mutable<Double> radiusPerTick() {
-        return getValue(Keys.AREA_EFFECT_CLOUD_RADIUS_PER_TICK).get();
+        return getValue(Keys.AREA_EFFECT_CLOUD_RADIUS_PER_TICK).get().asMutable();
     }
 
     /**
@@ -125,7 +125,7 @@ public interface AreaEffectCloud extends Entity {
      * @return The bounded duration on use value
      */
     default BoundedValue.Mutable<Integer> durationOnUse() {
-        return getValue(Keys.AREA_EFFECT_CLOUD_DURATION_ON_USE).get();
+        return getValue(Keys.AREA_EFFECT_CLOUD_DURATION_ON_USE).get().asMutable();
     }
 
     /**
@@ -136,7 +136,7 @@ public interface AreaEffectCloud extends Entity {
      * @return The bounded re-application delay value
      */
     default BoundedValue.Mutable<Integer> applicationDelay() {
-        return getValue(Keys.AREA_EFFECT_CLOUD_REAPPLICATION_DELAY).get();
+        return getValue(Keys.AREA_EFFECT_CLOUD_REAPPLICATION_DELAY).get().asMutable();
     }
 
     /**
@@ -147,7 +147,7 @@ public interface AreaEffectCloud extends Entity {
      * @return The list of potion effects
      */
     default ListValue.Mutable<PotionEffect> effects() {
-        return getValue(Keys.POTION_EFFECTS).get();
+        return getValue(Keys.POTION_EFFECTS).get().asMutable();
     }
 
     /**
@@ -156,7 +156,7 @@ public interface AreaEffectCloud extends Entity {
      * @return The bounded age value
      */
     default BoundedValue.Mutable<Integer> age() {
-        return getValue(Keys.AREA_EFFECT_CLOUD_AGE).get();
+        return getValue(Keys.AREA_EFFECT_CLOUD_AGE).get().asMutable();
     }
 
 }
