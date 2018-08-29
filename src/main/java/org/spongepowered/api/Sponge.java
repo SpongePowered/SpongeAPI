@@ -280,4 +280,8 @@ public final class Sponge {
         return check(metricsConfigManager);
     }
 
+    public static boolean isVanilla() {
+        return true;
+    }
+
 }
