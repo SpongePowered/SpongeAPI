@@ -85,6 +85,7 @@ import org.spongepowered.api.data.value.mutable.WeightedCollectionValue;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.effect.potion.PotionEffectType;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
@@ -254,6 +255,8 @@ public final class TypeTokens {
     @Deprecated
     public static final TypeToken<OptionalValue<Living>> LAST_ATTACKER_VALUE_TOKEN = new TypeToken<OptionalValue<Living>>() {private static final long serialVersionUID = -1;};
 
+    public static final TypeToken<List<? extends DataSerializable>> LIST_DATA_SERIALIZEABLE_TOKEN = new TypeToken<List<? extends DataSerializable>>() {private static final long serialVersionUID = -1;};
+
     public static final TypeToken<List<DyeColor>> LIST_DYE_COLOR_TOKEN = new TypeToken<List<DyeColor>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<ListValue<DyeColor>> LIST_DYE_COLOR_VALUE_TOKEN = new TypeToken<ListValue<DyeColor>>() {private static final long serialVersionUID = -1;};
@@ -325,6 +328,8 @@ public final class TypeTokens {
     public static final TypeToken<Optional<EntitySnapshot>> OPTIONAL_ENTITY_SNAPSHOT_TOKEN = new TypeToken<Optional<EntitySnapshot>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<OptionalValue<EntitySnapshot>> OPTIONAL_ENTITY_SNAPSHOT_VALUE_TOKEN = new TypeToken<OptionalValue<EntitySnapshot>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<OptionalValue<Entity>> OPTIONAL_ENTITY_VALUE_TOKEN = new TypeToken<OptionalValue<Entity>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Optional<PotionEffectType>> OPTIONAL_POTION_TOKEN = new TypeToken<Optional<PotionEffectType>>() {private static final long serialVersionUID = -1;};
 
@@ -477,8 +482,6 @@ public final class TypeTokens {
     public static final TypeToken<WireAttachmentType> WIRE_ATTACHMENT_TYPE_TOKEN = new TypeToken<WireAttachmentType>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<WireAttachmentType>> WIRE_ATTACHMENT_TYPE_VALUE_TOKEN = new TypeToken<Value<WireAttachmentType>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<List<? extends DataSerializable>> LIST_DATA_SERIALIZEABLE_TOKEN = new TypeToken<List<? extends DataSerializable>>() {private static final long serialVersionUID = -1;};
 
     // SORTFIELDS:OFF
 

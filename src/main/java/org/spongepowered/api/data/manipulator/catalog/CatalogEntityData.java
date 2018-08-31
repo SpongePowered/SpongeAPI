@@ -34,6 +34,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.ExperienceOrb;
 import org.spongepowered.api.entity.FallingBlock;
 import org.spongepowered.api.entity.Item;
+import org.spongepowered.api.entity.ShulkerBullet;
 import org.spongepowered.api.entity.explosive.Explosive;
 import org.spongepowered.api.entity.hanging.ItemFrame;
 import org.spongepowered.api.entity.hanging.Painting;
@@ -273,6 +274,11 @@ public final class CatalogEntityData {
      * {@link Entity}. Usually applicable to {@link Living} entities.
      */
     public static final Class<LeashData> LEASH_DATA = LeashData.class;
+    /**
+     * Represents the target entity an entity is either guided or aiming
+     * towards. Usually applicable for {@link ShulkerBullet}s.
+     */
+    public static final Class<TargetedEntityData> TARGETED_ENTITY_DATA = TargetedEntityData.class;
     /**
      * Represents the target location an entity is either guided or aiming
      * towards. Usually applicable for {@link EyeOfEnder}s.

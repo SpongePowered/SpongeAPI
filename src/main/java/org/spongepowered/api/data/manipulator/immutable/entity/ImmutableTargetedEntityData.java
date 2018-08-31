@@ -22,31 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable.block;
+package org.spongepowered.api.data.manipulator.immutable.entity;
 
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.block.ImmutableDirectionalData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.manipulator.mutable.entity.TargetedEntityData;
+import org.spongepowered.api.data.value.immutable.ImmutableOptionalValue;
+import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.EntityTypes;
-import org.spongepowered.api.util.Direction;
 
-/**
- * A {@link DataManipulator} for the {@link Direction} state of a
- * {@link BlockState} or an {@link Entity}. Usually applicable for {@link BlockTypes#STANDING_SIGN},
- * {@link BlockTypes#WALL_SIGN}, {@link BlockTypes#WOODEN_DOOR}, {@link EntityTypes#SHULKER}, etc.
- */
-public interface DirectionalData extends DataManipulator<DirectionalData, ImmutableDirectionalData> {
+public interface ImmutableTargetedEntityData extends ImmutableDataManipulator<ImmutableTargetedEntityData, TargetedEntityData> {
 
     /**
-     * Gets the {@link Value} for the current "facing" {@link Direction}.
+     * Gets the {@link ImmutableValue} for the targeted {@link Entity}.
      *
-     * @return The current "facing" direction value
-     * @see Keys#DIRECTION
+     * @return The immutable value for the targeted entity
      */
-    Value<Direction> direction();
-
+    ImmutableOptionalValue<Entity> value();
 }

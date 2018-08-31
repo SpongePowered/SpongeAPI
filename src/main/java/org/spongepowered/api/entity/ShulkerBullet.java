@@ -24,6 +24,20 @@
  */
 package org.spongepowered.api.entity;
 
-public interface ShulkerBullet extends Entity {
+import org.spongepowered.api.entity.living.golem.Shulker;
+import org.spongepowered.api.entity.projectile.DamagingProjectile;
+import org.spongepowered.api.entity.projectile.EntityTargetingProjectile;
+import org.spongepowered.api.util.Direction;
 
+/**
+ * A {@link ShulkerBullet} is the projectile {@link Shulker}s shoot.
+ */
+public interface ShulkerBullet extends EntityTargetingProjectile, DamagingProjectile {
+
+    /**
+     * The direction this {@link ShulkerBullet} is going to.
+     *
+     * @return the direction of this bullet.
+     */
+    Direction getDirection();
 }

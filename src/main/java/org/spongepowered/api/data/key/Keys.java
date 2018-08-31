@@ -609,7 +609,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for representing the {@link Direction}
-     * of a {@link BlockState}.
+     * of a {@link BlockState} or an {@link Entity}.
      *
      * @see DirectionalData#direction()
      */
@@ -2096,6 +2096,13 @@ public final class Keys {
      * @see TameableData#owner()
      */
     public static final Key<OptionalValue<UUID>> TAMED_OWNER = DummyObjectProvider.createExtendedFor(Key.class,"TAMED_OWNER");
+
+    /**
+     * Represents the {@link Key} for a targeted entity, like by a {@link ShulkerBullet}
+     *
+     * @see TargetedEntityData#value
+     */
+    public static final Key<OptionalValue<Entity>> TARGETED_ENTITY = DummyObjectProvider.createExtendedFor(Key.class,"TARGETED_ENTITY");
 
     /**
      * Represents the {@link Key} for the location targeted by an
