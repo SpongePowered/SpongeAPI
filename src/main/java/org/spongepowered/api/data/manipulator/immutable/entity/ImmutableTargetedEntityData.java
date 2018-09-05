@@ -26,7 +26,6 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.TargetedEntityData;
-import org.spongepowered.api.data.value.immutable.ImmutableOptionalValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.entity.Entity;
 
@@ -37,5 +36,5 @@ public interface ImmutableTargetedEntityData extends ImmutableDataManipulator<Im
      *
      * @return The immutable value for the targeted entity
      */
-    ImmutableOptionalValue<Entity> value();
+    ImmutableValue<Entity> value();
 }

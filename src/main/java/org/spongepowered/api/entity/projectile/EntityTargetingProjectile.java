@@ -26,7 +26,7 @@ package org.spongepowered.api.entity.projectile;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.TargetedEntityData;
-import org.spongepowered.api.data.value.mutable.OptionalValue;
+import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -50,7 +50,7 @@ public interface EntityTargetingProjectile extends Projectile {
      *
      * @return The targeted entity
      */
-    default OptionalValue<Entity> target() {
+    default Value<Entity> target() {
         return getValue(Keys.TARGETED_ENTITY).get();
     }
 }

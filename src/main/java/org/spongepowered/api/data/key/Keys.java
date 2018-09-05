@@ -2098,11 +2098,12 @@ public final class Keys {
     public static final Key<OptionalValue<UUID>> TAMED_OWNER = DummyObjectProvider.createExtendedFor(Key.class,"TAMED_OWNER");
 
     /**
-     * Represents the {@link Key} for a targeted entity, like by a {@link ShulkerBullet}
+     * Represents the {@link Key} for a targeted entity,
+     * like by a {@link ShulkerBullet}.
      *
      * @see TargetedEntityData#value
      */
-    public static final Key<OptionalValue<Entity>> TARGETED_ENTITY = DummyObjectProvider.createExtendedFor(Key.class,"TARGETED_ENTITY");
+    public static final Key<Value<Entity>> TARGETED_ENTITY = DummyObjectProvider.createExtendedFor(Key.class,"TARGETED_ENTITY");
 
     /**
      * Represents the {@link Key} for the location targeted by an
