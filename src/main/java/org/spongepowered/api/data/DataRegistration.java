@@ -90,12 +90,6 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
      */
     PluginContainer getPluginContainer();
 
-    @Override
-    String getId();
-
-    @Override
-    String getName();
-
     interface Builder<T extends DataManipulator<T, I>, I extends ImmutableDataManipulator<I, T>>
         extends ResettableBuilder<DataRegistration<T, I>, Builder<T, I>> {
 
@@ -217,14 +211,14 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
          * and {@link DataRegistration#getDataManipulatorBuilder()} object. More
          * importantly, this also allows the proper identification of the
          * {@link DataManipulator} itself by the provided
-         * {@link DataRegistration#getId()},
-         * which, much like {@link CatalogType#getId()} is formatted with
+         * {@link DataRegistration#getKey()} ()},
+         * which, much like {@link CatalogType#getKey()} is formatted with
          * <code>&#123;plugin-id&#124;&#58;&#123;manipulator-id&#124;</code>.
          *
          * <p>It is expected that as the required {@link PluginContainer} is used
          * is not a default container from Sponge. The
          * {@link PluginContainer#getId()} is utilized to generate the final
-         * {@link DataRegistration#getId()} for serialization purposes.</p>
+         * {@link DataRegistration#getKey()} for serialization purposes.</p>
          *
          *
          *

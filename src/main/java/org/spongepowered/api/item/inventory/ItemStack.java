@@ -236,7 +236,7 @@ public interface ItemStack extends DataHolder, Translatable {
         default Builder fromBlockState(BlockState blockState) {
             checkNotNull(blockState);
             final BlockType blockType = blockState.getType();
-            checkArgument(blockType.getItem().isPresent(), "Missing valid ItemType for BlockType: " + blockType.getId());
+            checkArgument(blockType.getItem().isPresent(), "Missing valid ItemType for BlockType: " + blockType.getKey());
             itemType(blockType.getItem().get());
             blockState.getContainers().forEach(this::itemData);
             return this;

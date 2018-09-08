@@ -52,7 +52,7 @@ public final class TextActions {
      * @return The created click action instance
      */
     public static ClickAction.OpenUrl openUrl(URL url) {
-        return new ClickAction.OpenUrl(url);
+        return ClickAction.OpenUrl.builder().url(url).build();
     }
 
     /**
@@ -63,7 +63,7 @@ public final class TextActions {
      * @return The created click action instance
      */
     public static ClickAction.RunCommand runCommand(String command) {
-        return new ClickAction.RunCommand(command);
+        return ClickAction.RunCommand.builder().command(command).build();
     }
 
     /**
@@ -74,7 +74,7 @@ public final class TextActions {
      * @return The created click action instance
      */
     public static ClickAction.ChangePage changePage(int page) {
-        return new ClickAction.ChangePage(page);
+        return ClickAction.ChangePage.builder().page(page).build();
     }
 
     /**
@@ -85,7 +85,7 @@ public final class TextActions {
      * @return The created click action instance
      */
     public static ClickAction.SuggestCommand suggestCommand(String command) {
-        return new ClickAction.SuggestCommand(command);
+        return ClickAction.SuggestCommand.builder().command(command).build();
     }
 
     /**
@@ -97,7 +97,7 @@ public final class TextActions {
      * @return The created click action instance
      */
     public static ClickAction.ExecuteCallback executeCallback(Consumer<CommandSource> callback) {
-        return new ClickAction.ExecuteCallback(callback);
+        return ClickAction.ExecuteCallback.builder().callback(callback).build();
     }
 
     /**
@@ -108,7 +108,7 @@ public final class TextActions {
      * @return The created hover action instance
      */
     public static HoverAction.ShowText showText(Text text) {
-        return new HoverAction.ShowText(text);
+        return HoverAction.ShowText.builder().text(text).build();
     }
 
     /**
@@ -119,7 +119,7 @@ public final class TextActions {
      * @return The created hover action instance
      */
     public static HoverAction.ShowItem showItem(ItemStackSnapshot item) {
-        return new HoverAction.ShowItem(item);
+        return HoverAction.ShowItem.builder().item(item).build();
     }
 
     /**
@@ -130,7 +130,7 @@ public final class TextActions {
      * @return The created hover action instance
      */
     public static HoverAction.ShowEntity showEntity(HoverAction.ShowEntity.Ref entity) {
-        return new HoverAction.ShowEntity(entity);
+        return HoverAction.ShowEntity.builder().entity(entity).build();
     }
 
     /**
@@ -143,7 +143,9 @@ public final class TextActions {
      * @return The created hover action instance
      */
     public static HoverAction.ShowEntity showEntity(UUID uuid, String name, @Nullable EntityType type) {
-        return showEntity(new HoverAction.ShowEntity.Ref(uuid, name, type));
+        return HoverAction.ShowEntity.builder()
+                .entity(HoverAction.ShowEntity.Ref.builder().uniqueId(uuid).name(name).type(type).build())
+                .build();
     }
 
     /**
@@ -155,7 +157,9 @@ public final class TextActions {
      * @return The created hover action instance
      */
     public static HoverAction.ShowEntity showEntity(UUID uuid, String name) {
-        return showEntity(new HoverAction.ShowEntity.Ref(uuid, name));
+        return HoverAction.ShowEntity.builder()
+                .entity(HoverAction.ShowEntity.Ref.builder().uniqueId(uuid).name(name).build())
+                .build();
     }
 
     /**
@@ -167,7 +171,9 @@ public final class TextActions {
      * @return The created hover action instance
      */
     public static HoverAction.ShowEntity showEntity(Entity entity, String name) {
-        return showEntity(new HoverAction.ShowEntity.Ref(entity, name));
+        return HoverAction.ShowEntity.builder()
+                .entity(entity, name)
+                .build();
     }
 
     /**
@@ -178,7 +184,6 @@ public final class TextActions {
      * @return The created shift click action instance
      */
     public static ShiftClickAction.InsertText insertText(String text) {
-        return new ShiftClickAction.InsertText(text);
+        return ShiftClickAction.InsertText.builder().text(text).build();
     }
-
 }

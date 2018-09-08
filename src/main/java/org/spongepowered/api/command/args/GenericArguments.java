@@ -38,6 +38,7 @@ import com.google.common.collect.Sets;
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.hocon.HoconConfigurationLoader;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
+import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandMessageFormatting;
@@ -87,10 +88,10 @@ import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
@@ -114,7 +115,7 @@ public final class GenericArguments {
     private GenericArguments() {}
 
     /**
-     * Expects no arguments.
+     * Expects no arguments, returns no values.
      *
      * @return An expectation of no arguments
      */
@@ -125,6 +126,8 @@ public final class GenericArguments {
     /**
      * Expects no arguments. Adds 'true' to the context when parsed.
      *
+     * <p>This will return only one value.</p>
+     *
      * @param key the key to store 'true' under
      * @return the argument
      */
@@ -133,11 +136,23 @@ public final class GenericArguments {
     }
 
     /**
-     * Expect an argument to represent an online player, or if nothing matches
+     * Expect an argument to represent online players, or if nothing matches
      * and the source is a {@link Player}, give the player. If nothing matches
      * and the source is not a player, throw an exception.
      *
-     * <p>Gives value of type {@link Player}.</p>
+     * <p>Gives values of type {@link Player}.</p>
+     *
+     * <p>This argument accepts the following inputs:</p>
+     *
+     * <ul>
+     *     <li>A player's name</li>
+     *     <li>A regex that matches the beginning of one or more player's names
+     *     </li>
+     *     <li>A selector</li>
+     * </ul>
+     *
+     * <p>This may return multiple players. If you must only return one, wrap
+     * this element in an {@link #onlyOne(CommandElement)} call.</p>
      *
      * @param key The key to store under
      * @return the argument
@@ -147,8 +162,20 @@ public final class GenericArguments {
     }
 
     /**
-     * Expect an argument to represent an online player.
-     * Gives value of type {@link Player}
+     * Expect an argument to represent online players. Returns values of type
+     * {@link Player}.
+     *
+     * <p>This argument accepts the following inputs:</p>
+     *
+     * <ul>
+     *     <li>A player's name</li>
+     *     <li>A regex that matches the beginning of one or more player's names
+     *     </li>
+     *     <li>A selector</li>
+     * </ul>
+     *
+     * <p>This may return multiple players. If you must only return one, wrap
+     * this element in an {@link #onlyOne(CommandElement)} call.</p>
      *
      * @param key The key to store under
      * @return the argument
@@ -158,8 +185,24 @@ public final class GenericArguments {
     }
 
     /**
-     * Expect an argument to represent a player who has been online at some
+     * Expect an argument to represent players who have been online at some
      * point, as a {@link User}.
+     *
+     * <p>This argument accepts the following inputs:</p>
+     *
+     * <ul>
+     *     <li>A player's name (offline or online)</li>
+     *     <li>A regex that matches the beginning of one or more player's names
+     *     </li>
+     *     <li>A selector</li>
+     * </ul>
+     *
+     * <p>This may return multiple {@link User}s. If you must only return one,
+     * wrap this element in an {@link #onlyOne(CommandElement)} call.</p>
+     *
+     * <p>This may not return the {@link Player} object for an online user. If
+     * you wish to operate on an associated {@link Player} object if the user is
+     * online, use {@link User#getPlayer()}.</p>
      *
      * @param key The key to store under
      * @return the argument
@@ -169,10 +212,26 @@ public final class GenericArguments {
     }
 
     /**
-     * Expect an argument to represent a player who has been online at some
+     * Expect an argument to represent players who have been online at some
      * point, as a {@link User}, or if nothing matches and the source is a
      * {@link User}, give the user. If nothing matches and the source is not
      * a {@link User}, throw an exception.
+     *
+     * <p>This argument accepts the following inputs:</p>
+     *
+     * <ul>
+     *     <li>A player's name (offline or online)</li>
+     *     <li>A regex that matches the beginning of one or more player's names
+     *     </li>
+     *     <li>A selector</li>
+     * </ul>
+     *
+     * <p>This may return multiple {@link User}s. If you must only return one,
+     * wrap this element in an {@link #onlyOne(CommandElement)} call.</p>
+     *
+     * <p>This may not return the {@link Player} object for an online user. If
+     * you wish to operate on an associated {@link Player} object if the user is
+     * online, use {@link User#getPlayer()}.</p>
      *
      * @param key The key to store under
      * @return the argument
@@ -182,9 +241,21 @@ public final class GenericArguments {
     }
 
     /**
-     * Expect an argument to represent a world. This gives a WorldProperties
-     * object rather than an actual world in order to include unloaded worlds
-     * as well. Gives values of type {@link WorldProperties}.
+     * Expect an argument to represent a world. This returns
+     * {@link WorldProperties} objects rather than an actual {@link World} in
+     * order to include unloaded worlds.
+     *
+     * <p>This argument accepts the following inputs:</p>
+     *
+     * <ul>
+     *     <li>A world's name</li>
+     *     <li>A regex that matches the beginning of one or more world's names
+     *     </li>
+     * </ul>
+     *
+     * <p>This may return multiple {@link WorldProperties}s. If you must only
+     * return one, wrap this element in an {@link #onlyOne(CommandElement)}
+     * call.</p>
      *
      * @param key The key to store under
      * @return the argument
@@ -194,8 +265,20 @@ public final class GenericArguments {
     }
 
     /**
-     * Expect an argument to represent a dimension.
-     * Gives values of tye {@link DimensionType}
+     * Expect an argument to represent a dimension. Returns values of type
+     * {@link DimensionType}.
+     *
+     * <p>This argument accepts the following inputs:</p>
+     *
+     * <ul>
+     *     <li>A dimension's id</li>
+     *     <li>A regex that matches the beginning of one or more dimension id
+     *     </li>
+     * </ul>
+     *
+     * <p>This may return multiple {@link DimensionType}s. If you must only
+     * return one, wrap this element in an {@link #onlyOne(CommandElement)}
+     * call.</p>
      *
      * @param key The key to store under
      * @return the argument
@@ -207,6 +290,8 @@ public final class GenericArguments {
     /**
      * Expect an argument to represent a {@link Vector3d}.
      *
+     * <p>This will return one value.</p>
+     *
      * @param key The key to store under
      * @return the argument
      */
@@ -217,6 +302,8 @@ public final class GenericArguments {
     /**
      * Expect an argument to represent a {@link Location}.
      *
+     * <p>This will return one value.</p>
+     *
      * @param key The key to store under
      * @return the argument
      */
@@ -225,10 +312,21 @@ public final class GenericArguments {
     }
 
     /**
-     * Expect an argument that is a member of the specified dummy type T.
+     * Expect an argument that is a member of the specified {@link CatalogType}
+     * T.
+     *
+     * <p>This argument accepts the following inputs:</p>
+     *
+     * <ul>
+     *     <li>The value's {@link CatalogType#getId()}</li>
+     *     <li>A regex that matches the beginning of one or more ids</li>
+     * </ul>
+     *
+     * <p>This may return multiple instances of T. If you must only return one,
+     * wrap this element in an {@link #onlyOne(CommandElement)} call.</p>
      *
      * @param key The key to store the resolved value under
-     * @param catalogType The type expected
+     * @param catalogType The expected {@link CatalogType}
      * @param <T> The type to return
      * @return the argument
      */
@@ -238,6 +336,17 @@ public final class GenericArguments {
 
     /**
      * Expect an argument to represent a {@link PluginContainer}'s id.
+     *
+     * <p>This argument accepts the following inputs:</p>
+     *
+     * <ul>
+     *     <li>The specified {@link PluginContainer}'s id</li>
+     *     <li>A regex that matches the beginning of one or more plugin id</li>
+     * </ul>
+     *
+     * <p>This may return multiple {@link PluginContainer}s. If you must only
+     * return one, wrap this element in an {@link #onlyOne(CommandElement)}
+     * call.</p>
      *
      * @param key The key to store under
      * @return the argument
@@ -282,12 +391,22 @@ public final class GenericArguments {
 
         @Override
         public Text getUsage(CommandSource src) {
-            return Text.EMPTY;
+            return Text.of();
         }
     }
 
     /**
      * Gets a builder to create a command element that parses flags.
+     *
+     * <p>There should only be ONE of these in a command element sequence if you
+     * wish to use flags. A {@link CommandFlags.Builder} can handle multiple
+     * flags that have different behaviors. Using multiple builders in the same
+     * sequence may cause unexpected behavior.</p>
+     *
+     * <p>Any command elements that are not associated with flags should be
+     * placed into the {@link CommandFlags.Builder#buildWith(CommandElement)}
+     * parameter, allowing the flags to be used throughout the argument string.
+     * </p>
      *
      * @return the newly created builder
      */
@@ -329,24 +448,24 @@ public final class GenericArguments {
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
             Set<String> completions = Sets.newHashSet();
             for (CommandElement element : elements) {
-                Object state = args.getState();
+                CommandArgs.Snapshot state = args.getSnapshot();
                 try {
                     element.parse(src, args, context);
-                    if (state.equals(args.getState())) {
+                    if (state.equals(args.getSnapshot())) {
                         completions.addAll(element.complete(src, args, context));
-                        args.setState(state);
+                        args.applySnapshot(state);
                     } else if (args.hasNext()) {
                         completions.clear();
                     } else {
-                        args.setState(state);
+                        args.applySnapshot(state);
                         completions.addAll(element.complete(src, args, context));
                         if (!(element instanceof OptionalCommandElement)) {
                             break;
                         }
-                        args.setState(state);
+                        args.applySnapshot(state);
                     }
                 } catch (ArgumentParseException ignored) {
-                    args.setState(state);
+                    args.applySnapshot(state);
                     completions.addAll(element.complete(src, args, context));
                     break;
                 }
@@ -374,15 +493,45 @@ public final class GenericArguments {
      * in the command usage. Otherwise, the usage will only display only the
      * key.</p>
      *
-     * <p>To override this behavior, see {@link #choices(Text, Map, boolean)}.
-     * </p>
+     * <p>Choices are <strong>case sensitive</strong>. If you do not require
+     * case sensitivity, see {@link #choicesInsensitive(Text, Map)}.</p>
+     *
+     * <p>To override this behavior, see
+     * {@link #choices(Text, Map, boolean, boolean)}.</p>
+     *
+     * <p>When parsing, only one choice may be selected, returning its
+     * associated value.</p>
      *
      * @param key The key to store the resulting value under
      * @param choices The choices users can choose from
      * @return the element to match the input
      */
     public static CommandElement choices(Text key, Map<String, ?> choices) {
-        return choices(key, choices, choices.size() <= ChoicesCommandElement.CUTOFF);
+        return choices(key, choices, choices.size() <= ChoicesCommandElement.CUTOFF, true);
+    }
+
+    /**
+     * Return an argument that allows selecting from a limited set of values.
+     *
+     * <p>If there are 5 or fewer choices available, the choices will be shown
+     * in the command usage. Otherwise, the usage will only display only the
+     * key.</p>
+     *
+     * <p>Choices are <strong>not case sensitive</strong>. If you require
+     * case sensitivity, see {@link #choices(Text, Map)}</p>
+     *
+     * <p>To override this behavior, see
+     * {@link #choices(Text, Map, boolean, boolean)}.</p>
+     *
+     * <p>When parsing, only one choice may be selected, returning its
+     * associated value.</p>
+     *
+     * @param key The key to store the resulting value under
+     * @param choices The choices users can choose from
+     * @return the element to match the input
+     */
+    public static CommandElement choicesInsensitive(Text key, Map<String, ?> choices) {
+        return choices(key, choices, choices.size() <= ChoicesCommandElement.CUTOFF, false);
     }
 
     /**
@@ -391,6 +540,12 @@ public final class GenericArguments {
      * <p>Unless {@code choicesInUsage} is true, general command usage will only
      * display the provided key.</p>
      *
+     * <p>Choices are <strong>case sensitive</strong>. If you do not require
+     * case sensitivity, see {@link #choices(Text, Map, boolean, boolean)}</p>
+     *
+     * <p>When parsing, only one choice may be selected, returning its
+     * associated value.</p>
+     *
      * @param key The key to store the resulting value under
      * @param choices The choices users can choose from
      * @param choicesInUsage Whether to display the available choices, or simply
@@ -398,6 +553,31 @@ public final class GenericArguments {
      * @return the element to match the input
      */
     public static CommandElement choices(Text key, Map<String, ?> choices, boolean choicesInUsage) {
+        return choices(key, choices, choicesInUsage, true);
+    }
+
+    /**
+     * Return an argument that allows selecting from a limited set of values.
+     *
+     * <p>Unless {@code choicesInUsage} is true, general command usage will only
+     * display the provided key.</p>
+     *
+     * <p>When parsing, only one choice may be selected, returning its
+     * associated value.</p>
+     *
+     * @param key The key to store the resulting value under
+     * @param choices The choices users can choose from
+     * @param choicesInUsage Whether to display the available choices, or simply
+     *      the provided key, as part of usage
+     * @param caseSensitive Whether the matches should be case sensitive
+     * @return the element to match the input
+     */
+    public static CommandElement choices(Text key, Map<String, ?> choices, boolean choicesInUsage, boolean caseSensitive) {
+        if (!caseSensitive) {
+            Map<String, Object> immChoices = choices.entrySet().stream()
+                    .collect(ImmutableMap.toImmutableMap(x -> x.getKey().toLowerCase(), Map.Entry::getValue));
+            return choices(key, immChoices::keySet, selection -> immChoices.get(selection.toLowerCase()), choicesInUsage);
+        }
         Map<String, Object> immChoices = ImmutableMap.copyOf(choices);
         return choices(key, immChoices::keySet, immChoices::get, choicesInUsage);
     }
@@ -411,6 +591,8 @@ public final class GenericArguments {
      *
      * <p>To override this behavior, see {@link #choices(Text, Map, boolean)}.
      * </p>
+     *
+     * <p>Only one choice may be selected, returning its associated value.</p>
      *
      * @param key The key to store the resulting value under
      * @param keys The function that will supply available keys
@@ -426,6 +608,8 @@ public final class GenericArguments {
      * Return an argument that allows selecting from a limited set of values.
      * Unless {@code choicesInUsage} is true, general command usage will only
      * display the provided key.
+     *
+     * <p>Only one choice may be selected, returning its associated value.</p>
      *
      * @param key The key to store the resulting value under
      * @param keys The function that will supply available keys
@@ -511,13 +695,15 @@ public final class GenericArguments {
         public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
             ArgumentParseException lastException = null;
             for (CommandElement element : this.elements) {
-                Object startState = args.getState();
+                CommandArgs.Snapshot startState = args.getSnapshot();
+                CommandContext.Snapshot contextSnapshot = context.createSnapshot();
                 try {
                     element.parse(source, args, context);
                     return;
                 } catch (ArgumentParseException ex) {
                     lastException = ex;
-                    args.setState(startState);
+                    args.applySnapshot(startState);
+                    context.applySnapshot(contextSnapshot);
                 }
             }
             if (lastException != null) {
@@ -538,9 +724,9 @@ public final class GenericArguments {
                         return ImmutableList.of();
                     }
 
-                    Object startState = args.getState();
+                    CommandArgs.Snapshot snapshot = args.getSnapshot();
                     List<String> ret = input.complete(src, args, context);
-                    args.setState(startState);
+                    args.applySnapshot(snapshot);
                     return ret;
                 })));
         }
@@ -644,12 +830,12 @@ public final class GenericArguments {
                 }
                 return;
             }
-            Object startState = args.getState();
+            CommandArgs.Snapshot startState = args.getSnapshot();
             try {
                 this.element.parse(source, args, context);
             } catch (ArgumentParseException ex) {
                 if (this.considerInvalidFormatEmpty || args.hasNext()) { // If there are more args, suppress. Otherwise, throw the error
-                    args.setState(startState);
+                    args.applySnapshot(startState);
                     if (this.element.getKey() != null && this.value != null) {
                         context.putArg(this.element.getUntranslatedKey(), this.value);
                     }
@@ -715,11 +901,11 @@ public final class GenericArguments {
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
             for (int i = 0; i < this.times; ++i) {
-                Object startState = args.getState();
+                CommandArgs.Snapshot startState = args.getSnapshot();
                 try {
                     this.element.parse(src, args, context);
                 } catch (ArgumentParseException e) {
-                    args.setState(startState);
+                    args.applySnapshot(startState);
                     return this.element.complete(src, args, context);
                 }
             }
@@ -768,11 +954,11 @@ public final class GenericArguments {
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
             while (args.hasNext()) {
-                Object startState = args.getState();
+                CommandArgs.Snapshot startState = args.getSnapshot();
                 try {
                     this.element.parse(src, args, context);
                 } catch (ArgumentParseException e) {
-                    args.setState(startState);
+                    args.applySnapshot(startState);
                     return this.element.complete(src, args, context);
                 }
             }
@@ -788,7 +974,7 @@ public final class GenericArguments {
     // -- Argument types for basic java types
 
     /**
-     * Parent class that specifies elemenents as having no tab completions.
+     * Parent class that specifies elements as having no tab completions.
      * Useful for inputs with a very large domain, like strings and integers.
      */
     private abstract static class KeyElement extends CommandElement {
@@ -806,7 +992,8 @@ public final class GenericArguments {
      * Require an argument to be a string. Any provided argument will fit in
      * under this argument.
      *
-     * <p>Gives values of type {@link String}.</p>
+     * <p>Gives values of type {@link String}. This will return only one value.
+     * </p>
      *
      * @param key The key to store the parsed argument under
      * @return the element to match the input
@@ -831,7 +1018,8 @@ public final class GenericArguments {
     /**
      * Require an argument to be an integer (base 10).
      *
-     * <p>Gives values of type {@link Integer}.</p>
+     * <p>Gives values of type {@link Integer}. This will return only one value.
+     * </p>
      *
      * @param key The key to store the parsed argument under
      * @return the element to match the input
@@ -875,7 +1063,8 @@ public final class GenericArguments {
     /**
      * Require an argument to be a long (base 10).
      *
-     * <p>Gives values of type {@link Long}.</p>
+     * <p>Gives values of type {@link Long}. This will return only one value.
+     * </p>
      *
      * @param key The key to store the parsed argument under
      * @return the element to match the input
@@ -887,7 +1076,8 @@ public final class GenericArguments {
     /**
      * Require an argument to be an double-precision floating point number.
      *
-     * <p>Gives values of type {@link Double}.</p>
+     * <p>Gives values of type {@link Double}. This will return only one value.
+     * </p>
      *
      * @param key The key to store the parsed argument under
      * @return the element to match the input
@@ -935,7 +1125,8 @@ public final class GenericArguments {
      *     <li>notatall</li>
      * </ul>
      *
-     * <p>Gives values of type {@link Boolean}.</p>
+     * <p>Gives values of type {@link Boolean}. This will return only one value.
+     * </p>
      *
      * @param key The key to store the parsed argument under
      * @return the element to match the input
@@ -947,7 +1138,7 @@ public final class GenericArguments {
     /**
      * Require the argument to be a key under the provided enum.
      *
-     * <p>Gives values of type <tt>T</tt></p>
+     * <p>Gives values of type <tt>T</tt>. This will return only one value.</p>
      *
      * @param key The key to store the matched enum value under
      * @param type The enum class to get enum constants from
@@ -994,7 +1185,8 @@ public final class GenericArguments {
      * Require one or more strings, which are combined into a single,
      * space-separated string.
      *
-     * <p>Gives values of type {@link String}.</p>
+     * <p>Gives values of type {@link String}. This will return only one value.
+     * </p>
      *
      * @param key The key to store the parsed argument under
      * @return the element to match the input
@@ -1007,7 +1199,8 @@ public final class GenericArguments {
      * Require one or more strings, without any processing, which are combined
      * into a single, space-separated string.
      *
-     * <p>Gives values of type {@link String}.</p>
+     * <p>Gives values of type {@link String}. This will return only one value.
+     * </p>
      *
      * @param key The key to store the parsed argument under
      * @return the element to match the input
@@ -1052,6 +1245,8 @@ public final class GenericArguments {
      * against a predefined array of arguments expected to be present,
      * case-insensitively.
      *
+     * <p>This will return only one value.</p>
+     *
      * @param key The key to add to the context. Will be set to a value of true
      *      if this element matches
      * @param expectedArgs The sequence of arguments expected
@@ -1065,6 +1260,8 @@ public final class GenericArguments {
      * Expect a literal sequence of arguments. This element matches the input
      * against a predefined array of arguments expected to be present,
      * case-insensitively.
+     *
+     * <p>This will return only one value.</p>
      *
      * @param key The key to store this argument as
      * @param putValue The value to put at key if this argument matches. May be
@@ -1137,12 +1334,12 @@ public final class GenericArguments {
         @Nullable
         @Override
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
-            Object state = args.getState();
+            CommandArgs.Snapshot state = args.getSnapshot();
             try {
                 return Iterables.filter((Iterable<User>) super.parseValue(source, args), e -> e instanceof User);
             } catch (ArgumentParseException ex2) {
                 if (this.returnSource) {
-                    args.setState(state);
+                    args.applySnapshot(state);
                     return tryReturnSource(source, args);
                 }
                 throw ex2;
@@ -1175,7 +1372,7 @@ public final class GenericArguments {
                     return;
                 }
 
-                Object state = args.getState();
+                CommandArgs.Snapshot state = args.getSnapshot();
                 String element = args.next();
                 try {
                     Optional<User> match = Sponge.getServiceManager().provideUnchecked(UserStorageService.class).get(element);
@@ -1188,7 +1385,7 @@ public final class GenericArguments {
                     // If it's not an exact match, we just let this carry on to parse using the pattern element
                 }
 
-                args.setState(state);
+                args.applySnapshot(state);
             }
 
             super.parse(source, args, context);
@@ -1221,12 +1418,12 @@ public final class GenericArguments {
                 return tryReturnSource(source, args);
             }
 
-            Object state = args.getState();
+            CommandArgs.Snapshot state = args.getSnapshot();
             try {
                 return Iterables.filter((Iterable<Entity>)super.parseValue(source, args), e -> e instanceof Player);
             } catch (ArgumentParseException ex) {
                 if (this.returnSource) {
-                    args.setState(state);
+                    args.applySnapshot(state);
                     return tryReturnSource(source, args);
                 }
                 throw ex;
@@ -1330,13 +1527,13 @@ public final class GenericArguments {
         protected Iterable<String> getCompletionChoices(CommandSource source) {
             return Iterables.concat(getChoices(source), ImmutableSet.of("#first", "#me"),
                     Iterables.transform(Sponge.getGame().getRegistry()
-                            .getAllOf(DimensionType.class), input2 -> "#" + input2.getId()));
+                            .getAllOf(DimensionType.class), input2 -> "#" + input2.getKey().toString()));
         }
 
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
             return Sponge.getGame().getServer().getAllWorldProperties().stream()
-                    .map(input -> input.getWorldName())
+                    .map(WorldProperties::getWorldName)
                     .collect(Collectors.toList());
         }
 
@@ -1468,7 +1665,7 @@ public final class GenericArguments {
 
         @Override
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
-            Object state = args.getState();
+            CommandArgs.Snapshot state = args.getSnapshot();
             if (args.peek().startsWith("@")) { // We are a selector
                 return Selector.parse(args.next()).resolve(source).stream()
                         .map(Entity::getLocation)
@@ -1480,7 +1677,7 @@ public final class GenericArguments {
             try {
                 world = checkNotNull(this.worldParser.parseValue(source, args), "worldVal");
             } catch (ArgumentParseException ex) {
-                args.setState(state);
+                args.applySnapshot(state);
                 if (!(source instanceof Locatable)) {
                     throw args.createError(t("Source must have a location in order to have a fallback world"));
                 }
@@ -1488,7 +1685,7 @@ public final class GenericArguments {
                 try {
                     vec = checkNotNull(this.vectorParser.parseValue(source, args), "vectorVal");
                 } catch (ArgumentParseException ex2) {
-                    args.setState(state);
+                    args.applySnapshot(state);
                     throw ex;
                 }
             }
@@ -1511,15 +1708,15 @@ public final class GenericArguments {
 
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            Object state = args.getState();
+            CommandArgs.Snapshot state = args.getSnapshot();
             Optional<String> nextPossibility = args.nextIfPresent();
             if (nextPossibility.isPresent() && nextPossibility.get().startsWith("@")) {
                 return Selector.complete(nextPossibility.get());
             }
-            args.setState(state);
+            args.applySnapshot(state);
             List<String> ret;
             if ((ret = this.worldParser.complete(src, args, context)).isEmpty()) {
-                args.setState(state);
+                args.applySnapshot(state);
                 ret = this.vectorParser.complete(src, args, context);
             }
             return ret;
@@ -1538,14 +1735,15 @@ public final class GenericArguments {
         protected Iterable<String> getChoices(CommandSource source) {
             return Sponge.getGame().getRegistry().getAllOf(this.catalogType).stream()
                 .<String>map(input -> {
-                    return input == null ? null : input.getId(); // TODO: ids or names?
+                    return input == null ? null : input.getKey().toString(); // TODO: ids or names?
                 })
                 .collect(Collectors.toList());
         }
 
         @Override
         protected Object getValue(String choice) throws IllegalArgumentException {
-            final Optional<T> ret = Sponge.getGame().getRegistry().getType(this.catalogType, choice);
+            final CatalogKey resolvedKey = CatalogKey.resolve(choice);
+            final Optional<T> ret = Sponge.getGame().getRegistry().getType(this.catalogType, resolvedKey);
             if (!ret.isPresent()) {
                 throw new IllegalArgumentException("Invalid input " + choice + " was found");
             }
@@ -1556,6 +1754,10 @@ public final class GenericArguments {
     /**
      * Restricts the given command element to only insert one value into the
      * context at the provided key.
+     *
+     * <p>If more than one value is returned by an element, or the target key
+     * already contains a value, this will throw an
+     * {@link ArgumentParseException}</p>
      *
      * @param element The element to restrict
      * @return the restricted element
@@ -1600,6 +1802,9 @@ public final class GenericArguments {
 
     /**
      * Checks a permission for a given command argument to be used.
+     *
+     * <p>If the element attempts to parse an argument and the user does not
+     * have the permission, a {@link ArgumentParseException} will be thrown.</p>
      *
      * @param element The element to wrap
      * @param permission The permission to check
@@ -1656,6 +1861,17 @@ public final class GenericArguments {
     /**
      * Expect an argument to represent an {@link Entity}.
      *
+     * <p>This argument accepts the following inputs:</p>
+     *
+     * <ul>
+     *     <li>A player's name</li>
+     *     <li>An entity's {@link UUID}</li>
+     *     <li>A regex that matches the beginning of one or more player's names
+     *     or entities UUIDs.
+     *     </li>
+     *     <li>A selector</li>
+     * </ul>
+     *
      * @param key The key to store under
      * @return the argument
      */
@@ -1665,6 +1881,17 @@ public final class GenericArguments {
 
     /**
      * Expect an argument to represent an {@link Entity} of the specified type.
+     *
+     * <p>This argument accepts the following inputs:</p>
+     *
+     * <ul>
+     *     <li>A player's name (if appropriate)</li>
+     *     <li>An entity's {@link UUID}</li>
+     *     <li>A regex that matches the beginning of one or more player's names
+     *     or entities UUIDs.
+     *     </li>
+     *     <li>A selector</li>
+     * </ul>
      *
      * @param key The key to store under
      * @param clazz The type which the entity must subclass
@@ -1677,6 +1904,17 @@ public final class GenericArguments {
     /**
      * Expect an argument to represent an {@link Entity} of the specified
      * {@link EntityType}.
+     *
+     * <p>This argument accepts the following inputs:</p>
+     *
+     * <ul>
+     *     <li>A player's name (if appropriate)</li>
+     *     <li>An entity's {@link UUID}</li>
+     *     <li>A regex that matches the beginning of one or more player's names
+     *     or entities UUIDs.
+     *     </li>
+     *     <li>A selector</li>
+     * </ul>
      *
      * @param key The key to store under
      * @param type The type which the entity must be
@@ -1691,6 +1929,17 @@ public final class GenericArguments {
      * not present and the {@link CommandSource} is an entity, return the
      * source.
      *
+     * <p>This argument accepts the following inputs:</p>
+     *
+     * <ul>
+     *     <li>A player's name</li>
+     *     <li>An entity's {@link UUID}</li>
+     *     <li>A regex that matches the beginning of one or more player's names
+     *     or entities UUIDs.
+     *     </li>
+     *     <li>A selector</li>
+     * </ul>
+     *
      * @param key The key to store under
      * @return the argument
      */
@@ -1703,6 +1952,17 @@ public final class GenericArguments {
      * not present and the {@link CommandSource} is looking at an entity,
      * return that entity.
      *
+     * <p>This argument accepts the following inputs:</p>
+     *
+     * <ul>
+     *     <li>A player's name</li>
+     *     <li>An entity's {@link UUID}</li>
+     *     <li>A regex that matches the beginning of one or more player's names
+     *     or entities UUIDs.
+     *     </li>
+     *     <li>A selector</li>
+     * </ul>
+     *
      * @param key The key to store under
      * @return the argument
      */
@@ -1714,6 +1974,17 @@ public final class GenericArguments {
      * Expect an argument to represent an {@link Entity} of the specified type,
      * or if the argument is not present and the {@link CommandSource} is
      * looking at an applicable entity, return that entity.
+     *
+     * <p>This argument accepts the following inputs:</p>
+     *
+     * <ul>
+     *     <li>A player's name (if appropriate)</li>
+     *     <li>An entity's {@link UUID}</li>
+     *     <li>A regex that matches the beginning of one or more player's names
+     *     or entities UUIDs.
+     *     </li>
+     *     <li>A selector</li>
+     * </ul>
      *
      * @param key The key to store under
      * @param clazz The type which the entity must subclass
@@ -1728,6 +1999,17 @@ public final class GenericArguments {
      * {@link EntityType}, or if the argument is not present and the
      * {@link CommandSource} is looking at an applicable entity, return that
      * entity.
+     *
+     * <p>This argument accepts the following inputs:</p>
+     *
+     * <ul>
+     *     <li>A player's name (if appropriate)</li>
+     *     <li>An entity's {@link UUID}</li>
+     *     <li>A regex that matches the beginning of one or more player's names
+     *     or entities UUIDs.
+     *     </li>
+     *     <li>A selector</li>
+     * </ul>
      *
      * @param key The key to store under
      * @param type The type which the entity must be
@@ -1776,7 +2058,7 @@ public final class GenericArguments {
                 }
             }
 
-            Object state = args.getState();
+            CommandArgs.Snapshot state = args.getSnapshot();
             try {
                 Iterable<Entity> entities = (Iterable<Entity>) super.parseValue(source, args);
                 for (Entity entity : entities) {
@@ -1796,7 +2078,7 @@ public final class GenericArguments {
                 return entities;
             } catch (ArgumentParseException ex) {
                 if (this.returnSource) {
-                    args.setState(state);
+                    args.applySnapshot(state);
                     return tryReturnSource(source, args, true);
                 }
                 throw ex;
@@ -1805,24 +2087,30 @@ public final class GenericArguments {
 
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
-            Set<Iterable<Entity>> worldEntities = Sponge.getServer().getWorlds().stream().map(World::getEntities).collect(Collectors.toSet());
-            return Iterables.filter(Iterables.transform(Iterables.concat(worldEntities), input -> {
-                if (input == null) {
-                    return null;
-                }
-                if (!this.checkEntity(input)) {
-                    return null;
-                }
-                if (input instanceof Player) {
-                    return ((Player)input).getName();
-                }
-                return input.getUniqueId().toString();
-            }), Objects::nonNull);
+            Set<String> worldEntities = Sponge.getServer().getWorlds().stream().flatMap(x -> x.getEntities().stream())
+                    .filter(this::checkEntity)
+                    .map(x -> x.getUniqueId().toString())
+                    .collect(Collectors.toSet());
+            Collection<Player> players = Sponge.getServer().getOnlinePlayers();
+            if (!players.isEmpty() && checkEntity(players.iterator().next())) {
+                final Set<String> setToReturn = new HashSet<>(worldEntities); // to ensure mutability
+                players.forEach(x -> setToReturn.add(x.getName()));
+                return setToReturn;
+            }
+
+            return worldEntities;
         }
 
         @Override
         protected Object getValue(String choice) throws IllegalArgumentException {
-            UUID uuid = UUID.fromString(choice);
+            UUID uuid;
+            try {
+                uuid = UUID.fromString(choice);
+            } catch (IllegalArgumentException ignored) {
+                // Player could be a name
+                return Sponge.getServer().getPlayer(choice)
+                        .orElseThrow(() -> new IllegalArgumentException("Input value " + choice + " does not represent a valid entity"));
+            }
             boolean found = false;
             for (World world : Sponge.getServer().getWorlds()) {
                 Optional<Entity> ret = world.getEntity(uuid);
@@ -1880,6 +2168,8 @@ public final class GenericArguments {
     /**
      * Expect an argument to represent a {@link URL}.
      *
+     * <p>This will return only one value.</p>
+     *
      * @param key The key to store under
      * @return the argument
      */
@@ -1916,6 +2206,8 @@ public final class GenericArguments {
      * Expect an argument to return an IP address, in the form of an
      * {@link InetAddress}.
      *
+     * <p>This will return only one value.</p>
+     *
      * @param key The key to store under
      * @return the argument
      */
@@ -1927,6 +2219,8 @@ public final class GenericArguments {
      * Expect an argument to return an IP address, in the form of an
      * {@link InetAddress}, or if nothing matches and the source is a
      * {@link RemoteSource}, return the source's address.
+     *
+     * <p>This will return only one value.</p>
      *
      * @param key The key to store under
      * @return the argument
@@ -1956,7 +2250,7 @@ public final class GenericArguments {
                     throw args.createError(Text.of("No IP address was specified!"));
                 }
             }
-            Object state = args.getState();
+            CommandArgs.Snapshot state = args.getSnapshot();
             String s = args.next();
             try {
                 return InetAddress.getByName(s);
@@ -1965,7 +2259,7 @@ public final class GenericArguments {
                     return ((Player) this.possiblePlayer.parseValue(source, args)).getConnection().getAddress().getAddress();
                 } catch (ArgumentParseException ex) {
                     if (this.self && source instanceof RemoteSource) {
-                        args.setState(state);
+                        args.applySnapshot(state);
                         return ((RemoteSource) source).getConnection().getAddress().getAddress();
                     }
                     throw args.createError(Text.of("Invalid IP address!"));
@@ -2011,6 +2305,8 @@ public final class GenericArguments {
     /**
      * Expect an argument to return a {@link BigInteger}.
      *
+     * <p>This will return only one value.</p>
+     *
      * @param key The key to store under
      * @return the argument
      */
@@ -2038,6 +2334,8 @@ public final class GenericArguments {
 
     /**
      * Expect an argument to be a valid {@link DataContainer}.
+     *
+     * <p>This will return only one value.</p>
      *
      * @param key The key to store under
      * @return the argument
@@ -2073,6 +2371,8 @@ public final class GenericArguments {
     /**
      * Expect an argument to be a {@link UUID}.
      *
+     * <p>This will return only one value.</p>
+     *
      * @param key The key to store under
      * @return the argument
      */
@@ -2100,6 +2400,8 @@ public final class GenericArguments {
 
     /**
      * Expect an argument to be valid {@link Text}.
+     *
+     * <p>This will return only one value.</p>
      *
      * @param key The key to store under
      * @param serializer The serializer to parse the text with
@@ -2155,6 +2457,8 @@ public final class GenericArguments {
      *
      * <p>Date-times are expected in the ISO-8601 format.</p>
      *
+     * <p>This will return only one value.</p>
+     *
      * @param key The key to store under
      * @return the argument
      * @see <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a>
@@ -2172,6 +2476,8 @@ public final class GenericArguments {
      * {@link LocalDateTime#now()}.</p>
      *
      * <p>Date-times are expected in the ISO-8601 format.</p>
+     *
+     * <p>This will return only one value.</p>
      *
      * @param key The key to store under
      * @return the argument
@@ -2195,7 +2501,7 @@ public final class GenericArguments {
             if (!args.hasNext() && this.returnNow) {
                 return LocalDateTime.now();
             }
-            Object state = args.getState();
+            CommandArgs.Snapshot state = args.getSnapshot();
             String date = args.next();
             try {
                 return LocalDateTime.parse(date);
@@ -2207,7 +2513,7 @@ public final class GenericArguments {
                         return LocalDateTime.of(LocalDate.parse(date), LocalTime.MIDNIGHT);
                     } catch (DateTimeParseException ex3) {
                         if (this.returnNow) {
-                            args.setState(state);
+                            args.applySnapshot(state);
                             return LocalDateTime.now();
                         }
                         throw args.createError(Text.of("Invalid date-time!"));
@@ -2241,6 +2547,8 @@ public final class GenericArguments {
      *
      * <p>Durations are expected in the following format: {@code #D#H#M#S}.
      * This is not case sensitive.</p>
+     *
+     * <p>This will return only one value.</p>
      *
      * @param key The key to store under
      * @return the argument

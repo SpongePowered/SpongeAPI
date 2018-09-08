@@ -25,7 +25,7 @@
 package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.item.inventory.entity.Hotbar;
-import org.spongepowered.api.item.inventory.entity.MainPlayerInventory;
+import org.spongepowered.api.item.inventory.entity.PrimaryPlayerInventory;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
@@ -34,12 +34,12 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 public class InventoryTransformations {
 
     /**
-     * A transformation that puts the Hotbar of a player inventory before the main inventory.
+     * A transformation that puts the Hotbar of a player inventory before the main storage inventory.
      *
      * <p>This transformation is equivalent to calling {@link Inventory#union(Inventory)} on the query
-     * for {@link Hotbar} with the query for {@link MainPlayerInventory} as parameter.</p>
+     * for {@link Hotbar} with the query for {@link PrimaryPlayerInventory} as parameter.</p>
      */
-    public static final InventoryTransformation PLAYER_MAIN_HOTBAR_FIRST = DummyObjectProvider.createFor(InventoryTransformation.class, "PLAYER_MAIN_HOTBAR_FIRST");
+    public static final InventoryTransformation PLAYER_PRIMARY_HOTBAR_FIRST = DummyObjectProvider.createFor(InventoryTransformation.class, "PLAYER_PRIMARY_HOTBAR_FIRST");
 
     /**
      * A transformations that reverses the slot order.

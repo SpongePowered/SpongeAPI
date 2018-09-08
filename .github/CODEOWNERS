@@ -1,6 +1,10 @@
 # https://help.github.com/articles/about-codeowners/
 # please keep this file in the same order as packages
 
+.travis.yml @Minecrell
+*gradle* @Minecrell
+Jenkinsfile @Minecrell
+
 src/main/java/org/spongepowered/api/boss/** @kashike
 src/main/java/org/spongepowered/api/command/** @kashike
 src/main/java/org/spongepowered/api/data/** @gabizou
@@ -13,7 +17,7 @@ src/main/java/org/spongepowered/api/item/inventory/** @Faithcaio
 src/main/java/org/spongepowered/api/item/recipe/** @Faithcaio
 src/main/java/org/spongepowered/api/profile/** @kashike
 src/main/java/org/spongepowered/api/registry/** @gabizou
-src/main/java/org/spongepowered/api/text/** @kashike @minecrell
+src/main/java/org/spongepowered/api/text/** @kashike
 src/main/java/org/spongepowered/api/world/gamerule/** @kashike
 src/main/java/org/spongepowered/api/world/biome/** @Deamon5550
 src/main/java/org/spongepowered/api/world/gen/** @Deamon5550

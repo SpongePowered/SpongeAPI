@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.cause;
 
+import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.ResettableBuilder;
@@ -60,7 +61,7 @@ public interface EventContextKey<T> extends CatalogType {
 
         Builder<T> type(Class<T> tClass);
 
-        Builder<T> id(String id);
+        Builder<T> id(CatalogKey id);
 
         Builder<T> name(String name);
 

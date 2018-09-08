@@ -68,11 +68,11 @@ public final class CommandFlags extends CommandElement {
 
     @Override
     public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
-        Object state = args.getState();
+        CommandArgs.Snapshot state = args.getSnapshot();
         while (args.hasNext()) {
             String arg = args.next();
             if (arg.startsWith("-")) {
-                Object start = args.getState();
+                CommandArgs.Snapshot start = args.getSnapshot();
                 boolean remove;
                 if (arg.startsWith("--")) { // Long flag
                     remove = parseLongFlag(source, arg.substring(2), args, context);
@@ -80,13 +80,15 @@ public final class CommandFlags extends CommandElement {
                     remove = parseShortFlags(source, arg.substring(1), args, context);
                 }
                 if (remove) {
-                    args.removeArgs(start, args.getState());
+                    args.removeArgs(start, args.getSnapshot());
                 }
             } else if (this.anchorFlags) {
                 break;
             }
         }
-        args.setState(state);
+        // We removed the arguments so we don't parse them as they have already been parsed as flags,
+        // so don't restore them here!
+        args.applySnapshot(state, false);
         if (this.childElement != null) {
             this.childElement.parse(source, args, context);
         }
@@ -182,11 +184,11 @@ public final class CommandFlags extends CommandElement {
 
     @Override
     public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-        Object state = args.getState();
+        CommandArgs.Snapshot state = args.getSnapshot();
         while (args.hasNext()) {
             String next = args.nextIfPresent().get();
             if (next.startsWith("-")) {
-                Object start = args.getState();
+                CommandArgs.Snapshot start = args.getSnapshot();
                 List<String> ret;
                 if (next.startsWith("--")) {
                     ret = tabCompleteLongFlag(next.substring(2), src, args, context);
@@ -196,12 +198,13 @@ public final class CommandFlags extends CommandElement {
                 if (ret != null) {
                     return ret;
                 }
-                args.removeArgs(start, args.getState());
+                args.removeArgs(start, args.getSnapshot());
             } else if (this.anchorFlags) {
                 break;
             }
         }
-        args.setState(state);
+        // the modifications are intentional
+        args.applySnapshot(state, false);
 
         // Prevent tab completion gobbling up an argument if the value parsed.
         if (!args.hasNext() && !args.getRaw().matches("\\s+$")) {
@@ -223,11 +226,11 @@ public final class CommandFlags extends CommandElement {
         } else if (isSplitFlag) {
             args.insertArg(flagSplit[1]);
         }
-        Object state = args.getState();
+        CommandArgs.Snapshot state = args.getSnapshot();
         List<String> completion;
         try {
             element.parse(src, args, context);
-            if (args.getState().equals(state)) {
+            if (args.getSnapshot().equals(state)) {
                 // Not iterated, but succeeded. Check completions to account for optionals
                 completion = element.complete(src, args, context);
             } else {
@@ -239,7 +242,7 @@ public final class CommandFlags extends CommandElement {
                 }
             }
         } catch (ArgumentParseException ex) {
-            args.setState(state);
+            args.applySnapshot(state);
             completion = element.complete(src, args, context);
         }
 
@@ -266,12 +269,12 @@ public final class CommandFlags extends CommandElement {
                     return null;
                 }
             } else {
-                Object start = args.getState();
+                CommandArgs.Snapshot start = args.getSnapshot();
                 try {
                     element.parse(src, args, context);
 
                     // if the iterator hasn't moved, then just try to complete, no point going backwards.
-                    if (args.getState().equals(start)) {
+                    if (args.getSnapshot().equals(start)) {
                         return element.complete(src, args, context);
                     }
 
@@ -287,7 +290,7 @@ public final class CommandFlags extends CommandElement {
                         return elements;
                     }
                 } catch (ArgumentParseException ex) {
-                    args.setState(start);
+                    args.applySnapshot(start);
                     return element.complete(src, args, context);
                 }
             }
@@ -295,9 +298,14 @@ public final class CommandFlags extends CommandElement {
         return null;
     }
 
+    /**
+     * Indicates to the flag parser how it should treat an argument that looks
+     * like a flag that it does not recognise.
+     */
     public enum UnknownFlagBehavior {
         /**
-         * Throw an {@link ArgumentParseException} when an unknown flag is encountered.
+         * Throw an {@link ArgumentParseException} when an unknown flag is
+         * encountered.
          */
         ERROR,
         /**
@@ -310,7 +318,9 @@ public final class CommandFlags extends CommandElement {
          */
         ACCEPT_VALUE,
         /**
-         * Act as if the unknown flag is an ordinary argument.
+         * Act as if the unknown flag is an ordinary argument, allowing the
+         * parsers specified in {@link Builder#buildWith(CommandElement)} to
+         * attempt to parse the element instead.
          */
         IGNORE
 
@@ -362,9 +372,12 @@ public final class CommandFlags extends CommandElement {
          * {@code specs} array:
          * <ul>
          *     <li>If the element starts with -, the remainder of the element
-         *     is interpreted as a long flag</li>
+         *     is interpreted as a long flag (so, "-flag" means "--flag" will
+         *     be matched in an argument string)</li>
          *     <li>Otherwise, each code point of the element is interpreted
-         *     as a short flag</li>
+         *     as a short flag (meaning "flag" will cause "-f", "-l", "-a" and
+         *     "-g" to be matched in an argument string, storing "true" under
+         *     the key "f".)</li>
          * </ul>
          *
          * @param specs The flag specifications
@@ -431,6 +444,12 @@ public final class CommandFlags extends CommandElement {
          * Sets how long flags that are not registered should be handled when
          * encountered.
          *
+         * <p>If a command that supports flags accepts negative numbers (or
+         * arguments that may begin with a dash), setting this to
+         * {@link UnknownFlagBehavior#IGNORE} will cause these elements to
+         * be ignored by the flag parser and will be parsed by the command's
+         * non-flag elements instead.</p>
+         *
          * @param behavior The behavior to use
          * @return this
          */
@@ -455,6 +474,9 @@ public final class CommandFlags extends CommandElement {
         /**
          * Build a flag command element using the given command element to
          * handle all non-flag arguments.
+         *
+         * <p>If you wish to add multiple elements here, wrap them in
+         * {@link GenericArguments#seq(CommandElement...)}</p>
          *
          * @param wrapped The wrapped command element
          * @return the new command element

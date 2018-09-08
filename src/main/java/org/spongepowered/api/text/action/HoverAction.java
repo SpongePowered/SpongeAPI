@@ -24,13 +24,14 @@
  */
 package org.spongepowered.api.text.action;
 
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.TextRepresentable;
 import org.spongepowered.api.util.Identifiable;
+import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -42,122 +43,142 @@ import javax.annotation.Nullable;
  *
  * @param <R> The type of the result of the action
  */
-public abstract class HoverAction<R> extends TextAction<R> {
-
-    /**
-     * Constructs a new {@link HoverAction} with the given result.
-     *
-     * @param result The result of the hover action
-     */
-    HoverAction(R result) {
-        super(result);
-    }
+public interface HoverAction<R> extends TextAction<R>, TextRepresentable {
 
     @Override
-    public void applyTo(Text.Builder builder) {
+    default void applyTo(Text.Builder builder) {
         builder.onHover(this);
     }
 
     /**
      * Shows some text.
      */
-    public static final class ShowText extends HoverAction<Text> {
+    interface ShowText extends HoverAction<Text> {
 
         /**
-         * Constructs a new {@link ShowText} instance that will show text when
-         * it is hovered.
+         * Creates a new builder.
          *
-         * @param text The message to show
+         * @return A new builder
          */
-        ShowText(Text text) {
-            super(text);
+        static Builder builder() {
+            return Sponge.getRegistry().createBuilder(Builder.class);
+        }
+
+        /**
+         * A builder for {@link ShowText} hover actions.
+         */
+        interface Builder extends ResettableBuilder<ShowText, Builder> {
+
+            /**
+             * Sets the text to show.
+             *
+             * @param text The text
+             * @return This builder
+             */
+            Builder text(Text text);
+
+            /**
+             * Builds the action.
+             *
+             * @return The built action
+             */
+            ShowText build();
         }
     }
 
     /**
      * Shows information about an item.
      */
-    public static final class ShowItem extends HoverAction<ItemStackSnapshot> {
+    interface ShowItem extends HoverAction<ItemStackSnapshot> {
 
         /**
-         * Constructs a new {@link ShowItem} instance that will show information
-         * about an item when it is hovered.
+         * Creates a new builder.
          *
-         * @param item The item to display
+         * @return A new builder
          */
-        ShowItem(ItemStackSnapshot item) {
-            super(item);
+        static Builder builder() {
+            return Sponge.getRegistry().createBuilder(Builder.class);
         }
 
+        /**
+         * A builder for {@link ShowItem} hover actions.
+         */
+        interface Builder extends ResettableBuilder<ShowItem, Builder> {
+
+            /**
+             * Sets the stack to show.
+             *
+             * @param stack The stack
+             * @return This builder
+             */
+            Builder item(ItemStackSnapshot stack);
+
+            /**
+             * Builds the action.
+             *
+             * @return The built action
+             */
+            ShowItem build();
+        }
     }
 
     /**
      * Shows information about an entity.
      */
-    public static final class ShowEntity extends HoverAction<ShowEntity.Ref> {
+    interface ShowEntity extends HoverAction<ShowEntity.Ref> {
 
         /**
-         * Constructs a new {@link ShowEntity} that will show information about
-         * an entity when it is hovered.
+         * Creates a new builder.
          *
-         * @param ref The reference to the entity to display
+         * @return A new builder
          */
-        ShowEntity(Ref ref) {
-            super(ref);
+        static Builder builder() {
+            return Sponge.getRegistry().createBuilder(Builder.class);
+        }
+
+        /**
+         * A builder for {@link ShowEntity} hover actions.
+         */
+        interface Builder extends ResettableBuilder<ShowEntity, Builder> {
+
+            /**
+             * Sets the entity to show.
+             *
+             * @param entity The entity
+             * @param name The entity name
+             * @return This builder
+             */
+            Builder entity(Entity entity, String name);
+
+            /**
+             * Sets the entity to show.
+             *
+             * @param ref The ref
+             * @return This builder
+             */
+            Builder entity(Ref ref);
+
+            /**
+             * Builds the action.
+             *
+             * @return The built action
+             */
+            ShowEntity build();
         }
 
         /**
          * Represents a reference to an entity, used in the underlying JSON of
          * the show entity action.
          */
-        public static final class Ref implements Identifiable {
-
-            private final UUID uuid;
-            private final String name;
-            private final Optional<EntityType> type;
+        interface Ref extends Identifiable {
 
             /**
-             * Constructs a Ref to an entity.
+             * Creates a new builder.
              *
-             * @param uuid The UUID of the entity
-             * @param name The name of the entity
-             * @param type The type of the entity
+             * @return A new builder
              */
-            public Ref(UUID uuid, String name, @Nullable EntityType type) {
-                this(uuid, name, Optional.ofNullable(type));
-            }
-
-            /**
-             * Constructs a Ref to an entity.
-             *
-             * @param uuid The UUID of the entity
-             * @param name The name of the entity
-             */
-            public Ref(UUID uuid, String name) {
-                this(uuid, name, Optional.empty());
-            }
-
-            /**
-             * Constructs a Ref, given an {@link Entity}.
-             *
-             * @param entity The entity
-             * @param name The name of the entity
-             */
-            public Ref(Entity entity, String name) {
-                this(entity.getUniqueId(), name, entity.getType());
-            }
-
-            /**
-             * Constructs a Ref directly.
-             *
-             * @param uuid The UUID
-             * @param name The name
-             * @param type The type
-             */
-            protected Ref(UUID uuid, String name, Optional<EntityType> type) {
-                this.uuid = uuid;
-                this.name = name;
-                this.type = type;
+            static Builder builder() {
+                return Sponge.getRegistry().createBuilder(Builder.class);
             }
 
             /**
@@ -166,60 +187,58 @@ public abstract class HoverAction<R> extends TextAction<R> {
              * @return The UUID
              */
             @Override
-            public UUID getUniqueId() {
-                return this.uuid;
-            }
+            UUID getUniqueId();
 
             /**
              * Retrieves the name that this {@link Ref} refers to.
              *
              * @return The name
              */
-            public String getName() {
-                return this.name;
-            }
+            String getName();
 
             /**
              * Retrieves the type that this {@link Ref} refers to, if it exists.
              *
              * @return The type, or {@link Optional#empty()}
              */
-            public Optional<EntityType> getType() {
-                return this.type;
+            Optional<EntityType> getType();
+
+            /**
+             * A {@link Ref} builder.
+             */
+            interface Builder extends ResettableBuilder<Ref, Builder> {
+
+                /**
+                 * Sets the entity unique id.
+                 *
+                 * @param uniqueId The unique id
+                 * @return This builder
+                 */
+                Builder uniqueId(UUID uniqueId);
+
+                /**
+                 * Sets the entity name.
+                 *
+                 * @param name The name
+                 * @return This builder
+                 */
+                Builder name(String name);
+
+                /**
+                 * Sets the entity type.
+                 *
+                 * @param type The type
+                 * @return This builder
+                 */
+                Builder type(@Nullable EntityType type);
+
+                /**
+                 * Builds the ref.
+                 *
+                 * @return The built ref
+                 */
+                Ref build();
             }
-
-            @Override
-            public boolean equals(Object obj) {
-                if (super.equals(obj)) {
-                    return true;
-                }
-
-                if (!(obj instanceof Ref)) {
-                    return false;
-                }
-
-                Ref that = (Ref) obj;
-                return this.uuid.equals(that.uuid)
-                        && this.name.equals(that.name)
-                        && this.type.equals(that.type);
-            }
-
-            @Override
-            public int hashCode() {
-                return Objects.hashCode(this.uuid, this.name, this.type);
-            }
-
-            @Override
-            public String toString() {
-                return MoreObjects.toStringHelper(this)
-                        .add("uuid", this.uuid)
-                        .add("name", this.name)
-                        .add("type", this.type)
-                        .toString();
-            }
-
         }
-
     }
-
 }

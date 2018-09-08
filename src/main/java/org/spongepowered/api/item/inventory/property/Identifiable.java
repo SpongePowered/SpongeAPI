@@ -45,7 +45,7 @@ public interface Identifiable extends InventoryProperty<String, UUID> {
     }
 
     /**
-     * Creates a new Identifiable with a random UUID and {@link Operator#DELEGATE} for use in custom build Inventories.
+     * Creates a new Identifiable with a random UUID and {@link org.spongepowered.api.data.Property.Operator#DELEGATE} for use in custom build Inventories.
      *
      * @return The new Identifiable
      */
