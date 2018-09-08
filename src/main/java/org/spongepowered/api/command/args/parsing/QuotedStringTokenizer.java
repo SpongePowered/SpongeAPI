@@ -53,7 +53,7 @@ class QuotedStringTokenizer implements InputTokenizer {
     private static final int CHAR_DOUBLE_QUOTE = '"';
     private final boolean forceLenient;
 
-    private QuotedStringTokenizer(boolean forceLenient) {
+    QuotedStringTokenizer(boolean forceLenient) {
         this.forceLenient = forceLenient;
     }
 

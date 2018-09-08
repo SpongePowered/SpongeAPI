@@ -30,7 +30,7 @@ import com.google.common.collect.Lists;
 import java.util.List;
 
 class SpaceSplitInputTokenizer implements InputTokenizer {
-    public static final SpaceSplitInputTokenizer INSTANCE = new SpaceSplitInputTokenizer();
+    static final SpaceSplitInputTokenizer INSTANCE = new SpaceSplitInputTokenizer();
 
     private SpaceSplitInputTokenizer() {}
 
