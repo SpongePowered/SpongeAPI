@@ -337,6 +337,7 @@ public final class SimpleDispatcher implements Dispatcher {
             Sponge.getCauseStackManager().pushCause(pluginOwner.get());
         }
         final CommandCallable spec = mapping.getCallable();
+        Sponge.getCauseStackManager().pushCause(spec);
         try {
             return spec.process(source, arguments);
         } catch (CommandNotFoundException e) {
@@ -345,6 +346,8 @@ public final class SimpleDispatcher implements Dispatcher {
             if (pluginOwner.isPresent()) {
                 Sponge.getCauseStackManager().popCause();
             }
+
+            Sponge.getCauseStackManager().popCause();
         }
     }
 
