@@ -64,8 +64,10 @@ public class ChildCommandsTest {
         when(csm.popCause()).thenReturn(null);
         CommandManager cm = mock(CommandManager.class);
         when(game.getCommandManager()).thenReturn(cm);
+        when(game.getCauseStackManager()).thenReturn(csm);
         TestHooks.setGame(game);
         TestHooks.setInstance("commandManager", cm);
+        TestHooks.setInstance("causeStackManager", csm);
     }
 
     @Test
