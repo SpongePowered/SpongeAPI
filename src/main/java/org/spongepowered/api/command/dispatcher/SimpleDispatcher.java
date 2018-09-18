@@ -333,9 +333,7 @@ public final class SimpleDispatcher implements Dispatcher {
         final String arguments = argSplit.length > 1 ? argSplit[1] : "";
         CommandMapping mapping = cmdOptional.get();
         Optional<PluginContainer> pluginOwner = Sponge.getCommandManager().getOwner(mapping);
-        if (pluginOwner.isPresent()) {
-            Sponge.getCauseStackManager().pushCause(pluginOwner.get());
-        }
+        pluginOwner.ifPresent(pluginContainer -> Sponge.getCauseStackManager().pushCause(pluginContainer));
         final CommandCallable spec = mapping.getCallable();
         Sponge.getCauseStackManager().pushCause(spec);
         try {
