@@ -36,6 +36,8 @@ public final class IntegerTraits {
 
     public static final IntegerTrait ANVIL_DAMAGE = DummyObjectProvider.createFor(IntegerTrait.class, "ANVIL_DAMAGE");
 
+    public static final IntegerTrait BEETROOT_AGE = DummyObjectProvider.createFor(IntegerTrait.class, "BEETROOT_AGE");
+
     public static final IntegerTrait CACTUS_AGE = DummyObjectProvider.createFor(IntegerTrait.class, "CACTUS_AGE");
 
     public static final IntegerTrait CAKE_BITES = DummyObjectProvider.createFor(IntegerTrait.class, "CAKE_BITES");
