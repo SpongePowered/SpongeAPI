@@ -49,10 +49,10 @@ public final class ParticleOptions {
      * {@link ParticleType}s that this option is applicable to are:
      *
      * <ul>
-     *   <li>{@link ParticleTypes#BLOCK_CRACK}</li>
-     *   <li>{@link ParticleTypes#BLOCK_DUST}</li>
+     *   <li>{@link ParticleTypes#BLOCK}</li>
+     *   <li>{@link ParticleTypes#FALLING_DUST}</li>
      *   <li>{@link ParticleTypes#BREAK_BLOCK}</li>
-     *   <li>{@link ParticleTypes#ITEM_CRACK}</li>
+     *   <li>{@link ParticleTypes#ITEM}</li>
      * </ul>
      */
     public static final ParticleOption<BlockState> BLOCK_STATE = DummyObjectProvider.createFor(ParticleOption.class, "BLOCK_STATE");
@@ -62,9 +62,9 @@ public final class ParticleOptions {
      * {@link ParticleType}s this option is applicable to are:
      *
      * <ul>
-     *   <li>{@link ParticleTypes#AMBIENT_MOB_SPELL}</li>
-     *   <li>{@link ParticleTypes#MOB_SPELL}</li>
-     *   <li>{@link ParticleTypes#REDSTONE_DUST}</li>
+     *   <li>{@link ParticleTypes#AMBIENT_ENTITY_EFFECT}</li>
+     *   <li>{@link ParticleTypes#ENTITY_EFFECT}</li>
+     *   <li>{@link ParticleTypes#DUST}</li>
      * </ul>
      */
     public static final ParticleOption<Color> COLOR = DummyObjectProvider.createFor(ParticleOption.class, "COLOR");
@@ -90,10 +90,10 @@ public final class ParticleOptions {
      * {@link ParticleType} this option is applicable to are:
      *
      * <ul>
-     *   <li>{@link ParticleTypes#BLOCK_CRACK}</li>
-     *   <li>{@link ParticleTypes#BLOCK_DUST}</li>
+     *   <li>{@link ParticleTypes#BLOCK}</li>
+     *   <li>{@link ParticleTypes#FALLING_DUST}</li>
      *   <li>{@link ParticleTypes#BREAK_BLOCK}</li>
-     *   <li>{@link ParticleTypes#ITEM_CRACK}</li>
+     *   <li>{@link ParticleTypes#ITEM}</li>
      * </ul>
      */
     public static final ParticleOption<ItemStackSnapshot> ITEM_STACK_SNAPSHOT =
@@ -114,10 +114,10 @@ public final class ParticleOptions {
     /**
      * This option will change the potion type of a particle. The only vanilla
      * {@link ParticleType}s this option is applicable to is
-     * {@link ParticleTypes#SPLASH_POTION}.
+     * {@link ParticleTypes#BREAK_SPLASH_POTION}.
      */
-    public static final ParticleOption<PotionEffectType> POTION_EFFECT_TYPE = DummyObjectProvider
-        .createFor(ParticleOption.class, "POTION_EFFECT_TYPE");
+    public static final ParticleOption<PotionEffectType> POTION_EFFECT_TYPE =
+            DummyObjectProvider.createFor(ParticleOption.class, "POTION_EFFECT_TYPE");
 
     /**
      * This option will affect the amount of particles that are spawned. The
@@ -125,12 +125,12 @@ public final class ParticleOptions {
      * this option isn't applicable to are:
      *
      * <ul>
-     *   <li>{@link ParticleTypes#BREAK_BLOCK}</li>
-     *   <li>{@link ParticleTypes#ENDER_TELEPORT}</li>
+     *   <li>{@link ParticleTypes#BLOCK}</li>
+     *   <li>{@link ParticleTypes#BREAK_EYE_OF_ENDER}</li>
      *   <li>{@link ParticleTypes#FIRE_SMOKE}</li>
-     *   <li>{@link ParticleTypes#FIREWORKS}</li>
+     *   <li>{@link ParticleTypes#FIREWORKS_SPARK}</li>
      *   <li>{@link ParticleTypes#MOBSPAWNER_FLAMES}</li>
-     *   <li>{@link ParticleTypes#SPLASH_POTION}</li>
+     *   <li>{@link ParticleTypes#BREAK_SPLASH_POTION}</li>
      * </ul>
      *
      * <p>The quantity must be at least 1, or a {@link IllegalArgumentException}
@@ -143,8 +143,9 @@ public final class ParticleOptions {
      * vanilla {@link ParticleType}s this option is applicable to are:
      *
      * <ul>
-     *   <li>{@link ParticleTypes#LARGE_EXPLOSION}</li>
+     *   <li>{@link ParticleTypes#EXPLOSION}</li>
      *   <li>{@link ParticleTypes#SWEEP_ATTACK}</li>
+     *   <li>{@link ParticleTypes#DUST}</li>
      * </ul>
      *
      * <p>The scale may never be negative, or a {@link IllegalArgumentException}
@@ -158,9 +159,9 @@ public final class ParticleOptions {
      * that this option will affect are:
      *
      * <ul>
-     *   <li>{@link ParticleTypes#SPELL}</li>
-     *   <li>{@link ParticleTypes#INSTANT_SPELL}</li>
-     *   <li>{@link ParticleTypes#WITCH_SPELL}</li>
+     *   <li>{@link ParticleTypes#EFFECT}</li>
+     *   <li>{@link ParticleTypes#INSTANT_EFFECT}</li>
+     *   <li>{@link ParticleTypes#WITCH_MAGIC}</li>
      * </ul>
      *
      * <p>These particle types don't have a configurable velocity (through

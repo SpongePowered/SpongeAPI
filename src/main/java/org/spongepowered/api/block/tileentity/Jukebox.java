@@ -28,30 +28,30 @@ import org.spongepowered.api.data.manipulator.mutable.RepresentedItemData;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
- * Represents a jukebox, also know as a record player.
+ * Represents a jukebox, also know as a music disc player.
  */
 public interface Jukebox extends TileEntity {
 
     /**
-     * Attempts to play the currently stored record according to the
+     * Attempts to play the currently stored music disc according to the
      * {@link RepresentedItemData} of this {@link Jukebox}.
      */
-    void playRecord();
+    void play();
 
     /**
-     * Stops the currently playing record, if any.
+     * Stops the currently playing music disc, if any.
      */
-    void stopRecord();
+    void stop();
 
     /**
-     * Ejects the record item in this Jukebox into the world.
+     * Ejects the music disc item in this Jukebox into the world.
      */
-    void ejectRecord();
+    void eject();
 
     /**
-     * Ejects the current record in this Jukebox and inserts the given one.
+     * Ejects the current music disc item in this Jukebox and inserts the given one.
      *
-     * @param record The record to insert
+     * @param disc The music disc item to insert
      */
-    void insertRecord(ItemStack record);
+    void insert(ItemStack disc);
 }

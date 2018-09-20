@@ -35,7 +35,7 @@ import org.spongepowered.api.util.Direction;
 /**
  * Represents the "connected" {@link Direction}s that a block may have.
  * Examples may include {@link BlockTypes#GLASS_PANE},
- * {@link BlockTypes#IRON_BARS}, etc.
+ * {@link BlockTypes#IRON_BARS}, {@link BlockTypes#COBBLESTONE_WALL}, etc.
  */
 public interface ConnectedDirectionData extends DataManipulator<ConnectedDirectionData, ImmutableConnectedDirectionData> {
 

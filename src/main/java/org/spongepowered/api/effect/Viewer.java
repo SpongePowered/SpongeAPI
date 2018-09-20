@@ -29,11 +29,11 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.effect.sound.music.MusicDisc;
 import org.spongepowered.api.effect.particle.ParticleEffect;
 import org.spongepowered.api.effect.sound.SoundCategories;
 import org.spongepowered.api.effect.sound.SoundCategory;
 import org.spongepowered.api.effect.sound.SoundType;
-import org.spongepowered.api.effect.sound.record.RecordType;
 import org.spongepowered.api.text.BookView;
 import org.spongepowered.api.text.title.Title;
 import org.spongepowered.api.world.World;
@@ -182,22 +182,22 @@ public interface Viewer {
     void stopSounds(SoundType sound, SoundCategory category);
 
     /**
-     * Plays the given {@link RecordType} at the given position. The benefit of playing
-     * {@link RecordType} instead of a {@link SoundType} allows you to stop them through
-     * the {@link #stopRecord(Vector3i)}. Playing a new {@link RecordType} at the same
+     * Plays the given {@link MusicDisc} at the given position. The benefit of playing
+     * {@link MusicDisc} instead of a {@link SoundType} allows you to stop them through
+     * the {@link #stopMusicDisc(Vector3i)}. Playing a new {@link MusicDisc} at the same
      * position will cancel the currently playing one.
      *
      * @param position The position
-     * @param recordType The record type
+     * @param musicDiscType The music disc
      */
-    void playRecord(Vector3i position, RecordType recordType);
+    void playMusicDisc(Vector3i position, MusicDisc musicDiscType);
 
     /**
-     * Stops the record that is playing at the given position.
+     * Stops the {@link MusicDisc} that is playing at the given position.
      *
      * @param position The position
      */
-    void stopRecord(Vector3i position);
+    void stopMusicDisc(Vector3i position);
 
     /**
      * Sends a {@link Title} to this player.

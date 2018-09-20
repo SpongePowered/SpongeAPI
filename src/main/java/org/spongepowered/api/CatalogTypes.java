@@ -40,7 +40,7 @@ import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.effect.sound.SoundCategory;
 import org.spongepowered.api.effect.sound.SoundType;
-import org.spongepowered.api.effect.sound.record.RecordType;
+import org.spongepowered.api.effect.sound.music.MusicDisc;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.ai.GoalType;
 import org.spongepowered.api.entity.ai.task.AITaskType;
@@ -128,8 +128,6 @@ public final class CatalogTypes {
 
     public static final Class<BanType> BAN_TYPE = BanType.class;
 
-    public static final Class<BigMushroomType> BIG_MUSHROOM_TYPE = BigMushroomType.class;
-
     public static final Class<BiomeTreeType> BIOME_TREE_TYPE = BiomeTreeType.class;
 
     public static final Class<BiomeType> BIOME_TYPE = BiomeType.class;
@@ -146,21 +144,15 @@ public final class CatalogTypes {
 
     public static final Class<BossBarOverlay> BOSS_BAR_OVERLAY = BossBarOverlay.class;
 
-    public static final Class<BrickType> BRICK_TYPE = BrickType.class;
-
     public static final Class<Career> CAREER = Career.class;
 
     public static final Class<ChatType> CHAT_TYPE = ChatType.class;
 
     public static final Class<ChatVisibility> CHAT_VISIBILITY = ChatVisibility.class;
 
-    public static final Class<CoalType> COAL_TYPE = CoalType.class;
-
     public static final Class<CollisionRule> COLLISION_RULE = CollisionRule.class;
 
     public static final Class<ComparatorType> COMPARISON_TYPE = ComparatorType.class;
-
-    public static final Class<CookedFish> COOKED_FISH = CookedFish.class;
 
     public static final Class<CraftingRecipe> CRAFTING_RECIPES = CraftingRecipe.class;
 
@@ -180,15 +172,9 @@ public final class CatalogTypes {
 
     public static final Class<DimensionType> DIMENSION_TYPE = DimensionType.class;
 
-    public static final Class<DirtType> DIRT_TYPE = DirtType.class;
-
-    public static final Class<DisguisedBlockType> DISGUISED_BLOCK_TYPE = DisguisedBlockType.class;
-
     public static final Class<DismountType> DISMOUNT_TYPE = DismountType.class;
 
     public static final Class<DisplaySlot> DISPLAY_SLOT = DisplaySlot.class;
-
-    public static final Class<DoublePlantType> DOUBLE_PLANT_TYPE = DoublePlantType.class;
 
     public static final Class<DyeColor> DYE_COLOR = DyeColor.class;
 
@@ -204,8 +190,6 @@ public final class CatalogTypes {
 
     public static final Class<FireworkShape> FIREWORK_SHAPE = FireworkShape.class;
 
-    public static final Class<Fish> FISH = Fish.class;
-
     public static final Class<FluidType> FLUID_TYPE = FluidType.class;
 
     public static final Class<GameMode> GAME_MODE = GameMode.class;
@@ -213,8 +197,6 @@ public final class CatalogTypes {
     public static final Class<GeneratorType> GENERATOR_TYPE = GeneratorType.class;
 
     public static final Class<GoalType> GOAL_TYPE = GoalType.class;
-
-    public static final Class<GoldenApple> GOLDEN_APPLE = GoldenApple.class;
 
     public static final Class<HandPreference> HAND_PREFERENCE = HandPreference.class;
 
@@ -242,8 +224,6 @@ public final class CatalogTypes {
 
     public static final Class<LlamaVariant> LLAMA_VARIANT = LlamaVariant.class;
 
-    public static final Class<LogAxis> LOG_AXIS = LogAxis.class;
-
     public static final Class<MushroomType> MUSHROOM_TYPE = MushroomType.class;
 
     public static final Class<NotePitch> NOTE_PITCH = NotePitch.class;
@@ -260,10 +240,6 @@ public final class CatalogTypes {
 
     public static final Class<PickupRule> PICKUP_RULE = PickupRule.class;
 
-    public static final Class<PistonType> PISTON_TYPE = PistonType.class;
-
-    public static final Class<PlantType> PLANT_TYPE = PlantType.class;
-
     public static final Class<PopulatorObject> POPULATOR_OBJECT = PopulatorObject.class;
 
     public static final Class<PopulatorType> POPULATOR_TYPE = PopulatorType.class;
@@ -274,11 +250,7 @@ public final class CatalogTypes {
 
     public static final Class<PotionEffectType> POTION_EFFECT_TYPE = PotionEffectType.class;
 
-    public static final Class<PrismarineType> PRISMARINE_TYPE = PrismarineType.class;
-
     public static final Class<Profession> PROFESSION = Profession.class;
-
-    public static final Class<QuartzType> QUARTZ_TYPE = QuartzType.class;
 
     public static final Class<QueryOperationType> QUERY_OPERATION_TYPE = QueryOperationType.class;
 
@@ -286,25 +258,17 @@ public final class CatalogTypes {
 
     public static final Class<RailDirection> RAIL_DIRECTION = RailDirection.class;
 
-    public static final Class<RecordType> RECORD_TYPE = RecordType.class;
+    public static final Class<MusicDisc> MUSIC_DISC = MusicDisc.class;
 
     public static final Class<Rotation> ROTATION = Rotation.class;
-
-    public static final Class<SandstoneType> SANDSTONE_TYPE = SandstoneType.class;
-
-    public static final Class<SandType> SAND_TYPE = SandType.class;
 
     public static final Class<SelectorType> SELECTOR_TYPE = SelectorType.class;
 
     public static final Class<SerializationBehavior> SERIALIZATION_BEHAVIOR = SerializationBehavior.class;
 
-    public static final Class<ShrubType> SHRUB_TYPE = ShrubType.class;
-
     public static final Class<SkinPart> SKIN_PART = SkinPart.class;
 
-    public static final Class<SkullType> SKULL_TYPE = SkullType.class;
-
-    public static final Class<SlabType> SLAB_TYPE = SlabType.class;
+    public static final Class<SlabPortion> SLAB_PORTION = SlabPortion.class;
 
     public static final Class<SoundCategory> SOUND_CATEGORY = SoundCategory.class;
 
@@ -318,13 +282,9 @@ public final class CatalogTypes {
 
     public static final Class<StatisticType> STATISTIC_TYPE = StatisticType.class;
 
-    public static final Class<StoneType> STONE_TYPE = StoneType.class;
-
-    public static final Class<StructureMode> STRUCTURE_MODE = StructureMode.class;
+    public static final Class<TeleportType> TELEPORT_TYPE = TeleportType.class;
 
     public static final Class<TeleportHelperFilter> TELEPORT_HELPER_FILTER = TeleportHelperFilter.class;
-
-    public static final Class<TeleportType> TELEPORT_TYPE = TeleportType.class;
 
     public static final Class<TextColor> TEXT_COLOR = TextColor.class;
 
@@ -345,8 +305,6 @@ public final class CatalogTypes {
     public static final Class<VirtualBiomeType> VIRTUAL_BIOME_TYPE = VirtualBiomeType.class;
 
     public static final Class<Visibility> VISIBILITY = Visibility.class;
-
-    public static final Class<WallType> WALL_TYPE = WallType.class;
 
     public static final Class<Weather> WEATHER = Weather.class;
 

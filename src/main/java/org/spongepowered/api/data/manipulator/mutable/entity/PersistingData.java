@@ -45,8 +45,8 @@ public interface PersistingData extends DataManipulator<PersistingData, Immutabl
      * {@link Entity}.
      *
      * @return The value for the persisting state
-     * @see Keys#PERSISTS
+     * @see Keys#PERSISTENT
      */
-    Value<Boolean> persists();
+    Value<Boolean> persistent();
 
 }

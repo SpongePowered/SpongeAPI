@@ -36,7 +36,7 @@ import org.spongepowered.api.data.value.mutable.Value;
  * A {@link DataManipulator} for representing the "droppable" state.
  * If the state is {@code false}, whatever {@link DataHolder} or
  * {@link ImmutableDataHolder} will not "drop" in the world. Usually applicable
- * to {@link BlockTypes#SKULL}.
+ * to heads or skulls, for example {@link BlockTypes#SKELETON_SKULL}.
  */
 public interface DropData extends DataManipulator<DropData, ImmutableDropData> {
 

@@ -32,7 +32,8 @@ import org.spongepowered.api.data.value.mutable.Value;
 
 /**
  * Signifies that a block is "open". Usually applicable to
- * {@link BlockTypes#WOODEN_DOOR} and other doors.
+ * doors, trapdoors and gates, for example {@link BlockTypes#OAK_DOOR},
+ * {@link BlockTypes#OAK_TRAPDOOR} and {@link BlockTypes#OAK_FENCE_GATE}.
  */
 public interface OpenData extends DataManipulator<OpenData, ImmutableOpenData> {
 
