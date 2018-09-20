@@ -26,22 +26,35 @@ package org.spongepowered.api.data.manipulator.immutable.block;
 
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.block.DecayableData;
+import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.mutable.Value;
 
 /**
  * An {@link ImmutableDataManipulator} for the "decayable" state of a
- * {@link BlockState}. Usually applicable for {@link BlockTypes#LEAVES}.
+ * {@link BlockState}. Usually applicable for {@link BlockTypes#OAK_LEAVES}.
  */
 public interface ImmutableDecayableData extends ImmutableDataManipulator<ImmutableDecayableData, DecayableData> {
 
     /**
-     * Gets the {@link ImmutableValue} for whether the "decayable" state is
-     * {@code true} or {@code false}.
+     * Gets the {@link Value} for the distance at which
+     * the {@link BlockState} can start to decay.
      *
-     * @return The immutable value for the "decayable" state
+     * @return The immutable value for the decay distance
+     * @see Keys#DECAY_DISTANCE
      */
-    ImmutableValue<Boolean> decayable();
+    ImmutableBoundedValue<Integer> distance();
+
+    /**
+     * Gets the {@link Value} for whether the {@link BlockState} state is
+     * persistent and will be prevented from decaying.
+     *
+     * @return The immutable value for the persistent state
+     * @see Keys#PERSISTENT
+     */
+    ImmutableValue<Boolean> persistent();
 
 }

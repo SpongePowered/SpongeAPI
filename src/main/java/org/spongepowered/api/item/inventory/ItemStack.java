@@ -85,7 +85,7 @@ public interface ItemStack extends DataHolder, Translatable {
      * @return The empty ItemStack
      */
     static ItemStack empty() {
-        return builder().itemType(ItemTypes.NONE).build();
+        return builder().itemType(ItemTypes.AIR).build();
     }
 
     /**

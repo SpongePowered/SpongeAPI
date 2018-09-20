@@ -36,13 +36,9 @@ import org.spongepowered.api.data.manipulator.mutable.PotionEffectData;
 import org.spongepowered.api.data.manipulator.mutable.TargetedLocationData;
 import org.spongepowered.api.data.manipulator.mutable.item.BlockItemData;
 import org.spongepowered.api.data.manipulator.mutable.item.BreakableData;
-import org.spongepowered.api.data.manipulator.mutable.item.CoalData;
-import org.spongepowered.api.data.manipulator.mutable.item.CookedFishData;
 import org.spongepowered.api.data.manipulator.mutable.item.DurabilityData;
 import org.spongepowered.api.data.manipulator.mutable.item.EnchantmentData;
-import org.spongepowered.api.data.manipulator.mutable.item.FishData;
 import org.spongepowered.api.data.manipulator.mutable.item.GenerationData;
-import org.spongepowered.api.data.manipulator.mutable.item.GoldenAppleData;
 import org.spongepowered.api.data.manipulator.mutable.item.InventoryItemData;
 import org.spongepowered.api.data.manipulator.mutable.item.LoreData;
 import org.spongepowered.api.data.manipulator.mutable.item.MapItemData;
@@ -50,11 +46,7 @@ import org.spongepowered.api.data.manipulator.mutable.item.PagedData;
 import org.spongepowered.api.data.manipulator.mutable.item.PlaceableData;
 import org.spongepowered.api.data.manipulator.mutable.item.SpawnableData;
 import org.spongepowered.api.data.manipulator.mutable.item.StoredEnchantmentData;
-import org.spongepowered.api.data.type.CoalType;
-import org.spongepowered.api.data.type.CookedFish;
 import org.spongepowered.api.data.type.DyeColor;
-import org.spongepowered.api.data.type.Fish;
-import org.spongepowered.api.data.type.GoldenApple;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.item.FireworkEffect;
@@ -86,20 +78,11 @@ public final class CatalogItemData {
      */
     public static final Class<GenerationData> CLONEABLE_DATA = GenerationData.class;
     /**
-     * Represents the {@link CoalType} of an {@link ItemTypes#COAL}.
-     */
-    public static final Class<CoalData> COAL_ITEM_DATA = CoalData.class;
-    /**
      * Signifies that an item is rendered by a specific {@link Color}.
      * Usually applicable to {@link ItemTypes#LEATHER_BOOTS} and other leather
      * armors.
      */
     public static final Class<ColoredData> COLORED_ITEM_DATA = ColoredData.class;
-    /**
-     * Represents the {@link CookedFish} type of a
-     * {@link ItemTypes#COOKED_FISH}.
-     */
-    public static final Class<CookedFishData> COOKED_FISH_ITEM_DATA = CookedFishData.class;
     /**
      * Signifies that an item has a custom name.
      */
@@ -118,23 +101,14 @@ public final class CatalogItemData {
      */
     public static final Class<EnchantmentData> ENCHANTMENT_DATA = EnchantmentData.class;
     /**
-     * Represents the {@link FireworkEffect}s of {@link ItemTypes#FIREWORKS}
-     * or a {@link ItemTypes#FIREWORK_CHARGE}.
+     * Represents the {@link FireworkEffect}s of {@link ItemTypes#FIREWORK_ROCKET}
+     * or a {@link ItemTypes#FIREWORK_STAR}.
      */
     public static final Class<FireworkEffectData> FIREWORK_EFFECT_DATA = FireworkEffectData.class;
     /**
-     * Represents the flight time of {@link ItemTypes#FIREWORKS}.
+     * Represents the flight time of {@link ItemTypes#FIREWORK_ROCKET}.
      */
     public static final Class<FireworkRocketData> FIREWORK_ROCKET_DATA = FireworkRocketData.class;
-    /**
-     * Represents the {@link Fish} type of a {@link ItemTypes#FISH}.
-     */
-    public static final Class<FishData> FISH_DATA = FishData.class;
-    /**
-     * Represents the {@link GoldenApple} type of a
-     * {@link ItemTypes#GOLDEN_APPLE}.
-     */
-    public static final Class<GoldenAppleData> GOLDEN_APPLE_ITEM_DATA = GoldenAppleData.class;
     /**
      * Signifies that an item has an {@link Inventory} attached to it. Usually
      * applicable to {@link ItemTypes#CHEST}

@@ -25,22 +25,15 @@
 package org.spongepowered.api.data.manipulator.immutable.block;
 
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableVariantData;
 import org.spongepowered.api.data.manipulator.mutable.block.AxisData;
-import org.spongepowered.api.data.type.LogAxes;
-import org.spongepowered.api.data.type.LogAxis;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.util.Axis;
 
 /**
  * An {@link ImmutableDataManipulator} containing the {@link ImmutableValue}
  * for the {@link Axis} a {@link BlockState} may have.
- *
- * <p>Note that {@link BlockTypes#LOG} and {@link BlockTypes#LOG2} do NOT
- * utilize {@link Axis} but instead use {@link LogAxis} due to their nature
- * of having {@link LogAxes#NONE}.</p>
  */
 public interface ImmutableAxisData extends ImmutableVariantData<Axis, ImmutableAxisData, AxisData> {
 

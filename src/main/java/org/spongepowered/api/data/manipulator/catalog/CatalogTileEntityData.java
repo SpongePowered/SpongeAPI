@@ -24,15 +24,14 @@
  */
 package org.spongepowered.api.data.manipulator.catalog;
 
+import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.block.tileentity.Banner;
 import org.spongepowered.api.block.tileentity.CommandBlock;
 import org.spongepowered.api.block.tileentity.Comparator;
-import org.spongepowered.api.block.tileentity.FlowerPot;
 import org.spongepowered.api.block.tileentity.Jukebox;
 import org.spongepowered.api.block.tileentity.MobSpawner;
-import org.spongepowered.api.block.tileentity.Note;
 import org.spongepowered.api.block.tileentity.Sign;
-import org.spongepowered.api.block.tileentity.Skull;
+import org.spongepowered.api.block.tileentity.PlayerHead;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.block.tileentity.carrier.Beacon;
 import org.spongepowered.api.block.tileentity.carrier.BrewingStand;
@@ -52,7 +51,7 @@ import org.spongepowered.api.data.manipulator.mutable.tileentity.BrewingStandDat
 import org.spongepowered.api.data.manipulator.mutable.tileentity.CooldownData;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.FurnaceData;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.LockableData;
-import org.spongepowered.api.data.manipulator.mutable.tileentity.NoteData;
+import org.spongepowered.api.data.manipulator.mutable.block.NoteData;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.SignData;
 import org.spongepowered.api.data.meta.PatternLayer;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -103,17 +102,17 @@ public final class CatalogTileEntityData {
      */
     public static final Class<LockableData> LOCKABLE_DATA = LockableData.class;
     /**
-     * Represents the {@link Note} data.
+     * Represents the {@link BlockTypes#NOTE_BLOCK} data.
      */
     public static final Class<NoteData> NOTE_DATA = NoteData.class;
     /**
      * Represents data pertaining to a {@link GameProfile} for a tile entity.
-     * Usually applicable to {@link Skull}s.
+     * Usually applicable to {@link PlayerHead}s.
      */
     public static final Class<RepresentedPlayerData> REPRESENTED_PLAYER_DATA = RepresentedPlayerData.class;
     /**
      * Represents a {@link TileEntity} that acts on an {@link ItemStack}.
-     * Usually applicable to {@link Jukebox}es and {@link FlowerPot}s.
+     * Usually applicable to {@link Jukebox}es.
      */
     public static final Class<RepresentedItemData> JUKEBOX_DATA = RepresentedItemData.class;
     /**
@@ -124,7 +123,6 @@ public final class CatalogTileEntityData {
      * Represents the data used by a {@link MobSpawner}.
      */
     public static final Class<MobSpawnerData> MOB_SPAWNER_DATA = MobSpawnerData.class;
-
 
     private CatalogTileEntityData() {
     }

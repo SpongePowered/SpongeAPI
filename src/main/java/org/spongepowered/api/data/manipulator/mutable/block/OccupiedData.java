@@ -32,7 +32,7 @@ import org.spongepowered.api.data.value.mutable.Value;
 
 /**
  * Signifies that the block is considered "occupied". Usually applicable to
- * {@link BlockTypes#BED}.
+ * beds, for example {@link BlockTypes#WHITE_BED}.
  */
 public interface OccupiedData extends DataManipulator<OccupiedData, ImmutableOccupiedData> {
 

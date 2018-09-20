@@ -283,6 +283,14 @@ public final class Keys {
     public static final Key<Value<Boolean>> ATTACHED = DummyObjectProvider.createExtendedFor(Key.class,"ATTACHED");
 
     /**
+     * Represents the {@link Key} for the attachment {@link Surface}
+     * of a button or lever.
+     *
+     * @see SurfaceAttachmentData
+     */
+    public static final Key<Value<Surface>> ATTACHMENT_SURFACE = DummyObjectProvider.createExtendedFor(Key.class,"ATTACHMENT_SURFACE");
+
+    /**
      * Represents the {@link Key} for the damage dealt by a
      * {@link DamagingProjectile}, e.g. an {@link Arrow}.
      *
@@ -348,12 +356,67 @@ public final class Keys {
     public static final Key<OptionalValue<PotionEffectType>> BEACON_SECONDARY_EFFECT = DummyObjectProvider.createExtendedFor(Key.class,"BEACON_SECONDARY_EFFECT");
 
     /**
-     * Represents the {@link Key} for representing the {@link BigMushroomType}
-     * of a {@link BlockState}.
+     * Represents the {@link Key} for the pore sides
+     * of a {@link BlockTypes#BROWN_MUSHROOM_BLOCK} or
+     * {@link BlockTypes#RED_MUSHROOM_BLOCK} {@link BlockState}.
      *
-     * @see BigMushroomData
+     * @see BigMushroomPoresData#sides()
      */
-    public static final Key<Value<BigMushroomType>> BIG_MUSHROOM_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"BIG_MUSHROOM_TYPE");
+    public static final Key<SetValue<Direction>> BIG_MUSHROOM_PORES = DummyObjectProvider.createExtendedFor(Key.class,"BIG_MUSHROOM_PORES");
+
+    /**
+     * Represents the {@link Key} for the {@link Direction#DOWN}
+     * pores side of a {@link BlockTypes#BROWN_MUSHROOM_BLOCK} or
+     * {@link BlockTypes#RED_MUSHROOM_BLOCK} {@link BlockState}.
+     *
+     * @see BigMushroomPoresData#down()
+     */
+    public static final Key<Value<Boolean>> BIG_MUSHROOM_PORES_DOWN = DummyObjectProvider.createExtendedFor(Key.class,"BIG_MUSHROOM_PORES_DOWN");
+
+    /**
+     * Represents the {@link Key} for the {@link Direction#EAST}
+     * pores side of a {@link BlockTypes#BROWN_MUSHROOM_BLOCK} or
+     * {@link BlockTypes#RED_MUSHROOM_BLOCK} {@link BlockState}.
+     *
+     * @see BigMushroomPoresData#east()
+     */
+    public static final Key<Value<Boolean>> BIG_MUSHROOM_PORES_EAST = DummyObjectProvider.createExtendedFor(Key.class,"BIG_MUSHROOM_PORES_EAST");
+
+    /**
+     * Represents the {@link Key} for the {@link Direction#NORTH}
+     * pores side of a {@link BlockTypes#BROWN_MUSHROOM_BLOCK} or
+     * {@link BlockTypes#RED_MUSHROOM_BLOCK} {@link BlockState}.
+     *
+     * @see BigMushroomPoresData#north()
+     */
+    public static final Key<Value<Boolean>> BIG_MUSHROOM_PORES_NORTH = DummyObjectProvider.createExtendedFor(Key.class,"BIG_MUSHROOM_PORES_NORTH");
+
+    /**
+     * Represents the {@link Key} for the {@link Direction#SOUTH}
+     * pores side of a {@link BlockTypes#BROWN_MUSHROOM_BLOCK} or
+     * {@link BlockTypes#RED_MUSHROOM_BLOCK} {@link BlockState}.
+     *
+     * @see BigMushroomPoresData#south()
+     */
+    public static final Key<Value<Boolean>> BIG_MUSHROOM_PORES_SOUTH = DummyObjectProvider.createExtendedFor(Key.class,"BIG_MUSHROOM_PORES_SOUTH");
+
+    /**
+     * Represents the {@link Key} for the {@link Direction#UP}
+     * pores side of a {@link BlockTypes#BROWN_MUSHROOM_BLOCK} or
+     * {@link BlockTypes#RED_MUSHROOM_BLOCK} {@link BlockState}.
+     *
+     * @see BigMushroomPoresData#up()
+     */
+    public static final Key<Value<Boolean>> BIG_MUSHROOM_PORES_UP = DummyObjectProvider.createExtendedFor(Key.class,"BIG_MUSHROOM_PORES_UP");
+
+    /**
+     * Represents the {@link Key} for the {@link Direction#WEST}
+     * pores side of a {@link BlockTypes#BROWN_MUSHROOM_BLOCK} or
+     * {@link BlockTypes#RED_MUSHROOM_BLOCK} {@link BlockState}.
+     *
+     * @see BigMushroomPoresData#west()
+     */
+    public static final Key<Value<Boolean>> BIG_MUSHROOM_PORES_WEST = DummyObjectProvider.createExtendedFor(Key.class,"BIG_MUSHROOM_PORES_WEST");
 
     /**
      * Represents the {@link Key} for the rotation of specific body parts.
@@ -390,14 +453,6 @@ public final class Keys {
      * @see BreakableData#breakable()
      */
     public static final Key<SetValue<BlockType>> BREAKABLE_BLOCK_TYPES = DummyObjectProvider.createExtendedFor(Key.class,"BREAKABLE_BLOCK_TYPES");
-
-    /**
-     * Represents the {@link Key} for representing the {@link BrickType}
-     * of a {@link BlockState}.
-     *
-     * @see BrickData
-     */
-    public static final Key<Value<BrickType>> BRICK_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"BRICK_TYPE");
 
     /**
      * Represents the {@link Key} for whether an {@link Entity} can breed.
@@ -449,21 +504,20 @@ public final class Keys {
     public static final Key<Value<Career>> CAREER = DummyObjectProvider.createExtendedFor(Key.class,"CAREER");
 
     /**
+     * Represents the {@link Key} for the attachment of a {@link BlockTypes#CHEST}
+     * or {@link BlockTypes#TRAPPED_CHEST).
+     *
+     * @see ChestAttachmentData
+     */
+    public static final Key<Value<ChestAttachmentType>> CHEST_ATTACHMENT = DummyObjectProvider.createExtendedFor(Key.class,"CHEST_ATTACHMENT");
+
+    /**
      * Represents the {@link Key} for the rotation of the
      * {@link BodyParts#CHEST}.
      *
      * @see BodyPartRotationalData#bodyRotation()
      */
     public static final Key<Value<Vector3d>> CHEST_ROTATION = DummyObjectProvider.createExtendedFor(Key.class,"CHEST_ROTATION");
-
-    /**
-     * Represents the {@link Key} for the {@link CoalType} of an
-     * {@link ItemStack} or {@link ItemStackSnapshot} of type
-     * {@link ItemTypes#COAL}.
-     *
-     * @see CoalData
-     */
-    public static final Key<Value<CoalType>> COAL_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"COAL_TYPE");
 
     /**
      * Represents the {@link Key} for the {@link Color} of an
@@ -538,14 +592,6 @@ public final class Keys {
     public static final Key<MutableBoundedValue<Integer>> CONTAINED_EXPERIENCE = DummyObjectProvider.createExtendedFor(Key.class,"CONTAINED_EXPERIENCE");
 
     /**
-     * Represents the {@link Key} for the type of {@link CookedFish} an
-     * {@link ItemStack} with {@link ItemTypes#COOKED_FISH} has.
-     *
-     * @see CookedFishData
-     */
-    public static final Key<Value<CookedFish>> COOKED_FISH = DummyObjectProvider.createExtendedFor(Key.class,"COOKED_FISH");
-
-    /**
      * Represents the {@link Key} for the amount of ticks a {@link Hopper} has
      * to cool down before transferring the next item.
      *
@@ -586,12 +632,12 @@ public final class Keys {
     public static final Key<MapValue<EntityType, Double>> DAMAGE_ENTITY_MAP = DummyObjectProvider.createExtendedFor(Key.class,"DAMAGE_ENTITY_MAP");
 
     /**
-     * Represents the {@link Key} for representing whether a {@link BlockState}
-     * will decay. This usually applies to {@link BlockTypes#LEAVES}.
+     * Represents the {@link Key} for representing at which distance a {@link BlockState}
+     * will decay. This usually applies to leaves, for example {@link BlockTypes#OAK_LEAVES}.
      *
-     * @see DecayableData#decayable()
+     * @see DecayableData#distance()
      */
-    public static final Key<Value<Boolean>> DECAYABLE = DummyObjectProvider.createExtendedFor(Key.class,"DECAYABLE");
+    public static final Key<MutableBoundedValue<Integer>> DECAY_DISTANCE = DummyObjectProvider.createExtendedFor(Key.class,"DECAY_DISTANCE");
 
     /**
      * Represents the {@link Key} for the delay on a redstone repeater.
@@ -617,14 +663,6 @@ public final class Keys {
     public static final Key<Value<Direction>> DIRECTION = DummyObjectProvider.createExtendedFor(Key.class,"DIRECTION");
 
     /**
-     * Represents the {@link Key} for representing the {@link DirtType}
-     * of a {@link BlockState}.
-     *
-     * @see DirtData
-     */
-    public static final Key<Value<DirtType>> DIRT_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"DIRT_TYPE");
-
-    /**
      * Represents the {@link Key} for representing the "disarmed" state
      * of a {@link BlockState}. This usually applies to
      * {@link BlockTypes#TRIPWIRE}s and {@link BlockTypes#TRIPWIRE_HOOK}s.
@@ -632,14 +670,6 @@ public final class Keys {
      * @see DisarmedData#disarmed()
      */
     public static final Key<Value<Boolean>> DISARMED = DummyObjectProvider.createExtendedFor(Key.class,"DISARMED");
-
-    /**
-     * Represents the {@link Key} for representing the {@link DisguisedBlockType}
-     * of a {@link BlockState}.
-     *
-     * @see DisguisedBlockData
-     */
-    public static final Key<Value<DisguisedBlockType>> DISGUISED_BLOCK_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"DISGUISED_BLOCK_TYPE");
 
     /**
      * Represents the {@link Key} for the display name of an {@link Entity},
@@ -663,14 +693,6 @@ public final class Keys {
      * @see DominantHandData#dominantHand()
      */
     public static final Key<Value<HandPreference>> DOMINANT_HAND = DummyObjectProvider.createExtendedFor(Key.class,"DOMINANT_HAND");
-
-    /**
-     * Represents the {@link Key} for representing the {@link DoublePlantType}
-     * of a {@link BlockState}.
-     *
-     * @see DoublePlantData
-     */
-    public static final Key<Value<DoublePlantType>> DOUBLE_PLANT_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"DOUBLE_PLANT_TYPE");
 
     /**
      * Represents the {@link Key} for the color of a dyeable block, item or
@@ -831,7 +853,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the {@link FireworkEffect}s of a
-     * {@link ItemTypes#FIREWORK_CHARGE}, {@link ItemTypes#FIREWORKS} or a
+     * {@link ItemTypes#FIREWORK_STAR}, {@link ItemTypes#FIREWORK_ROCKET} or a
      * {@link Firework}.
      *
      * @see FireworkEffectData#effects()
@@ -872,17 +894,6 @@ public final class Keys {
      * @see JoinData#firstPlayed()
      */
     public static final Key<Value<Instant>> FIRST_DATE_PLAYED = DummyObjectProvider.createExtendedFor(Key.class,"FIRST_DATE_PLAYED");
-
-    /**
-     * Represents the {@link Key} for the {@link Fish} type an {@link Item} or
-     * {@link ItemStack} may have.
-     *
-     * <p>Only for {@link ItemTypes#FISH}, for {@link ItemTypes#COOKED_FISH}
-     * see {@link #COOKED_FISH}.</p>
-     *
-     * @see FishData
-     */
-    public static final Key<Value<Fish>> FISH_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"FISH_TYPE");
 
     /**
      * Represents the {@link Key} for representing the
@@ -955,14 +966,6 @@ public final class Keys {
      * @see GlowingData#glowing()
      */
     public static final Key<Value<Boolean>> GLOWING = DummyObjectProvider.createExtendedFor(Key.class,"GLOWING");
-
-    /**
-     * Represents the {@link Key} for the type of a
-     * {@link ItemTypes#GOLDEN_APPLE}.
-     *
-     * @see GoldenAppleData
-     */
-    public static final Key<Value<GoldenApple>> GOLDEN_APPLE_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"GOLDEN_APPLE_TYPE");
 
     /**
      * Represents the {@link Key} for representing the "growth stage" state
@@ -1101,6 +1104,22 @@ public final class Keys {
     public static final Key<Value<Boolean>> INFINITE_PICKUP_DELAY = DummyObjectProvider.createExtendedFor(Key.class,"INFINITE_PICKUP_DELAY");
 
     /**
+     * Represents the {@link Key} for the {@link InstrumentType}
+     * of a {@link BlockTypes#NOTE_BLOCK}.
+     *
+     * @see InstrumentData
+     */
+    public static final Key<Value<InstrumentType>> INSTRUMENT = DummyObjectProvider.createExtendedFor(Key.class, "INSTRUMENT");
+
+    /**
+     * Represents the {@link Key} for the "inverted" state of
+     * an {@link BlockTypes#DAYLIGHT_DETECTOR}.
+     *
+     * @see InvertibleData#inverted()
+     */
+    public static final Key<Value<Boolean>> INVERTED = DummyObjectProvider.createExtendedFor(Key.class,"INVERTED");
+
+    /**
      * Represents the {@link Key} for representing the "vanish" state
      * of an {@link Entity}. This will only simply render the entity as
      * vanish, but not prevent any entity updates being sent to clients.
@@ -1131,7 +1150,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for representing the "in-wall" state of
-     * {@link BlockTypes#FENCE}s.
+     * fences, for example {@link BlockTypes#OAK_FENCE}.
      *
      * @see InWallData#inWall()
      */
@@ -1358,7 +1377,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for representing the "layer" value of
-     * {@link BlockTypes#SNOW_LAYER} and other possible layered blocks.
+     * {@link BlockTypes#SNOW} and other possible layered blocks.
      *
      * @see LayeredData#layer()
      */
@@ -1381,6 +1400,14 @@ public final class Keys {
     public static final Key<Value<Vector3d>> LEFT_LEG_ROTATION = DummyObjectProvider.createExtendedFor(Key.class,"LEFT_LEG_ROTATION");
 
     /**
+     * Represents the {@link Key} for the state that something is "lit",
+     * for example a {@link BlockTypes#FURNACE} or {@link BlockTypes#REDSTONE_TORCH}.
+     *
+     * @see LitData#lit()
+     */
+    public static final Key<Value<Boolean>> LIT = DummyObjectProvider.createExtendedFor(Key.class,"LIT");
+
+    /**
      * Represents the {@link Key} for a {@link Llama}s carrying strength. The higher the strength,
      * the more items it can carry (effectively the size of inventory).
      */
@@ -1398,16 +1425,6 @@ public final class Keys {
      * @see LockableData#lockToken()
      */
     public static final Key<Value<String>> LOCK_TOKEN = DummyObjectProvider.createExtendedFor(Key.class,"LOCK_TOKEN");
-
-    /**
-     * Represents the {@link Key} for the axis of a {@link BlockTypes#LOG}.
-     *
-     * <p>It differs from {@link #AXIS} in that a log axis may also be
-     * {@link LogAxes#NONE}.</p>
-     *
-     * @see LogAxisData
-     */
-    public static final Key<Value<LogAxis>> LOG_AXIS = DummyObjectProvider.createExtendedFor(Key.class,"LOG_AXIS");
 
     /**
      * Represents the {@link Key} for the maximum air supply a {@link Living}
@@ -1459,7 +1476,7 @@ public final class Keys {
     public static final Key<MutableBoundedValue<Integer>> MOISTURE = DummyObjectProvider.createExtendedFor(Key.class,"MOISTURE");
 
     /**
-     * Represents the {@link Key} for the pitch of a {@link Note} block.
+     * Represents the {@link Key} for the pitch of a {@link BlockTypes#NOTE_BLOCK}.
      *
      * @see NoteData#note()
      */
@@ -1467,7 +1484,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for representing the "occupied" state of
-     * {@link BlockTypes#BED}.
+     * beds, for example {@link BlockTypes#WHITE_BED}.
      *
      * @see OccupiedData#occupied()
      */
@@ -1537,16 +1554,16 @@ public final class Keys {
     public static final Key<ListValue<UUID>> PASSENGERS = DummyObjectProvider.createExtendedFor(Key.class,"PASSENGERS");
 
     /**
-     * Represents the {@link Key} for whether an {@link Entity} will be
-     * prevented from despawning.
+     * Represents the {@link Key} for whether an {@link Entity} or
+     * {@link BlockState} will be prevented from despawning/decaying.
      *
      * <p>In Vanilla, entities may despawn if the player moves too far from
      * them. A persisting entity will not be removed due to no players being
      * near it.</p>
      *
-     * @see PersistingData#persists()
+     * @see PersistingData#persistent()
      */
-    public static final Key<Value<Boolean>> PERSISTS = DummyObjectProvider.createExtendedFor(Key.class,"PERSISTS");
+    public static final Key<Value<Boolean>> PERSISTENT = DummyObjectProvider.createExtendedFor(Key.class,"PERSISTENT");
 
     /**
      * Represents the {@link Key} for representing the pickup delay
@@ -1571,28 +1588,12 @@ public final class Keys {
     public static final Key<Value<Boolean>> PIG_SADDLE = DummyObjectProvider.createExtendedFor(Key.class,"PIG_SADDLE");
 
     /**
-     * Represents the {@link Key} for representing the {@link PistonType}
-     * of a {@link BlockTypes#PISTON}.
-     *
-     * @see PistonData
-     */
-    public static final Key<Value<PistonType>> PISTON_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"PISTON_TYPE");
-
-    /**
      * Represents the {@link Key} for which block types an {@link ItemStack}
      * may be placed on.
      *
      * @see PlaceableData#placeable()
      */
     public static final Key<SetValue<BlockType>> PLACEABLE_BLOCKS = DummyObjectProvider.createExtendedFor(Key.class,"PLACEABLE_BLOCKS");
-
-    /**
-     * Represents the {@link Key} for representing the {@link PlantType}
-     * of a {@link BlockState}.
-     *
-     * @see PlantData
-     */
-    public static final Key<Value<PlantType>> PLANT_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"PLANT_TYPE");
 
     /**
      * Represents the {@link Key} for whether an {@link IronGolem} has been
@@ -1637,29 +1638,13 @@ public final class Keys {
      *
      * <p>Applies to blocks that may be powered in order to emit a
      * Redstone signal of consistently maximum strength, such as
-     * {@link BlockTypes#LEVER}, {@link BlockTypes#WOODEN_BUTTON},
-     * {@link BlockTypes#WOODEN_PRESSURE_PLATE}, and their stone
+     * {@link BlockTypes#LEVER}, {@link BlockTypes#OAK_BUTTON},
+     * {@link BlockTypes#OAK_PRESSURE_PLATE}, and their stone
      * counterparts.</p>
      *
      * @see PoweredData#powered()
      */
     public static final Key<Value<Boolean>> POWERED = DummyObjectProvider.createExtendedFor(Key.class,"POWERED");
-
-    /**
-     * Represents the {@link Key} for representing the {@link PrismarineType}
-     * of a {@link BlockState}.
-     *
-     * @see PrismarineData
-     */
-    public static final Key<Value<PrismarineType>> PRISMARINE_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"PRISMARINE_TYPE");
-
-    /**
-     * Represents the {@link Key} for representing the {@link QuartzType}
-     * of a {@link BlockState}.
-     *
-     * @see QuartzData
-     */
-    public static final Key<Value<QuartzType>> QUARTZ_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"QUARTZ_TYPE");
 
     /**
      * Represents the {@link Key} for the type of a {@link Rabbit}.
@@ -1711,10 +1696,8 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the player represented by a
-     * {@link BlockTypes#SKULL} block or a {@link ItemTypes#SKULL} item stack.
-     *
-     * <p>This will have no effect unless the {@link #SKULL_TYPE} is set to
-     * {@link SkullTypes#PLAYER}.</p>
+     * {@link BlockTypes#PLAYER_HEAD} (and {@link BlockTypes#PLAYER_WALL_HEAD})
+     * block or a {@link ItemTypes#PLAYER_HEAD} item stack.
      *
      * @see RepresentedPlayerData#owner()
      */
@@ -1753,22 +1736,6 @@ public final class Keys {
     public static final Key<Value<Rotation>> ROTATION = DummyObjectProvider.createExtendedFor(Key.class,"ROTATION");
 
     /**
-     * Represents the {@link Key} for representing the {@link SandstoneType}
-     * of a {@link BlockState}.
-     *
-     * @see SandstoneData
-     */
-    public static final Key<Value<SandstoneType>> SANDSTONE_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"SANDSTONE_TYPE");
-
-    /**
-     * Represents the {@link Key} for representing the {@link SandType}
-     * of a {@link BlockState}.
-     *
-     * @see SandData
-     */
-    public static final Key<Value<SandType>> SAND_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"SAND_TYPE");
-
-    /**
      * Represents the {@link Key} for the current saturation of a {@link Living}.
      *
      * <p>When the saturation reaches 0, the {@link #FOOD_LEVEL} will decrease
@@ -1787,28 +1754,12 @@ public final class Keys {
     public static final Key<MutableBoundedValue<Float>> SCALE = DummyObjectProvider.createExtendedFor(Key.class,"SCALE");
 
     /**
-     * Represents the {@link Key} for representing the "seamless" state
-     * of a {@link BlockState}.
-     *
-     * @see SeamlessData#seamless()
-     */
-    public static final Key<Value<Boolean>> SEAMLESS = DummyObjectProvider.createExtendedFor(Key.class,"SEAMLESS");
-
-    /**
      * Represents the {@link Key} for representing the "should drop" state
      * of a {@link BlockState}.
      *
      * @see DropData#willDrop()
      */
     public static final Key<Value<Boolean>> SHOULD_DROP = DummyObjectProvider.createExtendedFor(Key.class,"SHOULD_DROP");
-
-    /**
-     * Represents the {@link Key} for representing the {@link ShrubType}
-     * of a {@link BlockState}.
-     *
-     * @see ShrubData
-     */
-    public static final Key<Value<ShrubType>> SHRUB_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"SHRUB_TYPE");
 
     /**
      * Represents the {@link Key} for the lines displayed on a {@link Sign}.
@@ -1838,20 +1789,12 @@ public final class Keys {
     public static final Key<Value<Boolean>> UPDATE_GAME_PROFILE = DummyObjectProvider.createExtendedFor(Key.class, "UPDATE_GAME_PROFILE");
 
     /**
-     * Represents the {@link Key} for the type of skull a block or item stack
-     * has.
-     *
-     * @see SkullData
-     */
-    public static final Key<Value<SkullType>> SKULL_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"SKULL_TYPE");
-
-    /**
-     * Represents the {@link Key} for representing the {@link SlabType}
+     * Represents the {@link Key} for representing the {@link SlabPortion}
      * of a {@link BlockState}.
      *
-     * @see SlabData
+     * @see SlabPortionData
      */
-    public static final Key<Value<SlabType>> SLAB_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"SLAB_TYPE");
+    public static final Key<Value<SlabPortion>> SLAB_PORTION = DummyObjectProvider.createExtendedFor(Key.class,"SLAB_PORTION");
 
     /**
      * Represents the {@link Key} for the size of a {@link Slime}.
@@ -1877,6 +1820,7 @@ public final class Keys {
      *
      * @see SpawnableData
      */
+    // TODO
     public static final Key<Value<EntityType>> SPAWNABLE_ENTITY_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"SPAWNABLE_ENTITY_TYPE");
 
     /**
@@ -1971,14 +1915,6 @@ public final class Keys {
      * @see StatisticData
      */
     public static final Key<MapValue<Statistic, Long>> STATISTICS = DummyObjectProvider.createExtendedFor(Key.class,"STATISTICS");
-
-    /**
-     * Represents the {@link Key} for representing the {@link StoneType}
-     * of a {@link BlockState}.
-     *
-     * @see StoneData
-     */
-    public static final Key<Value<StoneType>> STONE_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"STONE_TYPE");
 
     /**
      * Represents the {@link Key} for the enchantments stored on an
@@ -2150,14 +2086,6 @@ public final class Keys {
     public static final Key<ListValue<TradeOffer>> TRADE_OFFERS = DummyObjectProvider.createExtendedFor(Key.class,"TRADE_OFFERS");
 
     /**
-     * Represents the {@link Key} for representing the {@link TreeType}
-     * of a {@link BlockState}.
-     *
-     * @see TreeData
-     */
-    public static final Key<Value<TreeType>> TREE_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"TREE_TYPE");
-
-    /**
      * Represents the {@link Key} for whether an {@link ItemStack} is unbreakable.
      *
      * <p>Setting this to {@code  true} will prevent the item stack's
@@ -2230,14 +2158,6 @@ public final class Keys {
      * @see MovementSpeedData#walkSpeed()
      */
     public static final Key<Value<Double>> WALKING_SPEED = DummyObjectProvider.createExtendedFor(Key.class,"WALKING_SPEED");
-
-    /**
-     * Represents the {@link Key} for the type of
-     * {@link BlockTypes#COBBLESTONE_WALL} blocks.
-     *
-     * @see WallData
-     */
-    public static final Key<Value<WallType>> WALL_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"WALL_TYPE");
 
     /**
      * Represents the {@link Key} for whether a thrown {@link EyeOfEnder} will
