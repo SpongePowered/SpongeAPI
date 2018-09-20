@@ -47,6 +47,8 @@ public final class DyeColors {
 
     public static final DyeColor LIGHT_BLUE = DummyObjectProvider.createFor(DyeColor.class, "LIGHT_BLUE");
 
+    public static final DyeColor LIGHT_GRAY = DummyObjectProvider.createFor(DyeColor.class, "LIGHT_GRAY");
+
     public static final DyeColor LIME = DummyObjectProvider.createFor(DyeColor.class, "LIME");
 
     public static final DyeColor MAGENTA = DummyObjectProvider.createFor(DyeColor.class, "MAGENTA");
@@ -58,8 +60,6 @@ public final class DyeColors {
     public static final DyeColor PURPLE = DummyObjectProvider.createFor(DyeColor.class, "PURPLE");
 
     public static final DyeColor RED = DummyObjectProvider.createFor(DyeColor.class, "RED");
-
-    public static final DyeColor SILVER = DummyObjectProvider.createFor(DyeColor.class, "SILVER");
 
     public static final DyeColor WHITE = DummyObjectProvider.createFor(DyeColor.class, "WHITE");
 
