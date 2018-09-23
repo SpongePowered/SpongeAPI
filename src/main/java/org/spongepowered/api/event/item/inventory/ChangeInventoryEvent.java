@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.event.item.inventory;
 
-import org.spongepowered.api.data.Transaction;
-import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
@@ -34,8 +32,6 @@ import org.spongepowered.api.event.Event;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
-import org.spongepowered.api.item.inventory.transaction.SlotTransaction;
-import org.spongepowered.api.item.inventory.transaction.SlotTransaction;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 import java.util.List;
@@ -84,58 +80,6 @@ public interface ChangeInventoryEvent extends Event, AffectSlotEvent {
      * Fired when a {@link Player} swaps it's hands.
      */
     interface SwapHand extends ChangeInventoryEvent {
-
-    }
-
-    /**
-     * Fired when an {@link Inventory} transfers items into another.
-     */
-    interface Transfer extends ChangeInventoryEvent {
-
-        /**
-         * Gets the source {@link Inventory} of this {@link Event}.
-         *
-         * @return The source {@link Inventory}
-         */
-        Inventory getSourceInventory();
-
-        /**
-         * Gets the target {@link Inventory} of this {@link Event}.
-         *
-         * @return The target {@link Inventory}
-         */
-        Inventory getTargetInventory();
-
-        /**
-         * Fired before an {@link Inventory} attempts to transfer any items.
-         */
-        interface Pre extends Transfer, Cancellable {
-
-        }
-
-        /**
-         * Fires before an {@link Inventory} attempts to transfer an item.
-         *
-         * <p>The event will be automatically cancelled when the modified {@link #transferredItem()} cannot fit the target inventory.</p>
-         *
-         * <p>When this event is cancelled a transfer is attempted for the remaining source slots.</p>
-         */
-        interface PreItem extends Transfer, Cancellable {
-
-            /**
-             * The item getting transferred.
-             *
-             * @return The item getting transferred
-             */
-            Transaction<ItemStackSnapshot> transferredItem();
-
-            /**
-             * Returns the source slot transaction for this item transfer.
-             *
-             * @return The source slot transaction for this item transfer
-             */
-            SlotTransaction sourceSlot();
-        }
 
     }
 
