@@ -29,8 +29,9 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.DataManipulatorBuilder;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.plugin.PluginContainer;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CatalogBuilder;
 
 public interface DataRegistration<T extends DataManipulator<T, I>, I extends ImmutableDataManipulator<I, T>> extends CatalogType {
 
@@ -97,7 +98,7 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
     String getName();
 
     interface Builder<T extends DataManipulator<T, I>, I extends ImmutableDataManipulator<I, T>>
-        extends ResettableBuilder<DataRegistration<T, I>, Builder<T, I>> {
+            extends CatalogBuilder<DataRegistration<T, I>, Builder<T, I>> {
 
         /**
          * Sets the {@link DataManipulator} class to be used. For the sake of
@@ -164,8 +165,16 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
          *
          * @param id The id for the manipulator
          * @return This builder, for chaining
+         * @deprecated Use {@link #id(String)} instead
          */
-        Builder<T, I> manipulatorId(String id);
+        @Deprecated
+        default Builder<T, I> manipulatorId(String id) {
+            final int index = id.indexOf(':');
+            if (index != -1) {
+                id = id.substring(index + 1);
+            }
+            return id(id);
+        }
 
         /**
          * Sets a more generalized name to refer to the registered
@@ -176,8 +185,12 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
          *
          * @param name The data name
          * @return This builder, for chaining
+         * @deprecated Use {@link #name(String)} instead
          */
-        Builder<T, I> dataName(String name);
+        @Deprecated
+        default Builder<T, I> dataName(String name) {
+            return name(name);
+        }
 
         /**
          * Sets the {@link DataManipulatorBuilder} to be used to generate new
@@ -234,10 +247,35 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
          * @throws IllegalArgumentException Various reasons
          * @throws DataAlreadyRegisteredException If the classes and or builder
          *     has already been registered
+         * @deprecated Use {@link #build()} instead
          */
-        DataRegistration<T, I> buildAndRegister(PluginContainer container) throws IllegalStateException, IllegalArgumentException,
-                                                                                  DataAlreadyRegisteredException;
+        @Deprecated
+        default DataRegistration<T, I> buildAndRegister(PluginContainer container)
+                throws IllegalStateException, IllegalArgumentException, DataAlreadyRegisteredException {
+            try (CauseStackManager.StackFrame frame = Sponge.getCauseStackManager().pushCauseFrame()) {
+                frame.pushCause(container);
+                return build();
+            }
+        }
 
+        /**
+         * {@inheritDoc}
+         *
+         * All of the objects for the provided {@link DataRegistration}
+         * object, including the registration's
+         * {@link DataRegistration#getManipulatorClass()} for the
+         * {@link DataManipulator} and
+         * {@link DataRegistration#getImmutableManipulatorClass()}
+         * and {@link DataRegistration#getDataManipulatorBuilder()}
+         * object will also be registered.
+         *
+         * @return The data registration object
+         * @throws IllegalStateException If registrations can no longer take place
+         * @throws IllegalArgumentException Various reasons
+         * @throws DataAlreadyRegisteredException If the classes and or builder
+         *                                        has already been registered
+         */
+        @Override
+        DataRegistration<T, I> build();
     }
-
 }

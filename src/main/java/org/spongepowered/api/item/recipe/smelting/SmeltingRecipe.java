@@ -24,11 +24,14 @@
  */
 package org.spongepowered.api.item.recipe.smelting;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.Recipe;
+import org.spongepowered.api.text.translation.Translation;
+import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Optional;
@@ -39,7 +42,7 @@ import java.util.function.Predicate;
  * suit your creative needs, or you can simply use the
  * {@link SmeltingRecipe.Builder}.
  */
-public interface SmeltingRecipe extends Recipe {
+public interface SmeltingRecipe extends Recipe, CatalogType {
 
     /**
      * Builds a simple furnace recipe. Note, that you can implement the
@@ -162,7 +165,7 @@ public interface SmeltingRecipe extends Recipe {
 
         }
 
-        interface EndStep extends Builder {
+        interface EndStep extends Builder, CatalogBuilder<SmeltingRecipe, Builder> {
 
             /**
              * Changes the experience and returns this builder. It is the
@@ -175,13 +178,16 @@ public interface SmeltingRecipe extends Recipe {
              */
             EndStep experience(double experience);
 
-            /**
-             * Builds the recipe and returns it.
-             *
-             * @return The built recipe
-             * @throws IllegalStateException If not all required options
-             *     were specified
-             */
+            @Override
+            EndStep id(String id);
+
+            @Override
+            EndStep name(String name);
+
+            @Override
+            EndStep name(Translation name);
+
+            @Override
             SmeltingRecipe build();
         }
     }

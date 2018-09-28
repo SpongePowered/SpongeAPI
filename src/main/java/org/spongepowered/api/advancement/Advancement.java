@@ -29,11 +29,12 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextRepresentable;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CatalogBuilder;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+
 import javax.annotation.Nullable;
 
 /**
@@ -103,7 +104,7 @@ public interface Advancement extends CatalogType, TextRepresentable {
     /**
      * A builder to create {@link Advancement}s.
      */
-    interface Builder extends ResettableBuilder<Advancement, Builder> {
+    interface Builder extends CatalogBuilder<Advancement, Builder> {
 
         /**
          * Sets the parent {@link Advancement}. Defaults to {code null}.
@@ -130,13 +131,7 @@ public interface Advancement extends CatalogType, TextRepresentable {
          */
         Builder displayInfo(@Nullable DisplayInfo displayInfo);
 
-        /**
-         * Sets the identifier of the {@link Advancement}
-         * (without the namespace).
-         *
-         * @param id The identifier
-         * @return This builder, for chaining
-         */
+        @Override
         Builder id(String id);
 
         /**
@@ -148,13 +143,10 @@ public interface Advancement extends CatalogType, TextRepresentable {
          * @param name The name
          * @return This builder, for chaining
          */
+        @Override
         Builder name(String name);
 
-        /**
-         * Builds the {@link Advancement}.
-         *
-         * @return The advancement
-         */
+        @Override
         Advancement build();
 
         @Override
