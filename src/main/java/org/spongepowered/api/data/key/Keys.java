@@ -86,6 +86,7 @@ import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.weather.Weather;
 
+import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
@@ -785,14 +786,14 @@ public final class Keys {
     public static final Key<MutableBoundedValue<Integer>> EXPERIENCE_SINCE_LEVEL = DummyObjectProvider.createExtendedFor(Key.class,"EXPERIENCE_SINCE_LEVEL");
 
     /**
-     * Represents the {@link Key} for after how many ticks an entity or
+     * Represents the {@link Key} for how long an entity or
      * {@link Weather} will last before expiring.
      *
-     * <p>Usually applies to {@link Endermite}s or {@link Item}s.</p>
+     * <p>Usually applies to {@link Weather}, {@link Endermite}s or {@link Item}s.</p>
      *
-     * @see ExpirableData#expireTicks()
+     * @see ExpirableData#expireDuration()
      */
-    public static final Key<MutableBoundedValue<Integer>> EXPIRATION_TICKS = DummyObjectProvider.createExtendedFor(Key.class,"EXPIRATION_TICKS");
+    public static final Key<Value<Duration>> EXPIRATION_DURATION = DummyObjectProvider.createExtendedFor(Key.class,"EXPIRATION_DURATION");
 
     /**
      * Represents the {@link Key} for the radius of the {@link Explosion} to
