@@ -25,6 +25,7 @@
 package org.spongepowered.api.network;
 
 import org.spongepowered.api.Platform;
+import org.spongepowered.api.network.login.LoginChannelBinding;
 
 import java.util.Optional;
 import java.util.Set;
@@ -34,6 +35,85 @@ import java.util.Set;
  * {@link PlayerConnection}s and the server.
  */
 public interface ChannelRegistrar {
+
+    /**
+     * Creates a new login channel binding for the given channel name. The channel can
+     * be used to send and receive messages.
+     *
+     * @param plugin The plugin registering the channel
+     * @param channel The channel to register
+     * @return A new {@link LoginChannelBinding} instance bound to the channel name
+     * @throws ChannelRegistrationException The channel name is too long
+     * @throws ChannelRegistrationException The channel name is reserved
+     */
+    LoginChannelBinding.IndexedMessageChannel createLoginChannel(Object plugin, String channel) throws ChannelRegistrationException;
+
+    /**
+     * Creates a new raw login channel binding. The channel can be used to send and
+     * receive login data from {@link ChannelBuf} objects.
+     *
+     * @param plugin The plugin registering the channel
+     * @param channel The channel to register
+     * @return A new {@link LoginChannelBinding} instance bound to the channel name
+     * @throws ChannelRegistrationException The channel name is too long
+     * @throws ChannelRegistrationException The channel name is reserved
+     * @see #createChannel
+     */
+    LoginChannelBinding.RawDataChannel createRawLoginChannel(Object plugin, String channel) throws ChannelRegistrationException;
+
+    /**
+     * Gets or creates a {@link LoginChannelBinding.IndexedMessageChannel} by the
+     * given name. If the channel exists and is a indexed message channel, then
+     * it is returned. If the channel is not an indexed message channel, then
+     * {@link IllegalStateException} is thrown. Otherwise, a new channel is
+     * created.
+     *
+     * @param plugin The plugin to register the channel if it doesn't exist
+     * @param channel The channel name
+     * @return A new or existing indexed message channel binding
+     * @throws IllegalStateException if the existing channel is not an
+     *         IndexedMessageChannel
+     * @throws ChannelRegistrationException for same reasons as
+     *         {@link #createChannel}.
+     */
+    default LoginChannelBinding.IndexedMessageChannel getOrCreateLogin(Object plugin, String channel) throws ChannelRegistrationException {
+        Optional<ChannelBinding> existing = getChannel(channel);
+        if (existing.isPresent()) {
+            if (existing.get() instanceof LoginChannelBinding.IndexedMessageChannel) {
+                return (LoginChannelBinding.IndexedMessageChannel) existing.get();
+            }
+            throw new IllegalStateException("Tried to get existing channel "
+                    + channel + " as an IndexedMessageChannel but found it was a RawDataChannel");
+        }
+        return createLoginChannel(plugin, channel);
+    }
+
+    /**
+     * Gets or creates a {@link LoginChannelBinding.RawDataChannel} by the given
+     * name. If the channel exists and is a raw data channel, then it is
+     * returned. If the channel is not a raw data channel, then
+     * {@link IllegalStateException} is thrown. Otherwise, a new channel is
+     * created.
+     *
+     * @param plugin The plugin to register the channel if it doesn't exist
+     * @param channel The channel name
+     * @return A new or existing raw data channel binding
+     * @throws IllegalStateException if the existing channel is not an
+     *         RawDataChannel
+     * @throws ChannelRegistrationException for same reasons as
+     *         {@link #createRawChannel}.
+     */
+    default LoginChannelBinding.RawDataChannel getOrCreateRawLogin(Object plugin, String channel) throws ChannelRegistrationException {
+        Optional<ChannelBinding> existing = getChannel(channel);
+        if (existing.isPresent()) {
+            if (existing.get() instanceof LoginChannelBinding.RawDataChannel) {
+                return (LoginChannelBinding.RawDataChannel) existing.get();
+            }
+            throw new IllegalStateException("Tried to get existing channel "
+                    + channel + " as a RawDataChannel but found it was an IndexedMessageChannel");
+        }
+        return createRawLoginChannel(plugin, channel);
+    }
 
     /**
      * Creates a new channel binding for the given channel name. The channel can

@@ -34,6 +34,7 @@ import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.event.message.MessageEvent;
 import org.spongepowered.api.event.user.TargetUserEvent;
 import org.spongepowered.api.network.RemoteConnection;
+import org.spongepowered.api.network.login.LoginChannelContext;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.ban.BanService;
 import org.spongepowered.api.service.whitelist.WhitelistService;
@@ -118,6 +119,13 @@ public interface ClientConnectionEvent extends Event {
          * @return The client's profile
          */
         GameProfile getProfile();
+
+        /**
+         * Gets the {@link LoginChannelContext}.
+         *
+         * @return The login channel context
+         */
+        LoginChannelContext getLoginChannelContext();
 
         /**
          * Gets the transform that the {@link Player} came from.
