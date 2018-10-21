@@ -22,36 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.network;
+package org.spongepowered.api.network.channel.raw.play;
 
-import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.network.channel.ChannelBuf;
+import org.spongepowered.api.network.EngineConnection;
 
 /**
- * Fired when a channel is registered or unregistered.
- *
- * <p>If the channel is being registered on the server, the {@link Cause} will
- * contain the {@link Player} who initiated the registration.</p>
+ * Represents a listener for data being sent to a raw channel.
  */
-public interface ChannelRegistrationEvent extends Event {
+@FunctionalInterface
+public interface RawPlayDataHandler<C extends EngineConnection> {
 
     /**
-     * Gets the name of the channel being registered or unregistered.
+     * Handles the given {@link ChannelBuf} data sent by a remote connection.
      *
-     * @return The channel name
+     * @param data The raw data
+     * @param connection The remote connection
      */
-    String getChannel();
-
-    /**
-     * Fired when a channel is registered.
-     */
-    interface Register extends ChannelRegistrationEvent {
-    }
-
-    /**
-     * Fired when a channel is unregistered.
-     */
-    interface Unregister extends ChannelRegistrationEvent {
-    }
+    void handlePayload(ChannelBuf data, C connection);
 }

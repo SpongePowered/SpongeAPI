@@ -22,20 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.network;
+package org.spongepowered.api.network.channel;
 
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.network.channel.packet.RequestPacket;
 
 /**
- * Represents a connection of a client to the server where
- * the {@link Player} has successfully joined.
+ * Represents a {@link Exception} which is thrown when no response is received
+ * when a {@link RequestPacket} is sent to a client or server.
  */
-public interface PlayerConnection extends EngineConnection {
+public class NoResponseException extends ChannelException {
 
-    /**
-     * Gets the associated {@link Player player} for this connection.
-     *
-     * @return The associated player
-     */
-    Player getPlayer();
+    private static final long serialVersionUID = -640098797295520018L;
+
+    public NoResponseException() {
+        super();
+    }
+
+    public NoResponseException(final String message) {
+        super(message);
+    }
+
+    public NoResponseException(final String message, final Throwable cause) {
+        super(message, cause);
+    }
+
+    public NoResponseException(final Throwable cause) {
+        super(cause);
+    }
 }

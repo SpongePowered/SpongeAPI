@@ -22,20 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.network;
+package org.spongepowered.api.network.channel.packet;
 
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.network.EngineConnection;
+import org.spongepowered.api.network.channel.Channel;
+import org.spongepowered.api.network.channel.packet.basic.BasicPacketChannel;
 
 /**
- * Represents a connection of a client to the server where
- * the {@link Player} has successfully joined.
+ * Represents an advanced channel binding that sends and receives packets. An
+ * advantage over using a {@link BasicPacketChannel} is that it also supports
+ * request/response packets.
+ *
+ * <p>However this channel is NOT compatible with the forge opcode based packet
+ * channels. If you want to remain compatible, use {@link BasicPacketChannel}
+ * instead.</p>
+ *
+ * <p>The channel registration of this channel is also synced between the client
+ * and server during both the handshake and play phases. Because of this,
+ * {@link #isSupportedBy(EngineConnection)} may be called to check whether a
+ * connection the packet channel supports.</p>
  */
-public interface PlayerConnection extends EngineConnection {
+public interface PacketChannel extends Channel, TransactionalPacketRegistry, TransactionalPacketDispatcher {
 
-    /**
-     * Gets the associated {@link Player player} for this connection.
-     *
-     * @return The associated player
-     */
-    Player getPlayer();
 }

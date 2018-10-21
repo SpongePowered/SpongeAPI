@@ -45,4 +45,9 @@ public interface RemoteConnection {
      * @return The host name
      */
     InetSocketAddress getVirtualHost();
+
+    /**
+     * Closes the connection.
+     */
+    void close();
 }

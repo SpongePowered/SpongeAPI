@@ -22,45 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.network;
+package org.spongepowered.api.network.channel.packet;
 
-import com.google.inject.BindingAnnotation;
-import org.spongepowered.api.ResourceKey;
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import org.spongepowered.api.network.channel.ChannelException;
+import org.spongepowered.api.network.channel.NoResponseException;
 
 /**
- * An annotation used for naming {@link ChannelBinding} injections.
+ * Represents a callback for the response of a request packet.
  *
- * <p>Due to the limitations of Java annotations,
- * the 'namespace' and 'value' components of the {@link ResourceKey}
- * must be specified separately, instead of using a {@link ResourceKey} directly.</p>
- *
- * <pre>{@code @ChannelId(namespace="myplugin", value="SomeChannel") @Inject
- * ChannelBinding.RawDataChannel channel;}</pre>
+ * @param <R> The response packet type
  */
-@BindingAnnotation
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.FIELD, ElementType.PARAMETER})
-public @interface ChannelId {
+public interface RequestPacketResponse<R extends Packet> {
 
     /**
-     * Gets the channel namespace.
+     * Sets the response of the request packet as failed
+     * with the given {@link ChannelException}.
      *
-     * <p>This corresponds to {@link ResourceKey#getNamespace()}</p>
+     * <p>If this response fails, then will other side of the
+     * connection end up with a {@link NoResponseException}.</p>
      *
-     * @return The channel namespace
+     * @param exception The exception
      */
-    String namespace();
+    void fail(ChannelException exception);
 
     /**
-     * Get the channel name.
+     * Sets the response of the request packet as success
+     * with the given response packet.
      *
-     * <p>This corresponds to {@link ResourceKey#getValue()}</p>
-     * @return The channel name
+     * @param response The response packet
      */
-    String value();
+    void success(R response);
 }

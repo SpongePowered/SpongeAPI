@@ -22,20 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.network;
+package org.spongepowered.api.network.channel.packet;
 
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.network.channel.ChannelBuf;
 
 /**
- * Represents a connection of a client to the server where
- * the {@link Player} has successfully joined.
+ * A packet transmitted over the connection of a client and a server.
+ *
+ * <p>Note to plugin implementations: This must have a no-args constructor.</p>
  */
-public interface PlayerConnection extends EngineConnection {
+public interface Packet {
 
     /**
-     * Gets the associated {@link Player player} for this connection.
+     * Read the data from the channel buffer into this packet.
      *
-     * @return The associated player
+     * @param buf The buffer to read from
      */
-    Player getPlayer();
+    void read(ChannelBuf buf);
+
+    /**
+     * Write the data from this packet to the channel buffer.
+     *
+     * @param buf The buffer to write to
+     */
+    void write(ChannelBuf buf);
+
 }

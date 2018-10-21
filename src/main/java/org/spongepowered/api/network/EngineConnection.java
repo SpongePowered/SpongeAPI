@@ -24,50 +24,31 @@
  */
 package org.spongepowered.api.network;
 
+import org.spongepowered.api.text.Text;
+
 /**
- * An exception that is thrown when a channel registration fails.
- *
- * <p>Examples may include: Attempting to register an already registered
- * channel.</p>
+ * Represents a connection on the server or client engine.
  */
-public class ChannelRegistrationException extends RuntimeException {
-
-    private static final long serialVersionUID = 7258019249864102811L;
+public interface EngineConnection extends RemoteConnection {
 
     /**
-     * Constructs a new {@link ChannelRegistrationException}.
-     */
-    public ChannelRegistrationException() {
-        super();
-    }
-
-    /**
-     * Constructs a new {@link ChannelRegistrationException} with a message.
+     * Gets the side this connection is on.
      *
-     * @param message The message to include in the stacktrace
+     * @return The side
      */
-    public ChannelRegistrationException(String message) {
-        super(message);
-    }
+    EngineConnectionSide<? extends EngineConnection> getSide();
 
     /**
-     * Constructs a new {@link ChannelRegistrationException} with the specified message and
-     * cause.
-     *
-     * @param message The exception message
-     * @param cause The cause of this exception
+     * Closes the connection, showing the default disconnect reason.
+     * (the translation key {@code disconnect.disconnected})
      */
-    public ChannelRegistrationException(String message, Throwable cause) {
-        super(message, cause);
-    }
+    @Override
+    void close();
 
     /**
-     * Constructs a new {@link ChannelRegistrationException} with the specified cause and a
-     * null message.
+     * Closes the connection with the given reason.
      *
-     * @param cause The cause of this exception
+     * @param reason The reason for the disconnection
      */
-    public ChannelRegistrationException(Throwable cause) {
-        super(cause);
-    }
+    void close(Text reason);
 }

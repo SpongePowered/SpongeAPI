@@ -22,20 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.network;
+package org.spongepowered.api.network.channel;
 
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.ResourceKey;
 
 /**
- * Represents a connection of a client to the server where
- * the {@link Player} has successfully joined.
+ * Represents a network channel bound to a {@link ChannelRegistry}. The channel
+ * can be used to send and receive data.
  */
-public interface PlayerConnection extends EngineConnection {
+public interface Channel {
 
     /**
-     * Gets the associated {@link Player player} for this connection.
+     * Gets the registrar that this channel is bound to.
      *
-     * @return The associated player
+     * @return The registrar
      */
-    Player getPlayer();
+    ChannelRegistry getRegistry();
+
+    /**
+     * Gets this channel's bound key.
+     *
+     * @return The channel key
+     */
+    ResourceKey getKey();
 }

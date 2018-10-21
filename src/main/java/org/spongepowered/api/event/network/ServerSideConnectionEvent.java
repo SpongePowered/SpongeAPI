@@ -31,11 +31,14 @@ import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
 import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.event.message.MessageEvent;
-import org.spongepowered.api.network.RemoteConnection;
+import org.spongepowered.api.network.ServerSideConnection;
+import org.spongepowered.api.network.channel.Channel;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.ban.BanService;
 import org.spongepowered.api.service.whitelist.WhitelistService;
+import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextRepresentable;
+import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3d;
@@ -51,7 +54,7 @@ import java.net.InetAddress;
  *
  * <p>The events are fired in the following order:</p>
  *
- * <p>#Auth -&gt; #Login -&gt; {@link SpawnEntityEvent} -&gt; #Join</p>
+ * <p>#Auth -&gt; #Handshake -&gt; #Login -&gt; {@link SpawnEntityEvent} -&gt; #Join</p>
  *
  * <p>{@link SpawnEntityEvent} is still fired for players, for consistency.
  * However, the player is not at a well-defined state at that point. It's
@@ -61,11 +64,21 @@ import java.net.InetAddress;
 public interface ServerSideConnectionEvent extends Event {
 
     /**
-     * Gets the {@link RemoteConnection} representing the client connection.
+     * Gets the {@link ServerSideConnection}.
      *
-     * @return The remote connection
+     * @return The server side connection
      */
-    RemoteConnection getConnection();
+    ServerSideConnection getConnection();
+
+    /**
+     * Gets the {@link GameProfile} of the client attempting to connect.
+     *
+     * @return The client's profile
+     */
+    @PropertySettings(requiredParameter = false, generateMethods = false)
+    default GameProfile getProfile() {
+        return this.getConnection().getProfile();
+    }
 
     /**
      * Called asynchronously when the client attempts to authenticate against
@@ -74,18 +87,32 @@ public interface ServerSideConnectionEvent extends Event {
      * <p>Note: This event is fired before #Login.</p>
      */
     interface Auth extends ServerSideConnectionEvent, MessageEvent, Cancellable {
-
-        /**
-         * Gets the profile of the client attempting to connect.
-         *
-         * @return The client's profile
-         */
-        GameProfile getProfile();
     }
 
     /**
      * Called after the client authenticates and attempts to login to the
-     * server.
+     * server. This is the phase where plugins can perform a handshake with
+     * the client by sending login related packets and requests.
+     *
+     * <p>During this event, it's possible to use the {@link Channel}s to send
+     * requests to the client. As long as there's requests going to the client,
+     * the connection will stay in the handshake phase and will not continue
+     * to the {@link Login} event.</p>
+     *
+     * <p>For example, a plugin sends a packet to the client to request its
+     * client side plugin version. The client responds and the plugin handles
+     * the response. If the plugin decides to send another packet, the plugin
+     * handshake phase will stay active. If the plugin doesn't send a packet,
+     * it can assumed that the plugin handshake is finished.</p>
+     *
+     * <p>During the lifetime of the handshake phase, a {@link ServerSideConnection}
+     * can be terminated by calling {@link ServerSideConnection#close(Text)}.</p>
+     */
+    interface Handshake extends ServerSideConnectionEvent {
+    }
+
+    /**
+     * Called after the server finished its handshake with the client.
      *
      * <p>Note: This event is fired after #Auth and is NOT async. Any changes
      * required for the {@link ServerPlayer players} {@link ServerLocation location}
@@ -112,13 +139,6 @@ public interface ServerSideConnectionEvent extends Event {
          * @return The user
          */
         User getUser();
-
-        /**
-         * Gets the profile of the client attempting to connect.
-         *
-         * @return The client's profile
-         */
-        GameProfile getProfile();
 
         /**
          * Gets the previous {@link ServerLocation location} the {@link ServerPlayer player} would have logged in at.

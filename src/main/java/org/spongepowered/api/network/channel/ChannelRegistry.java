@@ -22,20 +22,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.network;
+package org.spongepowered.api.network.channel;
 
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.network.EngineConnection;
+
+import java.util.Collection;
+import java.util.Optional;
 
 /**
- * Represents a connection of a client to the server where
- * the {@link Player} has successfully joined.
+ * A registry handling custom payloads via {@link Channel}s to and from
+ * {@link EngineConnection}s.
  */
-public interface PlayerConnection extends EngineConnection {
+public interface ChannelRegistry {
 
     /**
-     * Gets the associated {@link Player player} for this connection.
+     * Gets a channel binding if a channel exists for the given key.
      *
-     * @return The associated player
+     * @param channelKey The channel key
+     * @return The channel if it exists
      */
-    Player getPlayer();
+    Optional<Channel> get(ResourceKey channelKey);
+
+    /**
+     * Gets a {@link Channel} by the given channel key. If the channel exists
+     * and it matches the given channel type, it is returned. If the channel
+     * doesn't match a {@link IllegalStateException} is thrown.
+     *
+     * @param channelKey The channel key
+     * @param channelType The channel type
+     * @return A new or existing channel binding
+     * @throws IllegalStateException if the existing channel is not of the given type
+     */
+    <C extends Channel> C getOfType(ResourceKey channelKey, Class<C> channelType);
+
+    /**
+     * Gets an immutable collection of all the channels that are registered.
+     *
+     * @return The channels
+     */
+    Collection<Channel> getChannels();
 }

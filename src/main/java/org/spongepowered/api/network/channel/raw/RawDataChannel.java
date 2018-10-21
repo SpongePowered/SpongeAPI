@@ -22,20 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.network;
+package org.spongepowered.api.network.channel.raw;
 
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.network.channel.Channel;
+import org.spongepowered.api.network.EngineConnection;
+import org.spongepowered.api.network.channel.raw.handshake.RawHandshakeDataChannel;
+import org.spongepowered.api.network.channel.raw.play.RawPlayDataChannel;
 
 /**
- * Represents a connection of a client to the server where
- * the {@link Player} has successfully joined.
+ * Represents a channel that sends and receives raw data. This
+ * channel has two sub-channels, {@link RawHandshakeDataChannel} which
+ * can be used during the handshake phase and {@link RawPlayDataChannel}
+ * which can be used during the play phase.
  */
-public interface PlayerConnection extends EngineConnection {
+public interface RawDataChannel extends Channel {
 
     /**
-     * Gets the associated {@link Player player} for this connection.
+     * Gets the {@link RawHandshakeDataChannel} which can be used during
+     * the handshake phase of a {@link EngineConnection}.
      *
-     * @return The associated player
+     * @return The raw handshake data channel
      */
-    Player getPlayer();
+    RawHandshakeDataChannel handshake();
+
+    /**
+     * Gets the {@link RawPlayDataChannel} which can be used during
+     * the play phase of a {@link EngineConnection}.
+     *
+     * @return The raw play data channel
+     */
+    RawPlayDataChannel play();
 }

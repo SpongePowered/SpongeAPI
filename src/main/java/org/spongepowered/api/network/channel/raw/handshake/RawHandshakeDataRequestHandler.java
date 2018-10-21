@@ -22,20 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.network;
+package org.spongepowered.api.network.channel.raw.handshake;
 
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.network.channel.ChannelBuf;
+import org.spongepowered.api.network.EngineConnection;
+import org.spongepowered.api.network.channel.NoResponseException;
 
 /**
- * Represents a connection of a client to the server where
- * the {@link Player} has successfully joined.
+ * Handles a raw handshake data request.
  */
-public interface PlayerConnection extends EngineConnection {
+@FunctionalInterface
+public interface RawHandshakeDataRequestHandler<C extends EngineConnection> {
 
     /**
-     * Gets the associated {@link Player player} for this connection.
+     * Handles the request data {@link ChannelBuf} for the given
+     * {@link EngineConnection} and returns a response.
      *
-     * @return The associated player
+     * <p>Throwing a {@link NoResponseException} will result in
+     * a {@link NoResponseException} on the other side of
+     * the connection.</p>
+     *
+     * @param request The request channel buf
+     * @param connection The connection that received the request data
+     * @return The response data
      */
-    Player getPlayer();
+    ChannelBuf handleRequest(ChannelBuf request, C connection);
 }

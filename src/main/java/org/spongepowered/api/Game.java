@@ -32,7 +32,7 @@ import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.EventManager;
-import org.spongepowered.api.network.ChannelRegistrar;
+import org.spongepowered.api.network.channel.ChannelRegistry;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.registry.GameRegistry;
 import org.spongepowered.api.scheduler.Scheduler;
@@ -170,11 +170,11 @@ public interface Game {
     ConfigManager getConfigManager();
 
     /**
-     * Gets the {@link ChannelRegistrar} for creating network channels.
+     * Gets the {@link ChannelRegistry} for creating network channels.
      *
-     * @return The channel registrar
+     * @return The channel registry
      */
-     ChannelRegistrar getChannelRegistrar();
+    ChannelRegistry getChannelRegistry();
 
     /**
      * Gets the {@link MetricsConfigManager} instance, allowing data/metric gathering

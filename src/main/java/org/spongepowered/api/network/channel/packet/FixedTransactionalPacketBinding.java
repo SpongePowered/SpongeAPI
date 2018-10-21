@@ -22,20 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.network;
-
-import org.spongepowered.api.entity.living.player.Player;
+package org.spongepowered.api.network.channel.packet;
 
 /**
- * Represents a connection of a client to the server where
- * the {@link Player} has successfully joined.
+ * A transactional packet binding which is bound to a fixed response type.
+ *
+ * @param <P> The request packet type
+ * @param <R> The response packet type
  */
-public interface PlayerConnection extends EngineConnection {
+public interface FixedTransactionalPacketBinding<P extends RequestPacket<R>, R extends Packet> extends TransactionalPacketBinding<P, R> {
 
     /**
-     * Gets the associated {@link Player player} for this connection.
+     * Gets the type of the response packet.
      *
-     * @return The associated player
+     * @return The response packet type
      */
-    Player getPlayer();
+    Class<R> getResponsePacketType();
 }

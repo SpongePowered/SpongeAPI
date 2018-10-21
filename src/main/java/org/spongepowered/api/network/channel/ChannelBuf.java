@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.network;
+package org.spongepowered.api.network.channel;
 
 import org.spongepowered.api.data.persistence.DataView;
 
@@ -128,6 +128,18 @@ public interface ChannelBuf {
      * @return The sliced stream
      */
     ChannelBuf slice(int index, int length);
+
+    /**
+     * Returns a slice of this buffer's sub-region at the current readerIndex. The
+     * readerIndex is increased by the given length.
+     *
+     * <p>Modifying the content of the returned buffer or this buffer affects each
+     * other's content while they maintain separate indexes and marks.</p>
+     *
+     * @param length The amount of bytes in the slice
+     * @return The sliced stream
+     */
+    ChannelBuf readSlice(int length);
 
     /**
      * Returns {@code true} if and only if this buffer has a backing byte array.
@@ -284,6 +296,18 @@ public interface ChannelBuf {
     byte[] readByteArray();
 
     /**
+     * Gets a byte array at the current readerIndex and increases the
+     * readerIndex by the length of the array and the length of the array size.
+     *
+     * <p>The length of the array is expected to be preceding the array as a
+     * varint.</p>
+     *
+     * @param limit The limit of the length of the array
+     * @return The byte array
+     */
+    byte[] readByteArray(int limit);
+
+    /**
      * Gets a byte array at the specified absolute index in this buffer.
      *
      * <p>The length of the array is expected to be preceding the array as a
@@ -292,7 +316,19 @@ public interface ChannelBuf {
      * @param index The index to read the byte array at
      * @return The byte array
      */
-    byte[] readByteArray(int index);
+    byte[] getByteArray(int index);
+
+    /**
+     * Gets a byte array at the specified absolute index in this buffer.
+     *
+     * <p>The length of the array is expected to be preceding the array as a
+     * varint.</p>
+     *
+     * @param index The index to read the byte array at
+     * @param limit The limit of the length of the array
+     * @return The byte array
+     */
+    byte[] getByteArray(int index, int limit);
 
     /**
      * Sets the specified byte array at the current writerIndex and increases

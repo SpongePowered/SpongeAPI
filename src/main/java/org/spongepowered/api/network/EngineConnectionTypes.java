@@ -24,18 +24,44 @@
  */
 package org.spongepowered.api.network;
 
-import org.spongepowered.api.entity.living.player.Player;
-
 /**
- * Represents a connection of a client to the server where
- * the {@link Player} has successfully joined.
+ * An enumeration of all the possible engine connection types.
  */
-public interface PlayerConnection extends EngineConnection {
+public final class EngineConnectionTypes {
 
     /**
-     * Gets the associated {@link Player player} for this connection.
-     *
-     * @return The associated player
+     * The supertype of all the known connection types.
      */
-    Player getPlayer();
+    public static final Class<EngineConnection> ALL = EngineConnection.class;
+
+    /**
+     * The client side connection type.
+     */
+    public static final Class<ClientSideConnection> CLIENT_SIDE = ClientSideConnection.class;
+
+    /**
+     * The client side connection type where the player
+     * has successfully joined a server.
+     */
+    public static final Class<ClientPlayerConnection> CLIENT_PLAYER = ClientPlayerConnection.class;
+
+    /**
+     * The server or client connection type where the player
+     * has successfully joined a server.
+     */
+    public static final Class<PlayerConnection> PLAYER = PlayerConnection.class;
+
+    /**
+     * The server side connection type.
+     */
+    public static final Class<ServerSideConnection> SERVER_SIDE = ServerSideConnection.class;
+
+    /**
+     * The server side connection type where the player
+     * has successfully joined a server.
+     */
+    public static final Class<ServerPlayerConnection> SERVER_PLAYER = ServerPlayerConnection.class;
+
+    private EngineConnectionTypes() {
+    }
 }

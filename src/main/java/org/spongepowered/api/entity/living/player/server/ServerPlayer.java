@@ -41,7 +41,7 @@ import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.Inventory;
-import org.spongepowered.api.network.PlayerConnection;
+import org.spongepowered.api.network.ServerPlayerConnection;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.service.permission.Subject;
@@ -169,12 +169,12 @@ public interface ServerPlayer extends Player, Subject {
     Set<SkinPart> getDisplayedSkinParts();
 
     /**
-     * Gets the appropriate {@link PlayerConnection} linking this player to a
+     * Gets the appropriate {@link ServerPlayerConnection} linking this player to a
      * client.
      *
      * @return The connection
      */
-    PlayerConnection getConnection();
+    ServerPlayerConnection getConnection();
 
     /**
      * Sends a given {@link ResourcePack} to this player.

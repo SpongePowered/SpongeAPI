@@ -22,20 +22,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.network;
+package org.spongepowered.api.network.channel.packet.basic;
 
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.network.channel.Channel;
+import org.spongepowered.api.network.channel.packet.PacketChannel;
+import org.spongepowered.api.network.channel.packet.PacketDispatcher;
+import org.spongepowered.api.network.channel.packet.TransactionalPacketRegistry;
 
 /**
- * Represents a connection of a client to the server where
- * the {@link Player} has successfully joined.
+ * Represents a basic channel binding that sends and receives packets. Each
+ * packet type is assigned to an opcode. This channel is compatible with the
+ * forge opcode based packet channels, unlike {@link PacketChannel}.
+ *
+ * <p>There are a few limitations with using this channel. Request/response
+ * packets may only be used during the handshake phase using {@link #handshake}.
+ * Normal packets may only be send during the play phase.</p>
  */
-public interface PlayerConnection extends EngineConnection {
+public interface BasicPacketChannel extends Channel, TransactionalPacketRegistry {
 
     /**
-     * Gets the associated {@link Player player} for this connection.
+     * Gets the packet dispatcher which can be used during the handshake phase.
      *
-     * @return The associated player
+     * @return The handshake packet dispatcher
      */
-    Player getPlayer();
+    BasicHandshakePacketDispatcher handshake();
+
+    /**
+     * Gets the packet dispatcher which can be used during the play phase.
+     *
+     * @return The play packet dispatcher
+     */
+    PacketDispatcher play();
 }

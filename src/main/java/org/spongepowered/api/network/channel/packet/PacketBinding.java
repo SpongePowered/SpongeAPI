@@ -22,28 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.network;
+package org.spongepowered.api.network.channel.packet;
 
 /**
- * A message transmitted over the connection of a client and a server.
+ * Represents a binding of a {@link Packet} type
+ * in a {@link PacketChannel}.
  *
- * <p>Note to plugin implementations: This must have a publicly accessible
- * no-args constructor.</p>
+ * @param <P> The packet type
  */
-public interface Message {
+public interface PacketBinding<P extends Packet> {
 
     /**
-     * Read the data from the channel buffer into this message.
+     * Gets the opcode that is assigned to this binding.
      *
-     * @param buf The buffer to read from
+     * @return The opcode
      */
-    void readFrom(ChannelBuf buf);
+    int getOpcode();
 
     /**
-     * Write the data from this message to the channel buffer.
+     * Gets the type of the {@link Packet}.
      *
-     * @param buf The buffer to write to
+     * @return The packet type
      */
-    void writeTo(ChannelBuf buf);
-
+    Class<P> getPacketType();
 }

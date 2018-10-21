@@ -22,24 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.network;
-
-import org.spongepowered.api.Platform;
+package org.spongepowered.api.network.channel;
 
 /**
- * Represents a listener for data being sent to a raw channel.
+ * Represents a no response exception which was caused by a timeout. The
+ * other side took too long to respond to a request packet.
  */
-@FunctionalInterface
-public interface RawDataListener {
+public class TimeoutException extends NoResponseException {
 
-    /**
-     * Handles the given {@link ChannelBuf} data sent by a remote connection.
-     *
-     * @param data The raw data
-     * @param connection The remote connection
-     * @param side The side the data was received on (
-     *        {@link org.spongepowered.api.Platform.Type#CLIENT}
-     *        or {@link org.spongepowered.api.Platform.Type#SERVER})
-     */
-    void handlePayload(ChannelBuf data, RemoteConnection connection, Platform.Type side);
+    private static final long serialVersionUID = 1841725000074464175L;
+
+    public TimeoutException() {
+        super();
+    }
+
+    public TimeoutException(final String message) {
+        super(message);
+    }
+
+    public TimeoutException(final String message, final Throwable cause) {
+        super(message, cause);
+    }
+
+    public TimeoutException(final Throwable cause) {
+        super(cause);
+    }
 }

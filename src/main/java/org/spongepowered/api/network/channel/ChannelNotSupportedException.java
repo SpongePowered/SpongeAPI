@@ -22,20 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.network;
+package org.spongepowered.api.network.channel;
 
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.network.EngineConnection;
 
 /**
- * Represents a connection of a client to the server where
- * the {@link Player} has successfully joined.
+ * An exception that's thrown when an attempt was made to send data to an
+ * {@link EngineConnection} that doesn't support the channel.
  */
-public interface PlayerConnection extends EngineConnection {
+public class ChannelNotSupportedException extends ChannelException {
 
-    /**
-     * Gets the associated {@link Player player} for this connection.
-     *
-     * @return The associated player
-     */
-    Player getPlayer();
+    private static final long serialVersionUID = -1830535967064252828L;
+
+    public ChannelNotSupportedException() {
+        super();
+    }
+
+    public ChannelNotSupportedException(final String message) {
+        super(message);
+    }
+
+    public ChannelNotSupportedException(final String message, final Throwable cause) {
+        super(message, cause);
+    }
+
+    public ChannelNotSupportedException(final Throwable cause) {
+        super(cause);
+    }
 }
