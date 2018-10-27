@@ -38,11 +38,19 @@ public final class IntegerTraits {
 
     public static final IntegerTrait ACACIA_SAPLING_STAGE = DummyObjectProvider.createFor(IntegerTrait.class, "ACACIA_SAPLING_STAGE");
 
+    public static final IntegerTrait ACACIA_SIGN_ROTATION = DummyObjectProvider.createFor(IntegerTrait.class, "ACACIA_SIGN_ROTATION");
+
+    public static final IntegerTrait BAMBOO_AGE = DummyObjectProvider.createFor(IntegerTrait.class, "BAMBOO_AGE");
+
+    public static final IntegerTrait BAMBOO_STAGE = DummyObjectProvider.createFor(IntegerTrait.class, "BAMBOO_STAGE");
+
     public static final IntegerTrait BEETROOTS_AGE = DummyObjectProvider.createFor(IntegerTrait.class, "BEETROOTS_AGE");
 
     public static final IntegerTrait BIRCH_LEAVES_DISTANCE = DummyObjectProvider.createFor(IntegerTrait.class, "BIRCH_LEAVES_DISTANCE");
 
     public static final IntegerTrait BIRCH_SAPLING_STAGE = DummyObjectProvider.createFor(IntegerTrait.class, "BIRCH_SAPLING_STAGE");
+
+    public static final IntegerTrait BIRCH_SIGN_ROTATION = DummyObjectProvider.createFor(IntegerTrait.class, "BIRCH_SIGN_ROTATION");
 
     public static final IntegerTrait BLACK_BANNER_ROTATION = DummyObjectProvider.createFor(IntegerTrait.class, "BLACK_BANNER_ROTATION");
 
@@ -70,6 +78,8 @@ public final class IntegerTraits {
 
     public static final IntegerTrait DARK_OAK_SAPLING_STAGE = DummyObjectProvider.createFor(IntegerTrait.class, "DARK_OAK_SAPLING_STAGE");
 
+    public static final IntegerTrait DARK_OAK_SIGN_ROTATION = DummyObjectProvider.createFor(IntegerTrait.class, "DARK_OAK_SIGN_ROTATION");
+
     public static final IntegerTrait DAYLIGHT_DETECTOR_POWER = DummyObjectProvider.createFor(IntegerTrait.class, "DAYLIGHT_DETECTOR_POWER");
 
     public static final IntegerTrait DRAGON_HEAD_ROTATION = DummyObjectProvider.createFor(IntegerTrait.class, "DRAGON_HEAD_ROTATION");
@@ -89,6 +99,8 @@ public final class IntegerTraits {
     public static final IntegerTrait JUNGLE_LEAVES_DISTANCE = DummyObjectProvider.createFor(IntegerTrait.class, "JUNGLE_LEAVES_DISTANCE");
 
     public static final IntegerTrait JUNGLE_SAPLING_STAGE = DummyObjectProvider.createFor(IntegerTrait.class, "JUNGLE_SAPLING_STAGE");
+
+    public static final IntegerTrait JUNGLE_SIGN_ROTATION = DummyObjectProvider.createFor(IntegerTrait.class, "JUNGLE_SIGN_ROTATION");
 
     public static final IntegerTrait KELP_AGE = DummyObjectProvider.createFor(IntegerTrait.class, "KELP_AGE");
 
@@ -114,6 +126,8 @@ public final class IntegerTraits {
 
     public static final IntegerTrait OAK_SAPLING_STAGE = DummyObjectProvider.createFor(IntegerTrait.class, "OAK_SAPLING_STAGE");
 
+    public static final IntegerTrait OAK_SIGN_ROTATION = DummyObjectProvider.createFor(IntegerTrait.class, "OAK_SIGN_ROTATION");
+
     public static final IntegerTrait ORANGE_BANNER_ROTATION = DummyObjectProvider.createFor(IntegerTrait.class, "ORANGE_BANNER_ROTATION");
 
     public static final IntegerTrait PINK_BANNER_ROTATION = DummyObjectProvider.createFor(IntegerTrait.class, "PINK_BANNER_ROTATION");
@@ -134,8 +148,6 @@ public final class IntegerTraits {
 
     public static final IntegerTrait SEA_PICKLE_PICKLES = DummyObjectProvider.createFor(IntegerTrait.class, "SEA_PICKLE_PICKLES");
 
-    public static final IntegerTrait SIGN_ROTATION = DummyObjectProvider.createFor(IntegerTrait.class, "SIGN_ROTATION");
-
     public static final IntegerTrait SKELETON_SKULL_ROTATION = DummyObjectProvider.createFor(IntegerTrait.class, "SKELETON_SKULL_ROTATION");
 
     public static final IntegerTrait SNOW_LAYERS = DummyObjectProvider.createFor(IntegerTrait.class, "SNOW_LAYERS");
@@ -143,6 +155,8 @@ public final class IntegerTraits {
     public static final IntegerTrait SPRUCE_LEAVES_DISTANCE = DummyObjectProvider.createFor(IntegerTrait.class, "SPRUCE_LEAVES_DISTANCE");
 
     public static final IntegerTrait SPRUCE_SAPLING_STAGE = DummyObjectProvider.createFor(IntegerTrait.class, "SPRUCE_SAPLING_STAGE");
+
+    public static final IntegerTrait SPRUCE_SIGN_ROTATION = DummyObjectProvider.createFor(IntegerTrait.class, "SPRUCE_SIGN_ROTATION");
 
     public static final IntegerTrait SUGAR_CANE_AGE = DummyObjectProvider.createFor(IntegerTrait.class, "SUGAR_CANE_AGE");
 

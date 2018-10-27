@@ -51,11 +51,15 @@ public final class BlockTypes {
 
     public static final BlockType ACACIA_SAPLING = DummyObjectProvider.createFor(BlockType.class, "ACACIA_SAPLING");
 
+    public static final BlockType ACACIA_SIGN = DummyObjectProvider.createFor(BlockType.class, "ACACIA_SIGN");
+
     public static final BlockType ACACIA_SLAB = DummyObjectProvider.createFor(BlockType.class, "ACACIA_SLAB");
 
     public static final BlockType ACACIA_STAIRS = DummyObjectProvider.createFor(BlockType.class, "ACACIA_STAIRS");
 
     public static final BlockType ACACIA_TRAPDOOR = DummyObjectProvider.createFor(BlockType.class, "ACACIA_TRAPDOOR");
+
+    public static final BlockType ACACIA_WALL_SIGN = DummyObjectProvider.createFor(BlockType.class, "ACACIA_WALL_SIGN");
 
     public static final BlockType ACACIA_WOOD = DummyObjectProvider.createFor(BlockType.class, "ACACIA_WOOD");
 
@@ -67,6 +71,12 @@ public final class BlockTypes {
 
     public static final BlockType ANDESITE = DummyObjectProvider.createFor(BlockType.class, "ANDESITE");
 
+    public static final BlockType ANDESITE_SLAB = DummyObjectProvider.createFor(BlockType.class, "ANDESITE_SLAB");
+
+    public static final BlockType ANDESITE_STAIRS = DummyObjectProvider.createFor(BlockType.class, "ANDESITE_STAIRS");
+
+    public static final BlockType ANDESITE_WALL = DummyObjectProvider.createFor(BlockType.class, "ANDESITE_WALL");
+
     public static final BlockType ANVIL = DummyObjectProvider.createFor(BlockType.class, "ANVIL");
 
     public static final BlockType ATTACHED_MELON_STEM = DummyObjectProvider.createFor(BlockType.class, "ATTACHED_MELON_STEM");
@@ -74,6 +84,10 @@ public final class BlockTypes {
     public static final BlockType ATTACHED_PUMPKIN_STEM = DummyObjectProvider.createFor(BlockType.class, "ATTACHED_PUMPKIN_STEM");
 
     public static final BlockType AZURE_BLUET = DummyObjectProvider.createFor(BlockType.class, "AZURE_BLUET");
+
+    public static final BlockType BAMBOO = DummyObjectProvider.createFor(BlockType.class, "BAMBOO");
+
+    public static final BlockType BAMBOO_SAPLING = DummyObjectProvider.createFor(BlockType.class, "BAMBOO_SAPLING");
 
     public static final BlockType BARRIER = DummyObjectProvider.createFor(BlockType.class, "BARRIER");
 
@@ -101,11 +115,15 @@ public final class BlockTypes {
 
     public static final BlockType BIRCH_SAPLING = DummyObjectProvider.createFor(BlockType.class, "BIRCH_SAPLING");
 
+    public static final BlockType BIRCH_SIGN = DummyObjectProvider.createFor(BlockType.class, "BIRCH_SIGN");
+
     public static final BlockType BIRCH_SLAB = DummyObjectProvider.createFor(BlockType.class, "BIRCH_SLAB");
 
     public static final BlockType BIRCH_STAIRS = DummyObjectProvider.createFor(BlockType.class, "BIRCH_STAIRS");
 
     public static final BlockType BIRCH_TRAPDOOR = DummyObjectProvider.createFor(BlockType.class, "BIRCH_TRAPDOOR");
+
+    public static final BlockType BIRCH_WALL_SIGN = DummyObjectProvider.createFor(BlockType.class, "BIRCH_WALL_SIGN");
 
     public static final BlockType BIRCH_WOOD = DummyObjectProvider.createFor(BlockType.class, "BIRCH_WOOD");
 
@@ -178,6 +196,8 @@ public final class BlockTypes {
     public static final BlockType BRICK_SLAB = DummyObjectProvider.createFor(BlockType.class, "BRICK_SLAB");
 
     public static final BlockType BRICK_STAIRS = DummyObjectProvider.createFor(BlockType.class, "BRICK_STAIRS");
+
+    public static final BlockType BRICK_WALL = DummyObjectProvider.createFor(BlockType.class, "BRICK_WALL");
 
     public static final BlockType BRICKS = DummyObjectProvider.createFor(BlockType.class, "BRICKS");
 
@@ -275,6 +295,8 @@ public final class BlockTypes {
 
     public static final BlockType CONDUIT = DummyObjectProvider.createFor(BlockType.class, "CONDUIT");
 
+    public static final BlockType CORNFLOWER = DummyObjectProvider.createFor(BlockType.class, "CORNFLOWER");
+
     public static final BlockType CRACKED_STONE_BRICKS = DummyObjectProvider.createFor(BlockType.class, "CRACKED_STONE_BRICKS");
 
     public static final BlockType CRAFTING_TABLE = DummyObjectProvider.createFor(BlockType.class, "CRAFTING_TABLE");
@@ -333,11 +355,15 @@ public final class BlockTypes {
 
     public static final BlockType DARK_OAK_SAPLING = DummyObjectProvider.createFor(BlockType.class, "DARK_OAK_SAPLING");
 
+    public static final BlockType DARK_OAK_SIGN = DummyObjectProvider.createFor(BlockType.class, "DARK_OAK_SIGN");
+
     public static final BlockType DARK_OAK_SLAB = DummyObjectProvider.createFor(BlockType.class, "DARK_OAK_SLAB");
 
     public static final BlockType DARK_OAK_STAIRS = DummyObjectProvider.createFor(BlockType.class, "DARK_OAK_STAIRS");
 
     public static final BlockType DARK_OAK_TRAPDOOR = DummyObjectProvider.createFor(BlockType.class, "DARK_OAK_TRAPDOOR");
+
+    public static final BlockType DARK_OAK_WALL_SIGN = DummyObjectProvider.createFor(BlockType.class, "DARK_OAK_WALL_SIGN");
 
     public static final BlockType DARK_OAK_WOOD = DummyObjectProvider.createFor(BlockType.class, "DARK_OAK_WOOD");
 
@@ -399,6 +425,12 @@ public final class BlockTypes {
 
     public static final BlockType DIORITE = DummyObjectProvider.createFor(BlockType.class, "DIORITE");
 
+    public static final BlockType DIORITE_SLAB = DummyObjectProvider.createFor(BlockType.class, "DIORITE_SLAB");
+
+    public static final BlockType DIORITE_STAIRS = DummyObjectProvider.createFor(BlockType.class, "DIORITE_STAIRS");
+
+    public static final BlockType DIORITE_WALL = DummyObjectProvider.createFor(BlockType.class, "DIORITE_WALL");
+
     public static final BlockType DIRT = DummyObjectProvider.createFor(BlockType.class, "DIRT");
 
     public static final BlockType DISPENSER = DummyObjectProvider.createFor(BlockType.class, "DISPENSER");
@@ -428,6 +460,12 @@ public final class BlockTypes {
     public static final BlockType END_ROD = DummyObjectProvider.createFor(BlockType.class, "END_ROD");
 
     public static final BlockType END_STONE = DummyObjectProvider.createFor(BlockType.class, "END_STONE");
+
+    public static final BlockType END_STONE_BRICK_SLAB = DummyObjectProvider.createFor(BlockType.class, "END_STONE_BRICK_SLAB");
+
+    public static final BlockType END_STONE_BRICK_STAIRS = DummyObjectProvider.createFor(BlockType.class, "END_STONE_BRICK_STAIRS");
+
+    public static final BlockType END_STONE_BRICK_WALL = DummyObjectProvider.createFor(BlockType.class, "END_STONE_BRICK_WALL");
 
     public static final BlockType END_STONE_BRICKS = DummyObjectProvider.createFor(BlockType.class, "END_STONE_BRICKS");
 
@@ -464,6 +502,12 @@ public final class BlockTypes {
     public static final BlockType GOLD_ORE = DummyObjectProvider.createFor(BlockType.class, "GOLD_ORE");
 
     public static final BlockType GRANITE = DummyObjectProvider.createFor(BlockType.class, "GRANITE");
+
+    public static final BlockType GRANITE_SLAB = DummyObjectProvider.createFor(BlockType.class, "GRANITE_SLAB");
+
+    public static final BlockType GRANITE_STAIRS = DummyObjectProvider.createFor(BlockType.class, "GRANITE_STAIRS");
+
+    public static final BlockType GRANITE_WALL = DummyObjectProvider.createFor(BlockType.class, "GRANITE_WALL");
 
     public static final BlockType GRASS = DummyObjectProvider.createFor(BlockType.class, "GRASS");
 
@@ -581,11 +625,15 @@ public final class BlockTypes {
 
     public static final BlockType JUNGLE_SAPLING = DummyObjectProvider.createFor(BlockType.class, "JUNGLE_SAPLING");
 
+    public static final BlockType JUNGLE_SIGN = DummyObjectProvider.createFor(BlockType.class, "JUNGLE_SIGN");
+
     public static final BlockType JUNGLE_SLAB = DummyObjectProvider.createFor(BlockType.class, "JUNGLE_SLAB");
 
     public static final BlockType JUNGLE_STAIRS = DummyObjectProvider.createFor(BlockType.class, "JUNGLE_STAIRS");
 
     public static final BlockType JUNGLE_TRAPDOOR = DummyObjectProvider.createFor(BlockType.class, "JUNGLE_TRAPDOOR");
+
+    public static final BlockType JUNGLE_WALL_SIGN = DummyObjectProvider.createFor(BlockType.class, "JUNGLE_WALL_SIGN");
 
     public static final BlockType JUNGLE_WOOD = DummyObjectProvider.createFor(BlockType.class, "JUNGLE_WOOD");
 
@@ -657,6 +705,8 @@ public final class BlockTypes {
 
     public static final BlockType LILAC = DummyObjectProvider.createFor(BlockType.class, "LILAC");
 
+    public static final BlockType LILY_OF_THE_VALLEY = DummyObjectProvider.createFor(BlockType.class, "LILY_OF_THE_VALLEY");
+
     public static final BlockType LILY_PAD = DummyObjectProvider.createFor(BlockType.class, "LILY_PAD");
 
     public static final BlockType LIME_BANNER = DummyObjectProvider.createFor(BlockType.class, "LIME_BANNER");
@@ -682,6 +732,8 @@ public final class BlockTypes {
     public static final BlockType LIME_WALL_BANNER = DummyObjectProvider.createFor(BlockType.class, "LIME_WALL_BANNER");
 
     public static final BlockType LIME_WOOL = DummyObjectProvider.createFor(BlockType.class, "LIME_WOOL");
+
+    public static final BlockType LOOM = DummyObjectProvider.createFor(BlockType.class, "LOOM");
 
     public static final BlockType MAGENTA_BANNER = DummyObjectProvider.createFor(BlockType.class, "MAGENTA_BANNER");
 
@@ -715,7 +767,17 @@ public final class BlockTypes {
 
     public static final BlockType MOSSY_COBBLESTONE = DummyObjectProvider.createFor(BlockType.class, "MOSSY_COBBLESTONE");
 
+    public static final BlockType MOSSY_COBBLESTONE_SLAB = DummyObjectProvider.createFor(BlockType.class, "MOSSY_COBBLESTONE_SLAB");
+
+    public static final BlockType MOSSY_COBBLESTONE_STAIRS = DummyObjectProvider.createFor(BlockType.class, "MOSSY_COBBLESTONE_STAIRS");
+
     public static final BlockType MOSSY_COBBLESTONE_WALL = DummyObjectProvider.createFor(BlockType.class, "MOSSY_COBBLESTONE_WALL");
+
+    public static final BlockType MOSSY_STONE_BRICK_SLAB = DummyObjectProvider.createFor(BlockType.class, "MOSSY_STONE_BRICK_SLAB");
+
+    public static final BlockType MOSSY_STONE_BRICK_STAIRS = DummyObjectProvider.createFor(BlockType.class, "MOSSY_STONE_BRICK_STAIRS");
+
+    public static final BlockType MOSSY_STONE_BRICK_WALL = DummyObjectProvider.createFor(BlockType.class, "MOSSY_STONE_BRICK_WALL");
 
     public static final BlockType MOSSY_STONE_BRICKS = DummyObjectProvider.createFor(BlockType.class, "MOSSY_STONE_BRICKS");
 
@@ -730,6 +792,8 @@ public final class BlockTypes {
     public static final BlockType NETHER_BRICK_SLAB = DummyObjectProvider.createFor(BlockType.class, "NETHER_BRICK_SLAB");
 
     public static final BlockType NETHER_BRICK_STAIRS = DummyObjectProvider.createFor(BlockType.class, "NETHER_BRICK_STAIRS");
+
+    public static final BlockType NETHER_BRICK_WALL = DummyObjectProvider.createFor(BlockType.class, "NETHER_BRICK_WALL");
 
     public static final BlockType NETHER_BRICKS = DummyObjectProvider.createFor(BlockType.class, "NETHER_BRICKS");
 
@@ -763,11 +827,15 @@ public final class BlockTypes {
 
     public static final BlockType OAK_SAPLING = DummyObjectProvider.createFor(BlockType.class, "OAK_SAPLING");
 
+    public static final BlockType OAK_SIGN = DummyObjectProvider.createFor(BlockType.class, "OAK_SIGN");
+
     public static final BlockType OAK_SLAB = DummyObjectProvider.createFor(BlockType.class, "OAK_SLAB");
 
     public static final BlockType OAK_STAIRS = DummyObjectProvider.createFor(BlockType.class, "OAK_STAIRS");
 
     public static final BlockType OAK_TRAPDOOR = DummyObjectProvider.createFor(BlockType.class, "OAK_TRAPDOOR");
+
+    public static final BlockType OAK_WALL_SIGN = DummyObjectProvider.createFor(BlockType.class, "OAK_WALL_SIGN");
 
     public static final BlockType OAK_WOOD = DummyObjectProvider.createFor(BlockType.class, "OAK_WOOD");
 
@@ -847,9 +915,21 @@ public final class BlockTypes {
 
     public static final BlockType POLISHED_ANDESITE = DummyObjectProvider.createFor(BlockType.class, "POLISHED_ANDESITE");
 
+    public static final BlockType POLISHED_ANDESITE_SLAB = DummyObjectProvider.createFor(BlockType.class, "POLISHED_ANDESITE_SLAB");
+
+    public static final BlockType POLISHED_ANDESITE_STAIRS = DummyObjectProvider.createFor(BlockType.class, "POLISHED_ANDESITE_STAIRS");
+
     public static final BlockType POLISHED_DIORITE = DummyObjectProvider.createFor(BlockType.class, "POLISHED_DIORITE");
 
+    public static final BlockType POLISHED_DIORITE_SLAB = DummyObjectProvider.createFor(BlockType.class, "POLISHED_DIORITE_SLAB");
+
+    public static final BlockType POLISHED_DIORITE_STAIRS = DummyObjectProvider.createFor(BlockType.class, "POLISHED_DIORITE_STAIRS");
+
     public static final BlockType POLISHED_GRANITE = DummyObjectProvider.createFor(BlockType.class, "POLISHED_GRANITE");
+
+    public static final BlockType POLISHED_GRANITE_SLAB = DummyObjectProvider.createFor(BlockType.class, "POLISHED_GRANITE_SLAB");
+
+    public static final BlockType POLISHED_GRANITE_STAIRS = DummyObjectProvider.createFor(BlockType.class, "POLISHED_GRANITE_STAIRS");
 
     public static final BlockType POPPY = DummyObjectProvider.createFor(BlockType.class, "POPPY");
 
@@ -861,6 +941,8 @@ public final class BlockTypes {
 
     public static final BlockType POTTED_AZURE_BLUET = DummyObjectProvider.createFor(BlockType.class, "POTTED_AZURE_BLUET");
 
+    public static final BlockType POTTED_BAMBOO = DummyObjectProvider.createFor(BlockType.class, "POTTED_BAMBOO");
+
     public static final BlockType POTTED_BIRCH_SAPLING = DummyObjectProvider.createFor(BlockType.class, "POTTED_BIRCH_SAPLING");
 
     public static final BlockType POTTED_BLUE_ORCHID = DummyObjectProvider.createFor(BlockType.class, "POTTED_BLUE_ORCHID");
@@ -868,6 +950,8 @@ public final class BlockTypes {
     public static final BlockType POTTED_BROWN_MUSHROOM = DummyObjectProvider.createFor(BlockType.class, "POTTED_BROWN_MUSHROOM");
 
     public static final BlockType POTTED_CACTUS = DummyObjectProvider.createFor(BlockType.class, "POTTED_CACTUS");
+
+    public static final BlockType POTTED_CORNFLOWER = DummyObjectProvider.createFor(BlockType.class, "POTTED_CORNFLOWER");
 
     public static final BlockType POTTED_DANDELION = DummyObjectProvider.createFor(BlockType.class, "POTTED_DANDELION");
 
@@ -878,6 +962,8 @@ public final class BlockTypes {
     public static final BlockType POTTED_FERN = DummyObjectProvider.createFor(BlockType.class, "POTTED_FERN");
 
     public static final BlockType POTTED_JUNGLE_SAPLING = DummyObjectProvider.createFor(BlockType.class, "POTTED_JUNGLE_SAPLING");
+
+    public static final BlockType POTTED_LILY_OF_THE_VALLEY = DummyObjectProvider.createFor(BlockType.class, "POTTED_LILY_OF_THE_VALLEY");
 
     public static final BlockType POTTED_OAK_SAPLING = DummyObjectProvider.createFor(BlockType.class, "POTTED_OAK_SAPLING");
 
@@ -897,6 +983,8 @@ public final class BlockTypes {
 
     public static final BlockType POTTED_WHITE_TULIP = DummyObjectProvider.createFor(BlockType.class, "POTTED_WHITE_TULIP");
 
+    public static final BlockType POTTED_WITHER_ROSE = DummyObjectProvider.createFor(BlockType.class, "POTTED_WITHER_ROSE");
+
     public static final BlockType POWERED_RAIL = DummyObjectProvider.createFor(BlockType.class, "POWERED_RAIL");
 
     public static final BlockType PRISMARINE = DummyObjectProvider.createFor(BlockType.class, "PRISMARINE");
@@ -910,6 +998,8 @@ public final class BlockTypes {
     public static final BlockType PRISMARINE_SLAB = DummyObjectProvider.createFor(BlockType.class, "PRISMARINE_SLAB");
 
     public static final BlockType PRISMARINE_STAIRS = DummyObjectProvider.createFor(BlockType.class, "PRISMARINE_STAIRS");
+
+    public static final BlockType PRISMARINE_WALL = DummyObjectProvider.createFor(BlockType.class, "PRISMARINE_WALL");
 
     public static final BlockType PUMPKIN = DummyObjectProvider.createFor(BlockType.class, "PUMPKIN");
 
@@ -973,6 +1063,12 @@ public final class BlockTypes {
 
     public static final BlockType RED_MUSHROOM_BLOCK = DummyObjectProvider.createFor(BlockType.class, "RED_MUSHROOM_BLOCK");
 
+    public static final BlockType RED_NETHER_BRICK_SLAB = DummyObjectProvider.createFor(BlockType.class, "RED_NETHER_BRICK_SLAB");
+
+    public static final BlockType RED_NETHER_BRICK_STAIRS = DummyObjectProvider.createFor(BlockType.class, "RED_NETHER_BRICK_STAIRS");
+
+    public static final BlockType RED_NETHER_BRICK_WALL = DummyObjectProvider.createFor(BlockType.class, "RED_NETHER_BRICK_WALL");
+
     public static final BlockType RED_NETHER_BRICKS = DummyObjectProvider.createFor(BlockType.class, "RED_NETHER_BRICKS");
 
     public static final BlockType RED_SAND = DummyObjectProvider.createFor(BlockType.class, "RED_SAND");
@@ -982,6 +1078,8 @@ public final class BlockTypes {
     public static final BlockType RED_SANDSTONE_SLAB = DummyObjectProvider.createFor(BlockType.class, "RED_SANDSTONE_SLAB");
 
     public static final BlockType RED_SANDSTONE_STAIRS = DummyObjectProvider.createFor(BlockType.class, "RED_SANDSTONE_STAIRS");
+
+    public static final BlockType RED_SANDSTONE_WALL = DummyObjectProvider.createFor(BlockType.class, "RED_SANDSTONE_WALL");
 
     public static final BlockType RED_SHULKER_BOX = DummyObjectProvider.createFor(BlockType.class, "RED_SHULKER_BOX");
 
@@ -1023,6 +1121,8 @@ public final class BlockTypes {
 
     public static final BlockType SANDSTONE_STAIRS = DummyObjectProvider.createFor(BlockType.class, "SANDSTONE_STAIRS");
 
+    public static final BlockType SANDSTONE_WALL = DummyObjectProvider.createFor(BlockType.class, "SANDSTONE_WALL");
+
     public static final BlockType SEA_LANTERN = DummyObjectProvider.createFor(BlockType.class, "SEA_LANTERN");
 
     public static final BlockType SEA_PICKLE = DummyObjectProvider.createFor(BlockType.class, "SEA_PICKLE");
@@ -1030,8 +1130,6 @@ public final class BlockTypes {
     public static final BlockType SEAGRASS = DummyObjectProvider.createFor(BlockType.class, "SEAGRASS");
 
     public static final BlockType SHULKER_BOX = DummyObjectProvider.createFor(BlockType.class, "SHULKER_BOX");
-
-    public static final BlockType SIGN = DummyObjectProvider.createFor(BlockType.class, "SIGN");
 
     public static final BlockType SKELETON_SKULL = DummyObjectProvider.createFor(BlockType.class, "SKELETON_SKULL");
 
@@ -1041,11 +1139,25 @@ public final class BlockTypes {
 
     public static final BlockType SMOOTH_QUARTZ = DummyObjectProvider.createFor(BlockType.class, "SMOOTH_QUARTZ");
 
+    public static final BlockType SMOOTH_QUARTZ_SLAB = DummyObjectProvider.createFor(BlockType.class, "SMOOTH_QUARTZ_SLAB");
+
+    public static final BlockType SMOOTH_QUARTZ_STAIRS = DummyObjectProvider.createFor(BlockType.class, "SMOOTH_QUARTZ_STAIRS");
+
     public static final BlockType SMOOTH_RED_SANDSTONE = DummyObjectProvider.createFor(BlockType.class, "SMOOTH_RED_SANDSTONE");
+
+    public static final BlockType SMOOTH_RED_SANDSTONE_SLAB = DummyObjectProvider.createFor(BlockType.class, "SMOOTH_RED_SANDSTONE_SLAB");
+
+    public static final BlockType SMOOTH_RED_SANDSTONE_STAIRS = DummyObjectProvider.createFor(BlockType.class, "SMOOTH_RED_SANDSTONE_STAIRS");
 
     public static final BlockType SMOOTH_SANDSTONE = DummyObjectProvider.createFor(BlockType.class, "SMOOTH_SANDSTONE");
 
+    public static final BlockType SMOOTH_SANDSTONE_SLAB = DummyObjectProvider.createFor(BlockType.class, "SMOOTH_SANDSTONE_SLAB");
+
+    public static final BlockType SMOOTH_SANDSTONE_STAIRS = DummyObjectProvider.createFor(BlockType.class, "SMOOTH_SANDSTONE_STAIRS");
+
     public static final BlockType SMOOTH_STONE = DummyObjectProvider.createFor(BlockType.class, "SMOOTH_STONE");
+
+    public static final BlockType SMOOTH_STONE_SLAB = DummyObjectProvider.createFor(BlockType.class, "SMOOTH_STONE_SLAB");
 
     public static final BlockType SNOW = DummyObjectProvider.createFor(BlockType.class, "SNOW");
 
@@ -1075,11 +1187,15 @@ public final class BlockTypes {
 
     public static final BlockType SPRUCE_SAPLING = DummyObjectProvider.createFor(BlockType.class, "SPRUCE_SAPLING");
 
+    public static final BlockType SPRUCE_SIGN = DummyObjectProvider.createFor(BlockType.class, "SPRUCE_SIGN");
+
     public static final BlockType SPRUCE_SLAB = DummyObjectProvider.createFor(BlockType.class, "SPRUCE_SLAB");
 
     public static final BlockType SPRUCE_STAIRS = DummyObjectProvider.createFor(BlockType.class, "SPRUCE_STAIRS");
 
     public static final BlockType SPRUCE_TRAPDOOR = DummyObjectProvider.createFor(BlockType.class, "SPRUCE_TRAPDOOR");
+
+    public static final BlockType SPRUCE_WALL_SIGN = DummyObjectProvider.createFor(BlockType.class, "SPRUCE_WALL_SIGN");
 
     public static final BlockType SPRUCE_WOOD = DummyObjectProvider.createFor(BlockType.class, "SPRUCE_WOOD");
 
@@ -1091,6 +1207,8 @@ public final class BlockTypes {
 
     public static final BlockType STONE_BRICK_STAIRS = DummyObjectProvider.createFor(BlockType.class, "STONE_BRICK_STAIRS");
 
+    public static final BlockType STONE_BRICK_WALL = DummyObjectProvider.createFor(BlockType.class, "STONE_BRICK_WALL");
+
     public static final BlockType STONE_BRICKS = DummyObjectProvider.createFor(BlockType.class, "STONE_BRICKS");
 
     public static final BlockType STONE_BUTTON = DummyObjectProvider.createFor(BlockType.class, "STONE_BUTTON");
@@ -1098,6 +1216,8 @@ public final class BlockTypes {
     public static final BlockType STONE_PRESSURE_PLATE = DummyObjectProvider.createFor(BlockType.class, "STONE_PRESSURE_PLATE");
 
     public static final BlockType STONE_SLAB = DummyObjectProvider.createFor(BlockType.class, "STONE_SLAB");
+
+    public static final BlockType STONE_STAIRS = DummyObjectProvider.createFor(BlockType.class, "STONE_STAIRS");
 
     public static final BlockType STRIPPED_ACACIA_LOG = DummyObjectProvider.createFor(BlockType.class, "STRIPPED_ACACIA_LOG");
 
@@ -1161,8 +1281,6 @@ public final class BlockTypes {
 
     public static final BlockType VOID_AIR = DummyObjectProvider.createFor(BlockType.class, "VOID_AIR");
 
-    public static final BlockType WALL_SIGN = DummyObjectProvider.createFor(BlockType.class, "WALL_SIGN");
-
     public static final BlockType WALL_TORCH = DummyObjectProvider.createFor(BlockType.class, "WALL_TORCH");
 
     public static final BlockType WATER = DummyObjectProvider.createFor(BlockType.class, "WATER");
@@ -1196,6 +1314,8 @@ public final class BlockTypes {
     public static final BlockType WHITE_WALL_BANNER = DummyObjectProvider.createFor(BlockType.class, "WHITE_WALL_BANNER");
 
     public static final BlockType WHITE_WOOL = DummyObjectProvider.createFor(BlockType.class, "WHITE_WOOL");
+
+    public static final BlockType WITHER_ROSE = DummyObjectProvider.createFor(BlockType.class, "WITHER_ROSE");
 
     public static final BlockType WITHER_SKELETON_SKULL = DummyObjectProvider.createFor(BlockType.class, "WITHER_SKELETON_SKULL");
 

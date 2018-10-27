@@ -60,6 +60,8 @@ public final class BooleanTraits {
 
     public static final BooleanTrait ACACIA_PRESSURE_PLATE_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "ACACIA_PRESSURE_PLATE_POWERED");
 
+    public static final BooleanTrait ACACIA_SIGN_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "ACACIA_SIGN_WATERLOGGED");
+
     public static final BooleanTrait ACACIA_SLAB_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "ACACIA_SLAB_WATERLOGGED");
 
     public static final BooleanTrait ACACIA_STAIRS_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "ACACIA_STAIRS_WATERLOGGED");
@@ -70,7 +72,25 @@ public final class BooleanTraits {
 
     public static final BooleanTrait ACACIA_TRAPDOOR_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "ACACIA_TRAPDOOR_WATERLOGGED");
 
+    public static final BooleanTrait ACACIA_WALL_SIGN_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "ACACIA_WALL_SIGN_WATERLOGGED");
+
     public static final BooleanTrait ACTIVATOR_RAIL_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "ACTIVATOR_RAIL_POWERED");
+
+    public static final BooleanTrait ANDESITE_SLAB_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "ANDESITE_SLAB_WATERLOGGED");
+
+    public static final BooleanTrait ANDESITE_STAIRS_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "ANDESITE_STAIRS_WATERLOGGED");
+
+    public static final BooleanTrait ANDESITE_WALL_EAST = DummyObjectProvider.createFor(BooleanTrait.class, "ANDESITE_WALL_EAST");
+
+    public static final BooleanTrait ANDESITE_WALL_NORTH = DummyObjectProvider.createFor(BooleanTrait.class, "ANDESITE_WALL_NORTH");
+
+    public static final BooleanTrait ANDESITE_WALL_SOUTH = DummyObjectProvider.createFor(BooleanTrait.class, "ANDESITE_WALL_SOUTH");
+
+    public static final BooleanTrait ANDESITE_WALL_UP = DummyObjectProvider.createFor(BooleanTrait.class, "ANDESITE_WALL_UP");
+
+    public static final BooleanTrait ANDESITE_WALL_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "ANDESITE_WALL_WATERLOGGED");
+
+    public static final BooleanTrait ANDESITE_WALL_WEST = DummyObjectProvider.createFor(BooleanTrait.class, "ANDESITE_WALL_WEST");
 
     public static final BooleanTrait BIRCH_BUTTON_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "BIRCH_BUTTON_POWERED");
 
@@ -98,6 +118,8 @@ public final class BooleanTraits {
 
     public static final BooleanTrait BIRCH_PRESSURE_PLATE_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "BIRCH_PRESSURE_PLATE_POWERED");
 
+    public static final BooleanTrait BIRCH_SIGN_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "BIRCH_SIGN_WATERLOGGED");
+
     public static final BooleanTrait BIRCH_SLAB_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "BIRCH_SLAB_WATERLOGGED");
 
     public static final BooleanTrait BIRCH_STAIRS_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "BIRCH_STAIRS_WATERLOGGED");
@@ -107,6 +129,8 @@ public final class BooleanTraits {
     public static final BooleanTrait BIRCH_TRAPDOOR_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "BIRCH_TRAPDOOR_POWERED");
 
     public static final BooleanTrait BIRCH_TRAPDOOR_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "BIRCH_TRAPDOOR_WATERLOGGED");
+
+    public static final BooleanTrait BIRCH_WALL_SIGN_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "BIRCH_WALL_SIGN_WATERLOGGED");
 
     public static final BooleanTrait BLACK_BED_OCCUPIED = DummyObjectProvider.createFor(BooleanTrait.class, "BLACK_BED_OCCUPIED");
 
@@ -147,6 +171,18 @@ public final class BooleanTraits {
     public static final BooleanTrait BRICK_SLAB_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "BRICK_SLAB_WATERLOGGED");
 
     public static final BooleanTrait BRICK_STAIRS_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "BRICK_STAIRS_WATERLOGGED");
+
+    public static final BooleanTrait BRICK_WALL_EAST = DummyObjectProvider.createFor(BooleanTrait.class, "BRICK_WALL_EAST");
+
+    public static final BooleanTrait BRICK_WALL_NORTH = DummyObjectProvider.createFor(BooleanTrait.class, "BRICK_WALL_NORTH");
+
+    public static final BooleanTrait BRICK_WALL_SOUTH = DummyObjectProvider.createFor(BooleanTrait.class, "BRICK_WALL_SOUTH");
+
+    public static final BooleanTrait BRICK_WALL_UP = DummyObjectProvider.createFor(BooleanTrait.class, "BRICK_WALL_UP");
+
+    public static final BooleanTrait BRICK_WALL_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "BRICK_WALL_WATERLOGGED");
+
+    public static final BooleanTrait BRICK_WALL_WEST = DummyObjectProvider.createFor(BooleanTrait.class, "BRICK_WALL_WEST");
 
     public static final BooleanTrait BROWN_BED_OCCUPIED = DummyObjectProvider.createFor(BooleanTrait.class, "BROWN_BED_OCCUPIED");
 
@@ -256,6 +292,8 @@ public final class BooleanTraits {
 
     public static final BooleanTrait DARK_OAK_PRESSURE_PLATE_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "DARK_OAK_PRESSURE_PLATE_POWERED");
 
+    public static final BooleanTrait DARK_OAK_SIGN_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "DARK_OAK_SIGN_WATERLOGGED");
+
     public static final BooleanTrait DARK_OAK_SLAB_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "DARK_OAK_SLAB_WATERLOGGED");
 
     public static final BooleanTrait DARK_OAK_STAIRS_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "DARK_OAK_STAIRS_WATERLOGGED");
@@ -265,6 +303,8 @@ public final class BooleanTraits {
     public static final BooleanTrait DARK_OAK_TRAPDOOR_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "DARK_OAK_TRAPDOOR_POWERED");
 
     public static final BooleanTrait DARK_OAK_TRAPDOOR_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "DARK_OAK_TRAPDOOR_WATERLOGGED");
+
+    public static final BooleanTrait DARK_OAK_WALL_SIGN_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "DARK_OAK_WALL_SIGN_WATERLOGGED");
 
     public static final BooleanTrait DARK_PRISMARINE_SLAB_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "DARK_PRISMARINE_SLAB_WATERLOGGED");
 
@@ -304,6 +344,22 @@ public final class BooleanTraits {
 
     public static final BooleanTrait DETECTOR_RAIL_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "DETECTOR_RAIL_POWERED");
 
+    public static final BooleanTrait DIORITE_SLAB_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "DIORITE_SLAB_WATERLOGGED");
+
+    public static final BooleanTrait DIORITE_STAIRS_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "DIORITE_STAIRS_WATERLOGGED");
+
+    public static final BooleanTrait DIORITE_WALL_EAST = DummyObjectProvider.createFor(BooleanTrait.class, "DIORITE_WALL_EAST");
+
+    public static final BooleanTrait DIORITE_WALL_NORTH = DummyObjectProvider.createFor(BooleanTrait.class, "DIORITE_WALL_NORTH");
+
+    public static final BooleanTrait DIORITE_WALL_SOUTH = DummyObjectProvider.createFor(BooleanTrait.class, "DIORITE_WALL_SOUTH");
+
+    public static final BooleanTrait DIORITE_WALL_UP = DummyObjectProvider.createFor(BooleanTrait.class, "DIORITE_WALL_UP");
+
+    public static final BooleanTrait DIORITE_WALL_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "DIORITE_WALL_WATERLOGGED");
+
+    public static final BooleanTrait DIORITE_WALL_WEST = DummyObjectProvider.createFor(BooleanTrait.class, "DIORITE_WALL_WEST");
+
     public static final BooleanTrait DISPENSER_TRIGGERED = DummyObjectProvider.createFor(BooleanTrait.class, "DISPENSER_TRIGGERED");
 
     public static final BooleanTrait DROPPER_TRIGGERED = DummyObjectProvider.createFor(BooleanTrait.class, "DROPPER_TRIGGERED");
@@ -311,6 +367,22 @@ public final class BooleanTraits {
     public static final BooleanTrait ENDER_CHEST_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "ENDER_CHEST_WATERLOGGED");
 
     public static final BooleanTrait END_PORTAL_FRAME_EYE = DummyObjectProvider.createFor(BooleanTrait.class, "END_PORTAL_FRAME_EYE");
+
+    public static final BooleanTrait END_STONE_BRICK_SLAB_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "END_STONE_BRICK_SLAB_WATERLOGGED");
+
+    public static final BooleanTrait END_STONE_BRICK_STAIRS_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "END_STONE_BRICK_STAIRS_WATERLOGGED");
+
+    public static final BooleanTrait END_STONE_BRICK_WALL_EAST = DummyObjectProvider.createFor(BooleanTrait.class, "END_STONE_BRICK_WALL_EAST");
+
+    public static final BooleanTrait END_STONE_BRICK_WALL_NORTH = DummyObjectProvider.createFor(BooleanTrait.class, "END_STONE_BRICK_WALL_NORTH");
+
+    public static final BooleanTrait END_STONE_BRICK_WALL_SOUTH = DummyObjectProvider.createFor(BooleanTrait.class, "END_STONE_BRICK_WALL_SOUTH");
+
+    public static final BooleanTrait END_STONE_BRICK_WALL_UP = DummyObjectProvider.createFor(BooleanTrait.class, "END_STONE_BRICK_WALL_UP");
+
+    public static final BooleanTrait END_STONE_BRICK_WALL_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "END_STONE_BRICK_WALL_WATERLOGGED");
+
+    public static final BooleanTrait END_STONE_BRICK_WALL_WEST = DummyObjectProvider.createFor(BooleanTrait.class, "END_STONE_BRICK_WALL_WEST");
 
     public static final BooleanTrait FIRE_CORAL_FAN_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "FIRE_CORAL_FAN_WATERLOGGED");
 
@@ -339,6 +411,22 @@ public final class BooleanTraits {
     public static final BooleanTrait GLASS_PANE_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "GLASS_PANE_WATERLOGGED");
 
     public static final BooleanTrait GLASS_PANE_WEST = DummyObjectProvider.createFor(BooleanTrait.class, "GLASS_PANE_WEST");
+
+    public static final BooleanTrait GRANITE_SLAB_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "GRANITE_SLAB_WATERLOGGED");
+
+    public static final BooleanTrait GRANITE_STAIRS_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "GRANITE_STAIRS_WATERLOGGED");
+
+    public static final BooleanTrait GRANITE_WALL_EAST = DummyObjectProvider.createFor(BooleanTrait.class, "GRANITE_WALL_EAST");
+
+    public static final BooleanTrait GRANITE_WALL_NORTH = DummyObjectProvider.createFor(BooleanTrait.class, "GRANITE_WALL_NORTH");
+
+    public static final BooleanTrait GRANITE_WALL_SOUTH = DummyObjectProvider.createFor(BooleanTrait.class, "GRANITE_WALL_SOUTH");
+
+    public static final BooleanTrait GRANITE_WALL_UP = DummyObjectProvider.createFor(BooleanTrait.class, "GRANITE_WALL_UP");
+
+    public static final BooleanTrait GRANITE_WALL_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "GRANITE_WALL_WATERLOGGED");
+
+    public static final BooleanTrait GRANITE_WALL_WEST = DummyObjectProvider.createFor(BooleanTrait.class, "GRANITE_WALL_WEST");
 
     public static final BooleanTrait GRASS_BLOCK_SNOWY = DummyObjectProvider.createFor(BooleanTrait.class, "GRASS_BLOCK_SNOWY");
 
@@ -422,6 +510,8 @@ public final class BooleanTraits {
 
     public static final BooleanTrait JUNGLE_PRESSURE_PLATE_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "JUNGLE_PRESSURE_PLATE_POWERED");
 
+    public static final BooleanTrait JUNGLE_SIGN_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "JUNGLE_SIGN_WATERLOGGED");
+
     public static final BooleanTrait JUNGLE_SLAB_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "JUNGLE_SLAB_WATERLOGGED");
 
     public static final BooleanTrait JUNGLE_STAIRS_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "JUNGLE_STAIRS_WATERLOGGED");
@@ -431,6 +521,8 @@ public final class BooleanTraits {
     public static final BooleanTrait JUNGLE_TRAPDOOR_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "JUNGLE_TRAPDOOR_POWERED");
 
     public static final BooleanTrait JUNGLE_TRAPDOOR_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "JUNGLE_TRAPDOOR_WATERLOGGED");
+
+    public static final BooleanTrait JUNGLE_WALL_SIGN_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "JUNGLE_WALL_SIGN_WATERLOGGED");
 
     public static final BooleanTrait LADDER_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "LADDER_WATERLOGGED");
 
@@ -484,6 +576,10 @@ public final class BooleanTraits {
 
     public static final BooleanTrait MAGENTA_STAINED_GLASS_PANE_WEST = DummyObjectProvider.createFor(BooleanTrait.class, "MAGENTA_STAINED_GLASS_PANE_WEST");
 
+    public static final BooleanTrait MOSSY_COBBLESTONE_SLAB_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "MOSSY_COBBLESTONE_SLAB_WATERLOGGED");
+
+    public static final BooleanTrait MOSSY_COBBLESTONE_STAIRS_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "MOSSY_COBBLESTONE_STAIRS_WATERLOGGED");
+
     public static final BooleanTrait MOSSY_COBBLESTONE_WALL_EAST = DummyObjectProvider.createFor(BooleanTrait.class, "MOSSY_COBBLESTONE_WALL_EAST");
 
     public static final BooleanTrait MOSSY_COBBLESTONE_WALL_NORTH = DummyObjectProvider.createFor(BooleanTrait.class, "MOSSY_COBBLESTONE_WALL_NORTH");
@@ -495,6 +591,22 @@ public final class BooleanTraits {
     public static final BooleanTrait MOSSY_COBBLESTONE_WALL_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "MOSSY_COBBLESTONE_WALL_WATERLOGGED");
 
     public static final BooleanTrait MOSSY_COBBLESTONE_WALL_WEST = DummyObjectProvider.createFor(BooleanTrait.class, "MOSSY_COBBLESTONE_WALL_WEST");
+
+    public static final BooleanTrait MOSSY_STONE_BRICK_SLAB_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "MOSSY_STONE_BRICK_SLAB_WATERLOGGED");
+
+    public static final BooleanTrait MOSSY_STONE_BRICK_STAIRS_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "MOSSY_STONE_BRICK_STAIRS_WATERLOGGED");
+
+    public static final BooleanTrait MOSSY_STONE_BRICK_WALL_EAST = DummyObjectProvider.createFor(BooleanTrait.class, "MOSSY_STONE_BRICK_WALL_EAST");
+
+    public static final BooleanTrait MOSSY_STONE_BRICK_WALL_NORTH = DummyObjectProvider.createFor(BooleanTrait.class, "MOSSY_STONE_BRICK_WALL_NORTH");
+
+    public static final BooleanTrait MOSSY_STONE_BRICK_WALL_SOUTH = DummyObjectProvider.createFor(BooleanTrait.class, "MOSSY_STONE_BRICK_WALL_SOUTH");
+
+    public static final BooleanTrait MOSSY_STONE_BRICK_WALL_UP = DummyObjectProvider.createFor(BooleanTrait.class, "MOSSY_STONE_BRICK_WALL_UP");
+
+    public static final BooleanTrait MOSSY_STONE_BRICK_WALL_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "MOSSY_STONE_BRICK_WALL_WATERLOGGED");
+
+    public static final BooleanTrait MOSSY_STONE_BRICK_WALL_WEST = DummyObjectProvider.createFor(BooleanTrait.class, "MOSSY_STONE_BRICK_WALL_WEST");
 
     public static final BooleanTrait MUSHROOM_STEM_DOWN = DummyObjectProvider.createFor(BooleanTrait.class, "MUSHROOM_STEM_DOWN");
 
@@ -524,6 +636,18 @@ public final class BooleanTraits {
 
     public static final BooleanTrait NETHER_BRICK_STAIRS_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "NETHER_BRICK_STAIRS_WATERLOGGED");
 
+    public static final BooleanTrait NETHER_BRICK_WALL_EAST = DummyObjectProvider.createFor(BooleanTrait.class, "NETHER_BRICK_WALL_EAST");
+
+    public static final BooleanTrait NETHER_BRICK_WALL_NORTH = DummyObjectProvider.createFor(BooleanTrait.class, "NETHER_BRICK_WALL_NORTH");
+
+    public static final BooleanTrait NETHER_BRICK_WALL_SOUTH = DummyObjectProvider.createFor(BooleanTrait.class, "NETHER_BRICK_WALL_SOUTH");
+
+    public static final BooleanTrait NETHER_BRICK_WALL_UP = DummyObjectProvider.createFor(BooleanTrait.class, "NETHER_BRICK_WALL_UP");
+
+    public static final BooleanTrait NETHER_BRICK_WALL_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "NETHER_BRICK_WALL_WATERLOGGED");
+
+    public static final BooleanTrait NETHER_BRICK_WALL_WEST = DummyObjectProvider.createFor(BooleanTrait.class, "NETHER_BRICK_WALL_WEST");
+
     public static final BooleanTrait NOTE_BLOCK_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "NOTE_BLOCK_POWERED");
 
     public static final BooleanTrait OAK_BUTTON_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "OAK_BUTTON_POWERED");
@@ -552,6 +676,8 @@ public final class BooleanTraits {
 
     public static final BooleanTrait OAK_PRESSURE_PLATE_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "OAK_PRESSURE_PLATE_POWERED");
 
+    public static final BooleanTrait OAK_SIGN_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "OAK_SIGN_WATERLOGGED");
+
     public static final BooleanTrait OAK_SLAB_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "OAK_SLAB_WATERLOGGED");
 
     public static final BooleanTrait OAK_STAIRS_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "OAK_STAIRS_WATERLOGGED");
@@ -561,6 +687,8 @@ public final class BooleanTraits {
     public static final BooleanTrait OAK_TRAPDOOR_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "OAK_TRAPDOOR_POWERED");
 
     public static final BooleanTrait OAK_TRAPDOOR_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "OAK_TRAPDOOR_WATERLOGGED");
+
+    public static final BooleanTrait OAK_WALL_SIGN_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "OAK_WALL_SIGN_WATERLOGGED");
 
     public static final BooleanTrait OBSERVER_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "OBSERVER_POWERED");
 
@@ -596,6 +724,18 @@ public final class BooleanTraits {
 
     public static final BooleanTrait PODZOL_SNOWY = DummyObjectProvider.createFor(BooleanTrait.class, "PODZOL_SNOWY");
 
+    public static final BooleanTrait POLISHED_ANDESITE_SLAB_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "POLISHED_ANDESITE_SLAB_WATERLOGGED");
+
+    public static final BooleanTrait POLISHED_ANDESITE_STAIRS_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "POLISHED_ANDESITE_STAIRS_WATERLOGGED");
+
+    public static final BooleanTrait POLISHED_DIORITE_SLAB_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "POLISHED_DIORITE_SLAB_WATERLOGGED");
+
+    public static final BooleanTrait POLISHED_DIORITE_STAIRS_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "POLISHED_DIORITE_STAIRS_WATERLOGGED");
+
+    public static final BooleanTrait POLISHED_GRANITE_SLAB_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "POLISHED_GRANITE_SLAB_WATERLOGGED");
+
+    public static final BooleanTrait POLISHED_GRANITE_STAIRS_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "POLISHED_GRANITE_STAIRS_WATERLOGGED");
+
     public static final BooleanTrait POWERED_RAIL_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "POWERED_RAIL_POWERED");
 
     public static final BooleanTrait PRISMARINE_BRICK_SLAB_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "PRISMARINE_BRICK_SLAB_WATERLOGGED");
@@ -605,6 +745,18 @@ public final class BooleanTraits {
     public static final BooleanTrait PRISMARINE_SLAB_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "PRISMARINE_SLAB_WATERLOGGED");
 
     public static final BooleanTrait PRISMARINE_STAIRS_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "PRISMARINE_STAIRS_WATERLOGGED");
+
+    public static final BooleanTrait PRISMARINE_WALL_EAST = DummyObjectProvider.createFor(BooleanTrait.class, "PRISMARINE_WALL_EAST");
+
+    public static final BooleanTrait PRISMARINE_WALL_NORTH = DummyObjectProvider.createFor(BooleanTrait.class, "PRISMARINE_WALL_NORTH");
+
+    public static final BooleanTrait PRISMARINE_WALL_SOUTH = DummyObjectProvider.createFor(BooleanTrait.class, "PRISMARINE_WALL_SOUTH");
+
+    public static final BooleanTrait PRISMARINE_WALL_UP = DummyObjectProvider.createFor(BooleanTrait.class, "PRISMARINE_WALL_UP");
+
+    public static final BooleanTrait PRISMARINE_WALL_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "PRISMARINE_WALL_WATERLOGGED");
+
+    public static final BooleanTrait PRISMARINE_WALL_WEST = DummyObjectProvider.createFor(BooleanTrait.class, "PRISMARINE_WALL_WEST");
 
     public static final BooleanTrait PURPLE_BED_OCCUPIED = DummyObjectProvider.createFor(BooleanTrait.class, "PURPLE_BED_OCCUPIED");
 
@@ -648,9 +800,37 @@ public final class BooleanTraits {
 
     public static final BooleanTrait RED_MUSHROOM_BLOCK_WEST = DummyObjectProvider.createFor(BooleanTrait.class, "RED_MUSHROOM_BLOCK_WEST");
 
+    public static final BooleanTrait RED_NETHER_BRICK_SLAB_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "RED_NETHER_BRICK_SLAB_WATERLOGGED");
+
+    public static final BooleanTrait RED_NETHER_BRICK_STAIRS_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "RED_NETHER_BRICK_STAIRS_WATERLOGGED");
+
+    public static final BooleanTrait RED_NETHER_BRICK_WALL_EAST = DummyObjectProvider.createFor(BooleanTrait.class, "RED_NETHER_BRICK_WALL_EAST");
+
+    public static final BooleanTrait RED_NETHER_BRICK_WALL_NORTH = DummyObjectProvider.createFor(BooleanTrait.class, "RED_NETHER_BRICK_WALL_NORTH");
+
+    public static final BooleanTrait RED_NETHER_BRICK_WALL_SOUTH = DummyObjectProvider.createFor(BooleanTrait.class, "RED_NETHER_BRICK_WALL_SOUTH");
+
+    public static final BooleanTrait RED_NETHER_BRICK_WALL_UP = DummyObjectProvider.createFor(BooleanTrait.class, "RED_NETHER_BRICK_WALL_UP");
+
+    public static final BooleanTrait RED_NETHER_BRICK_WALL_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "RED_NETHER_BRICK_WALL_WATERLOGGED");
+
+    public static final BooleanTrait RED_NETHER_BRICK_WALL_WEST = DummyObjectProvider.createFor(BooleanTrait.class, "RED_NETHER_BRICK_WALL_WEST");
+
     public static final BooleanTrait RED_SANDSTONE_SLAB_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "RED_SANDSTONE_SLAB_WATERLOGGED");
 
     public static final BooleanTrait RED_SANDSTONE_STAIRS_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "RED_SANDSTONE_STAIRS_WATERLOGGED");
+
+    public static final BooleanTrait RED_SANDSTONE_WALL_EAST = DummyObjectProvider.createFor(BooleanTrait.class, "RED_SANDSTONE_WALL_EAST");
+
+    public static final BooleanTrait RED_SANDSTONE_WALL_NORTH = DummyObjectProvider.createFor(BooleanTrait.class, "RED_SANDSTONE_WALL_NORTH");
+
+    public static final BooleanTrait RED_SANDSTONE_WALL_SOUTH = DummyObjectProvider.createFor(BooleanTrait.class, "RED_SANDSTONE_WALL_SOUTH");
+
+    public static final BooleanTrait RED_SANDSTONE_WALL_UP = DummyObjectProvider.createFor(BooleanTrait.class, "RED_SANDSTONE_WALL_UP");
+
+    public static final BooleanTrait RED_SANDSTONE_WALL_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "RED_SANDSTONE_WALL_WATERLOGGED");
+
+    public static final BooleanTrait RED_SANDSTONE_WALL_WEST = DummyObjectProvider.createFor(BooleanTrait.class, "RED_SANDSTONE_WALL_WEST");
 
     public static final BooleanTrait RED_STAINED_GLASS_PANE_EAST = DummyObjectProvider.createFor(BooleanTrait.class, "RED_STAINED_GLASS_PANE_EAST");
 
@@ -672,9 +852,33 @@ public final class BooleanTraits {
 
     public static final BooleanTrait SANDSTONE_STAIRS_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "SANDSTONE_STAIRS_WATERLOGGED");
 
+    public static final BooleanTrait SANDSTONE_WALL_EAST = DummyObjectProvider.createFor(BooleanTrait.class, "SANDSTONE_WALL_EAST");
+
+    public static final BooleanTrait SANDSTONE_WALL_NORTH = DummyObjectProvider.createFor(BooleanTrait.class, "SANDSTONE_WALL_NORTH");
+
+    public static final BooleanTrait SANDSTONE_WALL_SOUTH = DummyObjectProvider.createFor(BooleanTrait.class, "SANDSTONE_WALL_SOUTH");
+
+    public static final BooleanTrait SANDSTONE_WALL_UP = DummyObjectProvider.createFor(BooleanTrait.class, "SANDSTONE_WALL_UP");
+
+    public static final BooleanTrait SANDSTONE_WALL_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "SANDSTONE_WALL_WATERLOGGED");
+
+    public static final BooleanTrait SANDSTONE_WALL_WEST = DummyObjectProvider.createFor(BooleanTrait.class, "SANDSTONE_WALL_WEST");
+
     public static final BooleanTrait SEA_PICKLE_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "SEA_PICKLE_WATERLOGGED");
 
-    public static final BooleanTrait SIGN_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "SIGN_WATERLOGGED");
+    public static final BooleanTrait SMOOTH_QUARTZ_SLAB_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "SMOOTH_QUARTZ_SLAB_WATERLOGGED");
+
+    public static final BooleanTrait SMOOTH_QUARTZ_STAIRS_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "SMOOTH_QUARTZ_STAIRS_WATERLOGGED");
+
+    public static final BooleanTrait SMOOTH_RED_SANDSTONE_SLAB_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "SMOOTH_RED_SANDSTONE_SLAB_WATERLOGGED");
+
+    public static final BooleanTrait SMOOTH_RED_SANDSTONE_STAIRS_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "SMOOTH_RED_SANDSTONE_STAIRS_WATERLOGGED");
+
+    public static final BooleanTrait SMOOTH_SANDSTONE_SLAB_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "SMOOTH_SANDSTONE_SLAB_WATERLOGGED");
+
+    public static final BooleanTrait SMOOTH_SANDSTONE_STAIRS_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "SMOOTH_SANDSTONE_STAIRS_WATERLOGGED");
+
+    public static final BooleanTrait SMOOTH_STONE_SLAB_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "SMOOTH_STONE_SLAB_WATERLOGGED");
 
     public static final BooleanTrait SPRUCE_BUTTON_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "SPRUCE_BUTTON_POWERED");
 
@@ -702,6 +906,8 @@ public final class BooleanTraits {
 
     public static final BooleanTrait SPRUCE_PRESSURE_PLATE_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "SPRUCE_PRESSURE_PLATE_POWERED");
 
+    public static final BooleanTrait SPRUCE_SIGN_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "SPRUCE_SIGN_WATERLOGGED");
+
     public static final BooleanTrait SPRUCE_SLAB_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "SPRUCE_SLAB_WATERLOGGED");
 
     public static final BooleanTrait SPRUCE_STAIRS_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "SPRUCE_STAIRS_WATERLOGGED");
@@ -712,17 +918,33 @@ public final class BooleanTraits {
 
     public static final BooleanTrait SPRUCE_TRAPDOOR_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "SPRUCE_TRAPDOOR_WATERLOGGED");
 
+    public static final BooleanTrait SPRUCE_WALL_SIGN_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "SPRUCE_WALL_SIGN_WATERLOGGED");
+
     public static final BooleanTrait STICKY_PISTON_EXTENDED = DummyObjectProvider.createFor(BooleanTrait.class, "STICKY_PISTON_EXTENDED");
 
     public static final BooleanTrait STONE_BRICK_SLAB_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "STONE_BRICK_SLAB_WATERLOGGED");
 
     public static final BooleanTrait STONE_BRICK_STAIRS_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "STONE_BRICK_STAIRS_WATERLOGGED");
 
+    public static final BooleanTrait STONE_BRICK_WALL_EAST = DummyObjectProvider.createFor(BooleanTrait.class, "STONE_BRICK_WALL_EAST");
+
+    public static final BooleanTrait STONE_BRICK_WALL_NORTH = DummyObjectProvider.createFor(BooleanTrait.class, "STONE_BRICK_WALL_NORTH");
+
+    public static final BooleanTrait STONE_BRICK_WALL_SOUTH = DummyObjectProvider.createFor(BooleanTrait.class, "STONE_BRICK_WALL_SOUTH");
+
+    public static final BooleanTrait STONE_BRICK_WALL_UP = DummyObjectProvider.createFor(BooleanTrait.class, "STONE_BRICK_WALL_UP");
+
+    public static final BooleanTrait STONE_BRICK_WALL_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "STONE_BRICK_WALL_WATERLOGGED");
+
+    public static final BooleanTrait STONE_BRICK_WALL_WEST = DummyObjectProvider.createFor(BooleanTrait.class, "STONE_BRICK_WALL_WEST");
+
     public static final BooleanTrait STONE_BUTTON_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "STONE_BUTTON_POWERED");
 
     public static final BooleanTrait STONE_PRESSURE_PLATE_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "STONE_PRESSURE_PLATE_POWERED");
 
     public static final BooleanTrait STONE_SLAB_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "STONE_SLAB_WATERLOGGED");
+
+    public static final BooleanTrait STONE_STAIRS_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "STONE_STAIRS_WATERLOGGED");
 
     public static final BooleanTrait TNT_UNSTABLE = DummyObjectProvider.createFor(BooleanTrait.class, "TNT_UNSTABLE");
 
@@ -761,8 +983,6 @@ public final class BooleanTraits {
     public static final BooleanTrait VINE_UP = DummyObjectProvider.createFor(BooleanTrait.class, "VINE_UP");
 
     public static final BooleanTrait VINE_WEST = DummyObjectProvider.createFor(BooleanTrait.class, "VINE_WEST");
-
-    public static final BooleanTrait WALL_SIGN_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "WALL_SIGN_WATERLOGGED");
 
     public static final BooleanTrait WHITE_BED_OCCUPIED = DummyObjectProvider.createFor(BooleanTrait.class, "WHITE_BED_OCCUPIED");
 
