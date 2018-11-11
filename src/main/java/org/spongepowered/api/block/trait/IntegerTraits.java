@@ -146,6 +146,8 @@ public final class IntegerTraits {
 
     public static final IntegerTrait REPEATER_DELAY = DummyObjectProvider.createFor(IntegerTrait.class, "REPEATER_DELAY");
 
+    public static final IntegerTrait SCAFFOLDING_DISTANCE = DummyObjectProvider.createFor(IntegerTrait.class, "SCAFFOLDING_DISTANCE");
+
     public static final IntegerTrait SEA_PICKLE_PICKLES = DummyObjectProvider.createFor(IntegerTrait.class, "SEA_PICKLE_PICKLES");
 
     public static final IntegerTrait SKELETON_SKULL_ROTATION = DummyObjectProvider.createFor(IntegerTrait.class, "SKELETON_SKULL_ROTATION");

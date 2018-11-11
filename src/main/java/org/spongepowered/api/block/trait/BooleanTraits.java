@@ -144,6 +144,8 @@ public final class BooleanTraits {
 
     public static final BooleanTrait BLACK_STAINED_GLASS_PANE_WEST = DummyObjectProvider.createFor(BooleanTrait.class, "BLACK_STAINED_GLASS_PANE_WEST");
 
+    public static final BooleanTrait BLAST_FURNACE_LIT = DummyObjectProvider.createFor(BooleanTrait.class, "BLAST_FURNACE_LIT");
+
     public static final BooleanTrait BLUE_BED_OCCUPIED = DummyObjectProvider.createFor(BooleanTrait.class, "BLUE_BED_OCCUPIED");
 
     public static final BooleanTrait BLUE_STAINED_GLASS_PANE_EAST = DummyObjectProvider.createFor(BooleanTrait.class, "BLUE_STAINED_GLASS_PANE_EAST");
@@ -864,7 +866,11 @@ public final class BooleanTraits {
 
     public static final BooleanTrait SANDSTONE_WALL_WEST = DummyObjectProvider.createFor(BooleanTrait.class, "SANDSTONE_WALL_WEST");
 
+    public static final BooleanTrait SCAFFOLDING_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "SCAFFOLDING_WATERLOGGED");
+
     public static final BooleanTrait SEA_PICKLE_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "SEA_PICKLE_WATERLOGGED");
+
+    public static final BooleanTrait SMOKER_LIT = DummyObjectProvider.createFor(BooleanTrait.class, "SMOKER_LIT");
 
     public static final BooleanTrait SMOOTH_QUARTZ_SLAB_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "SMOOTH_QUARTZ_SLAB_WATERLOGGED");
 

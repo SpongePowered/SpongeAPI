@@ -82,6 +82,12 @@ public final class EnumTraits {
 
     public static final EnumTrait<?> BAMBOO_LEAVES = DummyObjectProvider.createFor(EnumTrait.class, "BAMBOO_LEAVES");
 
+    public static final EnumTrait<?> BARREL_FACING = DummyObjectProvider.createFor(EnumTrait.class, "BARREL_FACING");
+
+    public static final EnumTrait<?> BELL_FACE = DummyObjectProvider.createFor(EnumTrait.class, "BELL_FACE");
+
+    public static final EnumTrait<?> BELL_FACING = DummyObjectProvider.createFor(EnumTrait.class, "BELL_FACING");
+
     public static final EnumTrait<?> BIRCH_BUTTON_FACE = DummyObjectProvider.createFor(EnumTrait.class, "BIRCH_BUTTON_FACE");
 
     public static final EnumTrait<?> BIRCH_BUTTON_FACING = DummyObjectProvider.createFor(EnumTrait.class, "BIRCH_BUTTON_FACING");
@@ -121,6 +127,8 @@ public final class EnumTraits {
     public static final EnumTrait<?> BLACK_SHULKER_BOX_FACING = DummyObjectProvider.createFor(EnumTrait.class, "BLACK_SHULKER_BOX_FACING");
 
     public static final EnumTrait<?> BLACK_WALL_BANNER_FACING = DummyObjectProvider.createFor(EnumTrait.class, "BLACK_WALL_BANNER_FACING");
+
+    public static final EnumTrait<?> BLAST_FURNACE_FACING = DummyObjectProvider.createFor(EnumTrait.class, "BLAST_FURNACE_FACING");
 
     public static final EnumTrait<?> BLUE_BED_FACING = DummyObjectProvider.createFor(EnumTrait.class, "BLUE_BED_FACING");
 
@@ -306,6 +314,10 @@ public final class EnumTraits {
 
     public static final EnumTrait<?> GREEN_WALL_BANNER_FACING = DummyObjectProvider.createFor(EnumTrait.class, "GREEN_WALL_BANNER_FACING");
 
+    public static final EnumTrait<?> GRINDSTONE_FACE = DummyObjectProvider.createFor(EnumTrait.class, "GRINDSTONE_FACE");
+
+    public static final EnumTrait<?> GRINDSTONE_FACING = DummyObjectProvider.createFor(EnumTrait.class, "GRINDSTONE_FACING");
+
     public static final EnumTrait<?> HAY_BLOCK_AXIS = DummyObjectProvider.createFor(EnumTrait.class, "HAY_BLOCK_AXIS");
 
     public static final EnumTrait<?> HOPPER_FACING = DummyObjectProvider.createFor(EnumTrait.class, "HOPPER_FACING");
@@ -357,6 +369,8 @@ public final class EnumTraits {
     public static final EnumTrait<?> LADDER_FACING = DummyObjectProvider.createFor(EnumTrait.class, "LADDER_FACING");
 
     public static final EnumTrait<?> LARGE_FERN_HALF = DummyObjectProvider.createFor(EnumTrait.class, "LARGE_FERN_HALF");
+
+    public static final EnumTrait<?> LECTERN_FACING = DummyObjectProvider.createFor(EnumTrait.class, "LECTERN_FACING");
 
     public static final EnumTrait<?> LEVER_FACE = DummyObjectProvider.createFor(EnumTrait.class, "LEVER_FACE");
 
@@ -629,6 +643,8 @@ public final class EnumTraits {
     public static final EnumTrait<?> SHULKER_BOX_FACING = DummyObjectProvider.createFor(EnumTrait.class, "SHULKER_BOX_FACING");
 
     public static final EnumTrait<?> SKELETON_WALL_SKULL_FACING = DummyObjectProvider.createFor(EnumTrait.class, "SKELETON_WALL_SKULL_FACING");
+
+    public static final EnumTrait<?> SMOKER_FACING = DummyObjectProvider.createFor(EnumTrait.class, "SMOKER_FACING");
 
     public static final EnumTrait<?> SMOOTH_QUARTZ_SLAB_TYPE = DummyObjectProvider.createFor(EnumTrait.class, "SMOOTH_QUARTZ_SLAB_TYPE");
 

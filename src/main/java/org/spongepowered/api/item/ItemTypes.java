@@ -91,6 +91,8 @@ public final class ItemTypes {
 
     public static final ItemType BAMBOO = DummyObjectProvider.createFor(ItemType.class, "BAMBOO");
 
+    public static final ItemType BARREL = DummyObjectProvider.createFor(ItemType.class, "BARREL");
+
     public static final ItemType BARRIER = DummyObjectProvider.createFor(ItemType.class, "BARRIER");
 
     public static final ItemType BAT_SPAWN_EGG = DummyObjectProvider.createFor(ItemType.class, "BAT_SPAWN_EGG");
@@ -106,6 +108,8 @@ public final class ItemTypes {
     public static final ItemType BEETROOT_SEEDS = DummyObjectProvider.createFor(ItemType.class, "BEETROOT_SEEDS");
 
     public static final ItemType BEETROOT_SOUP = DummyObjectProvider.createFor(ItemType.class, "BEETROOT_SOUP");
+
+    public static final ItemType BELL = DummyObjectProvider.createFor(ItemType.class, "BELL");
 
     public static final ItemType BIRCH_BOAT = DummyObjectProvider.createFor(ItemType.class, "BIRCH_BOAT");
 
@@ -160,6 +164,8 @@ public final class ItemTypes {
     public static final ItemType BLACK_TERRACOTTA = DummyObjectProvider.createFor(ItemType.class, "BLACK_TERRACOTTA");
 
     public static final ItemType BLACK_WOOL = DummyObjectProvider.createFor(ItemType.class, "BLACK_WOOL");
+
+    public static final ItemType BLAST_FURNACE = DummyObjectProvider.createFor(ItemType.class, "BLAST_FURNACE");
 
     public static final ItemType BLAZE_POWDER = DummyObjectProvider.createFor(ItemType.class, "BLAZE_POWDER");
 
@@ -273,7 +279,11 @@ public final class ItemTypes {
 
     public static final ItemType CARROT_ON_A_STICK = DummyObjectProvider.createFor(ItemType.class, "CARROT_ON_A_STICK");
 
+    public static final ItemType CARTOGRAPHY_TABLE = DummyObjectProvider.createFor(ItemType.class, "CARTOGRAPHY_TABLE");
+
     public static final ItemType CARVED_PUMPKIN = DummyObjectProvider.createFor(ItemType.class, "CARVED_PUMPKIN");
+
+    public static final ItemType CAT_SPAWN_EGG = DummyObjectProvider.createFor(ItemType.class, "CAT_SPAWN_EGG");
 
     public static final ItemType CAULDRON = DummyObjectProvider.createFor(ItemType.class, "CAULDRON");
 
@@ -623,6 +633,8 @@ public final class ItemTypes {
 
     public static final ItemType FISHING_ROD = DummyObjectProvider.createFor(ItemType.class, "FISHING_ROD");
 
+    public static final ItemType FLETCHING_TABLE = DummyObjectProvider.createFor(ItemType.class, "FLETCHING_TABLE");
+
     public static final ItemType FLINT = DummyObjectProvider.createFor(ItemType.class, "FLINT");
 
     public static final ItemType FLINT_AND_STEEL = DummyObjectProvider.createFor(ItemType.class, "FLINT_AND_STEEL");
@@ -746,6 +758,8 @@ public final class ItemTypes {
     public static final ItemType GREEN_TERRACOTTA = DummyObjectProvider.createFor(ItemType.class, "GREEN_TERRACOTTA");
 
     public static final ItemType GREEN_WOOL = DummyObjectProvider.createFor(ItemType.class, "GREEN_WOOL");
+
+    public static final ItemType GRINDSTONE = DummyObjectProvider.createFor(ItemType.class, "GRINDSTONE");
 
     public static final ItemType GUARDIAN_SPAWN_EGG = DummyObjectProvider.createFor(ItemType.class, "GUARDIAN_SPAWN_EGG");
 
@@ -886,6 +900,8 @@ public final class ItemTypes {
     public static final ItemType LEATHER_HELMET = DummyObjectProvider.createFor(ItemType.class, "LEATHER_HELMET");
 
     public static final ItemType LEATHER_LEGGINGS = DummyObjectProvider.createFor(ItemType.class, "LEATHER_LEGGINGS");
+
+    public static final ItemType LECTERN = DummyObjectProvider.createFor(ItemType.class, "LECTERN");
 
     public static final ItemType LEVER = DummyObjectProvider.createFor(ItemType.class, "LEVER");
 
@@ -1419,6 +1435,8 @@ public final class ItemTypes {
 
     public static final ItemType SANDSTONE_WALL = DummyObjectProvider.createFor(ItemType.class, "SANDSTONE_WALL");
 
+    public static final ItemType SCAFFOLDING = DummyObjectProvider.createFor(ItemType.class, "SCAFFOLDING");
+
     public static final ItemType SCUTE = DummyObjectProvider.createFor(ItemType.class, "SCUTE");
 
     public static final ItemType SEA_LANTERN = DummyObjectProvider.createFor(ItemType.class, "SEA_LANTERN");
@@ -1454,6 +1472,10 @@ public final class ItemTypes {
     public static final ItemType SLIME_BLOCK = DummyObjectProvider.createFor(ItemType.class, "SLIME_BLOCK");
 
     public static final ItemType SLIME_SPAWN_EGG = DummyObjectProvider.createFor(ItemType.class, "SLIME_SPAWN_EGG");
+
+    public static final ItemType SMITHING_TABLE = DummyObjectProvider.createFor(ItemType.class, "SMITHING_TABLE");
+
+    public static final ItemType SMOKER = DummyObjectProvider.createFor(ItemType.class, "SMOKER");
 
     public static final ItemType SMOOTH_QUARTZ = DummyObjectProvider.createFor(ItemType.class, "SMOOTH_QUARTZ");
 
@@ -1560,6 +1582,8 @@ public final class ItemTypes {
     public static final ItemType STONE_STAIRS = DummyObjectProvider.createFor(ItemType.class, "STONE_STAIRS");
 
     public static final ItemType STONE_SWORD = DummyObjectProvider.createFor(ItemType.class, "STONE_SWORD");
+
+    public static final ItemType STONECUTTER = DummyObjectProvider.createFor(ItemType.class, "STONECUTTER");
 
     public static final ItemType STRAY_SPAWN_EGG = DummyObjectProvider.createFor(ItemType.class, "STRAY_SPAWN_EGG");
 
