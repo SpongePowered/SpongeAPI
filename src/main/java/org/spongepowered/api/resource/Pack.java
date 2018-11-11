@@ -29,16 +29,19 @@ import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.ResettableBuilder;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 /**
  * A pack can contain several {@link Resource Resources}.
  */
-public interface Pack extends ResourceProvider {
+public interface Pack {
 
     /**
      * Creates a new {@link Builder} instance.
@@ -50,11 +53,35 @@ public interface Pack extends ResourceProvider {
     }
 
     /**
-     * Gets the name of this pack which is displayed to the user.
+     * Opens a new {@link InputStream} to the specified resource.
      *
-     * @return The name
+     * @param type The resource type
+     * @param path The path of the resource to open
+     * @return The input stream
+     * @throws IOException If the resource does not exist or another IOException occurs.
      */
-    Text getName();
+    InputStream openStream(ResourceType type, ResourcePath path) throws IOException;
+
+    /**
+     * Recursively gets all the resources loaded from this pack. All namespaces
+     * are considered.
+     *
+     * @param type The resource type
+     * @param path The resource path
+     * @param filter The file name filter
+     * @return Collection of resources
+     * @see ResourceManager#getResources(String, Predicate)
+     */
+    Collection<ResourcePath> getResources(ResourceType type, String path, Predicate<String> filter);
+
+    /**
+     * Checks if a resource exists in this pack.
+     *
+     * @param type The resource type
+     * @param path THe path of the resource
+     * @return True if the resource exists, false otherwise
+     */
+    boolean exists(ResourceType type, ResourcePath path);
 
     /**
      * Gets the metadata of this pack. The {@link DataView} represented is of
@@ -66,16 +93,11 @@ public interface Pack extends ResourceProvider {
     Optional<DataView> getMetadata();
 
     /**
-     * Gets all the resources loaded from this pack. Depending on the pack
-     * implementation, the contents of the collection may not reflect what the
-     * pack contains.
+     * Gets the name of this pack which is displayed to the user.
      *
-     * <p>If the pack is lazy-initialized, it is possible for the collection to
-     * be empty.</p>
-     *
-     * @return List of loaded resources
+     * @return The name
      */
-    Collection<Resource> getAllResources();
+    Text getName();
 
     /**
      * A builder for a {@link Pack}.
@@ -115,7 +137,9 @@ public interface Pack extends ResourceProvider {
          * @param resources The resources
          * @return This builder
          */
-        Builder resources(Map<ResourcePath, ResourceData> resources);
+        default Builder resources(Map<ResourcePath, ResourceData> resources) {
+            return resources(() -> resources);
+        }
 
         /**
          * Provides a {@link Resource} list to include in the pack. The

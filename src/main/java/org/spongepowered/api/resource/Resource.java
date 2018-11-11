@@ -32,6 +32,7 @@ import org.spongepowered.api.data.persistence.DataFormat;
 import org.spongepowered.api.data.persistence.InvalidDataFormatException;
 
 import java.io.BufferedReader;
+import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -46,9 +47,9 @@ import javax.annotation.WillNotClose;
 /**
  * A resource can represent any kind of loaded data. It can be a file on the
  * filesystem, a network location, or even generated at runtime. Use
- * {@link #openStream()} to load the data held by a resource.
+ * {@link #getInputStream()} to load the data held by a resource.
  */
-public interface Resource extends ResourceData {
+public interface Resource extends ResourceData, Closeable {
 
     /**
      * Gets the path of this resource.
@@ -64,18 +65,15 @@ public interface Resource extends ResourceData {
      * @return The parent pack.
      */
     Pack getPack();
-    
-    ResourceType getType();
 
     /**
      * Gets a reader for this resource using the given {@link Charset}.
      *
      * @param charset The charset
      * @return A new reader
-     * @throws IOException if an error occurs
      */
-    default BufferedReader getReader(Charset charset) throws IOException {
-        return new BufferedReader(new InputStreamReader(openStream(), charset));
+    default BufferedReader getReader(Charset charset) {
+        return new BufferedReader(new InputStreamReader(getInputStream(), charset));
     }
 
     /**
@@ -111,7 +109,7 @@ public interface Resource extends ResourceData {
      * @throws IOException if an error occurs
      */
     default byte[] readBytes() throws IOException {
-        try (InputStream in = openStream()) {
+        try (InputStream in = getInputStream()) {
             return ByteStreams.toByteArray(in);
         }
     }
@@ -124,7 +122,7 @@ public interface Resource extends ResourceData {
      * @throws IOException if an error occurs
      */
     default DataView readDataView(DataFormat format) throws IOException {
-        try (InputStream in = openStream()) {
+        try (InputStream in = getInputStream()) {
             return format.readFrom(in);
         } catch (InvalidDataFormatException e) {
             throw new IOException(e);
@@ -139,7 +137,7 @@ public interface Resource extends ResourceData {
      * @throws IOException if an error occurs
      */
     default void copyTo(Path path, OpenOption... options) throws IOException {
-        try (InputStream in = openStream()) {
+        try (InputStream in = getInputStream()) {
             MoreFiles.asByteSink(path, options).writeFrom(in);
         }
     }
@@ -151,7 +149,7 @@ public interface Resource extends ResourceData {
      * @throws IOException if an error occurs
      */
     default void copyTo(@WillNotClose OutputStream out) throws IOException {
-        try (InputStream in = openStream()) {
+        try (InputStream in = getInputStream()) {
             ByteStreams.copy(in, out);
         }
     }

@@ -27,6 +27,17 @@ package org.spongepowered.api.resource;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
+/**
+ * Represents the root directory for different resource types. Current
+ * values in vanilla is assets and data.
+ */
 @CatalogedBy(ResourceTypes.class)
 public interface ResourceType extends CatalogType {
+
+    /**
+     * Gets the name of the root directory path for this resource type.
+     *
+     * @return The root name
+     */
+    String getRootName();
 }

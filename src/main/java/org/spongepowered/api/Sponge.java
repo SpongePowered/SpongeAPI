@@ -37,7 +37,6 @@ import org.spongepowered.api.data.property.store.PropertyStore;
 import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.network.ChannelRegistrar;
-import org.spongepowered.api.resource.ResourceManager;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.scheduler.Scheduler;
 import org.spongepowered.api.service.ServiceManager;
@@ -60,7 +59,6 @@ public final class Sponge {
     @Inject private static PluginManager pluginManager;
     @Inject private static EventManager eventManager;
     @Inject private static AssetManager assetManager;
-    @Inject private static ResourceManager resourceManager;
     @Inject private static ConfigManager configManager;
     @Inject private static ServiceManager serviceManager;
     @Inject private static ChannelRegistrar channelRegistrar;
@@ -150,10 +148,6 @@ public final class Sponge {
     @Deprecated
     public static AssetManager getAssetManager() {
         return check(assetManager);
-    }
-
-    public static ResourceManager getResourceManager() {
-        return check(resourceManager);
     }
 
     /**

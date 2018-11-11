@@ -24,21 +24,26 @@
  */
 package org.spongepowered.api.event.resource;
 
-import com.google.common.collect.ImmutableList;
+import java.util.List;
+
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.resource.Pack;
 import org.spongepowered.api.resource.Resource;
-import org.spongepowered.api.resource.ResourceManager;
+import org.spongepowered.api.resource.ReloadableResourceManager;
 
-import java.util.List;
+import com.google.common.collect.ImmutableList;
 
 /**
  * Base interface for resource reloading events.
  */
-public interface ResourceReloadEvent extends ResourceEvent {
+public interface ResourceReloadEvent extends ResourceEvent, Cancellable{
+
+    @Override
+    ReloadableResourceManager getResourceManager();
 
     /**
-     * Called before the {@link ResourceManager} is reloaded. At this point,
-     * the {@link ResourceManager#getActivePacks() active packs} can be added
+     * Called before the {@link ReloadableResourceManager} is reloaded. At this point,
+     * the {@link ReloadableResourceManager#getActivePacks() active packs} can be added
      * or removed from.
      */
     interface Pre extends ResourceReloadEvent {
@@ -67,7 +72,7 @@ public interface ResourceReloadEvent extends ResourceEvent {
     }
 
     /**
-     * Called after the {@link ResourceManager} is reloaded. When a
+     * Called after the {@link ReloadableResourceManager} is reloaded. When a
      * {@link Resource} is reloaded, this event should be used to obtain the new
      * file.
      */

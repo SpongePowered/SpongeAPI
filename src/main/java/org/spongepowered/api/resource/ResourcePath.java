@@ -31,7 +31,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 /**
  * <p>A resource path should contain a namespace. If one is not provided,
@@ -183,14 +182,6 @@ public interface ResourcePath extends Comparable<ResourcePath>, Iterable<Resourc
      * @return A new path
      */
     ResourcePath resolveSibling(String name);
-
-    /**
-     * Creates a new stream of paths leading up to this path, starting with the
-     * root.
-     *
-     * @return A new stream
-     */
-    Stream<ResourcePath> stream();
 
     /**
      * Returns an iterator of the paths leading up to this path, starting with

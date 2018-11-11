@@ -27,6 +27,7 @@ package org.spongepowered.api;
 import org.spongepowered.api.command.source.CommandSource;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.profile.GameProfileManager;
+import org.spongepowered.api.resource.ReloadableResourceManager;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.text.Text;
@@ -101,6 +102,15 @@ public interface Server extends Engine, CommandSource {
      * @return the server scoreboard, if available.
      */
     Optional<Scoreboard> getServerScoreboard();
+
+    /**
+     * Gets the {@link ReloadableResourceManager} for the server instance. As of
+     * Minecraft 1.13 there is only one instance of the resource manager per
+     * server instance. It is not per-world.
+     *
+     * @return The resource manager
+     */
+    ReloadableResourceManager getResourceManager();
 
     /**
      * Returns information about the chunk layout used by this server

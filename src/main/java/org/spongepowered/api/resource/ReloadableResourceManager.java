@@ -24,52 +24,32 @@
  */
 package org.spongepowered.api.resource;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.function.Predicate;
+import java.util.concurrent.CompletableFuture;
 
-public interface ResourceManager {
-
-    /**
-     * Get the namespaces
-     * @return
-     */
-    Set<String> getNamespaces();
-
-    /**
-     * Gets a loaded resource at the given path, or {@link Optional#empty()}
-     * if it does not exist.
-     *
-     * @param path The path to the resource
-     * @return The resource
-     */
-    Optional<Resource> getResource(ResourcePath path);
+/**
+ * The resource manager is in charge of loading {@link Resource Resources} and
+ * {@link Pack Data Packs}. On the client, there can also be resource packs.
+ *
+ * Packs are stacked on top of each other, so they will override and replace
+ * resources in packs which are a lower priority.
+ */
+public interface ReloadableResourceManager extends ResourceManager, PackProvider {
 
     /**
-     * Returns all of the resources which exist in each {@link Pack}.
+     * Schedules a reload of resources from active packs.
      *
-     * @return All of the resources
+     * @return A future for the task
      */
-    List<Resource> getResources(ResourcePath path);
+    CompletableFuture<Void> reload();
 
     /**
-     * Returns all {@link ResourcePath paths} within a directory from all the
-     * resource domains.
+     * Schedules a reload of resources, using the packs from {@code packs}
      *
-     * <p>This can be used for resources which can have multiple locations. For
-     * example, {@code functions} and {@code loot_tables}.</p>
-     *
-     * <p>For example</p>
-     * <pre>
-     * manager.getResources("loot_tables", name -> name.endsWith(".json"));
-     * </pre>
-     *
-     * @param path The path to search in
-     * @param filter The file name filter
-     * @return A collection of resource paths
+     * @param packs The packs to reload with
+     * @return A future for the task
      */
-    Collection<ResourcePath> getResources(String path, Predicate<String> filter);
+    CompletableFuture<Void> reload(List<Pack> packs);
 
+    ResourceType getResourceType();
 }

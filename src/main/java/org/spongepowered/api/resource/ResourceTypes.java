@@ -26,7 +26,6 @@ package org.spongepowered.api.resource;
 
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-// TODO I don't like this
 public class ResourceTypes {
 
     // SORTFIELDS:ON

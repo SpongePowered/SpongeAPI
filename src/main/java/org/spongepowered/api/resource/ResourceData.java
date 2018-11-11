@@ -26,7 +26,6 @@ package org.spongepowered.api.resource;
 
 import org.spongepowered.api.data.DataView;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Optional;
 
@@ -41,9 +40,8 @@ public interface ResourceData {
      * should be created each time this method is called.
      *
      * @return A new input stream
-     * @throws IOException if an error occurs
      */
-    InputStream openStream() throws IOException;
+    InputStream getInputStream();
 
     /**
      * Gets the metadata for this resource.
@@ -56,10 +54,9 @@ public interface ResourceData {
      * {@code minecraft:textures/blocks/water_flow.png.mcmeta}</p>
      *
      * @return The metadata or {@link Optional#empty() empty} if it doesn't exist.
-     * @throws IOException if the metadata file is corrupt or cannot be read.
      * @see <a href=http://minecraft.gamepedia.com/Resource_pack#Contents> Minecraft Wiki/Resource Packs
      */
-    default Optional<DataView> getMetadata() throws IOException {
+    default Optional<DataView> getMetadata() {
         return Optional.empty();
     }
 }

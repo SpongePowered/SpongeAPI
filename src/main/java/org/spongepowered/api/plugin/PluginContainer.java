@@ -33,7 +33,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.asset.Asset;
 import org.spongepowered.api.asset.AssetManager;
 import org.spongepowered.api.resource.Pack;
-import org.spongepowered.api.resource.ResourceManager;
+import org.spongepowered.api.resource.ReloadableResourceManager;
 import org.spongepowered.plugin.meta.PluginDependency;
 
 import java.nio.file.Path;
@@ -141,12 +141,12 @@ public interface PluginContainer {
 
     /**
      * Retrieves the {@link Pack} owned by this plugin from the
-     * {@link ResourceManager}.
+     * {@link ReloadableResourceManager}.
      *
      * @return The plugin's resource pack.
      */
     default Pack getPack() {
-        return Sponge.getResourceManager().getPack(this);
+        return Sponge.getServer().getResourceManager().getPack(this);
     }
 
     /**
