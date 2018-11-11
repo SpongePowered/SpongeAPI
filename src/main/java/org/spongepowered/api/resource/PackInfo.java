@@ -24,52 +24,66 @@
  */
 package org.spongepowered.api.resource;
 
-import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.api.text.Text;
 
-import java.util.Map;
-import java.util.Optional;
-
-public interface PackProvider {
-
-    /**
-     * Returns a map of pack ids to available packs. An available pack could be
-     * active or not. The key in the returned map should correspond it its id.
-     *
-     * @return A collection of available packs.
-     */
-    Map<String, Pack> getPacks();
+/**
+ * Basic info about a {@link Pack}
+ */
+public interface PackInfo {
 
     /**
-     * Gets the {@link Pack} defined from {@link PluginContainer#getSource()}.
-     * The name of the pack will contain the plugin id.
+     * Gets the name of the {@link Pack} used to identify it in the
+     * {@link PackRepository}.
      *
-     * @param plugin The plugin instance or container.
-     * @return The pack
-     * @throws IllegalArgumentException if the object is not a plugin
+     * @return The pack name
      */
-    Pack getPack(Object plugin);
+    String getName();
 
     /**
-     * Gets the pack by its name.
+     * Gets the display name of the {@link Pack} which is displayed to the user.
      *
-     * @param name The pack's name.
-     * @return The pack or empty if it doesn't exist
+     * @return The display name
      */
-    Optional<Pack> getPack(String name);
+    Text getDisplayName();
 
     /**
-     * Registers a pack to be usable.
+     * Gets the description of the {@link Pack} which is displayed as the hover
+     * text to the user.
      *
-     * @param packId The id of the pack
-     * @param pack The pack to register
+     * @return The description
      */
-    void registerPack(String packId, Pack pack);
+    Text getDescription();
 
     /**
-     * Unregisters a pack by its name.
+     * Formats the text of the pack info to display to the user.
      *
-     * @param packId The id of the pack
-     * @return The pack which was unregistered or empty if it wasn't registered
+     * @param active Whether this pack is active or not
+     * @return The formatted text
      */
-    Optional<Pack> unregisterPack(String packId);
+    Text formatName(boolean active);
+
+    /**
+     * Gets the {@link Pack} associated with this pack info.
+     *
+     * @return
+     */
+    Pack getPack();
+
+    /**
+     * Gets whether or not this pack is required to be active. If it is
+     * required to be active, it cannot be disabled and will be reactivated
+     * when reloaded.
+     *
+     * @return True if required, false otherwise
+     */
+    boolean isRequired();
+
+    /**
+     * Gets whether or not this pack was loaded from a remote location. For
+     * example, if this is a server-defined client resource pack.
+     *
+     * @return Whether this pack is remote
+     */
+    boolean isRemote();
+
 }

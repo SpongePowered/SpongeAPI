@@ -37,10 +37,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.Reader;
 import java.nio.charset.Charset;
 import java.nio.file.OpenOption;
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.stream.Stream;
 import javax.annotation.WillNotClose;
 
@@ -48,8 +48,41 @@ import javax.annotation.WillNotClose;
  * A resource can represent any kind of loaded data. It can be a file on the
  * filesystem, a network location, or even generated at runtime. Use
  * {@link #getInputStream()} to load the data held by a resource.
+ *
+ * <p>Resource extends Closeable, so don't forget to close your streams either
+ * with a try-with-resources or a close() inside a try-finally block. e.g.</p>
+ * <pre>
+ *     try (Resource res = resourceManager.getResource(path)) {
+ *         logger.info(res.readString(DefaultCharsets.UTF_8));
+ *     } catch (IOException e) {
+ *         e.printStackTrace();
+ *     }
+ * </pre>
  */
-public interface Resource extends ResourceData, Closeable {
+public interface Resource extends Closeable {
+
+    /**
+     * Returns a new {@link InputStream} of this resource. A new input stream
+     * should be created each time this method is called.
+     *
+     * @return A new input stream
+     */
+    InputStream getInputStream();
+
+    /**
+     * Gets the metadata for this resource.
+     *
+     * <p>The metadata file has the same name as this resource, but has
+     * {@code .mcmeta} appended to the end.</p>
+     *
+     * <p>For example: the metadata for the resource
+     * {@code minecraft:textures/blocks/water_flow.png} would be located at
+     * {@code minecraft:textures/blocks/water_flow.png.mcmeta}</p>
+     *
+     * @return The metadata or {@link Optional#empty() empty} if it doesn't exist.
+     * @see <a href=http://minecraft.gamepedia.com/Resource_pack#Contents> Minecraft Wiki/Resource Packs
+     */
+    Optional<DataView> getMetadata();
 
     /**
      * Gets the path of this resource.
@@ -84,9 +117,7 @@ public interface Resource extends ResourceData, Closeable {
      * @throws IOException if an error occurs
      */
     default String readString(Charset charset) throws IOException {
-        try (Reader r = getReader(charset)) {
-            return CharStreams.toString(r);
-        }
+        return CharStreams.toString(getReader(charset));
     }
 
     /**
@@ -96,10 +127,8 @@ public interface Resource extends ResourceData, Closeable {
      * @return The list of strings
      * @throws IOException if an error occurs
      */
-    default Stream<String> readLines(Charset charset) throws IOException {
-        try (BufferedReader r = getReader(charset)) {
-            return r.lines();
-        }
+    default Stream<String> readLines(Charset charset) {
+        return getReader(charset).lines();
     }
 
     /**
@@ -109,9 +138,7 @@ public interface Resource extends ResourceData, Closeable {
      * @throws IOException if an error occurs
      */
     default byte[] readBytes() throws IOException {
-        try (InputStream in = getInputStream()) {
-            return ByteStreams.toByteArray(in);
-        }
+        return ByteStreams.toByteArray(getInputStream());
     }
 
     /**
@@ -122,8 +149,8 @@ public interface Resource extends ResourceData, Closeable {
      * @throws IOException if an error occurs
      */
     default DataView readDataView(DataFormat format) throws IOException {
-        try (InputStream in = getInputStream()) {
-            return format.readFrom(in);
+        try {
+            return format.readFrom(getInputStream());
         } catch (InvalidDataFormatException e) {
             throw new IOException(e);
         }
@@ -137,9 +164,7 @@ public interface Resource extends ResourceData, Closeable {
      * @throws IOException if an error occurs
      */
     default void copyTo(Path path, OpenOption... options) throws IOException {
-        try (InputStream in = getInputStream()) {
-            MoreFiles.asByteSink(path, options).writeFrom(in);
-        }
+        MoreFiles.asByteSink(path, options).writeFrom(getInputStream());
     }
 
     /**
@@ -149,8 +174,7 @@ public interface Resource extends ResourceData, Closeable {
      * @throws IOException if an error occurs
      */
     default void copyTo(@WillNotClose OutputStream out) throws IOException {
-        try (InputStream in = getInputStream()) {
-            ByteStreams.copy(in, out);
-        }
+        ByteStreams.copy(getInputStream(), out);
     }
+
 }

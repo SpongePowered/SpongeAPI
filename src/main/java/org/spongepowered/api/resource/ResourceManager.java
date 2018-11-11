@@ -24,12 +24,16 @@
  */
 package org.spongepowered.api.resource;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 
+/**
+ * The resource manager is in charge of loading {@link Resource Resources}.
+ */
 public interface ResourceManager {
 
     /**
@@ -45,7 +49,7 @@ public interface ResourceManager {
      * @param path The path to the resource
      * @return The resource
      */
-    Optional<Resource> getResource(ResourcePath path);
+    Resource getResource(ResourcePath path) throws IOException;
 
     /**
      * Returns all of the resources which exist in each {@link Pack}.

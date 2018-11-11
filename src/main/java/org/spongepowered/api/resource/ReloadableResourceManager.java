@@ -24,32 +24,11 @@
  */
 package org.spongepowered.api.resource;
 
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
-
-/**
- * The resource manager is in charge of loading {@link Resource Resources} and
- * {@link Pack Data Packs}. On the client, there can also be resource packs.
- *
- * Packs are stacked on top of each other, so they will override and replace
- * resources in packs which are a lower priority.
- */
-public interface ReloadableResourceManager extends ResourceManager, PackProvider {
+public interface ReloadableResourceManager extends ResourceManager {
 
     /**
-     * Schedules a reload of resources from active packs.
-     *
-     * @return A future for the task
+     * Reloads the resources from active packs.
      */
-    CompletableFuture<Void> reload();
+    void reload();
 
-    /**
-     * Schedules a reload of resources, using the packs from {@code packs}
-     *
-     * @param packs The packs to reload with
-     * @return A future for the task
-     */
-    CompletableFuture<Void> reload(List<Pack> packs);
-
-    ResourceType getResourceType();
 }

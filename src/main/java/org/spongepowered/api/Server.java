@@ -27,6 +27,7 @@ package org.spongepowered.api;
 import org.spongepowered.api.command.source.CommandSource;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.profile.GameProfileManager;
+import org.spongepowered.api.resource.PackRepository;
 import org.spongepowered.api.resource.ReloadableResourceManager;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
@@ -111,6 +112,12 @@ public interface Server extends Engine, CommandSource {
      * @return The resource manager
      */
     ReloadableResourceManager getResourceManager();
+
+    /**
+     * Gets the {@link PackRepository} for the game, which discovers and
+     * activates resource and data packs.
+     */
+    PackRepository getPackRepository();
 
     /**
      * Returns information about the chunk layout used by this server
