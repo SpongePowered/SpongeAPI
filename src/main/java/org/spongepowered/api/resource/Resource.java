@@ -89,15 +89,14 @@ public interface Resource extends Closeable {
      *
      * @return The path
      */
-    ResourcePath getResourcePath();
+    ResourcePath getPath();
 
     /**
-     * Gets the {@link Pack} which owns this resource. The pack is set
-     * automatically when the resource is added to a pack.
+     * Gets the pack name which owns this resource.
      *
      * @return The parent pack.
      */
-    Pack getPack();
+    String getPack();
 
     /**
      * Gets a reader for this resource using the given {@link Charset}.
@@ -125,7 +124,6 @@ public interface Resource extends Closeable {
      *
      * @param charset The charset
      * @return The list of strings
-     * @throws IOException if an error occurs
      */
     default Stream<String> readLines(Charset charset) {
         return getReader(charset).lines();

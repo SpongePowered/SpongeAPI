@@ -24,58 +24,40 @@
  */
 package org.spongepowered.api.event.resource;
 
-import java.util.List;
-
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.resource.Pack;
-import org.spongepowered.api.resource.Resource;
+import org.spongepowered.api.resource.PackRepository;
 import org.spongepowered.api.resource.ReloadableResourceManager;
-
-import com.google.common.collect.ImmutableList;
+import org.spongepowered.api.resource.Resource;
 
 /**
  * Base interface for resource reloading events.
  */
-public interface ResourceReloadEvent extends ResourceEvent, Cancellable{
-
-    @Override
-    ReloadableResourceManager getResourceManager();
+public interface ResourceReloadEvent extends ResourceEvent, Cancellable {
 
     /**
-     * Called before the {@link ReloadableResourceManager} is reloaded. At this point,
-     * the {@link ReloadableResourceManager#getActivePacks() active packs} can be added
-     * or removed from.
+     * Called before the {@link ReloadableResourceManager} is reloaded. At this
+     * point, the {@link PackRepository#getEnabledPacks() enables packs} can be
+     * added or removed from.
      */
     interface Pre extends ResourceReloadEvent {
 
         /**
-         * Gets an immutable list of the original packs to reload.
+         * Gets the {@link PackRepository} used to reload the resources.
+         * {@link Pack packs} and order can be changed using this instance.
          *
-         * @return The packs to reload
+         * @return The pack repository.
          */
-        ImmutableList<Pack> getOriginalPacksToReload();
+        PackRepository getPackRepository();
 
-        /**
-         * Gets a mutable list of the packs to reload. This list can be changed
-         * or may be set via {@link #setPacksToReload(List)}.
-         *
-         * @return The packs to reload
-         */
-        List<Pack> getPacksToReload();
-
-        /**
-         * Sets the packs to reload.
-         *
-         * @param packs The packs
-         */
-        void setPacksToReload(List<Pack> packs);
     }
 
     /**
      * Called after the {@link ReloadableResourceManager} is reloaded. When a
-     * {@link Resource} is reloaded, this event should be used to obtain the new
-     * file.
+     * {@link Resource} is reloaded, this event should be used to obtain the
+     * new file.
      */
     interface Post extends ResourceReloadEvent {
+
     }
 }

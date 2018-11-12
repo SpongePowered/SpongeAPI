@@ -32,13 +32,15 @@ import java.util.Set;
 import java.util.function.Predicate;
 
 /**
- * The resource manager is in charge of loading {@link Resource Resources}.
+ * The resource manager is in charge of loading {@link Resource Resources}. It
+ * does this using active {@link Pack Packs} from the {@link PackRepository}.
  */
 public interface ResourceManager {
 
     /**
-     * Get the namespaces
-     * @return
+     * Get the known namespaces to the resource manager.
+     *
+     * @return The known namespaces
      */
     Set<String> getNamespaces();
 
@@ -75,5 +77,14 @@ public interface ResourceManager {
      * @return A collection of resource paths
      */
     Collection<ResourcePath> getResources(String path, Predicate<String> filter);
+
+    /**
+     * Returns true if the given {@link ResourcePath} exists in the active
+     * {@link Pack packs}.
+     *
+     * @param path The path to check
+     * @return True if the path exists, false otherwise
+     */
+    boolean exists(ResourcePath path);
 
 }
