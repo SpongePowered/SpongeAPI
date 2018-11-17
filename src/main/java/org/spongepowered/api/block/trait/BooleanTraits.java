@@ -528,6 +528,8 @@ public final class BooleanTraits {
 
     public static final BooleanTrait LADDER_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "LADDER_WATERLOGGED");
 
+    public static final BooleanTrait LANTERN_HANGING = DummyObjectProvider.createFor(BooleanTrait.class, "LANTERN_HANGING");
+
     public static final BooleanTrait LEVER_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "LEVER_POWERED");
 
     public static final BooleanTrait LIGHT_BLUE_BED_OCCUPIED = DummyObjectProvider.createFor(BooleanTrait.class, "LIGHT_BLUE_BED_OCCUPIED");
@@ -865,6 +867,8 @@ public final class BooleanTraits {
     public static final BooleanTrait SANDSTONE_WALL_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "SANDSTONE_WALL_WATERLOGGED");
 
     public static final BooleanTrait SANDSTONE_WALL_WEST = DummyObjectProvider.createFor(BooleanTrait.class, "SANDSTONE_WALL_WEST");
+
+    public static final BooleanTrait SCAFFOLDING_BOTTOM = DummyObjectProvider.createFor(BooleanTrait.class, "SCAFFOLDING_BOTTOM");
 
     public static final BooleanTrait SCAFFOLDING_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "SCAFFOLDING_WATERLOGGED");
 

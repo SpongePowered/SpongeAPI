@@ -336,6 +336,8 @@ public final class EnumTraits {
 
     public static final EnumTrait<?> JACK_O_LANTERN_FACING = DummyObjectProvider.createFor(EnumTrait.class, "JACK_O_LANTERN_FACING");
 
+    public static final EnumTrait<?> JIGSAW_FACING = DummyObjectProvider.createFor(EnumTrait.class, "JIGSAW_FACING");
+
     public static final EnumTrait<?> JUNGLE_BUTTON_FACE = DummyObjectProvider.createFor(EnumTrait.class, "JUNGLE_BUTTON_FACE");
 
     public static final EnumTrait<?> JUNGLE_BUTTON_FACING = DummyObjectProvider.createFor(EnumTrait.class, "JUNGLE_BUTTON_FACING");

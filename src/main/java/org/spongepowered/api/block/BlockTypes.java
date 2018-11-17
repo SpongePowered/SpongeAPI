@@ -617,6 +617,8 @@ public final class BlockTypes {
 
     public static final BlockType JACK_O_LANTERN = DummyObjectProvider.createFor(BlockType.class, "JACK_O_LANTERN");
 
+    public static final BlockType JIGSAW = DummyObjectProvider.createFor(BlockType.class, "JIGSAW");
+
     public static final BlockType JUKEBOX = DummyObjectProvider.createFor(BlockType.class, "JUKEBOX");
 
     public static final BlockType JUNGLE_BUTTON = DummyObjectProvider.createFor(BlockType.class, "JUNGLE_BUTTON");
@@ -654,6 +656,8 @@ public final class BlockTypes {
     public static final BlockType KELP_PLANT = DummyObjectProvider.createFor(BlockType.class, "KELP_PLANT");
 
     public static final BlockType LADDER = DummyObjectProvider.createFor(BlockType.class, "LADDER");
+
+    public static final BlockType LANTERN = DummyObjectProvider.createFor(BlockType.class, "LANTERN");
 
     public static final BlockType LAPIS_BLOCK = DummyObjectProvider.createFor(BlockType.class, "LAPIS_BLOCK");
 

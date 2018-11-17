@@ -841,6 +841,8 @@ public final class ItemTypes {
 
     public static final ItemType JACK_O_LANTERN = DummyObjectProvider.createFor(ItemType.class, "JACK_O_LANTERN");
 
+    public static final ItemType JIGSAW = DummyObjectProvider.createFor(ItemType.class, "JIGSAW");
+
     public static final ItemType JUKEBOX = DummyObjectProvider.createFor(ItemType.class, "JUKEBOX");
 
     public static final ItemType JUNGLE_BOAT = DummyObjectProvider.createFor(ItemType.class, "JUNGLE_BOAT");
@@ -878,6 +880,8 @@ public final class ItemTypes {
     public static final ItemType KNOWLEDGE_BOOK = DummyObjectProvider.createFor(ItemType.class, "KNOWLEDGE_BOOK");
 
     public static final ItemType LADDER = DummyObjectProvider.createFor(ItemType.class, "LADDER");
+
+    public static final ItemType LANTERN = DummyObjectProvider.createFor(ItemType.class, "LANTERN");
 
     public static final ItemType LAPIS_BLOCK = DummyObjectProvider.createFor(ItemType.class, "LAPIS_BLOCK");
 
