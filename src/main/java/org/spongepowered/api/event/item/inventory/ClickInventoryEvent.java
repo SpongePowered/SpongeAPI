@@ -24,7 +24,12 @@
  */
 package org.spongepowered.api.event.item.inventory;
 
+import org.spongepowered.api.item.inventory.Slot;
+
+import java.util.Optional;
+
 public interface ClickInventoryEvent extends ChangeInventoryEvent, InteractInventoryEvent {
+
     interface Primary extends ClickInventoryEvent {}
 
     interface Middle extends ClickInventoryEvent {}
@@ -87,4 +92,13 @@ public interface ClickInventoryEvent extends ChangeInventoryEvent, InteractInven
     interface NumberPress extends ClickInventoryEvent {
         int getNumber();
     }
+
+    /**
+     * Returns the primary interaction Slot.
+     *
+     * <p>May return {@link Optional#empty()} for events that do not directly interact with a Slot</p>
+     *
+     * @return The primary interaction Slot
+     */
+    Optional<Slot> getSlot();
 }
