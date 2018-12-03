@@ -99,6 +99,23 @@ public interface DropItemEvent extends Event, Cancellable {
      */
     interface Dispense extends DropItemEvent, SpawnEntityEvent {}
 
+    /**
+     * Called whenever an {@link Item} is dispensed by closing a {@link Container}.
+     *
+     * <p>e.g. The item on the cursor while closing the container or the contents
+     * of a crafting table with no free slots in the players inventory.</p>
+     *
+     * <p>>Canceling this event only prevents the items from being dropped.
+     * Affected inventories are not rolled back!</p>
+     */
+    interface Close extends DropItemEvent, SpawnEntityEvent {}
+
+    /**
+     * Called whenever an {@link Item} is dropped from another source.
+     *
+     * <p>Canceling this event only prevents the items from being dropped.
+     * Inventories or blocks affected are not rolled back.</p>
+     */
     interface Custom extends DropItemEvent, SpawnEntityEvent.Custom {}
 
 }
