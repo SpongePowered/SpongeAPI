@@ -1629,6 +1629,8 @@ public final class ItemTypes {
 
     public static final ItemType SUSPICIOUS_STEW = DummyObjectProvider.createFor(ItemType.class, "SUSPICIOUS_STEW");
 
+    public static final ItemType SWEET_BERRIES = DummyObjectProvider.createFor(ItemType.class, "SWEET_BERRIES");
+
     public static final ItemType TALL_GRASS = DummyObjectProvider.createFor(ItemType.class, "TALL_GRASS");
 
     public static final ItemType TERRACOTTA = DummyObjectProvider.createFor(ItemType.class, "TERRACOTTA");

@@ -1277,6 +1277,8 @@ public final class BlockTypes {
 
     public static final BlockType SUNFLOWER = DummyObjectProvider.createFor(BlockType.class, "SUNFLOWER");
 
+    public static final BlockType SWEET_BERRY_BUSH = DummyObjectProvider.createFor(BlockType.class, "SWEET_BERRY_BUSH");
+
     public static final BlockType TALL_GRASS = DummyObjectProvider.createFor(BlockType.class, "TALL_GRASS");
 
     public static final BlockType TALL_SEAGRASS = DummyObjectProvider.createFor(BlockType.class, "TALL_SEAGRASS");

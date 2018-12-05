@@ -189,6 +189,8 @@ public final class SoundTypes {
 
     public static final SoundType BLOCK_GRAVEL_STEP = DummyObjectProvider.createFor(SoundType.class, "BLOCK_GRAVEL_STEP");
 
+    public static final SoundType BLOCK_GRINDSTONE_USE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_GRINDSTONE_USE");
+
     public static final SoundType BLOCK_IRON_DOOR_CLOSE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_IRON_DOOR_CLOSE");
 
     public static final SoundType BLOCK_IRON_DOOR_OPEN = DummyObjectProvider.createFor(SoundType.class, "BLOCK_IRON_DOOR_OPEN");
@@ -1314,6 +1316,10 @@ public final class SoundTypes {
     public static final SoundType ENTITY_ZOMBIE_VILLAGER_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ZOMBIE_VILLAGER_HURT");
 
     public static final SoundType ENTITY_ZOMBIE_VILLAGER_STEP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ZOMBIE_VILLAGER_STEP");
+
+    public static final SoundType EVENT_RAID_HORN_DISTANT = DummyObjectProvider.createFor(SoundType.class, "EVENT_RAID_HORN_DISTANT");
+
+    public static final SoundType EVENT_RAID_HORN_LOCAL = DummyObjectProvider.createFor(SoundType.class, "EVENT_RAID_HORN_LOCAL");
 
     public static final SoundType ITEM_ARMOR_EQUIP_CHAIN = DummyObjectProvider.createFor(SoundType.class, "ITEM_ARMOR_EQUIP_CHAIN");
 

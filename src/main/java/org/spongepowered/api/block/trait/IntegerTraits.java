@@ -162,6 +162,8 @@ public final class IntegerTraits {
 
     public static final IntegerTrait SUGAR_CANE_AGE = DummyObjectProvider.createFor(IntegerTrait.class, "SUGAR_CANE_AGE");
 
+    public static final IntegerTrait SWEET_BERRY_BUSH_AGE = DummyObjectProvider.createFor(IntegerTrait.class, "SWEET_BERRY_BUSH_AGE");
+
     public static final IntegerTrait TURTLE_EGG_EGGS = DummyObjectProvider.createFor(IntegerTrait.class, "TURTLE_EGG_EGGS");
 
     public static final IntegerTrait TURTLE_EGG_HATCH = DummyObjectProvider.createFor(IntegerTrait.class, "TURTLE_EGG_HATCH");
