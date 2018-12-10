@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.asset;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import com.google.common.io.Resources;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.plugin.PluginContainer;
@@ -38,6 +36,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents an {@link Asset} within Sponge that belongs to a {@link Plugin}.
@@ -93,7 +93,7 @@ public interface Asset {
      * @throws IOException File exception
      */
     default void copyToFile(Path output, boolean overwrite, boolean onlyIfAbsent) throws IOException {
-        checkNotNull(output, "output");
+        requireNonNull(output, "output");
         if (Files.exists(output)) {
             if (overwrite) {
                 Files.delete(output);
@@ -136,7 +136,7 @@ public interface Asset {
      * @throws IOException File exception
      */
     default void copyToDirectory(Path outputDirectory, boolean overwrite, boolean onlyIfAbsent) throws IOException {
-        checkNotNull(outputDirectory, "outputDirectory");
+        requireNonNull(outputDirectory, "outputDirectory");
         Files.createDirectories(outputDirectory);
         this.copyToFile(outputDirectory.resolve(this.getFileName()), overwrite, onlyIfAbsent);
     }
@@ -177,7 +177,7 @@ public interface Asset {
      * @throws IOException If any file exception is thrown
      */
     default String readString(Charset charset) throws IOException {
-        checkNotNull(charset, "charset");
+        requireNonNull(charset, "charset");
         return Resources.toString(getUrl(), charset);
     }
 
@@ -199,7 +199,7 @@ public interface Asset {
      * @throws IOException If any file exception is thrown
      */
     default List<String> readLines(Charset charset) throws IOException {
-        checkNotNull(charset, "charset");
+        requireNonNull(charset, "charset");
         return Resources.asCharSource(getUrl(), charset).readLines();
     }
 
