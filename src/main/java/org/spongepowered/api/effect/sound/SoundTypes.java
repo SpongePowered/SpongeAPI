@@ -87,6 +87,8 @@ public final class SoundTypes {
 
     public static final SoundType BLOCK_BEACON_POWER_SELECT = DummyObjectProvider.createFor(SoundType.class, "BLOCK_BEACON_POWER_SELECT");
 
+    public static final SoundType BLOCK_BELL_USE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_BELL_USE");
+
     public static final SoundType BLOCK_BREWING_STAND_BREW = DummyObjectProvider.createFor(SoundType.class, "BLOCK_BREWING_STAND_BREW");
 
     public static final SoundType BLOCK_BUBBLE_COLUMN_BUBBLE_POP = DummyObjectProvider.createFor(SoundType.class, "BLOCK_BUBBLE_COLUMN_BUBBLE_POP");
@@ -1317,9 +1319,7 @@ public final class SoundTypes {
 
     public static final SoundType ENTITY_ZOMBIE_VILLAGER_STEP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ZOMBIE_VILLAGER_STEP");
 
-    public static final SoundType EVENT_RAID_HORN_DISTANT = DummyObjectProvider.createFor(SoundType.class, "EVENT_RAID_HORN_DISTANT");
-
-    public static final SoundType EVENT_RAID_HORN_LOCAL = DummyObjectProvider.createFor(SoundType.class, "EVENT_RAID_HORN_LOCAL");
+    public static final SoundType EVENT_RAID_HORN = DummyObjectProvider.createFor(SoundType.class, "EVENT_RAID_HORN");
 
     public static final SoundType ITEM_ARMOR_EQUIP_CHAIN = DummyObjectProvider.createFor(SoundType.class, "ITEM_ARMOR_EQUIP_CHAIN");
 

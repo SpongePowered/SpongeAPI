@@ -84,7 +84,7 @@ public final class EnumTraits {
 
     public static final EnumTrait<?> BARREL_FACING = DummyObjectProvider.createFor(EnumTrait.class, "BARREL_FACING");
 
-    public static final EnumTrait<?> BELL_FACE = DummyObjectProvider.createFor(EnumTrait.class, "BELL_FACE");
+    public static final EnumTrait<?> BELL_ATTACHMENT = DummyObjectProvider.createFor(EnumTrait.class, "BELL_ATTACHMENT");
 
     public static final EnumTrait<?> BELL_FACING = DummyObjectProvider.createFor(EnumTrait.class, "BELL_FACING");
 
