@@ -697,17 +697,17 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
          */
         List<Text> getChildren();
 
-		/**
-		 * Gets if this builder should try to compact when appending text.
-		 *
-		 * @return If this builder will compact when appended text
-		 */
-		boolean shouldCompact();
+        /**
+         * Gets if this builder should try to compact when appending text.
+         *
+         * @return If this builder will compact when appended text
+         */
+        boolean shouldCompact();
 
-		/**
-		 * Sets if this builder should compact when appending text.
-		 */
-		Builder setCompact(boolean compact);
+        /**
+         * Sets if this builder should compact when appending text.
+         */
+        Builder setCompact(boolean compact);
 
         /**
          * Appends the specified {@link Text} to the end of this text.
