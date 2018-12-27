@@ -31,9 +31,6 @@ import org.spongepowered.api.util.annotation.eventgen.UseField;
 
 import java.util.Optional;
 
-/**
- * @author ustc_zzzz
- */
 public abstract class AbstractChangeEntityEquipmentEvent extends AbstractEvent implements ChangeEntityEquipmentEvent {
     @UseField protected Transaction<ItemStackSnapshot> transaction;
 
