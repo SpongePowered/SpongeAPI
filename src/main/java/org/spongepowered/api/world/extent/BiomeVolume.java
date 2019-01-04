@@ -186,8 +186,22 @@ public interface BiomeVolume {
      */
     BiomeVolumeWorker<? extends BiomeVolume> getBiomeWorker();
 
+    /**
+     * Gets the temperature at the specified location based on the biome.
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @return The temperature at this location
+     */
     double getTemperature(int x, int y, int z);
 
+    /**
+     * Gets the temperature at the specified location based on the biome.
+     *
+     * @param pos The position
+     * @return The temperature at this location
+     */
     default double getTemperature(Vector3i pos) {
         return this.getTemperature(pos.getX(), pos.getY(), pos.getZ());
     }

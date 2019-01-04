@@ -512,6 +512,15 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
+     * Gets the temperature at this location based on the biome.
+     *
+     * @return The temperature at this location
+     */
+    public double getTemperature() {
+        return getExtent().getTemperature(getBiomePosition());
+    }
+
+    /**
      * Gets the base type of block.
      *
      * <p>The type does not include block data such as the contents of
@@ -918,5 +927,4 @@ public final class Location<E extends Extent> implements DataHolder {
         return otherLoc.getExtent().equals(getExtent())
             && otherLoc.getPosition().equals(getPosition());
     }
-
 }
