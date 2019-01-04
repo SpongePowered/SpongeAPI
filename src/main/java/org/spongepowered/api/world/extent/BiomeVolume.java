@@ -186,4 +186,10 @@ public interface BiomeVolume {
      */
     BiomeVolumeWorker<? extends BiomeVolume> getBiomeWorker();
 
+    double getTemperature(int x, int y, int z);
+
+    default double getTemperature(Vector3i pos) {
+        return this.getTemperature(pos.getX(), pos.getY(), pos.getZ());
+    }
+
 }
