@@ -1,7 +1,6 @@
 // Gradle plugins
 buildscript {
     repositories {
-        mavenLocal()
         maven { url = 'https://repo.spongepowered.org/maven' }
         maven {
             name = 'gradle-plugins'
