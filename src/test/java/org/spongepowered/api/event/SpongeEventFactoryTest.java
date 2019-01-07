@@ -93,33 +93,34 @@ public class SpongeEventFactoryTest {
 
     private static final Answer<Object> EVENT_MOCKING_ANSWER = (invoc -> {
         Class<?> clazz = invoc.getMethod().getReturnType();
+
+        // We use the original mock type to try to get more information about
+        // the return type. For example, imagine that SignData#asImmutable is called
+        // on a mocked SignData instance. The return type given to use by
+        // by 'invoc.getMethod().getReturnType()' will be 'ImmutableDataManipulator',
+        // since that's the return type of the method itself. However, we need to consider
+        // the 'generic' return type of SignData#asImmutable, which is ImmutableSignData.
+        // Guava's TypeToken takes generic parameters into account, allowing us to mock
+        // the most specific known return type.
         Type returnType = TypeToken.of(
                 Mockito.mockingDetails(invoc.getMock()).getMockCreationSettings().getTypeToMock()
         )
                 .method(invoc.getMethod())
                 .getReturnType().getType();
 
-        if (returnType instanceof Class<?>) {
+        if (returnType instanceof Class<?> && clazz != returnType) {
             clazz = (Class<?>) returnType;
         }
 
-        // TypeToken.of(Mockito.mockingDetails(invoc.getMock()).getMockCreationSettings().getTypeToMock()).method(invoc.getMethod()).getReturnType().getType()
-
-        //if (BaseValue.class.isAssignableFrom(clazz)) {
-        //TypeToken<?> token = TypeToken.of(clazz)
-        //        .resolveType(invoc.getMethod().getGenericReturnType());
-        //TypeToken<?> token = TypeToken.of(Mockito.mockingDetails(invoc.getMock()).getMockCreationSettings().getTypeToMock());
+        // We pass along a TypeToken built from the generic return type.
+        // This allows 'mockParam' to take into account generic parameters when
+        // resolving the return type of future method invocations.
+        // For example, imagine that we're mocking MutableBoundedValue<Integer>.
+        // For 'mockParam' to know that the mocked 'get()' method should return
+        // Integer, and not Object, it needs the TypeToken to provide the information
+        // not present in the base class.
         TypeToken<?> token = TypeToken.of(invoc.getMethod().getGenericReturnType());
-
-            /*Class<?> genericType = token.method(invoc.getMethod().getReturnType().getMethod("get"))
-                    .getReturnType()
-                    .getRawType();*/
-
-        return mockParam(clazz, null, token);
-        //}
-
-
-        //return mockParam(clazz);
+        return mockParam(clazz, token);
     });
 
     @Parameterized.Parameters(name = "{0}")
@@ -149,7 +150,7 @@ public class SpongeEventFactoryTest {
             Class<?>[] paramTypes = this.method.getParameterTypes();
             Object[] params = new Object[paramTypes.length];
             for (int i = 0; i < paramTypes.length; i++) {
-                params[i] = mockParam(paramTypes[i], this.method.getReturnType(), null);
+                params[i] = mockParam(paramTypes[i], null);
             }
             Object testEvent = this.method.invoke(null, params);
             for (Method eventMethod : testEvent.getClass().getMethods()) {
@@ -218,11 +219,11 @@ public class SpongeEventFactoryTest {
 
     @Nullable
     public static Object mockParam(final Class<?> paramType) {
-        return mockParam(paramType, null, null);
+        return mockParam(paramType, null);
     }
 
     @Nullable
-    public static Object mockParam(final Class<?> paramType, @Nullable final Class<?> target, @Nullable TypeToken<?> token) {
+    public static Object mockParam(final Class<?> paramType, @Nullable TypeToken<?> token) {
         if (paramType == Class.class) {
             return PEBKACException.class;
         } else if (paramType == byte.class || paramType == Byte.class) {
@@ -313,9 +314,13 @@ public class SpongeEventFactoryTest {
             return mock;
         } else {
             if (token != null) {
+                // If we hsve a TypeToken available, we use to try to resolve a more specific
+                // return type on any of the methods that we mock. This allows us to correctly
+                // return an Integer from MutableBoundedValue<Integer>#get(), instead of accidentally
+                // returning an Object mock.
                 return mock(paramType, withSettings().defaultAnswer(invoc -> {
                     Class<?> realReturnType = token.method(invoc.getMethod()).getReturnType().getRawType();
-                    return mockParam(realReturnType, null, null);
+                    return mockParam(realReturnType, null);
                 }));
             }
             return mock(paramType, withSettings().defaultAnswer(EVENT_MOCKING_ANSWER));
