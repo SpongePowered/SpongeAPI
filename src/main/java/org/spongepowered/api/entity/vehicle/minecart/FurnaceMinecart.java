@@ -24,29 +24,27 @@
  */
 package org.spongepowered.api.entity.vehicle.minecart;
 
+import java.time.Duration;
+
 /**
  * Represents a minecart with a furnace inside it.
  */
 public interface FurnaceMinecart extends Minecart {
 
     /**
-     * Gets the current fuel time in ticks.
+     * Gets the duration of fuel the furnace has left before
+     * the minecraft starts to decelerate to a stop.
      *
-     * <p>Usually, the fuel time will decay until reaching 0. At zero, the fuel
-     * minecart will decelerate to a stop.</p>
-     *
-     * @return The current fuel time in ticks
+     * @return The fuel duration
      */
-    int getFuel();
+    Duration getFuelDuration();
 
     /**
-     * Sets the fuel time in ticks.
+     * Sets the duration of fuel the furnace has left before
+     * the minecraft starts to decelerate to a stop.
      *
-     * <p>Usually, the fuel time will decay until reaching 0. At zero, the fuel
-     * minecart will decelerate to a stop.</p>
-     *
-     * @param fuel The fuel time in ticks
+     * @param duration The fuel duration
      */
-    void setFuel(int fuel);
+    void setFuelDuration(Duration duration);
 
 }

@@ -28,8 +28,10 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.TemporalUnits;
 
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
+import java.time.temporal.TemporalUnit;
 import java.util.function.Consumer;
 
 /**
@@ -64,19 +66,17 @@ public interface Task extends Identifiable {
      * Gets the delay that the task was scheduled to run after. A delay of 0
      * represents that the task started immediately.
      *
-     * @return The delay (offset) in either milliseconds or ticks (ticks are
-     *         exclusive to synchronous tasks)
+     * @return The delay (offset) duration
      */
-    long getDelay();
+    Duration getDelay();
 
     /**
      * Gets the interval for repeating tasks. An interval of 0 represents that
      * the task does not repeat.
      *
-     * @return The interval (period) in either milliseconds or ticks (ticks are
-     *         exclusive to synchronous tasks)
+     * @return The interval (period) duration
      */
-    long getInterval();
+    Duration getInterval();
 
     /**
      * Cancels the task. Cancelling a repeating task will prevent any further
@@ -152,12 +152,14 @@ public interface Task extends Identifiable {
          * subsequent runs (when the interval is not 0) will not be offset. By
          * default, the delay is 0.
          *
-         * @param delay The delay in the given {@link TimeUnit}
+         * @param delay The delay in the given {@link TemporalUnit}
          * @param unit The unit the delay is in
          * @return This builder, for chaining
          * @throws IllegalArgumentException If the delay is below 0
          */
-        Builder delay(long delay, TimeUnit unit);
+        default Builder delay(long delay, TemporalUnit unit) {
+            return delay(Duration.of(delay, unit));
+        }
 
         /**
          * Sets the delay before the task runs, in unit ticks.
@@ -165,9 +167,23 @@ public interface Task extends Identifiable {
          * @param ticks The delay in ticks
          * @return This builder, for chaining
          * @throws IllegalArgumentException If the delay is below 0
-         * @see #delay(long, TimeUnit)
+         * @see #delay(long, TemporalUnit)
+         * @see TemporalUnits#MINECRAFT_TICKS
          */
-        Builder delayTicks(long ticks);
+        default Builder delayTicks(long ticks) {
+            return delay(Duration.of(ticks, TemporalUnits.MINECRAFT_TICKS));
+        }
+
+        /**
+         * Sets the delay before the task runs. This delay is an initial offset,
+         * subsequent runs (when the interval is not 0) will not be offset. By
+         * default, the delay is 0.
+         *
+         * @param delay The delay duration
+         * @return This builder, for chaining
+         * @throws IllegalArgumentException If the delay duration is below 0
+         */
+        Builder delay(Duration delay);
 
         /**
          * Sets the interval between repetitions of the task. The task will not
@@ -180,12 +196,31 @@ public interface Task extends Identifiable {
          * running no new occurrences of that specific task will start, although
          * the scheduler will never cease in trying to start it a 2nd time.</p>
          *
-         * @param interval The interval in the given {@link TimeUnit}
+         * @param interval The interval duration
+         * @return This builder, for chaining
+         * @throws IllegalArgumentException If the interval is below 0
+         */
+        Builder interval(Duration interval);
+
+        /**
+         * Sets the interval between repetitions of the task. The task will not
+         * repeat if the interval is 0. By default, the interval is 0.
+         *
+         * <p>If the scheduler detects that two tasks will overlap, the 2nd task
+         * will not be started. The next time the task is due to run, the test
+         * will be made again to determine if the previous occurrence of the
+         * task is still alive (running). As long as a previous occurrence is
+         * running no new occurrences of that specific task will start, although
+         * the scheduler will never cease in trying to start it a 2nd time.</p>
+         *
+         * @param interval The interval in the given {@link TemporalUnit}
          * @param unit The unit the interval is in
          * @return This builder, for chaining
          * @throws IllegalArgumentException If the interval is below 0
          */
-        Builder interval(long interval, TimeUnit unit);
+        default Builder interval(long interval, TemporalUnit unit) {
+            return interval(Duration.of(interval, unit));
+        }
 
         /**
          * Sets the interval in unit ticks between repetitions of the task.
@@ -193,9 +228,12 @@ public interface Task extends Identifiable {
          * @param ticks The number of ticks between runs
          * @return This builder, for chaining
          * @throws IllegalArgumentException If the interval is below 0
-         * @see #interval(long, TimeUnit)
+         * @see #interval(long, TemporalUnit)
+         * @see TemporalUnits#MINECRAFT_TICKS
          */
-        Builder intervalTicks(long ticks);
+        default Builder intervalTicks(long ticks) {
+            return interval(Duration.of(ticks, TemporalUnits.MINECRAFT_TICKS));
+        }
 
         /**
          * Sets the name of the task, the name cannot be blank.
