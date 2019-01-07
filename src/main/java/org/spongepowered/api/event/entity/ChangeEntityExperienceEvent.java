@@ -27,15 +27,18 @@ package org.spongepowered.api.event.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableExperienceHolderData;
 import org.spongepowered.api.data.manipulator.mutable.entity.ExperienceHolderData;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
+import org.spongepowered.api.event.SpongeEventFactory;
+import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.util.annotation.eventgen.AbsoluteSortPosition;
+import org.spongepowered.api.util.annotation.eventgen.FactoryMethod;
 import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 
 /**
  * An event that is related to experience.
  */
-public interface ChangeEntityExperienceEvent extends TargetPlayerEvent, Cancellable {
+public interface ChangeEntityExperienceEvent extends TargetEntityEvent, Cancellable {
 
     /**
      * Gets the original total experience unmodified by event changes.
@@ -92,5 +95,27 @@ public interface ChangeEntityExperienceEvent extends TargetPlayerEvent, Cancella
      */
     @AbsoluteSortPosition(2)
     ExperienceHolderData getFinalData();
+
+    /**
+     * This method exists solely to provide backwards-compatibility with existing plugins
+     * using the old ChangeExperienceEvent. It should not be called directly - instead,
+     * plugins should use {@link SpongeEventFactory#createChangeEntityExperienceEvent(Cause, ImmutableExperienceHolderData, ExperienceHolderData, Entity)}
+     *
+     * @param cause The cause to use
+     * @param originalExperience The original experience amount
+     * @param experience
+     * @param targetEntity
+     * @return
+     */
+    @FactoryMethod
+    @Deprecated
+    static ChangeEntityExperienceEvent createChangeEntityExperienceEvent(Cause cause, int originalExperience, int experience, Entity targetEntity) {
+        ExperienceHolderData finalData = targetEntity.getOrCreate(ExperienceHolderData.class)
+                .orElseThrow(() -> new RuntimeException("Failed to get ExperienceHolderData from " + targetEntity));
+        ImmutableExperienceHolderData originalData = finalData.asImmutable();
+        originalData = originalData.with(Keys.TOTAL_EXPERIENCE, originalExperience).get();
+        finalData.set(Keys.TOTAL_EXPERIENCE, experience);
+        return SpongeEventFactory.createChangeEntityExperienceEvent(cause, originalData, finalData, targetEntity);
+    }
 
 }
