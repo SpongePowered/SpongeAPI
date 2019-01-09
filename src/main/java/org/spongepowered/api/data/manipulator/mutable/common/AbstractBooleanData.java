@@ -42,22 +42,31 @@ import org.spongepowered.api.data.value.mutable.Value;
 public abstract class AbstractBooleanData<M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>> extends
         AbstractSingleData<Boolean, M, I> {
 
-    private final boolean defaultValue;
-
+    /**
+     * @deprecated Use {@link #AbstractBooleanData(Key, boolean, boolean)} instead.
+     */
+    @Deprecated
+    @SuppressWarnings("unchecked")
     protected AbstractBooleanData(boolean value, Key<? extends BaseValue<Boolean>> usedKey, boolean defaultValue) {
-        super(value, usedKey);
-        this.defaultValue = defaultValue;
+        this((Key<Value<Boolean>>) usedKey, value, defaultValue);
+    }
+
+    protected AbstractBooleanData(Key<Value<Boolean>> usedKey, boolean value) {
+        super(usedKey, value);
+    }
+
+    protected AbstractBooleanData(Key<Value<Boolean>> usedKey, boolean value, boolean defaultValue) {
+        super(usedKey, value, defaultValue);
     }
 
     @SuppressWarnings("unchecked")
     @Override
     protected Value<Boolean> getValueGetter() {
-        return Sponge.getRegistry().getValueFactory().createValue((Key<Value<Boolean>>) this.usedKey, this.getValue(), this.defaultValue);
+        return Sponge.getRegistry().getValueFactory().createValue((Key<Value<Boolean>>) this.usedKey, this.value, this.defaultValue);
     }
 
     @Override
     public DataContainer toContainer() {
-        return super.toContainer()
-                .set(this.usedKey.getQuery(), getValue());
+        return super.toContainer();
     }
 }

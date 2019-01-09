@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.common;
 
-import com.google.common.base.Objects;
-import com.google.common.collect.Maps;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
@@ -51,44 +49,46 @@ import java.util.Map;
 public abstract class AbstractMappedData<K, V, M extends MappedData<K, V, M, I>, I extends ImmutableMappedData<K, V, I, M>>
         extends AbstractSingleData<Map<K, V>, M, I> implements MappedData<K, V, M, I> {
 
+    /**
+     * @deprecated Use {@link #AbstractMappedData(Key, Map)} instead.
+     */
+    @Deprecated
     protected AbstractMappedData(Map<K, V> value, Key<? extends BaseValue<Map<K, V>>> usedKey) {
-        super(CollectionUtils.copyMap(value), usedKey);
+        this((Key<MapValue<K, V>>) usedKey, value);
+    }
+
+    protected AbstractMappedData(Key<MapValue<K, V>> usedKey, Map<K, V> value) {
+        super(usedKey, CollectionUtils.copyMap(value));
+    }
+
+    protected AbstractMappedData(Key<MapValue<K, V>> usedKey, Map<K, V> value, Map<K, V> defaultValue) {
+        super(usedKey, CollectionUtils.copyMap(value), CollectionUtils.copyMap(defaultValue));
     }
 
     @Override
     protected MapValue<K, V> getValueGetter() {
-        return Sponge.getRegistry().getValueFactory().createMapValue((Key<MapValue<K, V>>) this.usedKey, this.getValue());
+        return Sponge.getRegistry().getValueFactory().createMapValue(
+                (Key<MapValue<K, V>>) this.usedKey, getValue(), CollectionUtils.copyMap(this.defaultValue));
     }
 
     @Override
     protected Map<K, V> getValue() {
-        return Maps.newHashMap(super.getValue());
+        return CollectionUtils.copyMap(super.getValue());
     }
 
     @Override
     protected M setValue(Map<K, V> value) {
-        return super.setValue(Maps.newHashMap(value));
+        return super.setValue(CollectionUtils.copyMap(value));
     }
 
     @Override
     public int hashCode() {
-        return 31 * super.hashCode() + Objects.hashCode(this.getValue());
+        return super.hashCode();
     }
 
-    @SuppressWarnings("rawtypes")
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-        if (!super.equals(obj)) {
-            return false;
-        }
-        final AbstractMappedData other = (AbstractMappedData) obj;
-        return Objects.equal(this.getValue(), other.getValue());
+        return super.equals(obj);
     }
 
     @Override

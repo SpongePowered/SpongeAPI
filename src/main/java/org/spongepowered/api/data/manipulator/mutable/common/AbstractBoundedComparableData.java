@@ -44,7 +44,7 @@ import java.util.Comparator;
  * the bounds are met.
  *
  * @param <T> The type of comparable
- * @param <M> The API datamanipulator
+ * @param <M> The API data manipulator
  * @param <I> The API immutable data manipulator
  */
 public abstract class AbstractBoundedComparableData<T extends Comparable<T>, M extends DataManipulator<M, I>, I
@@ -53,40 +53,82 @@ public abstract class AbstractBoundedComparableData<T extends Comparable<T>, M e
     protected final Comparator<T> comparator;
     protected final T lowerBound;
     protected final T upperBound;
-    protected final T defaultValue;
+    protected final T defaultValue; // Cannot be removed without a breaking change, defaultValue is now a field in AbstractSingleData
 
+    /**
+     * @deprecated Use {@link #AbstractBoundedComparableData(Key, Comparable, Comparable, Comparable, Comparable, Comparator)} instead.
+     */
+    @Deprecated
     protected AbstractBoundedComparableData(T value, Key<MutableBoundedValue<T>> usedKey, Comparator<T> comparator, T lowerBound, T upperBound,
                                             T defaultValue) {
-        super(value, usedKey);
-        this.comparator = checkNotNull(comparator);
-        this.lowerBound = checkNotNull(lowerBound);
-        this.upperBound = checkNotNull(upperBound);
-        this.defaultValue = checkNotNull(defaultValue);
+        this(usedKey, value, defaultValue, lowerBound, upperBound, comparator);
+    }
+
+    protected AbstractBoundedComparableData(Key<MutableBoundedValue<T>> usedKey,
+            T value, T lowerBound, T upperBound, Comparator<T> comparator) {
+        this(usedKey, value, value, lowerBound, upperBound, comparator);
+    }
+
+    protected AbstractBoundedComparableData(Key<MutableBoundedValue<T>> usedKey,
+            T value, T defaultValue, T lowerBound, T upperBound, Comparator<T> comparator) {
+        super(usedKey, value, defaultValue);
+        this.comparator = checkNotNull(comparator, "comparator");
+        this.lowerBound = checkNotNull(lowerBound, "lowerBound");
+        this.upperBound = checkNotNull(upperBound, "upperBound");
+        checkValue(value, "value");
+        checkValue(defaultValue, "defaultValue");
+        this.defaultValue = defaultValue;
+    }
+
+    private void checkValue(T value, String name) {
+        checkArgument(this.comparator.compare(this.lowerBound, value) <= 0,
+                "%s %s is lesser than the lower bound %s", name, value, this.lowerBound);
+        checkArgument(this.comparator.compare(this.upperBound, value) >= 0,
+                "%s %s is greater than the upper bound %s", name, value, this.upperBound);
     }
 
     @SuppressWarnings("unchecked")
     @Override
     protected MutableBoundedValue<T> getValueGetter() {
         return Sponge.getRegistry().getValueFactory()
-            .createBoundedValueBuilder((Key<MutableBoundedValue<T>>) this.usedKey)
-            .defaultValue(this.defaultValue)
-            .comparator(this.comparator)
-            .minimum(this.lowerBound)
-            .maximum(this.upperBound)
-            .actualValue(this.getValue())
-            .build();
+                .createBoundedValueBuilder((Key<MutableBoundedValue<T>>) this.usedKey)
+                .defaultValue(this.defaultValue)
+                .comparator(this.comparator)
+                .minimum(this.lowerBound)
+                .maximum(this.upperBound)
+                .actualValue(getValue())
+                .build();
     }
 
     @Override
     public M setValue(T value) {
-        checkArgument(this.comparator.compare(this.lowerBound, value) >= 0);
-        checkArgument(this.comparator.compare(this.upperBound, value) <= 0);
+        checkValue(value, "value");
         return super.setValue(value);
     }
 
     @Override
     public DataContainer toContainer() {
-        return super.toContainer()
-                .set(this.usedKey.getQuery(), this.getValue());
+        return super.toContainer();
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = super.hashCode();
+        hash = 31 * hash + this.lowerBound.hashCode();
+        hash = 31 * hash + this.upperBound.hashCode();
+        hash = 31 * hash + this.comparator.hashCode();
+        return hash;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean equals(Object obj) {
+        if (!super.equals(obj)) {
+            return false;
+        }
+        final AbstractBoundedComparableData<T, M, I> other = (AbstractBoundedComparableData<T, M, I>) obj;
+        return other.upperBound.equals(this.upperBound) &&
+                other.lowerBound.equals(this.lowerBound) &&
+                other.comparator.equals(this.comparator);
     }
 }

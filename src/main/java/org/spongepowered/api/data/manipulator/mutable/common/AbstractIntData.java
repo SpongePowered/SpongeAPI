@@ -35,10 +35,13 @@ import org.spongepowered.api.data.value.BaseValue;
  *
  * @param <M> The manipulator type
  * @param <I> The immutable manipulator type
+ * @deprecated Useless without its immutable counterpart, use {@link AbstractSingleData} instead.
  */
+@Deprecated
 public abstract class AbstractIntData<M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>>
-    extends AbstractSingleData<Integer, M, I> {
+        extends AbstractSingleData<Integer, M, I> {
 
+    @Deprecated
     protected AbstractIntData(int value, Key<? extends BaseValue<Integer>> usedKey) {
         super(value, usedKey);
     }

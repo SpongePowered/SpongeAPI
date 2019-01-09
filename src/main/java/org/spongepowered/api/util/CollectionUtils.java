@@ -24,13 +24,16 @@
  */
 package org.spongepowered.api.util;
 
-import com.google.common.collect.Maps;
-
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.IdentityHashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public final class CollectionUtils {
 
@@ -55,11 +58,36 @@ public final class CollectionUtils {
                 return (Map<K, V>) ((EnumMap<?, V>) map).clone();
             } else if (map instanceof TreeMap) {
                 return (Map<K, V>) ((TreeMap<K, V>) map).clone();
+            } else if (map instanceof ConcurrentHashMap) {
+                return (Map<K, V>) new ConcurrentHashMap<>(map);
             }
-            return Maps.newHashMap(map);
-        } catch (Exception e) {
-            return Maps.newHashMap(map);
+        } catch (Exception ignored) {
         }
+        return new HashMap<>(map);
+    }
+
+    /**
+     * Attempts to use native {@link Object#clone()} methods on available map
+     * types. If a list cannot be properly cloned, a new {@link ArrayList} is
+     * returned.
+     *
+     * @param list The list input
+     * @param <T> The value type
+     * @return A copied list
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> List<T> copyList(List<? extends T> list) {
+        try {
+            if (list instanceof ArrayList) {
+                return (List<T>) ((ArrayList<? extends T>) list).clone();
+            } else if (list instanceof LinkedList) {
+                return (List<T>) ((LinkedList<? extends T>) list).clone();
+            } else if (list instanceof CopyOnWriteArrayList) {
+                return (List<T>) ((CopyOnWriteArrayList<T>) list).clone();
+            }
+        } catch (Exception ignored) {
+        }
+        return new ArrayList<>(list);
     }
 
     // Suppress default constructor to ensure non-instantiability.

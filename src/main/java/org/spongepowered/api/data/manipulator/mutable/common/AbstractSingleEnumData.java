@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.common;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.key.Key;
@@ -45,22 +43,36 @@ import org.spongepowered.api.data.value.mutable.Value;
 public abstract class AbstractSingleEnumData<E extends Enum<E>, M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>>
         extends AbstractSingleData<E, M, I> {
 
-    private final E defaultValue;
-
+    /**
+     * @deprecated Use {@link #AbstractSingleEnumData(Key, Enum, Enum)} instead.
+     */
+    @SuppressWarnings("unchecked")
+    @Deprecated
     protected AbstractSingleEnumData(E value, Key<? extends BaseValue<E>> usedKey, E defaultValue) {
-        super(value, usedKey);
-        this.defaultValue = checkNotNull(defaultValue);
+        this((Key<Value<E>>) usedKey, value, defaultValue);
+    }
+
+    protected AbstractSingleEnumData(Key<Value<E>> usedKey, E value) {
+        this(usedKey, value, value);
+    }
+
+    protected AbstractSingleEnumData(Key<Value<E>> usedKey, E value, E defaultValue) {
+        super(usedKey, value, defaultValue);
     }
 
     @Override
     public DataContainer toContainer() {
-        return super.toContainer()
-                .set(this.usedKey.getQuery(), this.getValue().name());
+        return super.toContainer();
+    }
+
+    @Override
+    protected DataContainer fillContainer(DataContainer dataContainer) {
+        return dataContainer.set(this.usedKey.getQuery(), this.value.name());
     }
 
     @SuppressWarnings("unchecked")
     @Override
     protected Value<E> getValueGetter() {
-        return Sponge.getRegistry().getValueFactory().createValue((Key<Value<E>>) this.usedKey, this.getValue(), this.defaultValue);
+        return Sponge.getRegistry().getValueFactory().createValue((Key<Value<E>>) this.usedKey, this.value, this.defaultValue);
     }
 }

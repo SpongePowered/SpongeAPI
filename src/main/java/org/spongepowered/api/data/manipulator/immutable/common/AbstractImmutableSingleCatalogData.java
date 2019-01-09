@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.data.manipulator.immutable.common;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataContainer;
@@ -47,32 +45,40 @@ import org.spongepowered.api.data.value.mutable.Value;
 public abstract class AbstractImmutableSingleCatalogData<E extends CatalogType, I extends ImmutableVariantData<E, I, M>,
         M extends VariantData<E, M, I>> extends AbstractImmutableSingleData<E, I, M> implements ImmutableVariantData<E, I, M> {
 
-    private final E defaultValue;
-    private final ImmutableValue<E> immutableValue;
+    private final ImmutableValue<E> cachedValue;
 
-    @SuppressWarnings({"unchecked", "rawtypes"})
+    /**
+     * @deprecated Use {@link #AbstractImmutableSingleCatalogData(Key, CatalogType, CatalogType)} instead.
+     */
+    @Deprecated
+    @SuppressWarnings("unchecked")
     protected AbstractImmutableSingleCatalogData(E value, E defaultValue, Key<? extends BaseValue<E>> usedKey) {
-        super(value, usedKey);
-        this.defaultValue = checkNotNull(defaultValue, "The default value was null! This is unacceptable! Maybe the value was not registered?");
-        this.immutableValue = Sponge.getRegistry().getValueFactory()
-                .createValue((Key<Value<E>>) (Key) this.usedKey, this.defaultValue, this.value)
-                .asImmutable();
+        this((Key<Value<E>>) usedKey, value, defaultValue);
+    }
 
+    protected AbstractImmutableSingleCatalogData(Key<Value<E>> usedKey, E value) {
+        this(usedKey, value, value);
+    }
+
+    protected AbstractImmutableSingleCatalogData(Key<Value<E>> usedKey, E value, E defaultValue) {
+        super(usedKey, value, defaultValue);
+        this.cachedValue = Sponge.getRegistry().getValueFactory()
+                .createValue(usedKey, value, defaultValue)
+                .asImmutable();
     }
 
     @Override
     protected ImmutableValue<E> getValueGetter() {
-        return this.immutableValue;
+        return this.cachedValue;
     }
 
     @Override
     public DataContainer toContainer() {
-        return super.toContainer()
-                .set(this.usedKey.getQuery(), this.value.getId());
+        return super.toContainer();
     }
 
     @Override
     public ImmutableValue<E> type() {
-        return this.immutableValue;
+        return this.cachedValue;
     }
 }

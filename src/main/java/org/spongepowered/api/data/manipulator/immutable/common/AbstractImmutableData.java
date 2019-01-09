@@ -27,7 +27,6 @@ package org.spongepowered.api.data.manipulator.immutable.common;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Maps;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.data.key.Key;
@@ -36,6 +35,7 @@ import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -54,9 +54,8 @@ import java.util.stream.Collectors;
 public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I, M>, M extends DataManipulator<M, I>>
         implements ImmutableDataManipulator<I, M> {
 
-
-    private final Map<Key<?>, Supplier<ImmutableValue<?>>> keyValueMap = Maps.newHashMap();
-    private final Map<Key<?>, Supplier<?>> keyFieldGetterMap = Maps.newHashMap();
+    private final Map<Key<?>, Supplier<ImmutableValue<?>>> keyValueMap = new HashMap<>();
+    private final Map<Key<?>, Supplier<?>> keyFieldGetterMap = new HashMap<>();
 
     protected AbstractImmutableData() {
     }
@@ -99,18 +98,20 @@ public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I
 
     @Override
     public <E> Optional<E> get(Key<? extends BaseValue<E>> key) {
-        if (!supports(key)) {
+        final Supplier<?> supplier = this.keyFieldGetterMap.get(checkNotNull(key));
+        if (supplier == null) {
             return Optional.empty();
         }
-        return Optional.of((E) this.keyFieldGetterMap.get(key).get());
+        return Optional.of((E) supplier.get());
     }
 
     @Override
     public <E, V extends BaseValue<E>> Optional<V> getValue(Key<V> key) {
-        if (!this.keyValueMap.containsKey(key)) {
+        final Supplier<ImmutableValue<?>> supplier = this.keyValueMap.get(checkNotNull(key));
+        if (supplier == null) {
             return Optional.empty();
         }
-        return Optional.of((V) checkNotNull(this.keyValueMap.get(key).get()));
+        return Optional.of((V) supplier.get());
     }
 
     @Override
@@ -161,8 +162,19 @@ public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I
 
     @Override
     public DataContainer toContainer() {
-        return DataContainer.createNew()
+        final DataContainer dataContainer = DataContainer.createNew()
                 .set(Queries.CONTENT_VERSION, getContentVersion());
+        fillContainer(dataContainer);
+        return dataContainer;
     }
 
+    /**
+     * Implement this method to add the data to be persisted.
+     *
+     * @param dataContainer The data container
+     * @return The filled data container
+     */
+    protected DataContainer fillContainer(DataContainer dataContainer) {
+        return dataContainer;
+    }
 }

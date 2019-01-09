@@ -39,15 +39,33 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
+import javax.annotation.Nullable;
+
 public abstract class AbstractImmutableMappedData<K, V, I extends ImmutableMappedData<K, V, I, M>, M extends MappedData<K, V, M, I>>
-    extends AbstractImmutableSingleData<Map<K, V>, I, M> implements ImmutableMappedData<K, V, I, M> {
+        extends AbstractImmutableSingleData<Map<K, V>, I, M> implements ImmutableMappedData<K, V, I, M> {
 
     private final ImmutableMapValue<K, V> mapValue;
 
+    /**
+     * @deprecated Use {@link #AbstractImmutableMappedData(Key, Map, Map)} instead.
+     */
     @SuppressWarnings("unchecked")
+    @Deprecated
     protected AbstractImmutableMappedData(Map<K, V> value, Key<? extends BaseValue<Map<K, V>>> usedKey) {
-        super(ImmutableMap.copyOf(value), usedKey);
-        this.mapValue = Sponge.getRegistry().getValueFactory().createMapValue((Key<MapValue<K, V>>) this.usedKey, this.value).asImmutable();
+        this((Key<MapValue<K, V>>) usedKey, value, value);
+    }
+
+    protected AbstractImmutableMappedData(Key<MapValue<K, V>> usedKey, Map<K, V> value) {
+        this(usedKey, value, value);
+    }
+
+    protected AbstractImmutableMappedData(Key<MapValue<K, V>> usedKey, Map<K, V> value, Map<K, V> defaultValue) {
+        this(ImmutableMap.copyOf(value), value == defaultValue ? null : ImmutableMap.copyOf(defaultValue), usedKey);
+    }
+
+    private AbstractImmutableMappedData(Map<K, V> value, @Nullable Map<K, V> defaultValue, Key<MapValue<K, V>> usedKey) {
+        super(usedKey, value, defaultValue == null ? value : defaultValue);
+        this.mapValue = Sponge.getRegistry().getValueFactory().createMapValue(usedKey, value, this.defaultValue).asImmutable();
     }
 
     @Override
@@ -57,7 +75,7 @@ public abstract class AbstractImmutableMappedData<K, V, I extends ImmutableMappe
 
     @Override
     public Optional<V> get(K key) {
-        return Optional.ofNullable(super.getValue().get(checkNotNull(key, "Key cannot be null!")));
+        return Optional.ofNullable(super.getValue().get(checkNotNull(key, "key")));
     }
 
     @Override
