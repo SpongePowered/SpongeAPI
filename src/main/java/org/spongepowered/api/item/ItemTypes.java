@@ -275,6 +275,8 @@ public final class ItemTypes {
 
     public static final ItemType CAKE = DummyObjectProvider.createFor(ItemType.class, "CAKE");
 
+    public static final ItemType CAMPFIRE = DummyObjectProvider.createFor(ItemType.class, "CAMPFIRE");
+
     public static final ItemType CARROT = DummyObjectProvider.createFor(ItemType.class, "CARROT");
 
     public static final ItemType CARROT_ON_A_STICK = DummyObjectProvider.createFor(ItemType.class, "CARROT_ON_A_STICK");

@@ -218,6 +218,12 @@ public final class BooleanTraits {
 
     public static final BooleanTrait BUBBLE_CORAL_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "BUBBLE_CORAL_WATERLOGGED");
 
+    public static final BooleanTrait CAMPFIRE_LIT = DummyObjectProvider.createFor(BooleanTrait.class, "CAMPFIRE_LIT");
+
+    public static final BooleanTrait CAMPFIRE_SIGNAL_FIRE = DummyObjectProvider.createFor(BooleanTrait.class, "CAMPFIRE_SIGNAL_FIRE");
+
+    public static final BooleanTrait CAMPFIRE_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "CAMPFIRE_WATERLOGGED");
+
     public static final BooleanTrait CHAIN_COMMAND_BLOCK_CONDITIONAL = DummyObjectProvider.createFor(BooleanTrait.class, "CHAIN_COMMAND_BLOCK_CONDITIONAL");
 
     public static final BooleanTrait CHEST_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "CHEST_WATERLOGGED");
@@ -529,6 +535,10 @@ public final class BooleanTraits {
     public static final BooleanTrait LADDER_WATERLOGGED = DummyObjectProvider.createFor(BooleanTrait.class, "LADDER_WATERLOGGED");
 
     public static final BooleanTrait LANTERN_HANGING = DummyObjectProvider.createFor(BooleanTrait.class, "LANTERN_HANGING");
+
+    public static final BooleanTrait LECTERN_HAS_BOOK = DummyObjectProvider.createFor(BooleanTrait.class, "LECTERN_HAS_BOOK");
+
+    public static final BooleanTrait LECTERN_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "LECTERN_POWERED");
 
     public static final BooleanTrait LEVER_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "LEVER_POWERED");
 

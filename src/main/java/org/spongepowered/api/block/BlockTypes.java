@@ -249,6 +249,8 @@ public final class BlockTypes {
 
     public static final BlockType CAKE = DummyObjectProvider.createFor(BlockType.class, "CAKE");
 
+    public static final BlockType CAMPFIRE = DummyObjectProvider.createFor(BlockType.class, "CAMPFIRE");
+
     public static final BlockType CARROTS = DummyObjectProvider.createFor(BlockType.class, "CARROTS");
 
     public static final BlockType CARTOGRAPHY_TABLE = DummyObjectProvider.createFor(BlockType.class, "CARTOGRAPHY_TABLE");

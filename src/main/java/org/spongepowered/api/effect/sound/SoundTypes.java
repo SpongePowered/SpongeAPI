@@ -101,6 +101,8 @@ public final class SoundTypes {
 
     public static final SoundType BLOCK_BUBBLE_COLUMN_WHIRLPOOL_INSIDE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_BUBBLE_COLUMN_WHIRLPOOL_INSIDE");
 
+    public static final SoundType BLOCK_CAMPFIRE_CRACKLE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_CAMPFIRE_CRACKLE");
+
     public static final SoundType BLOCK_CHEST_CLOSE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_CHEST_CLOSE");
 
     public static final SoundType BLOCK_CHEST_LOCKED = DummyObjectProvider.createFor(SoundType.class, "BLOCK_CHEST_LOCKED");
@@ -1339,6 +1341,10 @@ public final class SoundTypes {
 
     public static final SoundType ITEM_AXE_STRIP = DummyObjectProvider.createFor(SoundType.class, "ITEM_AXE_STRIP");
 
+    public static final SoundType ITEM_BOOK_PAGE_TURN = DummyObjectProvider.createFor(SoundType.class, "ITEM_BOOK_PAGE_TURN");
+
+    public static final SoundType ITEM_BOOK_PUT = DummyObjectProvider.createFor(SoundType.class, "ITEM_BOOK_PUT");
+
     public static final SoundType ITEM_BOTTLE_EMPTY = DummyObjectProvider.createFor(SoundType.class, "ITEM_BOTTLE_EMPTY");
 
     public static final SoundType ITEM_BOTTLE_FILL = DummyObjectProvider.createFor(SoundType.class, "ITEM_BOTTLE_FILL");
@@ -1448,6 +1454,8 @@ public final class SoundTypes {
     public static final SoundType MUSIC_DISC_WARD = DummyObjectProvider.createFor(SoundType.class, "MUSIC_DISC_WARD");
 
     public static final SoundType UI_BUTTON_CLICK = DummyObjectProvider.createFor(SoundType.class, "UI_BUTTON_CLICK");
+
+    public static final SoundType UI_CARTOGRAPHY_TABLE_TAKE_RESULT = DummyObjectProvider.createFor(SoundType.class, "UI_CARTOGRAPHY_TABLE_TAKE_RESULT");
 
     public static final SoundType UI_LOOM_SELECT_PATTERN = DummyObjectProvider.createFor(SoundType.class, "UI_LOOM_SELECT_PATTERN");
 
