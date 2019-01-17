@@ -70,6 +70,8 @@ public final class IntegerTraits {
 
     public static final IntegerTrait COCOA_AGE = DummyObjectProvider.createFor(IntegerTrait.class, "COCOA_AGE");
 
+    public static final IntegerTrait COMPOSTER_LEVEL = DummyObjectProvider.createFor(IntegerTrait.class, "COMPOSTER_LEVEL");
+
     public static final IntegerTrait CREEPER_HEAD_ROTATION = DummyObjectProvider.createFor(IntegerTrait.class, "CREEPER_HEAD_ROTATION");
 
     public static final IntegerTrait CYAN_BANNER_ROTATION = DummyObjectProvider.createFor(IntegerTrait.class, "CYAN_BANNER_ROTATION");

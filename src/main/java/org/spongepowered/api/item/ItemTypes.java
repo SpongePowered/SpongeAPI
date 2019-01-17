@@ -367,6 +367,8 @@ public final class ItemTypes {
 
     public static final ItemType COMPASS = DummyObjectProvider.createFor(ItemType.class, "COMPASS");
 
+    public static final ItemType COMPOSTER = DummyObjectProvider.createFor(ItemType.class, "COMPOSTER");
+
     public static final ItemType CONDUIT = DummyObjectProvider.createFor(ItemType.class, "CONDUIT");
 
     public static final ItemType COOKED_BEEF = DummyObjectProvider.createFor(ItemType.class, "COOKED_BEEF");

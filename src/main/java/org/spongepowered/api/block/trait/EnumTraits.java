@@ -164,6 +164,8 @@ public final class EnumTraits {
 
     public static final EnumTrait<?> BUBBLE_CORAL_WALL_FAN_FACING = DummyObjectProvider.createFor(EnumTrait.class, "BUBBLE_CORAL_WALL_FAN_FACING");
 
+    public static final EnumTrait<?> CAMPFIRE_FACING = DummyObjectProvider.createFor(EnumTrait.class, "CAMPFIRE_FACING");
+
     public static final EnumTrait<?> CARVED_PUMPKIN_FACING = DummyObjectProvider.createFor(EnumTrait.class, "CARVED_PUMPKIN_FACING");
 
     public static final EnumTrait<?> CHAIN_COMMAND_BLOCK_FACING = DummyObjectProvider.createFor(EnumTrait.class, "CHAIN_COMMAND_BLOCK_FACING");

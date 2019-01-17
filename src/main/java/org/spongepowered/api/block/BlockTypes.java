@@ -303,6 +303,8 @@ public final class BlockTypes {
 
     public static final BlockType COMPARATOR = DummyObjectProvider.createFor(BlockType.class, "COMPARATOR");
 
+    public static final BlockType COMPOSTER = DummyObjectProvider.createFor(BlockType.class, "COMPOSTER");
+
     public static final BlockType CONDUIT = DummyObjectProvider.createFor(BlockType.class, "CONDUIT");
 
     public static final BlockType CORNFLOWER = DummyObjectProvider.createFor(BlockType.class, "CORNFLOWER");

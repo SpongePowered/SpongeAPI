@@ -79,6 +79,10 @@ public final class SoundTypes {
 
     public static final SoundType BLOCK_BAMBOO_SAPLING_PLACE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_BAMBOO_SAPLING_PLACE");
 
+    public static final SoundType BLOCK_BARREL_CLOSE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_BARREL_CLOSE");
+
+    public static final SoundType BLOCK_BARREL_OPEN = DummyObjectProvider.createFor(SoundType.class, "BLOCK_BARREL_OPEN");
+
     public static final SoundType BLOCK_BEACON_ACTIVATE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_BEACON_ACTIVATE");
 
     public static final SoundType BLOCK_BEACON_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "BLOCK_BEACON_AMBIENT");
@@ -88,6 +92,8 @@ public final class SoundTypes {
     public static final SoundType BLOCK_BEACON_POWER_SELECT = DummyObjectProvider.createFor(SoundType.class, "BLOCK_BEACON_POWER_SELECT");
 
     public static final SoundType BLOCK_BELL_USE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_BELL_USE");
+
+    public static final SoundType BLOCK_BLASTFURNACE_FIRE_CRACKLE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_BLASTFURNACE_FIRE_CRACKLE");
 
     public static final SoundType BLOCK_BREWING_STAND_BREW = DummyObjectProvider.createFor(SoundType.class, "BLOCK_BREWING_STAND_BREW");
 
@@ -115,6 +121,14 @@ public final class SoundTypes {
 
     public static final SoundType BLOCK_COMPARATOR_CLICK = DummyObjectProvider.createFor(SoundType.class, "BLOCK_COMPARATOR_CLICK");
 
+    public static final SoundType BLOCK_COMPOSTER_EMPTY = DummyObjectProvider.createFor(SoundType.class, "BLOCK_COMPOSTER_EMPTY");
+
+    public static final SoundType BLOCK_COMPOSTER_FILL = DummyObjectProvider.createFor(SoundType.class, "BLOCK_COMPOSTER_FILL");
+
+    public static final SoundType BLOCK_COMPOSTER_FILL_SUCCESS = DummyObjectProvider.createFor(SoundType.class, "BLOCK_COMPOSTER_FILL_SUCCESS");
+
+    public static final SoundType BLOCK_COMPOSTER_READY = DummyObjectProvider.createFor(SoundType.class, "BLOCK_COMPOSTER_READY");
+
     public static final SoundType BLOCK_CONDUIT_ACTIVATE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_CONDUIT_ACTIVATE");
 
     public static final SoundType BLOCK_CONDUIT_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "BLOCK_CONDUIT_AMBIENT");
@@ -134,6 +148,8 @@ public final class SoundTypes {
     public static final SoundType BLOCK_CORAL_BLOCK_PLACE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_CORAL_BLOCK_PLACE");
 
     public static final SoundType BLOCK_CORAL_BLOCK_STEP = DummyObjectProvider.createFor(SoundType.class, "BLOCK_CORAL_BLOCK_STEP");
+
+    public static final SoundType BLOCK_CROP_BREAK = DummyObjectProvider.createFor(SoundType.class, "BLOCK_CROP_BREAK");
 
     public static final SoundType BLOCK_DISPENSER_DISPENSE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_DISPENSER_DISPENSE");
 
@@ -237,6 +253,8 @@ public final class SoundTypes {
 
     public static final SoundType BLOCK_METAL_PRESSURE_PLATE_CLICK_ON = DummyObjectProvider.createFor(SoundType.class, "BLOCK_METAL_PRESSURE_PLATE_CLICK_ON");
 
+    public static final SoundType BLOCK_NETHER_WART_BREAK = DummyObjectProvider.createFor(SoundType.class, "BLOCK_NETHER_WART_BREAK");
+
     public static final SoundType BLOCK_NOTE_BLOCK_BASEDRUM = DummyObjectProvider.createFor(SoundType.class, "BLOCK_NOTE_BLOCK_BASEDRUM");
 
     public static final SoundType BLOCK_NOTE_BLOCK_BASS = DummyObjectProvider.createFor(SoundType.class, "BLOCK_NOTE_BLOCK_BASS");
@@ -307,6 +325,8 @@ public final class SoundTypes {
 
     public static final SoundType BLOCK_SLIME_BLOCK_STEP = DummyObjectProvider.createFor(SoundType.class, "BLOCK_SLIME_BLOCK_STEP");
 
+    public static final SoundType BLOCK_SMOKER_SMOKE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_SMOKER_SMOKE");
+
     public static final SoundType BLOCK_SNOW_BREAK = DummyObjectProvider.createFor(SoundType.class, "BLOCK_SNOW_BREAK");
 
     public static final SoundType BLOCK_SNOW_FALL = DummyObjectProvider.createFor(SoundType.class, "BLOCK_SNOW_FALL");
@@ -334,6 +354,10 @@ public final class SoundTypes {
     public static final SoundType BLOCK_STONE_PRESSURE_PLATE_CLICK_OFF = DummyObjectProvider.createFor(SoundType.class, "BLOCK_STONE_PRESSURE_PLATE_CLICK_OFF");
 
     public static final SoundType BLOCK_STONE_PRESSURE_PLATE_CLICK_ON = DummyObjectProvider.createFor(SoundType.class, "BLOCK_STONE_PRESSURE_PLATE_CLICK_ON");
+
+    public static final SoundType BLOCK_SWEET_BERRY_BUSH_BREAK = DummyObjectProvider.createFor(SoundType.class, "BLOCK_SWEET_BERRY_BUSH_BREAK");
+
+    public static final SoundType BLOCK_SWEET_BERRY_BUSH_PLACE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_SWEET_BERRY_BUSH_PLACE");
 
     public static final SoundType BLOCK_TRIPWIRE_ATTACH = DummyObjectProvider.createFor(SoundType.class, "BLOCK_TRIPWIRE_ATTACH");
 
@@ -993,6 +1017,8 @@ public final class SoundTypes {
 
     public static final SoundType ENTITY_PLAYER_HURT_ON_FIRE = DummyObjectProvider.createFor(SoundType.class, "ENTITY_PLAYER_HURT_ON_FIRE");
 
+    public static final SoundType ENTITY_PLAYER_HURT_SWEET_BERRY_BUSH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_PLAYER_HURT_SWEET_BERRY_BUSH");
+
     public static final SoundType ENTITY_PLAYER_LEVELUP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_PLAYER_LEVELUP");
 
     public static final SoundType ENTITY_PLAYER_SMALL_FALL = DummyObjectProvider.createFor(SoundType.class, "ENTITY_PLAYER_SMALL_FALL");
@@ -1365,6 +1391,8 @@ public final class SoundTypes {
 
     public static final SoundType ITEM_CHORUS_FRUIT_TELEPORT = DummyObjectProvider.createFor(SoundType.class, "ITEM_CHORUS_FRUIT_TELEPORT");
 
+    public static final SoundType ITEM_CROP_PLANT = DummyObjectProvider.createFor(SoundType.class, "ITEM_CROP_PLANT");
+
     public static final SoundType ITEM_CROSSBOW_HIT = DummyObjectProvider.createFor(SoundType.class, "ITEM_CROSSBOW_HIT");
 
     public static final SoundType ITEM_CROSSBOW_LOADING_END = DummyObjectProvider.createFor(SoundType.class, "ITEM_CROSSBOW_LOADING_END");
@@ -1389,11 +1417,15 @@ public final class SoundTypes {
 
     public static final SoundType ITEM_HOE_TILL = DummyObjectProvider.createFor(SoundType.class, "ITEM_HOE_TILL");
 
+    public static final SoundType ITEM_NETHER_WART_PLANT = DummyObjectProvider.createFor(SoundType.class, "ITEM_NETHER_WART_PLANT");
+
     public static final SoundType ITEM_SHIELD_BLOCK = DummyObjectProvider.createFor(SoundType.class, "ITEM_SHIELD_BLOCK");
 
     public static final SoundType ITEM_SHIELD_BREAK = DummyObjectProvider.createFor(SoundType.class, "ITEM_SHIELD_BREAK");
 
     public static final SoundType ITEM_SHOVEL_FLATTEN = DummyObjectProvider.createFor(SoundType.class, "ITEM_SHOVEL_FLATTEN");
+
+    public static final SoundType ITEM_SWEET_BERRIES_PICK_FROM_BUSH = DummyObjectProvider.createFor(SoundType.class, "ITEM_SWEET_BERRIES_PICK_FROM_BUSH");
 
     public static final SoundType ITEM_TOTEM_USE = DummyObjectProvider.createFor(SoundType.class, "ITEM_TOTEM_USE");
 
