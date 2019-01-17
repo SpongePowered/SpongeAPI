@@ -29,21 +29,29 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableListData;
 import org.spongepowered.api.data.manipulator.mutable.ListData;
-import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableListValue;
 import org.spongepowered.api.data.value.mutable.ListValue;
 
 import java.util.List;
+
+import javax.annotation.Nullable;
 
 public abstract class AbstractImmutableListData<E, I extends ImmutableListData<E, I, M>, M extends ListData<E, M, I>>
         extends AbstractImmutableSingleData<List<E>, I, M> implements ImmutableListData<E, I, M> {
 
     private final ImmutableListValue<E> listValue;
 
-    @SuppressWarnings("unchecked")
-    protected AbstractImmutableListData(List<E> value, Key<? extends BaseValue<List<E>>> usedKey) {
-        super(ImmutableList.copyOf(value), usedKey);
-        this.listValue = Sponge.getRegistry().getValueFactory().createListValue((Key<ListValue<E>>) this.usedKey, this.value).asImmutable();
+    protected AbstractImmutableListData(Key<ListValue<E>> usedKey, List<E> value) {
+        this(usedKey, value, value);
+    }
+
+    protected AbstractImmutableListData(Key<ListValue<E>> usedKey, List<E> value, List<E> defaultValue) {
+        this(ImmutableList.copyOf(value), value == defaultValue ? null : ImmutableList.copyOf(defaultValue), usedKey);
+    }
+
+    private AbstractImmutableListData(List<E> value, @Nullable List<E> defaultValue, Key<ListValue<E>> usedKey) {
+        super(usedKey, value, defaultValue == null ? value : defaultValue);
+        this.listValue = Sponge.getRegistry().getValueFactory().createListValue(usedKey, value, this.defaultValue).asImmutable();
     }
 
     @Override

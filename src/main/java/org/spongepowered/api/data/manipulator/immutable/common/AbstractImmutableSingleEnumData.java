@@ -44,15 +44,21 @@ import org.spongepowered.api.data.value.mutable.Value;
 public abstract class AbstractImmutableSingleEnumData<E extends Enum<E>, I extends ImmutableDataManipulator<I, M>, M extends DataManipulator<M, I>>
         extends AbstractImmutableSingleData<E, I, M> {
 
-    private final E defaultValue;
     private final ImmutableValue<E> cachedValue;
 
-    protected AbstractImmutableSingleEnumData(E value, E defaultValue, Key<Value<E>> usedKey) {
-        super(value, usedKey);
-        this.defaultValue = defaultValue;
-        this.cachedValue = Sponge.getRegistry().getValueFactory().createValue(usedKey, this.defaultValue, this.value).asImmutable();
+    protected AbstractImmutableSingleEnumData(Key<Value<E>> usedKey, E value) {
+        this(usedKey, value, value);
     }
 
+    protected AbstractImmutableSingleEnumData(Key<Value<E>> usedKey, E value, E defaultValue) {
+        super(usedKey, value, defaultValue);
+        this.cachedValue = Sponge.getRegistry().getValueFactory().createValue(usedKey, value, defaultValue).asImmutable();
+    }
+
+    /**
+     * @deprecated Use {@link #getValueGetter()} instead.
+     */
+    @Deprecated
     protected final ImmutableValue<E> enumType() {
         return this.cachedValue;
     }
@@ -62,7 +68,8 @@ public abstract class AbstractImmutableSingleEnumData<E extends Enum<E>, I exten
         return this.cachedValue;
     }
 
-    @Override protected DataContainer fillContainer(DataContainer dataContainer) {
-        return dataContainer.set(this.usedKey.getQuery(), this.value.name());
+    @Override
+    protected DataContainer fillContainer(DataContainer dataContainer) {
+        return dataContainer.set(this.usedKey.getQuery(), getValue().name());
     }
 }

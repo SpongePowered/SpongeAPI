@@ -150,18 +150,20 @@ public abstract class AbstractData<M extends DataManipulator<M, I>, I extends Im
 
     @Override
     public <E> Optional<E> get(Key<? extends BaseValue<E>> key) {
-        if (!supports(key)) {
+        final Supplier<?> supplier = this.keyFieldGetterMap.get(checkNotNull(key));
+        if (supplier == null) {
             return Optional.empty();
         }
-        return Optional.of((E) this.keyFieldGetterMap.get(key).get());
+        return Optional.of((E) supplier.get());
     }
 
     @Override
     public <E, V extends BaseValue<E>> Optional<V> getValue(Key<V> key) {
-        if (!this.keyValueMap.containsKey(key)) {
+        final Supplier<?> supplier = this.keyValueMap.get(checkNotNull(key));
+        if (supplier == null) {
             return Optional.empty();
         }
-        return Optional.of((V) checkNotNull(this.keyValueMap.get(key).get()));
+        return Optional.of((V) supplier.get());
     }
 
     @Override
@@ -214,10 +216,8 @@ public abstract class AbstractData<M extends DataManipulator<M, I>, I extends Im
     /**
      * Implement this method to add the data to be persisted.
      *
-     * @param dataContainer The DataContainer
-     *
-     * @return The filled DataContainer
+     * @param dataContainer The data container
+     * @return The filled data container
      */
     protected abstract DataContainer fillContainer(DataContainer dataContainer);
-
 }

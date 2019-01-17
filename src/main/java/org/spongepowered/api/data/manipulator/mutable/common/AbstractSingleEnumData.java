@@ -24,14 +24,11 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.common;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.mutable.Value;
 
 /**
@@ -45,11 +42,12 @@ import org.spongepowered.api.data.value.mutable.Value;
 public abstract class AbstractSingleEnumData<E extends Enum<E>, M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>>
         extends AbstractSingleData<E, M, I> {
 
-    private final E defaultValue;
+    protected AbstractSingleEnumData(Key<Value<E>> usedKey, E value) {
+        this(usedKey, value, value);
+    }
 
-    protected AbstractSingleEnumData(E value, Key<? extends BaseValue<E>> usedKey, E defaultValue) {
-        super(value, usedKey);
-        this.defaultValue = checkNotNull(defaultValue);
+    protected AbstractSingleEnumData(Key<Value<E>> usedKey, E value, E defaultValue) {
+        super(usedKey, value, defaultValue);
     }
 
     @Override
@@ -60,6 +58,6 @@ public abstract class AbstractSingleEnumData<E extends Enum<E>, M extends DataMa
     @SuppressWarnings("unchecked")
     @Override
     protected Value<E> getValueGetter() {
-        return Sponge.getRegistry().getValueFactory().createValue((Key<Value<E>>) this.usedKey, this.getValue(), this.defaultValue);
+        return Sponge.getRegistry().getValueFactory().createValue((Key<Value<E>>) this.usedKey, this.value, this.defaultValue);
     }
 }

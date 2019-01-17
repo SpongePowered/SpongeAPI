@@ -26,13 +26,14 @@ package org.spongepowered.api.data.manipulator.mutable.common;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.base.Objects;
+import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.mutable.Value;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -53,11 +54,17 @@ public abstract class AbstractSingleData<T, M extends DataManipulator<M, I>, I e
         extends AbstractData<M, I> {
 
     protected final Key<? extends BaseValue<T>> usedKey;
-    private T value;
+    protected final T defaultValue;
+    protected T value;
 
-    protected AbstractSingleData(T value, Key<? extends BaseValue<T>> usedKey) {
-        this.value = checkNotNull(value);
-        this.usedKey = checkNotNull(usedKey);
+    protected AbstractSingleData(Key<? extends Value<T>> usedKey, T value) {
+        this(usedKey, value, value);
+    }
+
+    protected AbstractSingleData(Key<? extends Value<T>> usedKey, T value, T defaultValue) {
+        this.usedKey = checkNotNull(usedKey, "usedKey");
+        this.value = checkNotNull(value, "value");
+        this.defaultValue = checkNotNull(defaultValue, "defaultValue");
         registerGettersAndSetters();
     }
 
@@ -116,23 +123,26 @@ public abstract class AbstractSingleData<T, M extends DataManipulator<M, I>, I e
     }
 
     @Override
+    protected DataContainer fillContainer(DataContainer dataContainer) {
+        return dataContainer.set(this.usedKey.getQuery(), getValue());
+    }
+
+    @Override
     public int hashCode() {
-        return 31 * super.hashCode() + Objects.hashCode(this.value);
+        int hash = super.hashCode();
+        hash = 31 * hash + Objects.hashCode(this.value);
+        hash = 31 * hash + Objects.hashCode(this.defaultValue);
+        return hash;
     }
 
     @SuppressWarnings("rawtypes")
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
         if (!super.equals(obj)) {
             return false;
         }
         final AbstractSingleData other = (AbstractSingleData) obj;
-        return Objects.equal(this.value, other.value);
+        return Objects.equals(this.value, other.value) &&
+                Objects.equals(this.defaultValue, other.defaultValue);
     }
 }

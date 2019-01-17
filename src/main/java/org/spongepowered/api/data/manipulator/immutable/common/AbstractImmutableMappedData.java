@@ -31,7 +31,6 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableMappedData;
 import org.spongepowered.api.data.manipulator.mutable.MappedData;
-import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableMapValue;
 import org.spongepowered.api.data.value.mutable.MapValue;
 
@@ -39,15 +38,24 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
+import javax.annotation.Nullable;
+
 public abstract class AbstractImmutableMappedData<K, V, I extends ImmutableMappedData<K, V, I, M>, M extends MappedData<K, V, M, I>>
-    extends AbstractImmutableSingleData<Map<K, V>, I, M> implements ImmutableMappedData<K, V, I, M> {
+        extends AbstractImmutableSingleData<Map<K, V>, I, M> implements ImmutableMappedData<K, V, I, M> {
 
     private final ImmutableMapValue<K, V> mapValue;
 
-    @SuppressWarnings("unchecked")
-    protected AbstractImmutableMappedData(Map<K, V> value, Key<? extends BaseValue<Map<K, V>>> usedKey) {
-        super(ImmutableMap.copyOf(value), usedKey);
-        this.mapValue = Sponge.getRegistry().getValueFactory().createMapValue((Key<MapValue<K, V>>) this.usedKey, this.value).asImmutable();
+    protected AbstractImmutableMappedData(Key<MapValue<K, V>> usedKey, Map<K, V> value) {
+        this(usedKey, value, value);
+    }
+
+    protected AbstractImmutableMappedData(Key<MapValue<K, V>> usedKey, Map<K, V> value, Map<K, V> defaultValue) {
+        this(ImmutableMap.copyOf(value), value == defaultValue ? null : ImmutableMap.copyOf(defaultValue), usedKey);
+    }
+
+    private AbstractImmutableMappedData(Map<K, V> value, @Nullable Map<K, V> defaultValue, Key<MapValue<K, V>> usedKey) {
+        super(usedKey, value, defaultValue == null ? value : defaultValue);
+        this.mapValue = Sponge.getRegistry().getValueFactory().createMapValue(usedKey, value, this.defaultValue).asImmutable();
     }
 
     @Override
@@ -57,7 +65,7 @@ public abstract class AbstractImmutableMappedData<K, V, I extends ImmutableMappe
 
     @Override
     public Optional<V> get(K key) {
-        return Optional.ofNullable(super.getValue().get(checkNotNull(key, "Key cannot be null!")));
+        return Optional.ofNullable(super.getValue().get(checkNotNull(key, "key")));
     }
 
     @Override

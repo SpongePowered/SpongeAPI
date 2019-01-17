@@ -32,13 +32,15 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.mutable.Value;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
 /**
  * An abstract implementation of an {@link ImmutableDataManipulator} that
- * specificaly deals with a single value.
+ * specifically deals with a single value.
  *
  * @param <T> The type of value
  * @param <I> The type of immutable manipulator
@@ -49,11 +51,16 @@ public abstract class AbstractImmutableSingleData<T, I extends ImmutableDataMani
 
     protected final Key<? extends BaseValue<T>> usedKey;
     protected final T value;
+    protected final T defaultValue;
 
-    protected AbstractImmutableSingleData(T value, Key<? extends BaseValue<T>> usedKey) {
-        super();
-        this.value = checkNotNull(value);
-        this.usedKey = checkNotNull(usedKey, "Hey, the key provided is null! Please make sure it is registered!");
+    protected AbstractImmutableSingleData(Key<? extends Value<T>> usedKey, T value) {
+        this(usedKey, value, value);
+    }
+
+    protected AbstractImmutableSingleData(Key<? extends Value<T>> usedKey, T value, T defaultValue) {
+        this.value = checkNotNull(value, "value");
+        this.defaultValue = checkNotNull(defaultValue, "defaultValue");
+        this.usedKey = checkNotNull(usedKey, "usedKey");
         registerGetters();
     }
 
@@ -65,7 +72,6 @@ public abstract class AbstractImmutableSingleData<T, I extends ImmutableDataMani
 
     @Override
     public abstract M asMutable();
-
 
     @Override
     protected final void registerGetters() {
@@ -89,4 +95,22 @@ public abstract class AbstractImmutableSingleData<T, I extends ImmutableDataMani
         return ImmutableSet.of(this.usedKey);
     }
 
+    @Override
+    public int hashCode() {
+        int hash = super.hashCode();
+        hash = 31 * hash + Objects.hashCode(this.value);
+        hash = 31 * hash + Objects.hashCode(this.defaultValue);
+        return hash;
+    }
+
+    @SuppressWarnings("rawtypes")
+    @Override
+    public boolean equals(Object obj) {
+        if (!super.equals(obj)) {
+            return false;
+        }
+        final AbstractImmutableSingleData other = (AbstractImmutableSingleData) obj;
+        return Objects.equals(this.value, other.value) &&
+                Objects.equals(this.defaultValue, other.defaultValue);
+    }
 }
