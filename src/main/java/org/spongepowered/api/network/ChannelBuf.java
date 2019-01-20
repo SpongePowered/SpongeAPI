@@ -59,17 +59,22 @@ public interface ChannelBuf {
      * <p>This method does not modify readerIndex or writerIndex of this
      * buffer.</p>
      *
-     *
      * @param order The order
      * @return The ChannelStream with the desired byte order
+     * @deprecated Use the little endian accessors, e.g. {@link #getShortLE},
+     *             {@link #setShortLE(int, short)}
      */
+    @Deprecated
     ChannelBuf order(ByteOrder order);
 
     /**
      * Returns the endianness ({@link ByteOrder}) of this buffer.
      *
      * @return The current byte order of this buffer
+     * @deprecated Use the little endian accessors, e.g. {@link #getShortLE},
+     *             {@link #setShortLE(int, short)}
      */
+    @Deprecated
     ByteOrder getByteOrder();
 
     /**
@@ -125,7 +130,10 @@ public interface ChannelBuf {
      * resetRead(). The initial value of the marked readerIndex is 0.
      *
      * @return This stream for chaining
+     * @deprecated Retrieve the reader index manually with {@link #readerIndex()}
+     *             and reset with {@link #setReadIndex(int)}
      */
+    @Deprecated
     ChannelBuf markRead();
 
     /**
@@ -134,7 +142,10 @@ public interface ChannelBuf {
      * resetWrite(). The initial value of the marked writerIndex is 0.
      *
      * @return This stream for chaining
+     * @deprecated Retrieve the reader index manually with {@link #writerIndex()}
+     *             and reset with {@link #setWriteIndex(int)}
      */
+    @Deprecated
     ChannelBuf markWrite();
 
     /**
@@ -142,7 +153,10 @@ public interface ChannelBuf {
      * index.
      *
      * @return This stream for chaining
+     * @deprecated Retrieve the reader index manually with {@link #writerIndex()}
+     *             and reset with {@link #setWriteIndex(int)}
      */
+    @Deprecated
     ChannelBuf resetRead();
 
     /**
@@ -150,7 +164,10 @@ public interface ChannelBuf {
      * index.
      *
      * @return This stream for chaining
+     * @deprecated Retrieve the reader index manually with {@link #writerIndex()}
+     *             and reset with {@link #setWriteIndex(int)}
      */
+    @Deprecated
     ChannelBuf resetWrite();
 
     /**
@@ -413,6 +430,16 @@ public interface ChannelBuf {
     ChannelBuf writeShort(short data);
 
     /**
+     * Sets the specified short integer at the current writerIndex in
+     * little endian byte order and increases the writerIndex by 2 in
+     * this buffer.
+     *
+     * @param data The short data
+     * @return This stream for chaining
+     */
+    ChannelBuf writeShortLE(short data);
+
+    /**
      * Sets the short at the specified absolute index in this
      * buffer. This method does not modify readerIndex or writerIndex
      * of this buffer.
@@ -424,6 +451,17 @@ public interface ChannelBuf {
     ChannelBuf setShort(int index, short data);
 
     /**
+     * Sets the short at the specified absolute index in this
+     * buffer in little endian byte order. This method does
+     * not modify readerIndex or writerIndex of this buffer.
+     *
+     * @param index The index
+     * @param data The short data
+     * @return This stream for chaining
+     */
+    ChannelBuf setShortLE(int index, short data);
+
+    /**
      * Gets a short integer at the current readerIndex and increases the
      * readerIndex by 2 in this buffer.
      *
@@ -432,12 +470,29 @@ public interface ChannelBuf {
     short readShort();
 
     /**
+     * Gets a short integer at the current readerIndex in little endian byte order
+     * and increases the readerIndex by 2 in this buffer.
+     *
+     * @return The short integer
+     */
+    short readShortLE();
+
+    /**
      * Gets a short integer at the specified absolute index in this buffer.
      *
      * @param index The index
      * @return The short integer
      */
     short getShort(int index);
+
+    /**
+     * Gets a short integer at the specified absolute index in this buffer
+     * in little endian byte order.
+     *
+     * @param index The index
+     * @return The short integer
+     */
+    short getShortLE(int index);
 
     /**
      * Sets the specified character at the current writerIndex and
@@ -481,8 +536,41 @@ public interface ChannelBuf {
      *
      * @param data The integer data
      * @return This stream for chaining
+     * @deprecated Use {@link #writeInt(int)} instead
      */
+    @Deprecated
     ChannelBuf writeInteger(int data);
+
+    /**
+     * Sets the specified integer at the current writerIndex and increases
+     * the writerIndex by 4 in this buffer.
+     *
+     * @param data The integer data
+     * @return This stream for chaining
+     */
+    ChannelBuf writeInt(int data);
+
+    /**
+     * Sets the specified integer at the current writerIndex in little endian
+     * byte order and increases the writerIndex by 4 in this buffer.
+     *
+     * @param data The integer data
+     * @return This stream for chaining
+     */
+    ChannelBuf writeIntLE(int data);
+
+    /**
+     * Sets the integer at the specified absolute index in this
+     * buffer. This method does not modify readerIndex or writerIndex
+     * of this buffer.
+     *
+     * @param index The index
+     * @param data The integer data
+     * @return This stream for chaining
+     * @deprecated Use {@link #setInt(int, int)} instead
+     */
+    @Deprecated
+    ChannelBuf setInteger(int index, int data);
 
     /**
      * Sets the integer at the specified absolute index in this
@@ -493,7 +581,28 @@ public interface ChannelBuf {
      * @param data The integer data
      * @return This stream for chaining
      */
-    ChannelBuf setInteger(int index, int data);
+    ChannelBuf setInt(int index, int data);
+
+    /**
+     * Sets the integer at the specified absolute index in this
+     * buffer in little endian byte order. This method does not
+     * modify readerIndex or writerIndex of this buffer.
+     *
+     * @param index The index
+     * @param data The integer data
+     * @return This stream for chaining
+     */
+    ChannelBuf setIntLE(int index, int data);
+
+    /**
+     * Gets an integer at the current readerIndex and increases the
+     * readerIndex by 4 in this buffer.
+     *
+     * @return The integer
+     * @deprecated Use {@link #readInt()} instead
+     */
+    @Deprecated
+    int readInteger();
 
     /**
      * Gets an integer at the current readerIndex and increases the
@@ -501,7 +610,25 @@ public interface ChannelBuf {
      *
      * @return The integer
      */
-    int readInteger();
+    int readInt();
+
+    /**
+     * Gets an integer at the current readerIndex in little endian byte order
+     * and increases the readerIndex by 4 in this buffer.
+     *
+     * @return The integer
+     */
+    int readIntLE();
+
+    /**
+     * Gets an integer at the specified absolute index in this buffer.
+     *
+     * @param index The index
+     * @return The integer
+     * @deprecated Use {@link #getInt(int)} instead
+     */
+    @Deprecated
+    int getInteger(int index);
 
     /**
      * Gets an integer at the specified absolute index in this buffer.
@@ -509,7 +636,16 @@ public interface ChannelBuf {
      * @param index The index
      * @return The integer
      */
-    int getInteger(int index);
+    int getInt(int index);
+
+    /**
+     * Gets an integer at the specified absolute index in this buffer
+     * in little endian byte order.
+     *
+     * @param index The index
+     * @return The integer
+     */
+    int getIntLE(int index);
 
     /**
      * Sets the specified long integer at the current writerIndex and
