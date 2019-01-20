@@ -61,7 +61,7 @@ public interface ChannelBuf {
      *
      * @param order The order
      * @return The ChannelStream with the desired byte order
-     * @deprecated Use the little endian accessors, e.g. {@link #getShortLE},
+     * @deprecated Use the little endian accessors, e.g. {@link #getShortLE(int)},
      *             {@link #setShortLE(int, short)}
      */
     @Deprecated
@@ -71,7 +71,7 @@ public interface ChannelBuf {
      * Returns the endianness ({@link ByteOrder}) of this buffer.
      *
      * @return The current byte order of this buffer
-     * @deprecated Use the little endian accessors, e.g. {@link #getShortLE},
+     * @deprecated Use the little endian accessors, e.g. {@link #getShortLE(int)},
      *             {@link #setShortLE(int, short)}
      */
     @Deprecated
@@ -539,7 +539,9 @@ public interface ChannelBuf {
      * @deprecated Use {@link #writeInt(int)} instead
      */
     @Deprecated
-    ChannelBuf writeInteger(int data);
+    default ChannelBuf writeInteger(int data) {
+        return writeInt(data);
+    }
 
     /**
      * Sets the specified integer at the current writerIndex and increases
@@ -570,7 +572,9 @@ public interface ChannelBuf {
      * @deprecated Use {@link #setInt(int, int)} instead
      */
     @Deprecated
-    ChannelBuf setInteger(int index, int data);
+    default ChannelBuf setInteger(int index, int data) {
+        return setInt(index, data);
+    }
 
     /**
      * Sets the integer at the specified absolute index in this
@@ -602,7 +606,9 @@ public interface ChannelBuf {
      * @deprecated Use {@link #readInt()} instead
      */
     @Deprecated
-    int readInteger();
+    default int readInteger() {
+        return readInt();
+    }
 
     /**
      * Gets an integer at the current readerIndex and increases the
@@ -628,7 +634,9 @@ public interface ChannelBuf {
      * @deprecated Use {@link #getInt(int)} instead
      */
     @Deprecated
-    int getInteger(int index);
+    default int getInteger(int index) {
+        return getInt(index);
+    }
 
     /**
      * Gets an integer at the specified absolute index in this buffer.
