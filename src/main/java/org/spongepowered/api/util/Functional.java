@@ -172,7 +172,7 @@ public class Functional {
         CompletableFuture<T> ret = new CompletableFuture<>();
         try {
             ret.complete(call.call());
-        } catch (Exception e) {
+        } catch (Throwable e) {
             ret.completeExceptionally(e);
         }
         return ret;
@@ -192,7 +192,7 @@ public class Functional {
         exec.execute(() -> {
             try {
                 ret.complete(call.call());
-            } catch (Exception e) {
+            } catch (Throwable e) {
                 ret.completeExceptionally(e);
             }
         });
