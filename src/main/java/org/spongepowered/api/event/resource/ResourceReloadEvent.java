@@ -37,7 +37,7 @@ public interface ResourceReloadEvent extends ResourceEvent, Cancellable {
 
     /**
      * Called before the {@link ReloadableResourceManager} is reloaded. At this
-     * point, the {@link PackRepository#getEnabledPacks() enables packs} can be
+     * point, the {@link PackRepository#getEnabledPacks() enabled packs} can be
      * added or removed from.
      */
     interface Pre extends ResourceReloadEvent {

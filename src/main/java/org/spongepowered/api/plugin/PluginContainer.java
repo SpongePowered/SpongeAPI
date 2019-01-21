@@ -34,6 +34,7 @@ import org.spongepowered.api.asset.Asset;
 import org.spongepowered.api.asset.AssetManager;
 import org.spongepowered.api.resource.PackInfo;
 import org.spongepowered.api.resource.PackRepository;
+import org.spongepowered.api.resource.ResourceType;
 import org.spongepowered.plugin.meta.PluginDependency;
 
 import java.nio.file.Path;
@@ -133,6 +134,7 @@ public interface PluginContainer {
      *
      * @param name Name of asset
      * @return Asset if present, empty otherwise
+     * @deprecated Use {@link #getPack(ResourceType)} instead.
      */
     @Deprecated
     default Optional<Asset> getAsset(String name) {
@@ -143,9 +145,11 @@ public interface PluginContainer {
      * Retrieves the {@link PackInfo} owned by this plugin from the
      * {@link PackRepository}.
      *
+     * @param type The type of resource pack
+     *
      * @return The plugin's resource pack.
      */
-    default PackInfo getPack() {
+    default PackInfo getPack(ResourceType type) {
         return Sponge.getServer().getPackRepository().getPack(this);
     }
 
