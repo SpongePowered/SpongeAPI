@@ -708,6 +708,8 @@ public final class EnumTraits {
 
     public static final EnumTrait<?> STICKY_PISTON_FACING = DummyObjectProvider.createFor(EnumTrait.class, "STICKY_PISTON_FACING");
 
+    public static final EnumTrait<?> STONECUTTER_FACING = DummyObjectProvider.createFor(EnumTrait.class, "STONECUTTER_FACING");
+
     public static final EnumTrait<?> STONE_BRICK_SLAB_TYPE = DummyObjectProvider.createFor(EnumTrait.class, "STONE_BRICK_SLAB_TYPE");
 
     public static final EnumTrait<?> STONE_BRICK_STAIRS_FACING = DummyObjectProvider.createFor(EnumTrait.class, "STONE_BRICK_STAIRS_FACING");

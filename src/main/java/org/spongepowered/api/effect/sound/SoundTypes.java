@@ -1493,6 +1493,10 @@ public final class SoundTypes {
 
     public static final SoundType UI_LOOM_TAKE_RESULT = DummyObjectProvider.createFor(SoundType.class, "UI_LOOM_TAKE_RESULT");
 
+    public static final SoundType UI_STONECUTTER_SELECT_RECIPE = DummyObjectProvider.createFor(SoundType.class, "UI_STONECUTTER_SELECT_RECIPE");
+
+    public static final SoundType UI_STONECUTTER_TAKE_RESULT = DummyObjectProvider.createFor(SoundType.class, "UI_STONECUTTER_TAKE_RESULT");
+
     public static final SoundType UI_TOAST_CHALLENGE_COMPLETE = DummyObjectProvider.createFor(SoundType.class, "UI_TOAST_CHALLENGE_COMPLETE");
 
     public static final SoundType UI_TOAST_IN = DummyObjectProvider.createFor(SoundType.class, "UI_TOAST_IN");
