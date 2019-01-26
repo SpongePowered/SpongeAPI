@@ -28,6 +28,9 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.util.ResettableBuilder;
+
+import java.util.List;
 
 /**
  * Represents an {@link EnchantmentType} on an {@link ItemStack} that is paired
@@ -47,6 +50,10 @@ public interface Enchantment extends DataSerializable {
      */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Enchantment.Builder.class);
+    }
+
+    static RandomListBuilder randomListBuilder() {
+        return Sponge.getRegistry().createBuilder(RandomListBuilder.class);
     }
 
     /**
@@ -119,6 +126,78 @@ public interface Enchantment extends DataSerializable {
          * @throws IllegalStateException If a required value was not specified
          */
         Enchantment build() throws IllegalStateException;
+
+    }
+
+    /**
+     * Represents a builder interface which can be used
+     * to create a {@link Enchantment}.
+     */
+    interface RandomListBuilder extends ResettableBuilder<List<Enchantment>, RandomListBuilder> {
+
+        /**
+         * Sets the random seed.
+         *
+         * @param seed the random seed
+         *
+         * @return The modified builder, for chaining
+         */
+        RandomListBuilder seed(int seed);
+
+        /**
+         * Sets the enchanting option. (1-3 in vanilla)
+         *
+         * @param option the enchanting option
+         *
+         * @return The modified builder, for chaining
+         */
+        RandomListBuilder option(int option);
+
+        /**
+         * Sets the enchanting level. (max. 30 in vanilla)
+         *
+         * @param level the enchanting level
+         *
+         * @return The modified builder, for chaining
+         */
+        RandomListBuilder level(int level);
+
+        /**
+         * Sets whether to include treasure enchantments or not
+         *
+         * @param treasure whether to include treasure enchantments or not
+         *
+         * @return The modified builder, for chaining
+         */
+        RandomListBuilder treasure(boolean treasure);
+
+        /**
+         * Sets a fixed pool for the random enchantments to pick from.
+         * <p>If empty a pool will be calculated based on the other values instead.</p>
+         *
+         * @param pool the fixed pool of enchantments
+         *
+         * @return The modified builder, for chaining
+         */
+        RandomListBuilder fixedPool(List<Enchantment> pool);
+
+        /**
+         * Sets the item for which the enchantments are chosen
+         *
+         * @param item the item for which the enchantments are chosen
+         *
+         * @return The modified builder, for chaining
+         */
+        RandomListBuilder item(ItemStack item);
+
+        /**
+         * Builds an instance of a {@link Enchantment} based on the entered
+         * information.
+         *
+         * @return The created enchantment
+         * @throws IllegalStateException If a required value was not specified
+         */
+        List<Enchantment> build() throws IllegalStateException;
 
     }
 
