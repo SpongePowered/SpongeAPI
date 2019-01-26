@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.item.inventory;
 
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.crafting.CraftingInventory;
 import org.spongepowered.api.item.inventory.transaction.SlotTransaction;
 import org.spongepowered.api.item.recipe.Recipe;
@@ -75,5 +76,12 @@ public interface CraftItemEvent extends ChangeInventoryEvent {
          * @return The crafting transaction
          */
         ItemStackSnapshot getCrafted();
+
+        /**
+         * Returns the crafting output Slot.
+         *
+         * @return The crafting output Slot
+         */
+        @Override Optional<Slot> getSlot();
     }
 }
