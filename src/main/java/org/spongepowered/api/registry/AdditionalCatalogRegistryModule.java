@@ -26,6 +26,15 @@ package org.spongepowered.api.registry;
 
 import org.spongepowered.api.CatalogType;
 
+/**
+ * A {@link CatalogRegistryModule} that allows additional registration
+ * after the initial registration of the default {@link CatalogType}s.
+ * The event {@link org.spongepowered.api.event.game.GameRegistryEvent.Register} will
+ * be called for every {@link AdditionalCatalogRegistryModule} that is
+ * registered for a specific {@link CatalogType}.
+ *
+ * @param <T> The catalog type
+ */
 public interface AdditionalCatalogRegistryModule<T extends CatalogType> extends CatalogRegistryModule<T> {
 
     /**

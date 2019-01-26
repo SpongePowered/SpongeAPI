@@ -28,6 +28,7 @@ import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.GenericEvent;
 import org.spongepowered.api.event.impl.AbstractGameRegistryRegisterEvent;
+import org.spongepowered.api.registry.AdditionalCatalogRegistryModule;
 import org.spongepowered.api.registry.CatalogRegistryModule;
 import org.spongepowered.api.registry.CatalogTypeAlreadyRegisteredException;
 import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
@@ -40,6 +41,12 @@ public interface GameRegistryEvent extends Event {
     /**
      * This event is called to allow additional registrations for
      * specific {@link CatalogType}s.
+     *
+     * <p>When creating custom {@link CatalogRegistryModule}s, implementing the
+     * {@link AdditionalCatalogRegistryModule} allows this event to be called
+     * for the target {@link CatalogType}. All the {@link CatalogType}s will
+     * be registered through the {@link AdditionalCatalogRegistryModule#registerAdditionalCatalog(CatalogType)}
+     * method.</p>
      *
      * @param <T> The type of the catalog type
      */

@@ -24,12 +24,13 @@
  */
 package org.spongepowered.api.item.recipe;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
 /**
  * A general interface for recipes.
  */
-public interface Recipe {
+public interface Recipe extends CatalogType {
 
     /**
      * A general result of this recipe. This result may be customized depending
