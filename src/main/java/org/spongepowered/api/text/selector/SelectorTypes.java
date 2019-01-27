@@ -48,12 +48,6 @@ public final class SelectorTypes {
      * The nearest player selector type.
      */
     public static final SelectorType NEAREST_PLAYER = DummyObjectProvider.createFor(SelectorType.class, "NEAREST_PLAYER");
-    
-    /**
-     * The self selector type. This only targets players, if the command sender
-     * is a command block or the console, this selector will return nothing.
-     */
-    public static final SelectorType SOURCE = DummyObjectProvider.createFor(SelectorType.class, "SOURCE");
 
     /**
      * The random selector type. This targets only players by default, but may
@@ -61,6 +55,13 @@ public final class SelectorTypes {
      * a selector.
      */
     public static final SelectorType RANDOM = DummyObjectProvider.createFor(SelectorType.class, "RANDOM");
+
+    
+    /**
+     * The self selector type. This only targets players, if the command sender
+     * is a command block or the console, this selector will return nothing.
+     */
+    public static final SelectorType SOURCE = DummyObjectProvider.createFor(SelectorType.class, "SOURCE");
 
     // SORTFIELDS:OFF
 

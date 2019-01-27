@@ -43,6 +43,7 @@ import org.spongepowered.api.data.value.mutable.*;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.effect.potion.PotionEffectType;
+import org.spongepowered.api.item.potion.PotionType;
 import org.spongepowered.api.entity.*;
 import org.spongepowered.api.entity.explosive.Explosive;
 import org.spongepowered.api.entity.explosive.FusedExplosive;
@@ -103,7 +104,6 @@ public final class Keys {
      * @see AbsorptionData#absorption()
      */
     public static final Key<Value<Double>> ABSORPTION = DummyObjectProvider.createExtendedFor(Key.class, "ABSORPTION");
-
 
     /**
      * Represents the {@link Key} for the item a {@link Living} is using.
@@ -1613,6 +1613,17 @@ public final class Keys {
     public static final Key<SetValue<BlockType>> PLACEABLE_BLOCKS = DummyObjectProvider.createExtendedFor(Key.class,"PLACEABLE_BLOCKS");
 
     /**
+     * Represents the {@link Key} for the content of a
+     * {@link ItemTypes#WRITABLE_BOOK}.
+     *
+     * <p>Use {@link Keys#BOOK_PAGES} if you wish to get the contents of a
+     * {@link ItemTypes#WRITTEN_BOOK}</p>
+     *
+     * @see PlainPagedData#pages()
+     */
+    public static final Key<ListValue<String>> PLAIN_BOOK_PAGES = DummyObjectProvider.createExtendedFor(Key.class,"PLAIN_BOOK_PAGES");
+
+    /**
      * Represents the {@link Key} for representing the {@link PlantType}
      * of a {@link BlockState}.
      *
@@ -1629,17 +1640,6 @@ public final class Keys {
     public static final Key<Value<Boolean>> PLAYER_CREATED = DummyObjectProvider.createExtendedFor(Key.class,"PLAYER_CREATED");
 
     /**
-     * Represents the {@link Key} for the content of a
-     * {@link ItemTypes#WRITABLE_BOOK}.
-     *
-     * <p>Use {@link Keys#BOOK_PAGES} if you wish to get the contents of a
-     * {@link ItemTypes#WRITTEN_BOOK}</p>
-     *
-     * @see PlainPagedData#pages()
-     */
-    public static final Key<ListValue<String>> PLAIN_BOOK_PAGES = DummyObjectProvider.createExtendedFor(Key.class,"PLAIN_BOOK_PAGES");
-
-    /**
      * Represents the {@link Key} for representing the {@link PortionType}
      * of a {@link BlockState}.
      *
@@ -1654,6 +1654,13 @@ public final class Keys {
      * @see PotionEffectData#effects()
      */
     public static final Key<ListValue<PotionEffect>> POTION_EFFECTS = DummyObjectProvider.createExtendedFor(Key.class,"POTION_EFFECTS");
+
+    /**
+     * Represents the {@link Key} for representing the potion type of an {@link ItemStack}.
+     *
+     * @see PotionTypeData#type()
+     */
+    public static final Key<Value<PotionType>> POTION_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"POTION_TYPE");
 
     /**
      * Represents the {@link Key} for representing the "power" state
