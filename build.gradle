@@ -5,6 +5,14 @@ buildscript {
             name = 'gradle-plugins'
             url = 'https://plugins.gradle.org/m2'
         }
+        maven {
+            name = 'sponge'
+            url = 'https://repo.spongepowered.org/maven'
+        }
+        maven {
+            name = 'forge'
+            url = 'http://files.minecraftforge.net/maven'
+        }
     }
 
     dependencies {
