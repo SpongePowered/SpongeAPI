@@ -25,9 +25,10 @@
 package org.spongepowered.api.data.property;
 
 import com.google.common.reflect.TypeToken;
+import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Comparator;
@@ -98,7 +99,7 @@ public interface Property<V> extends CatalogType {
      *
      * @param <V> The value type
      */
-    interface Builder<V> extends ResettableBuilder<Property<V>, Builder<V>> {
+    interface Builder<V> extends CatalogBuilder<Property<V>, Builder<V>> {
 
         /**
          * Sets the value type of the property.
@@ -149,23 +150,13 @@ public interface Property<V> extends CatalogType {
         Builder<V> valueIncludesTester(BiPredicate<V, V> predicate);
 
         /**
-         * Sets the id of the property. (without the namespace/plugin id)
-         *
-         * @param id The id
-         * @return This builder, for chaining
-         */
-        Builder<V> id(String id);
-
-        /**
          * Builds the {@link Property}.
          *
-         * @return The constructed property
+         * @return The built property
+         * @throws IllegalStateException If not all required options were specified; {@link #key(CatalogKey)},
+         *                               {@link #valueType(TypeToken)} and {@link #valueComparator(Comparator)}.
          */
-        Property<V> build();
-
         @Override
-        default Builder<V> from(Property<V> value) {
-            throw new UnsupportedOperationException("Cannot create duplicate properties!");
-        }
+        Property<V> build();
     }
 }

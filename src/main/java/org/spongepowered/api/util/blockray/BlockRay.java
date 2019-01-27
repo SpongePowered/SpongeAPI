@@ -330,7 +330,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
 
         // Now if using the narrow phase, test on small selection boxes, if needed
         if (this.narrowPhase && !hit.getExtent().getProperty(hit.getBlockPosition(),
-                Properties.Block.HAS_FULL_BLOCK_SELECTION_BOX).orElse(true)) {
+                Properties.HAS_FULL_BLOCK_SELECTION_BOX).orElse(true)) {
             // Get the selection box and perform the narrow phase intersection test
             final Optional<Tuple<Vector3d, Vector3d>> intersection = hit.mapBlock(Extent::getBlockSelectionBox)
                 .flatMap(aabb -> aabb.intersects(this.position, this.direction));
@@ -544,7 +544,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
         final Vector3d rotation = entity.getRotation();
         final Vector3d direction = Quaterniond.fromAxesAnglesDeg(rotation.getX(), -rotation.getY(), rotation.getZ()).getDirection();
         final Location<World> location = entity.getLocation();
-        final Vector3d position = entity.getProperty(Properties.Entity.EYE_POSITION).orElse(location.getPosition());
+        final Vector3d position = entity.getProperty(Properties.EYE_POSITION).orElse(location.getPosition());
         return from(location.getExtent(), position).direction(direction);
     }
 

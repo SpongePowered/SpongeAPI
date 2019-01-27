@@ -151,7 +151,7 @@ public interface Living extends Entity, ProjectileSource, TeamMember {
      * @param targetPos Position to target
      */
     default void lookAt(Vector3d targetPos) {
-        Vector3d eyePos = getProperty(Properties.Entity.EYE_POSITION).get();
+        Vector3d eyePos = getProperty(Properties.EYE_POSITION).get();
 
         Vector2d xz1 = eyePos.toVector2(true);
         Vector2d xz2 = targetPos.toVector2(true);
