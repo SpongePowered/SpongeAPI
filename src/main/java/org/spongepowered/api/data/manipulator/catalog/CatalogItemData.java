@@ -33,6 +33,7 @@ import org.spongepowered.api.data.manipulator.mutable.DyeableData;
 import org.spongepowered.api.data.manipulator.mutable.FireworkEffectData;
 import org.spongepowered.api.data.manipulator.mutable.FireworkRocketData;
 import org.spongepowered.api.data.manipulator.mutable.PotionEffectData;
+import org.spongepowered.api.data.manipulator.mutable.PotionTypeData;
 import org.spongepowered.api.data.manipulator.mutable.TargetedLocationData;
 import org.spongepowered.api.data.manipulator.mutable.item.BlockItemData;
 import org.spongepowered.api.data.manipulator.mutable.item.BreakableData;
@@ -56,6 +57,7 @@ import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.type.Fish;
 import org.spongepowered.api.data.type.GoldenApple;
 import org.spongepowered.api.effect.potion.PotionEffect;
+import org.spongepowered.api.item.potion.PotionType;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.ItemTypes;
@@ -163,6 +165,11 @@ public final class CatalogItemData {
      * use. Usually applicable to {@link ItemTypes#POTION}s.
      */
     public static final Class<PotionEffectData> POTION_EFFECT_DATA = PotionEffectData.class;
+    /**
+     * Signifies that an item can have {@link PotionType}.
+     * Usually applicable to {@link ItemTypes#POTION}s.
+     */
+    public static final Class<PotionTypeData> POTION_TYPE_DATA = PotionTypeData.class;
     /**
      * Represents the {@link EntityType} that can be spawned upon use.
      * Usually applicable to {@link ItemTypes#SPAWN_EGG}.
