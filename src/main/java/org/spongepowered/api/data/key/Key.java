@@ -38,6 +38,7 @@ import org.spongepowered.api.event.EventListener;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
 import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.TypeTokens;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.lang.reflect.Type;
 import java.util.Collection;
@@ -52,6 +53,7 @@ import java.util.Map;
  *
  * @param <V> The type of {@link BaseValue}
  */
+@CatalogedBy(Keys.class)
 public interface Key<V extends BaseValue<?>> extends CatalogType {
 
     /**
