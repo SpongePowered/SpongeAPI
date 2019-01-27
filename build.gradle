@@ -172,6 +172,7 @@ sortClassFields {
     add 'main', 'org.spongepowered.api.item.ItemTypes'
     add 'main', 'org.spongepowered.api.item.inventory.equipment.EquipmentTypes'
     add 'main', 'org.spongepowered.api.item.inventory.query.QueryOperationTypes'
+    add 'main', 'org.spongepowered.api.item.potion.PotionTypes'
     add 'main', 'org.spongepowered.api.scoreboard.CollisionRules'
     add 'main', 'org.spongepowered.api.scoreboard.Visibilities'
     add 'main', 'org.spongepowered.api.scoreboard.critieria.Criteria'

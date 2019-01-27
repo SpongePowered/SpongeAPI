@@ -43,6 +43,7 @@ import org.spongepowered.api.data.value.mutable.*;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.effect.potion.PotionEffectType;
+import org.spongepowered.api.item.potion.PotionType;
 import org.spongepowered.api.entity.*;
 import org.spongepowered.api.entity.explosive.Explosive;
 import org.spongepowered.api.entity.explosive.FusedExplosive;
@@ -104,7 +105,6 @@ public final class Keys {
      * @see AbsorptionData#absorption()
      */
     public static final Key<Value<Double>> ABSORPTION = DummyObjectProvider.createExtendedFor(Key.class, "ABSORPTION");
-
 
     /**
      * Represents the {@link Key} for the item a {@link Living} is using.
@@ -1611,14 +1611,6 @@ public final class Keys {
     public static final Key<SetValue<BlockType>> PLACEABLE_BLOCKS = DummyObjectProvider.createExtendedFor(Key.class,"PLACEABLE_BLOCKS");
 
     /**
-     * Represents the {@link Key} for whether an {@link IronGolem} has been
-     * created by a {@link Player}.
-     *
-     * @see PlayerCreatedData#playerCreated()
-     */
-    public static final Key<Value<Boolean>> PLAYER_CREATED = DummyObjectProvider.createExtendedFor(Key.class,"PLAYER_CREATED");
-
-    /**
      * Represents the {@link Key} for the content of a
      * {@link ItemTypes#WRITABLE_BOOK}.
      *
@@ -1628,6 +1620,14 @@ public final class Keys {
      * @see PlainPagedData#pages()
      */
     public static final Key<ListValue<String>> PLAIN_BOOK_PAGES = DummyObjectProvider.createExtendedFor(Key.class,"PLAIN_BOOK_PAGES");
+
+    /**
+     * Represents the {@link Key} for whether an {@link IronGolem} has been
+     * created by a {@link Player}.
+     *
+     * @see PlayerCreatedData#playerCreated()
+     */
+    public static final Key<Value<Boolean>> PLAYER_CREATED = DummyObjectProvider.createExtendedFor(Key.class,"PLAYER_CREATED");
 
     /**
      * Represents the {@link Key} for representing the {@link PortionType}
@@ -1644,6 +1644,13 @@ public final class Keys {
      * @see PotionEffectData#effects()
      */
     public static final Key<ListValue<PotionEffect>> POTION_EFFECTS = DummyObjectProvider.createExtendedFor(Key.class,"POTION_EFFECTS");
+
+    /**
+     * Represents the {@link Key} for representing the potion type of an {@link ItemStack}.
+     *
+     * @see PotionTypeData#type()
+     */
+    public static final Key<Value<PotionType>> POTION_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"POTION_TYPE");
 
     /**
      * Represents the {@link Key} for representing the "power" state
