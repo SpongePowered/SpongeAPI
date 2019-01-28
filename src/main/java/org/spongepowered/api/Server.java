@@ -46,7 +46,7 @@ import java.util.concurrent.CompletableFuture;
 /**
  * Represents a typical Minecraft Server.
  */
-public interface Server {
+public interface Server extends Engine {
 
     /**
      * Gets the {@link Player}s currently online.
@@ -409,11 +409,4 @@ public interface Server {
      * @param timeout The player idle timeout
      */
     void setPlayerIdleTimeout(int timeout);
-
-    /**
-     * Checks if the current thread matches the main thread of the server.
-     *
-     * @return True if main thread, false if not
-     */
-    boolean isMainThread();
 }

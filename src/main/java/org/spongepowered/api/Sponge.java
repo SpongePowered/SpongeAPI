@@ -66,7 +66,6 @@ public final class Sponge {
     @Inject private static ConfigManager configManager;
     @Inject private static CommandManager commandManager;
     @Inject private static ServiceManager serviceManager;
-    @Inject private static Scheduler scheduler;
     @Inject private static ChannelRegistrar channelRegistrar;
 
     @Inject private static TeleportHelper teleportHelper;
@@ -188,15 +187,6 @@ public final class Sponge {
      */
     public static ServiceManager getServiceManager() {
         return check(serviceManager);
-    }
-
-    /**
-     * Gets the scheduler used to schedule tasks.
-     *
-     * @return The scheduler
-     */
-    public static Scheduler getScheduler() {
-        return check(scheduler);
     }
 
     /**

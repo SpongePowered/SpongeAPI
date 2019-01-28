@@ -25,6 +25,7 @@
 package org.spongepowered.api;
 
 import org.spongepowered.api.asset.AssetManager;
+import org.spongepowered.api.client.Client;
 import org.spongepowered.api.command.CommandManager;
 import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataManager;
@@ -86,7 +87,6 @@ public interface Game {
      */
     Path getSavesDirectory();
 
-
     /**
      * Returns if the {@link Server} is available for use. The result of this method is entirely
      * dependent on the implementation.
@@ -103,6 +103,26 @@ public interface Game {
      */
     Server getServer();
 
+    /**
+     * Returns if the {@link Client} is available for use. The result of this method is entirely
+     * dependent on the implementation.
+     *
+     * @return True if the Client is available, false if not
+     */
+    default boolean isClientAvailable() {
+        return false;
+    }
+
+    /**
+     * Gets the {@link Client}.
+     *
+     * @return The client
+     * @throws UnsupportedEngineException If the client engine is not supported
+     * @throws IllegalStateException If the Client isn't currently available
+     */
+    default Client getClient() {
+        throw new UnsupportedEngineException("The client engine is not supported.");
+    }
 
     /**
      * Retrieves the GameDictionary (item dictionary) for this {@link Game}.
@@ -112,7 +132,6 @@ public interface Game {
     default Optional<GameDictionary> getGameDictionary() {
         return Optional.empty();
     }
-
 
     /**
      * Returns the current platform, or implementation, this {@link Game} is running on.
@@ -214,15 +233,6 @@ public interface Game {
     }
 
     /**
-     * Gets the scheduler used to schedule tasks.
-     *
-     * @return The scheduler
-     */
-    default Scheduler getScheduler() {
-        return Sponge.getScheduler();
-    }
-
-    /**
      * Gets the {@link ChannelRegistrar} for creating network channels.
      *
      * @return The channel registrar
@@ -243,7 +253,7 @@ public interface Game {
     /**
      * Gets the {@link CauseStackManager} for handling the current event cause
      * stack and context information.
-     * 
+     *
      * @return The cause stack manager
      */
     default CauseStackManager getCauseStackManager() {
