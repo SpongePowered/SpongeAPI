@@ -308,7 +308,7 @@ public final class Location implements DataHolder {
                ? Optional.of(
                 LocatableBlock
                         .builder()
-                        .world((World) getWorld())
+                        .world(getWorld())
                         .position(this.getBlockPosition())
                         .build()
                 )
@@ -761,118 +761,23 @@ public final class Location implements DataHolder {
 
     @Override
     public int getContentVersion() {
-        return 1;
+        // 1 - Legacy Extent generic location that stored only block types and positions
+        // 2 - World based locations that stores block state and position
+        return 2;
     }
 
     @Override
     public DataContainer toContainer() {
         final DataContainer container = DataContainer.createNew();
         container.set(Queries.CONTENT_VERSION, getContentVersion());
-        if (getWorld() instanceof World) {
-            container.set(Queries.WORLD_NAME, ((World) getWorld()).getName());
-            container.set(Queries.WORLD_ID, getWorld().getUniqueId().toString());
-        } else if (getWorld() instanceof Chunk) {
-            container.set(Queries.CHUNK_X, ((Chunk) getWorld()).getPosition().getX())
-                .set(Queries.CHUNK_Y, ((Chunk) getWorld()).getPosition().getY())
-                .set(Queries.CHUNK_Z, ((Chunk) getWorld()).getPosition().getZ())
-                .set(Queries.WORLD_NAME, ((Chunk) getWorld()).getWorld().getName())
-                .set(Queries.WORLD_ID, ((Chunk) getWorld()).getWorld().getUniqueId().toString());
-        }
-        container.set(Queries.BLOCK_TYPE, this.getWorld().getBlock(getBlockPosition()).getKey())
+        container.set(Queries.WORLD_NAME, getWorld().getName());
+        container.set(Queries.WORLD_ID, getWorld().getUniqueId().toString());
+
+        container.set(Queries.BLOCK_TYPE, this.getBlock())
             .set(Queries.POSITION_X, this.getX())
             .set(Queries.POSITION_Y, this.getY())
             .set(Queries.POSITION_Z, this.getZ());
         return container;
-    }
 
-    @Override
-    public <T extends DataManipulator<?, ?>> Optional<T> get(Class<T> containerClass) {
-        return getWorld().get(getBlockPosition(), containerClass);
     }
-
-    @Override
-    public <T> Optional<T> get(Key<? extends BaseValue<T>> key) {
-        return getWorld().get(getBlockPosition(), key);
-    }
-
-    @Override
-    public <T extends DataManipulator<?, ?>> Optional<T> getOrCreate(Class<T> containerClass) {
-        return getWorld().getOrCreate(getBlockPosition(), containerClass);
-    }
-
-    @Override
-    public <T> DataTransactionResult offer(Key<? extends BaseValue<T>> key, T value) {
-        return getWorld().offer(getBlockPosition(), key, value);
-    }
-
-    @Override
-    public DataTransactionResult offer(DataManipulator<?, ?> valueContainer, MergeFunction function) {
-        return getWorld().offer(getBlockPosition(), valueContainer, function);
-    }
-
-    @Override
-    public DataTransactionResult undo(DataTransactionResult result) {
-        return getWorld().undo(getBlockPosition(), result);
-    }
-
-    @Override
-    public boolean supports(Class<? extends DataManipulator<?, ?>> holderClass) {
-        return getWorld().supports(getBlockPosition(), holderClass);
-    }
-
-    @Override
-    public boolean supports(Key<?> key) {
-        return getWorld().supports(getBlockPosition(), key);
-    }
-
-    @Override
-    public DataTransactionResult copyFrom(DataHolder that, MergeFunction strategy) {
-        return getWorld().copyFrom(getBlockPosition(), that, strategy);
-    }
-
-    @Override
-    public Collection<DataManipulator<?, ?>> getContainers() {
-        return getWorld().getManipulators(getBlockPosition());
-    }
-
-    @Override
-    public <T, V extends BaseValue<T>> Optional<V> getValue(Key<V> key) {
-        return getWorld().getValue(getBlockPosition(), key);
-    }
-
-    @Override
-    public Location copy() {
-        return new Location(getWorld(), getPosition());
-    }
-
-    @Override
-    public Set<Key<?>> getKeys() {
-        return getWorld().getKeys(getBlockPosition());
-    }
-
-    @Override
-    public Set<ImmutableValue<?>> getValues() {
-        return getWorld().getValues(getBlockPosition());
-    }
-
-    @Override
-    public String toString() {
-        return "Location{" + getPosition() + " in " + getWorld() + "}";
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(getWorld(), getPosition());
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (!(other instanceof Location)) {
-            return false;
-        }
-        Location otherLoc = (Location) other;
-        return otherLoc.getWorld().equals(getWorld())
-            && otherLoc.getPosition().equals(getPosition());
-    }
-
 }
