@@ -192,13 +192,6 @@ public final class Properties {
             DummyObjectProvider.createFor(Property.class, "HAS_STATISTICS_TRACKING");
 
     /**
-     * A property to represent the {@link InstrumentType} that is used
-     * by a block to play notes/music.
-     */
-    public static final Property<InstrumentType> REPRESENTED_INSTRUMENT =
-            DummyObjectProvider.createFor(Property.class, "REPRESENTED_INSTRUMENT");
-
-    /**
      * A property to represent whether something is flammable.
      */
     public static final Property<Boolean> IS_FLAMMABLE =
@@ -270,6 +263,14 @@ public final class Properties {
             DummyObjectProvider.createFor(Property.class, "LIGHT_EMISSION");
 
     /**
+     * A property to represent the amount of light that is emitted at a block
+     * location. The luminance is affected by {@link #BLOCK_LUMINANCE},
+     * {@link #SKY_LUMINANCE} and possible other light sources.
+     */
+    public static final Property<Double> LUMINANCE =
+            DummyObjectProvider.createFor(Property.class, "LUMINANCE");
+
+    /**
      * A property to represent the matter of a block.
      */
     public static final Property<Matter> MATTER =
@@ -280,6 +281,13 @@ public final class Properties {
      */
     public static final Property<RecordType> RECORD_TYPE =
             DummyObjectProvider.createFor(Property.class, "RECORD_TYPE");
+
+    /**
+     * A property to represent the {@link InstrumentType} that is used
+     * by a block to play notes/music.
+     */
+    public static final Property<InstrumentType> REPRESENTED_INSTRUMENT =
+            DummyObjectProvider.createFor(Property.class, "REPRESENTED_INSTRUMENT");
 
     /**
      * A property that provides the {@link ItemType} representation of what a
@@ -312,8 +320,8 @@ public final class Properties {
 
     /**
      * A property to represent the temperature at a block location. This temperature
-     * can be affected by the {@link #BLOCK_TEMPERATURE}, {@link #BIOME_TEMPERATURE}
-     * and possible other sources that affect the temperature.
+     * is affected by the {@link #BLOCK_TEMPERATURE}, {@link #BIOME_TEMPERATURE},
+     * {@link #FLUID_TEMPERATURE} and possible other sources that affect the temperature.
      */
     public static final Property<Double> TEMPERATURE =
             DummyObjectProvider.createFor(Property.class, "TEMPERATURE");
