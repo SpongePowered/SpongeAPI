@@ -87,6 +87,7 @@ import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.gen.GeneratorType;
 import org.spongepowered.api.world.teleport.PortalAgentType;
 import org.spongepowered.api.world.SerializationBehavior;
+import org.spongepowered.api.world.WorldArchetype;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.biome.VirtualBiomeType;
 import org.spongepowered.api.world.difficulty.Difficulty;
@@ -308,6 +309,8 @@ public final class CatalogTypes {
     public static final Class<Weather> WEATHER = Weather.class;
 
     public static final Class<WireAttachmentType> WIRE_ATTACHMENT_TYPE = WireAttachmentType.class;
+
+    public static final Class<WorldArchetype> WORLD_ARCHETYPE = WorldArchetype.class;
 
     public static final Class<WorldGeneratorModifier> WORLD_GENERATOR_MODIFIER = WorldGeneratorModifier.class;
 

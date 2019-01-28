@@ -22,30 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world;
+package org.spongepowered.api.world;
 
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.world.WorldArchetype;
-import org.spongepowered.api.world.storage.WorldProperties;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-/**
- * An event for when a {@link WorldProperties} has been created. Often paired with a
- * {@link LoadWorldEvent}, but that is not guaranteed.
- */
-public interface ConstructWorldPropertiesEvent extends Event {
+public class WorldArchetypes {
+
+    // SORTFIELDS:ON
 
     /**
-     * Gets the properties of the newly created world.
-     * 
-     * @return The properties
+     * Represents a typical default {@link World}.
      */
-    WorldProperties getWorldProperties();
-    
+    public static final WorldArchetype OVERWORLD = DummyObjectProvider.createFor(WorldArchetype.class, "overworld");
+
     /**
-     * Gets the {@link WorldArchetype} used to create the world.
-     * 
-     * @return The archetype
+     * Represents a typical nether-style {@link World}.
      */
-    WorldArchetype getWorldArchetype();
+    public static final WorldArchetype THE_NETHER = DummyObjectProvider.createFor(WorldArchetype.class, "the_nether");
+
+    /**
+     * Represents a typical the end-style {@link World}.
+     */
+    public static final WorldArchetype THE_END = DummyObjectProvider.createFor(WorldArchetype.class, "the_end");
+
+    /**
+     * Represents a typical Sponge void-style {@link World}.
+     */
+    public static final WorldArchetype THE_VOID = DummyObjectProvider.createFor(WorldArchetype.class, "the_void");
+
+    // SORTFIELDS:OFF
+
+    // Suppress default constructor to ensure non-instantiability.
+    private WorldArchetypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 
 }

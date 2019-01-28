@@ -33,6 +33,7 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.world.chunk.ChunkTicketManager;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.WorldArchetype;
 import org.spongepowered.api.world.storage.ChunkLayout;
 import org.spongepowered.api.world.storage.WorldProperties;
 
@@ -197,6 +198,28 @@ public interface Server extends Engine {
      * @return Whether the operation was successful
      */
     boolean unloadWorld(World world);
+
+    /**
+     * Creates a new {@link WorldProperties} from the given
+     * {@link WorldArchetype}. For the creation of the WorldArchetype please see
+     * {@link org.spongepowered.api.world.WorldArchetype.Builder}.
+     *
+     * <p>If the {@link World} exists at the folder name given, the properties
+     * representing that folder name are returned instead.</p>
+     *
+     * <p>Although the world is created it is not loaded at this time. Please
+     * see one of the following methods for loading the world.</p>
+     *
+     * <ul> <li>{@link #loadWorld(String)}</li> <li>{@link #loadWorld(UUID)}
+     * </li> <li>{@link #loadWorld(WorldProperties)}</li> </ul>
+     *
+     * @param folderName The name of the folder for the world
+     * @param archetype The archetype for creation
+     * @return The new or existing world properties, if creation was successful
+     * @throws IOException If there are any io issues creating the properties
+     *      file
+     */
+    WorldProperties createWorldProperties(String folderName, WorldArchetype archetype) throws IOException;
 
     /**
      * Creates a world copy asynchronously using the new name given and returns
