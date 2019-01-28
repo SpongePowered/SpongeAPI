@@ -46,17 +46,6 @@ public interface Chunk extends ProtoChunk<Chunk> {
      */
     World getWorld();
 
-    /**
-     * Gets if the chunk has been populated by the generator.
-     *
-     * @return Whether or not the chunk has been populated.
-     * @deprecated Use {@link #getState()} to determine statefulness
-     */
-    @Deprecated
-    default boolean isPopulated() {
-        return getState().isAfter(ChunkStates.DECORATED);
-    }
-
 
     /**
      * Loads this chunk, and generates if specified and required.
@@ -73,18 +62,6 @@ public interface Chunk extends ProtoChunk<Chunk> {
      * @return Whether or not the chunk unloaded
      */
     boolean unloadChunk();
-
-    /**
-     * Gets the number of ticks players have been present in this chunk, used
-     * for calculation of the regional difficulty factor. In vanilla, it is
-     * increased by the number of players in the chunk every tick, and is capped
-     * at 3,600,000 ticks (50 hours).
-     *
-     * @return The number of ticks
-     * @deprecated Due to misspelling, use {@link #getInhabitedTime()} instead
-     */
-    @Deprecated
-    int getInhabittedTime();
 
     /**
      * Gets the number of ticks players have been present in this chunk, used

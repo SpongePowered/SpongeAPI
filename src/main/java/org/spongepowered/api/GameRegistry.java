@@ -101,24 +101,6 @@ public interface GameRegistry {
 
     /**
      * Attempts to retrieve the specific type of {@link CatalogType} based on
-     * the string id given.
-     *
-     * <p>Some types may not be available for various reasons including but not
-     * restricted to: mods adding custom types, plugins providing custom types,
-     * game version changes.</p>
-     *
-     * @param typeClass The class of the type of {@link CatalogType}
-     * @param id The case insensitive string id of the dummy type
-     * @param <T> The type of dummy type
-     * @return The found dummy type, if available
-     * @deprecated use {@link #getType(Class, CatalogKey)}
-     * @see CatalogType
-     */
-    @Deprecated
-    <T extends CatalogType> Optional<T> getType(Class<T> typeClass, String id);
-
-    /**
-     * Attempts to retrieve the specific type of {@link CatalogType} based on
      * the key given.
      *
      * <p>Some types may not be available for various reasons including but not
@@ -405,15 +387,6 @@ public interface GameRegistry {
      */
     @Deprecated
     TextFactory getTextFactory();
-
-    /**
-     * Gets the internal {@link SelectorFactory}.
-     *
-     * @return The selector factory
-     * @deprecated Use the appropriate class in the selector package instead
-     */
-    @Deprecated
-    SelectorFactory getSelectorFactory();
 
     /**
      * Gets a locale for the specified locale code, e.g. {@code en_US}.

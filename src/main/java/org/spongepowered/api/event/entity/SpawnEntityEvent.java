@@ -51,14 +51,5 @@ public interface SpawnEntityEvent extends AffectEntityEvent {
 
     interface ChunkLoad extends SpawnEntityEvent {}
 
-    /**
-     * A deprecated sub-event used when a spawn entity event was caused by a
-     * {@link MobSpawner}.
-     *
-     * @deprecated Utilize {@link SpawnTypes#MOB_SPAWNER} as context.
-     */
-    @Deprecated
-    interface Spawner extends SpawnEntityEvent {}
-
     interface Custom extends SpawnEntityEvent {}
 }

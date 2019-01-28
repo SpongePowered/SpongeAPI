@@ -154,15 +154,5 @@ public interface CatalogKey extends Comparable<CatalogKey> {
 
         CatalogKey build() throws IllegalStateException;
 
-        /**
-         * @deprecated Should not be used to clone namespaces from other keys
-         * @param value The built object
-         * @return Throws an exception
-         * @throws UnsupportedOperationException Cloning keys is not supported
-         */
-        @Override
-        @Deprecated
-        Builder from(CatalogKey value) throws UnsupportedOperationException;
-
     }
 }

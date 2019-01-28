@@ -50,16 +50,6 @@ public interface RideEntityEvent extends Event, Cancellable {
     /**
      * Raised when an {@link Entity} is being dismounted.
      */
-    interface Dismount extends RideEntityEvent {
-
-        /**
-         * Gets the {@link DismountType} when entity is dismounted.
-         *
-         * @return The dismount type
-         * @deprecated Use {@link EventContextKeys#DISMOUNT_TYPE} instead
-         */
-        @Deprecated
-        DismountType getDismountType();
-    }
+    interface Dismount extends RideEntityEvent {}
 
 }

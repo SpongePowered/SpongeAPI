@@ -42,26 +42,6 @@ import org.spongepowered.api.registry.AdditionalCatalogRegistryModule;
 public interface CatalogType {
 
     /**
-     * Gets the unique identifier of this {@link CatalogType}. The identifier is
-     * case insensitive, thus there cannot be another instance with a different
-     * character case. The id of this instance must remain the same for the
-     * entire duration of its existence. The identifier can be formatted however
-     * needed.
-     *
-     * <p>A typical id format follows the pattern of <code>`modId:name`</code>
-     * or <code>`minecraft:name`</code>. However the prefix may be omitted for
-     * default/vanilla minecraft types.</p>
-     *
-     * @return The unique identifier of this dummy type
-     * @deprecated Use {@link #getKey()} to avoid ambiguity determining what is
-     *     the plugin/mod id versus the catalog's actual id
-     */
-    @Deprecated
-    default String getId() {
-        return this.getKey().toString();
-    }
-
-    /**
      * Gets the catalog key for this catalog type. Useful for storing a searchable
      * id reference within the {@link GameRegistry}. Since the {@link GameRegistry}
      * can effectively search for the {@link CatalogKey#getNamespace()}, a fail

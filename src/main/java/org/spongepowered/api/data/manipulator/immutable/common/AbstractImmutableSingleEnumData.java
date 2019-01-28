@@ -55,14 +55,6 @@ public abstract class AbstractImmutableSingleEnumData<E extends Enum<E>, I exten
         this.cachedValue = Sponge.getRegistry().getValueFactory().createValue(usedKey, value, defaultValue).asImmutable();
     }
 
-    /**
-     * @deprecated Use {@link #getValueGetter()} instead.
-     */
-    @Deprecated
-    protected final ImmutableValue<E> enumType() {
-        return this.cachedValue;
-    }
-
     @Override
     protected final ImmutableValue<E> getValueGetter() {
         return this.cachedValue;

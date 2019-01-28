@@ -127,35 +127,6 @@ public final class CommandArgs {
     }
 
     /**
-     * Return this arguments object's current state. Can be used to reset with
-     * the {@link #setState(Object)} method.
-     *
-     * @deprecated Use {@link #getSnapshot()} and
-     *             {@link #applySnapshot(Snapshot)} instead
-     * @return The current state
-     */
-    @Deprecated
-    public Object getState() {
-        return getSnapshot();
-    }
-
-    /**
-     * Restore the arguments object's state to a state previously used.
-     *
-     * @deprecated Use {@link #getSnapshot()} and
-     *             {@link #applySnapshot(Snapshot)} instead
-     * @param state the previous state
-     */
-    @Deprecated
-    public void setState(Object state) {
-        if (!(state instanceof Snapshot)) {
-            throw new IllegalArgumentException("Provided state was not of appropriate format returned by getState!");
-        }
-
-        applySnapshot((Snapshot) state, false); // keep parity with before
-    }
-
-    /**
      * Return the raw string used to provide input to this arguments object.
      *
      * @return The raw input
@@ -172,23 +143,6 @@ public final class CommandArgs {
     public void insertArg(String value) {
         int index = this.index < 0 ? 0 : this.args.get(this.index).getEndIdx();
         this.args.add(this.index + 1, new SingleArg(value, index, index));
-    }
-
-    /**
-     * Remove the arguments parsed between startState and endState.
-     *
-     * @deprecated Use with {@link #getSnapshot()} instead of
-     *     {@link #getState()} with {@link #removeArgs(Snapshot, Snapshot)}
-     * @param startState The starting state
-     * @param endState The ending state
-     */
-    @Deprecated
-    public void removeArgs(Object startState, Object endState) {
-        if (!(startState instanceof Integer) || !(endState instanceof Integer)) {
-            throw new IllegalArgumentException("One of the states provided was not of the correct type!");
-        }
-
-        removeArgs((int) startState, (int) endState);
     }
 
     /**

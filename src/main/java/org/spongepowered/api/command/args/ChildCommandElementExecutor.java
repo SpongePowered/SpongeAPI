@@ -67,21 +67,6 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
      * @param fallbackExecutor The executor to execute if the child command
      *     has been marked optional (Generally when this is wrapped in a
      *     {@link GenericArguments#optional(CommandElement)}
-     * @deprecated Use the other constructor instead. Note: this entire system
-     *     will be replaced in API 8.
-     */
-    @Deprecated
-    public ChildCommandElementExecutor(@Nullable CommandExecutor fallbackExecutor) {
-        this(fallbackExecutor, null, true);
-    }
-
-    /**
-     * Create a new combined argument element and executor to handle the
-     * parsing and execution of child commands.
-     *
-     * @param fallbackExecutor The executor to execute if the child command
-     *     has been marked optional (Generally when this is wrapped in a
-     *     {@link GenericArguments#optional(CommandElement)}
      * @param fallbackElements The alternate {@link CommandElement}s that should
      *     be parsed if a child element fails to be parsed
      * @param fallbackOnFail If true, then if a child command cannot parse the

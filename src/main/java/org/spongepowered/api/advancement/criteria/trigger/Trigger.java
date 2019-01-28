@@ -203,11 +203,5 @@ public interface Trigger<C extends FilteredTriggerConfiguration> extends Catalog
          */
         Trigger<C> build();
 
-        @Override
-        @Deprecated
-        default Builder<C> from(Trigger<C> value) throws UnsupportedOperationException {
-            throw new UnsupportedOperationException("Cannot create duplicate triggers!");
-        }
-
     }
 }
