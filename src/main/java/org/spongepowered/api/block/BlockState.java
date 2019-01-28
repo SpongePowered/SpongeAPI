@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.block;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.tileentity.TileEntity;
-import org.spongepowered.api.block.trait.BlockTrait;
+import org.spongepowered.api.data.property.LocationBasePropertyHolder;
+import org.spongepowered.api.fluid.FluidState;
+import org.spongepowered.api.state.State;
 import org.spongepowered.api.data.ImmutableDataBuilder;
-import org.spongepowered.api.data.ImmutableDataHolder;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.property.DirectionRelativePropertyHolder;
@@ -40,10 +40,6 @@ import org.spongepowered.api.util.Cycleable;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
-import java.util.Collection;
-import java.util.Map;
-import java.util.Optional;
-
 /**
  * Represents a particular "state" that can exist at a {@link Location} with
  * a particular {@link BlockType} and various {@link ImmutableValue}s defining
@@ -51,7 +47,7 @@ import java.util.Optional;
  * a single instance of a particular {@link BlockState} as they are immutable,
  * a particular instance may be cached for various uses.
  */
-public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRelativePropertyHolder, CatalogType {
+public interface BlockState extends State<BlockState>, LocationBasePropertyHolder, DirectionRelativePropertyHolder {
 
     /**
      * Creates a new {@link Builder} for building {@link BlockState}s.
@@ -83,29 +79,6 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
     BlockType getType();
 
     /**
-     * Applies extended properties for the current @{link BlockType} if any to
-     * the current {@link BlockState}. This usually is gathered from surrounding
-     * {@link BlockState}'s.
-     *
-     * <p>Note: This should only be called for live {@link BlockState}'s at
-     * a specific {@link Location} for accurate results.</p>
-     *
-     * <p>
-     * Examples of some extended properties are:
-     * </p>
-     *
-     * <ul>
-     *     <li>snow on podzul dirt block</li>
-     *     <li>occupied status for beds</li>
-     *     <li>fence connections</li>
-     * </ul>
-     *
-     * @param location The location used to search for extended properties
-     * @return The blockstate with extended properties included if any
-     */
-    BlockState withExtendedProperties(Location<World> location);
-
-    /**
      * Gets the associated {@link BlockState} with the cycled
      * {@link BaseValue}. Note that only {@link Cycleable} values can be
      * cycled. To change a particular {@link Key}'ed {@link Value}, usage
@@ -115,6 +88,15 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
      * @return The blockstate instance with the cycled value
      */
     BlockState cycleValue(Key<? extends BaseValue<? extends Cycleable<?>>> key);
+
+    /**
+     * Gets the associated {@link FluidState} for this block state.
+     * Depending on whether this block state is considered "waterlogged"
+     * or not, and with which fluid.
+     *
+     * @return
+     */
+    FluidState getFluidState();
 
     /**
      * Creates a new {@link BlockSnapshot} with this current {@link BlockState}
@@ -128,66 +110,6 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
      */
     BlockSnapshot snapshotFor(Location<World> location);
 
-    /**
-     * Gets the {@link Comparable} value for the specific {@link BlockTrait}
-     * such that if the {@link BlockState} does not support the
-     * {@link BlockTrait}, {@link Optional#empty()} is returned.
-     *
-     * @param blockTrait The block trait instance
-     * @param <T> The generic type of block trait
-     * @return The comparable value, if available and compatible
-     */
-    <T extends Comparable<T>> Optional<T> getTraitValue(BlockTrait<T> blockTrait);
-
-    /**
-     * Attempts to retrieve the {@link BlockTrait} instance associated with
-     * this {@link BlockState}s {@link BlockType} by string id. If there is no
-     * {@link BlockTrait} available, {@link Optional#empty()} is returned.
-     *
-     * @param blockTrait The block trait id
-     * @return The block trait, if available
-     */
-    Optional<BlockTrait<?>> getTrait(String blockTrait);
-
-    /**
-     * Gets the {@link BlockState} with the appropriate value for the given
-     * {@link BlockTrait}. If the {@link BlockTrait} is not supported,
-     * {@link Optional#empty()} is returned. If the object is not either
-     * an instance contained in {@link BlockTrait#getPossibleValues()} or
-     * an instance {@link Object#toString()}, {@link Optional#empty()} may be
-     * returned.
-     *
-     * @param trait The trait
-     * @param value The value
-     * @return The blockstate, if supported
-     */
-    Optional<BlockState> withTrait(BlockTrait<?> trait, Object value);
-
-    /**
-     * Gets an immutable {@link Collection} of all applicable
-     * {@link BlockTrait}s for this {@link BlockState}.
-     *
-     * @return An immutable collection of all applicable block traits
-     */
-    Collection<BlockTrait<?>> getTraits();
-
-    /**
-     * Gets an immutable {@link Collection} of all the values for all
-     * {@link BlockTrait}s for this {@link BlockState}.
-     *
-     * @return An immutable collection of all the values for all applicable
-     *     traits
-     */
-    Collection<?> getTraitValues();
-
-    /**
-     * Gets an immutable or unmodifiable {@link Map} of the known {@link BlockTrait}s
-     * to their current values for this {@link BlockState}.
-     *
-     * @return The immutable map of block traits to their values representing
-     *     this block state
-     */
-    Map<BlockTrait<?>, ?> getTraitMap();
 
     /**
      * An {@link ImmutableDataBuilder} for a {@link BlockState}. Just like the

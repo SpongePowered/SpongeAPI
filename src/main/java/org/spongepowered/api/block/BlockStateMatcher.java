@@ -25,7 +25,7 @@
 package org.spongepowered.api.block;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.block.trait.BlockTrait;
+import org.spongepowered.api.state.StateProperty;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.List;
@@ -33,8 +33,8 @@ import java.util.function.Predicate;
 
 /**
  * A {@link BlockState} matcher that will match various block states
- * according to a pre-built list of {@link BlockTrait}s and their
- * values, such that not all {@link BlockTrait}s contained in a
+ * according to a pre-built list of {@link StateProperty}s and their
+ * values, such that not all {@link StateProperty}s contained in a
  * {@link BlockState} must be matched. (Such as if a block state
  * that contains 4 traits, and only 2 are wanting to be matched,
  * then the other two traits may be variable).
@@ -53,7 +53,7 @@ public interface BlockStateMatcher extends Predicate<BlockState> {
     /**
      * Gets a {@code true} return value if the provided {@link BlockState}
      * sufficiently matches this matcher, such that the {@link BlockType}
-     * matches, and the pre-defined {@link BlockTrait} values match.
+     * matches, and the pre-defined {@link StateProperty} values match.
      *
      * @param state The block state in question
      * @return True if the state sufficiently matches
@@ -83,7 +83,7 @@ public interface BlockStateMatcher extends Predicate<BlockState> {
         /**
          * Sets the root {@link BlockType} for the {@link BlockStateMatcher}.
          * <p>Note that the {@link BlockType type} <b>must be set prior</b>
-         * to setting various {@link BlockTrait traits} and their values.</p>
+         * to setting various {@link StateProperty traits} and their values.</p>
          *
          * @param type The block type to use
          * @return This builder, for chaining
@@ -91,8 +91,8 @@ public interface BlockStateMatcher extends Predicate<BlockState> {
         Builder type(BlockType type);
 
         /**
-         * Adds the desired {@link BlockTrait} and {code value} to this
-         * builder, if the desired {@link BlockTrait} does not belong to the
+         * Adds the desired {@link StateProperty} and {code value} to this
+         * builder, if the desired {@link StateProperty} does not belong to the
          * original {@link BlockType} as provided by {@link #type(BlockType)},
          * an exception is thrown. Likewise, if a {@code value} is not within
          * the possible values for the desired trait of the desired type, an
@@ -106,7 +106,7 @@ public interface BlockStateMatcher extends Predicate<BlockState> {
          *     the block type, or if the value does not belong to the trait
          *     with the desired block type
          */
-        <T extends Comparable<T>> Builder trait(BlockTrait<T> trait, T value) throws IllegalArgumentException;
+        <T extends Comparable<T>> Builder trait(StateProperty<T> trait, T value) throws IllegalArgumentException;
 
         /**
          * Creates a new {@link BlockStateMatcher}.

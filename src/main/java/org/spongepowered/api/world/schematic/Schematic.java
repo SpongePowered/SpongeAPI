@@ -27,9 +27,10 @@ package org.spongepowered.api.world.schematic;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.util.ResettableBuilder;
-import org.spongepowered.api.world.extent.ArchetypeVolume;
-import org.spongepowered.api.world.extent.Extent;
-import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
+import org.spongepowered.api.world.volume.archetype.ArchetypeVolume;
+import org.spongepowered.api.world.volume.archetype.ArchetypeVolumeCreator;
+import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
+import org.spongepowered.api.world.volume.tileentity.ReadableTileEntityVolume;
 
 /**
  * A special archetype volume designed to be persisted. Contains additional
@@ -65,9 +66,6 @@ public interface Schematic extends ArchetypeVolume {
      */
     DataView getMetadata();
 
-    @Override
-    MutableBlockVolumeWorker<Schematic> getBlockWorker();
-
     /**
      * A builder for {@link Schematic}s.
      */
@@ -84,7 +82,9 @@ public interface Schematic extends ArchetypeVolume {
          * @param volume The archetype volume
          * @return This builder, for chaining
          */
-        Builder volume(ArchetypeVolume volume);
+        Builder volume(ReadableBlockVolume volume);
+
+        Builder volume(ReadableTileEntityVolume volume);
 
         /**
          * Specifies an extent view for the schematic to load its world data
@@ -93,7 +93,7 @@ public interface Schematic extends ArchetypeVolume {
          * @param volume The extent view
          * @return This builder, for chaining
          */
-        Builder volume(Extent volume);
+        Builder volume(ArchetypeVolumeCreator volume);
 
         /**
          * Specifies a palette for the schematic to use for serialization. This

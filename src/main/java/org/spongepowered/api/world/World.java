@@ -26,22 +26,27 @@ package org.spongepowered.api.world;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.effect.Viewer;
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.service.context.ContextSource;
 import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
 import org.spongepowered.api.text.channel.MessageReceiver;
+import org.spongepowered.api.util.Identifiable;
+import org.spongepowered.api.world.chunk.Chunk;
+import org.spongepowered.api.world.chunk.ChunkPreGenerate;
+import org.spongepowered.api.world.chunk.ProtoChunk;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.explosion.Explosion;
-import org.spongepowered.api.world.extent.Extent;
-import org.spongepowered.api.world.extent.worker.MutableBiomeVolumeWorker;
-import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
+import org.spongepowered.api.world.volume.block.PhysicsAwareMutableBlockVolume;
 import org.spongepowered.api.world.gamerule.DefaultGameRules;
 import org.spongepowered.api.world.gen.WorldGenerator;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.storage.WorldStorage;
+import org.spongepowered.api.world.teleport.PortalAgent;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 
 import java.io.IOException;
@@ -56,7 +61,8 @@ import java.util.concurrent.Future;
 /**
  * A loaded Minecraft world.
  */
-public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, MessageReceiver, ChatTypeMessageReceiver {
+public interface World extends ProtoWorld<World>, LocationCreator<World>, PhysicsAwareMutableBlockVolume<World>, Identifiable, WeatherUniverse,
+    Viewer, ContextSource, MessageReceiver, ChatTypeMessageReceiver, TrackedVolume {
 
     /**
      * Gets an unmodifiable collection of {@link Player}s currently in this world.
@@ -65,91 +71,161 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
      */
     Collection<Player> getPlayers();
 
+    /**
+     * Gets a snapshot of this block at the current point in time.
+     *
+     * <p>A snapshot is disconnected from the {@link World} that it was taken
+     * from so changes to the original block do not affect the snapshot.</p>
+     *
+     * @param position The position of the block
+     * @return A snapshot
+     */
+    default BlockSnapshot createSnapshot(Vector3i position) {
+        return createSnapshot(position.getX(), position.getY(), position.getZ());
+    }
+
+    /**
+     * Gets a snapshot of this block at the current point in time.
+     *
+     * <p>A snapshot is disconnected from the {@link World} that it was taken
+     * from so changes to the original block do not affect the snapshot.</p>
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @return A snapshot
+     */
+    BlockSnapshot createSnapshot(int x, int y, int z);
+
+    /**
+     * Restores the given {@link BlockSnapshot} using the saved block position
+     * stored within the snapshot.
+     *
+     * <p>If forced, the state of the block will change its {@link BlockType} to
+     * match that of the snapshot then set the state. However, if force is set
+     * to false and the {@link BlockType}s does not match, false will be
+     * returned. If notifyNeighbors is true, neighboring blocks will be notified
+     * of changes at the restored block location triggering physic updates.</p>
+     *
+     * @param snapshot The snapshot
+     * @param force If true, forces block state to be set even if the
+     *        {@link BlockType} does not match the snapshot one.
+     * @param flag The various change flags controlling some interactions
+     * @return true if the restore was successful, false otherwise
+     */
+    boolean restoreSnapshot(BlockSnapshot snapshot, boolean force, BlockChangeFlag flag);
+
+    /**
+     * Restores the {@link BlockSnapshot} at the given position.
+     *
+     * <p>If forced, the state of the block will change its {@link BlockType} to
+     * match that of the snapshot then set the state. However, if force is set
+     * to false and the {@link BlockType}s does not match, false will be
+     * returned. If notifyNeighbors is true, neighboring blocks will be notified
+     * of changes at the restored block location triggering physic updates.</p>
+     *
+     * @param position The position of the block
+     * @param snapshot The snapshot
+     * @param force If true, forces block state to be set even if the
+     *        {@link BlockType} does not match the snapshot one.
+     * @param flag The various change flags controlling some interactions
+     * @return true if the restore was successful, false otherwise
+     */
+    default boolean restoreSnapshot(Vector3i position, BlockSnapshot snapshot, boolean force, BlockChangeFlag flag) {
+        return restoreSnapshot(position.getX(), position.getY(), position.getZ(), snapshot, force, flag);
+    }
+
+    /**
+     * Restores the {@link BlockSnapshot} at the given position.
+     *
+     * <p>If forced, the state of the block will change its {@link BlockType} to
+     * match that of the snapshot then set the state. However, if force is set
+     * to false and the {@link BlockType}s does not match, false will be
+     * returned. If notifyNeighbors is true, neighboring blocks will be notified
+     * of changes at the restored block location triggering physic updates.</p>
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param snapshot The snapshot
+     * @param force If true, forces block state to be set even if the
+     *        {@link BlockType} does not match the snapshot one.
+     * @param flag The various change flags controlling some interactions
+     * @return true if the restore was successful, false otherwise
+     */
+    boolean restoreSnapshot(int x, int y, int z, BlockSnapshot snapshot, boolean force, BlockChangeFlag flag);
+
+    /**
+     * {@inheritDoc}
+     * This gets a guaranteed {@link Chunk} at the desired block position; however,
+     * the {@link Chunk} instance may be {@link Chunk#isEmpty() empty}, and
+     * likewise, may not be generated, valid, pre-existing. It is important to
+     * check for these cases prior to attmepting to modify the chunk.
+     *
+     * <p>Note that this is still different from {@link #getChunk(Vector3i)}
+     * due to the relative block position dictated by {@link Server#getChunkLayout()},
+     * which can vary depending on implementation and other mods installed.</p>
+     *
+     * @param blockPosition The block position to be transformed for relative chunk position
+     * @return The available chunk at that position
+     */
     @Override
-    default Location<World> getLocation(Vector3i position) {
-        return new Location<>(this, position);
+    default Chunk getChunkAtBlock(Vector3i blockPosition) {
+        final Vector3i chunkPos = Sponge.getServer().getChunkLayout().forceToChunk(blockPosition);
+        return getChunk(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ());
     }
 
+    /**
+     * {@inheritDoc}
+     * This gets a guaranteed {@link Chunk} at the desired block position; however,
+     * the {@link Chunk} instance may be {@link Chunk#isEmpty() empty}, and
+     * likewise, may not be generated, valid, pre-existing. It is important to
+     * check for these cases prior to attmepting to modify the chunk.
+     *
+     * <p>Note that this is still different from {@link #getChunk(Vector3i)}
+     * due to the relative block position dictated by {@link Server#getChunkLayout()},
+     * which can vary depending on implementation and other mods installed.</p>
+     *
+     * @param bx The block x coordinate
+     * @param by The block y coordinate
+     * @param bz The block z coordinate
+     * @return The available chunk at that position
+     */
     @Override
-    default Location<World> getLocation(int x, int y, int z) {
-        return getLocation(new Vector3i(x, y, z));
+    default Chunk getChunkAtBlock(int bx, int by, int bz) {
+        final Vector3i chunkPos = Sponge.getServer().getChunkLayout().forceToChunk(bx, by, bz);
+        return getChunk(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ());
     }
 
+    /**
+     * {@inheritDoc}
+     * This gets a guaranteed {@link Chunk} at the desired block position; however,
+     * the {@link Chunk} instance may be {@link Chunk#isEmpty() empty}, and
+     * likewise, may not be generated, valid, pre-existing. It is important to
+     * check for these cases prior to attmepting to modify the chunk.
+     *
+     * @param chunkPos The chunk position relative to the {@link Server#getChunkLayout() chunk layout}
+     * @return The available chunk at that position
+     */
     @Override
-    default Location<World> getLocation(Vector3d position) {
-        return new Location<>(this, position);
-    }
-
-    @Override
-    default Location<World> getLocation(double x, double y, double z) {
-        return getLocation(new Vector3d(x, y, z));
+    default Chunk getChunk(Vector3i chunkPos) {
+        return getChunk(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ());
     }
 
     /**
-     * Gets a {@link LocatableBlock} for the desired {@link Vector3i} position.
+     * {@inheritDoc}
+     * This gets a guaranteed {@link Chunk} at the desired block position; however,
+     * the {@link Chunk} instance may be {@link Chunk#isEmpty() empty}, and
+     * likewise, may not be generated, valid, pre-existing. It is important to
+     * check for these cases prior to attmepting to modify the chunk.
      *
-     * @param position The position to get the locatable block
-     * @return The locatable block
-     */
-    default LocatableBlock getLocatableBlock(Vector3i position) {
-        return LocatableBlock.builder().world(this).position(position).build();
-    }
-
-    /**
-     * Gets a {@link LocatableBlock} for the desired {@code x, y, z} coordinates.
-     *
-     * @param x The x position
-     * @param y The y position
-     * @param z The z position
-     * @return The locatable block
-     */
-    default LocatableBlock getLocatableBlock(int x, int y, int z) {
-        return LocatableBlock.builder().world(this).position(x, y, z).build();
-    }
-
-    /**
-     * Gets the loaded chunk at the given block coordinate position.
-     *
-     * @param blockPosition The position
-     * @return The chunk, if available
-     */
-    default Optional<Chunk> getChunkAtBlock(Vector3i blockPosition) {
-        return getChunkAtBlock(blockPosition.getX(), blockPosition.getY(), blockPosition.getZ());
-    }
-
-    /**
-     * Gets the loaded chunk at the given block coordinate position.
-     *
-     * @param bx The x coordinate
-     * @param by The y coordinate
-     * @param bz The z coordinate
-     * @return The chunk, if available
-     */
-    default Optional<Chunk> getChunkAtBlock(int bx, int by, int bz) {
-        return getChunk(Sponge.getServer().getChunkLayout().forceToChunk(bx, by, bz));
-    }
-
-    /**
-     * Gets the loaded chunk at the given chunk coordinate position.
-     *
-     * @param chunkPosition The position
-     * @return The chunk, if available
-     */
-    default Optional<Chunk> getChunk(Vector3i chunkPosition) {
-        return getChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ());
-    }
-
-    /**
-     * Gets the loaded chunk at the given chunk coordinate position.
-     *
-     * <p>In Vanilla, the y coordinate will always be 0.</p>
-     *
-     * @param cx The x coordinate
+     * @param cx The x chunk coordinate
      * @param cy The y coordinate
-     * @param cz The z coordinate
-     * @return The chunk, if available
+     * @param cz The z chunk coordinate
+     * @return The available chunk at the chunk position
      */
-    Optional<Chunk> getChunk(int cx, int cy, int cz);
+    @Override
+    Chunk getChunk(int cx, int cy, int cz);
 
     /**
      * Gets the chunk at the given chunk coordinate position if it exists or if
@@ -238,20 +314,6 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
      * @return The loaded chunks
      */
     Iterable<Chunk> getLoadedChunks();
-
-    /**
-     * Gets the entity whose {@link UUID} matches the provided id, possibly
-     * returning no entity if the entity is not loaded or non-existent.
-     *
-     * <p>For world implementations, only some parts of the world is usually
-     * loaded, so this method may return no entity if the entity is not
-     * loaded.</p>
-     *
-     * @param uuid The unique id
-     * @return An entity, if available
-     */
-    @Override
-    Optional<Entity> getEntity(UUID uuid);
 
     /**
      * Gets the world border for the world.
@@ -381,8 +443,8 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
      *
      * @return The location
      */
-    default Location<World> getSpawnLocation() {
-        return new Location<>(this, getProperties().getSpawnPosition());
+    default Location getSpawnLocation() {
+        return new Location(this, getProperties().getSpawnPosition());
     }
 
     /**
@@ -433,11 +495,6 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
      */
     int getSeaLevel();
 
-    @Override
-    MutableBiomeVolumeWorker<World> getBiomeWorker();
-
-    @Override
-    MutableBlockVolumeWorker<World> getBlockWorker();
 
     /**
      * Instructs the world to save all data.

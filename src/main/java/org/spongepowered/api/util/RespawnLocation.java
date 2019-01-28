@@ -207,7 +207,7 @@ public final class RespawnLocation implements DataSerializable {
          */
         public Builder location(Location<World> location) {
             checkNotNull(location, "Location cannot be null!");
-            final World world = location.getExtent();
+            final World world = location.getWorld();
             position(location.getPosition());
             world(world.getUniqueId());
             return this;

@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.world.gen;
 
-import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.extent.ImmutableBiomeVolume;
-import org.spongepowered.api.world.extent.MutableBlockVolume;
+import org.spongepowered.api.world.ProtoWorld;
+import org.spongepowered.api.world.biome.ImmutableBiomeVolume;
+import org.spongepowered.api.world.volume.block.MutableBlockVolume;
 
 /**
  * A populator which acts directly on the {@link MutableBlockVolume} during the
@@ -35,17 +35,16 @@ import org.spongepowered.api.world.extent.MutableBlockVolume;
  * <p>Unlike a normal {@link Populator}, a {@link GenerationPopulator} is
  * restricted to the chunk that is currently being generated.</p>
  */
-public interface GenerationPopulator {
+public interface GenerationPopulator<C extends GenerationConfig> {
 
     /**
      * Operates on a {@link MutableBlockVolume} either forming the base terrain
      * or performing modifications during the generation phase.
-     *
-     * @param world The world
+     *  @param world The world
      * @param buffer The buffer to apply the changes to. The buffer can be of
      *        any size.
      * @param biomes The biomes for generation
      */
-    void populate(World world, MutableBlockVolume buffer, ImmutableBiomeVolume biomes);
+    void populate(GenerationRegion world, MutableBlockVolume<?> buffer, ImmutableBiomeVolume biomes, C config);
 
 }

@@ -33,13 +33,14 @@ import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
+import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.world.DimensionType;
-import org.spongepowered.api.world.GeneratorType;
-import org.spongepowered.api.world.PortalAgentType;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.difficulty.Difficulty;
+import org.spongepowered.api.world.gen.GeneratorType;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
+import org.spongepowered.api.world.teleport.PortalAgentType;
 
 import java.util.Collection;
 import java.util.Map;
@@ -49,7 +50,7 @@ import java.util.UUID;
 /**
  * Represents the properties of a {@link World} which are persisted across runtime instances.
  */
-public interface WorldProperties extends DataSerializable {
+public interface WorldProperties extends DataSerializable, Identifiable {
 
     /**
      * Gets whether this world has been initialized.

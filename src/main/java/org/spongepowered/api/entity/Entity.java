@@ -37,6 +37,7 @@ import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.AABB;
 import org.spongepowered.api.util.Identifiable;
+import org.spongepowered.api.util.RandomProvider;
 import org.spongepowered.api.util.RelativePositions;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.Location;
@@ -70,7 +71,7 @@ import javax.annotation.Nullable;
  *
  * <p>Blocks and items (when they are in inventories) are not entities.</p>
  */
-public interface Entity extends Identifiable, Locatable, DataHolder, Translatable {
+public interface Entity extends Identifiable, Locatable, DataHolder, Translatable, RandomProvider {
 
     /**
      * Gets the type of entity.
@@ -86,13 +87,6 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      * @return The snapshot
      */
     EntitySnapshot createSnapshot();
-
-    /**
-     * Gets the Random Number Generator (RNG) for this entity.
-     *
-     * @return The RNG
-     */
-    Random getRandom();
 
     /**
      * Sets the location of this entity. This is equivalent to a teleport, and

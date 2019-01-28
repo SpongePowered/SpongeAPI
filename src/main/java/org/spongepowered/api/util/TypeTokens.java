@@ -69,7 +69,7 @@ import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
-import org.spongepowered.api.extra.fluid.FluidStackSnapshot;
+import org.spongepowered.api.fluid.FluidStackSnapshot;
 import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;

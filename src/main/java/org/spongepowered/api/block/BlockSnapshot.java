@@ -71,15 +71,6 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
     BlockState getState();
 
     /**
-     * Gets the extended {@link BlockState}. This applies extended properties
-     * that are usually located around the associated {@link BlockType}. Check
-     * {@link BlockState#withExtendedProperties(Location)} for more info.
-     *
-     * @return The extended BlockState
-     */
-    BlockState getExtendedState();
-
-    /**
      * Creates a copy of the {@link BlockSnapshot} with the provided
      * {@link BlockState}. Any additional data associated with a
      * {@link TileEntity} or custom data may be lost.
@@ -188,7 +179,7 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
          * @param location The Location to copy from
          * @return This builder, for chaining
          */
-        Builder from(Location<World> location);
+        Builder from(Location location);
 
         /**
          * Sets the {@link UUID} of the user who created this

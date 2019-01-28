@@ -26,6 +26,7 @@ package org.spongepowered.api.world.gen;
 
 import org.spongepowered.api.world.biome.BiomeGenerationSettings;
 import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.gen.biome.BiomeGenerator;
 
 import java.util.List;
 

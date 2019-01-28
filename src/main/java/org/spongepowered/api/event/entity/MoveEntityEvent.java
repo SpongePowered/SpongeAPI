@@ -29,7 +29,7 @@ import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
-import org.spongepowered.api.world.PortalAgent;
+import org.spongepowered.api.world.teleport.PortalAgent;
 import org.spongepowered.api.world.World;
 
 /**

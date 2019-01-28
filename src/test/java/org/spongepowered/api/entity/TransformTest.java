@@ -32,7 +32,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.extent.Extent;
 
 public class TransformTest {
 

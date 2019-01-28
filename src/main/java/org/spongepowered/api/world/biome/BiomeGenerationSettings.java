@@ -26,6 +26,8 @@ package org.spongepowered.api.world.biome;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.world.gen.Carver;
+import org.spongepowered.api.world.gen.CarvingLayer;
 import org.spongepowered.api.world.gen.GenerationPopulator;
 import org.spongepowered.api.world.gen.Populator;
 
@@ -127,6 +129,8 @@ public interface BiomeGenerationSettings {
      * @return The copy of these settings
      */
     BiomeGenerationSettings copy();
+
+    List<Carver<?>> getCarvers(CarvingLayer layer);
 
     /**
      * A builder for {@link BiomeGenerationSettings}s.

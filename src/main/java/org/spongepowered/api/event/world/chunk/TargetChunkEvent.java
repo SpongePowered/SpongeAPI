@@ -25,7 +25,7 @@
 package org.spongepowered.api.event.world.chunk;
 
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.world.Chunk;
+import org.spongepowered.api.world.chunk.Chunk;
 
 /**
  * Base event for anything targeting a {@link Chunk}.
