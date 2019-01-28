@@ -33,6 +33,7 @@ import org.spongepowered.api.entity.living.monster.Skeleton;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.projectile.arrow.Arrow;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.entity.ModifierFunction;
 import org.spongepowered.api.event.cause.entity.damage.DamageFunction;
@@ -142,12 +143,12 @@ import java.util.function.Function;
  *
  * <p>Note that this event is intended for processing incoming damage to
  * an {@link Entity} prior to any {@link DamageModifier}s associated with
- * the {@link #getTargetEntity()}. The {@link AttackEntityEvent} is used
+ * the {@link #getEntity()}. The {@link AttackEntityEvent} is used
  * to process the various {@link DamageModifier}s of which originate or are
  * associated with the targeted {@link Entity}.</p>
  */
 @ImplementedBy(AbstractAttackEntityEvent.class)
-public interface AttackEntityEvent extends TargetEntityEvent, Cancellable {
+public interface AttackEntityEvent extends Event, Cancellable {
 
     /**
      * For use with the {@link DamageSource} that is known as the "source"
@@ -226,6 +227,13 @@ public interface AttackEntityEvent extends TargetEntityEvent, Cancellable {
      * now {@link DamageSource} such that they </p>
      */
     String NOTIFIER = "Notifier";
+
+    /**
+     * Gets the {@link Entity}.
+     *
+     * @return The entity
+     */
+    Entity getEntity();
 
     /**
      * Gets the original "raw" amount of damage to deal to the targeted

@@ -22,16 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.item;
+package org.spongepowered.api.event.world.chunk;
 
-import org.spongepowered.api.entity.Item;
-import org.spongepowered.api.event.entity.TargetEntityEvent;
+import org.spongepowered.api.event.Event;
+import org.spongepowered.api.world.Chunk;
 
 /**
- * Base event for all events with a {@link Item} as the source.
+ * Called when a {@link Chunk} is about to be generated.
  */
-public interface TargetItemEvent extends TargetEntityEvent {
+public interface GenerateChunkEvent extends Event {
 
-    @Override
-    Item getTargetEntity();
+    /**
+     * Gets the {@link Chunk}.
+     *
+     * @return The chunk
+     */
+    Chunk getChunk();
+
+    interface Pre extends GenerateChunkEvent {
+
+    }
+
+    interface Post extends GenerateChunkEvent {
+
+    }
+
 }

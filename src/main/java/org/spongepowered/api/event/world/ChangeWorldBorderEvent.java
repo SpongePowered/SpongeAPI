@@ -24,10 +24,11 @@
  */
 package org.spongepowered.api.event.world;
 
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
+import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldBorder;
 
 import java.util.Optional;
@@ -59,16 +60,29 @@ public interface ChangeWorldBorderEvent extends Event, Cancellable {
     /**
      * An event that is fired when a world's border is changed.
      */
-    interface TargetWorld extends ChangeWorldBorderEvent, TargetWorldEvent {
+    interface TargetWorld extends ChangeWorldBorderEvent {
+
+        /**
+         * Gets the {@link World}.
+         *
+         * @return The world
+         */
+        World getWorld();
 
     }
 
     /**
-     * An event that is fired when a player's world border is changed. This may 
+     * An event that is fired when a player's world border is changed. This may
      * also be fired when a player's border is set or unset.
      */
-    interface TargetPlayer extends ChangeWorldBorderEvent, TargetPlayerEvent {
+    interface TargetPlayer extends ChangeWorldBorderEvent {
 
+        /**
+         * Gets the {@link Player}.
+         *
+         * @return The player
+         */
+        Player getPlayer();
     }
 
 }

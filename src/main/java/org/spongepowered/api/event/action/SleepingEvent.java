@@ -25,10 +25,11 @@
 package org.spongepowered.api.event.action;
 
 import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.entity.TargetEntityEvent;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.world.World;
 
 import java.util.Optional;
@@ -36,7 +37,14 @@ import java.util.Optional;
 /**
  * Called when a {@link Humanoid} enters a bed to sleep in.
  */
-public interface SleepingEvent extends TargetEntityEvent {
+public interface SleepingEvent extends Event {
+
+    /**
+     * Gets the {@link Entity}.
+     *
+     * @return The entity
+     */
+    Entity getEntity();
 
     /**
      * Gets the {@link BlockSnapshot} of the bed being used to sleep.

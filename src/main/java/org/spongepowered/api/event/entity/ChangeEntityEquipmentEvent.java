@@ -27,7 +27,7 @@ package org.spongepowered.api.event.entity;
 import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.item.inventory.TargetInventoryEvent;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
@@ -40,7 +40,21 @@ import org.spongepowered.api.item.inventory.Slot;
  * or swapped with an {@link ItemStack}. In the event that a change to the
  * {@link ItemStack}, the use of the {@link Transaction} is recommended.
  */
-public interface ChangeEntityEquipmentEvent extends TargetEntityEvent, TargetInventoryEvent, Cancellable {
+public interface ChangeEntityEquipmentEvent extends Event, Cancellable {
+
+    /**
+     * Gets the {@link Entity}.
+     *
+     * @return The entity
+     */
+    Entity getEntity();
+
+    /**
+     * Gets the {@link Slot}.
+     *
+     * @return The slot
+     */
+    Slot getSlot();
 
     /**
      * Gets the {@link Transaction} of {@link ItemStackSnapshot}s for this event.
@@ -48,8 +62,4 @@ public interface ChangeEntityEquipmentEvent extends TargetEntityEvent, TargetInv
      * @return The transaction of the item
      */
     Transaction<ItemStackSnapshot> getTransaction();
-
-    @Override
-    Slot getTargetInventory();
-
 }

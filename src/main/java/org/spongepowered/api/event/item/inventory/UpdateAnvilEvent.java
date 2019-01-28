@@ -26,7 +26,9 @@ package org.spongepowered.api.event.item.inventory;
 
 import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.item.inventory.AnvilCost;
+import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
@@ -34,7 +36,14 @@ import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
  * Fires whenever the left and right slots of an anvil are filled and a new result is computed.
  */
 @GenerateFactoryMethod
-public interface UpdateAnvilEvent extends TargetInventoryEvent, Cancellable {
+public interface UpdateAnvilEvent extends Event, Cancellable {
+
+    /**
+     * Gets the {@link Inventory}.
+     *
+     * @return The inventory
+     */
+    Inventory getInventory();
 
     /**
      * Returns the new item name.

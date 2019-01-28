@@ -40,16 +40,23 @@ import java.util.List;
 public interface ExplosionEvent extends Event {
 
     /**
-     * Gets the {@link Explosion} involved in this event.
+     * Gets the {@link Explosion}.
      *
-     * @return The explosion that this event is involved in
+     * @return The explosion
      */
     Explosion getExplosion();
 
     /**
      * An event that is fired before the explosion occurs.
      */
-    interface Pre extends ExplosionEvent, TargetWorldEvent, Cancellable {
+    interface Pre extends ExplosionEvent, Cancellable {
+
+        /**
+         * Gets the {@link World}.
+         *
+         * @return The world
+         */
+        World getWorld();
 
         /**
          * Sets the {@link Explosion} involved for this event. This will
@@ -69,7 +76,14 @@ public interface ExplosionEvent extends Event {
      * already calculated all the blocks and entities the explosion should
      * affect.
      */
-    interface Detonate extends ExplosionEvent, TargetWorldEvent, AffectEntityEvent {
+    interface Detonate extends ExplosionEvent, AffectEntityEvent {
+
+        /**
+         * Gets the {@link World}.
+         *
+         * @return The world
+         */
+        World getWorld();
 
         /**
          * Gets the list of calculated affected locations for blocks that will
@@ -79,7 +93,6 @@ public interface ExplosionEvent extends Event {
          * @return The list of blocks that will be affected by the explosion
          */
         List<Location<World>> getAffectedLocations();
-
     }
 
     /**

@@ -25,12 +25,12 @@
 package org.spongepowered.api.event.action;
 
 import org.spongepowered.api.data.Transaction;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.projectile.FishHook;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.block.CollideBlockEvent;
-import org.spongepowered.api.event.entity.TargetEntityEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
@@ -65,7 +65,15 @@ public interface FishingEvent extends Event {
      * before {@link Stop} is fired, such as in the case where
      * the block the {@link FishHook} is stuck in is broken.</p>
      */
-    interface HookEntity extends FishingEvent, TargetEntityEvent, Cancellable {}
+    interface HookEntity extends FishingEvent, Cancellable {
+
+        /**
+         * Gets the {@link Entity}.
+         *
+         * @return The entity
+         */
+        Entity getEntity();
+    }
 
     /**
      * A specific {@link FishingEvent} where the {@link FishHook} is retracted

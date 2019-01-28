@@ -25,12 +25,7 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.Humanoid;
-import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.event.entity.living.TargetLivingEvent;
-import org.spongepowered.api.event.entity.living.humanoid.TargetHumanoidEvent;
-import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
 
 /**
  * Called when an {@link Entity} has been killed and is being "harvested" (drops/etc). Happens
@@ -39,21 +34,14 @@ import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEve
 public interface HarvestEntityEvent extends ChangeEntityExperienceEvent {
 
     /**
-     * An event where the target is a {@link Living}.
-     */
-    interface TargetLiving extends HarvestEntityEvent, TargetLivingEvent { }
-
-    /**
-     * An event where the target is a {@link Humanoid}.
-     */
-    interface TargetHumanoid extends TargetLiving, TargetHumanoidEvent { }
-
-    /**
      * An event where the target is a {@link Player}. Usually this will
      * have additional information regarding whether the player
      * {@link #keepsInventory()} and their current experience.
      */
-    interface TargetPlayer extends TargetHumanoid, TargetPlayerEvent {
+    interface TargetPlayer extends HarvestEntityEvent {
+
+        @Override
+        Player getEntity();
 
         /**
          * Gets whether the player keeps their inventory on death.
@@ -96,6 +84,5 @@ public interface HarvestEntityEvent extends ChangeEntityExperienceEvent {
          * @param level The new level after death
          */
         void setLevel(int level);
-
     }
 }

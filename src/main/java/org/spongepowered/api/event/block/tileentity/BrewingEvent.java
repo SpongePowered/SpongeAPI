@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.block.tileentity;
 
 import org.spongepowered.api.block.tileentity.carrier.BrewingStand;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.item.inventory.AffectItemStackEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
@@ -35,10 +36,14 @@ import java.util.List;
  * Fires during the brewing process where {@link ItemStack}s are brewed into different {@link ItemStack}s
  * based on an ingredient which is also an {@link ItemStack} within a {@link BrewingStand}.
  */
-public interface BrewingEvent extends TargetTileEntityEvent {
+public interface BrewingEvent extends Event {
 
-    @Override
-    BrewingStand getTargetTile();
+    /**
+     * Gets the {@link BrewingStand}.
+     *
+     * @return The brewing stand
+     */
+    BrewingStand getBrewingStand();
 
     /**
      * Gets the {@link ItemStackSnapshot} as the ingredient used.
@@ -52,6 +57,7 @@ public interface BrewingEvent extends TargetTileEntityEvent {
     interface Tick extends BrewingEvent, AffectItemStackEvent {}
 
     interface Interrupt extends BrewingEvent {
+
         /**
          * Gets an immutable {@link List} of {@link ItemStackSnapshot}s that are the result
          * of the brew.

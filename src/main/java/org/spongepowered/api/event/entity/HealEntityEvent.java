@@ -26,6 +26,7 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.cause.entity.health.HealthFunction;
 import org.spongepowered.api.event.cause.entity.health.HealthModifier;
 import org.spongepowered.api.event.cause.entity.health.source.HealingSource;
@@ -44,7 +45,14 @@ import java.util.function.DoubleUnaryOperator;
  * the {@link DamageEntityEvent}, this event uses various modifiers
  */
 @ImplementedBy(AbstractHealEntityEvent.class)
-public interface HealEntityEvent extends TargetEntityEvent, Cancellable {
+public interface HealEntityEvent extends Event, Cancellable {
+
+    /**
+     * Gets the {@link Entity}.
+     *
+     * @return The entity
+     */
+    Entity getEntity();
 
     /**
      * Gets the original amount to "heal" the targeted {@link Entity}.

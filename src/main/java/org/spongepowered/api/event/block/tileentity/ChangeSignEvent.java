@@ -28,16 +28,16 @@ import org.spongepowered.api.block.tileentity.Sign;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableSignData;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.SignData;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
 
-public interface ChangeSignEvent extends TargetTileEntityEvent, Cancellable {
+public interface ChangeSignEvent extends Event, Cancellable {
 
     /**
-     * Gets the target {@link Sign} being changed.
+     * Gets the {@link Sign}.
      *
-     * @return The Sign
+     * @return The sign
      */
-    @Override
-    Sign getTargetTile();
+    Sign getSign();
 
     /**
      * Gets the original {@link ImmutableSignData} before event changes.

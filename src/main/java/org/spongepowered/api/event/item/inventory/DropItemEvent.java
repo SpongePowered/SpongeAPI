@@ -33,6 +33,7 @@ import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.entity.DestructEntityEvent;
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
+import org.spongepowered.api.event.item.inventory.container.ClickContainerEvent;
 import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -95,7 +96,7 @@ public interface DropItemEvent extends Event, Cancellable {
      *
      * <p>Canceling this event does not guarantee that the associated
      * inventory is rolled back when this event is cancelled. You might
-     * want to listen to {@link ClickInventoryEvent.Drop}.</p>
+     * want to listen to {@link ClickContainerEvent.Drop}.</p>
      */
     interface Dispense extends DropItemEvent, SpawnEntityEvent {}
 

@@ -26,6 +26,7 @@ package org.spongepowered.api.event.entity.living.humanoid.player;
 
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.world.World;
 
 /**
@@ -33,7 +34,7 @@ import org.spongepowered.api.world.World;
  *
  * <p>Either caused by death, or by traveling from the End.</p>
  */
-public interface RespawnPlayerEvent extends TargetPlayerEvent {
+public interface RespawnPlayerEvent extends Event {
 
     /**
      * The original {@link Player} that this new player is a clone of.
@@ -43,6 +44,13 @@ public interface RespawnPlayerEvent extends TargetPlayerEvent {
      * @return The original player
      */
     Player getOriginalPlayer();
+
+    /**
+     * Gets the {@link Player}.
+     *
+     * @return The player
+     */
+    Player getPlayer();
 
     /**
      * Gets a copy of the transform that the entity came from.
