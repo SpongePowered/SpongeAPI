@@ -27,11 +27,11 @@ package org.spongepowered.api.state;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents a type of {@link StateProperty} that accepts an unknown {@link Enum}
- * set of values. Due to type erasure and implementation, most all enum types
- * may not be exposed in the API.
+ * Represents a type of {@link StateProperty} that allows only {@link Boolean} of
+ * which two possible values may exist: <code>true</code> and
+ * <code>false</code>.
  */
-@CatalogedBy(EnumProperties.class)
-public interface EnumProperty<E extends Enum<E>> extends StateProperty<E> {
+@CatalogedBy(BooleanStateProperties.class)
+public interface BooleanStateProperty extends StateProperty<Boolean> {
 
 }

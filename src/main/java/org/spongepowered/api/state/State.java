@@ -28,7 +28,6 @@ import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.ImmutableDataHolder;
-import org.spongepowered.api.util.Cycleable;
 
 import java.util.Collection;
 import java.util.Map;
