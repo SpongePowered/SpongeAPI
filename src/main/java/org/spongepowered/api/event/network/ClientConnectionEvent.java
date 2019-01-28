@@ -26,13 +26,12 @@ package org.spongepowered.api.event.network;
 
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
-import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
 import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.event.message.MessageEvent;
-import org.spongepowered.api.event.user.TargetUserEvent;
 import org.spongepowered.api.network.RemoteConnection;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.ban.BanService;
@@ -103,7 +102,14 @@ public interface ClientConnectionEvent extends Event {
      * Plugins may uncancel the event to allow a client to join, regardless of
      * its ban/whitelist status.</p>
      */
-    interface Login extends ClientConnectionEvent, MessageEvent, TargetUserEvent, Cancellable {
+    interface Login extends ClientConnectionEvent, MessageEvent, Event, Cancellable {
+
+        /**
+         * Gets the {@link User}.
+         *
+         * @return The user
+         */
+        User getUser();
 
         /**
          * Gets the {@link RemoteConnection} representing the client connection.
@@ -148,11 +154,27 @@ public interface ClientConnectionEvent extends Event {
      * <p>The {@link SpawnEntityEvent} for the {@link Player} is fired after the
      * #Login event. This event is fired after both.</p> </p>
      */
-    interface Join extends ClientConnectionEvent, TargetPlayerEvent, MessageChannelEvent {}
+    interface Join extends ClientConnectionEvent, MessageChannelEvent {
+
+        /**
+         * Gets the {@link Player}.
+         *
+         * @return The player
+         */
+        Player getPlayer();
+    }
 
     /**
      * Called when a {@link Player} disconnects from the game.
      */
-    interface Disconnect extends ClientConnectionEvent, TargetPlayerEvent, MessageChannelEvent {}
+    interface Disconnect extends ClientConnectionEvent, MessageChannelEvent {
+
+        /**
+         * Gets the {@link Player}.
+         *
+         * @return The player
+         */
+        Player getPlayer();
+    }
 
 }

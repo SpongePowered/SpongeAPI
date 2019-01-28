@@ -30,6 +30,12 @@ import org.spongepowered.api.event.message.MessageChannelEvent;
 /**
  * Fired when a {@link Player} is kicked.
  */
-public interface KickPlayerEvent extends TargetPlayerEvent, MessageChannelEvent {
+public interface KickPlayerEvent extends MessageChannelEvent {
 
+    /**
+     * Gets the {@link Player}.
+     *
+     * @return The player
+     */
+    Player getPlayer();
 }

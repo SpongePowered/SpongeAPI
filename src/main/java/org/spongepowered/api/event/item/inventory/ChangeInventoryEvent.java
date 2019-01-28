@@ -29,7 +29,6 @@ import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.event.entity.item.TargetItemEvent;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
@@ -39,7 +38,14 @@ import java.util.List;
 import java.util.Optional;
 
 @GenerateFactoryMethod
-public interface ChangeInventoryEvent extends TargetInventoryEvent, AffectSlotEvent {
+public interface ChangeInventoryEvent extends Event, AffectSlotEvent {
+
+    /**
+     * Gets the {@link Inventory}.
+     *
+     * @return The inventory
+     */
+    Inventory getInventory();
 
     /**
      * Fired when a {@link Living} changes it's equipment.
@@ -92,7 +98,7 @@ public interface ChangeInventoryEvent extends TargetInventoryEvent, AffectSlotEv
         /**
          * Fired before an {@link Inventory} attempts to transfer items.
          */
-        interface Pre extends TargetInventoryEvent, Cancellable {
+        interface Pre extends Event, Cancellable {
 
             /**
              * Gets the source {@link Inventory} of this {@link Event}.
@@ -106,7 +112,6 @@ public interface ChangeInventoryEvent extends TargetInventoryEvent, AffectSlotEv
              *
              * @return The target {@link Inventory}
              */
-            @Override
             Inventory getTargetInventory();
         }
 
@@ -132,7 +137,21 @@ public interface ChangeInventoryEvent extends TargetInventoryEvent, AffectSlotEv
          * automatically canceled if the inventory does not
          * fit the entire list.</p>
          */
-        interface Pre extends TargetInventoryEvent, TargetItemEvent, Cancellable {
+        interface Pre extends Event, Cancellable {
+
+            /**
+             * Gets the {@link Inventory}.
+             *
+             * @return The inventory.
+             */
+            Inventory getInventory();
+
+            /**
+             * Gets the {@link Item}.
+             *
+             * @return The item
+             */
+            Item getItem();
 
             /**
              * Returns the original picked up {@link ItemStackSnapshot}
@@ -141,7 +160,7 @@ public interface ChangeInventoryEvent extends TargetInventoryEvent, AffectSlotEv
              * @return The original picked up item
              */
             default ItemStackSnapshot getOriginalStack() {
-                return this.getTargetEntity().item().get();
+                return this.getItem().item().get();
             }
 
             /**

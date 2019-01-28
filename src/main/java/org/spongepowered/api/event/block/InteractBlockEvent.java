@@ -42,7 +42,14 @@ import org.spongepowered.api.world.Location;
  * <p>Note: Any interaction that occurs within {@link BlockTypes#AIR} where the
  * {@link Location} is not known, will contain a {@link BlockSnapshot#NONE}.</p>
  */
-public interface InteractBlockEvent extends InteractEvent, TargetBlockEvent {
+public interface InteractBlockEvent extends InteractEvent {
+
+    /**
+     * Gets the {@link BlockSnapshot}.
+     *
+     * @return The block snapshot
+     */
+    BlockSnapshot getBlock();
 
     /**
      * Gets the target "side" of the {@link BlockState} being interacted with

@@ -24,11 +24,18 @@
  */
 package org.spongepowered.api.event.world.chunk;
 
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.world.chunk.Chunk;
 
 /**
  * Base event for when a {@link Chunk} is triggered to load.
  */
-public interface LoadChunkEvent extends TargetChunkEvent {
+public interface LoadChunkEvent extends Event {
 
+    /**
+     * Gets the {@link Chunk}.
+     *
+     * @return The chunk
+     */
+    Chunk getChunk();
 }

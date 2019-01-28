@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.item.inventory;
 
+import org.spongepowered.api.event.item.inventory.container.ClickContainerEvent;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.crafting.CraftingInventory;
 import org.spongepowered.api.item.inventory.transaction.SlotTransaction;
@@ -67,7 +68,7 @@ public interface CraftItemEvent extends ChangeInventoryEvent {
     /**
      * This event is fired after the item is taken out of the output slot.
      */
-    interface Craft extends CraftItemEvent, ClickInventoryEvent {
+    interface Craft extends CraftItemEvent, ClickContainerEvent {
 
         /**
          * The item crafted with this event.

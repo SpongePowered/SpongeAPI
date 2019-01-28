@@ -31,6 +31,7 @@ import org.spongepowered.api.entity.living.monster.Skeleton;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.projectile.arrow.Arrow;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.entity.damage.DamageFunction;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
@@ -134,12 +135,19 @@ import java.util.function.DoubleUnaryOperator;
  *
  * <p>Note that this event is intended for processing incoming damage to
  * an {@link Entity} prior to any {@link DamageModifier}s associated with
- * the {@link #getTargetEntity()}. The {@link DamageEntityEvent} is used
+ * the {@link #getEntity()}. The {@link DamageEntityEvent} is used
  * to process the various {@link DamageModifier}s of which originate or are
  * associated with the targeted {@link Entity}.</p>
  */
 @ImplementedBy(AbstractDamageEntityEvent.class)
-public interface DamageEntityEvent extends TargetEntityEvent, Cancellable {
+public interface DamageEntityEvent extends Event, Cancellable {
+
+    /**
+     * Gets the {@link Entity}.
+     *
+     * @return The entity
+     */
+    Entity getEntity();
 
     /**
      * Gets the original "raw" amount of damage to deal to the targeted
@@ -295,7 +303,7 @@ public interface DamageEntityEvent extends TargetEntityEvent, Cancellable {
     /**
      * Returns whether or not this event will cause the entity to die if the
      * event is not cancelled. Only supported for living entities, returns false
-     * if {@link #getTargetEntity()} is not a living entity.
+     * if {@link #getEntity()} is not a living entity.
      *
      * @return Whether the entity will die
      */

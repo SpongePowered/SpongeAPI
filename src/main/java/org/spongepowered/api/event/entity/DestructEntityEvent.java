@@ -27,7 +27,6 @@ package org.spongepowered.api.event.entity;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.entity.living.TargetLivingEvent;
 import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 import org.spongepowered.api.world.gamerule.DefaultGameRules;
@@ -38,11 +37,18 @@ import org.spongepowered.api.world.gamerule.DefaultGameRules;
  * {@link HarvestEntityEvent}.
  */
 @GenerateFactoryMethod
-public interface DestructEntityEvent extends TargetEntityEvent, MessageChannelEvent {
+public interface DestructEntityEvent extends MessageChannelEvent {
+
+    /**
+     * Gets the {@link Entity}.
+     *
+     * @return The entity
+     */
+    Entity getEntity();
 
     /**
      * A derivative of {@link DestructEntityEvent} where the removal of the
-     * {@link Living}, the {@link TargetLivingEvent#getTargetEntity()},
+     * {@link Living}, the {@link DestructEntityEvent#getEntity()},
      * is due to it losing its health.
      *
      * <p>Note that cancelling this event will have the implication that the
@@ -52,7 +58,10 @@ public interface DestructEntityEvent extends TargetEntityEvent, MessageChannelEv
      * environments, cancelling this event may have other implications that mods
      * may not consider and cause bugs.</p>
      */
-    interface Death extends DestructEntityEvent, TargetLivingEvent, Cancellable {
+    interface Death extends DestructEntityEvent, Cancellable {
+
+        @Override
+        Living getEntity();
 
         /**
          * Applies the {@link DefaultGameRules#KEEP_INVENTORY} gamerule to this

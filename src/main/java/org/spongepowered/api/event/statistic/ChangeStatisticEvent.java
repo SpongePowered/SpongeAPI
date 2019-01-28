@@ -26,7 +26,6 @@ package org.spongepowered.api.event.statistic;
 
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
 import org.spongepowered.api.statistic.Statistic;
 
 /**
@@ -61,6 +60,4 @@ public interface ChangeStatisticEvent extends Event, Cancellable {
      * @param value The new value
      */
     void setValue(long value);
-
-    interface TargetPlayer extends ChangeStatisticEvent, TargetPlayerEvent {}
 }

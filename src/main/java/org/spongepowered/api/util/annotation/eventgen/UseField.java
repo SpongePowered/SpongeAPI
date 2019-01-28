@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.util.annotation.eventgen;
 
-import org.spongepowered.api.event.entity.AffectEntityEvent;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

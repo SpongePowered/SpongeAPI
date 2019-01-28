@@ -22,59 +22,66 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.item.inventory;
+package org.spongepowered.api.event.item.inventory.container;
+
+import org.spongepowered.api.event.item.inventory.ChangeInventoryEvent;
+import org.spongepowered.api.event.item.inventory.DropItemEvent;
+import org.spongepowered.api.item.inventory.Container;
 
 /**
  * A click interaction in an open container.
  */
-public interface ClickInventoryEvent extends ChangeInventoryEvent, InteractInventoryEvent {
+public interface ClickContainerEvent extends ChangeInventoryEvent, InteractContainerEvent {
+
+    @Override
+    Container getInventory();
 
     /**
      * A click with the primary mouse button.
      */
-    interface Primary extends ClickInventoryEvent {}
+    interface Primary extends ClickContainerEvent {}
 
     /**
      * A click with the middle mouse button.
      */
-    interface Middle extends ClickInventoryEvent {}
+    interface Middle extends ClickContainerEvent {}
 
     /**
      * A click with the secondary mouse button.
      */
-    interface Secondary extends ClickInventoryEvent {}
+    interface Secondary extends ClickContainerEvent {}
 
     /**
      * A click in a creative inventory.
      * <p>The client can dictate what stack is in a Slot</p>
      */
-    interface Creative extends ClickInventoryEvent {}
+    interface Creative extends ClickContainerEvent {}
 
     /**
      * A click with the <code>shift</code> modifier active
      */
-    interface Shift extends ClickInventoryEvent {
+    interface Shift extends ClickContainerEvent {
 
         /**
          * A click with the primary mouse button and the <code>shift</code> modifier active
          */
-        interface Primary extends Shift, ClickInventoryEvent.Primary {}
+        interface Primary extends Shift, ClickContainerEvent.Primary {}
 
         /**
          * A click with the secondary mouse button and the <code>shift</code> modifier active
          */
-        interface Secondary extends Shift, ClickInventoryEvent.Secondary {}
+        interface Secondary extends Shift, ClickContainerEvent.Secondary {}
     }
 
     /**
      * A double-click with the primary mouse button
      */
-    interface Double extends ClickInventoryEvent.Primary {}
+    interface Double extends ClickContainerEvent.Primary {}
 
     /**
      * An interaction resulting in dropping an item.
      */
-    interface Drop extends ClickInventoryEvent, DropItemEvent.Dispense {
+    interface Drop extends ClickContainerEvent, DropItemEvent.Dispense {
 
         /**
          * An interaction dropping a single item. (Q)
@@ -94,41 +101,41 @@ public interface ClickInventoryEvent extends ChangeInventoryEvent, InteractInven
             /**
              * A click with the primary mouse button dropping the entire stack on the cursor.
              */
-            interface Primary extends Outside, ClickInventoryEvent.Primary {}
+            interface Primary extends Outside, ClickContainerEvent.Primary {}
 
             /**
              * A click with the secondary mouse button dropping a single item from the cursor.
              */
-            interface Secondary extends Outside, ClickInventoryEvent.Secondary {}
+            interface Secondary extends Outside, ClickContainerEvent.Secondary {}
         }
     }
 
     /**
      * A completed drag Interaction.
      */
-    interface Drag extends ClickInventoryEvent {
+    interface Drag extends ClickContainerEvent {
 
         /**
          * A completed drag Interaction distributing the cursor stack evenly among the slots.
          */
-        interface Primary extends Drag, ClickInventoryEvent.Primary {}
+        interface Primary extends Drag, ClickContainerEvent.Primary {}
 
         /**
          * A completed drag Interaction distributing a single item from the cursor stack on each slot.
          */
-        interface Secondary extends Drag, ClickInventoryEvent.Secondary {}
+        interface Secondary extends Drag, ClickContainerEvent.Secondary {}
 
         /**
          * A completed drag Interaction cloning the cursor stack on each slot.
          * <p>Only changes slots in creative mode</p>
          */
-        interface Middle extends Drag, ClickInventoryEvent.Middle {}
+        interface Middle extends Drag, ClickContainerEvent.Middle {}
     }
 
     /**
      * Fires when the client requests a recipe to be crafted.
      */
-    interface Recipe extends ClickInventoryEvent {
+    interface Recipe extends ClickContainerEvent {
 
         /**
          * Returns the requested recipe.
@@ -151,7 +158,7 @@ public interface ClickInventoryEvent extends ChangeInventoryEvent, InteractInven
     /**
      * A number press swapping the hotbar slot with the slot the mouse hovers over.
      */
-    interface NumberPress extends ClickInventoryEvent {
+    interface NumberPress extends ClickContainerEvent {
         int getNumber();
     }
 }

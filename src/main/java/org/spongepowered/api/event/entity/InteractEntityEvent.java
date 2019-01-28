@@ -31,7 +31,14 @@ import org.spongepowered.api.event.entity.living.humanoid.HandInteractEvent;
 /**
  * Base event for all interactions targeting an {@link Entity}.
  */
-public interface InteractEntityEvent extends InteractEvent, TargetEntityEvent {
+public interface InteractEntityEvent extends InteractEvent {
+
+    /**
+     * Gets the {@link Entity}.
+     *
+     * @return The entity
+     */
+    Entity getEntity();
 
     /**
      * An event where the targeted entity is being interacted with the client's

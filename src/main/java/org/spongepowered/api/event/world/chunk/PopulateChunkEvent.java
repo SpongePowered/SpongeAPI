@@ -25,12 +25,20 @@
 package org.spongepowered.api.event.world.chunk;
 
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.gen.Populator;
 
 import java.util.List;
 
-public interface PopulateChunkEvent extends TargetChunkEvent {
+public interface PopulateChunkEvent extends Event {
+
+    /**
+     * Gets the {@link Chunk}.
+     *
+     * @return The chunk
+     */
+    Chunk getChunk();
 
     /**
      * Called before a chunk begins populating.

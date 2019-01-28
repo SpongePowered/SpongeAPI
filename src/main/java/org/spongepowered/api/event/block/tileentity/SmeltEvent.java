@@ -25,15 +25,20 @@
 package org.spongepowered.api.event.block.tileentity;
 
 import org.spongepowered.api.block.tileentity.carrier.Furnace;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.item.inventory.AffectItemStackEvent;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
 import java.util.List;
 
-public interface SmeltEvent extends TargetTileEntityEvent {
+public interface SmeltEvent extends Event {
 
-    @Override
-    Furnace getTargetTile();
+    /**
+     * Gets the {@link Furnace}.
+     *
+     * @return The furnace
+     */
+    Furnace getFurnace();
 
     /**
      * Gets the fuel represented as an {@link ItemStackSnapshot}.
@@ -49,6 +54,7 @@ public interface SmeltEvent extends TargetTileEntityEvent {
     interface Tick extends SmeltEvent, AffectItemStackEvent {}
 
     interface Interrupt extends SmeltEvent {
+
         /**
          * Gets an immutable {@link List} of {@link ItemStackSnapshot}s that are the result
          * of the smelt.
@@ -58,6 +64,7 @@ public interface SmeltEvent extends TargetTileEntityEvent {
     }
 
     interface Finish extends SmeltEvent {
+
         /**
          * Gets an immutable {@link List} of {@link ItemStackSnapshot}s that are the result
          * of the smelt.

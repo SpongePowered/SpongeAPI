@@ -24,15 +24,23 @@
  */
 package org.spongepowered.api.event.entity.living.humanoid;
 
+import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 /**
  * Called when a human's level is changed.
  */
 @GenerateFactoryMethod
-public interface ChangeLevelEvent extends TargetHumanoidEvent, Cancellable {
+public interface ChangeLevelEvent extends Event, Cancellable {
+
+    /**
+     * Gets the {@link Humanoid}.
+     *
+     * @return The humanoid
+     */
+    Humanoid getHumanoid();
 
     /**
      * Gets the original level of the human.
@@ -57,6 +65,4 @@ public interface ChangeLevelEvent extends TargetHumanoidEvent, Cancellable {
      * @param level The new level to change to
      */
     void setLevel(int level);
-
-    interface TargetPlayer extends ChangeLevelEvent, TargetPlayerEvent {}
 }

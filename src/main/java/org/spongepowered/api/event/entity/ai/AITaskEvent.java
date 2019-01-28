@@ -28,12 +28,19 @@ import org.spongepowered.api.entity.ai.Goal;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.entity.living.TargetAgentEvent;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.impl.AbstractAITaskEvent;
 import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
 
 @ImplementedBy(AbstractAITaskEvent.class)
-public interface AITaskEvent extends TargetAgentEvent, Cancellable {
+public interface AITaskEvent extends Event, Cancellable {
+
+    /**
+     * Gets the {@link Agent}.
+     *
+     * @return The agent
+     */
+    Agent getAgent();
 
     /**
      * Gets the {@link Goal} the task will be assigned to.
