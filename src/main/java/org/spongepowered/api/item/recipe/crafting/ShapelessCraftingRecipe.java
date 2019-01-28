@@ -26,9 +26,12 @@ package org.spongepowered.api.item.recipe.crafting;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.text.translation.Translation;
+import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.List;
@@ -102,7 +105,7 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
         /**
          * In this Step set the group of the Recipe and/or build it.
          */
-        interface EndStep extends Builder {
+        interface EndStep extends Builder, CatalogBuilder<ShapelessCraftingRecipe, Builder> {
 
             /**
              * Sets the group of the recipe.
@@ -112,16 +115,27 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
              */
             EndStep group(@Nullable String name);
 
+            @Override
+            EndStep key(CatalogKey key);
+
+            @Override
+            EndStep id(String id);
+
+            @Override
+            EndStep name(String name);
+
+            @Override
+            EndStep name(Translation name);
+
             /**
-             * Builds a new {@link ShapelessCraftingRecipe} from this builder.
+             * Builds the {@link ShapelessCraftingRecipe}.
              *
-             * @param id The id of this recipe.
-             * @param plugin The owning plugin.
-             * @return A new {@link ShapelessCraftingRecipe}
-             * @throws IllegalStateException If not all required options
-             *     were specified
+             * @return The built shapeless crafting recipe
+             * @throws IllegalStateException If not all the recipe builder steps are completed
+             *                               or the {@link #key(CatalogKey)} isn't set.
              */
-            ShapelessCraftingRecipe build(String id, Object plugin);
+            @Override
+            ShapelessCraftingRecipe build() throws IllegalStateException;
         }
 
     }

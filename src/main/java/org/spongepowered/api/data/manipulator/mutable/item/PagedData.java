@@ -37,7 +37,7 @@ import java.util.List;
 
 /**
  * An {@link DataManipulator} handling the {@link List} of pages of
- * {@link Text} for an {@link ItemStack} of type {@link ItemTypes#WRITABLE_BOOK}
+ * {@link Text} for an {@link ItemStack} of type {@link ItemTypes#WRITTEN_BOOK}
  * such that the text elements are single pages.
  */
 public interface PagedData extends ListData<Text, PagedData, ImmutablePagedData> {

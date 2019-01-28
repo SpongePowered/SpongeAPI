@@ -22,29 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.recipe;
+package org.spongepowered.api.data.manipulator.immutable.item;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
-import org.spongepowered.api.item.recipe.smelting.SmeltingRecipe;
+import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableListData;
+import org.spongepowered.api.data.manipulator.mutable.item.PagedData;
+import org.spongepowered.api.data.manipulator.mutable.item.PlainPagedData;
+import org.spongepowered.api.data.value.immutable.ImmutableListValue;
+import org.spongepowered.api.item.ItemTypes;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.text.Text;
+
+import java.util.List;
 
 /**
- * A general interface for recipes. Every direct sub interface
- * of this class will require it's own registry module. Depending
- * for what purpose a {@link Recipe} is implemented, different
- * sub classes will be used.
- * <p>The currently supported recipe types are
- * {@link CraftingRecipe} and {@link SmeltingRecipe}.
+ * An {@link ImmutableDataManipulator} handling the {@link List} of pages of
+ * {@link Text} for an {@link ItemStack} of type {@link ItemTypes#WRITABLE_BOOK}
+ * such that the text elements are single pages.
  */
-public interface Recipe extends CatalogType {
+public interface ImmutablePlainPagedData extends ImmutableListData<String, ImmutablePlainPagedData, PlainPagedData> {
 
     /**
-     * A general result of this recipe. This result may be customized depending
-     * on the context.
+     * Gets the {@link ImmutableListValue} for the {@link Text} pages.
      *
-     * @return The exemplary result of this recipe
+     * @return The immutable list value of text pages
      */
-    ItemStackSnapshot getExemplaryResult();
+    default ImmutableListValue<String> pages() {
+        return getListValue();
+    }
 
 }

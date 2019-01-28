@@ -22,29 +22,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.recipe;
+package org.spongepowered.api.data.manipulator.mutable.item;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
-import org.spongepowered.api.item.recipe.smelting.SmeltingRecipe;
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.item.ImmutablePagedData;
+import org.spongepowered.api.data.manipulator.immutable.item.ImmutablePlainPagedData;
+import org.spongepowered.api.data.manipulator.mutable.ListData;
+import org.spongepowered.api.data.value.mutable.ListValue;
+import org.spongepowered.api.item.ItemTypes;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.text.Text;
+
+import java.util.List;
 
 /**
- * A general interface for recipes. Every direct sub interface
- * of this class will require it's own registry module. Depending
- * for what purpose a {@link Recipe} is implemented, different
- * sub classes will be used.
- * <p>The currently supported recipe types are
- * {@link CraftingRecipe} and {@link SmeltingRecipe}.
+ * An {@link DataManipulator} handling the {@link List} of pages of
+ * {@link Text} for an {@link ItemStack} of type {@link ItemTypes#WRITABLE_BOOK}
+ * such that the text elements are single pages.
  */
-public interface Recipe extends CatalogType {
+public interface PlainPagedData extends ListData<String, PlainPagedData, ImmutablePlainPagedData> {
 
     /**
-     * A general result of this recipe. This result may be customized depending
-     * on the context.
+     * Gets the {@link ListValue} for the {@link Text} pages.
      *
-     * @return The exemplary result of this recipe
+     * @return The list value of text pages
+     * @see Keys#PLAIN_BOOK_PAGES
      */
-    ItemStackSnapshot getExemplaryResult();
+    default ListValue<String> pages() {
+        return getListValue();
+    }
 
 }

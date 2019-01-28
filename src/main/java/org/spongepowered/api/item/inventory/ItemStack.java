@@ -80,6 +80,16 @@ public interface ItemStack extends DataHolder, Translatable {
     }
 
     /**
+     * Creates a new {@link ItemStack} of the provided {@link ItemType} and quantity of 1
+     *
+     * @param itemType The item type
+     * @return The new item stack
+     */
+    static ItemStack of(ItemType itemType) {
+        return of(itemType, 1);
+    }
+
+    /**
      * Returns an empty {@link ItemStack}.
      *
      * @return The empty ItemStack

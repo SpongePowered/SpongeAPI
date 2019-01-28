@@ -24,11 +24,14 @@
  */
 package org.spongepowered.api.item.recipe.smelting;
 
+import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.Recipe;
+import org.spongepowered.api.text.translation.Translation;
+import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Optional;
@@ -162,7 +165,7 @@ public interface SmeltingRecipe extends Recipe {
 
         }
 
-        interface EndStep extends Builder {
+        interface EndStep extends Builder, CatalogBuilder<SmeltingRecipe, Builder> {
 
             /**
              * Changes the experience and returns this builder. It is the
@@ -175,14 +178,27 @@ public interface SmeltingRecipe extends Recipe {
              */
             EndStep experience(double experience);
 
+            @Override
+            EndStep key(CatalogKey key);
+
+            @Override
+            EndStep id(String id);
+
+            @Override
+            EndStep name(String name);
+
+            @Override
+            EndStep name(Translation name);
+
             /**
-             * Builds the recipe and returns it.
+             * Builds the {@link SmeltingRecipe}.
              *
-             * @return The built recipe
-             * @throws IllegalStateException If not all required options
-             *     were specified
+             * @return The built smelting recipe
+             * @throws IllegalStateException If not all the recipe builder steps are completed
+             *                               or the {@link #key(CatalogKey)} isn't set.
              */
-            SmeltingRecipe build();
+            @Override
+            SmeltingRecipe build() throws IllegalStateException;
         }
     }
 }
