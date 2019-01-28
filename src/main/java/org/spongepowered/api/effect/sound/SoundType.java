@@ -24,10 +24,13 @@
  */
 package org.spongepowered.api.effect.sound;
 
+import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.GameRegistry;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.event.CauseStackManager;
+import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -47,30 +50,32 @@ public interface SoundType extends CatalogType {
 
     /**
      * Creates a <i>new</i>SoundType from the given ID. To fetch existing types,
-     * use {@link GameRegistry#getType(Class, String)}.
+     * use {@link GameRegistry#getType(Class, CatalogKey)}.
      *
-     * @param id ID of the sound
-     * @return A new SoundType object
+     * <p>A {@link CatalogKey} is used where the provided id is the value and the namespace
+     * is the id of the {@link PluginContainer} that is currently in the {@link CauseStackManager}.</p>
+     *
+     * @param id The id of the sound
+     * @return A new sound type
      */
     static SoundType of(String id) {
-        return builder().build(id);
+        return builder().id(id).build();
+    }
+
+    /**
+     * Creates a <i>new</i>SoundType from the given {@link CatalogKey}. To fetch existing types,
+     * use {@link GameRegistry#getType(Class, CatalogKey)}.
+     *
+     * @param key The key of the sound
+     * @return A new sound type
+     */
+    static SoundType of(CatalogKey key) {
+        return builder().key(key).build();
     }
 
     /**
      * Builds a SoundType, primarily for sending custom sounds to the client.
      */
-    interface Builder extends ResettableBuilder<SoundType, Builder> {
-
-        /**
-         * Builds a new instance of a {@link SoundType}.
-         *
-         * <p>Note: If no domain (indicated by the string before ':') is present
-         * in the id, the default "minecraft" domain will be used.</p>
-         *
-         * @param id ID of the sound
-         * @return A new instance of the sound type
-         */
-        SoundType build(String id);
-
+    interface Builder extends CatalogBuilder<SoundType, Builder> {
     }
 }
