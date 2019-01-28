@@ -25,7 +25,6 @@
 package org.spongepowered.api.event.world;
 
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.world.WorldArchetype;
 import org.spongepowered.api.world.storage.WorldProperties;
 
 /**
@@ -40,12 +39,5 @@ public interface ConstructWorldPropertiesEvent extends Event {
      * @return The properties
      */
     WorldProperties getWorldProperties();
-    
-    /**
-     * Gets the {@link WorldArchetype} used to create the world.
-     * 
-     * @return The archetype
-     */
-    WorldArchetype getWorldArchetype();
 
 }

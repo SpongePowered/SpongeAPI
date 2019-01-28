@@ -42,7 +42,6 @@ import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.TeleportHelper;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.WorldArchetype;
 import org.spongepowered.api.world.schematic.Schematic;
 
 import java.util.Collection;
