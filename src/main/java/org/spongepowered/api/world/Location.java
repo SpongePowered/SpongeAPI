@@ -204,11 +204,18 @@ public final class Location implements DataHolder {
      * @throws IllegalStateException If the {@link World} is null
      */
     public World getWorld() {
+        final World world = getWorldNullable();
+        checkState(world != null, "The world %s is not available", this.worldUniqueId);
+        return world;
+    }
+
+    @Nullable
+    private World getWorldNullable() {
         World currentWorld = this.world == null ? null : this.world.get();
         if (currentWorld == null) {
             final Optional<World> optWorld = Sponge.getServer().getWorld(this.worldUniqueId);
             if (!optWorld.isPresent()) {
-                throw new IllegalStateException();
+                return null;
             }
             currentWorld = optWorld.get();
             this.world = new WeakReference<>(currentWorld);
@@ -223,6 +230,30 @@ public final class Location implements DataHolder {
      */
     public UUID getWorldUniqueId() {
         return this.worldUniqueId;
+    }
+
+    /**
+     * Gets whether this location is available. A location is
+     * available when a {@link World} exists and is loaded.
+     *
+     * @return Is available
+     */
+    public boolean isAvailable() {
+        return getWorldNullable() != null;
+    }
+
+    /**
+     * Gets whether this location is valid. A location is valid
+     * when the target {@link World} exists, this can be loaded
+     * or unloaded.
+     *
+     * @return Is valid
+     */
+    public boolean isValid() {
+        if (isAvailable()) {
+            return true;
+        }
+        return Sponge.getServer().getWorldProperties(this.worldUniqueId).isPresent();
     }
 
     /**
