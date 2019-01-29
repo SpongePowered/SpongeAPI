@@ -26,10 +26,11 @@ package org.spongepowered.api.world.chunk;
 
 import com.flowpowered.math.vector.Vector3d;
 import org.slf4j.Logger;
-import org.spongepowered.api.Game;
+import org.spongepowered.api.Server;
 import org.spongepowered.api.event.world.ChunkPreGenerationEvent;
 import org.spongepowered.api.scheduler.Scheduler;
 import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.TemporalUnits;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldBorder;
 import org.spongepowered.api.world.storage.WorldProperties;
@@ -143,7 +144,23 @@ public interface ChunkPreGenerate {
          * @param tickInterval The tick interval
          * @return This for chained calls
          */
-        Builder tickInterval(int tickInterval);
+        default Builder tickInterval(int tickInterval) {
+            return interval(Duration.of(tickInterval, TemporalUnits.MINECRAFT_TICKS));
+        }
+
+        /**
+         * Sets the number of ticks between generation runs.
+         *
+         * <p>Must be greater than 0.</p>
+         *
+         * <p>Optional.</p>
+         *
+         * <p>Default is 4 {@link TemporalUnits#MINECRAFT_TICKS}.</p>
+         *
+         * @param interval The interval
+         * @return This for chained calls
+         */
+        Builder interval(Duration interval);
 
         /**
          * Sets maximum number of chunks per tick to generate.
@@ -192,12 +209,11 @@ public interface ChunkPreGenerate {
         Builder addListener(Consumer<ChunkPreGenerationEvent> listener);
 
         /**
-         * Schedules the task with the {@link Game#getScheduler()}.
+         * Schedules the task with the {@link Server#getScheduler()}.
          *
          * @return The resulting {@link ChunkPreGenerate} that can be used
          *         obtain progress
          */
         ChunkPreGenerate start();
-
     }
 }

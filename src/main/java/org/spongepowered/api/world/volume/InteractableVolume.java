@@ -33,6 +33,8 @@ import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
 
+import java.time.Duration;
+
 public interface InteractableVolume extends ReadableBlockVolume {
 
     /**
@@ -196,31 +198,26 @@ public interface InteractableVolume extends ReadableBlockVolume {
     boolean digBlockWith(int x, int y, int z, ItemStack itemStack,GameProfile profile);
 
     /**
-     * Gets the time it takes to dig this block with the specified item in
-     * ticks.
+     * Gets the {@link Duration} it takes to dig this block with the specified item.
      *
      * @param position The position of the block
      * @param itemStack The item to pretend-dig with
      * @param profile The game profile of the player this is imitating
-     * @return The time in ticks
+     * @return The duration it takes to dig the block
      */
-    default int getBlockDigTimeWith(Vector3i position, ItemStack itemStack, GameProfile profile) {
+    default Duration getBlockDigTimeWith(Vector3i position, ItemStack itemStack, GameProfile profile) {
         return getBlockDigTimeWith(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), itemStack, profile);
     }
 
     /**
-     * Gets the time it takes to dig this block with the specified item in
-     * ticks.
+     * Gets the {@link Duration} it takes to dig this block with the specified item.
      *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
      * @param itemStack The item to pretend-dig with
      * @param profile The game profile of the player this is imitating
-     * @return The time in ticks
+     * @return The duration it takes to dig the block
      */
-    int getBlockDigTimeWith(int x, int y, int z, ItemStack itemStack, GameProfile profile);
-
-
-
+    Duration getBlockDigTimeWith(int x, int y, int z, ItemStack itemStack, GameProfile profile);
 }
