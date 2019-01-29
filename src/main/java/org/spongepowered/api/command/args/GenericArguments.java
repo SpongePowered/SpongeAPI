@@ -1667,7 +1667,10 @@ public final class GenericArguments {
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
             CommandArgs.Snapshot state = args.getSnapshot();
             if (args.peek().startsWith("@")) { // We are a selector
-                return Selector.parse(args.next()).resolve(source).stream()
+                if (!(source instanceof Locatable)) {
+                    return ImmutableSet.of();
+                }
+                return Selector.parse(args.next()).resolve((Locatable) source).stream()
                         .map(Entity::getLocation)
                         .collect(ImmutableSet.toImmutableSet());
             }
