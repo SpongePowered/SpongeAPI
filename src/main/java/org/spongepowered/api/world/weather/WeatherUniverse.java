@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.world.weather;
 
+import java.time.Duration;
+
 /**
  * A universe affected by {@link Weather}.
  */
@@ -37,31 +39,33 @@ public interface WeatherUniverse {
     Weather getWeather();
 
     /**
-     * Gets the remaining duration of the current {@link Weather}.
+     * Gets the remaining {@link Duration} of the current
+     * {@link Weather}.
      *
-     * @return The remaining weather duration.
+     * @return The remaining weather duration
      */
-    long getRemainingDuration();
+    Duration getRemainingWeatherDuration();
 
     /**
-     * Gets the duration the current {@link Weather} has been running for.
+     * Gets the {@link Duration} the current {@link Weather}
+     * has been running for.
      *
-     * @return The running weather duration.
+     * @return The running weather duration
      */
-    long getRunningDuration();
+    Duration getRunningWeatherDuration();
 
     /**
      * Sets the {@link Weather} of the volume with a random duration.
      *
-     * @param weather The new {@link Weather}.
+     * @param weather The weather that should be switched to
      */
     void setWeather(Weather weather);
 
     /**
-     * Sets the {@link Weather} of the volume with the specified duration.
+     * Sets the {@link Weather} of the world with the specified duration.
      *
-     * @param weather The new {@link Weather}.
-     * @param duration The specified duration.
+     * @param weather The weather that should be switched to
+     * @param duration The specified duration
      */
-    void setWeather(Weather weather, long duration);
+    void setWeather(Weather weather, Duration duration);
 }

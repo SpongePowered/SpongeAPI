@@ -33,6 +33,7 @@ import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.util.Identifiable;
+import org.spongepowered.api.util.TemporalUnits;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.World;
@@ -41,7 +42,9 @@ import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gen.GeneratorType;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 import org.spongepowered.api.world.teleport.PortalAgentType;
+import org.spongepowered.api.world.weather.WeatherUniverse;
 
+import java.time.Duration;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
@@ -50,7 +53,7 @@ import java.util.UUID;
 /**
  * Represents the properties of a {@link World} which are persisted across runtime instances.
  */
-public interface WorldProperties extends DataSerializable, Identifiable {
+public interface WorldProperties extends WeatherUniverse, DataSerializable, Identifiable {
 
     /**
      * Gets whether this world has been initialized.
@@ -182,29 +185,27 @@ public interface WorldProperties extends DataSerializable, Identifiable {
     void setSeed(long seed);
 
     /**
-     * Gets the number of ticks which have occurred since the world was created.
+     * Gets the time since the world was created.
      *
-     * @return The total time in ticks
+     * @return The total time
      */
-    long getTotalTime();
+    Duration getTotalTime();
 
     /**
-     * Gets the time of day, in ticks. The total number of ticks in a day is
-     * 24000, however this value does not reset to zero at the start of each day
-     * but rather keeps counting passed 24000.
+     * Gets the time of day, in ticks. The amount of time that a minecraft day
+     * takes can be determined with the unit {@link TemporalUnits#MINECRAFT_DAYS}.
      *
      * @return The time of day
      */
-    long getWorldTime();
+    Duration getWorldTime();
 
     /**
-     * Sets the time of day, in ticks. The total number of ticks in a day is
-     * 24000, however this value does not reset to zero at the start of each day
-     * but rather keeps counting passed 24000.
+     * Sets the time of day. The amount of time that a minecraft day
+     * takes can be determined with the unit {@link TemporalUnits#MINECRAFT_DAYS}.
      *
      * @param time The time of day
      */
-    void setWorldTime(long time);
+    void setWorldTime(Duration time);
 
     /**
      * Gets the {@link DimensionType} of this world.
@@ -233,68 +234,6 @@ public interface WorldProperties extends DataSerializable, Identifiable {
      * @param enabled Whether PVP is enabled
      */
     void setPVPEnabled(boolean enabled);
-
-    /**
-     * Gets whether this world is currently experiencing rain/snow/cloud-cover
-     * (depending on the biome of a specific location).
-     *
-     * @return Is raining
-     */
-    boolean isRaining();
-
-    /**
-     * Sets whether this world is currently experiencing rain/snow/cloud-cover
-     * (depending on the biome of a specific location).
-     *
-     * @param state Is raining
-     */
-    void setRaining(boolean state);
-
-    /**
-     * Gets the number of ticks until the weather is next toggled to a new
-     * random value.
-     *
-     * @return The time until the weather changes
-     */
-    int getRainTime();
-
-    /**
-     * Sets the number of ticks until the weather is next toggled to a new
-     * random value.
-     *
-     * @param time The time until the weather changes
-     */
-    void setRainTime(int time);
-
-    /**
-     * Gets whether this world is currently experiencing a lightning storm.
-     *
-     * @return Is thundering
-     */
-    boolean isThundering();
-
-    /**
-     * Sets whether this world is currently experiencing a lightning storm.
-     *
-     * @param state Is thundering
-     */
-    void setThundering(boolean state);
-
-    /**
-     * Gets the number of ticks until the {@link #isThundering()} state is
-     * toggled to a new random value.
-     *
-     * @return The time until the thundering state changes
-     */
-    int getThunderTime();
-
-    /**
-     * Sets the number of ticks until the {@link #isThundering()} state is
-     * toggled to a new random value.
-     *
-     * @param time The time until the thundering state changes
-     */
-    void setThunderTime(int time);
 
     /**
      * Gets the default {@link GameMode} of this world.
