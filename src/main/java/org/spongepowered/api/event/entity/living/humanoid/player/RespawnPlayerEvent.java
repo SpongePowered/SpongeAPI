@@ -57,21 +57,21 @@ public interface RespawnPlayerEvent extends Event {
      *
      * @return the previous transform
      */
-    Transform<World> getFromTransform();
+    Transform getFromTransform();
 
     /**
      * Gets the new transform that the {@link Player} will change to.
      *
      * @return the new transform
      */
-    Transform<World> getToTransform();
+    Transform getToTransform();
 
     /**
      * Sets the new transform that the entity will change to.
      *
      * @param respawnTransform The new transform
      */
-    void setToTransform(Transform<World> respawnTransform);
+    void setToTransform(Transform respawnTransform);
 
     /**
      * Gets whether the transform was set by a bed or not.

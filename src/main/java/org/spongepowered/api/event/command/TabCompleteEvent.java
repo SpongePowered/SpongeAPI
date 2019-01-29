@@ -86,7 +86,7 @@ public interface TabCompleteEvent extends Event, Cancellable {
      *
      * @return The target position
      */
-    Optional<Location<World>> getTargetPos();
+    Optional<Location> getTargetPos();
 
     /**
      * Gets whether the player is tab completing from a block's GUI.

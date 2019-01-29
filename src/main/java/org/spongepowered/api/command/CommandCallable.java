@@ -69,7 +69,7 @@ public interface CommandCallable {
      * @return A list of suggestions
      * @throws CommandException Thrown if there was a parsing error
      */
-    List<String> getSuggestions(CommandSource source, String arguments, @Nullable  Location<World> targetPosition) throws CommandException;
+    List<String> getSuggestions(CommandSource source, String arguments, @Nullable  Location targetPosition) throws CommandException;
 
     /**
      * Test whether this command can probably be executed by the given source.

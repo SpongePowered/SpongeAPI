@@ -72,3 +72,4 @@ nb-configuration.xml
 *.ipr
 *.iws
 *.launch
+/classes

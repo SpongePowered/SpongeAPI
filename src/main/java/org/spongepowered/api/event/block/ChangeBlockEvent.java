@@ -69,7 +69,7 @@ public interface ChangeBlockEvent extends Event, Cancellable {
      * @return The transactions for which the predicate returned
      *     <code>false</code>
      */
-    default List<Transaction<BlockSnapshot>> filter(Predicate<Location<World>> predicate) {
+    default List<Transaction<BlockSnapshot>> filter(Predicate<Location> predicate) {
         List<Transaction<BlockSnapshot>> invalidatedTransactions = Lists.newArrayList();
         for (Transaction<BlockSnapshot> transaction: this.getTransactions()) {
             if (!predicate.test(transaction.getOriginal().getLocation().get())) {
@@ -109,7 +109,7 @@ public interface ChangeBlockEvent extends Event, Cancellable {
          *
          * @return The immutable list of one or more locations that can change
          */
-        List<Location<World>> getLocations();
+        List<Location> getLocations();
     }
 
     /**

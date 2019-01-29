@@ -107,7 +107,7 @@ public interface Mushroom extends Populator {
      * 
      * @return The supplier override
      */
-    Optional<Function<Location<Extent>, MushroomType>> getSupplierOverride();
+    Optional<Function<Location, MushroomType>> getSupplierOverride();
 
     /**
      * Sets the overriding supplier. If the supplier is present then it is used
@@ -116,7 +116,7 @@ public interface Mushroom extends Populator {
      * 
      * @param override The new supplier override, or null
      */
-    void setSupplierOverride(@Nullable Function<Location<Extent>, MushroomType> override);
+    void setSupplierOverride(@Nullable Function<Location, MushroomType> override);
 
     /**
      * Clears the supplier override to force the chance table to be used
@@ -183,7 +183,7 @@ public interface Mushroom extends Populator {
          * @param override The new supplier override, or null
          * @return This builder, for chaining
          */
-        Builder supplier(@Nullable Function<Location<Extent>, MushroomType> override);
+        Builder supplier(@Nullable Function<Location, MushroomType> override);
 
         /**
          * Builds a new instance of a {@link Mushroom} populator with the

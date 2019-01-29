@@ -94,7 +94,7 @@ public interface Forest extends Populator {
      * 
      * @return The supplier override
      */
-    Optional<Function<Location<Extent>, PopulatorObject>> getSupplierOverride();
+    Optional<Function<Location, PopulatorObject>> getSupplierOverride();
 
     /**
      * Sets the overriding supplier. If the supplier is present then it is used
@@ -103,7 +103,7 @@ public interface Forest extends Populator {
      * 
      * @param override The new supplier override, or null
      */
-    void setSupplierOverride(@Nullable Function<Location<Extent>, PopulatorObject> override);
+    void setSupplierOverride(@Nullable Function<Location, PopulatorObject> override);
 
     /**
      * Clears the supplier override to force the weighted table to be used
@@ -162,7 +162,7 @@ public interface Forest extends Populator {
          * @param override The new supplier override, or null
          * @return This builder, for chaining
          */
-        Builder supplier(@Nullable Function<Location<Extent>, PopulatorObject> override);
+        Builder supplier(@Nullable Function<Location, PopulatorObject> override);
 
         /**
          * Builds a new instance of a {@link Forest} populator with the settings

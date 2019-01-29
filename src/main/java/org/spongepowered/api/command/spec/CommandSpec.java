@@ -389,7 +389,7 @@ public final class CommandSpec implements CommandCallable {
     }
 
     @Override
-    public List<String> getSuggestions(CommandSource source, String arguments, @Nullable Location<World> targetPos) throws CommandException {
+    public List<String> getSuggestions(CommandSource source, String arguments, @Nullable Location targetPos) throws CommandException {
         CommandArgs args = new CommandArgs(arguments, getInputTokenizer().tokenize(arguments, true));
         CommandContext ctx = new CommandContext();
         if (targetPos != null) {

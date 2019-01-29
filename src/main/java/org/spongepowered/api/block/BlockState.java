@@ -108,7 +108,7 @@ public interface BlockState extends State<BlockState>, LocationBasePropertyHolde
      * @param location The location for the snapshot
      * @return The newly created snapshot
      */
-    BlockSnapshot snapshotFor(Location<World> location);
+    BlockSnapshot snapshotFor(Location location);
 
 
     /**

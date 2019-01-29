@@ -46,7 +46,6 @@ public interface Chunk extends ProtoChunk<Chunk> {
      */
     World getWorld();
 
-
     /**
      * Loads this chunk, and generates if specified and required.
      *
@@ -118,7 +117,7 @@ public interface Chunk extends ProtoChunk<Chunk> {
      * @return The neighbor chunk, if available or if {@code shouldLoad} is true
      */
     default Optional<Chunk> getNeighbor(Direction direction, boolean shouldLoad) {
-        Optional<Vector3i> neighborPosition = Sponge.getServer().getChunkLayout().moveToChunk(getPosition(), direction);
+        Optional<Vector3i> neighborPosition = Sponge.getServer().getChunkLayout().moveToChunk(getChunkPosition(), direction);
         return neighborPosition.flatMap(vector3i -> getWorld().loadChunk(vector3i, shouldLoad));
     }
 

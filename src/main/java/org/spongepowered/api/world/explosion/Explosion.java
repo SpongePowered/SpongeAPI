@@ -102,7 +102,7 @@ public interface Explosion extends Locatable {
          * @param location Origin of explosion
          * @return The builder, for chaining
          */
-        Builder location(Location<World> location);
+        Builder location(Location location);
 
         /**
          * Sets the source explosive of the explosion.

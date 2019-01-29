@@ -173,6 +173,6 @@ public interface CommandManager extends Dispatcher {
      * @return A list of suggestions
      */
     @Override
-    List<String> getSuggestions(CommandSource source, String arguments, @Nullable Location<World> targetPosition);
+    List<String> getSuggestions(CommandSource source, String arguments, @Nullable Location targetPosition);
 
 }

@@ -39,7 +39,7 @@ public interface BlockProjectileSource extends ProjectileSource {
      *
      * @return The location
      */
-    Location<World> getLocation();
+    Location getLocation();
 
     /**
      * Gets the {@link BlockState} of the projectile source.

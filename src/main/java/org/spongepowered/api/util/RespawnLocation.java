@@ -105,12 +105,12 @@ public final class RespawnLocation implements DataSerializable {
      *
      * @return The position object, if available.
      */
-    public Optional<Location<World>> asLocation() {
+    public Optional<Location> asLocation() {
         Optional<World> world = Sponge.getServer().getWorld(getWorldUniqueId());
         if (!world.isPresent()) {
             return Optional.empty();
         }
-        return Optional.of(new Location<>(world.get(), getPosition()));
+        return Optional.of(new Location(world.get(), getPosition()));
     }
 
     @Override
@@ -205,7 +205,7 @@ public final class RespawnLocation implements DataSerializable {
          * @return This builder, for chaining
          * @throws IllegalStateException If the location's extent is null
          */
-        public Builder location(Location<World> location) {
+        public Builder location(Location location) {
             checkNotNull(location, "Location cannot be null!");
             final World world = location.getWorld();
             position(location.getPosition());

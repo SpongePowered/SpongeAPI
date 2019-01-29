@@ -60,7 +60,7 @@ public interface PropertyStore<T extends Property<?, ?>> {
      * @param location The location of the block
      * @return The type of property
      */
-    Optional<T> getFor(Location<World> location);
+    Optional<T> getFor(Location location);
 
     /**
      * Gets the desired property for the provided {@link Location} at present
@@ -70,7 +70,7 @@ public interface PropertyStore<T extends Property<?, ?>> {
      * @param direction The direction in relation to
      * @return The type of property
      */
-    Optional<T> getFor(Location<World> location, Direction direction);
+    Optional<T> getFor(Location location, Direction direction);
 
     /**
      * Gets the priority of which this {@link PropertyStore} is used for

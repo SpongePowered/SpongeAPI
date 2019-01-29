@@ -130,21 +130,21 @@ public interface ClientConnectionEvent extends Event {
          *
          * @return the previous transform
          */
-        Transform<World> getFromTransform();
+        Transform getFromTransform();
 
         /**
          * Gets the new transform that the {@link Player} will change to.
          *
          * @return the new transform
          */
-        Transform<World> getToTransform();
+        Transform getToTransform();
 
         /**
          * Sets the new transform that the {@link Player} will change to.
          *
          * @param transform The new transform
          */
-        void setToTransform(Transform<World> transform);
+        void setToTransform(Transform transform);
     }
 
     /**

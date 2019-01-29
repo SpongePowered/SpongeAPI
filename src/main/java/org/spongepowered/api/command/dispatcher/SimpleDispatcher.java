@@ -349,7 +349,7 @@ public final class SimpleDispatcher implements Dispatcher {
     }
 
     @Override
-    public List<String> getSuggestions(CommandSource src, final String arguments, @Nullable Location<World> targetPosition) throws CommandException {
+    public List<String> getSuggestions(CommandSource src, final String arguments, @Nullable Location targetPosition) throws CommandException {
         final String[] argSplit = arguments.split(" ", 2);
         Optional<CommandMapping> cmdOptional = get(argSplit[0], src);
         if (argSplit.length == 1) {

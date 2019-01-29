@@ -100,7 +100,7 @@ public interface DoublePlant extends Populator {
      * 
      * @return The supplier override
      */
-    Optional<Function<Location<Extent>, BlockType>> getSupplierOverride();
+    Optional<Function<Location, BlockType>> getSupplierOverride();
 
     /**
      * Sets the overriding supplier. If the supplier is present then it is used
@@ -109,7 +109,7 @@ public interface DoublePlant extends Populator {
      * 
      * @param override The new supplier override, or null
      */
-    void setSupplierOverride(@Nullable Function<Location<Extent>, BlockType> override);
+    void setSupplierOverride(@Nullable Function<Location, BlockType> override);
 
     /**
      * Clears the supplier override to force the weighted table to be used
@@ -175,7 +175,7 @@ public interface DoublePlant extends Populator {
          * @param override The new supplier override, or null
          * @return This builder, for chaining
          */
-        Builder supplier(@Nullable Function<Location<Extent>, BlockType> override);
+        Builder supplier(@Nullable Function<Location, BlockType> override);
 
         /**
          * Builds a new instance of a {@link DoublePlant} populator with the

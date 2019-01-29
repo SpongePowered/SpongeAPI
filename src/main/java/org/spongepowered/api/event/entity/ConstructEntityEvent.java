@@ -42,7 +42,7 @@ public interface ConstructEntityEvent extends Event {
      *
      * @return The transform
      */
-    Transform<World> getTransform();
+    Transform getTransform();
 
     /**
      * Gets the {@link EntityType} of the target {@link Entity} that is going to be

@@ -71,7 +71,7 @@ public interface TeleportHelper {
      *         location if it is deemed safe. If no safe location can be found,
      *         {@link Optional#empty()} will be returned.
      */
-    default Optional<Location<World>> getSafeLocation(Location<World> location) {
+    default Optional<Location> getSafeLocation(Location location) {
         return getSafeLocation(location, DEFAULT_HEIGHT, DEFAULT_WIDTH, DEFAULT_FLOOR_CHECK_DISTANCE, TeleportHelperFilters.DEFAULT);
     }
 
@@ -97,7 +97,7 @@ public interface TeleportHelper {
      *         location if it is deemed safe. If no safe location can be found,
      *         {@link Optional#empty()} will be returned
      */
-    default Optional<Location<World>> getSafeLocation(Location<World> location, int height, int width) {
+    default Optional<Location> getSafeLocation(Location location, int height, int width) {
         return getSafeLocation(location, height, width, DEFAULT_FLOOR_CHECK_DISTANCE, TeleportHelperFilters.DEFAULT);
     }
 
@@ -126,7 +126,7 @@ public interface TeleportHelper {
      *         location if it is deemed safe. If no safe location can be found,
      *         {@link Optional#empty()} will be returned
      */
-    default Optional<Location<World>> getSafeLocation(Location<World> location, int height, int width, int floorDistance) {
+    default Optional<Location> getSafeLocation(Location location, int height, int width, int floorDistance) {
         return getSafeLocation(location, height, width, floorDistance, TeleportHelperFilters.DEFAULT, TeleportHelperFilters.CONFIG);
     }
 
@@ -157,7 +157,7 @@ public interface TeleportHelper {
      *         location if it is deemed safe. If no safe location can be found,
      *         {@link Optional#empty()} will be returned
      */
-    Optional<Location<World>> getSafeLocation(Location<World> location, int height, int width, int floorDistance, TeleportHelperFilter filter,
+    Optional<Location> getSafeLocation(Location location, int height, int width, int floorDistance, TeleportHelperFilter filter,
         TeleportHelperFilter... additionalFilters);
 
     /**
@@ -188,7 +188,7 @@ public interface TeleportHelper {
      *         location if it is deemed safe. If no safe location can be found,
      *         {@link Optional#empty()} will be returned
      */
-    default Optional<Location<World>> getSafeLocationWithBlacklist(Location<World> location, int height, int width, int floorDistance,
+    default Optional<Location> getSafeLocationWithBlacklist(Location location, int height, int width, int floorDistance,
             TeleportHelperFilter... filters) {
         return getSafeLocation(location, height, width, floorDistance, TeleportHelperFilters.CONFIG, filters);
     }

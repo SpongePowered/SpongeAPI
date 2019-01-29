@@ -30,9 +30,7 @@ import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -163,30 +161,6 @@ public interface Selector {
     Set<Entity> resolve(CommandSource origin);
 
     /**
-     * Resolves this {@link Selector} to a list of entities around (0|0|0) in
-     * the given {@link Extent Extent(s)}.
-     *
-     * <p>The returned set may be ordered based on distance from the origin
-     * (with the nearest first).</p>
-     *
-     * @param extent The extents to search for targets
-     * @return The matched entities
-     */
-    Set<Entity> resolve(Extent... extent);
-
-    /**
-     * Resolves this {@link Selector} to a list of entities around (0|0|0) in
-     * the given {@link Extent Extent(s)}.
-     *
-     * <p>The returned set may be ordered based on distance from the origin
-     * (with the nearest first).</p>
-     *
-     * @param extent The extents to search for targets
-     * @return The matched entities
-     */
-    Set<Entity> resolve(Collection<? extends Extent> extent);
-
-    /**
      * Resolves this {@link Selector} to a list of entities around the given
      * {@link Location}.
      *
@@ -196,7 +170,7 @@ public interface Selector {
      * @param location The location to resolve the selector around
      * @return The matched entities
      */
-    Set<Entity> resolve(Location<World> location);
+    Set<Entity> resolve(Location location);
 
     /**
      * Converts this {@link Selector} to a valid selector string.

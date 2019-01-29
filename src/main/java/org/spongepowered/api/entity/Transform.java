@@ -31,6 +31,7 @@ import com.flowpowered.math.matrix.Matrix4d;
 import com.flowpowered.math.vector.Vector3d;
 import com.google.common.base.MoreObjects;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 import javax.annotation.Nullable;
 
@@ -52,16 +53,14 @@ import javax.annotation.Nullable;
  * <p>Even though Minecraft doesn't currently support entity scales it is part
  * of the transform in case it gets added later. For now this return
  * {@link Vector3d#ONE}.</p>
- *
- * @param <E> The extent containing the transform
  */
-public final class Transform<E extends Extent> {
+public final class Transform {
 
-    private final E extent;
+    private final World world;
     private final Vector3d position;
     private final Vector3d rotation;
     private final Vector3d scale;
-    @Nullable private Location<E> location = null;
+    @Nullable private Location location = null;
     @Nullable private Quaterniond rotationQuaternion = null;
 
     /**
@@ -70,41 +69,41 @@ public final class Transform<E extends Extent> {
      * @param location The provided location that provides the
      *     extent, and position
      */
-    public Transform(Location<E> location) {
+    public Transform(Location location) {
         this(location.getWorld(), location.getPosition());
     }
 
     /**
-     * Creates a new {@link Transform} with the provided {@link Extent extent}.
+     * Creates a new {@link Transform} with the provided {@link World world}.
      * The default position is {@link Vector3d#ZERO}.
      *
-     * @param extent The extent to use
+     * @param world The world to use
      */
-    public Transform(E extent) {
-        this(extent, Vector3d.ZERO);
+    public Transform(World world) {
+        this(world, Vector3d.ZERO);
     }
 
     /**
-     * Creates a new {@link Transform} with the provided {@link Extent extent}
+     * Creates a new {@link Transform} with the provided {@link World world}
      * and {@link Vector3d position}.
      *
-     * @param extent The extent to use
+     * @param world The world to use
      * @param position The position to use
      */
-    public Transform(E extent, Vector3d position) {
-        this(extent, position, Vector3d.ZERO);
+    public Transform(World world, Vector3d position) {
+        this(world, position, Vector3d.ZERO);
     }
 
     /**
-     * Creates a new {@link Transform} with the provided {@link Extent extent},
+     * Creates a new {@link Transform} with the provided {@link World world},
      * {@link Vector3d position}, and {@link Vector3d rotation}.
      *
-     * @param extent The extent to use
+     * @param world The world to use
      * @param position The position to use
      * @param rotation The rotation to use
      */
-    public Transform(E extent, Vector3d position, Vector3d rotation) {
-        this(extent, position, rotation, Vector3d.ONE);
+    public Transform(World world, Vector3d position, Vector3d rotation) {
+        this(world, position, rotation, Vector3d.ONE);
     }
 
     /**
@@ -115,20 +114,20 @@ public final class Transform<E extends Extent> {
      * @param rotation The rotation to use
      * @param scale The scale to use
      */
-    public Transform(Location<E> location, Vector3d rotation, Vector3d scale) {
+    public Transform(Location location, Vector3d rotation, Vector3d scale) {
         this(location.getWorld(), location.getPosition(), rotation, scale);
     }
 
     /**
      * Creates a new {@link Transform}.
      *
-     * @param extent The extent to use
+     * @param world The world to use
      * @param position The position to use
      * @param rotation The rotation to use
      * @param scale The scale to use
      */
-    public Transform(E extent, Vector3d position, Vector3d rotation, Vector3d scale) {
-        this.extent = checkNotNull(extent, "extent");
+    public Transform(World world, Vector3d position, Vector3d rotation, Vector3d scale) {
+        this.world = checkNotNull(world, "world");
         this.position = checkNotNull(position, "position");
         this.rotation = checkNotNull(rotation, "rotation");
         this.scale = checkNotNull(scale, "scale");
@@ -141,9 +140,9 @@ public final class Transform<E extends Extent> {
      * @return The location
      * @throws IllegalStateException If the transform doesn't have an extent
      */
-    public Location<E> getLocation() {
+    public Location getLocation() {
         if (this.location == null) {
-            this.location = new Location<>(this.extent, this.position);
+            this.location = new Location(this.world, this.position);
         }
         return this.location;
     }
@@ -155,33 +154,33 @@ public final class Transform<E extends Extent> {
      * @param location The new location
      * @return A new transform
      */
-    public Transform<E> setLocation(Location<E> location) {
+    public Transform setLocation(Location location) {
         checkNotNull(location, "location");
-        return new Transform<>(location, getRotation(), getScale());
+        return new Transform(location, getRotation(), getScale());
     }
 
     /**
-     * Gets the {@link Extent} this transform contains.
+     * Gets the {@link World} this transform contains.
      *
-     * <p>Note: This can be null if the {@link Extent} is unloaded and garbage
+     * <p>Note: This can be null if the {@link World} is unloaded and garbage
      * collected.</p>
      *
      * @return The extent
      * @throws IllegalStateException If the transform doesn't have an extent
      */
-    public E getExtent() {
-        return this.extent;
+    public World getWorld() {
+        return this.world;
     }
 
     /**
-     * Creates a copy of this transform and sets the {@link Extent}.
+     * Creates a copy of this transform and sets the {@link World}.
      *
-     * @param extent The new extent
+     * @param world The new world
      * @return A new transform
      */
-    public Transform<E> setExtent(E extent) {
-        checkNotNull(extent, "extent");
-        return new Transform<>(extent, getPosition(), getRotation(), getScale());
+    public Transform setWorld(World world) {
+        checkNotNull(world, "extent");
+        return new Transform(world, getPosition(), getRotation(), getScale());
     }
 
     /**
@@ -200,9 +199,9 @@ public final class Transform<E extends Extent> {
      * @param position The position
      * @return A new transform
      */
-    public Transform<E> setPosition(Vector3d position) {
+    public Transform setPosition(Vector3d position) {
         checkNotNull(position, "position");
-        return new Transform<>(getExtent(), position, getRotation(), getScale());
+        return new Transform(getWorld(), position, getRotation(), getScale());
     }
 
     /**
@@ -234,7 +233,7 @@ public final class Transform<E extends Extent> {
      * @param rotation The new rotation
      * @return A new transform
      */
-    public Transform<E> setRotation(Quaterniond rotation) {
+    public Transform setRotation(Quaterniond rotation) {
         checkNotNull(rotation, "rotation");
         return setRotation(toAxesAngles(rotation));
     }
@@ -248,9 +247,9 @@ public final class Transform<E extends Extent> {
      * @param rotation The new rotation
      * @return A new transform
      */
-    public Transform<E> setRotation(Vector3d rotation) {
+    public Transform setRotation(Vector3d rotation) {
         checkNotNull(rotation, "rotation");
-        return new Transform<>(getExtent(), getPosition(), rotation, getScale());
+        return new Transform(getWorld(), getPosition(), rotation, getScale());
     }
 
     /**
@@ -310,9 +309,9 @@ public final class Transform<E extends Extent> {
      * @param scale The scale
      * @return A new transform
      */
-    public Transform<E> setScale(Vector3d scale) {
+    public Transform setScale(Vector3d scale) {
         checkNotNull(scale, "scale");
-        return new Transform<>(getExtent(), getPosition(), getRotation(), scale);
+        return new Transform(getWorld(), getPosition(), getRotation(), scale);
     }
 
     /**
@@ -324,10 +323,10 @@ public final class Transform<E extends Extent> {
      * @param other The transform to add
      * @return A new transform
      */
-    public Transform<E> add(Transform<E> other) {
+    public Transform add(Transform other) {
         checkNotNull(other, "other");
-        return new Transform<>(
-            getExtent(),
+        return new Transform(
+            getWorld(),
             getPosition().add(other.getPosition()),
             toAxesAngles(other.getRotationAsQuaternion().mul(getRotationAsQuaternion())),
             getScale().mul(other.getScale())
@@ -342,9 +341,9 @@ public final class Transform<E extends Extent> {
      * @param translation The translation to add
      * @return A new transform
      */
-    public Transform<E> addTranslation(Vector3d translation) {
+    public Transform addTranslation(Vector3d translation) {
         checkNotNull(translation, "translation");
-        return new Transform<>(getExtent(), getPosition().add(translation), getRotation(), getScale());
+        return new Transform(getWorld(), getPosition().add(translation), getRotation(), getScale());
     }
 
     /**
@@ -353,7 +352,7 @@ public final class Transform<E extends Extent> {
      * @param rotation The rotation to add
      * @return A new transform
      */
-    public Transform<E> addRotation(Vector3d rotation) {
+    public Transform addRotation(Vector3d rotation) {
         checkNotNull(rotation, "rotation");
         return addRotation(fromAxesAngles(rotation));
     }
@@ -370,9 +369,9 @@ public final class Transform<E extends Extent> {
      * @param rotation The rotation to add
      * @return A new transform
      */
-    public Transform<E> addRotation(Quaterniond rotation) {
+    public Transform addRotation(Quaterniond rotation) {
         checkNotNull(rotation, "rotation");
-        return new Transform<>(getExtent(), getPosition(), toAxesAngles(rotation.mul(getRotationAsQuaternion())), getScale());
+        return new Transform(getWorld(), getPosition(), toAxesAngles(rotation.mul(getRotationAsQuaternion())), getScale());
     }
 
     /**
@@ -384,9 +383,9 @@ public final class Transform<E extends Extent> {
      * @param scale The scale to add
      * @return A new transform
      */
-    public Transform<E> addScale(Vector3d scale) {
+    public Transform addScale(Vector3d scale) {
         checkNotNull(scale, "scale");
-        return new Transform<>(getExtent(), getPosition(), getRotation(), getScale().mul(scale));
+        return new Transform(getWorld(), getPosition(), getRotation(), getScale().mul(scale));
     }
 
     /**
@@ -421,8 +420,8 @@ public final class Transform<E extends Extent> {
      * <p>Examples of invalid Transforms are:</p>
      *
      * <ul>
-     *     <li>A Transform without an {@link Extent}</li>
-     *     <li>A Transform whose {@link Extent} object is no longer present</li>
+     *     <li>A Transform without an {@link World}</li>
+     *     <li>A Transform whose {@link World} object is no longer present</li>
      *     <li>A Transform whose coordinates are illegal (defined by the
      *     implementation)</li>
      * </ul>
@@ -430,12 +429,12 @@ public final class Transform<E extends Extent> {
      * @return True if valid, false if not
      */
     public boolean isValid() {
-        return this.extent.isLoaded();
+        return this.world.isLoaded();
     }
 
     @Override
     public int hashCode() {
-        int result = this.extent.hashCode();
+        int result = this.world.hashCode();
         result = 31 * result + this.position.hashCode();
         result = 31 * result + this.rotation.hashCode();
         result = 31 * result + this.scale.hashCode();
@@ -447,11 +446,11 @@ public final class Transform<E extends Extent> {
         if (this == other) {
             return true;
         }
-        if (!(other instanceof Transform<?>)) {
+        if (!(other instanceof Transform)) {
             return false;
         }
-        final Transform<?> otherTransform = (Transform<?>) other;
-        return otherTransform.extent.equals(this.extent) && otherTransform.getPosition().equals(getPosition())
+        final Transform otherTransform = (Transform) other;
+        return otherTransform.world.equals(this.world) && otherTransform.getPosition().equals(getPosition())
                 && otherTransform.getRotation().equals(getRotation()) && otherTransform.getScale().equals(getScale());
     }
 

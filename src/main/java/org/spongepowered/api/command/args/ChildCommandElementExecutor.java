@@ -133,7 +133,7 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
             try {
                 return child.get()
                         .getCallable()
-                        .getSuggestions(src, arguments, context.<Location<World>>getOne(CommandContext.TARGET_BLOCK_ARG).orElse(null));
+                        .getSuggestions(src, arguments, context.<Location>getOne(CommandContext.TARGET_BLOCK_ARG).orElse(null));
             } catch (CommandException e) {
                 Text eText = e.getText();
                 if (eText != null) {

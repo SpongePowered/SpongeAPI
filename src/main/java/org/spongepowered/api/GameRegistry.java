@@ -383,10 +383,19 @@ public interface GameRegistry {
      * Gets the internal {@link TextFactory}.
      *
      * @return The text factory
-     * @deprecated Internal use only.
+     * @deprecated Internal use only
      */
     @Deprecated
     TextFactory getTextFactory();
+
+    /**
+     * Gets the internal {@link SelectorFactory}.
+     *
+     * @return The selector factory
+     * @deprecated Internal use only
+     */
+    @Deprecated
+    SelectorFactory getSelectorFactory();
 
     /**
      * Gets a locale for the specified locale code, e.g. {@code en_US}.

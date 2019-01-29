@@ -49,6 +49,6 @@ public interface CollideEvent extends Event, Cancellable {
          *
          * @return The impact {@link Location}
          */
-        Location<World> getImpactPoint();
+        Location getImpactPoint();
     }
 }

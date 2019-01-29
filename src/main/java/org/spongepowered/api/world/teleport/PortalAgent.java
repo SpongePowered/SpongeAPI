@@ -78,7 +78,7 @@ public interface PortalAgent {
      * @param targetLocation The suggested location
      * @return The found location of the "portal", if available
      */
-    Optional<Location<World>> findOrCreatePortal(Location<World> targetLocation);
+    Optional<Location> findOrCreatePortal(Location targetLocation);
 
     /**
      * Attempts to find a "portal" location. Returns {@link Optional#empty()} if
@@ -87,7 +87,7 @@ public interface PortalAgent {
      * @param targetLocation The suggested location
      * @return The found location of the "portal", if available
      */
-    Optional<Location<World>> findPortal(Location<World> targetLocation);
+    Optional<Location> findPortal(Location targetLocation);
 
     /**
      * Tells this agent to create a new "portal" location at the suggested
@@ -103,7 +103,7 @@ public interface PortalAgent {
      * @param targetLocation The targeted location
      * @return The newly created "portal" location, if available
      */
-    Optional<Location<World>> createPortal(Location<World> targetLocation);
+    Optional<Location> createPortal(Location targetLocation);
 
     /**
      * Gets the type of {@link PortalAgent}.

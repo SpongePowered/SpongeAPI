@@ -318,7 +318,7 @@ public final class GenericArguments {
      * <p>This argument accepts the following inputs:</p>
      *
      * <ul>
-     *     <li>The value's {@link CatalogType#getId()}</li>
+     *     <li>The value's {@link CatalogType#getKey()}</li>
      *     <li>A regex that matches the beginning of one or more ids</li>
      * </ul>
      *
@@ -1581,7 +1581,7 @@ public final class GenericArguments {
                 yStr = split[1];
                 zStr = split[2];
             } else if (xStr.equals("#target") && source instanceof Entity) {
-                Optional<BlockRayHit<World>> hit = BlockRay
+                Optional<BlockRayHit> hit = BlockRay
                         .from(((Entity) source))
                         .stopFilter(BlockRay.continueAfterFilter(BlockRay.onlyAirFilter(), 1))
                         .build()
@@ -1703,7 +1703,7 @@ public final class GenericArguments {
             WorldProperties targetWorldProps = ((WorldProperties) world);
             Optional<World> targetWorld = Sponge.getGame().getServer().getWorld(targetWorldProps.getUniqueId());
             Vector3d vector = (Vector3d) vec;
-            return new Location<>(targetWorld.get(), vector);
+            return new Location(targetWorld.get(), vector);
         }
 
         @Override

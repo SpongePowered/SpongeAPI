@@ -45,7 +45,7 @@ public interface BlockHealingSource extends HealingSource {
      *
      * @return The location of the block that acted as a healing source
      */
-    Location<World> getLocation();
+    Location getLocation();
 
     /**
      * Gets the block snapshot that is acting as the healing source.
@@ -56,7 +56,7 @@ public interface BlockHealingSource extends HealingSource {
 
     interface Builder extends HealingSourceBuilder<BlockHealingSource, Builder> {
 
-        Builder block(Location<World> location);
+        Builder block(Location location);
 
         Builder block(BlockSnapshot blockState);
 

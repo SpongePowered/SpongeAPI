@@ -30,7 +30,6 @@ import static com.google.common.base.Preconditions.checkState;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
-import com.google.common.base.Objects;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
@@ -59,13 +58,13 @@ import org.spongepowered.api.scheduler.ScheduledTaskEntry;
 import org.spongepowered.api.scheduler.TaskPriority;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.biome.BiomeType;
-import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.volume.entity.MutableEntityVolume;
 
 import java.lang.ref.WeakReference;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 import java.util.function.BiFunction;
 
 import javax.annotation.Nullable;
@@ -87,7 +86,10 @@ import javax.annotation.Nullable;
  */
 public final class Location implements DataHolder {
 
-    private final WeakReference<World> world;
+    private final UUID worldUniqueId;
+    // A weak reference to the world in case it gets unloaded
+    @Nullable private WeakReference<World> world;
+
     // Lazily computed, either position or blockPosition is set by the constructor
     @Nullable
     private Vector3d position = null;
@@ -106,6 +108,7 @@ public final class Location implements DataHolder {
      */
     public Location(World world, Vector3d position) {
         this.world = new WeakReference<>(checkNotNull(world, "world"));
+        this.worldUniqueId = world.getUniqueId();
         this.position = checkNotNull(position, "position");
     }
 
@@ -129,6 +132,7 @@ public final class Location implements DataHolder {
      */
     public Location(World world, Vector3i blockPosition) {
         this.world = new WeakReference<>(checkNotNull(world, "world"));
+        this.worldUniqueId = world.getUniqueId();
         this.blockPosition = checkNotNull(blockPosition, "blockPosition");
     }
 
@@ -145,6 +149,52 @@ public final class Location implements DataHolder {
     }
 
     /**
+     * Create a new instance.
+     *
+     * @param worldUniqueId The unique id of the world
+     * @param position The position
+     */
+    public Location(UUID worldUniqueId, Vector3d position) {
+        this.worldUniqueId = checkNotNull(worldUniqueId, "worldUniqueId");
+        this.position = checkNotNull(position, "position");
+    }
+
+    /**
+     * Create a new instance.
+     *
+     * @param worldUniqueId The unique id of the world
+     * @param x The X-axis position
+     * @param y The Y-axis position
+     * @param z The Z-axis position
+     */
+    public Location(UUID worldUniqueId, double x, double y, double z) {
+        this(worldUniqueId, new Vector3d(x, y, z));
+    }
+
+    /**
+     * Create a new instance.
+     *
+     * @param worldUniqueId The unique id of the world
+     * @param blockPosition The position
+     */
+    public Location(UUID worldUniqueId, Vector3i blockPosition) {
+        this.worldUniqueId = checkNotNull(worldUniqueId, "worldUniqueId");
+        this.blockPosition = checkNotNull(blockPosition, "blockPosition");
+    }
+
+    /**
+     * Create a new instance.
+     *
+     * @param worldUniqueId The unique id of the world
+     * @param x The X-axis position
+     * @param y The Y-axis position
+     * @param z The Z-axis position
+     */
+    public Location(UUID worldUniqueId, int x, int y, int z) {
+        this(worldUniqueId, new Vector3i(x, y, z));
+    }
+
+    /**
      * Gets the underlying world.
      *
      * <p>Note: This can be null if the {@link World} is unloaded and garbage
@@ -154,11 +204,25 @@ public final class Location implements DataHolder {
      * @throws IllegalStateException If the {@link World} is null
      */
     public World getWorld() {
-        final World currentWorld = this.world.get();
+        World currentWorld = this.world == null ? null : this.world.get();
         if (currentWorld == null) {
-            throw new IllegalStateException();
+            final Optional<World> optWorld = Sponge.getServer().getWorld(this.worldUniqueId);
+            if (!optWorld.isPresent()) {
+                throw new IllegalStateException();
+            }
+            currentWorld = optWorld.get();
+            this.world = new WeakReference<>(currentWorld);
         }
         return currentWorld;
+    }
+
+    /**
+     * Gets the {@link UUID} of the world.
+     *
+     * @return The world unique id
+     */
+    public UUID getWorldUniqueId() {
+        return this.worldUniqueId;
     }
 
     /**
@@ -684,6 +748,31 @@ public final class Location implements DataHolder {
     }
 
     @Override
+    public <T extends DataManipulator<?, ?>> Optional<T> get(Class<T> containerClass) {
+        return getWorld().get(getBlockPosition(), containerClass);
+    }
+
+    @Override
+    public <T extends DataManipulator<?, ?>> Optional<T> getOrCreate(Class<T> containerClass) {
+        return getWorld().getOrCreate(getBlockPosition(), containerClass);
+    }
+
+    @Override
+    public boolean supports(Class<? extends DataManipulator<?, ?>> holderClass) {
+        return getWorld().supports(getBlockPosition(), holderClass);
+    }
+
+    @Override
+    public <E> DataTransactionResult offer(Key<? extends BaseValue<E>> key, E value) {
+        return getWorld().offer(getBlockPosition(), key, value);
+    }
+
+    @Override
+    public DataTransactionResult offer(DataManipulator<?, ?> valueContainer, MergeFunction function) {
+        return getWorld().offer(getBlockPosition(), valueContainer, function);
+    }
+
+    @Override
     public DataTransactionResult remove(Class<? extends DataManipulator<?, ?>> containerClass) {
         return getWorld().remove(getBlockPosition(), containerClass);
     }
@@ -696,6 +785,21 @@ public final class Location implements DataHolder {
     @Override
     public DataTransactionResult remove(Key<?> key) {
         return getWorld().remove(getBlockPosition(), key);
+    }
+
+    @Override
+    public DataTransactionResult undo(DataTransactionResult result) {
+        return getWorld().undo(getBlockPosition(), result);
+    }
+
+    @Override
+    public DataTransactionResult copyFrom(DataHolder that, MergeFunction function) {
+        return getWorld().copyFrom(getBlockPosition(), that, function);
+    }
+
+    @Override
+    public Collection<DataManipulator<?, ?>> getContainers() {
+        return getWorld().getManipulators(getBlockPosition());
     }
 
     /**
@@ -762,7 +866,7 @@ public final class Location implements DataHolder {
     @Override
     public int getContentVersion() {
         // 1 - Legacy Extent generic location that stored only block types and positions
-        // 2 - World based locations that stores block state and position
+        // 2 - World based locations that stores the position
         return 2;
     }
 
@@ -770,14 +874,41 @@ public final class Location implements DataHolder {
     public DataContainer toContainer() {
         final DataContainer container = DataContainer.createNew();
         container.set(Queries.CONTENT_VERSION, getContentVersion());
-        container.set(Queries.WORLD_NAME, getWorld().getName());
         container.set(Queries.WORLD_ID, getWorld().getUniqueId().toString());
-
-        container.set(Queries.BLOCK_TYPE, this.getBlock())
-            .set(Queries.POSITION_X, this.getX())
-            .set(Queries.POSITION_Y, this.getY())
-            .set(Queries.POSITION_Z, this.getZ());
+        container.set(Queries.POSITION_X, getX());
+        container.set(Queries.POSITION_Y, getY());
+        container.set(Queries.POSITION_Z, getZ());
         return container;
 
+    }
+
+    @Override
+    public <E> Optional<E> get(Key<? extends BaseValue<E>> key) {
+        return getWorld().get(getBlockPosition(), key);
+    }
+
+    @Override
+    public <E, V extends BaseValue<E>> Optional<V> getValue(Key<V> key) {
+        return getWorld().getValue(getBlockPosition(), key);
+    }
+
+    @Override
+    public boolean supports(Key<?> key) {
+        return getWorld().supports(getBlockPosition(), key);
+    }
+
+    @Override
+    public Location copy() {
+        return this;
+    }
+
+    @Override
+    public Set<Key<?>> getKeys() {
+        return getWorld().getKeys(getBlockPosition());
+    }
+
+    @Override
+    public Set<ImmutableValue<?>> getValues() {
+        return getWorld().getValues(getBlockPosition());
     }
 }

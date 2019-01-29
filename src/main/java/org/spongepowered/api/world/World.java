@@ -526,4 +526,6 @@ public interface World extends ProtoWorld<World>, LocationCreator<World>, Physic
      * Resets the view distance to the default value for this world.
      */
     void resetViewDistance();
+
+    boolean isLoaded();
 }

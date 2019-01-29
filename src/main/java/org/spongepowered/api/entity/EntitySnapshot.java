@@ -81,7 +81,7 @@ public interface EntitySnapshot extends LocatableSnapshot<EntitySnapshot> {
      *
      * @return The transform, if available
      */
-    Optional<Transform<World>> getTransform();
+    Optional<Transform> getTransform();
 
     /**
      * Gets the {@link EntityType}.

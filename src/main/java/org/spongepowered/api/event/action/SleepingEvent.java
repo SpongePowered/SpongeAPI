@@ -78,7 +78,7 @@ public interface SleepingEvent extends Event {
          *
          * @return The humans new spawn transform, if available
          */
-        Optional<Transform<World>> getSpawnTransform();
+        Optional<Transform> getSpawnTransform();
 
         /**
          * Sets the new spawn transform of the human leaving the bed.
@@ -89,7 +89,7 @@ public interface SleepingEvent extends Event {
          *
          * @param transform The new spawn transform for the human
          */
-        void setSpawnTransform(Transform<World> transform);
+        void setSpawnTransform(Transform transform);
     }
 
     interface Finish extends SleepingEvent {}

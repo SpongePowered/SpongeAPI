@@ -51,15 +51,15 @@ public class TransformTest {
         final Vector3d position2 = new Vector3d(4, 5, 6);
 
         Transform<Extent> transform = new Transform<>(this.mockExtent1, position1);
-        Assert.assertEquals(this.mockExtent1, transform.getExtent());
+        Assert.assertEquals(this.mockExtent1, transform.getWorld());
         assertEquals(position1, transform.getPosition());
 
         transform = transform.setLocation(new Location<>(this.mockExtent2, position2));
-        Assert.assertEquals(this.mockExtent2, transform.getExtent());
+        Assert.assertEquals(this.mockExtent2, transform.getWorld());
         assertEquals(position2, transform.getPosition());
 
         transform = transform.setExtent(this.mockExtent1);
-        Assert.assertEquals(this.mockExtent1, transform.getExtent());
+        Assert.assertEquals(this.mockExtent1, transform.getWorld());
 
         transform = transform.setPosition(position1);
         assertEquals(position1, transform.getPosition());
