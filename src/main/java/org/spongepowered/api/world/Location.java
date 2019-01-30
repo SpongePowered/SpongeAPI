@@ -234,7 +234,7 @@ public final class Location implements DataHolder {
 
     /**
      * Gets whether this location is available. A location is
-     * available when a {@link World} exists and is loaded.
+     * available when the target {@link World} exists and is loaded.
      *
      * @return Is available
      */
@@ -910,7 +910,6 @@ public final class Location implements DataHolder {
         container.set(Queries.POSITION_Y, getY());
         container.set(Queries.POSITION_Z, getZ());
         return container;
-
     }
 
     @Override

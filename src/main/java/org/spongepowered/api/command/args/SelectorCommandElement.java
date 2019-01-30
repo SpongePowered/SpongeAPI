@@ -28,6 +28,7 @@ import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.selector.Selector;
+import org.spongepowered.api.world.Locatable;
 
 import java.util.List;
 import java.util.Optional;
@@ -48,8 +49,11 @@ public abstract class SelectorCommandElement extends PatternMatchingCommandEleme
     protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
         String arg = args.peek();
         if (arg.startsWith("@")) { // Possibly a selector
+            if (!(source instanceof Locatable)) {
+                throw args.createError(Text.of("The source \"", source.getName(), "\" doesn't have a location."));
+            }
             try {
-                return Selector.parse(args.next()).resolve(source);
+                return Selector.parse(args.next()).resolve((Locatable) source);
             } catch (IllegalArgumentException ex) {
                 throw args.createError(Text.of(ex.getMessage()));
             }

@@ -38,11 +38,11 @@ import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.chunk.ChunkPreGenerate;
-import org.spongepowered.api.world.chunk.ProtoChunk;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.explosion.Explosion;
+import org.spongepowered.api.world.gamerule.GameRule;
+import org.spongepowered.api.world.gamerule.GameRuleHolder;
 import org.spongepowered.api.world.volume.block.PhysicsAwareMutableBlockVolume;
-import org.spongepowered.api.world.gamerule.DefaultGameRules;
 import org.spongepowered.api.world.gen.WorldGenerator;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.storage.WorldStorage;
@@ -62,7 +62,7 @@ import java.util.concurrent.Future;
  * A loaded Minecraft world.
  */
 public interface World extends ProtoWorld<World>, LocationCreator<World>, PhysicsAwareMutableBlockVolume<World>, Identifiable, WeatherUniverse,
-    Viewer, ContextSource, MessageReceiver, ChatTypeMessageReceiver, TrackedVolume {
+        Viewer, ContextSource, MessageReceiver, ChatTypeMessageReceiver, TrackedVolume, GameRuleHolder {
 
     /**
      * Gets an unmodifiable collection of {@link Player}s currently in this world.
@@ -396,25 +396,18 @@ public interface World extends ProtoWorld<World>, LocationCreator<World>, Physic
         return getProperties().getDifficulty();
     }
 
-    /**
-     * Gets a set game rule's current value, if available and set.
-     *
-     * @see WorldProperties#getGameRule(String)
-     * @param gameRule The game rule
-     * @return the game rule, if available
-     */
-    default Optional<String> getGameRule(String gameRule) {
+    @Override
+    default <V> V getGameRule(GameRule<V> gameRule) {
         return getProperties().getGameRule(gameRule);
     }
 
-    /**
-     * Gets the current {@link Map map} of game rules and their
-     * values. Most game rules can be found in {@link DefaultGameRules}.
-     *
-     * @see WorldProperties#getGameRules()
-     * @return The map of game rules and their values
-     */
-    default Map<String, String> getGameRules() {
+    @Override
+    default <V> void setGameRule(GameRule<V> gameRule, V value) {
+        getProperties().setGameRule(gameRule, value);
+    }
+
+    @Override
+    default Map<GameRule<?>, ?> getGameRules() {
         return getProperties().getGameRules();
     }
 
