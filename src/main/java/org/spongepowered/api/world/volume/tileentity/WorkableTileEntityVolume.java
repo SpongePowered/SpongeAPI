@@ -29,7 +29,7 @@ import org.spongepowered.api.world.volume.tileentity.worker.TileEntityWorker;
 
 public interface WorkableTileEntityVolume<T extends WorkableTileEntityVolume<T>> extends ReadableTileEntityVolume {
 
-    TileEntityWorker<T> getTileEntityWorker();
+    TileEntityWorker<T, ?> getTileEntityWorker();
 
     @Override
     T getView(Vector3i newMin, Vector3i newMax);

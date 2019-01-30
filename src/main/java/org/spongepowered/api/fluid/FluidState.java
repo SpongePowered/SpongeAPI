@@ -25,19 +25,12 @@
 package org.spongepowered.api.fluid;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockStateMatcher;
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.block.tileentity.TileEntity;
-import org.spongepowered.api.state.State;
 import org.spongepowered.api.data.ImmutableDataBuilder;
-import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.util.Cycleable;
+import org.spongepowered.api.state.State;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.schematic.Schematic;
@@ -99,10 +92,10 @@ public interface FluidState extends State<FluidState> {
          * important to understand that not all manipulators are compatible with
          * all {@link FluidType}s.</p>
          *
-         * @param blockType The block type
+         * @param fluidType The fluid type
          * @return This builder, for chaining
          */
-        Builder fluid(FluidType blockType);
+        Builder fluid(FluidType fluidType);
 
     }
 

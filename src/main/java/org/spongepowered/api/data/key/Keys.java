@@ -521,7 +521,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the attachment of a {@link BlockTypes#CHEST}
-     * or {@link BlockTypes#TRAPPED_CHEST).
+     * or {@link BlockTypes#TRAPPED_CHEST}.
      *
      * @see ChestAttachmentData
      */

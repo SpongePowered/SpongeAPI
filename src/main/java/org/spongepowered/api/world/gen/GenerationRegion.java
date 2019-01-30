@@ -26,6 +26,7 @@ package org.spongepowered.api.world.gen;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Server;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.entity.Entity;
@@ -51,7 +52,6 @@ public interface GenerationRegion extends ProtoWorld<GenerationRegion> {
 
     Vector3i getCenterChunkPos();
 
-
     default int getCenterChunkX() {
         return getCenterChunkPos().getX();
     }
@@ -65,17 +65,21 @@ public interface GenerationRegion extends ProtoWorld<GenerationRegion> {
     }
 
     @Override
-    default PrimitiveChunk getChunkAtBlock(Vector3i blockPosition) {
-        return null;
+    default PrimitiveChunk getChunkAtBlock(Vector3i position) {
+        return getChunkAtBlock(position.getX(), position.getY(), position.getZ());
     }
+
     @Override
-    default PrimitiveChunk getChunkAtBlock(int bx, int by, int bz) {
-        return null;
+    default PrimitiveChunk getChunkAtBlock(int x, int y, int z) {
+        return getChunk(Sponge.getServer().getChunkLayout().toChunk(x, y, z)
+                .orElseThrow(() -> new IllegalArgumentException(String.format("Cannot convert (%s, %s, %s) to chunk coordinates.", x, y, z))));
     }
+
     @Override
     default PrimitiveChunk getChunk(Vector3i chunkPosition) {
         return getChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ());
     }
+
     @Override
     PrimitiveChunk getChunk(int cx, int cy, int cz);
 }

@@ -32,6 +32,9 @@ import org.spongepowered.api.text.translation.Translation;
 
 /**
  * A base builder to construct {@link CatalogType}s.
+ *
+ * @param <C> The catalog type
+ * @param <B> The builder type for chaining
  */
 public interface CatalogBuilder<C extends CatalogType, B extends ResettableBuilder<C, B>> extends ResettableBuilder<C, B> {
 

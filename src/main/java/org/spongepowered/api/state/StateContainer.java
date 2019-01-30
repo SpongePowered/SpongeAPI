@@ -34,6 +34,6 @@ public interface StateContainer<S extends State<S>> {
 
     S getDefaultState();
 
-    Collection<StateProperty<?>> getProperties();
+    Collection<StateProperty<?>> getStateProperties();
 
 }

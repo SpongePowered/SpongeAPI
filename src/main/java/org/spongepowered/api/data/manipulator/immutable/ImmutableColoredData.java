@@ -24,16 +24,16 @@
  */
 package org.spongepowered.api.data.manipulator.immutable;
 
-import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.ColoredData;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.entity.living.animal.Wolf;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.Color;
 
 /**
  * An {@link ImmutableDataManipulator} for handling the {@link Color} of
- * something such as {@link ItemStack}s, {@link BlockTypes#WOOL}, etc.
+ * something such as {@link ItemStack}s, {@link Wolf} collar, etc.
  */
 public interface ImmutableColoredData extends ImmutableDataManipulator<ImmutableColoredData, ColoredData> {
 

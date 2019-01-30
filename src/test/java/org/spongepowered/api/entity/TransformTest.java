@@ -32,17 +32,18 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 public class TransformTest {
 
     private static final double EPSILON = 4e-3;
-    private Extent mockExtent1;
-    private Extent mockExtent2;
+    private World mockWorld1;
+    private World mockWorld2;
 
     @Before
     public void generateMockExtent() {
-        this.mockExtent1 = Mockito.when(Mockito.mock(Extent.class).isLoaded()).thenReturn(false).getMock();
-        this.mockExtent2 = Mockito.when(Mockito.mock(Extent.class).isLoaded()).thenReturn(true).getMock();
+        this.mockWorld1 = Mockito.when(Mockito.mock(World.class).isLoaded()).thenReturn(false).getMock();
+        this.mockWorld2 = Mockito.when(Mockito.mock(World.class).isLoaded()).thenReturn(true).getMock();
     }
 
     @Test
@@ -50,16 +51,16 @@ public class TransformTest {
         final Vector3d position1 = new Vector3d(1, 2, 3);
         final Vector3d position2 = new Vector3d(4, 5, 6);
 
-        Transform<Extent> transform = new Transform<>(this.mockExtent1, position1);
-        Assert.assertEquals(this.mockExtent1, transform.getWorld());
+        Transform transform = new Transform(this.mockWorld1, position1);
+        Assert.assertEquals(this.mockWorld1, transform.getWorld());
         assertEquals(position1, transform.getPosition());
 
-        transform = transform.setLocation(new Location<>(this.mockExtent2, position2));
-        Assert.assertEquals(this.mockExtent2, transform.getWorld());
+        transform = transform.setLocation(new Location(this.mockWorld2, position2));
+        Assert.assertEquals(this.mockWorld2, transform.getWorld());
         assertEquals(position2, transform.getPosition());
 
-        transform = transform.setExtent(this.mockExtent1);
-        Assert.assertEquals(this.mockExtent1, transform.getWorld());
+        transform = transform.setWorld(this.mockWorld1);
+        Assert.assertEquals(this.mockWorld1, transform.getWorld());
 
         transform = transform.setPosition(position1);
         assertEquals(position1, transform.getPosition());
@@ -78,7 +79,7 @@ public class TransformTest {
         final Vector3d axesAnglesDeg = rotationQuat1Plus2.getAxesAnglesDeg();
         final Vector3d rotation1Plus2 = new Vector3d(axesAnglesDeg.getX(), -axesAnglesDeg.getY(), axesAnglesDeg.getZ());
 
-        Transform<Extent> transform = new Transform<>(this.mockExtent1, Vector3d.ZERO, rotation1);
+        Transform transform = new Transform(this.mockWorld1, Vector3d.ZERO, rotation1);
         assertEquals(rotation1, transform.getRotation());
         assertEquals(rotationQuat1, transform.getRotationAsQuaternion());
         Assert.assertEquals(rotation1.getX(), transform.getPitch(), EPSILON);
@@ -95,7 +96,7 @@ public class TransformTest {
         final Vector3d scale1 = new Vector3d(1, 2, 3);
         final Vector3d scale2 = new Vector3d(4, 5, 6);
 
-        Transform<Extent> transform = new Transform<>(this.mockExtent1, Vector3d.ZERO, Vector3d.ZERO, scale1);
+        Transform transform = new Transform(this.mockWorld1, Vector3d.ZERO, Vector3d.ZERO, scale1);
         assertEquals(scale1, transform.getScale());
 
         transform = transform.addScale(scale2);
@@ -104,13 +105,13 @@ public class TransformTest {
 
     @Test
     public void testValid() {
-        Transform<Extent> transform = new Transform<>(this.mockExtent1);
+        Transform transform = new Transform(this.mockWorld1);
         Assert.assertFalse(transform.isValid());
-        transform = transform.setExtent(this.mockExtent2);
+        transform = transform.setWorld(this.mockWorld2);
         Assert.assertTrue(transform.isValid());
 
-        Assert.assertFalse(new Transform<>(this.mockExtent1).isValid());
-        Assert.assertTrue(new Transform<>(this.mockExtent2).isValid());
+        Assert.assertFalse(new Transform(this.mockWorld1).isValid());
+        Assert.assertTrue(new Transform(this.mockWorld2).isValid());
     }
 
     @Test
@@ -118,14 +119,14 @@ public class TransformTest {
         final Vector3d position = new Vector3d(1, 2, 3);
         final Vector3d scale = new Vector3d(4, 5, 6);
 
-        assertEquals(Matrix4d.createTranslation(position), new Transform<>(this.mockExtent1, position).toMatrix());
+        assertEquals(Matrix4d.createTranslation(position), new Transform(this.mockWorld1, position).toMatrix());
         assertEquals(
             new Matrix4d(
                 4, 0, 0, 1,
                 0, 5, 0, 2,
                 0, 0, 6, 3,
                 0, 0, 0, 1
-            ), new Transform<>(this.mockExtent1, position, Vector3d.ZERO, scale).toMatrix());
+            ), new Transform(this.mockWorld1, position, Vector3d.ZERO, scale).toMatrix());
     }
 
     @Test
@@ -134,7 +135,7 @@ public class TransformTest {
         final Quaterniond rotation = Quaterniond.fromAngleDegAxis(90, Vector3d.UNIT_Y);
         final Vector3d scale = new Vector3d(4, 5, 6);
 
-        Transform<Extent> transform = new Transform<>(this.mockExtent1, position);
+        Transform transform = new Transform(this.mockWorld1, position);
         assertTransforms(new Vector3d(11, 12, 13), transform, new Vector3d(10, 10, 10));
 
         transform = transform.addScale(scale);
@@ -147,7 +148,7 @@ public class TransformTest {
         assertTransforms(new Vector3d(-158, 254, -354), transform, new Vector3d(10, 10, 10));
     }
 
-    private void assertTransforms(Vector3d expected, Transform<Extent> with, Vector3d original) {
+    private void assertTransforms(Vector3d expected, Transform with, Vector3d original) {
         assertEquals(expected, with.toMatrix().transform(original.toVector4(1)).toVector3());
     }
 
