@@ -72,7 +72,8 @@ public interface Property<V> extends CatalogType {
 
     /**
      * Gets the includes tester {@link BiPredicate}. This predicate should
-     * return {@code true} when the second parameter is included in the first one.
+     * return {@code true} when the second parameter (the property value)
+     * is included in the first one (the matcher value).
      *
      * <p>The default tester will always return {@code false}.</p>
      *

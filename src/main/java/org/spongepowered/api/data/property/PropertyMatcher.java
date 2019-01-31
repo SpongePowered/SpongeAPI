@@ -46,43 +46,45 @@ public interface PropertyMatcher<V> {
      */
     enum Operator {
         /**
-         * Matches when the property and the query values are equal.
+         * Matches when the property and the matcher
+         * values are equal.
          */
         EQUAL,
         /**
-         * Matches when the property and the query values are equal.
+         * Matches when the property and the matcher
+         * values are equal.
          */
         NOT_EQUAL,
         /**
-         * Matches when the query value compared to the
-         * property values is greater then 0.
+         * Matches when the property value is greater
+         * compared to the matcher value.
          */
         GREATER,
         /**
-         * Matches when the query value compared to the
-         * property values is greater then or equal to 0.
+         * Matches when the property value is greater or
+         * equal compared to the matcher value.
          */
         GREATER_OR_EQUAL,
         /**
-         * Matches when the query value compared to the
-         * property values is lesser then 0.
+         * Matches when the property value is less compared
+         * to the matcher value.
          */
         LESS,
         /**
-         * Matches when the query value compared to the
-         * property values is lesser then or equal to 0.
+         * Matches when the property value is less or equal
+         * compared to the matcher value.
          */
         LESS_OR_EQUAL,
         /**
-         * Matches when the property is included in the
-         * query value. For example, the {@link EquipmentTypes#CHESTPLATE}
+         * Matches when the property value is included in the
+         * matcher value. For example, the {@link EquipmentTypes#CHESTPLATE}
          * is included in the {@link EquipmentTypes#WORN} and
          * {@link EquipmentTypes#ANY} types.
          */
         INCLUDES,
         /**
          * Matches when the property is excluded from the
-         * query value. This is the inverted operator of {@link #INCLUDES}.
+         * matcher value. This is the inverted operator of {@link #INCLUDES}.
          */
         EXCLUDES,
         ;
@@ -93,9 +95,9 @@ public interface PropertyMatcher<V> {
      * default operator {@link Operator#EQUAL} will be used.
      *
      * @param property The property of which the value should be matched
-     * @param value The query value that the property value will be matched against
+     * @param value The matcher value that property values will be matched against
      * @param <V> The value type
-     * @return The property query
+     * @return The property matcher
      */
     static <V> PropertyMatcher<V> of(Property<V> property, V value) {
         return of(property, value, Operator.EQUAL);
@@ -106,10 +108,10 @@ public interface PropertyMatcher<V> {
      * given property, value and operator.
      *
      * @param property The property of which the value should be matched
-     * @param value The query value that the property value will be matched against
+     * @param value The matcher value that property values will be matched against
      * @param operator The operator how the value should be matched
      * @param <V> The value type
-     * @return The property query
+     * @return The property matcher
      */
     static <V> PropertyMatcher<V> of(Property<V> property, V value, Operator operator) {
         return builder().property(property).value(value).operator(operator).build();
@@ -125,7 +127,8 @@ public interface PropertyMatcher<V> {
     }
 
     /**
-     * Gets the {@link Property} that is being queried for.
+     * Gets the {@link Property} that is being used to
+     * match property and matcher values.
      *
      * @return The property
      */
@@ -189,7 +192,7 @@ public interface PropertyMatcher<V> {
         /**
          * Builds the {@link PropertyMatcher}.
          *
-         * @return The property query
+         * @return The property matcher
          */
         PropertyMatcher<V> build();
     }
