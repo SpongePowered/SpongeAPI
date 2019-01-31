@@ -222,6 +222,50 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
     }
 
     /**
+     * Regenerates a chunk at the given chunk coordinate position.
+     * 
+     * @param chunkPosition The chunk position to regenerate
+     * @return The regenerated chunk, if available
+     */
+    default Optional<Chunk> regenerateChunk(Vector3i chunkPosition) {
+        return regenerateChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), ChunkRegenerateFlags.ALL);
+    }
+
+    /**
+     * Regenerates a chunk at the given chunk coordinates.
+     * 
+     * @param cx The chunk x coordinate
+     * @param cy The chunk y coordinate
+     * @param cz The chunk z coordinate
+     * @return The regenerated chunk, if available
+     */
+    default Optional<Chunk> regenerateChunk(int cx, int cy, int cz) {
+        return regenerateChunk(cx, cy, cz, ChunkRegenerateFlags.ALL);
+    }
+
+    /**
+     * Regenerates a chunk at the given chunk coordinate position.
+     * 
+     * @param chunkPosition The chunk position to regenerate
+     * @param flag The chunk regenerate flag to use
+     * @return The regenerated chunk, if available
+     */
+    default Optional<Chunk> regenerateChunk(Vector3i chunkPosition, ChunkRegenerateFlag flag) {
+        return regenerateChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), flag);
+    }
+
+    /**
+     * Regenerates a chunk at the given chunk coordinates.
+     * 
+     * @param cx The chunk x coordinate
+     * @param cy The chunk y coordinate
+     * @param cz The chunk z coordinate
+     * @param flag The chunk regenerate flag to use
+     * @return The regenerated chunk, if available
+     */
+    Optional<Chunk> regenerateChunk(int cx, int cy, int cz, ChunkRegenerateFlag flag);
+
+    /**
      * Unloads the given chunk from the world. Returns a {@code boolean} flag
      * for whether the operation was successful.
      *
