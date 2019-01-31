@@ -24,14 +24,10 @@
  */
 package org.spongepowered.api.item;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.GameDictionary;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.Property;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -41,7 +37,7 @@ import java.util.Optional;
  * A type of item.
  */
 @CatalogedBy(ItemTypes.class)
-public interface ItemType extends CatalogType, Translatable, GameDictionary.Entry {
+public interface ItemType extends CatalogType, Translatable {
 
     /**
      * Gets the corresponding {@link BlockType} of this item if one exists.
@@ -84,25 +80,5 @@ public interface ItemType extends CatalogType, Translatable, GameDictionary.Entr
      * @return The item property, if available
      */
     <T extends Property<?, ?>> Optional<T> getDefaultProperty(Class<T> propertyClass);
-    
-    @Override
-    default ItemType getType() {
-        return this;
-    }
-    
-    @Override
-    default boolean matches(ItemStack stack) {
-        return checkNotNull(stack, "stack").getType().equals(this);
-    }
-
-    @Override
-    default boolean isSpecific() {
-        return false;
-    }
-
-    @Override
-    default ItemStackSnapshot getTemplate() {
-        return ItemStack.of(this, 1).createSnapshot();
-    }
 
 }

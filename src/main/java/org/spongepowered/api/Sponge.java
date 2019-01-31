@@ -37,13 +37,11 @@ import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.network.ChannelRegistrar;
 import org.spongepowered.api.plugin.PluginManager;
-import org.spongepowered.api.scheduler.Scheduler;
 import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.util.metric.MetricsConfigManager;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.TeleportHelper;
 
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -118,7 +116,6 @@ public final class Sponge {
     public static DataManager getDataManager() {
         return check(dataManager);
     }
-
 
     /**
      * Gets the {@link PropertyRegistry} instance to register
@@ -234,18 +231,6 @@ public final class Sponge {
      */
     public static Server getServer() {
         return getGame().getServer();
-    }
-
-
-    /**
-     * Gets the {@link GameDictionary} instance from the
-     * {@link Game} instance.
-     *
-     * @see Game#getGameDictionary()
-     * @return The game dictionary instance, or empty if unsupported
-     */
-    public static Optional<GameDictionary> getDictionary() {
-        return getGame().getGameDictionary();
     }
 
     /**

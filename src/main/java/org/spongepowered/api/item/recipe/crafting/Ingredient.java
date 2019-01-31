@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.item.recipe.crafting;
 
-import org.spongepowered.api.GameDictionary;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -32,7 +31,6 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -111,20 +109,6 @@ public interface Ingredient extends Predicate<ItemStack> {
     }
 
     /**
-     * Creates a new {@link Ingredient} for the provided
-     * {@link org.spongepowered.api.GameDictionary.Entry}s.
-     *
-     * @param entries The GameDictionary Entries
-     * @return The new ingredient
-     */
-    static Ingredient of(@Nullable GameDictionary.Entry... entries) {
-        if (entries == null || entries.length == 0) {
-            return NONE;
-        }
-        return builder().with(i -> Arrays.stream(entries).anyMatch(e -> e.matches(i))).build();
-    }
-
-    /**
      * Builder for {@link Ingredient}s.
      */
     interface Builder extends ResettableBuilder<Ingredient, Builder> {
@@ -142,21 +126,6 @@ public interface Ingredient extends Predicate<ItemStack> {
          * @return This Builder, for chaining
          */
         Builder with(Predicate<ItemStack> predicate);
-
-        /**
-         * Adds a GameDictionary Entry as Predicate for matching the ingredient.
-         * Also clears all previously set {@link #withDisplay} items and then
-         * adds {@link org.spongepowered.api.GameDictionary.Entry#getTemplate()}
-         * to it.
-         *
-         * <p>All predicates and items are ORed together.</p>
-         *
-         * @param entry The GameDictionary entry.
-         * @return This Builder, for chaining
-         */
-        default Builder with(GameDictionary.Entry entry) {
-            return this.with(entry::matches).withDisplay(entry.getTemplate());
-        }
 
         /**
          * Adds one or more ItemTypes for matching the ingredient.
