@@ -195,32 +195,35 @@ public final class Location implements DataHolder {
     }
 
     /**
-     * Gets the underlying world.
+     * Gets the underlying {@link World}.
      *
-     * <p>Note: This can be null if the {@link World} is unloaded and garbage
-     * collected.</p>
+     * @return The world
+     * @throws IllegalStateException If the {@link World} is unavailable
+     * @see #isAvailable()
+     */
+    public World getWorld() {
+        return getWorldIfAvailable().orElseThrow(() ->
+                new IllegalStateException(String.format("The world %s is not available", this.worldUniqueId)));
+    }
+
+    /**
+     * Gets the underlying {@link World} if it's available.
      *
      * @return The world, if available
      * @throws IllegalStateException If the {@link World} is null
+     * @see #isAvailable()
      */
-    public World getWorld() {
-        final World world = getWorldNullable();
-        checkState(world != null, "The world %s is not available", this.worldUniqueId);
-        return world;
-    }
-
-    @Nullable
-    private World getWorldNullable() {
-        World currentWorld = this.world == null ? null : this.world.get();
-        if (currentWorld == null) {
-            final Optional<World> optWorld = Sponge.getServer().getWorld(this.worldUniqueId);
-            if (!optWorld.isPresent()) {
-                return null;
-            }
-            currentWorld = optWorld.get();
-            this.world = new WeakReference<>(currentWorld);
+    public Optional<World> getWorldIfAvailable() {
+        final World currentWorld = this.world == null ? null : this.world.get();
+        if (currentWorld != null) {
+            return Optional.of(currentWorld);
         }
-        return currentWorld;
+        final Optional<World> optWorld = Sponge.getServer().getWorld(this.worldUniqueId);
+        if (!optWorld.isPresent()) {
+            return Optional.empty();
+        }
+        this.world = new WeakReference<>(optWorld.get());
+        return optWorld;
     }
 
     /**
@@ -239,7 +242,7 @@ public final class Location implements DataHolder {
      * @return Is available
      */
     public boolean isAvailable() {
-        return getWorldNullable() != null;
+        return getWorldIfAvailable().isPresent();
     }
 
     /**
