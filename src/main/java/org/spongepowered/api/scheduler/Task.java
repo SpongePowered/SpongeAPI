@@ -25,19 +25,20 @@
 package org.spongepowered.api.scheduler;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.plugin.PluginContainer;
-import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.TemporalUnits;
 
 import java.time.Duration;
 import java.time.temporal.TemporalUnit;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 /**
  * Represents a task that has been scheduled.
  */
-public interface Task extends Identifiable {
+public interface Task {
 
     /**
      * Creates a new {@link Builder} to build a {@link Task}.
@@ -56,9 +57,9 @@ public interface Task extends Identifiable {
     String getName();
 
     /**
-     * Returns the plugin that scheduled this task.
+     * Returns the plugin that constructed this task.
      *
-     * @return The plugin that scheduled the task
+     * @return The plugin that constructed the task
      */
     PluginContainer getOwner();
 
@@ -79,26 +80,18 @@ public interface Task extends Identifiable {
     Duration getInterval();
 
     /**
-     * Cancels the task. Cancelling a repeating task will prevent any further
-     * repetitions of the task.
-     *
-     * @return If the task is not running and was cancelled
-     */
-    boolean cancel();
-
-    /**
      * Gets the {@link Consumer}<{@link Task}> that this task is running.
      *
      * @return The consumer
      */
-    Consumer<Task> getConsumer();
+    Consumer<ScheduledTask> getConsumer();
 
     /**
-     * Gets whether this task is asynchronous.
+     * Gets the {@link TaskSynchronicity synchronicity} of this task.
      *
-     * @return True if asynchronous, false if synchronous
+     * @return The synchronicity
      */
-    boolean isAsynchronous();
+    TaskSynchronicity getSynchronicity();
 
     /**
      * Represents a builder to create a {@link Task}.
@@ -127,7 +120,20 @@ public interface Task extends Identifiable {
          *
          * @return This builder, for chaining
          */
-        Builder async();
+        default Builder async() {
+            return synchronicity(TaskSynchronicity.ASYNC);
+        }
+
+        /**
+         * Sets the {@link TaskSynchronicity synchronicity} of the task.
+         *
+         * <p>See {@link #async()} for information about
+         * {@link TaskSynchronicity#ASYNC}.</p>
+         *
+         * @param synchronicity The task synchronicity
+         * @return This builder, for chaining
+         */
+        Builder synchronicity(TaskSynchronicity synchronicity);
 
         /**
          * Sets the {@link Runnable} to run when this task executes.
@@ -136,7 +142,7 @@ public interface Task extends Identifiable {
          * @return This builder, for chaining
          */
         default Builder execute(Runnable runnable) {
-            return this.execute(task -> runnable.run());
+            return execute(task -> runnable.run());
         }
 
         /**
@@ -145,7 +151,7 @@ public interface Task extends Identifiable {
          * @param executor The executor to run
          * @return This builder, for chaining
          */
-        Builder execute(Consumer<Task> executor);
+        Builder execute(Consumer<ScheduledTask> executor);
 
         /**
          * Sets the delay before the task runs. This delay is an initial offset,
@@ -159,6 +165,20 @@ public interface Task extends Identifiable {
          */
         default Builder delay(long delay, TemporalUnit unit) {
             return delay(Duration.of(delay, unit));
+        }
+
+        /**
+         * Sets the delay before the task runs. This delay is an initial offset,
+         * subsequent runs (when the interval is not 0) will not be offset. By
+         * default, the delay is 0.
+         *
+         * @param delay The delay in the given {@link TimeUnit}
+         * @param unit The unit the delay is in
+         * @return This builder, for chaining
+         * @throws IllegalArgumentException If the delay is below 0
+         */
+        default Builder delay(long delay, TimeUnit unit) {
+            return delay(unit.toNanos(delay), TemporalUnits.NANOS);
         }
 
         /**
@@ -223,6 +243,26 @@ public interface Task extends Identifiable {
         }
 
         /**
+         * Sets the interval between repetitions of the task. The task will not
+         * repeat if the interval is 0. By default, the interval is 0.
+         *
+         * <p>If the scheduler detects that two tasks will overlap, the 2nd task
+         * will not be started. The next time the task is due to run, the test
+         * will be made again to determine if the previous occurrence of the
+         * task is still alive (running). As long as a previous occurrence is
+         * running no new occurrences of that specific task will start, although
+         * the scheduler will never cease in trying to start it a 2nd time.</p>
+         *
+         * @param interval The interval in the given {@link TimeUnit}
+         * @param unit The unit the interval is in
+         * @return This builder, for chaining
+         * @throws IllegalArgumentException If the interval is below 0
+         */
+        default Builder interval(long interval, TimeUnit unit) {
+            return interval(unit.toNanos(interval), TemporalUnits.NANOS);
+        }
+
+        /**
          * Sets the interval in unit ticks between repetitions of the task.
          *
          * @param ticks The number of ticks between runs
@@ -258,11 +298,29 @@ public interface Task extends Identifiable {
         Builder name(String name);
 
         /**
+         * Sets the plugin of the task.
+         *
+         * <p>If no plugin is set, one will be extracted from the
+         * {@link CauseStackManager} when the {@link #build()} method
+         * is called from a main thread. If it's not called called
+         * from a main thread, a {@link IllegalStateException} will
+         * be thrown.</p>
+         *
+         * @param plugin The plugin instance
+         * @return This builder, for chaining
+         * @throws IllegalArgumentException If the given object isn't a valid plugin
+         */
+        Builder plugin(Object plugin);
+
+        /**
          * Builds the task.
          *
          * @return A new instance of a {@link Task}
+         * @throws IllegalStateException If the {@link #execute(Runnable)} isn't set. Or
+         *                               in case that {@link #plugin(Object)} isn't set and
+         *                               no {@link PluginContainer} could be extracted
+         *                               from the {@link CauseStackManager}.
          */
         Task build();
-
     }
 }
