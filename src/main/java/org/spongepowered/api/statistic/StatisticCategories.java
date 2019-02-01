@@ -34,10 +34,10 @@ public final class StatisticCategories {
 
     // SORTFIELDS:ON
 
-    public static final StatisticCategory CUSTOM = DummyObjectProvider.createFor(StatisticCategory.class, "CUSTOM");
-
     public static final StatisticCategory.ForCatalogType<BlockType> BLOCKS_BROKEN =
             DummyObjectProvider.createFor(StatisticCategory.ForCatalogType.class, "BLOCKS_BROKEN");
+
+    public static final StatisticCategory CUSTOM = DummyObjectProvider.createFor(StatisticCategory.class, "CUSTOM");
 
     public static final StatisticCategory.ForCatalogType<EntityType> ENTITIES_KILLED =
             DummyObjectProvider.createFor(StatisticCategory.ForCatalogType.class, "ENTITIES_KILLED");
@@ -48,14 +48,14 @@ public final class StatisticCategories {
     public static final StatisticCategory.ForCatalogType<ItemType> ITEMS_CRAFTED =
             DummyObjectProvider.createFor(StatisticCategory.ForCatalogType.class, "ITEMS_CRAFTED");
 
+    public static final StatisticCategory.ForCatalogType<ItemType> ITEMS_DROPPED =
+            DummyObjectProvider.createFor(StatisticCategory.ForCatalogType.class, "ITEMS_DROPPED");
+
     public static final StatisticCategory.ForCatalogType<ItemType> ITEMS_PICKED_UP =
             DummyObjectProvider.createFor(StatisticCategory.ForCatalogType.class, "ITEMS_PICKED_UP");
 
     public static final StatisticCategory.ForCatalogType<ItemType> ITEMS_USED =
             DummyObjectProvider.createFor(StatisticCategory.ForCatalogType.class, "ITEMS_USED");
-
-    public static final StatisticCategory.ForCatalogType<ItemType> ITEMS_DROPPED =
-            DummyObjectProvider.createFor(StatisticCategory.ForCatalogType.class, "ITEMS_DROPPED");
 
     public static final StatisticCategory.ForCatalogType<EntityType> KILLED_BY_ENTITIES =
             DummyObjectProvider.createFor(StatisticCategory.ForCatalogType.class, "KILLED_BY_ENTITIES");

@@ -1814,15 +1814,6 @@ public final class Keys {
     public static final Key<Value<ProfileProperty>> SKIN = DummyObjectProvider.createExtendedFor(Key.class,"SKIN");
 
     /**
-     * Represents the {@link Key} for whether or not changes to {@link Keys#SKIN} should
-     * be reflected in an entitie's {@link GameProfile}.
-     *
-     * @see SkinData#updateGameProfile()
-     *
-     * */
-    public static final Key<Value<Boolean>> UPDATE_GAME_PROFILE = DummyObjectProvider.createExtendedFor(Key.class, "UPDATE_GAME_PROFILE");
-
-    /**
      * Represents the {@link Key} for representing the {@link SlabPortion}
      * of a {@link BlockState}.
      *
@@ -2128,6 +2119,15 @@ public final class Keys {
      * @see DurabilityData#unbreakable()
      */
     public static final Key<Value<Boolean>> UNBREAKABLE = DummyObjectProvider.createExtendedFor(Key.class,"UNBREAKABLE");
+
+    /**
+     * Represents the {@link Key} for whether or not changes to {@link Keys#SKIN} should
+     * be reflected in an entitie's {@link GameProfile}.
+     *
+     * @see SkinData#updateGameProfile()
+     *
+     * */
+    public static final Key<Value<Boolean>> UPDATE_GAME_PROFILE = DummyObjectProvider.createExtendedFor(Key.class, "UPDATE_GAME_PROFILE");
 
     /**
      * Gets the {@link Key} for the "vanish" state of an {@link Entity}.
