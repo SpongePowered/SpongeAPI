@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.living.monster;
 
+import org.spongepowered.api.boss.ServerBossBar;
 import org.spongepowered.api.entity.explosive.FusedExplosive;
 import org.spongepowered.api.entity.living.Aerial;
 import org.spongepowered.api.entity.living.Agent;
@@ -53,5 +54,12 @@ public interface Wither extends Monster, Ranger, Boss, Aerial, FusedExplosive {
      * @param targets The targets
      */
     void setTargets(List<Living> targets);
+
+    /**
+     * Gets the boss bar this wither uses.
+     *
+     * @return The boss bar
+     */
+    ServerBossBar getBossBar();
 
 }
