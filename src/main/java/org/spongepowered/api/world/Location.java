@@ -30,6 +30,7 @@ import static com.google.common.base.Preconditions.checkState;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
+import com.google.common.base.MoreObjects;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
@@ -62,6 +63,7 @@ import org.spongepowered.api.world.volume.entity.MutableEntityVolume;
 
 import java.lang.ref.WeakReference;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
@@ -99,6 +101,7 @@ public final class Location implements DataHolder {
     private Vector3i chunkPosition = null;
     @Nullable
     private Vector3i biomePosition = null;
+    private int hash = 0;
 
     /**
      * Create a new instance.
@@ -207,10 +210,10 @@ public final class Location implements DataHolder {
     }
 
     /**
-     * Gets the underlying {@link World} if it's available.
+     * Gets the underlying {@link World} if it's available. A {@link World}
+     * is available when it exists and is loaded.
      *
      * @return The world, if available
-     * @throws IllegalStateException If the {@link World} is null
      * @see #isAvailable()
      */
     public Optional<World> getWorldIfAvailable() {
@@ -943,5 +946,33 @@ public final class Location implements DataHolder {
     @Override
     public Set<ImmutableValue<?>> getValues() {
         return getWorld().getValues(getBlockPosition());
+    }
+
+    @Override
+    public String toString() {
+        final String name = getWorldIfAvailable().map(World::getName).orElse(null);
+        return "Location{" + getPosition() + " in " + getWorldUniqueId() + (name == null ? "" : " (" + name + ")") + "}";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Location)) {
+            return false;
+        }
+        final Location other = (Location) obj;
+        return other.worldUniqueId.equals(this.worldUniqueId) &&
+                other.getPosition().equals(getPosition());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = this.hash;
+        if (hash == 0) {
+            this.hash = hash = Objects.hash(getWorldUniqueId(), getPosition());
+        }
+        return hash;
     }
 }
