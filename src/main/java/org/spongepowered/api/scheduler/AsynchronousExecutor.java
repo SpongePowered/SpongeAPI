@@ -37,7 +37,7 @@ import javax.inject.Inject;
  * Provides a convenient injection for
  * {@link Scheduler#createAsyncExecutor(Object)}.
  *
- * <p>Use this annotation on a {@link SpongeExecutorService}.
+ * <p>Use this annotation on a {@link TaskExecutorService}.
  * Remember that {@link Inject} is also necessary.</p>
  */
 @BindingAnnotation

@@ -24,25 +24,20 @@
  */
 package org.spongepowered.api.scheduler;
 
-import com.google.inject.BindingAnnotation;
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
-import javax.inject.Inject;
+import java.util.concurrent.Future;
 
 /**
- * Provides a convenient injection for
- * {@link Scheduler#createSyncExecutor(Object)}.
+ * Represents a {@link Future} of a {@link ScheduledTask}.
  *
- * <p>Use this annotation on a {@link TaskExecutorService}.
- * Remember that {@link Inject} is also necessary.</p>
+ * @param <V> The result type
  */
-@BindingAnnotation
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.PARAMETER, ElementType.FIELD})
-public @interface SynchronousExecutor {
+public interface TaskFuture<V> extends Future<V> {
 
+    /**
+     * Retrieves the {@link Scheduler} {@link ScheduledTask} instance that
+     * is responsible for the execution of this future.
+     *
+     * @return The backing scheduled task
+     */
+    ScheduledTask getTask();
 }
