@@ -27,6 +27,9 @@ package org.spongepowered.api.event.item.inventory.container;
 import org.spongepowered.api.event.item.inventory.ChangeInventoryEvent;
 import org.spongepowered.api.event.item.inventory.DropItemEvent;
 import org.spongepowered.api.item.inventory.Container;
+import org.spongepowered.api.item.inventory.Slot;
+
+import java.util.Optional;
 
 /**
  * A click interaction in an open container.
@@ -161,4 +164,13 @@ public interface ClickContainerEvent extends ChangeInventoryEvent, InteractConta
     interface NumberPress extends ClickContainerEvent {
         int getNumber();
     }
+
+    /**
+     * Returns the primary interaction Slot.
+     *
+     * <p>May return {@link Optional#empty()} for events that do not directly interact with a Slot</p>
+     *
+     * @return The primary interaction Slot
+     */
+    Optional<Slot> getSlot();
 }
