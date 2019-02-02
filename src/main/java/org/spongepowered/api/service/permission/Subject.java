@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.service.permission;
 
-import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.command.source.CommandSource;
 import org.spongepowered.api.service.context.Context;
 import org.spongepowered.api.service.context.Contextual;
 import org.spongepowered.api.util.Tristate;

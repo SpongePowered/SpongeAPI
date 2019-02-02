@@ -26,7 +26,7 @@ package org.spongepowered.api;
 
 import org.spongepowered.api.asset.AssetManager;
 import org.spongepowered.api.client.Client;
-import org.spongepowered.api.command.CommandManager;
+import org.spongepowered.api.command.manager.CommandManager;
 import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.data.DataSerializable;

@@ -22,11 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command.source;
+package org.spongepowered.api.command.format;
 
-/**
- * Represents the server console.
- */
-public interface ConsoleSource extends CommandSource {
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
+public final class CommandMessageFormats {
+
+    private CommandMessageFormats() {}
+
+    // SORTFIELDS:ON
+
+    /**
+     * Formats text to use the suggested formatting for a debug message.
+     */
+    public static final CommandMessageFormat DEBUG = DummyObjectProvider.createFor(CommandMessageFormat.class, "debug");
+
+    /**
+     * Formats text to use the suggested formatting for an error message.
+     *
+     * <p>This is not necessary when creating an exception to be thrown</p>
+     */
+    public static final CommandMessageFormat ERROR = DummyObjectProvider.createFor(CommandMessageFormat.class, "error");
+
+    /**
+     * Formats text to use the suggested formatting for a success message.
+     */
+    public static final CommandMessageFormat SUCCESS = DummyObjectProvider.createFor(CommandMessageFormat.class, "success");
+
+    /**
+     * Formats text to use the suggested formatting for a system message.
+     */
+    public static final CommandMessageFormat SYSTEM = DummyObjectProvider.createFor(CommandMessageFormat.class, "system");
+
+    // SORTFIELDS:OFF
 
 }

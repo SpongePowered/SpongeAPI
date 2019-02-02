@@ -39,6 +39,9 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.ServiceManager;
+import org.spongepowered.api.service.permission.Subject;
+import org.spongepowered.api.text.channel.MessageChannel;
+import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.world.World;
 
@@ -75,6 +78,8 @@ public final class EventContextKeys {
 
     public static final EventContextKey<World> LIQUID_MIX = createFor("LIQUID_MIX");
 
+    public static final EventContextKey<MessageChannel> MESSAGE_CHANNEL = createFor("MESSAGE_CHANNEL");
+
     public static final EventContextKey<User> NOTIFIER = createFor("NOTIFIER");
 
     public static final EventContextKey<User> OWNER = createFor("OWNER");
@@ -96,6 +101,8 @@ public final class EventContextKeys {
     public static final EventContextKey<ProjectileSource> PROJECTILE_SOURCE = createFor("PROJECTILE_SOURCE");
 
     public static final EventContextKey<ServiceManager> SERVICE_MANAGER = createFor("SERVICE_MANAGER");
+
+    public static final EventContextKey<Subject> SUBJECT = createFor("SUBJECT");
 
     public static final EventContextKey<SpawnType> SPAWN_TYPE = createFor("SPAWN_TYPE");
 

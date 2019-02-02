@@ -22,11 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command.source;
+package org.spongepowered.api.command.parameter.managed;
+
+import org.spongepowered.api.command.parameter.CommandContext;
+import org.spongepowered.api.command.parameter.Completions;
+
+import java.util.List;
 
 /**
- * Represents the server console.
+ * Defines the completions for a parameter.
  */
-public interface ConsoleSource extends CommandSource {
+@FunctionalInterface
+public interface ValueCompleter {
+
+    /**
+     * Gets valid completions for a command.
+     *
+     * @param completionBuilder The {@link Completions.Builder} that contains the
+     *      unparsed arguments and arguments
+     * @param context The {@link CommandContext} that contains the parsed arguments
+     * @return The {@link List} of completions to display to the client
+     */
+    void complete(Completions.Builder completionBuilder, CommandContext context);
 
 }

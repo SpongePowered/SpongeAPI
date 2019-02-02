@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.command.source;
 
-import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.CommandData;

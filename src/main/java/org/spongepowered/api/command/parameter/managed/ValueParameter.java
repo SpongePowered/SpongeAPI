@@ -22,11 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command.source;
+package org.spongepowered.api.command.parameter.managed;
 
-/**
- * Represents the server console.
- */
-public interface ConsoleSource extends CommandSource {
+import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.text.Text;
+
+public interface ValueParameter<T> extends ValueCompleter, ValueParser<T>, ValueUsage {
+
+    @Override
+    default Text getUsage(Cause cause, Text key) {
+        return key;
+    }
 
 }

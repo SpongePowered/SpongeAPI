@@ -22,11 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command.source;
+package org.spongepowered.api.command.exception;
+
+import org.spongepowered.api.text.Text;
 
 /**
- * Represents the server console.
+ * This exception is thrown when a subject does not have permission to execute
+ * a command.
  */
-public interface ConsoleSource extends CommandSource {
+public class CommandPermissionException extends CommandException {
+    private static final long serialVersionUID = -6057386975881181213L;
 
+    /**
+     * Create a permissions exception with a custom message.
+     *
+     * @param message The message
+     */
+    public CommandPermissionException(Text message) {
+        super(message);
+    }
+
+    /**
+     * Create a permissions exception with a custom message and cause.
+     *
+     * @param message the message
+     * @param cause the cause
+     */
+    public CommandPermissionException(Text message, Throwable cause) {
+        super(message, cause);
+    }
 }

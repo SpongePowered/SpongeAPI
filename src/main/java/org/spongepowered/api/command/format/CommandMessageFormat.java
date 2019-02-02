@@ -22,11 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command.source;
+package org.spongepowered.api.command.format;
+
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents the server console.
+ * Defines a standard format for command messages.
  */
-public interface ConsoleSource extends CommandSource {
+@CatalogedBy(CommandMessageFormats.class)
+public interface CommandMessageFormat extends CatalogType {
+
+    /**
+     * Applies the format to the provided text.
+     *
+     * @param text The {@link Text} to apply the format to
+     * @return The formatted text
+     */
+    Text applyFormat(Text text);
 
 }

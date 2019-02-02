@@ -22,11 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command.source;
+package org.spongepowered.api.command.exception;
+
+import org.spongepowered.api.command.source.CommandSource;
+import org.spongepowered.api.text.Text;
 
 /**
- * Represents the server console.
+ * This exception is thrown when the target {@link CommandSource}s is of the
+ * correct type to call the target command.
  */
-public interface ConsoleSource extends CommandSource {
+public class IncorrectCommandSourceException extends CommandException {
+    private static final long serialVersionUID = -2927330349931825821L;
 
+    /**
+     * Create a permissions exception with a custom message.
+     *
+     * @param message The message
+     */
+    public IncorrectCommandSourceException(Text message) {
+        super(message);
+    }
+
+    /**
+     * Create a permissions exception with a custom message and cause.
+     *
+     * @param message the message
+     * @param cause the cause
+     */
+    public IncorrectCommandSourceException(Text message, Throwable cause) {
+        super(message, cause);
+    }
 }

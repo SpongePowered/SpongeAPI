@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.command.source;
 
-import org.spongepowered.api.command.CommandSource;
-
 /**
  * Proxy sources are {@link CommandSource}s that are run by one source as a
  * different source.

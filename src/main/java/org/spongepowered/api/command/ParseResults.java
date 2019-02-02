@@ -22,11 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command.source;
+package org.spongepowered.api.command;
 
-/**
- * Represents the server console.
- */
-public interface ConsoleSource extends CommandSource {
+import org.spongepowered.api.command.parameter.CommandContext;
+import org.spongepowered.api.command.parameter.ArgumentReader;
+
+public interface ParseResults {
+
+    ArgumentReader getArgumentReader();
+
+    CommandContext getContext();
+
 
 }

@@ -25,7 +25,7 @@
 package org.spongepowered.api.text.action;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.command.source.CommandSource;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.CopyableBuilder;
 

@@ -391,6 +391,23 @@ public final class Cause implements Iterable<Object> {
         return builder.build(this.context);
     }
 
+    /**
+     * Creates a new {@link Cause} where the {@link EventContext} is merged
+     * with the provided {@link EventContext}.
+     *
+     * <p>Values in the provided {@link EventContext} will take precedence
+     * over existing values in the returned {@link Cause}.</p>
+     *
+     * @param context The context to merge with.
+     * @return The new {@link Cause} with an updated {@link EventContext}
+     */
+    public Cause with(EventContext context) {
+        return builder().from(this).build(EventContext.builder()
+                .from(getContext())
+                .from(context)
+                .build());
+    }
+
     @Override
     public Iterator<Object> iterator() {
         return new Itr();

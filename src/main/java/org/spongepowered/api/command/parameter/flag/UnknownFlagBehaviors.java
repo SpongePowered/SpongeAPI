@@ -22,20 +22,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command.source;
+package org.spongepowered.api.command.parameter.flag;
 
-import org.spongepowered.api.network.RemoteConnection;
+import org.spongepowered.api.command.exception.ArgumentParseException;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-/**
- * Represents a source that is not local to the server. This includes Rcon,
- * player connections, and others.
- */
-public interface RemoteSource extends CommandSource {
+public final class UnknownFlagBehaviors {
+
+    private UnknownFlagBehaviors() {}
+
+    // SORTFIELDS:ON
 
     /**
-     * Gets connection information for this source.
-     *
-     * @return This source's connection
+     * Mark the flag as a non-value flag.
      */
-    RemoteConnection getConnection();
+    public static UnknownFlagBehavior ACCEPT_NONVALUE = DummyObjectProvider.createFor(UnknownFlagBehavior.class, "ACCEPT_NONVALUE");
+
+    /**
+     * Mark the flag as a string-valued flag.
+     */
+    public static UnknownFlagBehavior ACCEPT_VALUE = DummyObjectProvider.createFor(UnknownFlagBehavior.class, "ACCEPT_VALUE");
+
+    /**
+     * Throw an {@link ArgumentParseException} when an unknown flag is
+     * encountered.
+     */
+    public static UnknownFlagBehavior ERROR = DummyObjectProvider.createFor(UnknownFlagBehavior.class, "ERROR");
+
+    /**
+     * Act as if the unknown flag is an ordinary argument.
+     */
+    public static UnknownFlagBehavior IGNORE = DummyObjectProvider.createFor(UnknownFlagBehavior.class, "IGNORE");
+
+    /**
+     * Skip this argument entirely.
+     */
+    public static UnknownFlagBehavior SKIP = DummyObjectProvider.createFor(UnknownFlagBehavior.class, "SKIP");
+
+    // SORTFIELDS:OFF
+
 }

@@ -26,7 +26,6 @@ package org.spongepowered.api.command.source;
 
 import org.spongepowered.api.block.tileentity.Sign;
 import org.spongepowered.api.block.tileentity.TileEntity;
-import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.world.Locatable;
 
 /**

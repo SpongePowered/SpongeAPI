@@ -22,11 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command.source;
+package org.spongepowered.api.command.parameter.managed.standard;
 
-/**
- * Represents the server console.
- */
-public interface ConsoleSource extends CommandSource {
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.command.parameter.managed.ValueParameter;
+import org.spongepowered.api.util.annotation.CatalogedBy;
+
+@CatalogedBy(CatalogedValueParameters.class)
+public interface CatalogedValueParameter<T> extends ValueParameter<T>, CatalogType {
 
 }

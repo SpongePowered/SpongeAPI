@@ -22,11 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command.source;
+package org.spongepowered.api.command;
 
 /**
- * Represents the server console.
+ * Common {@link CommandResult}s.
  */
-public interface ConsoleSource extends CommandSource {
+public final class CommandResults {
+
+    /**
+     * Indicates that the command executed successfully.
+     */
+    public final static CommandResult SUCCESS = CommandResult.builder().setResult(1).build();
+
+    /**
+     * Indicates that the command executed but was unable to carry out its task.
+     */
+    public final static CommandResult EMPTY = CommandResult.builder().build();
+
+    private CommandResults() {
+        throw new AssertionError("You shouldn't be trying to instantiate this");
+    }
 
 }

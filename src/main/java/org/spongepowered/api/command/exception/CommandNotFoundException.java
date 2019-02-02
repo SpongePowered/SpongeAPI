@@ -22,11 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command.source;
+package org.spongepowered.api.command.exception;
+
+import com.google.common.base.Preconditions;
+import org.spongepowered.api.text.Text;
 
 /**
- * Represents the server console.
+ * This exception is thrown when a sender tries to execute a command that does
+ * not exist.
  */
-public interface ConsoleSource extends CommandSource {
+public class CommandNotFoundException extends CommandException {
 
+    private static final long serialVersionUID = -7714518367616848051L;
+
+    private final String command;
+
+    /**
+     * Create an exception with a custom message.
+     *
+     * @param message The message
+     * @param command The command that was queried for
+     */
+    public CommandNotFoundException(Text message, String command) {
+        super(message);
+        this.command = Preconditions.checkNotNull(command, "command");
+    }
+
+    /**
+     * Returns the command that was queried for.
+     *
+     * @return The command
+     */
+    public String getCommand() {
+        return this.command;
+    }
 }

@@ -26,7 +26,7 @@ package co.aikar.timings;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.command.source.CommandSource;
 import org.spongepowered.api.command.source.ConsoleSource;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.text.channel.MessageChannel;

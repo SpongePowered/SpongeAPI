@@ -22,11 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command.source;
+package org.spongepowered.api.command.exception;
+
+import org.spongepowered.api.text.Text;
 
 /**
- * Represents the server console.
+ * Thrown when invocation of a command fails, wrapping the exception that
+ * is thrown.
  */
-public interface ConsoleSource extends CommandSource {
+public class InvocationCommandException extends CommandException {
+    private static final long serialVersionUID = 2123904283741023948L;
+
+    /**
+     * Constructs a new exception with the given message and the given cause.
+     *
+     * @param message The detail message
+     * @param cause The cause
+     */
+    public InvocationCommandException(Text message, Throwable cause) {
+        super(message, cause);
+    }
 
 }
