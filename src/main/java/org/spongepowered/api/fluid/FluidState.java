@@ -72,7 +72,12 @@ public interface FluidState extends State<FluidState> {
      *
      * @return The fluid type
      */
-    FluidType getFluid();
+    default FluidType getType() {
+        return getStateContainer();
+    }
+
+    @Override
+    FluidType getStateContainer();
 
     /**
      * An {@link ImmutableDataBuilder} for a {@link FluidState}. Just like the

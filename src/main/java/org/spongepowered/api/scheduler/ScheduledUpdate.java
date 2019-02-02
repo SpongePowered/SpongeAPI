@@ -32,8 +32,13 @@ import java.time.Duration;
  * Represents a scheduled block update. SBUs with higher priorities are
  * processed first.
  */
-public interface ScheduledTaskEntry<T> extends Locatable {
+public interface ScheduledUpdate<T> extends Locatable {
 
+    /**
+     * Gets the target of this scheduled update.
+     *
+     * @return The target
+     */
     T getTarget();
 
     /**
@@ -45,17 +50,41 @@ public interface ScheduledTaskEntry<T> extends Locatable {
     Duration getDelay();
 
     /**
-     * Sets the {@link Duration delay} until this SBU should cause the block to update.
-     *
-     * @param delay The new delay until this SBU should cause the block to update
-     */
-    void setDelay(Duration delay);
-
-    /**
      * Gets the priority of this scheduled block update.
      *
      * @return The priority of this scheduled block update
      */
     TaskPriority getPriority();
 
+    /**
+     * Gets the {@link State} of this scheduled update.
+     *
+     * @return The state
+     */
+    State getState();
+
+    /**
+     * Cancels this scheduled update.
+     *
+     * @return Returns if the scheduled update was successfully cancelled
+     */
+    boolean cancel();
+
+    /**
+     * Represents the state of a {@link ScheduledUpdate}.
+     */
+    enum State {
+        /**
+         * The scheduled update is waiting to be performed.
+         */
+        WAITING,
+        /**
+         * The scheduled update was cancelled.
+         */
+        CANCELLED,
+        /**
+         * The scheduled update is performed.
+         */
+        FINISHED,
+    }
 }

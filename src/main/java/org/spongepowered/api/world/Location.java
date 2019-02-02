@@ -30,7 +30,6 @@ import static com.google.common.base.Preconditions.checkState;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
-import com.google.common.base.MoreObjects;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
@@ -55,13 +54,17 @@ import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.EventContext;
 import org.spongepowered.api.event.cause.entity.spawn.SpawnType;
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
-import org.spongepowered.api.scheduler.ScheduledTaskEntry;
+import org.spongepowered.api.fluid.FluidState;
+import org.spongepowered.api.fluid.FluidType;
+import org.spongepowered.api.scheduler.ScheduledUpdate;
 import org.spongepowered.api.scheduler.TaskPriority;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.volume.entity.MutableEntityVolume;
 
 import java.lang.ref.WeakReference;
+import java.time.Duration;
+import java.time.temporal.TemporalUnit;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.Optional;
@@ -620,6 +623,15 @@ public final class Location implements DataHolder {
     }
 
     /**
+     * Gets the {@link FluidState} for this position.
+     *
+     * @return The fluid state
+     */
+    public FluidState getFluid() {
+        return getWorld().getFluid(getBlockPosition());
+    }
+
+    /**
      * Checks for whether the block at this position contains tile entity data.
      *
      * @return True if the block at this position has tile entity data, false
@@ -852,32 +864,109 @@ public final class Location implements DataHolder {
     }
 
     /**
-     * Gets a list of {@link ScheduledTaskEntry}s on this block.
+     * Gets a list of {@link ScheduledUpdate}s for the block at this location.
      *
-     * @return A list of ScheduledBlockUpdates on this block
+     * @return A list of scheduled block updates on this location
      */
-    public Collection<ScheduledTaskEntry<BlockType>> getScheduledUpdates() {
-        return getWorld().getPendingBlockTasks().getScheduledUpdates(getBlockPosition());
+    public Collection<ScheduledUpdate<BlockType>> getScheduledBlockUpdates() {
+        return getWorld().getScheduledBlockUpdates().getScheduledAt(getBlockPosition());
     }
 
     /**
-     * Adds a new {@link ScheduledTaskEntry} to this block.
+     * Adds a new {@link ScheduledUpdate} for the block at this location.
      *
-     * @param priority The priority of the scheduled update
-     * @param ticks The ticks until the scheduled update should be processed
+     * @param delay The delay before the scheduled update should be processed
+     * @param temporalUnit The temporal unit of the delay
      * @return The newly created scheduled update
      */
-    public ScheduledTaskEntry<BlockType> addScheduledUpdate(TaskPriority priority, int ticks) {
-        return getWorld().getPendingBlockTasks().scheduleUpdate(getBlockPosition(), getBlock().getType(), ticks, priority);
+    public ScheduledUpdate<BlockType> scheduleBlockUpdate(int delay, TemporalUnit temporalUnit) {
+        return getWorld().getScheduledBlockUpdates().schedule(getBlockPosition(), getBlock().getType(), delay, temporalUnit);
     }
 
     /**
-     * Removes a {@link ScheduledTaskEntry} from this block.
+     * Adds a new {@link ScheduledUpdate} for the block at this location.
      *
-     * @param update The ScheduledTaskEntry to remove
+     * @param delay The delay before the scheduled update should be processed
+     * @param temporalUnit The temporal unit of the delay
+     * @param priority The priority of the scheduled update
+     * @return The newly created scheduled update
      */
-    public void removeScheduledUpdate(ScheduledTaskEntry<BlockType> update) {
-        getWorld().getPendingBlockTasks().removeUpdate(getBlockPosition(), update);
+    public ScheduledUpdate<BlockType> scheduleBlockUpdate(int delay, TemporalUnit temporalUnit, TaskPriority priority) {
+        return getWorld().getScheduledBlockUpdates().schedule(getBlockPosition(), getBlock().getType(), delay, temporalUnit, priority);
+    }
+
+    /**
+     * Adds a new {@link ScheduledUpdate} for the block at this location.
+     *
+     * @param delay The delay before the scheduled update should be processed
+     * @return The newly created scheduled update
+     */
+    public ScheduledUpdate<BlockType> scheduleBlockUpdate(Duration delay) {
+        return getWorld().getScheduledBlockUpdates().schedule(getBlockPosition(), getBlock().getType(), delay);
+    }
+
+    /**
+     * Adds a new {@link ScheduledUpdate} for the block at this location.
+     *
+     * @param delay The delay before the scheduled update should be processed
+     * @param priority The priority of the scheduled update
+     * @return The newly created scheduled update
+     */
+    public ScheduledUpdate<BlockType> scheduleBlockUpdate(Duration delay, TaskPriority priority) {
+        return getWorld().getScheduledBlockUpdates().schedule(getBlockPosition(), getBlock().getType(), delay, priority);
+    }
+
+    /**
+     * Gets a list of {@link ScheduledUpdate}s for the fluid at this location.
+     *
+     * @return A list of scheduled fluid updates on this location
+     */
+    public Collection<ScheduledUpdate<FluidType>> getScheduledFluidUpdates() {
+        return getWorld().getScheduledFluidUpdates().getScheduledAt(getBlockPosition());
+    }
+
+    /**
+     * Adds a new {@link ScheduledUpdate} for the fluid at this location.
+     *
+     * @param delay The delay before the scheduled update should be processed
+     * @param temporalUnit The temporal unit of the delay
+     * @return The newly created scheduled update
+     */
+    public ScheduledUpdate<FluidType> scheduleFluidUpdate(int delay, TemporalUnit temporalUnit) {
+        return getWorld().getScheduledFluidUpdates().schedule(getBlockPosition(), getFluid().getType(), delay, temporalUnit);
+    }
+
+    /**
+     * Adds a new {@link ScheduledUpdate} for the fluid at this location.
+     *
+     * @param delay The delay before the scheduled update should be processed
+     * @param temporalUnit The temporal unit of the delay
+     * @param priority The priority of the scheduled update
+     * @return The newly created scheduled update
+     */
+    public ScheduledUpdate<FluidType> scheduleFluidUpdate(int delay, TemporalUnit temporalUnit, TaskPriority priority) {
+        return getWorld().getScheduledFluidUpdates().schedule(getBlockPosition(), getFluid().getType(), delay, temporalUnit, priority);
+    }
+
+    /**
+     * Adds a new {@link ScheduledUpdate} for the fluid at this location.
+     *
+     * @param delay The delay before the scheduled update should be processed
+     * @return The newly created scheduled update
+     */
+    public ScheduledUpdate<FluidType> scheduleFluidUpdate(Duration delay) {
+        return getWorld().getScheduledFluidUpdates().schedule(getBlockPosition(), getFluid().getType(), delay);
+    }
+
+    /**
+     * Adds a new {@link ScheduledUpdate} for the fluid at this location.
+     *
+     * @param delay The delay before the scheduled update should be processed
+     * @param priority The priority of the scheduled update
+     * @return The newly created scheduled update
+     */
+    public ScheduledUpdate<FluidType> scheduleFluidUpdate(Duration delay, TaskPriority priority) {
+        return getWorld().getScheduledFluidUpdates().schedule(getBlockPosition(), getFluid().getType(), delay, priority);
     }
 
     @Override

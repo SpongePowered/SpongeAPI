@@ -30,7 +30,6 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.property.LocationBasePropertyHolder;
 import org.spongepowered.api.util.RandomProvider;
 import org.spongepowered.api.world.biome.MutableBiomeVolume;
-import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.chunk.ChunkVolume;
 import org.spongepowered.api.world.chunk.ProtoChunk;
 import org.spongepowered.api.world.volume.InteractableVolume;
@@ -41,22 +40,19 @@ import org.spongepowered.api.world.volume.entity.CollisionAwareEntityVolume;
 import org.spongepowered.api.world.volume.entity.MutableEntityVolume;
 import org.spongepowered.api.world.volume.tileentity.MutableTileEntityVolume;
 
-import java.util.Optional;
-
-public interface ProtoWorld<P extends ProtoWorld<P>>
-    extends
-    MutableBiomeVolume<P>,
-    MutableBlockVolume<P>,
-    MutableEntityVolume<P>,
-    MutableTileEntityVolume<P>,
-    CollisionAwareEntityVolume,
-    InteractableVolume,
-    LocationBasePropertyHolder,
-    LocationCompositeValueStore,
-    LightCalculatingVolume,
-    TickableVolume,
-    ChunkVolume,
-    RandomProvider
+public interface ProtoWorld<P extends ProtoWorld<P>> extends
+        MutableBiomeVolume<P>,
+        MutableBlockVolume<P>,
+        MutableEntityVolume<P>,
+        MutableTileEntityVolume<P>,
+        ChunkVolume,
+        CollisionAwareEntityVolume,
+        InteractableVolume,
+        LocationBasePropertyHolder,
+        LocationCompositeValueStore,
+        LightCalculatingVolume,
+        UpdatableVolume,
+        RandomProvider
 {
 
     /**
