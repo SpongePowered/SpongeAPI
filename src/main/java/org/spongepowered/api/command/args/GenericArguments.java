@@ -476,9 +476,12 @@ public final class GenericArguments {
         public Text getUsage(CommandSource commander) {
             final Text.Builder build = Text.builder();
             for (Iterator<CommandElement> it = this.elements.iterator(); it.hasNext();) {
-                build.append(it.next().getUsage(commander));
-                if (it.hasNext()) {
-                    build.append(CommandMessageFormatting.SPACE_TEXT);
+                Text usage = it.next().getUsage(commander);
+                if (!usage.isEmpty()) {
+                    build.append(usage);
+                    if (it.hasNext()) {
+                        build.append(CommandMessageFormatting.SPACE_TEXT);
+                    }
                 }
             }
             return build.build();
