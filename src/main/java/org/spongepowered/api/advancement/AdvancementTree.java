@@ -101,6 +101,15 @@ public interface AdvancementTree extends CatalogType {
          */
         @Override
         Builder name(String name);
+
+        /**
+         * @deprecated It's not allowed to duplicate advancements.
+         */
+        @Deprecated
+        @Override
+        default Builder from(AdvancementTree value) {
+            throw new UnsupportedOperationException("Duplicating advancement trees isn't allowed.");
+        }
     }
 
 }

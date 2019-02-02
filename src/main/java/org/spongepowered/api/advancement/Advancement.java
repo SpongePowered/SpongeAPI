@@ -142,6 +142,15 @@ public interface Advancement extends CatalogType, TextRepresentable {
          */
         @Override
         Builder name(String name);
+
+        /**
+         * @deprecated It's not allowed to duplicate advancements.
+         */
+        @Deprecated
+        @Override
+        default Builder from(Advancement value) {
+            throw new UnsupportedOperationException("Duplicating advancements isn't allowed.");
+        }
     }
 
 }

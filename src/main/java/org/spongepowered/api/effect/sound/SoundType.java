@@ -48,5 +48,14 @@ public interface SoundType extends CatalogType {
      * Builds a SoundType, primarily for sending custom sounds to the client.
      */
     interface Builder extends CatalogBuilder<SoundType, Builder> {
+
+        /**
+         * @deprecated It's not allowed to duplicate sound types.
+         */
+        @Deprecated
+        @Override
+        default Builder from(SoundType value) {
+            throw new UnsupportedOperationException("Duplicating sound types isn't allowed.");
+        }
     }
 }

@@ -90,13 +90,4 @@ public interface CatalogBuilder<C extends CatalogType, B extends ResettableBuild
      *                               the {@link #key(CatalogKey)} (or the {@link #id(String)}).
      */
     C build() throws IllegalStateException;
-
-    /**
-     * @deprecated It's not allowed to duplicate catalog types.
-     */
-    @Deprecated
-    @Override
-    default B from(C value) {
-        throw new UnsupportedOperationException("Duplicating catalog types isn't allowed.");
-    }
 }
