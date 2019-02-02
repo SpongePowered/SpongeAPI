@@ -106,6 +106,18 @@ public interface ClickContainerEvent extends ChangeInventoryEvent, InteractConta
         interface Outside extends Drop {
 
             /**
+             * {@inheritDoc}
+             *
+             * @deprecated Clicking outside a container will never be on a slot.
+             */
+            @Deprecated
+            @PropertySettings(requiredParameter = false, generateMethods = false)
+            @Override
+            default Optional<Slot> getSlot() {
+                return Optional.empty();
+            }
+
+            /**
              * A click with the primary mouse button dropping the entire stack on the cursor.
              */
             interface Primary extends Outside, ClickContainerEvent.Primary {}
@@ -166,6 +178,7 @@ public interface ClickContainerEvent extends ChangeInventoryEvent, InteractConta
      * A number press swapping the hotbar slot with the slot the mouse hovers over.
      */
     interface NumberPress extends ClickContainerEvent {
+
         int getNumber();
     }
 
