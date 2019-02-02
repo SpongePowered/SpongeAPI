@@ -29,6 +29,9 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.chunk.ChunkPreGenerate;
 
+import java.time.Duration;
+import java.time.temporal.TemporalUnit;
+
 /**
  * A world border is a square boundary, extending through the entire y-axis.
  *
@@ -81,20 +84,35 @@ public interface WorldBorder {
     void setDiameter(double diameter);
 
     /**
-     * Sets the diameter of the world border, over the given period of time.
+     * Sets the diameter of the world border, over the given duration.
      *
      * <p>The world border diameter increases/decrease linearly over the
      * specified time. The specified diameter applies to the x and z axis. The
      * world border extends over the entire y-axis.</p>
      *
      * @param diameter The diameter where the border will expand/contract to
-     * @param time The time over which to change, in milliseconds
+     * @param duration The duration over which to change
+     * @param temporalUnit The temporal unit of the duration
      */
-    void setDiameter(double diameter, long time);
+    default void setDiameter(double diameter, long duration, TemporalUnit temporalUnit) {
+        setDiameter(diameter, Duration.of(duration, temporalUnit));
+    }
+
+    /**
+     * Sets the diameter of the world border, over the given duration.
+     *
+     * <p>The world border diameter increases/decrease linearly over the
+     * specified time. The specified diameter applies to the x and z axis. The
+     * world border extends over the entire y-axis.</p>
+     *
+     * @param diameter The diameter where the border will expand/contract to
+     * @param duration The duration over which to change
+     */
+    void setDiameter(double diameter, Duration duration);
 
     /**
      * Sets the starting diameter and the ending diameter of the world border,
-     * over the given period of time.
+     * over the given duration.
      *
      * <p>The world border diameter increases/diameter linearly over the
      * specified time. The specified diameter applies to the x and z axis. The
@@ -102,17 +120,34 @@ public interface WorldBorder {
      *
      * @param startDiameter The diameter where the border will start
      * @param endDiameter The diameter where the border will end
-     * @param time The time over which to change, in milliseconds
+     * @param duration The duration over which to change
+     * @param temporalUnit The temporal unit of the duration
      */
-    void setDiameter(double startDiameter, double endDiameter, long time);
+    default void setDiameter(double startDiameter, double endDiameter, long duration, TemporalUnit temporalUnit) {
+        setDiameter(startDiameter, endDiameter, Duration.of(duration, temporalUnit));
+    }
+
+    /**
+     * Sets the starting diameter and the ending diameter of the world border,
+     * over the given duration.
+     *
+     * <p>The world border diameter increases/diameter linearly over the
+     * specified time. The specified diameter applies to the x and z axis. The
+     * world border extends over the entire y-axis.</p>
+     *
+     * @param startDiameter The diameter where the border will start
+     * @param endDiameter The diameter where the border will end
+     * @param duration The duration over which to change
+     */
+    void setDiameter(double startDiameter, double endDiameter, Duration duration);
 
     /**
      * Gets the time remaining until the world border stops expanding or
      * contracting.
      *
-     * @return The time remaining, in milliseconds
+     * @return The time remaining
      */
-    long getTimeRemaining();
+    Duration getTimeRemaining();
 
     /**
      * Sets the center of the world border.
@@ -140,9 +175,23 @@ public interface WorldBorder {
      * <p>In Minecraft, the warning is displayed in the form of a reddish
      * tint.</p>
      *
-     * @return The time, in seconds
+     * @return The warning time
      */
-    int getWarningTime();
+    Duration getWarningTime();
+
+    /**
+     * Sets the time when a contracting world border will warn a player for whom
+     * the world border will reach in {@code time}.
+     *
+     * <p>In Minecraft, the warning is displayed in the form of a reddish
+     * tint.</p>
+     *
+     * @param time The time
+     * @param temporalUnit The temporal unit of the time
+     */
+    default void setWarningTime(long time, TemporalUnit temporalUnit) {
+        setWarningTime(Duration.of(time, temporalUnit));
+    }
 
     /**
      * Sets the time when a contracting world border will warn a player for whom
@@ -151,31 +200,31 @@ public interface WorldBorder {
      * <p>In Minecraft, the warning is displayed in the form of a reddish
      * tint.</p>
      *
-     * @param time The time, in seconds
+     * @param time The time
      */
-    void setWarningTime(int time);
+    void setWarningTime(Duration time);
 
     /**
      * Gets the distance when a contracting world border will warn a player for
-     * whom the world border is {@code distance} blocks away.
+     * whom the world border is {@code distance} away.
      *
      * <p>In Minecraft, the warning is displayed in the form of a reddish
      * tint.</p>
      *
-     * @return The distance, in blocks
+     * @return The distance
      */
-    int getWarningDistance();
+    double getWarningDistance();
 
     /**
      * Sets the distance when a contracting world border will warn a player for
-     * whom the world border is {@code distance} blocks away.
+     * whom the world border is {@code distance} away.
      *
      * <p>In Minecraft, the warning is displayed in the form of a reddish
      * tint.</p>
      *
-     * @param distance The distance, in blocks
+     * @param distance The distance
      */
-    void setWarningDistance(int distance);
+    void setWarningDistance(double distance);
 
     /**
      * Gets the distance a player may be outside the world border before taking
@@ -267,21 +316,33 @@ public interface WorldBorder {
 
         /**
          * Sets the warning time of this world border.
-         * 
-         * @param time Warning time in seconds
+         *
+         * @param time The warning time
+         * @param temporalUnit The warning time unit
          * @return The builder, for chaining
-         * @see WorldBorder#setWarningTime(int)
+         * @see WorldBorder#setWarningTime(Duration)
          */
-        Builder warningTime(int time);
+        default Builder warningTime(long time, TemporalUnit temporalUnit) {
+            return warningTime(Duration.of(time, temporalUnit));
+        }
+
+        /**
+         * Sets the warning time of this world border.
+         * 
+         * @param time The warning time
+         * @return The builder, for chaining
+         * @see WorldBorder#setWarningTime(Duration)
+         */
+        Builder warningTime(Duration time);
 
         /**
          * Sets the warning distance of this world border.
-         * 
-         * @param distance The warning distance in blocks
+         *
+         * @param distance The warning distance
          * @return The builder, for chaining
-         * @see WorldBorder#setWarningDistance(int)
+         * @see WorldBorder#setWarningDistance(double)
          */
-        Builder warningDistance(int distance);
+        Builder warningDistance(double distance);
 
         /**
          * Sets the damage threshold of this world border.
