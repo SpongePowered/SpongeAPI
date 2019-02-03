@@ -28,8 +28,8 @@ import java.util.Optional;
 import java.util.Set;
 
 /**
- * A common interface for objects that have an identifier and are bound by
- * {@link Context}s.
+ * A common interface for objects that have an identifier and can have a set of
+ * active {@link Context}s determined.
  *
  * <p>Used primarily by {@link ContextualService}s.</p>
  */
@@ -42,7 +42,7 @@ public interface Contextual {
      * contextuals should be unique.</p>
      *
      * <p>Not guaranteed to be human-readable. Use
-     * {@link #getFriendlyIdentifier()} for a more readable version.</p>
+     * {@link #getFriendlyIdentifier()} for a more readable alternative.</p>
      *
      * @return The identifier for this subject
      */
