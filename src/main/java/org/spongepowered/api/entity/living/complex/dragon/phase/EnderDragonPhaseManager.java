@@ -43,6 +43,6 @@ public interface EnderDragonPhaseManager {
      *
      * @param phase The new dragon phase
      */
-    void setPhase(EnderDragonPhaseType phase);
+    EnderDragonPhase setPhase(EnderDragonPhaseType phase);
 
 }
