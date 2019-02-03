@@ -32,8 +32,7 @@ public interface ContextSource {
     /**
      * Returns the context most relevant to this object.
      *
-     * <p>This context may be the same across multiple invocations (but may not,
-     * so don't count on this being true).</p>
+     * <p>This context may or may not be the same across multiple invocations.</p>
      *
      * @return A given context
      */
