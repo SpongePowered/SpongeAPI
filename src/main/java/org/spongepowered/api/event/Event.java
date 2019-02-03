@@ -48,10 +48,7 @@ public interface Event {
      * of getCause as follows:
      *
      * Use-case: Getting the Player (if any) responsible:
-     * Optional<Player> optPlayer = event.getCause().first(Player.class);
-     *
-     * In general the event.getCause() exposes access to the
-     * Iterable<Object> interface of a Cause reference.
+     * {@code Optional<Player> optPlayer = event.getCause().first(Player.class);}
      *
      * @return The cause
      */
