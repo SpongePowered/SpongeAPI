@@ -25,8 +25,6 @@
 package org.spongepowered.api.state;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.ImmutableDataHolder;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.BaseValue;
@@ -40,24 +38,24 @@ public interface State<S extends State<S>> extends ImmutableDataHolder<S>, Catal
 
     /**
      * Gets the {@link Comparable} value for the specific {@link StateProperty}
-     * such that if the {@link BlockState} does not support the
+     * such that if the {@link State} does not support the
      * {@link StateProperty}, {@link Optional#empty()} is returned.
      *
-     * @param stateProperty The block trait instance
-     * @param <T> The generic type of block trait
+     * @param stateProperty The state property
+     * @param <T> The generic type of state property
      * @return The comparable value, if available and compatible
      */
-    <T extends Comparable<T>> Optional<T> getPropertyValue(StateProperty<T> stateProperty);
+    <T extends Comparable<T>> Optional<T> getStatePropertyValue(StateProperty<T> stateProperty);
 
     /**
      * Attempts to retrieve the {@link StateProperty} instance associated with
-     * this {@link BlockState}s {@link BlockType} by string id. If there is no
+     * this {@link State}s {@link StateContainer} by string id. If there is no
      * {@link StateProperty} available, {@link Optional#empty()} is returned.
      *
-     * @param statePropertyId The block trait id
-     * @return The block trait, if available
+     * @param statePropertyId The state property id
+     * @return The state property, if available
      */
-    Optional<StateProperty<?>> getProperty(String statePropertyId);
+    Optional<StateProperty<?>> getStateProperty(String statePropertyId);
 
     /**
      * Gets the {@link State} with the appropriate value for the given
@@ -69,9 +67,9 @@ public interface State<S extends State<S>> extends ImmutableDataHolder<S>, Catal
      *
      * @param stateProperty The state property
      * @param value The value
-     * @return The state container, if the trait and value are supported
+     * @return The state, if the state property and value are supported
      */
-    <T extends Comparable<T>, V extends T> Optional<S> withProperty(StateProperty<?> stateProperty, V value);
+    <T extends Comparable<T>, V extends T> Optional<S> withStateProperty(StateProperty<T> stateProperty, V value);
 
     /**
      * Cycles to the next possible value of the {@link StateProperty} and returns
@@ -81,7 +79,7 @@ public interface State<S extends State<S>> extends ImmutableDataHolder<S>, Catal
      * @param stateProperty The state property
      * @return The cycled state if successful
      */
-    <T extends Comparable<T>> Optional<S> cycleProperty(StateProperty<T> stateProperty);
+    <T extends Comparable<T>> Optional<S> cycleStateProperty(StateProperty<T> stateProperty);
 
     /**
      * Cycles to the next possible value of the {@link Key} and returns
@@ -95,27 +93,25 @@ public interface State<S extends State<S>> extends ImmutableDataHolder<S>, Catal
 
     /**
      * Gets an immutable {@link Collection} of all applicable
-     * {@link StateProperty}s for this {@link BlockState}.
+     * {@link StateProperty}s for this {@link State}.
      *
-     * @return An immutable collection of all applicable block traits
+     * @return An immutable collection of all applicable state properties
      */
-    Collection<StateProperty<?>> getProperties();
+    Collection<StateProperty<?>> getStateProperties();
 
     /**
      * Gets an immutable {@link Collection} of all the values for all
-     * {@link StateProperty}s for this {@link BlockState}.
+     * {@link StateProperty}s for this {@link State}.
      *
-     * @return An immutable collection of all the values for all applicable
-     *     traits
+     * @return An immutable collection of all the values for all applicable properties
      */
-    Collection<?> getPropertyValues();
+    Collection<?> getStatePropertyValues();
 
     /**
      * Gets an immutable or unmodifiable {@link Map} of the known {@link StateProperty}s
-     * to their current values for this {@link BlockState}.
+     * to their current values for this {@link State}.
      *
-     * @return The immutable map of block traits to their values representing
-     *     this block state
+     * @return The immutable map of state properties to their values representing this state
      */
-    Map<StateProperty<?>, ?> getPropertyMap();
+    Map<StateProperty<?>, ?> getStatePropertyMap();
 }

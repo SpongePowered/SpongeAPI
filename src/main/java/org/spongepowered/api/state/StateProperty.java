@@ -25,8 +25,6 @@
 package org.spongepowered.api.state;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
 
 import java.util.Collection;
@@ -34,11 +32,11 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 /**
- * Represents a possible trait in a {@link BlockType}s {@link BlockState}.
+ * Represents a possible state property in a {@link StateContainer}s {@link State}.
  * 
- * <p>A {@link BlockState} can include zero or more {@link StateProperty}s. Each
- * {@link StateProperty} within a {@link BlockState} is mapped to a value which
- * represents the current value at the time the {@link BlockState} was taken.
+ * <p>A {@link State} can include zero or more {@link StateProperty}s. Each
+ * {@link StateProperty} within a {@link State} is mapped to a value which
+ * represents the current value at the time the {@link State} was taken.
  * </p>
  * 
  * <p>For example, a {@link BlockTypes#RED_BED} contains three possible
@@ -52,7 +50,7 @@ import java.util.function.Predicate;
  *
  * <p>If you query a {@link BlockTypes#RED_BED}'s {@link StateProperty} you have two
  * possible outcomes for each {@link StateProperty}. The
- * {@link BooleanStateProperties#RED_BED_OCCUPIED} has the following possible values :</p>
+ * {@link BooleanStateProperties#RED_BED_OCCUPIED} has the following possible values:</p>
  * 
  * <ul>
  *     <li><code>true</code></li>
@@ -61,7 +59,7 @@ import java.util.function.Predicate;
  *
  * <p>As 'OCCUPIED' is a {@link BooleanStateProperty}, it can only be <code>true</code>
  * or <code>false</code>.
- * The {@link EnumStateProperties#RED_BED_PART} has the following possible values :</p>
+ * The {@link EnumStateProperties#RED_BED_PART} has the following possible values:</p>
  * 
  * <ul>
  *     <li><code>HEAD</code></li>
@@ -69,21 +67,19 @@ import java.util.function.Predicate;
  * </ul>
  * 
  * <p>To determine the current value of a {@link StateProperty}, you would call
- * {@link State#getPropertyValue(StateProperty)}. To determine all possible
+ * {@link State#getStatePropertyValue(StateProperty)}. To determine all possible
  * values of a {@link StateProperty}, you would call
- * {@link BlockType#getTraits()}.</p>
+ * {@link State#getStateProperties()}.</p>
  *
- * <p>As stated above, a {@link BlockType} may not always have one or more
- * {@link StateProperty}s. An example of such a block is
- * {@link BlockTypes#BOOKSHELF}.</p>
- *
+ * <p>As stated above, a {@link StateContainer} may not always have one or more
+ * {@link StateProperty}s. An example of such a block is {@link BlockTypes#BOOKSHELF}.</p>
  */
 public interface StateProperty<T extends Comparable<T>> extends CatalogType {
 
     /**
      * Gets the name of this {@link StateProperty}.
      *
-     * @return The trait name
+     * @return The property name
      */
     @Override
     String getName();
@@ -115,7 +111,8 @@ public interface StateProperty<T extends Comparable<T>> extends CatalogType {
     Predicate<T> getPredicate();
 
     /**
-     * Attempts to parse the provided value as a value dictated possible by this trait or {@link Optional#empty()} otherwise.
+     * Attempts to parse the provided value as a value dictated possible by
+     * this state property or {@link Optional#empty()} otherwise.
      *
      * @param value The value to parse
      * @return The actual value
