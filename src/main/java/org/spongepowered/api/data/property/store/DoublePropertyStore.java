@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.data.property.store;
 
+import org.spongepowered.api.data.property.DirectionRelativePropertyHolder;
 import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.util.Direction;
-import org.spongepowered.api.world.Location;
 
 import java.util.Optional;
 import java.util.OptionalDouble;
@@ -47,16 +47,16 @@ public interface DoublePropertyStore extends PropertyStore<Double> {
     OptionalDouble getDoubleFor(PropertyHolder propertyHolder);
 
     /**
-     * Gets the desired property value for the provided {@link Location} and
-     * {@link Direction} at present time. A property may not be the same throughout
+     * Gets the desired property value for the provided {@link DirectionRelativePropertyHolder}
+     * and {@link Direction} at present time. A property may not be the same throughout
      * the course of the lifetime of the {@link PropertyHolder}.
      *
-     * @param location The location
+     * @param propertyHolder The direction relative property holder
      * @param direction The direction
      * @return The property value
      */
-    default OptionalDouble getDoubleFor(Location location, Direction direction) {
-        return getDoubleFor(location);
+    default OptionalDouble getDoubleFor(DirectionRelativePropertyHolder propertyHolder, Direction direction) {
+        return propertyHolder instanceof PropertyHolder ? getDoubleFor((PropertyHolder) propertyHolder) : OptionalDouble.empty();
     }
 
     @Override
@@ -66,8 +66,8 @@ public interface DoublePropertyStore extends PropertyStore<Double> {
     }
 
     @Override
-    default Optional<Double> getFor(Location location, Direction direction) {
-        final OptionalDouble optionalDouble = getDoubleFor(location, direction);
+    default Optional<Double> getFor(DirectionRelativePropertyHolder propertyHolder, Direction direction) {
+        final OptionalDouble optionalDouble = getDoubleFor(propertyHolder, direction);
         return optionalDouble.isPresent() ? Optional.of(optionalDouble.getAsDouble()) : Optional.empty();
     }
 }

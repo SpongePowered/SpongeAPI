@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.data.property.store;
 
+import org.spongepowered.api.data.property.DirectionRelativePropertyHolder;
 import org.spongepowered.api.data.property.Property;
 import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.util.Direction;
-import org.spongepowered.api.world.Location;
 
 import java.util.Optional;
 
@@ -53,15 +53,15 @@ public interface PropertyStore<V> {
     Optional<V> getFor(PropertyHolder propertyHolder);
 
     /**
-     * Gets the desired property value for the provided {@link Location} at present
-     * time, in relation to the provided {@link Direction}.
+     * Gets the desired property value for the provided {@link DirectionRelativePropertyHolder}
+     * at present time, in relation to the provided {@link Direction}.
      *
-     * @param location The location of the block
+     * @param propertyHolder The direction relative property holder
      * @param direction The direction in relation to
      * @return The property value
      */
-    default Optional<V> getFor(Location location, Direction direction) {
-        return getFor(location);
+    default Optional<V> getFor(DirectionRelativePropertyHolder propertyHolder, Direction direction) {
+        return propertyHolder instanceof PropertyHolder ? getFor((PropertyHolder) propertyHolder) : Optional.empty();
     }
 
     /**

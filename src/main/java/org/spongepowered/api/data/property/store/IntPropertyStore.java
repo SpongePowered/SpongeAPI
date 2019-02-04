@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.data.property.store;
 
+import org.spongepowered.api.data.property.DirectionRelativePropertyHolder;
 import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.util.Direction;
-import org.spongepowered.api.world.Location;
 
 import java.util.Optional;
 import java.util.OptionalInt;
@@ -47,16 +47,16 @@ public interface IntPropertyStore extends PropertyStore<Integer> {
     OptionalInt getIntFor(PropertyHolder propertyHolder);
 
     /**
-     * Gets the desired property value for the provided {@link Location} and
-     * {@link Direction} at present time. A property may not be the same throughout
+     * Gets the desired property value for the provided {@link DirectionRelativePropertyHolder}
+     * and {@link Direction} at present time. A property may not be the same throughout
      * the course of the lifetime of the {@link PropertyHolder}.
      *
-     * @param location The location
+     * @param propertyHolder The direction relative property holder
      * @param direction The direction
      * @return The property value
      */
-    default OptionalInt getIntFor(Location location, Direction direction) {
-        return getIntFor(location);
+    default OptionalInt getIntFor(DirectionRelativePropertyHolder propertyHolder, Direction direction) {
+        return propertyHolder instanceof PropertyHolder ? getIntFor((PropertyHolder) propertyHolder) : OptionalInt.empty();
     }
 
     @Override
@@ -66,8 +66,8 @@ public interface IntPropertyStore extends PropertyStore<Integer> {
     }
 
     @Override
-    default Optional<Integer> getFor(Location location, Direction direction) {
-        final OptionalInt optionalInt = getIntFor(location, direction);
+    default Optional<Integer> getFor(DirectionRelativePropertyHolder propertyHolder, Direction direction) {
+        final OptionalInt optionalInt = getIntFor(propertyHolder, direction);
         return optionalInt.isPresent() ? Optional.of(optionalInt.getAsInt()) : Optional.empty();
     }
 }

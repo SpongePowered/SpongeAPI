@@ -56,7 +56,9 @@ public interface PropertyHolder {
      * @return The integer property value, if available
      * @see #getProperty(Property)
      */
-    OptionalInt getIntProperty(Property<Integer> property);
+    default OptionalInt getIntProperty(Property<Integer> property) {
+        return getProperty(property).map(OptionalInt::of).orElse(OptionalInt.empty());
+    }
 
     /**
      * Attempts to retrieve a double value for the specified int {@link Property}. If
@@ -66,7 +68,9 @@ public interface PropertyHolder {
      * @return The double property value, if available
      * @see #getProperty(Property)
      */
-    OptionalDouble getDoubleProperty(Property<Double> property);
+    default OptionalDouble getDoubleProperty(Property<Double> property) {
+        return getProperty(property).map(OptionalDouble::of).orElse(OptionalDouble.empty());
+    }
 
     /**
      * Gets an immutable map of all known {@link Property}s that
