@@ -28,7 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColor;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.Optional;
 import java.util.Set;
@@ -279,7 +279,7 @@ public interface Team {
     /**
      * Represents a builder tp create {@link Team} instances.
      */
-    interface Builder extends ResettableBuilder<Team, Builder> {
+    interface Builder extends CopyableBuilder<Team, Builder> {
 
         /**
          * Sets the name of the {@link Team}.

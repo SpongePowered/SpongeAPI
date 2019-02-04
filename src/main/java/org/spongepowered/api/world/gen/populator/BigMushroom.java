@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.gen.populator;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.util.weighted.WeightedTable;
 import org.spongepowered.api.world.Location;
@@ -126,7 +126,7 @@ public interface BigMushroom extends Populator {
     /**
      * A builder for constructing {@link BigMushroom} populators.
      */
-    interface Builder extends ResettableBuilder<BigMushroom, Builder> {
+    interface Builder extends CopyableBuilder<BigMushroom, Builder> {
 
         /**
          * Sets the weighted {@link PopulatorObject}s to select from during

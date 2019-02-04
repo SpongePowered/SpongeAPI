@@ -144,15 +144,6 @@ public interface Key<V extends BaseValue<?>> extends CatalogType {
          */
         @Override
         Key<V> build();
-
-        /**
-         * @deprecated It's not allowed to duplicate keys.
-         */
-        @Deprecated
-        @Override
-        default Builder<E, V> from(Key<V> value) {
-            throw new UnsupportedOperationException("Duplicating keys isn't allowed.");
-        }
     }
 
 }

@@ -28,7 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 import java.util.List;
@@ -111,7 +111,7 @@ public interface Ingredient extends Predicate<ItemStack> {
     /**
      * Builder for {@link Ingredient}s.
      */
-    interface Builder extends ResettableBuilder<Ingredient, Builder> {
+    interface Builder extends CopyableBuilder<Ingredient, Builder> {
 
         /**
          * Adds a predicate for matching the ingredient.

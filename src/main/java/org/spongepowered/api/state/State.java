@@ -45,7 +45,7 @@ public interface State<S extends State<S>> extends ImmutableDataHolder<S>, Catal
      * @param <T> The generic type of state property
      * @return The comparable value, if available and compatible
      */
-    <T extends Comparable<T>> Optional<T> getStatePropertyValue(StateProperty<T> stateProperty);
+    <T extends Comparable<T>> Optional<T> getStateProperty(StateProperty<T> stateProperty);
 
     /**
      * Attempts to retrieve the {@link StateProperty} instance associated with
@@ -55,7 +55,7 @@ public interface State<S extends State<S>> extends ImmutableDataHolder<S>, Catal
      * @param statePropertyId The state property id
      * @return The state property, if available
      */
-    Optional<StateProperty<?>> getStateProperty(String statePropertyId);
+    Optional<StateProperty<?>> getStatePropertyByName(String statePropertyId);
 
     /**
      * Gets the {@link State} with the appropriate value for the given

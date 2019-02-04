@@ -45,6 +45,7 @@ import org.spongepowered.api.text.TextFactory;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.selector.SelectorFactory;
 import org.spongepowered.api.text.translation.Translation;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.rotation.Rotation;
 
@@ -190,7 +191,7 @@ public interface GameRegistry {
     GameRegistry registerModule(RegistryModule module) throws RegistryModuleAlreadyRegisteredException;
 
     /**
-     * Registers a {@link Supplier} for creating the desired {@link ResettableBuilder}.
+     * Registers a {@link Supplier} for creating the desired {@link CopyableBuilder}.
      *
      * @param builderClass The builder class
      * @param supplier The supplier

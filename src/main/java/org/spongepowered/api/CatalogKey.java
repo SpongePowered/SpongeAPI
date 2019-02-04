@@ -29,7 +29,7 @@ import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.persistence.DataTranslator;
 import org.spongepowered.api.plugin.PluginContainer;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 
 /**
  * An object representation of a location or pointer to a {@link CatalogType}
@@ -142,7 +142,7 @@ public interface CatalogKey extends Comparable<CatalogKey> {
     @Override
     int compareTo(CatalogKey o);
 
-    interface Builder extends ResettableBuilder<CatalogKey, Builder> {
+    interface Builder extends CopyableBuilder<CatalogKey, Builder> {
 
         Builder namespace(String namespace);
 

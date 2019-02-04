@@ -27,7 +27,7 @@ package org.spongepowered.api.event.cause;
 import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -57,7 +57,7 @@ public interface EventContextKey<T> extends CatalogType {
      */
     Class<T> getAllowedType();
 
-    interface Builder<T> extends ResettableBuilder<EventContextKey<T>, Builder<T>> {
+    interface Builder<T> extends CopyableBuilder<EventContextKey<T>, Builder<T>> {
 
         Builder<T> type(Class<T> tClass);
 

@@ -26,7 +26,7 @@ package org.spongepowered.api.world.gen.populator;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.util.weighted.WeightedTable;
 import org.spongepowered.api.world.Location;
@@ -121,7 +121,7 @@ public interface Plant extends Populator {
     /**
      * A builder for constructing {@link Plant} populators.
      */
-    interface Builder extends ResettableBuilder<Plant, Builder> {
+    interface Builder extends CopyableBuilder<Plant, Builder> {
 
         /**
          * Sets the number of flowers to attempt to spawn per chunk, must be

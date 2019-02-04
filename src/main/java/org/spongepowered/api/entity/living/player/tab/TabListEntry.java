@@ -30,7 +30,7 @@ import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.Optional;
 
@@ -155,7 +155,7 @@ public interface TabListEntry {
      *
      * @see TabListEntry
      */
-    interface Builder extends ResettableBuilder<TabListEntry, Builder> {
+    interface Builder extends CopyableBuilder<TabListEntry, Builder> {
 
         /**
          * Sets the {@link TabList} this entry is owned by.

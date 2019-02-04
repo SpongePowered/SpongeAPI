@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.gen.populator;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.world.gen.Populator;
 
@@ -72,7 +72,7 @@ public interface DeadBush extends Populator {
     /**
      * A builder for constructing {@link DeadBush} populators.
      */
-    interface Builder extends ResettableBuilder<DeadBush, Builder> {
+    interface Builder extends CopyableBuilder<DeadBush, Builder> {
 
         /**
          * Sets the number of bushes to attempt to spawn per chunk, must be

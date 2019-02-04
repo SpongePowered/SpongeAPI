@@ -26,7 +26,7 @@ package org.spongepowered.api.world.gen.populator;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.world.gen.Populator;
 
@@ -132,7 +132,7 @@ public interface EndIsland extends Populator {
     /**
      * A builder for constructing {@link EndIsland} populators.
      */
-    interface Builder extends ResettableBuilder<EndIsland, Builder> {
+    interface Builder extends CopyableBuilder<EndIsland, Builder> {
 
         /**
          * Sets the initial starting radius range of the island.

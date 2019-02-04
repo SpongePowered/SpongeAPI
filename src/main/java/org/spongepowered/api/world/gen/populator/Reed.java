@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.gen.populator;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.world.gen.Populator;
 
@@ -87,7 +87,7 @@ public interface Reed extends Populator {
     /**
      * A builder for constructing {@link Reed} populators.
      */
-    interface Builder extends ResettableBuilder<Reed, Builder> {
+    interface Builder extends CopyableBuilder<Reed, Builder> {
 
         /**
          * Sets the number of reeds to attempt to spawn per chunk, must be

@@ -27,10 +27,9 @@ package org.spongepowered.api.world.gen.populator;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.gen.Populator;
 
 import java.util.function.Predicate;
@@ -123,7 +122,7 @@ public interface RandomBlock extends Populator {
     /**
      * A builder for constructing {@link RandomBlock} populators.
      */
-    interface Builder extends ResettableBuilder<RandomBlock, Builder> {
+    interface Builder extends CopyableBuilder<RandomBlock, Builder> {
 
         /**
          * Sets the {@link BlockState} that this populator will randomly

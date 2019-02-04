@@ -39,7 +39,7 @@ import org.spongepowered.api.text.format.TextStyle;
 import org.spongepowered.api.text.selector.Selector;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.text.translation.Translation;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -544,7 +544,7 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
      *
      * @see Text
      */
-    interface Builder extends ResettableBuilder<Text, Builder>, TextRepresentable {
+    interface Builder extends CopyableBuilder<Text, Builder>, TextRepresentable {
 
         /**
          * Returns the current format of the {@link Text} in this builder.

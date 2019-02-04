@@ -25,7 +25,7 @@
 package org.spongepowered.api.entity.ai.task;
 
 import org.spongepowered.api.entity.living.Agent;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 
 /**
  * A utility to assist in building {@link AITask}s.
@@ -34,7 +34,7 @@ import org.spongepowered.api.util.ResettableBuilder;
  * @param <A> The type of task
  * @param <B> The type of builder, self-referencing
  */
-public interface AITaskBuilder<O extends Agent, A extends AITask<O>, B extends AITaskBuilder<O, A, B>> extends ResettableBuilder<A, B> {
+public interface AITaskBuilder<O extends Agent, A extends AITask<O>, B extends AITaskBuilder<O, A, B>> extends CopyableBuilder<A, B> {
 
     /**
      * Builds the {@link AITask}.

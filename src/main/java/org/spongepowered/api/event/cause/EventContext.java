@@ -29,7 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -180,7 +180,7 @@ public final class EventContext {
         return "Context[" + joiner.toString() + "]";
     }
 
-    public static final class Builder implements ResettableBuilder<EventContext, Builder> {
+    public static final class Builder implements CopyableBuilder<EventContext, Builder> {
 
         private final Map<EventContextKey<?>, Object> entries = Maps.newHashMap();
 

@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.gen.populator;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.world.gen.Populator;
 
 /**
@@ -59,7 +59,7 @@ public interface Fossil extends Populator {
     /**
      * A builder for constructing {@link Fossil} populators.
      */
-    interface Builder extends ResettableBuilder<Fossil, Builder> {
+    interface Builder extends CopyableBuilder<Fossil, Builder> {
 
         /**
          * Sets the probability of a fossil spawning.

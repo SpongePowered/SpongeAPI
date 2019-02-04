@@ -26,7 +26,7 @@ package org.spongepowered.api.text.action;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 
 /**
  * Represents a {@link TextAction} that responds to shift-clicks.
@@ -57,7 +57,7 @@ public interface ShiftClickAction<R> extends TextAction<R> {
         /**
          * A builder for {@link InsertText} shift click actions.
          */
-        interface Builder extends ResettableBuilder<InsertText, Builder> {
+        interface Builder extends CopyableBuilder<InsertText, Builder> {
 
             /**
              * Sets the text to insert.

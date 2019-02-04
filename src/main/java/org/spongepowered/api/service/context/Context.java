@@ -51,6 +51,7 @@ import java.util.Map;
  * {@link Map.Entry} is not supported.</p>
  */
 public final class Context implements Map.Entry<String, String> {
+
     public static final String USER_KEY = "user";
     public static final String WORLD_KEY = "world";
     public static final String DIMENSION_KEY = "dimension";
@@ -91,33 +92,6 @@ public final class Context implements Map.Entry<String, String> {
     @Override
     public String getValue() {
         return this.wrapped.getValue();
-    }
-
-    /**
-     * Alias method for {@link #getKey()}.
-     *
-     * @return The type of the context
-     * @deprecated The presence of this method is misleading - the context
-     *             "type" is the same value as the "key". They are not separate
-     *             attributes, as the presence of two distinct methods would
-     *             otherwise suggest.
-     */
-    @Deprecated
-    public String getType() {
-        return getKey();
-    }
-
-    /**
-     * Alias method for {@link #getValue()}.
-     *
-     * @return The specific name of the item involved in this context
-     * @deprecated This method name is misleading - contexts only have a "key"
-     *             and "value". It is not immediately clear what "name" relates
-     *             to. (it could reasonably be either key or value)
-     */
-    @Deprecated
-    public String getName() {
-        return getValue();
     }
 
     @Override

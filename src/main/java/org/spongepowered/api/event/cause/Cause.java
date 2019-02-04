@@ -30,7 +30,7 @@ import static com.google.common.base.Preconditions.checkState;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -441,7 +441,7 @@ public final class Cause implements Iterable<Object> {
 
     }
 
-    public static final class Builder implements ResettableBuilder<Cause, Builder> {
+    public static final class Builder implements CopyableBuilder<Cause, Builder> {
 
         final List<Object> causes = new ArrayList<>();
 

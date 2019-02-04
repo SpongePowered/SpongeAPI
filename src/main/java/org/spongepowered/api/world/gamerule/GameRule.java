@@ -128,14 +128,5 @@ public interface GameRule<V> extends CatalogType {
          */
         @Override
         GameRule<V> build() throws IllegalStateException;
-
-        /**
-         * @deprecated It's not allowed to duplicate game rules.
-         */
-        @Deprecated
-        @Override
-        default Builder<V> from(GameRule<V> value) {
-            throw new UnsupportedOperationException("Duplicating game rules isn't allowed.");
-        }
     }
 }

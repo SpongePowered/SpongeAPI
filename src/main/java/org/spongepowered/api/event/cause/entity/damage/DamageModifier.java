@@ -35,7 +35,7 @@ import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.Optional;
 import java.util.function.DoubleUnaryOperator;
@@ -93,7 +93,7 @@ public interface DamageModifier {
      * A builder that creates {@link DamageModifier}s, for use in both plugin and
      * implementation requirements.
      */
-    final class Builder implements ResettableBuilder<DamageModifier, Builder> {
+    final class Builder implements CopyableBuilder<DamageModifier, Builder> {
 
         @Nullable DamageModifierType type;
         @Nullable Cause cause;

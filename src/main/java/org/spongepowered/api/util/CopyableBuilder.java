@@ -24,21 +24,14 @@
  */
 package org.spongepowered.api.util;
 
-/**
- * A common interface for all builder pattern types.
- *
- * @param <T> The type built by the builder
- * @param <B> The child builder type
- */
-public interface ResettableBuilder<T, B extends ResettableBuilder<T, B>> {
+public interface CopyableBuilder<T, B extends CopyableBuilder<T, B>> extends ResettableBuilder<T, B> {
 
     /**
-     * Resets this builder to a "default" state such that there is no
-     * remaining data to set. This is to be the presumed "default"
-     * state.
+     * Resets this builder to the values of the given built object.
      *
+     * @param value The built object
      * @return This builder, for chaining
      */
-    B reset();
+    B from(T value);
 
 }

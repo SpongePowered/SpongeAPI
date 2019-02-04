@@ -30,6 +30,7 @@ import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextRepresentable;
 import org.spongepowered.api.util.CatalogBuilder;
+import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Collection;
 import java.util.List;
@@ -142,15 +143,6 @@ public interface Advancement extends CatalogType, TextRepresentable {
          */
         @Override
         Builder name(String name);
-
-        /**
-         * @deprecated It's not allowed to duplicate advancements.
-         */
-        @Deprecated
-        @Override
-        default Builder from(Advancement value) {
-            throw new UnsupportedOperationException("Duplicating advancements isn't allowed.");
-        }
     }
 
 }

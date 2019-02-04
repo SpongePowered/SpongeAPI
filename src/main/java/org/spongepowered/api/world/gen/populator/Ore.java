@@ -26,7 +26,7 @@ package org.spongepowered.api.world.gen.populator;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.world.gen.Populator;
 
@@ -144,7 +144,7 @@ public interface Ore extends Populator {
     /**
      * A builder for constructing {@link Ore} populators.
      */
-    interface Builder extends ResettableBuilder<Ore, Builder> {
+    interface Builder extends CopyableBuilder<Ore, Builder> {
 
         /**
          * Sets the block to place as ore.

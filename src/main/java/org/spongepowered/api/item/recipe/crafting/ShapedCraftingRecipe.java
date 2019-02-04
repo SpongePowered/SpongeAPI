@@ -269,15 +269,6 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
              */
             @Override
             ShapedCraftingRecipe build() throws IllegalStateException;
-
-            /**
-             * @deprecated It's not allowed to duplicate shaped crafting recipes.
-             */
-            @Deprecated
-            @Override
-            default Builder from(ShapedCraftingRecipe value) {
-                throw new UnsupportedOperationException("Duplicating shaped crafting recipes isn't allowed.");
-            }
         }
     }
 

@@ -27,7 +27,7 @@ package org.spongepowered.api.text.action;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 
 import java.net.URL;
 import java.util.function.Consumer;
@@ -61,7 +61,7 @@ public interface ClickAction<R> extends TextAction<R> {
         /**
          * A builder for {@link OpenUrl} click actions.
          */
-        interface Builder extends ResettableBuilder<OpenUrl, Builder> {
+        interface Builder extends CopyableBuilder<OpenUrl, Builder> {
 
             /**
              * Sets the url to open.
@@ -97,7 +97,7 @@ public interface ClickAction<R> extends TextAction<R> {
         /**
          * A builder for {@link RunCommand} click actions.
          */
-        interface Builder extends ResettableBuilder<RunCommand, Builder> {
+        interface Builder extends CopyableBuilder<RunCommand, Builder> {
 
             /**
              * Sets the command to run.
@@ -133,7 +133,7 @@ public interface ClickAction<R> extends TextAction<R> {
         /**
          * A builder for {@link ChangePage} click actions.
          */
-        interface Builder extends ResettableBuilder<ChangePage, Builder> {
+        interface Builder extends CopyableBuilder<ChangePage, Builder> {
 
             /**
              * Sets the page to change to.
@@ -169,7 +169,7 @@ public interface ClickAction<R> extends TextAction<R> {
         /**
          * A builder for {@link SuggestCommand} click actions.
          */
-        interface Builder extends ResettableBuilder<SuggestCommand, Builder> {
+        interface Builder extends CopyableBuilder<SuggestCommand, Builder> {
 
             /**
              * Sets the command to suggest.
@@ -205,7 +205,7 @@ public interface ClickAction<R> extends TextAction<R> {
         /**
          * A builder for {@link ExecuteCallback} click actions.
          */
-        interface Builder extends ResettableBuilder<ExecuteCallback, Builder> {
+        interface Builder extends CopyableBuilder<ExecuteCallback, Builder> {
 
             /**
              * Sets the callback to execute.

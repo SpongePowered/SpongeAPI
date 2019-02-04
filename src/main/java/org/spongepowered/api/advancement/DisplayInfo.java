@@ -29,7 +29,7 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 
 public interface DisplayInfo {
 
@@ -101,7 +101,7 @@ public interface DisplayInfo {
     /**
      * A builder to create {@link DisplayInfo}s.
      */
-    interface Builder extends ResettableBuilder<DisplayInfo, Builder> {
+    interface Builder extends CopyableBuilder<DisplayInfo, Builder> {
 
         /**
          * Sets the {@link AdvancementType}. Defaults

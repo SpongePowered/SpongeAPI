@@ -92,15 +92,6 @@ public interface VirtualBiomeType extends BiomeType {
          * @return This builder, for chaining
          */
         Builder settingsBuilder(Function<World, BiomeGenerationSettings> settingsBuilder);
-
-        /**
-         * @deprecated It's not allowed to duplicate virtual biome types.
-         */
-        @Deprecated
-        @Override
-        default Builder from(VirtualBiomeType value) {
-            throw new UnsupportedOperationException("Duplicating virtual biome types isn't allowed.");
-        }
     }
 
 }

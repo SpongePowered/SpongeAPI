@@ -26,7 +26,7 @@ package org.spongepowered.api.world.schematic;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataView;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.world.volume.archetype.ArchetypeVolume;
 import org.spongepowered.api.world.volume.archetype.ArchetypeVolumeCreator;
 import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
@@ -69,7 +69,7 @@ public interface Schematic extends ArchetypeVolume {
     /**
      * A builder for {@link Schematic}s.
      */
-    interface Builder extends ResettableBuilder<Schematic, Builder> {
+    interface Builder extends CopyableBuilder<Schematic, Builder> {
 
         /**
          * Specifies an archetype volume for the world data of the schematic.

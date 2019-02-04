@@ -28,7 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextFormat;
 import org.spongepowered.api.text.format.TextStyle;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.List;
 import java.util.Map;
@@ -241,7 +241,7 @@ public interface TextTemplate extends Iterable<Object>, TextRepresentable {
         /**
          * Represents a builder for {@link Arg}s.
          */
-        interface Builder extends ResettableBuilder<Arg, Builder> {
+        interface Builder extends CopyableBuilder<Arg, Builder> {
 
             /**
              * Sets the name of this arg.

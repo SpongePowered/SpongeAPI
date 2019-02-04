@@ -27,7 +27,7 @@ package org.spongepowered.api.item.inventory.transaction;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.List;
 
@@ -139,7 +139,7 @@ public interface InventoryTransactionResult {
      */
     List<SlotTransaction> getSlotTransactions();
 
-    interface Builder extends ResettableBuilder<InventoryTransactionResult, Builder> {
+    interface Builder extends CopyableBuilder<InventoryTransactionResult, Builder> {
 
         /**
          * Sets the {@link Type} of transaction result being built.

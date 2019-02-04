@@ -199,15 +199,6 @@ public interface SmeltingRecipe extends Recipe {
              */
             @Override
             SmeltingRecipe build() throws IllegalStateException;
-
-            /**
-             * @deprecated It's not allowed to duplicate smelting recipes.
-             */
-            @Deprecated
-            @Override
-            default Builder from(SmeltingRecipe value) {
-                throw new UnsupportedOperationException("Duplicating smelting recipes isn't allowed.");
-            }
         }
     }
 }

@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.gen.populator;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.gen.PopulatorObject;
@@ -121,7 +121,7 @@ public interface RandomObject extends Populator {
     /**
      * A builder for constructing {@link RandomBlock} populators.
      */
-    interface Builder extends ResettableBuilder<RandomObject, Builder> {
+    interface Builder extends CopyableBuilder<RandomObject, Builder> {
 
         /**
          * Sets the number of fires to attempt to spawn per chunk, must be

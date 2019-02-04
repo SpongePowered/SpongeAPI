@@ -174,14 +174,5 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
          */
         @Override
         DataRegistration<T, I> build();
-
-        /**
-         * @deprecated It's not allowed to duplicate data registrations.
-         */
-        @Deprecated
-        @Override
-        default Builder<T, I> from(DataRegistration<T, I> value) {
-            throw new UnsupportedOperationException("Duplicating data registrations isn't allowed.");
-        }
     }
 }

@@ -31,7 +31,7 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextRepresentable;
 import org.spongepowered.api.util.Identifiable;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -67,7 +67,7 @@ public interface HoverAction<R> extends TextAction<R>, TextRepresentable {
         /**
          * A builder for {@link ShowText} hover actions.
          */
-        interface Builder extends ResettableBuilder<ShowText, Builder> {
+        interface Builder extends CopyableBuilder<ShowText, Builder> {
 
             /**
              * Sets the text to show.
@@ -103,7 +103,7 @@ public interface HoverAction<R> extends TextAction<R>, TextRepresentable {
         /**
          * A builder for {@link ShowItem} hover actions.
          */
-        interface Builder extends ResettableBuilder<ShowItem, Builder> {
+        interface Builder extends CopyableBuilder<ShowItem, Builder> {
 
             /**
              * Sets the stack to show.
@@ -139,7 +139,7 @@ public interface HoverAction<R> extends TextAction<R>, TextRepresentable {
         /**
          * A builder for {@link ShowEntity} hover actions.
          */
-        interface Builder extends ResettableBuilder<ShowEntity, Builder> {
+        interface Builder extends CopyableBuilder<ShowEntity, Builder> {
 
             /**
              * Sets the entity to show.
@@ -206,7 +206,7 @@ public interface HoverAction<R> extends TextAction<R>, TextRepresentable {
             /**
              * A {@link Ref} builder.
              */
-            interface Builder extends ResettableBuilder<Ref, Builder> {
+            interface Builder extends CopyableBuilder<Ref, Builder> {
 
                 /**
                  * Sets the entity unique id.

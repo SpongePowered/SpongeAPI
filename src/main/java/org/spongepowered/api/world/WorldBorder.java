@@ -26,7 +26,7 @@ package org.spongepowered.api.world;
 
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.world.chunk.ChunkPreGenerate;
 
 import java.time.Duration;
@@ -284,7 +284,7 @@ public interface WorldBorder {
         setWarningTime(border.getWarningTime());
     }
 
-    interface Builder extends ResettableBuilder<WorldBorder, Builder> {
+    interface Builder extends CopyableBuilder<WorldBorder, Builder> {
 
         /**
          * Copies the required data from the passed {@code WorldBorder}.

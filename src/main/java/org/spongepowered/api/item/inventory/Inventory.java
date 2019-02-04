@@ -37,7 +37,7 @@ import org.spongepowered.api.item.inventory.slot.SlotIndex;
 import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult;
 import org.spongepowered.api.item.inventory.type.ViewableInventory;
 import org.spongepowered.api.plugin.PluginContainer;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.List;
 import java.util.Optional;
@@ -521,7 +521,7 @@ public interface Inventory extends Nameable, PropertyHolder {
     /**
      * A Builder for Inventories based on {@link InventoryArchetype}s.
      */
-    interface Builder extends ResettableBuilder<Inventory, Builder> {
+    interface Builder extends CopyableBuilder<Inventory, Builder> {
 
         /**
          * Sets the base {@link InventoryArchetype} for the Inventory.

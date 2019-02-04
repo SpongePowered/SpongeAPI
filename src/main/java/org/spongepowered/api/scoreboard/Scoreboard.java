@@ -30,7 +30,7 @@ import org.spongepowered.api.scoreboard.critieria.Criterion;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.Objective;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.List;
 import java.util.Optional;
@@ -195,7 +195,7 @@ public interface Scoreboard {
     /**
      * Represents a builder to create {@link Scoreboard} instances.
      */
-    interface Builder extends ResettableBuilder<Scoreboard, Builder> {
+    interface Builder extends CopyableBuilder<Scoreboard, Builder> {
 
         /**
          * Sets the list of {@link Objective}s of the {@link Scoreboard}.

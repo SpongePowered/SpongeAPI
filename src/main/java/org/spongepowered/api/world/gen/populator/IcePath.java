@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.gen.populator;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.world.gen.Populator;
 
@@ -95,7 +95,7 @@ public interface IcePath extends Populator {
     /**
      * A builder for constructing {@link IcePath} populators.
      */
-    interface Builder extends ResettableBuilder<IcePath, Builder> {
+    interface Builder extends CopyableBuilder<IcePath, Builder> {
 
         /**
          * Sets the radius of the path to spawn, cannot be negative.

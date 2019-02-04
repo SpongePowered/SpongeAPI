@@ -27,7 +27,7 @@ package org.spongepowered.api.text.selector;
 import static org.spongepowered.api.text.selector.ArgumentTypes.getFactory;
 
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.Location;
 
@@ -191,7 +191,7 @@ public interface Selector {
      */
     Builder toBuilder();
 
-    interface Builder extends ResettableBuilder<Selector, Builder> {
+    interface Builder extends CopyableBuilder<Selector, Builder> {
 
         /**
          * Sets the type of this selector.

@@ -29,7 +29,7 @@ import org.slf4j.Logger;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.event.world.ChunkPreGenerationEvent;
 import org.spongepowered.api.scheduler.Scheduler;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.TemporalUnits;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldBorder;
@@ -110,7 +110,7 @@ public interface ChunkPreGenerate {
      * @see WorldBorder#newChunkPreGenerate(World)
      * @see World#newChunkPreGenerate(Vector3d, double)
      */
-    interface Builder extends ResettableBuilder<ChunkPreGenerate, Builder> {
+    interface Builder extends CopyableBuilder<ChunkPreGenerate, Builder> {
 
         /**
          * Sets the owner of the resulting task.

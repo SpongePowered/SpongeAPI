@@ -27,7 +27,7 @@ package org.spongepowered.api.advancement.criteria;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.Advancement;
 import org.spongepowered.api.advancement.criteria.trigger.FilteredTrigger;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 import java.util.Optional;
@@ -136,7 +136,7 @@ public interface AdvancementCriterion {
     /**
      * A base builder to create {@link AdvancementCriterion}s.
      */
-    interface BaseBuilder<T extends AdvancementCriterion, B extends BaseBuilder<T, B>> extends ResettableBuilder<T, B> {
+    interface BaseBuilder<T extends AdvancementCriterion, B extends BaseBuilder<T, B>> extends CopyableBuilder<T, B> {
 
         /**
          * Sets the {@link FilteredTrigger}.

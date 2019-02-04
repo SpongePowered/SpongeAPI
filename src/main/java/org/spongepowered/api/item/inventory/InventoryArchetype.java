@@ -31,6 +31,7 @@ import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.CatalogBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.List;
@@ -60,7 +61,7 @@ public interface InventoryArchetype extends CatalogType, PropertyHolder {
      * <p>Compositions of multiple base {@link InventoryArchetypes} are
      * possible.</p>
      */
-    interface Builder extends CatalogBuilder<InventoryArchetype, Builder> {
+    interface Builder extends CatalogBuilder<InventoryArchetype, Builder>, CopyableBuilder<InventoryArchetype, Builder> {
 
         /**
          * Adds a {@link InventoryProperties#TITLE} to this Archetype.

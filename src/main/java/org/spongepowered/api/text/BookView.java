@@ -28,7 +28,7 @@ import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.Collection;
 
@@ -73,7 +73,7 @@ public interface BookView extends DataSerializable {
     /**
      * Builder class to assist in creation of a new {@link BookView}.
      */
-    interface Builder extends ResettableBuilder<BookView, Builder> {
+    interface Builder extends CopyableBuilder<BookView, Builder> {
 
         /**
          * Sets the title of the {@link BookView}.

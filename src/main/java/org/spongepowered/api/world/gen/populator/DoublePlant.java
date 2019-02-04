@@ -26,7 +26,7 @@ package org.spongepowered.api.world.gen.populator;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.util.weighted.WeightedTable;
 import org.spongepowered.api.world.Location;
@@ -122,7 +122,7 @@ public interface DoublePlant extends Populator {
     /**
      * A builder for constructing {@link DoublePlant} populators.
      */
-    interface Builder extends ResettableBuilder<DoublePlant, Builder> {
+    interface Builder extends CopyableBuilder<DoublePlant, Builder> {
 
         /**
          * Sets which plant types may be spawned in by this populator.
