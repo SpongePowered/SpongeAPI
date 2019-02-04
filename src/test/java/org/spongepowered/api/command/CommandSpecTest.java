@@ -25,15 +25,18 @@
 package org.spongepowered.api.command;
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.spongepowered.api.command.args.CommandContext;
 import org.spongepowered.api.command.dispatcher.SimpleDispatcher;
 import org.spongepowered.api.command.spec.CommandExecutor;
 import org.spongepowered.api.command.spec.CommandSpec;
+import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.util.test.TestHooks;
 
 /**
@@ -46,7 +49,14 @@ public class CommandSpecTest {
     @Test
     public void testNoArgsFunctional() throws CommandException, NoSuchFieldException, IllegalAccessException {
         CommandManager cm = mock(CommandManager.class);
+        CauseStackManager csm = mock(CauseStackManager.class);
+        CauseStackManager.StackFrame frame = mock(CauseStackManager.StackFrame.class);
+
+        when(csm.pushCauseFrame()).thenReturn(frame);
+        when(csm.pushCause(ArgumentMatchers.any())).thenReturn(csm);
+        when(frame.pushCause(ArgumentMatchers.any())).thenReturn(frame);
         TestHooks.setInstance("commandManager", cm);
+        TestHooks.setInstance("causeStackManager", csm);
 
         CommandSpec cmd = CommandSpec.builder()
                 .executor((src, args) -> CommandResult.empty())
