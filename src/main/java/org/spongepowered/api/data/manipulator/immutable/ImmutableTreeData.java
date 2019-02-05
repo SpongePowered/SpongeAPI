@@ -22,43 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable;
+package org.spongepowered.api.data.manipulator.immutable;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.ImmutableSizeData;
-import org.spongepowered.api.data.value.BoundedValue;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.data.manipulator.mutable.TreeData;
+import org.spongepowered.api.data.type.TreeType;
+import org.spongepowered.api.entity.vehicle.Boat;
 
 /**
- * Represents the base and height sizes of an entity if it has physical
- * form. Usually applies to all types of {@link Entity}.
+ * An {@link ImmutableVariantData} for the {@link TreeType}. The main use for
+ * this type is for a visual difference in the types {@link Boat}s.
+ *
+ * @see Keys#TREE_TYPE
  */
-public interface SizeData extends DataManipulator<SizeData, ImmutableSizeData> {
-
-    /**
-     * Gets the current x/z size of this entity.
-     *
-     * @return The width of this entity
-     * @see Keys#BASE_SIZE
-     */
-    Value.Mutable<Float> base();
-
-    /**
-     * Gets the current y height of this entity.
-     *
-     * @return The current y height
-     * @see Keys#HEIGHT
-     */
-    Value.Mutable<Float> height();
-
-    /**
-     * Gets the {@link BoundedValue.Mutable} for the "scale" size.
-     *
-     * @return The value for the scale
-     * @see Keys#SCALE
-     */
-    BoundedValue.Mutable<Float> scale();
+public interface ImmutableTreeData extends ImmutableVariantData<TreeType, ImmutableTreeData, TreeData> {
 
 }

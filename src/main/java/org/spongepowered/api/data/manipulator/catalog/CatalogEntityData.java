@@ -358,7 +358,7 @@ public final class CatalogEntityData {
      * Represents the base and height sizes of an entity if it has physical
      * form. Usually applies to all types of {@link Entity}.
      */
-    public static final Class<SizeData> SIZE_DATA = SizeData.class;
+    public static final Class<EntitySizeData> ENTITY_SIZE_DATA = EntitySizeData.class;
     /**
      * Signifies that the owner is currently "sleeping". This will usually
      * apply to {@link Humanoid}s and {@link Bat}s.

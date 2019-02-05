@@ -22,41 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable;
+package org.spongepowered.api.data.manipulator.mutable;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.SizeData;
-import org.spongepowered.api.data.value.BoundedValue;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableTreeData;
+import org.spongepowered.api.data.type.TreeType;
+import org.spongepowered.api.entity.vehicle.Boat;
 
 /**
- * An {@link ImmutableDataManipulator} for the bounding box of an
- * {@link Entity}. Usually the bounding box is not modifiable, but the base,
- * height, and "scale" is always known. The bounding box is axis aligned.
+ * An {@link VariantData} for the {@link TreeType}. The main use for this type
+ * is for a visual difference in the types of {@link Boat}s.
+ *
+ * @see Keys#TREE_TYPE
  */
-public interface ImmutableSizeData extends ImmutableDataManipulator<ImmutableSizeData, SizeData> {
-
-    /**
-     * Gets the {@link Value.Immutable} for the "base" size.
-     *
-     * @return The immutable value for the base
-     */
-    Value.Immutable<Float> base();
-
-    /**
-     * Gets the {@link Value.Immutable} for the "height" size.
-     *
-     * @return The immutable value for the height
-     */
-    Value.Immutable<Float> height();
-
-
-    /**
-     * Gets the {@link Value.Immutable} for the "scale" size.
-     *
-     * @return The immutable value for the scale
-     */
-    BoundedValue.Immutable<Float> scale();
+public interface TreeData extends VariantData<TreeType, TreeData, ImmutableTreeData> {
 
 }

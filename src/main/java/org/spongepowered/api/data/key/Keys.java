@@ -38,6 +38,7 @@ import org.spongepowered.api.data.value.*;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.effect.potion.PotionEffectType;
+import org.spongepowered.api.entity.vehicle.Boat;
 import org.spongepowered.api.item.potion.PotionType;
 import org.spongepowered.api.entity.*;
 import org.spongepowered.api.entity.explosive.Explosive;
@@ -335,7 +336,7 @@ public final class Keys {
      * <p>Together with {@link #HEIGHT} this defines the size of an
      * {@link Entity}.</p>
      *
-     * @see SizeData#base()
+     * @see EntitySizeData#base()
      */
     public static final Key<BoundedValue<Float>> BASE_SIZE = DummyObjectProvider.createExtendedFor(Key.class,"BASE_SIZE");
 
@@ -1024,7 +1025,7 @@ public final class Keys {
      * <p>Together with {@link #BASE_SIZE} this defines the size of an
      * {@link Entity}.</p>
      *
-     * @see SizeData#height()
+     * @see EntitySizeData#height()
      */
     public static final Key<BoundedValue<Float>> HEIGHT = DummyObjectProvider.createExtendedFor(Key.class,"HEIGHT");
 
@@ -1755,7 +1756,7 @@ public final class Keys {
      * Represents the {@link Key} for the "scale" for the size of an
      * {@link Entity}.
      *
-     * @see SizeData#scale()
+     * @see EntitySizeData#scale()
      */
     public static final Key<BoundedValue<Float>> SCALE = DummyObjectProvider.createExtendedFor(Key.class,"SCALE");
 
@@ -2081,6 +2082,14 @@ public final class Keys {
      * @see TradeOfferData#tradeOffers()
      */
     public static final Key<ListValue<TradeOffer>> TRADE_OFFERS = DummyObjectProvider.createExtendedFor(Key.class,"TRADE_OFFERS");
+
+    /**
+     * Represents the {@link Key} for representing the {@link TreeType}
+     * of a {@link Boat}.
+     *
+     * @see TreeData
+     */
+    public static final Key<Value<TreeType>> TREE_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"TREE_TYPE");
 
     /**
      * Represents the {@link Key} for whether an {@link ItemStack} is unbreakable.
