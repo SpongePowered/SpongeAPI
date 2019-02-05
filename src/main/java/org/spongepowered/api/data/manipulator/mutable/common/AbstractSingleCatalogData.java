@@ -44,11 +44,7 @@ public abstract class AbstractSingleCatalogData<T extends CatalogType, M extends
         extends AbstractSingleData<T, M, I> implements VariantData<T, M, I> {
 
     protected AbstractSingleCatalogData(Key<Value<T>> usedKey, T value) {
-        this(usedKey, value, value);
-    }
-
-    protected AbstractSingleCatalogData(Key<Value<T>> usedKey, T value, T defaultValue) {
-        super(usedKey, value, defaultValue);
+        super(usedKey, value);
     }
 
     @Override
@@ -59,7 +55,7 @@ public abstract class AbstractSingleCatalogData<T extends CatalogType, M extends
     @SuppressWarnings("unchecked")
     @Override
     public Value.Mutable<T> type() {
-        return Sponge.getRegistry().getValueFactory().createValue(this.usedKey, this.value, this.defaultValue);
+        return Sponge.getRegistry().getValueFactory().createValue(this.usedKey, this.value);
     }
 
     @Override

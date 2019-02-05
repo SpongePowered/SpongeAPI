@@ -44,13 +44,9 @@ public abstract class AbstractBooleanData<M extends DataManipulator<M, I>, I ext
         super(usedKey, value);
     }
 
-    protected AbstractBooleanData(Key<Value<Boolean>> usedKey, boolean value, boolean defaultValue) {
-        super(usedKey, value, defaultValue);
-    }
-
     @SuppressWarnings("unchecked")
     @Override
     protected Value.Mutable<Boolean> getValueGetter() {
-        return Sponge.getRegistry().getValueFactory().createValue(this.usedKey, this.value, this.defaultValue);
+        return Sponge.getRegistry().getValueFactory().createValue(this.usedKey, this.value);
     }
 }

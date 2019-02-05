@@ -49,15 +49,9 @@ public abstract class AbstractImmutableSingleData<T, I extends ImmutableDataMani
 
     protected final Key<? extends Value<T>> usedKey;
     protected final T value;
-    protected final T defaultValue;
 
     protected AbstractImmutableSingleData(Key<? extends Value<T>> usedKey, T value) {
-        this(usedKey, value, value);
-    }
-
-    protected AbstractImmutableSingleData(Key<? extends Value<T>> usedKey, T value, T defaultValue) {
         this.value = checkNotNull(value, "value");
-        this.defaultValue = checkNotNull(defaultValue, "defaultValue");
         this.usedKey = checkNotNull(usedKey, "usedKey");
         registerGetters();
     }
@@ -97,7 +91,6 @@ public abstract class AbstractImmutableSingleData<T, I extends ImmutableDataMani
     public int hashCode() {
         int hash = super.hashCode();
         hash = 31 * hash + Objects.hashCode(this.value);
-        hash = 31 * hash + Objects.hashCode(this.defaultValue);
         return hash;
     }
 
@@ -108,7 +101,6 @@ public abstract class AbstractImmutableSingleData<T, I extends ImmutableDataMani
             return false;
         }
         final AbstractImmutableSingleData other = (AbstractImmutableSingleData) obj;
-        return Objects.equals(this.value, other.value) &&
-                Objects.equals(this.defaultValue, other.defaultValue);
+        return Objects.equals(this.value, other.value);
     }
 }

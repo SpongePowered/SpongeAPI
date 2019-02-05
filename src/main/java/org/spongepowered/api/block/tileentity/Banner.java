@@ -26,9 +26,10 @@ package org.spongepowered.api.block.tileentity;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.BannerData;
+import org.spongepowered.api.data.meta.PatternLayer;
 import org.spongepowered.api.data.type.DyeColor;
+import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.data.value.meta.PatternListValue;
 
 /**
  * Represents a Banner {@link TileEntity}.
@@ -54,12 +55,12 @@ public interface Banner extends TileEntity {
     }
 
     /**
-     * Gets the {@link PatternListValue.Mutable} of all patterns for the
+     * Gets the {@link ListValue.Mutable} of all patterns for the
      * {@link Banner}.
      *
      * @return The pattern list
      */
-    default PatternListValue.Mutable patternsList() {
+    default ListValue.Mutable<PatternLayer> patternsList() {
         return getValue(Keys.BANNER_PATTERNS).get().asMutable();
     }
 }

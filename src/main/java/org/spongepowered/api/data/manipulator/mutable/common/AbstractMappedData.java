@@ -52,13 +52,9 @@ public abstract class AbstractMappedData<K, V, M extends MappedData<K, V, M, I>,
         super(usedKey, CollectionUtils.copyMap(value));
     }
 
-    protected AbstractMappedData(Key<MapValue<K, V>> usedKey, Map<K, V> value, Map<K, V> defaultValue) {
-        super(usedKey, CollectionUtils.copyMap(value), CollectionUtils.copyMap(defaultValue));
-    }
-
     @Override
     protected MapValue.Mutable<K, V> getValueGetter() {
-        return Sponge.getRegistry().getValueFactory().createMapValue(this.usedKey, getValue(), CollectionUtils.copyMap(this.defaultValue));
+        return Sponge.getRegistry().getValueFactory().createMapValue(this.usedKey, getValue());
     }
 
     @Override

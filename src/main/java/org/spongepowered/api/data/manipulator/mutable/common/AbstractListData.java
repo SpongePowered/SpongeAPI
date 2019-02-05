@@ -54,14 +54,9 @@ public abstract class AbstractListData<E, M extends ListData<E, M, I>, I extends
         super(usedKey, CollectionUtils.copyList(value));
     }
 
-    protected AbstractListData(Key<ListValue<E>> usedKey, List<E> value, List<E> defaultValue) {
-        super(usedKey, CollectionUtils.copyList(value), CollectionUtils.copyList(defaultValue));
-    }
-
     @Override
     protected ListValue.Mutable<E> getValueGetter() {
-        return Sponge.getRegistry().getValueFactory().createListValue(
-                this.usedKey, getValue(), CollectionUtils.copyList(this.defaultValue));
+        return Sponge.getRegistry().getValueFactory().createListValue(this.usedKey, getValue());
     }
 
     @Override

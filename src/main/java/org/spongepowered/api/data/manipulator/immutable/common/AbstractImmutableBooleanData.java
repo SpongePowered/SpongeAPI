@@ -44,12 +44,8 @@ public abstract class AbstractImmutableBooleanData<I extends ImmutableDataManipu
     private final Value.Immutable<Boolean> immutableValue;
 
     protected AbstractImmutableBooleanData(Key<Value<Boolean>> usedKey, boolean value) {
-        this(usedKey, value, value);
-    }
-
-    protected AbstractImmutableBooleanData(Key<Value<Boolean>> usedKey, boolean value, boolean defaultValue) {
-        super(usedKey, value, defaultValue);
-        this.immutableValue = Sponge.getRegistry().getValueFactory().createValue(usedKey, value, defaultValue).asImmutable();
+        super(usedKey, value);
+        this.immutableValue = Sponge.getRegistry().getValueFactory().createValue(usedKey, value).asImmutable();
     }
 
     @Override

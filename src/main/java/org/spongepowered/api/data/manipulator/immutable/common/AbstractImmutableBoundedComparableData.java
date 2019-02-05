@@ -54,17 +54,11 @@ public abstract class AbstractImmutableBoundedComparableData<T extends Comparabl
 
     protected AbstractImmutableBoundedComparableData(Key<BoundedValue<T>> usedKey,
             T value, T lowerBound, T upperBound, Comparator<T> comparator) {
-        this(usedKey, value, value, lowerBound, upperBound, comparator);
-    }
-
-    protected AbstractImmutableBoundedComparableData(Key<BoundedValue<T>> usedKey,
-            T value, T defaultValue, T lowerBound, T upperBound, Comparator<T> comparator) {
-        super(usedKey, value, defaultValue);
+        super(usedKey, value);
         this.comparator = checkNotNull(comparator, "comparator");
         this.lowerBound = checkNotNull(lowerBound, "lowerBound");
         this.upperBound = checkNotNull(upperBound, "upperBound");
         checkValue(value, "value");
-        checkValue(defaultValue, "defaultValue");
         this.immutableBoundedValue = Sponge.getRegistry().getValueFactory()
                 .createBoundedValueBuilder(usedKey)
                 .value(value)

@@ -33,7 +33,6 @@ import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.meta.PatternLayer;
 import org.spongepowered.api.data.type.*;
 import org.spongepowered.api.data.value.*;
-import org.spongepowered.api.data.value.meta.PatternListValue;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.effect.potion.PotionEffectType;
@@ -260,8 +259,6 @@ public final class TypeTokens {
     public static final TypeToken<ParticleType> PARTICLE_TYPE_TOKEN = new TypeToken<ParticleType>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<ParticleType>> PARTICLE_TYPE_VALUE_TOKEN = new TypeToken<Value<ParticleType>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<PatternListValue> PATTERN_LIST_VALUE_TOKEN = new TypeToken<PatternListValue>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<PickupRule> PICKUP_TOKEN = new TypeToken<PickupRule>() {private static final long serialVersionUID = -1;};
 

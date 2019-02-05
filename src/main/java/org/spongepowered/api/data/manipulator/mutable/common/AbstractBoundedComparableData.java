@@ -56,17 +56,11 @@ public abstract class AbstractBoundedComparableData<T extends Comparable<T>, M e
 
     protected AbstractBoundedComparableData(Key<Value<T>> usedKey,
             T value, T lowerBound, T upperBound, Comparator<T> comparator) {
-        this(usedKey, value, value, lowerBound, upperBound, comparator);
-    }
-
-    protected AbstractBoundedComparableData(Key<Value<T>> usedKey,
-            T value, T defaultValue, T lowerBound, T upperBound, Comparator<T> comparator) {
-        super(usedKey, value, defaultValue);
+        super(usedKey, value);
         this.comparator = checkNotNull(comparator, "comparator");
         this.lowerBound = checkNotNull(lowerBound, "lowerBound");
         this.upperBound = checkNotNull(upperBound, "upperBound");
         checkValue(value, "value");
-        checkValue(defaultValue, "defaultValue");
     }
 
     private void checkValue(T value, String name) {

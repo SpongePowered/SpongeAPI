@@ -46,13 +46,9 @@ public abstract class AbstractImmutableSingleCatalogData<E extends CatalogType, 
     private final Value.Immutable<E> cachedValue;
 
     protected AbstractImmutableSingleCatalogData(Key<Value<E>> usedKey, E value) {
-        this(usedKey, value, value);
-    }
-
-    protected AbstractImmutableSingleCatalogData(Key<Value<E>> usedKey, E value, E defaultValue) {
-        super(usedKey, value, defaultValue);
+        super(usedKey, value);
         this.cachedValue = Sponge.getRegistry().getValueFactory()
-                .createValue(usedKey, value, defaultValue)
+                .createValue(usedKey, value)
                 .asImmutable();
     }
 

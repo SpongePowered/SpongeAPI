@@ -53,17 +53,11 @@ public abstract class AbstractSingleData<T, M extends DataManipulator<M, I>, I e
         extends AbstractData<M, I> {
 
     protected final Key<? extends Value<T>> usedKey;
-    protected final T defaultValue;
     protected T value;
 
     protected AbstractSingleData(Key<? extends Value<T>> usedKey, T value) {
-        this(usedKey, value, value);
-    }
-
-    protected AbstractSingleData(Key<? extends Value<T>> usedKey, T value, T defaultValue) {
         this.usedKey = checkNotNull(usedKey, "usedKey");
         this.value = checkNotNull(value, "value");
-        this.defaultValue = checkNotNull(defaultValue, "defaultValue");
         registerGettersAndSetters();
     }
 
@@ -130,7 +124,6 @@ public abstract class AbstractSingleData<T, M extends DataManipulator<M, I>, I e
     public int hashCode() {
         int hash = super.hashCode();
         hash = 31 * hash + Objects.hashCode(this.value);
-        hash = 31 * hash + Objects.hashCode(this.defaultValue);
         return hash;
     }
 
@@ -141,7 +134,6 @@ public abstract class AbstractSingleData<T, M extends DataManipulator<M, I>, I e
             return false;
         }
         final AbstractSingleData other = (AbstractSingleData) obj;
-        return Objects.equals(this.value, other.value) &&
-                Objects.equals(this.defaultValue, other.defaultValue);
+        return Objects.equals(this.value, other.value);
     }
 }

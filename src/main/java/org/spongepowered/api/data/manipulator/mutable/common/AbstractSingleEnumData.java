@@ -43,11 +43,7 @@ public abstract class AbstractSingleEnumData<E extends Enum<E>, M extends DataMa
         extends AbstractSingleData<E, M, I> {
 
     protected AbstractSingleEnumData(Key<Value<E>> usedKey, E value) {
-        this(usedKey, value, value);
-    }
-
-    protected AbstractSingleEnumData(Key<Value<E>> usedKey, E value, E defaultValue) {
-        super(usedKey, value, defaultValue);
+        super(usedKey, value);
     }
 
     @Override
@@ -58,6 +54,6 @@ public abstract class AbstractSingleEnumData<E extends Enum<E>, M extends DataMa
     @SuppressWarnings("unchecked")
     @Override
     protected Value.Mutable<E> getValueGetter() {
-        return Sponge.getRegistry().getValueFactory().createValue(this.usedKey, this.value, this.defaultValue);
+        return Sponge.getRegistry().getValueFactory().createValue(this.usedKey, this.value);
     }
 }
