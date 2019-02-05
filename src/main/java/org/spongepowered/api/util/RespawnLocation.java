@@ -32,7 +32,7 @@ import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.Queries;
-import org.spongepowered.api.data.manipulator.mutable.entity.RespawnLocationData;
+import org.spongepowered.api.data.manipulator.mutable.RespawnLocationData;
 import org.spongepowered.api.data.persistence.AbstractDataBuilder;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.world.Location;

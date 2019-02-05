@@ -25,7 +25,7 @@
 package org.spongepowered.api.block.tileentity;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.tileentity.SignData;
+import org.spongepowered.api.data.manipulator.mutable.SignData;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.text.Text;
 

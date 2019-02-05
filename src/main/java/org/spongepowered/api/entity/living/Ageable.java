@@ -25,7 +25,7 @@
 package org.spongepowered.api.entity.living;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.entity.AgeableData;
+import org.spongepowered.api.data.manipulator.mutable.AgeableData;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;

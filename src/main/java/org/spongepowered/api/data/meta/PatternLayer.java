@@ -26,7 +26,7 @@ package org.spongepowered.api.data.meta;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.data.manipulator.mutable.tileentity.BannerData;
+import org.spongepowered.api.data.manipulator.mutable.BannerData;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.type.BannerPatternShape;
 import org.spongepowered.api.data.type.DyeColor;

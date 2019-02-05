@@ -25,7 +25,7 @@
 package org.spongepowered.api.block.tileentity;
 
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.manipulator.mutable.tileentity.StructureData;
+import org.spongepowered.api.data.manipulator.mutable.StructureData;
 
 /**
  * Represents a Structure.

@@ -27,7 +27,7 @@ package org.spongepowered.api.entity.living.player;
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.block.tileentity.EnderChest;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.manipulator.mutable.entity.StatisticData;
+import org.spongepowered.api.data.manipulator.mutable.StatisticData;
 import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.Tamer;

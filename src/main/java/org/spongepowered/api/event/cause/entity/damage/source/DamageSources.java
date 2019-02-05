@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.cause.entity.damage.source;
 
-import org.spongepowered.api.data.manipulator.mutable.entity.IgniteableData;
+import org.spongepowered.api.data.manipulator.mutable.IgniteableData;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.world.Location;

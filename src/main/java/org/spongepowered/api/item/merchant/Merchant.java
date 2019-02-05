@@ -25,7 +25,7 @@
 package org.spongepowered.api.item.merchant;
 
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.manipulator.mutable.entity.TradeOfferData;
+import org.spongepowered.api.data.manipulator.mutable.TradeOfferData;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.world.Locatable;

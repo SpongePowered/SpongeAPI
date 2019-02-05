@@ -25,7 +25,7 @@
 package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.entity.OcelotData;
+import org.spongepowered.api.data.manipulator.mutable.OcelotData;
 import org.spongepowered.api.data.type.OcelotType;
 import org.spongepowered.api.data.value.Value;
 

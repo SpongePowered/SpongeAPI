@@ -25,7 +25,7 @@
 package org.spongepowered.api.entity.projectile.arrow;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.entity.KnockbackData;
+import org.spongepowered.api.data.manipulator.mutable.KnockbackData;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.entity.projectile.DamagingProjectile;
 

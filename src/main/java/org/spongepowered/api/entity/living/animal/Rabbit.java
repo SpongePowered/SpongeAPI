@@ -25,7 +25,7 @@
 package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.entity.RabbitData;
+import org.spongepowered.api.data.manipulator.mutable.RabbitData;
 import org.spongepowered.api.data.type.RabbitType;
 import org.spongepowered.api.data.value.Value;
 

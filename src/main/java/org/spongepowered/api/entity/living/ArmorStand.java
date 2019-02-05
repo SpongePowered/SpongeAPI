@@ -25,8 +25,8 @@
 package org.spongepowered.api.entity.living;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.entity.ArmorStandData;
-import org.spongepowered.api.data.manipulator.mutable.entity.BodyPartRotationalData;
+import org.spongepowered.api.data.manipulator.mutable.ArmorStandData;
+import org.spongepowered.api.data.manipulator.mutable.BodyPartRotationalData;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.ArmorEquipable;
 

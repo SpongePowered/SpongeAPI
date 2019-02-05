@@ -25,7 +25,7 @@
 package org.spongepowered.api.entity.explosive;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.entity.FuseData;
+import org.spongepowered.api.data.manipulator.mutable.FuseData;
 
 /**
  * Represents an explosive that detonates after its fuse has expired.
