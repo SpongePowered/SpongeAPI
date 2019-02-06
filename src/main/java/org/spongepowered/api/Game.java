@@ -37,6 +37,7 @@ import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.network.ChannelRegistrar;
 import org.spongepowered.api.plugin.PluginManager;
+import org.spongepowered.api.scheduler.Scheduler;
 import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.TeleportHelper;
@@ -55,6 +56,13 @@ public interface Game {
      * @return The game state
      */
     GameState getState();
+
+    /**
+     * Gets the async {@link Scheduler}.
+     *
+     * @return The async scheduler
+     */
+    Scheduler getAsyncScheduler();
 
     /**
      * Gets the directory where the game's files are located.

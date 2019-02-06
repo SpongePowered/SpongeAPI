@@ -32,18 +32,18 @@ import org.spongepowered.api.scheduler.Scheduler;
  */
 public interface Engine {
 
-  /**
-   * Gets the scheduler used to schedule tasks.
-   *
-   * @return The scheduler
-   */
-  Scheduler getScheduler();
+    /**
+     * Gets the {@link Scheduler} used to schedule sync tasks on this {@link Engine}.
+     *
+     * @return The sync scheduler
+     */
+    Scheduler getScheduler();
 
-  /**
-   * Checks if the {@link Thread#currentThread() current thread} is the main thread of the engine.
-   *
-   * @return {@code true} if main thread, {@code false} if not
-   */
-  boolean onMainThread();
+    /**
+     * Checks if the {@link Thread#currentThread() current thread} is the main thread of the engine.
+     *
+     * @return {@code true} if main thread, {@code false} if not
+     */
+    boolean onMainThread();
 
 }

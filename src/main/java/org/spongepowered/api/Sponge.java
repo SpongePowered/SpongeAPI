@@ -37,6 +37,7 @@ import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.network.ChannelRegistrar;
 import org.spongepowered.api.plugin.PluginManager;
+import org.spongepowered.api.scheduler.Scheduler;
 import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.util.metric.MetricsConfigManager;
 import org.spongepowered.api.world.Location;
@@ -74,8 +75,7 @@ public final class Sponge {
         checkState(instance != null, "Sponge has not been initialized!");
         return instance;
     }
-
-
+    
     /**
      * Gets the {@link Game} instance. There is ever only going
      * to be a single game instance at any given time, except during
@@ -204,7 +204,6 @@ public final class Sponge {
         return check(teleportHelper);
     }
 
-
     /**
      * Gets whether a {@link Server} instance is available without throwing an
      * exception from calling {@link #getServer()}.
@@ -255,4 +254,12 @@ public final class Sponge {
         return check(metricsConfigManager);
     }
 
+    /**
+     * Gets the {@link Scheduler} used to schedule async tasks.
+     *
+     * @return The async scheduler
+     */
+    public static Scheduler getAsyncScheduler() {
+        return getGame().getAsyncScheduler();
+    }
 }
