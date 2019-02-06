@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 public final class TreeTypes {
@@ -33,6 +34,12 @@ public final class TreeTypes {
     public static final TreeType ACACIA = DummyObjectProvider.createFor(TreeType.class, "ACACIA");
 
     public static final TreeType BIRCH = DummyObjectProvider.createFor(TreeType.class, "BIRCH");
+
+    /**
+     * Represents a chorus tree that is generated in the end, built with
+     * {@link BlockTypes#CHORUS_PLANT}s and {@link BlockTypes#CHORUS_FLOWER}s.
+     */
+    public static final TreeType CHORUS = DummyObjectProvider.createFor(TreeType.class, "CHORUS");
 
     public static final TreeType DARK_OAK = DummyObjectProvider.createFor(TreeType.class, "DARK_OAK");
 
