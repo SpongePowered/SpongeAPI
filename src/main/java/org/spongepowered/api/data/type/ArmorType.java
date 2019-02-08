@@ -25,8 +25,8 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;
+import org.spongepowered.api.item.recipe.crafting.Ingredient;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Optional;
@@ -39,11 +39,11 @@ import java.util.Optional;
 public interface ArmorType extends CatalogType {
 
     /**
-     * Gets the {@link ItemType} that can be used to
+     * Gets the {@link Ingredient} that can be used to
      * "repair" the armor type.
      *
      * @return The item type considered to be used for repairing
      */
-    Optional<ItemType> getRepairItemType();
+    Optional<Ingredient> getRepairItemIngredient();
 
 }
