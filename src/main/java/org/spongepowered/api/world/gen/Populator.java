@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.world.gen;
 
+import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.biome.ImmutableBiomeVolume;
 import org.spongepowered.api.world.gen.populator.RandomObject;
@@ -80,23 +82,6 @@ public interface Populator<C extends PopulatorConfig> {
      *        with other populators
      * @param config The populator configuration that should be used
      */
-    void populate(GenerationRegion region, PrimitiveChunk volume, ImmutableBiomeVolume biomes, Random random, C config);
-
-    /**
-     * Applies the populator to the given {@link MutableBlockVolume}. The
-     * entire volume should be populated.
-     *
-     * @param world The World within which the generation in happening
-     * @param volume The volume to be populated
-     * @param random A random number generator. This random number generator is
-     *        based on the world seed and the chunk position. It is shared with
-     *        with other populators
-     * @param virtualBiomes A biome volume for the extent being populated which
-     *        includes any virtual biomes not persisted to the world
-     */
-    /*
-    default void populate(World world, MutableBlockVolume<?> volume, Random random, ImmutableBiomeVolume virtualBiomes) {
-        populate(world, volume, random);
-    }*/
+    void populate(ProtoWorld<?> region, WorldGenerator volume, ImmutableBiomeVolume biomes, Vector3i position, Random random, C config, int seed);
 
 }

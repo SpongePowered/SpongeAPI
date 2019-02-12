@@ -34,6 +34,7 @@ import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.biome.MutableBiomeVolume;
 import org.spongepowered.api.world.volume.LightCalculatingVolume;
 import org.spongepowered.api.world.volume.block.MutableBlockVolume;
+import org.spongepowered.api.world.volume.composite.ReadableCompositeVolume;
 import org.spongepowered.api.world.volume.tileentity.MutableTileEntityVolume;
 
 /**
@@ -49,6 +50,7 @@ import org.spongepowered.api.world.volume.tileentity.MutableTileEntityVolume;
  * of each chunk varies between worlds.</p>
  */
 public interface ProtoChunk<P extends ProtoChunk<P>> extends
+    ReadableCompositeVolume,
         MutableBlockVolume<P>, MutableTileEntityVolume<P>, MutableBiomeVolume<P>, LightCalculatingVolume, UpdatableVolume {
 
     /**
