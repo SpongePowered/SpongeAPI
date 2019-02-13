@@ -22,17 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen;
+package org.spongepowered.api.world.gen.surface;
 
-import org.spongepowered.api.world.gen.carver.Carver;
+import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.world.ProtoWorld;
+import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.chunk.ProtoChunk;
+import org.spongepowered.api.world.gen.WorldGenerationSettings;
 
-/**
- * A base interface for all world gen region feature config options,
- * some objects like {@link Carver}s will use specialized objects
- * compared to others.
- *
- * @implementation Mixes onto IFeatureConfig
- */
-public interface FeatureConfig {
+import java.util.Random;
+
+public interface SurfaceBuilder<C extends SurfaceConfig> {
+
+    void buildSurface(ProtoWorld<?> world, ProtoChunk<?> targetChunk, Vector3i surfacePosition, BiomeType biome, Random random, WorldGenerationSettings settings, double noise, long seed, C config);
 
 }

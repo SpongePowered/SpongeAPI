@@ -24,12 +24,6 @@
  */
 package org.spongepowered.api.world.gen;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
-
-public class CarvingLayers {
-
-    public static final CarvingLayer AIR = DummyObjectProvider.createFor(CarvingLayer.class, "AIR");
-    public static final CarvingLayer LIQUID = DummyObjectProvider.createFor(CarvingLayer.class, "AIR");
-
+public interface WorldGenerationSettings {
 
 }

@@ -27,7 +27,8 @@ package org.spongepowered.api.world.gen;
 /**
  * @implNote Mapped onto IChunkGenerator
  */
-public interface WorldGenerator {
+public interface WorldGenerator<W extends WorldGenerationSettings> {
 
+    W getGenerationSettings();
 
 }

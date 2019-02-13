@@ -22,12 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen;
+package org.spongepowered.api.world.volume;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.util.HeightType;
 
-@CatalogedBy(CarvingLayers.class)
-public interface CarvingLayer extends CatalogType {
+public interface HeightAwareVolume {
+
+    default Vector3i getHeight(HeightType type, Vector3i pos) {
+        return new Vector3i(pos.getX(), this.getHeight(type, pos.getX(), pos.getZ()), pos.getZ());
+    }
+
+    int getHeight(HeightType type, int x, int z);
 
 }
