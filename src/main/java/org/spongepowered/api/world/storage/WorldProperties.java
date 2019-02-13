@@ -45,7 +45,6 @@ import org.spongepowered.api.world.teleport.PortalAgentType;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 
 import java.time.Duration;
-import java.util.Collection;
 import java.util.Optional;
 
 /**
@@ -167,10 +166,10 @@ public interface WorldProperties extends WeatherUniverse, DataSerializable, Iden
 
     /**
      * Sets the seed of this world.
-     * 
+     *
      * <p>Warning: this may cause the edge of currently generated chunks to no
      * longer align with newly generated chunks.</p>
-     * 
+     *
      * @param seed The new world seed
      */
     void setSeed(long seed);
@@ -348,10 +347,10 @@ public interface WorldProperties extends WeatherUniverse, DataSerializable, Iden
     /**
      * Gets an immutable collection of the world generator modifiers currently
      * in use.
-     * 
+     *
      * @return The world generator modifiers in use.
      */
-    Collection<WorldGeneratorModifier> getGeneratorModifiers();
+    //Collection<WorldGeneratorModifier> getGeneratorModifiers();
 
     /**
      * Sets the given world generator modifiers to be used.
@@ -360,7 +359,7 @@ public interface WorldProperties extends WeatherUniverse, DataSerializable, Iden
      * @throws IllegalArgumentException If any of the modifiers has not been
      *         registered in the {@link GameRegistry}.
      */
-    void setGeneratorModifiers(Collection<WorldGeneratorModifier> modifiers);
+    //void setGeneratorModifiers(Collection<WorldGeneratorModifier> modifiers);
 
     /**
      * Gets the generator settings. These can be used by the generator type

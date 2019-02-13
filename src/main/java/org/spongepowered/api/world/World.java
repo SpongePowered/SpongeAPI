@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.world;
 
-import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
@@ -41,11 +40,11 @@ import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.gamerule.GameRule;
 import org.spongepowered.api.world.gamerule.GameRuleHolder;
-import org.spongepowered.api.world.volume.block.PhysicsAwareMutableBlockVolume;
 import org.spongepowered.api.world.gen.WorldGenerator;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.storage.WorldStorage;
 import org.spongepowered.api.world.teleport.PortalAgent;
+import org.spongepowered.api.world.volume.block.PhysicsAwareMutableBlockVolume;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 
 import java.io.IOException;
@@ -330,7 +329,7 @@ public interface World extends ProtoWorld<World>, LocationCreator<World>, Physic
      * @return The builder for the chunk pre-generate task
      * @see ChunkPreGenerate
      */
-    ChunkPreGenerate.Builder newChunkPreGenerate(Vector3d center, double diameter);
+    //ChunkPreGenerate.Builder newChunkPreGenerate(Vector3d center, double diameter);
 
     /**
      * Returns the {@link Dimension} of this world.

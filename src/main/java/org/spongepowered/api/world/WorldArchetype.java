@@ -52,7 +52,7 @@ public interface WorldArchetype extends CatalogType {
 
     /**
      * Gets a new Builder instance for {@link WorldArchetype}.
-     * 
+     *
      * @return A new builder instance
      */
     static WorldArchetype.Builder builder() {
@@ -91,14 +91,14 @@ public interface WorldArchetype extends CatalogType {
 
     /**
      * Gets the seed.
-     * 
+     *
      * @return The seed
      */
     long getSeed();
 
     /**
      * Gets if the seed will be randomized for each world generated.
-     * 
+     *
      * @return If the seed is randomized
      */
     boolean isSeedRandomized();
@@ -112,37 +112,37 @@ public interface WorldArchetype extends CatalogType {
 
     /**
      * Gets the generator type.
-     * 
+     *
      * @return The generator type
      */
     GeneratorType getGeneratorType();
 
     /**
      * Gets an immutable collection of the world generator modifiers.
-     * 
+     *
      * @return The modifiers
      */
-    Collection<WorldGeneratorModifier> getGeneratorModifiers();
+    //Collection<WorldGeneratorModifier> getGeneratorModifiers();
 
     /**
      * Gets whether map features are enabled.
      *
      * <p>Examples include Villages, Temples, etc.</p>
-     * 
+     *
      * @return True if map features are enabled, false if not
      */
     boolean usesMapFeatures();
 
     /**
      * Gets whether hardcore mode is enabled.
-     * 
+     *
      * @return True if hardcore mode is enabled, false if not
      */
     boolean isHardcore();
 
     /**
      * Gets whether commands are allowed.
-     * 
+     *
      * @return True if commands are allowed, false if not
      */
     boolean areCommandsAllowed();
@@ -152,14 +152,14 @@ public interface WorldArchetype extends CatalogType {
      *
      * <p>This only applies on the initial load of the {@link World}
      * created via the {@link WorldProperties} created from this settings.</p>
-     * 
+     *
      * @return True if bonus chest is generated, false if not
      */
     boolean doesGenerateBonusChest();
 
     /**
      * Gets the dimension type.
-     * 
+     *
      * @return The dimension type
      */
     DimensionType getDimensionType();
@@ -250,7 +250,7 @@ public interface WorldArchetype extends CatalogType {
 
         /**
          * Sets the seed to be randomized for each world created.
-         * 
+         *
          * @return The builder, for chaining
          */
         Builder randomSeed();
@@ -281,7 +281,7 @@ public interface WorldArchetype extends CatalogType {
          * @throws IllegalArgumentException If one of the modifiers is not
          *         registered in {@link GameRegistry}.
          */
-        Builder generatorModifiers(WorldGeneratorModifier... modifier);
+        //Builder generatorModifiers(WorldGeneratorModifier... modifier);
 
         /**
          * Sets the dimension type.

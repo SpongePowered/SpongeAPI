@@ -28,8 +28,6 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.world.chunk.Chunk;
 
-import java.util.List;
-
 public interface PopulateChunkEvent extends Event {
 
     /**
@@ -49,7 +47,7 @@ public interface PopulateChunkEvent extends Event {
          *
          * @return The populators
          */
-        List<Populator> getPendingPopulators();
+        //List<Populator> getPendingPopulators();
 
     }
 
@@ -60,10 +58,10 @@ public interface PopulateChunkEvent extends Event {
 
         /**
          * Gets the populator which is about to be run.
-         * 
+         *
          * @return The populator
          */
-        Populator getPopulator();
+        //Populator getPopulator();
 
     }
 
@@ -78,8 +76,8 @@ public interface PopulateChunkEvent extends Event {
          *
          * @return The populators
          */
-        List<Populator> getAppliedPopulators();
-        
+        //List<Populator> getAppliedPopulators();
+
     }
 
 }

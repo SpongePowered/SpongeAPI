@@ -49,7 +49,7 @@ public interface ChunkPreGenerationEvent extends Event {
      *
      * @return The {@link ChunkPreGenerate}
      */
-    ChunkPreGenerate getChunkPreGenerate();
+    //ChunkPreGenerate getChunkPreGenerate();
 
     /**
      * Event fired when chunks are about to be generated. Cancelling this task

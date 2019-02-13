@@ -51,7 +51,8 @@ public interface CompositeFeature<F extends FeatureConfig, P extends PlacementCo
 
     @Override
     default boolean place(ProtoWorld<?> world, Random random, Vector3i origin, F config) {
-        return getPlacer().generate(world, random, origin, getPlacementConfig(), getCreator(), getFeatureConfig());
+        throw new IllegalStateException("Not implemented!");
+        //return getPlacer().generate(world, random, origin, getPlacementConfig(), getCreator(), getFeatureConfig());
     }
 
 }

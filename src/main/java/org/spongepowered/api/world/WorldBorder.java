@@ -45,7 +45,7 @@ public interface WorldBorder {
 
     /**
      * Creates a new {@link Builder} instance for making {@link WorldBorder}s.
-     * 
+     *
      * @return The builder
      */
     static Builder builder() {
@@ -267,11 +267,11 @@ public interface WorldBorder {
      * @return The builder for the chunk pre-generate task
      * @see ChunkPreGenerate
      */
-    ChunkPreGenerate.Builder newChunkPreGenerate(World world);
+    //ChunkPreGenerate.Builder newChunkPreGenerate(World world);
 
     /**
      * Copies the properties of the passed border onto this border.
-     * 
+     *
      * @param border The border whose properties are to be copied
      */
     default void copyPropertiesFrom(WorldBorder border) {
@@ -287,7 +287,7 @@ public interface WorldBorder {
 
         /**
          * Copies the required data from the passed {@code WorldBorder}.
-         * 
+         *
          * @param border The world border whose data is to be copied
          * @return The builder, for chaining
          */
@@ -296,7 +296,7 @@ public interface WorldBorder {
 
         /**
          * Sets the diameter of this world border.
-         * 
+         *
          * @param diameter The diameter that this border will have.
          * @return The builder, for chaining.
          * @see WorldBorder#setDiameter(double)
@@ -305,7 +305,7 @@ public interface WorldBorder {
 
         /**
          * Sets the centre of this world border.
-         * 
+         *
          * @param x The x-coordinate of the new centre
          * @param z The z-coordinate of the new centre
          * @return The builder, for chaining
@@ -327,7 +327,7 @@ public interface WorldBorder {
 
         /**
          * Sets the warning time of this world border.
-         * 
+         *
          * @param time The warning time
          * @return The builder, for chaining
          * @see WorldBorder#setWarningTime(Duration)
@@ -345,7 +345,7 @@ public interface WorldBorder {
 
         /**
          * Sets the damage threshold of this world border.
-         * 
+         *
          * @param distance The damage threshold in blocks
          * @return The builder, for chaining
          * @see WorldBorder#setDamageThreshold(double)
@@ -354,17 +354,17 @@ public interface WorldBorder {
 
         /**
          * Sets the damage amount of this world border.
-         * 
+         *
          * @param damage The damage amount
          * @return The builder, for chaining
          * @see WorldBorder#setDamageAmount(double)
          */
         Builder damageAmount(double damage);
-        
+
         /**
          * Builds the world border from the information given. If no information
          * is given, a {@code WorldBorder} with default properties is built.
-         * 
+         *
          * @return The built world border
          */
         WorldBorder build();
