@@ -237,7 +237,7 @@ public class SpongeEventFactoryTest {
         } else if (paramType == Cause.class) {
             return Cause.of(EventContext.empty(), "none");
         } else if (paramType == Location.class) {
-            return new Location(mock(World.class), Vector3d.ZERO);
+            return new Location((World) mockParam(World.class), Vector3d.ZERO);
         } else if (paramType == Locale.class) {
             return Locale.ROOT;
         } else if (paramType == Duration.class) {
