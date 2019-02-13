@@ -1,11 +1,11 @@
 package org.spongepowered.api.world.gen;
 
-import org.spongepowered.api.world.biome.ImmutableBiomeVolume;
+import org.spongepowered.api.world.volume.biome.ImmutableBiomeVolume;
 import org.spongepowered.api.world.chunk.ProtoChunk;
 
 import java.util.Random;
 
-public interface SurfaceBuilder {
+public interface SurfaceBuilder<C extends FeatureConfig> {
 
     /**
      * Takes the provided {@link ProtoChunk} and fills in a base surface layer

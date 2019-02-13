@@ -22,43 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen;
+package org.spongepowered.api.world.volume.biome;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.util.annotation.CatalogedBy;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.volume.ImmutableVolume;
 
-import java.util.Random;
+public interface ImmutableBiomeVolume extends UnmodifiableBiomeVolume<ImmutableBiomeVolume>, ImmutableVolume {
 
-/**
- * Represents an object placed in the world during terrain population. Populator
- * objects typically fit in a single chunk.
- */
-@CatalogedBy(PopulatorObjects.class)
-public interface PopulatorObject extends CatalogType {
-
-    /**
-     * Returns whether this object can be placed into the world at the given
-     * position.
-     *
-     * @param world The world
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return Whether the placement is valid
-     */
-    boolean canPlaceAt(World world, int x, int y, int z);
-
-    /**
-     * Places the object into the world at the given location.
-     *
-     * @param world The world
-     * @param random Random number generator based on the world seed and
-     *        position.
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     */
-    void placeObject(World world, Random random, int x, int y, int z);
-
+    @Override
+    default ImmutableBiomeVolume asImmutableBiomeVolume() {
+        return this;
+    }
 }

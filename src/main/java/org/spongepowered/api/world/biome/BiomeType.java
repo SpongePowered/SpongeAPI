@@ -48,12 +48,5 @@ public interface BiomeType extends CatalogType {
      */
     double getHumidity();
 
-    /**
-     * Gets the default generation settings of this biome for the given world.
-     * 
-     * @param world The world the settings are being made for
-     * @return The default generation settings
-     */
-    BiomeGenerationSettings createDefaultGenerationSettings(World world);
 
 }

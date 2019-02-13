@@ -22,16 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen;
+package org.spongepowered.api.world.volume.biome.worker;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.text.translation.Translatable;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.volume.biome.MutableBiomeVolume;
+import org.spongepowered.api.world.volume.biome.UnmodifiableBiomeVolume;
+import org.spongepowered.api.world.volume.block.worker.BlockVolumeWorker;
+import org.spongepowered.api.world.volume.worker.MutableVolumeWorker;
 
 /**
- * Describes a type of {@link Populator}.
+ * Similar to {@link BlockVolumeWorker} but adds support for mutating the
+ * backing volume.
  */
-@CatalogedBy(PopulatorTypes.class)
-public interface PopulatorType extends CatalogType, Translatable {
+public interface MutableBiomeVolumeWorker<M extends MutableBiomeVolume<M>>
+    extends BiomeVolumeWorker<M, M>, MutableVolumeWorker<M, UnmodifiableBiomeVolume<?>, BiomeType> {
 
 }

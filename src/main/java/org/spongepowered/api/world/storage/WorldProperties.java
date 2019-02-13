@@ -41,7 +41,6 @@ import org.spongepowered.api.world.WorldBorder;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gamerule.GameRuleHolder;
 import org.spongepowered.api.world.gen.GeneratorType;
-import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 import org.spongepowered.api.world.teleport.PortalAgentType;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 

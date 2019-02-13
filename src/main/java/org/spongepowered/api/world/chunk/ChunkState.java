@@ -60,6 +60,8 @@ import org.spongepowered.api.world.World;
  * <li>Chunk being deserialized from storage and being prepared for addition to a {@link World}</li>
  * <li>{@link Chunk}s already existing and loaded in a {@link World}</li>
  * </ul>
+ *
+ * @implNote Mixes onto ChunkStatus
  */
 public interface ChunkState extends CatalogType {
 

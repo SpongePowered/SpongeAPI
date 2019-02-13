@@ -27,7 +27,6 @@ package org.spongepowered.api.world;
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.world.chunk.ChunkPreGenerate;
 
 import java.time.Duration;
 import java.time.temporal.TemporalUnit;

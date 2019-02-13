@@ -40,5 +40,5 @@ import java.util.Random;
  */
 public interface SurfacePainter {
 
-    void paintSurface(Random random, ProtoChunk<?> chunk, BiomeType biomeType, GenerationConfig config);
+    void paintSurface(Random random, ProtoChunk<?> chunk, BiomeType biomeType, FeatureConfig config);
 }

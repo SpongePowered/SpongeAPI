@@ -22,11 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.biome;
+package org.spongepowered.api.world.volume.biome;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
-import org.spongepowered.api.world.biome.worker.MutableBiomeVolumeWorker;
+import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.volume.biome.worker.MutableBiomeVolumeWorker;
 import org.spongepowered.api.world.volume.MutableVolume;
 
 public interface MutableBiomeVolume<M extends MutableBiomeVolume<M>> extends WorkableBiomeVolume<M>, MutableVolume {

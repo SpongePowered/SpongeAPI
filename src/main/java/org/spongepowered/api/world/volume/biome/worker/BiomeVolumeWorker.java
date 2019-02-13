@@ -22,8 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen.biome;
+package org.spongepowered.api.world.volume.biome.worker;
 
-public interface BiomeConfig {
+import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.volume.biome.MutableBiomeVolume;
+import org.spongepowered.api.world.volume.biome.UnmodifiableBiomeVolume;
+import org.spongepowered.api.world.volume.biome.WorkableBiomeVolume;
+import org.spongepowered.api.world.volume.worker.VolumeWorker;
+
+/**
+ * A worker for a block volume. Used to perform operations on all the blocks it
+ * contains. When operations are done on multiple volumes, they are aligned on
+ * their minimum coordinates. The other volumes must be at least as big as the
+ * backing one.
+ *
+ * @param <V> The type of volume being worked on
+ */
+public interface BiomeVolumeWorker<V extends WorkableBiomeVolume<V>, M extends MutableBiomeVolume<M>>
+    extends VolumeWorker<V, UnmodifiableBiomeVolume<?>, BiomeType, M> {
 
 }

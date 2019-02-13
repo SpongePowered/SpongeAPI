@@ -30,10 +30,7 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.biome.BiomeType;
-import org.spongepowered.api.world.biome.ImmutableBiomeVolume;
-import org.spongepowered.api.world.gen.GenerationPopulator;
-import org.spongepowered.api.world.gen.Populator;
-import org.spongepowered.api.world.gen.PopulatorConfig;
+import org.spongepowered.api.world.volume.biome.ImmutableBiomeVolume;
 import org.spongepowered.api.world.gen.WorldGenerator;
 import org.spongepowered.api.world.volume.block.MutableBlockVolume;
 

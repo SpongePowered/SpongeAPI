@@ -37,7 +37,6 @@ import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
 import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.world.chunk.Chunk;
-import org.spongepowered.api.world.chunk.ChunkPreGenerate;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.gamerule.GameRule;
