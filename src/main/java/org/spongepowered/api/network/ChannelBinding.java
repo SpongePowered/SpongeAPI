@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.network;
 
+import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.Platform;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.plugin.PluginContainer;
@@ -50,7 +51,7 @@ public interface ChannelBinding {
      *
      * @return The channel name
      */
-    String getName();
+    CatalogKey getName();
 
     /**
      * Gets the plugin that created this binding.
