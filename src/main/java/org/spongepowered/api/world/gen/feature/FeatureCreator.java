@@ -28,6 +28,7 @@ import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.gen.GenerationRegion;
+import org.spongepowered.api.world.gen.WorldGenerator;
 
 import java.util.Random;
 
@@ -46,6 +47,6 @@ public interface FeatureCreator<C> {
      * @param config The config object for configuring the feature to be placed
      * @return True
      */
-    boolean place(ProtoWorld<?> world, Random random, Vector3i origin, C config);
+    boolean generate(ProtoWorld<?> world, WorldGenerator<?> generator, Random random, Vector3i origin, C config);
 
 }
