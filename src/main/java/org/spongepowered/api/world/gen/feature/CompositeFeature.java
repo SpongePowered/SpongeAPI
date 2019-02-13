@@ -28,6 +28,7 @@ import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.gen.FeatureConfig;
+import org.spongepowered.api.world.gen.WorldGenerator;
 
 import java.util.Random;
 
@@ -50,9 +51,8 @@ public interface CompositeFeature<F extends FeatureConfig, P extends PlacementCo
     FeaturePlacer<P> getPlacer();
 
     @Override
-    default boolean place(ProtoWorld<?> world, Random random, Vector3i origin, F config) {
-        throw new IllegalStateException("Not implemented!");
-        //return getPlacer().generate(world, random, origin, getPlacementConfig(), getCreator(), getFeatureConfig());
+    default boolean place(ProtoWorld<?> world, WorldGenerator<?> generator, Random random, Vector3i origin, F config) {
+        return this.getPlacer().generate(world, generator, random, origin, getPlacementConfig(), getCreator(), getFeatureConfig());
     }
 
 }

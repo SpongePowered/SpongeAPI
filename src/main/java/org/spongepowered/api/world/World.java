@@ -321,17 +321,6 @@ public interface World extends ProtoWorld<World>, LocationCreator<World>, Physic
     WorldBorder getWorldBorder();
 
     /**
-     * Returns a new builder for creating a task to pre-generate the chunks
-     * inside a square border with a given center and diameter.
-     *
-     * @param center The center of the border
-     * @param diameter The diameter of the border
-     * @return The builder for the chunk pre-generate task
-     * @see ChunkPreGenerate
-     */
-    //ChunkPreGenerate.Builder newChunkPreGenerate(Vector3d center, double diameter);
-
-    /**
      * Returns the {@link Dimension} of this world.
      *
      * @return The {@link Dimension}

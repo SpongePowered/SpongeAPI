@@ -258,18 +258,6 @@ public interface WorldBorder {
     void setDamageAmount(double damage);
 
     /**
-     * Returns a new builder for creating a task to pre-generate the chunks
-     * inside the border. The current state of the border is "snapshotted" for
-     * the builder. It is not backed by this instance. If the border size is
-     * changing then the target size is used.
-     *
-     * @param world The target world
-     * @return The builder for the chunk pre-generate task
-     * @see ChunkPreGenerate
-     */
-    //ChunkPreGenerate.Builder newChunkPreGenerate(World world);
-
-    /**
      * Copies the properties of the passed border onto this border.
      *
      * @param border The border whose properties are to be copied

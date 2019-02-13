@@ -118,13 +118,6 @@ public interface WorldArchetype extends CatalogType {
     GeneratorType getGeneratorType();
 
     /**
-     * Gets an immutable collection of the world generator modifiers.
-     *
-     * @return The modifiers
-     */
-    //Collection<WorldGeneratorModifier> getGeneratorModifiers();
-
-    /**
      * Gets whether map features are enabled.
      *
      * <p>Examples include Villages, Temples, etc.</p>
@@ -274,16 +267,6 @@ public interface WorldArchetype extends CatalogType {
         Builder generator(GeneratorType type);
 
         /**
-         * Sets the generator modifiers.
-         *
-         * @param modifier The modifiers
-         * @return The builder, for chaining
-         * @throws IllegalArgumentException If one of the modifiers is not
-         *         registered in {@link GameRegistry}.
-         */
-        //Builder generatorModifiers(WorldGeneratorModifier... modifier);
-
-        /**
          * Sets the dimension type.
          *
          * @param type The type
@@ -319,9 +302,9 @@ public interface WorldArchetype extends CatalogType {
         Builder hardcore(boolean state);
 
         /**
-         * Sets any extra settings required by the {@link GeneratorType} or by
-         * the {@link WorldGeneratorModifier}s. If not specified these will
-         * default to the settings within {@link GeneratorType#getGeneratorSettings()}.
+         * Sets any extra settings required by the {@link GeneratorType}.
+         *
+         * <p>Defaults to the settings within {@link GeneratorType#getGeneratorSettings()}.</p>
          *
          * @param settings The generator settings
          * @return The builder, for chaining
