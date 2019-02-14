@@ -40,6 +40,6 @@ public interface Carver<C extends FeatureConfig> {
 
     boolean shouldCarve(ReadableCompositeVolume volume, Random random, Vector2i chunkPosition, C config);
 
-    void carve(ProtoWorld<?> worldGenRegion, Random random, Vector2i chunkPosition, Vector2i range, BitSet mask, C config);
+    void carve(ProtoWorld<?> world, Random random, Vector2i chunkPosition, Vector2i range, BitSet mask, C config);
 
 }

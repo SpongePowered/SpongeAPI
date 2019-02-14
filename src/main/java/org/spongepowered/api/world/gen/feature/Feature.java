@@ -22,18 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen.surface;
+package org.spongepowered.api.world.gen.feature;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.world.ProtoWorld;
-import org.spongepowered.api.world.biome.BiomeType;
-import org.spongepowered.api.world.chunk.ProtoChunk;
-import org.spongepowered.api.world.gen.WorldGenerationSettings;
+import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.gen.FeatureConfig;
+import org.spongepowered.api.world.gen.GenerationRegion;
+import org.spongepowered.api.world.gen.TerrainGenerator;
 
 import java.util.Random;
 
-public interface SurfaceBuilder<C extends SurfaceConfig> {
+public interface Feature<C extends FeatureConfig> {
 
-    void buildSurface(ProtoWorld<?> world, ProtoChunk<?> targetChunk, Vector3i surfacePosition, BiomeType biome, Random random, WorldGenerationSettings settings, double noise, long seed, C config);
+    /**
+     * Generates the feature centered at the origin position in the
+     * provided {@link ProtoWorld}. The world is not guaranteed to be an
+     * active {@link World}, as it can be a {@link GenerationRegion}
+     * (for chunk generation). The configuration object is used to determine
+     * various feature options. Not every Feature will have options.
+     *
+     * @param world The world region where the feature is to be placed
+     * @param generator The generator
+     * @param random The random number provider
+     * @param origin The origin point of the feature
+     * @param config The config object for configuring the feature to be placed
+     * @return True if generation reported to be successful, false otherwise
+     */
+    boolean generate(ProtoWorld<?> world, TerrainGenerator<?> generator, Random random, Vector3i origin, C config);
 
 }
