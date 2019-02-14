@@ -60,6 +60,12 @@ public interface MoveEntityEvent extends TargetEntityEvent, Cancellable {
     void setToTransform(Transform<World> transform);
 
     /**
+     * Fired when an {@link Entity}'s position changes.
+     */
+    @GenerateFactoryMethod
+    interface Position extends MoveEntityEvent {};
+
+    /**
      * Fired when an {@link Entity}'s position changes for reasons other than
      * normal movement.
      */
