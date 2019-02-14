@@ -49,6 +49,6 @@ public interface CompositeFeature<F extends FeatureConfig, P extends PlacementCo
 
     @Override
     default boolean generate(ProtoWorld<?> world, TerrainGenerator<?> generator, Random random, Vector3i origin, F config) {
-        return this.getFeature().generate(world, generator, random, origin, config);
+        return this.getPlacer().place(world, generator, random, origin, this.getPlacementConfig(), this.getFeature(), config)
     }
 }

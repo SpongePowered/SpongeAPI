@@ -335,7 +335,7 @@ public interface World extends ProtoWorld<World>, LocationCreator<World>, Physic
      *
      * @return The world generator
      */
-    TerrainGenerator getWorldGenerator();
+    TerrainGenerator getTerrainGenerator();
 
     /**
      * Gets the properties for this world.
