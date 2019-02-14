@@ -51,6 +51,6 @@ public interface GeneratorType extends CatalogType {
      * @param world The world to create the world generator for.
      * @return The new generator
      */
-    TerrainGenerator createGenerator(World world);
+    TerrainGenerator<?> createGenerator(World world);
 
 }

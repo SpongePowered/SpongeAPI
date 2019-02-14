@@ -26,8 +26,8 @@ package org.spongepowered.api.world.volume.worker.function;
 
 import org.spongepowered.api.world.volume.UnmodifiableVolume;
 
-public interface VolumeMapper<I, V extends UnmodifiableVolume> {
+public interface VolumeMapper<I, V extends UnmodifiableVolume, T> {
 
-    I map(V volume, int x, int y, int z);
+    T map(V volume, I value, int x, int y, int z);
 
 }

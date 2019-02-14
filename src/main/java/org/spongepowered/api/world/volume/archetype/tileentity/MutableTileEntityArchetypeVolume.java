@@ -25,11 +25,11 @@
 package org.spongepowered.api.world.volume.archetype.tileentity;
 
 import org.spongepowered.api.world.volume.MutableVolume;
-import org.spongepowered.api.world.volume.archetype.tileentity.worker.MutableTileEntityArchetypeWorker;
+import org.spongepowered.api.world.volume.archetype.tileentity.worker.MutableTileEntityArchetypeStream;
 
-public interface MutableTileEntityArchetypeVolume<M extends MutableTileEntityArchetypeVolume<M>> extends WorkableTileEntityArchetypeVolume<M>, MutableVolume {
+public interface MutableTileEntityArchetypeVolume<M extends MutableTileEntityArchetypeVolume<M>> extends StreamableTileEntityArchetypeVolume<M>, MutableVolume {
 
     @Override
-    MutableTileEntityArchetypeWorker<M> getTileEntityWorker();
+    MutableTileEntityArchetypeStream<M> toTileEntityArchetypeStream();
 
 }

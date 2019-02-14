@@ -28,9 +28,9 @@ import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
 import org.spongepowered.api.world.volume.MutableVolume;
-import org.spongepowered.api.world.volume.block.worker.MutableBlockVolumeWorker;
+import org.spongepowered.api.world.volume.block.worker.MutableBlockVolumeStream;
 
-public interface MutableBlockVolume<M extends MutableBlockVolume<M>> extends WorkableBlockVolume<M>, MutableVolume {
+public interface MutableBlockVolume<M extends MutableBlockVolume<M>> extends StreamableBlockVolume<M>, MutableVolume {
 
     /**
      * Sets the block at the given position in the world.
@@ -65,5 +65,5 @@ public interface MutableBlockVolume<M extends MutableBlockVolume<M>> extends Wor
     boolean removeBlock(int x, int y, int z);
 
     @Override
-    MutableBlockVolumeWorker<M> getBlockWorker();
+    MutableBlockVolumeStream<M> toBlockStream();
 }

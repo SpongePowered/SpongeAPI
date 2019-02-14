@@ -27,7 +27,8 @@ package org.spongepowered.api.world.volume.tileentity;
 import org.spongepowered.api.world.volume.UnmodifiableVolume;
 import org.spongepowered.api.world.volume.block.UnmodifiableBlockVolume;
 
-public interface UnmodifiableTileEntityVolume<U extends UnmodifiableTileEntityVolume<U>> extends ReadableTileEntityVolume, WorkableTileEntityVolume<U>,
+public interface UnmodifiableTileEntityVolume<U extends UnmodifiableTileEntityVolume<U>> extends ReadableTileEntityVolume,
+    StreamableTileEntityVolume<U>,
     UnmodifiableVolume, UnmodifiableBlockVolume<U> {
 
 }

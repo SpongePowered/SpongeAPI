@@ -34,12 +34,12 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.world.volume.MutableVolume;
 import org.spongepowered.api.world.volume.block.MutableBlockVolume;
-import org.spongepowered.api.world.volume.entity.worker.MutableEntityWorker;
+import org.spongepowered.api.world.volume.entity.worker.MutableEntityStream;
 
 import java.util.Collection;
 import java.util.Optional;
 
-public interface MutableEntityVolume<M extends MutableEntityVolume<M>> extends WorkableEntityVolume<M>, MutableVolume, MutableBlockVolume<M> {
+public interface MutableEntityVolume<M extends MutableEntityVolume<M>> extends StreamableEntityVolume<M>, MutableVolume, MutableBlockVolume<M> {
 
     /**
      * Create an entity instance at the given position.
@@ -184,6 +184,6 @@ public interface MutableEntityVolume<M extends MutableEntityVolume<M>> extends W
     Collection<Entity> spawnEntities(Iterable<? extends Entity> entities);
 
     @Override
-    MutableEntityWorker<M> getEntityWorker();
+    MutableEntityStream<M> toEntityStream();
 
 }

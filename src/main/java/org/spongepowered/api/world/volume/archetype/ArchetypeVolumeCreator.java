@@ -25,15 +25,15 @@
 package org.spongepowered.api.world.volume.archetype;
 
 import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.world.volume.biome.WorkableBiomeVolume;
-import org.spongepowered.api.world.volume.block.WorkableBlockVolume;
-import org.spongepowered.api.world.volume.entity.WorkableEntityVolume;
-import org.spongepowered.api.world.volume.tileentity.WorkableTileEntityVolume;
+import org.spongepowered.api.world.volume.biome.StreamableBiomeVolume;
+import org.spongepowered.api.world.volume.block.StreamableBlockVolume;
+import org.spongepowered.api.world.volume.entity.StreamableEntityVolume;
+import org.spongepowered.api.world.volume.tileentity.StreamableTileEntityVolume;
 
-public interface ArchetypeVolumeCreator extends WorkableBlockVolume<ArchetypeVolumeCreator>,
-    WorkableBiomeVolume<ArchetypeVolumeCreator>,
-    WorkableEntityVolume<ArchetypeVolumeCreator>,
-    WorkableTileEntityVolume<ArchetypeVolumeCreator>
+public interface ArchetypeVolumeCreator extends StreamableBlockVolume<ArchetypeVolumeCreator>,
+    StreamableBiomeVolume<ArchetypeVolumeCreator>,
+    StreamableEntityVolume<ArchetypeVolumeCreator>,
+    StreamableTileEntityVolume<ArchetypeVolumeCreator>
 {
 
     /**

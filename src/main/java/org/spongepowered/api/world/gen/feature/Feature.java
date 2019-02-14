@@ -25,6 +25,7 @@
 package org.spongepowered.api.world.gen.feature;
 
 import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.gen.FeatureConfig;
@@ -33,6 +34,7 @@ import org.spongepowered.api.world.gen.TerrainGenerator;
 
 import java.util.Random;
 
+@CatalogedBy(Features.class) // Not a catalog type, will have to see in 1.14 workspace.
 public interface Feature<C extends FeatureConfig> {
 
     /**

@@ -28,7 +28,7 @@ import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.world.volume.UnmodifiableVolume;
 import org.spongepowered.api.world.volume.block.UnmodifiableBlockVolume;
 
-public interface UnmodifiableEntityVolume<U extends UnmodifiableEntityVolume<U>> extends ReadableEntityVolume, WorkableEntityVolume<U>,
+public interface UnmodifiableEntityVolume<U extends UnmodifiableEntityVolume<U>> extends ReadableEntityVolume, StreamableEntityVolume<U>,
     UnmodifiableVolume, UnmodifiableBlockVolume<U> {
 
     @SuppressWarnings("unchecked")

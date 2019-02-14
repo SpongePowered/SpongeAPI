@@ -45,7 +45,7 @@ public interface ImmutableDecayableData extends ImmutableDataManipulator<Immutab
      * @return The immutable value for the decay distance
      * @see Keys#DECAY_DISTANCE
      */
-    BoundedValue.Immutable<Value.Immutable> distance();
+    BoundedValue.Immutable<Integer> distance();
 
     /**
      * Gets the {@link Value} for whether the {@link BlockState} state is

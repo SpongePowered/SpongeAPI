@@ -26,15 +26,15 @@ package org.spongepowered.api.world.volume.block;
 
 import org.spongepowered.api.world.volume.MutableVolume;
 import org.spongepowered.api.world.volume.UnmodifiableVolume;
-import org.spongepowered.api.world.volume.block.worker.BlockVolumeWorker;
+import org.spongepowered.api.world.volume.block.worker.BlockVolumeStream;
 
 /**
  * Like a {@link ReadableBlockVolume} except in the case that
  * while the parent volume can potentially be a {@link MutableVolume},
  * this volume returned will not be. This is useful if needing to simply
- * scan blocks or use {@link BlockVolumeWorker}s to perform various operations.
+ * scan blocks or use {@link BlockVolumeStream}s to perform various operations.
  */
-public interface UnmodifiableBlockVolume<U extends UnmodifiableBlockVolume<U>> extends ReadableBlockVolume, WorkableBlockVolume<U>, UnmodifiableVolume {
+public interface UnmodifiableBlockVolume<U extends UnmodifiableBlockVolume<U>> extends ReadableBlockVolume, StreamableBlockVolume<U>, UnmodifiableVolume {
 
     @SuppressWarnings("unchecked")
     @Override
