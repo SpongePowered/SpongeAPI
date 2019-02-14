@@ -28,31 +28,27 @@ import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.gen.FeatureConfig;
-import org.spongepowered.api.world.gen.WorldGenerator;
+import org.spongepowered.api.world.gen.TerrainGenerator;
 
 import java.util.Random;
 
 /**
- * A pre-composed {@link FeatureCreator} that has a designated and configured
- * {@link FeaturePlacer} and {@link FeatureCreator}. The uses for this is to
+ * A pre-composed {@link Feature} that has a designated and configured
+ * {@link FeaturePlacer} and {@link Feature}. The uses for this is to
  * pre-compose features that would otherwise be found in {@link BiomeType}s.
- *
- * @param <F>
- * @param <P>
  */
-public interface CompositeFeature<F extends FeatureConfig, P extends PlacementConfig> extends FeatureCreator<F> {
+public interface CompositeFeature<F extends FeatureConfig, P extends PlacementConfig> extends Feature<F> {
 
     F getFeatureConfig();
 
-    FeatureCreator<F> getCreator();
+    Feature<F> getFeature();
 
     P getPlacementConfig();
 
     FeaturePlacer<P> getPlacer();
 
     @Override
-    default boolean generate(ProtoWorld<?> world, WorldGenerator<?> generator, Random random, Vector3i origin, F config) {
-        return getPlacer().place(world, generator, random, origin, getPlacementConfig(), getCreator(), getFeatureConfig());
+    default boolean generate(ProtoWorld<?> world, TerrainGenerator<?> generator, Random random, Vector3i origin, F config) {
+        return this.getPlacer().place(world, generator, random, origin, this.getPlacementConfig(), this.getFeature(), config);
     }
-
 }

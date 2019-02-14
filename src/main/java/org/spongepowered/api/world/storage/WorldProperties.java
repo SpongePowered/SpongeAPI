@@ -25,7 +25,6 @@
 package org.spongepowered.api.world.storage;
 
 import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.GameRegistry;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.data.DataSerializable;
@@ -345,25 +344,7 @@ public interface WorldProperties extends WeatherUniverse, DataSerializable, Iden
     void setPropertySection(DataQuery path, DataView data);
 
     /**
-     * Gets an immutable collection of the world generator modifiers currently
-     * in use.
-     *
-     * @return The world generator modifiers in use.
-     */
-    //Collection<WorldGeneratorModifier> getGeneratorModifiers();
-
-    /**
-     * Sets the given world generator modifiers to be used.
-     *
-     * @param modifiers The modifiers to set.
-     * @throws IllegalArgumentException If any of the modifiers has not been
-     *         registered in the {@link GameRegistry}.
-     */
-    //void setGeneratorModifiers(Collection<WorldGeneratorModifier> modifiers);
-
-    /**
-     * Gets the generator settings. These can be used by the generator type
-     * and/or by the generator modifiers.
+     * Gets the generator settings. These can be used by the generator type.
      *
      * @return The generator settings.
      */

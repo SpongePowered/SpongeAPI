@@ -31,7 +31,7 @@ import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.volume.biome.ImmutableBiomeVolume;
-import org.spongepowered.api.world.gen.WorldGenerator;
+import org.spongepowered.api.world.gen.TerrainGenerator;
 import org.spongepowered.api.world.volume.block.MutableBlockVolume;
 
 public final class ChunkStates {
@@ -66,7 +66,7 @@ public final class ChunkStates {
     /**
      * A {@link ProtoChunk} state that is being populated by {@link Populator}s,
      * usually provided by {@link BiomeType}s and other aspects of a
-     * {@link WorldGenerator#getPopulators()}. {@link Populator}s at this point
+     * {@link TerrainGenerator#getPopulators()}. {@link Populator}s at this point
      * should have their {@link PopulatorConfig} objects already finalized, but
      * they can be modified on a global state of that populator, depending on
      * the origin of said populator.

@@ -48,7 +48,6 @@ public interface ChunkVolume extends ReadableBlockVolume {
 
     boolean isChunkLoaded(int x, int y, int z, boolean allowEmpty);
 
-
     default boolean isBlockLoaded(int x, int y, int z) {
         return isBlockLoaded(x, y, z, true);
     }

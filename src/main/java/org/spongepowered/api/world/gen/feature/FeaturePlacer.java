@@ -26,12 +26,14 @@ package org.spongepowered.api.world.gen.feature;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.world.ProtoWorld;
-import org.spongepowered.api.world.gen.WorldGenerator;
+import org.spongepowered.api.world.gen.FeatureConfig;
+import org.spongepowered.api.world.gen.TerrainGenerator;
 
 import java.util.Random;
 
 public interface FeaturePlacer<P extends PlacementConfig> {
 
-    <C> boolean place(ProtoWorld<?> worldIn, WorldGenerator<?> generator, Random random, Vector3i pos, P placementConfig, FeatureCreator<C> feature, C featureConfig);
+    <C extends FeatureConfig> boolean place(ProtoWorld<?> world, TerrainGenerator<?> generator, Random random, Vector3i pos, P placementConfig,
+        Feature<C> feature, C featureConfig);
 
 }

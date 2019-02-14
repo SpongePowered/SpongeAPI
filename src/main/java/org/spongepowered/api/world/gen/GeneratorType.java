@@ -30,7 +30,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.World;
 
 /**
- * Represents a world type. This is in general a {@link WorldGenerator} and the
+ * Represents a world type. This is in general a {@link TerrainGenerator} and the
  * settings for the generator.
  */
 @CatalogedBy(GeneratorTypes.class)
@@ -44,13 +44,13 @@ public interface GeneratorType extends CatalogType {
     DataContainer getGeneratorSettings();
 
     /**
-     * Creates a new {@link WorldGenerator} for this generator type.
+     * Creates a new {@link TerrainGenerator} for this generator type.
      *
      * <p>This will use the default settings of this generator type.</p>
      *
      * @param world The world to create the world generator for.
      * @return The new generator
      */
-    WorldGenerator createGenerator(World world);
+    TerrainGenerator createGenerator(World world);
 
 }
