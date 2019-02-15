@@ -64,7 +64,7 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.projectile.EyeOfEnder;
-import org.spongepowered.api.entity.projectile.Firework;
+import org.spongepowered.api.entity.projectile.FireworkRocket;
 import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.entity.projectile.Snowball;
 import org.spongepowered.api.entity.projectile.arrow.Arrow;
@@ -183,12 +183,12 @@ public final class CatalogEntityData {
      */
     public static final Class<FallingBlockData> FALLING_BLOCK_DATA = FallingBlockData.class;
     /**
-     * Represents the {@link FireworkEffect}s that a {@link Firework} will have
+     * Represents the {@link FireworkEffect}s that a {@link FireworkRocket} will have
      * upon detonation.
      */
     public static final Class<FireworkEffectData> FIREWORK_EFFECT_DATA = FireworkEffectData.class;
     /**
-     * Represents the flight time of a {@link Firework}.
+     * Represents the flight time of a {@link FireworkRocket}.
      */
     public static final Class<FireworkRocketData> FIREWORK_ROCKET_DATA = FireworkRocketData.class;
     /**

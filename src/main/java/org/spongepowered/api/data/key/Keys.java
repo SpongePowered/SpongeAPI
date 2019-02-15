@@ -38,6 +38,7 @@ import org.spongepowered.api.data.value.*;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.effect.potion.PotionEffectType;
+import org.spongepowered.api.entity.projectile.FireworkRocket;
 import org.spongepowered.api.entity.vehicle.Boat;
 import org.spongepowered.api.item.potion.PotionType;
 import org.spongepowered.api.entity.*;
@@ -54,7 +55,6 @@ import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.projectile.DamagingProjectile;
 import org.spongepowered.api.entity.projectile.EyeOfEnder;
-import org.spongepowered.api.entity.projectile.Firework;
 import org.spongepowered.api.entity.projectile.arrow.Arrow;
 import org.spongepowered.api.entity.projectile.explosive.fireball.Fireball;
 import org.spongepowered.api.entity.vehicle.minecart.CommandBlockMinecart;
@@ -866,7 +866,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for the {@link FireworkEffect}s of a
      * {@link ItemTypes#FIREWORK_STAR}, {@link ItemTypes#FIREWORK_ROCKET} or a
-     * {@link Firework}.
+     * {@link FireworkRocket}.
      *
      * @see FireworkEffectData#effects()
      */

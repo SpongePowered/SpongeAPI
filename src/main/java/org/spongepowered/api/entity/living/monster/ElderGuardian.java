@@ -22,22 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.vehicle.minecart;
+package org.spongepowered.api.entity.living.monster;
 
-import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
-
-/**
- * Represents a Minecart with a MobSpawner inside it.
- */
-public interface MobSpawnerMinecart extends Minecart {
-
-    /**
-     * Gets a copy of the {@link MobSpawnerData}.
-     *
-     * @return A copy of the mob spawner data
-     */
-    default MobSpawnerData getSpawnerData() {
-        return get(MobSpawnerData.class).get();
-    }
-
+public interface ElderGuardian extends Guardian {
 }

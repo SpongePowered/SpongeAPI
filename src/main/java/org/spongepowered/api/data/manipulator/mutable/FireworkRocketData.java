@@ -28,12 +28,12 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableFireworkRocketData;
 import org.spongepowered.api.data.value.BoundedValue;
-import org.spongepowered.api.entity.projectile.Firework;
+import org.spongepowered.api.entity.projectile.FireworkRocket;
 import org.spongepowered.api.item.ItemTypes;
 
 /**
  * An {@link DataManipulator} representing the flight modifier of a
- * {@link Firework} or {@link ItemTypes#FIREWORK_ROCKET} item.
+ * {@link FireworkRocket} or {@link ItemTypes#FIREWORK_ROCKET} item.
  */
 public interface FireworkRocketData extends DataManipulator<FireworkRocketData, ImmutableFireworkRocketData> {
 

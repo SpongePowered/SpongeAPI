@@ -22,31 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable;
+package org.spongepowered.api.entity.projectile;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.FireworkRocketData;
-import org.spongepowered.api.data.value.BoundedValue;
-import org.spongepowered.api.entity.projectile.FireworkRocket;
-import org.spongepowered.api.item.ItemTypes;
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.manipulator.mutable.RepresentedItemData;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
 /**
- * An {@link ImmutableDataManipulator} representing the flight modifier of a
- * {@link FireworkRocket} or {@link ItemTypes#FIREWORKS} item.
+ * Represents a thrown potion.
  */
-public interface ImmutableFireworkRocketData extends ImmutableDataManipulator<ImmutableFireworkRocketData, FireworkRocketData> {
+public interface Potion extends Projectile {
 
     /**
-     * Gets the {@link BoundedValue.Immutable} for the flight modifier.
+     * Gets a copy of the {@link RepresentedItemData} used by this potion.
      *
-     * <p>Flight modifiers are tiered ranks of flight duration. Generally,
-     * the modifier is used to calculate the fuse time of a firework when
-     * launched. This can be approximated by multiplying 10 and the modifier,
-     * and adding a random number between 0 and 13. Again, this is a general
-     * approximation of what vanilla Minecraft performs.</p>
-     *
-     * @return The flight modifier
+     * @return A copy of the represented item data
      */
-    BoundedValue.Immutable<Integer> flightModifier();
+    default RepresentedItemData getPotionItemData() {
+        return get(RepresentedItemData.class).get();
+    }
+
+    /**
+     * Gets the {@link Value.Mutable} for the represented {@link ItemStack} as an
+     * {@link ItemStackSnapshot}.
+     *
+     * @return The value for the item stack snapshot
+     */
+    default Value.Mutable<ItemStackSnapshot> item() {
+        return getValue(Keys.REPRESENTED_ITEM).get().asMutable();
+    }
 
 }

@@ -32,7 +32,7 @@ import org.spongepowered.api.entity.FallingBlock;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.living.Villager;
 import org.spongepowered.api.entity.living.animal.Animal;
-import org.spongepowered.api.entity.vehicle.minecart.MobSpawnerMinecart;
+import org.spongepowered.api.entity.vehicle.minecart.SpawnerMinecart;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
@@ -95,7 +95,7 @@ public final class SpawnTypes {
 
     /**
      * When an {@link Entity} is spawned as a result of a
-     * {@link BlockTypes#MOB_SPAWNER} or {@link MobSpawnerMinecart} entity
+     * {@link BlockTypes#MOB_SPAWNER} or {@link SpawnerMinecart} entity
      * performs it's normal spawning.
      */
     public static final SpawnType MOB_SPAWNER = DummyObjectProvider.createFor(SpawnType.class, "MOB_SPAWNER");

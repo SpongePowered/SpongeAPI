@@ -22,39 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.projectile;
+package org.spongepowered.api.entity.projectile.arrow;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.FireworkEffectData;
-import org.spongepowered.api.data.value.ListValue;
-import org.spongepowered.api.entity.explosive.FusedExplosive;
-import org.spongepowered.api.item.FireworkEffect;
-import org.spongepowered.api.item.ItemTypes;
-
-/**
- * Represents a firework.
- */
-public interface Firework extends Projectile, FusedExplosive {
-
-    /**
-     * Gets a copy of the {@link FireworkEffectData} for this firework.
-     *
-     * @return A copy of the firework data
-     */
-    default FireworkEffectData getFireworkData() {
-        return get(FireworkEffectData.class).get();
-    }
-
-    /**
-     * Gets the {@link ListValue.Mutable} of {@link FireworkEffect}s.
-     *
-     * <p>Note that for {@link ItemTypes#FIREWORK_CHARGE} only the first effect
-     * will apply to the charge.</p>
-     *
-     * @return The list value of firework effects
-     */
-    default ListValue.Mutable<FireworkEffect> effects() {
-        return getValue(Keys.FIREWORK_EFFECTS).get().asMutable();
-    }
-
+public interface Trident extends Arrow {
 }

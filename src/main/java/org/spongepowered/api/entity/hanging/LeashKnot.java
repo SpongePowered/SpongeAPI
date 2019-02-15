@@ -22,31 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable;
+package org.spongepowered.api.entity.hanging;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.FireworkRocketData;
-import org.spongepowered.api.data.value.BoundedValue;
-import org.spongepowered.api.entity.projectile.FireworkRocket;
-import org.spongepowered.api.item.ItemTypes;
+import org.spongepowered.api.entity.Entity;
 
 /**
- * An {@link ImmutableDataManipulator} representing the flight modifier of a
- * {@link FireworkRocket} or {@link ItemTypes#FIREWORKS} item.
+ * Represents a tied end of a leash on a block, like a fence post.
  */
-public interface ImmutableFireworkRocketData extends ImmutableDataManipulator<ImmutableFireworkRocketData, FireworkRocketData> {
+public interface LeashKnot extends Hanging {
 
     /**
-     * Gets the {@link BoundedValue.Immutable} for the flight modifier.
+     * Gets the currently leashed {@link Entity}.
      *
-     * <p>Flight modifiers are tiered ranks of flight duration. Generally,
-     * the modifier is used to calculate the fuse time of a firework when
-     * launched. This can be approximated by multiplying 10 and the modifier,
-     * and adding a random number between 0 and 13. Again, this is a general
-     * approximation of what vanilla Minecraft performs.</p>
+     * <p>Usually, a {@link LeashKnot} will always exist so long as there is
+     * a leashed {@link Entity} attached. If the leash is broken, the leash
+     * hitch is removed.</p>
      *
-     * @return The flight modifier
+     * @return The currently leashed entity
      */
-    BoundedValue.Immutable<Integer> flightModifier();
+    Entity getLeashedEntity();
 
 }

@@ -32,7 +32,7 @@ import org.spongepowered.api.entity.Entity;
 import java.time.Duration;
 
 /**
- * Represents weather, such as {@link Lightning}.
+ * Represents weather, such as {@link LightningBolt}.
  */
 public interface WeatherEffect extends Entity {
 
