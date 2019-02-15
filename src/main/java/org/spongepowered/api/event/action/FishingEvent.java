@@ -27,7 +27,7 @@ package org.spongepowered.api.event.action;
 import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.Item;
-import org.spongepowered.api.entity.projectile.FishHook;
+import org.spongepowered.api.entity.projectile.FishingBobber;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.block.CollideBlockEvent;
@@ -38,21 +38,21 @@ import java.util.List;
 
 /**
  * An event when a "fishing" action is performed. Always involves a
- * {@link FishHook}.
+ * {@link FishingBobber}.
  */
 public interface FishingEvent extends Event {
 
     /**
-     * Gets the {@link FishHook} related with this event.
+     * Gets the {@link FishingBobber} related with this event.
      *
      * @return The fish hook
      */
-    FishHook getFishHook();
+    FishingBobber getFishHook();
 
     /**
-     * An event where the {@link FishHook} is cast.
+     * An event where the {@link FishingBobber} is cast.
      *
-     * <p>This is fired before the {@link FishHook} has been spawned in the
+     * <p>This is fired before the {@link FishingBobber} has been spawned in the
      * world.</p>
      */
     interface Start extends FishingEvent, Cancellable {}
@@ -60,10 +60,10 @@ public interface FishingEvent extends Event {
     /**
      * Fired when an {@link org.spongepowered.api.entity.Entity} is hooked.
      *
-     * <p>{@link CollideBlockEvent} is fired when a {@link FishHook}
+     * <p>{@link CollideBlockEvent} is fired when a {@link FishingBobber}
      * becomes stuck in a block. This may be called multiple times
      * before {@link Stop} is fired, such as in the case where
-     * the block the {@link FishHook} is stuck in is broken.</p>
+     * the block the {@link FishingBobber} is stuck in is broken.</p>
      */
     interface HookEntity extends FishingEvent, Cancellable {
 
@@ -76,15 +76,15 @@ public interface FishingEvent extends Event {
     }
 
     /**
-     * A specific {@link FishingEvent} where the {@link FishHook} is retracted
+     * A specific {@link FishingEvent} where the {@link FishingBobber} is retracted
      * or "reeled in".
      *
-     * <p>If the {@link FishHook} was cast into water, an {@link ItemStack} may
+     * <p>If the {@link FishingBobber} was cast into water, an {@link ItemStack} may
      * be hooked when it is retracted. If the event is not cancelled, Vanilla
      * will send one or more {@link ItemStack} by spawning {@link Item}s, and
      * sending them moving towards the player.</p>
      *
-     * <p>If the {@link FishHook} has an entity hooked, Vanilla will pull
+     * <p>If the {@link FishingBobber} has an entity hooked, Vanilla will pull
      * the hooked entity towards the caster, if the event is not cancelled.</p>
      */
     interface Stop extends FishingEvent, Cancellable {
