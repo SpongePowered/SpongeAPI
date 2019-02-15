@@ -40,25 +40,11 @@ public interface Dimension extends ContextSource {
     DimensionType getType();
 
     /**
-     * Gets the generator type of dimension.
-     *
-     * @return The generator type of dimension.
-     */
-    GeneratorType getGeneratorType();
-
-    /**
      * Returns whether players can respawn within {@link Dimension} after death.
      *
      * @return True if players can respawn, false if not
      */
     boolean allowsPlayerRespawns();
-
-    /**
-     * Returns the minimum spawn height for {@link Dimension}.
-     *
-     * @return The minimum spawn height
-     */
-    int getMinimumSpawnHeight();
 
     /**
      * Returns whether water evaporates for {@link Dimension}.
