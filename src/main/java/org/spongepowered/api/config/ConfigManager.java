@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.config;
 
+import org.spongepowered.api.plugin.PluginContainer;
+
 /**
  * Provides configuration for plugins.
  *
@@ -41,8 +43,8 @@ package org.spongepowered.api.config;
  * scenarios. It is not required that plugins use this, but it does ensure
  * consistency.</p>
  *
- * <p>Call either {@link #getSharedConfig(Object)} or
- * {@link #getPluginConfig(Object)} to get an object that represents one of
+ * <p>Call either {@link #getSharedConfig(PluginContainer)} or
+ * {@link #getPluginConfig(PluginContainer)} to get an object that represents one of
  * the two outlined choices.</p>
  */
 public interface ConfigManager {
@@ -58,10 +60,10 @@ public interface ConfigManager {
      * <p>The plugin parameter is used to determine the filename for
      * {@link ConfigRoot#getConfigPath()}.</p>
      *
-     * @param instance The plugin instance
+     * @param plugin The plugin instance
      * @return A shared configuration root
      */
-    ConfigRoot getSharedConfig(Object instance);
+    ConfigRoot getSharedConfig(PluginContainer plugin);
 
     /**
      * Gets the configuration root for a plugin that utilizes a configuration
@@ -70,9 +72,9 @@ public interface ConfigManager {
      *
      * <p>The provided plugin is used to determine the folder name.</p>
      *
-     * @param instance The plugin instance
+     * @param plugin The plugin instance
      * @return A plugin-specific configuration root
      */
-    ConfigRoot getPluginConfig(Object instance);
+    ConfigRoot getPluginConfig(PluginContainer plugin);
 
 }
