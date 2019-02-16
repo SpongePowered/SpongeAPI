@@ -266,14 +266,14 @@ public interface Task {
          * @return This builder, for chaining
          * @throws IllegalArgumentException If the given object isn't a valid plugin
          */
-        Builder plugin(Object plugin);
+        Builder plugin(PluginContainer plugin);
 
         /**
          * Builds the task.
          *
          * @return A new instance of a {@link Task}
          * @throws IllegalStateException If the {@link #execute(Runnable)} isn't set. Or
-         *                               in case that {@link #plugin(Object)} isn't set and
+         *                               in case that {@link #plugin(PluginContainer)} isn't set and
          *                               no {@link PluginContainer} could be extracted
          *                               from the {@link CauseStackManager}.
          */

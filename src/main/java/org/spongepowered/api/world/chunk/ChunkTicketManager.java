@@ -32,6 +32,7 @@ import com.google.common.collect.ImmutableSetMultimap;
 import com.google.common.collect.ListMultimap;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.world.World;
 
 import java.util.List;
@@ -131,7 +132,7 @@ public interface ChunkTicketManager {
      * @return The maximum number of tickets the plugin can have in any given
      *         world
      */
-    int getMaxTickets(Object plugin);
+    int getMaxTickets(PluginContainer plugin);
 
     /**
      * Gets the amount of remaining tickets a plugin can have in the world
