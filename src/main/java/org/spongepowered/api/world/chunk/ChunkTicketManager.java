@@ -56,7 +56,7 @@ public interface ChunkTicketManager {
      * @param plugin Plugin that is registering a callback
      * @param callback The callback function object
      */
-    void registerCallback(Object plugin, Callback callback);
+    void registerCallback(PluginContainer plugin, Callback callback);
 
     /**
      * Attempts to create a new loading ticket for a plugin to load chunks in a
@@ -70,7 +70,7 @@ public interface ChunkTicketManager {
      * @return The new LoadingTicket, or Optional.empty() if a ticket could not
      *         be created
      */
-    Optional<LoadingTicket> createTicket(Object plugin, World world);
+    Optional<LoadingTicket> createTicket(PluginContainer plugin, World world);
 
     /**
      * Attempts to create a new loading ticket for a plugin to load chunks in a
@@ -88,7 +88,7 @@ public interface ChunkTicketManager {
      * @return The new LoadingTicket, or Optional.empty() if a ticket could not
      *         be created
      */
-    Optional<EntityLoadingTicket> createEntityTicket(Object plugin, World world);
+    Optional<EntityLoadingTicket> createEntityTicket(PluginContainer plugin, World world);
 
 
     /**
@@ -103,7 +103,7 @@ public interface ChunkTicketManager {
      * @return The new LoadingTicket, or Optional.empty() if a ticket could not
      *         be created
      */
-    Optional<PlayerLoadingTicket> createPlayerTicket(Object plugin, World world, UUID player);
+    Optional<PlayerLoadingTicket> createPlayerTicket(PluginContainer plugin, World world, UUID player);
 
 
     /**
@@ -123,7 +123,7 @@ public interface ChunkTicketManager {
      * @return The new LoadingTicket, or Optional.empty() if a ticket could not
      *         be created
      */
-    Optional<PlayerEntityLoadingTicket> createPlayerEntityTicket(Object plugin, World world, UUID player);
+    Optional<PlayerEntityLoadingTicket> createPlayerEntityTicket(PluginContainer plugin, World world, UUID player);
 
     /**
      * Gets the maximum allowed per-world tickets for a plugin.
@@ -142,7 +142,7 @@ public interface ChunkTicketManager {
      * @param world The world to get the remaining count in
      * @return The remaining tickets the plugin has available in the world
      */
-    int getAvailableTickets(Object plugin, World world);
+    int getAvailableTickets(PluginContainer plugin, World world);
 
     /**
      * Gets the amount of tickets remaining available for a player.
