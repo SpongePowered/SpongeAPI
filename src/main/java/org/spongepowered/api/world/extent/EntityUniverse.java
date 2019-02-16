@@ -103,9 +103,7 @@ public interface EntityUniverse {
     default Collection<Entity> getNearbyEntities(Vector3d location, double distance) {
         checkNotNull(location, "location");
         checkArgument(distance > 0, "distance must be > 0");
-        return this.getIntersectingEntities(new AABB(location.getX() - distance, location.getY() - distance, location.getZ() - distance,
-                location.getX() + distance, location.getY() + distance, location.getZ() + distance),
-            entity -> entity.getLocation().getPosition().distanceSquared(location) <= distance * distance);
+        return this.getEntities(e -> e.getLocation().getPosition().distance(location) <= distance);
     }
 
     /**
