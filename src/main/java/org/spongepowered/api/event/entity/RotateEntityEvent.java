@@ -28,33 +28,39 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
-import org.spongepowered.api.world.World;
 
 /**
  * Called when an {@link Entity} performs rotation of their body or, if
  * applicable, head without moving their position.
  */
 @GenerateFactoryMethod
-public interface RotateEntityEvent extends TargetEntityEvent, Cancellable {
+public interface RotateEntityEvent extends Cancellable {
+
+    /**
+     * Gets the {@link Entity}.
+     *
+     * @return The entity
+     */
+    Entity getEntity();
 
     /**
      * Gets the transform that the {@link Entity} rotated from.
      *
      * @return the previous transform
      */
-    Transform<World> getFromTransform();
+    Transform getFromTransform();
 
     /**
      * Gets the new transform that the {@link Entity} will change to.
      *
      * @return the new transform
      */
-    Transform<World> getToTransform();
+    Transform getToTransform();
 
     /**
      * Sets the new transform that the {@link Entity} will change to.
      *
      * @param transform The new transform
      */
-    void setToTransform(Transform<World> transform);
+    void setToTransform(Transform transform);
 }
