@@ -103,7 +103,7 @@ public interface EntityUniverse {
     default Collection<Entity> getNearbyEntities(Vector3d location, double distance) {
         checkNotNull(location, "location");
         checkArgument(distance > 0, "distance must be > 0");
-        return this.getEntities(e -> e.getLocation().getPosition().distance(location) <= distance);
+        return this.getEntities(e -> e.getLocation().getPosition().distanceSquared(location) <= distance * distance);
     }
 
     /**
