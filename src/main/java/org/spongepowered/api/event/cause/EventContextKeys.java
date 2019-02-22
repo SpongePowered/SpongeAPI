@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.cause;
 
 import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.data.type.HandType;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
@@ -109,6 +110,8 @@ public final class EventContextKeys {
     public static final EventContextKey<ProjectileSource> THROWER = createFor("THROWER");
 
     public static final EventContextKey<ItemStackSnapshot> USED_ITEM = createFor("USED_ITEM");
+
+    public static final EventContextKey<HandType> USED_HAND = createFor("USED_HAND");
 
     public static final EventContextKey<ItemStackSnapshot> WEAPON = createFor("WEAPON");
 
