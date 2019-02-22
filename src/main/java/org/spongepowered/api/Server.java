@@ -140,10 +140,10 @@ public interface Server extends Engine {
      * Loads a {@link World} from the default storage container. If a world with
      * the given name is already loaded then it is returned instead.
      *
-     * @param worldName The name to lookup
+     * @param folderName The name to lookup
      * @return The world, if found
      */
-    Optional<World> loadWorld(String worldName);
+    Optional<World> loadWorld(String folderName);
 
     /**
      * Loads a {@link World} from the default storage container. If a world with
@@ -170,10 +170,10 @@ public interface Server extends Engine {
      * {@link World#getProperties()}. However, if no loaded world is found then
      * an attempt will be made to match unloaded worlds.
      *
-     * @param worldName The name to lookup
+     * @param folderName The name to lookup
      * @return The world properties, if found
      */
-    Optional<WorldProperties> getWorldProperties(String worldName);
+    Optional<WorldProperties> getWorldProperties(String folderName);
 
     /**
      * Gets the {@link WorldProperties} of a world. If a world with the given
@@ -219,7 +219,7 @@ public interface Server extends Engine {
      * @throws IOException If there are any io issues creating the properties
      *      file
      */
-    WorldProperties createWorldProperties(String folderName, WorldArchetype archetype) throws IOException;
+    Optional<WorldProperties> createWorldProperties(String folderName, WorldArchetype archetype) throws IOException;
 
     /**
      * Creates a world copy asynchronously using the new name given and returns
@@ -234,31 +234,30 @@ public interface Server extends Engine {
      * <li>World saving is enabled.</li>
      * </ul>
      *
-     * @param worldProperties The world properties to copy
-     * @param copyName The name for copied world
+     * @param folderName The folder name
+     * @param copyName The copies' name
      * @return An {@link Optional} containing the properties of the new world
      *         instance, if the copy was successful
      */
-    CompletableFuture<Optional<WorldProperties>> copyWorld(WorldProperties worldProperties, String copyName);
+    CompletableFuture<Optional<WorldProperties>> copyWorld(String folderName, String copyName);
 
     /**
      * Renames an unloaded world.
      *
-     * @param worldProperties The world properties to rename
-     * @param newName The name that should be used as a replacement for the
-     *        current world name
+     * @param oldFolderName The old folder name
+     * @param newFolderName The new folder name
      * @return An {@link Optional} containing the new {@link WorldProperties}
      *         if the rename was successful
      */
-    Optional<WorldProperties> renameWorld(WorldProperties worldProperties, String newName);
+    Optional<WorldProperties> renameWorld(String oldFolderName, String newFolderName);
 
     /**
      * Deletes the provided world's files asynchronously from the disk.
      *
-     * @param worldProperties The world properties to delete
+     * @param folderName The folder name to delete
      * @return True if the deletion was successful.
      */
-    CompletableFuture<Boolean> deleteWorld(WorldProperties worldProperties);
+    CompletableFuture<Boolean> deleteWorld(String folderName);
 
     /**
      * Persists the given {@link WorldProperties} to the world storage for it,

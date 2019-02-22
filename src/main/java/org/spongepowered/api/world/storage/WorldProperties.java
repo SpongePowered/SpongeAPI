@@ -59,9 +59,15 @@ public interface WorldProperties extends WeatherUniverse, DataSerializable, Iden
     boolean isInitialized();
 
     /**
+     * Gets the folder name this world exists in.
+     * @return The folder name
+     */
+    String getFolderName();
+
+    /**
      * Gets the name of this world.
      *
-     * @return The name
+     * @return The world name
      */
     String getWorldName();
 
@@ -88,7 +94,7 @@ public interface WorldProperties extends WeatherUniverse, DataSerializable, Iden
      *
      * @return Loads on startup
      */
-    boolean loadOnStartup();
+    boolean doesLoadOnStartup();
 
     /**
      * Sets whether this world should load when the server starts up.
@@ -239,20 +245,20 @@ public interface WorldProperties extends WeatherUniverse, DataSerializable, Iden
     void setGameMode(GameMode gamemode);
 
     /**
-     * Gets whether this world will generate map features such as villages and
+     * Gets whether this world will generate structures such as villages and
      * strongholds.
      *
      * @return Whether map features enabled
      */
-    boolean usesMapFeatures();
+    boolean areStructuresEnabled();
 
     /**
-     * Sets whether this world will generate map features such as villages and
+     * Sets whether this world will generate structures such as villages and
      * strongholds.
      *
      * @param state Whether map features enabled
      */
-    void setMapFeaturesEnabled(boolean state);
+    void setStructuresEnabled(boolean state);
 
     /**
      * Gets whether this world is set to hardcore mode.
@@ -299,58 +305,6 @@ public interface WorldProperties extends WeatherUniverse, DataSerializable, Iden
     void setDifficulty(Difficulty difficulty);
 
     /**
-     * Gets whether the bonus chest should be generated.
-     *
-     * <p>This only applies on the initial load of the {@link World}
-     * created via this properties.</p>
-     *
-     * @return True if bonus chest is generated, false if not
-     */
-    boolean doesGenerateBonusChest();
-
-    /**
-     * Gets the {@link WorldBorder}.
-     *
-     * @return The world border
-     */
-    WorldBorder getWorldBorder();
-
-    /**
-     * Gets a {@link DataContainer} containing any additional properties for
-     * this world. The returned data is a snapshot of the data and is not live.
-     *
-     * @return Any additional properties
-     */
-    DataContainer getAdditionalProperties();
-
-    /**
-     * Gets a section of the additional properties returned by
-     * {@link #getAdditionalProperties()}. The returned data is a snapshot of
-     * the data and is not live.
-     *
-     * @param path The path for the section.
-     * @return The data view representing the requested section
-     */
-    Optional<DataView> getPropertySection(DataQuery path);
-
-    /**
-     * Sets a path within the additional data to the given {@link DataView}. If
-     * you are using this to store data related to your mod/plugin is is HIGHLY
-     * recommended that the identifier you pass in be your mod/plugin id.
-     *
-     * @param path The path for the section
-     * @param data The new data
-     */
-    void setPropertySection(DataQuery path, DataView data);
-
-    /**
-     * Gets the generator settings. These can be used by the generator type.
-     *
-     * @return The generator settings.
-     */
-    DataContainer getGeneratorSettings();
-
-    /**
      * Gets the {@link SerializationBehavior} in use.
      *
      * @return The serialization behavior
@@ -363,4 +317,18 @@ public interface WorldProperties extends WeatherUniverse, DataSerializable, Iden
      * @param behavior The serialization behavior
      */
     void setSerializationBehavior(SerializationBehavior behavior);
+
+    /**
+     * Gets the {@link WorldBorder}.
+     *
+     * @return The world border
+     */
+    WorldBorder getWorldBorder();
+
+    /**
+     * Gets the generator settings. These can be used by the generator type.
+     *
+     * @return The generator settings.
+     */
+    DataContainer getGeneratorSettings();
 }

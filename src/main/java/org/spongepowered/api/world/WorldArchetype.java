@@ -73,7 +73,7 @@ public interface WorldArchetype extends CatalogType {
      *
      * @return True to load when server starts, false if not
      */
-    boolean loadOnStartup();
+    boolean doesLoadOnStartup();
 
     /**
      * Gets whether spawn chunks remain loaded when no players are present.
@@ -118,13 +118,13 @@ public interface WorldArchetype extends CatalogType {
     GeneratorType getGeneratorType();
 
     /**
-     * Gets whether map features are enabled.
+     * Gets whether structures are enabled and will generate.
      *
      * <p>Examples include Villages, Temples, etc.</p>
      *
-     * @return True if map features are enabled, false if not
+     * @return True if structures are enabled and will generate, false if not
      */
-    boolean usesMapFeatures();
+    boolean areStructuresEnabled();
 
     /**
      * Gets whether hardcore mode is enabled.
@@ -139,16 +139,6 @@ public interface WorldArchetype extends CatalogType {
      * @return True if commands are allowed, false if not
      */
     boolean areCommandsAllowed();
-
-    /**
-     * Gets whether the bonus chest should be generated.
-     *
-     * <p>This only applies on the initial load of the {@link World}
-     * created via the {@link WorldProperties} created from this settings.</p>
-     *
-     * @return True if bonus chest is generated, false if not
-     */
-    boolean doesGenerateBonusChest();
 
     /**
      * Gets the dimension type.
@@ -289,7 +279,7 @@ public interface WorldArchetype extends CatalogType {
          * @param state Are map features enabled
          * @return The builder, for chaining
          */
-        Builder usesMapFeatures(boolean state);
+        Builder generateStructures(boolean state);
 
         /**
          * Sets whether hardcore mode is enabled. On servers this will cause
