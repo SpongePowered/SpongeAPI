@@ -27,6 +27,9 @@ package org.spongepowered.api.entity;
 import org.spongepowered.api.Tag;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
+/**
+ * Represents a {@link Tag} which targets {@link EntityType}s.
+ */
 @CatalogedBy(EntityTags.class)
 public interface EntityTag extends Tag<EntityType<?>> {
 

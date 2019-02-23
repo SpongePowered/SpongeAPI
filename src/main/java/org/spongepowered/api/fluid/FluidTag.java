@@ -27,6 +27,9 @@ package org.spongepowered.api.fluid;
 import org.spongepowered.api.Tag;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
+/**
+ * Represents a {@link Tag} which targets {@link FluidType}s.
+ */
 @CatalogedBy(FluidTags.class)
 public interface FluidTag extends Tag<FluidType> {
 

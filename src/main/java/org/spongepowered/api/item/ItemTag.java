@@ -27,6 +27,9 @@ package org.spongepowered.api.item;
 import org.spongepowered.api.Tag;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
+/**
+ * Represents a {@link Tag} which targets {@link ItemType}s.
+ */
 @CatalogedBy(ItemTags.class)
 public interface ItemTag extends Tag<ItemType> {
 

@@ -25,7 +25,10 @@
 package org.spongepowered.api;
 
 import com.google.common.reflect.TypeToken;
-import org.spongepowered.api.block.BlockTags;
+import org.spongepowered.api.block.BlockTag;
+import org.spongepowered.api.entity.EntityTag;
+import org.spongepowered.api.fluid.FluidTag;
+import org.spongepowered.api.item.ItemTag;
 
 import java.util.Collection;
 
@@ -33,7 +36,10 @@ import java.util.Collection;
  * Represents a tag which can be applied to a specific {@link CatalogType}.
  *
  * @param <C> The catalog type
- * @see BlockTags
+ * @see BlockTag
+ * @see EntityTag
+ * @see FluidTag
+ * @see ItemTag
  */
 public interface Tag<C extends CatalogType> extends CatalogType {
 
@@ -51,6 +57,23 @@ public interface Tag<C extends CatalogType> extends CatalogType {
      * @return Whether this tag is applied to the catalog type
      */
     boolean contains(C catalog);
+
+    /**
+     * Gets whether this tag is applied to the given catalog types.
+     *
+     * @param iterable The catalog types
+     * @return Whether this tag is applied to the catalog types
+     */
+    boolean containsAll(Iterable<C> iterable);
+
+    /**
+     * Gets whether the specified {@link Tag} in
+     * included in this tag.
+     *
+     * @param tag The tag
+     * @return Whether the tag is included
+     */
+    boolean contains(Tag<C> tag);
 
     /**
      * Gets a unmodifiable {@link Collection} with all the catalog

@@ -30,7 +30,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 /**
  * Represents a {@link Tag} which targets {@link BlockType}s.
  */
-@CatalogedBy(BlockTag.class)
+@CatalogedBy(BlockTags.class)
 public interface BlockTag extends Tag<BlockType> {
 
 }
