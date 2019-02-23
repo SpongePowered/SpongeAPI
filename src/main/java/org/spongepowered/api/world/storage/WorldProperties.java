@@ -26,9 +26,7 @@ package org.spongepowered.api.world.storage;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.util.Identifiable;
@@ -44,7 +42,6 @@ import org.spongepowered.api.world.teleport.PortalAgentType;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 
 import java.time.Duration;
-import java.util.Optional;
 
 /**
  * Represents the properties of a {@link World} which are persisted across runtime instances.
@@ -59,10 +56,11 @@ public interface WorldProperties extends WeatherUniverse, DataSerializable, Iden
     boolean isInitialized();
 
     /**
-     * Gets the folder name this world exists in.
-     * @return The folder name
+     * Gets the name of the directory that this data exists in.
+     *
+     * @return The directory name
      */
-    String getFolderName();
+    String getDirectoryName();
 
     /**
      * Gets the name of this world.

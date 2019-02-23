@@ -326,14 +326,6 @@ public interface WorldArchetype extends CatalogType {
         Builder commandsAllowed(boolean state);
 
         /**
-         * Sets whether the bonus chest should be created.
-         *
-         * @param state Whether bonus chest is enabled
-         * @return The builder, for chaining
-         */
-        Builder generateBonusChest(boolean state);
-
-        /**
          * Sets the serialization behavior that will be used when saving.
          *
          * @param behavior The serialization behavior
