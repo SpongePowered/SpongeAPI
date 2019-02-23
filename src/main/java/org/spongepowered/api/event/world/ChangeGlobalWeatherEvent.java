@@ -30,10 +30,12 @@ import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.weather.Weather;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 
+import java.time.Duration;
+
 /**
  * Called when a {@link WeatherUniverse}'s {@link Weather} changes.
  */
-public interface ChangeWorldWeatherEvent extends Event, Cancellable {
+public interface ChangeGlobalWeatherEvent extends Event, Cancellable {
 
     /**
      * Gets the {@link World}.
@@ -70,22 +72,22 @@ public interface ChangeWorldWeatherEvent extends Event, Cancellable {
     void setWeather(Weather weather);
 
     /**
-     * Gets the original duration of {@link ChangeWorldWeatherEvent#getWeather()} that would run after event.
+     * Gets the original duration of {@link ChangeGlobalWeatherEvent#getWeather()} that would run after event.
      * @return The original duration
      */
-    int getOriginalDuration();
+    Duration getOriginalDuration();
 
     /**
      * Sets the duration of the {@link Weather} (in ticks).
      *
      * @return The duration of the weather (in ticks)
      */
-    int getDuration();
+    Duration getDuration();
 
     /**
      * Sets the duration of the {@link Weather} (in ticks).
      *
      * @param duration The duration of the weather (in ticks)
      */
-    void setDuration(int duration);
+    void setDuration(Duration duration);
 }
