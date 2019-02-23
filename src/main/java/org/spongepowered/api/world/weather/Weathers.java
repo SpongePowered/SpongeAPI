@@ -33,11 +33,44 @@ public final class Weathers {
 
     // SORTFIELDS:ON
 
+    /**
+     * Represents a weather when the sky is clear, or when there's no sky.
+     */
     public static final Weather CLEAR = DummyObjectProvider.createFor(Weather.class, "CLEAR");
 
+    /**
+     * Represents a weather when there's rainfall.
+     *
+     * <p>In vanilla minecraft this weather can only occur in biomes where the
+     * temperature is between {@code 0.15} and {@code 0.95}.</p>
+     */
     public static final Weather RAIN = DummyObjectProvider.createFor(Weather.class, "RAIN");
 
+    /**
+     * Represents a weather when there's snowfall.
+     *
+     * <p>In vanilla minecraft this weather can only occur in biomes where the
+     * temperature is less than {@code 0.15}.</p>
+     */
+    public static final Weather SNOW = DummyObjectProvider.createFor(Weather.class, "SNOW");
+
+    /**
+     * Represents a weather when there's heavy rainfall combined
+     * with occasional lightning strikes.
+     *
+     * <p>In vanilla minecraft this weather can only occur in biomes where the
+     * temperature is between {@code 0.15} and {@code 0.95}.</p>
+     */
     public static final Weather THUNDER_STORM = DummyObjectProvider.createFor(Weather.class, "THUNDER_STORM");
+
+    /**
+     * Represents a weather when there's heavy snowfall combined
+     * with occasional lightning strikes.
+     *
+     * <p>In vanilla minecraft this weather can only occur in biomes where the
+     * temperature is less than {@code 0.15}.</p>
+     */
+    public static final Weather THUNDER_SNOW = DummyObjectProvider.createFor(Weather.class, "THUNDER_SNOW");
 
     // SORTFIELDS:OFF
 

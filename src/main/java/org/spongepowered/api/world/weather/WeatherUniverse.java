@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.world.weather;
 
+import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.world.biome.BiomeTypes;
+
 import java.time.Duration;
 
 /**
@@ -32,40 +35,68 @@ import java.time.Duration;
 public interface WeatherUniverse {
 
     /**
-     * Gets the current {@link Weather} in this volume.
-     *
-     * @return The current weather.
-     */
-    Weather getWeather();
-
-    /**
      * Gets the remaining {@link Duration} of the current
-     * {@link Weather}.
+     * global {@link Weather}.
      *
-     * @return The remaining weather duration
+     * @return The remaining global weather duration
      */
-    Duration getRemainingWeatherDuration();
+    Duration getRemainingGlobalWeatherDuration();
 
     /**
-     * Gets the {@link Duration} the current {@link Weather}
-     * has been running for.
+     * Gets the {@link Duration} the current global
+     * {@link Weather} has been running for.
      *
-     * @return The running weather duration
+     * @return The running global weather duration
      */
-    Duration getRunningWeatherDuration();
+    Duration getGlobalWeatherDuration();
 
     /**
-     * Sets the {@link Weather} of the volume with a random duration.
+     * Gets the {@link Weather} at the given position.
      *
-     * @param weather The weather that should be switched to
+     * @param x The x coordinate
+     * @param y The y coordinate
+     * @param z The z coordinate
+     * @return The weather at the position
      */
-    void setWeather(Weather weather);
+    Weather getWeather(int x, int y, int z);
 
     /**
-     * Sets the {@link Weather} of the world with the specified duration.
+     * Gets the {@link Weather} at the given position.
      *
-     * @param weather The weather that should be switched to
+     * @param position The position
+     * @return The weather at the position
+     */
+    default Weather getWeather(Vector3i position) {
+        return getWeather(position.getX(), position.getY(), position.getZ());
+    }
+
+    /**
+     * Gets the current global {@link Weather} in this volume.
+     *
+     * @return The current global weather
+     */
+    Weather getGlobalWeather();
+
+    /**
+     * Sets the global {@link Weather} of the volume with a random duration.
+     *
+     * <p>Setting a global weather affects the volume depending on
+     * the biomes and possible other factors. For example, in the
+     * {@link BiomeTypes#DESERT} it's never possible to rain/snow.</p>
+     *
+     * @param weather The weather that should be switched to globally
+     */
+    void setGlobalWeather(Weather weather);
+
+    /**
+     * Sets the global {@link Weather} of the world with the specified duration.
+     *
+     * <p>Setting a global weather affects the volume depending on
+     * the biomes and possible other factors. For example, in the
+     * {@link BiomeTypes#DESERT} it's never possible to rain/snow.</p>
+     *
+     * @param weather The weather that should be switched to globally
      * @param duration The specified duration
      */
-    void setWeather(Weather weather, Duration duration);
+    void setGlobalWeather(Weather weather, Duration duration);
 }
