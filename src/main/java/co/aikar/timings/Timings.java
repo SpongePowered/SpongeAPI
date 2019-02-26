@@ -28,6 +28,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.source.ConsoleSource;
+import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
@@ -50,7 +51,7 @@ public final class Timings {
      * @param name Name of the timing
      * @return A {@link Timing} instance
      */
-    public static Timing of(Object plugin, String name) {
+    public static Timing of(PluginContainer plugin, String name) {
         return factory.of(checkNotNull(plugin, "plugin"), checkNotNull(name, "name"), null);
     }
 
@@ -66,7 +67,7 @@ public final class Timings {
      * @param groupHandler Parent handler to mirror .start/stop calls to
      * @return A {@link Timing} instance
      */
-    public static Timing of(Object plugin, String name, Timing groupHandler) {
+    public static Timing of(PluginContainer plugin, String name, Timing groupHandler) {
         return factory.of(checkNotNull(plugin, "plugin"), checkNotNull(name, "name"), checkNotNull(groupHandler, "groupHandler"));
     }
 
@@ -84,7 +85,7 @@ public final class Timings {
      * @param name Name of timing
      * @return A {@link Timing} instance
      */
-    public static Timing ofStart(Object plugin, String name) {
+    public static Timing ofStart(PluginContainer plugin, String name) {
         Timing timing = of(plugin, name);
         timing.startTimingIfSync();
         return timing;
@@ -106,7 +107,7 @@ public final class Timings {
      * @param groupHandler Parent handler to mirror start/stop calls to
      * @return A {@link Timing} instance
      */
-    public static Timing ofStart(Object plugin, String name, Timing groupHandler) {
+    public static Timing ofStart(PluginContainer plugin, String name, Timing groupHandler) {
         Timing timing = of(plugin, name, groupHandler);
         timing.startTimingIfSync();
         return timing;
