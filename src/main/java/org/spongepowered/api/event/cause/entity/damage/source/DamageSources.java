@@ -45,6 +45,9 @@ public final class DamageSources {
 
     // SORTFIELDS:ON
 
+    /**
+     * Generally used to describe the damage taken when by the dragon breath attack.
+     */
     public static final DamageSource DRAGON_BREATH = DummyObjectProvider.createFor(DamageSource.class, "DRAGON_BREATH");
 
     public static final DamageSource DROWNING = DummyObjectProvider.createFor(DamageSource.class, "DROWNING");
