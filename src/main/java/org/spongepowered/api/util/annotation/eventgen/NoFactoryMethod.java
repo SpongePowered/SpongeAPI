@@ -22,26 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.action;
-
-import com.flowpowered.math.vector.Vector3d;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
-
-import java.util.Optional;
+package org.spongepowered.api.util.annotation.eventgen;
 
 /**
- * Base event for all interactions.
+ * Explicitly disables generation of an event factory method for an event class.
+ *
+ * <p>This is for abstract interfaces in event inheritance.</p>
  */
-@NoFactoryMethod
-public interface InteractEvent extends Event, Cancellable {
+public @interface NoFactoryMethod {
 
-    /**
-     * Gets the point of interaction where the interaction occurred as
-     * a {@link Vector3d}.
-     * 
-     * @return The interaction point if available
-     */
-    Optional<Vector3d> getInteractionPoint();
 }

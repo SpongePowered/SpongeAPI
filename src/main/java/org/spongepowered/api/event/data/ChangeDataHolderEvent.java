@@ -30,6 +30,7 @@ import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.impl.AbstractValueChangeEvent;
+import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
 import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 
@@ -39,6 +40,7 @@ import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
  * methods relating to modifying a {@link DataHolder} while this event
  * is being processed may produce awkward results.
  */
+@GenerateFactoryMethod
 public interface ChangeDataHolderEvent extends Event, Cancellable {
 
     /**

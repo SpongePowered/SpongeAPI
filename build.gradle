@@ -98,6 +98,7 @@ apply plugin: 'org.spongepowered.event-impl-gen'
 
 genEventImpl {
     inclusiveAnnotation 'org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod'
+    exclusiveAnnotation 'org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod'
     outputFactory = 'org.spongepowered.api.event.SpongeEventFactory'
 
     include 'org/spongepowered/api/event/*/**/*'
