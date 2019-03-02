@@ -68,12 +68,6 @@ public final class DamageSources {
 
     public static final DamageSource VOID = DummyObjectProvider.createFor(DamageSource.class, "VOID");
 
-    /**
-     * Generally used to describe the damage taken when colliding into a wall
-     * while flying with an elytra.
-     */
-    public static final DamageSource WALL_COLLISION = DummyObjectProvider.createFor(DamageSource.class, "WALL_COLLISION");
-
     public static final DamageSource WITHER = DummyObjectProvider.createFor(DamageSource.class, "WITHER");
 
     // SORTFIELDS:OFF
