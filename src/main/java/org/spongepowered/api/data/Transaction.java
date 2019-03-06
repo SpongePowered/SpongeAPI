@@ -26,6 +26,10 @@ package org.spongepowered.api.data;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.collect.ImmutableList;
+
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -36,6 +40,7 @@ public class Transaction<T extends DataSerializable> implements DataSerializable
     private final T original;
     private final T defaultReplacement;
     private boolean valid = true;
+    @Nullable private final List<T> intermediary;
     @Nullable private T custom;
 
     /**
@@ -47,6 +52,28 @@ public class Transaction<T extends DataSerializable> implements DataSerializable
     public Transaction(T original, T defaultReplacement) {
         this.original = checkNotNull(original);
         this.defaultReplacement = checkNotNull(defaultReplacement);
+        this.intermediary = null;
+    }
+
+    /**
+     * Creates a new {@link Transaction} with the added possibility of
+     * <i>intermediary</i> transactions that may have taken place between
+     * what is {@link #getOriginal() original} and {@link #getDefault()
+     * the default result}. The list may be {@code null}, however the list
+     * will wrapped to become an unmodifiable list.
+     *
+     * <p>It is imperative that the provided list is not to be modified
+     * outside this created {@link Transaction} synchronously and
+     * asynchronously as consumers of the provided list will not be able
+     * to react accordingly.</p>
+     * @param original
+     * @param defaultReplacement
+     * @param intermediary
+     */
+    public Transaction(T original, T defaultReplacement, @Nullable List<? extends T> intermediary) {
+        this.original = checkNotNull(original, "Original cannot be null");
+        this.defaultReplacement = checkNotNull(defaultReplacement, "Default replacement cannot be null");
+        this.intermediary = intermediary == null ? null : Collections.unmodifiableList(intermediary);
     }
 
     /**
@@ -65,6 +92,24 @@ public class Transaction<T extends DataSerializable> implements DataSerializable
      */
     public final T getDefault() {
         return this.defaultReplacement;
+    }
+
+    /**
+     * Gets a {@link List} of any and all intermediary transactions that may
+     * have taken place to get the final {@link Transaction} of
+     * {@link #getOriginal() the original} and {@link #getDefault() the default}
+     * results. This is exposed for monitoring purposes only, as the provided
+     * list is not modifiable. The list may be {@link List#isEmpty() empty}
+     * by default, but will never be {@code null}.
+     *
+     * <p>Note that special processing with this list may sometimes only take
+     * place if {@link #getCustom() a custom} result has not been set by a plugin,
+     * or if {@link #isValid()} returns {@code false}.</p>
+     *
+     * @return The intermediary list of transactions
+     */
+    public final List<? extends T> getIntermediary() {
+        return this.intermediary == null ? Collections.emptyList() : this.intermediary;
     }
 
     /**
