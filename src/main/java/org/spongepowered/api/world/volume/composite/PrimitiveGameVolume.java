@@ -22,15 +22,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util;
+package org.spongepowered.api.world.volume.composite;
 
-import org.spongepowered.api.CatalogType;
+import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.Game;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.block.tileentity.TileEntity;
+import org.spongepowered.api.fluid.FluidState;
+import org.spongepowered.api.world.volume.Volume;
 
-@CatalogedBy(HeightTypes.class)
-public interface HeightType extends CatalogType {
+import java.util.Optional;
 
-    BlockReaderAwareMatcher<BlockState> getMatcher();
+/**
+ * A very primitive rudimentary volume that can be used by the {@link Game}
+ * without impunity, but no guaranteeds on the provider type of what this
+ * primitive volume is based on.
+ */
+public interface PrimitiveGameVolume extends Volume {
 
+    default Optional<TileEntity> getTileEntity(Vector3i position) {
+        return getTileEntity(position.getX(), position.getY(), position.getZ());
+    }
+
+    Optional<TileEntity> getTileEntity(int x, int y, int z);
+
+    default BlockState getBlockState(Vector3i pos) {
+        return getBlockState(pos.getX(), pos.getY(), pos.getZ());
+    }
+
+    BlockState getBlockState(int x, int y, int z);
+
+    default FluidState getFluidState(Vector3i pos) {
+        return getFluidState(pos.getX(), pos.getY(), pos.getZ());
+    }
+
+    FluidState getFluidState(int x, int y, int z);
+
+    default int getMaxLightLevel() {
+        return 15;
+    }
 }

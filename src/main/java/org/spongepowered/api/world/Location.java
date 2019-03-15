@@ -385,16 +385,6 @@ public final class Location implements DataHolder, DirectionRelativePropertyHold
     }
 
     /**
-     * Returns true if this location has a biome at its
-     * {@link #getBiomePosition()}.
-     *
-     * @return Whether or not there is a biome at this location.
-     */
-    public boolean hasBiome() {
-        return getWorld().containsBiome(getBiomePosition());
-    }
-
-    /**
      * Returns true if this location has a block at its
      * {@link #getBlockPosition()} ()}.
      *

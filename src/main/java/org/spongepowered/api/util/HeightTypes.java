@@ -24,13 +24,20 @@
  */
 package org.spongepowered.api.util;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-@CatalogedBy(HeightTypes.class)
-public interface HeightType extends CatalogType {
+public final class HeightTypes {
 
-    BlockReaderAwareMatcher<BlockState> getMatcher();
+    // SORTFIELDS:ON
+    public static final HeightType WORLD_SURFACE_WG = DummyObjectProvider.createFor(HeightType.class, "WORLD_SURFACE_WG");
+    public static final HeightType OCEAN_FLOOR_WG = DummyObjectProvider.createFor(HeightType.class, "OCEAN_FLOOR_WG");
+    public static final HeightType LIGHT_BLOCKING = DummyObjectProvider.createFor(HeightType.class, "LIGHT_BLOCKING");
+    public static final HeightType MOTION_BLOCKING = DummyObjectProvider.createFor(HeightType.class, "MOTION_BLOCKING");
+    public static final HeightType MOTION_BLOCKING_NO_LEAVES = DummyObjectProvider.createFor(HeightType.class, "MOTION_BLOCKING_NO_LEAVES");
+    public static final HeightType OCEAN_FLOOR = DummyObjectProvider.createFor(HeightType.class, "OCEAN_FLOOR");
+    public static final HeightType WORLD_SURFACE = DummyObjectProvider.createFor(HeightType.class, "WORLD_SURFACE");
+    // SORTFIELDS:OFF
+
+    private HeightTypes() { }
 
 }

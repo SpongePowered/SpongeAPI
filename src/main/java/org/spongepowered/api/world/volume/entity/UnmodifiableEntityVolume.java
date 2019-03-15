@@ -37,6 +37,12 @@ public interface UnmodifiableEntityVolume<U extends UnmodifiableEntityVolume<U>>
         return (U) this;
     }
 
+    @SuppressWarnings("unchecked")
+    @Override
+    default U asUnmodifiableBlockVolume() {
+        return (U) this;
+    }
+
     @Override
     U getView(Vector3i newMin, Vector3i newMax);
 

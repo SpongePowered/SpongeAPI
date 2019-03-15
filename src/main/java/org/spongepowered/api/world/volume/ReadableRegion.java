@@ -135,7 +135,26 @@ public interface ReadableRegion<R extends ReadableRegion<R>> extends
         return this.isAreaLoaded(from.getX(), from.getY(), from.getZ(), to.getX(), to.getY(), to.getZ(), allowEmpty);
     }
 
-    boolean isAreaLoaded(int xStart, int yStart, int zStart, int xEnd, int yEnd, int zEnd, boolean allowEmpty);
+    default boolean isAreaLoaded(int xStart, int yStart, int zStart, int xEnd, int yEnd, int zEnd, boolean allowEmpty) {
+        if (yEnd >= 0 && yStart < 256) {
+            xStart = xStart >> 4;
+            zStart = zStart >> 4;
+            xEnd = xEnd >> 4;
+            zEnd = zEnd >> 4;
+
+            for(int i = xStart; i <= xEnd; ++i) {
+                for(int j = zStart; j <= zEnd; ++j) {
+                    if (!this.isChunkLoaded(i, 0, j, allowEmpty)) {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     Dimension getDimension();
 

@@ -558,4 +558,5 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
         return getValue(Keys.HAS_GRAVITY).get().asMutable();
     }
 
+    Vector3d getPosition();
 }

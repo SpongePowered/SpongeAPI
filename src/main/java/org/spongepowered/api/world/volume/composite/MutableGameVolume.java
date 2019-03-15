@@ -22,15 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util;
+package org.spongepowered.api.world.volume.composite;
 
-import org.spongepowered.api.CatalogType;
+import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.world.BlockChangeFlag;
+import org.spongepowered.api.world.LightType;
 
-@CatalogedBy(HeightTypes.class)
-public interface HeightType extends CatalogType {
+public interface MutableGameVolume {
 
-    BlockReaderAwareMatcher<BlockState> getMatcher();
+    default boolean setBlockstate(Vector3i position, BlockState state, BlockChangeFlag flag) {
+        return setBlockstate(position.getX(), position.getY(), position.getZ(), state, flag);
+    }
+
+    boolean setBlockstate(int x, int y, int z, BlockState state, BlockChangeFlag flag);
+
+    boolean spawnEntity(Entity entity);
+
+    default boolean removeBlock(Vector3i pos) {
+        return removeBlock(pos.getX(), pos.getY(), pos.getZ());
+    }
+
+    boolean removeBlock(int x, int y, int z);
+
+    void setLight(LightType light, Vector3i position, int lightValue);
+
+    boolean destroyBlock(Vector3i pos, boolean performDrops);
+
+
 
 }

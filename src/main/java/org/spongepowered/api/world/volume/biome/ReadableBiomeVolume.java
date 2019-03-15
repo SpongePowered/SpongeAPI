@@ -30,29 +30,6 @@ import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.volume.Volume;
 
 public interface ReadableBiomeVolume extends Volume {
-    /**
-     * Gets the biome location with the lowest x and y that is still a valid
-     * position for {@link #getBiome(Vector3i)}.
-     *
-     * @return The lowest biome location
-     */
-    Vector3i getBiomeMin();
-
-    /**
-     * Gets the biome location with the highest x and y that is still a valid
-     * position for {@link #getBiome(Vector3i)}.
-     *
-     * @return The highest biome location.
-     */
-    Vector3i getBiomeMax();
-
-    /**
-     * Gets the size of the volume. Defined as <code>{@link #getBiomeMax()} -
-     * {@link #getBiomeMin()} + (1, 1)</code>.
-     *
-     * @return The size
-     */
-    Vector3i getBiomeSize();
 
     /**
      * Gets an object representing the biome at the given position.
@@ -77,29 +54,6 @@ public interface ReadableBiomeVolume extends Volume {
      *         bounds of the volume
      */
     BiomeType getBiome(int x, int y, int z);
-    /**
-     * Returns true if the biome volume contains a biome at the specified
-     * position. This is defined as <code>{{@link #getBiomeMin()} <= position
-     * <= {@link #getBiomeMax()}</code>
-     *
-     * @param position The position to check
-     * @return Whether or not the position has a biome in this volume
-     */
-    default boolean containsBiome(Vector3i position) {
-        return containsBiome(position.getX(), position.getY(), position.getZ());
-    }
-
-    /**
-     * Returns true if the biome volume contains a biome at the specified
-     * position. This is defined as <code>{{@link #getBiomeMin()} <= (x, y, z)
-     * <= {@link #getBiomeMax()}</code>
-     *
-     * @param x The X coordinate to check
-     * @param y The Y coordinate to check
-     * @param z The Z coordinate to check
-     * @return Whether or not the position has a biome in this volume
-     */
-    boolean containsBiome(int x, int y, int z);
 
     UnmodifiableBiomeVolume<?> asUnmodifiableBiomeVolume();
 
