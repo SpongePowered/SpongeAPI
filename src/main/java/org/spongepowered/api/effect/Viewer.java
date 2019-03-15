@@ -53,7 +53,9 @@ public interface Viewer {
      * @param particleEffect The particle effect to spawn
      * @param position The position at which to spawn the particle effect
      */
-    void spawnParticles(ParticleEffect particleEffect, Vector3d position);
+    default void spawnParticles(ParticleEffect particleEffect, Vector3d position) {
+        this.spawnParticles(particleEffect, position, Integer.MAX_VALUE);
+    }
 
     /**
      * Spawn a {@link ParticleEffect} at a given position.
@@ -77,7 +79,7 @@ public interface Viewer {
      * @param volume The volume to play the sound at, usually between 0 and 2
      */
     default void playSound(SoundType sound, Vector3d position, double volume) {
-        this.playSound(sound, SoundCategories.MASTER, position, volume);
+        this.playSound(sound, SoundCategories.MASTER, position, volume, 1, 0);
     }
 
     /**
@@ -89,7 +91,9 @@ public interface Viewer {
      * @param position The position to play the sound
      * @param volume The volume to play the sound at, usually between 0 and 2
      */
-    void playSound(SoundType sound, SoundCategory category, Vector3d position, double volume);
+    default void playSound(SoundType sound, SoundCategory category, Vector3d position, double volume) {
+        this.playSound(sound, category, position, volume, 1, 0);
+    }
 
     /**
      * Plays the given {@link SoundType} at the given position, with the
@@ -103,7 +107,7 @@ public interface Viewer {
      *        and 2
      */
     default void playSound(SoundType sound, Vector3d position, double volume, double pitch) {
-        this.playSound(sound, SoundCategories.MASTER, position, volume, pitch);
+        this.playSound(sound, SoundCategories.MASTER, position, volume, pitch, 0);
     }
 
     /**
@@ -118,7 +122,9 @@ public interface Viewer {
      * @param pitch The modulation of the sound to play at, usually between 0
      *        and 2
      */
-    void playSound(SoundType sound, SoundCategory category, Vector3d position, double volume, double pitch);
+    default void playSound(SoundType sound, SoundCategory category, Vector3d position, double volume, double pitch) {
+        this.playSound(sound, category, position, volume, pitch, 0);
+    }
 
     /**
      * Plays the given {@link SoundType} at the given position, with the

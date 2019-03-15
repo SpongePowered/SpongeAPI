@@ -42,13 +42,14 @@ import org.spongepowered.api.world.volume.block.PhysicsAwareMutableBlockVolume;
 import org.spongepowered.api.world.volume.composite.MutableGameVolume;
 import org.spongepowered.api.world.volume.entity.MutableEntityVolume;
 import org.spongepowered.api.world.volume.tileentity.MutableTileEntityVolume;
+import org.spongepowered.api.world.volume.tileentity.StreamableTileEntityVolume;
 
 public interface ProtoWorld<P extends ProtoWorld<P>> extends
         ReadableRegion<P>,
         MutableBiomeVolume<P>, // Because this is mutable
         MutableBlockVolume<P>, // Because this is mutable
         MutableEntityVolume<P>, // Because this is mutable
-        MutableTileEntityVolume<P>, // Because this is mutable
+        StreamableTileEntityVolume<P>, // Because this is mutable
         ChunkVolume,
         InteractableVolume,
         LocationBasePropertyHolder,
