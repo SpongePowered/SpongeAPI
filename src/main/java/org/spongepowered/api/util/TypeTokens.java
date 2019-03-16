@@ -85,6 +85,7 @@ import org.spongepowered.api.data.value.mutable.WeightedCollectionValue;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.effect.potion.PotionEffectType;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
@@ -330,6 +331,8 @@ public final class TypeTokens {
     public static final TypeToken<Optional<EntitySnapshot>> OPTIONAL_ENTITY_SNAPSHOT_TOKEN = new TypeToken<Optional<EntitySnapshot>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<OptionalValue<EntitySnapshot>> OPTIONAL_ENTITY_SNAPSHOT_VALUE_TOKEN = new TypeToken<OptionalValue<EntitySnapshot>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<OptionalValue<Entity>> OPTIONAL_ENTITY_VALUE_TOKEN = new TypeToken<OptionalValue<Entity>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Optional<PotionEffectType>> OPTIONAL_POTION_TOKEN = new TypeToken<Optional<PotionEffectType>>() {private static final long serialVersionUID = -1;};
 

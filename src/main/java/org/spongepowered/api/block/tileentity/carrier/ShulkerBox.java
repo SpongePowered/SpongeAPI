@@ -24,6 +24,11 @@
  */
 package org.spongepowered.api.block.tileentity.carrier;
 
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.manipulator.mutable.DyeableData;
+import org.spongepowered.api.data.type.DyeColor;
+import org.spongepowered.api.data.value.mutable.Value;
+
 /**
  * Represents a ShulkerBox. ShulkerBoxes are specific in that when they are
  * mined, they drop themselves with the contents added in themselves, so placing
@@ -31,4 +36,23 @@ package org.spongepowered.api.block.tileentity.carrier;
  */
 public interface ShulkerBox extends TileEntityCarrier {
 
+    /**
+     * Gets a copy of the {@link DyeableData} representing the color of this
+     * {@link ShulkerBox}.
+     *
+     * @return A copy of the dye data
+     */
+    default DyeableData getDyeData() {
+        return get(DyeableData.class).get();
+    }
+
+    /**
+     * Gets the current {@link Value} of {@link DyeColor} for this
+     * {@link ShulkerBox}.
+     *
+     * @return The current value of dye color for this shulker box
+     */
+    default Value<DyeColor> color() {
+        return getValue(Keys.DYE_COLOR).get();
+    }
 }

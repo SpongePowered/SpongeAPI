@@ -22,31 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable.block;
+package org.spongepowered.api.entity.projectile;
 
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.block.ImmutableDirectionalData;
+import org.spongepowered.api.data.manipulator.mutable.entity.TargetedEntityData;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.EntityTypes;
-import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.entity.EntitySnapshot;
 
 /**
- * A {@link DataManipulator} for the {@link Direction} state of a
- * {@link BlockState} or an {@link Entity}. Usually applicable for {@link BlockTypes#STANDING_SIGN},
- * {@link BlockTypes#WALL_SIGN}, {@link BlockTypes#WOODEN_DOOR}, {@link EntityTypes#SHULKER}, etc.
+ * Represents a {@link Projectile} targeting an {@link Entity}
  */
-public interface DirectionalData extends DataManipulator<DirectionalData, ImmutableDirectionalData> {
+public interface EntityTargetingProjectile extends Projectile {
 
     /**
-     * Gets the {@link Value} for the current "facing" {@link Direction}.
+     * Gets the targeted entity data for this {@link EntityTargetingProjectile}.
      *
-     * @return The current "facing" direction value
-     * @see Keys#DIRECTION
+     * <p>The targeted entity data defines which entity this projectile will target.</p>
+     *
+     * @return A copy of the targeted entity data
      */
-    Value<Direction> direction();
+    default TargetedEntityData getTargetData() {
+        return getOrCreate(TargetedEntityData.class).get();
+    }
 
+    /**
+     * Gets the entity this projectile will target.
+     *
+     * @return The targeted entity
+     */
+    default Value<EntitySnapshot> target() {
+        return getValue(Keys.TARGETED_ENTITY).get();
+    }
 }
