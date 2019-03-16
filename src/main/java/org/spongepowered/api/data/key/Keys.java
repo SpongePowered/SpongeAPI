@@ -2103,7 +2103,7 @@ public final class Keys {
      *
      * @see TargetedEntityData#value
      */
-    public static final Key<Value<Entity>> TARGETED_ENTITY = DummyObjectProvider.createExtendedFor(Key.class,"TARGETED_ENTITY");
+    public static final Key<Value<EntitySnapshot>> TARGETED_ENTITY = DummyObjectProvider.createExtendedFor(Key.class,"TARGETED_ENTITY");
 
     /**
      * Represents the {@link Key} for the location targeted by an
