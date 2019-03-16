@@ -50,25 +50,4 @@ public interface MetricsConfigManager {
      */
     boolean areMetricsEnabled(final PluginContainer container);
 
-    /**
-     * Gets whether permission for third-party metrics gathering has been
-     * granted for a specific plugin (or the global permission if the plugin
-     * has not got a specific permission or lack thereof).
-     *
-     * <p>The value returned from this <em>should not be stored</em>. As the
-     * configuration/permission can be updated at any time, it is best to
-     * check this each time server metric collection is due to occur.</p>
-     *
-     * @param plugin The plugin object (annotated with
-     *               {@link org.spongepowered.api.plugin.Plugin})
-     * @throws IllegalArgumentException if the supplied object is not a plugin
-     *                                  object
-     * @return true if metrics gathering plugins have permission to gather
-     *         data about this plugin
-     */
-    default boolean areMetricsEnabled(final Object plugin) throws IllegalArgumentException {
-        return this.areMetricsEnabled(Sponge.getPluginManager().fromInstance(plugin)
-                .orElseThrow(() -> new IllegalArgumentException("The supplied object is not a plugin object.")));
-    }
-
 }

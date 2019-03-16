@@ -582,7 +582,7 @@ public interface Inventory extends Nameable, PropertyHolder {
          * @param plugin The plugin building this inventory
          * @return The new Inventory instance
          */
-        Inventory build(Object plugin);
+        Inventory build(PluginContainer plugin);
 
     }
 }

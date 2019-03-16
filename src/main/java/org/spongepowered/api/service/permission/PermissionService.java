@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.service.permission;
 
+import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.service.context.ContextualService;
 
 import java.util.Collection;
@@ -253,7 +254,7 @@ public interface PermissionService extends ContextualService<Subject> {
      * @return The newly created permission description builder
      * @throws IllegalArgumentException if plugin is not a plugin instance
      */
-    PermissionDescription.Builder newDescriptionBuilder(Object plugin);
+    PermissionDescription.Builder newDescriptionBuilder(PluginContainer plugin);
 
     /**
      * Gets the registered or generated {@link PermissionDescription} for the

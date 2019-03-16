@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.scheduler;
 
+import org.spongepowered.api.plugin.PluginContainer;
+
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
@@ -65,7 +67,7 @@ public interface Scheduler {
      * @param plugin The plugin that created the tasks
      * @return A set of scheduled tasks
      */
-    Set<ScheduledTask> getTasksByPlugin(Object plugin);
+    Set<ScheduledTask> getTasksByPlugin(PluginContainer plugin);
 
     /**
      * Creates a new {@link ExecutorService} that can be used to schedule
@@ -74,7 +76,7 @@ public interface Scheduler {
      * @param plugin The plugin that will own the created tasks
      * @return A new executor service that can be used to execute tasks
      */
-    TaskExecutorService createExecutor(Object plugin);
+    TaskExecutorService createExecutor(PluginContainer plugin);
 
     /**
      * Submit a {@link Task} to this scheduler and returns the task

@@ -148,8 +148,6 @@ public interface CatalogKey extends Comparable<CatalogKey> {
 
         Builder namespace(PluginContainer container);
 
-        Builder namespace(Object pluginInstance);
-
         Builder value(String value);
 
         CatalogKey build() throws IllegalStateException;
