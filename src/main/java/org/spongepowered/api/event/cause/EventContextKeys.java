@@ -32,6 +32,7 @@ import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
+import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.event.cause.entity.dismount.DismountType;
@@ -77,6 +78,42 @@ public final class EventContextKeys {
      * Used when an {@link Entity} interacts with a block.
      */
     public static final EventContextKey<BlockSnapshot> BLOCK_HIT = createFor("BLOCK_HIT");
+
+    /**
+     * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
+     * the block event without relying on existing in the {@link Cause} stack.
+     */
+    public static final EventContextKey<ChangeBlockEvent.Break> BREAK_EVENT = createFor("BREAK_EVENT");
+
+    /**
+     * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
+     * the block event without relying on existing in the {@link Cause} stack.
+     */
+    public static final EventContextKey<ChangeBlockEvent.Place> PLACE_EVENT = createFor("PLACE_EVENT");
+
+    /**
+     * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
+     * the block event without relying on existing in the {@link Cause} stack.
+     */
+    public static final EventContextKey<ChangeBlockEvent.Modify> MODIFY_EVENT = createFor("MODIFY_EVENT");
+
+    /**
+     * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
+     * the block event without relying on existing in the {@link Cause} stack.
+     */
+    public static final EventContextKey<ChangeBlockEvent.Decay> DECAY_EVENT = createFor("DECAY_EVENT");
+
+    /**
+     * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
+     * the block event without relying on existing in the {@link Cause} stack.
+     */
+    public static final EventContextKey<ChangeBlockEvent.Grow> GROW_EVENT = createFor("GROW_EVENT");
+
+    /**
+     * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Grow} to provide
+     * the origin {@link BlockSnapshot} that is doing the "growing".
+     */
+    public static final EventContextKey<BlockSnapshot> GROWTH_ORIGIN = createFor("GROWTH_ORIGIN");
 
     /**
      * Represents the creator of an {@link Entity}.
