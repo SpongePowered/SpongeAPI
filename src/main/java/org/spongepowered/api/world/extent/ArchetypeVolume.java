@@ -24,13 +24,19 @@
  */
 package org.spongepowered.api.world.extent;
 
+import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
+import com.google.common.collect.ImmutableListMultimap;
+import com.google.common.collect.ListMultimap;
 import org.spongepowered.api.block.tileentity.TileEntityArchetype;
+import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Optional;
 
@@ -79,6 +85,18 @@ public interface ArchetypeVolume extends MutableBlockVolume {
      * @return The tile entity map
      */
     Map<Vector3i, TileEntityArchetype> getTileEntityArchetypes();
+
+    default Optional<EntityArchetype> getEntityArchetype(double x, double y, double z) {
+        return Optional.empty();
+    }
+
+    default ListMultimap<Vector3d, EntityArchetype> getEntitiesByPosition() {
+        return ImmutableListMultimap.of();
+    }
+
+    default Collection<EntityArchetype> getEntityArchetypes() {
+        return Collections.emptyList();
+    }
 
     @Override
     MutableBlockVolumeWorker<? extends ArchetypeVolume> getBlockWorker();

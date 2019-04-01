@@ -25,26 +25,11 @@
 package org.spongepowered.api.world.schematic;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
-/**
- * Represents a type of {@link BlockPalette}.
- * @deprecated Use {@link PaletteType} for better generics
- */
-@Deprecated
-@CatalogedBy(BlockPaletteTypes.class)
-public interface BlockPaletteType extends CatalogType, PaletteType<BlockState> {
+@CatalogedBy(PaletteTypes.class)
+public interface PaletteType<T extends CatalogType> extends CatalogType {
 
-    /**
-     * Gets an instance of this palette type.
-     * 
-     * <p>If this is the global type then the global palette instance will be
-     * returned, otherwise a new instance will be created.</p>
-     * 
-     * @return The palette instance
-     */
-    @Override
-    BlockPalette create();
+    Palette<T> create();
 
 }

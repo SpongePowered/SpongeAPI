@@ -24,27 +24,14 @@
  */
 package org.spongepowered.api.world.schematic;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.world.biome.BiomeType;
 
-/**
- * Represents a type of {@link BlockPalette}.
- * @deprecated Use {@link PaletteType} for better generics
- */
-@Deprecated
-@CatalogedBy(BlockPaletteTypes.class)
-public interface BlockPaletteType extends CatalogType, PaletteType<BlockState> {
+public class PaletteTypes {
 
-    /**
-     * Gets an instance of this palette type.
-     * 
-     * <p>If this is the global type then the global palette instance will be
-     * returned, otherwise a new instance will be created.</p>
-     * 
-     * @return The palette instance
-     */
-    @Override
-    BlockPalette create();
-
+    public static final PaletteType<BlockState> GLOBAL_BLOCKS = DummyObjectProvider.createExtendedFor(PaletteType.class, "GLOBAL_BLOCKS");
+    public static final PaletteType<BlockState> LOCAL_BLOCKS = DummyObjectProvider.createExtendedFor(PaletteType.class, "LOCAL_BLOCKS");
+    public static final PaletteType<BiomeType> LOCAL_BIOMES = DummyObjectProvider.createExtendedFor(PaletteType.class, "LOCAL_BIOMNES");
+    public static final PaletteType<BiomeType> GLOBAL_BIOMES = DummyObjectProvider.createExtendedFor(PaletteType.class, "GLOBAL_BIOMES");
 }
