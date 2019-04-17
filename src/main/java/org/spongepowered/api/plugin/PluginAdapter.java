@@ -24,7 +24,10 @@
  */
 package org.spongepowered.api.plugin;
 
+import com.google.inject.AbstractModule;
 import com.google.inject.Injector;
+import com.google.inject.Module;
+import com.google.inject.Scopes;
 
 /**
  * Represents a adapter for plugins. Adapters can be used to add support
@@ -46,11 +49,10 @@ public interface PluginAdapter {
      *
      * @param pluginContainer The plugin container the injector is being created for
      * @param defaultInjector The default injector
+     * @param pluginClass The plugin class
      * @return The injector
      */
-    default Injector getInjector(PluginContainer pluginContainer, Injector defaultInjector) {
-        return defaultInjector;
-    }
+    <T> Injector getInjector(PluginContainer pluginContainer, Injector defaultInjector, Class<T> pluginClass);
 
     /**
      * Gets the plugin instance for the target plugin.
@@ -63,13 +65,27 @@ public interface PluginAdapter {
      * @param pluginClass The plugin class
      * @return The plugin instance
      */
-    default <T> T getInstance(PluginContainer pluginContainer, Injector injector, Class<T> pluginClass) {
-        return injector.getInstance(pluginClass);
-    }
+    <T> T getInstance(PluginContainer pluginContainer, Injector injector, Class<T> pluginClass);
 
     /**
      * Represents the default {@link PluginAdapter}.
      */
     final class Default implements PluginAdapter {
+
+        @Override
+        public <T> Injector getInjector(PluginContainer pluginContainer, Injector defaultInjector, Class<T> pluginClass) {
+            final Module module = new AbstractModule() {
+                @Override
+                protected void configure() {
+                    bind(pluginClass).in(Scopes.SINGLETON);
+                }
+            };
+            return defaultInjector.createChildInjector(module);
+        }
+
+        @Override
+        public <T> T getInstance(PluginContainer pluginContainer, Injector injector, Class<T> pluginClass) {
+            return injector.getInstance(pluginClass);
+        }
     }
 }
