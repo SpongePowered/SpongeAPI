@@ -126,9 +126,9 @@ public interface UseItemStackEvent extends Event {
     interface Stop extends UseItemStackEvent, Cancellable {}
 
     /**
-     * Fired when an item uis finished 'normally', e.g. used for the
+     * Fired when an item is finished 'normally', e.g. used for the
      * entire maximum duration. In contrast to {@link Stop}, this
-     * even will not fire if the item use was interrupted in any way.
+     * event will not fire if the item use was interrupted in any way.
      *
      * <p>Examples:</p>
      *
