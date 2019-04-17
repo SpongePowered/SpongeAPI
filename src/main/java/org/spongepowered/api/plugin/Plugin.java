@@ -101,4 +101,11 @@ public @interface Plugin {
      */
     String[] authors() default {};
 
+    /**
+     * The {@link PluginAdapter} that should be used.
+     *
+     * @return The class of the plugin adapter
+     */
+    Class<? extends PluginAdapter> adapter() default PluginAdapter.Default.class;
+
 }
