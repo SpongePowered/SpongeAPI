@@ -41,8 +41,12 @@ import com.google.inject.Scopes;
 public interface PluginAdapter {
 
     /**
-     * Gets the {@link Injector} that will be used to construct a plugin using
-     * this adapter.
+     * Gets the {@link Injector} that will be used to construct a plugin instance. Proper
+     * bindings should be applied to the {@link Injector} that
+     * {@code injector.getInstance(pluginClass)} would return the plugin instance.
+     *
+     * <p>A singleton is expected for the plugin instance, a {@link IllegalStateException}
+     * may be thrown when constructing if this isn't the case.</p>
      *
      * <p>Calling {@link PluginContainer#getInstance()} during this
      * method will result in a {@link IllegalStateException}.</p>
@@ -53,19 +57,6 @@ public interface PluginAdapter {
      * @return The injector
      */
     <T> Injector getInjector(PluginContainer pluginContainer, Injector defaultInjector, Class<T> pluginClass);
-
-    /**
-     * Gets the plugin instance for the target plugin.
-     *
-     * <p>Calling {@link PluginContainer#getInstance()} during this
-     * method will result in a {@link IllegalStateException}.</p>
-     *
-     * @param pluginContainer The plugin container
-     * @param injector The injector that should be used to populate the plugin with injections
-     * @param pluginClass The plugin class
-     * @return The plugin instance
-     */
-    <T> T getInstance(PluginContainer pluginContainer, Injector injector, Class<T> pluginClass);
 
     /**
      * Represents the default {@link PluginAdapter}.
@@ -81,11 +72,6 @@ public interface PluginAdapter {
                 }
             };
             return defaultInjector.createChildInjector(module);
-        }
-
-        @Override
-        public <T> T getInstance(PluginContainer pluginContainer, Injector injector, Class<T> pluginClass) {
-            return injector.getInstance(pluginClass);
         }
     }
 }

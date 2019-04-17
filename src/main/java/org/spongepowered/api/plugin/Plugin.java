@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.plugin;
 
+import com.google.inject.Injector;
+import com.google.inject.Module;
 import org.spongepowered.plugin.meta.PluginMetadata;
 
 import java.lang.annotation.ElementType;
@@ -107,5 +109,16 @@ public @interface Plugin {
      * @return The class of the plugin adapter
      */
     Class<? extends PluginAdapter> adapter() default PluginAdapter.Default.class;
+
+    /**
+     * The {@link Module}s which should be used. These modules are attached to the
+     * {@link Injector} before the injector is constructed by the {@link PluginAdapter}.
+     *
+     * <p>All the modules that are specified are required to have a public
+     * constructor with no parameters.</p>
+     *
+     * @return The injection modules
+     */
+    Class<? extends Module>[] injectionModules() default {};
 
 }
