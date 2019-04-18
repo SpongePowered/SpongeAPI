@@ -60,24 +60,11 @@ public interface PluginAdapter {
      * @param pluginModules A immutable list of modules which are provided by the plugin
      * @return The injector
      */
-    <T> Injector getInjector(PluginContainer pluginContainer, Class<T> pluginClass, Injector defaultInjector, List<Module> pluginModules);
+    <T> Injector createInjector(PluginContainer pluginContainer, Class<T> pluginClass, Injector defaultInjector, List<Module> pluginModules);
 
     /**
      * Represents the default {@link PluginAdapter}.
      */
-    final class Default implements PluginAdapter {
-
-        @Override
-        public <T> Injector getInjector(PluginContainer pluginContainer, Class<T> pluginClass, Injector defaultInjector, List<Module> pluginModules) {
-            final Module module = new AbstractModule() {
-                @Override
-                protected void configure() {
-                    bind(pluginClass).in(Scopes.SINGLETON);
-                }
-            };
-            final List<Module> modules = new ArrayList<>(pluginModules);
-            modules.add(0, module);
-            return defaultInjector.createChildInjector(modules);
-        }
+    interface Default extends PluginAdapter {
     }
 }
