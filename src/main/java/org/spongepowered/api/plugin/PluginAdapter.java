@@ -38,12 +38,25 @@ import java.util.Optional;
  *
  * <p>A plugin needs to specify this in the {@link Plugin} annotation.</p>
  *
- * <p>A plugin adapter requires a empty and public constructor.</p>
+ * <p>The plugin adapter will be constructed globally by a
+ * {@link Injector}. All injections that aren't plugin specific will
+ * be available for the {@link PluginAdapter}.</p>
  */
 public interface PluginAdapter {
 
     /**
-     * Gets the {@link Injector} that will be used to construct a plugin instance. Proper
+     * Creates the global {@link Injector} that will be used to construct
+     * all plugin specific {@link Injector}s. The returned injector will be used
+     * to construct the plugin defined {@link Module}s.
+     *
+     * @return The global modules
+     */
+    default Injector createGlobalInjector(Injector defaultInjector) {
+        return defaultInjector;
+    }
+
+    /**
+     * Creates the {@link Injector} that will be used to construct a plugin instance. Proper
      * bindings should be applied to the {@link Injector} that
      * {@code injector.getInstance(pluginClass)} would return the plugin instance.
      *
@@ -51,8 +64,8 @@ public interface PluginAdapter {
      * {@link IllegalStateException} will be thrown when constructing if this
      * isn't the case.</p>
      *
-     * <p>Calling {@link PluginContainer#getInstance()} during this
-     * method will always result in {@link Optional#empty()}.</p>
+     * <p>Calling {@link PluginContainer#getInstance()} during the injector construction
+     * will always result in {@link Optional#empty()}.</p>
      *
      * @param pluginContainer The plugin container the injector is being created for
      * @param pluginClass The plugin class

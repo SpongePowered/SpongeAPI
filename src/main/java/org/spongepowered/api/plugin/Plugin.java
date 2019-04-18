@@ -104,18 +104,23 @@ public @interface Plugin {
     String[] authors() default {};
 
     /**
-     * The {@link PluginAdapter} that should be used.
+     * The {@link PluginAdapter} that should be used to construct the plugin.
      *
      * @return The class of the plugin adapter
      */
     Class<? extends PluginAdapter> adapter() default PluginAdapter.Default.class;
 
     /**
-     * The {@link Module}s which should be used. These modules are attached to the
-     * {@link Injector} before the injector is constructed by the {@link PluginAdapter}.
+     * The {@link Module}s which should be used additionally. These modules are
+     * attached to the {@link Injector} before the injector is constructed by the
+     * {@link PluginAdapter}.
      *
-     * <p>All the modules that are specified are required to have a public
-     * constructor with no parameters.</p>
+     * <p>These modules will be instantiated using the default {@link Injector} of
+     * the plugin. This allows all plugin related injections with the exception of
+     * the plugin instance which is at this point unavailable.</p>
+     *
+     * <p>How a new {@link Injector} is constructed from the modules will be determined
+     * by the {@link PluginAdapter}.</p>
      *
      * @return The injection modules
      */
