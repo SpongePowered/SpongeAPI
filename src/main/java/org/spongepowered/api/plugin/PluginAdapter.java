@@ -49,7 +49,7 @@ public interface PluginAdapter {
      * all plugin specific {@link Injector}s. The returned injector will be used
      * to construct the plugin defined {@link Module}s.
      *
-     * @return The global modules
+     * @return The global injector
      */
     default Injector createGlobalInjector(Injector defaultInjector) {
         return defaultInjector;
