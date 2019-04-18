@@ -24,12 +24,10 @@
  */
 package org.spongepowered.api.plugin;
 
-import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
 import com.google.inject.Scopes;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -46,36 +44,43 @@ import java.util.Optional;
 public interface PluginAdapter {
 
     /**
-     * Creates the global {@link Injector} that will be used to construct
-     * all plugin specific {@link Injector}s. The returned injector will be used
-     * to construct the plugin defined {@link Module}s.
+     * Creates the global {@link Module} that will be used to construct
+     * all plugin specific {@link Injector}s. The returned module will be
+     * used to construct the plugin defined {@link Module}s.
+     *
+     * <p>All implicitly constructed objects for plugin defined modules
+     * by this global module won't be retained when it's passed into the
+     * plugin {@link Injector}. Everything that should be retained has
+     * to be manually bound in the module.</p>
      *
      * @param defaultModule De default module
      * @return The global injector
      */
-    default Injector createGlobalInjector(Module defaultModule) {
-        return Guice.createInjector(defaultModule);
+    default Module createGlobalModule(Module defaultModule) {
+        return defaultModule;
     }
 
     /**
-     * Creates the {@link Injector} that will be used to construct a plugin instance. Proper
-     * bindings should be applied to the {@link Injector} that
-     * {@code injector.getInstance(pluginClass)} would return the plugin instance.
+     * Creates the {@link Module} that will be used to construct a plugin instance. Proper
+     * bindings should be applied to the {@link Module} so that
+     * {@code injector.getInstance(pluginClass)} will return the plugin instance.
+     *
+     * <p>The provided default {@link Module} contains the default module and
+     * all the plugin provided {@link Module}s.</p>
      *
      * <p>A {@link Scopes#SINGLETON singleton} scope is expected for the plugin instance, a
      * {@link IllegalStateException} will be thrown when constructing if this
      * isn't the case.</p>
      *
-     * <p>Calling {@link PluginContainer#getInstance()} during the injector construction
+     * <p>Calling {@link PluginContainer#getInstance()} during the module construction
      * will always result in {@link Optional#empty()}.</p>
      *
      * @param pluginContainer The plugin container the injector is being created for
      * @param pluginClass The plugin class
-     * @param defaultInjector The default injector
-     * @param pluginModules A immutable list of modules which are provided by the plugin
-     * @return The injector
+     * @param defaultModule The default module
+     * @return The plugin module
      */
-    <T> Injector createInjector(PluginContainer pluginContainer, Class<T> pluginClass, Injector defaultInjector, List<Module> pluginModules);
+    <T> Module createPluginModule(PluginContainer pluginContainer, Class<T> pluginClass, Module defaultModule);
 
     /**
      * Represents the default {@link PluginAdapter}.
