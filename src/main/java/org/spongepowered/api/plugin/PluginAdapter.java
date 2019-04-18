@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.plugin;
 
+import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
 import com.google.inject.Scopes;
@@ -49,10 +50,11 @@ public interface PluginAdapter {
      * all plugin specific {@link Injector}s. The returned injector will be used
      * to construct the plugin defined {@link Module}s.
      *
+     * @param defaultModule De default module
      * @return The global injector
      */
-    default Injector createGlobalInjector(Injector defaultInjector) {
-        return defaultInjector;
+    default Injector createGlobalInjector(Module defaultModule) {
+        return Guice.createInjector(defaultModule);
     }
 
     /**
