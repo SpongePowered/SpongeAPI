@@ -24,13 +24,12 @@
  */
 package org.spongepowered.api.plugin;
 
-import com.google.inject.AbstractModule;
 import com.google.inject.Injector;
 import com.google.inject.Module;
 import com.google.inject.Scopes;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Represents a adapter for plugins. Adapters can be used to add support
@@ -48,11 +47,12 @@ public interface PluginAdapter {
      * bindings should be applied to the {@link Injector} that
      * {@code injector.getInstance(pluginClass)} would return the plugin instance.
      *
-     * <p>A singleton is expected for the plugin instance, a {@link IllegalStateException}
-     * may be thrown when constructing if this isn't the case.</p>
+     * <p>A {@link Scopes#SINGLETON singleton} scope is expected for the plugin instance, a
+     * {@link IllegalStateException} will be thrown when constructing if this
+     * isn't the case.</p>
      *
      * <p>Calling {@link PluginContainer#getInstance()} during this
-     * method will result in a {@link IllegalStateException}.</p>
+     * method will always result in {@link Optional#empty()}.</p>
      *
      * @param pluginContainer The plugin container the injector is being created for
      * @param pluginClass The plugin class
