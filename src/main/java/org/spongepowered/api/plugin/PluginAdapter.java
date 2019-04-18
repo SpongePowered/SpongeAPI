@@ -29,6 +29,9 @@ import com.google.inject.Injector;
 import com.google.inject.Module;
 import com.google.inject.Scopes;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Represents a adapter for plugins. Adapters can be used to add support
  * to other programming languages for better support, to modify the
@@ -52,11 +55,12 @@ public interface PluginAdapter {
      * method will result in a {@link IllegalStateException}.</p>
      *
      * @param pluginContainer The plugin container the injector is being created for
-     * @param defaultInjector The default injector
      * @param pluginClass The plugin class
+     * @param defaultInjector The default injector
+     * @param pluginModules A immutable list of modules which are provided by the plugin
      * @return The injector
      */
-    <T> Injector getInjector(PluginContainer pluginContainer, Injector defaultInjector, Class<T> pluginClass);
+    <T> Injector getInjector(PluginContainer pluginContainer, Class<T> pluginClass, Injector defaultInjector, List<Module> pluginModules);
 
     /**
      * Represents the default {@link PluginAdapter}.
@@ -64,14 +68,16 @@ public interface PluginAdapter {
     final class Default implements PluginAdapter {
 
         @Override
-        public <T> Injector getInjector(PluginContainer pluginContainer, Injector defaultInjector, Class<T> pluginClass) {
+        public <T> Injector getInjector(PluginContainer pluginContainer, Class<T> pluginClass, Injector defaultInjector, List<Module> pluginModules) {
             final Module module = new AbstractModule() {
                 @Override
                 protected void configure() {
                     bind(pluginClass).in(Scopes.SINGLETON);
                 }
             };
-            return defaultInjector.createChildInjector(module);
+            final List<Module> modules = new ArrayList<>(pluginModules);
+            modules.add(0, module);
+            return defaultInjector.createChildInjector(modules);
         }
     }
 }
