@@ -55,42 +55,12 @@ import java.util.Optional;
 public interface ChangeEntityEquipmentEvent extends TargetEntityEvent, TargetInventoryEvent, Cancellable {
 
     /**
-     * Gets the previously equipped {@link ItemStack} as an
-     * {@link ItemStackSnapshot}.
-     *
-     * <p>The previously equipped item may have been empty.</p>
-     *
-     * @return The original itemstack, if available
-     * @deprecated Use {@link #getTransaction()} instead
-     */
-    @Deprecated
-    @PropertySettings(requiredParameter = false, generateMethods = false)
-    Optional<ItemStackSnapshot> getOriginalItemStack();
-
-    /**
-     * Gets the new {@link ItemStack} that is being equipped in the relative
-     * armor slot.
-     *
-     * <p>The itemstack may not exist or the slot is being emptied.</p>
-     *
-     * @return The new item stack, if available
-     * @deprecated Use {@link #getTransaction()} instead
-     */
-    @Deprecated
-    @PropertySettings(requiredParameter = false, generateMethods = false)
-    Optional<Transaction<ItemStackSnapshot>> getItemStack();
-
-    /**
      * Gets the {@link Transaction} of {@link ItemStackSnapshot}s for this event.
      *
      * @return The transaction of the item
      */
     @PropertySettings(generateMethods = false)
-    default Transaction<ItemStackSnapshot> getTransaction() {
-        @SuppressWarnings("deprecation")
-        Optional<Transaction<ItemStackSnapshot>> optional = this.getItemStack();
-        return optional.orElseThrow(() -> new IllegalStateException("No transaction available!"));
-    }
+    Transaction<ItemStackSnapshot> getTransaction();
 
     @Override
     Slot getTargetInventory();

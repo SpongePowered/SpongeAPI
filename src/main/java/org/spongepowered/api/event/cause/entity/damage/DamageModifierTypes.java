@@ -149,15 +149,6 @@ public final class DamageModifierTypes {
 
 
     /**
-     * Represents a {@link DamageModifier} that is applied for a sweaping
-     * attack.
-     *
-     * @deprecated use {@link #SWEEPING}
-     */
-    @Deprecated
-    public static final DamageModifierType SWEAPING = SWEEPING;
-
-    /**
      * Represents the {@link DamageModifier} that will modify damage from
      * an {@link EnchantmentType} on an equipped {@link ItemStack}.
      *

@@ -46,14 +46,6 @@ public class WorldArchetypes {
     public static final WorldArchetype THE_END = DummyObjectProvider.createFor(WorldArchetype.class, "the_end");
 
     /**
-     * Represents a typical Sponge easter egg skylands-style {@link World}.
-     *
-     * @deprecated Will be removed from the api
-     */
-    @Deprecated
-    public static final WorldArchetype THE_SKYLANDS = DummyObjectProvider.createFor(WorldArchetype.class, "the_skylands");
-
-    /**
      * Represents a typical Sponge void-style {@link World}.
      */
     public static final WorldArchetype THE_VOID = DummyObjectProvider.createFor(WorldArchetype.class, "the_void");

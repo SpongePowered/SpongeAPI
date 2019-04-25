@@ -57,14 +57,6 @@ public abstract class AbstractSingleData<T, M extends DataManipulator<M, I>, I e
     protected final T defaultValue;
     protected T value;
 
-    /**
-     * @deprecated Use {@link #AbstractSingleData(Key, Object)} instead.
-     */
-    @Deprecated
-    protected AbstractSingleData(T value, Key<? extends BaseValue<T>> usedKey) {
-        this((Key<? extends Value<T>>) usedKey, value, value);
-    }
-
     protected AbstractSingleData(Key<? extends Value<T>> usedKey, T value) {
         this(usedKey, value, value);
     }

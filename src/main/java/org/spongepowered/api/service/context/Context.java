@@ -93,35 +93,7 @@ public final class Context implements Map.Entry<String, String> {
         return this.wrapped.getValue();
     }
 
-    /**
-     * Alias method for {@link #getKey()}.
-     *
-     * @return The type of the context
-     * @deprecated The presence of this method is misleading - the context
-     *             "type" is the same value as the "key". They are not separate
-     *             attributes, as the presence of two distinct methods would
-     *             otherwise suggest.
-     */
-    @Deprecated
-    public String getType() {
-        return getKey();
-    }
-
-    /**
-     * Alias method for {@link #getValue()}.
-     *
-     * @return The specific name of the item involved in this context
-     * @deprecated This method name is misleading - contexts only have a "key"
-     *             and "value". It is not immediately clear what "name" relates
-     *             to. (it could reasonably be either key or value)
-     */
-    @Deprecated
-    public String getName() {
-        return getValue();
-    }
-
     @Override
-    @Deprecated
     public String setValue(String value) {
         throw new UnsupportedOperationException("Contexts are immutable");
     }

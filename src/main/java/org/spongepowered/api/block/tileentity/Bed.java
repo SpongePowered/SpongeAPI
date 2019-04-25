@@ -32,19 +32,7 @@ import org.spongepowered.api.data.value.mutable.Value;
 /**
  * Represents a Bed {@link TileEntity}.
  */
-@SuppressWarnings("deprecation")
 public interface Bed extends TileEntity {
-
-    /**
-     * Gets the {@link org.spongepowered.api.data.manipulator.mutable.tileentity.BedData data} of this {@link Bed bed}.
-     *
-     * @return The current bed data for this bed
-     * @deprecated Use {@link #getDyeableData()} instead
-     */
-    @Deprecated
-    default org.spongepowered.api.data.manipulator.mutable.tileentity.BedData getBedData() {
-        return this.get(org.spongepowered.api.data.manipulator.mutable.tileentity.BedData.class).get();
-    }
 
     /**
      * Gets the {@link DyeableData data} of this {@link Bed bed}.

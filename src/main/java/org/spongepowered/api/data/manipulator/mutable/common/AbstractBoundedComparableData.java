@@ -53,16 +53,6 @@ public abstract class AbstractBoundedComparableData<T extends Comparable<T>, M e
     protected final Comparator<T> comparator;
     protected final T lowerBound;
     protected final T upperBound;
-    protected final T defaultValue; // Cannot be removed without a breaking change, defaultValue is now a field in AbstractSingleData
-
-    /**
-     * @deprecated Use {@link #AbstractBoundedComparableData(Key, Comparable, Comparable, Comparable, Comparable, Comparator)} instead.
-     */
-    @Deprecated
-    protected AbstractBoundedComparableData(T value, Key<MutableBoundedValue<T>> usedKey, Comparator<T> comparator, T lowerBound, T upperBound,
-                                            T defaultValue) {
-        this(usedKey, value, defaultValue, lowerBound, upperBound, comparator);
-    }
 
     protected AbstractBoundedComparableData(Key<MutableBoundedValue<T>> usedKey,
             T value, T lowerBound, T upperBound, Comparator<T> comparator) {
@@ -72,12 +62,11 @@ public abstract class AbstractBoundedComparableData<T extends Comparable<T>, M e
     protected AbstractBoundedComparableData(Key<MutableBoundedValue<T>> usedKey,
             T value, T defaultValue, T lowerBound, T upperBound, Comparator<T> comparator) {
         super(usedKey, value, defaultValue);
+        checkValue(value, "value");
+        checkValue(defaultValue, "defaultValue");
         this.comparator = checkNotNull(comparator, "comparator");
         this.lowerBound = checkNotNull(lowerBound, "lowerBound");
         this.upperBound = checkNotNull(upperBound, "upperBound");
-        checkValue(value, "value");
-        checkValue(defaultValue, "defaultValue");
-        this.defaultValue = defaultValue;
     }
 
     private void checkValue(T value, String name) {

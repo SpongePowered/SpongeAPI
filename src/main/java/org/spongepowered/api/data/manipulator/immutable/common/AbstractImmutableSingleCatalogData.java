@@ -47,15 +47,6 @@ public abstract class AbstractImmutableSingleCatalogData<E extends CatalogType, 
 
     private final ImmutableValue<E> cachedValue;
 
-    /**
-     * @deprecated Use {@link #AbstractImmutableSingleCatalogData(Key, CatalogType, CatalogType)} instead.
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    protected AbstractImmutableSingleCatalogData(E value, E defaultValue, Key<? extends BaseValue<E>> usedKey) {
-        this((Key<Value<E>>) usedKey, value, defaultValue);
-    }
-
     protected AbstractImmutableSingleCatalogData(Key<Value<E>> usedKey, E value) {
         this(usedKey, value, value);
     }

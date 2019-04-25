@@ -111,18 +111,6 @@ public interface Chunk extends Extent {
      * at 3,600,000 ticks (50 hours).
      *
      * @return The number of ticks
-     * @deprecated Due to misspelling, use {@link #getInhabitedTime()} instead
-     */
-    @Deprecated
-    int getInhabittedTime();
-
-    /**
-     * Gets the number of ticks players have been present in this chunk, used
-     * for calculation of the regional difficulty factor. In vanilla, it is
-     * increased by the number of players in the chunk every tick, and is capped
-     * at 3,600,000 ticks (50 hours).
-     *
-     * @return The number of ticks
      */
     int getInhabitedTime();
 

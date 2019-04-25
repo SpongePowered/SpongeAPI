@@ -257,31 +257,6 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
 
             @Override
             EndStep name(Translation name);
-
-            /**
-             * Builds a {@link ShapedCraftingRecipe} from this builder.
-             *
-             * @param id The id of this recipe.
-             * @param plugin The owning plugin.
-             * @return A new {@link ShapedCraftingRecipe}
-             * @throws IllegalStateException If not all required options
-             *     were specified
-             * @deprecated Use {@link #build()} instead in combination with {@link #id(String)}
-             */
-            @Deprecated
-            default ShapedCraftingRecipe build(String id, Object plugin) {
-                try (CauseStackManager.StackFrame frame = Sponge.getCauseStackManager().pushCauseFrame()) {
-                    final PluginContainer container;
-                    if (plugin instanceof PluginContainer) {
-                        container = (PluginContainer) plugin;
-                    } else {
-                        container = Sponge.getPluginManager().fromInstance(plugin).orElseThrow(() -> new IllegalArgumentException(
-                                "Plugin must be a PluginContainer or plugin instance, not " + plugin));
-                    }
-                    frame.pushCause(container);
-                    return id(id).build();
-                }
-            }
         }
     }
 

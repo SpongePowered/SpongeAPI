@@ -43,14 +43,6 @@ import org.spongepowered.api.data.value.mutable.Value;
 public abstract class AbstractSingleCatalogData<T extends CatalogType, M extends VariantData<T, M, I>, I extends ImmutableVariantData<T, I, M>>
         extends AbstractSingleData<T, M, I> implements VariantData<T, M, I> {
 
-    /**
-     * @deprecated Use {@link #AbstractSingleCatalogData(Key, CatalogType)} instead.
-     */
-    @Deprecated
-    protected AbstractSingleCatalogData(T value, Key<Value<T>> usedKey) {
-        super(value, usedKey);
-    }
-
     protected AbstractSingleCatalogData(Key<Value<T>> usedKey, T value) {
         this(usedKey, value, value);
     }

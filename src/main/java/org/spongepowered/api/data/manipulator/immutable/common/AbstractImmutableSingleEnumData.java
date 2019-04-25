@@ -46,14 +46,6 @@ public abstract class AbstractImmutableSingleEnumData<E extends Enum<E>, I exten
 
     private final ImmutableValue<E> cachedValue;
 
-    /**
-     * @deprecated Use {@link #AbstractImmutableSingleEnumData(Key, Enum, Enum)} instead.
-     */
-    @Deprecated
-    protected AbstractImmutableSingleEnumData(E value, E defaultValue, Key<Value<E>> usedKey) {
-        this(usedKey, value, defaultValue);
-    }
-
     protected AbstractImmutableSingleEnumData(Key<Value<E>> usedKey, E value) {
         this(usedKey, value, value);
     }
@@ -61,14 +53,6 @@ public abstract class AbstractImmutableSingleEnumData<E extends Enum<E>, I exten
     protected AbstractImmutableSingleEnumData(Key<Value<E>> usedKey, E value, E defaultValue) {
         super(usedKey, value, defaultValue);
         this.cachedValue = Sponge.getRegistry().getValueFactory().createValue(usedKey, value, defaultValue).asImmutable();
-    }
-
-    /**
-     * @deprecated Use {@link #getValueGetter()} instead.
-     */
-    @Deprecated
-    protected final ImmutableValue<E> enumType() {
-        return this.cachedValue;
     }
 
     @Override

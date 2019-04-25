@@ -29,22 +29,8 @@ import org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.annotation.eventgen.UseField;
 
-import java.util.Optional;
-
 public abstract class AbstractChangeEntityEquipmentEvent extends AbstractEvent implements ChangeEntityEquipmentEvent {
     @UseField protected Transaction<ItemStackSnapshot> transaction;
-
-    @Override
-    @Deprecated
-    public Optional<ItemStackSnapshot> getOriginalItemStack() {
-        return Optional.ofNullable(this.getTransaction().getOriginal());
-    }
-
-    @Override
-    @Deprecated
-    public Optional<Transaction<ItemStackSnapshot>> getItemStack() {
-        return Optional.of(this.getTransaction());
-    }
 
     @Override
     public Transaction<ItemStackSnapshot> getTransaction() {

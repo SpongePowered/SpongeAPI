@@ -150,12 +150,6 @@ public interface Key<V extends BaseValue<?>> extends CatalogType {
          */
         @Override
         Key<V> build();
-
-        @Override
-        @Deprecated
-        default Builder<E, V> from(Key<V> value) throws UnsupportedOperationException {
-            throw new UnsupportedOperationException("Cannot create duplicate keys!");
-        }
     }
 
 }

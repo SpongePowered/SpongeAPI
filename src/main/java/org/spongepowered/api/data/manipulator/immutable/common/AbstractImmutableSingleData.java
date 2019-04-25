@@ -53,15 +53,6 @@ public abstract class AbstractImmutableSingleData<T, I extends ImmutableDataMani
     protected final T value;
     protected final T defaultValue;
 
-    /**
-     * @deprecated Use {@link #AbstractImmutableSingleData(Key, Object)} instead.
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    protected AbstractImmutableSingleData(T value, Key<? extends BaseValue<T>> usedKey) {
-        this((Key<? extends Value<T>>) usedKey, value, value);
-    }
-
     protected AbstractImmutableSingleData(Key<? extends Value<T>> usedKey, T value) {
         this(usedKey, value, value);
     }

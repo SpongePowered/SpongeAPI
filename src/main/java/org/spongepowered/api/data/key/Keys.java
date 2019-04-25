@@ -1321,18 +1321,6 @@ public final class Keys {
     public static final Key<ListValue<Text>> ITEM_LORE = DummyObjectProvider.createExtendedFor(Key.class,"ITEM_LORE");
 
     /**
-     * Gets the {@link Value} for whether this vindicator is considered a
-     * "johnny" vindicator. "Johnny" vindicators will deal more damage and
-     * often times carry an {@link ItemTypes#IRON_AXE} of sorts.
-     *
-     * @deprecated In favor of {@link Keys#IS_JOHNNY} to match with the rest of
-     *     API and in-case other mobs ever support "johnny" mode in
-     *     any implementation. Will be removed in API 8
-     */
-    @Deprecated
-    public static final Key<Value<Boolean>> JOHNNY_VINDICATOR = DummyObjectProvider.createExtendedFor(Key.class,"JOHNNY_VINDICATOR");
-
-    /**
      * Represents the {@link Key} for the knockback strength applied by an
      * {@link Arrow}.
      *

@@ -148,13 +148,6 @@ public interface Advancement extends CatalogType, TextRepresentable {
 
         @Override
         Advancement build();
-
-        @Override
-        @Deprecated
-        default Builder from(Advancement value) throws UnsupportedOperationException {
-            throw new UnsupportedOperationException("Cannot create duplicate advancements!");
-        }
-
     }
 
 }

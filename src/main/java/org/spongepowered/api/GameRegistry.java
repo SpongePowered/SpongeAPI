@@ -205,31 +205,6 @@ public interface GameRegistry {
     <T extends ResettableBuilder<?, ? super T>> T createBuilder(Class<T> builderClass) throws IllegalArgumentException;
 
     /**
-     * Registers a new {@link CatalogType} instance if registration for that
-     * type is supported.
-     *
-     * <p>Note that this is intended only for registering new instances of
-     * already existing CatalogTypes, not for registering entirely new
-     * CatalogType classes.</p>
-     *
-     * @param type The CatalogType class
-     * @param obj The dummy type instance
-     * @param <T> dummy object type
-     * @return The registered type
-     * @throws IllegalArgumentException If there is an id conflict with the
-     *      given type and an existing type
-     * @throws UnsupportedOperationException If registration for the given type
-     *      is not supported
-     * @throws CatalogTypeAlreadyRegisteredException if the type cannot be
-     *      registered because a matching type was already registered
-     * @deprecated Is scheduled to be removed in API 8, the
-     *      {@link org.spongepowered.api.event.game.GameRegistryEvent.Register}
-     *      should be used instead
-     */
-    @Deprecated
-    <T extends CatalogType> T register(Class<T> type, T obj) throws IllegalArgumentException, CatalogTypeAlreadyRegisteredException;
-
-    /**
      * Gets a {@link Collection} of the default GameRules.
      *
      * @return The default GameRules.
@@ -401,7 +376,7 @@ public interface GameRegistry {
      * Gets the internal {@link TextSerializerFactory}.
      *
      * @return The text serializer factory
-     * @deprecated Use {@link TextSerializers} instead
+     * @deprecated Use {@link TextSerializers} instead.
      */
     @Deprecated
     TextSerializerFactory getTextSerializerFactory();

@@ -42,15 +42,6 @@ public abstract class AbstractImmutableListData<E, I extends ImmutableListData<E
 
     private final ImmutableListValue<E> listValue;
 
-    /**
-     * @deprecated Use {@link #AbstractImmutableListData(Key, List)} instead.
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    protected AbstractImmutableListData(List<E> value, Key<? extends BaseValue<List<E>>> usedKey) {
-        this((Key<ListValue<E>>) usedKey, value);
-    }
-
     protected AbstractImmutableListData(Key<ListValue<E>> usedKey, List<E> value) {
         this(usedKey, value, value);
     }

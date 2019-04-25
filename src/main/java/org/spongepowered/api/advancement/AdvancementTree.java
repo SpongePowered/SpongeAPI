@@ -108,13 +108,6 @@ public interface AdvancementTree extends CatalogType {
 
         @Override
         AdvancementTree build();
-
-        @Override
-        @Deprecated
-        default Builder from(AdvancementTree value) throws UnsupportedOperationException {
-            throw new UnsupportedOperationException("Cannot create duplicate advancement trees!");
-        }
-
     }
 
 }

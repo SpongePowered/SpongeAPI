@@ -44,14 +44,6 @@ public abstract class AbstractImmutableBooleanData<I extends ImmutableDataManipu
 
     private final ImmutableValue<Boolean> immutableValue;
 
-    /**
-     * @deprecated Use {@link #AbstractImmutableBooleanData(Key, boolean, boolean)} instead.
-     */
-    @Deprecated
-    protected AbstractImmutableBooleanData(boolean value, Key<Value<Boolean>> usedKey, boolean defaultValue) {
-        this(usedKey, value, defaultValue);
-    }
-
     protected AbstractImmutableBooleanData(Key<Value<Boolean>> usedKey, boolean value) {
         this(usedKey, value, value);
     }

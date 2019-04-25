@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.BaseValue;
 
@@ -42,8 +43,7 @@ public interface DataContainer extends DataView {
      * @return A new data container
      */
     static DataContainer createNew() {
-        // TODO - Move to implementation - unit tests are difficult...
-        return new MemoryDataContainer();
+        return Sponge.getDataManager().createContainer();
     }
 
     /**
@@ -55,7 +55,7 @@ public interface DataContainer extends DataView {
      * @return A new data container with the provided safety mode
      */
     static DataContainer createNew(SafetyMode safety) {
-        return new MemoryDataContainer(safety);
+        return Sponge.getDataManager().createContainer(safety);
     }
 
     @Override

@@ -33,22 +33,4 @@ import java.util.Collection;
  */
 public interface RecipeRegistry<T extends Recipe> extends CatalogRegistryModule<T> {
 
-    /**
-     * Registers the given {@link Recipe} to make it available to craft.
-     *
-     * @param recipe The {@link Recipe} to register
-     * @deprecated Use the event {@link org.spongepowered.api.event.game.GameRegistryEvent.Register}
-     */
-    @Deprecated
-    void register(T recipe);
-
-    /**
-     * Retrieves all recipes registered in this registry.
-     *
-     * @return An unmodifiable collection of registered recipes
-     * @deprecated Use {@link #getAll()} instead.
-     */
-    @Deprecated
-    Collection<T> getRecipes();
-
 }

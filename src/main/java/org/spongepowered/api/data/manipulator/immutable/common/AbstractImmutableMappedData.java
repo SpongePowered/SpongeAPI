@@ -46,15 +46,6 @@ public abstract class AbstractImmutableMappedData<K, V, I extends ImmutableMappe
 
     private final ImmutableMapValue<K, V> mapValue;
 
-    /**
-     * @deprecated Use {@link #AbstractImmutableMappedData(Key, Map, Map)} instead.
-     */
-    @SuppressWarnings("unchecked")
-    @Deprecated
-    protected AbstractImmutableMappedData(Map<K, V> value, Key<? extends BaseValue<Map<K, V>>> usedKey) {
-        this((Key<MapValue<K, V>>) usedKey, value, value);
-    }
-
     protected AbstractImmutableMappedData(Key<MapValue<K, V>> usedKey, Map<K, V> value) {
         this(usedKey, value, value);
     }

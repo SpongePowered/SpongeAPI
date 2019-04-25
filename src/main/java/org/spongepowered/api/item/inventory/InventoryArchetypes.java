@@ -170,15 +170,8 @@ public class InventoryArchetypes {
 
     public static final InventoryArchetype UNKNOWN = DummyObjectProvider.createFor(InventoryArchetype.class, "unknown");
 
-    /**
-     * You should not be using this constructor, it will be made private in
-     * API 8.
-     *
-     * @deprecated Will be made private in API 8
-     */
-    @Deprecated
-    public InventoryArchetypes() throws AssertionError {
-        //throw new AssertionError("You should not be attempting to instantiate this class.");
+    private InventoryArchetypes() throws AssertionError {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
 }

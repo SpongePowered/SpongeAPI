@@ -49,14 +49,6 @@ import java.util.Map;
 public abstract class AbstractMappedData<K, V, M extends MappedData<K, V, M, I>, I extends ImmutableMappedData<K, V, I, M>>
         extends AbstractSingleData<Map<K, V>, M, I> implements MappedData<K, V, M, I> {
 
-    /**
-     * @deprecated Use {@link #AbstractMappedData(Key, Map)} instead.
-     */
-    @Deprecated
-    protected AbstractMappedData(Map<K, V> value, Key<? extends BaseValue<Map<K, V>>> usedKey) {
-        this((Key<MapValue<K, V>>) usedKey, value);
-    }
-
     protected AbstractMappedData(Key<MapValue<K, V>> usedKey, Map<K, V> value) {
         super(usedKey, CollectionUtils.copyMap(value));
     }

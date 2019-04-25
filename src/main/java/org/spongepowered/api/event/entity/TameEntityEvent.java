@@ -32,13 +32,4 @@ import org.spongepowered.api.event.Cancellable;
  */
 public interface TameEntityEvent extends TargetEntityEvent, Cancellable {
 
-    /**
-     * Old cause name.
-     * 
-     * @deprecated Use
-     *             {@link org.spongepowered.api.event.cause.EventContextKeys#USED_ITEM}
-     */
-    @Deprecated
-    String USED_ITEM = "UsedItem";
-
 }

@@ -24,10 +24,8 @@
  */
 package org.spongepowered.api.event.entity;
 
-import org.spongepowered.api.block.tileentity.MobSpawner;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.cause.entity.spawn.SpawnTypes;
 import org.spongepowered.api.event.impl.AbstractSpawnEntityEvent;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
@@ -50,15 +48,6 @@ import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
 public interface SpawnEntityEvent extends AffectEntityEvent {
 
     interface ChunkLoad extends SpawnEntityEvent {}
-
-    /**
-     * A deprecated sub-event used when a spawn entity event was caused by a
-     * {@link MobSpawner}.
-     *
-     * @deprecated Utilize {@link SpawnTypes#MOB_SPAWNER} as context.
-     */
-    @Deprecated
-    interface Spawner extends SpawnEntityEvent {}
 
     interface Custom extends SpawnEntityEvent {}
 }

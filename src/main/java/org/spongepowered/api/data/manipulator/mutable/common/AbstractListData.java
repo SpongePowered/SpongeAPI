@@ -50,14 +50,6 @@ import java.util.Optional;
 public abstract class AbstractListData<E, M extends ListData<E, M, I>, I extends ImmutableListData<E, I, M>>
         extends AbstractSingleData<List<E>, M, I> implements ListData<E, M, I> {
 
-    /**
-     * @deprecated Use {@link #AbstractListData(Key, List)} instead.
-     */
-    @Deprecated
-    protected AbstractListData(List<E> value, Key<? extends BaseValue<List<E>>> usedKey) {
-        this((Key<ListValue<E>>) usedKey, value);
-    }
-
     protected AbstractListData(Key<ListValue<E>> usedKey, List<E> value) {
         super(usedKey, CollectionUtils.copyList(value));
     }

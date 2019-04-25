@@ -42,15 +42,6 @@ import org.spongepowered.api.data.value.mutable.Value;
 public abstract class AbstractBooleanData<M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>> extends
         AbstractSingleData<Boolean, M, I> {
 
-    /**
-     * @deprecated Use {@link #AbstractBooleanData(Key, boolean, boolean)} instead.
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    protected AbstractBooleanData(boolean value, Key<? extends BaseValue<Boolean>> usedKey, boolean defaultValue) {
-        this((Key<Value<Boolean>>) usedKey, value, defaultValue);
-    }
-
     protected AbstractBooleanData(Key<Value<Boolean>> usedKey, boolean value) {
         super(usedKey, value);
     }

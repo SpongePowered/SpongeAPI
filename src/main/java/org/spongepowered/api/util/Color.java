@@ -41,6 +41,8 @@ import org.spongepowered.api.data.type.DyeColor;
 import java.util.Objects;
 import java.util.Optional;
 
+// TODO (1.14): This needs to become an interface and implemented in common
+@Deprecated
 public final class Color implements DataSerializable {
 
     private static final int MASK = 0xFF;

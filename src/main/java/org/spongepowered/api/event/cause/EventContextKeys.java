@@ -45,6 +45,7 @@ import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.world.LocatableBlock;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.explosion.Explosion;
 
 /**
  * Standard keys for use within {@link EventContext}s.
@@ -249,16 +250,6 @@ public final class EventContextKeys {
      * Represents the {@link TeleportType} when an entity teleports.
      */
     public static final EventContextKey<TeleportType> TELEPORT_TYPE = createFor("TELEPORT_TYPE");
-
-    /**
-     * @deprecated this key is a duplicate of {@link #PROJECTILE_SOURCE} and
-     *             will be removed in API 8. See <a
-     *             href="https://github.com/SpongePowered/SpongeAPI/issues/1774">this
-     *             issue on SpongeAPI</a>, Use {@link #PROJECTILE_SOURCE}
-     *             instead.
-     */
-    @Deprecated
-    public static final EventContextKey<ProjectileSource> THROWER = createFor("THROWER");
 
     /**
      * Represents an {@link ItemStackSnapshot} of used item.

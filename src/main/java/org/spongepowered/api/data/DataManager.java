@@ -183,17 +183,6 @@ public interface DataManager {
         Optional<DataManipulatorBuilder<T, I>> getImmutableManipulatorBuilder(Class<I> immutableManipulatorClass);
 
     /**
-     * Registers a {@link DataTranslator} for the desired class.
-     *
-     * @param objectClass The class of the object type being managed
-     * @param translator The translator for the desired class object
-     * @param <T> The type of object
-     * @deprecated Use the event {@code org.spongepowered.api.event.game.GameRegistryEvent.Register&lt;DataTranslator&lt;?&gt;&gt;} instead
-     */
-    @Deprecated
-    <T> void registerTranslator(Class<T> objectClass, DataTranslator<T> translator);
-
-    /**
      * Gets the desired {@link DataTranslator} for the provided class.
      *
      * @param objectClass The class of the object

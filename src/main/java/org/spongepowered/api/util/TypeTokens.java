@@ -250,12 +250,6 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<ItemStackSnapshot>> ITEM_SNAPSHOT_VALUE_TOKEN = new TypeToken<Value<ItemStackSnapshot>>() {private static final long serialVersionUID = -1;};
 
-    @Deprecated
-    public static final TypeToken<Optional<Living>> LAST_ATTACKER_TOKEN = new TypeToken<Optional<Living>>() {private static final long serialVersionUID = -1;};
-
-    @Deprecated
-    public static final TypeToken<OptionalValue<Living>> LAST_ATTACKER_VALUE_TOKEN = new TypeToken<OptionalValue<Living>>() {private static final long serialVersionUID = -1;};
-
     public static final TypeToken<List<? extends DataSerializable>> LIST_DATA_SERIALIZEABLE_TOKEN = new TypeToken<List<? extends DataSerializable>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<List<DyeColor>> LIST_DYE_COLOR_TOKEN = new TypeToken<List<DyeColor>>() {private static final long serialVersionUID = -1;};

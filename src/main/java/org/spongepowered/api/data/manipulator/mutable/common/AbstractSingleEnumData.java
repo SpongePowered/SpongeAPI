@@ -43,15 +43,6 @@ import org.spongepowered.api.data.value.mutable.Value;
 public abstract class AbstractSingleEnumData<E extends Enum<E>, M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>>
         extends AbstractSingleData<E, M, I> {
 
-    /**
-     * @deprecated Use {@link #AbstractSingleEnumData(Key, Enum, Enum)} instead.
-     */
-    @SuppressWarnings("unchecked")
-    @Deprecated
-    protected AbstractSingleEnumData(E value, Key<? extends BaseValue<E>> usedKey, E defaultValue) {
-        this((Key<Value<E>>) usedKey, value, defaultValue);
-    }
-
     protected AbstractSingleEnumData(Key<Value<E>> usedKey, E value) {
         this(usedKey, value, value);
     }
