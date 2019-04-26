@@ -50,6 +50,7 @@ import org.spongepowered.api.statistic.EntityStatistic;
 import org.spongepowered.api.statistic.ItemStatistic;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.StatisticType;
+import org.spongepowered.api.text.channel.MessageChannelFactory;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.selector.SelectorFactory;
 import org.spongepowered.api.text.serializer.TextSerializerFactory;
@@ -363,6 +364,13 @@ public interface GameRegistry {
      * @return The value factory
      */
     ValueFactory getValueFactory();
+
+    /**
+     * Gets the {@link MessageChannelFactory} for creating message channels.
+     *
+     * @return The message channel factory
+     */
+    MessageChannelFactory getMessageChannelFactory();
 
     /**
      * Gets the {@link VillagerRegistry} for the register mappings of
