@@ -24,9 +24,8 @@
  */
 package org.spongepowered.api.world.gen;
 
-import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.extent.Extent;
-import org.spongepowered.api.world.extent.ImmutableBiomeVolume;
+import org.spongepowered.api.world.ProtoWorld;
+import org.spongepowered.api.world.chunk.ProtoChunk;
 import org.spongepowered.api.world.gen.populator.RandomObject;
 
 import java.util.Random;
@@ -46,8 +45,9 @@ import java.util.Random;
  * from a populator performing block changes.</p>
  *
  * @see PopulatorObject
+ * Targets WorldGenerator in 1.12, Feature in 1.13
  */
-public interface Populator {
+public interface Populator<C extends PopulatorConfig> {
 
     /**
      * Gets the type of this populator.
@@ -64,37 +64,5 @@ public interface Populator {
      */
     PopulatorType getType();
 
-    /**
-     * Applies the populator to the given {@link Extent} volume. The entire volume
-     * of the given extent should be populated.
-     * 
-     * <p>Due to their transitive nature virtual biomes cannot be fetched from
-     * the given extent, instead your populator should override
-     * {@link #populate(World, Extent, Random, ImmutableBiomeVolume)} to make use
-     * of the ImmutableBiomeArea which does contain virtual biome types.</p>
-     *
-     * @param world The World within which the generation in happening
-     * @param volume The volume to be populated
-     * @param random A random number generator. This random number generator is
-     *        based on the world seed and the chunk position. It is shared with
-     *        with other populators
-     */
-    void populate(World world, Extent volume, Random random);
-
-    /**
-     * Applies the populator to the given {@link Extent} volume. The entire volume
-     * of the given extent should be populated.
-     *
-     * @param world The World within which the generation in happening
-     * @param volume The volume to be populated
-     * @param random A random number generator. This random number generator is
-     *        based on the world seed and the chunk position. It is shared with
-     *        with other populators
-     * @param virtualBiomes A biome volume for the extent being populated which
-     *        includes any virtual biomes not persisted to the world
-     */
-    default void populate(World world, Extent volume, Random random, ImmutableBiomeVolume virtualBiomes) {
-        populate(world, volume, random);
-    }
-
+    void populate(ProtoWorld<?> world, ProtoChunk volume, Random random, C config);
 }

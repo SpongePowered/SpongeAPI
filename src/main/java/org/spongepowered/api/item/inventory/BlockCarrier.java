@@ -40,7 +40,7 @@ public interface BlockCarrier extends Carrier, Locatable {
      *
      * @return The Location of the Block
      */
-    Location<World> getLocation();
+    Location getLocation();
 
     /**
      * Returns the Inventory owned by this Carrier and accessible from

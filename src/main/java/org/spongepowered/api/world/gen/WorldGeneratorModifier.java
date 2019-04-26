@@ -46,7 +46,6 @@ import org.spongepowered.api.world.storage.WorldProperties;
  * <p>Implementations of this interface must be registered using the
  * {@link GameRegistry}.</p>
  */
-@CatalogedBy(WorldGeneratorModifiers.class)
 public interface WorldGeneratorModifier extends CatalogType {
 
     /**

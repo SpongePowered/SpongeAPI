@@ -35,7 +35,7 @@ public interface Locatable {
      *
      * @return The location
      */
-    Location<World> getLocation();
+    Location getLocation();
 
     /**
      * Gets the world that this source resides in.
@@ -43,7 +43,7 @@ public interface Locatable {
      * @return The World
      */
     default World getWorld() {
-        return getLocation().getExtent();
+        return getLocation().getWorld();
     }
 
 }

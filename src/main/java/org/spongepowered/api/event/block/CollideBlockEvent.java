@@ -44,7 +44,7 @@ public interface CollideBlockEvent extends CollideEvent {
      *
      * @return The location
      */
-    Location<World> getTargetLocation();
+    Location getTargetLocation();
 
     /**
      * Gets the target {@link BlockState} being interacted with.

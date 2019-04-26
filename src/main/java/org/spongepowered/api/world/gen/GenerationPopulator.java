@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.world.gen;
 
-import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.extent.ImmutableBiomeVolume;
-import org.spongepowered.api.world.extent.MutableBlockVolume;
+import org.spongepowered.api.world.ProtoWorld;
+import org.spongepowered.api.world.biome.ImmutableBiomeVolume;
+import org.spongepowered.api.world.volume.block.MutableBlockVolume;
 
 /**
  * A populator which acts directly on the {@link MutableBlockVolume} during the
@@ -46,6 +46,6 @@ public interface GenerationPopulator {
      *        any size.
      * @param biomes The biomes for generation
      */
-    void populate(World world, MutableBlockVolume buffer, ImmutableBiomeVolume biomes);
+    void populate(ProtoWorld<?> world, MutableBlockVolume<?> buffer, ImmutableBiomeVolume biomes);
 
 }

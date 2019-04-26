@@ -30,7 +30,6 @@ import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.util.weighted.WeightedTable;
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.extent.Extent;
 import org.spongepowered.api.world.gen.Populator;
 
 import java.util.Optional;
@@ -100,7 +99,7 @@ public interface DoublePlant extends Populator {
      * 
      * @return The supplier override
      */
-    Optional<Function<Location<Extent>, DoublePlantType>> getSupplierOverride();
+    Optional<Function<Location, DoublePlantType>> getSupplierOverride();
 
     /**
      * Sets the overriding supplier. If the supplier is present then it is used
@@ -109,7 +108,7 @@ public interface DoublePlant extends Populator {
      * 
      * @param override The new supplier override, or null
      */
-    void setSupplierOverride(@Nullable Function<Location<Extent>, DoublePlantType> override);
+    void setSupplierOverride(@Nullable Function<Location, DoublePlantType> override);
 
     /**
      * Clears the supplier override to force the weighted table to be used
@@ -175,7 +174,7 @@ public interface DoublePlant extends Populator {
          * @param override The new supplier override, or null
          * @return This builder, for chaining
          */
-        Builder supplier(@Nullable Function<Location<Extent>, DoublePlantType> override);
+        Builder supplier(@Nullable Function<Location, DoublePlantType> override);
 
         /**
          * Builds a new instance of a {@link DoublePlant} populator with the

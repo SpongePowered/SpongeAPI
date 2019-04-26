@@ -78,7 +78,7 @@ public interface ExplosionEvent extends Event {
          *
          * @return The list of blocks that will be affected by the explosion
          */
-        List<Location<World>> getAffectedLocations();
+        List<Location> getAffectedLocations();
 
     }
 

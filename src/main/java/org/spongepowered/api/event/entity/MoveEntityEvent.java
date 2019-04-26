@@ -29,7 +29,7 @@ import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
-import org.spongepowered.api.world.PortalAgent;
+import org.spongepowered.api.world.teleport.PortalAgent;
 import org.spongepowered.api.world.World;
 
 /**
@@ -43,21 +43,21 @@ public interface MoveEntityEvent extends TargetEntityEvent, Cancellable {
      *
      * @return the previous transform
      */
-    Transform<World> getFromTransform();
+    Transform getFromTransform();
 
     /**
      * Gets the new transform that the {@link Entity} will change to.
      *
      * @return the new transform
      */
-    Transform<World> getToTransform();
+    Transform getToTransform();
 
     /**
      * Sets the new transform that the {@link Entity} will change to.
      *
      * @param transform The new transform
      */
-    void setToTransform(Transform<World> transform);
+    void setToTransform(Transform transform);
 
     /**
      * Fired when an {@link Entity}'s position changes.

@@ -25,7 +25,7 @@
 package org.spongepowered.api.event.world;
 
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.world.ChunkPreGenerate;
+import org.spongepowered.api.world.chunk.ChunkPreGenerate;
 
 import java.time.Duration;
 

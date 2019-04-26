@@ -35,7 +35,6 @@ import com.google.common.reflect.TypeToken;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.mockito.Mockito;
 import org.mockito.stubbing.Answer;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.entity.Transform;
@@ -56,7 +55,7 @@ import org.spongepowered.api.text.format.TextFormat;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.PEBKACException;
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.extent.Extent;
+import org.spongepowered.api.world.World;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;
@@ -65,7 +64,6 @@ import java.net.InetSocketAddress;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -84,9 +82,9 @@ public class SpongeEventFactoryTest {
 
     private static final Set<String> excludedMethods = ImmutableSet.of("getEntitySnapshots");
 
-    // We need to keep a reference to any mocked Extent passed into a Location,
+    // We need to keep a reference to any mocked World passed into a Location,
     // to ensure that it is not GC'd for the duration of a test. This list
-    private static List<Extent> extents = new ArrayList<>();
+    private static List<World> worlds = new ArrayList<>();
 
     private static final Answer<Object> EVENT_MOCKING_ANSWER = (invoc -> {
         Class<?> clazz = invoc.getMethod().getReturnType();
@@ -121,7 +119,7 @@ public class SpongeEventFactoryTest {
         try {
             // We only care about keeping extends around for the duration
             // of this particular event.
-            extents.clear();
+            worlds.clear();
 
             Class<?>[] paramTypes = this.method.getParameterTypes();
             Object[] params = new Object[paramTypes.length];
@@ -231,13 +229,13 @@ public class SpongeEventFactoryTest {
         } else if (Enum.class.isAssignableFrom(paramType)) {
             return paramType.getEnumConstants()[0];
         } else if (Location.class.isAssignableFrom(paramType)) {
-            Extent extent = (Extent) mockParam(Extent.class);
-            // Make sure we keep a reference to the Extent,
+            World world = (World) mockParam(World.class);
+            // Make sure we keep a reference to the World,
             // as Location stores a weak reference
-            extents.add(extent);
-            return new Location<>(extent, 0, 0, 0);
+            worlds.add(world);
+            return new Location(world, 0, 0, 0);
         } else if (paramType == Transform.class) {
-            return new Transform<>((Extent) mockParam(Extent.class));
+            return new Transform((World) mockParam(World.class));
         } else if (InetSocketAddress.class.isAssignableFrom(paramType)) {
             return new InetSocketAddress(12345);
         } else if (paramType == UUID.class) {
@@ -247,7 +245,7 @@ public class SpongeEventFactoryTest {
         } else if (paramType == Cause.class) {
             return Cause.of(EventContext.empty(), "none");
         } else if (paramType == Location.class) {
-            return new Location<>(mock(Extent.class), Vector3d.ZERO);
+            return new Location(mock(World.class), Vector3d.ZERO);
         } else if (paramType == Locale.class) {
             return Locale.ROOT;
         } else if (paramType == Text.class) {

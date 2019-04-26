@@ -42,19 +42,19 @@ public interface RotateEntityEvent extends TargetEntityEvent, Cancellable {
      *
      * @return the previous transform
      */
-    Transform<World> getFromTransform();
+    Transform getFromTransform();
 
     /**
      * Gets the new transform that the {@link Entity} will change to.
      *
      * @return the new transform
      */
-    Transform<World> getToTransform();
+    Transform getToTransform();
 
     /**
      * Sets the new transform that the {@link Entity} will change to.
      *
      * @param transform The new transform
      */
-    void setToTransform(Transform<World> transform);
+    void setToTransform(Transform transform);
 }

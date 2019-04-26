@@ -25,14 +25,14 @@
 package org.spongepowered.api.block;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.block.trait.BlockTrait;
+import org.spongepowered.api.state.StateContainer;
+import org.spongepowered.api.state.StateProperty;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
-import java.util.Collection;
 import java.util.Optional;
 
 /**
@@ -43,22 +43,7 @@ import java.util.Optional;
  * via {@link DataHolder}.</p>
  */
 @CatalogedBy(BlockTypes.class)
-public interface BlockType extends CatalogType, Translatable, PropertyHolder {
-
-    /**
-     * Return the default state for this block.
-     *
-     * @return The default state
-     */
-    BlockState getDefaultState();
-
-    /**
-     * Gets a {@link Collection} of all {@link BlockState}s for this
-     * {@link BlockType}.
-     *
-     * @return An immutable collection of all block states for this block type
-     */
-    Collection<BlockState> getAllBlockStates();
+public interface BlockType extends CatalogType, StateContainer<BlockState>, Translatable, PropertyHolder {
 
     /**
      * Return the {@link ItemType} that represents this block.
@@ -85,27 +70,19 @@ public interface BlockType extends CatalogType, Translatable, PropertyHolder {
     void setTickRandomly(boolean tickRandomly);
 
     /**
-     * Gets an immutable {@link Collection} of all applicable
-     * {@link BlockTrait}s for this {@link BlockType}.
-     *
-     * @return An immutable collection of all applicable block traits
-     */
-    Collection<BlockTrait<?>> getTraits();
-
-    /**
-     * Attempts to retrieve the {@link BlockTrait} instance associated with
-     * this {@link BlockState}s {@link BlockType} by string id. If there is no
-     * {@link BlockTrait} available, {@link Optional#empty()} is returned.
-     *
-     * @param blockTrait The block trait id
-     * @return The block trait, if available
-     */
-    Optional<BlockTrait<?>> getTrait(String blockTrait);
-
-    /**
      * Gets the {@link BlockSoundGroup} for this block.
      *
      * @return This block's sound group.
      */
     BlockSoundGroup getSoundGroup();
+
+    /**
+     * Attempts to retrieve the {@link StateProperty} instance associated with
+     * this {@link BlockState}s {@link BlockType} by string id. If there is no
+     * {@link StateProperty} available, {@link Optional#empty()} is returned.
+     *
+     * @param property The property id
+     * @return The property, if available
+     */
+    Optional<StateProperty<?>> getProperty(String property);
 }

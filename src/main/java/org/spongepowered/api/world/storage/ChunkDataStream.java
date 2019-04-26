@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.storage;
 
 import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.world.Chunk;
+import org.spongepowered.api.world.chunk.Chunk;
 
 import javax.annotation.Nullable;
 

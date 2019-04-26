@@ -56,7 +56,6 @@ import org.spongepowered.api.text.selector.SelectorFactory;
 import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.rotation.Rotation;
-import org.spongepowered.api.world.extent.ExtentBufferFactory;
 
 import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
@@ -365,14 +364,6 @@ public interface GameRegistry {
      * @return The type
      */
     AITaskType registerAITaskType(Object plugin, String id, String name, Class<? extends AbstractAITask<? extends Agent>> aiClass);
-
-    /**
-     * Gets the {@link ExtentBufferFactory} for creating buffers
-     * to store extent data.
-     *
-     * @return The extent buffer factory
-     */
-    ExtentBufferFactory getExtentBufferFactory();
 
     /**
      * Gets the {@link ValueFactory} for creating values.

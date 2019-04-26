@@ -36,7 +36,7 @@ import org.spongepowered.api.entity.vehicle.minecart.MobSpawnerMinecart;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
-import org.spongepowered.api.world.Chunk;
+import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.weather.Weather;

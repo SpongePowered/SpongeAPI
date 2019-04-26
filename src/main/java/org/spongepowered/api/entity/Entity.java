@@ -37,6 +37,7 @@ import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.AABB;
 import org.spongepowered.api.util.Identifiable;
+import org.spongepowered.api.util.RandomProvider;
 import org.spongepowered.api.util.RelativePositions;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.Location;
@@ -71,7 +72,7 @@ import javax.annotation.Nullable;
  *
  * <p>Blocks and items (when they are in inventories) are not entities.</p>
  */
-public interface Entity extends Identifiable, Locatable, DataHolder, Translatable {
+public interface Entity extends Identifiable, Locatable, DataHolder, Translatable, RandomProvider {
 
     /**
      * Gets the type of entity.
@@ -89,13 +90,6 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
     EntitySnapshot createSnapshot();
 
     /**
-     * Gets the Random Number Generator (RNG) for this entity.
-     *
-     * @return The RNG
-     */
-    Random getRandom();
-
-    /**
      * Sets the location of this entity. This is equivalent to a teleport, and
      * also moves this entity's passengers.
      *
@@ -105,7 +99,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      *     {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
      *     being cancelled.
      */
-    boolean setLocation(Location<World> location);
+    boolean setLocation(Location location);
 
     /**
      * Sets the location of this entity using a safe one from
@@ -118,7 +112,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      *      {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
      *      was cancelled.
      */
-    default boolean setLocationSafely(Location<World> location) {
+    default boolean setLocationSafely(Location location) {
         return Sponge.getGame().getTeleportHelper()
                 .getSafeLocation(location)
                 .map(this::setLocation)
@@ -161,7 +155,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      *     {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
      *     being cancelled
      */
-    boolean setLocationAndRotation(Location<World> location, Vector3d rotation);
+    boolean setLocationAndRotation(Location location, Vector3d rotation);
 
     /**
      * Moves the entity to the specified location, and sets the rotation.
@@ -180,7 +174,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      *      {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
      *      being cancelled
      */
-    boolean setLocationAndRotation(Location<World> location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
+    boolean setLocationAndRotation(Location location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
 
     /**
      * Sets the location using a safe one from
@@ -198,7 +192,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      *      {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
      *      was cancelled
      */
-    default boolean setLocationAndRotationSafely(Location<World> location, Vector3d rotation) {
+    default boolean setLocationAndRotationSafely(Location location, Vector3d rotation) {
         return Sponge.getGame().getTeleportHelper()
                 .getSafeLocation(location)
                 .map(safe -> this.setLocationAndRotation(safe, rotation))
@@ -223,7 +217,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      *      {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
      *      was cancelled
      */
-    default boolean setLocationAndRotationSafely(Location<World> location, Vector3d rotation, EnumSet<RelativePositions> relativePositions) {
+    default boolean setLocationAndRotationSafely(Location location, Vector3d rotation, EnumSet<RelativePositions> relativePositions) {
         return Sponge.getGame().getTeleportHelper()
                 .getSafeLocation(location)
                 .map(safe -> this.setLocationAndRotation(safe, rotation, relativePositions))
@@ -250,7 +244,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      *
      * @return The transform as a new copy
      */
-    Transform<World> getTransform();
+    Transform getTransform();
 
     /**
      * Sets the entity transform. Sets the position, rotation and scale at once.
@@ -261,7 +255,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      *     {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
      *     being cancelled.
      */
-    boolean setTransform(Transform<World> transform);
+    boolean setTransform(Transform transform);
 
     /**
      * Sets the transformation of this entity using a safe location from
@@ -273,7 +267,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      *     {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
      *     was cancelled
      */
-    default boolean setTransformSafely(Transform<World> transform) {
+    default boolean setTransformSafely(Transform transform) {
         checkNotNull(transform, "The transform cannot be null!");
         return setLocationAndRotationSafely(transform.getLocation(), transform.getRotation());
     }

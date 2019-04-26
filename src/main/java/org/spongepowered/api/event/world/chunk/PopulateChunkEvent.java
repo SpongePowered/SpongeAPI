@@ -25,7 +25,7 @@
 package org.spongepowered.api.event.world.chunk;
 
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.world.Chunk;
+import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.gen.Populator;
 
 import java.util.List;

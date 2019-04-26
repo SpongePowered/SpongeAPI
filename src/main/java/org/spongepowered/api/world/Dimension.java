@@ -25,6 +25,7 @@
 package org.spongepowered.api.world;
 
 import org.spongepowered.api.service.context.ContextSource;
+import org.spongepowered.api.world.gen.GeneratorType;
 
 /**
  * Represents the dimension of a {@link World}.

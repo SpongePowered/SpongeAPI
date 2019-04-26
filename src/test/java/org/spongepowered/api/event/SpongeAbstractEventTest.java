@@ -51,7 +51,7 @@ public class SpongeAbstractEventTest {
     public void testChangeBlockEvent_filter() {
         Transaction<BlockSnapshot> transaction = new Transaction<>(mockParam(BlockSnapshot.class), mockParam(BlockSnapshot.class));
 
-        when(transaction.getOriginal().getLocation()).thenReturn(Optional.of(new Location<>(mockParam(World.class), Vector3d.ZERO)));
+        when(transaction.getOriginal().getLocation()).thenReturn(Optional.of(new Location(mockParam(World.class), Vector3d.ZERO)));
 
         ChangeBlockEvent.Break event = SpongeEventFactory.createChangeBlockEventBreak(
             Cause.of(EventContext.empty(), "none"), Lists.newArrayList(transaction));

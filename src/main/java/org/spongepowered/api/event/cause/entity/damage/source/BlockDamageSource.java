@@ -46,7 +46,7 @@ public interface BlockDamageSource extends DamageSource {
      *
      * @return The location of the block
      */
-    Location<World> getLocation();
+    Location getLocation();
 
     /**
      * Gets the {@link BlockSnapshot} of the source.
@@ -63,7 +63,7 @@ public interface BlockDamageSource extends DamageSource {
          * @param location The location of the block as the damage source
          * @return This builder, for chaining
          */
-        Builder block(Location<World> location);
+        Builder block(Location location);
 
         /**
          * Sets the {@link BlockSnapshot} to act as the "damage source".

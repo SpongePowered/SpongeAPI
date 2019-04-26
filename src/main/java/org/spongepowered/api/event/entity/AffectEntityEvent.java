@@ -86,7 +86,7 @@ public interface AffectEntityEvent extends Event, Cancellable {
      * @param predicate The predicate to use for filtering
      * @return The entities removed from {@link #getEntities()}
      */
-    default List<Entity> filterEntityLocations(Predicate<Location<World>> predicate) {
+    default List<Entity> filterEntityLocations(Predicate<Location> predicate) {
         List<Entity> removedEntities = new ArrayList<>();
 
         Iterator<Entity> i = this.getEntities().iterator();

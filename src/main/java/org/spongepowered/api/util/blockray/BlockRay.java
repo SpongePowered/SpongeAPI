@@ -41,7 +41,6 @@ import org.spongepowered.api.util.Functional;
 import org.spongepowered.api.util.Tuple;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.extent.Extent;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -81,10 +80,9 @@ import java.util.function.Predicate;
  * <p>To get a block ray for an entities' line of sight, use
  * <pre>{@code BlockRay.from(entity);}</pre></p>
  *
- * @param <E> The extent in which this ray is being cast
  * @see BlockRayHit
  */
-public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
+public class BlockRay implements Iterator<BlockRayHit> {
 
     @SuppressWarnings("rawtypes")
     private static final Predicate ONLY_AIR_FILTER = blockTypeFilter(BlockTypes.AIR);
@@ -98,10 +96,10 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
     private static final Vector3d Z_POSITIVE = Vector3d.UNIT_Z;
     private static final Vector3d Z_NEGATIVE = Z_POSITIVE.negate();
     // Skipping and ending test predicates
-    private final Predicate<BlockRayHit<E>> skipFilter;
-    private final Predicate<BlockRayHit<E>> stopFilter;
-    // Extent to iterate in
-    private final E extent;
+    private final Predicate<BlockRayHit> skipFilter;
+    private final Predicate<BlockRayHit> stopFilter;
+    // World to iterate in
+    private final World world;
     // Starting position
     private final Vector3d position;
     // Direction of the ray
@@ -138,18 +136,18 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
     // Limits to help prevent infinite iteration
     private final double distanceLimit;
     // Last block hit
-    private BlockRayHit<E> hit;
+    private BlockRayHit hit;
     // If hasNext() is called, we need to move ahead to check the next hit
     private boolean ahead;
 
-    private BlockRay(Predicate<BlockRayHit<E>> skipFilter, Predicate<BlockRayHit<E>> stopFilter, E extent, Vector3d position, Vector3d direction,
+    private BlockRay(Predicate<BlockRayHit> skipFilter, Predicate<BlockRayHit> stopFilter, World world, Vector3d position, Vector3d direction,
             boolean narrowPhase, double distanceLimit) {
         checkArgument(direction.lengthSquared() != 0, "Direction cannot be the zero vector");
 
         this.skipFilter = skipFilter;
         this.stopFilter = stopFilter;
 
-        this.extent = extent;
+        this.world = world;
         this.position = position;
         this.direction = direction;
 
@@ -238,7 +236,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
     }
 
     @Override
-    public BlockRayHit<E> next() {
+    public BlockRayHit next() {
         if (this.ahead) {
             // We already advanced in hasNext()
             this.ahead = false;
@@ -250,13 +248,13 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
 
     /**
      * Traces the block ray to the end and returns the last block
-     * accepted by the filter, or none if the extent or block limit was reached.
+     * accepted by the filter, or none if the world or block limit was reached.
      * This advances the iterator.
      *
      * @return The last block of the ray, if any
      */
-    public Optional<BlockRayHit<E>> end() {
-        BlockRayHit<E> last = null;
+    public Optional<BlockRayHit> end() {
+        BlockRayHit last = null;
         while (hasNext()) {
             last = next();
         }
@@ -322,24 +320,24 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
             solveIntersections();
         }
 
-        BlockRayHit<E> hit = new BlockRayHit<>(this.extent, this.xCurrent, this.yCurrent, this.zCurrent, this.direction, this.normalCurrent);
+        BlockRayHit hit = new BlockRayHit(this.world, this.xCurrent, this.yCurrent, this.zCurrent, this.direction, this.normalCurrent);
 
         // Make sure we actually have a block
-        if (!hit.mapBlock(Extent::containsBlock)) {
-            throw new NoSuchElementException("Extent limit reached");
+        if (!hit.mapBlock(World::containsBlock)) {
+            throw new NoSuchElementException("World limit reached");
         }
 
         // Now if using the narrow phase, test on small selection boxes, if needed
-        if (this.narrowPhase && !hit.getExtent().getProperty(hit.getBlockPosition(), FullBlockSelectionBoxProperty.class)
+        if (this.narrowPhase && !hit.getWorld().getProperty(hit.getBlockPosition(), FullBlockSelectionBoxProperty.class)
                 .map(FullBlockSelectionBoxProperty::getValue).orElse(true)) {
             // Get the selection box and perform the narrow phase intersection test
-            final Optional<Tuple<Vector3d, Vector3d>> intersection = hit.mapBlock(Extent::getBlockSelectionBox)
+            final Optional<Tuple<Vector3d, Vector3d>> intersection = hit.mapBlock(World::getBlockSelectionBox)
                 .flatMap(aabb -> aabb.intersects(this.position, this.direction));
             // Create the new narrow hit if there was an intersection
             if (intersection.isPresent()) {
                 final Tuple<Vector3d, Vector3d> pair = intersection.get();
                 final Vector3d narrowHit = pair.getFirst();
-                hit = new BlockRayHit<>(this.extent, narrowHit.getX(), narrowHit.getY(), narrowHit.getZ(), this.direction, pair.getSecond());
+                hit = new BlockRayHit(this.world, narrowHit.getX(), narrowHit.getY(), narrowHit.getZ(), this.direction, pair.getSecond());
             } else {
                 // Otherwise return false to attempt the next block
                 return false;
@@ -509,26 +507,24 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
      * Initializes a block ray builder with the given starting location.
      *
      * @param start The starting location
-     * @param <E> The extent to be applied in
      * @return A new block ray builder
      */
-    public static <E extends Extent> BlockRayBuilder<E> from(Location<E> start) {
+    public static  BlockRayBuilder from(Location start) {
         checkNotNull(start, "start");
-        return from(start.getExtent(), start.getPosition());
+        return from(start.getWorld(), start.getPosition());
     }
 
     /**
      * Initializes a block ray builder with the given starting location.
      *
-     * @param extent The extent in which to trace the ray
+     * @param world The world in which to trace the ray
      * @param start The starting position
-     * @param <E> The extent to be applied in
      * @return A new block ray builder
      */
-    public static <E extends Extent> BlockRayBuilder<E> from(E extent, Vector3d start) {
-        checkNotNull(extent, "extent");
+    public static  BlockRayBuilder from(World world, Vector3d start) {
+        checkNotNull(world, "world");
         checkNotNull(start, "start");
-        return new BlockRayBuilder<>(extent, start);
+        return new BlockRayBuilder(world, start);
     }
 
     /**
@@ -540,35 +536,33 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
      * @param entity The entity
      * @return A new block ray builder
      */
-    public static BlockRayBuilder<World> from(Entity entity) {
+    public static BlockRayBuilder from(Entity entity) {
         checkNotNull(entity, "entity");
         final Vector3d rotation = entity.getRotation();
         final Vector3d direction = Quaterniond.fromAxesAnglesDeg(rotation.getX(), -rotation.getY(), rotation.getZ()).getDirection();
-        final Location<World> location = entity.getLocation();
+        final Location location = entity.getLocation();
         final Optional<EyeLocationProperty> data = entity.getProperty(EyeLocationProperty.class);
         final Vector3d position = data.map(EyeLocationProperty::getValue).orElse(location.getPosition());
-        return from(location.getExtent(), position).direction(direction);
+        return from(location.getWorld(), position).direction(direction);
     }
 
     /**
      * A builder for block ray, which also implements {@link Iterable}, making it
      * useful for 'advanced for loops'. Use {@link #from(Location)} to get an instance.
-     *
-     * @param <E> The type of the extent for the block ray
      */
-    public static class BlockRayBuilder<E extends Extent> implements Iterable<BlockRayHit<E>> {
+    public static class BlockRayBuilder implements Iterable<BlockRayHit> {
 
         private static final double DEFAULT_DISTANCE_LIMIT = 1000;
-        private final E extent;
+        private final World world;
         private final Vector3d position;
-        private Predicate<BlockRayHit<E>> skipFilter = allFilter();
-        private Predicate<BlockRayHit<E>> stopFilter = allFilter();
+        private Predicate<BlockRayHit> skipFilter = allFilter();
+        private Predicate<BlockRayHit> stopFilter = allFilter();
         private Vector3d direction = null;
         private double distanceLimit = DEFAULT_DISTANCE_LIMIT;
         private boolean narrowPhase = true;
 
-        private BlockRayBuilder(E extent, Vector3d position) {
-            this.extent = extent;
+        private BlockRayBuilder(World world, Vector3d position) {
+            this.world = world;
             this.position = position;
         }
 
@@ -581,7 +575,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
          * @param skipFilter The filter to add
          * @return This for chained calls
          */
-        public BlockRayBuilder<E> skipFilter(final Predicate<BlockRayHit<E>> skipFilter) {
+        public BlockRayBuilder skipFilter(final Predicate<BlockRayHit> skipFilter) {
             checkNotNull(skipFilter, "skipFilter");
             if (this.skipFilter == ALL_FILTER) {
                 this.skipFilter = skipFilter;
@@ -602,9 +596,9 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
          */
         @SafeVarargs
         @SuppressWarnings("varargs")
-        public final BlockRayBuilder<E> skipFilter(final Predicate<BlockRayHit<E>>... skipFilters) {
+        public final BlockRayBuilder skipFilter(final Predicate<BlockRayHit>... skipFilters) {
             checkNotNull(skipFilters, "filters");
-            final Predicate<BlockRayHit<E>> skipFilter = skipFilters.length == 1 ? skipFilters[0] : Functional.predicateAnd(skipFilters);
+            final Predicate<BlockRayHit> skipFilter = skipFilters.length == 1 ? skipFilters[0] : Functional.predicateAnd(skipFilters);
             if (this.skipFilter == ALL_FILTER) {
                 this.skipFilter = skipFilter;
             } else {
@@ -622,7 +616,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
          * @param stopFilter The filter to add
          * @return This for chained calls
          */
-        public BlockRayBuilder<E> stopFilter(final Predicate<BlockRayHit<E>> stopFilter) {
+        public BlockRayBuilder stopFilter(final Predicate<BlockRayHit> stopFilter) {
             checkNotNull(stopFilter, "stopFilter");
             if (this.stopFilter == ALL_FILTER) {
                 this.stopFilter = stopFilter;
@@ -643,9 +637,9 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
          */
         @SafeVarargs
         @SuppressWarnings("varargs")
-        public final BlockRayBuilder<E> stopFilter(final Predicate<BlockRayHit<E>>... stopFilters) {
+        public final BlockRayBuilder stopFilter(final Predicate<BlockRayHit>... stopFilters) {
             checkNotNull(stopFilters, "stopFilters");
-            final Predicate<BlockRayHit<E>> endFilter = stopFilters.length == 1 ? stopFilters[0] : Functional.predicateAnd(stopFilters);
+            final Predicate<BlockRayHit> endFilter = stopFilters.length == 1 ? stopFilters[0] : Functional.predicateAnd(stopFilters);
             if (this.stopFilter == ALL_FILTER) {
                 this.stopFilter = endFilter;
             } else {
@@ -661,12 +655,12 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
          * @param end The ending location
          * @return This for chained calls
          */
-        public BlockRayBuilder<E> to(Vector3d end) {
+        public BlockRayBuilder to(Vector3d end) {
             checkState(this.direction == null, "Direction has already been set");
             checkNotNull(end, "end");
             checkArgument(!this.position.equals(end), "Start and end cannot be equal");
             this.direction = end.sub(this.position).normalize();
-            return stopFilter(new TargetBlockFilter<>(end));
+            return stopFilter(new TargetBlockFilter(end));
         }
 
         /**
@@ -676,7 +670,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
          * @param direction The direction
          * @return This for chained calls
          */
-        public BlockRayBuilder<E> direction(Vector3d direction) {
+        public BlockRayBuilder direction(Vector3d direction) {
             checkState(this.direction == null, "Direction has already been set");
             checkNotNull(direction, "direction");
             checkArgument(direction.lengthSquared() != 0, "Direction must be a non-zero vector");
@@ -692,7 +686,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
          * @param distanceLimit The distance limit
          * @return This for chained calls
          */
-        public BlockRayBuilder<E> distanceLimit(double distanceLimit) {
+        public BlockRayBuilder distanceLimit(double distanceLimit) {
             this.distanceLimit = distanceLimit;
             return this;
         }
@@ -707,7 +701,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
          * @param enable Whether or not to enable the narrow phase
          * @return This for chained calls
          */
-        public BlockRayBuilder<E> narrowPhase(boolean enable) {
+        public BlockRayBuilder narrowPhase(boolean enable) {
             this.narrowPhase = enable;
             return this;
         }
@@ -728,13 +722,13 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
          *
          * @return A block ray
          */
-        public BlockRay<E> build() {
+        public BlockRay build() {
             checkState(this.direction != null, "Either end point or direction needs to be set");
-            return new BlockRay<>(this.skipFilter, this.stopFilter, this.extent, this.position, this.direction, this.narrowPhase, this.distanceLimit);
+            return new BlockRay(this.skipFilter, this.stopFilter, this.world, this.position, this.direction, this.narrowPhase, this.distanceLimit);
         }
 
         @Override
-        public Iterator<BlockRayHit<E>> iterator() {
+        public Iterator<BlockRayHit> iterator() {
             return build();
         }
 
@@ -746,7 +740,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
          * @see #build()
          * @see BlockRay#end()
          */
-        public Optional<BlockRayHit<E>> end() {
+        public Optional<BlockRayHit> end() {
             return build().end();
         }
     }
@@ -755,11 +749,10 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
      * A filter that accepts all blocks. A {@link BlockRay} combined with no
      * other filter than this one could run endlessly.
      *
-     * @param <E> The extent to be applied in
      * @return A filter that accepts all blocks
      */
     @SuppressWarnings("unchecked")
-    public static <E extends Extent> Predicate<BlockRayHit<E>> allFilter() {
+    public static  Predicate<BlockRayHit> allFilter() {
         return ALL_FILTER;
     }
 
@@ -770,11 +763,10 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
      * systems was to pass through air blocks only until a non-air block was
      * hit.</p>
      *
-     * @param <E> The extent to be applied in
      * @return A filter that only accepts air blocks
      */
     @SuppressWarnings("unchecked")
-    public static <E extends Extent> Predicate<BlockRayHit<E>> onlyAirFilter() {
+    public static  Predicate<BlockRayHit> onlyAirFilter() {
         return ONLY_AIR_FILTER;
     }
 
@@ -782,11 +774,10 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
      * A filter that only allows blocks of a certain type.
      *
      * @param type The type of blocks to allow
-     * @param <E> The extent to be applied in
      * @return The filter instance
      */
-    public static <E extends Extent> Predicate<BlockRayHit<E>> blockTypeFilter(final BlockType type) {
-        return lastHit -> lastHit.getExtent().getBlockType(lastHit.getBlockX(), lastHit.getBlockY(), lastHit.getBlockZ()).equals(type);
+    public static  Predicate<BlockRayHit> blockTypeFilter(final BlockType type) {
+        return lastHit -> lastHit.getWorld().getBlock(lastHit.getBlockX(), lastHit.getBlockY(), lastHit.getBlockZ()).getType().equals(type);
     }
 
     /**
@@ -795,26 +786,25 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
      *
      * @param filter The filter to extend
      * @param numberOfBlocks The number of blocks to extend it by
-     * @param <E> The extent to be applied in
      * @return The extended block filter
      */
-    public static <E extends Extent> Predicate<BlockRayHit<E>> continueAfterFilter(Predicate<BlockRayHit<E>> filter, int numberOfBlocks) {
-        return new ContinueAfterFilter<>(filter, numberOfBlocks);
+    public static  Predicate<BlockRayHit> continueAfterFilter(Predicate<BlockRayHit> filter, int numberOfBlocks) {
+        return new ContinueAfterFilter(filter, numberOfBlocks);
     }
 
-    private static class ContinueAfterFilter<E extends Extent> implements Predicate<BlockRayHit<E>> {
+    private static class ContinueAfterFilter implements Predicate<BlockRayHit> {
 
-        private final Predicate<BlockRayHit<E>> filter;
+        private final Predicate<BlockRayHit> filter;
         final int numberOfBlocks;
         int extraBlockCount = 0;
 
-        ContinueAfterFilter(Predicate<BlockRayHit<E>> filter, int numberOfBlocks) {
+        ContinueAfterFilter(Predicate<BlockRayHit> filter, int numberOfBlocks) {
             this.filter = filter;
             this.numberOfBlocks = numberOfBlocks;
         }
 
         @Override
-        public boolean test(BlockRayHit<E> lastHit) {
+        public boolean test(BlockRayHit lastHit) {
             if (this.extraBlockCount <= 0) {
                 if (!this.filter.test(lastHit)) {
                     this.extraBlockCount = 1;
@@ -826,7 +816,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
 
     }
 
-    private static class TargetBlockFilter<E extends Extent> implements Predicate<BlockRayHit<E>> {
+    private static class TargetBlockFilter implements Predicate<BlockRayHit> {
 
         private final Vector3i target;
 
@@ -835,7 +825,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
         }
 
         @Override
-        public boolean test(BlockRayHit<E> lastHit) {
+        public boolean test(BlockRayHit lastHit) {
             return lastHit.getBlockX() != this.target.getX() || lastHit.getBlockY() != this.target.getY()
                 || lastHit.getBlockZ() != this.target.getZ();
         }

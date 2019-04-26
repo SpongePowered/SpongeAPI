@@ -42,6 +42,6 @@ public interface ConstructPortalEvent extends Event, Cancellable {
      *
      * @return The location of a portal
      */
-    Location<World> getPortalLocation();
+    Location getPortalLocation();
 
 }

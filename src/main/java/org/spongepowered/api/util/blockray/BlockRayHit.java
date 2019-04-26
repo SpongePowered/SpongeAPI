@@ -29,45 +29,45 @@ import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.extent.Extent;
+import org.spongepowered.api.world.World;
 
 import java.util.function.BiFunction;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents a block hit by a ray. Stores more information than a regular
  * location. Extra object are lazily computed and cached.
- *
- * @param <E> The extent containing the hit
  */
-public class BlockRayHit<E extends Extent> {
+public class BlockRayHit {
 
-    private final E extent;
+    private final World world;
     private final double x;
     private final double y;
     private final double z;
-    private Vector3d position = null;
+    @Nullable private Vector3d position = null;
     private final int xBlock;
     private final int yBlock;
     private final int zBlock;
-    private Vector3i blockPosition = null;
+    @Nullable private Vector3i blockPosition = null;
     private final Vector3d direction;
     private final Vector3d normal;
-    private Direction[] faces = null;
-    private Location<E> location = null;
+    @Nullable private Direction[] faces = null;
+    @Nullable private Location location = null;
 
     /**
      * Constructs a new block ray hit from the extent that contains it, the
      * coordinates and the face that was entered.
      *
-     * @param extent The extent of the block
+     * @param world The world of the block
      * @param x The x coordinate of the block
      * @param y The y coordinate of the block
      * @param z The x coordinate of the block
      * @param direction A normal vector of the ray direction
      * @param normal The normal of the entered face, edge or corner
      */
-    public BlockRayHit(E extent, double x, double y, double z, Vector3d direction, Vector3d normal) {
-        this.extent = extent;
+    public BlockRayHit(World world, double x, double y, double z, Vector3d direction, Vector3d normal) {
+        this.world = world;
         this.x = x;
         this.y = y;
         this.z = z;
@@ -94,12 +94,12 @@ public class BlockRayHit<E extends Extent> {
     }
 
     /**
-     * Returns the extent that contains the block.
+     * Returns the world that contains the block.
      *
-     * @return The extent
+     * @return The world
      */
-    public E getExtent() {
-        return this.extent;
+    public World getWorld() {
+        return this.world;
     }
 
     /**
@@ -186,9 +186,9 @@ public class BlockRayHit<E extends Extent> {
      *
      * @return The location of the hit block
      */
-    public Location<E> getLocation() {
+    public Location getLocation() {
         if (this.location == null) {
-            this.location = new Location<>(this.extent, this.xBlock, this.yBlock, this.zBlock);
+            this.location = new Location(this.world, this.xBlock, this.yBlock, this.zBlock);
         }
         return this.location;
     }
@@ -243,8 +243,8 @@ public class BlockRayHit<E extends Extent> {
      * @param <T> The return type of the mapper
      * @return The results of the mapping
      */
-    public <T> T map(BiFunction<E, Vector3d, T> mapper) {
-        return mapper.apply(this.extent, getPosition());
+    public <T> T map(BiFunction<World, Vector3d, T> mapper) {
+        return mapper.apply(this.world, getPosition());
     }
 
     /**
@@ -254,13 +254,13 @@ public class BlockRayHit<E extends Extent> {
      * @param <T> The return type of the mapper
      * @return The results of the mapping
      */
-    public <T> T mapBlock(BiFunction<E, Vector3i, T> mapper) {
-        return mapper.apply(this.extent, getBlockPosition());
+    public <T> T mapBlock(BiFunction<World, Vector3i, T> mapper) {
+        return mapper.apply(this.world, getBlockPosition());
     }
 
     @Override
     public String toString() {
-        return "BlockRayHit{" + getPosition() + " in " + getExtent() + "}";
+        return "BlockRayHit{" + getPosition() + " in " + getWorld() + "}";
     }
 
 }

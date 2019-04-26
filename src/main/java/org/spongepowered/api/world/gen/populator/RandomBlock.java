@@ -110,7 +110,7 @@ public interface RandomBlock extends Populator {
      * 
      * @return The targeted block predicate
      */
-    Predicate<Location<World>> getPlacementTarget();
+    Predicate<Location> getPlacementTarget();
 
     /**
      * Sets the {@link Predicate} that this populator used to determine of a
@@ -118,7 +118,7 @@ public interface RandomBlock extends Populator {
      * 
      * @param target The new targeted block predicate
      */
-    void getPlacementTarget(Predicate<Location<World>> target);
+    void getPlacementTarget(Predicate<Location> target);
 
     /**
      * A builder for constructing {@link RandomBlock} populators.
@@ -162,7 +162,7 @@ public interface RandomBlock extends Populator {
          * @param target The new targeted block predicate
          * @return This builder, for chaining
          */
-        Builder placementTarget(Predicate<Location<World>> target);
+        Builder placementTarget(Predicate<Location> target);
 
         /**
          * Sets the height range of the random block placement.

@@ -30,7 +30,6 @@ import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.util.weighted.WeightedTable;
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.extent.Extent;
 import org.spongepowered.api.world.gen.Populator;
 
 import java.util.Optional;
@@ -101,7 +100,7 @@ public interface Flower extends Populator {
      * 
      * @return The supplier override
      */
-    Optional<Function<Location<Extent>, PlantType>> getSupplierOverride();
+    Optional<Function<Location, PlantType>> getSupplierOverride();
 
     /**
      * Sets the overriding supplier. If the supplier is present then it is used
@@ -109,7 +108,7 @@ public interface Flower extends Populator {
      * 
      * @param override The new supplier override, or null
      */
-    void setSupplierOverride(@Nullable Function<Location<Extent>, PlantType> override);
+    void setSupplierOverride(@Nullable Function<Location, PlantType> override);
 
     /**
      * Clears the supplier override to force the weighted table to be used
@@ -177,7 +176,7 @@ public interface Flower extends Populator {
          * @param override The new supplier override, or null
          * @return This builder, for chaining
          */
-        Builder supplier(Function<Location<Extent>, PlantType> override);
+        Builder supplier(Function<Location, PlantType> override);
 
         /**
          * Builds a new instance of a {@link Flower} populator with the settings

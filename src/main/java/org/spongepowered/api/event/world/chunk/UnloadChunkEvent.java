@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.world.chunk;
 
-import org.spongepowered.api.world.Chunk;
+import org.spongepowered.api.world.chunk.Chunk;
 
 /**
  * An event where a {@link Chunk} is being unloaded.
