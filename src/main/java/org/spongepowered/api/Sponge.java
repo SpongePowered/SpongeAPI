@@ -28,7 +28,6 @@ import static com.google.common.base.Preconditions.checkState;
 
 import com.google.inject.Inject;
 import org.spongepowered.api.asset.AssetManager;
-import org.spongepowered.api.command.CommandManager;
 import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.data.property.PropertyRegistry;
@@ -64,7 +63,6 @@ public final class Sponge {
     @Inject private static EventManager eventManager;
     @Inject private static AssetManager assetManager;
     @Inject private static ConfigManager configManager;
-    @Inject private static CommandManager commandManager;
     @Inject private static ServiceManager serviceManager;
     @Inject private static Scheduler scheduler;
     @Inject private static ChannelRegistrar channelRegistrar;
@@ -167,15 +165,6 @@ public final class Sponge {
      */
     public static ConfigManager getConfigManager() {
         return check(configManager);
-    }
-
-    /**
-     * Gets the {@link CommandManager} instance.
-     *
-     * @return The command manager instance
-     */
-    public static CommandManager getCommandManager() {
-        return check(commandManager);
     }
 
     /**

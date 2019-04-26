@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api;
 
-import org.spongepowered.api.command.source.ConsoleSource;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.profile.GameProfileManager;
 import org.spongepowered.api.resourcepack.ResourcePack;
@@ -370,14 +369,6 @@ public interface Server {
      * @param kickMessage The message to kick players with
      */
     void shutdown(Text kickMessage);
-
-    /**
-     * Gets the command source used for commands coming from this server's
-     * console.
-     *
-     * @return This server's console command source
-     */
-    ConsoleSource getConsole();
 
     /**
      * Gets the ChunkTicketManager used for requesting tickets to force load

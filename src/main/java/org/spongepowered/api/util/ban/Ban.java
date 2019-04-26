@@ -25,7 +25,6 @@
 package org.spongepowered.api.util.ban;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.ban.BanService;
 import org.spongepowered.api.text.Text;
@@ -101,26 +100,9 @@ public interface Ban {
     /**
      * Gets the source that created this ban, if available.
      *
-     * <p>Depending on the implementation, the returned {@link Text}
-     * may represent a {@link CommandSource}. {@link #getBanCommandSource()} can be
-     * used to attempt to convert the source to a {@link CommandSource}.</p>
-     *
      * @return the source of this ban, if available
      */
     Optional<Text> getBanSource();
-
-    /**
-     * Gets the source that created this ban in {@link CommandSource} form,
-     * if available.
-     *
-     * <p>Depending on the implementation, it may not be possible to determine
-     * the {@link CommandSource} responsible for this ban. Because of this,
-     * it is recommended to check {@link #getBanSource()} if this method
-     * returns {@link Optional#empty()}.</p>
-     *
-     * @return The banning source or {@link Optional#empty()}
-     */
-    Optional<CommandSource> getBanCommandSource();
 
     /**
      * Gets the expiration date of this ban, if available.
@@ -225,15 +207,6 @@ public interface Ban {
          * @return This builder
          */
         Builder expirationDate(@Nullable Instant instant);
-
-        /**
-         * Sets the source of the ban, or removes it if {@code null} is passed
-         * in.
-         *
-         * @param source The source of the ban, or {@code null}
-         * @return This builder
-         */
-        Builder source(@Nullable CommandSource source);
 
         /**
          * Sets the source of the ban as a {@link Text}, or removes it if

@@ -24,12 +24,10 @@
  */
 package org.spongepowered.api.block.tileentity;
 
-import org.spongepowered.api.command.source.CommandBlockSource;
-
 /**
  * Represents a Command Block.
  */
-public interface CommandBlock extends TileEntity, CommandBlockSource {
+public interface CommandBlock extends TileEntity {
 
     /**
      * Executes the currently stored command.

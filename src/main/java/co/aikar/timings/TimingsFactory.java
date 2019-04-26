@@ -24,7 +24,6 @@
  */
 package co.aikar.timings;
 
-import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.text.channel.MessageChannel;
 
 import javax.annotation.Nullable;
@@ -104,13 +103,6 @@ public interface TimingsFactory {
      * Resets the timing data.
      */
     void reset();
-
-    /**
-     * Generates a report and sends to the given source.
-     *
-     * @param source Source to send to, null for console source
-     */
-    void generateReport(@Nullable CommandSource source);
 
     /**
      * Generates a report and sends to the given channel.

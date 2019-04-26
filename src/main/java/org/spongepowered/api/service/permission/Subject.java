@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.service.permission;
 
-import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.service.context.Context;
 import org.spongepowered.api.service.context.Contextual;
 import org.spongepowered.api.util.Tristate;
@@ -85,19 +84,6 @@ import java.util.Set;
  * @see PermissionService
  */
 public interface Subject extends Contextual {
-
-    /**
-     * Returns a possible {@link CommandSource} for the subject, if it relates
-     * to one.
-     *
-     * <p>If this subject represents an actual user currently connected, this
-     * method returns this user. This user may in fact be the same as this
-     * subject. Some subjects may never directly map to a command source, while
-     * others may temporarily not have an accessible command source.</p>
-     *
-     * @return an optional active command source
-     */
-    Optional<CommandSource> getCommandSource();
 
     /**
      * Returns the subject collection this subject is a member of.

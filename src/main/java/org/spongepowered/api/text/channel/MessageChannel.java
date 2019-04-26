@@ -56,25 +56,6 @@ public interface MessageChannel {
     MessageChannel TO_NONE = ImmutableSet::of;
 
     /**
-     * A channel with all online players as members.
-     */
-    MessageChannel TO_PLAYERS = () -> ImmutableSet.copyOf(Sponge.getGame().getServer().getOnlinePlayers());
-
-    /**
-     * A channel with the server console as a member.
-     */
-    MessageChannel TO_CONSOLE = () -> ImmutableSet.of(Sponge.getGame().getServer().getConsole());
-
-    /**
-     * A channel with all online players, as well as the server console, as
-     * members.
-     */
-    MessageChannel TO_ALL = () -> ImmutableSet.<MessageReceiver>builder()
-            .addAll(Sponge.getGame().getServer().getOnlinePlayers())
-            .add(Sponge.getGame().getServer().getConsole())
-            .build();
-
-    /**
      * Creates a message channel that targets all subjects with the given
      * permission.
      *

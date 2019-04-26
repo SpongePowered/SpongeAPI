@@ -26,12 +26,8 @@ package co.aikar.timings;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.spongepowered.api.command.CommandSource;
-import org.spongepowered.api.command.source.ConsoleSource;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
-
-import javax.annotation.Nullable;
 
 /**
  * Utility class for creating and configuring timings.
@@ -202,17 +198,6 @@ public final class Timings {
      */
     public static void reset() {
         factory.reset();
-    }
-
-    /**
-     * Generates a report and sends it to the specified command source.
-     *
-     * <p>If source is null, the {@link ConsoleSource} will be used.</p>
-     *
-     * @param source The source to show the report to
-     */
-    public static void generateReport(@Nullable CommandSource source) {
-        factory.generateReport(source);
     }
 
     /**

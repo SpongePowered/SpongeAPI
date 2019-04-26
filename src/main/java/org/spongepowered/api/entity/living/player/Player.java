@@ -29,9 +29,6 @@ import org.spongepowered.api.advancement.Advancement;
 import org.spongepowered.api.advancement.AdvancementProgress;
 import org.spongepowered.api.advancement.AdvancementTree;
 import org.spongepowered.api.block.tileentity.EnderChest;
-import org.spongepowered.api.command.CommandManager;
-import org.spongepowered.api.command.CommandSource;
-import org.spongepowered.api.command.source.RemoteSource;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
 import org.spongepowered.api.data.manipulator.mutable.entity.GameModeData;
@@ -48,7 +45,6 @@ import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.Inventory;
-import org.spongepowered.api.network.PlayerConnection;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
@@ -74,7 +70,7 @@ import javax.annotation.Nullable;
  * <p>Any methods called on Player that are not on User do not store any data
  * that persists across server restarts.</p>
  */
-public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMessageReceiver {
+public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver {
 
     /**
      * Returns whether this player has an open inventory at the moment
@@ -157,9 +153,6 @@ public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMe
      * {@link MessageReceiver#sendMessage(Text)} or
      * {@link ChatTypeMessageReceiver#sendMessage(ChatType, Text)}.</p>
      *
-     * <p>Commands cannot be sent using this method. To send commands, use
-     * {@link CommandManager#process(CommandSource, String)}.</p>
-     *
      * <p>If text formatting is not supported in the implementation
      * it will be displayed as plain text.</p>
      *
@@ -175,15 +168,6 @@ public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMe
      * @return A set of skin parts displayed
      */
     Set<SkinPart> getDisplayedSkinParts();
-
-    /**
-     * Gets the appropriate {@link PlayerConnection} linking this Player
-     * to a client.
-     *
-     * @return The connection
-     */
-    @Override
-    PlayerConnection getConnection();
 
     /**
      * Sends a given {@link ResourcePack} to this player.

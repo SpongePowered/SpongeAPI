@@ -26,7 +26,6 @@ package org.spongepowered.api.text.selector;
 
 import static org.spongepowered.api.text.selector.ArgumentTypes.getFactory;
 
-import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.Location;
@@ -150,18 +149,6 @@ public interface Selector {
      *         {@link Selector}, otherwise {@code false}
      */
     boolean isInverted(ArgumentType.Invertible<?> type);
-
-    /**
-     * Resolves this {@link Selector} to a list of entities around the origin.
-     *
-     * <p>The returned set may be ordered based on distance from the origin
-     * (with the nearest first).</p>
-     *
-     * @param origin The source that should be considered the origin of this
-     *        selector
-     * @return The matched entities
-     */
-    Set<Entity> resolve(CommandSource origin);
 
     /**
      * Resolves this {@link Selector} to a list of entities around (0|0|0) in

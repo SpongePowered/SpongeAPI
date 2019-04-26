@@ -61,17 +61,4 @@ public class PermissionMessageChannel implements MessageChannel {
     public String getPermission() {
         return this.permission;
     }
-
-    @Override
-    public Collection<MessageReceiver> getMembers() {
-        PermissionService service = Sponge.getGame().getServiceManager().provideUnchecked(PermissionService.class);
-
-        return service.getLoadedCollections().values().stream()
-                .flatMap(input -> input.getLoadedWithPermission(this.permission).entrySet().stream()
-                        .filter(Map.Entry::getValue)
-                        .map(entry -> entry.getKey().getCommandSource().orElse(null))
-                        .filter(source -> source != null))
-                .collect(ImmutableSet.toImmutableSet());
-    }
-
 }
