@@ -25,11 +25,9 @@
 package org.spongepowered.api.data.manipulator.mutable.common;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.mutable.Value;
 
 /**
@@ -40,7 +38,7 @@ import org.spongepowered.api.data.value.mutable.Value;
  * @param <I> The immutable manipulator type
  */
 public abstract class AbstractBooleanData<M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>> extends
-        AbstractSingleData<Boolean, M, I> {
+    AbstractSingleData<Boolean, M, I> {
 
     protected AbstractBooleanData(Key<Value<Boolean>> usedKey, boolean value) {
         super(usedKey, value);
@@ -54,10 +52,5 @@ public abstract class AbstractBooleanData<M extends DataManipulator<M, I>, I ext
     @Override
     protected Value<Boolean> getValueGetter() {
         return Sponge.getRegistry().getValueFactory().createValue((Key<Value<Boolean>>) this.usedKey, this.value, this.defaultValue);
-    }
-
-    @Override
-    protected DataContainer fillContainer(DataContainer dataContainer) {
-        return dataContainer.set(this.usedKey.getQuery(), getValue());
     }
 }

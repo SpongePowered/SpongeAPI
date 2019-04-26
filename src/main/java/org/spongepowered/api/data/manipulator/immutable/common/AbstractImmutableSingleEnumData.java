@@ -42,7 +42,7 @@ import org.spongepowered.api.data.value.mutable.Value;
  * @param <M> The mutable manipulator type
  */
 public abstract class AbstractImmutableSingleEnumData<E extends Enum<E>, I extends ImmutableDataManipulator<I, M>, M extends DataManipulator<M, I>>
-        extends AbstractImmutableSingleData<E, I, M> {
+    extends AbstractImmutableSingleData<E, I, M> {
 
     private final ImmutableValue<E> cachedValue;
 
@@ -60,7 +60,8 @@ public abstract class AbstractImmutableSingleEnumData<E extends Enum<E>, I exten
         return this.cachedValue;
     }
 
-    @Override protected DataContainer fillContainer(DataContainer dataContainer) {
-        return dataContainer.set(this.usedKey.getQuery(), this.value.name());
+    @Override
+    protected DataContainer fillContainer(DataContainer dataContainer) {
+        return dataContainer.set(this.usedKey.getQuery(), getValue().name());
     }
 }

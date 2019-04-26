@@ -48,7 +48,7 @@ import java.util.Optional;
  */
 @SuppressWarnings("unchecked")
 public abstract class AbstractListData<E, M extends ListData<E, M, I>, I extends ImmutableListData<E, I, M>>
-        extends AbstractSingleData<List<E>, M, I> implements ListData<E, M, I> {
+    extends AbstractSingleData<List<E>, M, I> implements ListData<E, M, I> {
 
     protected AbstractListData(Key<ListValue<E>> usedKey, List<E> value) {
         super(usedKey, CollectionUtils.copyList(value));
@@ -61,7 +61,7 @@ public abstract class AbstractListData<E, M extends ListData<E, M, I>, I extends
     @Override
     protected ListValue<E> getValueGetter() {
         return Sponge.getRegistry().getValueFactory().createListValue(
-                (Key<ListValue<E>>) this.usedKey, getValue(), CollectionUtils.copyList(this.defaultValue));
+            (Key<ListValue<E>>) this.usedKey, getValue(), CollectionUtils.copyList(this.defaultValue));
     }
 
     @Override
@@ -88,16 +88,6 @@ public abstract class AbstractListData<E, M extends ListData<E, M, I>, I extends
     @Override
     protected M setValue(List<E> value) {
         return super.setValue(CollectionUtils.copyList(value));
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
     }
 
     @Override

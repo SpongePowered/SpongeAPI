@@ -168,9 +168,8 @@ public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I
     /**
      * Implement this method to add the data to be persisted.
      *
-     * @param dataContainer The DataContainer
-     *
-     * @return The filled DataContainer
+     * @param dataContainer The data container
+     * @return The filled data container
      */
     protected abstract DataContainer fillContainer(DataContainer dataContainer);
 }

@@ -186,19 +186,6 @@ public abstract class AbstractData<M extends DataManipulator<M, I>, I extends Im
     }
 
     @Override
-    public final DataContainer toContainer() {
-        return this.fillContainer(DataContainer.createNew().set(Queries.CONTENT_VERSION, getContentVersion()));
-    }
-
-    /**
-     * Implement this method to add the data to be persisted.
-     *
-     * @param dataContainer The data container
-     * @return The filled data container
-     */
-    protected abstract DataContainer fillContainer(DataContainer dataContainer);
-
-    @Override
     public int hashCode() {
         return Objects.hash(this.keyFieldGetterMap, this.keyFieldSetterMap, this.keyValueMap);
     }
@@ -214,10 +201,23 @@ public abstract class AbstractData<M extends DataManipulator<M, I>, I extends Im
         }
         final AbstractData other = (AbstractData) obj;
         return Objects.equals(this.keyFieldGetterMap.values().stream()
-                                 .map(Supplier::get)
-                                 .collect(Collectors.toList()),
-                             ((Map<Key<?>, Supplier<?>>) other.keyFieldGetterMap).values().stream()
-                                 .map(Supplier::get)
-                                 .collect(Collectors.toList()));
+                .map(Supplier::get)
+                .collect(Collectors.toList()),
+            ((Map<Key<?>, Supplier<?>>) other.keyFieldGetterMap).values().stream()
+                .map(Supplier::get)
+                .collect(Collectors.toList()));
     }
+
+    @Override
+    public final DataContainer toContainer() {
+        return this.fillContainer(DataContainer.createNew().set(Queries.CONTENT_VERSION, getContentVersion()));
+    }
+
+    /**
+     * Implement this method to add the data to be persisted.
+     *
+     * @param dataContainer The data container
+     * @return The filled data container
+     */
+    protected abstract DataContainer fillContainer(DataContainer dataContainer);
 }

@@ -31,7 +31,6 @@ import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableMappedData;
 import org.spongepowered.api.data.manipulator.mutable.ListData;
 import org.spongepowered.api.data.manipulator.mutable.MappedData;
-import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.mutable.MapValue;
 import org.spongepowered.api.util.CollectionUtils;
 
@@ -47,7 +46,7 @@ import java.util.Map;
  */
 @SuppressWarnings("unchecked")
 public abstract class AbstractMappedData<K, V, M extends MappedData<K, V, M, I>, I extends ImmutableMappedData<K, V, I, M>>
-        extends AbstractSingleData<Map<K, V>, M, I> implements MappedData<K, V, M, I> {
+    extends AbstractSingleData<Map<K, V>, M, I> implements MappedData<K, V, M, I> {
 
     protected AbstractMappedData(Key<MapValue<K, V>> usedKey, Map<K, V> value) {
         super(usedKey, CollectionUtils.copyMap(value));
@@ -60,7 +59,7 @@ public abstract class AbstractMappedData<K, V, M extends MappedData<K, V, M, I>,
     @Override
     protected MapValue<K, V> getValueGetter() {
         return Sponge.getRegistry().getValueFactory().createMapValue(
-                (Key<MapValue<K, V>>) this.usedKey, getValue(), CollectionUtils.copyMap(this.defaultValue));
+            (Key<MapValue<K, V>>) this.usedKey, getValue(), CollectionUtils.copyMap(this.defaultValue));
     }
 
     @Override
@@ -71,16 +70,6 @@ public abstract class AbstractMappedData<K, V, M extends MappedData<K, V, M, I>,
     @Override
     protected M setValue(Map<K, V> value) {
         return super.setValue(CollectionUtils.copyMap(value));
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
     }
 
     @Override
