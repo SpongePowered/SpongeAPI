@@ -24,27 +24,17 @@
  */
 package org.spongepowered.api.world.gen;
 
+import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.world.ProtoWorld;
-import org.spongepowered.api.world.biome.ImmutableBiomeVolume;
+import org.spongepowered.api.world.biome.ReadableBiomeVolume;
 import org.spongepowered.api.world.volume.block.MutableBlockVolume;
 
-/**
- * A populator which acts directly on the {@link MutableBlockVolume} during the
- * generation phase rather than the population phase.
- * 
- * <p>Unlike a normal {@link Populator}, a {@link GenerationPopulator} is
- * restricted to the chunk that is currently being generated.</p>
- */
-public interface GenerationPopulator<C extends GenerationConfig> {
+import java.util.Random;
 
-    /**
-     * Operates on a {@link MutableBlockVolume} either forming the base terrain
-     * or performing modifications during the generation phase.
-     *  @param world The world
-     * @param buffer The buffer to apply the changes to. The buffer can be of
-     *        any size.
-     * @param biomes The biomes for generation
-     */
-    void populate(GenerationRegion world, MutableBlockVolume<?> buffer, ImmutableBiomeVolume biomes, C config);
+public interface Carver<C extends GenerationConfig> {
+
+    C getConfig();
+
+    void carve(GenerationRegion worldGenRegion, MutableBlockVolume buffer, Random random, Vector3i center, C config);
 
 }

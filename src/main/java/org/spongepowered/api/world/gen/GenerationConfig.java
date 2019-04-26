@@ -24,27 +24,31 @@
  */
 package org.spongepowered.api.world.gen;
 
+import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.fluid.FluidState;
 import org.spongepowered.api.world.ProtoWorld;
-import org.spongepowered.api.world.biome.ImmutableBiomeVolume;
-import org.spongepowered.api.world.volume.block.MutableBlockVolume;
+import org.spongepowered.api.world.chunk.ProtoChunk;
 
-/**
- * A populator which acts directly on the {@link MutableBlockVolume} during the
- * generation phase rather than the population phase.
- * 
- * <p>Unlike a normal {@link Populator}, a {@link GenerationPopulator} is
- * restricted to the chunk that is currently being generated.</p>
- */
-public interface GenerationPopulator<C extends GenerationConfig> {
+public interface GenerationConfig {
 
     /**
-     * Operates on a {@link MutableBlockVolume} either forming the base terrain
-     * or performing modifications during the generation phase.
-     *  @param world The world
-     * @param buffer The buffer to apply the changes to. The buffer can be of
-     *        any size.
-     * @param biomes The biomes for generation
+     * Gets the default {@link BlockState} for the
+     * {@link ProtoWorld}. The default block is mostly the
+     * "filler" block used for all different biomes. Examples
+     * include "stone" for overworlds, or "netherrack" for the
+     * nether.
+     *
+     * @return The default filling block state
      */
-    void populate(GenerationRegion world, MutableBlockVolume<?> buffer, ImmutableBiomeVolume biomes, C config);
+    BlockState getDefaultBlock();
+
+    /**
+     * Gets the default {@link BlockState} that will provide
+     * a {@link FluidState} in a normalized {@link ProtoChunk} once
+     * completed generation.
+     *
+     * @return The default fluid filling block state
+     */
+    BlockState getDefaultFluid();
 
 }

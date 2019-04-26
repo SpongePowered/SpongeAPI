@@ -24,27 +24,12 @@
  */
 package org.spongepowered.api.world.gen;
 
-import org.spongepowered.api.world.ProtoWorld;
-import org.spongepowered.api.world.biome.ImmutableBiomeVolume;
-import org.spongepowered.api.world.volume.block.MutableBlockVolume;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-/**
- * A populator which acts directly on the {@link MutableBlockVolume} during the
- * generation phase rather than the population phase.
- * 
- * <p>Unlike a normal {@link Populator}, a {@link GenerationPopulator} is
- * restricted to the chunk that is currently being generated.</p>
- */
-public interface GenerationPopulator<C extends GenerationConfig> {
+public class CarvingLayers {
 
-    /**
-     * Operates on a {@link MutableBlockVolume} either forming the base terrain
-     * or performing modifications during the generation phase.
-     *  @param world The world
-     * @param buffer The buffer to apply the changes to. The buffer can be of
-     *        any size.
-     * @param biomes The biomes for generation
-     */
-    void populate(GenerationRegion world, MutableBlockVolume<?> buffer, ImmutableBiomeVolume biomes, C config);
+    public static final CarvingLayer AIR = DummyObjectProvider.createFor(CarvingLayer.class, "AIR");
+    public static final CarvingLayer LIQUID = DummyObjectProvider.createFor(CarvingLayer.class, "AIR");
+
 
 }

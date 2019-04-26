@@ -24,24 +24,10 @@
  */
 package org.spongepowered.api.world.gen;
 
-import org.spongepowered.api.world.biome.MutableBiomeVolume;
+import org.spongepowered.api.world.chunk.ProtoChunk;
 
-/**
- * Manages the biome generation for an extent.
- */
-public interface BiomeGenerator {
+public interface PrimitiveChunk extends ProtoChunk<PrimitiveChunk> {
 
-    /**
-     * Generates the biomes for the whole buffer using only biomes from the
-     * given array of available biomes. The resultant biomes are placed into the
-     * given buffer.
-     *
-     * <p> The biome generator can be called multiple times for the same
-     * position. The biome generator should, for any position/world seed
-     * combination, always return the same biome. </p>
-     *
-     * @param buffer The buffer to generate the biomes into.
-     */
-    void generateBiomes(MutableBiomeVolume<?> buffer);
-
+    @Override
+    GenerationRegion getWorld();
 }
