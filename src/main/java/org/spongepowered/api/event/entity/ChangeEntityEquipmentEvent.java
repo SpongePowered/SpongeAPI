@@ -26,23 +26,12 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.Humanoid;
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.entity.living.TargetLivingEvent;
-import org.spongepowered.api.event.entity.living.humanoid.TargetHumanoidEvent;
-import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
-import org.spongepowered.api.event.impl.AbstractChangeEntityEquipmentEvent;
 import org.spongepowered.api.event.item.inventory.TargetInventoryEvent;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
-import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
-import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
-
-import java.util.Optional;
 
 /**
  * Called when an entity changes an equipped item. This can occur whenever
@@ -51,7 +40,6 @@ import java.util.Optional;
  * or swapped with an {@link ItemStack}. In the event that a change to the
  * {@link ItemStack}, the use of the {@link Transaction} is recommended.
  */
-@ImplementedBy(AbstractChangeEntityEquipmentEvent.class)
 public interface ChangeEntityEquipmentEvent extends TargetEntityEvent, TargetInventoryEvent, Cancellable {
 
     /**
@@ -59,24 +47,8 @@ public interface ChangeEntityEquipmentEvent extends TargetEntityEvent, TargetInv
      *
      * @return The transaction of the item
      */
-    @PropertySettings(generateMethods = false)
     Transaction<ItemStackSnapshot> getTransaction();
 
     @Override
     Slot getTargetInventory();
-
-    /**
-     * An event where a {@link Living} entity is targeted.
-     */
-    interface TargetLiving extends ChangeEntityEquipmentEvent, TargetLivingEvent { }
-
-    /**
-     * An event where a {@link Humanoid} entity is targeted.
-     */
-    interface TargetHumanoid extends TargetLiving, TargetHumanoidEvent { }
-
-    /**
-     * An event where a {@link Player} entity is targeted.
-     */
-    interface TargetPlayer extends TargetHumanoid, TargetPlayerEvent { }
 }

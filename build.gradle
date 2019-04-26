@@ -210,7 +210,6 @@ sortClassFields {
     add 'main', 'org.spongepowered.api.world.gen.type.MushroomTypes'
     add 'main', 'org.spongepowered.api.world.gen.PopulatorObjects'
     add 'main', 'org.spongepowered.api.world.gen.PopulatorTypes'
-    add 'main', 'org.spongepowered.api.world.gen.WorldGeneratorModifiers'
     add 'main', 'org.spongepowered.api.world.teleport.TeleportHelperFilters'
     add 'main', 'org.spongepowered.api.world.weather.Weathers'
     add 'main', 'org.spongepowered.api.util.TypeTokens'

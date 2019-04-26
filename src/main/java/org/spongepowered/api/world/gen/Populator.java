@@ -91,6 +91,6 @@ public interface Populator<C extends PopulatorConfig> {
      *        includes any virtual biomes not persisted to the world
      */
     default void populate(World world, PrimitiveChunk volume, Random random, ImmutableBiomeVolume virtualBiomes) {
-        populate(world, volume, random, );
+        populate(world, volume, random, null);
     }
 }
