@@ -2109,6 +2109,16 @@ public final class Keys {
     public static final Key<Value<Boolean>> SUSPENDED = DummyObjectProvider.createExtendedFor(Key.class,"SUSPENDED");
 
     /**
+     * Represents the {@link Key} for representing the scoreboard tags applied
+     * to an {@link Entity}.
+     *
+     * @see <a href="https://minecraft.gamepedia.com/Scoreboard#Tags">
+     *     https://minecraft.gamepedia.com/Scoreboard#Tags</a>
+     * @see TagData#tags()
+     */
+    public static final Key<SetValue<String>> TAGS = DummyObjectProvider.createExtendedFor(Key.class, "TAGS");
+
+    /**
      * Represents the {@link Key} for the owner uuid of a tamed {@link Animal}.
      *
      * <p>Tamable animals in Vanilla may be a {@link Wolf}, an {@link Ocelot}

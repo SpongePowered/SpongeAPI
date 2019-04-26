@@ -410,6 +410,10 @@ public final class TypeTokens {
 
     public static final TypeToken<SetValue<Direction>> SET_DIRECTION_VALUE_TOKEN = new TypeToken<SetValue<Direction>>() {private static final long serialVersionUID = -1;};
 
+    public static final TypeToken<Set<String>> SET_STRING__TOKEN = new TypeToken<Set<String>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<SetValue<String>> SET_STRING_VALUE_TOKEN = new TypeToken<SetValue<String>>() {private static final long serialVersionUID = -1;};
+
     public static final TypeToken<Short> SHORT_TOKEN = new TypeToken<Short>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<ShrubType> SHRUB_TOKEN = new TypeToken<ShrubType>() {private static final long serialVersionUID = -1;};
