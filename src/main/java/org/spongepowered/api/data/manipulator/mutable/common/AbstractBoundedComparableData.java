@@ -96,8 +96,8 @@ public abstract class AbstractBoundedComparableData<T extends Comparable<T>, M e
     }
 
     @Override
-    public DataContainer toContainer() {
-        return super.toContainer();
+    protected DataContainer fillContainer(DataContainer dataContainer) {
+        return dataContainer.set(this.usedKey.getQuery(), this.getValue());
     }
 
     @Override
@@ -117,7 +117,7 @@ public abstract class AbstractBoundedComparableData<T extends Comparable<T>, M e
         }
         final AbstractBoundedComparableData<T, M, I> other = (AbstractBoundedComparableData<T, M, I>) obj;
         return other.upperBound.equals(this.upperBound) &&
-                other.lowerBound.equals(this.lowerBound) &&
-                other.comparator.equals(this.comparator);
+            other.lowerBound.equals(this.lowerBound) &&
+            other.comparator.equals(this.comparator);
     }
 }
