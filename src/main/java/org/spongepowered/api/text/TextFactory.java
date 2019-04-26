@@ -22,12 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.serializer;
+package org.spongepowered.api.text;
 
-/**
- * Internal implementation factory: Use {@link TextSerializers} instead.
- */
-public interface TextSerializerFactory {
+import org.spongepowered.api.text.format.TextColor;
+import org.spongepowered.api.text.format.TextFormat;
+import org.spongepowered.api.text.format.TextStyle;
+import org.spongepowered.api.text.serializer.FormattingCodeTextSerializer;
+
+import java.util.Iterator;
+
+public interface TextFactory {
+    // Text
+
+    Text of(final Object... args);
+
+    Text joinWith(final Text separator, final Text... texts);
+
+    Text joinWith(final Text separator, final Iterator<? extends Text> texts);
+
+    // Format
+
+    TextFormat emptyFormat();
+
+    TextFormat format(final TextColor color, final TextStyle style);
+
+    // Template
+
+    TextTemplate emptyTemplate();
+
+    TextTemplate template(String openArg, String closeArg, Object[] elements);
+
+    // Serializer
 
     /**
      * Returns a representation that accepts and outputs legacy color codes,
@@ -36,6 +61,5 @@ public interface TextSerializerFactory {
      * @param legacyChar The legacy character to parse and output using
      * @return The appropriate legacy representation handler
      */
-    FormattingCodeTextSerializer getFormattingCodeTextSerializer(char legacyChar);
-
+    FormattingCodeTextSerializer createFormattingCodeSerializer(char legacyChar);
 }

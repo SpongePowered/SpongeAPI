@@ -57,7 +57,7 @@ public class SimpleTextTemplateApplier implements TextTemplateApplier {
      * {@link TextTemplate}.
      */
     public SimpleTextTemplateApplier() {
-        this(TextTemplate.EMPTY);
+        this(TextTemplate.of());
     }
 
     @Override
