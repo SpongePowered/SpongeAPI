@@ -47,9 +47,6 @@ public final class TextStyles {
      */
     public static final TextStyle.Base RESET = DummyObjectProvider.createFor(TextStyle.Base.class,"RESET");
 
-    private TextStyles() {
-    }
-
     /**
      * Returns an empty {@link TextStyle}.
      *
@@ -69,5 +66,8 @@ public final class TextStyles {
      */
     public static TextStyle of(TextStyle... styles) {
         return NONE.and(styles);
+    }
+    
+    private TextStyles() {
     }
 }

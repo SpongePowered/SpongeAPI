@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.item.recipe.smelting;
 
+import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.ItemType;
@@ -179,12 +180,10 @@ public interface SmeltingRecipe extends Recipe, CatalogType {
             EndStep experience(double experience);
 
             @Override
-            EndStep id(String id);
+            EndStep key(CatalogKey key);
 
-            @Override
             EndStep name(String name);
 
-            @Override
             EndStep name(Translation name);
 
             @Override

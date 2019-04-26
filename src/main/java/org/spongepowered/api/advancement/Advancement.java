@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.advancement;
 
+import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.NamedCatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
 import org.spongepowered.api.text.Text;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 /**
  * An advancement.
  */
-public interface Advancement extends CatalogType, TextRepresentable {
+public interface Advancement extends NamedCatalogType, TextRepresentable {
 
     /**
      * Creates a new {@link Builder} to create {@link Advancement}s.
@@ -132,18 +134,17 @@ public interface Advancement extends CatalogType, TextRepresentable {
         Builder displayInfo(@Nullable DisplayInfo displayInfo);
 
         @Override
-        Builder id(String id);
+        Builder key(CatalogKey key);
 
         /**
          * Sets the name of the {@link Advancement}. Defaults to
          * the plain {@link DisplayInfo#getTitle()} if the
          * {@link DisplayInfo} is present. Otherwise will it default
-         * to the identifier ({@link #id(String)}).
+         * to the identifier ({@link #key(CatalogKey)}).
          *
          * @param name The name
          * @return This builder, for chaining
          */
-        @Override
         Builder name(String name);
 
         @Override

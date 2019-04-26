@@ -39,7 +39,7 @@ import org.spongepowered.api.registry.AdditionalCatalogRegistryModule;
  * <code>`a.getKey().equals(b.getKey())`</code> are true then all must
  * be true.</p>
  */
-public interface CatalogType {
+public interface CatalogType extends Comparable<CatalogType> {
 
     /**
      * Gets the catalog key for this catalog type. Useful for storing a searchable

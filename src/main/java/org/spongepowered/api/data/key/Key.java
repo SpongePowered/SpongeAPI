@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.key;
 
 import com.google.common.reflect.TypeToken;
+import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataContainer;
@@ -126,10 +127,7 @@ public interface Key<V extends BaseValue<?>> extends CatalogType {
         <T, B extends BaseValue<T>> Builder<T, B> type(TypeToken<B> token);
 
         @Override
-        Builder<E, V> id(String id);
-
-        @Override
-        Builder<E, V> name(String name);
+        Builder<E, V> key(CatalogKey key);
 
         /**
          * Sets the {@link DataQuery} recommended for use with
@@ -142,8 +140,7 @@ public interface Key<V extends BaseValue<?>> extends CatalogType {
 
         /**
          * Builds a new {@link Key}, provided that the
-         * {@link #type(TypeToken)}, {@link #id(String)},
-         * {@link #name(String)}, and {@link #query(DataQuery)}
+         * {@link #type(TypeToken)}, {@link #key(CatalogKey)}
          * are set.
          *
          * @return The generated Key

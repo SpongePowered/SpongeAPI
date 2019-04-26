@@ -28,10 +28,8 @@ import org.spongepowered.api.data.Property;
 import org.spongepowered.api.data.manipulator.mutable.entity.DominantHandData;
 import org.spongepowered.api.data.property.AbstractProperty;
 import org.spongepowered.api.data.type.HandPreference;
-import org.spongepowered.api.data.type.HandPreferences;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.util.Coerce;
 
 import javax.annotation.Nullable;
 
@@ -75,6 +73,6 @@ public class DominantHandProperty extends AbstractProperty<String, HandPreferenc
             return -1;
         }
 
-        return this.getValue().getKey().toString().compareTo(((HandPreference) o).getKey().toString());
+        return this.getValue().getKey().toString().compareTo(((DominantHandProperty) o).getKey().toString());
     }
 }

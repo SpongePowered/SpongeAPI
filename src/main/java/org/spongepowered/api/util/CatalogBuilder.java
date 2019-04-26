@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.util;
 
+import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.text.translation.Translation;
@@ -34,28 +35,12 @@ import org.spongepowered.api.text.translation.Translation;
 public interface CatalogBuilder<C extends CatalogType, B extends ResettableBuilder<C, B>> extends ResettableBuilder<C, B> {
 
     /**
-     * Sets the id of the {@link CatalogType} (without the namespace/plugin id).
+     * Sets the {@link CatalogKey} of the {@link CatalogType}.
      *
-     * @param id The id
+     * @param key The key
      * @return This builder for chaining
      */
-    B id(String id);
-
-    /**
-     * Sets the name of the {@link CatalogType}. Defaults to {@link #id(String)}.
-     *
-     * @param name The name
-     * @return This builder for chaining
-     */
-    B name(String name);
-
-    /**
-     * Sets the name of the {@link CatalogType} as a {@link Translation}. Defaults to {@link #id}.
-     *
-     * @param translation The name translation
-     * @return This builder for chaining
-     */
-    B name(Translation translation);
+    B key(CatalogKey key);
 
     /**
      * Builds the {@link CatalogType} of type {@link C}.

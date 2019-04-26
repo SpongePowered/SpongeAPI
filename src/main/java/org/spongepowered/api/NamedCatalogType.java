@@ -31,6 +31,11 @@ public interface NamedCatalogType extends CatalogType {
      * name is not guaranteed to be unique. This value should not be used for
      * serialization.
      *
+     * <p>Typically, the name is the {@link CatalogKey#getValue()} for human
+     * readable purposes, however some types may have alternate names that are
+     * used to be presented in text, messages, etc. that are otherwise different
+     * from the value provided by {@link #getKey()}.</p>
+     *
      * @return The human-readable name of this dummy type
      */
     default String getName() {

@@ -26,6 +26,7 @@ package org.spongepowered.api.item.recipe.crafting;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -250,12 +251,10 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
             EndStep group(@Nullable String name);
 
             @Override
-            EndStep id(String id);
+            EndStep key(CatalogKey key);
 
-            @Override
             EndStep name(String name);
 
-            @Override
             EndStep name(Translation name);
         }
     }
