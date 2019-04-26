@@ -24,10 +24,32 @@
  */
 package org.spongepowered.api;
 
+import ninja.leaping.configurate.ConfigurationNode;
+import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.persistence.DataTranslator;
+import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.api.util.ResettableBuilder;
+
 /**
- * A catalog key.
+ * An object representation of a location or pointer to a {@link CatalogType}
+ * that can be used to retrieve said type from the {@link GameRegistry}. The
+ * key can be represented as a {@link String} by {@link #toString()}. The key
+ * is built with two parts:
+ * <ol>
+ *     <li>The Namespace</li>
+ *     <li>The Value</li>
+ * </ol>
+ * Normally, the namespace is lowercased and likewise, so is the value. This
+ * is have a uniform format for all uses of {@link CatalogKey}, including but
+ * not restricted to {@link DataManipulator}s, {@link ConfigurationNode}s,
+ * {@link DataTranslator}s, and {@link DataSerializable}s.
  *
- * <p>A catalog key is made up of a lowercase namespace and a lowercase value.</p>
+ * <p>Note that the methods {@link #minecraft(String)} and
+ * {@link #sponge(String)} should only be used by the implementations for
+ * creating new keys for new {@link CatalogType}s. Plugins using these to create
+ * their own {@link CatalogType}s and registering them is not recommended as it
+ * prevents missing plugin detection by users from taking place.</p>
  */
 public interface CatalogKey {
 
@@ -61,6 +83,17 @@ public interface CatalogKey {
     }
 
     /**
+     * Creates a new {@link Builder} for creating {@link CatalogKey}s. The builder
+     * can be used for creating keys based on {@link PluginContainer}s, {@link Object}s
+     * of plugins, and {@link String} namespaces.
+     *
+     * @return The new builder instance
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    /**
      * Creates a catalog key.
      *
      * @param namespace The namespace
@@ -68,7 +101,7 @@ public interface CatalogKey {
      * @return A new catalog key
      */
     static CatalogKey of(final String namespace, final String value) {
-        return Sponge.getRegistry().createKey(namespace, value);
+        return Sponge.getRegistry().createBuilder(Builder.class).namespace(namespace).value(value).build();
     }
 
     /**
@@ -105,4 +138,24 @@ public interface CatalogKey {
      */
     @Override
     String toString();
+
+    interface Builder extends ResettableBuilder<CatalogKey, Builder> {
+
+        Builder namespace(String nameSpace);
+
+        Builder namespace(PluginContainer container);
+
+        Builder namespace(Object pluginInstance);
+
+        Builder value(String value);
+
+        CatalogKey build() throws IllegalStateException;
+
+        /**
+         * @throws UnsupportedOperationException Cloning keys is not supported
+         */
+        @Override
+        Builder from(CatalogKey value) throws UnsupportedOperationException;
+
+    }
 }
