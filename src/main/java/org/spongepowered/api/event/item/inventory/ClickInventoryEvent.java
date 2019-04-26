@@ -25,7 +25,6 @@
 package org.spongepowered.api.event.item.inventory;
 
 import org.spongepowered.api.item.inventory.Slot;
-import org.spongepowered.api.item.inventory.entity.Hotbar;
 
 import java.util.Optional;
 
@@ -56,13 +55,10 @@ public interface ClickInventoryEvent extends ChangeInventoryEvent, InteractInven
     interface Creative extends ClickInventoryEvent {}
 
     /**
-     * A click with the <code>shift</code> modifier active.
-     * <p>Usually contains multiple transactions.</p>
-     * <p>{@link #getSlot()} returns the primary interaction Slot.</p>
-     * <p>The Shift-Double-Click action fires this event multiple times.
-     * In that case the primary interaction Slot is the Slot of the item moved away.</p>
+     * A click with the <code>shift</code> modifier active
      */
     interface Shift extends ClickInventoryEvent {
+
         /**
          * A click with the primary mouse button and the <code>shift</code> modifier active
          */
@@ -75,8 +71,7 @@ public interface ClickInventoryEvent extends ChangeInventoryEvent, InteractInven
     }
 
     /**
-     * A double-click with the primary mouse button collecting items onto the cursor.
-     * <p>Note that a Shift-Double-Click instead fires multiple {@link ClickInventoryEvent.Shift} events.</p>
+     * A double-click with the primary mouse button
      */
     interface Double extends ClickInventoryEvent.Primary {}
 
@@ -84,6 +79,7 @@ public interface ClickInventoryEvent extends ChangeInventoryEvent, InteractInven
      * An interaction resulting in dropping an item.
      */
     interface Drop extends ClickInventoryEvent, DropItemEvent.Dispense {
+
         /**
          * An interaction dropping a single item. (Q)
          */
@@ -96,9 +92,9 @@ public interface ClickInventoryEvent extends ChangeInventoryEvent, InteractInven
 
         /**
          * A click outside of the inventory resulting in dropping the item on cursor.
-         * {@link #getSlot()} will return empty as no slot was clicked.
          */
         interface Outside extends Drop {
+
             /**
              * A click with the primary mouse button dropping the entire stack on the cursor.
              */
@@ -113,9 +109,9 @@ public interface ClickInventoryEvent extends ChangeInventoryEvent, InteractInven
 
     /**
      * A completed drag Interaction.
-     * <p>Usually contains multiple transactions. {@link #getSlot()} returns empty as there is no primary interaction Slot.</p>
      */
     interface Drag extends ClickInventoryEvent {
+
         /**
          * A completed drag Interaction distributing the cursor stack evenly among the slots.
          */
@@ -157,7 +153,7 @@ public interface ClickInventoryEvent extends ChangeInventoryEvent, InteractInven
     }
 
     /**
-     * A number press swapping the {@link Hotbar} slot with the slot the mouse hovers over.
+     * A number press swapping the hotbar slot with the slot the mouse hovers over.
      */
     interface NumberPress extends ClickInventoryEvent {
         int getNumber();

@@ -30,36 +30,19 @@ package org.spongepowered.api.item.inventory;
 public interface Slot extends Inventory {
 
     /**
-     * A type of Slot.
+     * Gets the size of the stack in this slot. Essentially the same as calling
+     * slot.peek().getQuantity(); but faster because it avoids the Optional
+     * boxing.
+     *
+     * @return the stack size or -1 if this slot is empty
      */
-    enum Type {
-
-        /**
-         * Slots in an Inventory as opposed to a {@link Container}.
-         */
-        INVENTORY
-
-    }
+    int getStackSize();
 
     /**
-     * Transforms this Slot into given Type.
+     * Returns the slot in a {@link Container}s viewed inventory or itself.
      *
-     * <dl>
-     *   <dt>Example</dt>
-     *   <dd>In a InventoryEvent with a Container to get the actual inventory
-     *       from Slot, you may call this with {@link Type#INVENTORY}.</dd>
-     * </dl>
-     *
-     * @param type the type to transform into
-     * @return the transformed Slot or itself if already the correct type
+     * @return the viewed inventory slot or itself if not a container slot
      */
-    Slot transform(Type type);
-
-    /**
-     * Transforms this Slot into the default Type.
-     *
-     * @return the transformed Slot or itself if already the default type
-     */
-    Slot transform();
+    Slot viewedSlot();
 
 }

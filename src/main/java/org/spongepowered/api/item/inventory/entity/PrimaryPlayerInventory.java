@@ -22,22 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.inventory.type;
+package org.spongepowered.api.item.inventory.entity;
 
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.item.inventory.Inventory;
+import org.spongepowered.api.item.inventory.type.GridInventory;
 
 /**
- * Interface for inventories which may be interacted with by Players.
+ * A {@link Player}'s primary inventory including the {@link Hotbar}.
  */
-public interface Interactable extends Inventory {
+public interface PrimaryPlayerInventory extends Inventory {
 
     /**
-     * Gets whether the specified player can interact with this object.
-     * 
-     * @param player the Player wishing to interact with this Inventory
-     * @return true if the Entity is able to interact with this Inventory
+     * Gets the hotbar of the player.
+     *
+     * @return The hotbar of the player
      */
-    boolean canInteractWith(Player player);
-    
+    Hotbar getHotbar();
+
+    /**
+     * Gets the (4x9) grid of the players main inventory.
+     *
+     * @return The grid of the players main inventory
+     */
+    GridInventory asGrid();
+
+    /**
+     * Gets the (3x9) grid of the players main inventory.
+     *
+     * @return The grid of the players main inventory
+     */
+    GridInventory getStorage();
+
 }
