@@ -24,29 +24,37 @@
  */
 package org.spongepowered.api.item.inventory.property;
 
-import org.spongepowered.api.data.Property;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.item.inventory.InventoryProperty;
 
 /**
  * A property to define which GUI should be opened on the client
  * for the inventory.
  */
-public class GuiIdProperty extends AbstractInventoryProperty<String, GuiId> {
+public interface GuiIdProperty extends InventoryProperty<String, GuiId> {
 
     /**
-     * Creates a GuiID property from the specified GUI ID.
+     * Creates a GuiIdProperty.
      *
-     * @param value The GUI ID to create the property with
+     * @param value The GuiId
+     * @return The created GuiIdProperty
      */
-    public GuiIdProperty(GuiId value) {
-        super(value);
+    static GuiIdProperty of(GuiId value) {
+        return builder().value(value).operator(Operator.EQUAL).build();
     }
 
-    @Override
-    public int compareTo(Property<?, ?> o) {
-        if (!(o instanceof GuiIdProperty)) {
-            return -1;
-        }
+    /**
+     * Creates a new {@link GuiIdProperty.Builder} to create {@link GuiIdProperty}s.
+     *
+     * @return The new builder
+     */
+    static GuiIdProperty.Builder builder() {
+        return Sponge.getRegistry().createBuilder(GuiIdProperty.Builder.class);
+    }
 
-        return this.getValue().getKey().toString().compareTo(((GuiIdProperty) o).getKey().toString());
+    /**
+     * Represents a builder class to create {@link GuiIdProperty}s.
+     */
+    interface Builder extends InventoryProperty.Builder<GuiId, GuiIdProperty, Builder> {
     }
 }

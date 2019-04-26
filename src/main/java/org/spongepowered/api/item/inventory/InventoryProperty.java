@@ -25,13 +25,21 @@
 package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.data.Property;
-import org.spongepowered.api.item.inventory.property.AbstractInventoryProperty;
+import org.spongepowered.api.item.inventory.query.QueryOperationTypes;
 
 /**
- * Base interface for Inventory Properties. It is recommended that implementors
- * subclass {@link AbstractInventoryProperty} instead of implementing this
- * interface directly. 
+ * Base interface for Inventory Properties.
  */
 public interface InventoryProperty<K, V> extends Property<K, V> {
+
+    /**
+     * Queries for this inventory property in given inventory.
+     *
+     * @param inventory The inventory to query.
+     * @return The query result.
+     */
+    default Inventory queryIn(Inventory inventory) {
+        return inventory.query(QueryOperationTypes.INVENTORY_PROPERTY.of(this));
+    }
 
 }

@@ -25,78 +25,23 @@
 package org.spongepowered.api.item.inventory.property;
 
 import com.flowpowered.math.vector.Vector2i;
-import org.spongepowered.api.data.Property;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.item.inventory.InventoryProperty;
 import org.spongepowered.api.item.inventory.type.GridInventory;
 import org.spongepowered.api.item.inventory.type.InventoryRow;
-import org.spongepowered.api.util.Coerce;
 
 /**
  * Property for inventories of a particular size. For example to allow querying
  * for {@link InventoryRow} of length 9 or {@link GridInventory} of size 3x3.
  */
-public class InventoryDimension extends AbstractInventoryProperty<String, Vector2i> {
-
-    public static final String PROPERTY_NAME = "inventorydimension";
-
-    /**
-     * Create a new InventoryDimension property with the specified value.
-     *
-     * @param value size to match
-     */
-    public InventoryDimension(Vector2i value) {
-        super(value);
-    }
-
-    /**
-     * Create a new InventoryDimension property with the specified dimensions.
-     *
-     * @param width width of the inventory to match
-     * @param height height of the inventory to match
-     */
-    public InventoryDimension(int width, int height) {
-        super(new Vector2i(width, height));
-    }
-
-    /**
-     * Create a new InventoryDimension property with the specified value.
-     *
-     * @param value size to match
-     * @param operator logical operator to use when comparing this property with
-     *      other properties
-     */
-    public InventoryDimension(Vector2i value, Operator operator) {
-        super(value, operator);
-    }
-
-    /**
-     * Create a new InventoryDimension property with the specified dimensions.
-     *
-     * @param width width of the inventory to match
-     * @param height height of the inventory to match
-     * @param operator logical operator to use when comparing this property with
-     *      other properties
-     */
-    public InventoryDimension(int width, int height, Operator operator) {
-        super(new Vector2i(width, height), operator);
-    }
-
-    /**
-     * Create a new InventoryDimension property with the specified value.
-     *
-     * @param value size to match
-     * @param operator logical operator to use when comparing this property with
-     *      other properties
-     */
-    public InventoryDimension(Object value, Operator operator) {
-        super(Coerce.toVector2i(value), operator);
-    }
+public interface InventoryDimension extends InventoryProperty<String, Vector2i> {
 
     /**
      * Gets the number of columns in this inventory.
      *
      * @return column count
      */
-    public int getColumns() {
+    default int getColumns() {
         return this.getValue().getX();
     }
 
@@ -105,17 +50,8 @@ public class InventoryDimension extends AbstractInventoryProperty<String, Vector
      *
      * @return row count
      */
-    public int getRows() {
+    default int getRows() {
         return this.getValue().getY();
-    }
-
-    @Override
-    public int compareTo(Property<?, ?> other) {
-        if (other == null) {
-            return 1;
-        }
-
-        return this.getValue().compareTo(Coerce.toVector2i(other.getValue()));
     }
 
     /**
@@ -125,8 +61,8 @@ public class InventoryDimension extends AbstractInventoryProperty<String, Vector
      * @param value value to match
      * @return new property
      */
-    public static InventoryDimension of(Object value) {
-        return new InventoryDimension(value, Operator.EQUAL);
+    static InventoryDimension of(Vector2i value) {
+        return of(value, Operator.EQUAL);
     }
 
     /**
@@ -137,63 +73,34 @@ public class InventoryDimension extends AbstractInventoryProperty<String, Vector
      * @param height y coordinate to match
      * @return new property
      */
-    public static InventoryDimension of(int width, int height) {
-        return new InventoryDimension(new Vector2i(width, height), Operator.EQUAL);
+    static InventoryDimension of(int width, int height) {
+        return of(new Vector2i(width, height));
+    }
+
+    static InventoryDimension of(Vector2i value, Operator operator) {
+        return builder().value(value).operator(operator).build();
+    }
+
+    static InventoryDimension of(int width, int height, Operator operator) {
+        return of(new Vector2i(width, height), operator);
+    }
+
+    static InventoryDimension delegate(Vector2i value) {
+        return builder().value(value).operator(Operator.DELEGATE).build();
     }
 
     /**
-     * Create an InventoryDimension property which matches InventoryDimension
-     * properties with unequal value.
+     * Creates a new {@link Builder} to create {@link InventoryDimension}s.
      *
-     * @param value value to match
-     * @return new property
+     * @return The new builder
      */
-    public static InventoryDimension not(Object value) {
-        return new InventoryDimension(value, Operator.NOTEQUAL);
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
     /**
-     * Create an InventoryDimension property which matches InventoryDimension
-     * properties with value greater than this value.
-     *
-     * @param value value to match
-     * @return new property
+     * Represents a builder class to create {@link InventoryDimension}s.
      */
-    public static InventoryDimension greaterThan(Object value) {
-        return new InventoryDimension(value, Operator.GREATER);
+    interface Builder extends InventoryProperty.Builder<Vector2i, InventoryDimension, Builder> {
     }
-
-    /**
-     * Create an InventoryDimension property which matches InventoryDimension
-     * properties with value greater than or equal to this value.
-     *
-     * @param value value to match
-     * @return new property
-     */
-    public static InventoryDimension greaterThanOrEqual(Object value) {
-        return new InventoryDimension(value, Operator.GEQUAL);
-    }
-
-    /**
-     * Create an InventoryDimension property which matches InventoryDimension
-     * properties with value less than this value.
-     *
-     * @param value value to match
-     * @return new property
-     */
-    public static InventoryDimension lessThan(Object value) {
-        return new InventoryDimension(value, Operator.LESS);
-    }
-
-    /**
-     * Create an InventoryDimension property which matches InventoryDimension
-     * properties with value less than or equal to this value.
-     *
-     * @param value value to match
-     * @return new property
-     */
-    public static InventoryDimension lessThanOrEqual(Object value) {
-        return new InventoryDimension(value, Operator.LEQUAL);
-    }
-
 }

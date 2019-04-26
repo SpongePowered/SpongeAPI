@@ -24,48 +24,48 @@
  */
 package org.spongepowered.api.item.inventory.property;
 
-import org.spongepowered.api.data.Property;
-import org.spongepowered.api.util.Coerce;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.item.inventory.InventoryProperty;
 
 import java.util.UUID;
 
 /**
  * A property to uniquely identify an Inventory instance.
  */
-public class Identifiable extends AbstractInventoryProperty<String, UUID> {
+public interface Identifiable extends InventoryProperty<String, UUID> {
 
     /**
-     * Creates an Identifiable with a random UUID.
-     */
-    public Identifiable() {
-        this(UUID.randomUUID());
-    }
-
-    /**
-     * Creates an Identifiable with given UUID.
+     * Create an Identifiable with given UUID for use in queries.
      *
      * @param value The UUID
+     * @return The new Identifiable
      */
-    public Identifiable(UUID value) {
-        super(value);
+    static Identifiable of(UUID value) {
+        return builder().value(value).operator(Operator.EQUAL).build();
     }
 
     /**
-     * Creates an Identifiable with given UUID.
+     * Creates a new Identifiable with a random UUID and {@link Operator#DELEGATE} for use in custom build Inventories.
      *
-     * @param value The UUID
-     * @param op The operator
+     * @return The new Identifiable
      */
-    public Identifiable(UUID value, Operator op) {
-        super(value, op);
+    static Identifiable random() {
+        return builder().value(UUID.randomUUID()).operator(Operator.DELEGATE).build();
     }
 
-    @Override
-    public int compareTo(Property<?, ?> other) {
-        if (other == null) {
-            return 1;
-        }
-
-        return this.getValue().toString().compareTo(Coerce.toString(other.getValue()));
+    /**
+     * Creates a new {@link Identifiable.Builder} to create {@link Identifiable}s.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Identifiable.Builder.class);
     }
+
+    /**
+     * Represents a builder class to create {@link Identifiable}s.
+     */
+    interface Builder extends InventoryProperty.Builder<UUID, Identifiable, Builder> {
+    }
+
 }
