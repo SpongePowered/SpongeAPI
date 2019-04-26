@@ -34,7 +34,7 @@ import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 /**
  * An {@link DataManipulator} for the "layer" of a block. Usually this means
  * that the {@link BlockState} has varying "layers". Usually applies to
- * {@link BlockTypes#SNOW_LAYER} or {@link BlockTypes#CAKE}. This is different
+ * {@link BlockTypes#SNOW} or {@link BlockTypes#CAKE}. This is different
  * data from {@link FluidLevelData}.
  */
 public interface LayeredData extends DataManipulator<LayeredData, ImmutableLayeredData> {

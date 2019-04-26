@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.gen.populator;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.type.DoublePlantType;
+import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.util.weighted.WeightedTable;
@@ -42,6 +42,7 @@ import javax.annotation.Nullable;
  * plants. The number of plants attempted to be generated is
  * {@code final = base + [0,variance) }.
  */
+// TODO: Add property to check if it's a double plant and reference here
 public interface DoublePlant extends Populator {
 
     /**
@@ -59,7 +60,7 @@ public interface DoublePlant extends Populator {
      * 
      * @return The possible types to be spawned
      */
-    WeightedTable<DoublePlantType> getPossibleTypes();
+    WeightedTable<BlockType> getPossibleTypes();
 
     /**
      * Gets the number of plants to create per chunk.
@@ -99,7 +100,7 @@ public interface DoublePlant extends Populator {
      * 
      * @return The supplier override
      */
-    Optional<Function<Location, DoublePlantType>> getSupplierOverride();
+    Optional<Function<Location, BlockType>> getSupplierOverride();
 
     /**
      * Sets the overriding supplier. If the supplier is present then it is used
@@ -108,7 +109,7 @@ public interface DoublePlant extends Populator {
      * 
      * @param override The new supplier override, or null
      */
-    void setSupplierOverride(@Nullable Function<Location, DoublePlantType> override);
+    void setSupplierOverride(@Nullable Function<Location, BlockType> override);
 
     /**
      * Clears the supplier override to force the weighted table to be used
@@ -129,7 +130,7 @@ public interface DoublePlant extends Populator {
          * @param types Possible types
          * @return This builder, for chaining
          */
-        Builder types(WeightedTable<DoublePlantType> types);
+        Builder types(WeightedTable<BlockType> types);
 
         /**
          * Adds a plant type to the list that may be spawned in by this
@@ -139,7 +140,7 @@ public interface DoublePlant extends Populator {
          * @param weight The weight
          * @return This builder, for chaining
          */
-        Builder type(DoublePlantType type, double weight);
+        Builder type(BlockType type, double weight);
 
         /**
          * Sets the number of plants to create, cannot be negative.
@@ -174,7 +175,7 @@ public interface DoublePlant extends Populator {
          * @param override The new supplier override, or null
          * @return This builder, for chaining
          */
-        Builder supplier(@Nullable Function<Location, DoublePlantType> override);
+        Builder supplier(@Nullable Function<Location, BlockType> override);
 
         /**
          * Builds a new instance of a {@link DoublePlant} populator with the

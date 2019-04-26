@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.manipulator.mutable;
 
-import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableDyeableData;
@@ -34,9 +33,7 @@ import org.spongepowered.api.entity.living.animal.Wolf;
 
 /**
  * An {@link VariantData} handling the {@link DyeColor} for a
- * {@link DataHolder}, including {@link BlockTypes#WOOL}, {@link BlockTypes#STAINED_HARDENED_CLAY},
- * {@link BlockTypes#CARPET}, {@link BlockTypes#STAINED_GLASS}, {@link BlockTypes#STAINED_GLASS_PANE},
- * {@link Sheep}, and {@link Wolf}.
+ * {@link DataHolder}, including {@link Sheep} and {@link Wolf}.
  *
  * @see Keys#DYE_COLOR
  */

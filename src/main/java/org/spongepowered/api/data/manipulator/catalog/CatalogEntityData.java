@@ -165,7 +165,7 @@ public final class CatalogEntityData {
     public static final Class<DominantHandData> DOMINANT_HAND_DATA = DominantHandData.class;
     /**
      * Signifies that the entity can be dyed a specific {@link DyeColor}.
-     * Usually applies to {@link Sheep}.
+     * Usually applies to {@link Sheep} and {@link Wolf}.
      */
     public static final Class<DyeableData> DYEABLE_DATA = DyeableData.class;
     /**

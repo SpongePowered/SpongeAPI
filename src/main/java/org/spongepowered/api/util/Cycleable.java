@@ -26,7 +26,6 @@ package org.spongepowered.api.util;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.data.type.BrickType;
 import org.spongepowered.api.data.type.DyeColor;
 
 /**
@@ -34,7 +33,7 @@ import org.spongepowered.api.data.type.DyeColor;
  * {@link CatalogType}, that can be "cycled" for the "next" value. The uses are
  * varying, but usually related to cycling {@link BlockState}s. Note that
  * {@link Cycleable} is <b>NOT</b> intended to cycle between "types" that have
- * no particular ordering, such as {@link DyeColor}, {@link BrickType}, etc.
+ * no particular ordering, such as {@link DyeColor}, etc.
  * due to their non-ordered nature. Applying an ordering on such types is not
  * recommended as there is no logic to a particular ordering, except that of
  * which they are registered.

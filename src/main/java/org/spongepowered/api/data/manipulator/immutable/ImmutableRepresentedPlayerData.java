@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.immutable;
 
-import org.spongepowered.api.block.tileentity.Skull;
+import org.spongepowered.api.block.tileentity.PlayerHead;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
@@ -35,7 +35,7 @@ import org.spongepowered.api.profile.GameProfile;
 
 /**
  * An {@link ImmutableDataManipulator} handling the {@link GameProfile}
- * represented by this {@link DataHolder}. Applicable to a {@link Skull}
+ * represented by this {@link DataHolder}. Applicable to a {@link PlayerHead}
  * {@link TileEntity} or {@link ItemStack}.
  */
 public interface ImmutableRepresentedPlayerData extends ImmutableDataManipulator<ImmutableRepresentedPlayerData, RepresentedPlayerData> {

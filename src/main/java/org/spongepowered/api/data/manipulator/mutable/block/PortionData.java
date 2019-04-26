@@ -33,8 +33,8 @@ import org.spongepowered.api.data.type.PortionType;
 /**
  * An {@link VariantData} for the {@link PortionType}. This has some mechanics
  * with the partial bounding boxes for the actual blocks. Usually applicable
- * to {@link BlockTypes#DOUBLE_PLANT}, {@link BlockTypes#STONE_SLAB}
- * {@link BlockTypes#WOODEN_DOOR}s, etc.
+ * to double block plants (e.g {@link BlockTypes#SUNFLOWER}),
+ * doors (e.g. {@link BlockTypes#OAK_DOOR}), etc.
  *
  * @see Keys#PORTION_TYPE
  */

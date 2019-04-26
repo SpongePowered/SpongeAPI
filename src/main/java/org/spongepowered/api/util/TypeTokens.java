@@ -32,47 +32,27 @@ import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.meta.PatternLayer;
 import org.spongepowered.api.data.type.Art;
-import org.spongepowered.api.data.type.BigMushroomType;
 import org.spongepowered.api.data.type.BodyPart;
-import org.spongepowered.api.data.type.BrickType;
 import org.spongepowered.api.data.type.Career;
-import org.spongepowered.api.data.type.CoalType;
 import org.spongepowered.api.data.type.ComparatorType;
-import org.spongepowered.api.data.type.CookedFish;
-import org.spongepowered.api.data.type.DirtType;
-import org.spongepowered.api.data.type.DisguisedBlockType;
-import org.spongepowered.api.data.type.DoublePlantType;
 import org.spongepowered.api.data.type.DyeColor;
-import org.spongepowered.api.data.type.Fish;
-import org.spongepowered.api.data.type.GoldenApple;
 import org.spongepowered.api.data.type.HandPreference;
 import org.spongepowered.api.data.type.Hinge;
 import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.type.LlamaVariant;
-import org.spongepowered.api.data.type.LogAxis;
 import org.spongepowered.api.data.type.NotePitch;
 import org.spongepowered.api.data.type.OcelotType;
 import org.spongepowered.api.data.type.ParrotVariant;
 import org.spongepowered.api.data.type.PickupRule;
-import org.spongepowered.api.data.type.PistonType;
-import org.spongepowered.api.data.type.PlantType;
 import org.spongepowered.api.data.type.PortionType;
-import org.spongepowered.api.data.type.PrismarineType;
 import org.spongepowered.api.data.type.Profession;
-import org.spongepowered.api.data.type.QuartzType;
 import org.spongepowered.api.data.type.RabbitType;
 import org.spongepowered.api.data.type.RailDirection;
-import org.spongepowered.api.data.type.SandType;
-import org.spongepowered.api.data.type.SandstoneType;
-import org.spongepowered.api.data.type.ShrubType;
-import org.spongepowered.api.data.type.SkullType;
-import org.spongepowered.api.data.type.SlabType;
+import org.spongepowered.api.data.type.SlabPortion;
 import org.spongepowered.api.data.type.StairShape;
-import org.spongepowered.api.data.type.StoneType;
 import org.spongepowered.api.data.type.StructureMode;
 import org.spongepowered.api.data.type.TreeType;
-import org.spongepowered.api.data.type.WallType;
 import org.spongepowered.api.data.type.WireAttachmentType;
 import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.data.value.mutable.MapValue;
@@ -85,18 +65,15 @@ import org.spongepowered.api.data.value.mutable.WeightedCollectionValue;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.effect.potion.PotionEffectType;
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.fluid.FluidStackSnapshot;
 import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.merchant.TradeOffer;
-import org.spongepowered.api.item.potion.PotionType;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.statistic.Statistic;
@@ -139,17 +116,9 @@ public final class TypeTokens {
 
     public static final TypeToken<MutableBoundedValue<Short>> BOUNDED_SHORT_VALUE_TOKEN = new TypeToken<MutableBoundedValue<Short>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<BrickType> BRICK_TOKEN = new TypeToken<BrickType>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Value<BrickType>> BRICK_VALUE_TOKEN = new TypeToken<Value<BrickType>>() {private static final long serialVersionUID = -1;};
-
     public static final TypeToken<Career> CAREER_TOKEN = new TypeToken<Career>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<Career>> CAREER_VALUE_TOKEN = new TypeToken<Value<Career>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<CoalType> COAL_TOKEN = new TypeToken<CoalType>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Value<CoalType>> COAL_VALUE_TOKEN = new TypeToken<Value<CoalType>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Color> COLOR_TOKEN = new TypeToken<Color>() {private static final long serialVersionUID = -1;};
 
@@ -159,25 +128,9 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<ComparatorType>> COMPARATOR_VALUE_TOKEN = new TypeToken<Value<ComparatorType>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<CookedFish> COOKED_FISH_TOKEN = new TypeToken<CookedFish>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Value<CookedFish>> COOKED_FISH_VALUE_TOKEN = new TypeToken<Value<CookedFish>>() {private static final long serialVersionUID = -1;};
-
     public static final TypeToken<Direction> DIRECTION_TOKEN = new TypeToken<Direction>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<Direction>> DIRECTION_VALUE_TOKEN = new TypeToken<Value<Direction>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<DirtType> DIRT_TOKEN = new TypeToken<DirtType>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Value<DirtType>> DIRT_VALUE_TOKEN = new TypeToken<Value<DirtType>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<DisguisedBlockType> DISGUISED_BLOCK_TOKEN = new TypeToken<DisguisedBlockType>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Value<DisguisedBlockType>> DISGUISED_BLOCK_VALUE_TOKEN = new TypeToken<Value<DisguisedBlockType>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<DoublePlantType> DOUBLE_PLANT_TOKEN = new TypeToken<DoublePlantType>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Value<DoublePlantType>> DOUBLE_PLANT_VALUE_TOKEN = new TypeToken<Value<DoublePlantType>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Double> DOUBLE_TOKEN = new TypeToken<Double>() {private static final long serialVersionUID = -1;};
 
@@ -199,10 +152,6 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<EntitySnapshot>> ENTITY_VALUE_TOKEN = new TypeToken<Value<EntitySnapshot>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<Fish> FISH_TOKEN = new TypeToken<Fish>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Value<Fish>> FISH_VALUE_TOKEN = new TypeToken<Value<Fish>>() {private static final long serialVersionUID = -1;};
-
     public static final TypeToken<Float> FLOAT_TOKEN = new TypeToken<Float>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<MutableBoundedValue<Float>> FLOAT_VALUE_TOKEN = new TypeToken<MutableBoundedValue<Float>>() {private static final long serialVersionUID = -1;};
@@ -218,10 +167,6 @@ public final class TypeTokens {
     public static final TypeToken<GameProfile> GAME_PROFILE_TOKEN = new TypeToken<GameProfile>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<GameProfile>> GAME_PROFILE_VALUE_TOKEN = new TypeToken<Value<GameProfile>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<GoldenApple> GOLDEN_APPLE_TOKEN = new TypeToken<GoldenApple>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Value<GoldenApple>> GOLDEN_APPLE_VALUE_TOKEN = new TypeToken<Value<GoldenApple>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<HandPreference> HAND_PREFERENCE_TYPE_TOKEN = new TypeToken<HandPreference>() {private static final long serialVersionUID = -1;};
 
@@ -251,8 +196,6 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<ItemStackSnapshot>> ITEM_SNAPSHOT_VALUE_TOKEN = new TypeToken<Value<ItemStackSnapshot>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<List<? extends DataSerializable>> LIST_DATA_SERIALIZEABLE_TOKEN = new TypeToken<List<? extends DataSerializable>>() {private static final long serialVersionUID = -1;};
-
     public static final TypeToken<List<DyeColor>> LIST_DYE_COLOR_TOKEN = new TypeToken<List<DyeColor>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<ListValue<DyeColor>> LIST_DYE_COLOR_VALUE_TOKEN = new TypeToken<ListValue<DyeColor>>() {private static final long serialVersionUID = -1;};
@@ -271,8 +214,6 @@ public final class TypeTokens {
 
     public static final TypeToken<ListValue<PotionEffect>> LIST_POTION_VALUE_TOKEN = new TypeToken<ListValue<PotionEffect>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<ListValue<String>> LIST_STRING_VALUE_TOKEN = new TypeToken<ListValue<String>>() {private static final long serialVersionUID = -1;};
-
     public static final TypeToken<List<Text>> LIST_TEXT_TOKEN = new TypeToken<List<Text>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<ListValue<Text>> LIST_TEXT_VALUE_TOKEN = new TypeToken<ListValue<Text>>() {private static final long serialVersionUID = -1;};
@@ -286,10 +227,6 @@ public final class TypeTokens {
     public static final TypeToken<LlamaVariant> LLAMA_VARIANT_TOKEN = new TypeToken<LlamaVariant>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<LlamaVariant>> LLAMA_VARIANT_VALUE_TOKEN = new TypeToken<Value<LlamaVariant>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<LogAxis> LOG_AXIS_TOKEN = new TypeToken<LogAxis>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Value<LogAxis>> LOG_AXIS_VALUE_TOKEN = new TypeToken<Value<LogAxis>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Long> LONG_TOKEN = new TypeToken<Long>() {private static final long serialVersionUID = -1;};
 
@@ -307,10 +244,6 @@ public final class TypeTokens {
 
     public static final TypeToken<MapValue<UUID, Vector3d>> MAP_UUID_VECTOR3D_VALUE_TOKEN = new TypeToken<MapValue<UUID, Vector3d>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<BigMushroomType> MUSHROOM_TOKEN = new TypeToken<BigMushroomType>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Value<BigMushroomType>> MUSHROOM_VALUE_TOKEN = new TypeToken<Value<BigMushroomType>>() {private static final long serialVersionUID = -1;};
-
     public static final TypeToken<NotePitch> NOTE_TOKEN = new TypeToken<NotePitch>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<NotePitch>> NOTE_VALUE_TOKEN = new TypeToken<Value<NotePitch>>() {private static final long serialVersionUID = -1;};
@@ -326,8 +259,6 @@ public final class TypeTokens {
     public static final TypeToken<Optional<EntitySnapshot>> OPTIONAL_ENTITY_SNAPSHOT_TOKEN = new TypeToken<Optional<EntitySnapshot>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<OptionalValue<EntitySnapshot>> OPTIONAL_ENTITY_SNAPSHOT_VALUE_TOKEN = new TypeToken<OptionalValue<EntitySnapshot>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<OptionalValue<Entity>> OPTIONAL_ENTITY_VALUE_TOKEN = new TypeToken<OptionalValue<Entity>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Optional<PotionEffectType>> OPTIONAL_POTION_TOKEN = new TypeToken<Optional<PotionEffectType>>() {private static final long serialVersionUID = -1;};
 
@@ -359,29 +290,9 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<PickupRule>> PICKUP_VALUE_TOKEN = new TypeToken<Value<PickupRule>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<PistonType> PISTON_TOKEN = new TypeToken<PistonType>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Value<PistonType>> PISTON_VALUE_TOKEN = new TypeToken<Value<PistonType>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<PlantType> PLANT_TOKEN = new TypeToken<PlantType>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Value<PlantType>> PLANT_VALUE_TOKEN = new TypeToken<Value<PlantType>>() {private static final long serialVersionUID = -1;};
-
     public static final TypeToken<PortionType> PORTION_TOKEN = new TypeToken<PortionType>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<PortionType>> PORTION_VALUE_TOKEN = new TypeToken<Value<PortionType>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<PotionType> POTION_TOKEN = new TypeToken<PotionType>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Value<PotionType>> POTION_VALUE_TOKEN = new TypeToken<Value<PotionType>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<PrismarineType> PRISMARINE_TOKEN = new TypeToken<PrismarineType>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Value<PrismarineType>> PRISMARINE_VALUE_TOKEN = new TypeToken<Value<PrismarineType>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<QuartzType> QUARTZ_TOKEN = new TypeToken<QuartzType>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Value<QuartzType>> QUARTZ_VALUE_TOKEN = new TypeToken<Value<QuartzType>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<RabbitType> RABBIT_TOKEN = new TypeToken<RabbitType>() {private static final long serialVersionUID = -1;};
 
@@ -394,14 +305,6 @@ public final class TypeTokens {
     public static final TypeToken<Rotation> ROTATION_TOKEN = new TypeToken<Rotation>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<Rotation>> ROTATION_VALUE_TOKEN = new TypeToken<Value<Rotation>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<SandstoneType> SAND_STONE_TOKEN = new TypeToken<SandstoneType>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Value<SandstoneType>> SAND_STONE_VALUE_TOKEN = new TypeToken<Value<SandstoneType>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<SandType> SAND_TOKEN = new TypeToken<SandType>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Value<SandType>> SAND_VALUE_TOKEN = new TypeToken<Value<SandType>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Set<BlockType>> SET_BLOCK_TOKEN = new TypeToken<Set<BlockType>>() {private static final long serialVersionUID = -1;};
 
@@ -417,17 +320,9 @@ public final class TypeTokens {
 
     public static final TypeToken<Short> SHORT_TOKEN = new TypeToken<Short>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<ShrubType> SHRUB_TOKEN = new TypeToken<ShrubType>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<SlabPortion> SLAB_PORTION_TOKEN = new TypeToken<SlabPortion>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<Value<ShrubType>> SHRUB_VALUE_TOKEN = new TypeToken<Value<ShrubType>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<SkullType> SKULL_TOKEN = new TypeToken<SkullType>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Value<SkullType>> SKULL_VALUE_TOKEN = new TypeToken<Value<SkullType>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<SlabType> SLAB_TOKEN = new TypeToken<SlabType>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Value<SlabType>> SLAB_VALUE_TOKEN = new TypeToken<Value<SlabType>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<Value<SlabPortion>> SLAB_PORTION_VALUE_TOKEN = new TypeToken<Value<SlabPortion>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<StairShape> STAIR_TOKEN = new TypeToken<StairShape>() {private static final long serialVersionUID = -1;};
 
@@ -436,10 +331,6 @@ public final class TypeTokens {
     public static final TypeToken<Map<Statistic, Long>> STATISTIC_MAP_TOKEN = new TypeToken<Map<Statistic, Long>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<MapValue<Statistic, Long>> STATISTIC_MAP_VALUE_TOKEN = new TypeToken<MapValue<Statistic, Long>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<StoneType> STONE_TOKEN = new TypeToken<StoneType>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Value<StoneType>> STONE_VALUE_TOKEN = new TypeToken<Value<StoneType>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<String> STRING_TOKEN = new TypeToken<String>() {private static final long serialVersionUID = -1;};
 
@@ -469,11 +360,7 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<Vector3i>> VECTOR_3I_VALUE_TOKEN = new TypeToken<Value<Vector3i>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<WallType> WALL_TOKEN = new TypeToken<WallType>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Value<WallType>> WALL_VALUE_TOKEN = new TypeToken<Value<WallType>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<WeightedCollectionValue<EntityArchetype>> WEIGHTED_ENTITY_ARCHETYPE_COLLECTION_VALUE_TOKEN = new TypeToken<WeightedCollectionValue<EntityArchetype>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<WeightedCollectionValue<EntityArchetype>> WEIGHTED_ENTITY_ARCHETYPE_COLLECTION_VALUE_TOKEN = new TypeToken<WeightedCollectionValue<EntityArchetype>> () {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<WeightedTable<EntityArchetype>> WEIGHTED_ENTITY_ARCHETYPE_TABLE_TOKEN = new TypeToken<WeightedTable<EntityArchetype>>() {private static final long serialVersionUID = -1;};
 
@@ -492,6 +379,8 @@ public final class TypeTokens {
     public static final TypeToken<ProfileProperty> PROFILE_PROPERTY_TOKEN = new TypeToken<ProfileProperty>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<ProfileProperty>> PROFILE_PROPERTY_VALUE_TOKEN = new TypeToken<Value<ProfileProperty>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<List<? extends DataSerializable>> LIST_DATA_SERIALIZEABLE_TOKEN = new TypeToken<List<? extends DataSerializable>>() {private static final long serialVersionUID = -1;};
 
     // SORTFIELDS:OFF
 

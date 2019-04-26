@@ -31,7 +31,7 @@ import org.spongepowered.api.data.value.immutable.ImmutableValue;
 
 /**
  * An {@link ImmutableDataManipulator} for the "occupied" state. Usually
- * applicable to {@link BlockTypes#BED}.
+ * applicable to beds, for example {@link BlockTypes#WHITE_BED}.
  */
 public interface ImmutableOccupiedData extends ImmutableDataManipulator<ImmutableOccupiedData, OccupiedData> {
 

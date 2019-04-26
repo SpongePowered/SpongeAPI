@@ -60,8 +60,6 @@ public final class TileEntityTypes {
 
     public static final TileEntityType END_PORTAL = DummyObjectProvider.createFor(TileEntityType.class, "END_PORTAL");
 
-    public static final TileEntityType FLOWER_POT = DummyObjectProvider.createFor(TileEntityType.class, "FLOWER_POT");
-
     public static final TileEntityType FURNACE = DummyObjectProvider.createFor(TileEntityType.class, "FURNACE");
 
     public static final TileEntityType HOPPER = DummyObjectProvider.createFor(TileEntityType.class, "HOPPER");
@@ -70,17 +68,17 @@ public final class TileEntityTypes {
 
     public static final TileEntityType MOB_SPAWNER = DummyObjectProvider.createFor(TileEntityType.class, "MOB_SPAWNER");
 
-    public static final TileEntityType NOTE = DummyObjectProvider.createFor(TileEntityType.class, "NOTE");
-
     public static final TileEntityType PISTON = DummyObjectProvider.createFor(TileEntityType.class, "PISTON");
+
+    public static final TileEntityType PLAYER_HEAD = DummyObjectProvider.createFor(TileEntityType.class, "PLAYER_HEAD");
 
     public static final TileEntityType SHULKER_BOX = DummyObjectProvider.createFor(TileEntityType.class, "SHULKER_BOX");
 
     public static final TileEntityType SIGN = DummyObjectProvider.createFor(TileEntityType.class, "SIGN");
 
-    public static final TileEntityType SKULL = DummyObjectProvider.createFor(TileEntityType.class, "SKULL");
-
     public static final TileEntityType STRUCTURE = DummyObjectProvider.createFor(TileEntityType.class, "STRUCTURE");
+
+    public static final TileEntityType TRAPPED_CHEST = DummyObjectProvider.createFor(TileEntityType.class, "TRAPPED_CHEST");
 
     // SORTFIELDS:OFF
 
