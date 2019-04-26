@@ -305,6 +305,7 @@ public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver 
     void setSleepingIgnored(boolean sleepingIgnored);
 
     /**
+<<<<<<< HEAD
      * Gets the {@link Inventory} available for this Player's shared {@link EnderChest}
      * contents.
      *
@@ -314,6 +315,8 @@ public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver 
     Inventory getEnderChestInventory();
 
     /**
+=======
+>>>>>>> ff01f0ce... make EnderChest available for offline players
      * Manually respawns the player.
      *
      * <p>If the player is not dead, this method will return <tt>false</tt></p>
