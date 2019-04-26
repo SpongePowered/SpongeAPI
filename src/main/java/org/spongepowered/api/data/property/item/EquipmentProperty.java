@@ -70,10 +70,10 @@ public class EquipmentProperty extends AbstractProperty<String, EquipmentType> {
 
     @Override
     public int compareTo(Property<?, ?> o) {
-        if (o instanceof EquipmentProperty) {
-            EquipmentProperty property = (EquipmentProperty) o;
-            return this.getValue().getName().compareTo(property.getValue().getName());
+        if (!(o instanceof EquipmentProperty)) {
+            return -1;
         }
-        return this.getClass().getName().compareTo(o.getClass().getName());
+
+        return this.getValue().getKey().toString().compareTo(((EquipmentProperty) o).getKey().toString());
     }
 }

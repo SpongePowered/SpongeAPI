@@ -81,14 +81,6 @@ import java.util.function.Predicate;
 public interface BlockTrait<T extends Comparable<T>> extends CatalogType {
 
     /**
-     * Gets the name of this {@link BlockTrait}.
-     *
-     * @return The trait name
-     */
-    @Override
-    String getName();
-
-    /**
      * Gets all possible values for a specific {@link BlockTrait}. The
      * included values may not be in any particular order. The returned
      * {@link Collection} should be considered immutable.

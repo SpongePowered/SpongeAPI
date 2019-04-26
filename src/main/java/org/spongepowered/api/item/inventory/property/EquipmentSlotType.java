@@ -70,15 +70,12 @@ public class EquipmentSlotType extends AbstractInventoryProperty<String, Equipme
     }
 
     @Override
-    public int compareTo(Property<?, ?> other) {
-        if (other == null) {
-            return 1;
+    public int compareTo(Property<?, ?> o) {
+        if (!(o instanceof EquipmentSlotType)) {
+            return -1;
         }
 
-        EquipmentType
-                otherValue =
-                Coerce.<EquipmentType>toPseudoEnum(other.getValue(), EquipmentType.class, EquipmentTypes.class, EquipmentTypes.WORN);
-        return this.getValue().getName().compareTo(otherValue.getName());
+        return this.getValue().getKey().toString().compareTo(((EquipmentSlotType) o).getKey().toString());
     }
 
     /**

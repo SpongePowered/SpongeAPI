@@ -42,15 +42,11 @@ public class GuiIdProperty extends AbstractInventoryProperty<String, GuiId> {
     }
 
     @Override
-    public int compareTo(Property<?, ?> other) {
-        if (other == null) {
-            return 1;
+    public int compareTo(Property<?, ?> o) {
+        if (!(o instanceof GuiIdProperty)) {
+            return -1;
         }
 
-        if (other instanceof GuiIdProperty) {
-            return this.getValue().getId().compareTo(((GuiId) other.getValue()).getId());
-        }
-
-        return 1;
+        return this.getValue().getKey().toString().compareTo(((GuiIdProperty) o).getKey().toString());
     }
 }

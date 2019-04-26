@@ -34,12 +34,4 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 @CatalogedBy(Criteria.class)
 public interface Criterion extends CatalogType {
 
-    /**
-     * Gets the name of this criterion.
-     *
-     * @return The name of this criterion
-     */
-    @Override
-    String getName();
-
 }

@@ -46,18 +46,6 @@ import java.util.Optional;
 public interface BlockType extends CatalogType, Translatable, PropertyHolder {
 
     /**
-     * Return the internal ID for the block.
-     *
-     * <p>The format of the internal ID may vary between implementations
-     * but in Minecraft, it follows the format of {@code domain:type}, an
-     * example being {@code minecraft:stone}.</p>
-     *
-     * @return The id
-     */
-    @Override
-    String getName();
-
-    /**
      * Return the default state for this block.
      *
      * @return The default state

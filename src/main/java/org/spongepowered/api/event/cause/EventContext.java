@@ -113,7 +113,7 @@ public final class EventContext {
         if (optional.isPresent()) {
             return optional.get();
         }
-        throw new NoSuchElementException(String.format("Could not retrieve value for key '%s'", key.getId()));
+        throw new NoSuchElementException(String.format("Could not retrieve value for key '%s'", key.toString()));
     }
 
     /**
@@ -175,7 +175,7 @@ public final class EventContext {
     public String toString() {
         StringJoiner joiner = new StringJoiner(", ");
         for (Map.Entry<EventContextKey<?>, Object> entry : this.entries.entrySet()) {
-            joiner.add("\"" + entry.getKey().getId() + "\"=" + entry.getValue().toString());
+            joiner.add("\"" + entry.getKey().toString() + "\"=" + entry.getValue().toString());
         }
         return "Context[" + joiner.toString() + "]";
     }

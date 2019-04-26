@@ -792,7 +792,7 @@ public final class Location<E extends Extent> implements DataHolder {
                 .set(Queries.WORLD_NAME, ((Chunk) getExtent()).getWorld().getName())
                 .set(Queries.WORLD_ID, ((Chunk) getExtent()).getWorld().getUniqueId().toString());
         }
-        container.set(Queries.BLOCK_TYPE, this.getExtent().getBlockType(getBlockPosition()).getId())
+        container.set(Queries.BLOCK_TYPE, this.getExtent().getBlockType(getBlockPosition()).toString())
             .set(Queries.POSITION_X, this.getX())
             .set(Queries.POSITION_Y, this.getY())
             .set(Queries.POSITION_Z, this.getZ());

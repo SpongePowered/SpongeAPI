@@ -54,16 +54,6 @@ public interface SmeltingRecipe extends Recipe, CatalogType {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
-    @Override
-    default String getId() {
-        return "sponge:" + getClass().getName().toLowerCase().replaceAll("[.$]", "_");
-    }
-
-    @Override
-    default String getName() {
-        return getId();
-    }
-
     /**
      * An exemplary {@link ItemStackSnapshot}, which will always make
      * {@link #isValid(ItemStackSnapshot)} return {@code true}.

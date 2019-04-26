@@ -150,7 +150,7 @@ public interface CauseStackManager {
         if (optional.isPresent()) {
             return optional.get();
         }
-        throw new NoSuchElementException(String.format("Could not retrieve value for key '%s'", key.getId()));
+        throw new NoSuchElementException(String.format("Could not retrieve value for key '%s'", key.toString()));
     }
 
     /**

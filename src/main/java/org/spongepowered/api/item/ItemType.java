@@ -51,17 +51,6 @@ public interface ItemType extends CatalogType, Translatable, GameDictionary.Entr
     Optional<BlockType> getBlock();
 
     /**
-     * Gets the id of this item.
-     *
-     * <p>Ex. Minecraft registers a golden carrot as
-     * "minecraft:golden_carrot".</p>
-     *
-     * @return The id
-     */
-    @Override
-    String getName();
-
-    /**
      * Gets the default maximum quantity for
      * {@link ItemStack}s of this item.
      *

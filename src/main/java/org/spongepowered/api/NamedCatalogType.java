@@ -22,37 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.property.block;
+package org.spongepowered.api;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.Property;
-import org.spongepowered.api.data.property.AbstractProperty;
-import org.spongepowered.api.data.type.InstrumentType;
-
-/**
- * A {@link InstrumentProperty} provides the {@link InstrumentType} that will be
- * used for the target block if a {@link BlockTypes#NOTEBLOCK} is placed on top of it.
- */
-public final class InstrumentProperty extends AbstractProperty<String, InstrumentType> {
+public interface NamedCatalogType extends CatalogType {
 
     /**
-     * Constructs a new {@link InstrumentProperty} with the
-     * specified {@link InstrumentType}.
+     * Gets the human-readable name of this individual {@link CatalogType}. This
+     * name is not guaranteed to be unique. This value should not be used for
+     * serialization.
      *
-     * @param instrument The instrument type
+     * @return The human-readable name of this dummy type
      */
-    public InstrumentProperty(InstrumentType instrument) {
-        super(checkNotNull(instrument, "instrument"));
-    }
-
-    @Override
-    public int compareTo(Property<?, ?> o) {
-        if (!(o instanceof InstrumentProperty)) {
-            return -1;
-        }
-
-        return this.getValue().getKey().toString().compareTo(((InstrumentProperty) o).getValue().getKey().toString());
+    default String getName() {
+        return this.getKey().getValue();
     }
 }

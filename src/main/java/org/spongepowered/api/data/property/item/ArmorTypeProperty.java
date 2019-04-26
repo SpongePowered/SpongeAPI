@@ -56,10 +56,10 @@ public class ArmorTypeProperty extends AbstractProperty<String, ArmorType> {
 
     @Override
     public int compareTo(Property<?, ?> o) {
-        if (o instanceof ArmorTypeProperty) {
-            ArmorTypeProperty property = (ArmorTypeProperty) o;
-            return this.getValue().getName().compareTo(property.getValue().getName());
+        if (!(o instanceof ArmorTypeProperty)) {
+            return -1;
         }
-        return this.getClass().getName().compareTo(o.getClass().getName());
+
+        return this.getValue().getKey().toString().compareTo(((ArmorTypeProperty) o).getKey().toString());
     }
 }

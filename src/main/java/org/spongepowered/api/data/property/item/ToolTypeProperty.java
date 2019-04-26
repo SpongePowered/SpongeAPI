@@ -57,10 +57,10 @@ public class ToolTypeProperty extends AbstractProperty<String, ToolType> {
 
     @Override
     public int compareTo(Property<?, ?> o) {
-        if (o instanceof ToolTypeProperty) {
-            ToolTypeProperty property = (ToolTypeProperty) o;
-            return this.getValue().getName().compareTo(property.getValue().getName());
+        if (!(o instanceof ToolTypeProperty)) {
+            return -1;
         }
-        return this.getClass().getName().compareTo(o.getClass().getName());
+
+        return this.getValue().getKey().toString().compareTo(((ToolTypeProperty) o).getKey().toString());
     }
 }

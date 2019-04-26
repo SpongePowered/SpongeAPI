@@ -91,12 +91,6 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
      */
     PluginContainer getPluginContainer();
 
-    @Override
-    String getId();
-
-    @Override
-    String getName();
-
     interface Builder<T extends DataManipulator<T, I>, I extends ImmutableDataManipulator<I, T>>
             extends CatalogBuilder<DataRegistration<T, I>, Builder<T, I>> {
 
