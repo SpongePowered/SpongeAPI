@@ -48,7 +48,6 @@ public interface TextFormat extends TextElement {
      * @param style The style
      * @return The new text format
      */
-    @SuppressWarnings("deprecation")
     static TextFormat of(TextStyle style) {
         return Sponge.getRegistry().getTextFactory().format(TextColors.NONE, style);
     }
@@ -59,7 +58,6 @@ public interface TextFormat extends TextElement {
      * @param color The color
      * @return The new text format
      */
-    @SuppressWarnings("deprecation")
     static TextFormat of(TextColor color) {
         return Sponge.getRegistry().getTextFactory().format(color, TextStyles.NONE);
     }
@@ -71,7 +69,6 @@ public interface TextFormat extends TextElement {
      * @param style The style
      * @return The new text format
      */
-    @SuppressWarnings("deprecation")
     static TextFormat of(TextColor color, TextStyle style) {
         return Sponge.getRegistry().getTextFactory().format(color, style);
     }

@@ -40,17 +40,6 @@ import java.util.Set;
 /**
  * Represents an immutable selector of targets, as used in commands.
  *
- * <p>
- * In Vanilla, selectors are mostly represented as plain text, starting with an
- * {@code @} symbol and followed by a single character signifying the type, and
- * finally the (optional) arguments in brackets.
- * </p>
- * <p>
- * As an example, the all player selector is {@code @a}, and with a radius of
- * 20 it would be {@code @a[r=20]}.
- * </p>
- * </p>
- *
  * @see <a href="http://minecraft.gamepedia.com/Selector#Target_selectors">
  *      Target selectors on the Minecraft Wiki</a>
  */
@@ -77,7 +66,7 @@ public interface Selector {
 
     /**
      * Fetch completions for a selector command argument.
-     * 
+     *
      * @param selector The partial selector
      * @return Tab completions for the next part of the selector
      */
@@ -275,5 +264,4 @@ public interface Selector {
         Selector build();
 
     }
-
 }
