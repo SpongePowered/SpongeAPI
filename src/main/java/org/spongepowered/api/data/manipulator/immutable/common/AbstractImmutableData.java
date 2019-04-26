@@ -161,20 +161,16 @@ public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I
     }
 
     @Override
-    public DataContainer toContainer() {
-        final DataContainer dataContainer = DataContainer.createNew()
-                .set(Queries.CONTENT_VERSION, getContentVersion());
-        fillContainer(dataContainer);
-        return dataContainer;
+    public final DataContainer toContainer() {
+        return this.fillContainer(DataContainer.createNew().set(Queries.CONTENT_VERSION, getContentVersion()));
     }
 
     /**
      * Implement this method to add the data to be persisted.
      *
-     * @param dataContainer The data container
-     * @return The filled data container
+     * @param dataContainer The DataContainer
+     *
+     * @return The filled DataContainer
      */
-    protected DataContainer fillContainer(DataContainer dataContainer) {
-        return dataContainer;
-    }
+    protected abstract DataContainer fillContainer(DataContainer dataContainer);
 }

@@ -60,13 +60,7 @@ public abstract class AbstractImmutableSingleEnumData<E extends Enum<E>, I exten
         return this.cachedValue;
     }
 
-    @Override
-    public DataContainer toContainer() {
-        return super.toContainer();
-    }
-
-    @Override
-    protected DataContainer fillContainer(DataContainer dataContainer) {
-        return dataContainer.set(this.usedKey.getQuery(), getValue().name());
+    @Override protected DataContainer fillContainer(DataContainer dataContainer) {
+        return dataContainer.set(this.usedKey.getQuery(), this.value.name());
     }
 }
