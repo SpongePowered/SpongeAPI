@@ -73,6 +73,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.profile.GameProfile;
+import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Axis;
@@ -1856,9 +1857,18 @@ public final class Keys {
      * having that skin. The binary skin data is signed by Mojang so fully
      * customized skins are not possible.</p>
      *
-     * @see SkinData#skinUniqueId()
+     * @see SkinData#skin()
      */
-    public static final Key<Value<UUID>> SKIN_UNIQUE_ID = DummyObjectProvider.createExtendedFor(Key.class,"SKIN_UNIQUE_ID");
+    public static final Key<Value<ProfileProperty>> SKIN = DummyObjectProvider.createExtendedFor(Key.class,"SKIN");
+
+    /**
+     * Represents the {@link Key} for whether or not changes to {@link Keys#SKIN} should
+     * be reflected in an entitie's {@link GameProfile}.
+     *
+     * @see SkinData#updateGameProfile()
+     *
+     * */
+    public static final Key<Value<Boolean>> UPDATE_GAME_PROFILE = DummyObjectProvider.createExtendedFor(Key.class, "UPDATE_GAME_PROFILE");
 
     /**
      * Represents the {@link Key} for the type of skull a block or item stack
