@@ -29,12 +29,14 @@ import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.living.monster.Endermite;
 import org.spongepowered.api.entity.weather.Lightning;
 import org.spongepowered.api.event.entity.item.TargetItemEvent;
+import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 /**
  * Called when an {@link Entity} is expiring from the world. Examples may
  * include when an {@link Endermite} expires, or when {@link Lightning}
  * expires.
  */
+@GenerateFactoryMethod
 public interface ExpireEntityEvent extends TargetEntityEvent {
 
     /**
