@@ -663,6 +663,9 @@ public final class Keys {
      * Represents the {@link Key} for the content of a
      * {@link ItemTypes#WRITTEN_BOOK}.
      *
+     * <p>Use {@link Keys#PLAIN_BOOK_PAGES} if you wish to inspect the contents
+     * of a {@link ItemTypes#WRITABLE_BOOK}.</p>
+     *
      * @see PagedData#pages()
      */
     public static final Key<ListValue<Text>> BOOK_PAGES = DummyObjectProvider.createExtendedFor(Key.class,"BOOK_PAGES");
@@ -1823,6 +1826,17 @@ public final class Keys {
      * @see PlayerCreatedData#playerCreated()
      */
     public static final Key<Value<Boolean>> PLAYER_CREATED = DummyObjectProvider.createExtendedFor(Key.class,"PLAYER_CREATED");
+
+    /**
+     * Represents the {@link Key} for the content of a
+     * {@link ItemTypes#WRITABLE_BOOK}.
+     *
+     * <p>Use {@link Keys#BOOK_PAGES} if you wish to get the contents of a
+     * {@link ItemTypes#WRITTEN_BOOK}</p>
+     *
+     * @see PlainPagedData#pages()
+     */
+    public static final Key<ListValue<String>> PLAIN_BOOK_PAGES = DummyObjectProvider.createExtendedFor(Key.class,"PLAIN_BOOK_PAGES");
 
     /**
      * Represents the {@link Key} for representing the {@link PortionType}
