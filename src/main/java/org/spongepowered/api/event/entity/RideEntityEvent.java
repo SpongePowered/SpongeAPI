@@ -26,13 +26,21 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.cause.EventContextKeys;
 import org.spongepowered.api.event.cause.entity.dismount.DismountType;
 
 /**
  * An event that involves an {@link Entity} riding another.
  */
-public interface RideEntityEvent extends TargetEntityEvent, Cancellable {
+public interface RideEntityEvent extends Event, Cancellable {
+
+    /**
+     * Gets the {@link Entity}.
+     *
+     * @return The entity
+     */
+    Entity getEntity();
 
     /**
      * Raised when an {@link Entity} is being mounted.

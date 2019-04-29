@@ -22,13 +22,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living;
+package org.spongepowered.api.event.item.inventory.container;
 
-import org.spongepowered.api.entity.living.Agent;
+import org.spongepowered.api.data.Transaction;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
+import org.spongepowered.api.item.inventory.Container;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
-public interface TargetAgentEvent extends TargetLivingEvent {
+/**
+ * An interaction with a open {@link Container}.
+ */
+public interface InteractContainerEvent extends Event, Cancellable {
 
-    @Override
-    Agent getTargetEntity();
+    /**
+     * Gets the {@link Container}.
+     *
+     * @return The container
+     */
+    Container getContainer();
 
+    /**
+     * Gets the {@link Transaction} of {@link ItemStackSnapshot}s for this event.
+     *
+     * @return The transaction of the item
+     */
+    Transaction<ItemStackSnapshot> getCursorTransaction();
+
+    /**
+     * The target container was opened.
+     */
+    interface Open extends InteractContainerEvent {}
+
+    /**
+     * The target container was closed.
+     */
+    interface Close extends InteractContainerEvent {}
 }

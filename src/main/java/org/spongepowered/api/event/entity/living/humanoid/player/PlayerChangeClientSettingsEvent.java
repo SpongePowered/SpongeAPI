@@ -26,6 +26,7 @@ package org.spongepowered.api.event.entity.living.humanoid.player;
 
 import org.spongepowered.api.data.type.SkinPart;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.text.chat.ChatVisibility;
 
 import java.util.Locale;
@@ -45,7 +46,14 @@ import java.util.Set;
  * <p>The event is fired before the player object is updated so it is possible
  * to inspect the old settings.</p>
  */
-public interface PlayerChangeClientSettingsEvent extends TargetPlayerEvent {
+public interface PlayerChangeClientSettingsEvent extends Event {
+
+    /**
+     * Gets the {@link Player}.
+     *
+     * @return The player
+     */
+    Player getPlayer();
 
     /**
      * Gets the new locale of the player.

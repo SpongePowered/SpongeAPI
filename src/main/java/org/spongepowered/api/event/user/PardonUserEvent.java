@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.event.user;
 
-import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
+import org.spongepowered.api.entity.living.player.User;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 import org.spongepowered.api.util.ban.Ban;
 
@@ -33,7 +33,14 @@ import org.spongepowered.api.util.ban.Ban;
  * Occurs when a user is pardoned.
  */
 @GenerateFactoryMethod
-public interface PardonUserEvent extends TargetUserEvent {
+public interface PardonUserEvent extends Event {
+
+    /**
+     * Gets the {@link User}.
+     *
+     * @return The user
+     */
+    User getUser();
 
     /**
      * Gets the ban involved in this event.
@@ -41,14 +48,5 @@ public interface PardonUserEvent extends TargetUserEvent {
      * @return The ban
      */
     Ban.Profile getBan();
-
-    /**
-     * An event where a {@link Player} is the target.
-     */
-    interface TargetPlayer extends PardonUserEvent, TargetPlayerEvent {
-
-        @Override
-        Player getTargetUser();
-    }
 
 }

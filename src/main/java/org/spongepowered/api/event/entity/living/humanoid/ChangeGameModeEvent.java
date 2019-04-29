@@ -27,14 +27,21 @@ package org.spongepowered.api.event.entity.living.humanoid;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 /**
  * Called when a {@link Humanoid} changes {@link GameMode}.
  */
 @GenerateFactoryMethod
-public interface ChangeGameModeEvent extends TargetHumanoidEvent, Cancellable {
+public interface ChangeGameModeEvent extends Event, Cancellable {
+
+    /**
+     * Gets the {@link Humanoid}.
+     *
+     * @return The humanoid
+     */
+    Humanoid getHumanoid();
 
     /**
      * Gets the original {@link GameMode}.
@@ -56,6 +63,4 @@ public interface ChangeGameModeEvent extends TargetHumanoidEvent, Cancellable {
      * @param gameMode The new {@link GameMode} value.
      */
     void setGameMode(GameMode gameMode);
-
-    interface TargetPlayer extends ChangeGameModeEvent, TargetPlayerEvent {}
 }

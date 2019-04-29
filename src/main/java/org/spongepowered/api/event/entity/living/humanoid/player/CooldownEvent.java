@@ -27,6 +27,7 @@ package org.spongepowered.api.event.entity.living.humanoid.player;
 import org.spongepowered.api.entity.living.player.CooldownTracker;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.item.ItemType;
 
 import java.util.OptionalInt;
@@ -35,7 +36,14 @@ import java.util.OptionalInt;
  * An event which handles items in a {@link Player}'s {@link CooldownTracker}
  * being given a cooldown or going off cooldown.
  */
-public interface CooldownEvent extends TargetPlayerEvent {
+public interface CooldownEvent extends Event {
+
+    /**
+     * Gets the {@link Player}.
+     *
+     * @return The player
+     */
+    Player getPlayer();
 
     /**
      * Gets the associated item type whose cooldown is being set or removed.

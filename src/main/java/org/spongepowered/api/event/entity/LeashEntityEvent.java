@@ -24,11 +24,19 @@
  */
 package org.spongepowered.api.event.entity;
 
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
 
 /**
  * An event that is called when an entity becomes leashed.
  */
-public interface LeashEntityEvent extends TargetEntityEvent, Cancellable {
+public interface LeashEntityEvent extends Event, Cancellable {
 
+    /**
+     * Gets the {@link Entity}.
+     *
+     * @return The entity
+     */
+    Entity getEntity();
 }

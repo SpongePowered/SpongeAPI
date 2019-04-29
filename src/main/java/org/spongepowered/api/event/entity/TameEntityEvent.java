@@ -26,10 +26,17 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
 
 /**
  * Called when an {@link Entity} is tamed.
  */
-public interface TameEntityEvent extends TargetEntityEvent, Cancellable {
+public interface TameEntityEvent extends Event, Cancellable {
 
+    /**
+     * Gets the {@link Entity}.
+     *
+     * @return The entity
+     */
+    Entity getEntity();
 }

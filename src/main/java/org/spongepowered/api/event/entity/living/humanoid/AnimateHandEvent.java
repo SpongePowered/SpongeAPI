@@ -28,6 +28,7 @@ import org.spongepowered.api.data.type.HandType;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
 
 /**
  * Called when a {@link Humanoid} hand animation occurs.
@@ -35,7 +36,14 @@ import org.spongepowered.api.event.Cancellable;
  * <p>Note: Canceling this event will only stop animation from being seen
  * on server. Animation will always occur on client-side for {@link Player}'s.</p>
  */
-public interface AnimateHandEvent extends TargetHumanoidEvent, Cancellable {
+public interface AnimateHandEvent extends Event, Cancellable {
+
+    /**
+     * Gets the {@link Humanoid}.
+     *
+     * @return The humanoid
+     */
+    Humanoid getHumanoid();
 
     /**
      * Gets the {@link HandType} used for animation.

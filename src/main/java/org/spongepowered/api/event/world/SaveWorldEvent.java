@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.world;
 
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 import org.spongepowered.api.world.World;
 
@@ -32,7 +33,14 @@ import org.spongepowered.api.world.World;
  * Base event for when a {@link World} is saved.
  */
 @GenerateFactoryMethod
-public interface SaveWorldEvent extends TargetWorldEvent, Cancellable {
+public interface SaveWorldEvent extends Event, Cancellable {
+
+    /**
+     * Gets the {@link World}.
+     *
+     * @return The world
+     */
+    World getWorld();
 
     interface Pre extends SaveWorldEvent {}
 

@@ -28,7 +28,7 @@ import org.spongepowered.api.Nameable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Property;
 import org.spongepowered.api.data.property.PropertyHolder;
-import org.spongepowered.api.event.item.inventory.InteractInventoryEvent;
+import org.spongepowered.api.event.item.inventory.container.InteractContainerEvent;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.property.SlotIndex;
 import org.spongepowered.api.item.inventory.query.QueryOperation;
@@ -615,7 +615,7 @@ public interface Inventory extends Nameable, PropertyHolder {
          * @param listener The listener
          * @return Fluent pattern
          */
-        <E extends InteractInventoryEvent> Builder listener(Class<E> type, Consumer<E> listener);
+        <E extends InteractContainerEvent> Builder listener(Class<E> type, Consumer<E> listener);
 
         /**
          * Sets the InventoryArchetype and Properties according to the

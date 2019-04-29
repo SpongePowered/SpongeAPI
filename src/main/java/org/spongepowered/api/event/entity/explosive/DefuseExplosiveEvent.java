@@ -26,11 +26,19 @@ package org.spongepowered.api.event.entity.explosive;
 
 import org.spongepowered.api.entity.explosive.FusedExplosive;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
 
 /**
  * Event called when a primed {@link FusedExplosive} is defused.
  */
-public interface DefuseExplosiveEvent extends TargetFusedExplosiveEvent {
+public interface DefuseExplosiveEvent extends Event {
+
+    /**
+     * Gets the {@link FusedExplosive}.
+     *
+     * @return The fused explosive
+     */
+    FusedExplosive getFusedExplosive();
 
     /**
      * Event called immediately before a primed {@link FusedExplosive} is

@@ -26,6 +26,8 @@ package org.spongepowered.api.event.world;
 
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.world.chunk.ChunkPreGenerate;
+import org.spongepowered.api.event.Event;
+import org.spongepowered.api.world.World;
 
 import java.time.Duration;
 
@@ -33,7 +35,14 @@ import java.time.Duration;
  * Base event for when a {@link ChunkPreGenerate} task
  * is underway.
  */
-public interface ChunkPreGenerationEvent extends TargetWorldEvent {
+public interface ChunkPreGenerationEvent extends Event {
+
+    /**
+     * Gets the {@link World}.
+     *
+     * @return The world
+     */
+    World getWorld();
 
     /**
      * The object that contains the progress information for the

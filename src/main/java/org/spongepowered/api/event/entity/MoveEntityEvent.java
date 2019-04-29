@@ -27,6 +27,7 @@ package org.spongepowered.api.event.entity;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 import org.spongepowered.api.world.teleport.PortalAgent;
@@ -36,7 +37,14 @@ import org.spongepowered.api.world.World;
  * Called when an {@link Entity} performs movement.
  */
 @GenerateFactoryMethod
-public interface MoveEntityEvent extends TargetEntityEvent, Cancellable {
+public interface MoveEntityEvent extends Event, Cancellable {
+
+    /**
+     * Gets the {@link Entity}.
+     *
+     * @return The entity
+     */
+    Entity getEntity();
 
     /**
      * Gets the transform that the {@link Entity} came from.
@@ -100,7 +108,7 @@ public interface MoveEntityEvent extends TargetEntityEvent, Cancellable {
              * create one if not found.
              * </p>
              * <p>
-             * If this is set to false, the {@link #getTargetEntity()} will only be
+             * If this is set to false, the {@link #getEntity()} will only be
              * teleported to the {@link #getToTransform()} location.
              * </p>
              *
@@ -116,7 +124,7 @@ public interface MoveEntityEvent extends TargetEntityEvent, Cancellable {
              * create one if not found.
              * </p>
              * <p>
-             * If this is set to false, the {@link #getTargetEntity()} will only be
+             * If this is set to false, the {@link #getEntity()} will only be
              * teleported to the {@link #getToTransform()} location.
              * </p>
              *
@@ -126,7 +134,7 @@ public interface MoveEntityEvent extends TargetEntityEvent, Cancellable {
 
             /**
              * Gets the {@link PortalAgent} that will be responsible for teleporting
-             * the {@link #getTargetEntity()} through a Portal.
+             * the {@link #getEntity()} through a Portal.
              *
              * @return The portal agent
              */
@@ -134,7 +142,7 @@ public interface MoveEntityEvent extends TargetEntityEvent, Cancellable {
 
             /**
              * Sets the {@link PortalAgent} that will be responsible for teleporting
-             * the {@link #getTargetEntity()} through a Portal.
+             * the {@link #getEntity()} through a Portal.
              *
              * @param portalAgent The portal agent
              */

@@ -25,13 +25,22 @@
 package org.spongepowered.api.event.world;
 
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
+import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.weather.Weather;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 
 /**
  * Called when a {@link WeatherUniverse}'s {@link Weather} changes.
  */
-public interface ChangeWorldWeatherEvent extends TargetWorldEvent, Cancellable {
+public interface ChangeWorldWeatherEvent extends Event, Cancellable {
+
+    /**
+     * Gets the {@link World}.
+     *
+     * @return The world
+     */
+    World getWorld();
 
     /**
      * Gets the original {@link Weather} that the event is creating.

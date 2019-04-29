@@ -25,14 +25,23 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.effect.potion.PotionEffect;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
 
 import java.util.List;
 
 /**
  * An event that involves a living entity having effects added and removed.
  */
-public interface ChangeEntityPotionEffectEvent extends TargetEntityEvent, Cancellable {
+public interface ChangeEntityPotionEffectEvent extends Event, Cancellable {
+
+    /**
+     * Gets the {@link Entity}.
+     *
+     * @return The entity
+     */
+    Entity getEntity();
 
     /**
      * Gets a copy of all current effects applied on the entity.

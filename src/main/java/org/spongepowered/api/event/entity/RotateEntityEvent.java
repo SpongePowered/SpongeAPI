@@ -35,7 +35,14 @@ import org.spongepowered.api.world.World;
  * applicable, head without moving their position.
  */
 @GenerateFactoryMethod
-public interface RotateEntityEvent extends TargetEntityEvent, Cancellable {
+public interface RotateEntityEvent extends Cancellable {
+
+    /**
+     * Gets the {@link Entity}.
+     *
+     * @return The entity
+     */
+    Entity getEntity();
 
     /**
      * Gets the transform that the {@link Entity} rotated from.

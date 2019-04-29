@@ -39,7 +39,7 @@ public interface BreedEntityEvent extends InteractEntityEvent {
     interface ReadyToMate extends BreedEntityEvent {
 
         @Override
-        Animal getTargetEntity();
+        Animal getEntity();
     }
 
     /**

@@ -67,6 +67,14 @@ public interface ConstructEntityEvent extends Event {
      *
      * <p>Note: This takes before spawning.</p>
      */
-    interface Post extends ConstructEntityEvent, TargetEntityEvent {}
+    interface Post extends ConstructEntityEvent {
+
+        /**
+         * Gets the {@link Entity}.
+         *
+         * @return The entity
+         */
+        Entity getEntity();
+    }
 
 }

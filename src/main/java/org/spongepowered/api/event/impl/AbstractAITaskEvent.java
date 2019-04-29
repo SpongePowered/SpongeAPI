@@ -31,8 +31,8 @@ public abstract class AbstractAITaskEvent extends AbstractEvent implements AITas
 
     @Override
     public void init() {
-        Preconditions.checkArgument(this.getGoal().getOwner() == this.getTargetEntity(),
-                String.format("The target entity '%s' is not the owner of the goal '%s'!", this.getTargetEntity(), this.getGoal()));
+        Preconditions.checkArgument(this.getGoal().getOwner() == this.getAgent(),
+                String.format("The target entity '%s' is not the owner of the goal '%s'!", this.getAgent(), this.getGoal()));
     }
 
 }
