@@ -26,8 +26,10 @@ package org.spongepowered.api.entity.weather;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.ExpirableData;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.Entity;
+
+import java.time.Duration;
 
 /**
  * Represents weather, such as {@link Lightning}.
@@ -58,13 +60,13 @@ public interface WeatherEffect extends Entity {
     }
 
     /**
-     * Gets the {@link MutableBoundedValue} for the amount of "ticks" remaining
+     * Gets the {@link Value} for the duration
      * before the "expiration" occurs.
      *
-     * @return The immutable bounded value for the amount of ticks remaining
+     * @return The bounded value for the remaining duration
      */
-    default MutableBoundedValue<Integer> expireTicks() {
-        return getValue(Keys.EXPIRATION_TICKS).get();
+    default Value<Duration> expireDuration() {
+        return getValue(Keys.EXPIRATION_DURATION).get();
     }
 
 }

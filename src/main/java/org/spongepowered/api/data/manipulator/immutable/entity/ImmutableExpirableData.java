@@ -26,24 +26,26 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.ExpirableData;
-import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
+import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.explosive.PrimedTNT;
 import org.spongepowered.api.entity.living.monster.Endermite;
 
+import java.time.Duration;
+
 /**
- * An {@link ImmutableDataManipulator} handling the "expiring" ticks remaining
+ * An {@link ImmutableDataManipulator} handling the "expiring" duration
  * for an {@link Entity} to "remain" existing in a world. Usually applicable to
  * {@link Endermite}s, {@link PrimedTNT}, etc.
  */
 public interface ImmutableExpirableData extends ImmutableDataManipulator<ImmutableExpirableData, ExpirableData> {
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the amount of "ticks"
-     * remaining before the "expiration" occurs.
+     * Gets the {@link ImmutableValue} for the duration
+     * before the "expiration" occurs.
      *
-     * @return The immutable bounded value for the amount of ticks remaining
+     * @return The immutable bounded value for the remaining duration
      */
-    ImmutableBoundedValue<Integer> expireTicks();
+    ImmutableValue<Duration> expireDuration();
 
 }

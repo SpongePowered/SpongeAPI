@@ -27,25 +27,27 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableExpirableData;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.living.monster.Endermite;
 import org.spongepowered.api.world.weather.Weather;
 
+import java.time.Duration;
+
 /**
- * Signifies that an entity will expire after the value has
- * decayed to the minimum. Usually applicable to {@link Weather},
+ * Signifies that an entity will expire after the duration has
+ * elapsed. Usually applicable to {@link Weather},
  * {@link Endermite}s and {@link Item}s.
  */
 public interface ExpirableData extends DataManipulator<ExpirableData, ImmutableExpirableData> {
 
     /**
-     * Gets the {@link MutableBoundedValue} for the amount of "ticks"
-     * remaining before the "expiration" occurs.
+     * Gets the {@link Value} for the duration
+     * before the "expiration" occurs.
      *
-     * @return The immutable bounded value for the amount of ticks remaining
-     * @see Keys#EXPIRATION_TICKS
+     * @return The bounded value for the remaining duration
+     * @see Keys#EXPIRATION_DURATION
      */
-    MutableBoundedValue<Integer> expireTicks();
+    Value<Duration> expireDuration();
 
 }
