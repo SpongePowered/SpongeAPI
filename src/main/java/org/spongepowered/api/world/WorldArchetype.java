@@ -33,8 +33,7 @@ import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
-import org.spongepowered.api.registry.CatalogTypeAlreadyRegisteredException;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gen.GeneratorType;
@@ -201,12 +200,15 @@ public interface WorldArchetype extends CatalogType {
      */
     SerializationBehavior getSerializationBehavior();
 
-    interface Builder extends ResettableBuilder<WorldArchetype, Builder> {
+    /**
+     * A builder to create {@link WorldArchetype}s.
+     */
+    interface Builder extends CatalogBuilder<WorldArchetype, Builder> {
 
         /**
          * Sets enabled status. Built worlds who are enabled but unloaded may
          * be loaded automatically if an attempt is made to transfer an entity
-         * to the world using {@link Entity#transferToWorld} .
+         * to the world using {@link Entity#transferToWorld}.
          *
          * @param state Should be enabled
          * @return The builder, for chaining
@@ -372,17 +374,32 @@ public interface WorldArchetype extends CatalogType {
          * {@link WorldProperties} object.
          *
          * @param properties The seed properties
-         * @return A new seeded builder
+         * @return This builder, for chaining
          */
         Builder from(WorldProperties properties);
+
+        /**
+         * Unlike other {@link CatalogBuilder}s, it's allowed to create a
+         * {@link WorldArchetype} from a different one. However the
+         * {@link #key(CatalogKey)} will be reset.
+         *
+         * @param archetype The archetype
+         * @return This builder, for chaining
+         */
+        @Override
+        Builder from(WorldArchetype archetype);
 
         /**
          * Builds the {@link WorldArchetype} which can be used to create
          * a {@link World} in {@link Server#createWorldProperties(String, WorldArchetype)}.
          *
-         * @param key The key that this archetype should have
-         * @return The archetype
+         * <p>Unlike other {@link CatalogBuilder}s, it's not required to apply a
+         * {@link #key(CatalogKey)} to build a world archetype. However it's recommend
+         * if you intend to register it to the registry.</p>
+         *
+         * @return The build world archetype
          */
-        WorldArchetype build(CatalogKey key) throws IllegalArgumentException;
+        @Override
+        WorldArchetype build();
     }
 }
