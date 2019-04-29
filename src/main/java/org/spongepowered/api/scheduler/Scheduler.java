@@ -111,4 +111,15 @@ public interface Scheduler {
      * @see Task.Builder#async()
      */
     SpongeExecutorService createAsyncExecutor(Object plugin);
+
+    /**
+     * Submit a task to the scheduler.
+     *
+     * <p>For convenience, the same task is returned to you.</p>
+     *
+     * @param plugin The plugin
+     * @param task The task
+     * @return The task
+     */
+    Task submit(final Object plugin, final Task task);
 }

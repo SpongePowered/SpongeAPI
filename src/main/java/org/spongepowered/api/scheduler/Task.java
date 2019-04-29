@@ -220,16 +220,11 @@ public interface Task extends Identifiable {
         Builder name(String name);
 
         /**
-         * Submits the task to the scheduler and returns the task that was
-         * created.
+         * Builds the task.
          *
-         * @param plugin The owner of the task
          * @return A new instance of a {@link Task}
-         * @throws IllegalArgumentException If the object passed in is not
-         *     a plugin instance
-         * @throws IllegalStateException If the builder is incomplete
          */
-        Task submit(Object plugin);
+        Task build();
 
     }
 }
