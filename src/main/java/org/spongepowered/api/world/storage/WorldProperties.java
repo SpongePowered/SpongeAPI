@@ -48,7 +48,6 @@ import java.time.Duration;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
-import java.util.UUID;
 
 /**
  * Represents the properties of a {@link World} which are persisted across runtime instances.
@@ -68,13 +67,6 @@ public interface WorldProperties extends WeatherUniverse, DataSerializable, Iden
      * @return The name
      */
     String getWorldName();
-
-    /**
-     * Gets the {@link UUID} of the world.
-     *
-     * @return The unique Id
-     */
-    UUID getUniqueId();
 
     /**
      * Gets whether this world is enabled. A world which is enabled but unloaded

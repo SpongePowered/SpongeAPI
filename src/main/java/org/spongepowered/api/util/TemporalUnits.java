@@ -130,7 +130,7 @@ public final class TemporalUnits {
      * A {@link MinecraftTemporalUnit} which represents a half minecraft day.
      */
     public static final MinecraftTemporalUnit HALF_MINECRAFT_DAYS =
-            new MinecraftTemporalUnit("HalfMinecraftDays", MINECRAFT_TICKS.getDuration().multipliedBy(12000));
+            new MinecraftTemporalUnit("HalfMinecraftDays", MINECRAFT_DAYS.getDuration().dividedBy(2));
 
     // Suppress default constructor to ensure non-instantiability.
     private TemporalUnits() {
