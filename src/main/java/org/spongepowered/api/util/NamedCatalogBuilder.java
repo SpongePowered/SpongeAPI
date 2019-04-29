@@ -22,29 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.recipe;
+package org.spongepowered.api.util;
 
 import org.spongepowered.api.NamedCatalogType;
-import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
-import org.spongepowered.api.item.recipe.smelting.SmeltingRecipe;
+import org.spongepowered.api.text.translation.Translation;
 
-/**
- * A general interface for recipes. Every direct sub interface
- * of this class will require it's own registry module. Depending
- * for what purpose a {@link Recipe} is implemented, different
- * sub classes will be used.
- * <p>The currently supported recipe types are
- * {@link CraftingRecipe} and {@link SmeltingRecipe}.
- */
-public interface Recipe extends NamedCatalogType {
+public interface NamedCatalogBuilder<C extends NamedCatalogType, B extends ResettableBuilder<C, B>> extends CatalogBuilder<C, B> {
 
-    /**
-     * A general result of this recipe. This result may be customized depending
-     * on the context.
-     *
-     * @return The exemplary result of this recipe
-     */
-    ItemStackSnapshot getExemplaryResult();
+    B name(String name);
 
+    B name(Translation translation);
 }

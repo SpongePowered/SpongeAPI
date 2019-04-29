@@ -194,7 +194,6 @@ sortClassFields {
     add 'main', 'org.spongepowered.api.world.teleport.TeleportHelperFilters'
     add 'main', 'org.spongepowered.api.world.weather.Weathers'
     add 'main', 'org.spongepowered.api.util.TypeTokens'
-    add 'main', 'org.spongepowered.api.item.recipe.crafting.CraftingRecipes'
 }
 
 // Shaded API build (with all dependencies included)

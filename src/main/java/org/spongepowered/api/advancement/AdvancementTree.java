@@ -25,12 +25,10 @@
 package org.spongepowered.api.advancement;
 
 import org.spongepowered.api.CatalogKey;
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.NamedCatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.util.CatalogBuilder;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.NamedCatalogBuilder;
 
 /**
  * Represents a {@link Advancement} tree or tab menu. The tree will become
@@ -67,7 +65,7 @@ public interface AdvancementTree extends NamedCatalogType {
     /**
      * A builder to create {@link AdvancementTree}s.
      */
-    interface Builder extends CatalogBuilder<AdvancementTree, Builder> {
+    interface Builder extends NamedCatalogBuilder<AdvancementTree, Builder> {
 
         /**
          * Sets the root {@link Advancement}. The root advancement MUST have
@@ -100,11 +98,12 @@ public interface AdvancementTree extends NamedCatalogType {
          * Sets the name of the {@link AdvancementTree}. Defaults to
          * the plain {@link DisplayInfo#getTitle()} of the root
          * {@link Advancement} if {@link DisplayInfo} is present.
-         * Otherwise will it default to the identifier ({@link #name(String)}).
+         * Otherwise will it default to the identifier ({@link #key(CatalogKey)}}).
          *
          * @param name The name
          * @return This builder, for chaining
          */
+        @Override
         Builder name(String name);
 
         @Override

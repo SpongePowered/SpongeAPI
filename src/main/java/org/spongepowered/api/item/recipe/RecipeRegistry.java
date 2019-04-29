@@ -26,11 +26,8 @@ package org.spongepowered.api.item.recipe;
 
 import org.spongepowered.api.registry.CatalogRegistryModule;
 
-import java.util.Collection;
-
 /**
  * A RecipeRegistry holds all registered recipes for a given game.
  */
 public interface RecipeRegistry<T extends Recipe> extends CatalogRegistryModule<T> {
-
 }

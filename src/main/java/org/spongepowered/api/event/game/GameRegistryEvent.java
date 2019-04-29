@@ -31,6 +31,7 @@ import org.spongepowered.api.event.impl.AbstractGameRegistryRegisterEvent;
 import org.spongepowered.api.registry.AdditionalCatalogRegistryModule;
 import org.spongepowered.api.registry.CatalogRegistryModule;
 import org.spongepowered.api.registry.CatalogTypeAlreadyRegisteredException;
+import org.spongepowered.api.registry.RegistryModule;
 import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
 
 /**

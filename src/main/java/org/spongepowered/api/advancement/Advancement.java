@@ -32,6 +32,7 @@ import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextRepresentable;
 import org.spongepowered.api.util.CatalogBuilder;
+import org.spongepowered.api.util.NamedCatalogBuilder;
 
 import java.util.Collection;
 import java.util.List;
@@ -106,7 +107,7 @@ public interface Advancement extends NamedCatalogType, TextRepresentable {
     /**
      * A builder to create {@link Advancement}s.
      */
-    interface Builder extends CatalogBuilder<Advancement, Builder> {
+    interface Builder extends NamedCatalogBuilder<Advancement, Builder> {
 
         /**
          * Sets the parent {@link Advancement}. Defaults to {code null}.

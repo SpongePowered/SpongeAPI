@@ -139,11 +139,11 @@ public interface Key<V extends BaseValue<?>> extends CatalogType {
         Builder<E, V> query(DataQuery query);
 
         /**
-         * Builds a new {@link Key}, provided that the
-         * {@link #type(TypeToken)}, {@link #key(CatalogKey)}
-         * are set.
+         * Builds the {@link Key}.
          *
-         * @return The generated Key
+         * @return The built key
+         * @throws IllegalStateException If not all required options were specified; {@link #key(CatalogKey)},
+         *                               {@link #type(TypeToken)} and {@link #query(DataQuery)}.
          */
         @Override
         Key<V> build();
