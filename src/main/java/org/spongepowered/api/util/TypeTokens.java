@@ -74,6 +74,7 @@ import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.merchant.TradeOffer;
+import org.spongepowered.api.item.potion.PotionType;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.statistic.Statistic;
@@ -196,6 +197,8 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<ItemStackSnapshot>> ITEM_SNAPSHOT_VALUE_TOKEN = new TypeToken<Value<ItemStackSnapshot>>() {private static final long serialVersionUID = -1;};
 
+    public static final TypeToken<List<? extends DataSerializable>> LIST_DATA_SERIALIZEABLE_TOKEN = new TypeToken<List<? extends DataSerializable>>() {private static final long serialVersionUID = -1;};
+
     public static final TypeToken<List<DyeColor>> LIST_DYE_COLOR_TOKEN = new TypeToken<List<DyeColor>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<ListValue<DyeColor>> LIST_DYE_COLOR_VALUE_TOKEN = new TypeToken<ListValue<DyeColor>>() {private static final long serialVersionUID = -1;};
@@ -296,6 +299,10 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<PortionType>> PORTION_VALUE_TOKEN = new TypeToken<Value<PortionType>>() {private static final long serialVersionUID = -1;};
 
+    public static final TypeToken<PotionType> POTION_TOKEN = new TypeToken<PotionType>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Value<PotionType>> POTION_VALUE_TOKEN = new TypeToken<Value<PotionType>>() {private static final long serialVersionUID = -1;};
+
     public static final TypeToken<RabbitType> RABBIT_TOKEN = new TypeToken<RabbitType>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<RabbitType>> RABBIT_VALUE_TOKEN = new TypeToken<Value<RabbitType>>() {private static final long serialVersionUID = -1;};
@@ -381,8 +388,6 @@ public final class TypeTokens {
     public static final TypeToken<ProfileProperty> PROFILE_PROPERTY_TOKEN = new TypeToken<ProfileProperty>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<ProfileProperty>> PROFILE_PROPERTY_VALUE_TOKEN = new TypeToken<Value<ProfileProperty>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<List<? extends DataSerializable>> LIST_DATA_SERIALIZEABLE_TOKEN = new TypeToken<List<? extends DataSerializable>>() {private static final long serialVersionUID = -1;};
 
     // SORTFIELDS:OFF
 

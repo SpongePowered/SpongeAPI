@@ -51,6 +51,7 @@ import org.spongepowered.api.data.manipulator.mutable.FireworkRocketData;
 import org.spongepowered.api.data.manipulator.mutable.InvertibleData;
 import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
 import org.spongepowered.api.data.manipulator.mutable.PotionEffectData;
+import org.spongepowered.api.data.manipulator.mutable.PotionTypeData;
 import org.spongepowered.api.data.manipulator.mutable.RepresentedItemData;
 import org.spongepowered.api.data.manipulator.mutable.RepresentedPlayerData;
 import org.spongepowered.api.data.manipulator.mutable.RotationalData;
@@ -176,6 +177,7 @@ import org.spongepowered.api.data.manipulator.mutable.item.HideData;
 import org.spongepowered.api.data.manipulator.mutable.item.LoreData;
 import org.spongepowered.api.data.manipulator.mutable.item.PagedData;
 import org.spongepowered.api.data.manipulator.mutable.item.PlaceableData;
+import org.spongepowered.api.data.manipulator.mutable.item.PlainPagedData;
 import org.spongepowered.api.data.manipulator.mutable.item.StoredEnchantmentData;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.BannerData;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.BeaconData;
@@ -233,6 +235,7 @@ import org.spongepowered.api.entity.ExperienceOrb;
 import org.spongepowered.api.entity.FallingBlock;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.ShulkerBullet;
+import org.spongepowered.api.item.potion.PotionType;
 import org.spongepowered.api.entity.explosive.Explosive;
 import org.spongepowered.api.entity.explosive.FusedExplosive;
 import org.spongepowered.api.entity.hanging.ItemFrame;
@@ -313,7 +316,6 @@ public final class Keys {
      * @see AbsorptionData#absorption()
      */
     public static final Key<Value<Double>> ABSORPTION = DummyObjectProvider.createExtendedFor(Key.class, "ABSORPTION");
-
 
     /**
      * Represents the {@link Key} for the item a {@link Living} is using.
@@ -1820,14 +1822,6 @@ public final class Keys {
     public static final Key<SetValue<BlockType>> PLACEABLE_BLOCKS = DummyObjectProvider.createExtendedFor(Key.class,"PLACEABLE_BLOCKS");
 
     /**
-     * Represents the {@link Key} for whether an {@link IronGolem} has been
-     * created by a {@link Player}.
-     *
-     * @see PlayerCreatedData#playerCreated()
-     */
-    public static final Key<Value<Boolean>> PLAYER_CREATED = DummyObjectProvider.createExtendedFor(Key.class,"PLAYER_CREATED");
-
-    /**
      * Represents the {@link Key} for the content of a
      * {@link ItemTypes#WRITABLE_BOOK}.
      *
@@ -1837,6 +1831,14 @@ public final class Keys {
      * @see PlainPagedData#pages()
      */
     public static final Key<ListValue<String>> PLAIN_BOOK_PAGES = DummyObjectProvider.createExtendedFor(Key.class,"PLAIN_BOOK_PAGES");
+
+    /**
+     * Represents the {@link Key} for whether an {@link IronGolem} has been
+     * created by a {@link Player}.
+     *
+     * @see PlayerCreatedData#playerCreated()
+     */
+    public static final Key<Value<Boolean>> PLAYER_CREATED = DummyObjectProvider.createExtendedFor(Key.class,"PLAYER_CREATED");
 
     /**
      * Represents the {@link Key} for representing the {@link PortionType}
@@ -1853,6 +1855,13 @@ public final class Keys {
      * @see PotionEffectData#effects()
      */
     public static final Key<ListValue<PotionEffect>> POTION_EFFECTS = DummyObjectProvider.createExtendedFor(Key.class,"POTION_EFFECTS");
+
+    /**
+     * Represents the {@link Key} for representing the potion type of an {@link ItemStack}.
+     *
+     * @see PotionTypeData#type()
+     */
+    public static final Key<Value<PotionType>> POTION_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"POTION_TYPE");
 
     /**
      * Represents the {@link Key} for representing the "power" state
