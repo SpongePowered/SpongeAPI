@@ -711,7 +711,7 @@ public final class Location implements DataHolder {
      * @return A list of ScheduledBlockUpdates on this block
      */
     public Collection<ScheduledTaskEntry<BlockType>> getScheduledUpdates() {
-        return getWorld().getPendingBlockTicks().getScheduledUpdates(getBlockPosition());
+        return getWorld().getPendingBlockTasks().getScheduledUpdates(getBlockPosition());
     }
 
     /**
@@ -722,7 +722,7 @@ public final class Location implements DataHolder {
      * @return The newly created scheduled update
      */
     public ScheduledTaskEntry<BlockType> addScheduledUpdate(TaskPriority priority, int ticks) {
-        return getWorld().getPendingBlockTicks().scheduleUpdate(getBlockPosition(), getBlock().getType(), ticks, priority);
+        return getWorld().getPendingBlockTasks().scheduleUpdate(getBlockPosition(), getBlock().getType(), ticks, priority);
     }
 
     /**
@@ -731,7 +731,7 @@ public final class Location implements DataHolder {
      * @param update The ScheduledTaskEntry to remove
      */
     public void removeScheduledUpdate(ScheduledTaskEntry<BlockType> update) {
-        getWorld().getPendingBlockTicks().removeUpdate(getBlockPosition(), update);
+        getWorld().getPendingBlockTasks().removeUpdate(getBlockPosition(), update);
     }
 
     @Override

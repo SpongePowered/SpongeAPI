@@ -54,20 +54,20 @@ public interface BlockType extends CatalogType, StateContainer<BlockState>, Tran
     /**
      * Gets if this BlockType is set to receive random block ticks.
      *
-     * <p>Random block ticks are most commonly used for growth of plants.</p>
+     * <p>Random block updates are most commonly used for growth of plants.</p>
      *
-     * @return If the BlockType ticks randomly.
+     * @return If the BlockType updates randomly
      */
-    boolean getTickRandomly();
+    boolean doesUpdateRandomly();
 
     /**
-     * Sets if the BlockType should receive random block ticks.
+     * Sets if the BlockType should receive random block updates.
      *
-     * <p>Random block ticks are most commonly used for growth of plants.</p>
+     * <p>Random block updates are most commonly used for growth of plants.</p>
      *
-     * @param tickRandomly If the BlockType should tick randomly.
+     * @param updateRandomly If the BlockType should update randomly
      */
-    void setTickRandomly(boolean tickRandomly);
+    void setUpdateRandomly(boolean updateRandomly);
 
     /**
      * Gets the {@link BlockSoundGroup} for this block.

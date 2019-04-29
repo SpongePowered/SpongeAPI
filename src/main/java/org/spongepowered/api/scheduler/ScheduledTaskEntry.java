@@ -26,6 +26,8 @@ package org.spongepowered.api.scheduler;
 
 import org.spongepowered.api.world.Locatable;
 
+import java.time.Duration;
+
 /**
  * Represents a scheduled block update. SBUs with higher priorities are
  * processed first.
@@ -35,20 +37,19 @@ public interface ScheduledTaskEntry<T> extends Locatable {
     T getTarget();
 
     /**
-     * Gets the amount of ticks until this update should cause the block to update.
+     * Gets the {@link Duration delay} until this update
+     * should cause the block to update.
      *
-     * @return The amount of ticks until this SBU should cause the block to
-     *         update.
+     * @return The delay until this SBU should cause the block to update
      */
-    int getTicks();
+    Duration getDelay();
 
     /**
-     * Sets the amount of ticks until this SBU should cause the block to update.
+     * Sets the {@link Duration delay} until this SBU should cause the block to update.
      *
-     * @param ticks The new amount of ticks until this SBU should cause the
-     *        block to update.
+     * @param delay The new delay until this SBU should cause the block to update
      */
-    void setTicks(int ticks);
+    void setDelay(Duration delay);
 
     /**
      * Gets the priority of this scheduled block update.

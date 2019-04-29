@@ -31,8 +31,8 @@ import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
 
 public interface TickableVolume extends ReadableBlockVolume {
 
-    ScheduledTaskList<FluidType> getPendingFluidTicks();
+    ScheduledTaskList<FluidType> getPendingFluidTasks();
 
-    ScheduledTaskList<BlockType> getPendingBlockTicks();
+    ScheduledTaskList<BlockType> getPendingBlockTasks();
 
 }

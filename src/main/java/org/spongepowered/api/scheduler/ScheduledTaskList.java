@@ -59,6 +59,7 @@ public interface ScheduledTaskList<T> {
     boolean isUpdateScheduled(int x, int y, int z, T itemIn);
 
     Collection<ScheduledTaskEntry<T>> getScheduledUpdates(int x, int y, int z);
+
     void removeUpdate(Vector3i blockPosition, ScheduledTaskEntry<T> update);
 
     default Collection<ScheduledTaskEntry<T>> getScheduledUpdates(Vector3i pos) {
