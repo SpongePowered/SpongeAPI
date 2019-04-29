@@ -30,6 +30,7 @@ import org.spongepowered.api.data.Property;
 import org.spongepowered.api.item.inventory.property.InventoryTitle;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.translation.Translation;
+import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -98,7 +99,7 @@ public interface InventoryArchetype extends CatalogType {
      * <p>Compositions of multiple base {@link InventoryArchetypes} are
      * possible.</p>
      */
-    interface Builder extends ResettableBuilder<InventoryArchetype, Builder> {
+    interface Builder extends CatalogBuilder<InventoryArchetype, Builder> {
 
         /**
          * Adds a {@link InventoryTitle} to this Archetype.
@@ -145,13 +146,6 @@ public interface InventoryArchetype extends CatalogType {
          * @return Fluent pattern
          */
         Builder with(InventoryArchetype... archetypes);
-
-        /**
-         * Registers the InventoryArchetype.
-         *
-         * @return The registered InventoryArchetype
-         */
-        InventoryArchetype build(String id, String name);
     }
 
 }

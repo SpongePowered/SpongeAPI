@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.biome;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.world.World;
 
 import java.util.function.Function;
@@ -57,15 +57,7 @@ public interface VirtualBiomeType extends BiomeType {
     /**
      * A builder for {@link VirtualBiomeType}s.
      */
-    interface Builder extends ResettableBuilder<VirtualBiomeType, Builder> {
-
-        /**
-         * Sets the name of the new virtual biome.
-         * 
-         * @param name The biome name
-         * @return This builder, for chaining
-         */
-        Builder name(String name);
+    interface Builder extends CatalogBuilder<VirtualBiomeType, Builder> {
 
         /**
          * Sets the temperature of the virtual biome.
@@ -100,16 +92,6 @@ public interface VirtualBiomeType extends BiomeType {
          * @return This builder, for chaining
          */
         Builder settingsBuilder(Function<World, BiomeGenerationSettings> settingsBuilder);
-
-        /**
-         * Builds a new {@link VirtualBiomeType} with the given unique id.
-         * 
-         * @param id The biome id, must be unique
-         * @return The new virtual biome
-         * @throws IllegalStateException If any required fields were missing
-         */
-        VirtualBiomeType build(String id) throws IllegalStateException;
-
     }
 
 }
