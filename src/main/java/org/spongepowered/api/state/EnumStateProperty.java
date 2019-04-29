@@ -26,14 +26,12 @@ package org.spongepowered.api.state;
 
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
-import java.util.function.Predicate;
-
 /**
- * Represents a type of {@link StateProperty} that accepts {@link Integer} based
- * values, usually with a predefined range. It is recommended to use the
- * {@link Predicate}
+ * Represents a type of {@link StateProperty} that accepts an unknown {@link Enum}
+ * set of values. Due to type erasure and implementation, most all enum types
+ * may not be exposed in the API.
  */
-@CatalogedBy(IntegerProperties.class)
-public interface IntegerProperty extends StateProperty<Integer> {
+@CatalogedBy(EnumStateProperties.class)
+public interface EnumStateProperty<E extends Enum<E>> extends StateProperty<E> {
 
 }

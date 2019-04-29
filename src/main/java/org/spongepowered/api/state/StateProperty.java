@@ -41,27 +41,27 @@ import java.util.function.Predicate;
  * represents the current value at the time the {@link BlockState} was taken.
  * </p>
  * 
- * <p>For example, a {@link BlockTypes#BED} contains three possible
+ * <p>For example, a {@link BlockTypes#RED_BED} contains three possible
  * {@link StateProperty}s :</p>
  * 
  * <ul>
- *     <li>{@link EnumProperties#BED_FACING}</li>
- *     <li>{@link BooleanProperties#BED_OCCUPIED}</li>
- *     <li>{@link EnumProperties#BED_PART}</li>
+ *     <li>{@link EnumStateProperties#RED_BED_FACING}</li>
+ *     <li>{@link BooleanStateProperties#RED_BED_OCCUPIED}</li>
+ *     <li>{@link EnumStateProperties#RED_BED_PART}</li>
  * </ul>
  *
- * <p>If you query a {@link BlockTypes#BED}'s {@link StateProperty} you have two
+ * <p>If you query a {@link BlockTypes#RED_BED}'s {@link StateProperty} you have two
  * possible outcomes for each {@link StateProperty}. The
- * {@link BooleanProperties#BED_OCCUPIED} has the following possible values :</p>
+ * {@link BooleanStateProperties#RED_BED_OCCUPIED} has the following possible values :</p>
  * 
  * <ul>
  *     <li><code>true</code></li>
  *     <li><code>false</code></li>
  * </ul>
  *
- * <p>As 'OCCUPIED' is a {@link BooleanProperty}, it can only be <code>true</code>
+ * <p>As 'OCCUPIED' is a {@link BooleanStateProperty}, it can only be <code>true</code>
  * or <code>false</code>.
- * The {@link EnumProperties#BED_PART} has the following possible values :</p>
+ * The {@link EnumStateProperties#RED_BED_PART} has the following possible values :</p>
  * 
  * <ul>
  *     <li><code>HEAD</code></li>

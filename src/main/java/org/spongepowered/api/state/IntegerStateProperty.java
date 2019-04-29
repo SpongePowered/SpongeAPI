@@ -26,12 +26,14 @@ package org.spongepowered.api.state;
 
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
+import java.util.function.Predicate;
+
 /**
- * Represents a type of {@link StateProperty} that allows only {@link Boolean} of
- * which two possible values may exist: <code>true</code> and
- * <code>false</code>.
+ * Represents a type of {@link StateProperty} that accepts {@link Integer} based
+ * values, usually with a predefined range. It is recommended to use the
+ * {@link Predicate}
  */
-@CatalogedBy(BooleanProperties.class)
-public interface BooleanProperty extends StateProperty<Boolean> {
+@CatalogedBy(IntegerStateProperties.class)
+public interface IntegerStateProperty extends StateProperty<Integer> {
 
 }
