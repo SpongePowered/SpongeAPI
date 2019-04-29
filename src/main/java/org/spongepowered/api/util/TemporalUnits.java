@@ -132,12 +132,6 @@ public final class TemporalUnits {
     public static final MinecraftTemporalUnit HALF_MINECRAFT_DAYS =
             new MinecraftTemporalUnit("HalfMinecraftDays", MINECRAFT_TICKS.getDuration().multipliedBy(12000));
 
-    /**
-     * A {@link MinecraftTemporalUnit} which represents a minecraft day.
-     */
-    public static final MinecraftTemporalUnit MINECRAFT_WEEKS =
-            new MinecraftTemporalUnit("MinecraftWeeks", MINECRAFT_DAYS.getDuration().multipliedBy(7));
-
     // Suppress default constructor to ensure non-instantiability.
     private TemporalUnits() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
