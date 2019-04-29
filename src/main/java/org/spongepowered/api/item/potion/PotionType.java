@@ -36,15 +36,7 @@ import java.util.List;
  * Represents a type of potion with specific {@link PotionEffect}s.
  */
 @CatalogedBy(PotionTypes.class)
-public interface PotionType extends CatalogType, Translatable {
+public interface PotionType extends CatalogType {
 
     List<PotionEffect> getEffects();
-
-    /**
-     * Gets the {@link Translation} for this potion effect type as a potion
-     * name.
-     *
-     * @return The translation representing this effect as potion
-     */
-    Translation getPotionTranslation();
 }
