@@ -35,19 +35,12 @@ import java.util.concurrent.ExecutorService;
 public interface Scheduler {
 
     /**
-     * Gets a new instance of a {@link Task.Builder}.
-     *
-     * @return A new task builder
-     */
-    Task.Builder createTaskBuilder();
-
-    /**
      * Retrieves a scheduled or running task by its unique ID.
      *
      * @param id The id of the task
      * @return The scheduled or running task, or {@link Optional#empty()}
      */
-    Optional<Task> getTaskById(UUID id);
+    Optional<ScheduledTask> getTaskById(UUID id);
 
     /**
      * Returns a set of {@link Task}s that match the Regular Expression pattern.
@@ -57,23 +50,23 @@ public interface Scheduler {
      * @return A set of {@link Task}s that have names that match the pattern,
      *         the set will be empty if no names match
      */
-    Set<Task> getTasksByName(String pattern);
+    Set<ScheduledTask> getTasksByName(String pattern);
 
     /**
      * Returns a set of all currently scheduled tasks.
      *
      * @return A set of scheduled tasks
      */
-    Set<Task> getScheduledTasks();
+    Set<ScheduledTask> getTasks();
 
     /**
      * Returns a set of all currently scheduled tasks for either asynchronous or
      * synchronous execution.
      *
-     * @param async True to get all async tasks, false to get all sync tasks
+     * @param synchronicity The synchronicity to get the scheduled tasks for
      * @return A set of scheduled tasks for the given sync type
      */
-    Set<Task> getScheduledTasks(boolean async);
+    Set<ScheduledTask> getTasks(TaskSynchronicity synchronicity);
 
     /**
      * Returns a set of all currently scheduled tasks owned by the given plugin.
@@ -81,7 +74,7 @@ public interface Scheduler {
      * @param plugin The plugin that created the tasks
      * @return A set of scheduled tasks
      */
-    Set<Task> getScheduledTasks(Object plugin);
+    Set<ScheduledTask> getTasksByPlugin(Object plugin);
 
     /**
      * Gets the ideal delay between ticks in milliseconds. The server aims to
@@ -117,9 +110,8 @@ public interface Scheduler {
      *
      * <p>For convenience, the same task is returned to you.</p>
      *
-     * @param plugin The plugin
      * @param task The task
-     * @return The task
+     * @return The scheduled task
      */
-    Task submit(final Object plugin, final Task task);
+    ScheduledTask submit(Task task);
 }
