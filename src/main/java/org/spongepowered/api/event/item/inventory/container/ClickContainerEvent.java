@@ -27,6 +27,9 @@ package org.spongepowered.api.event.item.inventory.container;
 import org.spongepowered.api.event.item.inventory.ChangeInventoryEvent;
 import org.spongepowered.api.event.item.inventory.DropItemEvent;
 import org.spongepowered.api.item.inventory.Container;
+import org.spongepowered.api.item.inventory.Slot;
+
+import java.util.Optional;
 
 import org.spongepowered.api.item.inventory.Slot;
 

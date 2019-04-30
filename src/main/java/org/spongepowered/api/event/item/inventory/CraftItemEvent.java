@@ -77,5 +77,13 @@ public interface CraftItemEvent extends ChangeInventoryEvent {
          * @return The crafting transaction
          */
         ItemStackSnapshot getCrafted();
+
+        /**
+         * Returns the crafting output Slot.
+         *
+         * @return The crafting output Slot
+         */
+        @Override
+        Optional<Slot> getSlot();
     }
 }
