@@ -138,7 +138,7 @@ public interface SmeltingRecipe extends Recipe {
          * @return This builder, for chaining
          */
         default ResultStep ingredient(ItemType ingredient) {
-            return ingredient(itemStackSnapshot -> itemStackSnapshot.getType() == ingredient, ingredient.getTemplate());
+            return ingredient(itemStackSnapshot -> itemStackSnapshot.getType() == ingredient, ItemStack.of(ingredient).createSnapshot());
         }
 
         interface ResultStep extends Builder {

@@ -41,7 +41,6 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.TeleportHelper;
 
 import java.nio.file.Path;
-import java.util.Optional;
 
 /**
  * The core accessor of the API. The implementation uses this to pass
@@ -120,15 +119,6 @@ public interface Game {
      */
     default Client getClient() {
         throw new UnsupportedEngineException("The client engine is not supported.");
-    }
-
-    /**
-     * Retrieves the GameDictionary (item dictionary) for this {@link Game}.
-     *
-     * @return The item dictionary, or empty if unsupported
-     */
-    default Optional<GameDictionary> getGameDictionary() {
-        return Optional.empty();
     }
 
     /**
