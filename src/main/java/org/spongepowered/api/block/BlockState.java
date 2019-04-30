@@ -26,20 +26,13 @@ package org.spongepowered.api.block;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.tileentity.TileEntity;
-import org.spongepowered.api.data.property.LocationBasePropertyHolder;
-import org.spongepowered.api.fluid.FluidState;
-import org.spongepowered.api.state.State;
 import org.spongepowered.api.data.ImmutableDataBuilder;
-import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.property.DirectionRelativePropertyHolder;
-import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.state.StateContainer;
-import org.spongepowered.api.util.Cycleable;
+import org.spongepowered.api.fluid.FluidState;
+import org.spongepowered.api.state.State;
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
 
 /**
  * Represents a particular "state" that can exist at a {@link Location} with
@@ -48,7 +41,7 @@ import org.spongepowered.api.world.World;
  * a single instance of a particular {@link BlockState} as they are immutable,
  * a particular instance may be cached for various uses.
  */
-public interface BlockState extends State<BlockState>, LocationBasePropertyHolder, DirectionRelativePropertyHolder {
+public interface BlockState extends State<BlockState>, DirectionRelativePropertyHolder {
 
     /**
      * Creates a new {@link Builder} for building {@link BlockState}s.
@@ -99,7 +92,6 @@ public interface BlockState extends State<BlockState>, LocationBasePropertyHolde
      * @return The newly created snapshot
      */
     BlockSnapshot snapshotFor(Location location);
-
 
     /**
      * An {@link ImmutableDataBuilder} for a {@link BlockState}. Just like the
