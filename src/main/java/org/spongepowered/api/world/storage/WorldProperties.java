@@ -39,6 +39,7 @@ import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldBorder;
 import org.spongepowered.api.world.difficulty.Difficulty;
+import org.spongepowered.api.world.gamerule.GameRuleHolder;
 import org.spongepowered.api.world.gen.GeneratorType;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 import org.spongepowered.api.world.teleport.PortalAgentType;
@@ -46,13 +47,12 @@ import org.spongepowered.api.world.weather.WeatherUniverse;
 
 import java.time.Duration;
 import java.util.Collection;
-import java.util.Map;
 import java.util.Optional;
 
 /**
  * Represents the properties of a {@link World} which are persisted across runtime instances.
  */
-public interface WorldProperties extends WeatherUniverse, DataSerializable, Identifiable {
+public interface WorldProperties extends WeatherUniverse, DataSerializable, Identifiable, GameRuleHolder {
 
     /**
      * Gets whether this world has been initialized.
@@ -317,38 +317,6 @@ public interface WorldProperties extends WeatherUniverse, DataSerializable, Iden
      * @return The world border
      */
     WorldBorder getBorder();
-
-    /**
-     * Gets the specified GameRule value.
-     **
-     * @param gameRule The name of the GameRule.
-     * @return The GameRule value, if it exists.
-     */
-    Optional<String> getGameRule(String gameRule);
-
-    /**
-     * Gets a map of the currently set game rules and their values.
-     *
-     * @return An immutable map of the game rules
-     */
-    Map<String, String> getGameRules();
-
-    /**
-     * Sets the specified GameRule value. If one with this name does not exist,
-     * it will be created.
-     *
-     * @param gameRule The name of the GameRule.
-     * @param value The value to set the GameRule to.
-     */
-    void setGameRule(String gameRule, String value);
-
-    /**
-     * Removes custom GameRule.
-     *
-     * @param gameRule The name of the GameRule.
-     * @return True if GameRule was deleted, false if not
-     */
-    boolean removeGameRule(String gameRule);
 
     /**
      * Gets a {@link DataContainer} containing any additional properties for

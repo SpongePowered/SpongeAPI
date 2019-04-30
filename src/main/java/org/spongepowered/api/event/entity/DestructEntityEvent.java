@@ -29,7 +29,7 @@ import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
-import org.spongepowered.api.world.gamerule.DefaultGameRules;
+import org.spongepowered.api.world.gamerule.GameRules;
 
 /**
  * An event where the {@link Entity} is being either removed usually due to
@@ -64,7 +64,7 @@ public interface DestructEntityEvent extends MessageChannelEvent {
         Living getEntity();
 
         /**
-         * Applies the {@link DefaultGameRules#KEEP_INVENTORY} gamerule to this
+         * Applies the {@link GameRules#KEEP_INVENTORY} gamerule to this
          * entity alone.
          *
          * <p>This only works for players</p>
@@ -77,7 +77,7 @@ public interface DestructEntityEvent extends MessageChannelEvent {
          * Returns whether the inventory is kept after death.
          *
          * <p>By default this is the same as the
-         * {@link DefaultGameRules#KEEP_INVENTORY} gamerule.</p>
+         * {@link GameRules#KEEP_INVENTORY} gamerule.</p>
          *
          * @return Whether the inventory is kept after death.
          */
