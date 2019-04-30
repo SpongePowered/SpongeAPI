@@ -28,6 +28,7 @@ import org.spongepowered.api.event.item.inventory.ChangeInventoryEvent;
 import org.spongepowered.api.event.item.inventory.DropItemEvent;
 import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.Slot;
+import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 
 import java.util.Optional;
 
@@ -40,8 +41,11 @@ import java.util.Optional;
  */
 public interface ClickContainerEvent extends ChangeInventoryEvent, InteractContainerEvent {
 
+    @PropertySettings(requiredParameter = false, generateMethods = false)
     @Override
-    Container getInventory();
+    default Container getInventory() {
+        return getContainer();
+    }
 
     /**
      * A click with the primary mouse button.
