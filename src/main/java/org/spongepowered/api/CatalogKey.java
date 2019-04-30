@@ -141,7 +141,7 @@ public interface CatalogKey extends Comparable<CatalogKey> {
 
     interface Builder extends ResettableBuilder<CatalogKey, Builder> {
 
-        Builder namespace(String nameSpace);
+        Builder namespace(String namespace);
 
         Builder namespace(PluginContainer container);
 

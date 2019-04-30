@@ -29,8 +29,8 @@ package org.spongepowered.api;
  */
 public class UnsupportedEngineException extends UnsupportedOperationException {
 
-  public UnsupportedEngineException(final String message) {
-    super(message);
-  }
+    public UnsupportedEngineException(final String message) {
+        super(message);
+    }
 
 }

@@ -59,7 +59,9 @@ public interface DirectionRelativePropertyHolder {
      * @return The integer property value, if available
      * @see #getProperty(Direction, Property)
      */
-    OptionalInt getIntProperty(Direction direction, Property<Integer> property);
+    default OptionalInt getIntProperty(Direction direction, Property<Integer> property) {
+        return getProperty(direction, property).map(OptionalInt::of).orElse(OptionalInt.empty());
+    }
 
     /**
      * Attempts to retrieve a double value for the specified {@link Property} when
@@ -70,6 +72,8 @@ public interface DirectionRelativePropertyHolder {
      * @return The double property value, if available
      * @see #getProperty(Direction, Property)
      */
-    OptionalDouble getDoubleProperty(Direction direction, Property<Double> property);
+    default OptionalDouble getDoubleProperty(Direction direction, Property<Double> property) {
+        return getProperty(direction, property).map(OptionalDouble::of).orElse(OptionalDouble.empty());
+    }
 
 }
