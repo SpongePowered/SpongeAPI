@@ -26,7 +26,8 @@ package org.spongepowered.api.network;
 
 import org.spongepowered.api.data.DataView;
 
-import java.nio.ByteOrder;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.UUID;
 
 /**
@@ -40,7 +41,16 @@ public interface ChannelBuf {
      *
      * @return The number of bytes this buffer can contain
      */
-    int getCapacity();
+    int capacity();
+
+    /**
+     * Makes sure the number of the writable bytes is equal to
+     * or greater than the specified value.
+     *
+     * @param minWritableBytes The minimum writable bytes
+     * @return This stream for chaining
+     */
+    ChannelBuf ensureWritable(int minWritableBytes);
 
     /**
      * Gets the number of bytes available between the reader and the writer.
@@ -48,29 +58,6 @@ public interface ChannelBuf {
      * @return The number of available bytes
      */
     int available();
-
-    /**
-     * Returns a buffer with the specified endianness which shares the whole
-     * region, indexes, and marks of this buffer. Modifying the content, the
-     * indexes, or the marks of the returned buffer or this buffer affects
-     * each other's content, indexes, and marks.
-     * <p>If the specified endianness is identical to this buffer's byte
-     * order, this method can return this.</p>
-     * <p>This method does not modify readerIndex or writerIndex of this
-     * buffer.</p>
-     *
-     *
-     * @param order The order
-     * @return The ChannelStream with the desired byte order
-     */
-    ChannelBuf order(ByteOrder order);
-
-    /**
-     * Returns the endianness ({@link ByteOrder}) of this buffer.
-     *
-     * @return The current byte order of this buffer
-     */
-    ByteOrder getByteOrder();
 
     /**
      * Gets the readerIndex of this buffer.
@@ -85,7 +72,7 @@ public interface ChannelBuf {
      * @param index The new index
      * @return This stream for chaining
      */
-    ChannelBuf setReadIndex(int index);
+    ChannelBuf readerIndex(int index);
 
     /**
      * Gets the writerIndex of this buffer.
@@ -100,7 +87,7 @@ public interface ChannelBuf {
      * @param index The new index
      * @return This stream for chaining
      */
-    ChannelBuf setWriteIndex(int index);
+    ChannelBuf writerIndex(int index);
 
     /**
      * Sets both the reader and writer indices.
@@ -118,40 +105,6 @@ public interface ChannelBuf {
      * @return This stream for chaining
      */
     ChannelBuf clear();
-
-    /**
-     * Marks the current readerIndex in this buffer. You can reposition
-     * the current readerIndex to the marked readerIndex by calling
-     * resetRead(). The initial value of the marked readerIndex is 0.
-     *
-     * @return This stream for chaining
-     */
-    ChannelBuf markRead();
-
-    /**
-     * Marks the current writerIndex in this buffer. You can reposition
-     * the current writerIndex to the marked writerIndex by calling
-     * resetWrite(). The initial value of the marked writerIndex is 0.
-     *
-     * @return This stream for chaining
-     */
-    ChannelBuf markWrite();
-
-    /**
-     * Resets the current readerIndex in this buffer to the marked reader
-     * index.
-     *
-     * @return This stream for chaining
-     */
-    ChannelBuf resetRead();
-
-    /**
-     * Resets the current writerIndex in this buffer to the marked writer
-     * index.
-     *
-     * @return This stream for chaining
-     */
-    ChannelBuf resetWrite();
 
     /**
      * Returns a slice of this buffer's readable bytes. Modifying the content
@@ -404,8 +357,8 @@ public interface ChannelBuf {
     byte[] readBytes(int index, int length);
 
     /**
-     * Sets the specified short integer at the current writerIndex and
-     * increases the writerIndex by 2 in this buffer.
+     * Sets the specified short integer at the current writerIndex of this
+     * buffer and increases the writerIndex by 2.
      *
      * @param data The short data
      * @return This stream for chaining
@@ -413,9 +366,18 @@ public interface ChannelBuf {
     ChannelBuf writeShort(short data);
 
     /**
-     * Sets the short at the specified absolute index in this
-     * buffer. This method does not modify readerIndex or writerIndex
-     * of this buffer.
+     * Sets the specified short integer at the current writerIndex in
+     * little endian byte order and increases the writerIndex by 2 in
+     * this buffer.
+     *
+     * @param data The short data
+     * @return This stream for chaining
+     */
+    ChannelBuf writeShortLE(short data);
+
+    /**
+     * Sets the short at the specified absolute index of this
+     * buffer. This method does not modify readerIndex or writerIndex.
      *
      * @param index The index
      * @param data The short data
@@ -424,15 +386,34 @@ public interface ChannelBuf {
     ChannelBuf setShort(int index, short data);
 
     /**
-     * Gets a short integer at the current readerIndex and increases the
-     * readerIndex by 2 in this buffer.
+     * Sets the short at the specified absolute index of this
+     * buffer in little endian byte order. This method does
+     * not modify readerIndex or writerIndex.
+     *
+     * @param index The index
+     * @param data The short data
+     * @return This stream for chaining
+     */
+    ChannelBuf setShortLE(int index, short data);
+
+    /**
+     * Gets a short integer at the current readerIndex from this buffer
+     * and increases the readerIndex by 2.
      *
      * @return The short integer
      */
     short readShort();
 
     /**
-     * Gets a short integer at the specified absolute index in this buffer.
+     * Gets a short integer at the current readerIndex from this buffer
+     * in little endian byte order and increases the readerIndex by 2.
+     *
+     * @return The short integer
+     */
+    short readShortLE();
+
+    /**
+     * Gets a short integer at the specified absolute index from this buffer.
      *
      * @param index The index
      * @return The short integer
@@ -440,8 +421,17 @@ public interface ChannelBuf {
     short getShort(int index);
 
     /**
-     * Sets the specified character at the current writerIndex and
-     * increases the writerIndex by 2 in this buffer.
+     * Gets a short integer at the specified absolute index from this buffer
+     * in little endian byte order.
+     *
+     * @param index The index
+     * @return The short integer
+     */
+    short getShortLE(int index);
+
+    /**
+     * Sets the specified character at the current writerIndex of this
+     * buffer and increases the writerIndex by 2.
      *
      * @param data The char data
      * @return This stream for chaining
@@ -449,9 +439,8 @@ public interface ChannelBuf {
     ChannelBuf writeChar(char data);
 
     /**
-     * Sets the char at the specified absolute index in this
-     * buffer. This method does not modify readerIndex or writerIndex
-     * of this buffer.
+     * Sets the char at the specified absolute index of this
+     * buffer. This method does not modify readerIndex or writerIndex.
      *
      * @param index The index
      * @param data The char data
@@ -460,15 +449,15 @@ public interface ChannelBuf {
     ChannelBuf setChar(int index, char data);
 
     /**
-     * Gets a character at the current readerIndex and increases the
-     * readerIndex by 2 in this buffer.
+     * Gets a character at the current readerIndex from this buffer and
+     * increases the readerIndex by 2.
      *
      * @return The character
      */
     char readChar();
 
     /**
-     * Gets a character at the specified absolute index in this buffer.
+     * Gets a character at the specified absolute index from this buffer.
      *
      * @param index The index
      * @return The character
@@ -476,44 +465,80 @@ public interface ChannelBuf {
     char getChar(int index);
 
     /**
-     * Sets the specified integer at the current writerIndex and increases
-     * the writerIndex by 4 in this buffer.
+     * Sets the specified integer at the current writerIndex of this
+     * buffer and increases the writerIndex by 4.
      *
      * @param data The integer data
      * @return This stream for chaining
      */
-    ChannelBuf writeInteger(int data);
+    ChannelBuf writeInt(int data);
 
     /**
-     * Sets the integer at the specified absolute index in this
-     * buffer. This method does not modify readerIndex or writerIndex
-     * of this buffer.
+     * Sets the specified integer at the current writerIndex of this
+     * buffer in little endian byte order and increases the writerIndex by 4.
+     *
+     * @param data The integer data
+     * @return This stream for chaining
+     */
+    ChannelBuf writeIntLE(int data);
+
+    /**
+     * Sets the integer at the specified absolute index of this
+     * buffer. This method does not modify readerIndex or writerIndex.
      *
      * @param index The index
      * @param data The integer data
      * @return This stream for chaining
      */
-    ChannelBuf setInteger(int index, int data);
+    ChannelBuf setInt(int index, int data);
 
     /**
-     * Gets an integer at the current readerIndex and increases the
-     * readerIndex by 4 in this buffer.
+     * Sets the integer at the specified absolute index of this
+     * buffer in little endian byte order. This method does not
+     * modify readerIndex or writerIndex.
+     *
+     * @param index The index
+     * @param data The integer data
+     * @return This stream for chaining
+     */
+    ChannelBuf setIntLE(int index, int data);
+
+    /**
+     * Gets an integer at the current readerIndex from this buffer
+     * and increases the readerIndex by 4.
      *
      * @return The integer
      */
-    int readInteger();
+    int readInt();
 
     /**
-     * Gets an integer at the specified absolute index in this buffer.
+     * Gets an integer at the current readerIndex in little endian byte order
+     * from this buffer and increases the readerIndex by 4.
+     *
+     * @return The integer
+     */
+    int readIntLE();
+
+    /**
+     * Gets an integer at the specified absolute index from this buffer.
      *
      * @param index The index
      * @return The integer
      */
-    int getInteger(int index);
+    int getInt(int index);
 
     /**
-     * Sets the specified long integer at the current writerIndex and
-     * increases the writerIndex by 8 in this buffer.
+     * Gets an integer at the specified absolute index from this buffer
+     * in little endian byte order.
+     *
+     * @param index The index
+     * @return The integer
+     */
+    int getIntLE(int index);
+
+    /**
+     * Sets the specified long integer at the current writerIndex of
+     * this buffer and increases the writerIndex by 8.
      *
      * @param data The long data
      * @return This stream for chaining
@@ -521,9 +546,18 @@ public interface ChannelBuf {
     ChannelBuf writeLong(long data);
 
     /**
-     * Sets the long integer at the specified absolute index in this
-     * buffer. This method does not modify readerIndex or writerIndex
-     * of this buffer.
+     * Sets the specified long integer at the current writerIndex of
+     * this buffer in little endian byte order and increases the
+     * writerIndex by 8.
+     *
+     * @param data The long data
+     * @return This stream for chaining
+     */
+    ChannelBuf writeLongLE(long data);
+
+    /**
+     * Sets the long integer at the specified absolute index of this
+     * buffer. This method does not modify readerIndex or writerIndex.
      *
      * @param index The index
      * @param data The long data
@@ -532,15 +566,35 @@ public interface ChannelBuf {
     ChannelBuf setLong(int index, long data);
 
     /**
-     * Gets a long integer at the current readerIndex and increases the
-     * readerIndex by 8 in this buffer.
+     * Sets the long integer at the specified absolute index of this
+     * buffer in little endian byte order. This method does not modify
+     * readerIndex or writerIndex.
+     *
+     * @param index The index
+     * @param data The long data
+     * @return This stream for chaining
+     */
+    ChannelBuf setLongLE(int index, long data);
+
+    /**
+     * Gets a long integer at the current readerIndex from this buffer
+     * and increases the readerIndex by 8.
      *
      * @return The long integer
      */
     long readLong();
 
     /**
-     * Gets a long integer at the specified absolute index in this buffer.
+     * Gets a long integer at the current readerIndex from this buffer
+     * in little endian byte order and increases the readerIndex by 8.
+     *
+     * @return The long integer
+     */
+    long readLongLE();
+
+    /**
+     * Gets a long integer at the specified absolute index from this
+     * buffer. This method does not modify readerIndex.
      *
      * @param index The index
      * @return The long integer
@@ -548,8 +602,18 @@ public interface ChannelBuf {
     long getLong(int index);
 
     /**
-     * Sets the specified float at the current writerIndex and increases
-     * the writerIndex by 4 in this buffer.
+     * Gets a long integer at the specified absolute index from this
+     * buffer in little endian byte order. This method does not modify
+     * readerIndex.
+     *
+     * @param index The index
+     * @return The long integer
+     */
+    long getLongLE(int index);
+
+    /**
+     * Sets the specified float at the current writerIndex of this buffer
+     * and increases the writerIndex by 4.
      *
      * @param data The float data
      * @return This stream for chaining
@@ -557,9 +621,17 @@ public interface ChannelBuf {
     ChannelBuf writeFloat(float data);
 
     /**
-     * Sets the float at the specified absolute index in this
-     * buffer. This method does not modify readerIndex or writerIndex
-     * of this buffer.
+     * Sets the specified float at the current writerIndex of this buffer
+     * in little endian byte order and increases the writerIndex by 4.
+     *
+     * @param data The float data
+     * @return This stream for chaining
+     */
+    ChannelBuf writeFloatLE(float data);
+
+    /**
+     * Sets the float at the specified absolute index of this
+     * buffer. This method does not modify readerIndex or writerIndex.
      *
      * @param index The index
      * @param data The float data
@@ -568,15 +640,35 @@ public interface ChannelBuf {
     ChannelBuf setFloat(int index, float data);
 
     /**
-     * Gets a float at the current readerIndex and increases the
-     * readerIndex by 4 in this buffer.
+     * Sets the float at the specified absolute index of this
+     * buffer in little endian byte order. This method does not modify
+     * readerIndex or writerIndex.
+     *
+     * @param index The index
+     * @param data The float data
+     * @return This stream for chaining
+     */
+    ChannelBuf setFloatLE(int index, float data);
+
+    /**
+     * Gets a float at the current readerIndex of this buffer and
+     * increases the readerIndex by 4.
      *
      * @return The float
      */
     float readFloat();
 
     /**
-     * Gets a float at the specified absolute index in this buffer.
+     * Gets a float at the current readerIndex of this buffer in
+     * little endian byte order and increases the readerIndex by 4.
+     *
+     * @return The float
+     */
+    float readFloatLE();
+
+    /**
+     * Gets a float at the specified absolute index from this buffer.
+     * This method does not modify readerIndex.
      *
      * @param index The index
      * @return The string
@@ -584,8 +676,17 @@ public interface ChannelBuf {
     float getFloat(int index);
 
     /**
-     * Sets the specified double at the current writerIndex and increases
-     * the writerIndex by 8 in this buffer.
+     * Gets a float at the specified absolute index from this buffer in
+     * little endian byte order. This method does not modify readerIndex.
+     *
+     * @param index The index
+     * @return The string
+     */
+    float getFloatLE(int index);
+
+    /**
+     * Sets the specified double at the current writerIndex of this buffer
+     * and increases the writerIndex by 8.
      *
      * @param data The double data
      * @return This stream for chaining
@@ -593,15 +694,34 @@ public interface ChannelBuf {
     ChannelBuf writeDouble(double data);
 
     /**
-     * Sets the double at the specified absolute index in this
-     * buffer. This method does not modify readerIndex or writerIndex
-     * of this buffer.
+     * Sets the specified double at the current writerIndex of this buffer
+     * in little endian byte order and increases the writerIndex by 8.
+     *
+     * @param data The double data
+     * @return This stream for chaining
+     */
+    ChannelBuf writeDoubleLE(double data);
+
+    /**
+     * Sets the double at the specified absolute index of this
+     * buffer. This method does not modify readerIndex or writerIndex.
      *
      * @param index The index
      * @param data The double data
      * @return This stream for chaining
      */
     ChannelBuf setDouble(int index, double data);
+
+    /**
+     * Sets the double at the specified absolute index of this
+     * buffer in little endian byte order. This method does not modify
+     * readerIndex or writerIndex.
+     *
+     * @param index The index
+     * @param data The double data
+     * @return This stream for chaining
+     */
+    ChannelBuf setDoubleLE(int index, double data);
 
     /**
      * Gets a double at the current readerIndex and increases the
@@ -612,12 +732,30 @@ public interface ChannelBuf {
     double readDouble();
 
     /**
+     * Gets a double at the current readerIndex from this buffer
+     * in little endian byte order and increases the readerIndex by 8.
+     *
+     * @return The double
+     */
+    double readDoubleLE();
+
+    /**
      * Gets a double at the specified absolute index in this buffer.
+     * This method does not modify readerIndex.
      *
      * @param index The index
      * @return The double
      */
     double getDouble(int index);
+
+    /**
+     * Gets a double at the specified absolute index from this buffer
+     * in little endian byte order. This method does not modify readerIndex.
+     *
+     * @param index The index
+     * @return The double
+     */
+    double getDoubleLE(int index);
 
     /**
      * Sets the specified varint at the current writerIndex and increases the
@@ -677,6 +815,49 @@ public interface ChannelBuf {
      * @return The double
      */
     int getVarInt(int index);
+
+    /**
+     * Sets the specified varlong at the current writerIndex and increases the
+     * writerIndex by the number of bytes written.
+     *
+     * <p>The number of bytes written depends on the size of the value.</p>
+     *
+     * @param value The varlong value
+     * @return This stream for chaining
+     */
+    ChannelBuf writeVarLong(long value);
+
+    /**
+     * Sets the specified varlong at the specified absolute index in this buffer.
+     * This method does not modify readerIndex or writerIndex of this buffer.
+     *
+     * <p>The number of bytes written depends on the size of the value.</p>
+     *
+     * @param index The index
+     * @param value The varlong value
+     * @return This stream for chaining
+     */
+    ChannelBuf setVarLong(int index, long value);
+
+    /**
+     * Gets a varlong at the current readerIndex and increases the readerIndex by
+     * the number of bytes read.
+     *
+     * <p>The number of bytes read depends on the size of the value.</p>
+     *
+     * @return The varlong value
+     */
+    long readVarLong();
+
+    /**
+     * Gets a varlong at the specified absolute index in this buffer.
+     *
+     * <p>The number of bytes read depends on the size of the value.</p>
+     *
+     * @param index The index
+     * @return The varlong value
+     */
+    long getVarLong(int index);
 
     /**
      * Sets the specified string at the current writerIndex and increases the
@@ -847,4 +1028,17 @@ public interface ChannelBuf {
      */
     DataView getDataView(int index);
 
+    /**
+     * Gets this {@link ChannelBuf} as a {@link OutputStream}.
+     *
+     * @return The output stream
+     */
+    OutputStream asOutputStream();
+
+    /**
+     * Gets this {@link ChannelBuf} as a {@link InputStream}.
+     *
+     * @return The input stream
+     */
+    InputStream asInputStream();
 }
