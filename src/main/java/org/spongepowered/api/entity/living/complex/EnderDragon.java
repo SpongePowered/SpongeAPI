@@ -67,5 +67,4 @@ public interface EnderDragon extends ComplexLiving, Boss, Aerial, ProjectileLaun
      * @return The phase manager
      */
     EnderDragonPhaseManager getPhaseManager();
-
 }
