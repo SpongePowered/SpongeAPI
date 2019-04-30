@@ -149,7 +149,11 @@ public interface Advancement extends NamedCatalogType, TextRepresentable {
         Builder name(String name);
 
         @Override
+        default Builder from(Advancement value) {
+            throw new UnsupportedOperationException("Duplicating advancements isn't allowed.");
+        }
+
+        @Override
         Advancement build();
     }
-
 }

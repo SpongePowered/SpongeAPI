@@ -45,6 +45,11 @@ public interface CatalogBuilder<C extends CatalogType, B extends ResettableBuild
      */
     B key(CatalogKey key);
 
+    @Override
+    default B from(C value) {
+        throw new UnsupportedOperationException("Duplicating catalog types isn't allowed.");
+    }
+
     /**
      * Builds the {@link CatalogType} of type {@link C}.
      *
@@ -55,9 +60,4 @@ public interface CatalogBuilder<C extends CatalogType, B extends ResettableBuild
      * @throws IllegalStateException If not all required options were specified
      */
     C build() throws IllegalStateException;
-
-    @Override
-    default B from(C value) {
-        throw new UnsupportedOperationException("Duplicating catalog types isn't allowed.");
-    }
 }

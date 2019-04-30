@@ -134,6 +134,15 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
              */
             @Override
             ShapelessCraftingRecipe build() throws IllegalStateException;
+
+            /**
+             * @deprecated It's not allowed to duplicate shapeless crafting recipes.
+             */
+            @Deprecated
+            @Override
+            default Builder from(ShapelessCraftingRecipe value) {
+                throw new UnsupportedOperationException("Duplicating shapeless crafting recipes isn't allowed.");
+            }
         }
 
     }
