@@ -213,13 +213,6 @@ public interface GameRegistry {
     <T extends ResettableBuilder<?, ? super T>> T createBuilder(Class<T> builderClass) throws IllegalArgumentException;
 
     /**
-     * Gets a {@link Collection} of the default GameRules.
-     *
-     * @return The default GameRules.
-     */
-    Collection<String> getDefaultGameRules();
-
-    /**
      * Gets the {@link Rotation} with the provided degrees.
      *
      * @param degrees The degrees of the rotation
