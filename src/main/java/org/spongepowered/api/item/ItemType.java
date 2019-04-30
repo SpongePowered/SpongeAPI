@@ -26,7 +26,7 @@ package org.spongepowered.api.item;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.data.Property;
+import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -37,7 +37,7 @@ import java.util.Optional;
  * A type of item.
  */
 @CatalogedBy(ItemTypes.class)
-public interface ItemType extends CatalogType, Translatable {
+public interface ItemType extends CatalogType, Translatable, PropertyHolder {
 
     /**
      * Gets the corresponding {@link BlockType} of this item if one exists.
@@ -53,21 +53,4 @@ public interface ItemType extends CatalogType, Translatable {
      * @return Max stack quantity
      */
     int getMaxStackQuantity();
-
-    /**
-     * Gets the default {@link Property} of this {@link ItemType}.
-     *
-     * <p>While item stacks do have properties, generally, there is an
-     * intrinsic default property for many item types. However, it should be
-     * considered that when mods are introducing their own custom items, they
-     * too could introduce different item properties based on various data on
-     * the item stack. The default properties retrieved from here should merely
-     * be considered as a default, not as a definitive property.</p>
-     *
-     * @param propertyClass The item property class
-     * @param <T> The type of item property
-     * @return The item property, if available
-     */
-    <T extends Property<?, ?>> Optional<T> getDefaultProperty(Class<T> propertyClass);
-
 }

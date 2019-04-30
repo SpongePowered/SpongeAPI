@@ -38,11 +38,12 @@ import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.DataView;
-import org.spongepowered.api.data.Property;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.merge.MergeFunction;
 import org.spongepowered.api.data.persistence.InvalidDataException;
+import org.spongepowered.api.data.property.DirectionRelativePropertyHolder;
+import org.spongepowered.api.data.property.Property;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.entity.Entity;
@@ -62,7 +63,10 @@ import org.spongepowered.api.world.volume.entity.MutableEntityVolume;
 import java.time.Duration;
 import java.time.temporal.TemporalUnit;
 import java.util.Collection;
+import java.util.Map;
 import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
 import java.util.Set;
 import java.util.function.BiFunction;
 
@@ -72,7 +76,7 @@ import java.util.function.BiFunction;
  * <p>Locations are immutable. Methods that change the properties of the
  * location create a new instance.</p>
  */
-public interface Location extends DataHolder {
+public interface Location extends DataHolder, DirectionRelativePropertyHolder {
 
     static Location of(World world, double x, double y, double z) {
         return Sponge.getRegistry().requireFactory(Factory.class).create(world, x, y, z);
@@ -722,13 +726,38 @@ public interface Location extends DataHolder {
     }
 
     @Override
-    default <T extends Property<?, ?>> Optional<T> getProperty(Class<T> propertyClass) {
-        return getWorld().getProperty(this.getBlockPosition(), propertyClass);
+    default <V> Optional<V> getProperty(Property<V> property) {
+        return this.getWorld().getProperty(this.getBlockPosition(), property);
     }
 
     @Override
-    default Collection<Property<?, ?>> getApplicableProperties() {
+    default OptionalInt getIntProperty(Property<Integer> property) {
+        return this.getWorld().getIntProperty(this.getBlockPosition(), property);
+    }
+
+    @Override
+    default OptionalDouble getDoubleProperty(Property<Double> property) {
+        return this.getWorld().getDoubleProperty(this.getBlockPosition(), property);
+    }
+
+    @Override
+    default Map<Property<?>, ?> getProperties() {
         return this.getWorld().getProperties(this.getBlockPosition());
+    }
+
+    @Override
+    default <V> Optional<V> getProperty(Direction direction, Property<V> property) {
+        return this.getWorld().getProperty(this.getBlockPosition(), direction, property);
+    }
+
+    @Override
+    default OptionalInt getIntProperty(Direction direction, Property<Integer> property) {
+        return this.getWorld().getIntProperty(this.getBlockPosition(), direction, property);
+    }
+
+    @Override
+    default OptionalDouble getDoubleProperty(Direction direction, Property<Double> property) {
+        return this.getWorld().getDoubleProperty(this.getBlockPosition(), direction, property);
     }
 
     @Override

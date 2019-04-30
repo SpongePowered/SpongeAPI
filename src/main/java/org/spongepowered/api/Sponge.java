@@ -31,7 +31,7 @@ import org.spongepowered.api.asset.AssetManager;
 import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.data.property.PropertyRegistry;
-import org.spongepowered.api.data.property.PropertyStore;
+import org.spongepowered.api.data.property.store.PropertyStore;
 import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.network.ChannelRegistrar;

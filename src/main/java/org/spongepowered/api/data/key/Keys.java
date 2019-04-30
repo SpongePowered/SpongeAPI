@@ -60,6 +60,7 @@ import org.spongepowered.api.data.manipulator.mutable.WetData;
 import org.spongepowered.api.data.manipulator.mutable.block.AttachedData;
 import org.spongepowered.api.data.manipulator.mutable.block.AxisData;
 import org.spongepowered.api.data.manipulator.mutable.block.BigMushroomPoresData;
+import org.spongepowered.api.data.manipulator.mutable.block.ChestAttachmentData;
 import org.spongepowered.api.data.manipulator.mutable.block.ComparatorData;
 import org.spongepowered.api.data.manipulator.mutable.block.ConnectedDirectionData;
 import org.spongepowered.api.data.manipulator.mutable.block.DecayableData;
@@ -188,7 +189,7 @@ import org.spongepowered.api.data.manipulator.mutable.tileentity.FurnaceData;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.LockableData;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.SignData;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.StructureData;
-import org.spongepowered.api.data.property.entity.DominantHandProperty;
+import org.spongepowered.api.data.property.Properties;
 import org.spongepowered.api.data.type.Art;
 import org.spongepowered.api.data.type.BodyPart;
 import org.spongepowered.api.data.type.BodyParts;
@@ -915,7 +916,7 @@ public final class Keys {
      *
      * <p><em>NOTE:</em> Does not apply to {@link Player}s as their
      * {@link HandPreference} can not be changed server-side.
-     * See {@link DominantHandProperty}.</p>
+     * See {@link Properties#DOMINANT_HAND}.</p>
      *
      * @see DominantHandData#dominantHand()
      */
