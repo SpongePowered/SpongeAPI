@@ -27,6 +27,7 @@ package org.spongepowered.api.world.gen;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.biome.ImmutableBiomeVolume;
 import org.spongepowered.api.world.gen.populator.RandomObject;
+import org.spongepowered.api.world.volume.block.MutableBlockVolume;
 
 import java.util.Random;
 
@@ -65,22 +66,25 @@ public interface Populator<C extends PopulatorConfig> {
     PopulatorType getType();
 
     /**
-     * Applies the populator to the given {@link World} volume. The entire volume
-     * of the given extent should be populated.
-     * 
+     * Applies the populator to the given {@link PrimitiveChunk} volume. The
+     * entire volume of the should be populated.
+     *
      * <p>Due to their transitive nature virtual biomes cannot be fetched from
      * the given extent, instead your populator should override
      * {@link #populate(World, World, Random, ImmutableBiomeVolume)} to make use
      * of the ImmutableBiomeArea which does contain virtual biome types.</p>
-     * @param world The World within which the generation in happening
+     * @param region The region within which the generation in happening
      * @param volume The volume to be populated
-     * @param config
+     * @param random A random number generator. This random number generator is
+     *        based on the world seed and the chunk position. It is shared with
+     *        with other populators
+     * @param config The populator configuration that should be used
      */
-    void populate(GenerationRegion world, PrimitiveChunk volume, ImmutableBiomeVolume biomes, C config);
+    void populate(GenerationRegion region, PrimitiveChunk volume, ImmutableBiomeVolume biomes, Random random, C config);
 
     /**
-     * Applies the populator to the given {@link World} volume. The entire volume
-     * of the given extent should be populated.
+     * Applies the populator to the given {@link MutableBlockVolume}. The
+     * entire volume should be populated.
      *
      * @param world The World within which the generation in happening
      * @param volume The volume to be populated
@@ -90,7 +94,8 @@ public interface Populator<C extends PopulatorConfig> {
      * @param virtualBiomes A biome volume for the extent being populated which
      *        includes any virtual biomes not persisted to the world
      */
-    default void populate(World world, PrimitiveChunk volume, Random random, ImmutableBiomeVolume virtualBiomes) {
-        populate(world, volume, random, null);
-    }
+    /*
+    default void populate(World world, MutableBlockVolume<?> volume, Random random, ImmutableBiomeVolume virtualBiomes) {
+        populate(world, volume, random);
+    }*/
 }

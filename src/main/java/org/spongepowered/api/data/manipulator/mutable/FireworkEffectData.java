@@ -36,14 +36,15 @@ import org.spongepowered.api.item.inventory.ItemStack;
 /**
  * A {@link DataManipulator} handling the various
  * {@link FireworkEffect}s associated with a {@link Firework} and
- * an {@link ItemStack} that is of the {@link ItemTypes#FIREWORKS} or {@link ItemTypes#FIREWORK_CHARGE}.
+ * an {@link ItemStack} that is of the {@link ItemTypes#FIREWORK_ROCKET}
+ * or {@link ItemTypes#FIREWORK_STAR}.
  */
 public interface FireworkEffectData extends ListData<FireworkEffect, FireworkEffectData, ImmutableFireworkEffectData> {
 
     /**
      * Gets the {@link ListValue} of {@link FireworkEffect}s.
      *
-     * <p>Note that for {@link ItemTypes#FIREWORK_CHARGE} only the first effect
+     * <p>Note that for {@link ItemTypes#FIREWORK_STAR} only the first effect
      * will apply to the charge.</p>
      *
      * @return The list value of firework effects

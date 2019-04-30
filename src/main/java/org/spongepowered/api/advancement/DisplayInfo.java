@@ -113,7 +113,7 @@ public interface DisplayInfo {
         Builder type(AdvancementType advancementType);
 
         /**
-         * Sets the description. Defaults to {@link Text#EMPTY}.
+         * Sets the description. Defaults to {@link Text#empty()}.
          *
          * @param description The description
          * @return This builder, for chaining

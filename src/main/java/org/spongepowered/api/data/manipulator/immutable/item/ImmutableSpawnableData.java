@@ -33,7 +33,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 /**
  * An {@link ImmutableVariantData} handling the {@link EntityType} that an
  * {@link ItemStack} is capable of spawning when used. Usually applicable to
- * {@link ItemStack}s of type {@link ItemTypes#SPAWN_EGG}.
+ * spawn eggs, e.g. a {@link ItemStack} with type {@link ItemTypes#BAT_SPAWN_EGG}.
  */
 public interface ImmutableSpawnableData extends ImmutableVariantData<EntityType, ImmutableSpawnableData, SpawnableData> {
 

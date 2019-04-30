@@ -50,13 +50,8 @@ import org.spongepowered.api.world.volume.tileentity.MutableTileEntityVolume;
  * <p>In Minecraft, the chunk is 16 by 16 blocks on the X and Z axes. The height
  * of each chunk varies between worlds.</p>
  */
-public interface ProtoChunk<P extends ProtoChunk<P>>
-    extends MutableBlockVolume<P>,
-    MutableTileEntityVolume<P>,
-    MutableBiomeVolume<P>,
-    LightCalculatingVolume,
-    TickableVolume
-{
+public interface ProtoChunk<P extends ProtoChunk<P>> extends
+        MutableBlockVolume<P>, MutableTileEntityVolume<P>, MutableBiomeVolume<P>, LightCalculatingVolume, TickableVolume {
 
     /**
      * Adds the {@link Entity} to this {@link ProtoChunk chunk}. It is not

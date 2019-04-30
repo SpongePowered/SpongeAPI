@@ -41,7 +41,7 @@ public class TransformTest {
     private World mockWorld2;
 
     @Before
-    public void generateMockWorld() {
+    public void generateMockExtent() {
         this.mockWorld1 = Mockito.when(Mockito.mock(World.class).isLoaded()).thenReturn(false).getMock();
         this.mockWorld2 = Mockito.when(Mockito.mock(World.class).isLoaded()).thenReturn(true).getMock();
     }
