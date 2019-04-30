@@ -24,18 +24,49 @@
  */
 package org.spongepowered.api.statistic;
 
-import org.spongepowered.api.item.ItemType;
+import com.google.common.reflect.TypeToken;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-/**
- * Represents a {@link Statistic} on a particular {@link ItemType}.
- */
-public interface ItemStatistic extends Statistic {
+import java.util.Collection;
+
+@CatalogedBy(StatisticCategories.class)
+public interface StatisticCategory extends CatalogType, Translatable {
 
     /**
-     * Returns the {@link ItemType} this statistic is associated with.
+     * Gets all the {@link Statistic}s that are listed
+     * within this {@link StatisticCategory}.
      *
-     * @return ItemType of statistic
+     * @return The statistics
      */
-    ItemType getItemType();
+    Collection<? extends Statistic> getStatistics();
 
+    /**
+     * Represents a {@link StatisticCategory} that owns
+     * {@link Statistic}s for all the {@link CatalogType}s
+     * of a specific type.
+     *
+     * @param <T> The catalog type
+     */
+    interface ForCatalogType<T extends CatalogType> extends StatisticCategory {
+
+        @Override
+        Collection<Statistic.ForCatalog<T>> getStatistics();
+
+        /**
+         * Gets the {@link CatalogType} type.
+         *
+         * @return The catalog type
+         */
+        TypeToken<T> getCatalogType();
+
+        /**
+         * Gets the {@link Statistic.ForCatalog} for the given {@link CatalogType}.
+         *
+         * @param catalogType The catalog type
+         * @return The catalog statistic
+         */
+        Statistic.ForCatalog<T> getStatistic(T catalogType);
+    }
 }

@@ -70,11 +70,8 @@ import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMode;
 import org.spongepowered.api.service.economy.Currency;
 import org.spongepowered.api.service.economy.transaction.TransactionType;
-import org.spongepowered.api.statistic.BlockStatistic;
-import org.spongepowered.api.statistic.EntityStatistic;
-import org.spongepowered.api.statistic.ItemStatistic;
 import org.spongepowered.api.statistic.Statistic;
-import org.spongepowered.api.statistic.StatisticType;
+import org.spongepowered.api.statistic.StatisticCategory;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.chat.ChatVisibility;
 import org.spongepowered.api.text.format.TextColor;
@@ -104,7 +101,7 @@ import org.spongepowered.api.world.weather.Weather;
  * Enumeration of all known {@link CatalogType}s for autocompletion when using
  * the {@link GameRegistry} to retrieve specific types or all of a certain type.
  *
- * <p>These are generally useful for {@link GameRegistry#getType(Class, String)}
+ * <p>These are generally useful for {@link GameRegistry#getType(Class, CatalogKey)}
  * and {@link GameRegistry#getAllOf(Class)}.</p>
  */
 @SuppressWarnings({"rawtypes", "unused", "WeakerAccess"})
@@ -133,8 +130,6 @@ public final class CatalogTypes {
     public static final Class<BiomeType> BIOME_TYPE = BiomeType.class;
 
     public static final Class<BlockPaletteType> BLOCK_PALETTE_TYPE = BlockPaletteType.class;
-
-    public static final Class<BlockStatistic> BLOCK_STATISTIC = BlockStatistic.class;
 
     public static final Class<BlockType> BLOCK_TYPE = BlockType.class;
 
@@ -180,8 +175,6 @@ public final class CatalogTypes {
 
     public static final Class<EnchantmentType> ENCHANTMENT_TYPE = EnchantmentType.class;
 
-    public static final Class<EntityStatistic> ENTITY_STATISTIC = EntityStatistic.class;
-
     public static final Class<EntityType> ENTITY_TYPE = EntityType.class;
 
     public static final Class<EquipmentType> EQUIPMENT_TYPE = EquipmentType.class;
@@ -217,8 +210,6 @@ public final class CatalogTypes {
     public static final Class<InstrumentType> INSTRUMENT_TYPE = InstrumentType.class;
 
     public static final Class<InventoryArchetype> INVENTORY_ARCHETYPE = InventoryArchetype.class;
-
-    public static final Class<ItemStatistic> ITEM_STATISTIC = ItemStatistic.class;
 
     public static final Class<ItemType> ITEM_TYPE = ItemType.class;
 
@@ -280,7 +271,7 @@ public final class CatalogTypes {
 
     public static final Class<Statistic> STATISTIC = Statistic.class;
 
-    public static final Class<StatisticType> STATISTIC_TYPE = StatisticType.class;
+    public static final Class<StatisticCategory> STATISTIC_TYPE = StatisticCategory.class;
 
     public static final Class<TeleportType> TELEPORT_TYPE = TeleportType.class;
 
