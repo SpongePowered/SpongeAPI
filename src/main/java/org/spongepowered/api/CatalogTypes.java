@@ -217,6 +217,8 @@ public final class CatalogTypes {
 
     public static final Class<MushroomType> MUSHROOM_TYPE = MushroomType.class;
 
+    public static final Class<MusicDisc> MUSIC_DISC = MusicDisc.class;
+
     public static final Class<NotePitch> NOTE_PITCH = NotePitch.class;
 
     public static final Class<ObjectiveDisplayMode> OBJECTIVE_DISPLAY_MODE = ObjectiveDisplayMode.class;
@@ -249,8 +251,6 @@ public final class CatalogTypes {
 
     public static final Class<RailDirection> RAIL_DIRECTION = RailDirection.class;
 
-    public static final Class<MusicDisc> MUSIC_DISC = MusicDisc.class;
-
     public static final Class<Rotation> ROTATION = Rotation.class;
 
     public static final Class<SelectorType> SELECTOR_TYPE = SelectorType.class;
@@ -273,9 +273,9 @@ public final class CatalogTypes {
 
     public static final Class<StatisticCategory> STATISTIC_TYPE = StatisticCategory.class;
 
-    public static final Class<TeleportType> TELEPORT_TYPE = TeleportType.class;
-
     public static final Class<TeleportHelperFilter> TELEPORT_HELPER_FILTER = TeleportHelperFilter.class;
+
+    public static final Class<TeleportType> TELEPORT_TYPE = TeleportType.class;
 
     public static final Class<TextColor> TEXT_COLOR = TextColor.class;
 

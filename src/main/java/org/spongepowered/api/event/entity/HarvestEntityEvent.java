@@ -26,11 +26,13 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 /**
  * Called when an {@link Entity} has been killed and is being "harvested" (drops/etc). Happens
  * after {@link DestructEntityEvent}.
  */
+@GenerateFactoryMethod
 public interface HarvestEntityEvent extends ChangeEntityExperienceEvent {
 
     /**

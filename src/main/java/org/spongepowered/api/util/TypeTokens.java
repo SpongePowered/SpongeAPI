@@ -303,6 +303,10 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<PotionType>> POTION_VALUE_TOKEN = new TypeToken<Value<PotionType>>() {private static final long serialVersionUID = -1;};
 
+    public static final TypeToken<ProfileProperty> PROFILE_PROPERTY_TOKEN = new TypeToken<ProfileProperty>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Value<ProfileProperty>> PROFILE_PROPERTY_VALUE_TOKEN = new TypeToken<Value<ProfileProperty>>() {private static final long serialVersionUID = -1;};
+
     public static final TypeToken<RabbitType> RABBIT_TOKEN = new TypeToken<RabbitType>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<RabbitType>> RABBIT_VALUE_TOKEN = new TypeToken<Value<RabbitType>>() {private static final long serialVersionUID = -1;};
@@ -323,9 +327,9 @@ public final class TypeTokens {
 
     public static final TypeToken<SetValue<Direction>> SET_DIRECTION_VALUE_TOKEN = new TypeToken<SetValue<Direction>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<Set<String>> SET_STRING__TOKEN = new TypeToken<Set<String>>() {private static final long serialVersionUID = -1;};
-
     public static final TypeToken<SetValue<String>> SET_STRING_VALUE_TOKEN = new TypeToken<SetValue<String>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Set<String>> SET_STRING__TOKEN = new TypeToken<Set<String>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Short> SHORT_TOKEN = new TypeToken<Short>() {private static final long serialVersionUID = -1;};
 
@@ -384,10 +388,6 @@ public final class TypeTokens {
     public static final TypeToken<WireAttachmentType> WIRE_ATTACHMENT_TYPE_TOKEN = new TypeToken<WireAttachmentType>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<WireAttachmentType>> WIRE_ATTACHMENT_TYPE_VALUE_TOKEN = new TypeToken<Value<WireAttachmentType>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<ProfileProperty> PROFILE_PROPERTY_TOKEN = new TypeToken<ProfileProperty>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Value<ProfileProperty>> PROFILE_PROPERTY_VALUE_TOKEN = new TypeToken<Value<ProfileProperty>>() {private static final long serialVersionUID = -1;};
 
     // SORTFIELDS:OFF
 
