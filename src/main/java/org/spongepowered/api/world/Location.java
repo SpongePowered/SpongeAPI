@@ -51,12 +51,16 @@ import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.EventContext;
 import org.spongepowered.api.event.cause.entity.spawn.SpawnType;
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
-import org.spongepowered.api.scheduler.ScheduledTaskEntry;
+import org.spongepowered.api.fluid.FluidState;
+import org.spongepowered.api.fluid.FluidType;
+import org.spongepowered.api.scheduler.ScheduledUpdate;
 import org.spongepowered.api.scheduler.TaskPriority;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.volume.entity.MutableEntityVolume;
 
+import java.time.Duration;
+import java.time.temporal.TemporalUnit;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
@@ -411,6 +415,15 @@ public interface Location extends DataHolder {
     }
 
     /**
+     * Gets the {@link FluidState} for this position.
+     *
+     * @return The fluid state
+     */
+    default FluidState getFluid() {
+        return this.getWorld().getFluid(getBlockPosition());
+    }
+
+    /**
      * Checks for whether the block at this position contains tile entity data.
      *
      * @return True if the block at this position has tile entity data, false
@@ -603,32 +616,109 @@ public interface Location extends DataHolder {
     }
 
     /**
-     * Gets a list of {@link ScheduledTaskEntry}s on this block.
+     * Gets a list of {@link ScheduledUpdate}s for the block at this location.
      *
-     * @return A list of ScheduledBlockUpdates on this block
+     * @return A list of scheduled block updates on this location
      */
-    default Collection<ScheduledTaskEntry<BlockType>> getScheduledUpdates() {
-        return this.getWorld().getPendingBlockTasks().getScheduledUpdates(this.getBlockPosition());
+    default Collection<ScheduledUpdate<BlockType>> getScheduledBlockUpdates() {
+        return this.getWorld().getScheduledBlockUpdates().getScheduledAt(this.getBlockPosition());
     }
 
     /**
-     * Adds a new {@link ScheduledTaskEntry} to this block.
+     * Adds a new {@link ScheduledUpdate} for the block at this location.
      *
-     * @param priority The priority of the scheduled update
-     * @param ticks The ticks until the scheduled update should be processed
+     * @param delay The delay before the scheduled update should be processed
+     * @param temporalUnit The temporal unit of the delay
      * @return The newly created scheduled update
      */
-    default ScheduledTaskEntry<BlockType> addScheduledUpdate(TaskPriority priority, int ticks) {
-        return this.getWorld().getPendingBlockTasks().scheduleUpdate(this.getBlockPosition(), this.getBlock().getType(), ticks, priority);
+    default ScheduledUpdate<BlockType> scheduleBlockUpdate(int delay, TemporalUnit temporalUnit) {
+        return this.getWorld().getScheduledBlockUpdates().schedule(this.getBlockPosition(), getBlock().getType(), delay, temporalUnit);
     }
 
     /**
-     * Removes a {@link ScheduledTaskEntry} from this block.
+     * Adds a new {@link ScheduledUpdate} for the block at this location.
      *
-     * @param update The ScheduledTaskEntry to remove
+     * @param delay The delay before the scheduled update should be processed
+     * @param temporalUnit The temporal unit of the delay
+     * @param priority The priority of the scheduled update
+     * @return The newly created scheduled update
      */
-    default void removeScheduledUpdate(ScheduledTaskEntry<BlockType> update) {
-        this.getWorld().getPendingBlockTasks().removeUpdate(this.getBlockPosition(), update);
+    default ScheduledUpdate<BlockType> scheduleBlockUpdate(int delay, TemporalUnit temporalUnit, TaskPriority priority) {
+        return this.getWorld().getScheduledBlockUpdates().schedule(this.getBlockPosition(), getBlock().getType(), delay, temporalUnit, priority);
+    }
+
+    /**
+     * Adds a new {@link ScheduledUpdate} for the block at this location.
+     *
+     * @param delay The delay before the scheduled update should be processed
+     * @return The newly created scheduled update
+     */
+    default ScheduledUpdate<BlockType> scheduleBlockUpdate(Duration delay) {
+        return this.getWorld().getScheduledBlockUpdates().schedule(this.getBlockPosition(), getBlock().getType(), delay);
+    }
+
+    /**
+     * Adds a new {@link ScheduledUpdate} for the block at this location.
+     *
+     * @param delay The delay before the scheduled update should be processed
+     * @param priority The priority of the scheduled update
+     * @return The newly created scheduled update
+     */
+    default ScheduledUpdate<BlockType> scheduleBlockUpdate(Duration delay, TaskPriority priority) {
+        return this.getWorld().getScheduledBlockUpdates().schedule(this.getBlockPosition(), getBlock().getType(), delay, priority);
+    }
+
+    /**
+     * Gets a list of {@link ScheduledUpdate}s for the fluid at this location.
+     *
+     * @return A list of scheduled fluid updates on this location
+     */
+    default Collection<ScheduledUpdate<FluidType>> getScheduledFluidUpdates() {
+        return this.getWorld().getScheduledFluidUpdates().getScheduledAt(this.getBlockPosition());
+    }
+
+    /**
+     * Adds a new {@link ScheduledUpdate} for the fluid at this location.
+     *
+     * @param delay The delay before the scheduled update should be processed
+     * @param temporalUnit The temporal unit of the delay
+     * @return The newly created scheduled update
+     */
+    default ScheduledUpdate<FluidType> scheduleFluidUpdate(int delay, TemporalUnit temporalUnit) {
+        return this.getWorld().getScheduledFluidUpdates().schedule(this.getBlockPosition(), getFluid().getType(), delay, temporalUnit);
+    }
+
+    /**
+     * Adds a new {@link ScheduledUpdate} for the fluid at this location.
+     *
+     * @param delay The delay before the scheduled update should be processed
+     * @param temporalUnit The temporal unit of the delay
+     * @param priority The priority of the scheduled update
+     * @return The newly created scheduled update
+     */
+    default ScheduledUpdate<FluidType> scheduleFluidUpdate(int delay, TemporalUnit temporalUnit, TaskPriority priority) {
+        return this.getWorld().getScheduledFluidUpdates().schedule(this.getBlockPosition(), this.getFluid().getType(), delay, temporalUnit, priority);
+    }
+
+    /**
+     * Adds a new {@link ScheduledUpdate} for the fluid at this location.
+     *
+     * @param delay The delay before the scheduled update should be processed
+     * @return The newly created scheduled update
+     */
+    default ScheduledUpdate<FluidType> scheduleFluidUpdate(Duration delay) {
+        return this.getWorld().getScheduledFluidUpdates().schedule(this.getBlockPosition(), getFluid().getType(), delay);
+    }
+
+    /**
+     * Adds a new {@link ScheduledUpdate} for the fluid at this location.
+     *
+     * @param delay The delay before the scheduled update should be processed
+     * @param priority The priority of the scheduled update
+     * @return The newly created scheduled update
+     */
+    default ScheduledUpdate<FluidType> scheduleFluidUpdate(Duration delay, TaskPriority priority) {
+        return this.getWorld().getScheduledFluidUpdates().schedule(this.getBlockPosition(), this.getFluid().getType(), delay, priority);
     }
 
     @Override
@@ -643,7 +733,7 @@ public interface Location extends DataHolder {
 
     @Override
     default boolean validateRawData(DataView container) {
-        return getWorld().validateRawData(this.getBlockPosition(), container);
+        return this.getWorld().validateRawData(this.getBlockPosition(), container);
     }
 
     @Override

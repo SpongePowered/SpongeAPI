@@ -34,6 +34,14 @@ import java.util.Optional;
 public interface State<S extends State<S>> extends ImmutableDataHolder<S>, CatalogType {
 
     /**
+     * Gets the {@link StateContainer} this
+     * {@link State} is part of.
+     *
+     * @return The state container
+     */
+    StateContainer<S> getStateContainer();
+
+    /**
      * Gets the {@link Comparable} value for the specific {@link StateProperty}
      * such that if the {@link State} does not support the
      * {@link StateProperty}, {@link Optional#empty()} is returned.
@@ -92,5 +100,4 @@ public interface State<S extends State<S>> extends ImmutableDataHolder<S>, Catal
      * @return The immutable map of properties to their values representing this state
      */
     Map<StateProperty<?>, ?> getPropertyMap();
-
 }

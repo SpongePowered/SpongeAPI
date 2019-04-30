@@ -32,30 +32,30 @@ import org.spongepowered.api.world.volume.MutableVolume;
 public interface MutableBiomeVolume<M extends MutableBiomeVolume<M>> extends WorkableBiomeVolume<M>, MutableVolume {
 
     /**
-     * Sets the block at the given position in the world.
+     * Sets the {@link BiomeType} at the given position in this volume.
      *
      * @param position The position
-     * @param block The block
-     * @return Whether the block change was successful
+     * @param biome The biome type
+     * @return Whether the biome change was successful
      * @throws PositionOutOfBoundsException If the position is outside of the
-     *         bounds of the volume
+     *                                      bounds of the volume
      */
-    default boolean setBiome(Vector3i position, BiomeType block) {
-        return setBiome(position.getX(), position.getY(), position.getZ(), block);
+    default boolean setBiome(Vector3i position, BiomeType biome) {
+        return setBiome(position.getX(), position.getY(), position.getZ(), biome);
     }
 
     /**
-     * Sets the block at the given position in the world.
+     * Sets the {@link BiomeType} at the given position in this volume.
      *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
-     * @param block The block
-     * @return Whether the block change was successful
+     * @param biome The biome type
+     * @return Whether the biome change was successful
      * @throws PositionOutOfBoundsException If the position is outside of the
-     *         bounds of the volume
+     *                                      bounds of the volume
      */
-    boolean setBiome(int x, int y, int z, BiomeType block);
+    boolean setBiome(int x, int y, int z, BiomeType biome);
 
     @Override
     MutableBiomeVolumeWorker<M> getBiomeWorker();

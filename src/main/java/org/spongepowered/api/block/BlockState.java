@@ -36,6 +36,7 @@ import org.spongepowered.api.data.property.DirectionRelativePropertyHolder;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.state.StateContainer;
 import org.spongepowered.api.util.Cycleable;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -76,7 +77,12 @@ public interface BlockState extends State<BlockState>, LocationBasePropertyHolde
      *
      * @return The type of block
      */
-    BlockType getType();
+    default BlockType getType() {
+        return this.getStateContainer();
+    }
+
+    @Override
+    BlockType getStateContainer();
 
     /**
      * Gets the associated {@link BlockState} with the cycled

@@ -26,13 +26,12 @@ package org.spongepowered.api.world;
 
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.fluid.FluidType;
-import org.spongepowered.api.scheduler.ScheduledTaskList;
+import org.spongepowered.api.scheduler.ScheduledUpdateList;
 import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
 
-public interface TickableVolume extends ReadableBlockVolume {
+public interface UpdatableVolume extends ReadableBlockVolume {
 
-    ScheduledTaskList<FluidType> getPendingFluidTasks();
+    ScheduledUpdateList<FluidType> getScheduledFluidUpdates();
 
-    ScheduledTaskList<BlockType> getPendingBlockTasks();
-
+    ScheduledUpdateList<BlockType> getScheduledBlockUpdates();
 }

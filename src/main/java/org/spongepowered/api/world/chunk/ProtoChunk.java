@@ -27,15 +27,13 @@ package org.spongepowered.api.world.chunk;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.Server;
-import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.world.ProtoWorld;
-import org.spongepowered.api.world.TickableVolume;
+import org.spongepowered.api.world.UpdatableVolume;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.biome.MutableBiomeVolume;
 import org.spongepowered.api.world.volume.LightCalculatingVolume;
 import org.spongepowered.api.world.volume.block.MutableBlockVolume;
-import org.spongepowered.api.world.volume.entity.MutableEntityVolume;
 import org.spongepowered.api.world.volume.tileentity.MutableTileEntityVolume;
 
 /**
@@ -51,7 +49,7 @@ import org.spongepowered.api.world.volume.tileentity.MutableTileEntityVolume;
  * of each chunk varies between worlds.</p>
  */
 public interface ProtoChunk<P extends ProtoChunk<P>> extends
-        MutableBlockVolume<P>, MutableTileEntityVolume<P>, MutableBiomeVolume<P>, LightCalculatingVolume, TickableVolume {
+        MutableBlockVolume<P>, MutableTileEntityVolume<P>, MutableBiomeVolume<P>, LightCalculatingVolume, UpdatableVolume {
 
     /**
      * Adds the {@link Entity} to this {@link ProtoChunk chunk}. It is not
