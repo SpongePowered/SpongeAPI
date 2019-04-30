@@ -316,7 +316,7 @@ public interface WorldProperties extends WeatherUniverse, DataSerializable, Iden
      *
      * @return The world border
      */
-    WorldBorder getBorder();
+    WorldBorder getWorldBorder();
 
     /**
      * Gets a {@link DataContainer} containing any additional properties for
