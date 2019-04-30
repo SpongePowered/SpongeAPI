@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.data.property;
 
+import static java.util.Objects.requireNonNull;
+
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.equipment.EquipmentTypes;
 import org.spongepowered.api.util.ResettableBuilder;
@@ -150,10 +152,21 @@ public interface PropertyMatcher<V> {
     Optional<V> getValue();
 
     /**
-     * Matches this query against the given property value.
+     * Checks whether the value of the {@link PropertyHolder} is matched by this matcher.
+     *
+     * @param propertyHolder The property holder to get the property value from
+     * @return Whether this matcher matches the property value
+     */
+    default boolean matchesHolder(PropertyHolder propertyHolder) {
+        requireNonNull(propertyHolder, "propertyHolder");
+        return matches(propertyHolder.getProperty(getProperty()).orElse(null));
+    }
+
+    /**
+     * Checks whether the given value is matched by this matcher.
      *
      * @param value The property value, a null value represents that the property doesn't exist
-     * @return Whether this query matches the property value
+     * @return Whether this matcher matches the property value
      */
     boolean matches(@Nullable V value);
 
