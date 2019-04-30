@@ -188,7 +188,7 @@ public class BlockRayHit {
      */
     public Location getLocation() {
         if (this.location == null) {
-            this.location = new Location(this.world, this.xBlock, this.yBlock, this.zBlock);
+            this.location = Location.of(this.world, this.xBlock, this.yBlock, this.zBlock);
         }
         return this.location;
     }

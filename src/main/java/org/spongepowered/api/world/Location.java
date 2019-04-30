@@ -26,23 +26,19 @@ package org.spongepowered.api.world;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
-import com.google.common.base.Objects;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.block.tileentity.TileEntity;
-import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.Property;
-import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.merge.MergeFunction;
@@ -59,212 +55,113 @@ import org.spongepowered.api.scheduler.ScheduledTaskEntry;
 import org.spongepowered.api.scheduler.TaskPriority;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.biome.BiomeType;
-import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.volume.entity.MutableEntityVolume;
 
-import java.lang.ref.WeakReference;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.BiFunction;
 
-import javax.annotation.Nullable;
-
 /**
  * A position within a particular {@link World}.
- *
- * <p>This class is primarily a helper class to represent a location in a
- * particular {@link World}. The methods provided are proxy methods to ones on
- * {@link World}.</p>
- *
- * <p>Each instance can be used to either represent a block or a location on a
- * continuous coordinate system. Internally, positions are stored using doubles.
- * When a block-related method is used, the components of the position are each
- * rounded to an integer.</p>
  *
  * <p>Locations are immutable. Methods that change the properties of the
  * location create a new instance.</p>
  */
-public final class Location implements DataHolder {
+public interface Location extends DataHolder {
 
-    private final WeakReference<World> world;
-    // Lazily computed, either position or blockPosition is set by the constructor
-    @Nullable
-    private Vector3d position = null;
-    @Nullable
-    private Vector3i blockPosition = null;
-    @Nullable
-    private Vector3i chunkPosition = null;
-    @Nullable
-    private Vector3i biomePosition = null;
-
-    /**
-     * Create a new instance.
-     *
-     * @param world The world
-     * @param position The position
-     */
-    public Location(World world, Vector3d position) {
-        this.world = new WeakReference<>(checkNotNull(world, "world"));
-        this.position = checkNotNull(position, "position");
+    static Location of(World world, double x, double y, double z) {
+        return Sponge.getRegistry().requireFactory(Factory.class).create(world, x, y, z);
     }
 
-    /**
-     * Create a new instance.
-     *
-     * @param world The world
-     * @param x The X-axis position
-     * @param y The Y-axis position
-     * @param z The Z-axis position
-     */
-    public Location(World world, double x, double y, double z) {
-        this(world, new Vector3d(x, y, z));
+    static Location of(World world, Vector3d position) {
+        return Sponge.getRegistry().requireFactory(Factory.class).create(world, position.getX(), position.getY(), position.getZ());
     }
 
-    /**
-     * Create a new instance.
-     *
-     * @param world The world
-     * @param blockPosition The position
-     */
-    public Location(World world, Vector3i blockPosition) {
-        this.world = new WeakReference<>(checkNotNull(world, "world"));
-        this.blockPosition = checkNotNull(blockPosition, "blockPosition");
+    static Location of(World world, int x, int y, int z) {
+        return Sponge.getRegistry().requireFactory(Factory.class).create(world, x, y, z);
     }
 
-    /**
-     * Create a new instance.
-     *
-     * @param world The world
-     * @param x The X-axis position
-     * @param y The Y-axis position
-     * @param z The Z-axis position
-     */
-    public Location(World world, int x, int y, int z) {
-        this(world, new Vector3i(x, y, z));
+    static Location of(World world, Vector3i position) {
+        return Sponge.getRegistry().requireFactory(Factory.class).create(world, position.getX(), position.getY(), position.getZ());
     }
 
     /**
      * Gets the underlying world.
      *
-     * <p>Note: This can be null if the {@link World} is unloaded and garbage
-     * collected.</p>
-     *
-     * @return The world, if available
-     * @throws IllegalStateException If the {@link World} is null
+     * @return The underlying world.
      */
-    public World getWorld() {
-        final World currentWorld = this.world.get();
-        if (currentWorld == null) {
-            throw new IllegalStateException();
-        }
-        return currentWorld;
-    }
+    World getWorld();
 
     /**
      * Gets the underlying position.
      *
      * @return The underlying position
      */
-    public Vector3d getPosition() {
-        if (this.position == null) {
-            checkState(this.blockPosition != null);
-            this.position = getBlockPosition().toDouble();
-        }
-        return this.position;
-    }
+    Vector3d getPosition();
 
     /**
      * Gets the underlying block position.
      *
      * @return The underlying block position
      */
-    public Vector3i getBlockPosition() {
-        if (this.blockPosition == null) {
-            checkState(this.position != null);
-            this.blockPosition = getPosition().toInt();
-        }
-        return this.blockPosition;
-    }
+    Vector3i getBlockPosition();
 
     /**
      * Gets the underlying chunk position.
      *
      * @return The underlying chunk position
      */
-    public Vector3i getChunkPosition() {
-        if (this.chunkPosition == null) {
-            this.chunkPosition = Sponge.getServer().getChunkLayout().forceToChunk(getBlockPosition());
-        }
-        return this.chunkPosition;
-    }
+    Vector3i getChunkPosition();
 
     /**
      * Gets the underlying biome position.
      *
      * @return The underlying biome position
      */
-    public Vector3i getBiomePosition() {
-        if (this.biomePosition == null) {
-            final Vector3i blockPosition = getBlockPosition();
-            this.biomePosition = new Vector3i(blockPosition.getX(), 0, blockPosition.getZ());
-        }
-        return this.biomePosition;
-    }
+    Vector3i getBiomePosition();
 
     /**
      * Gets the X component of this instance's position.
      *
      * @return The x component
      */
-    public double getX() {
-        return getPosition().getX();
-    }
+    double getX();
 
     /**
      * Gets the Y component of this instance's position.
      *
      * @return The y component
      */
-    public double getY() {
-        return getPosition().getY();
-    }
+    double getY();
 
     /**
      * Gets the Z component of this instance's position.
      *
      * @return The z component
      */
-    public double getZ() {
-        return getPosition().getZ();
-    }
+    double getZ();
 
     /**
      * Gets the floored X component of this instance's position.
      *
      * @return The floored x component
      */
-    public int getBlockX() {
-        return getBlockPosition().getX();
-    }
+    int getBlockX();
 
     /**
      * Gets the floored Y component of this instance's position.
      *
      * @return The floored y component
      */
-    public int getBlockY() {
-        return getBlockPosition().getY();
-    }
+    int getBlockY();
 
     /**
      * Gets the floored Z component of this instance's position.
      *
      * @return The floored z component
      */
-    public int getBlockZ() {
-        return getBlockPosition().getZ();
-    }
+    int getBlockZ();
 
     /**
      * Returns true if this location is in the given world. This is implemented
@@ -273,8 +170,8 @@ public final class Location implements DataHolder {
      * @param world The world to check
      * @return Whether this location is in the world
      */
-    public boolean inWorld(World world) {
-        return getWorld().equals(world);
+    default boolean inWorld(World world) {
+        return this.getWorld().equals(world);
     }
 
     /**
@@ -283,8 +180,8 @@ public final class Location implements DataHolder {
      *
      * @return Whether or not there is a biome at this location.
      */
-    public boolean hasBiome() {
-        return getWorld().containsBiome(getBiomePosition());
+    default boolean hasBiome() {
+        return this.getWorld().containsBiome(this.getBiomePosition());
     }
 
     /**
@@ -293,8 +190,8 @@ public final class Location implements DataHolder {
      *
      * @return Whether or not there is a block at this location.
      */
-    public boolean hasBlock() {
-        return getWorld().containsBlock(getBlockPosition());
+    default boolean hasBlock() {
+        return this.getWorld().containsBlock(this.getBlockPosition());
     }
 
     /**
@@ -302,7 +199,7 @@ public final class Location implements DataHolder {
      *
      * @return The locatable block of this location.
      */
-    public LocatableBlock getLocatableBlock() {
+    default LocatableBlock asLocatableBlock() {
         return LocatableBlock
             .builder()
             .world(this.getWorld())
@@ -316,12 +213,12 @@ public final class Location implements DataHolder {
      * @param world The new world
      * @return A new instance
      */
-    public Location setWorld(World world) {
+    default Location withWorld(World world) {
         checkNotNull(world, "world");
-        if (world == getWorld()) {
+        if (world == this.getWorld()) {
             return this;
         }
-        return new Location(world, getPosition());
+        return Location.of(world, this.getPosition());
     }
 
     /**
@@ -330,12 +227,12 @@ public final class Location implements DataHolder {
      * @param position The new position
      * @return A new instance
      */
-    public Location setPosition(Vector3d position) {
+    default Location withPosition(Vector3d position) {
         checkNotNull(position, "position");
-        if (position == getPosition()) {
+        if (position == this.getPosition()) {
             return this;
         }
-        return new Location(getWorld(), position);
+        return Location.of(this.getWorld(), position);
     }
 
     /**
@@ -344,12 +241,12 @@ public final class Location implements DataHolder {
      * @param position The new position
      * @return A new instance
      */
-    public Location setBlockPosition(Vector3i position) {
+    default Location withBlockPosition(Vector3i position) {
         checkNotNull(position, "position");
-        if (position == getBlockPosition()) {
+        if (position == this.getBlockPosition()) {
             return this;
         }
-        return new Location(getWorld(), position);
+        return Location.of(this.getWorld(), position);
     }
 
     /**
@@ -359,8 +256,8 @@ public final class Location implements DataHolder {
      * @param v The vector to subtract
      * @return A new instance
      */
-    public Location sub(Vector3d v) {
-        return sub(v.getX(), v.getY(), v.getZ());
+    default Location sub(Vector3d v) {
+        return this.sub(v.getX(), v.getY(), v.getZ());
     }
 
     /**
@@ -370,8 +267,8 @@ public final class Location implements DataHolder {
      * @param v The vector to subtract
      * @return A new instance
      */
-    public Location sub(Vector3i v) {
-        return sub(v.getX(), v.getY(), v.getZ());
+    default Location sub(Vector3i v) {
+        return this.sub(v.getX(), v.getY(), v.getZ());
     }
 
     /**
@@ -383,8 +280,8 @@ public final class Location implements DataHolder {
      * @param z The z component
      * @return A new instance
      */
-    public Location sub(double x, double y, double z) {
-        return setPosition(getPosition().sub(x, y, z));
+    default Location sub(double x, double y, double z) {
+        return this.withPosition(this.getPosition().sub(x, y, z));
     }
 
     /**
@@ -394,8 +291,8 @@ public final class Location implements DataHolder {
      * @param v The vector to add
      * @return A new instance
      */
-    public Location add(Vector3d v) {
-        return add(v.getX(), v.getY(), v.getZ());
+    default Location add(Vector3d v) {
+        return this.add(v.getX(), v.getY(), v.getZ());
     }
 
     /**
@@ -405,8 +302,8 @@ public final class Location implements DataHolder {
      * @param v The vector to add
      * @return A new instance
      */
-    public Location add(Vector3i v) {
-        return add(v.getX(), v.getY(), v.getZ());
+    default Location add(Vector3i v) {
+        return this.add(v.getX(), v.getY(), v.getZ());
     }
 
     /**
@@ -418,8 +315,8 @@ public final class Location implements DataHolder {
      * @param z The z component
      * @return A new instance
      */
-    public Location add(double x, double y, double z) {
-        return setPosition(getPosition().add(x, y, z));
+    default Location add(double x, double y, double z) {
+        return this.withPosition(this.getPosition().add(x, y, z));
     }
 
     /**
@@ -429,8 +326,8 @@ public final class Location implements DataHolder {
      * @param <T> The return type of the mapper
      * @return The results of the mapping
      */
-    public <T> T map(BiFunction<World, Vector3d, T> mapper) {
-        return mapper.apply(getWorld(), getPosition());
+    default <T> T map(BiFunction<World, Vector3d, T> mapper) {
+        return mapper.apply(this.getWorld(), this.getPosition());
     }
 
     /**
@@ -440,8 +337,8 @@ public final class Location implements DataHolder {
      * @param <T> The return type of the mapper
      * @return The results of the mapping
      */
-    public <T> T mapBlock(BiFunction<World, Vector3i, T> mapper) {
-        return mapper.apply(getWorld(), getBlockPosition());
+    default <T> T mapBlock(BiFunction<World, Vector3i, T> mapper) {
+        return mapper.apply(this.getWorld(), this.getBlockPosition());
     }
 
     /**
@@ -451,8 +348,8 @@ public final class Location implements DataHolder {
      * @param <T> The return type of the mapper
      * @return The results of the mapping
      */
-    public <T> T mapChunk(BiFunction<World, Vector3i, T> mapper) {
-        return mapper.apply(getWorld(), getChunkPosition());
+    default <T> T mapChunk(BiFunction<World, Vector3i, T> mapper) {
+        return mapper.apply(this.getWorld(), this.getChunkPosition());
     }
 
     /**
@@ -462,8 +359,8 @@ public final class Location implements DataHolder {
      * @param <T> The return type of the mapper
      * @return The results of the mapping
      */
-    public <T> T mapBiome(BiFunction<World, Vector3i, T> mapper) {
-        return mapper.apply(getWorld(), getBiomePosition());
+    default  <T> T mapBiome(BiFunction<World, Vector3i, T> mapper) {
+        return mapper.apply(this.getWorld(), this.getBiomePosition());
     }
 
     /**
@@ -473,8 +370,8 @@ public final class Location implements DataHolder {
      * @param direction The direction to move in
      * @return The location in that direction
      */
-    public Location getRelative(Direction direction) {
-        return add(direction.asOffset());
+    default Location relativeTo(Direction direction) {
+        return this.add(direction.asOffset());
     }
 
     /**
@@ -490,9 +387,9 @@ public final class Location implements DataHolder {
      * @throws IllegalArgumentException If the direction is a
      * {@link org.spongepowered.api.util.Direction.Division#SECONDARY_ORDINAL}
      */
-    public Location getBlockRelative(Direction direction) {
+    default Location relativeToBlock(Direction direction) {
         checkArgument(!direction.isSecondaryOrdinal(), "Secondary cardinal directions can't be used here");
-        return add(direction.asBlockOffset());
+        return this.add(direction.asBlockOffset());
     }
 
     /**
@@ -500,8 +397,8 @@ public final class Location implements DataHolder {
      *
      * @return The biome at this location
      */
-    public BiomeType getBiome() {
-        return getWorld().getBiome(getBiomePosition());
+    default BiomeType getBiome() {
+        return this.getWorld().getBiome(this.getBiomePosition());
     }
 
     /**
@@ -509,8 +406,8 @@ public final class Location implements DataHolder {
      *
      * @return The block state
      */
-    public BlockState getBlock() {
-        return getWorld().getBlock(getBlockPosition());
+    default BlockState getBlock() {
+        return this.getWorld().getBlock(this.getBlockPosition());
     }
 
     /**
@@ -519,8 +416,8 @@ public final class Location implements DataHolder {
      * @return True if the block at this position has tile entity data, false
      *      otherwise
      */
-    public boolean hasTileEntity() {
-        return getWorld().getTileEntity(getBlockPosition()).isPresent();
+    default boolean hasTileEntity() {
+        return this.getWorld().getTileEntity(this.getBlockPosition()).isPresent();
     }
 
     /**
@@ -528,8 +425,8 @@ public final class Location implements DataHolder {
      *
      * @return The associated tile entity, if available
      */
-    public Optional<TileEntity> getTileEntity() {
-        return getWorld().getTileEntity(getBlockPosition());
+    default Optional<TileEntity> getTileEntity() {
+        return this.getWorld().getTileEntity(this.getBlockPosition());
     }
 
     /**
@@ -540,8 +437,8 @@ public final class Location implements DataHolder {
      * @param state The new block state
      * @return True if the block change was successful
      */
-    public boolean setBlock(BlockState state) {
-        return getWorld().setBlock(getBlockPosition(), state);
+    default boolean setBlock(BlockState state) {
+        return this.getWorld().setBlock(this.getBlockPosition(), state);
     }
 
     /**
@@ -552,8 +449,8 @@ public final class Location implements DataHolder {
      * @param flag The various change flags controlling some interactions
      * @return True if the block change was successful
      */
-    public boolean setBlock(BlockState state, BlockChangeFlag flag) {
-        return getWorld().setBlock(getBlockPosition(), state, flag);
+    default boolean setBlock(BlockState state, BlockChangeFlag flag) {
+        return this.getWorld().setBlock(this.getBlockPosition(), state, flag);
     }
 
     /**
@@ -564,8 +461,8 @@ public final class Location implements DataHolder {
      * @param type The new type
      * @return True if the block change was successful
      */
-    public boolean setBlockType(BlockType type) {
-        return getWorld().setBlock(getBlockPosition(), type.getDefaultState());
+    default boolean setBlockType(BlockType type) {
+        return this.getWorld().setBlock(this.getBlockPosition(), type.getDefaultState());
     }
 
     /**
@@ -576,8 +473,8 @@ public final class Location implements DataHolder {
      * @param flag The various change flags controlling some interactions
      * @return True if the block change was successful
      */
-    public boolean setBlockType(BlockType type, BlockChangeFlag flag) {
-        return getWorld().setBlock(getBlockPosition(), type.getDefaultState(), flag);
+    default boolean setBlockType(BlockType type, BlockChangeFlag flag) {
+        return this.getWorld().setBlock(this.getBlockPosition(), type.getDefaultState(), flag);
     }
 
     /**
@@ -591,8 +488,8 @@ public final class Location implements DataHolder {
      * @param flag The various change flags controlling some interactions
      * @return True if the snapshot restore was successful
      */
-    public boolean restoreSnapshot(BlockSnapshot snapshot, boolean force, BlockChangeFlag flag) {
-        return getWorld().restoreSnapshot(getBlockPosition(), snapshot, force, flag);
+    default boolean restoreSnapshot(BlockSnapshot snapshot, boolean force, BlockChangeFlag flag) {
+        return this.getWorld().restoreSnapshot(this.getBlockPosition(), snapshot, force, flag);
     }
 
     /**
@@ -602,8 +499,8 @@ public final class Location implements DataHolder {
      * <p>This will remove any extended block data at the given position.</p>
      * @return True if the block change was successful
      */
-    public boolean removeBlock() {
-        return getWorld().removeBlock(getBlockPosition());
+    default boolean removeBlock() {
+        return this.getWorld().removeBlock(this.getBlockPosition());
     }
 
     /**
@@ -623,7 +520,7 @@ public final class Location implements DataHolder {
      * @throws IllegalStateException If a constructor cannot be found
      * @see MutableEntityVolume#createEntity(EntityType, Vector3d)
      */
-    public Entity createEntity(EntityType type) {
+    default Entity createEntity(EntityType type) {
         return this.getWorld().createEntity(type, this.getPosition());
     }
 
@@ -650,7 +547,7 @@ public final class Location implements DataHolder {
      * @return True if successful, false if not
      * @see MutableEntityVolume#spawnEntity(Entity)
      */
-    public boolean spawnEntity(Entity entity) {
+    default boolean spawnEntity(Entity entity) {
         return this.getWorld().spawnEntity(entity);
     }
 
@@ -664,7 +561,7 @@ public final class Location implements DataHolder {
      * @return True if any of the entities were successfully spawned
      * @see MutableEntityVolume#spawnEntities(Iterable)
      */
-    public Collection<Entity> spawnEntities(Iterable<? extends Entity> entities) {
+    default Collection<Entity> spawnEntities(Iterable<? extends Entity> entities) {
         return this.getWorld().spawnEntities(entities);
     }
 
@@ -674,23 +571,23 @@ public final class Location implements DataHolder {
      * @return The highest location at this location
      * @see World#getHighestPositionAt(Vector3i)
      */
-    public Location asHighestLocation() {
-        return this.setBlockPosition(this.getWorld().getHighestPositionAt(getBlockPosition()));
+    default Location asHighestLocation() {
+        return this.withBlockPosition(this.getWorld().getHighestPositionAt(this.getBlockPosition()));
     }
 
     @Override
-    public DataTransactionResult remove(Class<? extends DataManipulator<?, ?>> containerClass) {
-        return getWorld().remove(getBlockPosition(), containerClass);
+    default DataTransactionResult remove(Class<? extends DataManipulator<?, ?>> containerClass) {
+        return this.getWorld().remove(this.getBlockPosition(), containerClass);
     }
 
     @Override
-    public DataTransactionResult remove(BaseValue<?> value) {
-        return getWorld().remove(getBlockPosition(), value.getKey());
+    default DataTransactionResult remove(BaseValue<?> value) {
+        return this.getWorld().remove(this.getBlockPosition(), value.getKey());
     }
 
     @Override
-    public DataTransactionResult remove(Key<?> key) {
-        return getWorld().remove(getBlockPosition(), key);
+    default DataTransactionResult remove(Key<?> key) {
+        return this.getWorld().remove(this.getBlockPosition(), key);
     }
 
     /**
@@ -701,8 +598,8 @@ public final class Location implements DataHolder {
      *
      * @return A snapshot
      */
-    public BlockSnapshot createSnapshot() {
-        return getWorld().createSnapshot(getBlockPosition());
+    default BlockSnapshot createSnapshot() {
+        return this.getWorld().createSnapshot(this.getBlockPosition());
     }
 
     /**
@@ -710,8 +607,8 @@ public final class Location implements DataHolder {
      *
      * @return A list of ScheduledBlockUpdates on this block
      */
-    public Collection<ScheduledTaskEntry<BlockType>> getScheduledUpdates() {
-        return getWorld().getPendingBlockTasks().getScheduledUpdates(getBlockPosition());
+    default Collection<ScheduledTaskEntry<BlockType>> getScheduledUpdates() {
+        return this.getWorld().getPendingBlockTasks().getScheduledUpdates(this.getBlockPosition());
     }
 
     /**
@@ -721,8 +618,8 @@ public final class Location implements DataHolder {
      * @param ticks The ticks until the scheduled update should be processed
      * @return The newly created scheduled update
      */
-    public ScheduledTaskEntry<BlockType> addScheduledUpdate(TaskPriority priority, int ticks) {
-        return getWorld().getPendingBlockTasks().scheduleUpdate(getBlockPosition(), getBlock().getType(), ticks, priority);
+    default ScheduledTaskEntry<BlockType> addScheduledUpdate(TaskPriority priority, int ticks) {
+        return this.getWorld().getPendingBlockTasks().scheduleUpdate(this.getBlockPosition(), this.getBlock().getType(), ticks, priority);
     }
 
     /**
@@ -730,134 +627,98 @@ public final class Location implements DataHolder {
      *
      * @param update The ScheduledTaskEntry to remove
      */
-    public void removeScheduledUpdate(ScheduledTaskEntry<BlockType> update) {
-        getWorld().getPendingBlockTasks().removeUpdate(getBlockPosition(), update);
+    default void removeScheduledUpdate(ScheduledTaskEntry<BlockType> update) {
+        this.getWorld().getPendingBlockTasks().removeUpdate(this.getBlockPosition(), update);
     }
 
     @Override
-    public <T extends Property<?, ?>> Optional<T> getProperty(Class<T> propertyClass) {
-        return getWorld().getProperty(getBlockPosition(), propertyClass);
+    default <T extends Property<?, ?>> Optional<T> getProperty(Class<T> propertyClass) {
+        return getWorld().getProperty(this.getBlockPosition(), propertyClass);
     }
 
     @Override
-    public Collection<Property<?, ?>> getApplicableProperties() {
-        return getWorld().getProperties(getBlockPosition());
+    default Collection<Property<?, ?>> getApplicableProperties() {
+        return this.getWorld().getProperties(this.getBlockPosition());
     }
 
     @Override
-    public boolean validateRawData(DataView container) {
-        return getWorld().validateRawData(getBlockPosition(), container);
+    default boolean validateRawData(DataView container) {
+        return getWorld().validateRawData(this.getBlockPosition(), container);
     }
 
     @Override
-    public void setRawData(DataView container) throws InvalidDataException {
-        getWorld().setRawData(getBlockPosition(), container);
+    default void setRawData(DataView container) throws InvalidDataException {
+        this.getWorld().setRawData(this.getBlockPosition(), container);
     }
 
     @Override
-    public int getContentVersion() {
-        return 1;
+    default <T extends DataManipulator<?, ?>> Optional<T> get(Class<T> containerClass) {
+        return this.getWorld().get(this.getBlockPosition(), containerClass);
     }
 
     @Override
-    public DataContainer toContainer() {
-        final DataContainer container = DataContainer.createNew();
-        container.set(Queries.CONTENT_VERSION, getContentVersion());
-        container.set(Queries.WORLD_ID, getWorld().getUniqueId().toString());
-        container.set(Queries.POSITION_X, getX());
-        container.set(Queries.POSITION_Y, getY());
-        container.set(Queries.POSITION_Z, getZ());
-        return container;
+    default <T> Optional<T> get(Key<? extends BaseValue<T>> key) {
+        return this.getWorld().get(this.getBlockPosition(), key);
     }
 
     @Override
-    public <T extends DataManipulator<?, ?>> Optional<T> get(Class<T> containerClass) {
-        return getWorld().get(getBlockPosition(), containerClass);
+    default <T extends DataManipulator<?, ?>> Optional<T> getOrCreate(Class<T> containerClass) {
+        return this.getWorld().getOrCreate(this.getBlockPosition(), containerClass);
     }
 
     @Override
-    public <T> Optional<T> get(Key<? extends BaseValue<T>> key) {
-        return getWorld().get(getBlockPosition(), key);
+    default <T> DataTransactionResult offer(Key<? extends BaseValue<T>> key, T value) {
+        return this.getWorld().offer(this.getBlockPosition(), key, value);
     }
 
     @Override
-    public <T extends DataManipulator<?, ?>> Optional<T> getOrCreate(Class<T> containerClass) {
-        return getWorld().getOrCreate(getBlockPosition(), containerClass);
+    default DataTransactionResult offer(DataManipulator<?, ?> valueContainer, MergeFunction function) {
+        return this.getWorld().offer(this.getBlockPosition(), valueContainer, function);
     }
 
     @Override
-    public <T> DataTransactionResult offer(Key<? extends BaseValue<T>> key, T value) {
-        return getWorld().offer(getBlockPosition(), key, value);
+    default DataTransactionResult undo(DataTransactionResult result) {
+        return this.getWorld().undo(this.getBlockPosition(), result);
     }
 
     @Override
-    public DataTransactionResult offer(DataManipulator<?, ?> valueContainer, MergeFunction function) {
-        return getWorld().offer(getBlockPosition(), valueContainer, function);
+    default boolean supports(Class<? extends DataManipulator<?, ?>> holderClass) {
+        return this.getWorld().supports(this.getBlockPosition(), holderClass);
     }
 
     @Override
-    public DataTransactionResult undo(DataTransactionResult result) {
-        return getWorld().undo(getBlockPosition(), result);
+    default boolean supports(Key<?> key) {
+        return this.getWorld().supports(this.getBlockPosition(), key);
     }
 
     @Override
-    public boolean supports(Class<? extends DataManipulator<?, ?>> holderClass) {
-        return getWorld().supports(getBlockPosition(), holderClass);
+    default DataTransactionResult copyFrom(DataHolder that, MergeFunction strategy) {
+        return this.getWorld().copyFrom(this.getBlockPosition(), that, strategy);
     }
 
     @Override
-    public boolean supports(Key<?> key) {
-        return getWorld().supports(getBlockPosition(), key);
+    default Collection<DataManipulator<?, ?>> getContainers() {
+        return this.getWorld().getManipulators(this.getBlockPosition());
     }
 
     @Override
-    public DataTransactionResult copyFrom(DataHolder that, MergeFunction strategy) {
-        return getWorld().copyFrom(getBlockPosition(), that, strategy);
+    default <T, V extends BaseValue<T>> Optional<V> getValue(Key<V> key) {
+        return this.getWorld().getValue(this.getBlockPosition(), key);
     }
 
     @Override
-    public Collection<DataManipulator<?, ?>> getContainers() {
-        return getWorld().getManipulators(getBlockPosition());
+    default Set<Key<?>> getKeys() {
+        return this.getWorld().getKeys(this.getBlockPosition());
     }
 
     @Override
-    public <T, V extends BaseValue<T>> Optional<V> getValue(Key<V> key) {
-        return getWorld().getValue(getBlockPosition(), key);
+    default Set<ImmutableValue<?>> getValues() {
+        return this.getWorld().getValues(this.getBlockPosition());
     }
 
-    @Override
-    public Location copy() {
-        return new Location(getWorld(), getPosition());
-    }
+    interface Factory {
+        Location create(World world, double x, double y, double z);
 
-    @Override
-    public Set<Key<?>> getKeys() {
-        return getWorld().getKeys(getBlockPosition());
+        Location create(World world, int x, int y, int z);
     }
-
-    @Override
-    public Set<ImmutableValue<?>> getValues() {
-        return getWorld().getValues(getBlockPosition());
-    }
-
-    @Override
-    public String toString() {
-        return "Location{" + getPosition() + " in " + getWorld() + "}";
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(getWorld(), getPosition());
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (!(other instanceof Location)) {
-            return false;
-        }
-        Location otherLoc = (Location) other;
-        return otherLoc.getWorld().equals(getWorld())
-            && otherLoc.getPosition().equals(getPosition());
-    }
-
 }

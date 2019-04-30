@@ -55,7 +55,7 @@ public class TransformTest {
         Assert.assertEquals(this.mockWorld1, transform.getWorld());
         assertEquals(position1, transform.getPosition());
 
-        transform = transform.setLocation(new Location(this.mockWorld2, position2));
+        transform = transform.setLocation(Location.of(this.mockWorld2, position2));
         Assert.assertEquals(this.mockWorld2, transform.getWorld());
         assertEquals(position2, transform.getPosition());
 

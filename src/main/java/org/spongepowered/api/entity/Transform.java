@@ -142,7 +142,7 @@ public final class Transform {
      */
     public Location getLocation() {
         if (this.location == null) {
-            this.location = new Location(this.world, this.position);
+            this.location = Location.of(this.world, this.position);
         }
         return this.location;
     }

@@ -107,7 +107,7 @@ public final class RespawnLocation implements DataSerializable {
      */
     public Optional<Location> asLocation() {
         Optional<World> optWorld = Sponge.getServer().getWorld(getWorldUniqueId());
-        return optWorld.map(world -> new Location(world, getPosition()));
+        return optWorld.map(world -> Location.of(world, getPosition()));
     }
 
     @Override

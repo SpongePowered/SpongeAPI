@@ -76,6 +76,7 @@ public interface ReadableBiomeVolume extends Volume {
      *         bounds of the volume
      */
     BiomeType getBiome(int x, int y, int z);
+
     /**
      * Returns true if the biome volume contains a biome at the specified
      * position. This is defined as <code>{{@link #getBiomeMin()} <= position

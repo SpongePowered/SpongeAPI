@@ -36,7 +36,6 @@ import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.network.ChannelRegistrar;
 import org.spongepowered.api.plugin.PluginManager;
-import org.spongepowered.api.scheduler.Scheduler;
 import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.util.metric.MetricsConfigManager;
 import org.spongepowered.api.world.Location;
@@ -54,18 +53,15 @@ public final class Sponge {
 
     @Inject private static Game game;
     @Inject private static Platform platform;
-
     @Inject private static GameRegistry registry;
     @Inject private static DataManager dataManager;
     @Inject private static PropertyRegistry propertyRegistry;
-
     @Inject private static PluginManager pluginManager;
     @Inject private static EventManager eventManager;
     @Inject private static AssetManager assetManager;
     @Inject private static ConfigManager configManager;
     @Inject private static ServiceManager serviceManager;
     @Inject private static ChannelRegistrar channelRegistrar;
-
     @Inject private static TeleportHelper teleportHelper;
     @Inject private static CauseStackManager causeStackManager;
     @Inject private static MetricsConfigManager metricsConfigManager;
@@ -74,7 +70,6 @@ public final class Sponge {
         checkState(instance != null, "Sponge has not been initialized!");
         return instance;
     }
-
 
     /**
      * Gets the {@link Game} instance. There is ever only going
@@ -98,7 +93,6 @@ public final class Sponge {
         return check(platform);
     }
 
-
     /**
      * Gets the {@link GameRegistry} instance.
      *
@@ -117,7 +111,6 @@ public final class Sponge {
         return check(dataManager);
     }
 
-
     /**
      * Gets the {@link PropertyRegistry} instance to register
      * {@link PropertyStore}s.
@@ -127,7 +120,6 @@ public final class Sponge {
     public static PropertyRegistry getPropertyRegistry() {
         return check(propertyRegistry);
     }
-
 
     /**
      * Gets the {@link PluginManager} instance.
@@ -196,7 +188,6 @@ public final class Sponge {
         return check(teleportHelper);
     }
 
-
     /**
      * Gets whether a {@link Server} instance is available without throwing an
      * exception from calling {@link #getServer()}.
@@ -224,7 +215,6 @@ public final class Sponge {
     public static Server getServer() {
         return getGame().getServer();
     }
-
 
     /**
      * Gets the {@link GameDictionary} instance from the

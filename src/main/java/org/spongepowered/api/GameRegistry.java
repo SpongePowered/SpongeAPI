@@ -422,4 +422,12 @@ public interface GameRegistry {
      */
     Optional<Translation> getTranslationById(String id);
 
+    /**
+     * Gets a factory used to churn instances.
+     *
+     * @param clazz The factory class
+     * @param <T> The type of factory
+     * @return The factory
+     */
+    <T> T requireFactory(Class<T> clazz);
 }

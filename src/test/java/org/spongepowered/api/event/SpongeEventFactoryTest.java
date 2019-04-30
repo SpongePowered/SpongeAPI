@@ -233,7 +233,7 @@ public class SpongeEventFactoryTest {
             // Make sure we keep a reference to the World,
             // as Location stores a weak reference
             worlds.add(world);
-            return new Location(world, 0, 0, 0);
+            return Location.of(world, 0, 0, 0);
         } else if (paramType == Transform.class) {
             return new Transform((World) mockParam(World.class));
         } else if (InetSocketAddress.class.isAssignableFrom(paramType)) {
@@ -245,7 +245,7 @@ public class SpongeEventFactoryTest {
         } else if (paramType == Cause.class) {
             return Cause.of(EventContext.empty(), "none");
         } else if (paramType == Location.class) {
-            return new Location(mock(World.class), Vector3d.ZERO);
+            return Location.of(mock(World.class), Vector3d.ZERO);
         } else if (paramType == Locale.class) {
             return Locale.ROOT;
         } else if (paramType == Text.class) {

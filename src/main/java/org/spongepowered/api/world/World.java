@@ -488,7 +488,7 @@ public interface World extends ProtoWorld<World>, LocationCreator<World>, Physic
      * @return The location
      */
     default Location getSpawnLocation() {
-        return new Location(this, getProperties().getSpawnPosition());
+        return Location.of(this, this.getProperties().getSpawnPosition());
     }
 
     /**
