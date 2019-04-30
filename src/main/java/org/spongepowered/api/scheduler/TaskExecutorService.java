@@ -40,48 +40,34 @@ import javax.annotation.Nullable;
  * standard concurrency interface to schedule their asynchronous
  * tasks through Sponge.</p>
  */
-public interface SpongeExecutorService extends ScheduledExecutorService {
-
-    Future<?> schedule(Runnable command, long delay, TemporalUnit unit);
+public interface TaskExecutorService extends ScheduledExecutorService {
 
     @Override
-    Future<?> schedule(Runnable command, long delay, TimeUnit unit);
+    <T> TaskFuture<T> submit(Callable<T> task);
 
     @Override
-    <T> Future<T> submit(Callable<T> task);
+    TaskFuture<?> submit(Runnable task);
 
     @Override
-    Future<?> submit(Runnable task);
+    <T> TaskFuture<T> submit(Runnable task, @Nullable T result);
+
+    ScheduledTaskFuture<?> schedule(Runnable command, long delay, TemporalUnit unit);
 
     @Override
-    <T> Future<T> submit(Runnable task, @Nullable T result);
+    ScheduledTaskFuture<?> schedule(Runnable command, long delay, TimeUnit unit);
 
-    <V> RunnableScheduledFuture<V> schedule(Callable<V> callable, long delay, TemporalUnit unit);
-
-    @Override
-    <V> RunnableScheduledFuture<V> schedule(Callable<V> callable, long delay, TimeUnit unit);
-
-    RunnableScheduledFuture<?> scheduleAtFixedRate(Runnable command, long initialDelay, long period, TemporalUnit unit);
+    <V> ScheduledTaskFuture<V> schedule(Callable<V> callable, long delay, TemporalUnit unit);
 
     @Override
-    RunnableScheduledFuture<?> scheduleAtFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit);
+    <V> ScheduledTaskFuture<V> schedule(Callable<V> callable, long delay, TimeUnit unit);
 
-    RunnableScheduledFuture<?> scheduleWithFixedDelay(Runnable command, long initialDelay, long delay, TemporalUnit unit);
+    ScheduledTaskFuture<?> scheduleAtFixedRate(Runnable command, long initialDelay, long period, TemporalUnit unit);
 
     @Override
-    RunnableScheduledFuture<?> scheduleWithFixedDelay(Runnable command, long initialDelay, long delay, TimeUnit unit);
+    ScheduledTaskFuture<?> scheduleAtFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit);
 
-    interface Future<V> extends java.util.concurrent.RunnableScheduledFuture<V> {
+    ScheduledTaskFuture<?> scheduleWithFixedDelay(Runnable command, long initialDelay, long delay, TemporalUnit unit);
 
-        /**
-         * Retrieves the {@link Scheduler} {@link ScheduledTask} instance that
-         * is responsible for the execution of this future.
-         *
-         * @return The backing task
-         */
-        ScheduledTask getTask();
-    }
-
-    interface RunnableScheduledFuture<V> extends java.util.concurrent.RunnableScheduledFuture<V>, Future<V> {
-    }
+    @Override
+    ScheduledTaskFuture<?> scheduleWithFixedDelay(Runnable command, long initialDelay, long delay, TimeUnit unit);
 }

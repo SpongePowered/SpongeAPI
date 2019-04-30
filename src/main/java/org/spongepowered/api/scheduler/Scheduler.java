@@ -92,7 +92,7 @@ public interface Scheduler {
      * @return A new executor service that can be used to execute
      *     synchronous tasks
      */
-    SpongeExecutorService createSyncExecutor(Object plugin);
+    TaskExecutorService createSyncExecutor(Object plugin);
 
     /**
      * Creates a new {@link ExecutorService} that can be used to schedule
@@ -103,7 +103,7 @@ public interface Scheduler {
      *     asynchronous tasks
      * @see Task.Builder#async()
      */
-    SpongeExecutorService createAsyncExecutor(Object plugin);
+    TaskExecutorService createAsyncExecutor(Object plugin);
 
     /**
      * Submit a task to the scheduler.
