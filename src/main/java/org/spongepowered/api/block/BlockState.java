@@ -77,30 +77,14 @@ public interface BlockState extends State<BlockState>, LocationBasePropertyHolde
      *
      * @return The type of block
      */
-    default BlockType getType() {
-        return this.getStateContainer();
-    }
-
-    @Override
-    BlockType getStateContainer();
-
-    /**
-     * Gets the associated {@link BlockState} with the cycled
-     * {@link BaseValue}. Note that only {@link Cycleable} values can be
-     * cycled. To change a particular {@link Key}'ed {@link Value}, usage
-     * of the {@link BlockState#with(Key, Object)} is recommended.
-     *
-     * @param key The key to cycle
-     * @return The blockstate instance with the cycled value
-     */
-    BlockState cycleValue(Key<? extends BaseValue<? extends Cycleable<?>>> key);
+    BlockType getType();
 
     /**
      * Gets the associated {@link FluidState} for this block state.
      * Depending on whether this block state is considered "waterlogged"
      * or not, and with which fluid.
      *
-     * @return
+     * @return The fluid state
      */
     FluidState getFluidState();
 

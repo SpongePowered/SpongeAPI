@@ -26,6 +26,9 @@ package org.spongepowered.api.state;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.data.ImmutableDataHolder;
+import org.spongepowered.api.data.key.Key;
+import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.util.Cycleable;
 
 import java.util.Collection;
 import java.util.Map;
@@ -34,32 +37,24 @@ import java.util.Optional;
 public interface State<S extends State<S>> extends ImmutableDataHolder<S>, CatalogType {
 
     /**
-     * Gets the {@link StateContainer} this
-     * {@link State} is part of.
-     *
-     * @return The state container
-     */
-    StateContainer<S> getStateContainer();
-
-    /**
      * Gets the {@link Comparable} value for the specific {@link StateProperty}
      * such that if the {@link State} does not support the
      * {@link StateProperty}, {@link Optional#empty()} is returned.
      *
-     * @param property The property instance
-     * @param <T> The generic type of property
+     * @param stateProperty The block trait instance
+     * @param <T> The generic type of block trait
      * @return The comparable value, if available and compatible
      */
-    <T extends Comparable<T>> Optional<T> getPropertyValue(StateProperty<T> property);
+    <T extends Comparable<T>> Optional<T> getPropertyValue(StateProperty<T> stateProperty);
 
     /**
      * Attempts to retrieve the {@link StateProperty} instance associated with this {@link State} by property id.
      * If there is no {@link StateProperty} found, {@link Optional#empty()} is returned.
      *
-     * @param property The property id
-     * @return The property, if available
+     * @param statePropertyId The block trait id
+     * @return The block trait, if available
      */
-    Optional<StateProperty<?>> getProperty(String property);
+    Optional<StateProperty<?>> getProperty(String statePropertyId);
 
     /**
      * Gets the {@link State} with the appropriate value for the given
@@ -69,13 +64,31 @@ public interface State<S extends State<S>> extends ImmutableDataHolder<S>, Catal
      * an instance {@link Object#toString()}, {@link Optional#empty()} may be
      * returned.
      *
-     * @param property The property
+     * @param stateProperty The state property
      * @param value The value
      * @return The state container, if the trait and value are supported
      */
-    <T extends Comparable<T>, V extends T> Optional<S> withProperty(StateProperty<?> property, V value);
+    <T extends Comparable<T>, V extends T> Optional<S> withProperty(StateProperty<?> stateProperty, V value);
 
-    <T extends Comparable<T>> Optional<S> cycleProperty(StateProperty<T> property);
+    /**
+     * Cycles to the next possible value of the {@link StateProperty} and returns
+     * the new {@link State}. Returns {@link Optional#empty()} if the state property or
+     * the value isn't supported.
+     *
+     * @param stateProperty The state property
+     * @return The cycled state if successful
+     */
+    <T extends Comparable<T>> Optional<S> cycleProperty(StateProperty<T> stateProperty);
+
+    /**
+     * Cycles to the next possible value of the {@link Key} and returns
+     * the new {@link State}. Returns {@link Optional#empty()} if the key or
+     * the value isn't supported.
+     *
+     * @param key The key
+     * @return The cycled state if successful
+     */
+    <T extends Cycleable<T>> Optional<S> cycleValue(Key<? extends BaseValue<T>> key);
 
     /**
      * Gets an immutable {@link Collection} of all applicable
