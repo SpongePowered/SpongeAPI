@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.network;
 
+import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.Platform;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.plugin.PluginContainer;
@@ -46,11 +47,11 @@ public interface ChannelBinding {
     ChannelRegistrar getRegistrar();
 
     /**
-     * Gets this channel's bound name.
+     * Gets this channel's bound identifier as a {@link CatalogKey}.
      *
-     * @return The channel name
+     * @return The channel identifier
      */
-    String getName();
+    CatalogKey getKey();
 
     /**
      * Gets the plugin that created this binding.
@@ -69,15 +70,15 @@ public interface ChannelBinding {
          * This will only allow the message to be sent, this channel binding
          * will <strong>not</strong> be able to receive the message.
          *
-         * <p>The message ID is used to identify this message class as it is
+         * <p>The discriminator is used to identify this message class as it is
          * sent and received across the network, it is a single byte and thus
          * has a range of 0 to 255.</p>
          *
          * @param messageClass The class of the message being registered. Note:
          *        the class must have a publicly accessible no-args constructor
-         * @param messageId A unique ID for this message
+         * @param discriminator A unique ID for this message
          */
-        void registerMessage(Class<? extends Message> messageClass, int messageId);
+        void registerMessage(Class<? extends Message> messageClass, int discriminator);
 
         /**
          * Register a message class to this channel and a handler for receiving
