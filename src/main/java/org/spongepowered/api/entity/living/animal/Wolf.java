@@ -25,10 +25,10 @@
 package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.manipulator.mutable.AggressiveData;
 import org.spongepowered.api.data.manipulator.mutable.DyeableData;
-import org.spongepowered.api.data.manipulator.mutable.entity.AggressiveData;
 import org.spongepowered.api.data.type.DyeColor;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents a Wolf.
@@ -50,8 +50,8 @@ public interface Wolf extends Animal {
      *
      * @return The current aggressive value
      */
-    default Value<Boolean> aggressive() {
-        return this.getValue(Keys.ANGRY).get();
+    default Value.Mutable<Boolean> aggressive() {
+        return this.getValue(Keys.ANGRY).get().asMutable();
     }
 
     /**
@@ -69,7 +69,7 @@ public interface Wolf extends Animal {
      *
      * @return The current dyecolor of the collar
      */
-    default Value<DyeColor> collarColor() {
-        return this.getValue(Keys.DYE_COLOR).get();
+    default Value.Mutable<DyeColor> collarColor() {
+        return this.getValue(Keys.DYE_COLOR).get().asMutable();
     }
 }
