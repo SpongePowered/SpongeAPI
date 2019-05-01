@@ -22,31 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable;
+package org.spongepowered.api.entity.projectile;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.FireworkRocketData;
-import org.spongepowered.api.data.value.BoundedValue;
-import org.spongepowered.api.entity.projectile.FireworkRocket;
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.manipulator.mutable.FireworkEffectData;
+import org.spongepowered.api.data.value.ListValue;
+import org.spongepowered.api.entity.explosive.FusedExplosive;
+import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.ItemTypes;
 
 /**
- * An {@link ImmutableDataManipulator} representing the flight modifier of a
- * {@link FireworkRocket} or {@link ItemTypes#FIREWORKS} item.
+ * Represents a firework.
  */
-public interface ImmutableFireworkRocketData extends ImmutableDataManipulator<ImmutableFireworkRocketData, FireworkRocketData> {
+public interface FireworkRocket extends Projectile, FusedExplosive {
 
     /**
-     * Gets the {@link BoundedValue.Immutable} for the flight modifier.
+     * Gets a copy of the {@link FireworkEffectData} for this firework.
      *
-     * <p>Flight modifiers are tiered ranks of flight duration. Generally,
-     * the modifier is used to calculate the fuse time of a firework when
-     * launched. This can be approximated by multiplying 10 and the modifier,
-     * and adding a random number between 0 and 13. Again, this is a general
-     * approximation of what vanilla Minecraft performs.</p>
-     *
-     * @return The flight modifier
+     * @return A copy of the firework data
      */
-    BoundedValue.Immutable<Integer> flightModifier();
+    default FireworkEffectData getFireworkData() {
+        return get(FireworkEffectData.class).get();
+    }
+
+    /**
+     * Gets the {@link ListValue.Mutable} of {@link FireworkEffect}s.
+     *
+     * <p>Note that for {@link ItemTypes#FIREWORK_CHARGE} only the first effect
+     * will apply to the charge.</p>
+     *
+     * @return The list value of firework effects
+     */
+    default ListValue.Mutable<FireworkEffect> effects() {
+        return getValue(Keys.FIREWORK_EFFECTS).get().asMutable();
+    }
 
 }

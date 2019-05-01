@@ -24,6 +24,96 @@
  */
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.entity.explosive.PrimedTNT;
+import org.spongepowered.api.entity.hanging.ItemFrame;
+import org.spongepowered.api.entity.hanging.LeashKnot;
+import org.spongepowered.api.entity.hanging.Painting;
+import org.spongepowered.api.entity.living.ArmorStand;
+import org.spongepowered.api.entity.living.Bat;
+import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Squid;
+import org.spongepowered.api.entity.living.Villager;
+import org.spongepowered.api.entity.living.animal.Chicken;
+import org.spongepowered.api.entity.living.animal.Cow;
+import org.spongepowered.api.entity.living.animal.Dolphin;
+import org.spongepowered.api.entity.living.animal.Donkey;
+import org.spongepowered.api.entity.living.animal.Llama;
+import org.spongepowered.api.entity.living.animal.Mooshroom;
+import org.spongepowered.api.entity.living.animal.Mule;
+import org.spongepowered.api.entity.living.animal.Ocelot;
+import org.spongepowered.api.entity.living.animal.Parrot;
+import org.spongepowered.api.entity.living.animal.Pig;
+import org.spongepowered.api.entity.living.animal.PolarBear;
+import org.spongepowered.api.entity.living.animal.Rabbit;
+import org.spongepowered.api.entity.living.animal.RideableHorse;
+import org.spongepowered.api.entity.living.animal.Sheep;
+import org.spongepowered.api.entity.living.animal.SkeletonHorse;
+import org.spongepowered.api.entity.living.animal.Turtle;
+import org.spongepowered.api.entity.living.animal.Wolf;
+import org.spongepowered.api.entity.living.animal.ZombieHorse;
+import org.spongepowered.api.entity.living.animal.fish.Cod;
+import org.spongepowered.api.entity.living.animal.fish.Pufferfish;
+import org.spongepowered.api.entity.living.animal.fish.Salmon;
+import org.spongepowered.api.entity.living.animal.fish.TropicalFish;
+import org.spongepowered.api.entity.living.complex.EnderDragon;
+import org.spongepowered.api.entity.living.golem.IronGolem;
+import org.spongepowered.api.entity.living.golem.Shulker;
+import org.spongepowered.api.entity.living.golem.SnowGolem;
+import org.spongepowered.api.entity.living.monster.Blaze;
+import org.spongepowered.api.entity.living.monster.CaveSpider;
+import org.spongepowered.api.entity.living.monster.Creeper;
+import org.spongepowered.api.entity.living.monster.Drowned;
+import org.spongepowered.api.entity.living.monster.ElderGuardian;
+import org.spongepowered.api.entity.living.monster.Enderman;
+import org.spongepowered.api.entity.living.monster.Endermite;
+import org.spongepowered.api.entity.living.monster.Evoker;
+import org.spongepowered.api.entity.living.monster.Ghast;
+import org.spongepowered.api.entity.living.monster.Giant;
+import org.spongepowered.api.entity.living.monster.Guardian;
+import org.spongepowered.api.entity.living.monster.Husk;
+import org.spongepowered.api.entity.living.monster.Illusioner;
+import org.spongepowered.api.entity.living.monster.MagmaCube;
+import org.spongepowered.api.entity.living.monster.Phantom;
+import org.spongepowered.api.entity.living.monster.Silverfish;
+import org.spongepowered.api.entity.living.monster.Skeleton;
+import org.spongepowered.api.entity.living.monster.Slime;
+import org.spongepowered.api.entity.living.monster.Spider;
+import org.spongepowered.api.entity.living.monster.Stray;
+import org.spongepowered.api.entity.living.monster.Vex;
+import org.spongepowered.api.entity.living.monster.Vindicator;
+import org.spongepowered.api.entity.living.monster.Witch;
+import org.spongepowered.api.entity.living.monster.Wither;
+import org.spongepowered.api.entity.living.monster.WitherSkeleton;
+import org.spongepowered.api.entity.living.monster.Zombie;
+import org.spongepowered.api.entity.living.monster.ZombiePigman;
+import org.spongepowered.api.entity.living.monster.ZombieVillager;
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.projectile.Egg;
+import org.spongepowered.api.entity.projectile.EnderPearl;
+import org.spongepowered.api.entity.projectile.EvokerFangs;
+import org.spongepowered.api.entity.projectile.ExperienceBottle;
+import org.spongepowered.api.entity.projectile.EyeOfEnder;
+import org.spongepowered.api.entity.projectile.FireworkRocket;
+import org.spongepowered.api.entity.projectile.FishingBobber;
+import org.spongepowered.api.entity.projectile.LlamaSpit;
+import org.spongepowered.api.entity.projectile.Potion;
+import org.spongepowered.api.entity.projectile.Snowball;
+import org.spongepowered.api.entity.projectile.arrow.SpectralArrow;
+import org.spongepowered.api.entity.projectile.arrow.TippedArrow;
+import org.spongepowered.api.entity.projectile.arrow.Trident;
+import org.spongepowered.api.entity.projectile.explosive.DragonFireball;
+import org.spongepowered.api.entity.projectile.explosive.WitherSkull;
+import org.spongepowered.api.entity.projectile.explosive.fireball.LargeFireball;
+import org.spongepowered.api.entity.projectile.explosive.fireball.SmallFireball;
+import org.spongepowered.api.entity.vehicle.Boat;
+import org.spongepowered.api.entity.vehicle.minecart.ChestMinecart;
+import org.spongepowered.api.entity.vehicle.minecart.CommandBlockMinecart;
+import org.spongepowered.api.entity.vehicle.minecart.FurnaceMinecart;
+import org.spongepowered.api.entity.vehicle.minecart.HopperMinecart;
+import org.spongepowered.api.entity.vehicle.minecart.RideableMinecart;
+import org.spongepowered.api.entity.vehicle.minecart.SpawnerMinecart;
+import org.spongepowered.api.entity.vehicle.minecart.TNTMinecart;
+import org.spongepowered.api.entity.weather.LightningBolt;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
@@ -33,205 +123,210 @@ public final class EntityTypes {
 
     // SORTFIELDS:ON
 
-    public static final EntityType AREA_EFFECT_CLOUD = DummyObjectProvider.createFor(EntityType.class, "AREA_EFFECT_CLOUD");
+    public static final EntityType<AreaEffectCloud> AREA_EFFECT_CLOUD = dummy("AREA_EFFECT_CLOUD");
 
-    public static final EntityType ARMOR_STAND = DummyObjectProvider.createFor(EntityType.class, "ARMOR_STAND");
+    public static final EntityType<ArmorStand> ARMOR_STAND = dummy("ARMOR_STAND");
 
-    public static final EntityType BAT = DummyObjectProvider.createFor(EntityType.class, "BAT");
+    public static final EntityType<TippedArrow> ARROW = dummy("ARROW");
 
-    public static final EntityType BLAZE = DummyObjectProvider.createFor(EntityType.class, "BLAZE");
+    public static final EntityType<Bat> BAT = dummy("BAT");
 
-    public static final EntityType BOAT = DummyObjectProvider.createFor(EntityType.class, "BOAT");
+    public static final EntityType<Blaze> BLAZE = dummy("BLAZE");
 
-    public static final EntityType CAVE_SPIDER = DummyObjectProvider.createFor(EntityType.class, "CAVE_SPIDER");
+    public static final EntityType<Boat> BOAT = dummy("BOAT");
 
-    public static final EntityType CHEST_MINECART = DummyObjectProvider.createFor(EntityType.class, "CHEST_MINECART");
+    public static final EntityType<CaveSpider> CAVE_SPIDER = dummy("CAVE_SPIDER");
 
-    public static final EntityType CHICKEN = DummyObjectProvider.createFor(EntityType.class, "CHICKEN");
+    public static final EntityType<ChestMinecart> CHEST_MINECART = dummy("CHEST_MINECART");
 
-    public static final EntityType COMMAND_BLOCK_MINECART = DummyObjectProvider.createFor(EntityType.class, "COMMAND_BLOCK_MINECART");
+    public static final EntityType<Chicken> CHICKEN = dummy("CHICKEN");
 
-    public static final EntityType COD = DummyObjectProvider.createFor(EntityType.class, "COD");
+    public static final EntityType<CommandBlockMinecart> COMMAND_BLOCK_MINECART = dummy("COMMAND_BLOCK_MINECART");
 
-    public static final EntityType COW = DummyObjectProvider.createFor(EntityType.class, "COW");
+    public static final EntityType<Cod> COD = dummy("COD");
 
-    public static final EntityType CREEPER = DummyObjectProvider.createFor(EntityType.class, "CREEPER");
+    public static final EntityType<Cow> COW = dummy("COW");
 
-    public static final EntityType DONKEY = DummyObjectProvider.createFor(EntityType.class, "DONKEY");
+    public static final EntityType<Creeper> CREEPER = dummy("CREEPER");
 
-    public static final EntityType DOLPHIN = DummyObjectProvider.createFor(EntityType.class, "DOLPHIN");
+    public static final EntityType<Donkey> DONKEY = dummy("DONKEY");
 
-    public static final EntityType DRAGON_FIREBALL = DummyObjectProvider.createFor(EntityType.class, "DRAGON_FIREBALL");
+    public static final EntityType<Dolphin> DOLPHIN = dummy("DOLPHIN");
 
-    public static final EntityType DROWNED = DummyObjectProvider.createFor(EntityType.class, "DROWNED");
+    public static final EntityType<DragonFireball> DRAGON_FIREBALL = dummy("DRAGON_FIREBALL");
 
-    public static final EntityType EGG = DummyObjectProvider.createFor(EntityType.class, "EGG");
+    public static final EntityType<Drowned> DROWNED = dummy("DROWNED");
 
-    public static final EntityType ELDER_GUARDIAN = DummyObjectProvider.createFor(EntityType.class, "ELDER_GUARDIAN");
+    public static final EntityType<Egg> EGG = dummy("EGG");
 
-    public static final EntityType END_CRYSTAL = DummyObjectProvider.createFor(EntityType.class, "END_CRYSTAL");
+    public static final EntityType<ElderGuardian> ELDER_GUARDIAN = dummy("ELDER_GUARDIAN");
 
-    public static final EntityType ENDERMAN = DummyObjectProvider.createFor(EntityType.class, "ENDERMAN");
+    public static final EntityType<EndCrystal> END_CRYSTAL = dummy("END_CRYSTAL");
 
-    public static final EntityType ENDERMITE = DummyObjectProvider.createFor(EntityType.class, "ENDERMITE");
+    public static final EntityType<Enderman> ENDERMAN = dummy("ENDERMAN");
 
-    public static final EntityType ENDER_DRAGON = DummyObjectProvider.createFor(EntityType.class, "ENDER_DRAGON");
+    public static final EntityType<Endermite> ENDERMITE = dummy("ENDERMITE");
 
-    public static final EntityType ENDER_PEARL = DummyObjectProvider.createFor(EntityType.class, "ENDER_PEARL");
+    public static final EntityType<EnderDragon> ENDER_DRAGON = dummy("ENDER_DRAGON");
 
-    public static final EntityType EVOKER = DummyObjectProvider.createFor(EntityType.class, "EVOKER");
+    public static final EntityType<EnderPearl> ENDER_PEARL = dummy("ENDER_PEARL");
 
-    public static final EntityType EVOKER_FANGS = DummyObjectProvider.createFor(EntityType.class, "EVOKER_FANGS");
+    public static final EntityType<Evoker> EVOKER = dummy("EVOKER");
 
-    public static final EntityType EXPERIENCE_BOTTLE = DummyObjectProvider.createFor(EntityType.class, "EXPERIENCE_BOTTLE");
+    public static final EntityType<EvokerFangs> EVOKER_FANGS = dummy("EVOKER_FANGS");
 
-    public static final EntityType EXPERIENCE_ORB = DummyObjectProvider.createFor(EntityType.class, "EXPERIENCE_ORB");
+    public static final EntityType<ExperienceBottle> EXPERIENCE_BOTTLE = dummy("EXPERIENCE_BOTTLE");
 
-    public static final EntityType EYE_OF_ENDER = DummyObjectProvider.createFor(EntityType.class, "EYE_OF_ENDER");
+    public static final EntityType<ExperienceOrb> EXPERIENCE_ORB = dummy("EXPERIENCE_ORB");
 
-    public static final EntityType FALLING_BLOCK = DummyObjectProvider.createFor(EntityType.class, "FALLING_BLOCK");
+    public static final EntityType<EyeOfEnder> EYE_OF_ENDER = dummy("EYE_OF_ENDER");
 
-    public static final EntityType FIREBALL = DummyObjectProvider.createFor(EntityType.class, "FIREBALL");
+    public static final EntityType<FallingBlock> FALLING_BLOCK = dummy("FALLING_BLOCK");
 
-    public static final EntityType FIREWORK_ROCKET = DummyObjectProvider.createFor(EntityType.class, "FIREWORK_ROCKET");
+    public static final EntityType<LargeFireball> FIREBALL = dummy("FIREBALL");
 
-    public static final EntityType FISHING_BOBBER = DummyObjectProvider.createFor(EntityType.class, "FISHING_BOBBER");
+    public static final EntityType<FireworkRocket> FIREWORK_ROCKET = dummy("FIREWORK_ROCKET");
 
-    public static final EntityType FURNACE_MINECART = DummyObjectProvider.createFor(EntityType.class, "FURNACE_MINECART");
+    public static final EntityType<FishingBobber> FISHING_BOBBER = dummy("FISHING_BOBBER");
 
-    public static final EntityType GHAST = DummyObjectProvider.createFor(EntityType.class, "GHAST");
+    public static final EntityType<FurnaceMinecart> FURNACE_MINECART = dummy("FURNACE_MINECART");
 
-    public static final EntityType GIANT = DummyObjectProvider.createFor(EntityType.class, "GIANT");
+    public static final EntityType<Ghast> GHAST = dummy("GHAST");
 
-    public static final EntityType GUARDIAN = DummyObjectProvider.createFor(EntityType.class, "GUARDIAN");
+    public static final EntityType<Giant> GIANT = dummy("GIANT");
 
-    public static final EntityType HOPPER_MINECART = DummyObjectProvider.createFor(EntityType.class, "HOPPER_MINECART");
+    public static final EntityType<Guardian> GUARDIAN = dummy("GUARDIAN");
 
-    public static final EntityType HORSE = DummyObjectProvider.createFor(EntityType.class, "HORSE");
+    public static final EntityType<HopperMinecart> HOPPER_MINECART = dummy("HOPPER_MINECART");
 
-    public static final EntityType HUSK = DummyObjectProvider.createFor(EntityType.class, "HUSK");
+    public static final EntityType<RideableHorse> HORSE = dummy("HORSE");
 
-    public static final EntityType ILLUSIONER = DummyObjectProvider.createFor(EntityType.class, "ILLUSIONER");
+    public static final EntityType<Husk> HUSK = dummy("HUSK");
 
-    public static final EntityType IRON_GOLEM = DummyObjectProvider.createFor(EntityType.class, "IRON_GOLEM");
+    public static final EntityType<Illusioner> ILLUSIONER = dummy("ILLUSIONER");
 
-    public static final EntityType ITEM = DummyObjectProvider.createFor(EntityType.class, "ITEM");
+    public static final EntityType<IronGolem> IRON_GOLEM = dummy("IRON_GOLEM");
 
-    public static final EntityType ITEM_FRAME = DummyObjectProvider.createFor(EntityType.class, "ITEM_FRAME");
+    public static final EntityType<Item> ITEM = dummy("ITEM");
 
-    public static final EntityType LEASH_KNOT = DummyObjectProvider.createFor(EntityType.class, "LEASH_KNOT");
+    public static final EntityType<ItemFrame> ITEM_FRAME = dummy("ITEM_FRAME");
 
-    public static final EntityType LIGHTNING_BOLT = DummyObjectProvider.createFor(EntityType.class, "LIGHTNING_BOLT");
+    public static final EntityType<LeashKnot> LEASH_KNOT = dummy("LEASH_KNOT");
 
-    public static final EntityType LLAMA = DummyObjectProvider.createFor(EntityType.class, "LLAMA");
+    public static final EntityType<LightningBolt> LIGHTNING_BOLT = dummy("LIGHTNING_BOLT");
 
-    public static final EntityType LLAMA_SPIT = DummyObjectProvider.createFor(EntityType.class, "LLAMA_SPIT");
+    public static final EntityType<Llama> LLAMA = dummy("LLAMA");
 
-    public static final EntityType MAGMA_CUBE = DummyObjectProvider.createFor(EntityType.class, "MAGMA_CUBE");
+    public static final EntityType<LlamaSpit> LLAMA_SPIT = dummy("LLAMA_SPIT");
 
-    public static final EntityType MINECART = DummyObjectProvider.createFor(EntityType.class, "MINECART");
+    public static final EntityType<MagmaCube> MAGMA_CUBE = dummy("MAGMA_CUBE");
 
-    public static final EntityType MOOSHROOM = DummyObjectProvider.createFor(EntityType.class, "MOOSHROOM");
+    public static final EntityType<RideableMinecart> MINECART = dummy("MINECART");
 
-    public static final EntityType MULE = DummyObjectProvider.createFor(EntityType.class, "MULE");
+    public static final EntityType<Mooshroom> MOOSHROOM = dummy("MOOSHROOM");
 
-    public static final EntityType OCELOT = DummyObjectProvider.createFor(EntityType.class, "OCELOT");
+    public static final EntityType<Mule> MULE = dummy("MULE");
 
-    public static final EntityType PAINTING = DummyObjectProvider.createFor(EntityType.class, "PAINTING");
+    public static final EntityType<Ocelot> OCELOT = dummy("OCELOT");
 
-    public static final EntityType PARROT = DummyObjectProvider.createFor(EntityType.class, "PARROT");
+    public static final EntityType<Painting> PAINTING = dummy("PAINTING");
 
-    public static final EntityType PHANTOM = DummyObjectProvider.createFor(EntityType.class, "PHANTOM");
+    public static final EntityType<Parrot> PARROT = dummy("PARROT");
 
-    public static final EntityType PIG = DummyObjectProvider.createFor(EntityType.class, "PIG");
+    public static final EntityType<Phantom> PHANTOM = dummy("PHANTOM");
 
-    public static final EntityType PLAYER = DummyObjectProvider.createFor(EntityType.class, "PLAYER");
+    public static final EntityType<Pig> PIG = dummy("PIG");
 
-    public static final EntityType POLAR_BEAR = DummyObjectProvider.createFor(EntityType.class, "POLAR_BEAR");
+    public static final EntityType<Player> PLAYER = dummy("PLAYER");
 
-    public static final EntityType POTION = DummyObjectProvider.createFor(EntityType.class, "POTION");
+    public static final EntityType<PolarBear> POLAR_BEAR = dummy("POLAR_BEAR");
 
-    public static final EntityType PUFFERFISH = DummyObjectProvider.createFor(EntityType.class, "PUFFERFISH");
+    public static final EntityType<Potion> POTION = dummy("POTION");
 
-    public static final EntityType RABBIT = DummyObjectProvider.createFor(EntityType.class, "RABBIT");
+    public static final EntityType<Pufferfish> PUFFERFISH = dummy("PUFFERFISH");
 
-    public static final EntityType SALMON = DummyObjectProvider.createFor(EntityType.class, "SALMON");
+    public static final EntityType<Rabbit> RABBIT = dummy("RABBIT");
 
-    public static final EntityType SHEEP = DummyObjectProvider.createFor(EntityType.class, "SHEEP");
+    public static final EntityType<Salmon> SALMON = dummy("SALMON");
 
-    public static final EntityType SHULKER = DummyObjectProvider.createFor(EntityType.class, "SHULKER");
+    public static final EntityType<Sheep> SHEEP = dummy("SHEEP");
 
-    public static final EntityType SHULKER_BULLET = DummyObjectProvider.createFor(EntityType.class, "SHULKER_BULLET");
+    public static final EntityType<Shulker> SHULKER = dummy("SHULKER");
 
-    public static final EntityType SILVERFISH = DummyObjectProvider.createFor(EntityType.class, "SILVERFISH");
+    public static final EntityType<ShulkerBullet> SHULKER_BULLET = dummy("SHULKER_BULLET");
 
-    public static final EntityType SKELETON = DummyObjectProvider.createFor(EntityType.class, "SKELETON");
+    public static final EntityType<Silverfish> SILVERFISH = dummy("SILVERFISH");
 
-    public static final EntityType SKELETON_HORSE = DummyObjectProvider.createFor(EntityType.class, "SKELETON_HORSE");
+    public static final EntityType<Skeleton> SKELETON = dummy("SKELETON");
 
-    public static final EntityType SLIME = DummyObjectProvider.createFor(EntityType.class, "SLIME");
+    public static final EntityType<SkeletonHorse> SKELETON_HORSE = dummy("SKELETON_HORSE");
 
-    public static final EntityType SMALL_FIREBALL = DummyObjectProvider.createFor(EntityType.class, "SMALL_FIREBALL");
+    public static final EntityType<Slime> SLIME = dummy("SLIME");
 
-    public static final EntityType SNOW_GOLEM = DummyObjectProvider.createFor(EntityType.class, "SNOW_GOLEM");
+    public static final EntityType<SmallFireball> SMALL_FIREBALL = dummy("SMALL_FIREBALL");
 
-    public static final EntityType SNOWBALL = DummyObjectProvider.createFor(EntityType.class, "SNOWBALL");
+    public static final EntityType<SnowGolem> SNOW_GOLEM = dummy("SNOW_GOLEM");
 
-    public static final EntityType SPAWNER_MINECART = DummyObjectProvider.createFor(EntityType.class, "SPAWNER_MINECART");
+    public static final EntityType<Snowball> SNOWBALL = dummy("SNOWBALL");
 
-    public static final EntityType SPECTRAL_ARROW = DummyObjectProvider.createFor(EntityType.class, "SPECTRAL_ARROW");
+    public static final EntityType<SpawnerMinecart> SPAWNER_MINECART = dummy("SPAWNER_MINECART");
 
-    public static final EntityType SPIDER = DummyObjectProvider.createFor(EntityType.class, "SPIDER");
+    public static final EntityType<SpectralArrow> SPECTRAL_ARROW = dummy("SPECTRAL_ARROW");
 
-    public static final EntityType SQUID = DummyObjectProvider.createFor(EntityType.class, "SQUID");
+    public static final EntityType<Spider> SPIDER = dummy("SPIDER");
 
-    public static final EntityType STRAY = DummyObjectProvider.createFor(EntityType.class, "STRAY");
+    public static final EntityType<Squid> SQUID = dummy("SQUID");
 
-    public static final EntityType ARROW = DummyObjectProvider.createFor(EntityType.class, "ARROW");
+    public static final EntityType<Stray> STRAY = dummy("STRAY");
 
-    public static final EntityType TNT = DummyObjectProvider.createFor(EntityType.class, "TNT");
+    public static final EntityType<PrimedTNT> TNT = dummy("TNT");
 
-    public static final EntityType TNT_MINECART = DummyObjectProvider.createFor(EntityType.class, "TNT_MINECART");
+    public static final EntityType<TNTMinecart> TNT_MINECART = dummy("TNT_MINECART");
 
-    public static final EntityType TRIDENT = DummyObjectProvider.createFor(EntityType.class, "TRIDENT");
+    public static final EntityType<Trident> TRIDENT = dummy("TRIDENT");
 
-    public static final EntityType TROPICAL_FISH = DummyObjectProvider.createFor(EntityType.class, "TROPICAL_FISH");
+    public static final EntityType<TropicalFish> TROPICAL_FISH = dummy("TROPICAL_FISH");
 
-    public static final EntityType TURTLE = DummyObjectProvider.createFor(EntityType.class, "TURTLE");
+    public static final EntityType<Turtle> TURTLE = dummy("TURTLE");
 
-    public static final EntityType VEX = DummyObjectProvider.createFor(EntityType.class, "VEX");
+    public static final EntityType<Vex> VEX = dummy("VEX");
 
-    public static final EntityType VILLAGER = DummyObjectProvider.createFor(EntityType.class, "VILLAGER");
+    public static final EntityType<Villager> VILLAGER = dummy("VILLAGER");
 
-    public static final EntityType VINDICATOR = DummyObjectProvider.createFor(EntityType.class, "VINDICATOR");
+    public static final EntityType<Vindicator> VINDICATOR = dummy("VINDICATOR");
 
-    public static final EntityType WITCH = DummyObjectProvider.createFor(EntityType.class, "WITCH");
+    public static final EntityType<Witch> WITCH = dummy("WITCH");
 
-    public static final EntityType WITHER = DummyObjectProvider.createFor(EntityType.class, "WITHER");
+    public static final EntityType<Wither> WITHER = dummy("WITHER");
 
-    public static final EntityType WITHER_SKELETON = DummyObjectProvider.createFor(EntityType.class, "WITHER_SKELETON");
+    public static final EntityType<WitherSkeleton> WITHER_SKELETON = dummy("WITHER_SKELETON");
 
-    public static final EntityType WITHER_SKULL = DummyObjectProvider.createFor(EntityType.class, "WITHER_SKULL");
+    public static final EntityType<WitherSkull> WITHER_SKULL = dummy("WITHER_SKULL");
 
-    public static final EntityType WOLF = DummyObjectProvider.createFor(EntityType.class, "WOLF");
+    public static final EntityType<Wolf> WOLF = dummy("WOLF");
 
-    public static final EntityType ZOMBIE = DummyObjectProvider.createFor(EntityType.class, "ZOMBIE");
+    public static final EntityType<Zombie> ZOMBIE = dummy("ZOMBIE");
 
-    public static final EntityType ZOMBIE_HORSE = DummyObjectProvider.createFor(EntityType.class, "ZOMBIE_HORSE");
+    public static final EntityType<ZombieHorse> ZOMBIE_HORSE = dummy("ZOMBIE_HORSE");
 
-    public static final EntityType ZOMBIE_PIGMAN = DummyObjectProvider.createFor(EntityType.class, "ZOMBIE_PIGMAN");
+    public static final EntityType<ZombiePigman> ZOMBIE_PIGMAN = dummy("ZOMBIE_PIGMAN");
 
-    public static final EntityType ZOMBIE_VILLAGER = DummyObjectProvider.createFor(EntityType.class, "ZOMBIE_VILLAGER");
+    public static final EntityType<ZombieVillager> ZOMBIE_VILLAGER = dummy("ZOMBIE_VILLAGER");
 
     // SORTFIELDS:OFF
 
-    public static final EntityType HUMAN = DummyObjectProvider.createFor(EntityType.class, "HUMAN");
+    public static final EntityType<Human> HUMAN = dummy("HUMAN");
 
-    public static final EntityType UNKNOWN = DummyObjectProvider.createFor(EntityType.class, "UNKNOWN");
+    public static final EntityType<?> UNKNOWN = dummy("UNKNOWN");
 
     // Suppress default constructor to ensure non-instantiability.
     private EntityTypes() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <A extends Entity> EntityType<A> dummy(final String fieldName) {
+        return DummyObjectProvider.createFor(EntityType.class, fieldName);
     }
 
 }

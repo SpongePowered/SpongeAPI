@@ -22,31 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable;
+package org.spongepowered.api.entity.vehicle.minecart;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.FireworkRocketData;
-import org.spongepowered.api.data.value.BoundedValue;
-import org.spongepowered.api.entity.projectile.FireworkRocket;
-import org.spongepowered.api.item.ItemTypes;
+import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
 
 /**
- * An {@link ImmutableDataManipulator} representing the flight modifier of a
- * {@link FireworkRocket} or {@link ItemTypes#FIREWORKS} item.
+ * Represents a Minecart with a MobSpawner inside it.
  */
-public interface ImmutableFireworkRocketData extends ImmutableDataManipulator<ImmutableFireworkRocketData, FireworkRocketData> {
+public interface SpawnerMinecart extends Minecart {
 
     /**
-     * Gets the {@link BoundedValue.Immutable} for the flight modifier.
+     * Gets a copy of the {@link MobSpawnerData}.
      *
-     * <p>Flight modifiers are tiered ranks of flight duration. Generally,
-     * the modifier is used to calculate the fuse time of a firework when
-     * launched. This can be approximated by multiplying 10 and the modifier,
-     * and adding a random number between 0 and 13. Again, this is a general
-     * approximation of what vanilla Minecraft performs.</p>
-     *
-     * @return The flight modifier
+     * @return A copy of the mob spawner data
      */
-    BoundedValue.Immutable<Integer> flightModifier();
+    default MobSpawnerData getSpawnerData() {
+        return get(MobSpawnerData.class).get();
+    }
 
 }

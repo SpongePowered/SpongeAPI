@@ -22,24 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.hanging;
+package org.spongepowered.api.entity;
 
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.explosive.Explosive;
 
 /**
- * Represents a tied end of a leash on a block, like a fence post.
+ * Represents an ender crystal.
  */
-public interface LeashHitch extends Hanging {
-
-    /**
-     * Gets the currently leashed {@link Entity}.
-     *
-     * <p>Usually, a {@link LeashHitch} will always exist so long as there is
-     * a leashed {@link Entity} attached. If the leash is broken, the leash
-     * hitch is removed.</p>
-     *
-     * @return The currently leashed entity
-     */
-    Entity getLeashedEntity();
+public interface EndCrystal extends Explosive {
 
 }

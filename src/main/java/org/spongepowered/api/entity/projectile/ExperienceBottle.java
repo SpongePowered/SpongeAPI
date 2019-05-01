@@ -22,13 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity;
-
-import org.spongepowered.api.entity.explosive.Explosive;
+package org.spongepowered.api.entity.projectile;
 
 /**
- * Represents an ender crystal.
+ * Represents a thrown experience bottle.
  */
-public interface EnderCrystal extends Explosive {
+public interface ExperienceBottle extends Projectile {
 
 }

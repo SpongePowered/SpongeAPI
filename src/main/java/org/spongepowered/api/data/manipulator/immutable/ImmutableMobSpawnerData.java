@@ -33,14 +33,14 @@ import org.spongepowered.api.data.value.WeightedCollectionValue;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.entity.vehicle.minecart.MobSpawnerMinecart;
+import org.spongepowered.api.entity.vehicle.minecart.SpawnerMinecart;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 
 import java.util.Random;
 
 /**
  * An {@link ImmutableDataManipulator} for all information surrounding a
- * {@link MobSpawner} and {@link MobSpawnerMinecart}. The data defined will
+ * {@link MobSpawner} and {@link SpawnerMinecart}. The data defined will
  * provide new {@link Entity} spawns with varying types and data.
  */
 public interface ImmutableMobSpawnerData extends ImmutableDataManipulator<ImmutableMobSpawnerData, MobSpawnerData> {

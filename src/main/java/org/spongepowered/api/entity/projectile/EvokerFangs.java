@@ -24,34 +24,7 @@
  */
 package org.spongepowered.api.entity.projectile;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.RepresentedItemData;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.entity.Entity;
 
-/**
- * Represents a thrown potion.
- */
-public interface ThrownPotion extends Projectile {
-
-    /**
-     * Gets a copy of the {@link RepresentedItemData} used by this potion.
-     *
-     * @return A copy of the represented item data
-     */
-    default RepresentedItemData getPotionItemData() {
-        return get(RepresentedItemData.class).get();
-    }
-
-    /**
-     * Gets the {@link Value.Mutable} for the represented {@link ItemStack} as an
-     * {@link ItemStackSnapshot}.
-     *
-     * @return The value for the item stack snapshot
-     */
-    default Value.Mutable<ItemStackSnapshot> item() {
-        return getValue(Keys.REPRESENTED_ITEM).get().asMutable();
-    }
-
+public interface EvokerFangs extends Entity {
 }

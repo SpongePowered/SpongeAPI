@@ -22,11 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.projectile;
+package org.spongepowered.api.entity.living.animal;
 
-/**
- * Represents a thrown experience bottle.
- */
-public interface ThrownExpBottle extends Projectile {
+import org.spongepowered.api.entity.living.Aquatic;
 
+public interface Dolphin extends Aquatic {
 }

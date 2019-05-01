@@ -28,14 +28,14 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableFireworkEffectData;
 import org.spongepowered.api.data.value.ListValue;
-import org.spongepowered.api.entity.projectile.Firework;
+import org.spongepowered.api.entity.projectile.FireworkRocket;
 import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
  * A {@link DataManipulator} handling the various
- * {@link FireworkEffect}s associated with a {@link Firework} and
+ * {@link FireworkEffect}s associated with a {@link FireworkRocket} and
  * an {@link ItemStack} that is of the {@link ItemTypes#FIREWORK_ROCKET}
  * or {@link ItemTypes#FIREWORK_STAR}.
  */
