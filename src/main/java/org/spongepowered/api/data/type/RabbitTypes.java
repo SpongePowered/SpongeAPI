@@ -49,9 +49,7 @@ public final class RabbitTypes {
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
     private RabbitTypes() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }
-
 }

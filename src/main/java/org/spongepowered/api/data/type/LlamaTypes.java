@@ -26,28 +26,21 @@ package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-/**
- * An enumeration of known vanilla {@link ParrotVariant}s.
- */
-public final class ParrotVariants {
+public final class LlamaTypes {
 
     // SORTFIELDS:ON
 
-    public static final ParrotVariant BLUE = DummyObjectProvider.createFor(ParrotVariant.class, "BLUE");
+    public static final LlamaType CREAMY = DummyObjectProvider.createFor(LlamaType.class, "CREAMY");
 
-    public static final ParrotVariant CYAN = DummyObjectProvider.createFor(ParrotVariant.class, "CYAN");
+    public static final LlamaType WHITE = DummyObjectProvider.createFor(LlamaType.class, "WHITE");
 
-    public static final ParrotVariant GRAY = DummyObjectProvider.createFor(ParrotVariant.class, "GRAY");
+    public static final LlamaType BROWN = DummyObjectProvider.createFor(LlamaType.class, "BROWN");
 
-    public static final ParrotVariant GREEN = DummyObjectProvider.createFor(ParrotVariant.class, "GREEN");
-
-    public static final ParrotVariant RED = DummyObjectProvider.createFor(ParrotVariant.class, "RED");
+    public static final LlamaType GRAY = DummyObjectProvider.createFor(LlamaType.class, "GRAY");
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
-    private ParrotVariants() {
+    private LlamaTypes() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }
-
 }

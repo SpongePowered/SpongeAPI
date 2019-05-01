@@ -47,10 +47,9 @@ public interface Rabbit extends Animal {
     /**
      * Gets the {@link Value.Mutable} for the {@link RabbitType} of this {@link Rabbit}.
      *
-     * @return The rabbit type for this rabit
+     * @return The rabbit type
      */
-    default Value.Mutable<RabbitType> variant() {
-        return getValue(Keys.RABBIT_TYPE).get().asMutable();
+    default Value.Mutable<RabbitType> type() {
+        return this.getValue(Keys.RABBIT_TYPE).get().asMutable();
     }
-
 }

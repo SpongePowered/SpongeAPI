@@ -33,4 +33,5 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  */
 @CatalogedBy(SkinParts.class)
 public interface SkinPart extends CatalogType, Translatable {
+
 }

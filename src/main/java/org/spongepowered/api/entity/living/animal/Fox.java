@@ -43,11 +43,11 @@ public interface Fox extends Animal {
 
     /**
      * Gets the {@link Value.Mutable} for the {@link FoxType} of this
-     * {@link FoxData}.
+     * {@link Fox}.
      *
-     * @return The fox variant value
+     * @return The fox type
      */
-    default Value.Mutable<FoxType> variant() {
-        return getValue(Keys.FOX_TYPE).get().asMutable();
+    default Value.Mutable<FoxType> type() {
+        return this.getValue(Keys.FOX_TYPE).get().asMutable();
     }
 }

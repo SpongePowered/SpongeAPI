@@ -34,21 +34,15 @@ public final class PickupRules {
 
     // SORTFIELDS:ON
 
-    public static final PickupRule ALLOWED = dummy("ALLOWED");
+    public static final PickupRule ALLOWED = DummyObjectProvider.createFor(PickupRule.class, "ALLOWED");
 
-    public static final PickupRule CREATIVE_ONLY = dummy("CREATIVE_ONLY");
+    public static final PickupRule CREATIVE_ONLY = DummyObjectProvider.createFor(PickupRule.class, "CREATIVE_ONLY");
 
-    public static final PickupRule DISALLOWED = dummy("DISALLOWED");
+    public static final PickupRule DISALLOWED = DummyObjectProvider.createFor(PickupRule.class, "DISALLOWED");
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
     private PickupRules() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }
-
-    private static PickupRule dummy(String fieldName) {
-        return DummyObjectProvider.createFor(PickupRule.class, fieldName);
-    }
-
 }

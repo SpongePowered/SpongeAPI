@@ -42,5 +42,6 @@ public final class Surfaces {
     // SORTFIELDS:OFF
 
     private Surfaces() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 }

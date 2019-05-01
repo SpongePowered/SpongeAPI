@@ -31,6 +31,8 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
  */
 public final class HandTypes {
 
+    // SORTFIELDS:ON
+
     /**
      * The hand used for main interactions such as using tools, and placing
      * blocks.
@@ -42,7 +44,8 @@ public final class HandTypes {
      */
     public static final HandType OFF_HAND = DummyObjectProvider.createFor(HandType.class, "OFF_HAND");
 
-    // Suppress default constructor to ensure non-instantiability.
+    // SORTFIELDS:OFF
+
     private HandTypes() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }

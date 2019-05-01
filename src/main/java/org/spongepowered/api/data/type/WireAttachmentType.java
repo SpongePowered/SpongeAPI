@@ -29,4 +29,5 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(WireAttachmentTypes.class)
 public interface WireAttachmentType extends CatalogType {
+
 }

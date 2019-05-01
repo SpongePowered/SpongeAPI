@@ -25,13 +25,13 @@
 package org.spongepowered.api.data.manipulator.mutable;
 
 import org.spongepowered.api.data.manipulator.immutable.ImmutableParrotData;
-import org.spongepowered.api.data.type.ParrotVariant;
+import org.spongepowered.api.data.type.ParrotType;
 import org.spongepowered.api.entity.living.animal.Parrot;
 
 /**
- * A type of {@link VariantData} for {@link ParrotVariant}s belonging
+ * A type of {@link VariantData} for {@link ParrotType}s belonging
  * to an {@link Parrot}.
  */
-public interface ParrotData extends VariantData<ParrotVariant, ParrotData, ImmutableParrotData> {
+public interface ParrotData extends VariantData<ParrotType, ParrotData, ImmutableParrotData> {
 
 }

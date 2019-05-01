@@ -40,10 +40,10 @@ import org.spongepowered.api.data.type.HandPreference;
 import org.spongepowered.api.data.type.Hinge;
 import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
-import org.spongepowered.api.data.type.LlamaVariant;
+import org.spongepowered.api.data.type.LlamaType;
 import org.spongepowered.api.data.type.NotePitch;
 import org.spongepowered.api.data.type.CatType;
-import org.spongepowered.api.data.type.ParrotVariant;
+import org.spongepowered.api.data.type.ParrotType;
 import org.spongepowered.api.data.type.PickupRule;
 import org.spongepowered.api.data.type.PortionType;
 import org.spongepowered.api.data.type.Profession;
@@ -228,9 +228,9 @@ public final class TypeTokens {
 
     public static final TypeToken<ListValue<TradeOffer>> LIST_VALUE_TRADE_OFFER_TOKEN = new TypeToken<ListValue<TradeOffer>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<LlamaVariant> LLAMA_VARIANT_TOKEN = new TypeToken<LlamaVariant>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<LlamaType> LLAMA_VARIANT_TOKEN = new TypeToken<LlamaType>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<Value<LlamaVariant>> LLAMA_VARIANT_VALUE_TOKEN = new TypeToken<Value<LlamaVariant>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<Value<LlamaType>> LLAMA_VARIANT_VALUE_TOKEN = new TypeToken<Value<LlamaType>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Long> LONG_TOKEN = new TypeToken<Long>() {private static final long serialVersionUID = -1;};
 
@@ -280,9 +280,9 @@ public final class TypeTokens {
 
     public static final TypeToken<OptionalValue<UUID>> OPTIONAL_UUID_VALUE_TOKEN = new TypeToken<OptionalValue<UUID>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<ParrotVariant> PARROT_VARIANT_TOKEN = new TypeToken<ParrotVariant>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<ParrotType> PARROT_VARIANT_TOKEN = new TypeToken<ParrotType>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<Value<ParrotVariant>> PARROT_VARIANT_VALUE_TOKEN = new TypeToken<Value<ParrotVariant>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<Value<ParrotType>> PARROT_VARIANT_VALUE_TOKEN = new TypeToken<Value<ParrotType>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<ParticleType> PARTICLE_TYPE_TOKEN = new TypeToken<ParticleType>() {private static final long serialVersionUID = -1;};
 

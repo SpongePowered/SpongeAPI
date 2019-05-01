@@ -38,9 +38,7 @@ public final class WireAttachmentTypes {
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
     private WireAttachmentTypes() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }
-
 }

@@ -134,6 +134,8 @@ public final class CatalogTypes {
 
     public static final Class<Career> CAREER = Career.class;
 
+    public static final Class<CatType> CAT_TYPE = CatType.class;
+
     public static final Class<ChatType> CHAT_TYPE = ChatType.class;
 
     public static final Class<ChatVisibility> CHAT_VISIBILITY = ChatVisibility.class;
@@ -178,6 +180,8 @@ public final class CatalogTypes {
 
     public static final Class<FluidType> FLUID_TYPE = FluidType.class;
 
+    public static final Class<FoxType> FOX_TYPE = FoxType.class;
+
     public static final Class<GameMode> GAME_MODE = GameMode.class;
 
     public static final Class<GeneratorType> GENERATOR_TYPE = GeneratorType.class;
@@ -206,7 +210,9 @@ public final class CatalogTypes {
 
     public static final Class<ItemType> ITEM_TYPE = ItemType.class;
 
-    public static final Class<LlamaVariant> LLAMA_VARIANT = LlamaVariant.class;
+    public static final Class<LlamaType> LLAMA_TYPE = LlamaType.class;
+
+    public static final Class<MooshroomType> MOOSHROOM_TYPE = MooshroomType.class;
 
     public static final Class<MusicDisc> MUSIC_DISC = MusicDisc.class;
 
@@ -214,9 +220,7 @@ public final class CatalogTypes {
 
     public static final Class<ObjectiveDisplayMode> OBJECTIVE_DISPLAY_MODE = ObjectiveDisplayMode.class;
 
-    public static final Class<CatType> OCELOT_TYPE = CatType.class;
-
-    public static final Class<ParrotVariant> PARROT_VARIANT = ParrotVariant.class;
+    public static final Class<ParrotType> PARROT_TYPE = ParrotType.class;
 
     public static final Class<ParticleOption> PARTICLE_OPTION = ParticleOption.class;
 
@@ -290,14 +294,11 @@ public final class CatalogTypes {
 
     public static final Class<WorldArchetype> WORLD_ARCHETYPE = WorldArchetype.class;
 
-    
     public static final Class<WornEquipmentType> WORN_EQUIPMENT_TYPE = WornEquipmentType.class;
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
     private CatalogTypes() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }
-
 }

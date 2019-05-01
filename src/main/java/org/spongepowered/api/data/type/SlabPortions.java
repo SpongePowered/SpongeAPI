@@ -42,6 +42,6 @@ public final class SlabPortions {
     // SORTFIELDS:OFF
 
     private SlabPortions() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
-
 }

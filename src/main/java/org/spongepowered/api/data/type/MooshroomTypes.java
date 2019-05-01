@@ -39,9 +39,7 @@ public final class MooshroomTypes {
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
     private MooshroomTypes() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }
-
 }

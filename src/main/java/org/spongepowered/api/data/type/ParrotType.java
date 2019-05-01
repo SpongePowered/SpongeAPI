@@ -31,7 +31,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 /**
  * Represents the variant of a {@link Parrot}.
  */
-@CatalogedBy(ParrotVariants.class)
-public interface ParrotVariant extends CatalogType {
+@CatalogedBy(ParrotTypes.class)
+public interface ParrotType extends CatalogType {
 
 }

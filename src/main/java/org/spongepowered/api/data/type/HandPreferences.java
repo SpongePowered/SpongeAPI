@@ -31,10 +31,14 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
  */
 public final class HandPreferences {
 
+    // SORTFIELDS: ON
+
     public static final HandPreference LEFT = DummyObjectProvider.createFor(HandPreference.class, "LEFT");
+
     public static final HandPreference RIGHT = DummyObjectProvider.createFor(HandPreference.class, "RIGHT");
 
-    // Suppress default constructor to ensure non-instantiability.
+    // SORTFIELDS: OFF
+
     private HandPreferences() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }

@@ -42,6 +42,6 @@ public final class ChestAttachmentTypes {
     // SORTFIELDS:OFF
 
     private ChestAttachmentTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
-
 }

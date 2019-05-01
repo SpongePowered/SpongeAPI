@@ -58,11 +58,11 @@ import org.spongepowered.api.data.type.Hinge;
 import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.type.InstrumentType;
-import org.spongepowered.api.data.type.LlamaVariant;
+import org.spongepowered.api.data.type.LlamaType;
 import org.spongepowered.api.data.type.MooshroomType;
 import org.spongepowered.api.data.type.NotePitch;
 import org.spongepowered.api.data.type.CatType;
-import org.spongepowered.api.data.type.ParrotVariant;
+import org.spongepowered.api.data.type.ParrotType;
 import org.spongepowered.api.data.type.PickupRule;
 import org.spongepowered.api.data.type.PortionType;
 import org.spongepowered.api.data.type.RabbitType;
@@ -1493,9 +1493,9 @@ public final class Keys {
     public static final Key<BoundedValue<Integer>> LLAMA_STRENGTH = DummyObjectProvider.createExtendedFor(Key.class,"LLAMA_STRENGTH");
 
     /**
-     * Represents the {@link Key} for a {@link Llama}'s {@link LlamaVariant}.
+     * Represents the {@link Key} for a {@link Llama}'s {@link LlamaType}.
      */
-    public static final Key<Value<LlamaVariant>> LLAMA_VARIANT = DummyObjectProvider.createExtendedFor(Key.class,"LLAMA_VARIANT");
+    public static final Key<Value<LlamaType>> LLAMA_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"LLAMA_TYPE");
 
     /**
      * Represents the {@link Key} for the token used to lock a
@@ -1593,11 +1593,11 @@ public final class Keys {
     public static final Key<Value<Boolean>> OPEN = DummyObjectProvider.createExtendedFor(Key.class,"OPEN");
 
     /**
-     * Represents the {@link ParrotVariant variant} of a {@link Parrot}.
+     * Represents the {@link ParrotType variant} of a {@link Parrot}.
      *
      * @see ParrotData#type()
      */
-    public static final Key<Value<ParrotVariant>> PARROT_VARIANT = DummyObjectProvider.createExtendedFor(Key.class,"PARROT_VARIANT");
+    public static final Key<Value<ParrotType>> PARROT_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"PARROT_TYPE");
 
     /**
      * Represents the {@link Key} for the amount of ticks a {@link Furnace} has

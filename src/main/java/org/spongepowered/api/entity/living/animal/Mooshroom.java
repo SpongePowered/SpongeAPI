@@ -48,9 +48,9 @@ public interface Mooshroom extends Cow {
      * Gets the {@link Value.Mutable} for the {@link MooshroomType} of this
      * {@link MooshroomData}.
      *
-     * @return The mooshroom variant value
+     * @return The mooshroom type
      */
-    default Value.Mutable<MooshroomType> variant() {
+    default Value.Mutable<MooshroomType> type() {
         return getValue(Keys.MOOSHROOM_TYPE).get().asMutable();
     }
 }

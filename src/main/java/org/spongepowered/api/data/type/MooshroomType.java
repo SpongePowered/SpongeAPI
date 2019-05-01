@@ -25,10 +25,12 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a type of mooshroom a mooshroom is.
  */
+@CatalogedBy(MooshroomTypes.class)
 public interface MooshroomType extends CatalogType {
 
 }
