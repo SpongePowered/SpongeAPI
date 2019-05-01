@@ -84,14 +84,6 @@ public interface VirtualBiomeType extends BiomeType {
          */
         Builder persistedType(BiomeType biome);
 
-        /**
-         * Sets the function used for creating new
-         * {@link BiomeGenerationSettings}s for this virtual biome.
-         * 
-         * @param settingsBuilder The settings builder function
-         * @return This builder, for chaining
-         */
-        Builder settingsBuilder(Function<World, BiomeGenerationSettings> settingsBuilder);
     }
 
 }

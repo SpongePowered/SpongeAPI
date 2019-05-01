@@ -31,7 +31,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.UpdatableVolume;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.biome.MutableBiomeVolume;
+import org.spongepowered.api.world.volume.biome.MutableBiomeVolume;
 import org.spongepowered.api.world.volume.LightCalculatingVolume;
 import org.spongepowered.api.world.volume.block.MutableBlockVolume;
 import org.spongepowered.api.world.volume.composite.ReadableCompositeVolume;
@@ -46,8 +46,7 @@ import org.spongepowered.api.world.volume.tileentity.MutableTileEntityVolume;
  * usable "live" proto chunk instance will be a {@link Chunk} with a valid
  * {@link World} instance.</p>
  *
- * <p>In Minecraft, the chunk is 16 by 16 blocks on the X and Z axes. The height
- * of each chunk varies between worlds.</p>
+ * @implNote Mixes onto IChunk
  */
 public interface ProtoChunk<P extends ProtoChunk<P>> extends
     ReadableCompositeVolume,

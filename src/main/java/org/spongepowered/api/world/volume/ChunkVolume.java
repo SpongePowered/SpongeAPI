@@ -22,12 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.chunk;
+package org.spongepowered.api.world.volume;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.world.ProtoWorld;
+import org.spongepowered.api.world.chunk.ProtoChunk;
 import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
 
+/**
+ * Presents a volume of {@link ProtoChunk}s that can exist
+ * without a {@link ProtoWorld} volume.
+ *
+ * @implNote There is no direct implementation to mix this onto
+ * as the interface itsself is to store the many many isArea/isBlock
+ * loaded from IWorld and IWorldReaderBase
+ */
 public interface ChunkVolume extends ReadableBlockVolume {
 
     ProtoChunk<?> getChunk(int x, int y, int z);

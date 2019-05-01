@@ -22,43 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen;
+package org.spongepowered.api.world.gen.feature;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.util.annotation.CatalogedBy;
-import org.spongepowered.api.world.World;
+import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.world.ProtoWorld;
+import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.gen.FeatureConfig;
 
 import java.util.Random;
 
 /**
- * Represents an object placed in the world during terrain population. Populator
- * objects typically fit in a single chunk.
+ * A pre-composed {@link FeatureCreator} that has a designated and configured
+ * {@link FeaturePlacer} and {@link FeatureCreator}. The uses for this is to
+ * pre-compose features that would otherwise be found in {@link BiomeType}s.
+ *
+ * @param <F>
+ * @param <P>
  */
-@CatalogedBy(PopulatorObjects.class)
-public interface PopulatorObject extends CatalogType {
+public interface CompositeFeature<F extends FeatureConfig, P extends PlacementConfig> extends FeatureCreator<F> {
 
-    /**
-     * Returns whether this object can be placed into the world at the given
-     * position.
-     *
-     * @param world The world
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return Whether the placement is valid
-     */
-    boolean canPlaceAt(World world, int x, int y, int z);
+    F getFeatureConfig();
 
-    /**
-     * Places the object into the world at the given location.
-     *
-     * @param world The world
-     * @param random Random number generator based on the world seed and
-     *        position.
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     */
-    void placeObject(World world, Random random, int x, int y, int z);
+    FeatureCreator<F> getCreator();
+
+    P getPlacementConfig();
+
+    FeaturePlacer<P> getPlacer();
+
+    @Override
+    default boolean place(ProtoWorld<?> world, Random random, Vector3i origin, F config) {
+        return getPlacer().generate(world, random, origin, getPlacementConfig(), getCreator(), getFeatureConfig());
+    }
 
 }

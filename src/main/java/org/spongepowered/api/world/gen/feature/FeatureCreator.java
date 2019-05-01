@@ -22,28 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen.biome;
+package org.spongepowered.api.world.gen.feature;
 
-import org.spongepowered.api.world.biome.MutableBiomeVolume;
+import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.world.ProtoWorld;
+import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.gen.GenerationRegion;
 
-/**
- * Manages the biome generation for an extent.
- */
-public interface BiomeGenerator<B extends BiomeConfig> {
+import java.util.Random;
+
+public interface FeatureCreator<C> {
 
     /**
-     * Generates the biomes for the whole buffer using only biomes from the
-     * given array of available biomes. The resultant biomes are placed into the
-     * given buffer.
+     * Places what would be considered the "feature" centered at the origin
+     * position in the provided {@link ProtoWorld}. The world is not guaranteed
+     * to be an active {@link World}, as it can be a {@link GenerationRegion}
+     * for chunk generation. The configuration object is used to determine
+     * various feature options, potentially exposed by the feature itself.
      *
-     * <p> The biome generator can be called multiple times for the same
-     * position. The biome generator should, for any position/world seed
-     * combination, always return the same biome. </p>
-     *
-     * @param buffer The buffer to generate the biomes into.
+     * @param world The world region where the feature is to be placed
+     * @param random The random number provider
+     * @param origin The origin point of the feature
+     * @param config The config object for configuring the feature to be placed
+     * @return True
      */
-    void generateBiomes(MutableBiomeVolume<?> buffer);
-
-    B getBiomeConfig();
+    boolean place(ProtoWorld<?> world, Random random, Vector3i origin, C config);
 
 }

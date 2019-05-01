@@ -22,5 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.world.gen.type;
+package org.spongepowered.api.world.gen.feature;
+
+public interface PlacementConfig {
+
+}

@@ -22,22 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.biome;
+package org.spongepowered.api.world.gen;
 
+import org.spongepowered.api.world.gen.Carver;
 
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.world.biome.worker.BiomeVolumeWorker;
-
-public interface WorkableBiomeVolume<B extends WorkableBiomeVolume<B>> extends ReadableBiomeVolume {
-
-    /**
-     * Gets a new block worker for this block volume.
-     *
-     * @return The block worker
-     */
-    BiomeVolumeWorker<B, ?> getBiomeWorker();
-
-    @Override
-    B getView(Vector3i newMin, Vector3i newMax);
+/**
+ * A base interface for all world gen region feature config options,
+ * some objects like {@link Carver}s will use specialized objects
+ * compared to others.
+ *
+ * @implementation Mixes onto IFeatureConfig
+ */
+public interface FeatureConfig {
 
 }

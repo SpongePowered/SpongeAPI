@@ -27,7 +27,6 @@ package org.spongepowered.api.world;
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.world.chunk.ChunkPreGenerate;
 
 import java.time.Duration;
 import java.time.temporal.TemporalUnit;
@@ -257,18 +256,6 @@ public interface WorldBorder {
      * @param damage The damage amount
      */
     void setDamageAmount(double damage);
-
-    /**
-     * Returns a new builder for creating a task to pre-generate the chunks
-     * inside the border. The current state of the border is "snapshotted" for
-     * the builder. It is not backed by this instance. If the border size is
-     * changing then the target size is used.
-     *
-     * @param world The target world
-     * @return The builder for the chunk pre-generate task
-     * @see ChunkPreGenerate
-     */
-    ChunkPreGenerate.Builder newChunkPreGenerate(World world);
 
     /**
      * Copies the properties of the passed border onto this border.

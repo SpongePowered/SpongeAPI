@@ -38,7 +38,6 @@ import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.weather.Weather;
 
 public final class SpawnTypes {

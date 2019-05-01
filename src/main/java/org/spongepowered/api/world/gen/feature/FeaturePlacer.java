@@ -22,26 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen.type;
+package org.spongepowered.api.world.gen.feature;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.world.ProtoWorld;
 
-/**
- * An enumeration of known {@link MushroomType}s.
- */
-public final class MushroomTypes {
+import java.util.Random;
 
-    // SORTFIELDS:ON
+public interface FeaturePlacer<P extends PlacementConfig> {
 
-    public static final MushroomType BROWN = DummyObjectProvider.createFor(MushroomType.class, "BROWN");
-
-    public static final MushroomType RED = DummyObjectProvider.createFor(MushroomType.class, "RED");
-
-    // SORTFIELDS:OFF
-
-    // Suppress default constructor to ensure non-instantiability.
-    private MushroomTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
-    }
+    <C> boolean generate(ProtoWorld<?> worldIn, Random random, Vector3i pos, P placementConfig, FeatureCreator<C> feature, C featureConfig);
 
 }

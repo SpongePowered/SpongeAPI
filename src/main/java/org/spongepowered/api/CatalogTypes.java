@@ -88,11 +88,6 @@ import org.spongepowered.api.world.WorldArchetype;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.biome.VirtualBiomeType;
 import org.spongepowered.api.world.difficulty.Difficulty;
-import org.spongepowered.api.world.gen.PopulatorObject;
-import org.spongepowered.api.world.gen.PopulatorType;
-import org.spongepowered.api.world.gen.WorldGeneratorModifier;
-import org.spongepowered.api.world.gen.type.BiomeTreeType;
-import org.spongepowered.api.world.gen.type.MushroomType;
 import org.spongepowered.api.world.schematic.BlockPaletteType;
 import org.spongepowered.api.world.teleport.TeleportHelperFilter;
 import org.spongepowered.api.world.weather.Weather;
@@ -124,8 +119,6 @@ public final class CatalogTypes {
     public static final Class<BannerPatternShape> BANNER_PATTERN_SHAPE = BannerPatternShape.class;
 
     public static final Class<BanType> BAN_TYPE = BanType.class;
-
-    public static final Class<BiomeTreeType> BIOME_TREE_TYPE = BiomeTreeType.class;
 
     public static final Class<BiomeType> BIOME_TYPE = BiomeType.class;
 
@@ -215,8 +208,6 @@ public final class CatalogTypes {
 
     public static final Class<LlamaVariant> LLAMA_VARIANT = LlamaVariant.class;
 
-    public static final Class<MushroomType> MUSHROOM_TYPE = MushroomType.class;
-
     public static final Class<MusicDisc> MUSIC_DISC = MusicDisc.class;
 
     public static final Class<NotePitch> NOTE_PITCH = NotePitch.class;
@@ -232,10 +223,6 @@ public final class CatalogTypes {
     public static final Class<ParticleType> PARTICLE_TYPE = ParticleType.class;
 
     public static final Class<PickupRule> PICKUP_RULE = PickupRule.class;
-
-    public static final Class<PopulatorObject> POPULATOR_OBJECT = PopulatorObject.class;
-
-    public static final Class<PopulatorType> POPULATOR_TYPE = PopulatorType.class;
 
     public static final Class<PortalAgentType> PORTAL_AGENT_TYPE = PortalAgentType.class;
 
@@ -302,9 +289,7 @@ public final class CatalogTypes {
     public static final Class<WireAttachmentType> WIRE_ATTACHMENT_TYPE = WireAttachmentType.class;
 
     public static final Class<WorldArchetype> WORLD_ARCHETYPE = WorldArchetype.class;
-
-    public static final Class<WorldGeneratorModifier> WORLD_GENERATOR_MODIFIER = WorldGeneratorModifier.class;
-
+    
     public static final Class<WornEquipmentType> WORN_EQUIPMENT_TYPE = WornEquipmentType.class;
 
     // SORTFIELDS:OFF

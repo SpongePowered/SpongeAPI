@@ -37,7 +37,6 @@ import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
 import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.world.chunk.Chunk;
-import org.spongepowered.api.world.chunk.ChunkPreGenerate;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.gamerule.GameRule;
@@ -365,17 +364,6 @@ public interface World extends ProtoWorld<World>, LocationCreator<World>, Physic
      * @return The world border
      */
     WorldBorder getWorldBorder();
-
-    /**
-     * Returns a new builder for creating a task to pre-generate the chunks
-     * inside a square border with a given center and diameter.
-     *
-     * @param center The center of the border
-     * @param diameter The diameter of the border
-     * @return The builder for the chunk pre-generate task
-     * @see ChunkPreGenerate
-     */
-    ChunkPreGenerate.Builder newChunkPreGenerate(Vector3d center, double diameter);
 
     /**
      * Returns the {@link Dimension} of this world.

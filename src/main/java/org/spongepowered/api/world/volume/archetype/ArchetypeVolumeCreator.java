@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.volume.archetype;
 
 import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.world.biome.WorkableBiomeVolume;
+import org.spongepowered.api.world.volume.biome.WorkableBiomeVolume;
 import org.spongepowered.api.world.volume.block.WorkableBlockVolume;
 import org.spongepowered.api.world.volume.entity.WorkableEntityVolume;
 import org.spongepowered.api.world.volume.tileentity.WorkableTileEntityVolume;

@@ -39,7 +39,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gen.GeneratorType;
 import org.spongepowered.api.world.gen.GeneratorTypes;
-import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.teleport.PortalAgentType;
 
@@ -117,13 +116,6 @@ public interface WorldArchetype extends CatalogType {
      * @return The generator type
      */
     GeneratorType getGeneratorType();
-
-    /**
-     * Gets an immutable collection of the world generator modifiers.
-     * 
-     * @return The modifiers
-     */
-    Collection<WorldGeneratorModifier> getGeneratorModifiers();
 
     /**
      * Gets whether map features are enabled.
@@ -275,16 +267,6 @@ public interface WorldArchetype extends CatalogType {
         Builder generator(GeneratorType type);
 
         /**
-         * Sets the generator modifiers.
-         *
-         * @param modifier The modifiers
-         * @return The builder, for chaining
-         * @throws IllegalArgumentException If one of the modifiers is not
-         *         registered in {@link GameRegistry}.
-         */
-        Builder generatorModifiers(WorldGeneratorModifier... modifier);
-
-        /**
          * Sets the dimension type.
          *
          * @param type The type
@@ -320,9 +302,8 @@ public interface WorldArchetype extends CatalogType {
         Builder hardcore(boolean state);
 
         /**
-         * Sets any extra settings required by the {@link GeneratorType} or by
-         * the {@link WorldGeneratorModifier}s. If not specified these will
-         * default to the settings within {@link GeneratorType#getGeneratorSettings()}.
+         * Sets any extra settings required by the {@link GeneratorType}.
+         * If not specified these will default to the settings within {@link GeneratorType#getGeneratorSettings()}.
          *
          * @param settings The generator settings
          * @return The builder, for chaining

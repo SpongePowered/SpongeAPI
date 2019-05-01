@@ -30,7 +30,7 @@ import org.spongepowered.api.world.volume.composite.ReadableCompositeVolume;
 
 import java.util.Random;
 
-public interface WorldCarver<C extends GenerationConfig> {
+public interface WorldCarver<C extends FeatureConfig> {
 
     boolean canCarve(ReadableCompositeVolume volume, Random random, Vector2i chunkPosition, C configuration);
 

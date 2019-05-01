@@ -22,33 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen.type;
+package org.spongepowered.api.world.volume.biome;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.util.annotation.CatalogedBy;
-import org.spongepowered.api.world.gen.PopulatorObject;
+import org.spongepowered.api.world.volume.MutableVolume;
+import org.spongepowered.api.world.volume.UnmodifiableVolume;
+import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
+import org.spongepowered.api.world.volume.block.worker.BlockVolumeWorker;
 
 /**
- * Represents the various types of mushrooms which may be spawned into the
- * world.
+ * Like a {@link ReadableBlockVolume} except in the case that
+ * while the parent volume can potentially be a {@link MutableVolume},
+ * this volume returned will not be. This is useful if needing to simply
+ * scan blocks or use {@link BlockVolumeWorker}s to perform various operations.
  */
-@CatalogedBy(MushroomTypes.class)
-public interface MushroomType extends CatalogType {
+public interface UnmodifiableBiomeVolume<U extends UnmodifiableBiomeVolume<U>> extends ReadableBiomeVolume, WorkableBiomeVolume<U>, UnmodifiableVolume {
 
-    /**
-     * Gets the {@link PopulatorObject} which is used to generate the large
-     * variant of this mushroom into the world.
-     * 
-     * @return The populator object
-     */
-    PopulatorObject getPopulatorObject();
-
-    /**
-     * Sets the {@link PopulatorObject} which is used to generate the large
-     * variant of this mushroom into the world.
-     * 
-     * @param object The new populator object
-     */
-    void setPopulatorObject(PopulatorObject object);
+    @SuppressWarnings("unchecked")
+    @Override
+    default U asUnmodifiableBiomeVolume() {
+        return (U) this;
+    }
 
 }

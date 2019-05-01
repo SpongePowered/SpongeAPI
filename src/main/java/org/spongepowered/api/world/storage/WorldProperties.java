@@ -41,7 +41,6 @@ import org.spongepowered.api.world.WorldBorder;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gamerule.GameRuleHolder;
 import org.spongepowered.api.world.gen.GeneratorType;
-import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 import org.spongepowered.api.world.teleport.PortalAgentType;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 
@@ -345,23 +344,6 @@ public interface WorldProperties extends WeatherUniverse, DataSerializable, Iden
      * @param data The new data
      */
     void setPropertySection(DataQuery path, DataView data);
-
-    /**
-     * Gets an immutable collection of the world generator modifiers currently
-     * in use.
-     * 
-     * @return The world generator modifiers in use.
-     */
-    Collection<WorldGeneratorModifier> getGeneratorModifiers();
-
-    /**
-     * Sets the given world generator modifiers to be used.
-     *
-     * @param modifiers The modifiers to set.
-     * @throws IllegalArgumentException If any of the modifiers has not been
-     *         registered in the {@link GameRegistry}.
-     */
-    void setGeneratorModifiers(Collection<WorldGeneratorModifier> modifiers);
 
     /**
      * Gets the generator settings. These can be used by the generator type
