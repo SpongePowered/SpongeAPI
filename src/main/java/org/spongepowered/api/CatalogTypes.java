@@ -214,7 +214,7 @@ public final class CatalogTypes {
 
     public static final Class<ObjectiveDisplayMode> OBJECTIVE_DISPLAY_MODE = ObjectiveDisplayMode.class;
 
-    public static final Class<OcelotType> OCELOT_TYPE = OcelotType.class;
+    public static final Class<CatType> OCELOT_TYPE = CatType.class;
 
     public static final Class<ParrotVariant> PARROT_VARIANT = ParrotVariant.class;
 

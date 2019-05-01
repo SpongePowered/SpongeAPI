@@ -22,15 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.data.manipulator.mutable;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableCatData;
+import org.spongepowered.api.data.type.CatType;
+import org.spongepowered.api.entity.living.animal.Cat;
+import org.spongepowered.api.entity.living.animal.Ocelot;
 
 /**
- * Represents the type of ocelot an ocelot is.
+ * A type of {@link VariantData} for {@link CatType}s belonging
+ * to an {@link Cat}.
+ *
+ * @see Keys#CAT_TYPE
  */
-@CatalogedBy(OcelotTypes.class)
-public interface OcelotType extends CatalogType {
+public interface CatData extends VariantData<CatType, CatData, ImmutableCatData> {
 
 }

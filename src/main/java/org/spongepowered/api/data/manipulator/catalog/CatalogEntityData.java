@@ -283,9 +283,9 @@ public final class CatalogEntityData {
      */
     public static final Class<MinecartBlockData> MINECART_BLOCK_DATA = MinecartBlockData.class;
     /**
-     * Represents the {@link OcelotType} of an {@link Ocelot}.
+     * Represents the {@link CatType} of an {@link Ocelot}.
      */
-    public static final Class<OcelotData> OCELOT_DATA = OcelotData.class;
+    public static final Class<CatData> OCELOT_DATA = CatData.class;
     /**
      * Represents the amount of "experience" an {@link ExperienceOrb}
      * contains.

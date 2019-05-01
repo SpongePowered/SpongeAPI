@@ -42,7 +42,7 @@ import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.type.LlamaVariant;
 import org.spongepowered.api.data.type.NotePitch;
-import org.spongepowered.api.data.type.OcelotType;
+import org.spongepowered.api.data.type.CatType;
 import org.spongepowered.api.data.type.ParrotVariant;
 import org.spongepowered.api.data.type.PickupRule;
 import org.spongepowered.api.data.type.PortionType;
@@ -252,9 +252,9 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<NotePitch>> NOTE_VALUE_TOKEN = new TypeToken<Value<NotePitch>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<OcelotType> OCELOT_TOKEN = new TypeToken<OcelotType>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<CatType> OCELOT_TOKEN = new TypeToken<CatType>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<Value<OcelotType>> OCELOT_VALUE_TOKEN = new TypeToken<Value<OcelotType>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<Value<CatType>> OCELOT_VALUE_TOKEN = new TypeToken<Value<CatType>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Optional<Double>> OPTIONAL_DOUBLE_TOKEN = new TypeToken<Optional<Double>>() {private static final long serialVersionUID = -1;};
 

@@ -24,33 +24,8 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.OcelotData;
-import org.spongepowered.api.data.type.OcelotType;
-import org.spongepowered.api.data.value.Value;
-
 /**
  * Represents an Ocelot.
  */
 public interface Ocelot extends Animal {
-
-    /**
-     * Gets a copy of the current {@link OcelotData} being represented by
-     * this {@link Ocelot}.
-     *
-     * @return A copy of the current ocelot data
-     */
-    default OcelotData getOcelotData() {
-        return get(OcelotData.class).get();
-    }
-
-    /**
-     * Gets the {@link Value.Mutable} for the {@link OcelotType} of this
-     * {@link Ocelot}.
-     *
-     * @return The ocelot variant value
-     */
-    default Value.Mutable<OcelotType> variant() {
-        return getValue(Keys.OCELOT_TYPE).get().asMutable();
-    }
 }

@@ -24,28 +24,13 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * An enumeration of known vanilla {@link OcelotType}s.
+ * Represents the type of ocelot an ocelot is.
  */
-public final class OcelotTypes {
-
-    // SORTFIELDS:ON
-
-    public static final OcelotType BLACK_CAT = DummyObjectProvider.createFor(OcelotType.class, "BLACK_CAT");
-
-    public static final OcelotType RED_CAT = DummyObjectProvider.createFor(OcelotType.class, "RED_CAT");
-
-    public static final OcelotType SIAMESE_CAT = DummyObjectProvider.createFor(OcelotType.class, "SIAMESE_CAT");
-
-    public static final OcelotType WILD_OCELOT = DummyObjectProvider.createFor(OcelotType.class, "WILD_OCELOT");
-
-    // SORTFIELDS:OFF
-
-    // Suppress default constructor to ensure non-instantiability.
-    private OcelotTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
-    }
+@CatalogedBy(CatTypes.class)
+public interface CatType extends CatalogType {
 
 }

@@ -22,20 +22,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world.chunk;
+package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.world.chunk.Chunk;
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.manipulator.mutable.CatData;
+import org.spongepowered.api.data.manipulator.mutable.DyeableData;
+import org.spongepowered.api.data.type.CatType;
+import org.spongepowered.api.data.type.DyeColor;
+import org.spongepowered.api.data.value.Value;
 
 /**
- * Base event for anything targeting a {@link Chunk}.
+ * Represents a cat, meow.
  */
-public interface TargetChunkEvent extends Event {
+public interface Cat extends Animal {
 
     /**
-     * Gets the {@link Chunk} being changed.
+     * Gets a copy of the current {@link CatData} being represented by
+     * this {@link Cat}.
      *
-     * @return The Chunk
+     * @return A copy of the current cat data
      */
-    Chunk getTargetChunk();
+    default CatData getCatData() {
+        return this.get(CatData.class).get();
+    }
+
+    /**
+     * Gets the {@link Value.Mutable} for the {@link CatType} of this
+     * {@link CatData}.
+     *
+     * @return The cat variant value
+     */
+    default Value.Mutable<CatType> variant() {
+        return getValue(Keys.CAT_TYPE).get().asMutable();
+    }
+
+    default DyeableData getCollarColorData() {
+        return this.get(DyeableData.class).get();
+    }
+
+    default Value.Mutable<DyeColor> collarColor() {
+        return this.getValue(Keys.DYE_COLOR).get().asMutable();
+    }
 }

@@ -34,7 +34,7 @@ import org.spongepowered.api.data.value.Value;
  * Represents a Wolf.
  */
 public interface Wolf extends Animal {
-
+    
     /**
      * Gets a copy of the current {@link AggressiveData} for this
      * {@link Wolf}.

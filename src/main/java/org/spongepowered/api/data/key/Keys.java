@@ -59,7 +59,7 @@ import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.type.InstrumentType;
 import org.spongepowered.api.data.type.LlamaVariant;
 import org.spongepowered.api.data.type.NotePitch;
-import org.spongepowered.api.data.type.OcelotType;
+import org.spongepowered.api.data.type.CatType;
 import org.spongepowered.api.data.type.ParrotVariant;
 import org.spongepowered.api.data.type.PickupRule;
 import org.spongepowered.api.data.type.PortionType;
@@ -90,6 +90,7 @@ import org.spongepowered.api.entity.ExperienceOrb;
 import org.spongepowered.api.entity.FallingBlock;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.ShulkerBullet;
+import org.spongepowered.api.entity.living.animal.Cat;
 import org.spongepowered.api.entity.projectile.FireworkRocket;
 import org.spongepowered.api.entity.vehicle.Boat;
 import org.spongepowered.api.item.potion.PotionType;
@@ -1551,11 +1552,11 @@ public final class Keys {
     public static final Key<Value<Boolean>> OCCUPIED = DummyObjectProvider.createExtendedFor(Key.class,"OCCUPIED");
 
     /**
-     * Represents the {@link Key} for the type of an {@link Ocelot}.
+     * Represents the {@link Key} for the type of an {@link Cat}.
      *
-     * @see OcelotData
+     * @see CatData#type()
      */
-    public static final Key<Value<OcelotType>> OCELOT_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"OCELOT_TYPE");
+    public static final Key<Value<CatType>> CAT_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"CAT_TYPE");
 
     /**
      * Represents the {@link Key} for representing a block's offset when inside

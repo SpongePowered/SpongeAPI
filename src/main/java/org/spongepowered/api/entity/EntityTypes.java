@@ -33,6 +33,7 @@ import org.spongepowered.api.entity.living.Bat;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.living.Squid;
 import org.spongepowered.api.entity.living.Villager;
+import org.spongepowered.api.entity.living.animal.Cat;
 import org.spongepowered.api.entity.living.animal.Chicken;
 import org.spongepowered.api.entity.living.animal.Cow;
 import org.spongepowered.api.entity.living.animal.Dolphin;
@@ -134,6 +135,8 @@ public final class EntityTypes {
     public static final EntityType<Blaze> BLAZE = dummy("BLAZE");
 
     public static final EntityType<Boat> BOAT = dummy("BOAT");
+
+    public static final EntityType<Cat> CAT = dummy("CAT");
 
     public static final EntityType<CaveSpider> CAVE_SPIDER = dummy("CAVE_SPIDER");
 
