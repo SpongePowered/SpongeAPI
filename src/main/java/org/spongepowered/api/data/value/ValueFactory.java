@@ -25,12 +25,6 @@
 package org.spongepowered.api.data.value;
 
 import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.value.mutable.ListValue;
-import org.spongepowered.api.data.value.mutable.MapValue;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.OptionalValue;
-import org.spongepowered.api.data.value.mutable.SetValue;
-import org.spongepowered.api.data.value.mutable.Value;
 
 import java.util.Comparator;
 import java.util.List;
@@ -43,30 +37,18 @@ import javax.annotation.Nullable;
 public interface ValueFactory {
 
     /**
-     * Creates a new {@link Value} with the provided {@link Key} and the
-     * <code>E</code> element.
-     *
-     * @param key The key for the value
-     * @param element The element
-     * @param <E> The type of element
-     * @return The newly created value
-     */
-    <E> Value<E> createValue(Key<Value<E>> key, E element);
-
-    /**
-     * Creates a new {@link Value} with the provided {@link Key} and the
+     * Creates a new {@link Value.Mutable} with the provided {@link Key} and the
      * <code>E</code> element and the provided <code>E</code> default value.
      *
      * @param key The key for the value
      * @param element The element
-     * @param defaultValue The default value
      * @param <E> The type of element
      * @return The newly created value
      */
-    <E> Value<E> createValue(Key<Value<E>> key, E element, E defaultValue);
+    <E> Value.Mutable<E> createValue(Key<? extends Value<E>> key, E element);
 
     /**
-     * Creates a new {@link ListValue} with the provided {@link Key} and
+     * Creates a new {@link ListValue.Mutable} with the provided {@link Key} and
      * {@link List} of elements. The default value will be an empty list.
      *
      * @param key The key for the value
@@ -74,22 +56,10 @@ public interface ValueFactory {
      * @param <E> The type of element
      * @return The list value
      */
-    <E> ListValue<E> createListValue(Key<ListValue<E>> key, List<E> elements);
+    <E> ListValue.Mutable<E> createListValue(Key<? extends Value<List<E>>> key, List<E> elements);
 
     /**
-     * Creates a new {@link ListValue} with the provided {@link Key} and
-     * {@link List} of elements.
-     *
-     * @param key The key for the value
-     * @param elements The list of elements
-     * @param defaults The default list
-     * @param <E> The type of element
-     * @return The list value
-     */
-    <E> ListValue<E> createListValue(Key<ListValue<E>> key, List<E> elements, List<E> defaults);
-
-    /**
-     * Creates a new {@link SetValue} with the provided {@link Key} and
+     * Creates a new {@link SetValue.Mutable} with the provided {@link Key} and
      * {@link Set} of elements.
      *
      * @param key The key for the value
@@ -97,22 +67,10 @@ public interface ValueFactory {
      * @param <E> The type of element
      * @return The set value
      */
-    <E> SetValue<E> createSetValue(Key<SetValue<E>> key, Set<E> elements);
+    <E> SetValue.Mutable<E> createSetValue(Key<? extends Value<Set<E>>> key, Set<E> elements);
 
     /**
-     * Creates a new {@link SetValue} with the provided {@link Key} and
-     * {@link Set} of elements.
-     *
-     * @param key The key for the value
-     * @param elements The set of elements
-     * @param defaults The default set
-     * @param <E> The type of element
-     * @return The set value
-     */
-    <E> SetValue<E> createSetValue(Key<SetValue<E>> key, Set<E> elements, Set<E> defaults);
-
-    /**
-     * Creates a new {@link MapValue} of the provided {@link Key} with the
+     * Creates a new {@link MapValue.Mutable} of the provided {@link Key} with the
      * types <code>K</code> and <code>V</code>.
      *
      * @param key The key for the value
@@ -121,33 +79,19 @@ public interface ValueFactory {
      * @param <V> The type of value
      * @return The map value
      */
-    <K, V> MapValue<K, V> createMapValue(Key<MapValue<K, V>> key, Map<K, V> map);
+    <K, V> MapValue.Mutable<K, V> createMapValue(Key<? extends Value<Map<K, V>>> key, Map<K, V> map);
 
     /**
-     * Creates a new {@link MapValue} of the provided {@link Key} with the
-     * types <code>K</code> and <code>V</code> along with the provided
-     * {@link Map} defaults.
-     *
-     * @param key The key for the value
-     * @param map The map of elements
-     * @param defaults The default map
-     * @param <K> The type of key
-     * @param <V> The type of value
-     * @return The map value
-     */
-    <K, V> MapValue<K, V> createMapValue(Key<MapValue<K, V>> key, Map<K, V> map, Map<K, V> defaults);
-
-    /**
-     * Creates a {@link BoundedValueBuilder}
+     * Creates a {@link BoundedValueBuilder}.
      *
      * @param key The key to the value
      * @param <E> The type of value
      * @return The newly created value
      */
-    <E> BoundedValueBuilder<E> createBoundedValueBuilder(Key<MutableBoundedValue<E>> key);
+    <E> BoundedValueBuilder<E> createBoundedValueBuilder(Key<? extends BoundedValue<E>> key);
 
     /**
-     * Creates an {@link OptionalValue} where even the default value may be
+     * Creates an {@link OptionalValue.Mutable} where even the default value may be
      * {@link Optional#empty()}. These types of values should be restricted
      * to values that are live, that can be potentially large to retain a
      * reference to, and otherwise, not thread safe.
@@ -157,23 +101,10 @@ public interface ValueFactory {
      * @param <E> The type of element
      * @return The newly created value
      */
-    <E> OptionalValue<E> createOptionalValue(Key<OptionalValue<E>> key, @Nullable E element);
+    <E> OptionalValue.Mutable<E> createOptionalValue(Key<? extends OptionalValue<E>> key, @Nullable E element);
 
     /**
-     * Creates an {@link OptionalValue} where the default is NOT
-     * <code>null</code>, such that the actual value may be retained as
-     * <code>null</code>.
-     *
-     * @param key The key of the value
-     * @param element The element
-     * @param defaultElement The default value
-     * @param <E> The type of element
-     * @return The newly created value
-     */
-    <E> OptionalValue<E> createOptionalValue(Key<OptionalValue<E>> key, @Nullable E element, E defaultElement);
-
-    /**
-     * A builder pattern for constructing {@link MutableBoundedValue}s without the hassle of
+     * A builder pattern for constructing {@link BoundedValue.Mutable}s without the hassle of
      * keeping track of the order of arguments.
      *
      * @param <E> The type of element
@@ -210,32 +141,21 @@ public interface ValueFactory {
         BoundedValueBuilder<E> maximum(E max);
 
         /**
-         * Sets the default value. This is required. If no value is set,
-         * the default value transitively sets the value.
-         *
-         * @param defaultValue The default value
-         * @return This builder, for chaining
-         */
-        BoundedValueBuilder<E> defaultValue(E defaultValue);
-
-        /**
-         * Sets the actual value. Though not required, if the value is
-         * different from the {@link #defaultValue(Object)}, it should be
-         * set.
+         * Sets the actual value.
          *
          * @param actual The actual value
          * @return This builder, for chaining
          */
-        BoundedValueBuilder<E> actualValue(E actual);
+        BoundedValueBuilder<E> value(E actual);
 
         /**
-         * Builds a new {@link MutableBoundedValue}. The requirements are
+         * Builds a new {@link BoundedValue.Mutable}. The requirements are
          * that the {@link #minimum(Object)}, {@link #maximum(Object)},
-         * {@link #defaultValue(Object)} are set, and if the <code>E</code> is
+         * {@link #value(Object)} are set, and if the <code>E</code> is
          * not {@link Comparable}, {@link #comparator(Comparator)} is set.
          *
          * @return The newly constructed value
          */
-        MutableBoundedValue<E> build();
+        BoundedValue.Mutable<E> build();
     }
 }

@@ -27,8 +27,8 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableDespawnDelayData;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Item;
 
 /**
@@ -38,20 +38,20 @@ import org.spongepowered.api.entity.Item;
 public interface DespawnDelayData extends DataManipulator<DespawnDelayData, ImmutableDespawnDelayData> {
 
     /**
-     * Gets the {@link MutableBoundedValue} for the "despawn delay".
+     * Gets the {@link BoundedValue.Mutable} for the "despawn delay".
      *
      * @return The mutable bounded value for the "despawn delay"
      * @see Keys#DESPAWN_DELAY
      */
-    MutableBoundedValue<Integer> delay();
+    BoundedValue.Mutable<Integer> delay();
 
     /**
-     * Gets the {@link Value} for the "is infinite" state of
+     * Gets the {@link Value.Mutable} for the "is infinite" state of
      * the despawn delay.
      *
      * @return The value for the "is infinite" state
      * @see Keys#INFINITE_DESPAWN_DELAY
      */
-    Value<Boolean> infinite();
+    Value.Mutable<Boolean> infinite();
 
 }

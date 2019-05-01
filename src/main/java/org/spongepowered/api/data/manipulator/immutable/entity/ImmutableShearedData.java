@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.ShearedData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.animal.Sheep;
 
 /**
@@ -36,11 +36,11 @@ import org.spongepowered.api.entity.living.animal.Sheep;
 public interface ImmutableShearedData extends ImmutableDataManipulator<ImmutableShearedData, ShearedData> {
 
     /**
-     * Gets the {@link ImmutableValue} of the "sheared" state.
+     * Gets the {@link Value.Immutable} of the "sheared" state.
      *
      * @return The immutable value for the "sheared" state
      */
-    ImmutableValue<Boolean> sheared();
+    Value.Immutable<Boolean> sheared();
 
 }
 

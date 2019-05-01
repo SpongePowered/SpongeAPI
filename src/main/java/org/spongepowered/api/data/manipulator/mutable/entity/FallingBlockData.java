@@ -28,7 +28,7 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableFallingBlockData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.FallingBlock;
 
 /**
@@ -37,13 +37,13 @@ import org.spongepowered.api.entity.FallingBlock;
 public interface FallingBlockData extends DataManipulator<FallingBlockData, ImmutableFallingBlockData> {
 
     /**
-     * Gets the {@link Value} for the damage to deal per block
+     * Gets the {@link Value.Mutable} for the damage to deal per block
      * the {@link FallingBlock} has fallen.
      *
      * @return The immutable value for the damage per block of falling
      * @see Keys#FALL_DAMAGE_PER_BLOCK
      */
-    Value<Double> fallDamagePerBlock();
+    Value.Mutable<Double> fallDamagePerBlock();
 
     /**
      * Gets the maximum damage the {@link FallingBlock} can deal to another
@@ -52,7 +52,7 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData, Immu
      * @return The maximum damage the block can deal
      * @see Keys#MAX_FALL_DAMAGE
      */
-    Value<Double> maxFallDamage();
+    Value.Mutable<Double> maxFallDamage();
 
     /**
      * Gets the {@link BlockState} the falling block is representing.
@@ -60,7 +60,7 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData, Immu
      * @return The falling block's block state
      * @see Keys#FALLING_BLOCK_STATE
      */
-    Value<BlockState> blockState();
+    Value.Mutable<BlockState> blockState();
 
     /**
      * Gets whether this falling block will try to place itself where
@@ -69,7 +69,7 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData, Immu
      * @return True if this block will attempt to place itself when it lands
      * @see Keys#CAN_PLACE_AS_BLOCK
      */
-    Value<Boolean> canPlaceAsBlock();
+    Value.Mutable<Boolean> canPlaceAsBlock();
 
     /**
      * Gets whether this falling block can drop as an item if it lands in a
@@ -78,7 +78,7 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData, Immu
      * @return Whether this falling block can drop as an item
      * @see Keys#CAN_DROP_AS_ITEM
      */
-    Value<Boolean> canDropAsItem();
+    Value.Mutable<Boolean> canDropAsItem();
 
     /**
      * Gets the number of ticks the block has been falling for.
@@ -86,7 +86,7 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData, Immu
      * @return The time the block has been falling
      * @see Keys#FALL_TIME
      */
-    Value<Integer> fallTime();
+    Value.Mutable<Integer> fallTime();
 
     /**
      * Gets whether this falling block will damage entities where it lands.
@@ -94,6 +94,6 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData, Immu
      * @return Whether this falling block will damage entities where it lands
      * @see Keys#FALLING_BLOCK_CAN_HURT_ENTITIES
      */
-    Value<Boolean> canHurtEntities();
+    Value.Mutable<Boolean> canHurtEntities();
 
 }

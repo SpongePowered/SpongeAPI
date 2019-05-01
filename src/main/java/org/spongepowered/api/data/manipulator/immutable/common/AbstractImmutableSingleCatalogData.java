@@ -30,8 +30,7 @@ import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableVariantData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * An abstract implementation of an {@link ImmutableVariantData} extending
@@ -44,7 +43,7 @@ import org.spongepowered.api.data.value.mutable.Value;
 public abstract class AbstractImmutableSingleCatalogData<E extends CatalogType, I extends ImmutableVariantData<E, I, M>,
         M extends VariantData<E, M, I>> extends AbstractImmutableSingleData<E, I, M> implements ImmutableVariantData<E, I, M> {
 
-    private final ImmutableValue<E> cachedValue;
+    private final Value.Immutable<E> cachedValue;
 
     protected AbstractImmutableSingleCatalogData(Key<Value<E>> usedKey, E value) {
         this(usedKey, value, value);
@@ -53,12 +52,12 @@ public abstract class AbstractImmutableSingleCatalogData<E extends CatalogType, 
     protected AbstractImmutableSingleCatalogData(Key<Value<E>> usedKey, E value, E defaultValue) {
         super(usedKey, value, defaultValue);
         this.cachedValue = Sponge.getRegistry().getValueFactory()
-                .createValue(usedKey, value, defaultValue)
-                .asImmutable();
+            .createValue(usedKey, value)
+            .asImmutable();
     }
 
     @Override
-    protected ImmutableValue<E> getValueGetter() {
+    protected Value.Immutable<E> getValueGetter() {
         return this.cachedValue;
     }
 
@@ -68,7 +67,7 @@ public abstract class AbstractImmutableSingleCatalogData<E extends CatalogType, 
     }
 
     @Override
-    public ImmutableValue<E> type() {
+    public Value.Immutable<E> type() {
         return this.cachedValue;
     }
 }

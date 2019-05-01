@@ -26,10 +26,9 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.AreaEffectCloudData;
-import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
-import org.spongepowered.api.data.value.immutable.ImmutableListValue;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.ListValue;
+import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.value.ListValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.Entity;
@@ -42,28 +41,28 @@ public interface ImmutableAreaEffectCloudData extends ImmutableDataManipulator<I
      *
      * @return The color of this cloud
      */
-    ImmutableValue<Color> color();
+    Value.Immutable<Color> color();
 
     /**
      * Gets the {@code radius} value of this cloud.
      *
      * @return The radius value of this cloud
      */
-    ImmutableBoundedValue<Double> radius();
+    BoundedValue.Immutable<Double> radius();
 
     /**
      * Gets the {@link ParticleType} of this cloud.
      *
      * @return The particle type of this cloud
      */
-    ImmutableValue<ParticleType> particleType();
+    Value.Immutable<ParticleType> particleType();
 
     /**
      * Gets the bounded {@code duration} value of this cloud.
      *
      * @return The bounded duration value
      */
-    ImmutableBoundedValue<Integer> duration();
+    BoundedValue.Immutable<Integer> duration();
 
     /**
      * Gets the bounded {@code waitTime} value of this cloud. The wait time
@@ -72,7 +71,7 @@ public interface ImmutableAreaEffectCloudData extends ImmutableDataManipulator<I
      *
      * @return The bounded wait time value
      */
-    ImmutableBoundedValue<Integer> waitTime();
+    BoundedValue.Immutable<Integer> waitTime();
 
     /**
      * Gets the bounded {@code radiusOnUse} value of this cloud.
@@ -81,7 +80,7 @@ public interface ImmutableAreaEffectCloudData extends ImmutableDataManipulator<I
      *
      * @return The bounded radius reduced on use value
      */
-    ImmutableBoundedValue<Double> radiusOnUse();
+    BoundedValue.Immutable<Double> radiusOnUse();
 
     /**
      * Gets the bounded {@code radiusPerTick} value of this cloud.
@@ -91,7 +90,7 @@ public interface ImmutableAreaEffectCloudData extends ImmutableDataManipulator<I
      *
      * @return The bounded radius reduction per tick value
      */
-    ImmutableBoundedValue<Double> radiusPerTick();
+    BoundedValue.Immutable<Double> radiusPerTick();
 
     /**
      * Gets the bounded {@code durationOnUse} value of this cloud.
@@ -100,7 +99,7 @@ public interface ImmutableAreaEffectCloudData extends ImmutableDataManipulator<I
      *
      * @return The bounded duration on use value
      */
-    ImmutableBoundedValue<Integer> durationOnUse();
+    BoundedValue.Immutable<Integer> durationOnUse();
 
     /**
      * Gets the bounded {@code applicationDelay} value of this cloud.
@@ -109,22 +108,22 @@ public interface ImmutableAreaEffectCloudData extends ImmutableDataManipulator<I
      *
      * @return The bounded re-application delay value
      */
-    ImmutableBoundedValue<Integer> applicationDelay();
+    BoundedValue.Immutable<Integer> applicationDelay();
 
     /**
-     * Gets the {@link ListValue} of {@link PotionEffect}s of this cloud.
+     * Gets the {@link ListValue.Mutable} of {@link PotionEffect}s of this cloud.
      * The potion effects will affect any {@link Entity} according to the
      * various delays and ticks remaining of this cloud.
      *
      * @return The list of potion effects
      */
-    ImmutableListValue<PotionEffect> effects();
+    ListValue.Immutable<PotionEffect> effects();
 
     /**
      * Gets the bounded {@code age} value of this cloud.
      *
      * @return The bounded age value
      */
-    ImmutableBoundedValue<Integer> age();
+    BoundedValue.Immutable<Integer> age();
 
 }

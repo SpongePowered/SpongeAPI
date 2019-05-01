@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.ListData;
-import org.spongepowered.api.data.value.immutable.ImmutableListValue;
+import org.spongepowered.api.data.value.ListValue;
 
 import java.util.List;
 import java.util.Optional;
@@ -42,17 +42,17 @@ import java.util.Optional;
 public interface ImmutableListData<E, I extends ImmutableListData<E, I, M>, M extends ListData<E, M, I>> extends ImmutableDataManipulator<I, M> {
 
     /**
-     * Gets the {@link ImmutableListValue} of this {@link ImmutableListData}.
+     * Gets the {@link ListValue.Immutable} of this {@link ImmutableListData}.
      *
      * @return The underlying list value
      */
-    ImmutableListValue<E> getListValue();
+    ListValue.Immutable<E> getListValue();
 
     /**
      * Gets the {@link List} value itself from this manipulator.
      *
      * @return The underlying list value as a list
-     * @see ImmutableListValue
+     * @see ListValue.Immutable
      */
     List<E> asList();
 

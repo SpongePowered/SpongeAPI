@@ -29,7 +29,7 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableSignData;
 import org.spongepowered.api.data.manipulator.mutable.ListData;
-import org.spongepowered.api.data.value.mutable.ListValue;
+import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -49,13 +49,13 @@ import java.util.List;
 public interface SignData extends ListData<Text, SignData, ImmutableSignData> {
 
     /**
-     * Gets the {@link ListValue} of {@link Text} for the {@link Sign}
+     * Gets the {@link ListValue.Mutable} of {@link Text} for the {@link Sign}
      * to show.
      *
      * @return The list of text lines
      * @see Keys#SIGN_LINES
      */
-    default ListValue<Text> lines() {
+    default ListValue.Mutable<Text> lines() {
         return getListValue();
     }
 

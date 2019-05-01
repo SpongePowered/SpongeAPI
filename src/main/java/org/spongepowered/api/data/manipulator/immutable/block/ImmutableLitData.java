@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.immutable.block;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.block.LitData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents the {@link ImmutableDataManipulator} for the state that something is "lit",
@@ -36,10 +36,9 @@ import org.spongepowered.api.data.value.immutable.ImmutableValue;
 public interface ImmutableLitData extends ImmutableDataManipulator<ImmutableLitData, LitData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the lit state.
+     * Gets the {@link Value.Immutable} for the lit state.
      *
      * @return The immutable value for the lit state
      */
-    ImmutableValue<Boolean> lit();
-
+    Value.Immutable<Boolean> lit();
 }

@@ -26,7 +26,7 @@ package org.spongepowered.api.entity.weather;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.ExpirableData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 
 import java.time.Duration;
@@ -60,13 +60,12 @@ public interface WeatherEffect extends Entity {
     }
 
     /**
-     * Gets the {@link Value} for the duration
-     * before the "expiration" occurs.
+     * Gets the {@link Value.Mutable} for the duration
      *
      * @return The bounded value for the remaining duration
      */
-    default Value<Duration> expireDuration() {
-        return getValue(Keys.EXPIRATION_DURATION).get();
+    default Value.Mutable<Duration> expireDuration() {
+        return getValue(Keys.EXPIRATION_DURATION).get().asMutable();
     }
 
 }

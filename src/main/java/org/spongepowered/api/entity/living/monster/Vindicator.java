@@ -25,20 +25,20 @@
 package org.spongepowered.api.entity.living.monster;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.ItemTypes;
 
 public interface Vindicator extends Monster {
 
     /**
-     * Gets the {@link Value} for whether this vindicator is considered a
+     * Gets the {@link Value.Mutable} for whether this vindicator is considered a
      * "johnny" vindicator. "Johnny" vindicators will deal more damage and
      * often times carry an {@link ItemTypes#IRON_AXE} of sorts.
      *
      * @return Whether this is a johnny vindicator
      */
-    default Value<Boolean> johnny() {
-        return getValue(Keys.IS_JOHNNY).get();
+    default Value.Mutable<Boolean> johnny() {
+        return getValue(Keys.IS_JOHNNY).get().asMutable();
     }
 
 }

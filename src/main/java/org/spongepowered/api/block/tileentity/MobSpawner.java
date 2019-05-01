@@ -26,9 +26,9 @@ package org.spongepowered.api.block.tileentity;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.data.value.mutable.WeightedCollectionValue;
+import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.WeightedCollectionValue;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.entity.living.player.Player;
@@ -61,84 +61,84 @@ public interface MobSpawner extends TileEntity {
     }
 
     /**
-     * Gets the {@link MutableBoundedValue} for the remaining delay before
+     * Gets the {@link BoundedValue.Mutable} for the remaining delay before
      * a new attempt at spawning an {@link Entity} is made.
      *
      * @return The immutable bounded value for the remaining delay
      */
-    default MutableBoundedValue<Short> remainingDelay() {
-        return getValue(Keys.SPAWNER_REMAINING_DELAY).get();
+    default BoundedValue.Mutable<Short> remainingDelay() {
+        return getValue(Keys.SPAWNER_REMAINING_DELAY).get().asMutable();
     }
 
     /**
-     * Gets the {@link MutableBoundedValue} for the minimum spawn delay
+     * Gets the {@link BoundedValue.Mutable} for the minimum spawn delay
      * required between attempts to spawn an {@link Entity}.
      *
      * @return The bounded value of the minimum spawn delay
      */
-    default MutableBoundedValue<Short> minimumSpawnDelay() {
-        return getValue(Keys.SPAWNER_MINIMUM_DELAY).get();
+    default BoundedValue.Mutable<Short> minimumSpawnDelay() {
+        return getValue(Keys.SPAWNER_MINIMUM_DELAY).get().asMutable();
     }
 
     /**
-     * Gets the {@link MutableBoundedValue} for the maximum spawn delay
+     * Gets the {@link BoundedValue.Mutable} for the maximum spawn delay
      * required between attempts to spawn an {@link Entity}.
      *
      * @return The bounded value of the maximum spawn delay
      */
-    default MutableBoundedValue<Short> maximumSpawnDelay() {
-        return getValue(Keys.SPAWNER_MAXIMUM_DELAY).get();
+    default BoundedValue.Mutable<Short> maximumSpawnDelay() {
+        return getValue(Keys.SPAWNER_MAXIMUM_DELAY).get().asMutable();
     }
 
     /**
-     * Gets the {@link MutableBoundedValue} for the count of successful
+     * Gets the {@link BoundedValue.Mutable} for the count of successful
      * spawns of all {@link Entity} instances from the owning spawner. This
      * count is simply a total count, there is no limitation on how many
      * attempts are made to spawn an {@link Entity}.
      *
      * @return The immutable bounded value
      */
-    default MutableBoundedValue<Short> spawnCount() {
-        return getValue(Keys.SPAWNER_SPAWN_COUNT).get();
+    default BoundedValue.Mutable<Short> spawnCount() {
+        return getValue(Keys.SPAWNER_SPAWN_COUNT).get().asMutable();
     }
 
     /**
-     * Gets the {@link MutableBoundedValue} for the limitation on the number
+     * Gets the {@link BoundedValue.Mutable} for the limitation on the number
      * of nearby {@link Entity} instances can exist near the owning spawner. The
      * limitation is that if there are more {@link Entity} instances than the
      * provided value, no attempts to spawn a new {@link Entity} will be made.
      *
      * @return The bounded value of the maximum supported nearby entities
      */
-    default MutableBoundedValue<Short> maximumNearbyEntities() {
-        return getValue(Keys.SPAWNER_MAXIMUM_NEARBY_ENTITIES).get();
+    default BoundedValue.Mutable<Short> maximumNearbyEntities() {
+        return getValue(Keys.SPAWNER_MAXIMUM_NEARBY_ENTITIES).get().asMutable();
     }
 
     /**
-     * Gets the {@link MutableBoundedValue} for the minimum range a
+     * Gets the {@link BoundedValue.Mutable} for the minimum range a
      * {@link Player} must remain in proximity of the spawner, such that if a
      * {@link Player} is NOT within the provided range, no attempts to spawn an
      * {@link Entity} is made.
      *
      * @return The value of the required player range to spawn entities
      */
-    default MutableBoundedValue<Short> requiredPlayerRange() {
-        return getValue(Keys.SPAWNER_REQUIRED_PLAYER_RANGE).get();
+    default BoundedValue.Mutable<Short> requiredPlayerRange() {
+        return getValue(Keys.SPAWNER_REQUIRED_PLAYER_RANGE).get().asMutable();
     }
 
     /**
-     * Gets the {@link MutableBoundedValue} for the maximum range that an
+     * Gets the {@link BoundedValue.Mutable} for the maximum range that an
      * {@link Entity} can be spawned from the spawner.
      *
      * @return The immutable value of the maximum spawn range an entity can be
      *     spawned
      */
-    default MutableBoundedValue<Short> spawnRange() {
-        return getValue(Keys.SPAWNER_SPAWN_RANGE).get();
+    default BoundedValue.Mutable<Short> spawnRange() {
+        return getValue(Keys.SPAWNER_SPAWN_RANGE).get().asMutable();
     }
 
     /**
-     * Gets the {@link Value}
+     * Gets the {@link Value.Mutable}
      * for the overridden
      * {@link WeightedSerializableObject}{@code <EntitySnapshot>} to spawn
      * next. If possible, the next entity to spawn may be chosen from the
@@ -146,12 +146,12 @@ public interface MobSpawner extends TileEntity {
      *
      * @return The next possible entity to spawn
      */
-    default Value<WeightedSerializableObject<EntityArchetype>> nextEntityToSpawn() {
-        return getValue(Keys.SPAWNER_NEXT_ENTITY_TO_SPAWN).get();
+    default Value.Mutable<WeightedSerializableObject<EntityArchetype>> nextEntityToSpawn() {
+        return getValue(Keys.SPAWNER_NEXT_ENTITY_TO_SPAWN).get().asMutable();
     }
 
     /**
-     * Gets the {@link WeightedCollectionValue} of all possible
+     * Gets the {@link WeightedCollectionValue.Mutable} of all possible
      * {@link Entity} instances that can be spawned by the spawner. As they
      * are all {@link WeightedSerializableObject}{@code <EntitySnapshot>}
      * instances, their weight is defined as a {@link Random} to determine
@@ -160,8 +160,8 @@ public interface MobSpawner extends TileEntity {
      *
      * @return The immutable weighted entity collection value of entities
      */
-    default WeightedCollectionValue<EntityArchetype> possibleEntitiesToSpawn() {
-        return getValue(Keys.SPAWNER_ENTITIES).get();
+    default WeightedCollectionValue.Mutable<EntityArchetype> possibleEntitiesToSpawn() {
+        return getValue(Keys.SPAWNER_ENTITIES).get().asMutable();
     }
 
 }

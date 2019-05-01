@@ -27,9 +27,9 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableAreaEffectCloudData;
-import org.spongepowered.api.data.value.mutable.ListValue;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.value.ListValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.Entity;
@@ -43,7 +43,7 @@ public interface AreaEffectCloudData extends DataManipulator<AreaEffectCloudData
      * @return The color of this cloud
      * @see Keys#AREA_EFFECT_CLOUD_COLOR
      */
-    Value<Color> color();
+    Value.Mutable<Color> color();
 
     /**
      * Gets the {@code radius} value of this cloud.
@@ -51,7 +51,7 @@ public interface AreaEffectCloudData extends DataManipulator<AreaEffectCloudData
      * @return The radius value of this cloud
      * @see Keys#AREA_EFFECT_CLOUD_RADIUS
      */
-    MutableBoundedValue<Double> radius();
+    BoundedValue.Mutable<Double> radius();
 
     /**
      * Gets the {@link ParticleType} of this cloud.
@@ -59,7 +59,7 @@ public interface AreaEffectCloudData extends DataManipulator<AreaEffectCloudData
      * @return The particle type of this cloud
      * @see Keys#AREA_EFFECT_CLOUD_PARTICLE_TYPE
      */
-    Value<ParticleType> particleType();
+    Value.Mutable<ParticleType> particleType();
 
     /**
      * Gets the bounded {@code duration} value of this cloud.
@@ -67,7 +67,7 @@ public interface AreaEffectCloudData extends DataManipulator<AreaEffectCloudData
      * @return The bounded duration value
      * @see Keys#AREA_EFFECT_CLOUD_DURATION
      */
-    MutableBoundedValue<Integer> duration();
+    BoundedValue.Mutable<Integer> duration();
 
     /**
      * Gets the bounded {@code waitTime} value of this cloud. The wait time
@@ -77,7 +77,7 @@ public interface AreaEffectCloudData extends DataManipulator<AreaEffectCloudData
      * @return The bounded wait time value
      * @see Keys#AREA_EFFECT_CLOUD_WAIT_TIME
      */
-    MutableBoundedValue<Integer> waitTime();
+    BoundedValue.Mutable<Integer> waitTime();
 
     /**
      * Gets the bounded {@code radiusOnUse} value of this cloud.
@@ -89,7 +89,7 @@ public interface AreaEffectCloudData extends DataManipulator<AreaEffectCloudData
      * @return The bounded radius reduced on use value
      * @see Keys#AREA_EFFECT_CLOUD_RADIUS_ON_USE
      */
-    MutableBoundedValue<Double> radiusOnUse();
+    BoundedValue.Mutable<Double> radiusOnUse();
 
     /**
      * Gets the bounded {@code radiusPerTick} value of this cloud.
@@ -102,7 +102,7 @@ public interface AreaEffectCloudData extends DataManipulator<AreaEffectCloudData
      * @return The bounded radius reduction per tick value
      * @see Keys#AREA_EFFECT_CLOUD_RADIUS_PER_TICK
      */
-    MutableBoundedValue<Double> radiusPerTick();
+    BoundedValue.Mutable<Double> radiusPerTick();
 
     /**
      * Gets the bounded {@code durationOnUse} value of this cloud.
@@ -115,7 +115,7 @@ public interface AreaEffectCloudData extends DataManipulator<AreaEffectCloudData
      * @return The bounded duration on use value
      * @see Keys#AREA_EFFECT_CLOUD_DURATION_ON_USE
      */
-    MutableBoundedValue<Integer> durationOnUse();
+    BoundedValue.Mutable<Integer> durationOnUse();
 
     /**
      * Gets the bounded {@code applicationDelay} value of this cloud.
@@ -125,17 +125,17 @@ public interface AreaEffectCloudData extends DataManipulator<AreaEffectCloudData
      * @return The bounded re-application delay value
      * @see Keys#AREA_EFFECT_CLOUD_REAPPLICATION_DELAY
      */
-    MutableBoundedValue<Integer> applicationDelay();
+    BoundedValue.Mutable<Integer> applicationDelay();
 
     /**
-     * Gets the {@link ListValue} of {@link PotionEffect}s of this cloud.
+     * Gets the {@link ListValue.Mutable} of {@link PotionEffect}s of this cloud.
      * The potion effects will affect any {@link Entity} according to the
      * various delays and ticks remaining of this cloud.
      *
      * @return The list of potion effects
      * @see Keys#POTION_EFFECTS
      */
-    ListValue<PotionEffect> effects();
+    ListValue.Mutable<PotionEffect> effects();
 
     /**
      * Gets the bounded {@code age} value of this cloud.
@@ -143,6 +143,6 @@ public interface AreaEffectCloudData extends DataManipulator<AreaEffectCloudData
      * @return The bounded age value
      * @see Keys#AREA_EFFECT_CLOUD_AGE
      */
-    MutableBoundedValue<Integer> age();
+    BoundedValue.Mutable<Integer> age();
 
 }

@@ -31,8 +31,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableMappedData;
 import org.spongepowered.api.data.manipulator.mutable.MappedData;
-import org.spongepowered.api.data.value.immutable.ImmutableMapValue;
-import org.spongepowered.api.data.value.mutable.MapValue;
+import org.spongepowered.api.data.value.MapValue;
 
 import java.util.Map;
 import java.util.Optional;
@@ -43,7 +42,7 @@ import javax.annotation.Nullable;
 public abstract class AbstractImmutableMappedData<K, V, I extends ImmutableMappedData<K, V, I, M>, M extends MappedData<K, V, M, I>>
         extends AbstractImmutableSingleData<Map<K, V>, I, M> implements ImmutableMappedData<K, V, I, M> {
 
-    private final ImmutableMapValue<K, V> mapValue;
+    private final MapValue.Immutable<K, V> mapValue;
 
     protected AbstractImmutableMappedData(Key<MapValue<K, V>> usedKey, Map<K, V> value) {
         this(usedKey, value, value);
@@ -55,11 +54,11 @@ public abstract class AbstractImmutableMappedData<K, V, I extends ImmutableMappe
 
     private AbstractImmutableMappedData(Map<K, V> value, @Nullable Map<K, V> defaultValue, Key<MapValue<K, V>> usedKey) {
         super(usedKey, value, defaultValue == null ? value : defaultValue);
-        this.mapValue = Sponge.getRegistry().getValueFactory().createMapValue(usedKey, value, this.defaultValue).asImmutable();
+        this.mapValue = Sponge.getRegistry().getValueFactory().createMapValue(usedKey, value).asImmutable();
     }
 
     @Override
-    protected final ImmutableMapValue<K, V> getValueGetter() {
+    protected final MapValue.Immutable<K, V> getValueGetter() {
         return this.mapValue;
     }
 
@@ -74,7 +73,7 @@ public abstract class AbstractImmutableMappedData<K, V, I extends ImmutableMappe
     }
 
     @Override
-    public ImmutableMapValue<K, V> getMapValue() {
+    public MapValue.Immutable<K, V> getMapValue() {
         return this.mapValue;
     }
 }

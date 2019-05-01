@@ -35,10 +35,9 @@ import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.value.BaseValue;
-import org.spongepowered.api.data.value.mutable.ListValue;
-import org.spongepowered.api.data.value.mutable.SetValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.ListValue;
+import org.spongepowered.api.data.value.SetValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.enchantment.EnchantmentType;
@@ -200,7 +199,7 @@ public final class ItemStackBuilderPopulators {
      * @param <E> The type of value
      * @return The new biconsumer to apply to an itemstack builder
      */
-    public static <E> BiConsumer<ItemStack.Builder, Random> keyValue(Key<? extends BaseValue<E>> key, E value) {
+    public static <E> BiConsumer<ItemStack.Builder, Random> keyValue(Key<? extends Value<E>> key, E value) {
         return (builder, random) -> {
             final ItemStack itemStack = builder.build();
             final DataTransactionResult dataTransactionResult = itemStack.offer(key, value);
@@ -223,7 +222,7 @@ public final class ItemStackBuilderPopulators {
      * @param <E> The type of value
      * @return The new biconsumer to apply to an itemstack builder
      */
-    public static <E> BiConsumer<ItemStack.Builder, Random> keyValues(Key<? extends BaseValue<E>> key, Iterable<E> values) {
+    public static <E> BiConsumer<ItemStack.Builder, Random> keyValues(Key<? extends Value<E>> key, Iterable<E> values) {
         checkNotNull(values, "Iterable cannot be null!");
         checkNotNull(key, "Key cannot be null!");
         WeightedTable<E> tableEntries = new WeightedTable<>(1);
@@ -241,7 +240,7 @@ public final class ItemStackBuilderPopulators {
 
     /**
      * Creates a new {@link BiConsumer} where the {@link Key} is responsible
-     * for a {@link List} based {@link Value}. Given that the provided elements
+     * for a {@link List} based {@link Value.Mutable}. Given that the provided elements
      * are chosen with a {@link Random}, it's not clear that the elements will
      * be added in bundles or in the same iteration order.
      *
@@ -254,7 +253,7 @@ public final class ItemStackBuilderPopulators {
      * @param <E> The type of elements
      * @return The new biconsumer to apply to an itemstack builder
      */
-    public static <E> BiConsumer<ItemStack.Builder, Random> listValues(Key<? extends ListValue<E>> key, List<E> elementPool, VariableAmount amount) {
+    public static <E> BiConsumer<ItemStack.Builder, Random> listValues(Key<? extends ListValue.Mutable<E>> key, List<E> elementPool, VariableAmount amount) {
         checkNotNull(key, "Key cannot be null!");
         checkNotNull(elementPool, "Element pool cannot be null!");
         checkNotNull(amount, "VariableAmount cannot be null!");
@@ -268,7 +267,7 @@ public final class ItemStackBuilderPopulators {
 
     /**
      * Creates a new {@link BiConsumer} where the {@link Key} is responsible
-     * for a {@link List} based {@link Value}. Given that the provided elements
+     * for a {@link List} based {@link Value.Mutable}. Given that the provided elements
      * are chosen with a {@link Random}, it's not clear that the elements will
      * be added in bundles or in the same iteration order. The default variance
      * is provided as {@link VariableAmount#baseWithRandomAddition(double, double)}
@@ -283,13 +282,13 @@ public final class ItemStackBuilderPopulators {
      * @param <E> The type of elements
      * @return The new biconsumer to apply to an itemstack builder
      */
-    public static <E> BiConsumer<ItemStack.Builder, Random> listValues(Key<? extends ListValue<E>> key, List<E> elementPool) {
+    public static <E> BiConsumer<ItemStack.Builder, Random> listValues(Key<? extends ListValue.Mutable<E>> key, List<E> elementPool) {
         return listValues(key, elementPool, baseWithRandomAddition(1, elementPool.size() - 1));
     }
 
     /**
      * Creates a new {@link BiConsumer} where the {@link Key} is responsible
-     * for a {@link List} based {@link Value}. Given the {@link WeightedTable}
+     * for a {@link List} based {@link Value.Mutable}. Given the {@link WeightedTable}
      * is already generated, the values requested are only retrieved when
      * the generated biconsumer is called upon.
      *
@@ -301,7 +300,7 @@ public final class ItemStackBuilderPopulators {
      * @param <E> The type of elements
      * @return The new biconsumer to apply to an itemstack builder
      */
-    public static <E> BiConsumer<ItemStack.Builder, Random> listValues(Key<? extends ListValue<E>> key, WeightedTable<E> weightedTable) {
+    public static <E> BiConsumer<ItemStack.Builder, Random> listValues(Key<? extends ListValue.Mutable<E>> key, WeightedTable<E> weightedTable) {
         checkNotNull(weightedTable, "Weighted table cannot be null!");
         checkNotNull(key, "Key cannot be null!");
         return setValue(key, random -> ImmutableList.copyOf(weightedTable.get(random)));
@@ -310,12 +309,12 @@ public final class ItemStackBuilderPopulators {
 
     /**
      * Creates a new {@link BiConsumer} where the {@link Key} is responsible
-     * for a {@link List} based {@link Value}. Given the
+     * for a {@link List} based {@link Value.Mutable}. Given the
      * {@link WeightedTable} is exclusively used with {@link Function}s,
      * the {@link Function}s themselves are queried with a {@link Random}
      * and expected to present a singular element of the defined type. It's
      * expected that there are multiple functions to provide additional
-     * elements for a particular key'ed {@link ListValue}.
+     * elements for a particular key'ed {@link ListValue.Mutable}.
      *
      * <p>An example usage of this can be for generating a randomized list
      * of {@link Enchantment}s with varying enchantment levels.</p>
@@ -348,7 +347,7 @@ public final class ItemStackBuilderPopulators {
 
     /**
      * Creates a new {@link BiConsumer} where the {@link Key} is responsible
-     * for a {@link Set} based {@link Value}. Given the {@link Set} of element
+     * for a {@link Set} based {@link Value.Mutable}. Given the {@link Set} of element
      * to act as a pool, the consumer will pull a random amount of the
      * given pool and apply it as a new {@link Set}.
      *
@@ -360,7 +359,7 @@ public final class ItemStackBuilderPopulators {
      * @param <E> The type of element
      * @return The new biconsumer to apply to an itemstack builder
      */
-    public static <E> BiConsumer<ItemStack.Builder, Random> setValues(Key<? extends SetValue<E>> key, Set<E> elementPool) {
+    public static <E> BiConsumer<ItemStack.Builder, Random> setValues(Key<? extends SetValue.Mutable<E>> key, Set<E> elementPool) {
         checkNotNull(key, "Key cannot be null!");
         checkNotNull(elementPool, "ElementPool cannot be null!");
         return setValues(key, elementPool, baseWithRandomAddition(1, elementPool.size() - 1));
@@ -368,7 +367,7 @@ public final class ItemStackBuilderPopulators {
 
     /**
      * Creates a new {@link BiConsumer} where the {@link Key} is responsible
-     * for a {@link Set} based {@link Value}. Given the {@link Set} of
+     * for a {@link Set} based {@link Value.Mutable}. Given the {@link Set} of
      * elements to act as a pool, the consumer will pull a variable amount
      * based on the provided {@link VariableAmount}, and apply it as a new
      * {@link Set}.
@@ -382,7 +381,7 @@ public final class ItemStackBuilderPopulators {
      * @param <E> The type of element
      * @return The new biconsumer to apply to an itemstack builder
      */
-    public static <E> BiConsumer<ItemStack.Builder, Random> setValues(Key<? extends SetValue<E>> key, Set<E> elementPool, VariableAmount amount) {
+    public static <E> BiConsumer<ItemStack.Builder, Random> setValues(Key<? extends SetValue.Mutable<E>> key, Set<E> elementPool, VariableAmount amount) {
         checkNotNull(key, "Key cannot be null!");
         checkNotNull(elementPool, "Element pool cannot be null!");
         checkNotNull(amount, "VariableAmount cannot be null!");
@@ -396,7 +395,7 @@ public final class ItemStackBuilderPopulators {
 
     /**
      * Creates a new {@link BiConsumer} where the {@link Key} is
-     * responsible for a {@link Set} based {@link Value}. Given
+     * responsible for a {@link Set} based {@link Value.Mutable}. Given
      * the provided {@link WeightedTable}, the consumer will retrieve
      * a {@link List} of values and add them as a new {@link Set}.
      *
@@ -408,7 +407,7 @@ public final class ItemStackBuilderPopulators {
      * @param <E> The type of element
      * @return The new biconsumer to apply to an itemstack builder
      */
-    public static <E> BiConsumer<ItemStack.Builder, Random> setValues(Key<? extends SetValue<E>> key, WeightedTable<E> weightedTable) {
+    public static <E> BiConsumer<ItemStack.Builder, Random> setValues(Key<? extends SetValue.Mutable<E>> key, WeightedTable<E> weightedTable) {
         checkNotNull(weightedTable, "WeightedTable cannot be null!");
         checkNotNull(key, "Key cannot be null!");
         checkArgument(!weightedTable.isEmpty(), "WeightedTable cannot be empty!");
@@ -416,7 +415,7 @@ public final class ItemStackBuilderPopulators {
     }
 
     /*Note : This is used internally only, no validation is performed.*/
-    private static <E> BiConsumer<ItemStack.Builder, Random> setValue(Key<? extends BaseValue<E>> key, Function<Random, E> element) {
+    private static <E> BiConsumer<ItemStack.Builder, Random> setValue(Key<? extends Value<E>> key, Function<Random, E> element) {
         return (builder, random) -> {
             final ItemStack itemStack = builder.build();
             final DataTransactionResult result = itemStack.offer(key, element.apply(random));
@@ -427,7 +426,7 @@ public final class ItemStackBuilderPopulators {
     }
 
     /**
-     * Creates a new {@link BiConsumer} that applies the provided {@link Value}
+     * Creates a new {@link BiConsumer} that applies the provided {@link Value.Mutable}
      * to the generated {@link ItemStack}.
      *
      * <p>Note that custom data is not supported through this method, use
@@ -438,7 +437,7 @@ public final class ItemStackBuilderPopulators {
      * @param <V> The type of value
      * @return The new biconsumer to apply to an itemstack builder
      */
-    public static <E, V extends BaseValue<E>> BiConsumer<ItemStack.Builder, Random> value(V value) {
+    public static <E, V extends Value<E>> BiConsumer<ItemStack.Builder, Random> value(V value) {
         return (builder, random) -> {
             final ItemStack itemStack = builder.build();
             final DataTransactionResult dataTransactionResult = itemStack.offer(value);
@@ -450,7 +449,7 @@ public final class ItemStackBuilderPopulators {
 
     /**
      * Creates a new {@link BiConsumer} that applies a random selection of the
-     * provided {@link BaseValue}s.
+     * provided {@link Value}s.
      *
      * <p>Note that custom data is not supported through this method, use
      * {@link #data(Collection)} or any variant thereof for applying custom data.</p>
@@ -460,7 +459,7 @@ public final class ItemStackBuilderPopulators {
      * @param <V> The type of value
      * @return The new biconsumer to apply to an itemstack builder
      */
-    public static <E, V extends BaseValue<E>> BiConsumer<ItemStack.Builder, Random> values(Iterable<V> values) {
+    public static <E, V extends Value<E>> BiConsumer<ItemStack.Builder, Random> values(Iterable<V> values) {
         WeightedTable<V> tableEntries = new WeightedTable<>(1);
         for (V value : values) {
             tableEntries.add(checkNotNull(value, "Value cannot be null!"), 1);

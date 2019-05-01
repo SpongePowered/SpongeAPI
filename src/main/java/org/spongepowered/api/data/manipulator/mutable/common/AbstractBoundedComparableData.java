@@ -31,13 +31,14 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.value.Value;
 
 import java.util.Comparator;
 
 /**
  * An abstract implementation of a {@link DataManipulator} that deals
- * specifically with a {@link MutableBoundedValue}. Similar to
+ * specifically with a {@link BoundedValue.Mutable}. Similar to
  * {@link AbstractSingleData} in that it focuses on a single value,
  * it adds the certainty that the value can only accept values of which
  * the bounds are met.
@@ -53,13 +54,12 @@ public abstract class AbstractBoundedComparableData<T extends Comparable<T>, M e
     protected final T lowerBound;
     protected final T upperBound;
 
-    protected AbstractBoundedComparableData(Key<MutableBoundedValue<T>> usedKey,
-        T value, T lowerBound, T upperBound, Comparator<T> comparator) {
+    protected AbstractBoundedComparableData(Key<Value<T>> usedKey,
+            T value, T lowerBound, T upperBound, Comparator<T> comparator) {
         this(usedKey, value, value, lowerBound, upperBound, comparator);
     }
 
-    protected AbstractBoundedComparableData(Key<MutableBoundedValue<T>> usedKey,
-        T value, T defaultValue, T lowerBound, T upperBound, Comparator<T> comparator) {
+    protected AbstractBoundedComparableData(Key<Value<T>> usedKey, T value, T defaultValue, T lowerBound, T upperBound, Comparator<T> comparator) {
         super(usedKey, value, defaultValue);
         this.comparator = checkNotNull(comparator, "comparator");
         this.lowerBound = checkNotNull(lowerBound, "lowerBound");
@@ -77,14 +77,13 @@ public abstract class AbstractBoundedComparableData<T extends Comparable<T>, M e
 
     @SuppressWarnings("unchecked")
     @Override
-    protected MutableBoundedValue<T> getValueGetter() {
+    protected BoundedValue.Mutable<T> getValueGetter() {
         return Sponge.getRegistry().getValueFactory()
-            .createBoundedValueBuilder((Key<MutableBoundedValue<T>>) this.usedKey)
-            .defaultValue(this.defaultValue)
+            .createBoundedValueBuilder((Key<BoundedValue<T>>) this.usedKey)
             .comparator(this.comparator)
             .minimum(this.lowerBound)
             .maximum(this.upperBound)
-            .actualValue(getValue())
+            .value(getValue())
             .build();
     }
 

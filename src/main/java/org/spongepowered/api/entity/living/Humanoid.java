@@ -26,7 +26,7 @@ package org.spongepowered.api.entity.living;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.FoodData;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.entity.Tamer;
 import org.spongepowered.api.entity.living.player.Player;
@@ -47,7 +47,7 @@ public interface Humanoid extends Living, ProjectileLauncher, ArmorEquipable, Ta
     }
 
     /**
-     * Gets the current food level as an {@link MutableBoundedValue}.
+     * Gets the current food level as an {@link BoundedValue.Mutable}.
      *
      * <p>Food level has health effects, depending on game difficulty and
      * hunger levels. If the food level is high enough, the human entity
@@ -55,12 +55,12 @@ public interface Humanoid extends Living, ProjectileLauncher, ArmorEquipable, Ta
      *
      * @return The current food level
      */
-    default MutableBoundedValue<Integer> foodLevel() {
-        return getValue(Keys.FOOD_LEVEL).get();
+    default BoundedValue.Mutable<Integer> foodLevel() {
+        return getValue(Keys.FOOD_LEVEL).get().asMutable();
     }
 
     /**
-     * Gets the {@link MutableBoundedValue} for the "exhaustion" level.
+     * Gets the {@link BoundedValue.Mutable} for the "exhaustion" level.
      *
      * <p>When the exhaustion level reaches 0, saturation is usually diminished
      * such that saturation is decreased and then exhaustion is reset to the
@@ -69,12 +69,12 @@ public interface Humanoid extends Living, ProjectileLauncher, ArmorEquipable, Ta
      *
      * @return The immutable bounded value of exhaustion
      */
-    default MutableBoundedValue<Double> exhaustion() {
-        return getValue(Keys.EXHAUSTION).get();
+    default BoundedValue.Mutable<Double> exhaustion() {
+        return getValue(Keys.EXHAUSTION).get().asMutable();
     }
 
     /**
-     * Gets the {@link MutableBoundedValue} for the "saturation" level.
+     * Gets the {@link BoundedValue.Mutable} for the "saturation" level.
      *
      * <p>When the saturation level reaches 0, the food level is usually
      * diminished such that the food level is decreased by 1, then
@@ -84,8 +84,8 @@ public interface Humanoid extends Living, ProjectileLauncher, ArmorEquipable, Ta
      *
      * @return The immutable bounded value of saturation
      */
-    default MutableBoundedValue<Double> saturation() {
-        return getValue(Keys.SATURATION).get();
+    default BoundedValue.Mutable<Double> saturation() {
+        return getValue(Keys.SATURATION).get().asMutable();
     }
 
 }

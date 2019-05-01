@@ -26,8 +26,7 @@ package org.spongepowered.api.event.data;
 
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataTransactionResult;
-import org.spongepowered.api.data.value.BaseValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.impl.AbstractValueChangeEvent;
@@ -36,7 +35,7 @@ import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 
 /**
  * An event that is associated with a {@link DataHolder} that may have some
- * {@link BaseValue}s changed, offered, or removed. Note that calling any
+ * {@link Value}s changed, offered, or removed. Note that calling any
  * methods relating to modifying a {@link DataHolder} while this event
  * is being processed may produce awkward results.
  */
@@ -53,7 +52,7 @@ public interface ChangeDataHolderEvent extends Event, Cancellable {
     interface ValueChange extends ChangeDataHolderEvent {
 
         /**
-         * Gets the original {@link DataTransactionResult} of the {@link Value}s
+         * Gets the original {@link DataTransactionResult} of the {@link Value.Mutable}s
          * that have changed in this event.
          *
          * @return The original changes of values
@@ -62,7 +61,7 @@ public interface ChangeDataHolderEvent extends Event, Cancellable {
 
         /**
          * Submits a new {@link DataTransactionResult} as a proposal of various
-         * {@link Value}s to be successfully offered/changed on the original
+         * {@link Value.Mutable}s to be successfully offered/changed on the original
          * {@link DataHolder}.
          *
          * <p>If the proposed {@link DataTransactionResult} provides additional

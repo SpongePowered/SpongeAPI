@@ -29,7 +29,7 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableDominantHandData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.type.HandPreference;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
@@ -41,17 +41,17 @@ import org.spongepowered.api.entity.living.player.Player;
  * such as tool use or block placing/breaking.</p>
  *
  * <p><i>NOTE: </i> This does not apply to {@link Player}s, for Player
- * entities see {@link org.spongepowered.api.data.property.Properties.Entity#DOMINANT_HAND}.</p>
+ * entities see {@link org.spongepowered.api.data.property.Properties#DOMINANT_HAND}.</p>
  */
 public interface DominantHandData extends VariantData<HandPreference, DominantHandData, ImmutableDominantHandData> {
 
     /**
-     * Gets the {@link Value} representing the dominant {@link HandPreference} of an
+     * Gets the {@link Value.Mutable} representing the dominant {@link HandPreference} of an
      * {@link Entity}.
      *
      * @return The value for handedness
      * @see Keys#DOMINANT_HAND
      */
-    Value<HandPreference> dominantHand();
+    Value.Mutable<HandPreference> dominantHand();
 
 }

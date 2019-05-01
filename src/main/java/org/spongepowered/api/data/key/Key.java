@@ -32,7 +32,7 @@ import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.event.EventListener;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
@@ -46,15 +46,15 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Represents a key to an underlying {@link BaseValue} such that the underlying
+ * Represents a key to an underlying {@link Value} such that the underlying
  * value can be retrieved from a {@link ValueContainer}. As well, a {@link Key}
  * can be used for {@link DataSerializable}s with the included
  * {@link #getQuery()} to retrieve the recommended {@link DataQuery} to use.
  *
- * @param <V> The type of {@link BaseValue}
+ * @param <V> The type of {@link Value}
  */
 @CatalogedBy(Keys.class)
-public interface Key<V extends BaseValue<?>> extends CatalogType {
+public interface Key<V extends Value<?>> extends CatalogType {
 
     /**
      * Creates a {@link Key.Builder} which allows creation of a {@link Key}
@@ -69,14 +69,14 @@ public interface Key<V extends BaseValue<?>> extends CatalogType {
     }
 
     /**
-     * Gets the class of the {@link BaseValue} this {@link Key} is representing.
+     * Gets the class of the {@link Value} this {@link Key} is representing.
      *
      * @return The value class
      */
     TypeToken<V> getValueToken();
 
     /**
-     * Gets the class of the element of the {@link BaseValue} this {@link Key}
+     * Gets the class of the element of the {@link Value} this {@link Key}
      * is representing. On occasion, if the element is a {@link Collection} type,
      * one can occasionally use {@link TypeToken#resolveType(Type)} with
      * {@link Class#getTypeParameters()} as the type parameter of a collection
@@ -105,7 +105,7 @@ public interface Key<V extends BaseValue<?>> extends CatalogType {
      */
     <E extends DataHolder> void registerEvent(Class<E> holderFilter, EventListener<ChangeDataHolderEvent.ValueChange> listener);
 
-    interface Builder<E, V extends BaseValue<E>> extends CatalogBuilder<Key<V>, Builder<E, V>> {
+    interface Builder<E, V extends Value<E>> extends CatalogBuilder<Key<V>, Builder<E, V>> {
 
         /**
          * Starter method for the builder, to be used immediately after
@@ -124,7 +124,7 @@ public interface Key<V extends BaseValue<?>> extends CatalogType {
          * @param <B> The base value type of the key
          * @return This builder, generified
          */
-        <T, B extends BaseValue<T>> Builder<T, B> type(TypeToken<B> token);
+        <T, B extends Value<T>> Builder<T, B> type(TypeToken<B> token);
 
         @Override
         Builder<E, V> key(CatalogKey key);

@@ -34,9 +34,7 @@ import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.value.BaseValue;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 
 import java.util.Map;
 import java.util.Objects;
@@ -61,7 +59,7 @@ import java.util.stream.Collectors;
  * @param <I> The immutable data manipulator type
  */
 @SuppressWarnings("unchecked")
-public abstract class AbstractData<M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>> implements DataManipulator<M, I> {
+public abstract class AbstractData<M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>> implements DataManipulator<M,I> {
 
 
     // Ok, so, you're probably asking "Why the hell are you doing this type of hackery?"
@@ -120,14 +118,14 @@ public abstract class AbstractData<M extends DataManipulator<M, I>, I extends Im
      * @param function The function for setting the field
      */
     @SuppressWarnings("rawtypes")
-    protected final <E> void registerFieldSetter(Key<? extends BaseValue<E>> key, Consumer<E> function) {
+    protected final <E> void registerFieldSetter(Key<? extends Value<E>> key, Consumer<E> function) {
         this.keyFieldSetterMap.put(checkNotNull(key), checkNotNull((Consumer) function));
     }
 
     /**
      * A required registration method for registering the various fields and
      * value getters. It's suggested that if multiple fields are used, each
-     * field can be represented as a {@link Value} such that there is an
+     * field can be represented as a {@link Value.Mutable} such that there is an
      * associated {@link Key} to "get" that field value.
      */
     protected abstract void registerGettersAndSetters();
@@ -135,21 +133,21 @@ public abstract class AbstractData<M extends DataManipulator<M, I>, I extends Im
     // Beyond this point is all implementation with the getter/setter functions!
 
     @Override
-    public <E> M set(Key<? extends BaseValue<E>> key, E value) {
+    public <E> M set(Key<? extends Value<E>> key, E value) {
         checkArgument(supports(key), "This data manipulator doesn't support the following key: " + key.toString());
         this.keyFieldSetterMap.get(key).accept(value);
         return (M) this;
     }
 
     @Override
-    public <E> M transform(Key<? extends BaseValue<E>> key, Function<E, E> function) {
+    public <E> M transform(Key<? extends Value<E>> key, Function<E, E> function) {
         checkArgument(supports(key));
         this.keyFieldSetterMap.get(key).accept(checkNotNull(function.apply((E) this.keyFieldGetterMap.get(key).get())));
         return (M) this;
     }
 
     @Override
-    public <E> Optional<E> get(Key<? extends BaseValue<E>> key) {
+    public <E> Optional<E> get(Key<? extends Value<E>> key) {
         final Supplier<?> supplier = this.keyFieldGetterMap.get(checkNotNull(key));
         if (supplier == null) {
             return Optional.empty();
@@ -158,7 +156,7 @@ public abstract class AbstractData<M extends DataManipulator<M, I>, I extends Im
     }
 
     @Override
-    public <E, V extends BaseValue<E>> Optional<V> getValue(Key<V> key) {
+    public <E, V extends Value<E>> Optional<V> getValue(Key<V> key) {
         final Supplier<?> supplier = this.keyValueMap.get(checkNotNull(key));
         if (supplier == null) {
             return Optional.empty();
@@ -177,8 +175,8 @@ public abstract class AbstractData<M extends DataManipulator<M, I>, I extends Im
     }
 
     @Override
-    public Set<ImmutableValue<?>> getValues() {
-        ImmutableSet.Builder<ImmutableValue<?>> builder = ImmutableSet.builder();
+    public Set<Value.Immutable<?>> getValues() {
+        ImmutableSet.Builder<Value.Immutable<?>> builder = ImmutableSet.builder();
         for (Supplier<Value<?>> function : this.keyValueMap.values()) {
             builder.add(checkNotNull(function.get()).asImmutable());
         }

@@ -31,7 +31,7 @@ import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableMappedData;
 import org.spongepowered.api.data.manipulator.mutable.ListData;
 import org.spongepowered.api.data.manipulator.mutable.MappedData;
-import org.spongepowered.api.data.value.mutable.MapValue;
+import org.spongepowered.api.data.value.MapValue;
 import org.spongepowered.api.util.CollectionUtils;
 
 import java.util.Map;
@@ -57,9 +57,8 @@ public abstract class AbstractMappedData<K, V, M extends MappedData<K, V, M, I>,
     }
 
     @Override
-    protected MapValue<K, V> getValueGetter() {
-        return Sponge.getRegistry().getValueFactory().createMapValue(
-            (Key<MapValue<K, V>>) this.usedKey, getValue(), CollectionUtils.copyMap(this.defaultValue));
+    protected MapValue.Mutable<K, V> getValueGetter() {
+        return Sponge.getRegistry().getValueFactory().createMapValue(this.usedKey, getValue());
     }
 
     @Override
@@ -73,7 +72,7 @@ public abstract class AbstractMappedData<K, V, M extends MappedData<K, V, M, I>,
     }
 
     @Override
-    public MapValue<K, V> getMapValue() {
+    public MapValue.Mutable<K, V> getMapValue() {
         return getValueGetter();
     }
 

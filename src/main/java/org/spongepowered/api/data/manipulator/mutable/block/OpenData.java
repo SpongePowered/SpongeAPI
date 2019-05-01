@@ -28,7 +28,7 @@ import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableOpenData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Signifies that a block is "open". Usually applicable to
@@ -38,11 +38,11 @@ import org.spongepowered.api.data.value.mutable.Value;
 public interface OpenData extends DataManipulator<OpenData, ImmutableOpenData> {
 
     /**
-     * Gets the {@link Value} for the "open" state.
+     * Gets the {@link Value.Mutable} for the "open" state.
      *
      * @return The value for the "open" state
      * @see Keys#OPEN
      */
-    Value<Boolean> open();
+    Value.Mutable<Boolean> open();
 
 }

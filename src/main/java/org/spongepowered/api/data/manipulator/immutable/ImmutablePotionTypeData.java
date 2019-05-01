@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.PotionTypeData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.potion.PotionType;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -38,11 +38,11 @@ import org.spongepowered.api.item.inventory.ItemStack;
 public interface ImmutablePotionTypeData extends ImmutableDataManipulator<ImmutablePotionTypeData, PotionTypeData> {
 
     /**
-     * Gets the {@link ImmutableValue} of the {@link PotionType}.
+     * Gets the {@link Value.Immutable} of the {@link PotionType}.
      *
      * @return The immutable value for the potion type
      */
-    ImmutableValue<PotionType> type();
+    Value.Immutable<PotionType> type();
 
 
 }

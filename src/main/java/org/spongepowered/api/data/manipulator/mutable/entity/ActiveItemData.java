@@ -26,9 +26,9 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableActiveItemData;
-import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * A {@link DataManipulator} which allows access to the active item that a
@@ -43,11 +43,8 @@ public interface ActiveItemData extends DataManipulator<ActiveItemData, Immutabl
     /**
      * Gets the item stack snapshot of the item that is currently being used.
      *
-     * <p>If there is no item, the snapshot will be empty. You can check this
-     * with {@link ItemStackSnapshot#isEmpty()}.</p>
-     *
      * @return The value of the snapshot of the item being used
      */
-    Value<ItemStackSnapshot> activeItem();
+    Value.Mutable<ItemStackSnapshot> activeItem();
 
 }

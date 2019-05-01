@@ -28,7 +28,7 @@ import org.spongepowered.api.block.tileentity.carrier.Beacon;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableBeaconData;
-import org.spongepowered.api.data.value.mutable.OptionalValue;
+import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.entity.Entity;
 
@@ -42,22 +42,22 @@ import java.util.Optional;
 public interface BeaconData extends DataManipulator<BeaconData, ImmutableBeaconData> {
 
     /**
-     * Gets the {@link OptionalValue} for the primary
+     * Gets the {@link OptionalValue.Mutable} for the primary
      * {@link PotionEffectType}.
      *
      * @return The optional value for the primary potion effect
      * @see Keys#BEACON_PRIMARY_EFFECT
      */
-    OptionalValue<PotionEffectType> primaryEffect();
+    OptionalValue.Mutable<PotionEffectType> primaryEffect();
 
     /**
-     * Gets the {@link OptionalValue} for the secondary
+     * Gets the {@link OptionalValue.Mutable} for the secondary
      * {@link PotionEffectType}.
      *
      * @return The optional value for the secondary potion effect
      * @see Keys#BEACON_SECONDARY_EFFECT
      */
-    OptionalValue<PotionEffectType> secondaryEffect();
+    OptionalValue.Mutable<PotionEffectType> secondaryEffect();
 
     /**
      * Fills the primary and secondary {@link PotionEffectType}s

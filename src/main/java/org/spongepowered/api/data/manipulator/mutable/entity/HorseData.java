@@ -29,7 +29,7 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableHorseData;
 import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.animal.RideableHorse;
 
 /**
@@ -39,20 +39,20 @@ import org.spongepowered.api.entity.living.animal.RideableHorse;
 public interface HorseData extends DataManipulator<HorseData, ImmutableHorseData> {
 
     /**
-     * Gets a {@link Value} for the {@link HorseColor}.
+     * Gets a {@link Value.Mutable} for the {@link HorseColor}.
      *
      * @return The value for the horse color
      * @see Keys#HORSE_COLOR
      */
-    Value<HorseColor> color();
+    Value.Mutable<HorseColor> color();
 
 
     /**
-     * Gets a {@link Value} for the {@link HorseStyle}.
+     * Gets a {@link Value.Mutable} for the {@link HorseStyle}.
      *
      * @return The value for the horse style
      * @see Keys#HORSE_STYLE
      */
-    Value<HorseStyle> style();
+    Value.Mutable<HorseStyle> style();
 
 }

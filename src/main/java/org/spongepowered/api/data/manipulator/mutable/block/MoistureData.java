@@ -29,7 +29,7 @@ import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableMoistureData;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.data.value.BoundedValue;
 
 /**
  * A {@link DataManipulator} that handles the "moisture" state of a
@@ -39,11 +39,11 @@ import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 public interface MoistureData extends DataManipulator<MoistureData, ImmutableMoistureData> {
 
     /**
-     * Gets the {@link MutableBoundedValue} for the "moisture" state.
+     * Gets the {@link BoundedValue.Mutable} for the "moisture" state.
      *
      * @return The bounded value for the "moisture" state
      * @see Keys#MOISTURE
      */
-    MutableBoundedValue<Integer> moisture();
+    BoundedValue.Mutable<Integer> moisture();
 
 }

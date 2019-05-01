@@ -54,14 +54,13 @@ import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StructureMode;
 import org.spongepowered.api.data.type.TreeType;
 import org.spongepowered.api.data.type.WireAttachmentType;
-import org.spongepowered.api.data.value.mutable.ListValue;
-import org.spongepowered.api.data.value.mutable.MapValue;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.OptionalValue;
-import org.spongepowered.api.data.value.mutable.PatternListValue;
-import org.spongepowered.api.data.value.mutable.SetValue;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.data.value.mutable.WeightedCollectionValue;
+import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.value.ListValue;
+import org.spongepowered.api.data.value.MapValue;
+import org.spongepowered.api.data.value.OptionalValue;
+import org.spongepowered.api.data.value.SetValue;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.WeightedCollectionValue;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.effect.potion.PotionEffectType;
@@ -111,11 +110,11 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<Boolean>> BOOLEAN_VALUE_TOKEN = new TypeToken<Value<Boolean>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<MutableBoundedValue<Double>> BOUNDED_DOUBLE_VALUE_TOKEN = new TypeToken<MutableBoundedValue<Double>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<BoundedValue<Double>> BOUNDED_DOUBLE_VALUE_TOKEN = new TypeToken<BoundedValue<Double>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<MutableBoundedValue<Integer>> BOUNDED_INTEGER_VALUE_TOKEN = new TypeToken<MutableBoundedValue<Integer>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<BoundedValue<Integer>> BOUNDED_INTEGER_VALUE_TOKEN = new TypeToken<BoundedValue<Integer>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<MutableBoundedValue<Short>> BOUNDED_SHORT_VALUE_TOKEN = new TypeToken<MutableBoundedValue<Short>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<BoundedValue<Short>> BOUNDED_SHORT_VALUE_TOKEN = new TypeToken<BoundedValue<Short>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Career> CAREER_TOKEN = new TypeToken<Career>() {private static final long serialVersionUID = -1;};
 
@@ -155,7 +154,7 @@ public final class TypeTokens {
 
     public static final TypeToken<Float> FLOAT_TOKEN = new TypeToken<Float>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<MutableBoundedValue<Float>> FLOAT_VALUE_TOKEN = new TypeToken<MutableBoundedValue<Float>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<BoundedValue<Float>> FLOAT_VALUE_TOKEN = new TypeToken<BoundedValue<Float>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<FluidStackSnapshot> FLUID_TOKEN = new TypeToken<FluidStackSnapshot>() {private static final long serialVersionUID = -1;};
 
@@ -288,8 +287,6 @@ public final class TypeTokens {
     public static final TypeToken<ParticleType> PARTICLE_TYPE_TOKEN = new TypeToken<ParticleType>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<ParticleType>> PARTICLE_TYPE_VALUE_TOKEN = new TypeToken<Value<ParticleType>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<PatternListValue> PATTERN_LIST_VALUE_TOKEN = new TypeToken<PatternListValue>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<PickupRule> PICKUP_TOKEN = new TypeToken<PickupRule>() {private static final long serialVersionUID = -1;};
 

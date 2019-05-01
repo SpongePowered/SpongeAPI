@@ -28,7 +28,7 @@ import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableDisarmedData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * A {@link DataManipulator} for representing a "disarmed" state. Usually
@@ -38,11 +38,11 @@ import org.spongepowered.api.data.value.mutable.Value;
 public interface DisarmedData extends DataManipulator<DisarmedData, ImmutableDisarmedData> {
 
     /**
-     * Gets the {@link Value} for the current "disarmed" state.
+     * Gets the {@link Value.Mutable} for the current "disarmed" state.
      *
      * @return The value for the "disarmed" state
      * @see Keys#DISARMED
      */
-    Value<Boolean> disarmed();
+    Value.Mutable<Boolean> disarmed();
 
 }

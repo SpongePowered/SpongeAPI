@@ -32,7 +32,7 @@ import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.TargetedLocationData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.AABB;
@@ -554,8 +554,8 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      *
      * @return True if this entity has gravity
      */
-    default Value<Boolean> gravity() {
-        return getValue(Keys.HAS_GRAVITY).get();
+    default Value.Mutable<Boolean> gravity() {
+        return getValue(Keys.HAS_GRAVITY).get().asMutable();
     }
 
 }

@@ -28,7 +28,7 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.HorseData;
 import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents a RideableHorse.
@@ -49,8 +49,8 @@ public interface RideableHorse extends Horse {
      *
      * @return The value of the horse's style
      */
-    default Value<HorseStyle> style() {
-        return getValue(Keys.HORSE_STYLE).get();
+    default Value.Mutable<HorseStyle> style() {
+        return getValue(Keys.HORSE_STYLE).get().asMutable();
     }
 
     /**
@@ -58,7 +58,7 @@ public interface RideableHorse extends Horse {
      *
      * @return The value of the horse's color
      */
-    default Value<HorseColor> color() {
-        return getValue(Keys.HORSE_COLOR).get();
+    default Value.Mutable<HorseColor> color() {
+        return getValue(Keys.HORSE_COLOR).get().asMutable();
     }
 }

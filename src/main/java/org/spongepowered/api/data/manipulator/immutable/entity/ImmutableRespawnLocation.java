@@ -29,7 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableMappedData;
 import org.spongepowered.api.data.manipulator.mutable.entity.RespawnLocationData;
-import org.spongepowered.api.data.value.immutable.ImmutableMapValue;
+import org.spongepowered.api.data.value.MapValue;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.util.RespawnLocation;
 import org.spongepowered.api.world.World;
@@ -46,14 +46,14 @@ import java.util.UUID;
 public interface ImmutableRespawnLocation extends ImmutableMappedData<UUID, RespawnLocation, ImmutableRespawnLocation, RespawnLocationData> {
 
     /**
-     * Gets the {@link ImmutableMapValue} for the "respawn" locations set for
+     * Gets the {@link MapValue.Immutable} for the "respawn" locations set for
      * various {@link World#getUniqueId()} such that a {@link Player} may not
      * have a respawn point for a particular {@link World}, but may have
      * multiple respawn points for other {@link World}s.
      *
      * @return The immutable map for the respawn locations per world id
      */
-    default ImmutableMapValue<UUID, RespawnLocation> respawnLocation() {
+    default MapValue.Immutable<UUID, RespawnLocation> respawnLocation() {
         return getMapValue();
     }
 

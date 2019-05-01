@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.immutable.block;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.block.OpenData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * An {@link ImmutableDataManipulator} for the "open" state. Usually applicable
@@ -36,10 +36,10 @@ import org.spongepowered.api.data.value.immutable.ImmutableValue;
 public interface ImmutableOpenData extends ImmutableDataManipulator<ImmutableOpenData, OpenData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the "open" state.
+     * Gets the {@link Value.Immutable} for the "open" state.
      *
      * @return The immutable value for the "open" state
      */
-    ImmutableValue<Boolean> open();
+    Value.Immutable<Boolean> open();
 
 }

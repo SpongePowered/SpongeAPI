@@ -30,7 +30,7 @@ import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableRepresentedPlayerData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.profile.GameProfile;
 
@@ -42,12 +42,12 @@ import org.spongepowered.api.profile.GameProfile;
 public interface RepresentedPlayerData extends DataManipulator<RepresentedPlayerData, ImmutableRepresentedPlayerData> {
 
     /**
-     * Gets the {@link Value}{@link GameProfile} that is
+     * Gets the {@link Value.Mutable}{@link GameProfile} that is
      * represented by the {@link DataHolder}.
      *
      * @return The value of the game profile
      * @see Keys#REPRESENTED_PLAYER
      */
-    Value<GameProfile> owner();
+    Value.Mutable<GameProfile> owner();
 
 }

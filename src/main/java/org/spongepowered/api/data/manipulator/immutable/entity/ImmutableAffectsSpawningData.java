@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.AffectsSpawningData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.player.Player;
 
 /**
@@ -36,10 +36,10 @@ import org.spongepowered.api.entity.living.player.Player;
 public interface ImmutableAffectsSpawningData extends ImmutableDataManipulator<ImmutableAffectsSpawningData, AffectsSpawningData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the "affects spawning" state.
+     * Gets the {@link Value.Immutable} for the "affects spawning" state.
      *
      * @return The immutable value for the affects spawning state
      */
-    ImmutableValue<Boolean> affectsSpawning();
+    Value.Immutable<Boolean> affectsSpawning();
 
 }

@@ -29,7 +29,7 @@ import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.RepresentedPlayerData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.profile.GameProfile;
 
@@ -41,11 +41,11 @@ import org.spongepowered.api.profile.GameProfile;
 public interface ImmutableRepresentedPlayerData extends ImmutableDataManipulator<ImmutableRepresentedPlayerData, RepresentedPlayerData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the {@link GameProfile} that is
+     * Gets the {@link Value.Immutable} for the {@link GameProfile} that is
      * represented by the {@link DataHolder}.
      *
      * @return The immutable value of the game profile
      */
-    ImmutableValue<GameProfile> owner();
+    Value.Immutable<GameProfile> owner();
 
 }

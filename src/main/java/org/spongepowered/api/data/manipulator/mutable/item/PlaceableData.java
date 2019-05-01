@@ -28,7 +28,7 @@ import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.item.ImmutablePlaceableData;
-import org.spongepowered.api.data.value.mutable.SetValue;
+import org.spongepowered.api.data.value.SetValue;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 
@@ -44,12 +44,12 @@ import java.util.Set;
 public interface PlaceableData extends DataManipulator<PlaceableData, ImmutablePlaceableData> {
 
     /**
-     * Gets the {@link SetValue} of {@link BlockType}s the
+     * Gets the {@link SetValue.Mutable} of {@link BlockType}s the
      * {@link ItemType} can be placed on.
      *
      * @return The immutable set value of block types the item can be placed on
      * @see Keys#PLACEABLE_BLOCKS
      */
-    SetValue<BlockType> placeable();
+    SetValue.Mutable<BlockType> placeable();
 
 }

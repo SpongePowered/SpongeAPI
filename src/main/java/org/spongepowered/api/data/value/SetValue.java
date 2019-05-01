@@ -22,48 +22,51 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.value.mutable;
+package org.spongepowered.api.data.value;
 
-import org.spongepowered.api.data.value.immutable.ImmutableOptionalValue;
+import java.util.Set;
 
-import java.util.Optional;
-
-import javax.annotation.Nullable;
-
-/**
- * Represents a {@link Value} that can be {@link Optional} such that the
- * underlying value may be present or {@code null}.
- *
- * @param <E> The type of element
- */
-public interface OptionalValue<E> extends Value<Optional<E>> {
+public interface SetValue<E> extends CollectionValue<E, Set<E>> {
 
     @Override
-    OptionalValue<E> set(Optional<E> value);
+    SetValue.Mutable<E> asMutable();
+
+    @Override
+    SetValue.Immutable<E> asImmutable();
 
     /**
-     * Sets the underlying value, may be null.
+     * Represents a type of {@link CollectionValue.Mutable} backed by a {@link Set}. The
+     * reasoning is that a {@link Set} retains no ordering of the elements it
+     * contains.
      *
-     * @param value The value to set
-     * @return This value, for chaining
+     * @param <E> The type of elements supported
      */
-    OptionalValue<E> setTo(@Nullable E value);
+    interface Mutable<E> extends SetValue<E>, CollectionValue.Mutable<E, Set<E>, Mutable<E>, Immutable<E>> {
+
+        @Override
+        default SetValue.Mutable<E> asMutable() {
+            return this;
+        }
+
+        @Override
+        SetValue.Immutable<E> asImmutable();
+    }
 
     /**
-     * Provides the value such that if the underlying value is
-     * {@code null}, the default value is returned as a {@link Value}, if
-     * the underlying value is present, the underlying value is returned
-     * as a {@link Value}.
+     * Represents a type of {@link CollectionValue.Immutable} backed by a
+     * {@link Set}. The reasoning is that a {@link Set} retains no ordering of the
+     * elements it contains.
      *
-     * @param defaultValue The value to substitute, if the underlying value is
-     *      null
-     * @return A new {@link Value} with a non-null value
+     * @param <E> The type of elements supported
      */
-    Value<E> or(E defaultValue);
+    interface Immutable<E> extends SetValue<E>, CollectionValue.Immutable<E, Set<E>, Immutable<E>, Mutable<E>> {
 
-    @Override
-    OptionalValue<E> copy();
+        @Override
+        SetValue.Mutable<E> asMutable();
 
-    @Override
-    ImmutableOptionalValue<E> asImmutable();
+        @Override
+        default SetValue.Immutable<E> asImmutable() {
+            return this;
+        }
+    }
 }

@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.immutable.item;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.item.BreakableData;
-import org.spongepowered.api.data.value.immutable.ImmutableSetValue;
+import org.spongepowered.api.data.value.SetValue;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -43,12 +43,12 @@ import org.spongepowered.api.item.inventory.ItemStack;
 public interface ImmutableBreakableData extends ImmutableDataManipulator<ImmutableBreakableData, BreakableData> {
 
     /**
-     * Gets the {@link ImmutableSetValue} for all known {@link BlockType}s that
+     * Gets the {@link SetValue.Immutable} for all known {@link BlockType}s that
      * can be broken by the owning {@link ItemStack}.
      *
      * @return The immutable set of block types that can be broken by the item
      *     stack
      */
-    ImmutableSetValue<BlockType> breakable();
+    SetValue.Immutable<BlockType> breakable();
 
 }

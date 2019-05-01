@@ -26,7 +26,7 @@ package org.spongepowered.api.entity;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.block.DirectionalData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.golem.Shulker;
 import org.spongepowered.api.entity.projectile.DamagingProjectile;
 import org.spongepowered.api.entity.projectile.EntityTargetingProjectile;
@@ -53,7 +53,7 @@ public interface ShulkerBullet extends EntityTargetingProjectile, DamagingProjec
      *
      * @return The current direction value
      */
-    default Value<Direction> direction() {
-        return getValue(Keys.DIRECTION).get();
+    default Value.Mutable<Direction> direction() {
+        return getValue(Keys.DIRECTION).get().asMutable();
     }
 }

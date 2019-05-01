@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.ArmorStandData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 
 public interface ImmutableArmorStandData extends ImmutableDataManipulator<ImmutableArmorStandData, ArmorStandData> {
 
@@ -37,14 +37,14 @@ public interface ImmutableArmorStandData extends ImmutableDataManipulator<Immuta
      *
      * @return Whether this armor stand is a marker
      */
-    ImmutableValue<Boolean> marker();
+    Value.Immutable<Boolean> marker();
 
     /**
      * Returns whether this armor stand is a small armor stand or not.
      *
      * @return Whether this is a small armor stand
      */
-    ImmutableValue<Boolean> small();
+    Value.Immutable<Boolean> small();
 
     /**
      * Returns whether this armor stand shows arms or not.
@@ -52,13 +52,13 @@ public interface ImmutableArmorStandData extends ImmutableDataManipulator<Immuta
      *
      * @return Whether this armor stand shows its arms
      */
-    ImmutableValue<Boolean> arms();
+    Value.Immutable<Boolean> arms();
 
     /**
      * Gets whether this armor stand has a visible base plate or not.
      *
      * @return Whether this armor stand has a visible base plate
      */
-    ImmutableValue<Boolean> basePlate();
+    Value.Immutable<Boolean> basePlate();
 
 }

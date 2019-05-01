@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.immutable.tileentity;
 import org.spongepowered.api.block.tileentity.carrier.BrewingStand;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.BrewingStandData;
-import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
+import org.spongepowered.api.data.value.BoundedValue;
 
 /**
  * An {@link ImmutableDataManipulator} handling the {@link BrewingStand}
@@ -36,12 +36,12 @@ import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
 public interface ImmutableBrewingStandData extends ImmutableDataManipulator<ImmutableBrewingStandData, BrewingStandData> {
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the remaining brew time.
+     * Gets the {@link BoundedValue.Immutable} for the remaining brew time.
      *
      * <p>If nothing is brewing the immutable value is 0.</p>
      *
      * @return The immutable value for the remaining brew time
      */
-    ImmutableBoundedValue<Integer> remainingBrewTime();
+    BoundedValue.Immutable<Integer> remainingBrewTime();
 
 }

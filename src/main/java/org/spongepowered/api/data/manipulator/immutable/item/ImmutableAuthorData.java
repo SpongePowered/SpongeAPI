@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.item;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.item.AuthorData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.text.Text;
 
@@ -37,10 +37,10 @@ import org.spongepowered.api.text.Text;
 public interface ImmutableAuthorData extends ImmutableDataManipulator<ImmutableAuthorData, AuthorData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the "author" of a book.
+     * Gets the {@link Value.Immutable} for the "author" of a book.
      *
      * @return The immutable value for the author
      */
-    ImmutableValue<Text> author();
+    Value.Immutable<Text> author();
 
 }

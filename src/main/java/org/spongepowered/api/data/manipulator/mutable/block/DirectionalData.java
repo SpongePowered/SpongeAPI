@@ -29,24 +29,24 @@ import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableDirectionalData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityTypes;
 import org.spongepowered.api.util.Direction;
 
 /**
  * A {@link DataManipulator} for the {@link Direction} state of a
- * {@link BlockState} or an {@link Entity}. Usually applicable for {@link BlockTypes#STANDING_SIGN},
- * {@link BlockTypes#WALL_SIGN}, {@link BlockTypes#WOODEN_DOOR}, {@link EntityTypes#SHULKER}, etc.
+ * {@link BlockState} or an {@link Entity}. Usually applicable for {@link BlockTypes#SIGN},
+ * {@link BlockTypes#WALL_SIGN}, {@link BlockTypes#ACACIA_DOOR} (and others), {@link EntityTypes#SHULKER}, etc.
  */
 public interface DirectionalData extends DataManipulator<DirectionalData, ImmutableDirectionalData> {
 
     /**
-     * Gets the {@link Value} for the current "facing" {@link Direction}.
+     * Gets the {@link Value.Mutable} for the current "facing" {@link Direction}.
      *
      * @return The current "facing" direction value
      * @see Keys#DIRECTION
      */
-    Value<Direction> direction();
+    Value.Mutable<Direction> direction();
 
 }

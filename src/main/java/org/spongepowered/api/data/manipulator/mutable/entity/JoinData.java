@@ -28,7 +28,7 @@ import org.spongepowered.api.Server;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableJoinData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 
@@ -41,22 +41,22 @@ import java.time.Instant;
 public interface JoinData extends DataManipulator<JoinData, ImmutableJoinData> {
 
     /**
-     * Gets the {@link Value} of the {@link Instant} that a {@link Player} joined
+     * Gets the {@link Value.Mutable} of the {@link Instant} that a {@link Player} joined
      * the {@link Server} the first time.
      *
      * @return The value for the first time a player joined
      * @see Keys#FIRST_DATE_PLAYED
      */
-    Value<Instant> firstPlayed();
+    Value.Mutable<Instant> firstPlayed();
 
     /**
-     * Gets the {@link Value} of the {@link Instant} that a {@link Player} joined
+     * Gets the {@link Value.Mutable} of the {@link Instant} that a {@link Player} joined
      * the {@link Server} the last time.
      *
      * @return The value for the last time a player joined
      * @see Keys#LAST_DATE_PLAYED
      */
-    Value<Instant> lastPlayed();
+    Value.Mutable<Instant> lastPlayed();
 
 
 }

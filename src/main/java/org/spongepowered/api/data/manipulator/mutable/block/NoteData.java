@@ -29,7 +29,7 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableNoteData;
 import org.spongepowered.api.data.type.NotePitch;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * An {@link DataManipulator} handling the {@link NotePitch} for a
@@ -38,11 +38,11 @@ import org.spongepowered.api.data.value.mutable.Value;
 public interface NoteData extends DataManipulator<NoteData, ImmutableNoteData> {
 
     /**
-     * Gets the {@link Value} for the {@link NotePitch}.
+     * Gets the {@link Value.Mutable} for the {@link NotePitch}.
      *
      * @return The value for the note pitch
      * @see Keys#NOTE_PITCH
      */
-    Value<NotePitch> note();
+    Value.Mutable<NotePitch> note();
 
 }

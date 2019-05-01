@@ -31,15 +31,14 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.value.Value;
 
 import java.util.Comparator;
 
 /**
  * An abstracted {@link ImmutableDataManipulator} that focuses solely on an
- * {@link ImmutableBoundedValue} as it's {@link Value} return type.
+ * {@link BoundedValue.Immutable} as it's {@link Value.Mutable} return type.
  *
  * @param <T> The type of comparable element
  * @param <I> The immutable data manipulator type
@@ -51,14 +50,14 @@ public abstract class AbstractImmutableBoundedComparableData<T extends Comparabl
     protected final Comparator<T> comparator;
     protected final T lowerBound;
     protected final T upperBound;
-    private final ImmutableBoundedValue<T> immutableBoundedValue;
+    private final BoundedValue.Immutable<T> immutableBoundedValue;
 
-    protected AbstractImmutableBoundedComparableData(Key<MutableBoundedValue<T>> usedKey,
+    protected AbstractImmutableBoundedComparableData(Key<BoundedValue<T>> usedKey,
             T value, T lowerBound, T upperBound, Comparator<T> comparator) {
         this(usedKey, value, value, lowerBound, upperBound, comparator);
     }
 
-    protected AbstractImmutableBoundedComparableData(Key<MutableBoundedValue<T>> usedKey,
+    protected AbstractImmutableBoundedComparableData(Key<BoundedValue<T>> usedKey,
             T value, T defaultValue, T lowerBound, T upperBound, Comparator<T> comparator) {
         super(usedKey, value, defaultValue);
         checkValue(value, "value");
@@ -68,8 +67,7 @@ public abstract class AbstractImmutableBoundedComparableData<T extends Comparabl
         this.upperBound = checkNotNull(upperBound, "upperBound");
         this.immutableBoundedValue = Sponge.getRegistry().getValueFactory()
                 .createBoundedValueBuilder(usedKey)
-                .defaultValue(defaultValue)
-                .actualValue(value)
+                .value(value)
                 .minimum(lowerBound)
                 .maximum(upperBound)
                 .comparator(comparator)
@@ -85,7 +83,7 @@ public abstract class AbstractImmutableBoundedComparableData<T extends Comparabl
     }
 
     @Override
-    protected final ImmutableBoundedValue<T> getValueGetter() {
+    protected final BoundedValue.Immutable<T> getValueGetter() {
         return this.immutableBoundedValue;
     }
 

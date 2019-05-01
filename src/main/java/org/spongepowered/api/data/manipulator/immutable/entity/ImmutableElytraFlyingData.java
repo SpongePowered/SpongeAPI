@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.ElytraFlyingData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.item.ItemTypes;
 
@@ -39,11 +39,11 @@ import org.spongepowered.api.item.ItemTypes;
 public interface ImmutableElytraFlyingData extends ImmutableDataManipulator<ImmutableElytraFlyingData, ElytraFlyingData> {
 
     /**
-     * Gets the {@link ImmutableValue} elytra flying state.
+     * Gets the {@link Value.Immutable} elytra flying state.
      *
      * @return The elytra flying state immutable value
      * @see Keys#IS_ELYTRA_FLYING
      */
-    ImmutableValue<Boolean> elytraFlying();
+    Value.Immutable<Boolean> elytraFlying();
 
 }

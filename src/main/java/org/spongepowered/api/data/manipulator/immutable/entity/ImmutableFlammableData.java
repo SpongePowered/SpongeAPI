@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.FlammableData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * An {@link ImmutableDataManipulator} for the "flaming" state of an entity.
@@ -36,10 +36,10 @@ import org.spongepowered.api.data.value.immutable.ImmutableValue;
 public interface ImmutableFlammableData extends ImmutableDataManipulator<ImmutableFlammableData, FlammableData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the "aflame" state.
+     * Gets the {@link Value.Immutable} for the "aflame" state.
      *
      * @return The immutable value for the aflame state
      */
-    ImmutableValue<Boolean> flammable();
+    Value.Immutable<Boolean> flammable();
 
 }

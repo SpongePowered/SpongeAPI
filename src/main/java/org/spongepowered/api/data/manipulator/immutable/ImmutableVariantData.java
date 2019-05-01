@@ -27,13 +27,13 @@ package org.spongepowered.api.data.manipulator.immutable;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents a type of {@link ImmutableDataManipulator} handling a specific
  * type of element, usually {@link CatalogType}s. The advantage is that
  * {@link #type()} will always return the same type as an
- * {@link ImmutableValue}.
+ * {@link Value.Immutable}.
  *
  * @param <E> The type of element value being represented
  * @param <I> The type of immutable variant data being extended
@@ -43,10 +43,10 @@ public interface ImmutableVariantData<E, I extends ImmutableVariantData<E, I, M>
     extends ImmutableDataManipulator<I, M> {
 
     /**
-     * Gets the {@link ImmutableValue} of the the element type.
+     * Gets the {@link Value.Immutable} of the the element type.
      *
      * @return The immutable value of the element type
      */
-    ImmutableValue<E> type();
+    Value.Immutable<E> type();
 
 }

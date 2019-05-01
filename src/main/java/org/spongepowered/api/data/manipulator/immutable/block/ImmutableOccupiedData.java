@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.immutable.block;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.block.OccupiedData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * An {@link ImmutableDataManipulator} for the "occupied" state. Usually
@@ -36,10 +36,10 @@ import org.spongepowered.api.data.value.immutable.ImmutableValue;
 public interface ImmutableOccupiedData extends ImmutableDataManipulator<ImmutableOccupiedData, OccupiedData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the "occupied" state.
+     * Gets the {@link Value.Immutable} for the "occupied" state.
      *
      * @return The immutable value for the "occupied" state
      */
-    ImmutableValue<Boolean> occupied();
+    Value.Immutable<Boolean> occupied();
 
 }

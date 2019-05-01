@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.FireworkEffectData;
-import org.spongepowered.api.data.value.immutable.ImmutableListValue;
+import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.entity.projectile.Firework;
 import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.ItemTypes;
@@ -41,14 +41,14 @@ import org.spongepowered.api.item.inventory.ItemStack;
 public interface ImmutableFireworkEffectData extends ImmutableListData<FireworkEffect, ImmutableFireworkEffectData, FireworkEffectData> {
 
     /**
-     * Gets the {@link ImmutableListValue} of {@link FireworkEffect}s.
+     * Gets the {@link ListValue.Immutable} of {@link FireworkEffect}s.
      *
      * <p>Note that for {@link ItemTypes#FIREWORK_STAR} only the first effect
      * will apply to the charge.</p>
      *
      * @return The list value of firework effects
      */
-    default ImmutableListValue<FireworkEffect> effects() {
+    default ListValue.Immutable<FireworkEffect> effects() {
         return getListValue();
     }
 }

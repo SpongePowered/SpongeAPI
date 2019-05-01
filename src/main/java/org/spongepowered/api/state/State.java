@@ -27,7 +27,7 @@ package org.spongepowered.api.state;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.data.ImmutableDataHolder;
 import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.util.Cycleable;
 
 import java.util.Collection;
@@ -94,7 +94,7 @@ public interface State<S extends State<S>> extends ImmutableDataHolder<S>, Catal
      * @param key The key
      * @return The cycled state if successful
      */
-    <T extends Cycleable<T>> Optional<S> cycleValue(Key<? extends BaseValue<T>> key);
+    <T extends Cycleable<T>> Optional<S> cycleValue(Key<? extends Value<T>> key);
 
     /**
      * Gets an immutable {@link Collection} of all applicable

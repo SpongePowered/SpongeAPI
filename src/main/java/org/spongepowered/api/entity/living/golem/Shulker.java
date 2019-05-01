@@ -28,7 +28,7 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.DyeableData;
 import org.spongepowered.api.data.manipulator.mutable.block.DirectionalData;
 import org.spongepowered.api.data.type.DyeColor;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.projectile.EntityTargetingProjectile;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
@@ -54,8 +54,8 @@ public interface Shulker extends Golem, ProjectileSource {
      *
      * @return The current value of dye color for this shulker
      */
-    default Value<DyeColor> color() {
-        return getValue(Keys.DYE_COLOR).get();
+    default Value.Mutable<DyeColor> color() {
+        return getValue(Keys.DYE_COLOR).get().asMutable();
     }
 
     /**
@@ -73,8 +73,8 @@ public interface Shulker extends Golem, ProjectileSource {
      *
      * @return The current value of direction for this shulker
      */
-    default Value<Direction> direction() {
-        return getValue(Keys.DIRECTION).get();
+    default Value.Mutable<Direction> direction() {
+        return getValue(Keys.DIRECTION).get().asMutable();
     }
 
     /**

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.item.inventory;
 
+import org.spongepowered.api.data.manipulator.mutable.item.DurabilityData;
 import org.spongepowered.api.data.property.Property;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.item.ItemType;
@@ -75,6 +76,11 @@ public final class ItemStackComparators {
      * Compares ItemStacks based on their {@link DataManipulator}s.
      */
     public static final Comparator<ItemStack> ITEM_DATA = DummyObjectProvider.createExtendedFor(Comparator.class, "ITEM_DATA");
+
+    /**
+     * Compares ItemStacks based on their {@link DataManipulator}s ignoring {@link DurabilityData}.
+     */
+    public static final Comparator<ItemStack> ITEM_DATA_IGNORE_DURABILITY = DummyObjectProvider.createExtendedFor(Comparator.class, "ITEM_DATA_IGNORE_DURABILITY");
 
     /**
      * Compares ItemStacks only ignoring their stack-size.

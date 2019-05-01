@@ -28,7 +28,7 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableCustomNameVisibleData;
 import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -45,6 +45,6 @@ public interface CustomNameVisibleData extends DataManipulator<CustomNameVisible
      * @return Whether the display name is visible or not
      * @see Keys#CUSTOM_NAME_VISIBLE
      */
-    Value<Boolean> customNameVisible();
+    Value.Mutable<Boolean> customNameVisible();
 
 }

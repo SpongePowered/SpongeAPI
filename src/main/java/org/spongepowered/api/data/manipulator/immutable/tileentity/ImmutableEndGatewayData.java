@@ -28,7 +28,7 @@ import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.tileentity.EndGateway;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.EndGatewayData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * An {@link ImmutableDataManipulator} representing the {@link EndGateway}.
@@ -36,35 +36,35 @@ import org.spongepowered.api.data.value.immutable.ImmutableValue;
 public interface ImmutableEndGatewayData extends ImmutableDataManipulator<ImmutableEndGatewayData, EndGatewayData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the exit portal location of
+     * Gets the {@link Value.Immutable} for the exit portal location of
      * the {@link EndGateway}.
      *
      * @return The immutable value for the exit portal location
      */
-    ImmutableValue<Vector3i> exitPortal();
+    Value.Immutable<Vector3i> exitPortal();
 
     /**
-     * Gets the {@link ImmutableValue} for the "should use exact teleport
+     * Gets the {@link Value.Immutable} for the "should use exact teleport
      * location" state of the {@link EndGateway}.
      *
      * @return The immutable value for the "should use exact teleport location"
      *     state
      */
-    ImmutableValue<Boolean> exactTeleport();
+    Value.Immutable<Boolean> exactTeleport();
 
     /**
-     * Gets the {@link ImmutableValue} for the age of the {@link EndGateway}.
+     * Gets the {@link Value.Immutable} for the age of the {@link EndGateway}.
      *
      * @return The immutable value for the age
      */
-    ImmutableValue<Long> age();
+    Value.Immutable<Long> age();
 
     /**
-     * Gets the {@link ImmutableValue} for the teleport cooldown of the
+     * Gets the {@link Value.Immutable} for the teleport cooldown of the
      * {@link EndGateway}.
      *
      * @return The immutable value for the teleport cooldown
      */
-    ImmutableValue<Integer> teleportCooldown();
+    Value.Immutable<Integer> teleportCooldown();
 
 }

@@ -26,10 +26,9 @@ package org.spongepowered.api.data.manipulator.mutable.item;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.item.ImmutablePagedData;
 import org.spongepowered.api.data.manipulator.immutable.item.ImmutablePlainPagedData;
 import org.spongepowered.api.data.manipulator.mutable.ListData;
-import org.spongepowered.api.data.value.mutable.ListValue;
+import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.Text;
@@ -44,12 +43,12 @@ import java.util.List;
 public interface PlainPagedData extends ListData<String, PlainPagedData, ImmutablePlainPagedData> {
 
     /**
-     * Gets the {@link ListValue} for the {@link Text} pages.
+     * Gets the {@link ListValue.Mutable} for the {@link Text} pages.
      *
      * @return The list value of text pages
      * @see Keys#PLAIN_BOOK_PAGES
      */
-    default ListValue<String> pages() {
+    default ListValue.Mutable<String> pages() {
         return getListValue();
     }
 

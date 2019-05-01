@@ -29,58 +29,58 @@ import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.block.WireAttachmentData;
 import org.spongepowered.api.data.type.WireAttachmentType;
-import org.spongepowered.api.data.value.immutable.ImmutableMapValue;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.MapValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.util.Direction;
 
 /**
  * An {@link ImmutableDataManipulator} that handles the
- * {@link ImmutableMapValue} of {@link Direction} to {@link WireAttachmentType}
+ * {@link MapValue.Immutable} of {@link Direction} to {@link WireAttachmentType}
  * for a {@link BlockState}. Usually applicable to
  * {@link BlockTypes#REDSTONE_WIRE} and {@link BlockTypes#TRIPWIRE}.
  */
 public interface ImmutableWireAttachmentData extends ImmutableDataManipulator<ImmutableWireAttachmentData, WireAttachmentData> {
 
     /**
-     * Gets the current {@link ImmutableMapValue} for the available
+     * Gets the current {@link MapValue.Immutable} for the available
      * {@link Direction}s and associated{@link WireAttachmentType}s.
      *
      * @return The immutable map value for the directions and their associated
      *     wire attachment types
      */
-    ImmutableMapValue<Direction, WireAttachmentType> wireAttachments();
+    MapValue.Immutable<Direction, WireAttachmentType> wireAttachments();
 
     /**
-     * Gets the {@link ImmutableValue} for the {@link Direction#NORTH}'s
+     * Gets the {@link Value.Immutable} for the {@link Direction#NORTH}'s
      * {@link WireAttachmentType}.
      *
      * @return The value for the northern wire attachment type
      */
-    ImmutableValue<WireAttachmentType> wireAttachmentNorth();
+    Value.Immutable<WireAttachmentType> wireAttachmentNorth();
 
     /**
-     * Gets the {@link ImmutableValue} for the {@link Direction#SOUTH}'s
+     * Gets the {@link Value.Immutable} for the {@link Direction#SOUTH}'s
      * {@link WireAttachmentType}.
      *
      * @return The value for the southern wire attachment type
      */
-    ImmutableValue<WireAttachmentType> wireAttachmentSouth();
+    Value.Immutable<WireAttachmentType> wireAttachmentSouth();
 
     /**
-     * Gets the {@link ImmutableValue} for the {@link Direction#EAST}'s
+     * Gets the {@link Value.Immutable} for the {@link Direction#EAST}'s
      * {@link WireAttachmentType}.
      *
      * @return The value for the eastern wire attachment type
      */
-    ImmutableValue<WireAttachmentType> wireAttachmentEast();
+    Value.Immutable<WireAttachmentType> wireAttachmentEast();
 
     /**
-     * Gets the {@link ImmutableValue} for the {@link Direction#WEST}'s
+     * Gets the {@link Value.Immutable} for the {@link Direction#WEST}'s
      * {@link WireAttachmentType}.
      *
      * @return The value for the western wire attachment type
      */
-    ImmutableValue<WireAttachmentType> wireAttachmentWest();
+    Value.Immutable<WireAttachmentType> wireAttachmentWest();
 
 
 

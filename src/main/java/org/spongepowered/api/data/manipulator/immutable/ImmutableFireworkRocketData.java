@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.FireworkRocketData;
-import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
+import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.entity.projectile.Firework;
 import org.spongepowered.api.item.ItemTypes;
 
@@ -37,7 +37,7 @@ import org.spongepowered.api.item.ItemTypes;
 public interface ImmutableFireworkRocketData extends ImmutableDataManipulator<ImmutableFireworkRocketData, FireworkRocketData> {
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the flight modifier.
+     * Gets the {@link BoundedValue.Immutable} for the flight modifier.
      *
      * <p>Flight modifiers are tiered ranks of flight duration. Generally,
      * the modifier is used to calculate the fuse time of a firework when
@@ -47,6 +47,6 @@ public interface ImmutableFireworkRocketData extends ImmutableDataManipulator<Im
      *
      * @return The flight modifier
      */
-    ImmutableBoundedValue<Integer> flightModifier();
+    BoundedValue.Immutable<Integer> flightModifier();
 
 }

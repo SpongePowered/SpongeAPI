@@ -27,7 +27,7 @@ package org.spongepowered.api.block.tileentity.carrier;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.DyeableData;
 import org.spongepowered.api.data.type.DyeColor;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents a ShulkerBox. ShulkerBoxes are specific in that when they are
@@ -52,7 +52,7 @@ public interface ShulkerBox extends TileEntityCarrier {
      *
      * @return The current value of dye color for this shulker box
      */
-    default Value<DyeColor> color() {
-        return getValue(Keys.DYE_COLOR).get();
+    default Value.Mutable<DyeColor> color() {
+        return getValue(Keys.DYE_COLOR).get().asMutable();
     }
 }

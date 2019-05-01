@@ -26,8 +26,8 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.MovementSpeedData;
-import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.player.Player;
 
 /**
@@ -37,17 +37,17 @@ import org.spongepowered.api.entity.living.player.Player;
 public interface ImmutableMovementSpeedData extends ImmutableDataManipulator<ImmutableMovementSpeedData, MovementSpeedData> {
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the "walking" speed.
+     * Gets the {@link BoundedValue.Immutable} for the "walking" speed.
      *
      * @return The immutable value for the walking speed
      */
-    ImmutableValue<Double> walkSpeed();
+    Value.Immutable<Double> walkSpeed();
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the "flying" speed.
+     * Gets the {@link BoundedValue.Immutable} for the "flying" speed.
      *
      * @return The immutable value for the flying speed
      */
-    ImmutableValue<Double> flySpeed();
+    Value.Immutable<Double> flySpeed();
 
 }

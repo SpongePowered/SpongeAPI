@@ -26,8 +26,8 @@ package org.spongepowered.api.data.manipulator.immutable;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.ColoredData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.entity.living.animal.Wolf;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.Color;
 
@@ -38,10 +38,10 @@ import org.spongepowered.api.util.Color;
 public interface ImmutableColoredData extends ImmutableDataManipulator<ImmutableColoredData, ColoredData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the {@link Color}.
+     * Gets the {@link Value.Immutable} for the {@link Color}.
      *
      * @return The immutable value for the color
      */
-    ImmutableValue<Color> color();
+    Value.Immutable<Color> color();
 
 }

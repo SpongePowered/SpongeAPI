@@ -27,8 +27,8 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableSkinData;
-import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.profile.GameProfile;
@@ -47,8 +47,9 @@ import org.spongepowered.api.profile.property.ProfileProperty;
 public interface SkinData extends DataManipulator<SkinData, ImmutableSkinData> {
 
     /**
-     * Gets the {@link Value} for the {@link ProfileProperty} of the skin to display on a
-     * {@link Humanoid} entity for customization.
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the
+     * {@link ProfileProperty} of the skin to display on a {@link Humanoid}
+     * entity for customization.
      *
      * <p>The name of the {@link ProfileProperty} MUST be {@link ProfileProperty#TEXTURES},
      * and have a valid signature, in order to be accepted by the client.</p>
@@ -56,11 +57,11 @@ public interface SkinData extends DataManipulator<SkinData, ImmutableSkinData> {
      * @return The value for the skin property
      * @see Keys#SKIN
      */
-    Value<ProfileProperty> skin();
+    Value.Mutable<ProfileProperty> skin();
 
     /**
-     * Gets the {@link Value} for whether or not to update the player's
-     * {@link GameProfile}
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for whether
+     * or not to update the tab list with the player's new skin.
      *
      * <p>If this value is <code>true</code>, then the player's new skin
      * will be automatically displayed in the tab list. Calls to
@@ -77,9 +78,9 @@ public interface SkinData extends DataManipulator<SkinData, ImmutableSkinData> {
      *
      * <p>For {@link Human}s, setting this to <code>false</code> will cause the human
      * to be completely absent from the tab list.</p>
-     * @return Whether to update the gameprofile
+     *
+     * @return Whether to update the game profile
      * @see Keys#UPDATE_GAME_PROFILE
      */
-    Value<Boolean> updateGameProfile();
-
+    Value.Mutable<Boolean> updateGameProfile();
 }

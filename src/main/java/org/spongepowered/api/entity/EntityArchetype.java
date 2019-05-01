@@ -32,7 +32,7 @@ import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.InvalidDataException;
-import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.Value;
 
 public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
 
@@ -124,7 +124,7 @@ public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
          * @param value The type of entity type
          * @return This builder, for chaining
          */
-        <E, V extends BaseValue<E>> Builder set(V value);
+        <E, V extends Value<E>> Builder set(V value);
 
         /**
          * Sets the desired {@link EntityType} of the produced {@link EntityArchetype}.
@@ -133,7 +133,7 @@ public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
          * @param value The value to set
          * @return This builder, for chaining
          */
-        <E, V extends BaseValue<E>> Builder set(Key<V> key, E value);
+        <E, V extends Value<E>> Builder set(Key<V> key, E value);
 
         /**
          * Constructs a new {@link EntityArchetype}.
