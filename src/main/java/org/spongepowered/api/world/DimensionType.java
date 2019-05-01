@@ -25,6 +25,7 @@
 package org.spongepowered.api.world;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.service.context.Contextual;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**

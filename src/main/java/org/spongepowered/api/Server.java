@@ -139,10 +139,10 @@ public interface Server extends Engine {
      * Loads a {@link World} from the default storage container. If a world with
      * the given name is already loaded then it is returned instead.
      *
-     * @param worldName The name to lookup
+     * @param directoryName The name to lookup
      * @return The world, if found
      */
-    Optional<World> loadWorld(String worldName);
+    Optional<World> loadWorld(String directoryName);
 
     /**
      * Loads a {@link World} from the default storage container. If a world with
@@ -169,10 +169,10 @@ public interface Server extends Engine {
      * {@link World#getProperties()}. However, if no loaded world is found then
      * an attempt will be made to match unloaded worlds.
      *
-     * @param worldName The name to lookup
+     * @param directoryName The name to lookup
      * @return The world properties, if found
      */
-    Optional<WorldProperties> getWorldProperties(String worldName);
+    Optional<WorldProperties> getWorldProperties(String directoryName);
 
     /**
      * Gets the {@link WorldProperties} of a world. If a world with the given
@@ -203,8 +203,8 @@ public interface Server extends Engine {
      * {@link WorldArchetype}. For the creation of the WorldArchetype please see
      * {@link org.spongepowered.api.world.WorldArchetype.Builder}.
      *
-     * <p>If the {@link World} exists at the folder name given, the properties
-     * representing that folder name are returned instead.</p>
+     * <p>If the {@link World} exists at the directory name given, the properties
+     * representing that directory name are returned instead.</p>
      *
      * <p>Although the world is created it is not loaded at this time. Please
      * see one of the following methods for loading the world.</p>
@@ -212,13 +212,13 @@ public interface Server extends Engine {
      * <ul> <li>{@link #loadWorld(String)}</li> <li>{@link #loadWorld(UUID)}
      * </li> <li>{@link #loadWorld(WorldProperties)}</li> </ul>
      *
-     * @param folderName The name of the folder for the world
+     * @param directoryName The name of the directory for the world
      * @param archetype The archetype for creation
      * @return The new or existing world properties, if creation was successful
      * @throws IOException If there are any io issues creating the properties
      *      file
      */
-    WorldProperties createWorldProperties(String folderName, WorldArchetype archetype) throws IOException;
+    Optional<WorldProperties> createWorldProperties(String directoryName, WorldArchetype archetype) throws IOException;
 
     /**
      * Creates a world copy asynchronously using the new name given and returns
@@ -233,31 +233,30 @@ public interface Server extends Engine {
      * <li>World saving is enabled.</li>
      * </ul>
      *
-     * @param worldProperties The world properties to copy
-     * @param copyName The name for copied world
+     * @param directoryName The directory name
+     * @param copyName The copies' name
      * @return An {@link Optional} containing the properties of the new world
      *         instance, if the copy was successful
      */
-    CompletableFuture<Optional<WorldProperties>> copyWorld(WorldProperties worldProperties, String copyName);
+    CompletableFuture<Optional<WorldProperties>> copyWorld(String directoryName, String copyName);
 
     /**
      * Renames an unloaded world.
      *
-     * @param worldProperties The world properties to rename
-     * @param newName The name that should be used as a replacement for the
-     *        current world name
+     * @param oldDirectoryName The old directory name
+     * @param newDirectoryName The new directory name
      * @return An {@link Optional} containing the new {@link WorldProperties}
      *         if the rename was successful
      */
-    Optional<WorldProperties> renameWorld(WorldProperties worldProperties, String newName);
+    Optional<WorldProperties> renameWorld(String oldDirectoryName, String newDirectoryName);
 
     /**
      * Deletes the provided world's files asynchronously from the disk.
      *
-     * @param worldProperties The world properties to delete
+     * @param directoryName The directory name to delete
      * @return True if the deletion was successful.
      */
-    CompletableFuture<Boolean> deleteWorld(WorldProperties worldProperties);
+    CompletableFuture<Boolean> deleteWorld(String directoryName);
 
     /**
      * Persists the given {@link WorldProperties} to the world storage for it,
