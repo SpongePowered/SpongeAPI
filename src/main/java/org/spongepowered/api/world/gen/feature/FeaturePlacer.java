@@ -32,6 +32,6 @@ import java.util.Random;
 
 public interface FeaturePlacer<P extends PlacementConfig> {
 
-    <C> boolean generate(ProtoWorld<?> worldIn, WorldGenerator<?> generator, Random random, Vector3i pos, P placementConfig, FeatureCreator<C> feature, C featureConfig);
+    <C> boolean place(ProtoWorld<?> worldIn, WorldGenerator<?> generator, Random random, Vector3i pos, P placementConfig, FeatureCreator<C> feature, C featureConfig);
 
 }
