@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.biome;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.world.gen.Carver;
 import org.spongepowered.api.world.gen.CarvingLayer;
 import org.spongepowered.api.world.gen.GenerationPopulator;
@@ -135,7 +135,7 @@ public interface BiomeGenerationSettings {
     /**
      * A builder for {@link BiomeGenerationSettings}s.
      */
-    interface Builder extends ResettableBuilder<BiomeGenerationSettings, Builder> {
+    interface Builder extends CopyableBuilder<BiomeGenerationSettings, Builder> {
 
         /**
          * Sets the min height for the biome.

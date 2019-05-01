@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.gen.populator;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.weighted.ChanceTable;
 import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.world.Location;
@@ -129,7 +129,7 @@ public interface Mushroom extends Populator {
     /**
      * A builder for constructing {@link Mushroom} populators.
      */
-    interface Builder extends ResettableBuilder<Mushroom, Builder> {
+    interface Builder extends CopyableBuilder<Mushroom, Builder> {
 
         /**
          * Sets the weighted {@link MushroomType}s to select from during

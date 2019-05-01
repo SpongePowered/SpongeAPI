@@ -28,7 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.entity.health.HealingType;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.world.difficulty.Difficulty;
 
 /**
@@ -82,7 +82,7 @@ public interface HealingSource {
      * @param <T> The type of HealingSource
      * @param <B> The builder type
      */
-    interface HealingSourceBuilder<T extends HealingSource, B extends HealingSourceBuilder<T, B>> extends ResettableBuilder<T, B> {
+    interface HealingSourceBuilder<T extends HealingSource, B extends HealingSourceBuilder<T, B>> extends CopyableBuilder<T, B> {
 
         /**
          * Sets for the built {@link HealingSource} to have scaled with

@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.gen.populator;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.world.gen.Populator;
 
@@ -72,7 +72,7 @@ public interface WaterLily extends Populator {
     /**
      * A builder for constructing {@link WaterLily} populators.
      */
-    interface Builder extends ResettableBuilder<WaterLily, Builder> {
+    interface Builder extends CopyableBuilder<WaterLily, Builder> {
 
         /**
          * Sets the number of water lilies to attempt to spawn per chunk, must

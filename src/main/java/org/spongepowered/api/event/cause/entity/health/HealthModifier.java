@@ -32,7 +32,7 @@ import com.google.common.base.Objects;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.function.DoubleUnaryOperator;
 
@@ -71,7 +71,7 @@ public interface HealthModifier {
      * A builder that creates {@link HealthModifier}s, for use in both plugin
      * and implementation requirements.
      */
-    final class Builder implements ResettableBuilder<HealthModifier, Builder> {
+    final class Builder implements CopyableBuilder<HealthModifier, Builder> {
 
         HealthModifierType type;
         Cause cause;

@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.gen.populator;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.world.gen.Populator;
 
@@ -72,7 +72,7 @@ public interface Melon extends Populator {
     /**
      * A builder for constructing {@link Melon} populators.
      */
-    interface Builder extends ResettableBuilder<Melon, Builder> {
+    interface Builder extends CopyableBuilder<Melon, Builder> {
 
         /**
          * Sets the number of melons to attempt to spawn per chunk.

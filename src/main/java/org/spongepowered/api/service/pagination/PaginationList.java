@@ -29,7 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageReceiver;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.List;
 import java.util.Optional;
@@ -156,7 +156,7 @@ public interface PaginationList {
     /**
      * Builds a paginated output for an iterable of {@link Text}s.
      */
-    interface Builder extends ResettableBuilder<PaginationList, Builder> {
+    interface Builder extends CopyableBuilder<PaginationList, Builder> {
 
         /**
          * Sets the contents of this output as an iterable.

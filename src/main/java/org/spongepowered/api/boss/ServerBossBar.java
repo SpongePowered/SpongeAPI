@@ -31,7 +31,7 @@ import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.Collection;
 
@@ -138,7 +138,7 @@ public interface ServerBossBar extends BossBar {
      * @see BossBar
      * @see ServerBossBar
      */
-    interface Builder extends ResettableBuilder<ServerBossBar, Builder> {
+    interface Builder extends CopyableBuilder<ServerBossBar, Builder> {
 
         /**
          * Sets the name of the boss bar.

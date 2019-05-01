@@ -27,7 +27,7 @@ package org.spongepowered.api.scoreboard.displayslot;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.scoreboard.Team;
 import org.spongepowered.api.text.format.TextColor;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Optional;
@@ -45,7 +45,7 @@ public interface DisplaySlot extends CatalogType {
      */
     Optional<TextColor> getTeamColor();
 
-    interface Builder extends ResettableBuilder<DisplaySlot, Builder> {
+    interface Builder extends CopyableBuilder<DisplaySlot, Builder> {
 
         /**
          * Sets the {@link TextColor} of the display slot.

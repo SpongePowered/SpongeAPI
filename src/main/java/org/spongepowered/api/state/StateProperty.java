@@ -67,7 +67,7 @@ import java.util.function.Predicate;
  * </ul>
  * 
  * <p>To determine the current value of a {@link StateProperty}, you would call
- * {@link State#getStatePropertyValue(StateProperty)}. To determine all possible
+ * {@link State#getStateProperty(StateProperty)}. To determine all possible
  * values of a {@link StateProperty}, you would call
  * {@link State#getStateProperties()}.</p>
  *

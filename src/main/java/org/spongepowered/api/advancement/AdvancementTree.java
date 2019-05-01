@@ -105,14 +105,5 @@ public interface AdvancementTree extends NamedCatalogType {
          */
         @Override
         Builder name(String name);
-
-        @Override
-        default Builder from(AdvancementTree value) {
-            throw new UnsupportedOperationException("Duplicating advancement trees isn't allowed.");
-        }
-
-        @Override
-        AdvancementTree build();
     }
-
 }

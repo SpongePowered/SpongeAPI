@@ -51,6 +51,7 @@ import java.util.Map;
  * {@link Map.Entry} is not supported.</p>
  */
 public final class Context implements Map.Entry<String, String> {
+
     public static final String USER_KEY = "user";
     public static final String WORLD_KEY = "world";
     public static final String DIMENSION_KEY = "dimension";

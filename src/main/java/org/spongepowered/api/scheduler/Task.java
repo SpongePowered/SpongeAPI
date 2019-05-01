@@ -27,7 +27,7 @@ package org.spongepowered.api.scheduler;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.plugin.PluginContainer;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.TemporalUnits;
 
 import java.time.Duration;
@@ -96,7 +96,7 @@ public interface Task {
     /**
      * Represents a builder to create a {@link Task}.
      */
-    interface Builder extends ResettableBuilder<Task, Builder> {
+    interface Builder extends CopyableBuilder<Task, Builder> {
 
         /**
          * Sets whether the task should run asynchronous, outside of the main

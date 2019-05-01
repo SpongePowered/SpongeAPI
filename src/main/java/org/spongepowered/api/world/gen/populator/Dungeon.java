@@ -28,7 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.weighted.LootTable;
 import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.util.weighted.WeightedTable;
@@ -135,7 +135,7 @@ public interface Dungeon extends Populator {
     /**
      * A builder for constructing {@link Dungeon} populators.
      */
-    interface Builder extends ResettableBuilder<Dungeon, Builder> {
+    interface Builder extends CopyableBuilder<Dungeon, Builder> {
 
         /**
          * Sets the number of attempts at randomly spawning a generator per

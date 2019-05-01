@@ -25,13 +25,11 @@
 package org.spongepowered.api.advancement;
 
 import org.spongepowered.api.CatalogKey;
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.NamedCatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextRepresentable;
-import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.NamedCatalogBuilder;
 
 import java.util.Collection;
@@ -134,9 +132,6 @@ public interface Advancement extends NamedCatalogType, TextRepresentable {
          */
         Builder displayInfo(@Nullable DisplayInfo displayInfo);
 
-        @Override
-        Builder key(CatalogKey key);
-
         /**
          * Sets the name of the {@link Advancement}. Defaults to
          * the plain {@link DisplayInfo#getTitle()} if the
@@ -146,14 +141,7 @@ public interface Advancement extends NamedCatalogType, TextRepresentable {
          * @param name The name
          * @return This builder, for chaining
          */
+        @Override
         Builder name(String name);
-
-        @Override
-        default Builder from(Advancement value) {
-            throw new UnsupportedOperationException("Duplicating advancements isn't allowed.");
-        }
-
-        @Override
-        Advancement build();
     }
 }

@@ -25,7 +25,7 @@
 package org.spongepowered.api.advancement.criteria.trigger;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 
 /**
  * Represents something that will filter the context
@@ -63,7 +63,7 @@ public interface FilteredTrigger<C extends FilteredTriggerConfiguration> {
      *
      * @param <C> The trigger type
      */
-    interface Builder<C extends FilteredTriggerConfiguration> extends ResettableBuilder<FilteredTrigger<C>, Builder<C>> {
+    interface Builder<C extends FilteredTriggerConfiguration> extends CopyableBuilder<FilteredTrigger<C>, Builder<C>> {
 
         /**
          * Sets the {@link Trigger}.

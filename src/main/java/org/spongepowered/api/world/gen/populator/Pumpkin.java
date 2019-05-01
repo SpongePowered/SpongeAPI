@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.gen.populator;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.world.gen.Populator;
 
@@ -87,7 +87,7 @@ public interface Pumpkin extends Populator {
     /**
      * A builder for constructing {@link Pumpkin} populators.
      */
-    interface Builder extends ResettableBuilder<Pumpkin, Builder> {
+    interface Builder extends CopyableBuilder<Pumpkin, Builder> {
 
         /**
          * Sets the number of pumpkins to attempt to spawn per patch, must be

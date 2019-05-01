@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.gen.populator;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.gen.PopulatorObject;
 
@@ -76,7 +76,7 @@ public interface DesertWell extends Populator {
     /**
      * A builder for constructing {@link DesertWell} populators.
      */
-    interface Builder extends ResettableBuilder<DesertWell, Builder> {
+    interface Builder extends CopyableBuilder<DesertWell, Builder> {
 
         /**
          * Sets the probability of a desert well spawning.

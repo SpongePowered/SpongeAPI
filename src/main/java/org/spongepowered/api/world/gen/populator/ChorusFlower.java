@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.gen.populator;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.world.gen.Populator;
 
 /**
@@ -66,7 +66,7 @@ public interface ChorusFlower extends Populator {
     /**
      * A builder for constructing {@link ChorusFlower} populators.
      */
-    interface Builder extends ResettableBuilder<ChorusFlower, Builder> {
+    interface Builder extends CopyableBuilder<ChorusFlower, Builder> {
 
         /**
          * Sets the radius around the center (0, 0) of the world that this

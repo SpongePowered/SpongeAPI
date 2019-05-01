@@ -27,7 +27,6 @@ package org.spongepowered.api.util;
 import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.plugin.PluginContainer;
-import org.spongepowered.api.text.translation.Translation;
 
 /**
  * A base builder to construct {@link CatalogType}s.
@@ -44,11 +43,6 @@ public interface CatalogBuilder<C extends CatalogType, B extends ResettableBuild
      * @return This builder for chaining
      */
     B key(CatalogKey key);
-
-    @Override
-    default B from(C value) {
-        throw new UnsupportedOperationException("Duplicating catalog types isn't allowed.");
-    }
 
     /**
      * Builds the {@link CatalogType} of type {@link C}.

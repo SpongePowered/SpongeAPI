@@ -27,7 +27,7 @@ package org.spongepowered.api.item.merchant;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackGenerator;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.weighted.VariableAmount;
 
 import java.util.List;
@@ -71,7 +71,7 @@ public interface TradeOfferGenerator extends Function<Random, TradeOffer>, Trade
     /**
      * A simple builder to create a {@link TradeOfferGenerator}.
      */
-    interface Builder extends ResettableBuilder<TradeOfferGenerator, Builder> {
+    interface Builder extends CopyableBuilder<TradeOfferGenerator, Builder> {
 
         /**
          * Sets the {@link ItemStackGenerator} for creating the primary item

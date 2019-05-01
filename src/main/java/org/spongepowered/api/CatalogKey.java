@@ -29,6 +29,8 @@ import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.persistence.DataTranslator;
 import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.api.util.CatalogBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.ResettableBuilder;
 
 /**
@@ -131,13 +133,8 @@ public interface CatalogKey extends Comparable<CatalogKey> {
      */
     String getValue();
 
-    /**
-     * Gets a string representation of this catalog key.
-     *
-     * @return The string representation
-     */
     @Override
-    String toString();
+    int compareTo(CatalogKey o);
 
     interface Builder extends ResettableBuilder<CatalogKey, Builder> {
 
@@ -145,17 +142,8 @@ public interface CatalogKey extends Comparable<CatalogKey> {
 
         Builder namespace(PluginContainer container);
 
-        Builder namespace(Object pluginInstance);
-
         Builder value(String value);
 
         CatalogKey build() throws IllegalStateException;
-
-        /**
-         * @throws UnsupportedOperationException Cloning keys is not supported
-         */
-        @Override
-        Builder from(CatalogKey value) throws UnsupportedOperationException;
-
     }
 }

@@ -34,6 +34,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.util.CatalogBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gen.GeneratorType;
@@ -203,7 +204,7 @@ public interface WorldArchetype extends CatalogType {
     /**
      * A builder to create {@link WorldArchetype}s.
      */
-    interface Builder extends CatalogBuilder<WorldArchetype, Builder> {
+    interface Builder extends CatalogBuilder<WorldArchetype, Builder>, CopyableBuilder<WorldArchetype, Builder> {
 
         /**
          * Sets enabled status. Built worlds who are enabled but unloaded may
@@ -377,17 +378,6 @@ public interface WorldArchetype extends CatalogType {
          * @return This builder, for chaining
          */
         Builder from(WorldProperties properties);
-
-        /**
-         * Unlike other {@link CatalogBuilder}s, it's allowed to create a
-         * {@link WorldArchetype} from a different one. However the
-         * {@link #key(CatalogKey)} will be reset.
-         *
-         * @param archetype The archetype
-         * @return This builder, for chaining
-         */
-        @Override
-        Builder from(WorldArchetype archetype);
 
         /**
          * Builds the {@link WorldArchetype} which can be used to create

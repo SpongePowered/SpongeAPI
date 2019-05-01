@@ -26,7 +26,7 @@ package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.query.QueryOperation;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 
 /**
  * A transformation can filter and order an inventory.
@@ -69,7 +69,7 @@ public interface InventoryTransformation {
         return builder().append(operations).build();
     }
 
-    interface Builder extends ResettableBuilder<InventoryTransformation, Builder> {
+    interface Builder extends CopyableBuilder<InventoryTransformation, Builder> {
 
         /**
          * Appends one or more {@link QueryOperation}s

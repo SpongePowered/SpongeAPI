@@ -27,7 +27,7 @@ package org.spongepowered.api.item;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.util.Color;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.List;
 
@@ -92,7 +92,7 @@ public interface FireworkEffect extends DataSerializable {
      */
     FireworkShape getShape();
 
-    interface Builder extends ResettableBuilder<FireworkEffect, Builder> {
+    interface Builder extends CopyableBuilder<FireworkEffect, Builder> {
 
         /**
          * Sets whether the {@link FireworkEffect} is going to have a trail

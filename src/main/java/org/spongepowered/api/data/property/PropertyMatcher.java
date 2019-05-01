@@ -28,7 +28,7 @@ import static java.util.Objects.requireNonNull;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.equipment.EquipmentTypes;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.Optional;
 
@@ -175,7 +175,7 @@ public interface PropertyMatcher<V> {
      *
      * @param <V> The value type
      */
-    interface Builder<V> extends ResettableBuilder<PropertyMatcher<V>, Builder<V>> {
+    interface Builder<V> extends CopyableBuilder<PropertyMatcher<V>, Builder<V>> {
 
         /**
          * Sets the {@link Property}.

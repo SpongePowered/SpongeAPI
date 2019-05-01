@@ -36,7 +36,7 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.advancement.CriterionEvent;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.scoreboard.critieria.Criterion;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.function.Consumer;
@@ -94,7 +94,7 @@ public interface Trigger<C extends FilteredTriggerConfiguration> extends Catalog
      *
      * @param <C> The configuration type
      */
-    interface Builder<C extends FilteredTriggerConfiguration> extends ResettableBuilder<Trigger<C>, Builder<C>> {
+    interface Builder<C extends FilteredTriggerConfiguration> extends CopyableBuilder<Trigger<C>, Builder<C>> {
 
         /**
          * Sets the class for the {@link FilteredTriggerConfiguration} as

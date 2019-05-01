@@ -26,7 +26,7 @@ package org.spongepowered.api.text.title;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.Optional;
 
@@ -205,7 +205,7 @@ public interface Title {
      *
      * @see Title
      */
-    interface Builder extends ResettableBuilder<Title, Builder> {
+    interface Builder extends CopyableBuilder<Title, Builder> {
 
         /**
          * Returns the current title of this builder.

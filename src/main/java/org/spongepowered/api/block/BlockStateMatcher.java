@@ -27,7 +27,7 @@ package org.spongepowered.api.block;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.state.StateProperty;
 import org.spongepowered.api.data.property.PropertyMatcher;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -79,7 +79,7 @@ public interface BlockStateMatcher extends Predicate<BlockState> {
     /**
      * A builder for building {@link BlockStateMatcher}s.
      */
-    interface Builder extends ResettableBuilder<BlockStateMatcher, Builder> {
+    interface Builder extends CopyableBuilder<BlockStateMatcher, Builder> {
 
         /**
          * Sets the root {@link BlockType} for the {@link BlockStateMatcher}.

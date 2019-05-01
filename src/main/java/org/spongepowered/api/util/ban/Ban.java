@@ -28,7 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.ban.BanService;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 
 import java.net.InetAddress;
 import java.time.Instant;
@@ -151,7 +151,7 @@ public interface Ban {
     /**
      * Represents a builder that creates bans.
      */
-    interface Builder extends ResettableBuilder<Ban, Builder> {
+    interface Builder extends CopyableBuilder<Ban, Builder> {
 
         /**
          * Sets the profile to be banned.

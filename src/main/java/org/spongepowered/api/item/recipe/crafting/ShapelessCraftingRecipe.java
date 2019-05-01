@@ -31,7 +31,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.text.translation.Translation;
-import org.spongepowered.api.util.CatalogBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.NamedCatalogBuilder;
 import org.spongepowered.api.util.ResettableBuilder;
 
@@ -106,7 +106,7 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
         /**
          * In this Step set the group of the Recipe and/or build it.
          */
-        interface EndStep extends Builder, NamedCatalogBuilder<ShapelessCraftingRecipe, Builder> {
+        interface EndStep extends Builder, NamedCatalogBuilder<ShapelessCraftingRecipe, Builder>, CopyableBuilder<ShapelessCraftingRecipe, Builder> {
 
             /**
              * Sets the group of the recipe.
@@ -134,15 +134,6 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
              */
             @Override
             ShapelessCraftingRecipe build() throws IllegalStateException;
-
-            /**
-             * @deprecated It's not allowed to duplicate shapeless crafting recipes.
-             */
-            @Deprecated
-            @Override
-            default Builder from(ShapelessCraftingRecipe value) {
-                throw new UnsupportedOperationException("Duplicating shapeless crafting recipes isn't allowed.");
-            }
         }
 
     }

@@ -26,7 +26,7 @@ package org.spongepowered.api.world.explosion;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.explosive.Explosive;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -94,7 +94,7 @@ public interface Explosion extends Locatable {
     /**
      * A builder for {@link Explosion}.
      */
-    interface Builder extends ResettableBuilder<Explosion, Builder> {
+    interface Builder extends CopyableBuilder<Explosion, Builder> {
 
         /**
          * Sets the location origin of the explosion.

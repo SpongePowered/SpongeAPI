@@ -29,7 +29,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.damage.DamageTypes;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.world.difficulty.Difficulty;
 
 /**
@@ -122,7 +122,7 @@ public interface DamageSource {
 
     interface Builder extends DamageSourceBuilder<DamageSource, Builder> { }
 
-    interface DamageSourceBuilder<T extends DamageSource, B extends DamageSourceBuilder<T, B>> extends ResettableBuilder<T, B> {
+    interface DamageSourceBuilder<T extends DamageSource, B extends DamageSourceBuilder<T, B>> extends CopyableBuilder<T, B> {
 
         /**
          * Sets this {@link DamageSource}'s damage to be scaled
