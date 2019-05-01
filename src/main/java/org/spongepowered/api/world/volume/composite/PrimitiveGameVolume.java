@@ -46,11 +46,11 @@ public interface PrimitiveGameVolume extends Volume {
 
     Optional<TileEntity> getTileEntity(int x, int y, int z);
 
-    default BlockState getBlockState(Vector3i pos) {
-        return getBlockState(pos.getX(), pos.getY(), pos.getZ());
+    default BlockState getBlock(Vector3i pos) {
+        return getBlock(pos.getX(), pos.getY(), pos.getZ());
     }
 
-    BlockState getBlockState(int x, int y, int z);
+    BlockState getBlock(int x, int y, int z);
 
     default FluidState getFluidState(Vector3i pos) {
         return getFluidState(pos.getX(), pos.getY(), pos.getZ());

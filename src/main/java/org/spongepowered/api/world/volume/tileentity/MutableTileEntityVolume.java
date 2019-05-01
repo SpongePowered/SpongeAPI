@@ -27,9 +27,11 @@ package org.spongepowered.api.world.volume.tileentity;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.world.volume.MutableVolume;
+import org.spongepowered.api.world.volume.block.MutableBlockVolume;
+import org.spongepowered.api.world.volume.block.worker.MutableBlockVolumeStream;
 import org.spongepowered.api.world.volume.tileentity.worker.MutableTileEntityStream;
 
-public interface MutableTileEntityVolume<M extends MutableTileEntityVolume<M>> extends StreamableTileEntityVolume<M>, MutableVolume {
+public interface MutableTileEntityVolume<M extends MutableTileEntityVolume<M>> extends StreamableTileEntityVolume<M>, MutableBlockVolume<M>, MutableVolume {
 
     default void addTileEntity(Vector3i pos, TileEntity tileEntity) {
         addTileEntity(pos.getX(), pos.getY(), pos.getZ(), tileEntity);
@@ -48,4 +50,7 @@ public interface MutableTileEntityVolume<M extends MutableTileEntityVolume<M>> e
 
     @Override
     MutableTileEntityStream<M> toTileEntityStream();
+
+    @Override
+    MutableBlockVolumeStream<M> toBlockStream();
 }
