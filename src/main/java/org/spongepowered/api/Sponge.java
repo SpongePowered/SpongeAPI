@@ -36,6 +36,7 @@ import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.network.ChannelRegistrar;
 import org.spongepowered.api.plugin.PluginManager;
+import org.spongepowered.api.scheduler.Scheduler;
 import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.util.metric.MetricsConfigManager;
 import org.spongepowered.api.world.Location;
@@ -237,4 +238,12 @@ public final class Sponge {
         return check(metricsConfigManager);
     }
 
+    /**
+     * Gets the {@link Scheduler} used to schedule async tasks.
+     *
+     * @return The async scheduler
+     */
+    public static Scheduler getAsyncScheduler() {
+        return getGame().getAsyncScheduler();
+    }
 }

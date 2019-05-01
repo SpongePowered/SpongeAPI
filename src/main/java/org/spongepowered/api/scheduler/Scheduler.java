@@ -60,15 +60,6 @@ public interface Scheduler {
     Set<ScheduledTask> getTasks();
 
     /**
-     * Returns a set of all currently scheduled tasks for either asynchronous or
-     * synchronous execution.
-     *
-     * @param synchronicity The synchronicity to get the scheduled tasks for
-     * @return A set of scheduled tasks for the given sync type
-     */
-    Set<ScheduledTask> getTasks(TaskSynchronicity synchronicity);
-
-    /**
      * Returns a set of all currently scheduled tasks owned by the given plugin.
      *
      * @param plugin The plugin that created the tasks
@@ -86,29 +77,16 @@ public interface Scheduler {
 
     /**
      * Creates a new {@link ExecutorService} that can be used to schedule
-     * synchronous tasks through the standard Java concurrency interfaces.
+     * tasks through the standard Java concurrency interfaces.
      *
      * @param plugin The plugin that will own the created tasks
-     * @return A new executor service that can be used to execute
-     *     synchronous tasks
+     * @return A new executor service that can be used to execute tasks
      */
-    TaskExecutorService createSyncExecutor(Object plugin);
+    TaskExecutorService createExecutor(Object plugin);
 
     /**
-     * Creates a new {@link ExecutorService} that can be used to schedule
-     * asynchronous tasks through the standard Java concurrency interfaces.
-     *
-     * @param plugin The plugin that will own the created tasks
-     * @return A new executor service that can be used to execute
-     *     asynchronous tasks
-     * @see Task.Builder#async()
-     */
-    TaskExecutorService createAsyncExecutor(Object plugin);
-
-    /**
-     * Submit a task to the scheduler.
-     *
-     * <p>For convenience, the same task is returned to you.</p>
+     * Submit a {@link Task} to this scheduler and returns the task
+     * as a {@link ScheduledTask}.
      *
      * @param task The task
      * @return The scheduled task

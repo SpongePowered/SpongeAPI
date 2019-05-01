@@ -87,53 +87,9 @@ public interface Task {
     Consumer<ScheduledTask> getConsumer();
 
     /**
-     * Gets the {@link TaskSynchronicity synchronicity} of this task.
-     *
-     * @return The synchronicity
-     */
-    TaskSynchronicity getSynchronicity();
-
-    /**
      * Represents a builder to create a {@link Task}.
      */
     interface Builder extends CopyableBuilder<Task, Builder> {
-
-        /**
-         * Sets whether the task should run asynchronous, outside of the main
-         * loop, and in it's own thread. By default, tasks are synchronous.
-         *
-         * <p>A synchronous task is ran in alignment with the game's main loop,
-         * in the same thread. Each synchronous task is ran in series with the
-         * tick cycle. It is safe to manipulate game data when running in this
-         * mode.</p>
-         *
-         * <p>In contrast, a task set to run asynchronously will run
-         * independently of the tick cycle and in it's own thread. Therefore the
-         * task is <b>not thread safe</b> with game data and care must be taken.
-         * It is strongly advised to <b>not</b> manipulate game data in
-         * asynchronous tasks.</p>
-         *
-         * <p>It is not possible to schedule a task in unit ticks when running
-         * asynchronously. If the delay or interval is specified in ticks, it
-         * will be converted to the equivalent wall clock time by multiplying
-         * the value by {@link Scheduler#getPreferredTickInterval()}.</p>
-         *
-         * @return This builder, for chaining
-         */
-        default Builder async() {
-            return synchronicity(TaskSynchronicity.ASYNC);
-        }
-
-        /**
-         * Sets the {@link TaskSynchronicity synchronicity} of the task.
-         *
-         * <p>See {@link #async()} for information about
-         * {@link TaskSynchronicity#ASYNC}.</p>
-         *
-         * @param synchronicity The task synchronicity
-         * @return This builder, for chaining
-         */
-        Builder synchronicity(TaskSynchronicity synchronicity);
 
         /**
          * Sets the {@link Runnable} to run when this task executes.
