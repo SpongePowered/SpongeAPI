@@ -24,9 +24,52 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.manipulator.mutable.DyeableData;
+import org.spongepowered.api.data.manipulator.mutable.entity.AggressiveData;
+import org.spongepowered.api.data.type.DyeColor;
+import org.spongepowered.api.data.value.mutable.Value;
+
 /**
  * Represents a Wolf.
  */
 public interface Wolf extends Animal {
 
+    /**
+     * Gets a copy of the current {@link AggressiveData} for this
+     * {@link Wolf}.
+     *
+     * @return A copy of the current aggressive data
+     */
+    default AggressiveData getAggressiveData() {
+        return this.get(AggressiveData.class).get();
+    }
+
+    /**
+     * Gets if this {@link Wolf} is currently aggressive, as a {@link Value}.
+     *
+     * @return The current aggressive value
+     */
+    default Value<Boolean> aggressive() {
+        return this.getValue(Keys.ANGRY).get();
+    }
+
+    /**
+     * Gets a copy of the current {@link DyeableData} for this
+     * {@link Wolf}'s collar.
+     *
+     * @return A copy of the current dyeable collar data
+     */
+    default DyeableData getCollarColorData() {
+        return this.get(DyeableData.class).get();
+    }
+
+    /**
+     * Gets the {@link Wolf}'s {@link DyeColor} of it's collar.
+     *
+     * @return The current dyecolor of the collar
+     */
+    default Value<DyeColor> collarColor() {
+        return this.getValue(Keys.DYE_COLOR).get();
+    }
 }
