@@ -22,17 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen;
+package org.spongepowered.api.world.gen.config;
 
-import org.spongepowered.api.world.gen.carver.Carver;
+import org.spongepowered.api.world.gen.FeatureConfig;
 
 /**
- * A base interface for all world gen region feature config options,
- * some objects like {@link Carver}s will use specialized objects
- * compared to others.
- *
- * @implementation Mixes onto IFeatureConfig
+ * @implNote Mixed into net.minecraft.world.gen.feature.ProbabilityConfig
  */
-public interface FeatureConfig {
+public interface ProbabilityConfig extends FeatureConfig {
+
+    float getProbability();
 
 }

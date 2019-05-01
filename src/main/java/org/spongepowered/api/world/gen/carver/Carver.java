@@ -22,17 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen;
+package org.spongepowered.api.world.gen.carver;
 
-import org.spongepowered.api.world.gen.carver.Carver;
+import com.flowpowered.math.vector.Vector2i;
+import org.spongepowered.api.world.ProtoWorld;
+import org.spongepowered.api.world.gen.FeatureConfig;
+import org.spongepowered.api.world.volume.composite.ReadableCompositeVolume;
+
+import java.util.BitSet;
+import java.util.Random;
 
 /**
- * A base interface for all world gen region feature config options,
- * some objects like {@link Carver}s will use specialized objects
- * compared to others.
- *
- * @implementation Mixes onto IFeatureConfig
+ * To represent IWorldCarver
+ * @param <C>
  */
-public interface FeatureConfig {
+public interface Carver<C extends FeatureConfig> {
+
+    boolean shouldCarve(ReadableCompositeVolume volume, Random random, Vector2i chunkPosition, C config);
+
+    void carve(ProtoWorld<?> worldGenRegion, Random random, Vector2i chunkPosition, Vector2i range, BitSet mask, C config);
 
 }

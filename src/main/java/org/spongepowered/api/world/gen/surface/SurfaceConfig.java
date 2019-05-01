@@ -22,23 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen;
+package org.spongepowered.api.world.gen.surface;
 
-import org.spongepowered.api.world.biome.BiomeType;
-import org.spongepowered.api.world.chunk.ProtoChunk;
+import org.spongepowered.api.block.BlockState;
 
-import java.util.Random;
+public interface SurfaceConfig {
 
-/**
- * Not to be confused with {@link GenerationPopulator}, a surface painter is literally
- * as it sounds: it paints surfaces. In world generation, when a chunk has a base terrain
- * created, the painter "overlays" a surface onto the target terrain. This is somewhat
- * best described how grass and dirt are placed onto a moutainous biome terrain.
- *
- * <p>Like a {@link GenerationPopulator}, painters are restricted to the provided
- * {@link ProtoChunk}.</p>
- */
-public interface SurfacePainter {
+    BlockState getTopLayer();
 
-    void paintSurface(Random random, ProtoChunk<?> chunk, BiomeType biomeType, FeatureConfig config);
+    BlockState getMiddleLayer();
+
 }

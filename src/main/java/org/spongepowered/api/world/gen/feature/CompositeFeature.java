@@ -24,12 +24,8 @@
  */
 package org.spongepowered.api.world.gen.feature;
 
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.gen.FeatureConfig;
-
-import java.util.Random;
 
 /**
  * A pre-composed {@link FeatureCreator} that has a designated and configured
@@ -48,10 +44,4 @@ public interface CompositeFeature<F extends FeatureConfig, P extends PlacementCo
     P getPlacementConfig();
 
     FeaturePlacer<P> getPlacer();
-
-    @Override
-    default boolean place(ProtoWorld<?> world, Random random, Vector3i origin, F config) {
-        return getPlacer().generate(world, random, origin, getPlacementConfig(), getCreator(), getFeatureConfig());
-    }
-
 }

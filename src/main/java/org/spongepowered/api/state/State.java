@@ -48,14 +48,9 @@ public interface State<S extends State<S>> extends ImmutableDataHolder<S>, Catal
     <T extends Comparable<T>> Optional<T> getStateProperty(StateProperty<T> stateProperty);
 
     /**
-<<<<<<< HEAD
-     * Attempts to retrieve the {@link StateProperty} instance associated with this {@link State} by property id.
-     * If there is no {@link StateProperty} found, {@link Optional#empty()} is returned.
-=======
      * Attempts to retrieve the {@link StateProperty} instance associated with
      * this {@link State}s {@link StateContainer} by string id. If there is no
      * {@link StateProperty} available, {@link Optional#empty()} is returned.
->>>>>>> 38da573e... Rename StateProperty methods to avoid confusion with normal properties.
      *
      * @param statePropertyId The state property id
      * @return The state property, if available
@@ -116,11 +111,7 @@ public interface State<S extends State<S>> extends ImmutableDataHolder<S>, Catal
      * Gets an immutable or unmodifiable {@link Map} of the known {@link StateProperty}s
      * to their current values for this {@link State}.
      *
-<<<<<<< HEAD
-     * @return The immutable map of properties to their values representing this state
-=======
      * @return The immutable map of state properties to their values representing this state
->>>>>>> 38da573e... Rename StateProperty methods to avoid confusion with normal properties.
      */
     Map<StateProperty<?>, ?> getStatePropertyMap();
 }

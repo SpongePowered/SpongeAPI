@@ -22,17 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen;
+package org.spongepowered.api.world.gen.carver;
 
-import org.spongepowered.api.world.gen.carver.Carver;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-/**
- * A base interface for all world gen region feature config options,
- * some objects like {@link Carver}s will use specialized objects
- * compared to others.
- *
- * @implementation Mixes onto IFeatureConfig
- */
-public interface FeatureConfig {
+public class CarvingLayers {
+
+    public static final CarvingLayer AIR = DummyObjectProvider.createFor(CarvingLayer.class, "AIR");
+    public static final CarvingLayer LIQUID = DummyObjectProvider.createFor(CarvingLayer.class, "AIR");
+
 
 }

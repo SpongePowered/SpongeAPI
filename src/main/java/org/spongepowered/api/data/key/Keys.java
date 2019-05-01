@@ -771,11 +771,7 @@ public final class Keys {
      *
      * <p><em>NOTE:</em> Does not apply to {@link Player}s as their
      * {@link HandPreference} can not be changed server-side.
-<<<<<<< HEAD
      * See {@link Properties#DOMINANT_HAND}.</p>
-=======
-     * See {@link org.spongepowered.api.data.property.Properties#DOMINANT_HAND}.</p>
->>>>>>> 3cad1568... Bye DamageableData, now just getters/setters on living entity
      *
      * @see DominantHandData#dominantHand()
      */
