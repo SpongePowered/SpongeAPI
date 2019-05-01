@@ -31,9 +31,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Represents a fish hook.
+ * Represents a fishing bobber.
  */
-public interface FishHook extends Projectile {
+public interface FishingBobber extends Projectile {
 
     /**
      * Gets the hooked entity for this fish hook.
