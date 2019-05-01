@@ -46,6 +46,11 @@ import java.util.Optional;
 public interface ReadableCompositeVolume extends ReadableBlockVolume, ReadableTileEntityVolume, PrimitiveGameVolume {
 
     @Override
+    default BlockState getBlock(Vector3i vector3i) {
+        return this.getBlock(vector3i.getX(), vector3i.getY(), vector3i.getZ());
+    }
+
+    @Override
     default Optional<TileEntity> getTileEntity(Vector3i position) {
         return getTileEntity(position.getX(), position.getY(), position.getZ());
     }
