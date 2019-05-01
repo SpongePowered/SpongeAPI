@@ -24,12 +24,28 @@
  */
 package org.spongepowered.api.util;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.world.volume.LightCalculatingVolume;
+import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.world.volume.composite.PrimitiveGameVolume;
+
+import javax.annotation.Nullable;
 
 public interface BlockReaderAwareMatcher<T> {
 
-    boolean test(T value, LightCalculatingVolume volume, Vector3i position);
+    static BlockReaderAwareMatcher<BlockState> allBlocks() { return (state, volume, position) -> true; }
 
+    static BlockReaderAwareMatcher<BlockState> forBlock(BlockState filter) {
+        return (state, volume, position) -> state == filter;
+    }
+
+    static BlockReaderAwareMatcher<BlockState> forBlock(BlockType type) {
+        checkNotNull(type, "BlockType cannot be null");
+        return (state, volume, position) -> state != null && state.getType() == type;
+    }
+
+    boolean test(@Nullable T value, PrimitiveGameVolume volume, Vector3i position);
 
 }

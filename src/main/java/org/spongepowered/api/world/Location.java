@@ -315,14 +315,6 @@ public interface Location extends DataHolder, DirectionRelativePropertyHolder {
     Location relativeToBlock(Direction direction);
 
     /**
-     * Returns true if this location has a biome at its
-     * {@link #getBiomePosition()}.
-     *
-     * @return Whether or not there is a biome at this location.
-     */
-    boolean hasBiome();
-
-    /**
      * Gets the block at this location.
      *
      * @return The biome at this location

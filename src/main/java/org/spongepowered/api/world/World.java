@@ -42,7 +42,6 @@ import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.gamerule.GameRule;
 import org.spongepowered.api.world.gamerule.GameRuleHolder;
-import org.spongepowered.api.world.gen.TerrainGenerator;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.storage.WorldStorage;
 import org.spongepowered.api.world.teleport.PortalAgent;
@@ -82,15 +81,27 @@ public interface World extends ProtoWorld<World>,
      */
     Collection<Player> getPlayers();
 
-    Optional<Player> getClosestPlayer(Vector3i position, double distance);
+    default Optional<Player> getClosestPlayer(Vector3i position, double distance) {
+        return getClosestPlayer(position.getX(), position.getY(), position.getZ(), distance, player -> true);
+    }
 
-    Optional<Player> getClosestPlayer(Vector3i position, double distance, Predicate<? super Player> predicate);
+    default Optional<Player> getClosestPlayer(Vector3i position, double distance, Predicate<? super Player> predicate) {
+        return getClosestPlayer(position.getX(), position.getY(), position.getZ(), distance, predicate);
+    }
 
-    Optional<Player> getClosestPlayer(Entity entity, double distance);
+    default Optional<Player> getClosestPlayer(Entity entity, double distance) {
+        final Vector3d position = entity.getLocation().getPosition();
+        return getClosestPlayer(position.getFloorX(), position.getFloorY(), position.getFloorZ(), distance, player -> true);
+    }
 
-    Optional<Player> getClosestPlayer(Entity entity, double distance, Predicate<? super Player> predicate);
+    default Optional<Player> getClosestPlayer(Entity entity, double distance, Predicate<? super Player> predicate) {
+        final Vector3d position = entity.getLocation().getPosition();
+        return getClosestPlayer(position.getFloorX(), position.getFloorY(), position.getFloorZ(), distance, predicate);
+    }
 
-    Optional<Player> getClosestPlayer(int x, int y, int z, double distance);
+    default Optional<Player> getClosestPlayer(int x, int y, int z, double distance) {
+        return getClosestPlayer(x, y, z, distance, player -> true);
+    }
 
     Optional<Player> getClosestPlayer(int x, int y, int z, double distance, Predicate<? super Player> predicate);
 

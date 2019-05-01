@@ -25,6 +25,7 @@
 package org.spongepowered.api.world;
 
 import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.property.LocationBasePropertyHolder;
 import org.spongepowered.api.util.RandomProvider;
 import org.spongepowered.api.world.chunk.ProtoChunk;
@@ -37,6 +38,8 @@ import org.spongepowered.api.world.volume.ReadableRegion;
 import org.spongepowered.api.world.volume.UpdatableVolume;
 import org.spongepowered.api.world.volume.biome.MutableBiomeVolume;
 import org.spongepowered.api.world.volume.block.MutableBlockVolume;
+import org.spongepowered.api.world.volume.block.PhysicsAwareMutableBlockVolume;
+import org.spongepowered.api.world.volume.composite.MutableGameVolume;
 import org.spongepowered.api.world.volume.entity.MutableEntityVolume;
 import org.spongepowered.api.world.volume.tileentity.MutableTileEntityVolume;
 
@@ -51,7 +54,9 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
         LocationBasePropertyHolder,
         LocationCompositeValueStore,
         UpdatableVolume,
-        RandomProvider
+        RandomProvider,
+        PhysicsAwareMutableBlockVolume<P>,
+        MutableGameVolume
 {
 
     ProtoChunk<?> getChunk(int cx, int cy, int cz);
@@ -86,4 +91,12 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
      * @return The properties
      */
     WorldProperties getProperties();
+
+    @Override
+    default boolean removeBlock(Vector3i position) {
+        return removeBlock(position.getX(), position.getY(), position.getZ());
+    }
+
+    @Override
+    boolean removeBlock(int x, int y, int z);
 }

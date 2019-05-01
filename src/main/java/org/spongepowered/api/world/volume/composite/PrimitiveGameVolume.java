@@ -22,44 +22,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.volume.biome;
+package org.spongepowered.api.world.volume.composite;
 
 import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.util.PositionOutOfBoundsException;
-import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.Game;
+import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.block.tileentity.TileEntity;
+import org.spongepowered.api.fluid.FluidState;
 import org.spongepowered.api.world.volume.Volume;
 
-public interface ReadableBiomeVolume extends Volume {
+import java.util.Optional;
 
-    /**
-     * Gets an object representing the biome at the given position.
-     *
-     * @param position The position
-     * @return The biome
-     * @throws PositionOutOfBoundsException If the position is outside of the
-     *         bounds of the volume
-     */
-    default BiomeType getBiome(Vector3i position) {
-        return getBiome(position.getX(), position.getY(), position.getZ());
+/**
+ * A very primitive rudimentary volume that can be used by the {@link Game}
+ * without impunity, but no guarantees on the provider type of what this
+ * primitive volume is based on.
+ */
+public interface PrimitiveGameVolume extends Volume {
+
+    default Optional<TileEntity> getTileEntity(Vector3i position) {
+        return getTileEntity(position.getX(), position.getY(), position.getZ());
     }
 
-    /**
-     * Gets the {@link BiomeType} at the given location.
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The biome
-     * @throws PositionOutOfBoundsException If the position is outside of the
-     *         bounds of the volume
-     */
-    BiomeType getBiome(int x, int y, int z);
+    Optional<TileEntity> getTileEntity(int x, int y, int z);
 
-    UnmodifiableBiomeVolume<?> asUnmodifiableBiomeVolume();
+    default BlockState getBlockState(Vector3i pos) {
+        return getBlockState(pos.getX(), pos.getY(), pos.getZ());
+    }
 
-    ImmutableBiomeVolume asImmutableBiomeVolume();
+    BlockState getBlockState(int x, int y, int z);
 
-    @Override
-    ReadableBiomeVolume getView(Vector3i newMin, Vector3i newMax);
+    default FluidState getFluidState(Vector3i pos) {
+        return getFluidState(pos.getX(), pos.getY(), pos.getZ());
+    }
 
+    FluidState getFluidState(int x, int y, int z);
+
+    default int getMaxLightLevel() {
+        return 15;
+    }
 }

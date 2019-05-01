@@ -42,8 +42,7 @@ import org.spongepowered.api.world.volume.tileentity.StreamableTileEntityVolume;
 import javax.annotation.Nullable;
 
 /**
- * To be mixed into IWorldReaderBase
- * @param <R>
+ * @implNote Mixes into IWorldReaderBase
  */
 public interface ReadableRegion<R extends ReadableRegion<R>> extends
     ReadableCompositeVolume,
@@ -138,5 +137,4 @@ public interface ReadableRegion<R extends ReadableRegion<R>> extends
     boolean isAreaLoaded(int xStart, int yStart, int zStart, int xEnd, int yEnd, int zEnd, boolean allowEmpty);
 
     Dimension getDimension();
-
 }

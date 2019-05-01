@@ -22,44 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.volume.biome;
+package org.spongepowered.api.world.volume.composite;
 
 import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.util.PositionOutOfBoundsException;
-import org.spongepowered.api.world.biome.BiomeType;
-import org.spongepowered.api.world.volume.Volume;
+import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.world.BlockChangeFlag;
+import org.spongepowered.api.world.LightType;
 
-public interface ReadableBiomeVolume extends Volume {
+public interface MutableGameVolume {
 
-    /**
-     * Gets an object representing the biome at the given position.
-     *
-     * @param position The position
-     * @return The biome
-     * @throws PositionOutOfBoundsException If the position is outside of the
-     *         bounds of the volume
-     */
-    default BiomeType getBiome(Vector3i position) {
-        return getBiome(position.getX(), position.getY(), position.getZ());
+    default boolean setBlockstate(Vector3i position, BlockState state, BlockChangeFlag flag) {
+        return setBlockstate(position.getX(), position.getY(), position.getZ(), state, flag);
     }
 
-    /**
-     * Gets the {@link BiomeType} at the given location.
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The biome
-     * @throws PositionOutOfBoundsException If the position is outside of the
-     *         bounds of the volume
-     */
-    BiomeType getBiome(int x, int y, int z);
+    boolean setBlockstate(int x, int y, int z, BlockState state, BlockChangeFlag flag);
 
-    UnmodifiableBiomeVolume<?> asUnmodifiableBiomeVolume();
+    boolean spawnEntity(Entity entity);
 
-    ImmutableBiomeVolume asImmutableBiomeVolume();
+    default boolean removeBlock(Vector3i pos) {
+        return removeBlock(pos.getX(), pos.getY(), pos.getZ());
+    }
 
-    @Override
-    ReadableBiomeVolume getView(Vector3i newMin, Vector3i newMax);
+    boolean removeBlock(int x, int y, int z);
 
+    void setLight(LightType light, Vector3i position, int lightValue);
+
+    boolean destroyBlock(Vector3i pos, boolean performDrops);
 }

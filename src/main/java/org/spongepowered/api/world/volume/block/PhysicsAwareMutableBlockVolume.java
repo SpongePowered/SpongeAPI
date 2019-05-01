@@ -33,6 +33,11 @@ import org.spongepowered.api.world.BlockChangeFlags;
 public interface PhysicsAwareMutableBlockVolume<P extends PhysicsAwareMutableBlockVolume<P>> extends MutableBlockVolume<P> {
 
     @Override
+    default boolean setBlock(Vector3i position, BlockState block) {
+        return setBlock(position.getX(), position.getY(), position.getZ(), block, BlockChangeFlags.ALL);
+    }
+
+    @Override
     default boolean setBlock(int x, int y, int z, BlockState block) {
         return setBlock(x, y, z, block, BlockChangeFlags.ALL);
     }
