@@ -63,8 +63,17 @@ import java.util.function.Predicate;
 /**
  * A loaded Minecraft world.
  */
-public interface World extends ProtoWorld<World>, LocationCreator<World>, PhysicsAwareMutableBlockVolume<World>, Identifiable, WeatherUniverse,
-        Viewer, ContextSource, MessageReceiver, ChatTypeMessageReceiver, TrackedVolume, GameRuleHolder {
+public interface World extends ProtoWorld<World>,
+    LocationCreator<World>,
+    PhysicsAwareMutableBlockVolume<World>,
+    Identifiable,
+    WeatherUniverse,
+    Viewer,
+    ContextSource,
+    MessageReceiver,
+    ChatTypeMessageReceiver,
+    TrackedVolume,
+    GameRuleHolder {
 
     /**
      * Gets an unmodifiable collection of {@link Player}s currently in this world.
@@ -373,22 +382,6 @@ public interface World extends ProtoWorld<World>, LocationCreator<World>, Physic
      */
     Iterable<Chunk> getLoadedChunks();
 
-    /**
-     * Gets the {@link TerrainGenerator} for this world.
-     *
-     * <p>Any changes made to the world generator will only affect newly
-     * generated chunks.</p>
-     *
-     * @return The world generator
-     */
-    TerrainGenerator<?> getTerrainGenerator();
-
-    /**
-     * Gets the properties for this world.
-     *
-     * @return The properties
-     */
-    WorldProperties getProperties();
 
     /**
      * Gets the {@link Path} pointing to the root of where the world's data

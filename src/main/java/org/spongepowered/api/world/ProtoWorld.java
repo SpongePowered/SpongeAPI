@@ -24,29 +24,21 @@
  */
 package org.spongepowered.api.world;
 
-import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.property.LocationBasePropertyHolder;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.util.RandomProvider;
+import org.spongepowered.api.world.chunk.ProtoChunk;
+import org.spongepowered.api.world.gen.TerrainGenerator;
+import org.spongepowered.api.world.storage.WorldProperties;
+import org.spongepowered.api.world.volume.ChunkVolume;
+import org.spongepowered.api.world.volume.InteractableVolume;
+import org.spongepowered.api.world.volume.LocationCompositeValueStore;
 import org.spongepowered.api.world.volume.ReadableRegion;
 import org.spongepowered.api.world.volume.UpdatableVolume;
 import org.spongepowered.api.world.volume.biome.MutableBiomeVolume;
-import org.spongepowered.api.world.volume.ChunkVolume;
-import org.spongepowered.api.world.chunk.ProtoChunk;
-import org.spongepowered.api.world.volume.InteractableVolume;
-import org.spongepowered.api.world.volume.LightCalculatingVolume;
-import org.spongepowered.api.world.volume.LocationCompositeValueStore;
 import org.spongepowered.api.world.volume.block.MutableBlockVolume;
-import org.spongepowered.api.world.volume.composite.ReadableCompositeVolume;
-import org.spongepowered.api.world.volume.entity.CollisionAwareEntityVolume;
 import org.spongepowered.api.world.volume.entity.MutableEntityVolume;
 import org.spongepowered.api.world.volume.tileentity.MutableTileEntityVolume;
-
-import java.util.Optional;
-import java.util.function.Predicate;
 
 public interface ProtoWorld<P extends ProtoWorld<P>> extends
         ReadableRegion<P>,
@@ -64,6 +56,34 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
 
     ProtoChunk<?> getChunk(int cx, int cy, int cz);
 
+    World getWorld();
+
     @Override
     P getView(Vector3i newMin, Vector3i newMax);
+
+
+    /**
+     * Gets the seed of this world.
+     *
+     * @return The seed
+     */
+    long getSeed();
+
+
+    /**
+     * Gets the {@link TerrainGenerator} for this world.
+     *
+     * <p>Any changes made to the world generator will only affect newly
+     * generated chunks.</p>
+     *
+     * @return The world generator
+     */
+    TerrainGenerator<?> getTerrainGenerator();
+
+    /**
+     * Gets the properties for this world.
+     *
+     * @return The properties
+     */
+    WorldProperties getProperties();
 }
