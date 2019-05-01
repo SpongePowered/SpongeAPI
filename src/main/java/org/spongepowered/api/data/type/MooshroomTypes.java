@@ -22,35 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.animal;
+package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.MooshroomData;
-import org.spongepowered.api.data.type.MooshroomType;
-import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * Represents a Mooshroom.
+ * An enumeration of known vanilla {@link MooshroomType}s.
  */
-public interface Mooshroom extends Cow {
+public final class MooshroomTypes {
 
-    /**
-     * Gets a copy of the current {@link MooshroomData} being represented by
-     * this {@link Mooshroom}.
-     *
-     * @return A copy of the current mooshroom data
-     */
-    default MooshroomData getMooshroomData() {
-        return this.get(MooshroomData.class).get();
+    // SORTFIELDS:ON
+
+    public static final MooshroomType BROWN = DummyObjectProvider.createFor(MooshroomType.class, "BROWN");
+
+    public static final MooshroomType RED = DummyObjectProvider.createFor(MooshroomType.class, "RED");
+
+    // SORTFIELDS:OFF
+
+    // Suppress default constructor to ensure non-instantiability.
+    private MooshroomTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
-    /**
-     * Gets the {@link Value.Mutable} for the {@link MooshroomType} of this
-     * {@link MooshroomData}.
-     *
-     * @return The mooshroom variant value
-     */
-    default Value.Mutable<MooshroomType> variant() {
-        return getValue(Keys.MOOSHROOM_TYPE).get().asMutable();
-    }
 }

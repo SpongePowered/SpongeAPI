@@ -59,6 +59,7 @@ import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.type.InstrumentType;
 import org.spongepowered.api.data.type.LlamaVariant;
+import org.spongepowered.api.data.type.MooshroomType;
 import org.spongepowered.api.data.type.NotePitch;
 import org.spongepowered.api.data.type.CatType;
 import org.spongepowered.api.data.type.ParrotVariant;
@@ -93,6 +94,7 @@ import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.ShulkerBullet;
 import org.spongepowered.api.entity.living.animal.Cat;
 import org.spongepowered.api.entity.living.animal.Fox;
+import org.spongepowered.api.entity.living.animal.Mooshroom;
 import org.spongepowered.api.entity.projectile.FireworkRocket;
 import org.spongepowered.api.entity.vehicle.Boat;
 import org.spongepowered.api.item.potion.PotionType;
@@ -1551,6 +1553,13 @@ public final class Keys {
      * @see MoistureData#moisture()
      */
     public static final Key<BoundedValue<Integer>> MOISTURE = DummyObjectProvider.createExtendedFor(Key.class,"MOISTURE");
+
+    /**
+     * Represents the {@link Key} for the type of a {@link Mooshroom}.
+     *
+     * @see MooshroomData#type()
+     */
+    public static final Key<Value<MooshroomType>> MOOSHROOM_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"MOOSHROOM_TYPE");
 
     /**
      * Represents the {@link Key} for the pitch of a {@link BlockTypes#NOTE_BLOCK}.

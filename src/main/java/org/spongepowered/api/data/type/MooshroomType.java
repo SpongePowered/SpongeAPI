@@ -22,35 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.animal;
+package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.MooshroomData;
-import org.spongepowered.api.data.type.MooshroomType;
-import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.CatalogType;
 
 /**
- * Represents a Mooshroom.
+ * Represents a type of mooshroom a mooshroom is.
  */
-public interface Mooshroom extends Cow {
+public interface MooshroomType extends CatalogType {
 
-    /**
-     * Gets a copy of the current {@link MooshroomData} being represented by
-     * this {@link Mooshroom}.
-     *
-     * @return A copy of the current mooshroom data
-     */
-    default MooshroomData getMooshroomData() {
-        return this.get(MooshroomData.class).get();
-    }
-
-    /**
-     * Gets the {@link Value.Mutable} for the {@link MooshroomType} of this
-     * {@link MooshroomData}.
-     *
-     * @return The mooshroom variant value
-     */
-    default Value.Mutable<MooshroomType> variant() {
-        return getValue(Keys.MOOSHROOM_TYPE).get().asMutable();
-    }
 }
