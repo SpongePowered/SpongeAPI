@@ -25,7 +25,7 @@
 package org.spongepowered.api.statistic;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.scoreboard.critieria.Criterion;
+import org.spongepowered.api.scoreboard.criteria.Criterion;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
