@@ -26,7 +26,6 @@ package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.data.property.Property;
 import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.entity.DamageableData;
 import org.spongepowered.api.data.manipulator.mutable.item.DurabilityData;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;

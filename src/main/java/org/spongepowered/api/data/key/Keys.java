@@ -107,7 +107,6 @@ import org.spongepowered.api.data.manipulator.mutable.entity.CareerData;
 import org.spongepowered.api.data.manipulator.mutable.entity.ChargedData;
 import org.spongepowered.api.data.manipulator.mutable.entity.CriticalHitData;
 import org.spongepowered.api.data.manipulator.mutable.entity.CustomNameVisibleData;
-import org.spongepowered.api.data.manipulator.mutable.entity.DamageableData;
 import org.spongepowered.api.data.manipulator.mutable.entity.DamagingData;
 import org.spongepowered.api.data.manipulator.mutable.entity.DespawnDelayData;
 import org.spongepowered.api.data.manipulator.mutable.entity.DominantHandData;
@@ -916,7 +915,11 @@ public final class Keys {
      *
      * <p><em>NOTE:</em> Does not apply to {@link Player}s as their
      * {@link HandPreference} can not be changed server-side.
+<<<<<<< HEAD
      * See {@link Properties#DOMINANT_HAND}.</p>
+=======
+     * See {@link org.spongepowered.api.data.property.Properties#DOMINANT_HAND}.</p>
+>>>>>>> 3cad1568... Bye DamageableData, now just getters/setters on living entity
      *
      * @see DominantHandData#dominantHand()
      */
@@ -1565,35 +1568,12 @@ public final class Keys {
     public static final Key<MutableBoundedValue<Integer>> KNOCKBACK_STRENGTH = DummyObjectProvider.createExtendedFor(Key.class,"KNOCKBACK_STRENGTH");
 
     /**
-     * Represents the {@link Key} for who last attacked an {@link Entity}.
-     *
-     * <p>This will usually be an entity snapshot of a {@link Living}.</p>
-     *
-     * <p>This data will usually only be present within 100 ticks of the attack
-     * occurring.</p>
-     *
-     * @see DamageableData#lastAttacker()
-     */
-    public static final Key<OptionalValue<EntitySnapshot>> LAST_ATTACKER = DummyObjectProvider.createExtendedFor(Key.class,"LAST_ATTACKER");
-
-    /**
      * Represents the {@link Key} for the output yielded by the last command of
      * a {@link CommandBlock}.
      *
      * @see CommandData#lastOutput()
      */
     public static final Key<OptionalValue<Text>> LAST_COMMAND_OUTPUT = DummyObjectProvider.createExtendedFor(Key.class,"LAST_COMMAND_OUTPUT");
-
-    /**
-     * Represents the {@link Key} for the last amount of damage received by an
-     * {@link Entity}.
-     *
-     * <p>This data will usually only be present within 100 ticks of the attack
-     * occurring.</p>
-     *
-     * @see DamageableData#lastDamage()
-     */
-    public static final Key<OptionalValue<Double>> LAST_DAMAGE = DummyObjectProvider.createExtendedFor(Key.class,"LAST_DAMAGE");
 
     /**
      * Represents the {@link Key} for the last time a {@link User} has been

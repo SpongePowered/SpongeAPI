@@ -27,16 +27,16 @@ package org.spongepowered.api.entity.living;
 import com.flowpowered.math.vector.Vector2d;
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.entity.DamageableData;
 import org.spongepowered.api.data.manipulator.mutable.entity.HealthData;
 import org.spongepowered.api.data.property.Properties;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.OptionalValue;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 import org.spongepowered.api.scoreboard.TeamMember;
+
+import java.util.Optional;
+import java.util.OptionalDouble;
 
 /**
  * Represents an entity that is living, and therefor can be damaged.
@@ -86,33 +86,25 @@ public interface Living extends Entity, ProjectileSource, TeamMember {
     }
 
     /**
-     * Gets a copy of the current {@link DamageableData}.
+     * Gets the last attacker of this entity.
      *
-     * @return A copy of the current damageable data
+     * @return The last attacker
      */
-    default DamageableData getDamageableData() {
-        return get(DamageableData.class).get();
-    }
+    Optional<Entity> getLastAttacker();
 
     /**
-     * Gets the {@link OptionalValue} for the last attacker.
+     * Sets the last attacker of this entity.
      *
-     * <p>This is generally an entity snapshot of a {@link Living}.</p>
-     *
-     * @return The last attacker as an optional value
+     * @param entity The last attacker entity
      */
-    default OptionalValue<EntitySnapshot> lastAttacker() {
-        return getValue(Keys.LAST_ATTACKER).get();
-    }
+    void setLastAttacker(Entity entity);
 
     /**
-     * Gets the last amount of damage dealt as an optional value.
+     * Gets the last amount of damage that was dealt to this entity
      *
-     * @return The last damage dealt as an optional value
+     * @return The last damage, if present
      */
-    default OptionalValue<Double> lastDamage() {
-        return getValue(Keys.LAST_DAMAGE).get();
-    }
+    OptionalDouble getLastDamage();
 
     /**
      * Returns this entity's head rotation.

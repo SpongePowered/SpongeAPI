@@ -142,11 +142,6 @@ public final class CatalogEntityData {
      */
     public static final Class<CriticalHitData> CRITICAL_HIT_DATA = CriticalHitData.class;
     /**
-     * Signifies that an entity can take damage and tracks it's last damage
-     * source. Usually applies to {@link Living} entities.
-     */
-    public static final Class<DamageableData> DAMAGEABLE_DATA = DamageableData.class;
-    /**
      * Signifies that an owner is going to deal a certain amount of damage
      * on the next "attack". Usually applicable to {@link Arrow}s and other
      * {@link Projectile}s.
