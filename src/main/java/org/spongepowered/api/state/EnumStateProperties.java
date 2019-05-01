@@ -60,15 +60,33 @@ public final class EnumStateProperties {
 
     public static final EnumStateProperty<?> ACACIA_TRAPDOOR_HALF = DummyObjectProvider.createFor(EnumStateProperty.class, "ACACIA_TRAPDOOR_HALF");
 
+    public static final EnumStateProperty<?> ACACIA_WALL_SIGN_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "ACACIA_WALL_SIGN_FACING");
+
     public static final EnumStateProperty<?> ACACIA_WOOD_AXIS = DummyObjectProvider.createFor(EnumStateProperty.class, "ACACIA_WOOD_AXIS");
 
     public static final EnumStateProperty<?> ACTIVATOR_RAIL_SHAPE = DummyObjectProvider.createFor(EnumStateProperty.class, "ACTIVATOR_RAIL_SHAPE");
+
+    public static final EnumStateProperty<?> ANDESITE_SLAB_TYPE = DummyObjectProvider.createFor(EnumStateProperty.class, "ANDESITE_SLAB_TYPE");
+
+    public static final EnumStateProperty<?> ANDESITE_STAIRS_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "ANDESITE_STAIRS_FACING");
+
+    public static final EnumStateProperty<?> ANDESITE_STAIRS_HALF = DummyObjectProvider.createFor(EnumStateProperty.class, "ANDESITE_STAIRS_HALF");
+
+    public static final EnumStateProperty<?> ANDESITE_STAIRS_SHAPE = DummyObjectProvider.createFor(EnumStateProperty.class, "ANDESITE_STAIRS_SHAPE");
 
     public static final EnumStateProperty<?> ANVIL_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "ANVIL_FACING");
 
     public static final EnumStateProperty<?> ATTACHED_MELON_STEM_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "ATTACHED_MELON_STEM_FACING");
 
     public static final EnumStateProperty<?> ATTACHED_PUMPKIN_STEM_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "ATTACHED_PUMPKIN_STEM_FACING");
+
+    public static final EnumStateProperty<?> BAMBOO_LEAVES = DummyObjectProvider.createFor(EnumStateProperty.class, "BAMBOO_LEAVES");
+
+    public static final EnumStateProperty<?> BARREL_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "BARREL_FACING");
+
+    public static final EnumStateProperty<?> BELL_ATTACHMENT = DummyObjectProvider.createFor(EnumStateProperty.class, "BELL_ATTACHMENT");
+
+    public static final EnumStateProperty<?> BELL_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "BELL_FACING");
 
     public static final EnumStateProperty<?> BIRCH_BUTTON_FACE = DummyObjectProvider.createFor(EnumStateProperty.class, "BIRCH_BUTTON_FACE");
 
@@ -96,6 +114,8 @@ public final class EnumStateProperties {
 
     public static final EnumStateProperty<?> BIRCH_TRAPDOOR_HALF = DummyObjectProvider.createFor(EnumStateProperty.class, "BIRCH_TRAPDOOR_HALF");
 
+    public static final EnumStateProperty<?> BIRCH_WALL_SIGN_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "BIRCH_WALL_SIGN_FACING");
+
     public static final EnumStateProperty<?> BIRCH_WOOD_AXIS = DummyObjectProvider.createFor(EnumStateProperty.class, "BIRCH_WOOD_AXIS");
 
     public static final EnumStateProperty<?> BLACK_BED_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "BLACK_BED_FACING");
@@ -107,6 +127,8 @@ public final class EnumStateProperties {
     public static final EnumStateProperty<?> BLACK_SHULKER_BOX_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "BLACK_SHULKER_BOX_FACING");
 
     public static final EnumStateProperty<?> BLACK_WALL_BANNER_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "BLACK_WALL_BANNER_FACING");
+
+    public static final EnumStateProperty<?> BLAST_FURNACE_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "BLAST_FURNACE_FACING");
 
     public static final EnumStateProperty<?> BLUE_BED_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "BLUE_BED_FACING");
 
@@ -142,6 +164,8 @@ public final class EnumStateProperties {
 
     public static final EnumStateProperty<?> BUBBLE_CORAL_WALL_FAN_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "BUBBLE_CORAL_WALL_FAN_FACING");
 
+    public static final EnumStateProperty<?> CAMPFIRE_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "CAMPFIRE_FACING");
+
     public static final EnumStateProperty<?> CARVED_PUMPKIN_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "CARVED_PUMPKIN_FACING");
 
     public static final EnumStateProperty<?> CHAIN_COMMAND_BLOCK_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "CHAIN_COMMAND_BLOCK_FACING");
@@ -169,6 +193,10 @@ public final class EnumStateProperties {
     public static final EnumStateProperty<?> COMPARATOR_MODE = DummyObjectProvider.createFor(EnumStateProperty.class, "COMPARATOR_MODE");
 
     public static final EnumStateProperty<?> CREEPER_WALL_HEAD_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "CREEPER_WALL_HEAD_FACING");
+
+    public static final EnumStateProperty<?> CUT_RED_SANDSTONE_SLAB_TYPE = DummyObjectProvider.createFor(EnumStateProperty.class, "CUT_RED_SANDSTONE_SLAB_TYPE");
+
+    public static final EnumStateProperty<?> CUT_SANDSTONE_SLAB_TYPE = DummyObjectProvider.createFor(EnumStateProperty.class, "CUT_SANDSTONE_SLAB_TYPE");
 
     public static final EnumStateProperty<?> CYAN_BED_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "CYAN_BED_FACING");
 
@@ -208,6 +236,8 @@ public final class EnumStateProperties {
 
     public static final EnumStateProperty<?> DARK_OAK_TRAPDOOR_HALF = DummyObjectProvider.createFor(EnumStateProperty.class, "DARK_OAK_TRAPDOOR_HALF");
 
+    public static final EnumStateProperty<?> DARK_OAK_WALL_SIGN_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "DARK_OAK_WALL_SIGN_FACING");
+
     public static final EnumStateProperty<?> DARK_OAK_WOOD_AXIS = DummyObjectProvider.createFor(EnumStateProperty.class, "DARK_OAK_WOOD_AXIS");
 
     public static final EnumStateProperty<?> DARK_PRISMARINE_SLAB_TYPE = DummyObjectProvider.createFor(EnumStateProperty.class, "DARK_PRISMARINE_SLAB_TYPE");
@@ -230,6 +260,14 @@ public final class EnumStateProperties {
 
     public static final EnumStateProperty<?> DETECTOR_RAIL_SHAPE = DummyObjectProvider.createFor(EnumStateProperty.class, "DETECTOR_RAIL_SHAPE");
 
+    public static final EnumStateProperty<?> DIORITE_SLAB_TYPE = DummyObjectProvider.createFor(EnumStateProperty.class, "DIORITE_SLAB_TYPE");
+
+    public static final EnumStateProperty<?> DIORITE_STAIRS_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "DIORITE_STAIRS_FACING");
+
+    public static final EnumStateProperty<?> DIORITE_STAIRS_HALF = DummyObjectProvider.createFor(EnumStateProperty.class, "DIORITE_STAIRS_HALF");
+
+    public static final EnumStateProperty<?> DIORITE_STAIRS_SHAPE = DummyObjectProvider.createFor(EnumStateProperty.class, "DIORITE_STAIRS_SHAPE");
+
     public static final EnumStateProperty<?> DISPENSER_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "DISPENSER_FACING");
 
     public static final EnumStateProperty<?> DRAGON_WALL_HEAD_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "DRAGON_WALL_HEAD_FACING");
@@ -242,9 +280,25 @@ public final class EnumStateProperties {
 
     public static final EnumStateProperty<?> END_ROD_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "END_ROD_FACING");
 
+    public static final EnumStateProperty<?> END_STONE_BRICK_SLAB_TYPE = DummyObjectProvider.createFor(EnumStateProperty.class, "END_STONE_BRICK_SLAB_TYPE");
+
+    public static final EnumStateProperty<?> END_STONE_BRICK_STAIRS_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "END_STONE_BRICK_STAIRS_FACING");
+
+    public static final EnumStateProperty<?> END_STONE_BRICK_STAIRS_HALF = DummyObjectProvider.createFor(EnumStateProperty.class, "END_STONE_BRICK_STAIRS_HALF");
+
+    public static final EnumStateProperty<?> END_STONE_BRICK_STAIRS_SHAPE = DummyObjectProvider.createFor(EnumStateProperty.class, "END_STONE_BRICK_STAIRS_SHAPE");
+
     public static final EnumStateProperty<?> FIRE_CORAL_WALL_FAN_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "FIRE_CORAL_WALL_FAN_FACING");
 
     public static final EnumStateProperty<?> FURNACE_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "FURNACE_FACING");
+
+    public static final EnumStateProperty<?> GRANITE_SLAB_TYPE = DummyObjectProvider.createFor(EnumStateProperty.class, "GRANITE_SLAB_TYPE");
+
+    public static final EnumStateProperty<?> GRANITE_STAIRS_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "GRANITE_STAIRS_FACING");
+
+    public static final EnumStateProperty<?> GRANITE_STAIRS_HALF = DummyObjectProvider.createFor(EnumStateProperty.class, "GRANITE_STAIRS_HALF");
+
+    public static final EnumStateProperty<?> GRANITE_STAIRS_SHAPE = DummyObjectProvider.createFor(EnumStateProperty.class, "GRANITE_STAIRS_SHAPE");
 
     public static final EnumStateProperty<?> GRAY_BED_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "GRAY_BED_FACING");
 
@@ -266,6 +320,10 @@ public final class EnumStateProperties {
 
     public static final EnumStateProperty<?> GREEN_WALL_BANNER_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "GREEN_WALL_BANNER_FACING");
 
+    public static final EnumStateProperty<?> GRINDSTONE_FACE = DummyObjectProvider.createFor(EnumStateProperty.class, "GRINDSTONE_FACE");
+
+    public static final EnumStateProperty<?> GRINDSTONE_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "GRINDSTONE_FACING");
+
     public static final EnumStateProperty<?> HAY_BLOCK_AXIS = DummyObjectProvider.createFor(EnumStateProperty.class, "HAY_BLOCK_AXIS");
 
     public static final EnumStateProperty<?> HOPPER_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "HOPPER_FACING");
@@ -283,6 +341,8 @@ public final class EnumStateProperties {
     public static final EnumStateProperty<?> IRON_TRAPDOOR_HALF = DummyObjectProvider.createFor(EnumStateProperty.class, "IRON_TRAPDOOR_HALF");
 
     public static final EnumStateProperty<?> JACK_O_LANTERN_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "JACK_O_LANTERN_FACING");
+
+    public static final EnumStateProperty<?> JIGSAW_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "JIGSAW_FACING");
 
     public static final EnumStateProperty<?> JUNGLE_BUTTON_FACE = DummyObjectProvider.createFor(EnumStateProperty.class, "JUNGLE_BUTTON_FACE");
 
@@ -310,11 +370,15 @@ public final class EnumStateProperties {
 
     public static final EnumStateProperty<?> JUNGLE_TRAPDOOR_HALF = DummyObjectProvider.createFor(EnumStateProperty.class, "JUNGLE_TRAPDOOR_HALF");
 
+    public static final EnumStateProperty<?> JUNGLE_WALL_SIGN_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "JUNGLE_WALL_SIGN_FACING");
+
     public static final EnumStateProperty<?> JUNGLE_WOOD_AXIS = DummyObjectProvider.createFor(EnumStateProperty.class, "JUNGLE_WOOD_AXIS");
 
     public static final EnumStateProperty<?> LADDER_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "LADDER_FACING");
 
     public static final EnumStateProperty<?> LARGE_FERN_HALF = DummyObjectProvider.createFor(EnumStateProperty.class, "LARGE_FERN_HALF");
+
+    public static final EnumStateProperty<?> LECTERN_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "LECTERN_FACING");
 
     public static final EnumStateProperty<?> LEVER_FACE = DummyObjectProvider.createFor(EnumStateProperty.class, "LEVER_FACE");
 
@@ -352,6 +416,8 @@ public final class EnumStateProperties {
 
     public static final EnumStateProperty<?> LIME_WALL_BANNER_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "LIME_WALL_BANNER_FACING");
 
+    public static final EnumStateProperty<?> LOOM_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "LOOM_FACING");
+
     public static final EnumStateProperty<?> MAGENTA_BED_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "MAGENTA_BED_FACING");
 
     public static final EnumStateProperty<?> MAGENTA_BED_PART = DummyObjectProvider.createFor(EnumStateProperty.class, "MAGENTA_BED_PART");
@@ -361,6 +427,22 @@ public final class EnumStateProperties {
     public static final EnumStateProperty<?> MAGENTA_SHULKER_BOX_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "MAGENTA_SHULKER_BOX_FACING");
 
     public static final EnumStateProperty<?> MAGENTA_WALL_BANNER_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "MAGENTA_WALL_BANNER_FACING");
+
+    public static final EnumStateProperty<?> MOSSY_COBBLESTONE_SLAB_TYPE = DummyObjectProvider.createFor(EnumStateProperty.class, "MOSSY_COBBLESTONE_SLAB_TYPE");
+
+    public static final EnumStateProperty<?> MOSSY_COBBLESTONE_STAIRS_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "MOSSY_COBBLESTONE_STAIRS_FACING");
+
+    public static final EnumStateProperty<?> MOSSY_COBBLESTONE_STAIRS_HALF = DummyObjectProvider.createFor(EnumStateProperty.class, "MOSSY_COBBLESTONE_STAIRS_HALF");
+
+    public static final EnumStateProperty<?> MOSSY_COBBLESTONE_STAIRS_SHAPE = DummyObjectProvider.createFor(EnumStateProperty.class, "MOSSY_COBBLESTONE_STAIRS_SHAPE");
+
+    public static final EnumStateProperty<?> MOSSY_STONE_BRICK_SLAB_TYPE = DummyObjectProvider.createFor(EnumStateProperty.class, "MOSSY_STONE_BRICK_SLAB_TYPE");
+
+    public static final EnumStateProperty<?> MOSSY_STONE_BRICK_STAIRS_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "MOSSY_STONE_BRICK_STAIRS_FACING");
+
+    public static final EnumStateProperty<?> MOSSY_STONE_BRICK_STAIRS_HALF = DummyObjectProvider.createFor(EnumStateProperty.class, "MOSSY_STONE_BRICK_STAIRS_HALF");
+
+    public static final EnumStateProperty<?> MOSSY_STONE_BRICK_STAIRS_SHAPE = DummyObjectProvider.createFor(EnumStateProperty.class, "MOSSY_STONE_BRICK_STAIRS_SHAPE");
 
     public static final EnumStateProperty<?> MOVING_PISTON_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "MOVING_PISTON_FACING");
 
@@ -404,6 +486,8 @@ public final class EnumStateProperties {
 
     public static final EnumStateProperty<?> OAK_TRAPDOOR_HALF = DummyObjectProvider.createFor(EnumStateProperty.class, "OAK_TRAPDOOR_HALF");
 
+    public static final EnumStateProperty<?> OAK_WALL_SIGN_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "OAK_WALL_SIGN_FACING");
+
     public static final EnumStateProperty<?> OAK_WOOD_AXIS = DummyObjectProvider.createFor(EnumStateProperty.class, "OAK_WOOD_AXIS");
 
     public static final EnumStateProperty<?> OBSERVER_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "OBSERVER_FACING");
@@ -439,6 +523,30 @@ public final class EnumStateProperties {
     public static final EnumStateProperty<?> PISTON_HEAD_TYPE = DummyObjectProvider.createFor(EnumStateProperty.class, "PISTON_HEAD_TYPE");
 
     public static final EnumStateProperty<?> PLAYER_WALL_HEAD_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "PLAYER_WALL_HEAD_FACING");
+
+    public static final EnumStateProperty<?> POLISHED_ANDESITE_SLAB_TYPE = DummyObjectProvider.createFor(EnumStateProperty.class, "POLISHED_ANDESITE_SLAB_TYPE");
+
+    public static final EnumStateProperty<?> POLISHED_ANDESITE_STAIRS_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "POLISHED_ANDESITE_STAIRS_FACING");
+
+    public static final EnumStateProperty<?> POLISHED_ANDESITE_STAIRS_HALF = DummyObjectProvider.createFor(EnumStateProperty.class, "POLISHED_ANDESITE_STAIRS_HALF");
+
+    public static final EnumStateProperty<?> POLISHED_ANDESITE_STAIRS_SHAPE = DummyObjectProvider.createFor(EnumStateProperty.class, "POLISHED_ANDESITE_STAIRS_SHAPE");
+
+    public static final EnumStateProperty<?> POLISHED_DIORITE_SLAB_TYPE = DummyObjectProvider.createFor(EnumStateProperty.class, "POLISHED_DIORITE_SLAB_TYPE");
+
+    public static final EnumStateProperty<?> POLISHED_DIORITE_STAIRS_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "POLISHED_DIORITE_STAIRS_FACING");
+
+    public static final EnumStateProperty<?> POLISHED_DIORITE_STAIRS_HALF = DummyObjectProvider.createFor(EnumStateProperty.class, "POLISHED_DIORITE_STAIRS_HALF");
+
+    public static final EnumStateProperty<?> POLISHED_DIORITE_STAIRS_SHAPE = DummyObjectProvider.createFor(EnumStateProperty.class, "POLISHED_DIORITE_STAIRS_SHAPE");
+
+    public static final EnumStateProperty<?> POLISHED_GRANITE_SLAB_TYPE = DummyObjectProvider.createFor(EnumStateProperty.class, "POLISHED_GRANITE_SLAB_TYPE");
+
+    public static final EnumStateProperty<?> POLISHED_GRANITE_STAIRS_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "POLISHED_GRANITE_STAIRS_FACING");
+
+    public static final EnumStateProperty<?> POLISHED_GRANITE_STAIRS_HALF = DummyObjectProvider.createFor(EnumStateProperty.class, "POLISHED_GRANITE_STAIRS_HALF");
+
+    public static final EnumStateProperty<?> POLISHED_GRANITE_STAIRS_SHAPE = DummyObjectProvider.createFor(EnumStateProperty.class, "POLISHED_GRANITE_STAIRS_SHAPE");
 
     public static final EnumStateProperty<?> POWERED_RAIL_SHAPE = DummyObjectProvider.createFor(EnumStateProperty.class, "POWERED_RAIL_SHAPE");
 
@@ -506,6 +614,14 @@ public final class EnumStateProperties {
 
     public static final EnumStateProperty<?> RED_GLAZED_TERRACOTTA_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "RED_GLAZED_TERRACOTTA_FACING");
 
+    public static final EnumStateProperty<?> RED_NETHER_BRICK_SLAB_TYPE = DummyObjectProvider.createFor(EnumStateProperty.class, "RED_NETHER_BRICK_SLAB_TYPE");
+
+    public static final EnumStateProperty<?> RED_NETHER_BRICK_STAIRS_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "RED_NETHER_BRICK_STAIRS_FACING");
+
+    public static final EnumStateProperty<?> RED_NETHER_BRICK_STAIRS_HALF = DummyObjectProvider.createFor(EnumStateProperty.class, "RED_NETHER_BRICK_STAIRS_HALF");
+
+    public static final EnumStateProperty<?> RED_NETHER_BRICK_STAIRS_SHAPE = DummyObjectProvider.createFor(EnumStateProperty.class, "RED_NETHER_BRICK_STAIRS_SHAPE");
+
     public static final EnumStateProperty<?> RED_SANDSTONE_SLAB_TYPE = DummyObjectProvider.createFor(EnumStateProperty.class, "RED_SANDSTONE_SLAB_TYPE");
 
     public static final EnumStateProperty<?> RED_SANDSTONE_STAIRS_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "RED_SANDSTONE_STAIRS_FACING");
@@ -536,6 +652,34 @@ public final class EnumStateProperties {
 
     public static final EnumStateProperty<?> SKELETON_WALL_SKULL_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "SKELETON_WALL_SKULL_FACING");
 
+    public static final EnumStateProperty<?> SMOKER_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "SMOKER_FACING");
+
+    public static final EnumStateProperty<?> SMOOTH_QUARTZ_SLAB_TYPE = DummyObjectProvider.createFor(EnumStateProperty.class, "SMOOTH_QUARTZ_SLAB_TYPE");
+
+    public static final EnumStateProperty<?> SMOOTH_QUARTZ_STAIRS_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "SMOOTH_QUARTZ_STAIRS_FACING");
+
+    public static final EnumStateProperty<?> SMOOTH_QUARTZ_STAIRS_HALF = DummyObjectProvider.createFor(EnumStateProperty.class, "SMOOTH_QUARTZ_STAIRS_HALF");
+
+    public static final EnumStateProperty<?> SMOOTH_QUARTZ_STAIRS_SHAPE = DummyObjectProvider.createFor(EnumStateProperty.class, "SMOOTH_QUARTZ_STAIRS_SHAPE");
+
+    public static final EnumStateProperty<?> SMOOTH_RED_SANDSTONE_SLAB_TYPE = DummyObjectProvider.createFor(EnumStateProperty.class, "SMOOTH_RED_SANDSTONE_SLAB_TYPE");
+
+    public static final EnumStateProperty<?> SMOOTH_RED_SANDSTONE_STAIRS_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "SMOOTH_RED_SANDSTONE_STAIRS_FACING");
+
+    public static final EnumStateProperty<?> SMOOTH_RED_SANDSTONE_STAIRS_HALF = DummyObjectProvider.createFor(EnumStateProperty.class, "SMOOTH_RED_SANDSTONE_STAIRS_HALF");
+
+    public static final EnumStateProperty<?> SMOOTH_RED_SANDSTONE_STAIRS_SHAPE = DummyObjectProvider.createFor(EnumStateProperty.class, "SMOOTH_RED_SANDSTONE_STAIRS_SHAPE");
+
+    public static final EnumStateProperty<?> SMOOTH_SANDSTONE_SLAB_TYPE = DummyObjectProvider.createFor(EnumStateProperty.class, "SMOOTH_SANDSTONE_SLAB_TYPE");
+
+    public static final EnumStateProperty<?> SMOOTH_SANDSTONE_STAIRS_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "SMOOTH_SANDSTONE_STAIRS_FACING");
+
+    public static final EnumStateProperty<?> SMOOTH_SANDSTONE_STAIRS_HALF = DummyObjectProvider.createFor(EnumStateProperty.class, "SMOOTH_SANDSTONE_STAIRS_HALF");
+
+    public static final EnumStateProperty<?> SMOOTH_SANDSTONE_STAIRS_SHAPE = DummyObjectProvider.createFor(EnumStateProperty.class, "SMOOTH_SANDSTONE_STAIRS_SHAPE");
+
+    public static final EnumStateProperty<?> SMOOTH_STONE_SLAB_TYPE = DummyObjectProvider.createFor(EnumStateProperty.class, "SMOOTH_STONE_SLAB_TYPE");
+
     public static final EnumStateProperty<?> SPRUCE_BUTTON_FACE = DummyObjectProvider.createFor(EnumStateProperty.class, "SPRUCE_BUTTON_FACE");
 
     public static final EnumStateProperty<?> SPRUCE_BUTTON_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "SPRUCE_BUTTON_FACING");
@@ -562,9 +706,13 @@ public final class EnumStateProperties {
 
     public static final EnumStateProperty<?> SPRUCE_TRAPDOOR_HALF = DummyObjectProvider.createFor(EnumStateProperty.class, "SPRUCE_TRAPDOOR_HALF");
 
+    public static final EnumStateProperty<?> SPRUCE_WALL_SIGN_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "SPRUCE_WALL_SIGN_FACING");
+
     public static final EnumStateProperty<?> SPRUCE_WOOD_AXIS = DummyObjectProvider.createFor(EnumStateProperty.class, "SPRUCE_WOOD_AXIS");
 
     public static final EnumStateProperty<?> STICKY_PISTON_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "STICKY_PISTON_FACING");
+
+    public static final EnumStateProperty<?> STONECUTTER_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "STONECUTTER_FACING");
 
     public static final EnumStateProperty<?> STONE_BRICK_SLAB_TYPE = DummyObjectProvider.createFor(EnumStateProperty.class, "STONE_BRICK_SLAB_TYPE");
 
@@ -579,6 +727,12 @@ public final class EnumStateProperties {
     public static final EnumStateProperty<?> STONE_BUTTON_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "STONE_BUTTON_FACING");
 
     public static final EnumStateProperty<?> STONE_SLAB_TYPE = DummyObjectProvider.createFor(EnumStateProperty.class, "STONE_SLAB_TYPE");
+
+    public static final EnumStateProperty<?> STONE_STAIRS_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "STONE_STAIRS_FACING");
+
+    public static final EnumStateProperty<?> STONE_STAIRS_HALF = DummyObjectProvider.createFor(EnumStateProperty.class, "STONE_STAIRS_HALF");
+
+    public static final EnumStateProperty<?> STONE_STAIRS_SHAPE = DummyObjectProvider.createFor(EnumStateProperty.class, "STONE_STAIRS_SHAPE");
 
     public static final EnumStateProperty<?> STRIPPED_ACACIA_LOG_AXIS = DummyObjectProvider.createFor(EnumStateProperty.class, "STRIPPED_ACACIA_LOG_AXIS");
 
@@ -619,8 +773,6 @@ public final class EnumStateProperties {
     public static final EnumStateProperty<?> TRIPWIRE_HOOK_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "TRIPWIRE_HOOK_FACING");
 
     public static final EnumStateProperty<?> TUBE_CORAL_WALL_FAN_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "TUBE_CORAL_WALL_FAN_FACING");
-
-    public static final EnumStateProperty<?> WALL_SIGN_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "WALL_SIGN_FACING");
 
     public static final EnumStateProperty<?> WALL_TORCH_FACING = DummyObjectProvider.createFor(EnumStateProperty.class, "WALL_TORCH_FACING");
 

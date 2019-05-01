@@ -38,11 +38,19 @@ public final class IntegerStateProperties {
 
     public static final IntegerStateProperty ACACIA_SAPLING_STAGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "ACACIA_SAPLING_STAGE");
 
+    public static final IntegerStateProperty ACACIA_SIGN_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "ACACIA_SIGN_ROTATION");
+
+    public static final IntegerStateProperty BAMBOO_AGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "BAMBOO_AGE");
+
+    public static final IntegerStateProperty BAMBOO_STAGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "BAMBOO_STAGE");
+
     public static final IntegerStateProperty BEETROOTS_AGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "BEETROOTS_AGE");
 
     public static final IntegerStateProperty BIRCH_LEAVES_DISTANCE = DummyObjectProvider.createFor(IntegerStateProperty.class, "BIRCH_LEAVES_DISTANCE");
 
     public static final IntegerStateProperty BIRCH_SAPLING_STAGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "BIRCH_SAPLING_STAGE");
+
+    public static final IntegerStateProperty BIRCH_SIGN_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "BIRCH_SIGN_ROTATION");
 
     public static final IntegerStateProperty BLACK_BANNER_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "BLACK_BANNER_ROTATION");
 
@@ -62,6 +70,8 @@ public final class IntegerStateProperties {
 
     public static final IntegerStateProperty COCOA_AGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "COCOA_AGE");
 
+    public static final IntegerStateProperty COMPOSTER_LEVEL = DummyObjectProvider.createFor(IntegerStateProperty.class, "COMPOSTER_LEVEL");
+
     public static final IntegerStateProperty CREEPER_HEAD_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "CREEPER_HEAD_ROTATION");
 
     public static final IntegerStateProperty CYAN_BANNER_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "CYAN_BANNER_ROTATION");
@@ -69,6 +79,8 @@ public final class IntegerStateProperties {
     public static final IntegerStateProperty DARK_OAK_LEAVES_DISTANCE = DummyObjectProvider.createFor(IntegerStateProperty.class, "DARK_OAK_LEAVES_DISTANCE");
 
     public static final IntegerStateProperty DARK_OAK_SAPLING_STAGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "DARK_OAK_SAPLING_STAGE");
+
+    public static final IntegerStateProperty DARK_OAK_SIGN_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "DARK_OAK_SIGN_ROTATION");
 
     public static final IntegerStateProperty DAYLIGHT_DETECTOR_POWER = DummyObjectProvider.createFor(IntegerStateProperty.class, "DAYLIGHT_DETECTOR_POWER");
 
@@ -89,6 +101,8 @@ public final class IntegerStateProperties {
     public static final IntegerStateProperty JUNGLE_LEAVES_DISTANCE = DummyObjectProvider.createFor(IntegerStateProperty.class, "JUNGLE_LEAVES_DISTANCE");
 
     public static final IntegerStateProperty JUNGLE_SAPLING_STAGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "JUNGLE_SAPLING_STAGE");
+
+    public static final IntegerStateProperty JUNGLE_SIGN_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "JUNGLE_SIGN_ROTATION");
 
     public static final IntegerStateProperty KELP_AGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "KELP_AGE");
 
@@ -114,6 +128,8 @@ public final class IntegerStateProperties {
 
     public static final IntegerStateProperty OAK_SAPLING_STAGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "OAK_SAPLING_STAGE");
 
+    public static final IntegerStateProperty OAK_SIGN_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "OAK_SIGN_ROTATION");
+
     public static final IntegerStateProperty ORANGE_BANNER_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "ORANGE_BANNER_ROTATION");
 
     public static final IntegerStateProperty PINK_BANNER_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "PINK_BANNER_ROTATION");
@@ -132,9 +148,9 @@ public final class IntegerStateProperties {
 
     public static final IntegerStateProperty REPEATER_DELAY = DummyObjectProvider.createFor(IntegerStateProperty.class, "REPEATER_DELAY");
 
-    public static final IntegerStateProperty SEA_PICKLE_PICKLES = DummyObjectProvider.createFor(IntegerStateProperty.class, "SEA_PICKLE_PICKLES");
+    public static final IntegerStateProperty SCAFFOLDING_DISTANCE = DummyObjectProvider.createFor(IntegerStateProperty.class, "SCAFFOLDING_DISTANCE");
 
-    public static final IntegerStateProperty SIGN_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "SIGN_ROTATION");
+    public static final IntegerStateProperty SEA_PICKLE_PICKLES = DummyObjectProvider.createFor(IntegerStateProperty.class, "SEA_PICKLE_PICKLES");
 
     public static final IntegerStateProperty SKELETON_SKULL_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "SKELETON_SKULL_ROTATION");
 
@@ -144,7 +160,11 @@ public final class IntegerStateProperties {
 
     public static final IntegerStateProperty SPRUCE_SAPLING_STAGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "SPRUCE_SAPLING_STAGE");
 
+    public static final IntegerStateProperty SPRUCE_SIGN_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "SPRUCE_SIGN_ROTATION");
+
     public static final IntegerStateProperty SUGAR_CANE_AGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "SUGAR_CANE_AGE");
+
+    public static final IntegerStateProperty SWEET_BERRY_BUSH_AGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "SWEET_BERRY_BUSH_AGE");
 
     public static final IntegerStateProperty TURTLE_EGG_EGGS = DummyObjectProvider.createFor(IntegerStateProperty.class, "TURTLE_EGG_EGGS");
 
