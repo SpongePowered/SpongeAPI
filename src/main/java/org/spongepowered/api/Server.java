@@ -93,12 +93,18 @@ public interface Server extends Engine {
     /**
      * Gets the properties of all unloaded worlds.
      *
+     * <p>It is left up to the implementation to determine it's offline worlds and no contract is enforced
+     * that states that they must returns all unloaded worlds that actually exist.</p>
+     *
      * @return A collection of world properties
      */
     Collection<WorldProperties> getUnloadedWorlds();
 
     /**
-     * Gets the properties of all worlds, loaded or otherwise.
+     * Gets the properties of all worlds.
+     *
+     * <p>It is left up to the implementation to determine it's offline worlds and no contract is enforced
+     * that states that they must returns all unloaded worlds that actually exist.</p>
      *
      * @return A collection of world properties
      */
@@ -114,12 +120,12 @@ public interface Server extends Engine {
     Optional<World> getWorld(UUID uniqueId);
 
     /**
-     * Gets a loaded {@link World} by name, if it exists.
+     * Gets a loaded {@link World} by it's directory name, if it exists.
      *
-     * @param worldName Name to lookup
+     * @param directoryName Name to lookup
      * @return The world, if found
      */
-    Optional<World> getWorld(String worldName);
+    Optional<World> getWorld(String directoryName);
 
     /**
      * Gets the properties of default world.
@@ -167,7 +173,7 @@ public interface Server extends Engine {
      * Gets the {@link WorldProperties} of a world. If a world with the given
      * name is loaded then this is equivalent to calling
      * {@link World#getProperties()}. However, if no loaded world is found then
-     * an attempt will be made to match unloaded worlds.
+     * an attempt will be made to match to a known unloaded world.
      *
      * @param directoryName The name to lookup
      * @return The world properties, if found
@@ -178,7 +184,7 @@ public interface Server extends Engine {
      * Gets the {@link WorldProperties} of a world. If a world with the given
      * UUID is loaded then this is equivalent to calling
      * {@link World#getProperties()}. However, if no loaded world is found then
-     * an attempt will be made to match unloaded worlds.
+     * an attempt will be made to match to a known unloaded world.
      *
      * @param uniqueId The UUID to lookup
      * @return The world properties, if found
@@ -186,12 +192,13 @@ public interface Server extends Engine {
     Optional<WorldProperties> getWorldProperties(UUID uniqueId);
 
     /**
-     * Unloads a {@link World}, if there are any connected players in the given
-     * world then no operation will occur.
+     * Unloads a {@link World}.
      *
-     * <p>A world which is unloaded will be removed from memory. However if it
-     * is still enabled according to {@link WorldProperties#isEnabled()} then it
-     * will be loaded again if the server is restarted.</p>
+     * <p>The conditions for how and when a world may be unloaded are left up to the
+     * implementation to define.</p>
+     *
+     * <p>Should the {@link WorldProperties} of the unloaded world return {@link WorldProperties#isEnabled()}
+     * 'true' then this server will attempt to load the world during the next startup phase.</p>
      *
      * @param world The world to unload
      * @return Whether the operation was successful
@@ -241,7 +248,11 @@ public interface Server extends Engine {
     CompletableFuture<Optional<WorldProperties>> copyWorld(String directoryName, String copyName);
 
     /**
-     * Renames an unloaded world.
+     * Renames a {@link WorldProperties}.
+     *
+     * <p>If the properties represents an online world, an attempt will be made to unload it. Once unloaded and if
+     * the attempt is successful, an attempt will be made to load it. It is left up to the implementation to determine
+     * the conditions for a rename to be successful.</p>
      *
      * @param oldDirectoryName The old directory name
      * @param newDirectoryName The new directory name
