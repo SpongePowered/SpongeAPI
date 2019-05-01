@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.service.sql;
 
+import org.spongepowered.api.plugin.PluginContainer;
+
 import java.sql.SQLException;
 import java.util.Optional;
 
@@ -71,7 +73,7 @@ public interface SqlService {
      * @throws SQLException if a connection to the given database could not
      *     be established
      */
-    DataSource getDataSource(Object plugin, String jdbcConnection) throws SQLException;
+    DataSource getDataSource(PluginContainer plugin, String jdbcConnection) throws SQLException;
 
     /**
      * Returns a possible connection URL for a given alias.

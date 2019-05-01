@@ -44,12 +44,12 @@ public interface AssetManager {
      * @param name Name of resource to retrieve
      * @return Asset if present, empty otherwise
      */
-    Optional<Asset> getAsset(Object plugin, String name);
+    Optional<Asset> getAsset(PluginContainer plugin, String name);
 
     /**
      * Returns the {@link Asset} of the specified name within the domain of the
      * implementation. This method will typically call
-     * {@link #getAsset(Object, String)} using a dummy
+     * {@link #getAsset(PluginContainer, String)} using a dummy
      * {@link PluginContainer} for the SpongeAPI implementation.
      *
      * @param name Name of resource to retrieve

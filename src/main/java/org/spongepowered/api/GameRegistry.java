@@ -313,7 +313,7 @@ public interface GameRegistry {
      * @param aiClass The class of the task
      * @return The type
      */
-    AITaskType registerAITaskType(Object plugin, String id, String name, Class<? extends AbstractAITask<? extends Agent>> aiClass);
+    AITaskType registerAITaskType(PluginContainer plugin, String id, String name, Class<? extends AbstractAITask<? extends Agent>> aiClass);
 
     /**
      * Gets the {@link ValueFactory} for creating values.

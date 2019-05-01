@@ -24,6 +24,7 @@
  */
 package co.aikar.timings;
 
+import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.text.channel.MessageChannel;
 
 import javax.annotation.Nullable;
@@ -41,7 +42,7 @@ public interface TimingsFactory {
      * @param groupHandler The handler, can be null for no parent
      * @return A timing instance
      */
-    Timing of(Object plugin, String name, @Nullable Timing groupHandler);
+    Timing of(PluginContainer plugin, String name, @Nullable Timing groupHandler);
 
     /**
      * Gets whether the timing system is enabled.
