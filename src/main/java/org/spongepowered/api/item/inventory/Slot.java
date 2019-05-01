@@ -30,19 +30,9 @@ package org.spongepowered.api.item.inventory;
 public interface Slot extends Inventory {
 
     /**
-     * Gets the size of the stack in this slot. Essentially the same as calling
-     * slot.peek().getQuantity(); but faster because it avoids the Optional
-     * boxing.
-     *
-     * @return the stack size or -1 if this slot is empty
-     */
-    int getStackSize();
-
-    /**
      * Returns the slot in a {@link Container}s viewed inventory or itself.
      *
      * @return the viewed inventory slot or itself if not a container slot
      */
     Slot viewedSlot();
-
 }
