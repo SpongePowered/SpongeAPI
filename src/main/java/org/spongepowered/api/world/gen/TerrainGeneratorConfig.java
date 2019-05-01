@@ -22,18 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen.surface;
+package org.spongepowered.api.world.gen;
 
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.world.ProtoWorld;
-import org.spongepowered.api.world.biome.BiomeType;
-import org.spongepowered.api.world.chunk.ProtoChunk;
-import org.spongepowered.api.world.gen.WorldGenerationSettings;
-
-import java.util.Random;
-
-public interface SurfaceBuilder<C extends SurfaceConfig> {
-
-    void buildSurface(ProtoWorld<?> world, ProtoChunk<?> targetChunk, Vector3i surfacePosition, BiomeType biome, Random random, WorldGenerationSettings settings, double noise, long seed, C config);
+public interface TerrainGeneratorConfig {
 
 }

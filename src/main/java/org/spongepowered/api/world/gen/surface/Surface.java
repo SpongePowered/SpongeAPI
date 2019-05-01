@@ -22,8 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen;
+package org.spongepowered.api.world.gen.surface;
 
-public interface WorldGenerationSettings {
+import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.world.ProtoWorld;
+import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.chunk.ProtoChunk;
+
+import java.util.Random;
+
+public interface Surface<S extends SurfaceConfig> {
+
+    void generate(ProtoWorld<?> world, ProtoChunk<?> chunk, Vector3i surfacePosition, BiomeType biome, Random random, double noise, long seed,
+        S surfaceConfig);
 
 }

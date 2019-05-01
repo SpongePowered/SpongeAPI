@@ -27,26 +27,27 @@ package org.spongepowered.api.world.gen.feature;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.gen.FeatureConfig;
 import org.spongepowered.api.world.gen.GenerationRegion;
-import org.spongepowered.api.world.gen.WorldGenerator;
+import org.spongepowered.api.world.gen.TerrainGenerator;
 
 import java.util.Random;
 
-public interface FeatureCreator<C> {
+public interface Feature<C extends FeatureConfig> {
 
     /**
-     * Places what would be considered the "feature" centered at the origin
-     * position in the provided {@link ProtoWorld}. The world is not guaranteed
-     * to be an active {@link World}, as it can be a {@link GenerationRegion}
-     * for chunk generation. The configuration object is used to determine
-     * various feature options, potentially exposed by the feature itself.
+     * Generates the feature centered at the origin position in the
+     * provided {@link ProtoWorld}. The world is not guaranteed to be an
+     * active {@link World}, as it can be a {@link GenerationRegion}
+     * (for chunk generation). The configuration object is used to determine
+     * various feature options. Not every Feature will have options.
      *
      * @param world The world region where the feature is to be placed
      * @param random The random number provider
      * @param origin The origin point of the feature
      * @param config The config object for configuring the feature to be placed
-     * @return True
+     * @return True if generation reported to be successful, false otherwise
      */
-    boolean generate(ProtoWorld<?> world, WorldGenerator<?> generator, Random random, Vector3i origin, C config);
+    boolean generate(ProtoWorld<?> world, TerrainGenerator<?> generator, Random random, Vector3i origin, C config);
 
 }

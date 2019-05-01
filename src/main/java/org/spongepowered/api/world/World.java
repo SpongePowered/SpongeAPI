@@ -41,11 +41,11 @@ import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.gamerule.GameRule;
 import org.spongepowered.api.world.gamerule.GameRuleHolder;
-import org.spongepowered.api.world.volume.block.PhysicsAwareMutableBlockVolume;
-import org.spongepowered.api.world.gen.WorldGenerator;
+import org.spongepowered.api.world.gen.TerrainGenerator;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.storage.WorldStorage;
 import org.spongepowered.api.world.teleport.PortalAgent;
+import org.spongepowered.api.world.volume.block.PhysicsAwareMutableBlockVolume;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 
 import java.io.IOException;
@@ -373,14 +373,14 @@ public interface World extends ProtoWorld<World>, LocationCreator<World>, Physic
     Dimension getDimension();
 
     /**
-     * Gets the {@link WorldGenerator} for this world.
+     * Gets the {@link TerrainGenerator} for this world.
      *
      * <p>Any changes made to the world generator will only affect newly
      * generated chunks.</p>
      *
      * @return The world generator
      */
-    WorldGenerator getWorldGenerator();
+    TerrainGenerator getTerrainGenerator();
 
     /**
      * Gets the properties for this world.
