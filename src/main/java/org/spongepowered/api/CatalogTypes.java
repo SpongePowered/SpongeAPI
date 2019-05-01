@@ -289,7 +289,7 @@ public final class CatalogTypes {
 
     public static final Class<TransactionType> TRANSACTION_TYPE = TransactionType.class;
 
-    public static final Class<TreeType> TREE_TYPE = TreeType.class;
+    public static final Class<WoodType> TREE_TYPE = WoodType.class;
 
     public static final Class<Trigger> TRIGGER = Trigger.class;
 

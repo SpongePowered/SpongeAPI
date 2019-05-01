@@ -69,6 +69,7 @@ import org.spongepowered.api.data.type.SlabPortion;
 import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StructureMode;
 import org.spongepowered.api.data.type.Surface;
+import org.spongepowered.api.data.type.WoodType;
 import org.spongepowered.api.data.type.WireAttachmentType;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.ListValue;
@@ -89,6 +90,7 @@ import org.spongepowered.api.entity.ExperienceOrb;
 import org.spongepowered.api.entity.FallingBlock;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.ShulkerBullet;
+import org.spongepowered.api.entity.vehicle.Boat;
 import org.spongepowered.api.item.potion.PotionType;
 import org.spongepowered.api.entity.explosive.Explosive;
 import org.spongepowered.api.entity.explosive.FusedExplosive;
@@ -405,7 +407,7 @@ public final class Keys {
      * <p>Together with {@link #HEIGHT} this defines the size of an
      * {@link Entity}.</p>
      *
-     * @see SizeData#base()
+     * @see EntitySizeData#base()
      */
     public static final Key<BoundedValue<Float>> BASE_SIZE = DummyObjectProvider.createExtendedFor(Key.class,"BASE_SIZE");
 
@@ -1098,7 +1100,7 @@ public final class Keys {
      * <p>Together with {@link #BASE_SIZE} this defines the size of an
      * {@link Entity}.</p>
      *
-     * @see SizeData#height()
+     * @see EntitySizeData#height()
      */
     public static final Key<BoundedValue<Float>> HEIGHT = DummyObjectProvider.createExtendedFor(Key.class,"HEIGHT");
 
@@ -1829,7 +1831,7 @@ public final class Keys {
      * Represents the {@link Key} for the "scale" for the size of an
      * {@link Entity}.
      *
-     * @see SizeData#scale()
+     * @see EntitySizeData#scale()
      */
     public static final Key<BoundedValue<Float>> SCALE = DummyObjectProvider.createExtendedFor(Key.class,"SCALE");
 
@@ -2151,6 +2153,14 @@ public final class Keys {
      * @see TradeOfferData#tradeOffers()
      */
     public static final Key<ListValue<TradeOffer>> TRADE_OFFERS = DummyObjectProvider.createExtendedFor(Key.class,"TRADE_OFFERS");
+
+    /**
+     * Represents the {@link Key} for representing the {@link WoodType}
+     * of a {@link Boat}.
+     *
+     * @see WoodData
+     */
+    public static final Key<Value<WoodType>> WOOD_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"WOOD_TYPE");
 
     /**
      * Represents the {@link Key} for whether an {@link ItemStack} is unbreakable.

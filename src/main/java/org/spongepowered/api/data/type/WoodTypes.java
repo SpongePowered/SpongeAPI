@@ -22,43 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable;
+package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.ImmutableSizeData;
-import org.spongepowered.api.data.value.BoundedValue;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-/**
- * Represents the base and height sizes of an entity if it has physical
- * form. Usually applies to all types of {@link Entity}.
- */
-public interface SizeData extends DataManipulator<SizeData, ImmutableSizeData> {
+public final class WoodTypes {
 
-    /**
-     * Gets the current x/z size of this entity.
-     *
-     * @return The width of this entity
-     * @see Keys#BASE_SIZE
-     */
-    Value.Mutable<Float> base();
+    // SORTFIELDS:ON
 
-    /**
-     * Gets the current y height of this entity.
-     *
-     * @return The current y height
-     * @see Keys#HEIGHT
-     */
-    Value.Mutable<Float> height();
+    public static final WoodType ACACIA = DummyObjectProvider.createFor(WoodType.class, "ACACIA");
 
-    /**
-     * Gets the {@link BoundedValue.Mutable} for the "scale" size.
-     *
-     * @return The value for the scale
-     * @see Keys#SCALE
-     */
-    BoundedValue.Mutable<Float> scale();
+    public static final WoodType BIRCH = DummyObjectProvider.createFor(WoodType.class, "BIRCH");
+
+    public static final WoodType DARK_OAK = DummyObjectProvider.createFor(WoodType.class, "DARK_OAK");
+
+    public static final WoodType JUNGLE = DummyObjectProvider.createFor(WoodType.class, "JUNGLE");
+
+    public static final WoodType OAK = DummyObjectProvider.createFor(WoodType.class, "OAK");
+
+    public static final WoodType SPRUCE = DummyObjectProvider.createFor(WoodType.class, "SPRUCE");
+
+    // SORTFIELDS:OFF
+
+    // Suppress default constructor to ensure non-instantiability.
+    private WoodTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 
 }

@@ -131,7 +131,7 @@ sortClassFields {
     add 'main', 'org.spongepowered.api.data.type.SlabPortions'
     add 'main', 'org.spongepowered.api.data.type.StairShapes'
     add 'main', 'org.spongepowered.api.data.type.ToolTypes'
-    add 'main', 'org.spongepowered.api.data.type.TreeTypes'
+    add 'main', 'org.spongepowered.api.data.type.WoodTypes'
     add 'main', 'org.spongepowered.api.data.type.WireAttachmentTypes'
     add 'main', 'org.spongepowered.api.block.BlockTypes'
     add 'main', 'org.spongepowered.api.block.tileentity.TileEntityTypes'

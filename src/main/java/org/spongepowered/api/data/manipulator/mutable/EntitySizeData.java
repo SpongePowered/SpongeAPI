@@ -22,13 +22,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.data.manipulator.mutable;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.text.translation.Translatable;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableEntitySizeData;
+import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.entity.Entity;
 
-@CatalogedBy(TreeTypes.class)
-public interface TreeType extends CatalogType, Translatable {
+/**
+ * Represents the base and height sizes of an entity if it has physical
+ * form. Usually applies to all types of {@link Entity}.
+ */
+public interface EntitySizeData extends DataManipulator<EntitySizeData, ImmutableEntitySizeData> {
+
+    /**
+     * Gets the current x/z size of this entity.
+     *
+     * @return The width of this entity
+     * @see Keys#BASE_SIZE
+     */
+    BoundedValue.Mutable<Double> base();
+
+    /**
+     * Gets the current y height of this entity.
+     *
+     * @return The current y height
+     * @see Keys#HEIGHT
+     */
+    BoundedValue.Mutable<Double> height();
+
+    /**
+     * Gets the {@link BoundedValue.Mutable} for the "scale" size.
+     *
+     * @return The value for the scale
+     * @see Keys#SCALE
+     */
+    BoundedValue.Mutable<Double> scale();
 
 }

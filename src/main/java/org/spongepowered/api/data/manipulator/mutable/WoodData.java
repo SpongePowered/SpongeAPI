@@ -22,31 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.data.manipulator.mutable;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableWoodData;
+import org.spongepowered.api.data.type.WoodType;
+import org.spongepowered.api.entity.vehicle.Boat;
 
-public final class TreeTypes {
-
-    // SORTFIELDS:ON
-
-    public static final TreeType ACACIA = DummyObjectProvider.createFor(TreeType.class, "ACACIA");
-
-    public static final TreeType BIRCH = DummyObjectProvider.createFor(TreeType.class, "BIRCH");
-
-    public static final TreeType DARK_OAK = DummyObjectProvider.createFor(TreeType.class, "DARK_OAK");
-
-    public static final TreeType JUNGLE = DummyObjectProvider.createFor(TreeType.class, "JUNGLE");
-
-    public static final TreeType OAK = DummyObjectProvider.createFor(TreeType.class, "OAK");
-
-    public static final TreeType SPRUCE = DummyObjectProvider.createFor(TreeType.class, "SPRUCE");
-
-    // SORTFIELDS:OFF
-
-    // Suppress default constructor to ensure non-instantiability.
-    private TreeTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
-    }
+/**
+ * An {@link VariantData} for the {@link WoodType}. The main use for this type
+ * is for a visual difference in the types of {@link Boat}s.
+ *
+ * @see Keys#WOOD_TYPE
+ */
+public interface WoodData extends VariantData<WoodType, WoodData, ImmutableWoodData> {
 
 }

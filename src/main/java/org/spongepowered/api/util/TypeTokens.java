@@ -52,7 +52,7 @@ import org.spongepowered.api.data.type.RailDirection;
 import org.spongepowered.api.data.type.SlabPortion;
 import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StructureMode;
-import org.spongepowered.api.data.type.TreeType;
+import org.spongepowered.api.data.type.WoodType;
 import org.spongepowered.api.data.type.WireAttachmentType;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.ListValue;
@@ -354,9 +354,9 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<Text>> TEXT_VALUE_TOKEN = new TypeToken<Value<Text>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<TreeType> TREE_TOKEN = new TypeToken<TreeType>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<WoodType> TREE_TOKEN = new TypeToken<WoodType>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<Value<TreeType>> TREE_VALUE_TOKEN = new TypeToken<Value<TreeType>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<Value<WoodType>> TREE_VALUE_TOKEN = new TypeToken<Value<WoodType>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<UUID> UUID_TOKEN = new TypeToken<UUID>() {private static final long serialVersionUID = -1;};
 
