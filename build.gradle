@@ -5,13 +5,21 @@ buildscript {
             name = 'gradle-plugins'
             url = 'https://plugins.gradle.org/m2'
         }
+        maven {
+            name = 'sponge'
+            url = 'https://repo.spongepowered.org/maven'
+        }
+        maven {
+            name = 'forge'
+            url = 'http://files.minecraftforge.net/maven'
+        }
     }
 
     dependencies {
         classpath 'gradle.plugin.net.minecrell:licenser:0.3'
         classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.4'
         classpath 'gradle.plugin.org.spongepowered:spongegradle:0.8.1'
-        classpath 'gradle.plugin.org.spongepowered:event-impl-gen:5.0.2'
+        classpath 'gradle.plugin.org.spongepowered:event-impl-gen:6.0.0'
     }
 }
 
@@ -89,6 +97,7 @@ artifacts {
 apply plugin: 'org.spongepowered.event-impl-gen'
 
 genEventImpl {
+    inclusiveAnnotation 'org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod'
     outputFactory = 'org.spongepowered.api.event.SpongeEventFactory'
 
     include 'org/spongepowered/api/event/*/**/*'
@@ -131,14 +140,13 @@ sortClassFields {
     add 'main', 'org.spongepowered.api.data.type.SlabPortions'
     add 'main', 'org.spongepowered.api.data.type.StairShapes'
     add 'main', 'org.spongepowered.api.data.type.ToolTypes'
-    add 'main', 'org.spongepowered.api.data.type.WoodTypes'
     add 'main', 'org.spongepowered.api.data.type.WireAttachmentTypes'
+    add 'main', 'org.spongepowered.api.data.type.WoodTypes'
     add 'main', 'org.spongepowered.api.block.BlockTypes'
     add 'main', 'org.spongepowered.api.block.tileentity.TileEntityTypes'
     add 'main', 'org.spongepowered.api.state.BooleanStateProperties'
     add 'main', 'org.spongepowered.api.state.EnumStateProperties'
     add 'main', 'org.spongepowered.api.state.IntegerStateProperties'
-    add 'main', 'org.spongepowered.api.state.EnumStateProperties'
     add 'main', 'org.spongepowered.api.data.persistence.DataFormats'
     add 'main', 'org.spongepowered.api.effect.particle.ParticleOptions'
     add 'main', 'org.spongepowered.api.effect.particle.ParticleTypes'

@@ -45,14 +45,15 @@ import java.util.function.DoubleUnaryOperator;
 public abstract class AbstractAttackEntityEvent extends AbstractModifierEvent<DamageFunction, DamageModifier> implements AttackEntityEvent {
 
     @UseField protected double originalDamage;
-    @UseField protected List<DamageFunction> originalFunctions;
+    @UseField protected List<ModifierFunction<DamageModifier>> originalFunctions;
 
     @UseField protected double baseDamage;
 
     @Override
     protected final void init() {
-        this.originalFunctions = this.init(this.originalDamage, this.originalFunctions);
-        this.baseDamage = this.originalDamage;
+        throw new IllegalStateException("This needs to be updated for 1.13!");
+        //this.originalFunctions = this.init(this.originalDamage, this.originalFunctions);
+        //this.baseDamage = this.originalDamage;
     }
 
     @Override
