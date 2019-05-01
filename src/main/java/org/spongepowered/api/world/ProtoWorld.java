@@ -36,11 +36,13 @@ import org.spongepowered.api.world.volume.InteractableVolume;
 import org.spongepowered.api.world.volume.LightCalculatingVolume;
 import org.spongepowered.api.world.volume.LocationCompositeValueStore;
 import org.spongepowered.api.world.volume.block.MutableBlockVolume;
+import org.spongepowered.api.world.volume.composite.ReadableCompositeVolume;
 import org.spongepowered.api.world.volume.entity.CollisionAwareEntityVolume;
 import org.spongepowered.api.world.volume.entity.MutableEntityVolume;
 import org.spongepowered.api.world.volume.tileentity.MutableTileEntityVolume;
 
 public interface ProtoWorld<P extends ProtoWorld<P>> extends
+        ReadableCompositeVolume,
         MutableBiomeVolume<P>,
         MutableBlockVolume<P>,
         MutableEntityVolume<P>,
