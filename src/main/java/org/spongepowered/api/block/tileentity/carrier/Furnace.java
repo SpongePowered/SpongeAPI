@@ -25,7 +25,7 @@
 package org.spongepowered.api.block.tileentity.carrier;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.tileentity.FurnaceData;
+import org.spongepowered.api.data.manipulator.mutable.FurnaceData;
 import org.spongepowered.api.data.value.BoundedValue;
 
 /**

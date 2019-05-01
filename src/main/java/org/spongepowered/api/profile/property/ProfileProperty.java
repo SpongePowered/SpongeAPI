@@ -26,7 +26,7 @@ package org.spongepowered.api.profile.property;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.data.manipulator.mutable.entity.SkinData;
+import org.spongepowered.api.data.manipulator.mutable.SkinData;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.profile.GameProfile;
 

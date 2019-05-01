@@ -29,12 +29,10 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.data.property.PropertyHolder;
-import org.spongepowered.api.fluid.data.manipulator.mutable.FluidTankData;
+import org.spongepowered.api.data.manipulator.mutable.FluidTankData;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.state.StateContainer;
 import org.spongepowered.api.util.annotation.CatalogedBy;
-
-import java.util.Optional;
 
 /**
  * The functional equivalent of an {@link ItemType} or {@link BlockType},

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.block.tileentity;
 
-import org.spongepowered.api.data.manipulator.mutable.tileentity.EndGatewayData;
+import org.spongepowered.api.data.manipulator.mutable.EndGatewayData;
 
 /**
  * Represents an End Gateway.

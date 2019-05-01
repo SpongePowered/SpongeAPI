@@ -25,7 +25,7 @@
 package org.spongepowered.api.entity.living.monster;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.entity.ExpirableData;
+import org.spongepowered.api.data.manipulator.mutable.ExpirableData;
 import org.spongepowered.api.data.value.Value;
 
 import java.time.Duration;

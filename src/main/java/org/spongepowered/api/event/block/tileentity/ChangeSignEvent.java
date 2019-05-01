@@ -25,8 +25,8 @@
 package org.spongepowered.api.event.block.tileentity;
 
 import org.spongepowered.api.block.tileentity.Sign;
-import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableSignData;
-import org.spongepowered.api.data.manipulator.mutable.tileentity.SignData;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableSignData;
+import org.spongepowered.api.data.manipulator.mutable.SignData;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 

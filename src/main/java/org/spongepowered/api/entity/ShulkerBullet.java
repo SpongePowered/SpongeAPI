@@ -25,7 +25,7 @@
 package org.spongepowered.api.entity;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.block.DirectionalData;
+import org.spongepowered.api.data.manipulator.mutable.DirectionalData;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.golem.Shulker;
 import org.spongepowered.api.entity.projectile.DamagingProjectile;

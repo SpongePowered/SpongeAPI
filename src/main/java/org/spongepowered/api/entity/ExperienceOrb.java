@@ -25,7 +25,7 @@
 package org.spongepowered.api.entity;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.entity.ExpOrbData;
+import org.spongepowered.api.data.manipulator.mutable.ExpOrbData;
 import org.spongepowered.api.data.value.Value;
 
 /**

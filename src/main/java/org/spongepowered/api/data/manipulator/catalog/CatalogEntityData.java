@@ -27,7 +27,6 @@ package org.spongepowered.api.data.manipulator.catalog;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.*;
-import org.spongepowered.api.data.manipulator.mutable.entity.*;
 import org.spongepowered.api.data.type.*;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.Entity;
