@@ -45,11 +45,11 @@ public final class EntityTypes {
 
     public static final EntityType CAVE_SPIDER = DummyObjectProvider.createFor(EntityType.class, "CAVE_SPIDER");
 
-    public static final EntityType CHESTED_MINECART = DummyObjectProvider.createFor(EntityType.class, "CHESTED_MINECART");
+    public static final EntityType CHEST_MINECART = DummyObjectProvider.createFor(EntityType.class, "CHEST_MINECART");
 
     public static final EntityType CHICKEN = DummyObjectProvider.createFor(EntityType.class, "CHICKEN");
 
-    public static final EntityType COMMANDBLOCK_MINECART = DummyObjectProvider.createFor(EntityType.class, "COMMANDBLOCK_MINECART");
+    public static final EntityType COMMAND_BLOCK_MINECART = DummyObjectProvider.createFor(EntityType.class, "COMMAND_BLOCK_MINECART");
 
     public static final EntityType COD = DummyObjectProvider.createFor(EntityType.class, "COD");
 
@@ -69,19 +69,21 @@ public final class EntityTypes {
 
     public static final EntityType ELDER_GUARDIAN = DummyObjectProvider.createFor(EntityType.class, "ELDER_GUARDIAN");
 
+    public static final EntityType END_CRYSTAL = DummyObjectProvider.createFor(EntityType.class, "END_CRYSTAL");
+
     public static final EntityType ENDERMAN = DummyObjectProvider.createFor(EntityType.class, "ENDERMAN");
 
     public static final EntityType ENDERMITE = DummyObjectProvider.createFor(EntityType.class, "ENDERMITE");
-
-    public static final EntityType ENDER_CRYSTAL = DummyObjectProvider.createFor(EntityType.class, "ENDER_CRYSTAL");
 
     public static final EntityType ENDER_DRAGON = DummyObjectProvider.createFor(EntityType.class, "ENDER_DRAGON");
 
     public static final EntityType ENDER_PEARL = DummyObjectProvider.createFor(EntityType.class, "ENDER_PEARL");
 
-    public static final EntityType EVOCATION_FANGS = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
+    public static final EntityType EVOKER = DummyObjectProvider.createFor(EntityType.class, "EVOKER");
 
-    public static final EntityType EVOCATION_ILLAGER = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_ILLAGER");
+    public static final EntityType EVOKER_FANGS = DummyObjectProvider.createFor(EntityType.class, "EVOKER_FANGS");
+
+    public static final EntityType EXPERIENCE_BOTTLE = DummyObjectProvider.createFor(EntityType.class, "EXPERIENCE_BOTTLE");
 
     public static final EntityType EXPERIENCE_ORB = DummyObjectProvider.createFor(EntityType.class, "EXPERIENCE_ORB");
 
@@ -91,9 +93,9 @@ public final class EntityTypes {
 
     public static final EntityType FIREBALL = DummyObjectProvider.createFor(EntityType.class, "FIREBALL");
 
-    public static final EntityType FIREWORK = DummyObjectProvider.createFor(EntityType.class, "FIREWORK");
+    public static final EntityType FIREWORK_ROCKET = DummyObjectProvider.createFor(EntityType.class, "FIREWORK_ROCKET");
 
-    public static final EntityType FISHING_HOOK = DummyObjectProvider.createFor(EntityType.class, "FISHING_HOOK");
+    public static final EntityType FISHING_BOBBER = DummyObjectProvider.createFor(EntityType.class, "FISHING_BOBBER");
 
     public static final EntityType FURNACE_MINECART = DummyObjectProvider.createFor(EntityType.class, "FURNACE_MINECART");
 
@@ -109,7 +111,7 @@ public final class EntityTypes {
 
     public static final EntityType HUSK = DummyObjectProvider.createFor(EntityType.class, "HUSK");
 
-    public static final EntityType ILLUSION_ILLAGER = DummyObjectProvider.createFor(EntityType.class, "ILLUSION_ILLAGER");
+    public static final EntityType ILLUSIONER = DummyObjectProvider.createFor(EntityType.class, "ILLUSIONER");
 
     public static final EntityType IRON_GOLEM = DummyObjectProvider.createFor(EntityType.class, "IRON_GOLEM");
 
@@ -117,9 +119,9 @@ public final class EntityTypes {
 
     public static final EntityType ITEM_FRAME = DummyObjectProvider.createFor(EntityType.class, "ITEM_FRAME");
 
-    public static final EntityType LEASH_HITCH = DummyObjectProvider.createFor(EntityType.class, "LEASH_HITCH");
+    public static final EntityType LEASH_KNOT = DummyObjectProvider.createFor(EntityType.class, "LEASH_KNOT");
 
-    public static final EntityType LIGHTNING = DummyObjectProvider.createFor(EntityType.class, "LIGHTNING");
+    public static final EntityType LIGHTNING_BOLT = DummyObjectProvider.createFor(EntityType.class, "LIGHTNING_BOLT");
 
     public static final EntityType LLAMA = DummyObjectProvider.createFor(EntityType.class, "LLAMA");
 
@@ -127,11 +129,11 @@ public final class EntityTypes {
 
     public static final EntityType MAGMA_CUBE = DummyObjectProvider.createFor(EntityType.class, "MAGMA_CUBE");
 
-    public static final EntityType MOB_SPAWNER_MINECART = DummyObjectProvider.createFor(EntityType.class, "MOB_SPAWNER_MINECART");
+    public static final EntityType MINECART = DummyObjectProvider.createFor(EntityType.class, "MINECART");
+
+    public static final EntityType MOOSHROOM = DummyObjectProvider.createFor(EntityType.class, "MOOSHROOM");
 
     public static final EntityType MULE = DummyObjectProvider.createFor(EntityType.class, "MULE");
-
-    public static final EntityType MUSHROOM_COW = DummyObjectProvider.createFor(EntityType.class, "MUSHROOM_COW");
 
     public static final EntityType OCELOT = DummyObjectProvider.createFor(EntityType.class, "OCELOT");
 
@@ -143,19 +145,15 @@ public final class EntityTypes {
 
     public static final EntityType PIG = DummyObjectProvider.createFor(EntityType.class, "PIG");
 
-    public static final EntityType PIG_ZOMBIE = DummyObjectProvider.createFor(EntityType.class, "PIG_ZOMBIE");
-
     public static final EntityType PLAYER = DummyObjectProvider.createFor(EntityType.class, "PLAYER");
 
     public static final EntityType POLAR_BEAR = DummyObjectProvider.createFor(EntityType.class, "POLAR_BEAR");
 
-    public static final EntityType PRIMED_TNT = DummyObjectProvider.createFor(EntityType.class, "PRIMED_TNT");
+    public static final EntityType POTION = DummyObjectProvider.createFor(EntityType.class, "POTION");
 
     public static final EntityType PUFFERFISH = DummyObjectProvider.createFor(EntityType.class, "PUFFERFISH");
 
     public static final EntityType RABBIT = DummyObjectProvider.createFor(EntityType.class, "RABBIT");
-
-    public static final EntityType RIDEABLE_MINECART = DummyObjectProvider.createFor(EntityType.class, "RIDEABLE_MINECART");
 
     public static final EntityType SALMON = DummyObjectProvider.createFor(EntityType.class, "SALMON");
 
@@ -175,23 +173,23 @@ public final class EntityTypes {
 
     public static final EntityType SMALL_FIREBALL = DummyObjectProvider.createFor(EntityType.class, "SMALL_FIREBALL");
 
+    public static final EntityType SNOW_GOLEM = DummyObjectProvider.createFor(EntityType.class, "SNOW_GOLEM");
+
     public static final EntityType SNOWBALL = DummyObjectProvider.createFor(EntityType.class, "SNOWBALL");
 
-    public static final EntityType SNOWMAN = DummyObjectProvider.createFor(EntityType.class, "SNOWMAN");
+    public static final EntityType SPAWNER_MINECART = DummyObjectProvider.createFor(EntityType.class, "SPAWNER_MINECART");
 
     public static final EntityType SPECTRAL_ARROW = DummyObjectProvider.createFor(EntityType.class, "SPECTRAL_ARROW");
 
     public static final EntityType SPIDER = DummyObjectProvider.createFor(EntityType.class, "SPIDER");
 
-    public static final EntityType SPLASH_POTION = DummyObjectProvider.createFor(EntityType.class, "SPLASH_POTION");
-
     public static final EntityType SQUID = DummyObjectProvider.createFor(EntityType.class, "SQUID");
 
     public static final EntityType STRAY = DummyObjectProvider.createFor(EntityType.class, "STRAY");
 
-    public static final EntityType THROWN_EXP_BOTTLE = DummyObjectProvider.createFor(EntityType.class, "THROWN_EXP_BOTTLE");
+    public static final EntityType ARROW = DummyObjectProvider.createFor(EntityType.class, "ARROW");
 
-    public static final EntityType TIPPED_ARROW = DummyObjectProvider.createFor(EntityType.class, "TIPPED_ARROW");
+    public static final EntityType TNT = DummyObjectProvider.createFor(EntityType.class, "TNT");
 
     public static final EntityType TNT_MINECART = DummyObjectProvider.createFor(EntityType.class, "TNT_MINECART");
 
@@ -205,7 +203,7 @@ public final class EntityTypes {
 
     public static final EntityType VILLAGER = DummyObjectProvider.createFor(EntityType.class, "VILLAGER");
 
-    public static final EntityType VINDICATION_ILLAGER = DummyObjectProvider.createFor(EntityType.class, "VINDICATION_ILLAGER");
+    public static final EntityType VINDICATOR = DummyObjectProvider.createFor(EntityType.class, "VINDICATOR");
 
     public static final EntityType WITCH = DummyObjectProvider.createFor(EntityType.class, "WITCH");
 
@@ -220,6 +218,8 @@ public final class EntityTypes {
     public static final EntityType ZOMBIE = DummyObjectProvider.createFor(EntityType.class, "ZOMBIE");
 
     public static final EntityType ZOMBIE_HORSE = DummyObjectProvider.createFor(EntityType.class, "ZOMBIE_HORSE");
+
+    public static final EntityType ZOMBIE_PIGMAN = DummyObjectProvider.createFor(EntityType.class, "ZOMBIE_PIGMAN");
 
     public static final EntityType ZOMBIE_VILLAGER = DummyObjectProvider.createFor(EntityType.class, "ZOMBIE_VILLAGER");
 
