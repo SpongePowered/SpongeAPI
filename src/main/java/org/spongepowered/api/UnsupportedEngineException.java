@@ -29,8 +29,9 @@ package org.spongepowered.api;
  */
 public class UnsupportedEngineException extends UnsupportedOperationException {
 
-    public UnsupportedEngineException(final String message) {
-        super(message);
-    }
+  private static final long serialVersionUID = 5671217624171369435L;
 
+  public UnsupportedEngineException(final String message) {
+    super(message);
+  }
 }

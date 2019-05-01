@@ -28,7 +28,7 @@ import org.spongepowered.api.world.volume.UnmodifiableVolume;
 import org.spongepowered.api.world.volume.block.UnmodifiableBlockVolume;
 
 public interface UnmodifiableEntityArchetypeVolume<U extends UnmodifiableEntityArchetypeVolume<U>> extends ReadableEntityArchetypeVolume,
-    UnmodifiableVolume, UnmodifiableBlockVolume<U>, WorkableEntityArchetypeVolume<U> {
+    UnmodifiableVolume, UnmodifiableBlockVolume<U>, StreamableEntityArchetypeVolume<U> {
 
     @SuppressWarnings("unchecked")
     @Override

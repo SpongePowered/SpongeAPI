@@ -31,6 +31,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.effect.Viewer;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.service.context.ContextSource;
 import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
@@ -45,6 +46,7 @@ import org.spongepowered.api.world.gen.TerrainGenerator;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.storage.WorldStorage;
 import org.spongepowered.api.world.teleport.PortalAgent;
+import org.spongepowered.api.world.volume.TrackedVolume;
 import org.spongepowered.api.world.volume.block.PhysicsAwareMutableBlockVolume;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 
@@ -56,6 +58,7 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
+import java.util.function.Predicate;
 
 /**
  * A loaded Minecraft world.
@@ -69,6 +72,18 @@ public interface World extends ProtoWorld<World>, LocationCreator<World>, Physic
      * @return The players
      */
     Collection<Player> getPlayers();
+
+    Optional<Player> getClosestPlayer(Vector3i position, double distance);
+
+    Optional<Player> getClosestPlayer(Vector3i position, double distance, Predicate<? super Player> predicate);
+
+    Optional<Player> getClosestPlayer(Entity entity, double distance);
+
+    Optional<Player> getClosestPlayer(Entity entity, double distance, Predicate<? super Player> predicate);
+
+    Optional<Player> getClosestPlayer(int x, int y, int z, double distance);
+
+    Optional<Player> getClosestPlayer(int x, int y, int z, double distance, Predicate<? super Player> predicate);
 
     /**
      * Gets a snapshot of this block at the current point in time.
@@ -359,20 +374,6 @@ public interface World extends ProtoWorld<World>, LocationCreator<World>, Physic
     Iterable<Chunk> getLoadedChunks();
 
     /**
-     * Gets the world border for the world.
-     *
-     * @return The world border
-     */
-    WorldBorder getWorldBorder();
-
-    /**
-     * Returns the {@link Dimension} of this world.
-     *
-     * @return The {@link Dimension}
-     */
-    Dimension getDimension();
-
-    /**
      * Gets the {@link TerrainGenerator} for this world.
      *
      * <p>Any changes made to the world generator will only affect newly
@@ -380,7 +381,7 @@ public interface World extends ProtoWorld<World>, LocationCreator<World>, Physic
      *
      * @return The world generator
      */
-    TerrainGenerator getTerrainGenerator();
+    TerrainGenerator<?> getTerrainGenerator();
 
     /**
      * Gets the properties for this world.
@@ -512,13 +513,6 @@ public interface World extends ProtoWorld<World>, LocationCreator<World>, Physic
      * @return The portal agent
      */
     PortalAgent getPortalAgent();
-
-    /**
-     * Gets the sea level of the world.
-     *
-     * @return The sea level
-     */
-    int getSeaLevel();
 
 
     /**

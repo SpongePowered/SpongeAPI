@@ -29,7 +29,7 @@ import org.spongepowered.api.Game;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.world.ProtoWorld;
-import org.spongepowered.api.world.UpdatableVolume;
+import org.spongepowered.api.world.volume.UpdatableVolume;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.volume.biome.MutableBiomeVolume;
 import org.spongepowered.api.world.volume.LightCalculatingVolume;

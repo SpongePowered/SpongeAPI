@@ -47,6 +47,6 @@ public interface VolumeMerger<I, V extends UnmodifiableVolume> {
      * @param zSecond The z coordinate for the second biome
      * @return The produced biome
      */
-    I merge(V firstVolume, int xFirst, int yFirst, int zFirst, V secondVolume, int xSecond, int ySecond, int zSecond);
+    I merge(V firstVolume, I value, int xFirst, int yFirst, int zFirst, V secondVolume, I secondValue, int xSecond, int ySecond, int zSecond);
 
 }

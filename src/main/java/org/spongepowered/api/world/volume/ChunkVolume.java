@@ -26,6 +26,8 @@ package org.spongepowered.api.world.volume;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.world.Locatable;
+import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.chunk.ProtoChunk;
 import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
@@ -40,54 +42,65 @@ import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
  */
 public interface ChunkVolume extends ReadableBlockVolume {
 
+    /**
+     * Gets the loaded chunk at the given chunk coordinate position. The position
+     * is the same as {@link ProtoChunk#getChunkPosition()}. The difference
+     * between a block placed within a {@link ProtoWorld} is different from a
+     * {@link ProtoChunk}'s position, and therefore care should be taken when
+     * requesting a chunk. It is not guaranteed that the returned {@link ProtoChunk}
+     * is {@link ProtoChunk#isEmpty() empty} or not, nor the {@link ProtoChunk#getState() state}
+     * of the chunk.
+     *
+     * <p>In Vanilla, the y coordinate will always be 0.</p>
+     *
+     * @param x The x coordinate
+     * @param y The y coordinate
+     * @param z The z coordinate
+     * @return The chunk, may be empty
+     */
     ProtoChunk<?> getChunk(int x, int y, int z);
 
-    default ProtoChunk<?> getChunk(Vector3i pos) {
-        return getChunk(pos.getX(), pos.getY(), pos.getZ());
+    /**
+     * Gets the loaded chunk at the given block coordinate position.
+     *
+     * @param blockPosition The position
+     * @return The chunk, if available
+     */
+    default ProtoChunk<?> getChunkAtBlock(Vector3i blockPosition) {
+        return getChunkAtBlock(blockPosition.getX(), blockPosition.getY(), blockPosition.getZ());
     }
 
-    boolean isChunkLoaded(int x, int y, int z, boolean allowEmpty);
-
-    default boolean isBlockLoaded(int x, int y, int z) {
-        return isBlockLoaded(x, y, z, true);
+    /**
+     * Gets the loaded chunk at the given chunk coordinate position. The position
+     * is the block position relative to the {@link ProtoChunk#getChunkPosition()},
+     * and therefor is going to return a different chunk from {@link #getChunk(Vector3i)}.
+     * This is more usable from {@link Location}s or a {@link Locatable} that returns
+     * a {@link Vector3i position} in relation to a {@link ProtoWorld}.
+     *
+     * @param bx The x coordinate
+     * @param by The y coordinate
+     * @param bz The z coordinate
+     * @return The chunk, if available
+     */
+    default ProtoChunk<?> getChunkAtBlock(int bx, int by, int bz) {
+        return getChunk(Sponge.getServer().getChunkLayout().forceToChunk(bx, by, bz));
     }
 
-    default boolean isBlockLoaded(int x, int y, int z, boolean allowEmpty) {
-        final Vector3i chunkPos = Sponge.getServer().getChunkLayout().forceToChunk(x, y, z);
-        return isChunkLoaded(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ(), allowEmpty);
+    /**
+     * Gets the loaded chunk at the given chunk coordinate position. The position
+     * is the same as {@link ProtoChunk#getChunkPosition()}. The difference
+     * between a block placed within a {@link ProtoWorld} is different from a
+     * {@link ProtoChunk}'s position, and therefore care should be taken when
+     * requesting a chunk. It is not guaranteed that the returned {@link ProtoChunk}
+     * is {@link ProtoChunk#isEmpty() empty} or not, nor the {@link ProtoChunk#getState() state}
+     * of the chunk.
+     *
+     * @param chunkPosition The position
+     * @return The chunk, if available
+     */
+    default ProtoChunk<?> getChunk(Vector3i chunkPosition) {
+        return getChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ());
     }
 
-    default boolean isBlockLoaded(Vector3i pos) {
-        return this.isBlockLoaded(pos.getX(), pos.getY(), pos.getZ(), true);
-    }
 
-    default boolean isBlockLoaded(Vector3i pos, boolean allowEmpty) {
-        return this.isBlockLoaded(pos.getX(), pos.getY(), pos.getZ(), allowEmpty);
-    }
-
-    default boolean isAreaLoaded(Vector3i pos, int radius) {
-        return this.isAreaLoaded(pos, radius, true);
-    }
-
-    default boolean isAreaLoaded(Vector3i center, int radius, boolean allowEmpty) {
-        return this.isAreaLoaded(
-            center.getX() - radius,
-            center.getY() - radius,
-            center.getZ() - radius,
-            center.getX() + radius,
-            center.getY() + radius,
-            center.getZ() + radius,
-            allowEmpty
-        );
-    }
-
-    default boolean isAreaLoaded(Vector3i from, Vector3i to) {
-        return this.isAreaLoaded(from, to, true);
-    }
-
-    default boolean isAreaLoaded(Vector3i from, Vector3i to, boolean allowEmpty) {
-        return this.isAreaLoaded(from.getX(), from.getY(), from.getZ(), to.getX(), to.getY(), to.getZ(), allowEmpty);
-    }
-
-    boolean isAreaLoaded(int xStart, int yStart, int zStart, int xEnd, int yEnd, int zEnd, boolean allowEmpty);
 }

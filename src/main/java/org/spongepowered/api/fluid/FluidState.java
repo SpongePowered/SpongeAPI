@@ -74,6 +74,8 @@ public interface FluidState extends State<FluidState> {
      */
     FluidType getType();
 
+    boolean isEmpty();
+
     /**
      * An {@link ImmutableDataBuilder} for a {@link FluidState}. Just like the
      * {@link ImmutableDataBuilder}, the {@link DataManipulator}s passed in to

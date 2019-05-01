@@ -27,10 +27,10 @@ package org.spongepowered.api.world.volume.biome;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
 import org.spongepowered.api.world.biome.BiomeType;
-import org.spongepowered.api.world.volume.biome.worker.MutableBiomeVolumeWorker;
+import org.spongepowered.api.world.volume.biome.worker.MutableBiomeVolumeStream;
 import org.spongepowered.api.world.volume.MutableVolume;
 
-public interface MutableBiomeVolume<M extends MutableBiomeVolume<M>> extends WorkableBiomeVolume<M>, MutableVolume {
+public interface MutableBiomeVolume<M extends MutableBiomeVolume<M>> extends StreamableBiomeVolume<M>, MutableVolume {
 
     /**
      * Sets the {@link BiomeType} at the given position in this volume.
@@ -59,7 +59,7 @@ public interface MutableBiomeVolume<M extends MutableBiomeVolume<M>> extends Wor
     boolean setBiome(int x, int y, int z, BiomeType biome);
 
     @Override
-    MutableBiomeVolumeWorker<M> getBiomeWorker();
+    MutableBiomeVolumeStream<M> toBiomeStream();
 
     @Override
     M getView(Vector3i newMin, Vector3i newMax);

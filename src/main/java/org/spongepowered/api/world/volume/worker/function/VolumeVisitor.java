@@ -30,14 +30,6 @@ package org.spongepowered.api.world.volume.worker.function;
 @FunctionalInterface
 public interface VolumeVisitor<V> {
 
-    /**
-     * Visits a biome given as its volume and coordinates.
-     *
-     * @param volume The volume containing the biome
-     * @param x The x coordinate of the biome
-     * @param y The y coordinate of the biome
-     * @param z The z coordinate of the biome
-     */
     void visit(V volume, int x, int y, int z);
 
 }
