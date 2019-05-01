@@ -289,6 +289,7 @@ public final class CatalogTypes {
     public static final Class<WireAttachmentType> WIRE_ATTACHMENT_TYPE = WireAttachmentType.class;
 
     public static final Class<WorldArchetype> WORLD_ARCHETYPE = WorldArchetype.class;
+
     
     public static final Class<WornEquipmentType> WORN_EQUIPMENT_TYPE = WornEquipmentType.class;
 

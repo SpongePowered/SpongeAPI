@@ -38,6 +38,7 @@ import org.spongepowered.api.entity.living.animal.Chicken;
 import org.spongepowered.api.entity.living.animal.Cow;
 import org.spongepowered.api.entity.living.animal.Dolphin;
 import org.spongepowered.api.entity.living.animal.Donkey;
+import org.spongepowered.api.entity.living.animal.Fox;
 import org.spongepowered.api.entity.living.animal.Llama;
 import org.spongepowered.api.entity.living.animal.Mooshroom;
 import org.spongepowered.api.entity.living.animal.Mule;
@@ -144,17 +145,17 @@ public final class EntityTypes {
 
     public static final EntityType<Chicken> CHICKEN = dummy("CHICKEN");
 
-    public static final EntityType<CommandBlockMinecart> COMMAND_BLOCK_MINECART = dummy("COMMAND_BLOCK_MINECART");
-
     public static final EntityType<Cod> COD = dummy("COD");
+
+    public static final EntityType<CommandBlockMinecart> COMMAND_BLOCK_MINECART = dummy("COMMAND_BLOCK_MINECART");
 
     public static final EntityType<Cow> COW = dummy("COW");
 
     public static final EntityType<Creeper> CREEPER = dummy("CREEPER");
 
-    public static final EntityType<Donkey> DONKEY = dummy("DONKEY");
-
     public static final EntityType<Dolphin> DOLPHIN = dummy("DOLPHIN");
+
+    public static final EntityType<Donkey> DONKEY = dummy("DONKEY");
 
     public static final EntityType<DragonFireball> DRAGON_FIREBALL = dummy("DRAGON_FIREBALL");
 
@@ -164,8 +165,6 @@ public final class EntityTypes {
 
     public static final EntityType<ElderGuardian> ELDER_GUARDIAN = dummy("ELDER_GUARDIAN");
 
-    public static final EntityType<EndCrystal> END_CRYSTAL = dummy("END_CRYSTAL");
-
     public static final EntityType<Enderman> ENDERMAN = dummy("ENDERMAN");
 
     public static final EntityType<Endermite> ENDERMITE = dummy("ENDERMITE");
@@ -173,6 +172,8 @@ public final class EntityTypes {
     public static final EntityType<EnderDragon> ENDER_DRAGON = dummy("ENDER_DRAGON");
 
     public static final EntityType<EnderPearl> ENDER_PEARL = dummy("ENDER_PEARL");
+
+    public static final EntityType<EndCrystal> END_CRYSTAL = dummy("END_CRYSTAL");
 
     public static final EntityType<Evoker> EVOKER = dummy("EVOKER");
 
@@ -191,6 +192,8 @@ public final class EntityTypes {
     public static final EntityType<FireworkRocket> FIREWORK_ROCKET = dummy("FIREWORK_ROCKET");
 
     public static final EntityType<FishingBobber> FISHING_BOBBER = dummy("FISHING_BOBBER");
+
+    public static final EntityType<Fox> FOX = dummy("FOX");
 
     public static final EntityType<FurnaceMinecart> FURNACE_MINECART = dummy("FURNACE_MINECART");
 
@@ -268,9 +271,9 @@ public final class EntityTypes {
 
     public static final EntityType<SmallFireball> SMALL_FIREBALL = dummy("SMALL_FIREBALL");
 
-    public static final EntityType<SnowGolem> SNOW_GOLEM = dummy("SNOW_GOLEM");
-
     public static final EntityType<Snowball> SNOWBALL = dummy("SNOWBALL");
+
+    public static final EntityType<SnowGolem> SNOW_GOLEM = dummy("SNOW_GOLEM");
 
     public static final EntityType<SpawnerMinecart> SPAWNER_MINECART = dummy("SPAWNER_MINECART");
 

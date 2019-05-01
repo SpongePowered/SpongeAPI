@@ -33,25 +33,25 @@ public final class CatTypes {
 
     // SORTFIELDS:ON
 
+    public static final CatType ALL_BLACK = DummyObjectProvider.createFor(CatType.class, "ALL_BLACK");
+
     public static final CatType BLACK = DummyObjectProvider.createFor(CatType.class, "BLACK");
-
-    public static final CatType RED = DummyObjectProvider.createFor(CatType.class, "RED");
-
-    public static final CatType SIAMESE = DummyObjectProvider.createFor(CatType.class, "SIAMESE");
 
     public static final CatType BRITISH_SHORTHAIR = DummyObjectProvider.createFor(CatType.class, "BRITISH_SHORTHAIR");
 
     public static final CatType CALICO = DummyObjectProvider.createFor(CatType.class, "CALICO");
 
+    public static final CatType JELLIE = DummyObjectProvider.createFor(CatType.class, "JELLIE");
+
     public static final CatType PERSIAN = DummyObjectProvider.createFor(CatType.class, "PERSIAN");
 
     public static final CatType RAGDOLL = DummyObjectProvider.createFor(CatType.class, "RAGDOLL");
 
+    public static final CatType RED = DummyObjectProvider.createFor(CatType.class, "RED");
+
+    public static final CatType SIAMESE = DummyObjectProvider.createFor(CatType.class, "SIAMESE");
+
     public static final CatType WHITE = DummyObjectProvider.createFor(CatType.class, "WHITE");
-
-    public static final CatType JELLIE = DummyObjectProvider.createFor(CatType.class, "JELLIE");
-
-    public static final CatType ALL_BLACK = DummyObjectProvider.createFor(CatType.class, "ALL_BLACK");
 
     // SORTFIELDS:OFF
 

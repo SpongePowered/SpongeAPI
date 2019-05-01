@@ -25,17 +25,16 @@
 package org.spongepowered.api.data.manipulator.mutable;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.immutable.ImmutableCatData;
-import org.spongepowered.api.data.type.CatType;
-import org.spongepowered.api.entity.living.animal.Cat;
-import org.spongepowered.api.entity.living.animal.Ocelot;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableFoxData;
+import org.spongepowered.api.data.type.FoxType;
+import org.spongepowered.api.entity.living.animal.Fox;
 
 /**
- * A type of {@link VariantData} for {@link CatType}s belonging
- * to a {@link Cat}.
+ * A type of {@link VariantData} for {@link FoxType}s belonging
+ * to a {@link Fox}.
  *
- * @see Keys#CAT_TYPE
+ * @see Keys#FOX_TYPE
  */
-public interface CatData extends VariantData<CatType, CatData, ImmutableCatData> {
+public interface FoxData extends VariantData<FoxType, FoxData, ImmutableFoxData> {
 
 }

@@ -147,7 +147,6 @@ public final class DamageModifierTypes {
      */
     public static final DamageModifierType SWEEPING = DummyObjectProvider.createFor(DamageModifierType.class, "SWEEPING");
 
-
     /**
      * Represents the {@link DamageModifier} that will modify damage from
      * an {@link EnchantmentType} on an equipped {@link ItemStack}.

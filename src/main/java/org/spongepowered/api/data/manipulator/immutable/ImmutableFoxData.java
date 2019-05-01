@@ -22,20 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable;
+package org.spongepowered.api.data.manipulator.immutable;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.immutable.ImmutableCatData;
-import org.spongepowered.api.data.type.CatType;
-import org.spongepowered.api.entity.living.animal.Cat;
-import org.spongepowered.api.entity.living.animal.Ocelot;
+import org.spongepowered.api.data.manipulator.mutable.FoxData;
+import org.spongepowered.api.data.type.FoxType;
+import org.spongepowered.api.entity.living.animal.Fox;
 
 /**
- * A type of {@link VariantData} for {@link CatType}s belonging
- * to a {@link Cat}.
- *
- * @see Keys#CAT_TYPE
+ * A type of {@link ImmutableVariantData} for {@link FoxType}s belonging
+ * to a {@link Fox}.
  */
-public interface CatData extends VariantData<CatType, CatData, ImmutableCatData> {
+public interface ImmutableFoxData extends ImmutableVariantData<FoxType, ImmutableFoxData, FoxData> {
 
 }

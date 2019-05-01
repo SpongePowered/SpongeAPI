@@ -52,6 +52,7 @@ import org.spongepowered.api.data.type.Career;
 import org.spongepowered.api.data.type.ChestAttachmentType;
 import org.spongepowered.api.data.type.ComparatorType;
 import org.spongepowered.api.data.type.DyeColor;
+import org.spongepowered.api.data.type.FoxType;
 import org.spongepowered.api.data.type.HandPreference;
 import org.spongepowered.api.data.type.Hinge;
 import org.spongepowered.api.data.type.HorseColor;
@@ -91,6 +92,7 @@ import org.spongepowered.api.entity.FallingBlock;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.ShulkerBullet;
 import org.spongepowered.api.entity.living.animal.Cat;
+import org.spongepowered.api.entity.living.animal.Fox;
 import org.spongepowered.api.entity.projectile.FireworkRocket;
 import org.spongepowered.api.entity.vehicle.Boat;
 import org.spongepowered.api.item.potion.PotionType;
@@ -588,6 +590,13 @@ public final class Keys {
     public static final Key<Value<Career>> CAREER = DummyObjectProvider.createExtendedFor(Key.class,"CAREER");
 
     /**
+     * Represents the {@link Key} for the type of a {@link Cat}.
+     *
+     * @see CatData#type()
+     */
+    public static final Key<Value<CatType>> CAT_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"CAT_TYPE");
+
+    /**
      * Represents the {@link Key} for the attachment of a {@link BlockTypes#CHEST}
      * or {@link BlockTypes#TRAPPED_CHEST}.
      *
@@ -1017,6 +1026,13 @@ public final class Keys {
      * @see FoodData#foodLevel()
      */
     public static final Key<BoundedValue<Integer>> FOOD_LEVEL = DummyObjectProvider.createExtendedFor(Key.class,"FOOD_LEVEL");
+
+    /**
+     * Represents the {@link Key} for the type of a {@link Fox}.
+     *
+     * @see FoxData#type()
+     */
+    public static final Key<Value<FoxType>> FOX_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"FOX_TYPE");
 
     /**
      * Represents the {@link Key} for the time a {@link FusedExplosive}'s fuse
@@ -1550,13 +1566,6 @@ public final class Keys {
      * @see OccupiedData#occupied()
      */
     public static final Key<Value<Boolean>> OCCUPIED = DummyObjectProvider.createExtendedFor(Key.class,"OCCUPIED");
-
-    /**
-     * Represents the {@link Key} for the type of an {@link Cat}.
-     *
-     * @see CatData#type()
-     */
-    public static final Key<Value<CatType>> CAT_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"CAT_TYPE");
 
     /**
      * Represents the {@link Key} for representing a block's offset when inside
@@ -2152,14 +2161,6 @@ public final class Keys {
     public static final Key<ListValue<TradeOffer>> TRADE_OFFERS = DummyObjectProvider.createExtendedFor(Key.class,"TRADE_OFFERS");
 
     /**
-     * Represents the {@link Key} for representing the {@link WoodType}
-     * of a {@link Boat}.
-     *
-     * @see WoodData
-     */
-    public static final Key<Value<WoodType>> WOOD_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"WOOD_TYPE");
-
-    /**
      * Represents the {@link Key} for whether an {@link ItemStack} is unbreakable.
      *
      * <p>Setting this to {@code  true} will prevent the item stack's
@@ -2289,6 +2290,14 @@ public final class Keys {
      * @see WireAttachmentData#wireAttachmentWest()
      */
     public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_WEST = DummyObjectProvider.createExtendedFor(Key.class,"WIRE_ATTACHMENT_WEST");
+
+    /**
+     * Represents the {@link Key} for representing the {@link WoodType}
+     * of a {@link Boat}.
+     *
+     * @see WoodData
+     */
+    public static final Key<Value<WoodType>> WOOD_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"WOOD_TYPE");
 
     // SORTFIELDS:OFF
 

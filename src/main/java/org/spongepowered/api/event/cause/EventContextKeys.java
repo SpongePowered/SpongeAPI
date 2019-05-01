@@ -55,16 +55,6 @@ public final class EventContextKeys {
     // SORTFIELDS:ON
 
     /**
-     * Used to queue a block event to be processed in a {@link World}.
-     * 
-     * For example, a piston will queue retract/extend movements using this
-     * event.
-     * 
-     * Note: This represents vanilla's block event.
-     */
-    public static final EventContextKey<LocatableBlock> BLOCK_EVENT_QUEUE = createFor("BLOCK_EVENT_QUEUE");
-
-    /**
      * Used when a {@link World} block event is being processed.
      * 
      * For example, a piston head retracting and extending.
@@ -74,6 +64,16 @@ public final class EventContextKeys {
      *  {@link #BLOCK_EVENT_QUEUE}.
      */
     public static final EventContextKey<LocatableBlock> BLOCK_EVENT_PROCESS = createFor("BLOCK_EVENT_PROCESS");
+
+    /**
+     * Used to queue a block event to be processed in a {@link World}.
+     * 
+     * For example, a piston will queue retract/extend movements using this
+     * event.
+     * 
+     * Note: This represents vanilla's block event.
+     */
+    public static final EventContextKey<LocatableBlock> BLOCK_EVENT_QUEUE = createFor("BLOCK_EVENT_QUEUE");
 
     /**
      * Used when an {@link Entity} interacts with a block.
@@ -87,36 +87,6 @@ public final class EventContextKeys {
     public static final EventContextKey<ChangeBlockEvent.Break> BREAK_EVENT = createFor("BREAK_EVENT");
 
     /**
-     * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
-     * the block event without relying on existing in the {@link Cause} stack.
-     */
-    public static final EventContextKey<ChangeBlockEvent.Place> PLACE_EVENT = createFor("PLACE_EVENT");
-
-    /**
-     * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
-     * the block event without relying on existing in the {@link Cause} stack.
-     */
-    public static final EventContextKey<ChangeBlockEvent.Modify> MODIFY_EVENT = createFor("MODIFY_EVENT");
-
-    /**
-     * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
-     * the block event without relying on existing in the {@link Cause} stack.
-     */
-    public static final EventContextKey<ChangeBlockEvent.Decay> DECAY_EVENT = createFor("DECAY_EVENT");
-
-    /**
-     * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
-     * the block event without relying on existing in the {@link Cause} stack.
-     */
-    public static final EventContextKey<ChangeBlockEvent.Grow> GROW_EVENT = createFor("GROW_EVENT");
-
-    /**
-     * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Grow} to provide
-     * the origin {@link BlockSnapshot} that is doing the "growing".
-     */
-    public static final EventContextKey<BlockSnapshot> GROWTH_ORIGIN = createFor("GROWTH_ORIGIN");
-
-    /**
      * Represents the creator of an {@link Entity}.
      */
     public static final EventContextKey<User> CREATOR = createFor("CREATOR");
@@ -125,6 +95,12 @@ public final class EventContextKeys {
      * Represents the {@link DamageType} to an entity.
      */
     public static final EventContextKey<DamageType> DAMAGE_TYPE = createFor("DAMAGE_TYPE");
+
+    /**
+     * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
+     * the block event without relying on existing in the {@link Cause} stack.
+     */
+    public static final EventContextKey<ChangeBlockEvent.Decay> DECAY_EVENT = createFor("DECAY_EVENT");
 
     /**
      * Used when a {@link Player} dismounts from an {@link Entity}.
@@ -150,6 +126,18 @@ public final class EventContextKeys {
      * Used when fire spreads to other blocks.
      */
     public static final EventContextKey<World> FIRE_SPREAD = createFor("FIRE_SPREAD");
+
+    /**
+     * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Grow} to provide
+     * the origin {@link BlockSnapshot} that is doing the "growing".
+     */
+    public static final EventContextKey<BlockSnapshot> GROWTH_ORIGIN = createFor("GROWTH_ORIGIN");
+
+    /**
+     * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
+     * the block event without relying on existing in the {@link Cause} stack.
+     */
+    public static final EventContextKey<ChangeBlockEvent.Grow> GROW_EVENT = createFor("GROW_EVENT");
 
     /**
      * Used when an {@link Entity} ignites causing an {@link Explosion}.
@@ -182,6 +170,12 @@ public final class EventContextKeys {
     public static final EventContextKey<World> LIQUID_MIX = createFor("LIQUID_MIX");
 
     /**
+     * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
+     * the block event without relying on existing in the {@link Cause} stack.
+     */
+    public static final EventContextKey<ChangeBlockEvent.Modify> MODIFY_EVENT = createFor("MODIFY_EVENT");
+
+    /**
      * Represents the source {@link BlockSnapshot} of a block notification.
      */
     public static final EventContextKey<BlockSnapshot> NEIGHBOR_NOTIFY_SOURCE = createFor("NEIGHBOR_NOTIFY_SOURCE");
@@ -205,6 +199,12 @@ public final class EventContextKeys {
      * Used when a {@link BlockTypes#PISTON_HEAD} retracts.
      */
     public static final EventContextKey<World> PISTON_RETRACT = createFor("PISTON_RETRACT");
+
+    /**
+     * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
+     * the block event without relying on existing in the {@link Cause} stack.
+     */
+    public static final EventContextKey<ChangeBlockEvent.Place> PLACE_EVENT = createFor("PLACE_EVENT");
 
     /**
      * Represents a {@link Player}.
@@ -252,14 +252,14 @@ public final class EventContextKeys {
     public static final EventContextKey<TeleportType> TELEPORT_TYPE = createFor("TELEPORT_TYPE");
 
     /**
-     * Represents an {@link ItemStackSnapshot} of used item.
-     */
-    public static final EventContextKey<ItemStackSnapshot> USED_ITEM = createFor("USED_ITEM");
-
-    /**
      * Represents a {@link HandType}.
      */
     public static final EventContextKey<HandType> USED_HAND = createFor("USED_HAND");
+
+    /**
+     * Represents an {@link ItemStackSnapshot} of used item.
+     */
+    public static final EventContextKey<ItemStackSnapshot> USED_ITEM = createFor("USED_ITEM");
 
     /**
      * Represents an {@link ItemStackSnapshot} of a weapon.

@@ -22,20 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable;
+package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.immutable.ImmutableCatData;
-import org.spongepowered.api.data.type.CatType;
-import org.spongepowered.api.entity.living.animal.Cat;
-import org.spongepowered.api.entity.living.animal.Ocelot;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * A type of {@link VariantData} for {@link CatType}s belonging
- * to a {@link Cat}.
- *
- * @see Keys#CAT_TYPE
+ * An enumeration of known vanilla {@link FoxType}s.
  */
-public interface CatData extends VariantData<CatType, CatData, ImmutableCatData> {
+public final class FoxTypes {
+
+    // SORTFIELDS:ON
+
+    public static final FoxType RED = DummyObjectProvider.createFor(FoxType.class, "RED");
+
+    public static final FoxType WHITE = DummyObjectProvider.createFor(FoxType.class, "WHITE");
+
+    // SORTFIELDS:OFF
+
+    // Suppress default constructor to ensure non-instantiability.
+    private FoxTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 
 }

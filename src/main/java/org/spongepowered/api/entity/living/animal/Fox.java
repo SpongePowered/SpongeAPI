@@ -25,51 +25,29 @@
 package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.AggressiveData;
-import org.spongepowered.api.data.manipulator.mutable.DyeableData;
-import org.spongepowered.api.data.type.DyeColor;
+import org.spongepowered.api.data.manipulator.mutable.FoxData;
+import org.spongepowered.api.data.type.FoxType;
 import org.spongepowered.api.data.value.Value;
 
-/**
- * Represents a Wolf.
- */
-public interface Wolf extends Animal {
+public interface Fox extends Animal {
 
     /**
-     * Gets a copy of the current {@link AggressiveData} for this
-     * {@link Wolf}.
+     * Gets a copy of the current {@link FoxData} being represented by
+     * this {@link Fox}.
      *
-     * @return A copy of the current aggressive data
+     * @return A copy of the current fox data
      */
-    default AggressiveData getAggressiveData() {
-        return this.get(AggressiveData.class).get();
+    default FoxData getFoxData() {
+        return this.get(FoxData.class).get();
     }
 
     /**
-     * Gets if this {@link Wolf} is currently aggressive, as a {@link Value}.
+     * Gets the {@link Value.Mutable} for the {@link FoxType} of this
+     * {@link FoxData}.
      *
-     * @return The current aggressive value
+     * @return The fox variant value
      */
-    default Value.Mutable<Boolean> aggressive() {
-        return this.getValue(Keys.ANGRY).get().asMutable();
-    }
-
-    /**
-     * Gets a copy of the current {@link DyeableData} for this
-     * {@link Wolf}'s collar.
-     *
-     * @return A copy of the current dyeable collar data
-     */
-    default DyeableData getCollarColorData() {
-        return this.get(DyeableData.class).get();
-    }
-
-    /**
-     * Gets the {@link Wolf}'s {@link DyeColor} of it's collar.
-     *
-     * @return The current dyecolor of the collar
-     */
-    default Value.Mutable<DyeColor> collarColor() {
-        return this.getValue(Keys.DYE_COLOR).get().asMutable();
+    default Value.Mutable<FoxType> variant() {
+        return getValue(Keys.FOX_TYPE).get().asMutable();
     }
 }

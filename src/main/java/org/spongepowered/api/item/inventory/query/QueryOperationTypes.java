@@ -42,14 +42,6 @@ public final class QueryOperationTypes {
     // SORTFIELDS:ON
 
     /**
-     * Tests based on an inventory property present on the target inventory.
-     *
-     * @see Inventory#getProperty(Inventory, Property)
-     */
-    public static final QueryOperationType<PropertyMatcher<?>> PROPERTY =
-            DummyObjectProvider.createExtendedFor(QueryOperationType.class, "PROPERTY");
-
-    /**
      * Tests based on the title of the inventory.
      *
      * @see InventoryProperties#TITLE
@@ -89,6 +81,14 @@ public final class QueryOperationTypes {
      * @see ItemStack#getType()
      */
     public static final QueryOperationType<ItemType> ITEM_TYPE = DummyObjectProvider.createExtendedFor(QueryOperationType.class, "ITEM_TYPE");
+
+    /**
+     * Tests based on an inventory property present on the target inventory.
+     *
+     * @see Inventory#getProperty(Inventory, Property)
+     */
+    public static final QueryOperationType<PropertyMatcher<?>> PROPERTY =
+            DummyObjectProvider.createExtendedFor(QueryOperationType.class, "PROPERTY");
 
     /**
      * Tests based on the class of the inventory.

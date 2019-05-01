@@ -37,6 +37,11 @@ public final class EnderDragonPhaseTypes {
     // SORTFIELDS:ON
 
     /**
+     * The {@link EnderDragon} is charging towards a {@link Player}.
+     */
+    public static final EnderDragonPhaseType CHARGING_PLAYER = DummyObjectProvider.createFor(EnderDragonPhaseType.class, "CHARGING_PLAYER");
+
+    /**
      * The {@link EnderDragon} is flying to the End Portal to die.
      */
     public static final EnderDragonPhaseType DYING = DummyObjectProvider.createFor(EnderDragonPhaseType.class, "DYING");
@@ -52,11 +57,6 @@ public final class EnderDragonPhaseTypes {
      * <p>This is the default state when summoned using the {@code /summon} command.</p>
      */
     public static final EnderDragonPhaseType HOVER = DummyObjectProvider.createFor(EnderDragonPhaseType.class, "HOVER");
-
-    /**
-     * The {@link EnderDragon} is charging towards a {@link Player}.
-     */
-    public static final EnderDragonPhaseType CHARGING_PLAYER = DummyObjectProvider.createFor(EnderDragonPhaseType.class, "CHARGING_PLAYER");
 
     /**
      * The {@link EnderDragon} is landing on the End Portal.

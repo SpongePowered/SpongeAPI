@@ -31,7 +31,7 @@ import org.spongepowered.api.entity.living.animal.Ocelot;
 
 /**
  * A type of {@link ImmutableVariantData} for {@link CatType}s belonging
- * to an {@link Cat}.
+ * to a {@link Cat}.
  */
 public interface ImmutableCatData extends ImmutableVariantData<CatType, ImmutableCatData, CatData> {
 

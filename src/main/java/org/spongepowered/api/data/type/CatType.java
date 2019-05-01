@@ -28,7 +28,7 @@ import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents the type of ocelot an ocelot is.
+ * Represents the type of cat a cat is.
  */
 @CatalogedBy(CatTypes.class)
 public interface CatType extends CatalogType {
