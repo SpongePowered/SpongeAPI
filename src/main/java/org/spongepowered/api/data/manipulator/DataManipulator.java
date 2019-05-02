@@ -29,7 +29,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.merge.MergeFunction;
 import org.spongepowered.api.data.value.CompositeValueStore;
@@ -49,11 +48,8 @@ import java.util.function.Function;
  * and deserialized from persistence, and applied to {@link DataHolder}s, even
  * with specialized {@link Function}s to use {@link #transform(Key, Function)}
  * such that the {@link DataManipulator} is always returned.</p>
- *
- * @param <M> The type of {@link DataManipulator} for comparisons
  */
-public interface DataManipulator<M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>> extends DataSerializable,
-        ValueContainer<M> {
+public interface DataManipulator extends ValueContainer<DataManipulator> {
 
     /**
      * Attempts to read data from the given {@link DataHolder} and fills the
@@ -69,7 +65,7 @@ public interface DataManipulator<M extends DataManipulator<M, I>, I extends Immu
      * @return This {@link DataManipulator} with relevant data filled from the
      *     given {@link DataHolder}, if compatible
      */
-    default Optional<M> fill(DataHolder dataHolder) {
+    default Optional<DataManipulator> fill(DataHolder dataHolder) {
         return fill(dataHolder, MergeFunction.IGNORE_ALL);
     }
 
@@ -90,7 +86,7 @@ public interface DataManipulator<M extends DataManipulator<M, I>, I extends Immu
      * @return This {@link DataManipulator} with relevant data filled from the
      *     given {@link DataHolder}, if compatible
      */
-    Optional<M> fill(DataHolder dataHolder, MergeFunction overlap);
+    Optional<DataManipulator> fill(DataHolder dataHolder, MergeFunction overlap);
 
     /**
      * Attempts to read the raw data from the provided {@link DataContainer}.
@@ -102,7 +98,7 @@ public interface DataManipulator<M extends DataManipulator<M, I>, I extends Immu
      * @return This {@link DataManipulator} with relevant data filled from the
      *     given {@link DataContainer}, if compatible
      */
-    Optional<M> from(DataContainer container);
+    Optional<DataManipulator> from(DataContainer container);
 
     /**
      * Sets the supported {@link Key}'s value such that the value is set on
@@ -118,7 +114,7 @@ public interface DataManipulator<M extends DataManipulator<M, I>, I extends Immu
      * @param <E> The type of value
      * @return This manipulator, for chaining
      */
-    <E> M set(Key<? extends Value<E>> key, E value);
+    <E> DataManipulator set(Key<? extends Value<E>> key, E value);
 
     /**
      * Sets the supported {@link Value} onto this {@link DataManipulator}.
@@ -131,8 +127,7 @@ public interface DataManipulator<M extends DataManipulator<M, I>, I extends Immu
      * @param value The actual value to set
      * @return This manipulator, for chaining
      */
-    @SuppressWarnings("unchecked")
-    default M set(Value<?> value) {
+    default DataManipulator set(Value<?> value) {
         return set((Key<? extends Value<Object>>) value.getKey(), value.get());
     }
 
@@ -147,8 +142,7 @@ public interface DataManipulator<M extends DataManipulator<M, I>, I extends Immu
      * @param values The actual values to set
      * @return This manipulator, for chaining
      */
-    @SuppressWarnings("unchecked")
-    default M set(Value<?>... values) {
+    default DataManipulator set(Value<?>... values) {
         for (Value<?> value : checkNotNull(values)) {
             try {
                 set(checkNotNull(value, "A null value was provided!"));
@@ -156,7 +150,7 @@ public interface DataManipulator<M extends DataManipulator<M, I>, I extends Immu
                 e.printStackTrace();
             }
         }
-        return (M) this;
+        return this;
     }
 
     /**
@@ -170,8 +164,7 @@ public interface DataManipulator<M extends DataManipulator<M, I>, I extends Immu
      * @param values The actual values to set
      * @return This manipulator, for chaining
      */
-    @SuppressWarnings("unchecked")
-    default M set(Iterable<? extends Value<?>> values) {
+    default DataManipulator set(Iterable<? extends Value<?>> values) {
         for (Value<?> value : checkNotNull(values)) {
             try {
                 set(checkNotNull(value, "A null value was provided!"));
@@ -179,7 +172,7 @@ public interface DataManipulator<M extends DataManipulator<M, I>, I extends Immu
                 e.printStackTrace();
             }
         }
-        return (M) this;
+        return this;
     }
 
     /**
@@ -191,14 +184,14 @@ public interface DataManipulator<M extends DataManipulator<M, I>, I extends Immu
      * @param <E> The type of element
      * @return This manipulator, for chaining
      */
-    default <E> M transform(Key<? extends Value<E>> key, Function<E, E> function) {
+    default <E> DataManipulator transform(Key<? extends Value<E>> key, Function<E, E> function) {
         checkArgument(supports(key), "The provided key is not supported!" + key.toString());
         return set(key, checkNotNull(function.apply(get(key).get()), "The function can not be returning null!"));
     }
 
     @TransformWith
     @Override
-    M copy();
+    DataManipulator copy();
 
     /**
      * Gets an {@link ImmutableDataManipulator} copy of this
@@ -210,5 +203,5 @@ public interface DataManipulator<M extends DataManipulator<M, I>, I extends Immu
      * @return This {@link DataManipulator}'s data copied into a
      *     {@link ImmutableDataManipulator}
      */
-    I asImmutable();
+    ImmutableDataManipulator asImmutable();
 }

@@ -31,7 +31,6 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.TargetedLocationData;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.text.translation.Translatable;
@@ -50,7 +49,6 @@ import java.util.Collection;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 import java.util.UUID;
 import java.util.function.Predicate;
 
@@ -276,9 +274,6 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      * Sets the {@link Location} of this entity to the {@link World}'s spawn
      * point.
      *
-     * <p>This is equivalent to setting the location via
-     * {@link TargetedLocationData}.</p>
-     *
      * @param world The world to transfer to
      * @return Whether the transfer was successful, returns false if the action
      *      is cancelled or not possible (eg. because the entity has been
@@ -291,9 +286,6 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
     /**
      * Sets the {@link Location} of this entity to a new position in a world.
      *
-     * <p>This is equivalent to setting the location via
-     * {@link TargetedLocationData}.</p>
-     *
      * @param world The world to transfer to
      * @param position The position in the target world
      * @return Whether the transfer was successful, returns false if the action
@@ -305,9 +297,6 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
     /**
      * Sets the location of this entity to a new position in a world which does
      * not have to be loaded (but must at least be enabled).
-     *
-     * <p>If the target world is loaded then this is equivalent to
-     * setting the location via {@link TargetedLocationData}.</p>
      *
      * <p>If the target world is unloaded but is enabled according to its
      * {@link WorldArchetype#isEnabled()} then this will first load the world
@@ -329,9 +318,6 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
     /**
      * Sets the location of this entity to a new position in a world which does
      * not have to be loaded (but must at least be enabled).
-     *
-     * <p>If the target world is loaded then this is equivalent to setting the
-     * location via {@link TargetedLocationData}.</p>
      *
      * <p>If the target world is unloaded but is enabled according to its
      * {@link WorldArchetype#isEnabled()} then this will first load the world

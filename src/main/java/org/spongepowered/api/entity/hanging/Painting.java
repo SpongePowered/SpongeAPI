@@ -25,7 +25,6 @@
 package org.spongepowered.api.entity.hanging;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.ArtData;
 import org.spongepowered.api.data.type.ArtType;
 import org.spongepowered.api.data.value.Value;
 
@@ -33,15 +32,6 @@ import org.spongepowered.api.data.value.Value;
  * Represents a Painting.
  */
 public interface Painting extends Hanging {
-
-    /**
-     * Gets a copy of the {@link ArtData} represented by this {@link Painting}.
-     *
-     * @return A copy of the art data
-     */
-    default ArtData getArtData() {
-        return get(ArtData.class).get();
-    }
 
     /**
      * Gets the current {@link ArtType} value represented by this {@link Painting}.

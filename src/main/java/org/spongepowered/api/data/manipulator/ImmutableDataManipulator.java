@@ -44,8 +44,7 @@ import java.util.Optional;
  * @param <I> The type of immutable data manipulator
  * @param <M> The type of mutable data manipulator
  */
-public interface ImmutableDataManipulator<I extends ImmutableDataManipulator<I, M>, M extends DataManipulator<M, I>> extends DataSerializable,
-                                                                                                                             ValueContainer<I> {
+public interface ImmutableDataManipulator extends ValueContainer<ImmutableDataManipulator> {
 
     /**
      * Creates a new {@link ImmutableDataManipulator} with the provided value
@@ -57,8 +56,8 @@ public interface ImmutableDataManipulator<I extends ImmutableDataManipulator<I, 
      * @param <E> The type of value
      * @return The new immutable data manipulator, if compatible
      */
-    default <E> Optional<I> with(Key<? extends Value<E>> key, E value) {
-        M data = asMutable();
+    default <E> Optional<ImmutableDataManipulator> with(Key<? extends Value<E>> key, E value) {
+        DataManipulator data = asMutable();
         return data.supports(key) ? Optional.of(data.set(key, value).asImmutable()) : Optional.empty();
     }
 
@@ -73,14 +72,14 @@ public interface ImmutableDataManipulator<I extends ImmutableDataManipulator<I, 
      * @return The new immutable data manipulator, if compatible
      */
     @SuppressWarnings("unchecked")
-    default Optional<I> with(Value<?> value) {
+    default Optional<ImmutableDataManipulator> with(Value<?> value) {
         return with((Key<? extends Value<Object>>) value.getKey(), value.get());
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    default I copy() {
-        return (I) this;
+    default ImmutableDataManipulator copy() {
+        return this;
     }
 
     /**
@@ -93,6 +92,6 @@ public interface ImmutableDataManipulator<I extends ImmutableDataManipulator<I, 
      * @return This {@link ImmutableDataManipulator}'s data copied into a
      *     {@link DataManipulator}
      */
-    M asMutable();
+    DataManipulator asMutable();
 
 }

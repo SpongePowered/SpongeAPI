@@ -32,7 +32,7 @@ import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.Queries;
-import org.spongepowered.api.data.manipulator.mutable.RespawnLocationData;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.persistence.AbstractDataBuilder;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.world.Location;
@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 
 /**
  * Represents a position for a player to respawn in in a particular world.
- * Instances can be obtained using {@link RespawnLocationData} or by using the
+ * Instances can be obtained using {@link Keys#RESPAWN_LOCATIONS} or by using the
  * {@link #builder()}.
  */
 public final class RespawnLocation implements DataSerializable {

@@ -25,22 +25,12 @@
 package org.spongepowered.api.entity.living.monster;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.AngerableData;
 import org.spongepowered.api.data.value.BoundedValue;
 
 /**
  * Represents a Zombie Pigman.
  */
 public interface ZombiePigman extends Zombie {
-
-    /**
-     * Gets a copy of the {@link AngerableData} for this {@link ZombiePigman}.
-     *
-     * @return A copy of the anger data for this pigman
-     */
-    default AngerableData getAngerData() {
-        return get(AngerableData.class).get();
-    }
 
     /**
      * Gets the {@link BoundedValue.Mutable value} of the current "anger" level

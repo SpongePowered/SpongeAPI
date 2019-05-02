@@ -25,10 +25,8 @@
 package org.spongepowered.api.entity.living;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.AgeableData;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.Entity;
 
 /**
  * Represents a living entity that can change in size as it ages
@@ -41,16 +39,6 @@ public interface Ageable extends Creature {
      * a baby.
      */
     void setScaleForAge();
-
-    /**
-     * Gets the {@link AgeableData} that represents age determining whether an
-     * {@link Entity} is a child or an adult.
-     *
-     * @return The ageable data
-     */
-    default AgeableData getAgeData() {
-        return get(AgeableData.class).get();
-    }
 
     /**
      * Gets the {@link BoundedValue.Mutable} for the "age" state.

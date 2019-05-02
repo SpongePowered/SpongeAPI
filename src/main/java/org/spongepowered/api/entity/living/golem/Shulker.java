@@ -25,8 +25,6 @@
 package org.spongepowered.api.entity.living.golem;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.DirectionalData;
-import org.spongepowered.api.data.manipulator.mutable.DyeableData;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
@@ -39,16 +37,6 @@ import java.util.Optional;
 public interface Shulker extends Golem, ProjectileSource {
 
     /**
-     * Gets a copy of the {@link DyeableData} representing the color of this
-     * {@link Shulker} entity.
-     *
-     * @return A copy of the dye data
-     */
-    default DyeableData getDyeData() {
-        return get(DyeableData.class).get();
-    }
-
-    /**
      * Gets the current {@link Value} of {@link DyeColor} for this
      * {@link Shulker}.
      *
@@ -56,16 +44,6 @@ public interface Shulker extends Golem, ProjectileSource {
      */
     default Value.Mutable<DyeColor> color() {
         return getValue(Keys.DYE_COLOR).get().asMutable();
-    }
-
-    /**
-     * Gets a copy of the {@link DirectionalData} representing the direction this
-     * {@link Shulker} is oriented towards.
-     *
-     * @return A copy of the directional data
-     */
-    default DirectionalData getDirectionalData() {
-        return get(DirectionalData.class).get();
     }
 
     /**

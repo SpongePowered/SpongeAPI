@@ -27,7 +27,6 @@ package org.spongepowered.api.entity.living;
 import com.flowpowered.math.vector.Vector2d;
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.HealthData;
 import org.spongepowered.api.data.property.Properties;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.effect.potion.PotionEffect;
@@ -46,15 +45,6 @@ import java.util.OptionalDouble;
  * invisible.</p>
  */
 public interface Living extends Entity, ProjectileSource, TeamMember {
-
-    /**
-     * Gets a copy of the current {@link HealthData}.
-     *
-     * @return A copy of the current health data
-     */
-    default HealthData getHealthData() {
-        return get(HealthData.class).get();
-    }
 
     /**
      * Returns the health amount.

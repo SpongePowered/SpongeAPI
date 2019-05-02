@@ -25,14 +25,14 @@
 package org.spongepowered.api.data.meta;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.block.tileentity.Banner;
 import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.data.manipulator.mutable.BannerData;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.type.BannerPatternShape;
 import org.spongepowered.api.data.type.DyeColor;
 
 /**
- * A representation on a single layer of a {@link BannerData}'s pattern.
+ * A representation on a single layer of a {@link Banner}'s pattern.
  */
 public interface PatternLayer extends DataSerializable {
 

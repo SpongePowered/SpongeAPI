@@ -25,7 +25,6 @@
 package org.spongepowered.api.entity.living;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.FoodData;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.entity.Tamer;
@@ -36,15 +35,6 @@ import org.spongepowered.api.entity.projectile.ProjectileLauncher;
  * Represents a human-like entity in game, such as {@link Player} or {@link Human}s.
  */
 public interface Humanoid extends Living, ProjectileLauncher, ArmorEquipable, Tamer {
-
-    /**
-     * Gets a copy of the current {@link FoodData} for this {@link Humanoid}.
-     *
-     * @return A copy of the current food data
-     */
-    default FoodData getFoodData() {
-        return get(FoodData.class).get();
-    }
 
     /**
      * Gets the current food level as an {@link BoundedValue.Mutable}.

@@ -28,7 +28,7 @@ import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.manipulator.mutable.DominantHandData;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.type.ArmorType;
 import org.spongepowered.api.data.type.HandPreference;
 import org.spongepowered.api.data.type.InstrumentType;
@@ -108,7 +108,7 @@ public final class Properties {
      * such as tool use or block breaking.</p>
      *
      * <p><i>NOTE: </i>This only applies to {@link Player}s, for {@link Living}
-     * entities see {@link DominantHandData}.</p>
+     * entities see {@link Keys#DOMINANT_HAND}.</p>
      */
     public static final Property<HandPreference> DOMINANT_HAND =
             DummyObjectProvider.createFor(Property.class, "DOMINANT_HAND");

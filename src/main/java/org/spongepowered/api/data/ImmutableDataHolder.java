@@ -44,7 +44,7 @@ import java.util.List;
  * @param <T> The sub type of immutable data holder
  */
 public interface ImmutableDataHolder<T extends ImmutableDataHolder<T>> extends DataSerializable, PropertyHolder,
-        ImmutableValueStore<T, ImmutableDataManipulator<?, ?>> {
+        ImmutableValueStore<T, ImmutableDataManipulator> {
 
     /**
      * Gets a copy of all properties defined on this
@@ -52,6 +52,6 @@ public interface ImmutableDataHolder<T extends ImmutableDataHolder<T>> extends D
      *
      * @return A collection of all known manipulators
      */
-    List<ImmutableDataManipulator<?, ?>> getManipulators();
+    List<ImmutableDataManipulator> getManipulators();
 
 }

@@ -25,7 +25,6 @@
 package org.spongepowered.api.block.tileentity;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.BannerData;
 import org.spongepowered.api.data.meta.PatternLayer;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.value.ListValue;
@@ -35,15 +34,6 @@ import org.spongepowered.api.data.value.Value;
  * Represents a Banner {@link TileEntity}.
  */
 public interface Banner extends TileEntity {
-
-    /**
-     * Gets the {@link BannerData data} of this {@link Banner banner}.
-     *
-     * @return The current banner data for this banner
-     */
-    default BannerData getBannerData() {
-        return get(BannerData.class).get();
-    }
 
     /**
      * Gets the {@link Value.Mutable} for the base {@link DyeColor}.

@@ -25,10 +25,10 @@
 package org.spongepowered.api.event.block.tileentity;
 
 import org.spongepowered.api.block.tileentity.Sign;
-import org.spongepowered.api.data.manipulator.immutable.ImmutableSignData;
-import org.spongepowered.api.data.manipulator.mutable.SignData;
+import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
+import org.spongepowered.api.text.Text;
 
 public interface ChangeSignEvent extends Event, Cancellable {
 
@@ -40,15 +40,15 @@ public interface ChangeSignEvent extends Event, Cancellable {
     Sign getSign();
 
     /**
-     * Gets the original {@link ImmutableSignData} before event changes.
+     * Gets the original {@link ListValue} before event changes.
      * @return The immutable SignData
      */
-    ImmutableSignData getOriginalText();
+    ListValue.Immutable<Text> getOriginalText();
 
     /**
-     * Gets the {@link SignData} to be applied to the {@link Sign} after event resolution.
+     * Gets the {@link ListValue} to be applied to the {@link Sign} after event resolution.
      * @return The SignData
      */
-    SignData getText();
+    ListValue.Mutable<Text> getText();
 
 }

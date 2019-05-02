@@ -25,21 +25,10 @@
 package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.FoxData;
 import org.spongepowered.api.data.type.FoxType;
 import org.spongepowered.api.data.value.Value;
 
 public interface Fox extends Animal {
-
-    /**
-     * Gets a copy of the current {@link FoxData} being represented by
-     * this {@link Fox}.
-     *
-     * @return A copy of the current fox data
-     */
-    default FoxData getFoxData() {
-        return this.get(FoxData.class).get();
-    }
 
     /**
      * Gets the {@link Value.Mutable} for the {@link FoxType} of this

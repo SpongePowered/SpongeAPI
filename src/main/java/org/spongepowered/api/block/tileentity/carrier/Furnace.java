@@ -25,7 +25,6 @@
 package org.spongepowered.api.block.tileentity.carrier;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.FurnaceData;
 import org.spongepowered.api.data.value.BoundedValue;
 
 /**
@@ -43,19 +42,9 @@ public interface Furnace extends TileEntityCarrier {
     boolean smelt();
 
     /**
-     * Gets this furnace's {@link FurnaceData}.
-     *
-     * @return The furnace data
-     */
-    default FurnaceData getFurnaceData() {
-        return get(FurnaceData.class).get();
-    }
-
-    /**
      * Gets the {@link BoundedValue.Mutable} for the already passed burn time.
      *
      * @return The value for the already passed burn time
-     * @see FurnaceData#passedBurnTime
      */
     default BoundedValue.Mutable<Integer> passedBurnTime() {
         return getValue(Keys.PASSED_BURN_TIME).get().asMutable();
@@ -67,7 +56,6 @@ public interface Furnace extends TileEntityCarrier {
      *
      * @return The value for the maximum amount of fuel that can be supplied
      *         with the used fuel item
-     * @see FurnaceData#maxBurnTime
      */
     default BoundedValue.Mutable<Integer> maxBurnTime() {
         return getValue(Keys.MAX_BURN_TIME).get().asMutable();
@@ -78,7 +66,6 @@ public interface Furnace extends TileEntityCarrier {
      * the item stack in this furnace.
      *
      * @return The value for the already passed cook time
-     * @see FurnaceData#passedCookTime
      */
     default BoundedValue.Mutable<Integer> passedCookTime() {
         return getValue(Keys.PASSED_COOK_TIME).get().asMutable();
@@ -89,7 +76,6 @@ public interface Furnace extends TileEntityCarrier {
      * has to cook until it is cooked.
      *
      * @return The value for the time the item has to cook
-     * @see FurnaceData#maxCookTime
      */
     default BoundedValue.Mutable<Integer> maxCookTime() {
         return getValue(Keys.MAX_COOK_TIME).get().asMutable();

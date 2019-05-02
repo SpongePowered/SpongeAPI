@@ -25,7 +25,6 @@
 package org.spongepowered.api.entity.projectile;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.TargetedEntityData;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
@@ -34,17 +33,6 @@ import org.spongepowered.api.entity.EntitySnapshot;
  * Represents a {@link Projectile} targeting an {@link Entity}
  */
 public interface EntityTargetingProjectile extends Projectile {
-
-    /**
-     * Gets the targeted entity data for this {@link EntityTargetingProjectile}.
-     *
-     * <p>The targeted entity data defines which entity this projectile will target.</p>
-     *
-     * @return A copy of the targeted entity data
-     */
-    default TargetedEntityData getTargetData() {
-        return getOrCreate(TargetedEntityData.class).get();
-    }
 
     /**
      * Gets the entity this projectile will target.

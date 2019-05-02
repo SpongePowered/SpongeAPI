@@ -25,7 +25,6 @@
 package org.spongepowered.api.entity;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.RepresentedItemData;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -35,16 +34,6 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
  * Represents an Item entity.
  */
 public interface Item extends Entity {
-
-    /**
-     * Gets a copy of the current {@link RepresentedItemData} this item is
-     * representing.
-     *
-     * @return A copy of the represented item data
-     */
-    default RepresentedItemData getItemData() {
-        return get(RepresentedItemData.class).get();
-    }
 
     /**
      * Gets the {@link Value.Mutable} for the represented {@link ItemStack} as

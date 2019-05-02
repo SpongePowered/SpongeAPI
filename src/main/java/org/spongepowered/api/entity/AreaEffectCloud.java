@@ -25,7 +25,6 @@
 package org.spongepowered.api.entity;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.AreaEffectCloudData;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.Value;
@@ -38,15 +37,6 @@ import org.spongepowered.api.util.Color;
  * {@link Entity} instances within it's bounding box.
  */
 public interface AreaEffectCloud extends Entity {
-
-    /**
-     * Gets the {@link AreaEffectCloudData} for this cloud.
-     *
-     * @return The area effect cloud data
-     */
-    default AreaEffectCloudData getAreaEffectCloudData() {
-        return get(AreaEffectCloudData.class).get();
-    }
 
     /**
      * Gets the {@link Color} of this cloud, can be changed.

@@ -25,7 +25,6 @@
 package org.spongepowered.api.entity.weather;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.ExpirableData;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 
@@ -49,15 +48,6 @@ public interface WeatherEffect extends Entity {
      * @param effect Whether this weather effect is an effect
      */
     void setEffect(boolean effect);
-
-    /**
-     * Gets a copy of the {@link ExpirableData} for this weather entity.
-     *
-     * @return A copy of the expirable data
-     */
-    default ExpirableData getExpiringData() {
-        return get(ExpirableData.class).get();
-    }
 
     /**
      * Gets the {@link Value.Mutable} for the duration

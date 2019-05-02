@@ -30,7 +30,6 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.Queries;
-import org.spongepowered.api.data.manipulator.DataManipulatorBuilder;
 
 import java.util.Optional;
 
@@ -39,7 +38,7 @@ import java.util.Optional;
  * the necessary "content update" implementation required for content
  * versioning. Note that the builder itself is versioned to ensure that
  * content versioning is appropriately handled. It is highly recommended to
- * extend this class to implement {@link DataManipulatorBuilder} and implement
+ * extend this class to implement {@link DataBuilder} and implement
  * {@link DataContentUpdater}s as necessary for future upgradeability of
  * custom content.
  *

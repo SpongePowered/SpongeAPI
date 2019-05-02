@@ -25,7 +25,8 @@
 package org.spongepowered.api.item.merchant;
 
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.manipulator.mutable.TradeOfferData;
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.world.Locatable;
@@ -55,14 +56,8 @@ public interface Merchant extends DataHolder, Carrier, Locatable {
      */
     void setCustomer(@Nullable Humanoid humanoid);
 
-    /**
-     * Gets a copy of the used {@link TradeOfferData} containing all available
-     * {@link TradeOffer}s this {@link Merchant} may use.
-     *
-     * @return A copy of the trade offer data
-     */
-    default TradeOfferData getTradeOfferData() {
-        return get(TradeOfferData.class).get();
+    default ListValue<TradeOffer> tradeOffers() {
+        return getValue(Keys.TRADE_OFFERS).get().asMutable();
     }
 
 }

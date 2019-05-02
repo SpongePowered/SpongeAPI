@@ -24,23 +24,10 @@
  */
 package org.spongepowered.api.block.tileentity;
 
-import org.spongepowered.api.data.manipulator.mutable.EndGatewayData;
-
 /**
  * Represents an End Gateway.
  *
- * @see EndGatewayData
  */
 public interface EndGateway extends TileEntity {
-
-    /**
-     * Gets a copy of the {@link EndGatewayData} containing all available
-     * data this {@link EndGateway} has.
-     *
-     * @return A copy of the end gateway data
-     */
-    default EndGatewayData getEndGatewayData() {
-        return this.get(EndGatewayData.class).get();
-    }
 
 }

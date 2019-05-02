@@ -27,7 +27,6 @@ package org.spongepowered.api.entity.living.player;
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.block.tileentity.EnderChest;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.manipulator.mutable.StatisticData;
 import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.Tamer;
@@ -127,15 +126,6 @@ public interface User extends DataHolder, ArmorEquipable, Tamer, Subject {
      * @return The rotation
      */
     Vector3d getRotation();
-
-    /**
-     * Gets a copy of the {@link StatisticData} for this user.
-     *
-     * @return A copy of the statistic data
-     */
-    default StatisticData getStatisticData() {
-        return get(StatisticData.class).get();
-    }
 
     /**
      * Gets the {@link Inventory} available for this Player's shared {@link EnderChest}

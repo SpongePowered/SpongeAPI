@@ -25,10 +25,8 @@
 package org.spongepowered.api.entity.projectile;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.DamagingData;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.MapValue;
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.Living;
 
@@ -36,18 +34,6 @@ import org.spongepowered.api.entity.living.Living;
  * Represents a {@link Projectile} that inflicts damage.
  */
 public interface DamagingProjectile extends Projectile {
-
-    /**
-     * Gets the damaging data for this {@link DamagingProjectile}.
-     *
-     * <p>The damaging data defines how much damage the projectile will deal
-     * upon hitting an {@link Entity}, before the explosion.</p>
-     *
-     * @return A copy of the damaging data
-     */
-    default DamagingData getDamagingData() {
-        return get(DamagingData.class).get();
-    }
 
     /**
      * Gets the damage this projectile will deal to a {@link Living}

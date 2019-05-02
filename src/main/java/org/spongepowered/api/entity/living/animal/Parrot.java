@@ -25,7 +25,6 @@
 package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.ParrotData;
 import org.spongepowered.api.data.type.ParrotType;
 import org.spongepowered.api.data.value.Value;
 
@@ -33,16 +32,6 @@ import org.spongepowered.api.data.value.Value;
  * Represents a parrot.
  */
 public interface Parrot extends Animal {
-
-    /**
-     * Gets a copy of the current {@link ParrotData} being represented by
-     * this {@link Parrot}.
-     *
-     * @return A copy of the current parrot data
-     */
-    default ParrotData getParrotData() {
-        return this.get(ParrotData.class).get();
-    }
 
     /**
      * Gets the {@link Value.Mutable} for the {@link ParrotType} of this

@@ -25,7 +25,6 @@
 package org.spongepowered.api.block.tileentity;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.SignData;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.text.Text;
 
@@ -33,15 +32,6 @@ import org.spongepowered.api.text.Text;
  * Represents a sign.
  */
 public interface Sign extends TileEntity {
-
-    /**
-     * Gets the current {@link SignData} for this {@link Sign} tile entity.
-     *
-     * @return The current sign data
-     */
-    default SignData getSignData() {
-        return get(SignData.class).get();
-    }
 
     /**
      * Gets the {@link ListValue.Mutable} of {@link Text} for the {@link Sign}

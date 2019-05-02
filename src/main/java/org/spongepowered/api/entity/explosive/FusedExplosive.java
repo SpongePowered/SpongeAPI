@@ -25,22 +25,12 @@
 package org.spongepowered.api.entity.explosive;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.FuseData;
 
 /**
  * Represents an explosive that detonates after its fuse has expired.
  * <p>A FusedExplosive may already be ignited once spawned.</p>
  */
 public interface FusedExplosive extends Explosive {
-
-    /**
-     * Returns the {@link FuseData} for this explosive.
-     *
-     * @return FuseData
-     */
-    default FuseData getFuseData() {
-        return get(FuseData.class).get();
-    }
 
     /**
      * Returns true if this explosive is currently primed.

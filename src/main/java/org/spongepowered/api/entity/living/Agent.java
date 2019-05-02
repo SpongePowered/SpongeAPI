@@ -25,7 +25,6 @@
 package org.spongepowered.api.entity.living;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.AgentData;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.ai.Goal;
@@ -57,15 +56,6 @@ public interface Agent extends Living {
      * @param target The target entity, or null
      */
     void setTarget(@Nullable Entity target);
-
-    /**
-     * Gets a copy of the {@link AgentData} associated with this {@link Agent}.
-     *
-     * @return A copy of the agent data
-     */
-    default AgentData getAgentData() {
-        return get(AgentData.class).get();
-    }
 
     /**
      * Gets the {@link Value.Mutable} for whether AI tasks are enabled or not.

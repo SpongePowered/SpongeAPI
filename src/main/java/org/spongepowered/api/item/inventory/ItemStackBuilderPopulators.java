@@ -372,9 +372,6 @@ public final class ItemStackBuilderPopulators {
      * based on the provided {@link VariableAmount}, and apply it as a new
      * {@link Set}.
      *
-     * <p>Note that custom data is not supported through this method, use
-     * {@link #data(Collection)} or any variant thereof for applying custom data.</p>
-     *
      * @param key The key to use
      * @param elementPool The set of elements to use as a pool
      * @param amount The variable amount of elements to get
@@ -398,9 +395,6 @@ public final class ItemStackBuilderPopulators {
      * responsible for a {@link Set} based {@link Value.Mutable}. Given
      * the provided {@link WeightedTable}, the consumer will retrieve
      * a {@link List} of values and add them as a new {@link Set}.
-     *
-     * <p>Note that custom data is not supported through this method, use
-     * {@link #data(Collection)} or any variant thereof for applying custom data.</p>
      *
      * @param key The key to use
      * @param weightedTable The weighted table acting as an element pool
@@ -429,9 +423,6 @@ public final class ItemStackBuilderPopulators {
      * Creates a new {@link BiConsumer} that applies the provided {@link Value.Mutable}
      * to the generated {@link ItemStack}.
      *
-     * <p>Note that custom data is not supported through this method, use
-     * {@link #data(Collection)} or any variant thereof for applying custom data.</p>
-     *
      * @param value The value to use
      * @param <E> The type of element
      * @param <V> The type of value
@@ -450,9 +441,6 @@ public final class ItemStackBuilderPopulators {
     /**
      * Creates a new {@link BiConsumer} that applies a random selection of the
      * provided {@link Value}s.
-     *
-     * <p>Note that custom data is not supported through this method, use
-     * {@link #data(Collection)} or any variant thereof for applying custom data.</p>
      *
      * @param values The iterable collection of values to choose from
      * @param <E> The type of element
@@ -475,71 +463,37 @@ public final class ItemStackBuilderPopulators {
     }
 
     /**
-     * Creates a new {@link BiConsumer} that sets a particular
-     * {@link DataManipulator} onto an {@link ItemStack}. Note
-     * that no validation can be performed, however the builder
-     * will ignore unsupported data. This can be used to provide
-     * custom data manipulators.
-     *
-     * @param manipulator The manipulator to apply to an itemstack
-     * @return The new biconsumer to apply to an itemstack builder
-     */
-    public static BiConsumer<ItemStack.Builder, Random> data(DataManipulator<?, ?> manipulator) {
-        checkNotNull(manipulator, "DataManipulator cannot be null!");
-        return (builder, random) -> builder.itemData(manipulator);
-    }
-
-    /**
-     * Creates a new {@link BiConsumer} that sets a single
-     * {@link DataManipulator} form the provided collection of manipulators.
-     * Note that no validation can be performed, however the builder will
-     * ignore unsupported data. This can be used to provide custom data
-     * manipulators. To apply multiple manipulators, use
-     * {@link #data(Collection, VariableAmount)}.
-     *
-     * @param manipulators The pool of manipulators to use
-     * @return The new biconsumer to apply to an itemstack builder
-     */
-    public static BiConsumer<ItemStack.Builder, Random> data(Collection<DataManipulator<?, ?>> manipulators) {
-        checkNotNull(manipulators, "DataManipulators cannot be null!");
-        final WeightedTable<DataManipulator<?, ?>> table = new WeightedTable<>();
-        manipulators.forEach(manipulator -> table.add(checkNotNull(manipulator, "DataManipulator cannot be null!"), 1));
-        return (builder, random) -> builder.itemData(table.get(random).get(0));
-    }
-
-    /**
      * Creates a new {@link BiConsumer} that provides a {@link VariableAmount}
-     * of {@link DataManipulator}s from the provided pool. Note that no
+     * of {@link Value}s from the provided pool. Note that no
      * validation can be performed, however the builder will ignore unsupported
-     * data. This can be used to provide custom data manipulators.
+     * data.
      *
      * @param manipulators The manipulator pool to use
      * @param rolls The variable amount of manipulators to apply
      * @return The new biconsumer to apply to an itemstack builder
      */
-    public static BiConsumer<ItemStack.Builder, Random> data(Collection<DataManipulator<?, ?>> manipulators, VariableAmount rolls) {
+    public static BiConsumer<ItemStack.Builder, Random> values(Collection<Value.Immutable<?>> manipulators, VariableAmount rolls) {
         checkNotNull(manipulators, "Manipulators cannot be null!");
         checkNotNull(rolls, "VariableAmount cannot be null!");
-        final ImmutableList<DataManipulator<?, ?>> copied = ImmutableList.copyOf(manipulators);
-        final WeightedTable<DataManipulator<?, ?>> table = new WeightedTable<>();
+        final ImmutableList<Value.Immutable<?>> copied = ImmutableList.copyOf(manipulators);
+        final WeightedTable<Value.Immutable<?>> table = new WeightedTable<>();
         table.setRolls(rolls);
         copied.forEach(manipulator1 -> table.add(manipulator1, 1));
-        return data(table);
+        return values(table);
     }
 
     /**
      * Creates a new {@link BiConsumer} that provides a variable
-     * amount of {@link DataManipulator}s from the provided
+     * amount of {@link Value}s from the provided
      * {@link WeightedTable}. Note that no validation can be performed, however
-     * the builder will ignore unsupported data. This can be used to provide
-     * custom data manipulators.
+     * the builder will ignore unsupported data.
      *
      * @param weightedTable The weighted table containing manipulators
      * @return The new biconsumer to apply to an itemstack builder
      */
-    public static BiConsumer<ItemStack.Builder, Random> data(WeightedTable<DataManipulator<?, ?>> weightedTable) {
+    public static BiConsumer<ItemStack.Builder, Random> values(WeightedTable<Value.Immutable<?>> weightedTable) {
         checkNotNull(weightedTable, "WeightedTable cannot be null!");
-        return (builder, random) -> weightedTable.get(random).forEach(builder::itemData);
+        return (builder, random) -> weightedTable.get(random).forEach(builder::add);
     }
 
     /**

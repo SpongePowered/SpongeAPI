@@ -200,7 +200,7 @@ public interface ItemStack extends DataHolder, Translatable {
          * @throws IllegalArgumentException If the item data is incompatible
          *      with the item
          */
-        Builder itemData(DataManipulator<?, ?> itemData) throws IllegalArgumentException;
+        Builder add(DataManipulator itemData) throws IllegalArgumentException;
 
         /**
          * Sets the {@link ImmutableDataManipulator} to add to the
@@ -210,15 +210,14 @@ public interface ItemStack extends DataHolder, Translatable {
          * @return This builder, for chaining
          * @throws IllegalArgumentException If the item data is incompatible
          */
-        Builder itemData(ImmutableDataManipulator<?, ?> itemData) throws IllegalArgumentException;
+        Builder add(ImmutableDataManipulator itemData) throws IllegalArgumentException;
 
         /**
          * Adds a {@link Key} and related {@link Object} value to apply to the
          * resulting {@link ItemStack}. Note that the resulting
          * {@link ItemStack} may not actually accept the provided {@code Key}
          * for various reasons due to support or simply that the value itself
-         * is not supported. Offering custom data is not supported through this,
-         * use {@link #itemData(DataManipulator)} instead.
+         * is not supported.
          *
          * @param key The key to assign the value with
          * @param value The value to assign with the key
@@ -227,6 +226,8 @@ public interface ItemStack extends DataHolder, Translatable {
          * @throws IllegalArgumentException If the item data is incompatible
          */
         <V> Builder add(Key<? extends Value<V>> key, V value) throws IllegalArgumentException;
+
+        <V extends Value<E>, E> Builder add(V value) throws IllegalArgumentException;
 
         /**
          * Sets all the settings in this builder from the item stack blueprint.
@@ -248,7 +249,7 @@ public interface ItemStack extends DataHolder, Translatable {
             final BlockType blockType = blockState.getType();
             checkArgument(blockType.getItem().isPresent(), "Missing valid ItemType for BlockType: " + blockType.getKey().toString());
             itemType(blockType.getItem().get());
-            blockState.getContainers().forEach(this::itemData);
+            blockState.getValues().forEach(this::add);
             return this;
         }
 
@@ -282,7 +283,7 @@ public interface ItemStack extends DataHolder, Translatable {
          */
         Builder fromBlockSnapshot(BlockSnapshot blockSnapshot);
 
-        Builder remove(Class<? extends DataManipulator<?, ?>> manipulatorClass);
+        Builder remove(Class<? extends DataManipulator> manipulatorClass);
 
         default Builder apply(Predicate<Builder> predicate, Consumer<Builder> consumer) {
             if (predicate.test(this)) {

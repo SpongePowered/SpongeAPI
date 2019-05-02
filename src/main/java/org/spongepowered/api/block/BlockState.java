@@ -95,7 +95,7 @@ public interface BlockState extends State<BlockState>, DirectionRelativeProperty
 
     /**
      * An {@link ImmutableDataBuilder} for a {@link BlockState}. Just like the
-     * {@link ImmutableDataBuilder}, the {@link DataManipulator}s passed in to
+     * {@link ImmutableDataBuilder}, the {@link Value}s passed in to
      * create a {@link BlockState} are copied on creation.
      *
      * <p>Note that upon creation, the {@link BlockType} must be set for validation

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.cause.entity.damage.source;
 
-import org.spongepowered.api.data.manipulator.mutable.IgniteableData;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.world.Location;
@@ -34,7 +34,7 @@ import org.spongepowered.api.world.Location;
  * otherwise "ambiguous" with regards to the actual source. Examples include:
  * in the event an {@link Entity} is being damaged due to falling through the
  * "void", an {@link Entity} being damaged for being "on fire" in which case
- * an {@link IgniteableData} may be present from the {@link Entity}, etc.
+ * an {@link Keys#FIRE_TICKS} may be present from the {@link Entity}, etc.
  *
  * <p>{@link DamageSource}s that rely on live instances of various objects,
  * including other {@link Entity} instances, or a block at a specific

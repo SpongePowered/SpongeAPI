@@ -26,7 +26,7 @@ package org.spongepowered.api.effect.potion;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.data.manipulator.mutable.PotionEffectData;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.entity.Entity;
@@ -36,7 +36,7 @@ import org.spongepowered.api.entity.Entity;
  * {@link #getDuration()}, {@link #getAmplifier()}, and
  * {@link #getShowParticles()}. The {@link PotionEffect} itself is immutable
  * once created and can be offered to {@link Entity} instances through
- * the {@link PotionEffectData}.
+ * the {@link Keys#POTION_EFFECTS}.
  */
 public interface PotionEffect extends DataSerializable, PropertyHolder {
 

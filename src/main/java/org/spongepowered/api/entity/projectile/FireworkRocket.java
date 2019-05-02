@@ -25,7 +25,6 @@
 package org.spongepowered.api.entity.projectile;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.FireworkEffectData;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.entity.explosive.FusedExplosive;
 import org.spongepowered.api.item.FireworkEffect;
@@ -37,18 +36,9 @@ import org.spongepowered.api.item.ItemTypes;
 public interface FireworkRocket extends Projectile, FusedExplosive {
 
     /**
-     * Gets a copy of the {@link FireworkEffectData} for this firework.
-     *
-     * @return A copy of the firework data
-     */
-    default FireworkEffectData getFireworkData() {
-        return get(FireworkEffectData.class).get();
-    }
-
-    /**
      * Gets the {@link ListValue.Mutable} of {@link FireworkEffect}s.
      *
-     * <p>Note that for {@link ItemTypes#FIREWORK_CHARGE} only the first effect
+     * <p>Note that for {@link ItemTypes#FIRE_CHARGE} only the first effect
      * will apply to the charge.</p>
      *
      * @return The list value of firework effects

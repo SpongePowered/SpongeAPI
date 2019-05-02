@@ -25,8 +25,6 @@
 package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.CatData;
-import org.spongepowered.api.data.manipulator.mutable.DyeableData;
 import org.spongepowered.api.data.type.CatType;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.value.Value;
@@ -37,16 +35,6 @@ import org.spongepowered.api.data.value.Value;
 public interface Cat extends Animal {
 
     /**
-     * Gets a copy of the current {@link CatData} being represented by
-     * this {@link Cat}.
-     *
-     * @return A copy of the current cat data
-     */
-    default CatData getCatData() {
-        return this.get(CatData.class).get();
-    }
-
-    /**
      * Gets the {@link Value.Mutable} for the {@link CatType} of this
      * {@link Cat}.
      *
@@ -54,10 +42,6 @@ public interface Cat extends Animal {
      */
     default Value.Mutable<CatType> type() {
         return getValue(Keys.CAT_TYPE).get().asMutable();
-    }
-
-    default DyeableData getCollarColorData() {
-        return this.get(DyeableData.class).get();
     }
 
     default Value.Mutable<DyeColor> collarColor() {

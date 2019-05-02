@@ -25,7 +25,6 @@
 package org.spongepowered.api.block.tileentity;
 
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.manipulator.mutable.StructureData;
 
 /**
  * Represents a Structure.
@@ -34,15 +33,5 @@ import org.spongepowered.api.data.manipulator.mutable.StructureData;
  * structures, alongside {@link BlockTypes#STRUCTURE_VOID structure void} blocks.</p>
  */
 public interface Structure extends TileEntity {
-
-    /**
-     * Gets a copy of the {@link Structure} containing all available
-     * data this {@link EndGateway} has.
-     *
-     * @return A copy of the structure data
-     */
-    default StructureData getStructureData() {
-        return this.get(StructureData.class).get();
-    }
 
 }

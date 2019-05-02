@@ -116,7 +116,7 @@ public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
          * @param manipulator The manipulator to set for the archetype
          * @return This builder, for chaining
          */
-        Builder setData(DataManipulator<?, ?> manipulator);
+        Builder set(DataManipulator manipulator);
 
         /**
          * Sets the desired {@link EntityType} of the produced {@link EntityArchetype}.

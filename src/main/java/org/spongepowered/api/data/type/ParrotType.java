@@ -29,7 +29,7 @@ import org.spongepowered.api.entity.living.animal.Parrot;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents the variant of a {@link Parrot}.
+ * Represents the type of a {@link Parrot}.
  */
 @CatalogedBy(ParrotTypes.class)
 public interface ParrotType extends CatalogType {

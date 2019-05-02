@@ -223,9 +223,9 @@ public final class TypeTokens {
 
     public static final TypeToken<ListValue<TradeOffer>> LIST_VALUE_TRADE_OFFER_TOKEN = new TypeToken<ListValue<TradeOffer>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<LlamaType> LLAMA_VARIANT_TOKEN = new TypeToken<LlamaType>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<LlamaType> LLAMA_TYPE_TOKEN = new TypeToken<LlamaType>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<Value<LlamaType>> LLAMA_VARIANT_VALUE_TOKEN = new TypeToken<Value<LlamaType>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<Value<LlamaType>> LLAMA_TYPE_VALUE_TOKEN = new TypeToken<Value<LlamaType>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Long> LONG_TOKEN = new TypeToken<Long>() {private static final long serialVersionUID = -1;};
 
@@ -271,9 +271,9 @@ public final class TypeTokens {
 
     public static final TypeToken<OptionalValue<UUID>> OPTIONAL_UUID_VALUE_TOKEN = new TypeToken<OptionalValue<UUID>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<ParrotType> PARROT_VARIANT_TOKEN = new TypeToken<ParrotType>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<ParrotType> PARROT_TYPE_TOKEN = new TypeToken<ParrotType>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<Value<ParrotType>> PARROT_VARIANT_VALUE_TOKEN = new TypeToken<Value<ParrotType>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<Value<ParrotType>> PARROT_TYPE_VALUE_TOKEN = new TypeToken<Value<ParrotType>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<ParticleType> PARTICLE_TYPE_TOKEN = new TypeToken<ParticleType>() {private static final long serialVersionUID = -1;};
 

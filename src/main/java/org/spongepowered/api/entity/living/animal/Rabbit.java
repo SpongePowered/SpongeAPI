@@ -25,7 +25,6 @@
 package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.RabbitData;
 import org.spongepowered.api.data.type.RabbitType;
 import org.spongepowered.api.data.value.Value;
 
@@ -35,21 +34,12 @@ import org.spongepowered.api.data.value.Value;
 public interface Rabbit extends Animal {
 
     /**
-     * Gets a copy of the {@link RabbitData} representing the specific data for
-     * this {@link Rabbit}.
-     *
-     * @return A copy of the rabbit data
-     */
-    default RabbitData getRabbitData() {
-        return get(RabbitData.class).get();
-    }
-
-    /**
      * Gets the {@link Value.Mutable} for the {@link RabbitType} of this {@link Rabbit}.
      *
-     * @return The rabbit type
+     * @return The rabbit type for this rabit
      */
     default Value.Mutable<RabbitType> type() {
-        return this.getValue(Keys.RABBIT_TYPE).get().asMutable();
+        return getValue(Keys.RABBIT_TYPE).get().asMutable();
     }
+
 }

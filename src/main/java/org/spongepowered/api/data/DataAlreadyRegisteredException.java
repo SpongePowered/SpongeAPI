@@ -24,119 +24,24 @@
  */
 package org.spongepowered.api.data;
 
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.DataManipulatorBuilder;
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-
-import javax.annotation.Nullable;
+import org.spongepowered.api.data.key.Key;
 
 public class DataAlreadyRegisteredException extends DataException {
 
-    private static final long serialVersionUID = 6644721737729647869L;
-    @Nullable private final Class<? extends DataManipulator<?, ?>> manipulatorClass;
-    @Nullable private final Class<? extends ImmutableDataManipulator<?, ?>> immutableManipulatorClass;
-    @Nullable private final DataManipulatorBuilder<?, ?> builder;
+    private static final long serialVersionUID = -2808546259310625417L;
 
+    private final Key<?> registeredKey;
+    private final DataRegistration owningRegistration;
 
-    /**
-     * Constructs a new data already registered exception.
-     *
-     * @param manipulatorClass The manipulator class
-     * @param immutableManipulatorClass The immutable manipulator class
-     * @param builder The data manipulator builder
-     */
-    public DataAlreadyRegisteredException(@Nullable Class<? extends DataManipulator<?, ?>> manipulatorClass,
-        @Nullable Class<? extends ImmutableDataManipulator<?, ?>> immutableManipulatorClass,
-        @Nullable DataManipulatorBuilder<?, ?> builder) {
-        this.manipulatorClass = manipulatorClass;
-        this.immutableManipulatorClass = immutableManipulatorClass;
-        this.builder = builder;
+    public DataAlreadyRegisteredException(Key<?> registeredKey, DataRegistration owningRegistration) {
+        this.registeredKey = registeredKey;
+        this.owningRegistration = owningRegistration;
     }
 
-    /**
-     * Constructs a new data already registered exception with a message.
-     *
-     * @param message The message to send with the exception
-     * @param manipulatorClass The manipulator class
-     * @param immutableManipulatorClass The immutable manipulator class
-     * @param builder The data manipulator builder
-     */
-    public DataAlreadyRegisteredException(String message,
-        @Nullable Class<? extends DataManipulator<?, ?>> manipulatorClass,
-        @Nullable Class<? extends ImmutableDataManipulator<?, ?>> immutableManipulatorClass,
-        @Nullable DataManipulatorBuilder<?, ?> builder) {
+    public DataAlreadyRegisteredException(String message, Key<?> registeredKey, DataRegistration owningRegistration) {
         super(message);
-        this.manipulatorClass = manipulatorClass;
-        this.immutableManipulatorClass = immutableManipulatorClass;
-        this.builder = builder;
+        this.registeredKey = registeredKey;
+        this.owningRegistration = owningRegistration;
     }
 
-    /**
-     * Constructs a new data already registered exception with a message and
-     * a throwable cause.
-     *
-     * @param message The message to send with the exception
-     * @param cause The cause of the exception
-     * @param manipulatorClass The manipulator class
-     * @param immutableManipulatorClass The immutable manipulator class
-     * @param builder The data manipulator builder
-     */
-    public DataAlreadyRegisteredException(String message, Throwable cause,
-        @Nullable Class<? extends DataManipulator<?, ?>> manipulatorClass,
-        @Nullable Class<? extends ImmutableDataManipulator<?, ?>> immutableManipulatorClass,
-        @Nullable DataManipulatorBuilder<?, ?> builder) {
-        super(message, cause);
-        this.manipulatorClass = manipulatorClass;
-        this.immutableManipulatorClass = immutableManipulatorClass;
-        this.builder = builder;
-    }
-
-    /**
-     * Constructs a new data already registered exception with
-     * a throwable cause.
-     *
-     * @param cause The cause of the exception
-     * @param manipulatorClass The manipulator class
-     * @param immutableManipulatorClass The immutable manipulator class
-     * @param builder The data manipulator builder
-     */
-    public DataAlreadyRegisteredException(Throwable cause,
-        @Nullable Class<? extends DataManipulator<?, ?>> manipulatorClass,
-        @Nullable Class<? extends ImmutableDataManipulator<?, ?>> immutableManipulatorClass,
-        @Nullable DataManipulatorBuilder<?, ?> builder) {
-        super(cause);
-        this.manipulatorClass = manipulatorClass;
-        this.immutableManipulatorClass = immutableManipulatorClass;
-        this.builder = builder;
-    }
-
-    /**
-     * Gets the related data manipulator class.
-     *
-     * @return The manipulator class
-     */
-    @Nullable
-    public Class<? extends DataManipulator<?, ?>> getManipulatorClass() {
-        return this.manipulatorClass;
-    }
-
-    /**
-     * Gets the related immutable data manipulator class.
-     *
-     * @return The immutable manipulator class
-     */
-    @Nullable
-    public Class<? extends ImmutableDataManipulator<?, ?>> getImmutableManipulatorClass() {
-        return this.immutableManipulatorClass;
-    }
-
-    /**
-     * Gets the related data manipulator builder.
-     *
-     * @return The data manipulator builder
-     */
-    @Nullable
-    public DataManipulatorBuilder<?, ?> getBuilder() {
-        return this.builder;
-    }
 }

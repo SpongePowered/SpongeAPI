@@ -24,10 +24,6 @@
  */
 package org.spongepowered.api.data;
 
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.DataManipulatorBuilder;
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulatorBuilder;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.DataContentUpdater;
 import org.spongepowered.api.data.persistence.DataTranslator;
@@ -39,9 +35,7 @@ import java.util.Optional;
 /**
  * A manager of the overall Data API. This handles the registration of
  * {@link DataSerializable}s and their {@link DataBuilder}s,
- * {@link DataManipulator}s and their respective {@link DataManipulatorBuilder}s,
- * {@link ImmutableDataManipulator}s and their respective
- * {@link ImmutableDataManipulatorBuilder}s, etc.
+ * {@link DataRegistration}s, etc.
  *
  * <p>Note that this manager powers not just serialization and deserialization,
  * but also powers a majority of the Data API.</p>
@@ -137,7 +131,7 @@ public interface DataManager {
      * @param legacyId The legacy id
      * @param registration The registration object successfully created
      */
-    void registerLegacyManipulatorIds(String legacyId, DataRegistration<?, ?> registration);
+    void registerLegacyManipulatorIds(String legacyId, DataRegistration registration);
 
     /**
      * Attempts to retrieve the builder for the given
@@ -153,34 +147,6 @@ public interface DataManager {
      */
     <T extends ImmutableDataHolder<T>, B extends ImmutableDataBuilder<T, B>> Optional<B> getImmutableBuilder(Class<T> holderClass);
 
-    /**
-     * Attempts to retrieve the builder for the given {@link DataManipulator}.
-     *
-     * <p>If the {@link DataManipulator} was not registered, multiple systems
-     * could fail to retrieve specific data.</p>
-     *
-     * @param manipulatorClass The manipulator class
-     * @param <T> The type of manipulator
-     * @param <I> The type of immutable manipulator
-     * @return The builder, if available
-     */
-    <T extends DataManipulator<T, I>, I extends ImmutableDataManipulator<I, T>>
-        Optional<DataManipulatorBuilder<T, I>> getManipulatorBuilder(Class<T> manipulatorClass);
-
-    /**
-     * Attempts to retrieve the builder for the given
-     * {@link ImmutableDataManipulator}.
-     *
-     * <p>If the {@link ImmutableDataManipulator} was not registered, multiple
-     * systems could fail to retrieve specific data.</p>
-     *
-     * @param immutableManipulatorClass The immutable manipulator class
-     * @param <T> The type of DataManipulator
-     * @param <I> The type of ImmutableDataManipulator
-     * @return The DataManipulatorBuilder, if available
-     */
-    <T extends DataManipulator<T, I>, I extends ImmutableDataManipulator<I, T>>
-        Optional<DataManipulatorBuilder<T, I>> getImmutableManipulatorBuilder(Class<I> immutableManipulatorClass);
 
     /**
      * Gets the desired {@link DataTranslator} for the provided class.
@@ -192,14 +158,14 @@ public interface DataManager {
     <T> Optional<DataTranslator<T>> getTranslator(Class<T> objectClass);
 
     /**
-     * Gets all {@link Class}es of all {@link DataManipulator}s registered for
+     * Gets all {@link Class}es of all {@link DataRegistration}s registered for
      * the provided {@link PluginContainer}. The provided {@link Collection} is
      * considered immutable and can not be modified.
      *
      * @param container The plugin container for registered classes
      * @return The collection of all registered data manipulator classes
      */
-    Collection<Class<? extends DataManipulator<?, ?>>> getAllRegistrationsFor(PluginContainer container);
+    Collection<DataRegistration> getAllRegistrationsFor(PluginContainer container);
 
     /**
      * Creates a new {@link DataContainer} with a default

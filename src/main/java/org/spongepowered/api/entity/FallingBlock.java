@@ -26,7 +26,6 @@ package org.spongepowered.api.entity;
 
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.FallingBlockData;
 import org.spongepowered.api.data.value.Value;
 
 /**
@@ -34,15 +33,6 @@ import org.spongepowered.api.data.value.Value;
  * and optionally may place a block, or drop an item.
  */
 public interface FallingBlock extends Entity {
-
-    /**
-     * Gets a copy of the currently used {@link FallingBlockData}.
-     *
-     * @return A copy of the currently used falling block data
-     */
-    default FallingBlockData getFallingBlockData() {
-        return get(FallingBlockData.class).get();
-    }
 
     /**
      * Gets the {@link Value.Mutable} for the damage to deal per block the

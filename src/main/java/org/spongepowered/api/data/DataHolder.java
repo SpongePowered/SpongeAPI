@@ -33,7 +33,7 @@ import org.spongepowered.api.data.value.CompositeValueStore;
  * A data holder object allows the access of additional data on the object
  * that is not simply expressed by its basic type.
  */
-public interface DataHolder extends DataSerializable, PropertyHolder, CompositeValueStore<DataHolder, DataManipulator<?, ?>> {
+public interface DataHolder extends DataSerializable, PropertyHolder, CompositeValueStore<DataHolder, DataManipulator> {
 
     /**
      * Validates the container with known data required to set the raw data to

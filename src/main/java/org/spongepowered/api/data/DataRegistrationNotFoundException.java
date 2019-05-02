@@ -24,17 +24,12 @@
  */
 package org.spongepowered.api.data;
 
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-
 import javax.annotation.Nullable;
 
 public class DataRegistrationNotFoundException extends DataException {
 
     private static final long serialVersionUID = -1671720083547789746L;
     @Nullable private String registrationQuery;
-    @Nullable private Class<? extends DataManipulator<?, ?>> manipulatorClass;
-    @Nullable private Class<? extends ImmutableDataManipulator<?, ?>> immutableClass;
 
     /**
      * Constructs a basic data registration not found exception.
@@ -66,67 +61,6 @@ public class DataRegistrationNotFoundException extends DataException {
         this.registrationQuery = registrationQuery;
     }
 
-    /**
-     * Constructs a data registration not found exception with a message and a
-     * specified data manipulator class.
-     *
-     * @param message The message
-     * @param manipulatorClass The manipulator class
-     */
-    public DataRegistrationNotFoundException(String message,
-        Class<? extends DataManipulator<?, ?>> manipulatorClass) {
-        super(message);
-        this.manipulatorClass = manipulatorClass;
-    }
-
-    /**
-     * Constructs a data registration not found exception with a message,
-     * a throwable cause, and a specified data manipulator class.
-     *
-     * @param message The message
-     * @param cause The cause
-     * @param manipulatorClass The manipulator class
-     */
-    public DataRegistrationNotFoundException(String message, Throwable cause,
-        Class<? extends DataManipulator<?, ?>> manipulatorClass) {
-        super(message, cause);
-        this.manipulatorClass = manipulatorClass;
-    }
-
-    /**
-     * Constructs a data registration not found exception with a message,
-     * an immutable data manipulator class, and a mutable
-     * data manipulator class.
-     *
-     * @param message The message
-     * @param manipulatorClass The manipulator class
-     * @param immutableClass The immutable class
-     */
-    public DataRegistrationNotFoundException(String message,
-        @Nullable Class<? extends DataManipulator<?, ?>> manipulatorClass,
-        Class<? extends ImmutableDataManipulator<?, ?>> immutableClass) {
-        super(message);
-        this.manipulatorClass = manipulatorClass;
-        this.immutableClass = immutableClass;
-    }
-
-    /**
-     * Constructs a data registration not found exception with a message,
-     * a throwable cause, an immutable data manipulator class,
-     * and a mutable data manipulator class.
-     *
-     * @param message The message
-     * @param cause The cause
-     * @param manipulatorClass The manipulator class
-     * @param immutableClass The immutable class
-     */
-    public DataRegistrationNotFoundException(String message, Throwable cause,
-        @Nullable Class<? extends DataManipulator<?, ?>> manipulatorClass,
-        Class<? extends ImmutableDataManipulator<?, ?>> immutableClass) {
-        super(message, cause);
-        this.manipulatorClass = manipulatorClass;
-        this.immutableClass = immutableClass;
-    }
 
     /**
      * Gets the specified registration query, if present.
@@ -138,23 +72,4 @@ public class DataRegistrationNotFoundException extends DataException {
         return this.registrationQuery;
     }
 
-    /**
-     * Gets the data manipulator class, if present.
-     *
-     * @return The manipulator class, if present
-     */
-    @Nullable
-    public Class<? extends DataManipulator<?, ?>> getManipulatorClass() {
-        return this.manipulatorClass;
-    }
-
-    /**
-     * Gets the immutable data manipulator class, if present.
-     *
-     * @return The immutable manipulator class, if present
-     */
-    @Nullable
-    public Class<? extends ImmutableDataManipulator<?, ?>> getImmutableClass() {
-        return this.immutableClass;
-    }
 }

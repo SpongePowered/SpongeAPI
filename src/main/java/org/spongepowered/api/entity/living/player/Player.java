@@ -30,9 +30,6 @@ import org.spongepowered.api.advancement.AdvancementProgress;
 import org.spongepowered.api.advancement.AdvancementTree;
 import org.spongepowered.api.block.tileentity.EnderChest;
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
-import org.spongepowered.api.data.manipulator.mutable.GameModeData;
-import org.spongepowered.api.data.manipulator.mutable.JoinData;
 import org.spongepowered.api.data.type.SkinPart;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.effect.Viewer;
@@ -211,20 +208,6 @@ public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver 
     void setScoreboard(Scoreboard scoreboard);
 
     /**
-     * Gets a copy of the current {@link JoinData}.
-     *
-     * <p>Since a {@link Player} is already online, it means that the player
-     * has joined the server at least once, meaning there is a guaranteed
-     * initial join {@link Instant}. Users may not have ever joined a server
-     * before.</p>
-     *
-     * @return A copy of the join data
-     */
-    default JoinData getJoinData() {
-        return get(JoinData.class).get();
-    }
-
-    /**
      * Gets the {@link Value.Mutable} of the {@link Instant} that a {@link Player}
      * joined the {@link Server} the first time.
      *
@@ -254,23 +237,8 @@ public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver 
         return !firstPlayed().equals(lastPlayed());
     }
 
-    /**
-     * Gets a copy of the current {@link DisplayNameData} for this
-     * {@link Player}.
-     *
-     * @return A copy of the current display name data
-     */
-    default DisplayNameData getDisplayNameData() {
-        return get(DisplayNameData.class).get();
-    }
-
-    /**
-     * Gets a copy of the current {@link GameModeData} for this {@link Player}.
-     *
-     * @return A copy of the current game mode data
-     */
-    default GameModeData getGameModeData() {
-        return get(GameModeData.class).get();
+    default Value.Mutable<Text> displayName() {
+        return getValue(Keys.DISPLAY_NAME).get().asMutable();
     }
 
     /**

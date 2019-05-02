@@ -25,8 +25,6 @@
 package org.spongepowered.api.entity.living;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.ArmorStandData;
-import org.spongepowered.api.data.manipulator.mutable.BodyPartRotationalData;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.ArmorEquipable;
 
@@ -34,16 +32,6 @@ import org.spongepowered.api.entity.ArmorEquipable;
  * Represents an armor stand.
  */
 public interface ArmorStand extends Living, ArmorEquipable {
-
-    /**
-     * Gets a copy of the current {@link BodyPartRotationalData} used by this
-     * {@link ArmorStand}.
-     *
-     * @return A copy of the current body rotational data
-     */
-    default BodyPartRotationalData getBodyPartRotationalData() {
-        return get(BodyPartRotationalData.class).get();
-    }
 
     /**
      * Gets the {@link Boolean} {@link Value.Mutable} of whether this
@@ -87,15 +75,6 @@ public interface ArmorStand extends Living, ArmorEquipable {
      */
     default Value.Mutable<Boolean> arms() {
         return getValue(Keys.ARMOR_STAND_HAS_ARMS).get().asMutable();
-    }
-
-    /**
-     * Gets the {@link ArmorStandData} for this armor stand.
-     *
-     * @return The data manipulator for this armorstand
-     */
-    default ArmorStandData getArmorStandData() {
-        return get(ArmorStandData.class).get();
     }
 
 }

@@ -120,7 +120,7 @@ public interface TileEntityArchetype extends Archetype<BlockSnapshot, TileEntity
 
         Builder tileData(DataView dataView);
 
-        Builder setData(DataManipulator<?, ?> manipulator);
+        Builder set(DataManipulator manipulator);
 
         <E, V extends Value<E>> Builder set(V value);
 

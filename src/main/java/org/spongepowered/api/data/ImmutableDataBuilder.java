@@ -41,14 +41,23 @@ import org.spongepowered.api.data.value.Value;
 public interface ImmutableDataBuilder<H extends ImmutableDataHolder<H>, E extends ImmutableDataBuilder<H, E>> extends DataBuilder<H> {
 
     /**
-     * Adds the given {@link DataManipulator} to the builder. The
-     * {@link DataManipulator} is copied when the {@link ImmutableDataHolder}
+     * Adds the given {@link Value} to the builder. The
+     * {@link Value} is copied when the {@link ImmutableDataHolder}
      * is created.
      *
-     * @param manipulator The manipulator to add
+     * @param value The value to add
      * @return This builder, for chaining
      */
-    E add(DataManipulator<?, ?> manipulator);
+    @SuppressWarnings("unchecked")
+    default E add(Value<?> value) {
+        return (E) add((Key) value.getKey(), value.get());
+    }
+
+    @SuppressWarnings("unchecked")
+    default E add(DataManipulator manipulator) {
+        manipulator.getValues().forEach(this::add);
+        return (E) this;
+    }
 
     /**
      * Adds the given {@link ImmutableDataManipulator} to the builder.
@@ -56,7 +65,11 @@ public interface ImmutableDataBuilder<H extends ImmutableDataHolder<H>, E extend
      * @param manipulator The manipulator to add
      * @return This builder, for chaining
      */
-    E add(ImmutableDataManipulator<?, ?> manipulator);
+    @SuppressWarnings("unchecked")
+    default E add(ImmutableDataManipulator manipulator) {
+        manipulator.getValues().forEach(this::add);
+        return (E) this;
+    }
 
     /**
      * Adds the given {@link Key} with the given value.

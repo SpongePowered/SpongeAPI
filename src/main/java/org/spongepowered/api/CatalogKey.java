@@ -25,8 +25,8 @@
 package org.spongepowered.api;
 
 import ninja.leaping.configurate.ConfigurationNode;
+import org.spongepowered.api.data.DataRegistration;
 import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.persistence.DataTranslator;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.CatalogBuilder;
@@ -44,7 +44,7 @@ import org.spongepowered.api.util.ResettableBuilder;
  * </ol>
  * Normally, the namespace is lowercased and likewise, so is the value. This
  * is have a uniform format for all uses of {@link CatalogKey}, including but
- * not restricted to {@link DataManipulator}s, {@link ConfigurationNode}s,
+ * not restricted to {@link DataRegistration}s, {@link ConfigurationNode}s,
  * {@link DataTranslator}s, and {@link DataSerializable}s.
  *
  * <p>Note that the methods {@link #minecraft(String)} and

@@ -25,7 +25,6 @@
 package org.spongepowered.api.entity.living.monster;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.ExpirableData;
 import org.spongepowered.api.data.value.Value;
 
 import java.time.Duration;
@@ -34,15 +33,6 @@ import java.time.Duration;
  * Represents an endermite.
  */
 public interface Endermite extends Monster {
-
-    /**
-     * Gets a copy of the {@link ExpirableData} for this endermite.
-     *
-     * @return A copy of the expirable data
-     */
-    default ExpirableData getExpirableData() {
-        return get(ExpirableData.class).get();
-    }
 
     /**
      * Gets the {@link Value.Mutable} for the duration

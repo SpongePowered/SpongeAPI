@@ -25,7 +25,6 @@
 package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.HorseData;
 import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.value.Value;
@@ -34,15 +33,6 @@ import org.spongepowered.api.data.value.Value;
  * Represents a RideableHorse.
  */
 public interface RideableHorse extends Horse {
-
-    /**
-     * Gets a copy of the {@link HorseData} representing this {@link RideableHorse}.
-     *
-     * @return A copy of the horse data
-     */
-    default HorseData getHorseData() {
-        return get(HorseData.class).get();
-    }
 
     /**
      * Gets the style of the horse.
