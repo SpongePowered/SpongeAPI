@@ -25,14 +25,13 @@
 package org.spongepowered.api.block.tileentity.carrier;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.BeaconData;
 import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.effect.potion.PotionEffectType;
 
 /**
  * Represents a Beacon.
  *
- * <p>Beacons apply prescribed effects according to the {@link BeaconData}.
+ * <p>Beacons apply prescribed effects according to the {@link Keys#BEACON_PRIMARY_EFFECT}.
  * Depending on the completed levels of the beacon, the effects may be applied
  * at a further range or shorter range.</p>
  */
@@ -46,14 +45,6 @@ public interface Beacon extends TileEntityCarrier {
      */
     int getCompletedLevels();
 
-    /**
-     * Gets the current {@link BeaconData} for this beacon.
-     *
-     * @return The current beacon data for this beacon
-     */
-    default BeaconData getBeaconData() {
-        return get(BeaconData.class).get();
-    }
 
     /**
      * Gets the {@link OptionalValue.Mutable} for the primary

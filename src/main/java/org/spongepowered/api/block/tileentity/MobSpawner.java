@@ -25,7 +25,6 @@
 package org.spongepowered.api.block.tileentity;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.WeightedCollectionValue;
@@ -50,15 +49,6 @@ public interface MobSpawner extends TileEntity {
      * @param force Whether to ignore spawning restrictions
      */
     void spawnEntityBatchImmediately(boolean force);
-
-    /**
-     * Gets the {@link MobSpawnerData} for this mob spawner.
-     *
-     * @return the mob spawner's associated data
-     */
-    default MobSpawnerData getMobSpawnerData() {
-        return get(MobSpawnerData.class).get();
-    }
 
     /**
      * Gets the {@link BoundedValue.Mutable} for the remaining delay before

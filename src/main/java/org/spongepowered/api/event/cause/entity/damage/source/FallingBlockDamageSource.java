@@ -26,7 +26,6 @@ package org.spongepowered.api.event.cause.entity.damage.source;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.data.manipulator.immutable.ImmutableFallingBlockData;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.FallingBlock;
 

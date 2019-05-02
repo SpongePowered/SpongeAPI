@@ -25,7 +25,6 @@
 package org.spongepowered.api.block.tileentity.carrier;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.DyeableData;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.value.Value;
 
@@ -35,16 +34,6 @@ import org.spongepowered.api.data.value.Value;
  * them back as items will result in a restored inventory.
  */
 public interface ShulkerBox extends TileEntityCarrier {
-
-    /**
-     * Gets a copy of the {@link DyeableData} representing the color of this
-     * {@link ShulkerBox}.
-     *
-     * @return A copy of the dye data
-     */
-    default DyeableData getDyeData() {
-        return get(DyeableData.class).get();
-    }
 
     /**
      * Gets the current {@link Value} of {@link DyeColor} for this

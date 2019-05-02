@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.block.tileentity;
 
-import org.spongepowered.api.data.manipulator.mutable.RepresentedItemData;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
@@ -34,7 +34,7 @@ public interface Jukebox extends TileEntity {
 
     /**
      * Attempts to play the currently stored music disc according to the
-     * {@link RepresentedItemData} of this {@link Jukebox}.
+     * {@link Keys#REPRESENTED_ITEM} of this {@link Jukebox}.
      */
     void play();
 
