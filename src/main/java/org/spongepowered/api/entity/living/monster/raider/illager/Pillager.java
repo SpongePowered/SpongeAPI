@@ -22,12 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.monster;
+package org.spongepowered.api.entity.living.monster.raider.illager;
 
 /**
- * Represents a Stray.
+ * Represents a pillager.
  */
-public interface Stray extends Skeleton {
-
+public interface Pillager extends Illager {
 
 }

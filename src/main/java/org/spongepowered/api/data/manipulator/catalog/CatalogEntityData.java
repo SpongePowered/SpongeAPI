@@ -59,7 +59,7 @@ import org.spongepowered.api.entity.living.monster.Enderman;
 import org.spongepowered.api.entity.living.monster.Endermite;
 import org.spongepowered.api.entity.living.monster.MagmaCube;
 import org.spongepowered.api.entity.living.monster.Slime;
-import org.spongepowered.api.entity.living.monster.Vindicator;
+import org.spongepowered.api.entity.living.monster.raider.illager.Vindicator;
 import org.spongepowered.api.entity.living.monster.Zombie;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;

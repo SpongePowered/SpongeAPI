@@ -22,11 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.monster;
+package org.spongepowered.api.entity.living.monster.raider;
 
-/**
- * Represents a White Skeleton.
- */
-public interface WhiteSkeleton extends Skeleton {
+public interface Ravager extends Raider {
 
 }

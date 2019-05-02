@@ -22,44 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.health.source;
-
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.monster.Boss;
-import org.spongepowered.api.entity.living.monster.raider.Witch;
+package org.spongepowered.api.entity.living.monster.skeleton;
 
 /**
- * Signifies that the healing source is another entity, can usually mean
- * that the healing source is the same entity being healed. Examples may
- * include self healing from {@link Boss} entities, {@link Witch}es, etc.
+ * Represents a skeleton.
  */
-public interface EntityHealingSource extends HealingSource {
+public interface Skeleton extends AbstractSkeleton {
 
-    /**
-     * Gets a new builder to build a new {@link EntityHealingSource}.
-     *
-     * @return The new builder
-     */
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
-    }
-
-    /**
-     * Gets the source entity acting as the healing source.
-     *
-     * @return The source entity
-     */
-    Entity getSource();
-
-    interface Builder extends EntityHealingSourceBuilder<EntityHealingSource, Builder> {
-
-    }
-
-    interface EntityHealingSourceBuilder<T extends EntityHealingSource, B extends EntityHealingSourceBuilder<T, B>>
-            extends HealingSourceBuilder<T, B> {
-
-        B entity(Entity entity);
-
-    }
 }

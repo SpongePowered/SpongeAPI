@@ -69,24 +69,27 @@ import org.spongepowered.api.entity.living.monster.Drowned;
 import org.spongepowered.api.entity.living.monster.ElderGuardian;
 import org.spongepowered.api.entity.living.monster.Enderman;
 import org.spongepowered.api.entity.living.monster.Endermite;
-import org.spongepowered.api.entity.living.monster.Evoker;
+import org.spongepowered.api.entity.living.monster.raider.illager.Evoker;
 import org.spongepowered.api.entity.living.monster.Ghast;
 import org.spongepowered.api.entity.living.monster.Giant;
 import org.spongepowered.api.entity.living.monster.Guardian;
 import org.spongepowered.api.entity.living.monster.Husk;
-import org.spongepowered.api.entity.living.monster.Illusioner;
+import org.spongepowered.api.entity.living.monster.raider.illager.Illusioner;
 import org.spongepowered.api.entity.living.monster.MagmaCube;
 import org.spongepowered.api.entity.living.monster.Phantom;
 import org.spongepowered.api.entity.living.monster.Silverfish;
-import org.spongepowered.api.entity.living.monster.Skeleton;
+import org.spongepowered.api.entity.living.monster.skeleton.AbstractSkeleton;
 import org.spongepowered.api.entity.living.monster.Slime;
 import org.spongepowered.api.entity.living.monster.Spider;
-import org.spongepowered.api.entity.living.monster.Stray;
+import org.spongepowered.api.entity.living.monster.skeleton.Skeleton;
+import org.spongepowered.api.entity.living.monster.skeleton.Stray;
 import org.spongepowered.api.entity.living.monster.Vex;
-import org.spongepowered.api.entity.living.monster.Vindicator;
-import org.spongepowered.api.entity.living.monster.Witch;
+import org.spongepowered.api.entity.living.monster.raider.illager.Pillager;
+import org.spongepowered.api.entity.living.monster.raider.illager.Vindicator;
+import org.spongepowered.api.entity.living.monster.raider.Ravager;
+import org.spongepowered.api.entity.living.monster.raider.Witch;
 import org.spongepowered.api.entity.living.monster.Wither;
-import org.spongepowered.api.entity.living.monster.WitherSkeleton;
+import org.spongepowered.api.entity.living.monster.skeleton.WitherSkeleton;
 import org.spongepowered.api.entity.living.monster.Zombie;
 import org.spongepowered.api.entity.living.monster.ZombiePigman;
 import org.spongepowered.api.entity.living.monster.ZombieVillager;
@@ -246,6 +249,8 @@ public final class EntityTypes {
 
     public static final EntityType<Pig> PIG = dummy("PIG");
 
+    public static final EntityType<Pillager> PILLAGER = dummy("PILLAGER");
+
     public static final EntityType<Player> PLAYER = dummy("PLAYER");
 
     public static final EntityType<PolarBear> POLAR_BEAR = dummy("POLAR_BEAR");
@@ -255,6 +260,8 @@ public final class EntityTypes {
     public static final EntityType<Pufferfish> PUFFERFISH = dummy("PUFFERFISH");
 
     public static final EntityType<Rabbit> RABBIT = dummy("RABBIT");
+
+    public static final EntityType<Ravager> RAVAGER = dummy("RAVAGER");
 
     public static final EntityType<Salmon> SALMON = dummy("SALMON");
 

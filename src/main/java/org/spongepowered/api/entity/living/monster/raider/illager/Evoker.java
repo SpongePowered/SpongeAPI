@@ -22,13 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.monster;
-
-import org.spongepowered.api.entity.living.Ranger;
+package org.spongepowered.api.entity.living.monster.raider.illager;
 
 /**
- * Represents a Witch.
+ * Represents an evoker.
  */
-public interface Witch extends Monster, Ranger {
+public interface Evoker extends Spellcaster {
 
 }

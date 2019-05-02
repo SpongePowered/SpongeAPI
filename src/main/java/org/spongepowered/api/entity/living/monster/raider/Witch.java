@@ -22,23 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.monster;
+package org.spongepowered.api.entity.living.monster.raider;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.item.ItemTypes;
+import org.spongepowered.api.entity.living.Ranger;
+import org.spongepowered.api.entity.living.monster.Monster;
 
-public interface Vindicator extends Monster {
-
-    /**
-     * Gets the {@link Value.Mutable} for whether this vindicator is considered a
-     * "johnny" vindicator. "Johnny" vindicators will deal more damage and
-     * often times carry an {@link ItemTypes#IRON_AXE} of sorts.
-     *
-     * @return Whether this is a johnny vindicator
-     */
-    default Value.Mutable<Boolean> johnny() {
-        return getValue(Keys.IS_JOHNNY).get().asMutable();
-    }
+/**
+ * Represents a Witch.
+ */
+public interface Witch extends Raider, Ranger {
 
 }

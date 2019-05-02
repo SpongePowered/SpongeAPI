@@ -22,14 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.monster;
+package org.spongepowered.api.entity.living.monster.raider;
 
-import org.spongepowered.api.entity.ArmorEquipable;
-import org.spongepowered.api.entity.living.Ranger;
+import org.spongepowered.api.entity.living.monster.Monster;
 
-/**
- * Represents a Skeleton.
- */
-public interface Skeleton extends Monster, ArmorEquipable, Ranger {
+public interface Raider extends Monster {
 
 }

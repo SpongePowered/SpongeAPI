@@ -22,8 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.monster;
+package org.spongepowered.api.entity.living.monster.skeleton;
 
-public interface Evoker extends Monster {
+/**
+ * Represents a Wither skeleton.
+ */
+public interface WitherSkeleton extends AbstractSkeleton {
 
 }

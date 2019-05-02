@@ -22,11 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.monster;
+package org.spongepowered.api.entity.living.monster.raider.illager;
 
-/**
- * Represents a WitherSkeleton.
- */
-public interface WitherSkeleton extends Skeleton {
+public interface Spellcaster extends Illager {
 
 }

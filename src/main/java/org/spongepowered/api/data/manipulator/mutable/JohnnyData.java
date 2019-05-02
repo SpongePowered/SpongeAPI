@@ -28,7 +28,7 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableJohnnyData;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.monster.Vindicator;
+import org.spongepowered.api.entity.living.monster.raider.illager.Vindicator;
 
 /**
  * Data which represents if a mob is exhibiting "johnny" behavior.

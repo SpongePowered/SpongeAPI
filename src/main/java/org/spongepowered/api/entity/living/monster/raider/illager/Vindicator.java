@@ -22,44 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.health.source;
+package org.spongepowered.api.entity.living.monster.raider.illager;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.monster.Boss;
-import org.spongepowered.api.entity.living.monster.raider.Witch;
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.entity.living.monster.Monster;
+import org.spongepowered.api.item.ItemTypes;
 
 /**
- * Signifies that the healing source is another entity, can usually mean
- * that the healing source is the same entity being healed. Examples may
- * include self healing from {@link Boss} entities, {@link Witch}es, etc.
+ * Represents a vindicator.
  */
-public interface EntityHealingSource extends HealingSource {
+public interface Vindicator extends Monster {
 
     /**
-     * Gets a new builder to build a new {@link EntityHealingSource}.
+     * Gets the {@link Value.Mutable} for whether this vindicator is considered a
+     * "johnny" vindicator. "Johnny" vindicators will deal more damage and
+     * often times carry an {@link ItemTypes#IRON_AXE} of sorts.
      *
-     * @return The new builder
+     * @return Whether this is a johnny vindicator
      */
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
+    default Value.Mutable<Boolean> johnny() {
+        return getValue(Keys.IS_JOHNNY).get().asMutable();
     }
 
-    /**
-     * Gets the source entity acting as the healing source.
-     *
-     * @return The source entity
-     */
-    Entity getSource();
-
-    interface Builder extends EntityHealingSourceBuilder<EntityHealingSource, Builder> {
-
-    }
-
-    interface EntityHealingSourceBuilder<T extends EntityHealingSource, B extends EntityHealingSourceBuilder<T, B>>
-            extends HealingSourceBuilder<T, B> {
-
-        B entity(Entity entity);
-
-    }
 }
