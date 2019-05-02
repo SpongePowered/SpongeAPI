@@ -43,6 +43,7 @@ import org.spongepowered.api.entity.living.animal.Llama;
 import org.spongepowered.api.entity.living.animal.Mooshroom;
 import org.spongepowered.api.entity.living.animal.Mule;
 import org.spongepowered.api.entity.living.animal.Ocelot;
+import org.spongepowered.api.entity.living.animal.Panda;
 import org.spongepowered.api.entity.living.animal.Parrot;
 import org.spongepowered.api.entity.living.animal.Pig;
 import org.spongepowered.api.entity.living.animal.PolarBear;
@@ -236,6 +237,8 @@ public final class EntityTypes {
     public static final EntityType<Ocelot> OCELOT = dummy("OCELOT");
 
     public static final EntityType<Painting> PAINTING = dummy("PAINTING");
+
+    public static final EntityType<Panda> PANDA = dummy("PANDA");
 
     public static final EntityType<Parrot> PARROT = dummy("PARROT");
 
