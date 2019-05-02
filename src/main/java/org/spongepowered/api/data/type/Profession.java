@@ -25,12 +25,13 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.entity.living.villager.Villager;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Collection;
 
 /**
- * Represents a Villager Profession. A profession defines the genre of
+ * Represents a {@link Villager} profession. A profession defines the genre of
  * trade offers a villager may offer to a player.
  */
 @CatalogedBy(Professions.class)

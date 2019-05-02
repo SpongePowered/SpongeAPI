@@ -22,25 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world.chunk;
+package org.spongepowered.api.entity.living.villager;
 
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.world.chunk.ChunkTicketManager;
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.manipulator.mutable.CareerData;
+import org.spongepowered.api.data.type.Career;
+import org.spongepowered.api.data.value.Value;
 
-public interface ForcedChunkEvent extends Event {
-
-    /**
-     * Gets the ticket that the chunk was added to.
-     *
-     * @return The ticket the chunk was added to
-     */
-    ChunkTicketManager.LoadingTicket getTicket();
+/**
+ * Represents a villager.
+ */
+public interface Villager extends AbstractVillager {
 
     /**
-     * Gets the chunk coordinates.
+     * Gets a copy of the current {@link CareerData} for this villager.
      *
-     * @return The chunk coordinates
+     * @return A copy of the career data
      */
-    Vector3i getChunkCoords();
+    default CareerData getCareerData() {
+        return get(CareerData.class).get();
+    }
+
+    /**
+     * Gets the current {@link Career} of this villager.
+     *
+     * @return The current career value
+     */
+    default Value.Mutable<Career> career() {
+        return getValue(Keys.CAREER).get().asMutable();
+    }
 }

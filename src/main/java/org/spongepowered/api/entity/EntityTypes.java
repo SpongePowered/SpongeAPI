@@ -32,7 +32,8 @@ import org.spongepowered.api.entity.living.ArmorStand;
 import org.spongepowered.api.entity.living.Bat;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.living.Squid;
-import org.spongepowered.api.entity.living.Villager;
+import org.spongepowered.api.entity.living.animal.TraderLlama;
+import org.spongepowered.api.entity.living.villager.AbstractVillager;
 import org.spongepowered.api.entity.living.animal.Cat;
 import org.spongepowered.api.entity.living.animal.Chicken;
 import org.spongepowered.api.entity.living.animal.Cow;
@@ -78,7 +79,6 @@ import org.spongepowered.api.entity.living.monster.raider.illager.Illusioner;
 import org.spongepowered.api.entity.living.monster.MagmaCube;
 import org.spongepowered.api.entity.living.monster.Phantom;
 import org.spongepowered.api.entity.living.monster.Silverfish;
-import org.spongepowered.api.entity.living.monster.skeleton.AbstractSkeleton;
 import org.spongepowered.api.entity.living.monster.Slime;
 import org.spongepowered.api.entity.living.monster.Spider;
 import org.spongepowered.api.entity.living.monster.skeleton.Skeleton;
@@ -94,6 +94,8 @@ import org.spongepowered.api.entity.living.monster.Zombie;
 import org.spongepowered.api.entity.living.monster.ZombiePigman;
 import org.spongepowered.api.entity.living.monster.ZombieVillager;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.villager.Villager;
+import org.spongepowered.api.entity.living.villager.WanderingTrader;
 import org.spongepowered.api.entity.projectile.Egg;
 import org.spongepowered.api.entity.projectile.EnderPearl;
 import org.spongepowered.api.entity.projectile.EvokerFangs;
@@ -299,6 +301,8 @@ public final class EntityTypes {
 
     public static final EntityType<TNTMinecart> TNT_MINECART = dummy("TNT_MINECART");
 
+    public static final EntityType<TraderLlama> TRADER_LLAMA = dummy("TRADER_LLAMA");
+
     public static final EntityType<Trident> TRIDENT = dummy("TRIDENT");
 
     public static final EntityType<TropicalFish> TROPICAL_FISH = dummy("TROPICAL_FISH");
@@ -310,6 +314,8 @@ public final class EntityTypes {
     public static final EntityType<Villager> VILLAGER = dummy("VILLAGER");
 
     public static final EntityType<Vindicator> VINDICATOR = dummy("VINDICATOR");
+
+    public static final EntityType<WanderingTrader> WANDERING_TRADER = dummy("WANDERING_TRADER");
 
     public static final EntityType<Witch> WITCH = dummy("WITCH");
 

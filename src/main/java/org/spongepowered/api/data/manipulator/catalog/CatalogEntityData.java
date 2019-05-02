@@ -44,7 +44,7 @@ import org.spongepowered.api.entity.living.ArmorStand;
 import org.spongepowered.api.entity.living.Bat;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.entity.living.Villager;
+import org.spongepowered.api.entity.living.villager.AbstractVillager;
 import org.spongepowered.api.entity.living.animal.Animal;
 import org.spongepowered.api.entity.living.animal.Ocelot;
 import org.spongepowered.api.entity.living.animal.Pig;
@@ -64,6 +64,7 @@ import org.spongepowered.api.entity.living.monster.Zombie;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
+import org.spongepowered.api.entity.living.villager.Villager;
 import org.spongepowered.api.entity.projectile.EyeOfEnder;
 import org.spongepowered.api.entity.projectile.FireworkRocket;
 import org.spongepowered.api.entity.projectile.Projectile;
@@ -126,7 +127,7 @@ public final class CatalogEntityData {
      */
     public static final Class<BreedableData> BREEDABLE_DATA = BreedableData.class;
     /**
-     * Mainly for {@link Villager}s to determine their applicable
+     * Mainly for {@link AbstractVillager}s to determine their applicable
      * {@link TradeOffer}s.
      */
     public static final Class<CareerData> CAREER_DATA = CareerData.class;

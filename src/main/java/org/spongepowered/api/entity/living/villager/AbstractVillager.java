@@ -22,26 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world.chunk;
+package org.spongepowered.api.entity.living.villager;
 
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.world.chunk.ChunkTicketManager;
+import org.spongepowered.api.entity.living.Ageable;
+import org.spongepowered.api.entity.living.Humanoid;
+import org.spongepowered.api.item.merchant.Merchant;
 
-public interface UnforcedChunkEvent extends Event, Cancellable {
-
-    /**
-     * Gets the ticket that the chunk was removed from.
-     *
-     * @return The ticket the chunk was removed from
-     */
-    ChunkTicketManager.LoadingTicket getTicket();
+public interface AbstractVillager extends Ageable, Merchant {
 
     /**
-     * Gets the chunk coordinates.
+     * Returns true if this villager is currently trading with another
+     * {@link Humanoid}. A villager is normally unable to trade with
+     * multiple humanoids at the same time.
      *
-     * @return The chunk coordinates
+     * @return True if this villager is trading with another player
      */
-    Vector3i getChunkCoords();
+    boolean isTrading();
+
 }

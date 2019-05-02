@@ -22,28 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world.chunk;
+package org.spongepowered.api.entity.living.villager;
 
-import org.spongepowered.api.world.chunk.Chunk;
-import org.spongepowered.api.event.Event;
 /**
- * Called when a {@link Chunk} is about to be generated.
+ * Represents a wandering trader
  */
-public interface GenerateChunkEvent extends Event {
-
-    /**
-     * Gets the {@link Chunk}.
-     *
-     * @return The chunk
-     */
-    Chunk getChunk();
-
-    interface Pre extends GenerateChunkEvent {
-
-    }
-
-    interface Post extends GenerateChunkEvent {
-
-    }
+public interface WanderingTrader extends AbstractVillager {
 
 }

@@ -22,20 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world.chunk;
+package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.world.chunk.Chunk;
-import org.spongepowered.api.event.Event;
+public interface TraderLlama extends Llama {
 
-/**
- * An event where a {@link Chunk} is being unloaded.
- */
-public interface UnloadChunkEvent extends Event {
-
-    /**
-     * Gets the {@link Chunk}.
-     *
-     * @return The chunk
-     */
-    Chunk getChunk();
 }

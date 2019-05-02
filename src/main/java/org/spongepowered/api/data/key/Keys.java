@@ -103,7 +103,7 @@ import org.spongepowered.api.entity.living.ArmorStand;
 import org.spongepowered.api.entity.living.Bat;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.entity.living.Villager;
+import org.spongepowered.api.entity.living.villager.AbstractVillager;
 import org.spongepowered.api.entity.living.animal.Animal;
 import org.spongepowered.api.entity.living.animal.Cat;
 import org.spongepowered.api.entity.living.animal.Fox;
@@ -128,6 +128,7 @@ import org.spongepowered.api.entity.living.monster.ZombiePigman;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
+import org.spongepowered.api.entity.living.villager.Villager;
 import org.spongepowered.api.entity.projectile.DamagingProjectile;
 import org.spongepowered.api.entity.projectile.EyeOfEnder;
 import org.spongepowered.api.entity.projectile.FireworkRocket;
@@ -2169,7 +2170,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the {@link TradeOffer}s offered by a
-     * {@link Villager}.
+     * {@link AbstractVillager}.
      *
      * @see TradeOfferData#tradeOffers()
      */

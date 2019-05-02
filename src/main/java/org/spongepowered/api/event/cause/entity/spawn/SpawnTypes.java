@@ -30,7 +30,7 @@ import org.spongepowered.api.entity.EntityTypes;
 import org.spongepowered.api.entity.ExperienceOrb;
 import org.spongepowered.api.entity.FallingBlock;
 import org.spongepowered.api.entity.Item;
-import org.spongepowered.api.entity.living.Villager;
+import org.spongepowered.api.entity.living.villager.AbstractVillager;
 import org.spongepowered.api.entity.living.animal.Animal;
 import org.spongepowered.api.entity.vehicle.minecart.SpawnerMinecart;
 import org.spongepowered.api.item.ItemTypes;
@@ -83,7 +83,7 @@ public final class SpawnTypes {
 
     /**
      * When an {@link ExperienceOrb} is spawned as a result of a "reward" from
-     * an {@link Entity} granting experience for the kill, or a {@link Villager}
+     * an {@link Entity} granting experience for the kill, or a {@link AbstractVillager}
      * granting experience for a successful trade, or a block being mined.
      */
     public static final SpawnType EXPERIENCE = DummyObjectProvider.createFor(SpawnType.class, "EXPERIENCE");
@@ -95,7 +95,7 @@ public final class SpawnTypes {
 
     /**
      * When an {@link Entity} is spawned as a result of a
-     * {@link BlockTypes#MOB_SPAWNER} or {@link SpawnerMinecart} entity
+     * {@link BlockTypes#SPAWNER} or {@link SpawnerMinecart} entity
      * performs it's normal spawning.
      */
     public static final SpawnType MOB_SPAWNER = DummyObjectProvider.createFor(SpawnType.class, "MOB_SPAWNER");

@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.immutable;
 import org.spongepowered.api.data.manipulator.mutable.CareerData;
 import org.spongepowered.api.data.type.Career;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.Villager;
+import org.spongepowered.api.entity.living.villager.Villager;
 
 /**
  * Represents the {@link Career} for a {@link Villager}.
