@@ -26,6 +26,9 @@ package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
+/**
+ * An enumeration of vanilla {@link WoodType}s.
+ */
 public final class WoodTypes {
 
     // SORTFIELDS:ON

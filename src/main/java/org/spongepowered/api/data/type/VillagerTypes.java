@@ -22,33 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.villager;
+package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.CareerData;
-import org.spongepowered.api.data.type.Career;
-import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-/**
- * Represents a villager.
- */
-public interface Villager extends AbstractVillager {
+public final class VillagerTypes {
 
-    /**
-     * Gets a copy of the current {@link CareerData} for this villager.
-     *
-     * @return A copy of the career data
-     */
-    default CareerData getCareerData() {
-        return get(CareerData.class).get();
-    }
+    // SORTFIELDS:ON
 
-    /**
-     * Gets the current {@link Career} of this villager.
-     *
-     * @return The current career value
-     */
-    default Value.Mutable<Career> career() {
-        return getValue(Keys.CAREER).get().asMutable();
+    public static final VillagerType DESERT = DummyObjectProvider.createFor(VillagerType.class, "DESERT");
+
+    public static final VillagerType JUNGLE = DummyObjectProvider.createFor(VillagerType.class, "JUNGLE");
+
+    public static final VillagerType PLAINS = DummyObjectProvider.createFor(VillagerType.class, "PLAINS");
+
+    public static final VillagerType SAVANA = DummyObjectProvider.createFor(VillagerType.class, "SAVANA");
+
+    public static final VillagerType SNOW = DummyObjectProvider.createFor(VillagerType.class, "SNOW");
+
+    public static final VillagerType SWAMP = DummyObjectProvider.createFor(VillagerType.class, "SWAMP");
+
+    public static final VillagerType TAIGA = DummyObjectProvider.createFor(VillagerType.class, "TAIGA");
+
+    // SORTFIELDS:OFF
+
+    private VillagerTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 }

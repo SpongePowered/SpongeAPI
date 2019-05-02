@@ -22,20 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.villager;
+package org.spongepowered.api.entity.living.trader;
 
 import org.spongepowered.api.entity.living.Ageable;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.item.merchant.Merchant;
 
-public interface AbstractVillager extends Ageable, Merchant {
+public interface Trader extends Ageable, Merchant {
 
     /**
-     * Returns true if this villager is currently trading with another
-     * {@link Humanoid}. A villager is normally unable to trade with
+     * Returns true if this trader is currently trading with another
+     * {@link Humanoid}. A trader is normally unable to trade with
      * multiple humanoids at the same time.
      *
-     * @return True if this villager is trading with another player
+     * @return True if this trader is trading with another player
      */
     boolean isTrading();
 

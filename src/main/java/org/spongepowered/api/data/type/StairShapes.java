@@ -27,7 +27,7 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * An enumeration of known {@link StairShape}s.
+ * An enumeration of vanilla {@link StairShape}s.
  */
 public final class StairShapes {
 

@@ -27,7 +27,7 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * An enumeration of all possible {@link NotePitch}es in vanilla minecraft.
+ * An enumeration of vanilla {@link NotePitch}es.
  */
 public final class NotePitches {
 

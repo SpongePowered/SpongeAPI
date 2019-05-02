@@ -44,7 +44,7 @@ import org.spongepowered.api.entity.living.ArmorStand;
 import org.spongepowered.api.entity.living.Bat;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.entity.living.villager.AbstractVillager;
+import org.spongepowered.api.entity.living.trader.Trader;
 import org.spongepowered.api.entity.living.animal.Animal;
 import org.spongepowered.api.entity.living.animal.Ocelot;
 import org.spongepowered.api.entity.living.animal.Pig;
@@ -64,7 +64,7 @@ import org.spongepowered.api.entity.living.monster.Zombie;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
-import org.spongepowered.api.entity.living.villager.Villager;
+import org.spongepowered.api.entity.living.trader.Villager;
 import org.spongepowered.api.entity.projectile.EyeOfEnder;
 import org.spongepowered.api.entity.projectile.FireworkRocket;
 import org.spongepowered.api.entity.projectile.Projectile;
@@ -105,7 +105,7 @@ public final class CatalogEntityData {
      */
     public static final Class<AngerableData> ANGERABLE_DATA = AngerableData.class;
     /**
-     * The {@link ArtData} that signifies what piece of {@link Art} is being
+     * The {@link ArtData} that signifies what piece of {@link ArtType} is being
      * displayed. It is applicable for {@link Painting} entities.
      */
     public static final Class<ArtData> ART_DATA = ArtData.class;
@@ -126,11 +126,6 @@ public final class CatalogEntityData {
      * reinforcements.
      */
     public static final Class<BreedableData> BREEDABLE_DATA = BreedableData.class;
-    /**
-     * Mainly for {@link AbstractVillager}s to determine their applicable
-     * {@link TradeOffer}s.
-     */
-    public static final Class<CareerData> CAREER_DATA = CareerData.class;
     /**
      * Represents whether an entity is considered "charged". Usually applies
      * to {@link Creeper}s.

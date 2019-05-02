@@ -114,7 +114,7 @@ public final class CatalogTypes {
 
     public static final Class<ArmorType> ARMOR_TYPE = ArmorType.class;
 
-    public static final Class<Art> ART = Art.class;
+    public static final Class<ArtType> ART = ArtType.class;
 
     public static final Class<BannerPatternShape> BANNER_PATTERN_SHAPE = BannerPatternShape.class;
 
@@ -131,8 +131,6 @@ public final class CatalogTypes {
     public static final Class<BossBarColor> BOSS_BAR_COLOR = BossBarColor.class;
 
     public static final Class<BossBarOverlay> BOSS_BAR_OVERLAY = BossBarOverlay.class;
-
-    public static final Class<Career> CAREER = Career.class;
 
     public static final Class<CatType> CAT_TYPE = CatType.class;
 

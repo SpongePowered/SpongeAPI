@@ -29,14 +29,14 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableTradeOfferData;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.entity.living.Humanoid;
-import org.spongepowered.api.entity.living.villager.AbstractVillager;
+import org.spongepowered.api.entity.living.trader.Trader;
 import org.spongepowered.api.item.merchant.Merchant;
 import org.spongepowered.api.item.merchant.TradeOffer;
 
 /**
  * An {@link DataManipulator} handling the {@link TradeOffer}s that
  * can be offered to {@link Humanoid}s from {@link Merchant}s such as
- * {@link AbstractVillager}s.
+ * {@link Trader}s.
  */
 public interface TradeOfferData extends ListData<TradeOffer, TradeOfferData, ImmutableTradeOfferData> {
 

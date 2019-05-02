@@ -34,7 +34,7 @@ public interface Panda extends Animal {
      * Gets the {@link Value.Mutable} for the {@link PandaType} of this
      * {@link Panda}.
      *
-     * @return The panda type
+     * @return The panda type value
      */
     default Value.Mutable<PandaType> type() {
         return getValue(Keys.PANDA_TYPE).get().asMutable();

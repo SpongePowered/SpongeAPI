@@ -24,8 +24,29 @@
  */
 package org.spongepowered.api.entity.living.monster;
 
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.type.Profession;
+import org.spongepowered.api.data.type.VillagerType;
+import org.spongepowered.api.data.value.Value;
+
 public interface ZombieVillager extends Zombie {
 
-    // TODO - Add ProfessionData for zombie villagers, since careers are not persisted.
+    /**
+     * Gets the {@link Value.Mutable} for the {@link VillagerType} of this
+     * {@link ZombieVillager}.
+     *
+     * @return The zombie villager type value
+     */
+    default Value.Mutable<VillagerType> type() {
+        return getValue(Keys.VILLAGER_TYPE).get().asMutable();
+    }
 
+    /**
+     * Gets the current {@link Profession} of this {@link ZombieVillager}.
+     *
+     * @return The current profession value
+     */
+    default Value.Mutable<Profession> profession() {
+        return getValue(Keys.PROFESSION).get().asMutable();
+    }
 }

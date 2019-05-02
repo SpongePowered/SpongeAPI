@@ -28,7 +28,7 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutablePlayingData;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.villager.Villager;
+import org.spongepowered.api.entity.living.trader.Villager;
 
 /**
  * A {@link DataManipulator} for the "is playing" state of

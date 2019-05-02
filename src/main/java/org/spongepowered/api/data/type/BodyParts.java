@@ -27,7 +27,7 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * An enumeration of vanilla known {@link BodyPart}s.
+ * An enumeration of vanilla {@link BodyPart}s.
  */
 public final class BodyParts {
 
@@ -50,5 +50,4 @@ public final class BodyParts {
     private BodyParts() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }
-
 }

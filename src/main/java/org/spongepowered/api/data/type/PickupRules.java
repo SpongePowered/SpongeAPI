@@ -24,11 +24,10 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.entity.projectile.arrow.Arrow;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * An enumeration of the vanilla pickup rules for an {@link Arrow}.
+ * An enumeration of vanilla {@link PickupRule}s.
  */
 public final class PickupRules {
 

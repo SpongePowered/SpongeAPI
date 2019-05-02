@@ -27,7 +27,7 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * An enumeration of all the vanilla {@link Surface}s.
+ * An enumeration of vanilla {@link Surface}s.
  */
 public final class Surfaces {
 

@@ -26,6 +26,9 @@ package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
+/**
+ * An enumeration of vanilla {@link ArmorType}s.
+ */
 public final class ArmorTypes {
 
     // SORTFIELDS:ON
@@ -45,5 +48,4 @@ public final class ArmorTypes {
     private ArmorTypes() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }
-
 }

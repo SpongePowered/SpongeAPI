@@ -27,7 +27,7 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * An enumeration of known vanilla {@link HorseStyle}s.
+ * An enumeration of vanilla {@link HorseStyle}s.
  */
 public final class HorseStyles {
 

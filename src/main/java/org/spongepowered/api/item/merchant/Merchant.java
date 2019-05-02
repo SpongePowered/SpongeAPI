@@ -48,7 +48,7 @@ public interface Merchant extends DataHolder, Carrier, Locatable {
 
     /**
      * Sets the currently trading customer with this merchant.
-     * <p>If the humanoid entity is available, a new trading window may open
+     * <p>If the humanoid is available, a new trading window may open
      * with this merchant.</p>
      *
      * @param humanoid The humanoid to trade with

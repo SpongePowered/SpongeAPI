@@ -22,11 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.villager;
+package org.spongepowered.api.entity.living.trader;
+
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.type.Profession;
+import org.spongepowered.api.data.type.VillagerType;
+import org.spongepowered.api.data.value.Value;
 
 /**
- * Represents a wandering trader
+ * Represents a villager.
  */
-public interface WanderingTrader extends AbstractVillager {
+public interface Villager extends Trader {
 
+    /**
+     * Gets the {@link Value.Mutable} for the {@link VillagerType} of this
+     * {@link Villager}.
+     *
+     * @return The villager type value
+     */
+    default Value.Mutable<VillagerType> type() {
+        return getValue(Keys.VILLAGER_TYPE).get().asMutable();
+    }
+
+    /**
+     * Gets the current {@link Profession} of this {@link Villager}.
+     *
+     * @return The current profession value
+     */
+    default Value.Mutable<Profession> profession() {
+        return getValue(Keys.PROFESSION).get().asMutable();
+    }
 }

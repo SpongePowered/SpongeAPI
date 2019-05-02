@@ -27,7 +27,7 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * An enumeration of known vanilla {@link CatType}s.
+ * An enumeration of vanilla {@link CatType}s.
  */
 public final class CatTypes {
 

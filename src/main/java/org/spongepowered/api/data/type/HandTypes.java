@@ -27,7 +27,7 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * An enumeration of the various {@link HandType}s.
+ * An enumeration of vanilla {@link HandType}s.
  */
 public final class HandTypes {
 
@@ -49,5 +49,4 @@ public final class HandTypes {
     private HandTypes() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }
-
 }

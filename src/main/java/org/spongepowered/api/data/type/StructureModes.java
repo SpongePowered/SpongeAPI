@@ -27,7 +27,7 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * An enumeration of {@link StructureMode}s.
+ * An enumeration of vanilla {@link StructureMode}s.
  */
 public final class StructureModes {
 

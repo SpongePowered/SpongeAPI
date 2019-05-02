@@ -41,5 +41,4 @@ public interface DyeColor extends CatalogType, Translatable {
      * @return The color as a {@link Color}
      */
     Color getColor();
-
 }

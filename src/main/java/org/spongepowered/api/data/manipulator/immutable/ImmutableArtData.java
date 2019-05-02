@@ -25,13 +25,13 @@
 package org.spongepowered.api.data.manipulator.immutable;
 
 import org.spongepowered.api.data.manipulator.mutable.ArtData;
-import org.spongepowered.api.data.type.Art;
+import org.spongepowered.api.data.type.ArtType;
 import org.spongepowered.api.entity.hanging.Painting;
 
 /**
- * An {@link ImmutableVariantData} for the {@link Art} type. Usually applicable
+ * An {@link ImmutableVariantData} for the {@link ArtType} type. Usually applicable
  * to {@link Painting}s.
  */
-public interface ImmutableArtData extends ImmutableVariantData<Art, ImmutableArtData, ArtData> {
+public interface ImmutableArtData extends ImmutableVariantData<ArtType, ImmutableArtData, ArtData> {
 
 }

@@ -25,23 +25,14 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.entity.living.villager.Villager;
+import org.spongepowered.api.entity.living.trader.Villager;
 import org.spongepowered.api.util.annotation.CatalogedBy;
-
-import java.util.Collection;
 
 /**
  * Represents a {@link Villager} profession. A profession defines the genre of
- * trade offers a villager may offer to a player.
+ * trade offers a trader may offer to a player.
  */
 @CatalogedBy(Professions.class)
 public interface Profession extends CatalogType {
-
-    /**
-     * Gets the collection of available {@link Career}s.
-     *
-     * @return The collection of available careers
-     */
-    Collection<Career> getCareers();
 
 }

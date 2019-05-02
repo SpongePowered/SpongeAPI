@@ -40,7 +40,7 @@ import org.spongepowered.api.entity.living.monster.ZombiePigman;
 import org.spongepowered.api.entity.living.monster.skeleton.Skeleton;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
-import org.spongepowered.api.entity.living.villager.Villager;
+import org.spongepowered.api.entity.living.trader.Villager;
 import org.spongepowered.api.entity.vehicle.Boat;
 import org.spongepowered.api.entity.vehicle.minecart.Minecart;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;

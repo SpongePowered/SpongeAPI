@@ -26,6 +26,9 @@ package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
+/**
+ * An enumeration of vanilla {@link ComparatorType}s.
+ */
 public final class ComparatorTypes {
 
     // SORTFIELDS:ON
@@ -39,5 +42,4 @@ public final class ComparatorTypes {
     private ComparatorTypes() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }
-
 }

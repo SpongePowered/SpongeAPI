@@ -45,10 +45,9 @@ import org.spongepowered.api.block.tileentity.carrier.TileEntityCarrier;
 import org.spongepowered.api.data.manipulator.mutable.*;
 import org.spongepowered.api.data.meta.PatternLayer;
 import org.spongepowered.api.data.property.Properties;
-import org.spongepowered.api.data.type.Art;
+import org.spongepowered.api.data.type.ArtType;
 import org.spongepowered.api.data.type.BodyPart;
 import org.spongepowered.api.data.type.BodyParts;
-import org.spongepowered.api.data.type.Career;
 import org.spongepowered.api.data.type.CatType;
 import org.spongepowered.api.data.type.ChestAttachmentType;
 import org.spongepowered.api.data.type.ComparatorType;
@@ -66,12 +65,14 @@ import org.spongepowered.api.data.type.PandaType;
 import org.spongepowered.api.data.type.ParrotType;
 import org.spongepowered.api.data.type.PickupRule;
 import org.spongepowered.api.data.type.PortionType;
+import org.spongepowered.api.data.type.Profession;
 import org.spongepowered.api.data.type.RabbitType;
 import org.spongepowered.api.data.type.RailDirection;
 import org.spongepowered.api.data.type.SlabPortion;
 import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StructureMode;
 import org.spongepowered.api.data.type.Surface;
+import org.spongepowered.api.data.type.VillagerType;
 import org.spongepowered.api.data.type.WireAttachmentType;
 import org.spongepowered.api.data.type.WoodType;
 import org.spongepowered.api.data.value.BoundedValue;
@@ -103,7 +104,8 @@ import org.spongepowered.api.entity.living.ArmorStand;
 import org.spongepowered.api.entity.living.Bat;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.entity.living.villager.AbstractVillager;
+import org.spongepowered.api.entity.living.monster.ZombieVillager;
+import org.spongepowered.api.entity.living.trader.Trader;
 import org.spongepowered.api.entity.living.animal.Animal;
 import org.spongepowered.api.entity.living.animal.Cat;
 import org.spongepowered.api.entity.living.animal.Fox;
@@ -128,7 +130,7 @@ import org.spongepowered.api.entity.living.monster.ZombiePigman;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
-import org.spongepowered.api.entity.living.villager.Villager;
+import org.spongepowered.api.entity.living.trader.Villager;
 import org.spongepowered.api.entity.projectile.DamagingProjectile;
 import org.spongepowered.api.entity.projectile.EyeOfEnder;
 import org.spongepowered.api.entity.projectile.FireworkRocket;
@@ -354,12 +356,12 @@ public final class Keys {
     public static final Key<Value<Boolean>> ARMOR_STAND_MARKER = DummyObjectProvider.createExtendedFor(Key.class, "ARMOR_STAND_MARKER");
 
     /**
-     * Represents the {@link Key} for the type of {@link Art} shown by
+     * Represents the {@link Key} for the type of {@link ArtType} shown by
      * (usually) a {@link Painting}.
      *
      * @see ArtData
      */
-    public static final Key<Value<Art>> ART = DummyObjectProvider.createExtendedFor(Key.class, "ART");
+    public static final Key<Value<ArtType>> ART = DummyObjectProvider.createExtendedFor(Key.class, "ART");
 
     /**
      * Represents the {@link Key} for representing whether a {@link BlockState}
@@ -585,13 +587,6 @@ public final class Keys {
      * @see FallingBlockData#canPlaceAsBlock()
      */
     public static final Key<Value<Boolean>> CAN_PLACE_AS_BLOCK = DummyObjectProvider.createExtendedFor(Key.class, "CAN_PLACE_AS_BLOCK");
-
-    /**
-     * Represents the {@link Key} for the {@link Villager}'s {@link Career}.
-     *
-     * @see CareerData
-     */
-    public static final Key<Value<Career>> CAREER = DummyObjectProvider.createExtendedFor(Key.class, "CAREER");
 
     /**
      * Represents the {@link Key} for the type of a {@link Cat}.
@@ -1751,6 +1746,11 @@ public final class Keys {
     public static final Key<Value<Boolean>> POWERED = DummyObjectProvider.createExtendedFor(Key.class, "POWERED");
 
     /**
+     * Represents the {@link Key} for the {@link Villager} or {@link ZombieVillager}'s {@link Profession}.
+     */
+    public static final Key<Value<Profession>> PROFESSION = DummyObjectProvider.createExtendedFor(Key.class, "PROFESSION");
+
+    /**
      * Represents the {@link Key} for the type of a {@link Rabbit}.
      *
      * @see RabbitData
@@ -2170,7 +2170,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the {@link TradeOffer}s offered by a
-     * {@link AbstractVillager}.
+     * {@link Trader}.
      *
      * @see TradeOfferData#tradeOffers()
      */
@@ -2251,6 +2251,11 @@ public final class Keys {
      * @see VelocityData#velocity()
      */
     public static final Key<Value<Vector3d>> VELOCITY = DummyObjectProvider.createExtendedFor(Key.class, "VELOCITY");
+
+    /**
+     * Represents the {@link Key} for the type of a {@link Villager} or {@link ZombieVillager}.
+     */
+    public static final Key<Value<VillagerType>> VILLAGER_TYPE = DummyObjectProvider.createExtendedFor(Key.class, "VILLAGER_TYPE");
 
     /**
      * Represents the {@link Key} for the speed at which an entity walks.

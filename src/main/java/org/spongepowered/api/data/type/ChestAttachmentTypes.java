@@ -27,7 +27,7 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * An enumeration of all the {@link ChestAttachmentType}s in vanilla minecraft.
+ * An enumeration of vanilla {@link ChestAttachmentType}s.
  */
 public final class ChestAttachmentTypes {
 

@@ -27,26 +27,45 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * A utility class to access all available {@link Profession}s.
+ * An enumeration of vanilla {@link Profession}s.
  */
 public final class Professions {
 
     // SORTFIELDS:ON
 
-    public static final Profession BLACKSMITH = DummyObjectProvider.createFor(Profession.class, "BLACKSMITH");
+    public static final Profession ARMORER = DummyObjectProvider.createFor(Profession.class, "ARMORER");
 
     public static final Profession BUTCHER = DummyObjectProvider.createFor(Profession.class, "BUTCHER");
 
+    public static final Profession CARTOGRAPHER = DummyObjectProvider.createFor(Profession.class, "CARTOGRAPHER");
+
+    public static final Profession CLERIC = DummyObjectProvider.createFor(Profession.class, "CLERIC");
+
     public static final Profession FARMER = DummyObjectProvider.createFor(Profession.class, "FARMER");
+
+    public static final Profession FISHERMAN = DummyObjectProvider.createFor(Profession.class, "FISHERMAN");
+
+    public static final Profession FLETCHER = DummyObjectProvider.createFor(Profession.class, "FLETCHER");
+
+    public static final Profession LEATHERWORKER = DummyObjectProvider.createFor(Profession.class, "LEATHERWORKER");
 
     public static final Profession LIBRARIAN = DummyObjectProvider.createFor(Profession.class, "LIBRARIAN");
 
-    public static final Profession PRIEST = DummyObjectProvider.createFor(Profession.class, "PRIEST");
+    public static final Profession MASON = DummyObjectProvider.createFor(Profession.class, "MASON");
+
+    public static final Profession NITWIT = DummyObjectProvider.createFor(Profession.class, "NITWIT");
+
+    public static final Profession NONE = DummyObjectProvider.createFor(Profession.class, "NONE");
+
+    public static final Profession SHEPHERD = DummyObjectProvider.createFor(Profession.class, "SHEPHERD");
+
+    public static final Profession TOOLSMITH = DummyObjectProvider.createFor(Profession.class, "TOOLSMITH");
+
+    public static final Profession WEAPONSMITH = DummyObjectProvider.createFor(Profession.class, "WEAPONSMITH");
 
     // SORTFIELDS:OFF
 
     private Professions() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }
-
 }

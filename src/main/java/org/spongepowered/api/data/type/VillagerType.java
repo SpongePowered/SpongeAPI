@@ -22,23 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable;
+package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.data.manipulator.mutable.CareerData;
-import org.spongepowered.api.data.type.Career;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.villager.Villager;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-/**
- * Represents the {@link Career} for a {@link Villager}.
- */
-public interface ImmutableCareerData extends ImmutableVariantData<Career, ImmutableCareerData, CareerData> {
-
-    /**
-     * Gets the {@link Value.Immutable} for the {@link Career}.
-     *
-     * @return The immutable value for the career
-     */
-    Value.Immutable<Career> career();
+@CatalogedBy(VillagerTypes.class)
+public interface VillagerType extends CatalogType {
 
 }

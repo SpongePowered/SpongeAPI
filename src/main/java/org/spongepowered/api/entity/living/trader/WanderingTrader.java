@@ -22,18 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable;
-
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.immutable.ImmutableCareerData;
-import org.spongepowered.api.data.type.Career;
-import org.spongepowered.api.entity.living.villager.Villager;
+package org.spongepowered.api.entity.living.trader;
 
 /**
- * Represents the {@link Career} for a {@link Villager}.
- *
- * @see Keys#CAREER
+ * Represents a wandering trader.
  */
-public interface CareerData extends VariantData<Career, CareerData, ImmutableCareerData> {
+public interface WanderingTrader extends Trader {
 
 }

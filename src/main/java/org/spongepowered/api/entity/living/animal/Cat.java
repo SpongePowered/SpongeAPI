@@ -50,7 +50,7 @@ public interface Cat extends Animal {
      * Gets the {@link Value.Mutable} for the {@link CatType} of this
      * {@link Cat}.
      *
-     * @return The cat type
+     * @return The cat type value
      */
     default Value.Mutable<CatType> type() {
         return getValue(Keys.CAT_TYPE).get().asMutable();

@@ -27,7 +27,7 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * An enumeration of known {@link SlabPortion}s.
+ * An enumeration of vanilla {@link SlabPortion}s.
  */
 public final class SlabPortions {
 

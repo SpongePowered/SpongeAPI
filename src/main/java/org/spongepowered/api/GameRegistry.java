@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api;
 
-import org.spongepowered.api.data.type.Career;
+import org.spongepowered.api.data.type.Profession;
 import org.spongepowered.api.data.value.ValueFactory;
 import org.spongepowered.api.entity.ai.task.AITaskType;
 import org.spongepowered.api.entity.ai.task.AbstractAITask;
@@ -331,7 +331,7 @@ public interface GameRegistry {
 
     /**
      * Gets the {@link VillagerRegistry} for the register mappings of
-     * {@link Career}s to {@link TradeOfferGenerator}s based on a level.
+     * {@link Profession}s to {@link TradeOfferGenerator}s based on a level.
      *
      * @return The villager registry instance
      */

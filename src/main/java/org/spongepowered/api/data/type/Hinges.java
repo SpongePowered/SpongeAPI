@@ -27,7 +27,7 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * An enumeration of known {@link Hinge}s.
+ * An enumeration of vanilla {@link Hinge}s.
  */
 public final class Hinges {
 

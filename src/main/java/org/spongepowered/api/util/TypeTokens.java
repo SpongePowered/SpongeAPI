@@ -31,9 +31,8 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.meta.PatternLayer;
-import org.spongepowered.api.data.type.Art;
+import org.spongepowered.api.data.type.ArtType;
 import org.spongepowered.api.data.type.BodyPart;
-import org.spongepowered.api.data.type.Career;
 import org.spongepowered.api.data.type.ComparatorType;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.type.HandPreference;
@@ -94,9 +93,9 @@ public final class TypeTokens {
 
     // SORTFIELDS:ON
 
-    public static final TypeToken<Art> ART_TOKEN = new TypeToken<Art>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<ArtType> ART_TOKEN = new TypeToken<ArtType>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<Value<Art>> ART_VALUE_TOKEN = new TypeToken<Value<Art>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<Value<ArtType>> ART_VALUE_TOKEN = new TypeToken<Value<ArtType>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Axis> AXIS_TOKEN = new TypeToken<Axis>() {private static final long serialVersionUID = -1;};
 
@@ -115,10 +114,6 @@ public final class TypeTokens {
     public static final TypeToken<BoundedValue<Integer>> BOUNDED_INTEGER_VALUE_TOKEN = new TypeToken<BoundedValue<Integer>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<BoundedValue<Short>> BOUNDED_SHORT_VALUE_TOKEN = new TypeToken<BoundedValue<Short>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Career> CAREER_TOKEN = new TypeToken<Career>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Value<Career>> CAREER_VALUE_TOKEN = new TypeToken<Value<Career>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Color> COLOR_TOKEN = new TypeToken<Color>() {private static final long serialVersionUID = -1;};
 
@@ -268,10 +263,6 @@ public final class TypeTokens {
 
     public static final TypeToken<OptionalValue<PotionEffectType>> OPTIONAL_POTION_VALUE_TOKEN = new TypeToken<OptionalValue<PotionEffectType>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<Optional<Profession>> OPTIONAL_PROFESSION_TOKEN = new TypeToken<Optional<Profession>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<OptionalValue<Profession>> OPTIONAL_PROFESSION_VALUE_TOKEN = new TypeToken<OptionalValue<Profession>>() {private static final long serialVersionUID = -1;};
-
     public static final TypeToken<Optional<Text>> OPTIONAL_TEXT_TOKEN = new TypeToken<Optional<Text>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<OptionalValue<Text>> OPTIONAL_TEXT_VALUE_TOKEN = new TypeToken<OptionalValue<Text>>() {private static final long serialVersionUID = -1;};
@@ -299,6 +290,10 @@ public final class TypeTokens {
     public static final TypeToken<PotionType> POTION_TOKEN = new TypeToken<PotionType>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<PotionType>> POTION_VALUE_TOKEN = new TypeToken<Value<PotionType>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Profession> PROFESSION_TOKEN = new TypeToken<Profession>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Value<Profession>> PROFESSION_VALUE_TOKEN = new TypeToken<Value<Profession>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<ProfileProperty> PROFILE_PROPERTY_TOKEN = new TypeToken<ProfileProperty>() {private static final long serialVersionUID = -1;};
 

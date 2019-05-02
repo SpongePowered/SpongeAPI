@@ -27,7 +27,7 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * An enumeration of all possible {@link BannerPatternShape}s in vanilla minecraft.
+ * An enumeration of vanilla {@link BannerPatternShape}s.
  */
 public final class BannerPatternShapes {
 
@@ -116,5 +116,4 @@ public final class BannerPatternShapes {
     private BannerPatternShapes() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }
-
 }
