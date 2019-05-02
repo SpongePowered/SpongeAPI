@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.entity.explosive.EndCrystal;
 import org.spongepowered.api.entity.explosive.PrimedTNT;
 import org.spongepowered.api.entity.hanging.ItemFrame;
 import org.spongepowered.api.entity.hanging.LeashKnot;
@@ -104,6 +105,7 @@ import org.spongepowered.api.entity.projectile.FireworkRocket;
 import org.spongepowered.api.entity.projectile.FishingBobber;
 import org.spongepowered.api.entity.projectile.LlamaSpit;
 import org.spongepowered.api.entity.projectile.Potion;
+import org.spongepowered.api.entity.projectile.ShulkerBullet;
 import org.spongepowered.api.entity.projectile.Snowball;
 import org.spongepowered.api.entity.projectile.arrow.SpectralArrow;
 import org.spongepowered.api.entity.projectile.arrow.TippedArrow;

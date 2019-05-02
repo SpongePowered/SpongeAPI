@@ -92,7 +92,7 @@ import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.ExperienceOrb;
 import org.spongepowered.api.entity.FallingBlock;
 import org.spongepowered.api.entity.Item;
-import org.spongepowered.api.entity.ShulkerBullet;
+import org.spongepowered.api.entity.projectile.ShulkerBullet;
 import org.spongepowered.api.entity.explosive.Explosive;
 import org.spongepowered.api.entity.explosive.FusedExplosive;
 import org.spongepowered.api.entity.hanging.ItemFrame;

@@ -77,5 +77,4 @@ public interface Humanoid extends Living, ProjectileLauncher, ArmorEquipable, Ta
     default BoundedValue.Mutable<Double> saturation() {
         return getValue(Keys.SATURATION).get().asMutable();
     }
-
 }

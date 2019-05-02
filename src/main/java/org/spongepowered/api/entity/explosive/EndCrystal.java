@@ -22,27 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity;
+package org.spongepowered.api.entity.explosive;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.golem.Shulker;
-import org.spongepowered.api.entity.projectile.DamagingProjectile;
-import org.spongepowered.api.entity.projectile.EntityTargetingProjectile;
-import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.entity.explosive.Explosive;
 
 /**
- * A {@link ShulkerBullet} is the projectile {@link Shulker}s shoot.
+ * Represents an ender crystal.
  */
-public interface ShulkerBullet extends EntityTargetingProjectile, DamagingProjectile {
+public interface EndCrystal extends Explosive {
 
-    /**
-     * Gets the {@link Value} for the current direction this
-     * {@link ShulkerBullet} is going to.
-     *
-     * @return The current direction value
-     */
-    default Value.Mutable<Direction> direction() {
-        return getValue(Keys.DIRECTION).get().asMutable();
-    }
 }

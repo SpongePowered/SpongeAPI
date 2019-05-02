@@ -25,7 +25,7 @@
 package org.spongepowered.api.entity.living.complex;
 
 import org.spongepowered.api.boss.ServerBossBar;
-import org.spongepowered.api.entity.EndCrystal;
+import org.spongepowered.api.entity.explosive.EndCrystal;
 import org.spongepowered.api.entity.living.Aerial;
 import org.spongepowered.api.entity.living.complex.dragon.phase.EnderDragonPhase;
 import org.spongepowered.api.entity.living.complex.dragon.phase.EnderDragonPhaseManager;

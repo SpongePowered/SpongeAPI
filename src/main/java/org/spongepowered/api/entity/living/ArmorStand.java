@@ -76,5 +76,4 @@ public interface ArmorStand extends Living, ArmorEquipable {
     default Value.Mutable<Boolean> arms() {
         return getValue(Keys.ARMOR_STAND_HAS_ARMS).get().asMutable();
     }
-
 }
