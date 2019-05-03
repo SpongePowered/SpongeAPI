@@ -24,34 +24,25 @@
  */
 package org.spongepowered.api.data;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.property.PropertyHolder;
+import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.ImmutableValueStore;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.ValueContainer;
 
-import java.util.List;
+import java.util.Optional;
 
-/**
- * A type of {@link DataHolder} variant that is completely immutable once
- * constructed. The advantage of an {@link ImmutableDataHolder} is that it can
- * be processed without worry of mutating any existing {@link Value}s
- * belonging to this {@link ImmutableDataHolder}. It should be considered that
- * an {@link ImmutableDataHolder} is considered "safe" to process
- * asynchronously as all {@link Value}s are copied into
- * {@link Value.Immutable} counterparts.
- *
- * @see DataHolder
- * @param <T> The sub type of immutable data holder
- */
-public interface ImmutableDataHolder<T extends ImmutableDataHolder<T>> extends DataSerializable, PropertyHolder,
-        ImmutableValueStore<T> {
+public interface DataProvider<V extends Value<E>, E> {
 
-    /**
-     * Gets a copy of all properties defined on this
-     * {@link ImmutableDataHolder}, with their current values.
-     *
-     * @return A collection of all known manipulators
-     */
-    List<ImmutableDataManipulator> getManipulators();
+    boolean allowsAsynchronousAccess();
+
+    Key<V> getKey();
+
+    Optional<V> getValue(ValueContainer<?> container);
+
+    DataTransactionResult offerValue(E value, ValueContainer<?> container);
+
+    <I extends ImmutableValueStore<I>> Optional<I> withValue(I existing, E value);
+
+    boolean isSupported(ValueContainer<?> container);
 
 }

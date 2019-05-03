@@ -39,108 +39,8 @@ import java.util.function.Function;
  * store.
  *
  * @param <I> The type of immutable value store, for self referencing
- * @param <H> The type of {@link ValueContainer} to restrict accessing of
- *     values to
  */
-public interface ImmutableValueStore<I extends ImmutableValueStore<I, H>, H extends ValueContainer<?>> extends ValueContainer<I> {
-
-    /**
-     * <p>Gets the desired {@link ValueContainer} of type <code>H</code> if the
-     * {@link ValueContainer} is compatible. Since the return type is an
-     * {@link Optional}, a short way of checking compatibility and presence
-     * of the requested data is to mimic the following:</p>
-     *
-     * <blockquote><code>// MyCompositeValueStore extends
-     * CompositeValueStore&lt;MyCompositeValueStore,
-     * DataManipulator&lt;?&gt;&gt;<br />MyCompositeValueStore valueStore;<br />
-     * final Optional&lt;DisplayNameData&gt; displayOptional =
-     * valueStore.get(DisplayNameData.class);<br />
-     * if (displayOptional.isPresent()) {<br />&nbsp; &nbsp;
-     * // We know that we have a present DataManipulator and it's supported
-     * <br />&nbsp; &nbsp; System.out.println(
-     * displayOptional.get().displayName().get().toString());<br />
-     * }</code></blockquote>
-     *
-     * <p>This is the equivalent to performing the following:</p>
-     *
-     * <blockquote><code>
-     * MyCompositeValueStore valueStore;<br />
-     * if (valueStore.supports(DisplayNameData.class)) {<br />
-     * &nbsp; &nbsp;
-     * System.out.println(valueStore.getOrNull(DisplayNameData.class
-     * ).displayName().get().toString());<br />}</code></blockquote>
-     *
-     * <p>The advantage of this returning an {@link Optional} is that the
-     * {@link ValueContainer} may be unsupported, the required data missing
-     * and ignoring the possibility of {@code null}s, it is a guarantee that if
-     * the {@link Optional#isPresent()} is {@code true}, the
-     * {@link ValueContainer} not only is supported, but there is already pre-
-     * existing data for the {@link ValueContainer}.</p>
-     *
-     * <p>If it is necessary to ignore the {@link Optional},
-     * {@link Optional#orElse(Object)} can be used to return a potentially
-     * {@code null} {@link ValueContainer}.</p>
-     *
-     *
-     * @param containerClass The container class
-     * @param <T> The type of {@link ValueContainer}
-     * @return The value container, if available
-     */
-    <T extends H> Optional<T> get(Class<T> containerClass);
-
-    /**
-     * <p>Gets the desired {@link ValueContainer} of type <code>H</code> if the
-     * {@link ValueContainer} is compatible. If insufficient data is available
-     * to provide a {@link ValueContainer} with all {@link Value.Immutable}s
-     * preset, a new instance of the {@link ValueContainer} is returned with
-     * "default" values. Since the return type is an {@link Optional}, a short
-     * way of checking compatibility and presence of the requested data is to
-     * mimic the following:</p>
-     *
-     * <blockquote><code>// MyCompositeValueStore extends
-     * CompositeValueStore&lt;MyCompositeValueStore,
-     * DataManipulator&lt;?&gt;&gt;<br />
-     * MyCompositeValueStore valueStore;<br />
-     * final Optional&lt;DisplayNameData&gt; displayOptional =
-     * valueStore.getOrCreate(DisplayNameData.class);<br />
-     * if (displayOptional.isPresent()) {<br />&nbsp; &nbsp; // We know that we
-     * have a present DataManipulator and it's supported<br />&nbsp; &nbsp;
-     * System.out.println(displayOptional.get().displayName().get().toString());
-     * <br />}</code></blockquote>
-     *
-     * <p>This is the equivalent to performing the following:</p>
-     *
-     * <blockquote><code>MyCompositeValueStore valueStore;<br />
-     * if (valueStore.supports(DisplayNameData.class)) {<br />&nbsp; &nbsp;
-     * System.out.println(valueStore.getOrNull(DisplayNameData.class
-     * ).displayName().get().toString());<br />}</code></blockquote>
-     *
-     * <p>The advantage of this returning an {@link Optional} is that the
-     * {@link ValueContainer} may be unsupported, the required data missing
-     * and ignoring the possibility of {@code null}s, it is a guarantee that if
-     * the {@link Optional#isPresent()} is {@code true}, the
-     * {@link ValueContainer} not only is supported, but there is already pre-
-     * existing data for the {@link ValueContainer}.</p>
-     *
-     * <p>If it is necessary to ignore the {@link Optional},
-     * {@link Optional#orElse(Object)} can be used to return a potentially
-     * {@code null} {@link ValueContainer}.</p>
-     *
-     *
-     * @param containerClass The container class
-     * @param <T> The type of {@link ValueContainer}
-     * @return The value container, if compatible
-     */
-    <T extends H> Optional<T> getOrCreate(Class<T> containerClass);
-
-    /**
-     * Checks if the given {@link Class} of type {@link ValueContainer} is
-     * supported by this {@link org.spongepowered.api.data.value.ImmutableValueStore}.
-     *
-     * @param containerClass The container class
-     * @return True if the class is supported
-     */
-    boolean supports(Class<? extends H> containerClass);
+public interface ImmutableValueStore<I extends ImmutableValueStore<I>> extends ValueContainer<I> {
 
     /**
      * Applies a transformation on the provided {@link Value} such that
@@ -177,40 +77,6 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I, H>, H exte
     Optional<I> with(Value<?> value);
 
     /**
-     * Offers the given {@link ValueContainer} such that all of the available
-     * {@link Value}s from the given {@link ValueContainer} are offered
-     * to the newly created {@link org.spongepowered.api.data.value.ImmutableValueStore}.
-     *
-     * @param valueContainer The value to set
-     * @return The transaction result
-     */
-    Optional<I> with(H valueContainer);
-
-    /**
-     * Gets an altered copy of this {@link org.spongepowered.api.data.value.ImmutableValueStore} with the given
-     * {@link DataManipulator} modified data. If the data is not compatible for
-     * any reason, {@link Optional#empty()} is returned.
-     *
-     * <p>This does not alter the current {@link org.spongepowered.api.data.value.ImmutableValueStore}.</p>
-     *
-     * @param valueContainers The new manipulator containing data
-     * @return A new immutable value store with the given value holders
-     */
-    Optional<I> with(Iterable<H> valueContainers);
-
-    /**
-     * Gets an altered copy of this {@link org.spongepowered.api.data.value.ImmutableValueStore} without the
-     * given {@link ValueContainer} class. If the data represented by the
-     * manipulator can not exist without a "default state" of the
-     * {@link ValueContainer}, the {@link ValueContainer} is reset to the
-     * "default" state.
-     *
-     * @param containerClass The value holders to ignore
-     * @return A new immutable data holder without the given manipulator
-     */
-    Optional<I> without(Class<? extends H> containerClass);
-
-    /**
      * Attempts to merge the {@link Value.Immutable}s from this
      * {@link org.spongepowered.api.data.value.ImmutableValueStore} and the given {@link org.spongepowered.api.data.value.ImmutableValueStore} to
      * produce a new instance of the merged result.
@@ -231,16 +97,5 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I, H>, H exte
      * @return The new immutable value store instance
      */
     I merge(I that, MergeFunction function);
-
-    /**
-     * Gets an copied collection of all known {@link ValueContainer}s
-     * belonging to this {@link org.spongepowered.api.data.value.ImmutableValueStore}. An individual
-     * {@link ValueContainer} can be used for data processing for various
-     * purposes.
-     *
-     * @return A collection of copied {@link ValueContainer}s originating
-     *     from this value store
-     */
-    List<H> getContainers();
 
 }

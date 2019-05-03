@@ -24,14 +24,21 @@
  */
 package org.spongepowered.api.data;
 
+import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.key.Key;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.type.DyeColor;
+import org.spongepowered.api.data.type.DyeColors;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.CatalogBuilder;
 
+import java.util.Optional;
 import java.util.function.Function;
 
 public interface DataRegistration extends CatalogType {
@@ -45,12 +52,38 @@ public interface DataRegistration extends CatalogType {
      */
     @SuppressWarnings("unchecked")
     static Builder builder() {
+        BlockTypes.BLACK_WOOL.getDefaultState().with(Keys.DYE_COLOR, DyeColors.BLUE).get();
+        DataProvider<Value<DyeColor>, DyeColor> dyeColorprovider = null;
+        dyeColorprovider.withValue(BlockTypes.BLACK_WOOL.getDefaultState(), DyeColors.BLUE);
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
-    Function<Iterable<Value.Immutable<?>>, DataView> getSerializer();
+    /**
+     * Gets the {@link DataProvider} for the given {@link Key} to potentially
+     * get or offer {@link Value}s from any {@link ValueContainer} provided
+     * that the container is supported by the {@code DataProvider}. If the
+     * {@code key} is not actually registered with this {@link DataRegistration},
+     * an {@link UnregisteredKeyException} is thrown. If there is no
+     * {@code DataProvider} registered for the particular {@code Key},
+     * {@link Optional#empty()} is returned.
+     *
+     * @param key The requested key
+     * @return The provider, if there is one for the key
+     * @throws UnregisteredKeyException If the key is not registered in this registration
+     */
+    Optional<DataProvider> getProviderFor(Key<?> key) throws UnregisteredKeyException;
 
-    Function<DataView, Iterable<Value.Mutable<?>>> getDeserializer();
+    /**
+     * Gets the appropriate {@link DataStore} for the context of the
+     * {@link TypeToken} that is being serialized/deserialized. It is always
+     * possible that there may be a {@link DataStore} that does not support
+     * the provided {@link TypeToken}, while a {@link DataProvider} may be
+     * provided for a particular {@link Key}.
+     *
+     * @param token
+     * @return
+     */
+    Optional<DataStore> getDataStore(TypeToken<?> token);
 
     Iterable<Key<?>> getKeys();
 
@@ -63,8 +96,9 @@ public interface DataRegistration extends CatalogType {
 
     interface Builder extends CatalogBuilder<DataRegistration, Builder> {
 
-        Builder serializer(Function<Iterable<Value.Immutable<?>>, DataView> serializer);
-        Builder deserializer(Function<DataView, Iterable<Value.Mutable<?>>> serializer);
+        Builder store(DataStore store) throws DuplicateDataStoreException;
+
+        Builder provider(DataProvider<?, ?> provider) throws DuplicateProviderException;
 
         Builder key(Key<?> key);
 
