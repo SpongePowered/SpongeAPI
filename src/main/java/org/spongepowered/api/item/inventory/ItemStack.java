@@ -53,7 +53,7 @@ import java.util.function.Predicate;
  * can be compared using the comparators listed in {@link ItemStackComparators}.
  *
  * <p>{@link ItemStack}s have a variety of properties and data. It is advised to
- * use {@link DataHolder#get(Class)} in order to retrieve information regarding
+ * use {@link DataHolder#get(Key)} in order to retrieve information regarding
  * this item stack.</p>
  */
 public interface ItemStack extends DataHolder, Translatable {

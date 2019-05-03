@@ -88,14 +88,6 @@ public interface Key<V extends Value<?>> extends CatalogType {
     TypeToken<?> getElementToken();
 
     /**
-     * Gets the {@link DataQuery} for recommended use with
-     * {@link DataContainer}s.
-     *
-     * @return The recommended {@link DataQuery} for use
-     */
-    DataQuery getQuery();
-
-    /**
      * Register an event listener which listens to the value the key accesses
      * changing.
      *
