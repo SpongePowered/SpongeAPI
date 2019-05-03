@@ -24,6 +24,10 @@
  */
 package org.spongepowered.api.resource;
 
+import org.spongepowered.api.resource.pack.Pack;
+import org.spongepowered.api.resource.pack.PackRepository;
+
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
@@ -48,17 +52,26 @@ public interface ResourceManager {
      * Gets a loaded resource at the given path, or {@link Optional#empty()}
      * if it does not exist.
      *
+     * <p>In the pack, the path will point to a resource. The resource should
+     * be located roughly at {@code data/namespace/path}</p>
+     *
      * @param path The path to the resource
      * @return The resource
+     * @throws IOException If there was an error reading the resource
+     * @throws FileNotFoundException If the resource does not exist.
      */
-    Resource getResource(ResourcePath path) throws IOException;
+    Resource getResource(ResourcePath path) throws IOException, FileNotFoundException;
 
     /**
-     * Returns all of the resources which exist in each {@link Pack}.
+     * Returns all of the resources which exist in each {@link Pack}. Remember
+     * to close all of the resources.
      *
      * @return All of the resources
+     * @see #getResource(ResourcePath)
+     * @throws IOException If there was an error reading any of the resources
+     * @throws FileNotFoundException If no resources exist
      */
-    List<Resource> getResources(ResourcePath path);
+    List<Resource> getResources(ResourcePath path) throws IOException, FileNotFoundException;
 
     /**
      * Returns all {@link ResourcePath paths} within a directory from all the
@@ -76,7 +89,7 @@ public interface ResourceManager {
      * @param filter The file name filter
      * @return A collection of resource paths
      */
-    Collection<ResourcePath> getResources(String path, Predicate<String> filter);
+    Collection<ResourcePath> getPaths(String path, Predicate<String> filter);
 
     /**
      * Returns true if the given {@link ResourcePath} exists in the active

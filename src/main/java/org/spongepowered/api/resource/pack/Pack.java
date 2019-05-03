@@ -22,9 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.resource;
+package org.spongepowered.api.resource.pack;
 
 import org.spongepowered.api.data.DataView;
+import org.spongepowered.api.resource.Resource;
+import org.spongepowered.api.resource.ResourceManager;
+import org.spongepowered.api.resource.ResourcePath;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -46,7 +49,7 @@ public interface Pack {
      * @return The input stream
      * @throws IOException If the resource does not exist or another IOException occurs.
      */
-    InputStream openStream(ResourceType type, ResourcePath path) throws IOException;
+    InputStream openStream(PackType type, ResourcePath path) throws IOException;
 
     /**
      * Recursively gets all the resources loaded from this pack. All namespaces
@@ -56,9 +59,9 @@ public interface Pack {
      * @param path The resource path
      * @param filter The file name filter
      * @return Collection of resources
-     * @see ResourceManager#getResources(String, Predicate)
+     * @see ResourceManager#getPaths(String, Predicate)
      */
-    Collection<ResourcePath> getResources(ResourceType type, String path, Predicate<String> filter);
+    Collection<ResourcePath> getPaths(PackType type, String path, Predicate<String> filter);
 
     /**
      * Checks if a resource exists in this pack.
@@ -67,7 +70,7 @@ public interface Pack {
      * @param path THe path of the resource
      * @return True if the resource exists, false otherwise
      */
-    boolean exists(ResourceType type, ResourcePath path);
+    boolean exists(PackType type, ResourcePath path);
 
     /**
      * Gets the metadata of this pack. The {@link DataView} represented is of

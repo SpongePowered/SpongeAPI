@@ -22,9 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.resource;
+package org.spongepowered.api.resource.pack;
 
 import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.api.resource.ReloadableResourceManager;
+import org.spongepowered.api.resource.ResourceManager;
 
 import java.util.Collection;
 import java.util.Optional;

@@ -22,42 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.resource;
+package org.spongepowered.api.resource.pack;
 
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.resource.Pack;
-import org.spongepowered.api.resource.PackRepository;
-import org.spongepowered.api.resource.ReloadableResourceManager;
-import org.spongepowered.api.resource.Resource;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Base interface for resource reloading events.
+ * Represents the root directory for different resource types. Current
+ * values in vanilla is assets and data.
  */
-public interface ResourceReloadEvent extends ResourceEvent, Cancellable {
+@CatalogedBy(PackTypes.class)
+public interface PackType extends CatalogType {
 
     /**
-     * Called before the {@link ReloadableResourceManager} is reloaded. At this
-     * point, the {@link PackRepository#getEnabledPacks() enabled packs} can be
-     * added or removed from.
+     * Gets the name of the root directory path for this resource type.
+     *
+     * @return The root name
      */
-    interface Pre extends ResourceReloadEvent {
-
-        /**
-         * Gets the {@link PackRepository} used to reload the resources.
-         * {@link Pack packs} and order can be changed using this instance.
-         *
-         * @return The pack repository.
-         */
-        PackRepository getPackRepository();
-
-    }
-
-    /**
-     * Called after the {@link ReloadableResourceManager} is reloaded. When a
-     * {@link Resource} is reloaded, this event should be used to obtain the
-     * new file.
-     */
-    interface Post extends ResourceReloadEvent {
-
-    }
+    String getRootName();
 }

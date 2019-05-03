@@ -22,18 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.resource;
+package org.spongepowered.api.resource.pack;
 
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.resource.ResourceManager;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-public interface ResourceEvent extends Event {
+public class PackTypes {
 
-    /**
-     * Gets the {@link ResourceManager} which caused this event.
-     *
-     * @return The resource manager
-     */
-    ResourceManager getResourceManager();
+    // SORTFIELDS:ON
 
+    public static final PackType ASSETS = DummyObjectProvider.createFor(PackType.class, "ASSETS");
+
+    public static final PackType DATA = DummyObjectProvider.createFor(PackType.class, "DATA");
+
+    // SORTFIELDS:OFF
 }

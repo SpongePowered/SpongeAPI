@@ -96,7 +96,7 @@ public interface Resource extends Closeable {
      *
      * @return The parent pack.
      */
-    String getPack();
+    String getPackName();
 
     /**
      * Gets a reader for this resource using the given {@link Charset}.

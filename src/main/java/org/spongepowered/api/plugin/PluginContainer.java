@@ -29,12 +29,6 @@ import com.google.common.collect.ImmutableSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.spongepowered.api.CatalogKey;
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.asset.Asset;
-import org.spongepowered.api.asset.AssetManager;
-import org.spongepowered.api.resource.PackInfo;
-import org.spongepowered.api.resource.PackRepository;
-import org.spongepowered.api.resource.ResourceType;
 import org.spongepowered.plugin.meta.PluginDependency;
 
 import java.nio.file.Path;
@@ -126,31 +120,6 @@ public interface PluginContainer {
      */
     default Optional<PluginDependency> getDependency(String id) {
         return Optional.empty();
-    }
-
-    /**
-     * Retrieves the {@link Asset} of the specified name from the
-     * {@link AssetManager} for this {@link Plugin}.
-     *
-     * @param name Name of asset
-     * @return Asset if present, empty otherwise
-     * @deprecated Use {@link #getPack(ResourceType)} instead.
-     */
-    @Deprecated
-    default Optional<Asset> getAsset(String name) {
-        return Sponge.getAssetManager().getAsset(this, name);
-    }
-
-    /**
-     * Retrieves the {@link PackInfo} owned by this plugin from the
-     * {@link PackRepository}.
-     *
-     * @param type The type of resource pack
-     *
-     * @return The plugin's resource pack.
-     */
-    default PackInfo getPack(ResourceType type) {
-        return Sponge.getServer().getPackRepository().getPack(this);
     }
 
     /**

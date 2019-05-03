@@ -22,14 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.resource;
+package org.spongepowered.api.resource.pack;
 
+import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.TextRepresentable;
 
 /**
  * Basic info about a {@link Pack}
  */
-public interface PackInfo {
+public interface PackInfo extends DataSerializable, TextRepresentable {
 
     /**
      * Gets the name of the {@link Pack} used to identify it in the
@@ -55,14 +57,6 @@ public interface PackInfo {
     Text getDescription();
 
     /**
-     * Formats the text of the pack info to display to the user.
-     *
-     * @param active Whether this pack is active or not
-     * @return The formatted text
-     */
-    Text formatName(boolean active);
-
-    /**
      * Gets the {@link Pack} associated with this pack info.
      *
      * @return
@@ -85,5 +79,23 @@ public interface PackInfo {
      * @return Whether this pack is remote
      */
     boolean isRemote();
+
+    boolean isLocked();
+
+    Priority getPriority();
+
+    Compatibility getCompatability();
+
+    enum Priority {
+        FIRST,
+        LAST
+    }
+
+    enum Compatibility {
+        OLD,
+        NEW,
+        OK
+    }
+
 
 }

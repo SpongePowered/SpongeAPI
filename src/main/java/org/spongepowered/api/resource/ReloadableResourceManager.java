@@ -26,9 +26,10 @@ package org.spongepowered.api.resource;
 
 public interface ReloadableResourceManager extends ResourceManager {
 
-    /**
-     * Reloads the resources from active packs.
-     */
-    void reload();
+    default AsyncReloader.Builder reload() {
+        return AsyncReloader.builder().manager(this);
+    }
+
+    void addListener(AsyncReloadListener listener);
 
 }

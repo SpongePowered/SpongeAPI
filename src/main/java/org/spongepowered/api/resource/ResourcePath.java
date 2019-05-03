@@ -25,6 +25,8 @@
 package org.spongepowered.api.resource;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Iterator;
@@ -33,17 +35,19 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * <p>A resource path should contain a namespace. If one is not provided,
- * {@code minecraft} will be used instead. The namespace and path must not
- * contain any special characters or uppercase letters.
+ * <p>A resource path should contain a namespace. The namespace and path must
+ * not contain any special characters or uppercase letters.
  *
- * <p>In the pack, the path will point to a resource. The resource should
- * be located roughly at {@code data/namespace/path}</p>
+ * <p>A <b>namespace</b> can only contain the following characters:
+ * "{@code a-z0-9_-}"</p>
+ * <p>A <b>path</b> can only contain the following characters:
+ * "{@code a-z0-9_/.-}". Additionally, a path cannot use {@code ..} to go to
+ * the parent directory.
  *
- * <p>A resource path should be usable in a {@link Map}, so implementations
+ * @implNote A resource path should be usable in a {@link Map}, so implementations
  * should override {@link #hashCode()} and {@link #equals(Object)}.</p>
  */
-public interface ResourcePath extends Comparable<ResourcePath>, Iterable<ResourcePath> {
+public interface ResourcePath extends Comparable<ResourcePath> {
 
     /**
      * Creates a new {@link Builder} to build a {@link ResourcePath}.
@@ -58,7 +62,7 @@ public interface ResourcePath extends Comparable<ResourcePath>, Iterable<Resourc
      * Creates a new {@link ResourcePath} using the given namespace and path.
      *
      * @param namespace The namespace to use
-     * @param path The path to use
+     * @param path      The path to use
      * @return A new ResourcePath
      */
     static ResourcePath of(String namespace, String path) throws IllegalArgumentException {
@@ -96,29 +100,12 @@ public interface ResourcePath extends Comparable<ResourcePath>, Iterable<Resourc
     String getPath();
 
     /**
-     * Gets the root path from this path.
-     *
-     * @return The root path
-     */
-    ResourcePath getRoot();
-
-    /**
      * Gets the immediate parent for this {@link ResourcePath}. If this path is
      * the root path, itself is returned.
      *
      * @return The parent path
-     * @see #getRoot()
      */
     ResourcePath getParent();
-
-    /**
-     * Gets a list of names which make up this {@link ResourcePath}. Order of
-     * names will be root first, with the last name being this path's
-     * filename.
-     *
-     * @return The list of paths
-     */
-    List<String> getNames();
 
     /**
      * Tests if this {@link ResourcePath} is a direct child of the given other path.
@@ -126,7 +113,7 @@ public interface ResourcePath extends Comparable<ResourcePath>, Iterable<Resourc
      * @param parent The other resource path to check against
      * @return True if this is a child to other
      */
-    boolean isParent(ResourcePath parent);
+    boolean startsWith(ResourcePath parent);
 
     /**
      * Gets the file name portion of this {@link ResourcePath}.
@@ -158,7 +145,7 @@ public interface ResourcePath extends Comparable<ResourcePath>, Iterable<Resourc
     Optional<String> getExtension();
 
     /**
-     * Tests if this path has one of the given extensions. Case is insensitive.
+     * Tests if this path has one of the given extensions.
      *
      * @param ext The extensions to test
      * @return True if the extension matches one of the ones provided
@@ -184,13 +171,28 @@ public interface ResourcePath extends Comparable<ResourcePath>, Iterable<Resourc
     ResourcePath resolveSibling(String name);
 
     /**
-     * Returns an iterator of the paths leading up to this path, starting with
-     * the root.
+     * Provides a String representation of this object consisting of
+     * {@code namespace:path}. This is easily reversible via
+     * {@link #parse(String)}.
      *
-     * @return The iterator
+     * @return A string reprsentation
      */
     @Override
-    Iterator<ResourcePath> iterator();
+    String toString();
+
+    /**
+     * {@inheritDoc}
+     *
+     * @implNote Implementation should override this for Map usage.
+     */
+    boolean equals(Object other);
+
+    /**
+     * {@inheritDoc}
+     *
+     * @implNote Implementation should override this for Map usage.
+     */
+    int hashCode();
 
     /**
      * Represents a builder to create {@link ResourcePath} instances.
