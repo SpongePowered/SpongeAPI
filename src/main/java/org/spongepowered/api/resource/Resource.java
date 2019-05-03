@@ -55,7 +55,7 @@ import javax.annotation.WillNotClose;
  *     try (Resource res = resourceManager.getResource(path)) {
  *         logger.info(res.readString(DefaultCharsets.UTF_8));
  *     } catch (IOException e) {
- *         e.printStackTrace();
+ *         logger.warn("Failed to load resource: {}", path, e);
  *     }
  * </pre>
  */
