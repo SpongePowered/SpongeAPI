@@ -24,12 +24,27 @@
  */
 package org.spongepowered.api.data.value;
 
+import org.spongepowered.api.data.key.Key;
+
 import java.util.Optional;
 import java.util.function.Function;
 
 import javax.annotation.Nullable;
 
 public interface OptionalValue<E> extends Value<Optional<E>> {
+
+    /**
+     * Constructs a {@link OptionalValue} for the given {@link Key} and element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <V> The value type
+     * @param <E> The element type
+     * @return The constructed value
+     */
+    static <V extends OptionalValue<E>, E> V of(Key<V> key, @Nullable E element) {
+        return Value.of(key, Optional.ofNullable(element));
+    }
 
     /**
      * Provides the value such that if the underlying value is
