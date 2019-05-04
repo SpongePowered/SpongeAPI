@@ -26,10 +26,13 @@ package org.spongepowered.api.text.channel;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.spongepowered.api.command.source.CommandSource;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextElement;
 import org.spongepowered.api.text.TextTemplate;
+import org.spongepowered.api.text.translation.locale.Locales;
 
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -119,5 +122,17 @@ public interface MessageReceiver {
      * @param channel The message channel to send messages to
      */
     void setMessageChannel(MessageChannel channel);
+
+    /**
+     * Gets the locale of this {@link MessageReceiver}.
+     *
+     * <p>If this receiver does not support configurable
+     * locales, this will return {@link Locales#DEFAULT}.</p>
+     *
+     * @return The locale used by this receiver.
+     */
+    default Locale getLocale() {
+        return Locales.DEFAULT;
+    }
 
 }

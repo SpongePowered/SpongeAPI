@@ -24,13 +24,68 @@
  */
 package org.spongepowered.api.block.entity;
 
+import org.spongepowered.api.command.source.CommandSource;
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.value.OptionalValue;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.text.Text;
+
+import java.util.Optional;
+
 /**
  * Represents a Command Block.
  */
-public interface CommandBlock extends BlockEntity {
+public interface CommandBlock extends BlockEntity, CommandSource {
 
     /**
      * Executes the currently stored command.
      */
     void execute();
+
+    /**
+     * Gets the currently stored command.
+     *
+     * @return The command
+     */
+    default Value.Mutable<String> storedCommand() {
+        return getValue(Keys.COMMAND).get().asMutable();
+    }
+
+    /**
+     * Gets the success count of the last executed command.
+     *
+     * <p>The success count is the number of times the most recently used
+     * command of this command block succeeded. Most commands can only succeed
+     * once per  execution, but certain commands (such as those which accept
+     * players as arguments) can succeed multiple times, and this value will be
+     * set accordingly. This success count can also be polled via a redstone
+     * comparator.</p>
+     *
+     * @return The last success count
+     */
+    default Value.Mutable<Integer> successCount() {
+        return getValue(Keys.SUCCESS_COUNT).get().asMutable();
+    }
+
+    /**
+     * Gets whether this command block will keep track of the output from the
+     * last command it executed.
+     *
+     * @return Whether the command output is tracked
+     */
+    default Value.Mutable<Boolean> doesTrackOutput() {
+        return getValue(Keys.TRACKS_OUTPUT).get().asMutable();
+    }
+
+    /**
+     * Gets the last command output.
+     *
+     * <p>This will only be available if {@link #doesTrackOutput()} is set to
+     * true, otherwise {@link Optional#empty()} will be returned.</p>
+     *
+     * @return The last command output, if available
+     */
+    default OptionalValue.Mutable<Text> lastOutput() {
+        return getValue(Keys.LAST_COMMAND_OUTPUT).get().asMutable();
+    }
 }

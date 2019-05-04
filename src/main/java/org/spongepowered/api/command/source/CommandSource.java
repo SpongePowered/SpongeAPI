@@ -22,26 +22,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.entity;
+package org.spongepowered.api.command.source;
 
-import org.spongepowered.api.command.source.CommandSource;
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.value.ListValue;
-import org.spongepowered.api.text.Text;
+import org.spongepowered.api.service.permission.Subject;
+import org.spongepowered.api.text.channel.MessageReceiver;
+import org.spongepowered.api.text.translation.locale.Locales;
+
+import java.util.Locale;
 
 /**
- * Represents a sign.
+ * Something that traditionally executes commands, can receive messages and
+ * can have permissions associated with them.
+ *
+ * <p>Examples of potential implementations include players, the server console,
+ * Rcon clients, web-based clients, command blocks, and so on.</p>
+ *
+ * <p>Note that while this source is provided, it is done so as a courtesy to
+ * provide an indication as to what will both receive messages and act as a
+ * permission {@link Subject}.</p>
  */
-public interface Sign extends BlockEntity, CommandSource {
+public interface CommandSource extends MessageReceiver, Subject {
 
     /**
-     * Gets the {@link ListValue.Mutable} of {@link Text} for the {@link Sign}
-     * to show.
+     * Gets the name identifying this command source.
      *
-     * @return The list of text lines
+     * @return The name of this command source
      */
-    default ListValue.Mutable<Text> lines() {
-        return getValue(Keys.SIGN_LINES).get().asMutable();
-    }
+    String getName();
 
 }

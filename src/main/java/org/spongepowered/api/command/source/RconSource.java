@@ -22,26 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.entity;
-
-import org.spongepowered.api.command.source.CommandSource;
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.value.ListValue;
-import org.spongepowered.api.text.Text;
+package org.spongepowered.api.command.source;
 
 /**
- * Represents a sign.
+ * Represents an Rcon client.
  */
-public interface Sign extends BlockEntity, CommandSource {
+public interface RconSource extends RemoteSource {
 
     /**
-     * Gets the {@link ListValue.Mutable} of {@link Text} for the {@link Sign}
-     * to show.
+     * Gets whether this client is logged in, or authenticated.
      *
-     * @return The list of text lines
+     * @return Whether this client is logged in
      */
-    default ListValue.Mutable<Text> lines() {
-        return getValue(Keys.SIGN_LINES).get().asMutable();
-    }
+    boolean getLoggedIn();
 
+    /**
+     * Sets whether this client is logged in, or authenticated.
+     *
+     * @param loggedIn Whether this client is logged in
+     */
+    void setLoggedIn(boolean loggedIn);
 }

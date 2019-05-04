@@ -22,26 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.entity;
+package org.spongepowered.api.command.parameter.managed;
 
-import org.spongepowered.api.command.source.CommandSource;
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.value.ListValue;
+import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.text.Text;
 
 /**
- * Represents a sign.
+ * Defines the usage string for the parameter.
  */
-public interface Sign extends BlockEntity, CommandSource {
+@FunctionalInterface
+public interface ValueUsage {
 
     /**
-     * Gets the {@link ListValue.Mutable} of {@link Text} for the {@link Sign}
-     * to show.
+     * Gets the usage string for the argument.
      *
-     * @return The list of text lines
+     * @param cause The {@link Cause} requesting the usage
+     * @param key The {@link Text} that defines the parameter key
+     * @return The usage
      */
-    default ListValue.Mutable<Text> lines() {
-        return getValue(Keys.SIGN_LINES).get().asMutable();
-    }
+    Text getUsage(Cause cause, Text key);
 
 }

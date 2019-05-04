@@ -22,26 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.entity;
-
-import org.spongepowered.api.command.source.CommandSource;
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.value.ListValue;
-import org.spongepowered.api.text.Text;
+package org.spongepowered.api.command.manager;
 
 /**
- * Represents a sign.
+ * Indicates that a command could not be registered.
  */
-public interface Sign extends BlockEntity, CommandSource {
+public class FailedRegistrationException extends RuntimeException {
 
-    /**
-     * Gets the {@link ListValue.Mutable} of {@link Text} for the {@link Sign}
-     * to show.
-     *
-     * @return The list of text lines
-     */
-    default ListValue.Mutable<Text> lines() {
-        return getValue(Keys.SIGN_LINES).get().asMutable();
+    private static final long serialVersionUID = -783923658025L;
+
+    public FailedRegistrationException(String message) {
+        super(message);
+    }
+
+    public FailedRegistrationException(String message, Throwable inner) {
+        super(message, inner);
     }
 
 }

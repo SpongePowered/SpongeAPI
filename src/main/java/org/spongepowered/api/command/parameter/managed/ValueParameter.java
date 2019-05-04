@@ -22,26 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.entity;
+package org.spongepowered.api.command.parameter.managed;
 
-import org.spongepowered.api.command.source.CommandSource;
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.value.ListValue;
+import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.text.Text;
 
 /**
- * Represents a sign.
+ * Combines the {@link ValueParser}, {@link ValueCompleter} and
+ * {@link ValueUsage} into one object.
+ *
+ * @param <T> The type of object that is returned from the
+ *            {@link ValueParser} upon successful parsing.
+ *
+ * @see org.spongepowered.api.command.parameter.managed.ValueCompleter
+ * @see org.spongepowered.api.command.parameter.managed.ValueParser
+ * @see org.spongepowered.api.command.parameter.managed.ValueUsage
  */
-public interface Sign extends BlockEntity, CommandSource {
+public interface ValueParameter<T> extends ValueCompleter, ValueParser<T>, ValueUsage {
 
-    /**
-     * Gets the {@link ListValue.Mutable} of {@link Text} for the {@link Sign}
-     * to show.
-     *
-     * @return The list of text lines
-     */
-    default ListValue.Mutable<Text> lines() {
-        return getValue(Keys.SIGN_LINES).get().asMutable();
+    @Override
+    default Text getUsage(Cause cause, Text key) {
+        return key;
     }
 
 }

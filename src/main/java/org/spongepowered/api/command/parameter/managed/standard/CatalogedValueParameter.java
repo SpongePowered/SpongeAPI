@@ -22,26 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.entity;
+package org.spongepowered.api.command.parameter.managed.standard;
 
-import org.spongepowered.api.command.source.CommandSource;
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.value.ListValue;
-import org.spongepowered.api.text.Text;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.command.parameter.managed.ValueParameter;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents a sign.
+ * A {@link ValueParameter} that can be cataloged.
+ *
+ * @param <T> The type of value that the parameter will return.
  */
-public interface Sign extends BlockEntity, CommandSource {
-
-    /**
-     * Gets the {@link ListValue.Mutable} of {@link Text} for the {@link Sign}
-     * to show.
-     *
-     * @return The list of text lines
-     */
-    default ListValue.Mutable<Text> lines() {
-        return getValue(Keys.SIGN_LINES).get().asMutable();
-    }
+@CatalogedBy(CatalogedValueParameters.class)
+public interface CatalogedValueParameter<T> extends ValueParameter<T>, CatalogType {
 
 }

@@ -26,6 +26,7 @@ package org.spongepowered.api.text.selector;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.Location;
@@ -135,6 +136,18 @@ public interface Selector {
      *         {@link Selector}, otherwise {@code false}
      */
     boolean isInverted(ArgumentType.Invertible<?> type);
+
+    /**
+     * Resolves this {@link Selector} to a list of entities based on the
+     * given {@link Cause}.
+     *
+     * <p>The returned set may be ordered based on distance from the chosen
+     * origin (with the nearest first).</p>
+     *
+     * @param cause The cause to base the resolution around
+     * @return The matched entities
+     */
+    Set<Entity> resolve(Cause cause);
 
     /**
      * Resolves this {@link Selector} to a list of entities around the given

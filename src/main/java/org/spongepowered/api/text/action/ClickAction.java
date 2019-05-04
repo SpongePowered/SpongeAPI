@@ -25,10 +25,13 @@
 package org.spongepowered.api.text.action;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.command.Command;
+import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.net.URL;
+import java.util.function.Consumer;
 
 /**
  * Represents a {@link TextAction} that responds to clicks.
@@ -185,4 +188,41 @@ public interface ClickAction<R> extends TextAction<R> {
             SuggestCommand build();
         }
     }
+
+    /**
+     * Execute a callback.
+     */
+    interface ExecuteCallback extends ClickAction<Consumer<Cause>> {
+
+        /**
+         * Creates a new builder.
+         *
+         * @return A new builder
+         */
+        static ExecuteCallback.Builder builder() {
+            return Sponge.getRegistry().createBuilder(ExecuteCallback.Builder.class);
+        }
+
+        /**
+         * A builder for {@link SuggestCommand} click actions.
+         */
+        interface Builder extends CopyableBuilder<ExecuteCallback, ExecuteCallback.Builder> {
+
+            /**
+             * Sets callback to execute.
+             *
+             * @param consumer The callback to execute
+             * @return This builder
+             */
+            ExecuteCallback.Builder callback(Consumer<Cause> consumer);
+
+            /**
+             * Builds the action.
+             *
+             * @return The built action
+             */
+            ExecuteCallback build();
+        }
+    }
+
 }

@@ -22,26 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.entity;
+package org.spongepowered.api.command;
 
-import org.spongepowered.api.command.source.CommandSource;
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.value.ListValue;
-import org.spongepowered.api.text.Text;
+import org.spongepowered.api.command.exception.CommandException;
+import org.spongepowered.api.command.parameter.CommandContext;
 
 /**
- * Represents a sign.
+ * Interface containing the method directing how a certain command will
+ * be executed.
  */
-public interface Sign extends BlockEntity, CommandSource {
+@FunctionalInterface
+public interface CommandExecutor {
 
     /**
-     * Gets the {@link ListValue.Mutable} of {@link Text} for the {@link Sign}
-     * to show.
+     * Callback for the execution of a command.
      *
-     * @return The list of text lines
+     * @param context The parsed command arguments for this command
+     * @return the result of executing this command
+     * @throws CommandException If a user-facing error occurs while
+     *     executing this command
      */
-    default ListValue.Mutable<Text> lines() {
-        return getValue(Keys.SIGN_LINES).get().asMutable();
-    }
+    CommandResult execute(CommandContext context) throws CommandException;
 
 }

@@ -22,26 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.entity;
+package org.spongepowered.api.command.exception;
 
 import org.spongepowered.api.command.source.CommandSource;
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.text.Text;
 
 /**
- * Represents a sign.
+ * This exception is thrown when the target {@link CommandSource}s is of the
+ * correct type to call the target command.
  */
-public interface Sign extends BlockEntity, CommandSource {
+public class IncorrectCommandSourceException extends CommandException {
+    private static final long serialVersionUID = -2927330349931825821L;
 
     /**
-     * Gets the {@link ListValue.Mutable} of {@link Text} for the {@link Sign}
-     * to show.
+     * Create a permissions exception with a custom message.
      *
-     * @return The list of text lines
+     * @param message The message
      */
-    default ListValue.Mutable<Text> lines() {
-        return getValue(Keys.SIGN_LINES).get().asMutable();
+    public IncorrectCommandSourceException(Text message) {
+        super(message);
     }
 
+    /**
+     * Create a permissions exception with a custom message and cause.
+     *
+     * @param message the message
+     * @param cause the cause
+     */
+    public IncorrectCommandSourceException(Text message, Throwable cause) {
+        super(message, cause);
+    }
 }

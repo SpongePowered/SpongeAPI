@@ -22,26 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.entity;
-
-import org.spongepowered.api.command.source.CommandSource;
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.value.ListValue;
-import org.spongepowered.api.text.Text;
+package org.spongepowered.api.command;
 
 /**
- * Represents a sign.
+ * Common {@link CommandResult}s.
  */
-public interface Sign extends BlockEntity, CommandSource {
+public final class CommandResults {
 
     /**
-     * Gets the {@link ListValue.Mutable} of {@link Text} for the {@link Sign}
-     * to show.
-     *
-     * @return The list of text lines
+     * Indicates that the command executed successfully.
      */
-    default ListValue.Mutable<Text> lines() {
-        return getValue(Keys.SIGN_LINES).get().asMutable();
+    public final static CommandResult SUCCESS = CommandResult.builder().setResult(1).build();
+
+    /**
+     * Indicates that the command executed but was unable to carry out its task.
+     */
+    public final static CommandResult EMPTY = CommandResult.builder().build();
+
+    private CommandResults() {
+        throw new AssertionError("You shouldn't be trying to instantiate this");
     }
 
 }

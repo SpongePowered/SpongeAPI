@@ -22,26 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.entity;
+package org.spongepowered.api.command.parameter.managed;
 
-import org.spongepowered.api.command.source.CommandSource;
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.value.ListValue;
-import org.spongepowered.api.text.Text;
+import org.spongepowered.api.command.parameter.ArgumentReader;
+import org.spongepowered.api.command.parameter.CommandContext;
+
+import java.util.List;
 
 /**
- * Represents a sign.
+ * Defines the completions for a parameter.
  */
-public interface Sign extends BlockEntity, CommandSource {
+@FunctionalInterface
+public interface ValueCompleter {
 
     /**
-     * Gets the {@link ListValue.Mutable} of {@link Text} for the {@link Sign}
-     * to show.
+     * Gets valid completions for this command.
      *
-     * @return The list of text lines
+     * @param reader The {@link ArgumentReader.Immutable} containing the arguments
+     *               that needs to be completed.
+     * @param context The {@link CommandContext} that contains the parsed arguments
      */
-    default ListValue.Mutable<Text> lines() {
-        return getValue(Keys.SIGN_LINES).get().asMutable();
-    }
+    List<String> complete(ArgumentReader.Immutable reader, CommandContext context);
 
 }

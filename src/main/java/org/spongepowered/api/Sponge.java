@@ -28,6 +28,7 @@ import static com.google.common.base.Preconditions.checkState;
 
 import com.google.inject.Inject;
 import org.spongepowered.api.asset.AssetManager;
+import org.spongepowered.api.command.manager.CommandManager;
 import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.data.property.PropertyRegistry;
@@ -65,6 +66,7 @@ public final class Sponge {
     @Inject private static TeleportHelper teleportHelper;
     @Inject private static CauseStackManager causeStackManager;
     @Inject private static MetricsConfigManager metricsConfigManager;
+    @Inject private static CommandManager commandManager;
 
     private static <T> T check(@Nullable T instance) {
         checkState(instance != null, "Sponge has not been initialized!");
@@ -245,5 +247,14 @@ public final class Sponge {
      */
     public static Scheduler getAsyncScheduler() {
         return getGame().getAsyncScheduler();
+    }
+
+    /**
+     * Gets the {@link CommandManager} for registering and executing commands.
+     *
+     * @return The {@link CommandManager} instance.
+     */
+    public static CommandManager getCommandManager() {
+        return check(commandManager);
     }
 }

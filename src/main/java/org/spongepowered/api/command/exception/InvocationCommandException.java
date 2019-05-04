@@ -22,26 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.entity;
+package org.spongepowered.api.command.exception;
 
-import org.spongepowered.api.command.source.CommandSource;
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.text.Text;
 
 /**
- * Represents a sign.
+ * Thrown when invocation of a command fails, wrapping the exception that
+ * is thrown.
  */
-public interface Sign extends BlockEntity, CommandSource {
+public class InvocationCommandException extends CommandException {
+    private static final long serialVersionUID = 2123904283741023948L;
 
     /**
-     * Gets the {@link ListValue.Mutable} of {@link Text} for the {@link Sign}
-     * to show.
+     * Constructs a new exception with the given message and the given cause.
      *
-     * @return The list of text lines
+     * @param message The detail message
+     * @param cause The cause
      */
-    default ListValue.Mutable<Text> lines() {
-        return getValue(Keys.SIGN_LINES).get().asMutable();
+    public InvocationCommandException(Text message, Throwable cause) {
+        super(message, cause);
     }
 
 }

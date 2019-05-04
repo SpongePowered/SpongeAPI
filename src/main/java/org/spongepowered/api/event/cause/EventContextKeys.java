@@ -42,6 +42,8 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.ServiceManager;
+import org.spongepowered.api.service.permission.Subject;
+import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.world.LocatableBlock;
 import org.spongepowered.api.world.World;
@@ -170,6 +172,12 @@ public final class EventContextKeys {
     public static final EventContextKey<World> LIQUID_MIX = createFor("LIQUID_MIX");
 
     /**
+     * Used during command execution, indicates the {@link MessageChannel} to
+     * send any messages to.
+     */
+    public static final EventContextKey<MessageChannel> MESSAGE_CHANNEL = createFor("MESSAGE_CHANNEL");
+
+    /**
      * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
      * the block event without relying on existing in the {@link Cause} stack.
      */
@@ -245,6 +253,12 @@ public final class EventContextKeys {
      * Represents the {@link SpawnType} of an entity spawn.
      */
     public static final EventContextKey<SpawnType> SPAWN_TYPE = createFor("SPAWN_TYPE");
+
+    /**
+     * Used during command invocation, indicates the {@link Subject} that
+     * permission checks should be performed against.
+     */
+    public static final EventContextKey<Subject> SUBJECT = createFor("SUBJECT");
 
     /**
      * Represents the {@link TeleportType} when an entity teleports.

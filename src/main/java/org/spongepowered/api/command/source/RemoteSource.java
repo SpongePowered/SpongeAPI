@@ -22,26 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.entity;
+package org.spongepowered.api.command.source;
 
-import org.spongepowered.api.command.source.CommandSource;
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.value.ListValue;
-import org.spongepowered.api.text.Text;
+import org.spongepowered.api.network.RemoteConnection;
 
 /**
- * Represents a sign.
+ * Represents a source that is not local to the server. This includes Rcon,
+ * player connections, and others.
  */
-public interface Sign extends BlockEntity, CommandSource {
+public interface RemoteSource extends CommandSource {
 
     /**
-     * Gets the {@link ListValue.Mutable} of {@link Text} for the {@link Sign}
-     * to show.
+     * Gets connection information for this source.
      *
-     * @return The list of text lines
+     * @return This source's connection
      */
-    default ListValue.Mutable<Text> lines() {
-        return getValue(Keys.SIGN_LINES).get().asMutable();
-    }
-
+    RemoteConnection getConnection();
 }
