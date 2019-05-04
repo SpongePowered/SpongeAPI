@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.event.entity.ai;
 
-import org.spongepowered.api.entity.ai.Goal;
-import org.spongepowered.api.entity.ai.task.AITask;
+import org.spongepowered.api.ai.Goal;
+import org.spongepowered.api.ai.task.AITask;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;

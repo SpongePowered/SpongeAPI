@@ -22,12 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.ai.task.builtin.creature.target;
+package org.spongepowered.api.ai.task.agent.creature.target;
 
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.ai.task.AITask;
-import org.spongepowered.api.entity.ai.task.AITaskBuilder;
+import org.spongepowered.api.ai.task.AITask;
+import org.spongepowered.api.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Creature;
 

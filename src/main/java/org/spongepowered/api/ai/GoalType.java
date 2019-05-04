@@ -22,32 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.ai;
+package org.spongepowered.api.ai;
 
-import org.spongepowered.api.entity.living.Agent;
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-public final class GoalTypes {
-
-    // SORTFIELDS:ON
-
-    /**
-     * {@link Goal} that is the default set of tasks for most {@link Agent}s.
-     */
-    public static final GoalType NORMAL = DummyObjectProvider.createFor(GoalType.class, "NORMAL");
+@CatalogedBy(GoalTypes.class)
+public interface GoalType extends CatalogType {
 
     /**
-     * {@link Goal} that is the "target" set of tasks.
+     * Gets the {@link Goal} class that this type represents.
      *
-     * <p>In this goal, the objective is to formulate the target so that the
-     * {@link Agent} can act on it. The best example is how monsters like zombie
-     * and skeleton attack enemies: they seek out a target and if a task in
-     * their normal goal sees that they have a target, they act accordingly.</p>
+     * @return The goal class
      */
-    public static final GoalType TARGET = DummyObjectProvider.createFor(GoalType.class, "TARGET");
-
-    // SORTFIELDS:OFF
-
-    private GoalTypes() {
-    }
+    Class<? extends Goal<?>> getGoalClass();
 }

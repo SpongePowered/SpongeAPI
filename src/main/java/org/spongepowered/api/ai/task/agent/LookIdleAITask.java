@@ -22,25 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.ai.task;
+package org.spongepowered.api.ai.task.agent;
 
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.ai.task.AITask;
+import org.spongepowered.api.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Agent;
-import org.spongepowered.api.util.CopyableBuilder;
 
-/**
- * A utility to assist in building {@link AITask}s.
- *
- * @param <O> The type of agent
- * @param <A> The type of task
- * @param <B> The type of builder, self-referencing
- */
-public interface AITaskBuilder<O extends Agent, A extends AITask<O>, B extends AITaskBuilder<O, A, B>> extends CopyableBuilder<A, B> {
+public interface LookIdleAITask extends AITask<Agent> {
 
     /**
-     * Builds the {@link AITask}.
+     * Creates a new {@link Builder} to build a new {@link LookIdleAITask}.
      *
-     * @param owner The owner of the task
-     * @return The task
+     * @return A new builder
      */
-    A build(O owner);
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    interface Builder extends AITaskBuilder<Agent, LookIdleAITask, Builder> {
+
+    }
 }

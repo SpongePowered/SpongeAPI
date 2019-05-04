@@ -841,6 +841,11 @@ public final class Keys {
     public static final Key<Value<Double>> FLYING_SPEED = DummyObjectProvider.createExtendedFor(Key.class, "FLYING_SPEED");
 
     /**
+     * Represents the {@link Key} for the following range of an {@link Agent}.
+     */
+    public static final Key<BoundedValue.Mutable<Double>> FOLLOW_RANGE = DummyObjectProvider.createExtendedFor(Key.class, "FOLLOW_RANGE");
+
+    /**
      * Represents the {@link Key} for the food level of a {@link Humanoid}.
      */
     public static final Key<BoundedValue<Integer>> FOOD_LEVEL = DummyObjectProvider.createExtendedFor(Key.class, "FOOD_LEVEL");

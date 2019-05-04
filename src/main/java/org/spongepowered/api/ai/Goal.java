@@ -22,14 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.ai;
+package org.spongepowered.api.ai;
 
-import org.spongepowered.api.entity.ai.task.AITask;
-import org.spongepowered.api.entity.ai.task.AITaskType;
+import org.spongepowered.api.ai.task.AITask;
+import org.spongepowered.api.ai.task.AITaskType;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.monster.Monster;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Represents a set of tasks that will be updated together by an {@link Agent}.
@@ -58,49 +60,58 @@ public interface Goal<O extends Agent> {
     O getOwner();
 
     /**
-     * Adds a new {@link AITask} to this goal.
+     * Adds a new {@link AITask} to this {@link Goal}.
      *
      * @param priority The priority this task should run at
      * @param task The task to run
      * @return This goal, for chaining
      */
-    Goal<O> addTask(int priority, AITask<? extends O> task);
+    Goal<O> addTask(int priority, AITask<O> task);
 
     /**
-     * Removes a specific {@link AITask} from this goal.
+     * Removes a specific {@link AITask} from this {@link Goal}.
      *
      * @param task The task to remove
-     * @return This goal, for chaining
+     * @return An optional containing the task entry removed or {@link Optional#empty()} if none found
      */
-    Goal<O> removeTask(AITask<? extends O> task);
+    Optional<TaskEntry<O>> removeTask(AITask<O> task);
 
     /**
      * Removes all {@link AITask}s whose {@link AITaskType} matches
-     * the provided type.
+     * the provided type in this {@link Goal}.
      *
      * @param type The type to remove
-     * @return The goal, for chaining
+     * @return The removed task entries as a {@link Collection}
      */
-    Goal<O> removeTasks(AITaskType type);
+    Collection<TaskEntry<O>> removeTasks(AITaskType type);
 
     /**
      * Gets all {@link AITask}s whose {@link AITaskType} matches
-     * the provided type.
+     * the provided type in this {@link Goal}.
      *
      * @param type The type to look for
-     * @return All the tasks found
+     * @return The tasks
      */
-    List<? super AITask<? extends O>> getTasksByType(AITaskType type);
+    List<TaskEntry<O>> getTasksByType(AITaskType type);
 
     /**
-     * Gets all {@link AITask}s in this goal.
+     * Gets all {@link AITask}s in this {@link Goal}.
      *
      * @return The tasks
      */
-    List<? super AITask<? extends O>> getTasks();
+    List<TaskEntry<O>> getTasks();
 
     /**
      * Clears all {@link AITask}s from this goal.
      */
     void clear();
+
+    interface TaskEntry <O extends Agent> extends Comparable<TaskEntry<O>> {
+
+        Goal<O> getGoal();
+
+        AITask<O> getTask();
+
+        int getPriority();
+    }
 }

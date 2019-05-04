@@ -23,4 +23,4 @@
  * THE SOFTWARE.
  */
 @org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.entity.ai.task.builtin;
+package org.spongepowered.api.ai.task.agent.creature.target;

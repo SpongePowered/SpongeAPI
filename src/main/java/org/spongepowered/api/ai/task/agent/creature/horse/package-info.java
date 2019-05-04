@@ -22,18 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.ai.task;
-
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.util.annotation.CatalogedBy;
-
-@CatalogedBy(AITaskTypes.class)
-public interface AITaskType extends CatalogType {
-
-    /**
-     * Gets the {@link AITask} class that this type represents.
-     *
-     * @return The ai class
-     */
-    Class<? extends AITask<?>> getAIClass();
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.ai.task.agent.creature.horse;

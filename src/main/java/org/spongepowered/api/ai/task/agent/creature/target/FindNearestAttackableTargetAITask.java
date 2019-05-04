@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.ai.task.builtin.creature.target;
+package org.spongepowered.api.ai.task.agent.creature.target;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.Living;

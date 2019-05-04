@@ -22,48 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.ai.task.builtin;
+package org.spongepowered.api.ai;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.ai.task.AITask;
-import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Agent;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-public interface SwimmingAITask extends AITask<Agent> {
+public final class GoalTypes {
 
-    /**
-     * Creates a new {@link Builder} to build a new
-     * {@link SwimmingAITask}.
-     *
-     * @return A new builder
-     */
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
-    }
+    // SORTFIELDS:ON
 
     /**
-     * Gets the chance that the owning {@link Agent} will perform
-     * a "jump". The chance is limited between {@code 0} and {@code 1},
-     * to where the higher the chance, the more likely the entity will
-     * "jump" to appear "swimming".
-     *
-     * @return The chance that the owning entity will "swim"
+     * {@link Goal} that is the default set of tasks for most {@link Agent}s.
      */
-    float getSwimChance();
+    public static final GoalType NORMAL = DummyObjectProvider.createFor(GoalType.class, "NORMAL");
 
     /**
-     * Sets the chance that the owning {@link Agent} will perform
-     * a "jump". The chance is limited between {@code 0} and {@code 1},
-     * to where the higher the chance, the more likely the entity will
-     * "jump" to appear "swimming".
+     * {@link Goal} that is the "target" set of tasks.
      *
-     * @param chance The chance that the entity will "swim"
+     * <p>In this goal, the objective is to formulate the target so that the
+     * {@link Agent} can act on it. The best example is how monsters like zombie
+     * and skeleton attack enemies: they seek out a target and if a task in
+     * their normal goal sees that they have a target, they act accordingly.</p>
      */
-    void setSwimChance(float chance);
+    public static final GoalType TARGET = DummyObjectProvider.createFor(GoalType.class, "TARGET");
 
-    interface Builder extends AITaskBuilder<Agent, SwimmingAITask, Builder> {
+    // SORTFIELDS:OFF
 
-        Builder swimChance(float chance);
-
+    private GoalTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 }

@@ -22,5 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.entity.ai;
+package org.spongepowered.api.ai.task;
+
+import org.spongepowered.api.entity.living.Agent;
+import org.spongepowered.api.util.CopyableBuilder;
+
+/**
+ * A utility to assist in building {@link AITask}s.
+ *
+ * @param <O> The type of agent
+ * @param <A> The type of task
+ * @param <B> The type of builder, self-referencing
+ */
+public interface AITaskBuilder<O extends Agent, A extends AITask<O>, B extends AITaskBuilder<O, A, B>> extends CopyableBuilder<A, B> {
+
+    /**
+     * Builds the {@link AITask}.
+     *
+     * @param owner The owner of the task
+     * @return The task
+     */
+    A build(O owner);
+}

@@ -25,11 +25,12 @@
 package org.spongepowered.api.entity.living;
 
 import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.ai.Goal;
-import org.spongepowered.api.entity.ai.GoalType;
-import org.spongepowered.api.entity.ai.task.AITask;
+import org.spongepowered.api.ai.Goal;
+import org.spongepowered.api.ai.GoalType;
+import org.spongepowered.api.ai.task.AITask;
 
 import java.util.Optional;
 
@@ -64,6 +65,10 @@ public interface Agent extends Living {
      */
     default Value.Mutable<Boolean> aiEnabled() {
         return getValue(Keys.AI_ENABLED).get().asMutable();
+    }
+
+    default BoundedValue.Mutable<Double> followRange() {
+        return this.getValue(Keys.FOLLOW_RANGE).get().asMutable();
     }
 
     /**

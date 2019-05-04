@@ -22,12 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.ai.task.builtin;
+package org.spongepowered.api.ai.task.agent;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.ai.task.AITask;
-import org.spongepowered.api.entity.ai.task.AITaskBuilder;
+import org.spongepowered.api.ai.task.AITask;
+import org.spongepowered.api.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Agent;
 
 public interface WatchClosestAITask extends AITask<Agent> {

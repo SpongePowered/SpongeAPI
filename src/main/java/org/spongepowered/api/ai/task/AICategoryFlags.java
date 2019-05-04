@@ -22,18 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.ai;
+package org.spongepowered.api.ai.task;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-@CatalogedBy(GoalTypes.class)
-public interface GoalType extends CatalogType {
+public final class AICategoryFlags {
 
-    /**
-     * Gets the {@link Goal} class that this type represents.
-     *
-     * @return The goal class
-     */
-    Class<? extends Goal<?>> getGoalClass();
+    // SORTFIELDS:ON
+
+    public static AICategoryFlag MOVE = DummyObjectProvider.createFor(AICategoryFlag.class, "MOVE");
+
+    public static AICategoryFlag LOOK = DummyObjectProvider.createFor(AICategoryFlag.class, "LOOK");
+
+    public static AICategoryFlag JUMP = DummyObjectProvider.createFor(AICategoryFlag.class, "JUMP");
+
+    public static AICategoryFlag TARGET = DummyObjectProvider.createFor(AICategoryFlag.class, "TARGET");
+
+    // SORTFIELDS:OFF
+
+    private AICategoryFlags() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 }
