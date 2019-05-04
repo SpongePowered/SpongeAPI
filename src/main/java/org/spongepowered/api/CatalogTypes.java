@@ -114,7 +114,7 @@ public final class CatalogTypes {
 
     public static final Class<ArmorType> ARMOR_TYPE = ArmorType.class;
 
-    public static final Class<ArtType> ART = ArtType.class;
+    public static final Class<ArtType> ART_TYPE = ArtType.class;
 
     public static final Class<BannerPatternShape> BANNER_PATTERN_SHAPE = BannerPatternShape.class;
 
@@ -262,7 +262,7 @@ public final class CatalogTypes {
 
     public static final Class<Statistic> STATISTIC = Statistic.class;
 
-    public static final Class<StatisticCategory> STATISTIC_TYPE = StatisticCategory.class;
+    public static final Class<StatisticCategory> STATISTIC_CATEGORY = StatisticCategory.class;
 
     public static final Class<TeleportHelperFilter> TELEPORT_HELPER_FILTER = TeleportHelperFilter.class;
 
@@ -280,8 +280,6 @@ public final class CatalogTypes {
 
     public static final Class<TransactionType> TRANSACTION_TYPE = TransactionType.class;
 
-    public static final Class<WoodType> TREE_TYPE = WoodType.class;
-
     public static final Class<Trigger> TRIGGER = Trigger.class;
 
     public static final Class<VirtualBiomeType> VIRTUAL_BIOME_TYPE = VirtualBiomeType.class;
@@ -291,6 +289,8 @@ public final class CatalogTypes {
     public static final Class<Weather> WEATHER = Weather.class;
 
     public static final Class<WireAttachmentType> WIRE_ATTACHMENT_TYPE = WireAttachmentType.class;
+
+    public static final Class<WoodType> WOOD_TYPE = WoodType.class;
 
     public static final Class<WorldArchetype> WORLD_ARCHETYPE = WorldArchetype.class;
 
