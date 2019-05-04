@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.value;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
@@ -57,6 +58,38 @@ import java.util.function.Function;
 public interface Value<E> {
 
     /**
+     * Constructs a {@link Value} of the appropriate type based
+     * on the given {@link Key} and the element. The returned
+     * {@link Value} is guaranteed {@link Mutable}, this means that
+     * calling {@link #asMutable()} will return itself.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <V> The value type
+     * @param <E> The element type
+     * @return The constructed mutable value
+     */
+    static <V extends Value<E>, E> V mutableOf(Key<V> key, E element) {
+        return Sponge.getRegistry().requireFactory(Factory.class).mutableOf(key, element);
+    }
+
+    /**
+     * Constructs a {@link Value} of the appropriate type based
+     * on the given {@link Key} and the element. The returned
+     * {@link Value} is guaranteed {@link Immutable}, this means that
+     * calling {@link #asImmutable()} will return itself.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <V> The value type
+     * @param <E> The element type
+     * @return The constructed immutable value
+     */
+    static <V extends Value<E>, E> V immutableOf(Key<V> key, E element) {
+        return Sponge.getRegistry().requireFactory(Factory.class).immutableOf(key, element);
+    }
+
+    /**
      * Gets the held value.
      *
      * @return The held value
@@ -75,18 +108,26 @@ public interface Value<E> {
      * value itself, some cases can already provide a {@link Mutable} instance
      * where this would simply return itself. In other cases, where the retrieved
      * value is an {@link Immutable} instance, a new mutable value is created
-     * with the same key, values, and defaults.
+     * with the same key and values.
      *
      * @return A mutable value
      */
     Mutable<E> asMutable();
 
     /**
+     * Retrieves a copy in the mutable form of this value. The new is created
+     * with the same key and values.
+     *
+     * @return A mutable value
+     */
+    Mutable<E> asMutableCopy();
+
+    /**
      * Retrieves an immutable form of this value. Due to the vague nature of the
      * value itself, some cases can already provide a {@link Immutable} instance
      * where this would simply return itself. In other cases, where the retrieved
      * value is a {@link Mutable} instance, a new immutable value is created
-     * with the same key, values, and defaults.
+     * with the same key and values.
      *
      * @return An immutable value
      */
@@ -128,10 +169,14 @@ public interface Value<E> {
         @Override
         Immutable<E> asImmutable();
 
-        @SuppressWarnings("unchecked")
         @Override
         default Mutable<E> asMutable() {
             return this;
+        }
+
+        @Override
+        default Mutable<E> asMutableCopy() {
+            return copy();
         }
 
         /**
@@ -200,11 +245,22 @@ public interface Value<E> {
         @Override
         Mutable<E> asMutable();
 
-        @SuppressWarnings("unchecked")
+        @Override
+        default Mutable<E> asMutableCopy() {
+            return asMutable();
+        }
+
         @Override
         default Immutable<E> asImmutable() {
             return this;
         }
 
+    }
+
+    interface Factory {
+
+        <V extends Value<E>, E> V mutableOf(Key<V> key, E element);
+
+        <V extends Value<E>, E> V immutableOf(Key<V> key, E element);
     }
 }

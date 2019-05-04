@@ -50,7 +50,7 @@ public interface ConstructEntityEvent extends Event {
      *
      * @return The target entity type
      */
-    EntityType getTargetType();
+    EntityType<?> getTargetType();
 
     /**
      * Called before the construction of an {@link Entity}. Usually, this will

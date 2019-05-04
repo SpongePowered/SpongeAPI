@@ -34,7 +34,7 @@ import org.spongepowered.api.entity.explosive.FusedExplosive;
 public interface Creeper extends Monster, FusedExplosive {
 
     /**
-     * Gets the current {@link Value.Mutable value} of whether this {@link Creeper}
+     * Gets the current {@link org.spongepowered.api.data.value.Value.Mutable} value} of whether this {@link Creeper}
      * is considered "charged". Note that "charged" creepers will likely
      * cause larger than normal explosions.
      *

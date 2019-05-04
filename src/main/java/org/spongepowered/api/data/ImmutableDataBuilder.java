@@ -30,17 +30,17 @@ import org.spongepowered.api.data.value.Value;
 
 /**
  * A builder, much like a normal {@link DataBuilder} except that it builds
- * {@link DataHolder.Immutable}s. While the {@link DataHolder.Immutable} is like
+ * {@link org.spongepowered.api.data.DataHolder.Immutable}s. While the {@link org.spongepowered.api.data.DataHolder.Immutable} is like
  * a {@link DataHolder}, it is immutable.
  *
- * @param <H> The type of {@link DataHolder.Immutable}
+ * @param <H> The type of {@link org.spongepowered.api.data.DataHolder.Immutable}
  * @param <E> The extended {@link ImmutableDataBuilder}
  */
 public interface ImmutableDataBuilder<H extends DataHolder.Immutable<H>, E extends ImmutableDataBuilder<H, E>> extends DataBuilder<H> {
 
     /**
      * Adds the given {@link Value} to the builder. The
-     * {@link Value} is copied when the {@link DataHolder.Immutable}
+     * {@link Value} is copied when the {@link org.spongepowered.api.data.DataHolder.Immutable}
      * is created.
      *
      * @param value The value to add
@@ -69,17 +69,17 @@ public interface ImmutableDataBuilder<H extends DataHolder.Immutable<H>, E exten
 
     /**
      * Copies all known {@link DataManipulator}s from the given
-     * {@link DataHolder.Immutable}. This is a defensive copy as
+     * {@link org.spongepowered.api.data.DataHolder.Immutable}. This is a defensive copy as
      * {@link DataManipulator} is mutable.
      *
-     * @param holder The {@link DataHolder.Immutable} to copy from
+     * @param holder The {@link org.spongepowered.api.data.DataHolder.Immutable} to copy from
      * @return This builder for chaining
      */
     @Override
     E from(H holder);
 
     /**
-     * Attempts to build a new {@link DataHolder.Immutable}.
+     * Attempts to build a new {@link org.spongepowered.api.data.DataHolder.Immutable}.
      *
      * @return The new immutable data holder
      */

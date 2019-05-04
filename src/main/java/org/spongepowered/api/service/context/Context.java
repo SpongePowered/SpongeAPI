@@ -48,7 +48,7 @@ import java.util.Map;
  * of the world.</p>
  *
  * <p>{@link Context} is immutable. The {@link #setValue(String)} inherited from
- * {@link Map.Entry} is not supported.</p>
+ * {@link java.util.Map.Entry} is not supported.</p>
  */
 public final class Context implements Map.Entry<String, String> {
 

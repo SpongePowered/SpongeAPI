@@ -35,7 +35,7 @@ import org.spongepowered.api.util.Direction;
 public interface Hanging extends Entity {
 
     /**
-     * Gets the {@link Value.Mutable} for the current "facing" {@link Direction}.
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable}} for the current "facing" {@link Direction}.
      *
      * @return The current "facing" direction value
      */

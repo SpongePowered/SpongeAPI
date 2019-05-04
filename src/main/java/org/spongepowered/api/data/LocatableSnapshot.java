@@ -32,7 +32,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 /**
- * A type of {@link DataHolder.Immutable} that may be linked to a particular
+ * A type of {@link org.spongepowered.api.data.DataHolder.Immutable} that may be linked to a particular
  * {@link Location}. Being that a {@link LocatableSnapshot} may be built
  * by an {@link ImmutableDataBuilder}, the {@link Location} may be
  * <code>null</code> such that {@link #getLocation()} returns

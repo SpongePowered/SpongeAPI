@@ -50,7 +50,7 @@ public interface WeatherEffect extends Entity {
     void setEffect(boolean effect);
 
     /**
-     * Gets the {@link Value.Mutable} for the duration
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable}} for the duration
      *
      * @return The bounded value for the remaining duration
      */

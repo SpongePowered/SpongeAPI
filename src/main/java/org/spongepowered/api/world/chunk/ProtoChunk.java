@@ -46,7 +46,7 @@ import org.spongepowered.api.world.volume.block.entity.MutableBlockEntityVolume;
  * usable "live" proto chunk instance will be a {@link Chunk} with a valid
  * {@link World} instance.</p>
  *
- * @implNote Mixes onto IChunk
+ * @implSpec  Mixes onto IChunk
  */
 public interface ProtoChunk<P extends ProtoChunk<P>> extends
     ReadableCompositeVolume,

@@ -37,7 +37,7 @@ import org.spongepowered.api.world.schematic.Schematic;
 
 /**
  * Represents a particular "state" that can exist at a {@link Location} with
- * a particular {@link BlockType} and various {@link Value.Immutable}s defining
+ * a particular {@link BlockType} and various {@link org.spongepowered.api.data.value.Value.Immutable}}s defining
  * the information for the "block". Note that normally, there may exist only
  * a single instance of a particular {@link FluidState} as they are immutable,
  * a particular instance may be cached for various uses.

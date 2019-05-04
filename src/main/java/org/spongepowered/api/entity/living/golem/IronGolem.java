@@ -34,7 +34,7 @@ import org.spongepowered.api.entity.living.player.Player;
 public interface IronGolem extends Golem {
 
     /**
-     * Gets the {@link Value.Mutable} for whether this {@link IronGolem} was created
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable}} for whether this {@link IronGolem} was created
      * by a {@link Player}.
      *
      * @return The value whether this golem was created by a player

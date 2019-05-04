@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.gen;
 
 /**
- * @implNote Mapped onto IChunkGenerator
+ * @implSpec Mapped onto IChunkGenerator
  */
 public interface TerrainGenerator<C extends TerrainGeneratorConfig> {
 

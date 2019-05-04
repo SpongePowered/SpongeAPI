@@ -31,7 +31,7 @@ import org.spongepowered.api.world.gen.carver.Carver;
  * some objects like {@link Carver}s will use specialized objects
  * compared to others.
  *
- * @implementation Mixes onto IFeatureConfig
+ * @implNote Mixes onto IFeatureConfig
  */
 public interface FeatureConfig {
 

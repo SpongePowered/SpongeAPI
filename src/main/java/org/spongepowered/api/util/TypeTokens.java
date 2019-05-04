@@ -30,12 +30,13 @@ import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.block.tileentity.TileEntity;
-import org.spongepowered.api.block.tileentity.TileEntityArchetype;
+import org.spongepowered.api.block.entity.BlockEntity;
+import org.spongepowered.api.block.entity.BlockEntityArchetype;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.meta.PatternLayer;
 import org.spongepowered.api.data.type.ArtType;
 import org.spongepowered.api.data.type.BodyPart;
+import org.spongepowered.api.data.type.CatType;
 import org.spongepowered.api.data.type.ComparatorType;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.type.HandPreference;
@@ -44,7 +45,6 @@ import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.type.LlamaType;
 import org.spongepowered.api.data.type.NotePitch;
-import org.spongepowered.api.data.type.CatType;
 import org.spongepowered.api.data.type.ParrotType;
 import org.spongepowered.api.data.type.PickupRule;
 import org.spongepowered.api.data.type.PortionType;
@@ -54,8 +54,8 @@ import org.spongepowered.api.data.type.RailDirection;
 import org.spongepowered.api.data.type.SlabPortion;
 import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StructureMode;
-import org.spongepowered.api.data.type.WoodType;
 import org.spongepowered.api.data.type.WireAttachmentType;
+import org.spongepowered.api.data.type.WoodType;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.MapValue;
@@ -102,9 +102,9 @@ public final class TypeTokens {
     public static final TypeToken<Entity> ENTITY = new TypeToken<Entity>() {private static final long serialVersionUID = -1;};
     public static final TypeToken<EntitySnapshot> ENTITY_SNAPSHOT = new TypeToken<EntitySnapshot>() {private static final long serialVersionUID = -1;};
     public static final TypeToken<EntityArchetype> ENTITY_ARCHETYPE = new TypeToken<EntityArchetype>() {private static final long serialVersionUID = -1;};
-    public static final TypeToken<TileEntityArchetype> TILE_ENTITY_ARCHETYPE = new TypeToken<TileEntityArchetype>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<BlockEntityArchetype> TILE_ENTITY_ARCHETYPE = new TypeToken<BlockEntityArchetype>() {private static final long serialVersionUID = -1;};
     public static final TypeToken<ItemStack> ITEM_STACK = new TypeToken<ItemStack>() {private static final long serialVersionUID = -1;};
-    public static final TypeToken<TileEntity> TILE_ENTITY = new TypeToken<TileEntity>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<BlockEntity> TILE_ENTITY = new TypeToken<BlockEntity>() {private static final long serialVersionUID = -1;};
     public static final TypeToken<ItemStackSnapshot> ITEM_STACK_SNAPSHOT = new TypeToken<ItemStackSnapshot>() {private static final long serialVersionUID = -1;};
     public static final TypeToken<BlockSnapshot> BLOCK_SNAPSHOT = new TypeToken<BlockSnapshot>() {private static final long serialVersionUID = -1;};
     public static final TypeToken<BlockState> BLOCK_STATE = new TypeToken<BlockState>() {private static final long serialVersionUID = -1;};
@@ -159,13 +159,13 @@ public final class TypeTokens {
 
     public static final TypeToken<EntitySnapshot> ENTITY_TOKEN = new TypeToken<EntitySnapshot>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<Map<EntityType, Double>> ENTITY_TYPE_DOUBLE_MAP_TOKEN = new TypeToken<Map<EntityType, Double>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<Map<EntityType<?>, Double>> ENTITY_TYPE_DOUBLE_MAP_TOKEN = new TypeToken<Map<EntityType<?>, Double>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<MapValue<EntityType, Double>> ENTITY_TYPE_DOUBLE_MAP_VALUE_TOKEN = new TypeToken<MapValue<EntityType, Double>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<MapValue<EntityType<?>, Double>> ENTITY_TYPE_DOUBLE_MAP_VALUE_TOKEN = new TypeToken<MapValue<EntityType<?>, Double>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<EntityType> ENTITY_TYPE_TOKEN = new TypeToken<EntityType>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<EntityType<?>> ENTITY_TYPE_TOKEN = new TypeToken<EntityType<?>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<Value<EntityType>> ENTITY_TYPE_VALUE_TOKEN = new TypeToken<Value<EntityType>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<Value<EntityType<?>>> ENTITY_TYPE_VALUE_TOKEN = new TypeToken<Value<EntityType<?>>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<EntitySnapshot>> ENTITY_VALUE_TOKEN = new TypeToken<Value<EntitySnapshot>>() {private static final long serialVersionUID = -1;};
 

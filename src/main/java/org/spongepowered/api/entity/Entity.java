@@ -78,7 +78,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder.Mutable, Tra
      *
      * @return The type of entity
      */
-    EntityType getType();
+    EntityType<?> getType();
 
     /**
      * Creates a {@link EntitySnapshot} containing the {@link EntityType} and

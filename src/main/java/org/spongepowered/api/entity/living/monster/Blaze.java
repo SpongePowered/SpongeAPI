@@ -35,7 +35,7 @@ import org.spongepowered.api.entity.projectile.ProjectileLauncher;
 public interface Blaze extends Monster, Aerial, ProjectileLauncher {
 
     /**
-     * Gets the current {@link Value.Mutable value} for whether this {@link Blaze}
+     * Gets the current {@link org.spongepowered.api.data.value.Value.Mutable} value} for whether this {@link Blaze}
      * is considered "aflame".
      *
      * @return The value for whether this blaze is aflame

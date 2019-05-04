@@ -58,7 +58,7 @@ public interface Agent extends Living {
     void setTarget(@Nullable Entity target);
 
     /**
-     * Gets the {@link Value.Mutable} for whether AI tasks are enabled or not.
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable}} for whether AI tasks are enabled or not.
      *
      * @return The value for the current "enabled" state of ai tasks
      */

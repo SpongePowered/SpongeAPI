@@ -37,7 +37,7 @@ public interface Archetype<S extends LocatableSnapshot<S>, E> extends DataHolder
 
     /**
      * Creates a new instance based on this archetype at the given location.
-     * 
+     *
      * @param location The location to create the new instance at
      * @return The created type, if successful
      */
@@ -45,7 +45,7 @@ public interface Archetype<S extends LocatableSnapshot<S>, E> extends DataHolder
 
     /**
      * Creates a new immutable snapshot based on this archetype.
-     * 
+     *
      * @param location The location for the snapshot to be specified as at
      * @return The snapshot
      */

@@ -129,7 +129,7 @@ public interface Property<V> extends CatalogType {
          * used to compare the values.
          *
          * <p>Setting the value comparator is optional if the
-         * value type {@link V} is {@link Comparable}.</p>
+         * value type {@code V} is {@link Comparable}.</p>
          *
          * @param comparator The value comparator
          * @return This builder, for chaining

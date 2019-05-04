@@ -325,7 +325,7 @@ public interface WorldArchetype extends CatalogType {
 
         /**
          * Builds the {@link WorldArchetype} which can be used to create
-         * a {@link WorldProperties} in {@link WorldManager#createWorldProperties(DimensionType, WorldArchetype)}.
+         * a {@link WorldProperties} in {@link WorldManager#createProperties(DimensionType, WorldArchetype)}.
          *
          * <p>Unlike other {@link CatalogBuilder}s, it's not required to apply a
          * {@link #key(CatalogKey)} to build a world archetype. However it's recommend

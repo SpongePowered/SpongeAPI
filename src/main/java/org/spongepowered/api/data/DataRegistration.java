@@ -62,7 +62,7 @@ public interface DataRegistration extends CatalogType {
      * @return The provider, if there is one for the key
      * @throws UnregisteredKeyException If the key is not registered in this registration
      */
-    Optional<DataProvider> getProviderFor(Key<?> key) throws UnregisteredKeyException;
+    Optional<DataProvider<?, ?>> getProviderFor(Key<?> key) throws UnregisteredKeyException;
 
     /**
      * Gets the appropriate {@link DataStore} for the context of the
@@ -71,10 +71,11 @@ public interface DataRegistration extends CatalogType {
      * the provided {@link TypeToken}, while a {@link DataProvider} may be
      * provided for a particular {@link Key}.
      *
-     * @param token
-     * @return
+     * @param token The type token of the desired ValueContainer
+     * @return The relevant DataStore for the desired type token of the target
+     *    type.
      */
-    Optional<DataStore> getDataStore(TypeToken<?> token);
+    Optional<DataStore> getDataStore(TypeToken<? extends ValueContainer> token);
 
     Iterable<Key<?>> getKeys();
 

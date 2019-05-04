@@ -83,7 +83,7 @@ public interface DropItemEvent extends Event, Cancellable {
      *
      * <p>Canceling this event only prevents the items from being dropped.
      * Inventories or blocks affected are not rolled back. You might want
-     * to listen to {@link ChangeBlockEvent.Break} or {@link DestructEntityEvent.Death}.</p>
+     * to listen to {@link org.spongepowered.api.event.block.ChangeBlockEvent.Break} or {@link org.spongepowered.api.event.entity.DestructEntityEvent.Death}.</p>
      */
     interface Destruct extends DropItemEvent, SpawnEntityEvent {}
 
@@ -96,7 +96,7 @@ public interface DropItemEvent extends Event, Cancellable {
      *
      * <p>Canceling this event does not guarantee that the associated
      * inventory is rolled back when this event is cancelled. You might
-     * want to listen to {@link ClickContainerEvent.Drop}.</p>
+     * want to listen to {@link org.spongepowered.api.event.item.inventory.container.ClickContainerEvent.Drop}.</p>
      */
     interface Dispense extends DropItemEvent, SpawnEntityEvent {}
 

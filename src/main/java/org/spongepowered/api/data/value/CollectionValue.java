@@ -88,24 +88,27 @@ public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, I
     CollectionValue.Mutable<E, C, ?, ?> asMutable();
 
     @Override
+    CollectionValue.Mutable<E, C, ?, ?> asMutableCopy();
+
+    @Override
     CollectionValue.Immutable<E, C, ?, ?> asImmutable();
 
     /**
-     * A {@link Value.Immutable} type that handles a {@link Collection} of elements
+     * A {@link org.spongepowered.api.data.value.Value.Immutable}} type that handles a {@link Collection} of elements
      * type <code>E</code>. All of the methods provided for modification return new
      * instances of the same type. Likewise, the underlying {@link ValueContainer}
      * is not modified.
      *
      * @param <E> The type of element
      * @param <C> The type of {@link Collection}
-     * @param <I> The extended {@link CollectionValue.Immutable} for self referencing
-     * @param <M> The mutable {@link CollectionValue.Mutable} counterpart for {@link #asMutable()}
+     * @param <I> The extended {@link org.spongepowered.api.data.value.CollectionValue.Immutable} for self referencing
+     * @param <M> The mutable {@link org.spongepowered.api.data.value.CollectionValue.Mutable} counterpart for {@link #asMutable()}
      */
     interface Immutable<E, C extends Collection<E>, I extends Immutable<E, C, I, M>, M extends Mutable<E, C, M, I>>
             extends Value.Immutable<C>, CollectionValue<E, C> {
 
         /**
-         * Creates a new {@link CollectionValue.Immutable} with the given values
+         * Creates a new {@link org.spongepowered.api.data.value.CollectionValue.Immutable} with the given values
          * along with any pre-existing values within this value.
          *
          * @param elements The values to add
@@ -114,7 +117,7 @@ public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, I
         I withElement(E elements);
 
         /**
-         * Creates a new {@link CollectionValue.Immutable} with the given elements
+         * Creates a new {@link org.spongepowered.api.data.value.CollectionValue.Immutable} with the given elements
          * along with any pre-existing values within this value.
          *
          * @see Collection#addAll(Collection)
@@ -125,7 +128,7 @@ public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, I
         I withAll(Iterable<E> elements);
 
         /**
-         * Creates a new {@link CollectionValue.Immutable} without the given
+         * Creates a new {@link org.spongepowered.api.data.value.CollectionValue.Immutable} without the given
          * <code>E</code> element.
          *
          * @param element The element to exclude
@@ -134,7 +137,7 @@ public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, I
         I without(E element);
 
         /**
-         * Creates a new {@link CollectionValue.Immutable} without the given
+         * Creates a new {@link org.spongepowered.api.data.value.CollectionValue.Immutable} without the given
          * elements of the provided {@link Iterable}.
          *
          * @param elements The elements to exclude
@@ -143,10 +146,10 @@ public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, I
         I withoutAll(Iterable<E> elements);
 
         /**
-         * Creates a new {@link CollectionValue.Immutable} with elements that
+         * Creates a new {@link org.spongepowered.api.data.value.CollectionValue.Immutable} with elements that
          * when the given {@link Predicate} is {@link Predicate#test(Object)} on
          * the element and {@code true} is returned, the element will remain in the
-         * new {@link CollectionValue.Immutable}.
+         * new {@link org.spongepowered.api.data.value.CollectionValue.Immutable}.
          *
          * @param predicate The predicte to apply
          * @return The new value
@@ -162,6 +165,11 @@ public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, I
         @Override
         M asMutable();
 
+        @Override
+        default M asMutableCopy() {
+            return asMutable();
+        }
+
         @SuppressWarnings("unchecked")
         @Override
         default I asImmutable() {
@@ -170,19 +178,19 @@ public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, I
     }
 
     /**
-     * Represents a {@link Value.Mutable} that is backed by a {@link Collection} of
+     * Represents a {@link org.spongepowered.api.data.value.Value.Mutable}} that is backed by a {@link Collection} of
      * elements.
      *
      * @param <E> The type of element
      * @param <C> The type of collection, for chaining
      * @param <V> The type of {@linkplain CollectionValue.Mutable}
-     * @param <I> The type of {@link CollectionValue.Immutable}
+     * @param <I> The type of {@link org.spongepowered.api.data.value.CollectionValue.Immutable}
      */
     interface Mutable<E, C extends Collection<E>, V extends Mutable<E, C, V, I>, I extends Immutable<E, C, I, V>>
             extends Value.Mutable<C>, CollectionValue<E, C>, Iterable<E> {
 
         /**
-         * Adds the given {@code element} to this {@link CollectionValue.Mutable}.
+         * Adds the given {@code element} to this {@link org.spongepowered.api.data.value.CollectionValue.Mutable}.
          *
          * @param element The element to add
          * @return This value, for chaining
@@ -234,6 +242,11 @@ public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, I
 
         @Override
         V copy();
+
+        @Override
+        default V asMutableCopy() {
+            return copy();
+        }
 
         @SuppressWarnings("unchecked")
         @Override

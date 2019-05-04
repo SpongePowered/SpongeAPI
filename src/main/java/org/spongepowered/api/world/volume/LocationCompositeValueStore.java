@@ -243,7 +243,7 @@ public interface LocationCompositeValueStore {
     Set<Key<?>> getKeys(int x, int y, int z);
 
     /**
-     * Gets an {@link ImmutableSet} of {@link Value.Immutable}s for the block at
+     * Gets an {@link ImmutableSet} of {@link org.spongepowered.api.data.value.Value.Immutable}}s for the block at
      * the given location.
      *
      * @param coordinates The position of the block
@@ -254,7 +254,7 @@ public interface LocationCompositeValueStore {
     }
 
     /**
-     * Gets an {@link ImmutableSet} of {@link Value.Immutable}s for the block at
+     * Gets an {@link ImmutableSet} of {@link org.spongepowered.api.data.value.Value.Immutable}}s for the block at
      * the given location.
      *
      * @param x The X position
@@ -398,8 +398,8 @@ public interface LocationCompositeValueStore {
 
     /**
      * Attempts to undo a {@link DataTransactionResult}. Specifically, all
-     * {@link Value.Immutable}s that were successfully added are removed, and all
-     * replaced {@link Value.Immutable}s are offered.
+     * {@link org.spongepowered.api.data.value.Value.Immutable}}s that were successfully added are removed, and all
+     * replaced {@link org.spongepowered.api.data.value.Value.Immutable}}s are offered.
      *
      * @param coordinates The position of the block
      * @param result The transaction result to undo
@@ -411,8 +411,8 @@ public interface LocationCompositeValueStore {
 
     /**
      * Attempts to undo a {@link DataTransactionResult}. Specifically, all
-     * {@link Value.Immutable}s that were successfully added are removed, and all
-     * replaced {@link Value.Immutable}s are offered.
+     * {@link org.spongepowered.api.data.value.Value.Immutable}}s that were successfully added are removed, and all
+     * replaced {@link org.spongepowered.api.data.value.Value.Immutable}}s are offered.
      *
      * @param x The X position
      * @param y The Y position
@@ -461,7 +461,7 @@ public interface LocationCompositeValueStore {
     }
 
     /**
-     * Attempts to copy all {@link Value.Immutable}s from the provided block to
+     * Attempts to copy all {@link org.spongepowered.api.data.value.Value.Immutable}}s from the provided block to
      * provided block to the provided block coordinates.
      *
      * @param xTo The X position of the block to copy data to
@@ -477,7 +477,7 @@ public interface LocationCompositeValueStore {
     }
 
     /**
-     * Attempts to copy all {@link Value.Immutable}s from the provided block to
+     * Attempts to copy all {@link org.spongepowered.api.data.value.Value.Immutable}}s from the provided block to
      * provided block to the provided block coordinates. Any conflicting data is
      * handled through the provided {@link MergeFunction}.
      *
@@ -491,7 +491,7 @@ public interface LocationCompositeValueStore {
     }
 
     /**
-     * Attempts to copy all {@link Value.Immutable}s from the provided block to
+     * Attempts to copy all {@link org.spongepowered.api.data.value.Value.Immutable}}s from the provided block to
      * provided block to the provided block coordinates. Any conflicting data is
      * handled through the provided {@link MergeFunction}.
      *
@@ -505,7 +505,7 @@ public interface LocationCompositeValueStore {
     DataTransactionResult copyFrom(int xTo, int yTo, int zTo, DataHolder from, MergeFunction function);
 
     /**
-     * Attempts to copy all {@link Value.Immutable}s from the provided block to
+     * Attempts to copy all {@link org.spongepowered.api.data.value.Value.Immutable}}s from the provided block to
      * provided block to the provided block coordinates. Any conflicting data is
      * handled through the provided {@link MergeFunction}.
      *
@@ -520,7 +520,7 @@ public interface LocationCompositeValueStore {
     }
 
     /**
-     * Attempts to copy all {@link Value.Immutable}s from the provided block to
+     * Attempts to copy all {@link org.spongepowered.api.data.value.Value.Immutable}}s from the provided block to
      * provided block to the provided block coordinates. Any conflicting data is
      * handled through the provided {@link MergeFunction}.
      *

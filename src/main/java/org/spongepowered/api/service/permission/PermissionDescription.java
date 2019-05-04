@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
  * and are only provided and registered for an informational purpose.</p>
  *
  * <p>Instances can be built using
- * {@link PermissionService#newDescriptionBuilder(Object)}.</p>
+ * {@link PermissionService#newDescriptionBuilder(PluginContainer)}.</p>
  */
 public interface PermissionDescription {
 

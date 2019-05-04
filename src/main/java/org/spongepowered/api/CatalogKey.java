@@ -36,7 +36,7 @@ import org.spongepowered.api.util.ResettableBuilder;
 /**
  * An object representation of a location or pointer to a {@link CatalogType}
  * that can be used to retrieve said type from the {@link GameRegistry}. The
- * key can be represented as a {@link String} by {@link #toString()}. The key
+ * key can be represented as a {@link String} by {@link Object#toString()}. The key
  * is built with two parts:
  * <ol>
  *     <li>The Namespace</li>

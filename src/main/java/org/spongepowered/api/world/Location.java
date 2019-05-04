@@ -35,6 +35,7 @@ import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.property.DirectionRelativePropertyHolder;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.event.cause.Cause;
@@ -437,11 +438,11 @@ public interface Location extends DataHolder.Mutable, DirectionRelativePropertyH
      * @throws IllegalStateException If a constructor cannot be found
      * @see MutableEntityVolume#createEntity(EntityType, Vector3d)
      */
-    Entity createEntity(EntityType type);
+    Entity createEntity(EntityType<?> type);
 
     /**
      * Spawns an {@link Entity} using the already set properties (world,
-     * position, rotation) and applicable {@link DataManipulator}s with the
+     * position, rotation) and applicable {@link Value}s with the
      * specified {@link Cause} for spawning the entity.
      *
      * <p>Note that for the {@link Cause} to be useful in the expected

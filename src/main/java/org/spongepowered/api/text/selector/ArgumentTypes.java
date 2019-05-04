@@ -137,7 +137,7 @@ public final class ArgumentTypes {
      *
      * <p>In Vanilla, this is represented by the {@code type} selector key.</p>
      */
-    public static final ArgumentType.Invertible<EntityType> ENTITY_TYPE =
+    public static final ArgumentType.Invertible<EntityType<?>> ENTITY_TYPE =
         DummyObjectProvider.createExtendedFor(ArgumentType.Invertible.class, "ENTITY_TYPE");
 
     /**

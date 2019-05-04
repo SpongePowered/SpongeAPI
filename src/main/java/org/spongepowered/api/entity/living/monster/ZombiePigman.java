@@ -33,7 +33,7 @@ import org.spongepowered.api.data.value.BoundedValue;
 public interface ZombiePigman extends Zombie {
 
     /**
-     * Gets the {@link BoundedValue.Mutable value} of the current "anger" level
+     * Gets the {@link org.spongepowered.api.data.value.BoundedValue.Mutable} of the current "anger" level
      * of this {@link ZombiePigman pigzombie}.
      *
      * @return The current anger level value

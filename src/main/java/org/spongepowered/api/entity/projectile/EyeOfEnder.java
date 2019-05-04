@@ -35,7 +35,7 @@ import org.spongepowered.api.world.Location;
 public interface EyeOfEnder extends Projectile {
 
     /**
-     * Gets the {@link Value.Mutable} for the targeted {@link Location}.
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable}} for the targeted {@link Location}.
      *
      * @return The value for the targeted location
      */

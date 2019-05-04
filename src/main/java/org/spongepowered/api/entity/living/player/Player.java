@@ -207,7 +207,7 @@ public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver 
     void setScoreboard(Scoreboard scoreboard);
 
     /**
-     * Gets the {@link Value.Mutable} of the {@link Instant} that a {@link Player}
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable}} of the {@link Instant} that a {@link Player}
      * joined the {@link Server} the first time.
      *
      * @return The value for the first time a player joined
@@ -217,7 +217,7 @@ public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver 
     }
 
     /**
-     * Gets the {@link Value.Mutable} of the {@link Instant} that a {@link Player}
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable}} of the {@link Instant} that a {@link Player}
      * joined the {@link Server} the last time.
      *
      * @return The value for the last time a player joined

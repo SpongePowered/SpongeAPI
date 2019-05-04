@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.data.value;
 
+import org.spongepowered.api.data.key.Key;
+
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -32,13 +34,45 @@ import javax.annotation.Nullable;
 public interface OptionalValue<E> extends Value<Optional<E>> {
 
     /**
+     * Constructs a mutable {@link OptionalValue} for the
+     * given {@link Key} and element. The returned {@link Value}
+     * is guaranteed {@link Mutable}, this means that calling
+     * {@link #asMutable()} will return itself.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <V> The value type
+     * @param <E> The element type
+     * @return The constructed value
+     */
+    static <V extends OptionalValue<E>, E> V mutableOf(Key<V> key, @Nullable E element) {
+        return Value.mutableOf(key, Optional.ofNullable(element));
+    }
+
+    /**
+     * Constructs a immutable {@link OptionalValue} for the
+     * given {@link Key} and element. The returned {@link Value}
+     * is guaranteed {@link Immutable}, this means that calling
+     * {@link #asImmutable()} will return itself.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <V> The value type
+     * @param <E> The element type
+     * @return The constructed value
+     */
+    static <V extends OptionalValue<E>, E> V immutableOf(Key<V> key, @Nullable E element) {
+        return Value.immutableOf(key, Optional.ofNullable(element));
+    }
+
+    /**
      * Provides the value such that if the underlying value is
      * {@code null}, the default value is returned as a {@link Value}, if
      * the underlying value is present, the underlying value is returned
      * as a {@link Value}.
      *
      * @param defaultValue The value to substitute, if the underlying value is null
-     * @return A new {@link Value.Mutable} with a non-null value
+     * @return A new {@link org.spongepowered.api.data.value.Value.Mutable}} with a non-null value
      */
     Value<E> orElse(E defaultValue);
 
@@ -46,10 +80,13 @@ public interface OptionalValue<E> extends Value<Optional<E>> {
     OptionalValue.Mutable<E> asMutable();
 
     @Override
+    OptionalValue.Mutable<E> asMutableCopy();
+
+    @Override
     OptionalValue.Immutable<E> asImmutable();
 
     /**
-     * Represents a {@link Value.Mutable} that can be {@link Optional} such that the
+     * Represents a {@link org.spongepowered.api.data.value.Value.Mutable}} that can be {@link Optional} such that the
      * underlying value may be present or {@code null}.
      *
      * @param <E> The type of element
@@ -84,11 +121,16 @@ public interface OptionalValue<E> extends Value<Optional<E>> {
         }
 
         @Override
+        default OptionalValue.Mutable<E> asMutableCopy() {
+            return copy();
+        }
+
+        @Override
         OptionalValue.Immutable<E> asImmutable();
     }
 
     /**
-     * Represents a {@link Value.Immutable} that can be {@link Optional} such that
+     * Represents a {@link org.spongepowered.api.data.value.Value.Immutable}} that can be {@link Optional} such that
      * the underlying value may be present or {@code null}.
      *
      * @param <E> The type of element
@@ -96,7 +138,7 @@ public interface OptionalValue<E> extends Value<Optional<E>> {
     interface Immutable<E> extends OptionalValue<E>, Value.Immutable<Optional<E>> {
 
         /**
-         * Creates a new {@link OptionalValue.Immutable} with the provided element,may be null.
+         * Creates a new {@link org.spongepowered.api.data.value.OptionalValue.Immutable} with the provided element,may be null.
          *
          * @param value The value
          * @return The new value, for chaining
@@ -116,6 +158,11 @@ public interface OptionalValue<E> extends Value<Optional<E>> {
 
         @Override
         OptionalValue.Mutable<E> asMutable();
+
+        @Override
+        default OptionalValue.Mutable<E> asMutableCopy() {
+            return asMutable();
+        }
 
         @Override
         default OptionalValue.Immutable<E> asImmutable() {

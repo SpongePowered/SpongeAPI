@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  * {@link Value}s, it itself does not contain the underlying values of
  * data. A {@link ValueContainer} may not always be parented by another
  * {@link ValueContainer}, such as the case for {@link DataManipulator}s and
- * {@link DataHolder.Mutable}s, it is recommended to knowingly understand the
+ * {@link org.spongepowered.api.data.DataHolder.Mutable}s, it is recommended to knowingly understand the
  * fundamental differences between them.</p>
  */
 public interface ValueContainer {
@@ -78,7 +78,7 @@ public interface ValueContainer {
      * @throws NoSuchElementException If the value is not supported or present
      */
     default <E> E require(Key<? extends Value<E>> key) {
-        final Optional<E> optional = this.get(key);
+        final Optional<E> optional = get(key);
         if (optional.isPresent()) {
             return optional.get();
         }
@@ -178,5 +178,4 @@ public interface ValueContainer {
      * @return An immutable set of copied values
      */
     Set<Value.Immutable<?>> getValues();
-
 }
