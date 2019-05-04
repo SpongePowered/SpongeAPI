@@ -37,8 +37,7 @@ import org.spongepowered.api.event.cause.EventContext;
 
 @SuppressWarnings({"rawtypes"})
 public class SpongeAITaskEventTest {
-
-    /*
+    
     @Test
     public void testValidTargetAgentAndGoalOwner() {
         Agent targetEntity = mock(Agent.class);
@@ -68,5 +67,5 @@ public class SpongeAITaskEventTest {
 
         SpongeEventFactory.createAITaskEventRemove(Cause.of(EventContext.empty(), mock(Game.class)), targetEntity, goal, mock(AITask.class), 0);
     }
-*/
+
 }

@@ -46,7 +46,6 @@ public class SpongeAbstractHealEntityEventTest {
 
     private static final double ERROR = 0.03;
 
-    /*
     @Test
     public void testParams() {
         Entity targetEntity = mockParam(Entity.class);
@@ -249,5 +248,5 @@ public class SpongeAbstractHealEntityEventTest {
     private <T> T mockParam(Class<T> clazz) {
         return (T) SpongeEventFactoryTest.mockParam(clazz);
     }
-*/
+
 }
