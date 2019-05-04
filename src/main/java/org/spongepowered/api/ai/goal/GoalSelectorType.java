@@ -22,18 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.ai.task;
+package org.spongepowered.api.ai.goal;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
-@CatalogedBy(AITaskTypes.class)
-public interface AITaskType extends CatalogType {
+@CatalogedBy(GoalSelectorTypes.class)
+public interface GoalSelectorType extends CatalogType {
 
     /**
-     * Gets the {@link AITask} class that this type represents.
+     * Gets the {@link GoalSelector} class that this type represents.
      *
-     * @return The ai class
+     * @return The goal class
      */
-    Class<? extends AITask<?>> getAIClass();
+    Class<? extends GoalSelector<?>> getGoalClass();
 }

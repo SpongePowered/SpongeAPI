@@ -22,33 +22,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.ai;
+package org.spongepowered.api.ai.goal.agent.creature.horse;
 
-import org.spongepowered.api.entity.living.Agent;
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.ai.goal.Goal;
+import org.spongepowered.api.ai.goal.GoalBuilder;
+import org.spongepowered.api.entity.living.animal.RideableHorse;
 
-public final class GoalTypes {
-
-    // SORTFIELDS:ON
-
-    /**
-     * {@link Goal} that is the default set of tasks for most {@link Agent}s.
-     */
-    public static final GoalType NORMAL = DummyObjectProvider.createFor(GoalType.class, "NORMAL");
+public interface RunAroundLikeCrazyGoal extends Goal<RideableHorse> {
 
     /**
-     * {@link Goal} that is the "target" set of tasks.
+     * Creates a new {@link Builder} to build a new
+     * {@link RunAroundLikeCrazyGoal}.
      *
-     * <p>In this goal, the objective is to formulate the target so that the
-     * {@link Agent} can act on it. The best example is how monsters like zombie
-     * and skeleton attack enemies: they seek out a target and if a task in
-     * their normal goal sees that they have a target, they act accordingly.</p>
+     * @return A new builder
      */
-    public static final GoalType TARGET = DummyObjectProvider.createFor(GoalType.class, "TARGET");
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
-    // SORTFIELDS:OFF
+    /**
+     * Gets the speed modifier at which when an {@link Entity} is running
+     * around, the movement speed is amplified by this modifier.
+     *
+     * @return The speed modifier
+     */
+    double getSpeed();
 
-    private GoalTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    /**
+     * Sets the speed modifier at which when an {@link Entity} is running
+     * around, the movement speed is amplified by this modifier.
+     *
+     * @param speed The speed modifier at which an entity is "running around"
+     * @return This goal, for chaining
+     */
+    RunAroundLikeCrazyGoal setSpeed(double speed);
+
+    interface Builder extends GoalBuilder<RideableHorse, RunAroundLikeCrazyGoal, Builder> {
+
+        Builder speed(double speed);
+
     }
 }

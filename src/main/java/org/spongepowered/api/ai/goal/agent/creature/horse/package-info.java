@@ -23,4 +23,4 @@
  * THE SOFTWARE.
  */
 @org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.ai.task.agent.creature.target;
+package org.spongepowered.api.ai.goal.agent.creature.horse;

@@ -22,19 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.ai.task.agent.creature.horse;
+package org.spongepowered.api.ai.goal.agent.creature;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.ai.task.AITask;
-import org.spongepowered.api.ai.task.AITaskBuilder;
-import org.spongepowered.api.entity.living.animal.RideableHorse;
+import org.spongepowered.api.ai.goal.Goal;
+import org.spongepowered.api.ai.goal.GoalBuilder;
+import org.spongepowered.api.entity.living.Creature;
 
-public interface RunAroundLikeCrazyAITask extends AITask<RideableHorse> {
+public interface WanderGoal extends Goal<Creature> {
 
     /**
      * Creates a new {@link Builder} to build a new
-     * {@link RunAroundLikeCrazyAITask}.
+     * {@link WanderGoal}.
      *
      * @return A new builder
      */
@@ -43,25 +43,43 @@ public interface RunAroundLikeCrazyAITask extends AITask<RideableHorse> {
     }
 
     /**
-     * Gets the speed modifier at which when an {@link Entity} is running
-     * around, the movement speed is amplified by this modifier.
+     * Gets the speed modifier at which the owning {@link Entity}
+     * will move around to appear to "wander".
      *
      * @return The speed modifier
      */
     double getSpeed();
 
     /**
-     * Sets the speed modifier at which when an {@link Entity} is running
-     * around, the movement speed is amplified by this modifier.
+     * Sets the speed modifier at which the owning {@link Entity}
+     * will move around to appear to "wander".
      *
-     * @param speed The speed modifier at which an entity is "running around"
-     * @return This task, for chaining
+     * @param speed The movement speed modifier
+     * @return This goal, for chaining
      */
-    RunAroundLikeCrazyAITask setSpeed(double speed);
+    WanderGoal setSpeed(double speed);
 
-    interface Builder extends AITaskBuilder<RideableHorse, RunAroundLikeCrazyAITask, Builder> {
+    /**
+     * Gets the chance that the owning {@link Entity} will "wander".
+     *
+     * @return The chance that the owning entity will "wander"
+     */
+    int getExecutionChance();
+
+    /**
+     * Sets the chance that the owning {@link Entity} will perform
+     * a "wander".
+     *
+     * @param executionChance The wandering chance
+     * @return This goal, for chaining
+     */
+    WanderGoal setExecutionChance(int executionChance);
+
+    interface Builder extends GoalBuilder<Creature, WanderGoal, Builder> {
 
         Builder speed(double speed);
+
+        Builder executionChance(int executionChance);
 
     }
 }

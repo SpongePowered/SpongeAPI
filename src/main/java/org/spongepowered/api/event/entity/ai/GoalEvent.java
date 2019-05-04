@@ -24,16 +24,16 @@
  */
 package org.spongepowered.api.event.entity.ai;
 
-import org.spongepowered.api.ai.Goal;
-import org.spongepowered.api.ai.task.AITask;
+import org.spongepowered.api.ai.goal.GoalSelector;
+import org.spongepowered.api.ai.goal.Goal;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.event.impl.AbstractAITaskEvent;
+import org.spongepowered.api.event.impl.AbstractGoalEvent;
 import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
 
-@ImplementedBy(AbstractAITaskEvent.class)
-public interface AITaskEvent extends Event, Cancellable {
+@ImplementedBy(AbstractGoalEvent.class)
+public interface GoalEvent extends Event, Cancellable {
 
     /**
      * Gets the {@link Agent}.
@@ -43,21 +43,21 @@ public interface AITaskEvent extends Event, Cancellable {
     Agent getAgent();
 
     /**
-     * Gets the {@link Goal} the task will be assigned to.
+     * Gets the {@link GoalSelector} the {@link Goal} will be assigned to.
+     *
+     * @return The goal selector
+     */
+    GoalSelector getSelector();
+
+    /**
+     * Gets the {@link Goal} to be assigned.
      *
      * @return The goal
      */
-    Goal<? extends Agent> getGoal();
+    Goal<Agent> getGoal();
 
     /**
-     * Gets the {@link AITask} to be assigned.
-     *
-     * @return The task
-     */
-    AITask<? extends Agent> getTask();
-
-    /**
-     * Gets the priority the task will be assigned to. Lower numbers mean
+     * Gets the priority the goal will be assigned to. Lower numbers mean
      * higher priority.
      *
      * @return The priority
@@ -65,20 +65,20 @@ public interface AITaskEvent extends Event, Cancellable {
     int getPriority();
 
     /**
-     * Fired when an {@link AITask} is added to an {@link Agent}'s {@link Goal}.
+     * Fired when a {@link Goal} is added to an {@link Agent}'s {@link GoalSelector}.
      */
-    interface Add extends AITaskEvent {
+    interface Add extends GoalEvent {
         /**
-         * Gets the original priority that {@link AITaskEvent#getTask()} will
-         * be assigned to. See {@link AITaskEvent#getPriority()}.
+         * Gets the original priority that {@link GoalEvent#getGoal()} will
+         * be assigned to. See {@link GoalEvent#getPriority()}.
          *
          * @return The original priority
          */
         int getOriginalPriority();
 
         /**
-         * Sets the priority the task will be assigned to. See
-         * {@link AITaskEvent#getPriority()}.
+         * Sets the priority the goal will be assigned to. See
+         * {@link GoalEvent#getPriority()}.
          *
          * @param priority The new priority
          */
@@ -86,10 +86,10 @@ public interface AITaskEvent extends Event, Cancellable {
     }
 
     /**
-     * Fired when an {@link AITask} is removed from an {@link Agent}'s
-     * {@link Goal}.
+     * Fired when a {@link Goal} is removed from an {@link Agent}'s
+     * {@link GoalSelector}.
      */
-    interface Remove extends AITaskEvent {
+    interface Remove extends GoalEvent {
 
     }
 }

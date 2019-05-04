@@ -22,10 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.ai;
+package org.spongepowered.api.ai.goal;
 
-import org.spongepowered.api.ai.task.AITask;
-import org.spongepowered.api.ai.task.AITaskType;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.monster.Monster;
 
@@ -43,14 +41,14 @@ import java.util.Optional;
  *
  * @param <O> The type of agent
  */
-public interface Goal<O extends Agent> {
+public interface GoalSelector<O extends Agent> {
 
     /**
      * The type of this goal.
      *
      * @return The type
      */
-    GoalType getType();
+    GoalSelectorType getType();
 
     /**
      * The {@link Agent} that owns this goal.
@@ -60,57 +58,57 @@ public interface Goal<O extends Agent> {
     O getOwner();
 
     /**
-     * Adds a new {@link AITask} to this {@link Goal}.
+     * Adds a new {@link org.spongepowered.api.ai.goal.Goal} to this {@link GoalSelector}.
      *
-     * @param priority The priority this task should run at
-     * @param task The task to run
+     * @param priority The priority this goal should run at
+     * @param task The goal to run
      * @return This goal, for chaining
      */
-    Goal<O> addTask(int priority, AITask<O> task);
+    GoalSelector addTask(int priority, org.spongepowered.api.ai.goal.Goal<O> task);
 
     /**
-     * Removes a specific {@link AITask} from this {@link Goal}.
+     * Removes a specific {@link org.spongepowered.api.ai.goal.Goal} from this {@link GoalSelector}.
      *
-     * @param task The task to remove
-     * @return An optional containing the task entry removed or {@link Optional#empty()} if none found
+     * @param task The goal to remove
+     * @return An optional containing the goal entry removed or {@link Optional#empty()} if none found
      */
-    Optional<TaskEntry<O>> removeTask(AITask<O> task);
+    Optional<GoalEntry<O>> removeTask(org.spongepowered.api.ai.goal.Goal<O> task);
 
     /**
-     * Removes all {@link AITask}s whose {@link AITaskType} matches
-     * the provided type in this {@link Goal}.
+     * Removes all {@link org.spongepowered.api.ai.goal.Goal}s whose {@link GoalType} matches
+     * the provided type in this {@link GoalSelector}.
      *
      * @param type The type to remove
-     * @return The removed task entries as a {@link Collection}
+     * @return The removed goal entries as a {@link Collection}
      */
-    Collection<TaskEntry<O>> removeTasks(AITaskType type);
+    Collection<GoalEntry<O>> removeTasks(GoalType type);
 
     /**
-     * Gets all {@link AITask}s whose {@link AITaskType} matches
-     * the provided type in this {@link Goal}.
+     * Gets all {@link org.spongepowered.api.ai.goal.Goal}s whose {@link GoalType} matches
+     * the provided type in this {@link GoalSelector}.
      *
      * @param type The type to look for
      * @return The tasks
      */
-    List<TaskEntry<O>> getTasksByType(AITaskType type);
+    List<GoalEntry<O>> getTasksByType(GoalType type);
 
     /**
-     * Gets all {@link AITask}s in this {@link Goal}.
+     * Gets all {@link org.spongepowered.api.ai.goal.Goal}s in this {@link GoalSelector}.
      *
      * @return The tasks
      */
-    List<TaskEntry<O>> getTasks();
+    List<GoalEntry<O>> getTasks();
 
     /**
-     * Clears all {@link AITask}s from this goal.
+     * Clears all {@link org.spongepowered.api.ai.goal.Goal}s from this goal.
      */
     void clear();
 
-    interface TaskEntry <O extends Agent> extends Comparable<TaskEntry<O>> {
+    interface GoalEntry <O extends Agent> extends Comparable<GoalEntry<O>> {
+
+        GoalSelector getSelector();
 
         Goal<O> getGoal();
-
-        AITask<O> getTask();
 
         int getPriority();
     }

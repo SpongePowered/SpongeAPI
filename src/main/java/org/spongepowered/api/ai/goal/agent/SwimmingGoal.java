@@ -22,19 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.ai.task.agent.creature;
+package org.spongepowered.api.ai.goal.agent;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.ai.task.AITask;
-import org.spongepowered.api.ai.task.AITaskBuilder;
-import org.spongepowered.api.entity.living.Creature;
+import org.spongepowered.api.ai.goal.Goal;
+import org.spongepowered.api.ai.goal.GoalBuilder;
+import org.spongepowered.api.entity.living.Agent;
 
-public interface WanderAITask extends AITask<Creature> {
+public interface SwimmingGoal extends Goal<Agent> {
 
     /**
      * Creates a new {@link Builder} to build a new
-     * {@link WanderAITask}.
+     * {@link SwimmingGoal}.
      *
      * @return A new builder
      */
@@ -43,43 +42,28 @@ public interface WanderAITask extends AITask<Creature> {
     }
 
     /**
-     * Gets the speed modifier at which the owning {@link Entity}
-     * will move around to appear to "wander".
+     * Gets the chance that the owning {@link Agent} will perform
+     * a "jump". The chance is limited between {@code 0} and {@code 1},
+     * to where the higher the chance, the more likely the entity will
+     * "jump" to appear "swimming".
      *
-     * @return The speed modifier
+     * @return The chance that the owning entity will "swim"
      */
-    double getSpeed();
+    float getSwimChance();
 
     /**
-     * Sets the speed modifier at which the owning {@link Entity}
-     * will move around to appear to "wander".
+     * Sets the chance that the owning {@link Agent} will perform
+     * a "jump". The chance is limited between {@code 0} and {@code 1},
+     * to where the higher the chance, the more likely the entity will
+     * "jump" to appear "swimming".
      *
-     * @param speed The movement speed modifier
-     * @return This task, for chaining
+     * @param chance The chance that the entity will "swim"
      */
-    WanderAITask setSpeed(double speed);
+    void setSwimChance(float chance);
 
-    /**
-     * Gets the chance that the owning {@link Entity} will "wander".
-     *
-     * @return The chance that the owning entity will "wander"
-     */
-    int getExecutionChance();
+    interface Builder extends GoalBuilder<Agent, SwimmingGoal, Builder> {
 
-    /**
-     * Sets the chance that the owning {@link Entity} will perform
-     * a "wander".
-     *
-     * @param executionChance The wandering chance
-     * @return This task, for chaining
-     */
-    WanderAITask setExecutionChance(int executionChance);
-
-    interface Builder extends AITaskBuilder<Creature, WanderAITask, Builder> {
-
-        Builder speed(double speed);
-
-        Builder executionChance(int executionChance);
+        Builder swimChance(float chance);
 
     }
 }

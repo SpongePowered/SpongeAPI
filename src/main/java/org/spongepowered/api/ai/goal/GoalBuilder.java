@@ -22,17 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.impl;
+package org.spongepowered.api.ai.goal;
 
-import com.google.common.base.Preconditions;
-import org.spongepowered.api.event.entity.ai.AITaskEvent;
+import org.spongepowered.api.entity.living.Agent;
+import org.spongepowered.api.util.CopyableBuilder;
 
-public abstract class AbstractAITaskEvent extends AbstractEvent implements AITaskEvent {
+/**
+ * A utility to assist in building {@link Goal}s.
+ *
+ * @param <O> The type of agent
+ * @param <A> The type of goal
+ * @param <B> The type of builder, self-referencing
+ */
+public interface GoalBuilder<O extends Agent, A extends Goal<O>, B extends GoalBuilder<O, A, B>> extends CopyableBuilder<A, B> {
 
-    @Override
-    public void init() {
-        Preconditions.checkArgument(this.getGoal().getOwner() == this.getAgent(),
-                String.format("The target entity '%s' is not the owner of the goal '%s'!", this.getAgent(), this.getGoal()));
-    }
-
+    /**
+     * Builds the {@link Goal}.
+     *
+     * @param owner The owner of the goal
+     * @return The goal
+     */
+    A build(O owner);
 }

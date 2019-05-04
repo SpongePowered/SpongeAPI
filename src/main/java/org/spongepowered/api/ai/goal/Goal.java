@@ -22,61 +22,61 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.ai.task;
+package org.spongepowered.api.ai.goal;
 
-import org.spongepowered.api.ai.Goal;
 import org.spongepowered.api.entity.living.Agent;
 
 import java.util.Optional;
+import java.util.Set;
 
 /**
- * Represents a task performed by {@link Agent}s.
+ * Represents a goal performed by {@link Agent}s.
  *
  * @param <O> The type of agent
  */
-public interface AITask<O extends Agent> {
+public interface Goal<O extends Agent> {
 
     /**
-     * Gets the {@link AITaskType} of this task.
+     * Gets the {@link GoalType} of this goal.
      *
      * @return The type
      */
-    AITaskType getType();
+    GoalType getType();
 
     /**
-     * Gets the {@link Goal} that is updating this task, if any.
+     * Gets the {@link GoalSelector} that is updating this goal, if any.
      *
      * @return The goal or {@link Optional#empty()} if not present
      */
-    Optional<Goal<O>> getGoal();
+    Optional<GoalSelector<O>> getSelector();
 
     /**
-     * Gets the {@link Agent} that owns this task, if any.
+     * Gets the {@link Agent} that owns this goal, if any.
      *
      * @return The owner or {@link Optional#empty()} if not present
      */
     default Optional<O> getOwner() {
-        return this.getGoal().map(Goal::getOwner);
+        return this.getSelector().map(GoalSelector::getOwner);
     }
 
     /**
-     * Returns if this task can be interrupted. This determines if this task
+     * Returns if this goal can be interrupted. This determines if this goal
      * can be added to the list of updated tasks as well as if it should
      * continue updating.
      *
      * <p>Thought should be made before blindly returning true or false here.
      * In Minecraft, all tasks can be interrupted by higher priority tasks
      * (tasks added with lower numerical values in
-     * {@link Goal#addTask(int, AITask)}) but a task being created by a plugin
+     * {@link GoalSelector#addTask(int, Goal)}) but a goal being created by a plugin
      * might be deemed critical and as such should return false.</p>
      *
      * <p>Due note that the meaning of "true" changes based on the state of the
-     * {@link Goal}.  To put it simply, this value can mean "Should I be added
-     * as an updating task or "Should I continue updating?".</p>
+     * {@link GoalSelector}.  To put it simply, this value can mean "Should I be added
+     * as an updating goal or "Should I continue updating?".</p>
      *
      * @return True if can be interrupted, false if not
      */
     boolean canBeInterrupted();
 
-    AICategoryFlag getCategoryFlags();
+    Set<GoalCategoryFlag> getCategoryFlags();
 }

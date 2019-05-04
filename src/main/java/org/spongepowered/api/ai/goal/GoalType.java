@@ -22,5 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.ai.task.agent;
+package org.spongepowered.api.ai.goal;
+
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
+
+@CatalogedBy(GoalTypes.class)
+public interface GoalType extends CatalogType {
+
+    /**
+     * Gets the {@link Goal} class that this type represents.
+     *
+     * @return The ai class
+     */
+    Class<Goal> getGoalClass();
+}

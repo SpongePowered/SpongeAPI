@@ -22,20 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.ai.task.agent.creature;
+package org.spongepowered.api.ai.goal.agent.creature;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.ai.task.AITask;
-import org.spongepowered.api.ai.task.AITaskBuilder;
+import org.spongepowered.api.ai.goal.Goal;
+import org.spongepowered.api.ai.goal.GoalBuilder;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Creature;
 
-public interface AttackLivingAITask extends AITask<Creature> {
+public interface AttackLivingGoal extends Goal<Creature> {
 
     /**
      * Creates a new {@link Builder} to build a new
-     * {@link AttackLivingAITask}.
+     * {@link AttackLivingGoal}.
      *
      * @return A new builder
      */
@@ -56,9 +56,9 @@ public interface AttackLivingAITask extends AITask<Creature> {
      * is targeting an {@link Entity}.
      *
      * @param speed The speed
-     * @return This task, for chaining
+     * @return This goal, for chaining
      */
-    AttackLivingAITask setSpeed(double speed);
+    AttackLivingGoal setSpeed(double speed);
 
     /**
      * Gets whether the navigator will attempt to continue to "target"
@@ -67,24 +67,24 @@ public interface AttackLivingAITask extends AITask<Creature> {
      * moved to where there is an obstacle between the parent and the
      * targeted entity, etc.
      *
-     * @return Whether the task will continue targeting the entity after
+     * @return Whether the goal will continue targeting the entity after
      *      certain conditions prevent a direct navigation path is not
      *      available
      */
     boolean hasLongMemory();
 
     /**
-     * Sets whether the task will continue to navigate the parent
+     * Sets whether the goal will continue to navigate the parent
      * {@link Agent} to continue targeting an {@link Entity} after the
      * entity has moved to where a direct navigation path is no longer
      * available.
      *
      * @param longMemory Whether to continue targeting an entity
-     * @return This task, for chaining
+     * @return This goal, for chaining
      */
-    AttackLivingAITask setLongMemory(boolean longMemory);
+    AttackLivingGoal setLongMemory(boolean longMemory);
 
-    interface Builder extends AITaskBuilder<Creature, AttackLivingAITask, Builder> {
+    interface Builder extends GoalBuilder<Creature, AttackLivingGoal, Builder> {
 
         /**
          * Sets the speed modifier at which the owning {@link Agent} will be
@@ -96,7 +96,7 @@ public interface AttackLivingAITask extends AITask<Creature> {
         Builder speed(double speed);
 
         /**
-         * Sets whether the task will force the owning {@link Agent} to
+         * Sets whether the goal will force the owning {@link Agent} to
          * persist targeting an {@link Entity} after a direct path is
          * no longer available.
          *

@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.entity.living;
 
+import org.spongepowered.api.ai.goal.GoalSelector;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.ai.Goal;
-import org.spongepowered.api.ai.GoalType;
-import org.spongepowered.api.ai.task.AITask;
+import org.spongepowered.api.ai.goal.GoalSelectorType;
+import org.spongepowered.api.ai.goal.Goal;
 
 import java.util.Optional;
 
@@ -44,14 +44,14 @@ public interface Agent extends Living {
 
     /**
      * Gets the current target, usually according to the various
-     * {@link AITask}s that are acting on this agent.
+     * {@link Goal}s that are acting on this agent.
      *
      * @return The target entity, if available
      */
     Optional<Entity> getTarget();
 
     /**
-     * Sets the current target, usually to bypass what the {@link AITask}s are
+     * Sets the current target, usually to bypass what the {@link Goal}s are
      * deciding to be the target.
      *
      * @param target The target entity, or null
@@ -72,11 +72,11 @@ public interface Agent extends Living {
     }
 
     /**
-     * Gets a {@link Goal} based on the {@link GoalType}.
+     * Gets a {@link GoalSelector} based on the {@link GoalSelectorType}.
      *
-     * @param type GoalType to lookup
+     * @param type GoalSelectorType to lookup
      * @param <T> Inferred agent type
      * @return The goal or {@link Optional#empty()} if not found.
      */
-    <T extends Agent> Optional<Goal<T>> getGoal(GoalType type);
+    <T extends Agent> Optional<GoalSelector> getGoal(GoalSelectorType type);
 }

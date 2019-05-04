@@ -22,5 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.ai.task.agent.creature.horse;
+package org.spongepowered.api.event.impl;
+
+import com.google.common.base.Preconditions;
+import org.spongepowered.api.event.entity.ai.GoalEvent;
+
+public abstract class AbstractGoalEvent extends AbstractEvent implements GoalEvent {
+
+    @Override
+    public void init() {
+        Preconditions.checkArgument(this.getSelector().getOwner() == this.getAgent(),
+                String.format("The target entity '%s' is not the owner of the goal '%s'!", this.getAgent(), this.getGoal()));
+    }
+
+}

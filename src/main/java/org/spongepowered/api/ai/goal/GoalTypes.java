@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.ai.task;
+package org.spongepowered.api.ai.goal;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Agent;
@@ -33,38 +33,38 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 import java.util.function.Predicate;
 
-public final class AITaskTypes {
+public final class GoalTypes {
 
     // SORTFIELDS:ON
 
     /**
-     * {@link AITask} where {@link Creature}s avoid other {@link Agent}s based on a {@link Predicate}.
+     * {@link Goal} where {@link Creature}s avoid other {@link Agent}s based on a {@link Predicate}.
      */
-    public static final AITaskType AVOID_ENTITY = DummyObjectProvider.createFor(AITaskType.class, "AVOID_ENTITY");
+    public static final GoalType AVOID_ENTITY = DummyObjectProvider.createFor(GoalType.class, "AVOID_ENTITY");
 
     /**
-     * {@link AITask} where {@link RideableHorse}s run around while {@link Humanoid}s attempt to tame them.
+     * {@link Goal} where {@link RideableHorse}s run around while {@link Humanoid}s attempt to tame them.
      */
-    public static final AITaskType RUN_AROUND_LIKE_CRAZY = DummyObjectProvider.createFor(AITaskType.class, "RUN_AROUND_LIKE_CRAZY");
+    public static final GoalType RUN_AROUND_LIKE_CRAZY = DummyObjectProvider.createFor(GoalType.class, "RUN_AROUND_LIKE_CRAZY");
 
     /**
-     * {@link AITask} where {@link Agent}s swim in liquids.
+     * {@link Goal} where {@link Agent}s swim in liquids.
      */
-    public static final AITaskType SWIMMING = DummyObjectProvider.createFor(AITaskType.class, "SWIMMING");
+    public static final GoalType SWIMMING = DummyObjectProvider.createFor(GoalType.class, "SWIMMING");
 
     /**
-     * {@link AITask} where {@link Creature}s walk around.
+     * {@link Goal} where {@link Creature}s walk around.
      */
-    public static final AITaskType WANDER = DummyObjectProvider.createFor(AITaskType.class, "WANDER");
+    public static final GoalType WANDER = DummyObjectProvider.createFor(GoalType.class, "WANDER");
 
     /**
-     * {@link AITask} where {@link Agent}s will "watch" other {@link Entity}s.
+     * {@link Goal} where {@link Agent}s will "watch" other {@link Entity}s.
      */
-    public static final AITaskType WATCH_CLOSEST = DummyObjectProvider.createFor(AITaskType.class, "WATCH_CLOSEST");
+    public static final GoalType WATCH_CLOSEST = DummyObjectProvider.createFor(GoalType.class, "WATCH_CLOSEST");
 
     // SORTFIELDS:OFF
 
-    private AITaskTypes() {
+    private GoalTypes() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 }

@@ -22,25 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.ai.task;
-
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
-
-public final class AICategoryFlags {
-
-    // SORTFIELDS:ON
-
-    public static AICategoryFlag MOVE = DummyObjectProvider.createFor(AICategoryFlag.class, "MOVE");
-
-    public static AICategoryFlag LOOK = DummyObjectProvider.createFor(AICategoryFlag.class, "LOOK");
-
-    public static AICategoryFlag JUMP = DummyObjectProvider.createFor(AICategoryFlag.class, "JUMP");
-
-    public static AICategoryFlag TARGET = DummyObjectProvider.createFor(AICategoryFlag.class, "TARGET");
-
-    // SORTFIELDS:OFF
-
-    private AICategoryFlags() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
-    }
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.ai.goal.agent.creature;

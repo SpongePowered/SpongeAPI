@@ -22,25 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.ai.task.agent;
+package org.spongepowered.api.ai.goal;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.ai.task.AITask;
-import org.spongepowered.api.ai.task.AITaskBuilder;
-import org.spongepowered.api.entity.living.Agent;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-public interface LookIdleAITask extends AITask<Agent> {
+public final class GoalCategoryFlags {
 
-    /**
-     * Creates a new {@link Builder} to build a new {@link LookIdleAITask}.
-     *
-     * @return A new builder
-     */
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
-    }
+    // SORTFIELDS:ON
 
-    interface Builder extends AITaskBuilder<Agent, LookIdleAITask, Builder> {
+    public static GoalCategoryFlag MOVE = DummyObjectProvider.createFor(GoalCategoryFlag.class, "MOVE");
 
+    public static GoalCategoryFlag LOOK = DummyObjectProvider.createFor(GoalCategoryFlag.class, "LOOK");
+
+    public static GoalCategoryFlag JUMP = DummyObjectProvider.createFor(GoalCategoryFlag.class, "JUMP");
+
+    public static GoalCategoryFlag TARGET = DummyObjectProvider.createFor(GoalCategoryFlag.class, "TARGET");
+
+    // SORTFIELDS:OFF
+
+    private GoalCategoryFlags() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 }

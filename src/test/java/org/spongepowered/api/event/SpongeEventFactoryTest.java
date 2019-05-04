@@ -33,8 +33,6 @@ import com.flowpowered.math.vector.Vector3d;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.reflect.TypeToken;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.mockito.Mockito;
 import org.mockito.stubbing.Answer;
@@ -45,7 +43,7 @@ import org.spongepowered.api.event.cause.EventContext;
 import org.spongepowered.api.event.entity.AttackEntityEvent;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.event.entity.HealEntityEvent;
-import org.spongepowered.api.event.entity.ai.AITaskEvent;
+import org.spongepowered.api.event.entity.ai.GoalEvent;
 import org.spongepowered.api.event.game.GameRegistryEvent;
 import org.spongepowered.api.event.impl.AbstractEvent;
 import org.spongepowered.api.text.Text;
@@ -79,7 +77,7 @@ import javax.annotation.Nullable;
 public class SpongeEventFactoryTest {
 
     private static final Set<Class<?>> excludedEvents = ImmutableSet.of(DamageEntityEvent.class, HealEntityEvent.class,
-            AITaskEvent.class, AITaskEvent.Add.class, AITaskEvent.Remove.class, AttackEntityEvent.class,
+            GoalEvent.class, GoalEvent.Add.class, GoalEvent.Remove.class, AttackEntityEvent.class,
             GameRegistryEvent.Register.class);
 
     private static final Set<String> excludedMethods = ImmutableSet.of("getEntitySnapshots");

@@ -22,19 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.ai.task.agent;
+package org.spongepowered.api.ai.goal.agent;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.ai.task.AITask;
-import org.spongepowered.api.ai.task.AITaskBuilder;
+import org.spongepowered.api.ai.goal.Goal;
+import org.spongepowered.api.ai.goal.GoalBuilder;
 import org.spongepowered.api.entity.living.Agent;
 
-public interface WatchClosestAITask extends AITask<Agent> {
+public interface WatchClosestGoal extends Goal<Agent> {
 
     /**
      * Creates a new {@link Builder} to build a new
-     * {@link WatchClosestAITask}.
+     * {@link WatchClosestGoal}.
      *
      * @return A new builder
      */
@@ -55,9 +55,9 @@ public interface WatchClosestAITask extends AITask<Agent> {
      * "watch" when that type of entity is nearby.
      *
      * @param watchedClass The class of entity to "watch"
-     * @return This task, for chaining
+     * @return This goal, for chaining
      */
-    WatchClosestAITask setWatchedClass(Class<? extends Entity> watchedClass);
+    WatchClosestGoal setWatchedClass(Class<? extends Entity> watchedClass);
 
     /**
      * Gets the maximum distance to "watch" a targeted {@link Entity}.
@@ -70,9 +70,9 @@ public interface WatchClosestAITask extends AITask<Agent> {
      * Sets the maximum distance to "watch" a targeted {@link Entity}.
      *
      * @param maxDistance The maximum distance to watch an entity
-     * @return This task, for chaining
+     * @return This goal, for chaining
      */
-    WatchClosestAITask setMaxDistance(float maxDistance);
+    WatchClosestGoal setMaxDistance(float maxDistance);
 
     /**
      * Gets the chance that an {@link Entity} will "watch" a targeted
@@ -86,11 +86,11 @@ public interface WatchClosestAITask extends AITask<Agent> {
      * SEts the chance to "watch" a targeted {@link Entity}.
      *
      * @param chance The chance to "watch"
-     * @return This task, for chaining
+     * @return This goal, for chaining
      */
-    WatchClosestAITask setChance(float chance);
+    WatchClosestGoal setChance(float chance);
 
-    interface Builder extends AITaskBuilder<Agent, WatchClosestAITask, Builder> {
+    interface Builder extends GoalBuilder<Agent, WatchClosestGoal, Builder> {
 
         Builder watch(Class<? extends Entity> watchClass);
 

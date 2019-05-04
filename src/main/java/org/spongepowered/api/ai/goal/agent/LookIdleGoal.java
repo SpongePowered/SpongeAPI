@@ -22,18 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.ai.task.agent;
+package org.spongepowered.api.ai.goal.agent;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.ai.task.AITask;
-import org.spongepowered.api.ai.task.AITaskBuilder;
+import org.spongepowered.api.ai.goal.Goal;
+import org.spongepowered.api.ai.goal.GoalBuilder;
 import org.spongepowered.api.entity.living.Agent;
 
-public interface SwimmingAITask extends AITask<Agent> {
+public interface LookIdleGoal extends Goal<Agent> {
 
     /**
-     * Creates a new {@link Builder} to build a new
-     * {@link SwimmingAITask}.
+     * Creates a new {@link Builder} to build a new {@link LookIdleGoal}.
      *
      * @return A new builder
      */
@@ -41,29 +40,7 @@ public interface SwimmingAITask extends AITask<Agent> {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
-    /**
-     * Gets the chance that the owning {@link Agent} will perform
-     * a "jump". The chance is limited between {@code 0} and {@code 1},
-     * to where the higher the chance, the more likely the entity will
-     * "jump" to appear "swimming".
-     *
-     * @return The chance that the owning entity will "swim"
-     */
-    float getSwimChance();
-
-    /**
-     * Sets the chance that the owning {@link Agent} will perform
-     * a "jump". The chance is limited between {@code 0} and {@code 1},
-     * to where the higher the chance, the more likely the entity will
-     * "jump" to appear "swimming".
-     *
-     * @param chance The chance that the entity will "swim"
-     */
-    void setSwimChance(float chance);
-
-    interface Builder extends AITaskBuilder<Agent, SwimmingAITask, Builder> {
-
-        Builder swimChance(float chance);
+    interface Builder extends GoalBuilder<Agent, LookIdleGoal, Builder> {
 
     }
 }

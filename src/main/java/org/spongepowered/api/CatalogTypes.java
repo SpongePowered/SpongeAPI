@@ -28,6 +28,7 @@ import org.spongepowered.api.advancement.Advancement;
 import org.spongepowered.api.advancement.AdvancementTree;
 import org.spongepowered.api.advancement.AdvancementType;
 import org.spongepowered.api.advancement.criteria.trigger.Trigger;
+import org.spongepowered.api.ai.goal.GoalSelectorType;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.tileentity.TileEntityType;
 import org.spongepowered.api.boss.BossBarColor;
@@ -42,8 +43,7 @@ import org.spongepowered.api.effect.sound.SoundCategory;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.effect.sound.music.MusicDisc;
 import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.ai.GoalType;
-import org.spongepowered.api.ai.task.AITaskType;
+import org.spongepowered.api.ai.goal.GoalType;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.event.cause.EventContextKey;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifierType;
@@ -110,7 +110,7 @@ public final class CatalogTypes {
 
     public static final Class<AdvancementType> ADVANCEMENT_TYPE = AdvancementType.class;
 
-    public static final Class<AITaskType> AI_TASK_TYPE = AITaskType.class;
+    public static final Class<GoalType> GOAL_TYPE = GoalType.class;
 
     public static final Class<ArmorType> ARMOR_TYPE = ArmorType.class;
 
@@ -184,7 +184,7 @@ public final class CatalogTypes {
 
     public static final Class<GeneratorType> GENERATOR_TYPE = GeneratorType.class;
 
-    public static final Class<GoalType> GOAL_TYPE = GoalType.class;
+    public static final Class<GoalSelectorType> GOAL_SELECTOR_TYPE = GoalSelectorType.class;
 
     public static final Class<HandPreference> HAND_PREFERENCE = HandPreference.class;
 

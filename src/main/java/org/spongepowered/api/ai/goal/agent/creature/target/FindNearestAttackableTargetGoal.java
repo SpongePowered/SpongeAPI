@@ -22,17 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.ai.task.agent.creature.target;
+package org.spongepowered.api.ai.goal.agent.creature.target;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.Living;
 
 import java.util.function.Predicate;
 
-public interface FindNearestAttackableTargetAITask extends TargetAITask<FindNearestAttackableTargetAITask> {
+public interface FindNearestAttackableTargetGoal extends TargetGoal<FindNearestAttackableTargetGoal> {
 
     /**
-     * Creates a new {@link Builder} for building a new {@link FindNearestAttackableTargetAITask}.
+     * Creates a new {@link Builder} for building a new {@link FindNearestAttackableTargetGoal}.
      *
      * @return A new builder
      */
@@ -51,35 +51,35 @@ public interface FindNearestAttackableTargetAITask extends TargetAITask<FindNear
      * Sets the {@link Class entity class} that can be targeted.
      *
      * @param targetClass The entity class to target
-     * @return This task, for chaining
+     * @return This goal, for chaining
      */
-    FindNearestAttackableTargetAITask setTargetClass(Class<? extends Living> targetClass);
+    FindNearestAttackableTargetGoal setTargetClass(Class<? extends Living> targetClass);
 
     /**
-     * Gets the chance that this task will go through and attempt to find a
+     * Gets the chance that this goal will go through and attempt to find a
      * new target.
      *
-     * @return The chance that this task will go through and find a target
+     * @return The chance that this goal will go through and find a target
      */
     int getChance();
 
     /**
-     * Sets the chance that this task will go through and attempt to find a
+     * Sets the chance that this goal will go through and attempt to find a
      * new target.
      *
-     * @param chance The chance that this task will attemp to find a new target
-     * @return This task, for chaining
+     * @param chance The chance that this goal will attemp to find a new target
+     * @return This goal, for chaining
      */
-    FindNearestAttackableTargetAITask setChance(int chance);
+    FindNearestAttackableTargetGoal setChance(int chance);
 
     /**
      * Sets the {@link Predicate} filter to determine whether a {@link Living}
      * entity can be targeted.
      *
      * @param predicate The predicate
-     * @return This task, for chaining
+     * @return This goal, for chaining
      */
-    FindNearestAttackableTargetAITask filter(Predicate<Living> predicate);
+    FindNearestAttackableTargetGoal filter(Predicate<Living> predicate);
 
     /**
      * Gets the {@link Predicate} filter to determine whether a {@link Living living entity}
@@ -89,7 +89,7 @@ public interface FindNearestAttackableTargetAITask extends TargetAITask<FindNear
      */
     Predicate<Living> getFilter();
 
-    interface Builder extends TargetAITask.Builder<FindNearestAttackableTargetAITask, Builder> {
+    interface Builder extends TargetGoal.Builder<FindNearestAttackableTargetGoal, Builder> {
 
         Builder target(Class<? extends Living> targetClass);
 
