@@ -106,15 +106,6 @@ public interface WorldManager {
     Optional<World> loadWorld(String directoryName);
 
     /**
-     * Loads a {@link World} from the default storage container. If a world with
-     * the given UUID is already loaded then it is returned instead.
-     *
-     * @param uniqueId The UUID to lookup
-     * @return The world, if found
-     */
-    Optional<World> loadWorld(UUID uniqueId);
-
-    /**
      * Loads a {@link World} from the default storage container. If the world
      * associated with the given properties is already loaded then it is
      * returned instead.
@@ -191,8 +182,7 @@ public interface WorldManager {
      * <p>Although the world is created it is not loaded at this time. Please
      * see one of the following methods for loading the world.</p>
      *
-     * <ul> <li>{@link #loadWorld(String)}</li> <li>{@link #loadWorld(UUID)}
-     * </li> <li>{@link #loadWorld(WorldProperties)}</li> </ul>
+     * <ul> <li>{@link #loadWorld(String)}</li> <li>{@link #loadWorld(WorldProperties)}</li> </ul>
      *
      * @param type The dimension type
      * @param archetype The archetype for creation
