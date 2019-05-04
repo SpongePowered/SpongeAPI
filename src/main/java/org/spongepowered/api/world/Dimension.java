@@ -54,13 +54,6 @@ public interface Dimension extends ContextSource {
     boolean allowsPlayerRespawns();
 
     /**
-     * Returns the minimum spawn height for {@link Dimension}.
-     *
-     * @return The minimum spawn height
-     */
-    int getMinimumSpawnHeight();
-
-    /**
      * Returns whether water evaporates for {@link Dimension}.
      *
      * @return True if water evaporates, false if not
@@ -73,20 +66,4 @@ public interface Dimension extends ContextSource {
      * @return True if sky is present, false if not
      */
     boolean hasSky();
-
-    /**
-     * Gets the highest naturally generated y-coordinate of {@link World}s in
-     * this dimension. Usually 128 (no sky) or 256 (sky).
-     * 
-     * @return The generated height
-     */
-    int getHeight();
-
-    /**
-     * Gets the maximum y-coordinate a non-air cuboid can exist at of
-     * {@link World}s in this dimension. Usually 256.
-     * 
-     * @return The build height
-     */
-    int getBuildHeight();
 }

@@ -310,7 +310,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      * @return True if the teleport was successful
      */
     default boolean transferToWorld(String worldName, Vector3d position) {
-        return Sponge.getServer().getWorld(worldName)
+        return Sponge.getServer().getWorldManager().getWorld(worldName)
                 .map(world -> transferToWorld(world, position))
                 .orElse(false);
     }
@@ -331,7 +331,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      * @return True if the teleport was successful
      */
     default boolean transferToWorld(UUID uuid, Vector3d position) {
-        return Sponge.getServer().getWorld(uuid)
+        return Sponge.getServer().getWorldManager().getWorld(uuid)
                 .map(world -> transferToWorld(world, position))
                 .orElse(false);
     }

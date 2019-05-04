@@ -26,8 +26,6 @@ package org.spongepowered.api.world;
 
 import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.GameRegistry;
-import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.entity.Entity;
@@ -42,10 +40,8 @@ import org.spongepowered.api.world.gen.GeneratorTypes;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.teleport.PortalAgentType;
 
-import java.util.Collection;
-
 /**
- * A representation of the settings which define a {@link World} for creation.
+ * A representation of the settings which define a {@link WorldProperties} for creation.
  */
 @CatalogedBy(WorldArchetypes.class)
 public interface WorldArchetype extends CatalogType {
@@ -56,7 +52,7 @@ public interface WorldArchetype extends CatalogType {
      * @return A new builder instance
      */
     static WorldArchetype.Builder builder() {
-        return Sponge.getGame().getRegistry().createBuilder(Builder.class);
+        return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
     /**
@@ -139,13 +135,6 @@ public interface WorldArchetype extends CatalogType {
      * @return True if commands are allowed, false if not
      */
     boolean areCommandsAllowed();
-
-    /**
-     * Gets the dimension type.
-     * 
-     * @return The dimension type
-     */
-    DimensionType getDimensionType();
 
     /**
      * Gets the {@link PortalAgentType} for the world.
@@ -257,14 +246,6 @@ public interface WorldArchetype extends CatalogType {
         Builder generator(GeneratorType type);
 
         /**
-         * Sets the dimension type.
-         *
-         * @param type The type
-         * @return The builder, for chaining
-         */
-        Builder dimension(DimensionType type);
-
-        /**
          * Sets the difficulty.
          *
          * @param difficulty The difficulty
@@ -344,7 +325,7 @@ public interface WorldArchetype extends CatalogType {
 
         /**
          * Builds the {@link WorldArchetype} which can be used to create
-         * a {@link World} in {@link Server#createWorldProperties(String, WorldArchetype)}.
+         * a {@link WorldProperties} in {@link WorldManager#createWorldProperties(DimensionType, WorldArchetype)}.
          *
          * <p>Unlike other {@link CatalogBuilder}s, it's not required to apply a
          * {@link #key(CatalogKey)} to build a world archetype. However it's recommend
