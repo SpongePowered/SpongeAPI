@@ -44,6 +44,7 @@ import java.util.function.DoubleUnaryOperator;
 
 public class SpongeAbstractDamageEntityEventTest {
 
+    /*
     private static final double ERROR = 0.03;
 
     @Test
@@ -250,5 +251,5 @@ public class SpongeAbstractDamageEntityEventTest {
     private <T> T mockParam(Class<T> clazz) {
         return (T) SpongeEventFactoryTest.mockParam(clazz);
     }
-
+*/
 }

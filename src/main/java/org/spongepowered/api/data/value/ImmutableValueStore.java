@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.data.value;
 
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.DataProvider;
 import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.merge.MergeFunction;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -40,12 +40,31 @@ import java.util.function.Function;
  *
  * @param <I> The type of immutable value store, for self referencing
  */
-public interface ImmutableValueStore<I extends ImmutableValueStore<I>> extends ValueContainer<I> {
+public interface ImmutableValueStore<I extends ImmutableValueStore<I>> extends ValueContainer {
+
+    /**
+     * Gets a empty {@link ImmutableValueStore}.
+     *
+     * @return The empty immutable value store
+     */
+    static ImmutableValueStore.Simple empty() {
+        return Sponge.getRegistry().requireFactory(Factory.class).of();
+    }
+
+    /**
+     * Gets a {@link ImmutableValueStore} with the given values.
+     *
+     * @param values The values
+     * @return The immutable value store
+     */
+    static ImmutableValueStore.Simple of(Iterable<? extends Value<?>> values) {
+        return Sponge.getRegistry().requireFactory(Factory.class).of(values);
+    }
 
     /**
      * Applies a transformation on the provided {@link Value} such that
      * the return value of {@link Function#apply(Object)} will become the end
-     * resulting value set into the newly created {@link org.spongepowered.api.data.value.ImmutableValueStore}.
+     * resulting value set into the newly created {@link ImmutableValueStore}.
      *
      * @param key The key linked to
      * @param function The function to manipulate the value
@@ -55,7 +74,7 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I>> extends V
     <E> Optional<I> transform(Key<? extends Value<E>> key, Function<E, E> function);
 
     /**
-     * Creates a new {@link org.spongepowered.api.data.value.ImmutableValueStore} with the provided
+     * Creates a new {@link ImmutableValueStore} with the provided
      * value by {@link Key}. If the key is supported by this value store,
      * the returned value store will be present.
      *
@@ -69,7 +88,7 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I>> extends V
     /**
      * Offers the given {@code value} as defined by the provided {@link Key}
      * such that if the {@link Key} is supported, a new
-     * {@link org.spongepowered.api.data.value.ImmutableValueStore} is created.
+     * {@link ImmutableValueStore} is created.
      *
      * @param value The value to set
      * @return The new immutable value store
@@ -78,7 +97,7 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I>> extends V
 
     /**
      * Attempts to merge the {@link Value.Immutable}s from this
-     * {@link org.spongepowered.api.data.value.ImmutableValueStore} and the given {@link org.spongepowered.api.data.value.ImmutableValueStore} to
+     * {@link ImmutableValueStore} and the given {@link ImmutableValueStore} to
      * produce a new instance of the merged result.
      *
      * @param that The other immutable value store to gather values from
@@ -88,7 +107,7 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I>> extends V
 
     /**
      * Attempts to merge the {@link Value.Immutable}s from this
-     * {@link org.spongepowered.api.data.value.ImmutableValueStore} and the given {@link org.spongepowered.api.data.value.ImmutableValueStore} to
+     * {@link ImmutableValueStore} and the given {@link ImmutableValueStore} to
      * produce a new instance of the merged result. Any overlapping
      * {@link ValueContainer}s are merged through the {@link MergeFunction}.
      *
@@ -98,4 +117,33 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I>> extends V
      */
     I merge(I that, MergeFunction function);
 
+    @Override
+    I copy();
+
+    /**
+     * A simple version of the {@link ImmutableValueStore}. By default will the simple
+     * {@link ImmutableValueStore} support every {@link Key} unless a bound
+     * {@link DataProvider} said otherwise.
+     */
+    interface Simple extends ImmutableValueStore<Simple> {
+
+        @Override
+        default Simple copy() {
+            return this;
+        }
+
+        /**
+         * Creates a composite copy of this simple {@link ImmutableValueStore}.
+         *
+         * @return The composite copy
+         */
+        CompositeValueStore.Simple toComposite(); // TODO: toMutable? Rename CompositeValueStore to MutableValueStore for consistency?
+    }
+
+    interface Factory {
+
+        Simple of();
+
+        Simple of(Iterable<? extends Value<?>> values);
+    }
 }

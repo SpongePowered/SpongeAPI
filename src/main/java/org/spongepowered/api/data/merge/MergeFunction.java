@@ -61,7 +61,7 @@ public interface MergeFunction {
      * and therefor either one can be modified and returned.
      *
      * <p>Since
-     * {@link CompositeValueStore#copyFrom(CompositeValueStore, MergeFunction)}
+     * {@link CompositeValueStore#copyFrom(ValueContainer, MergeFunction)}
      * accepts only a single {@link MergeFunction}, and a
      * {@link CompositeValueStore} may have multiple {@link ValueContainer}s,
      * as provided by {@link CompositeValueStore#getContainers()}, the merge
@@ -74,7 +74,7 @@ public interface MergeFunction {
      * @param <C> The type of {@link ValueContainer}
      * @return The "merged" {@link ValueContainer}
      */
-    <C extends ValueContainer<?>> C merge(@Nullable C original, @Nullable C replacement);
+    <C extends ValueContainer> C merge(@Nullable C original, @Nullable C replacement);
 
     /**
      * Creates a new {@link MergeFunction} chaining this current merge function
@@ -92,7 +92,7 @@ public interface MergeFunction {
         final MergeFunction self = this;
         return new MergeFunction() {
             @Override
-            public <C extends ValueContainer<?>> C merge(C original, C replacement) {
+            public <C extends ValueContainer> C merge(@Nullable C original, @Nullable C replacement) {
                 return that.merge(self.merge(original, replacement), replacement);
             }
         };
@@ -104,7 +104,7 @@ public interface MergeFunction {
      */
     MergeFunction IGNORE_ALL = new MergeFunction() {
         @Override
-        public <C extends ValueContainer<?>> C merge(@Nullable C original, @Nullable C replacement) {
+        public <C extends ValueContainer> C merge(@Nullable C original, @Nullable C replacement) {
             return replacement == null ? checkNotNull(original, "Original and replacement cannot be null!") : replacement;
         }
     };
@@ -115,7 +115,7 @@ public interface MergeFunction {
      */
     MergeFunction FORCE_NOTHING = new MergeFunction() {
         @Override
-        public <C extends ValueContainer<?>> C merge(@Nullable C original, @Nullable C replacement) {
+        public <C extends ValueContainer> C merge(@Nullable C original, @Nullable C replacement) {
             return original == null ? checkNotNull(replacement, "Replacement and original cannot be null!") : original;
         }
     };

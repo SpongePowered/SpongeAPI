@@ -28,12 +28,13 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.data.value.CompositeValueStore;
+import org.spongepowered.api.data.value.ValueContainer;
 
 /**
  * A data holder object allows the access of additional data on the object
  * that is not simply expressed by its basic type.
  */
-public interface DataHolder extends DataSerializable, PropertyHolder, CompositeValueStore<DataHolder> {
+public interface DataHolder extends DataSerializable, PropertyHolder, CompositeValueStore {
 
     /**
      * Validates the container with known data required to set the raw data to
@@ -66,4 +67,7 @@ public interface DataHolder extends DataSerializable, PropertyHolder, CompositeV
      *     data that this holder will refuse
      */
     void setRawData(DataView container) throws InvalidDataException;
+
+    @Override
+    DataHolder copy();
 }

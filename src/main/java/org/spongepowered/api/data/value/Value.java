@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.value;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
@@ -55,6 +56,20 @@ import java.util.function.Function;
  * @param <E> The type of element wrapped by this value
  */
 public interface Value<E> {
+
+    /**
+     * Constructs a {@link Value} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <V> The value type
+     * @param <E> The element type
+     * @return The constructed value
+     */
+    static <V extends Value<E>, E> V of(Key<V> key, E element) {
+        return Sponge.getRegistry().requireFactory(Factory.class).of(key, element);
+    }
 
     /**
      * Gets the held value.
@@ -206,5 +221,10 @@ public interface Value<E> {
             return this;
         }
 
+    }
+
+    interface Factory {
+
+        <V extends Value<E>, E> V of(Key<V> key, E element);
     }
 }

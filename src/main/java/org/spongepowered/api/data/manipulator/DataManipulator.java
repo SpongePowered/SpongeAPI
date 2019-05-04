@@ -49,7 +49,7 @@ import java.util.function.Function;
  * with specialized {@link Function}s to use {@link #transform(Key, Function)}
  * such that the {@link DataManipulator} is always returned.</p>
  */
-public interface DataManipulator extends ValueContainer<DataManipulator> {
+public interface DataManipulator extends ValueContainer { // TODO: Bye bye
 
     /**
      * Attempts to read data from the given {@link DataHolder} and fills the

@@ -144,7 +144,7 @@ public interface DataView {
      *
      * @param key The key to get the data path relative to this data view
      * @return True if the path exists
-     */
+     *//*
     default boolean contains(Key<?> key) {
         return contains(checkNotNull(key, "Key cannot be null!").getQuery());
     }
@@ -156,7 +156,7 @@ public interface DataView {
      * @param key The key to get the data path relative to this data view
      * @param keys The additional keys to check
      * @return True if the path exists
-     */
+     *//*
     default boolean contains(Key<?> key, Key<?>... keys) {
         checkNotNull(key, "Key cannot be null!");
         checkNotNull(keys, "Keys cannot be null!");
@@ -168,7 +168,7 @@ public interface DataView {
             queries.add(checkNotNull(arrayKey, "Cannot have a null key!").getQuery());
         }
         return contains(key.getQuery(), queries.toArray(new DataQuery[queries.size()]));
-    }
+    }*/
 
     /**
      * Gets an object from the desired path. If the path is not defined,
@@ -197,8 +197,8 @@ public interface DataView {
      * @param value The value of the data
      * @param <E> The type of value
      * @return This view, for chaining
-     */
-    <E> DataView set(Key<? extends Value<E>> key, E value);
+     *//*
+    <E> DataView set(Key<? extends Value<E>> key, E value);*/
 
     /**
      * Removes the data associated to the given path relative to this

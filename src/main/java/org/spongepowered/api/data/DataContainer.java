@@ -61,8 +61,9 @@ public interface DataContainer extends DataView {
     @Override
     DataContainer set(DataQuery path, Object value);
 
+    /*
     @Override
-    <E> DataContainer set(Key<? extends Value<E>> key, E value);
+    <E> DataContainer set(Key<? extends Value<E>> key, E value);*/
 
     @Override
     DataContainer remove(DataQuery path);

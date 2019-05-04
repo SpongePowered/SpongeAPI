@@ -49,10 +49,8 @@ import javax.annotation.Nullable;
  * {@link ValueContainer}, such as the case for {@link DataManipulator}s and
  * {@link DataHolder}s, it is recommended to knowingly understand the
  * fundamental differences between them.</p>
- *
- * @param <C> The type of container for fluency
  */
-public interface ValueContainer<C extends ValueContainer<C>> {
+public interface ValueContainer {
 
     /**
      * Attempts to get the underlying value backed by a {@link Value}
@@ -158,7 +156,7 @@ public interface ValueContainer<C extends ValueContainer<C>> {
      *
      * @return The new copy
      */
-    C copy();
+    ValueContainer copy();
 
     /**
      * Gets all applicable {@link Key}s for this {@link ValueContainer}.
@@ -179,5 +177,4 @@ public interface ValueContainer<C extends ValueContainer<C>> {
      * @return An immutable set of copied values
      */
     Set<Value.Immutable<?>> getValues();
-
 }

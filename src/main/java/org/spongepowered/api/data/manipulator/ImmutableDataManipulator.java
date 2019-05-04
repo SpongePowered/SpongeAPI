@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.manipulator;
 
-import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
@@ -44,7 +43,7 @@ import java.util.Optional;
  * @param <I> The type of immutable data manipulator
  * @param <M> The type of mutable data manipulator
  */
-public interface ImmutableDataManipulator extends ValueContainer<ImmutableDataManipulator> {
+public interface ImmutableDataManipulator extends ValueContainer {  // TODO: Bye bye
 
     /**
      * Creates a new {@link ImmutableDataManipulator} with the provided value
