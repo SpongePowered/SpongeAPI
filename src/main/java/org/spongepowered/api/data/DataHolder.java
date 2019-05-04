@@ -27,14 +27,13 @@ package org.spongepowered.api.data;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.property.PropertyHolder;
-import org.spongepowered.api.data.value.CompositeValueStore;
-import org.spongepowered.api.data.value.ValueContainer;
+import org.spongepowered.api.data.value.MutableValueStore;
 
 /**
  * A data holder object allows the access of additional data on the object
  * that is not simply expressed by its basic type.
  */
-public interface DataHolder extends DataSerializable, PropertyHolder, CompositeValueStore {
+public interface DataHolder extends DataSerializable, PropertyHolder, MutableValueStore {
 
     /**
      * Validates the container with known data required to set the raw data to

@@ -28,6 +28,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.DataProvider;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 /**
  * A ValueContainer is a holder of a particular set of {@link Value}s. While
- * there exists a {@link CompositeValueStore} and {@link ImmutableValueStore},
+ * there exists a {@link MutableValueStore} and {@link ImmutableValueStore},
  * the emphasis of {@link ValueContainer} is that it only contains "data". It
  * is not known whether a {@code ValueContainer} is mutable or immutable.
  *
@@ -177,4 +178,26 @@ public interface ValueContainer {
      * @return An immutable set of copied values
      */
     Set<Value.Immutable<?>> getValues();
+
+    /**
+     * A simple version of the {@link ValueContainer}. By default will the simple
+     * {@link ImmutableValueStore} support every {@link Key} unless a bound
+     * {@link DataProvider} said otherwise.
+     */
+    interface Simple extends ValueContainer {
+
+        /**
+         * Creates a immutable copy of this simple {@link ValueContainer}.
+         *
+         * @return The immutable copy
+         */
+        ImmutableValueStore.Simple toImmutable();
+
+        /**
+         * Creates a mutable copy of this simple {@link ImmutableValueStore}.
+         *
+         * @return The mutable copy
+         */
+        MutableValueStore.Simple toMutable();
+    }
 }

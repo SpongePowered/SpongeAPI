@@ -26,7 +26,7 @@ package org.spongepowered.api.data.merge;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.spongepowered.api.data.value.CompositeValueStore;
+import org.spongepowered.api.data.value.MutableValueStore;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
 
@@ -61,10 +61,10 @@ public interface MergeFunction {
      * and therefor either one can be modified and returned.
      *
      * <p>Since
-     * {@link CompositeValueStore#copyFrom(ValueContainer, MergeFunction)}
+     * {@link MutableValueStore#copyFrom(ValueContainer, MergeFunction)}
      * accepts only a single {@link MergeFunction}, and a
-     * {@link CompositeValueStore} may have multiple {@link ValueContainer}s,
-     * as provided by {@link CompositeValueStore#getContainers()}, the merge
+     * {@link MutableValueStore} may have multiple {@link ValueContainer}s,
+     * as provided by {@link MutableValueStore#getContainers()}, the merge
      * function may be called for every single number of {@link ValueContainer}.
      * This way, a {@link MergeFunction} can be fully customized to merge
      * specific {@link ValueContainer}s of matching types.</p>

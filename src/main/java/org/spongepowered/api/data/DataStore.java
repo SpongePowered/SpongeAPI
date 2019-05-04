@@ -25,8 +25,7 @@
 package org.spongepowered.api.data;
 
 import com.google.common.reflect.TypeToken;
-import org.spongepowered.api.data.value.CompositeValueStore;
-import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.MutableValueStore;
 import org.spongepowered.api.data.value.ValueContainer;
 
 public interface DataStore {
@@ -59,23 +58,23 @@ public interface DataStore {
     //Iterable<Value.Mutable<?>> deserialize(DataView view);
 
     /**
-     * Deserializes the {@link DataView} as a {@link CompositeValueStore}.
+     * Deserializes the {@link DataView} as a {@link MutableValueStore}.
      *
      * @param view The data view to deserialize
      * @return The value store
      */
-    default CompositeValueStore deserialize(DataView view) {
-        final CompositeValueStore valueStore = CompositeValueStore.of();
+    default MutableValueStore deserialize(DataView view) {
+        final MutableValueStore valueStore = MutableValueStore.of();
         deserialize(valueStore, view);
         return valueStore;
     }
 
     /**
      * Deserializes the data from the {@link DataView} and puts
-     * it in the {@link CompositeValueStore}.
+     * it in the {@link MutableValueStore}.
      *
      * @param valueStore The value store
      * @param view The data view to deserialize
      */
-    void deserialize(CompositeValueStore valueStore, DataView view);
+    void deserialize(MutableValueStore valueStore, DataView view);
 }

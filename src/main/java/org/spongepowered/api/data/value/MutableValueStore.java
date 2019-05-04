@@ -37,34 +37,34 @@ import java.util.function.Function;
 /**
  * Represents a {@link ValueContainer} that contains a various bundle of
  * {@link ValueContainer}s of type declared by the extension that can be
- * manipulated separately from this {@link CompositeValueStore}.
+ * manipulated separately from this {@link MutableValueStore}.
  */
-public interface CompositeValueStore extends ValueContainer {
+public interface MutableValueStore extends ValueContainer {
 
-    static CompositeValueStore.Simple of() {
+    static MutableValueStore.Simple of() {
         return Sponge.getRegistry().requireFactory(Factory.class).of();
     }
 
-    static CompositeValueStore.Simple of(Iterable<? extends Value<?>> values) {
+    static MutableValueStore.Simple of(Iterable<? extends Value<?>> values) {
         return Sponge.getRegistry().requireFactory(Factory.class).of(values);
     }
 
-    static CompositeValueStore.Simple of(ValueContainer valueContainer) {
+    static MutableValueStore.Simple of(ValueContainer valueContainer) {
         return Sponge.getRegistry().requireFactory(Factory.class).of(valueContainer);
     }
 
-    static CompositeValueStore.Simple ofKeysFrom(ValueContainer valueContainer, Key<?> firstKey, Key<?> moreKeys) { // TODO: Better name?
+    static MutableValueStore.Simple ofKeysFrom(ValueContainer valueContainer, Key<?> firstKey, Key<?> moreKeys) { // TODO: Better name?
         return Sponge.getRegistry().requireFactory(Factory.class).ofKeysFrom(valueContainer, firstKey, moreKeys);
     }
 
-    static CompositeValueStore.Simple ofKeysFrom(ValueContainer valueContainer, Iterable<Key<?>> keys) { // TODO: Better name?
+    static MutableValueStore.Simple ofKeysFrom(ValueContainer valueContainer, Iterable<Key<?>> keys) { // TODO: Better name?
         return Sponge.getRegistry().requireFactory(Factory.class).ofKeysFrom(valueContainer, keys);
     }
 
     /**
      * Applies a transformation on the provided {@link Value} such that
      * the return value of {@link Function#apply(Object)} will become the end
-     * resulting value set into this {@link CompositeValueStore}. It is not
+     * resulting value set into this {@link MutableValueStore}. It is not
      * necessary that the input is actually present, in which case the
      * {@link Key}ed data is compatible, but not necessarily present. Writing
      * a {@link Function} to properly handle the potential for a null input
@@ -86,7 +86,7 @@ public interface CompositeValueStore extends ValueContainer {
      * Offers the given {@code value} as defined by the provided {@link Key}
      * such that a {@link DataTransactionResult} is returned for any
      * successful, rejected, and replaced {@link Value}s from this
-     * {@link CompositeValueStore}.
+     * {@link MutableValueStore}.
      *
      * @param key The key to the value to set
      * @param value The value to set
@@ -99,7 +99,7 @@ public interface CompositeValueStore extends ValueContainer {
      * Offers the given {@link Value} as defined by the provided
      * {@link Key} such that a {@link DataTransactionResult} is returned for
      * any successful, rejected, and replaced {@link Value}s from this
-     * {@link CompositeValueStore}.
+     * {@link MutableValueStore}.
      *
      * @param value The value to set
      * @param <E> The type of the element wrapped by the value
@@ -113,7 +113,7 @@ public interface CompositeValueStore extends ValueContainer {
     /**
      * Offers the given {@code value} as defined by the provided {@link Key}
      * such that a {@link DataTransactionResult} is returned for any
-     * successful {@link Value}s from this {@link CompositeValueStore}.
+     * successful {@link Value}s from this {@link MutableValueStore}.
      * Intentionally, however, this differs from {@link #offer(Key, Object)}
      * as it will intentionally throw an exception if the result was a failure.
      *
@@ -135,7 +135,7 @@ public interface CompositeValueStore extends ValueContainer {
     /**
      * Offers the given {@code value} as defined by the provided {@link Key}
      * such that a {@link DataTransactionResult} is returned for any
-     * successful {@link Value}s from this {@link CompositeValueStore}.
+     * successful {@link Value}s from this {@link MutableValueStore}.
      * Intentionally, however, this differs from {@link #offer(Key, Object)}
      * as it will intentionally throw an exception if the result was a failure.
      *
@@ -193,11 +193,11 @@ public interface CompositeValueStore extends ValueContainer {
 
     /**
      * Performs an absolute copy of all {@link Value.Mutable}s and
-     * {@link ValueContainer}s to this {@link CompositeValueStore} such that
+     * {@link ValueContainer}s to this {@link MutableValueStore} such that
      * any overlapping {@link Value.Mutable}s are offered for replacement. The
      * result is provided as a {@link DataTransactionResult}.
      *
-     * @param that The other {@link CompositeValueStore} to copy values from
+     * @param that The other {@link MutableValueStore} to copy values from
      * @return The transaction result
      */
     default DataTransactionResult copyFrom(ValueContainer that) {
@@ -206,32 +206,30 @@ public interface CompositeValueStore extends ValueContainer {
 
     /**
      * Performs an absolute copy of all {@link Value.Mutable}s and
-     * {@link ValueContainer}s to this {@link CompositeValueStore} such that
+     * {@link ValueContainer}s to this {@link MutableValueStore} such that
      * any overlapping {@link Value.Mutable}s are offered for replacement. The
      * result is provided as a {@link DataTransactionResult}.
      *
-     * @param that The other {@link CompositeValueStore} to copy values from
+     * @param that The other {@link MutableValueStore} to copy values from
      * @param function The function to resolve merge conflicts
      * @return The transaction result
      */
     DataTransactionResult copyFrom(ValueContainer that, MergeFunction function);
 
     /**
-     * A simple version of the {@link CompositeValueStore}. By default will the simple
-     * {@link CompositeValueStore} support every {@link Key} unless a bound
+     * A simple version of the {@link MutableValueStore}. By default will the simple
+     * {@link MutableValueStore} support every {@link Key} unless a bound
      * {@link DataProvider} said otherwise.
      */
-    interface Simple extends CompositeValueStore {
+    interface Simple extends MutableValueStore, ValueContainer.Simple {
 
         @Override
-        Simple copy();
+        MutableValueStore.Simple copy();
 
-        /**
-         * Creates a immutable copy of this simple {@link CompositeValueStore}.
-         *
-         * @return The immutable copy
-         */
-        ImmutableValueStore.Simple toImmutable();
+        @Override
+        default MutableValueStore.Simple toMutable() {
+            return copy();
+        }
     }
 
     interface Factory {

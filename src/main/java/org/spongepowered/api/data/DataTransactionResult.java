@@ -34,7 +34,7 @@ import com.google.common.collect.Lists;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.data.value.CompositeValueStore;
+import org.spongepowered.api.data.value.MutableValueStore;
 import org.spongepowered.api.data.value.Value;
 
 import java.util.ArrayList;
@@ -290,7 +290,7 @@ public final class DataTransactionResult {
     }
 
     /**
-     * If any {@link Value}s applied onto a {@link CompositeValueStore} were
+     * If any {@link Value}s applied onto a {@link MutableValueStore} were
      * successful, they'll be stored in the given list.
      *
      * @return An immutable list of the values successfully offered

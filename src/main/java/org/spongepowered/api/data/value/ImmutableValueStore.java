@@ -125,19 +125,17 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I>> extends V
      * {@link ImmutableValueStore} support every {@link Key} unless a bound
      * {@link DataProvider} said otherwise.
      */
-    interface Simple extends ImmutableValueStore<Simple> {
+    interface Simple extends ImmutableValueStore<Simple>, ValueContainer.Simple {
 
         @Override
-        default Simple copy() {
+        default ImmutableValueStore.Simple copy() {
             return this;
         }
 
-        /**
-         * Creates a composite copy of this simple {@link ImmutableValueStore}.
-         *
-         * @return The composite copy
-         */
-        CompositeValueStore.Simple toComposite(); // TODO: toMutable? Rename CompositeValueStore to MutableValueStore for consistency?
+        @Override
+        default ImmutableValueStore.Simple toImmutable() {
+            return this;
+        }
     }
 
     interface Factory {

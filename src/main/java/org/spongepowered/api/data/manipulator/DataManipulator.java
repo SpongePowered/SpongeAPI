@@ -31,7 +31,7 @@ import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.merge.MergeFunction;
-import org.spongepowered.api.data.value.CompositeValueStore;
+import org.spongepowered.api.data.value.MutableValueStore;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.util.annotation.eventgen.TransformWith;
@@ -177,7 +177,7 @@ public interface DataManipulator extends ValueContainer { // TODO: Bye bye
 
     /**
      * Applies a transformation on the provided value if available. This is
-     * the same as {@link CompositeValueStore#transform(Key, Function)}.
+     * the same as {@link MutableValueStore#transform(Key, Function)}.
      *
      * @param key The key to use
      * @param function The function to apply
