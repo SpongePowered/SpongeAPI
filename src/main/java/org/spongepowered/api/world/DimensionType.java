@@ -49,7 +49,7 @@ public interface DimensionType extends NamedCatalogType {
      *
      * @return The dimension class
      */
-    Class<Dimension> getDimensionClass();
+    Class<? extends Dimension> getDimensionClass();
 
     /**
      * Gets the name of the directory that a {@link WorldProperties} once created by the
@@ -82,7 +82,7 @@ public interface DimensionType extends NamedCatalogType {
             return this;
         }
 
-        Builder dimension(Class<Dimension> dimension);
+        Builder dimension(Class<? extends Dimension> dimension);
 
         Builder directory(String directoryName);
 

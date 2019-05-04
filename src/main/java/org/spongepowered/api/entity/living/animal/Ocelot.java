@@ -24,22 +24,8 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.type.CatType;
-import org.spongepowered.api.data.value.Value;
-
 /**
  * Represents an Ocelot.
  */
 public interface Ocelot extends Animal {
-
-    /**
-     * Gets the {@link Value.Mutable} for the {@link CatType} of this
-     * {@link Ocelot}.
-     *
-     * @return The ocelot type
-     */
-    default Value.Mutable<CatType> type() {
-        return getValue(Keys.CAT_TYPE).get().asMutable();
-    }
 }
