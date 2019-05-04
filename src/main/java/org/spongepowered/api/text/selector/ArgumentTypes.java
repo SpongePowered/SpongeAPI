@@ -140,11 +140,6 @@ public final class ArgumentTypes {
     public static final ArgumentType.Invertible<EntityType> ENTITY_TYPE =
         DummyObjectProvider.createExtendedFor(ArgumentType.Invertible.class, "ENTITY_TYPE");
 
-    @SuppressWarnings("deprecation")
-    static SelectorFactory getFactory() {
-        return Sponge.getRegistry().getSelectorFactory();
-    }
-
     /**
      * Creates a minimum and maximum {@link ArgumentType} filtering depending on
      * the score of the specified objective.
@@ -153,7 +148,7 @@ public final class ArgumentTypes {
      * @return The created argument type
      */
     public static ArgumentHolder.Limit<ArgumentType<Integer>> score(String name) {
-        return getFactory().createScoreArgumentType(name);
+        return Sponge.getRegistry().requireFactory(Factory.class).createLimitHolder(name);
     }
 
     /**
@@ -164,7 +159,7 @@ public final class ArgumentTypes {
      *         if not found
      */
     public static Optional<ArgumentType<?>> valueOf(String name) {
-        return getFactory().getArgumentType(name);
+        return Sponge.getRegistry().requireFactory(Factory.class).getType(name);
     }
 
     /**
@@ -173,7 +168,7 @@ public final class ArgumentTypes {
      * @return The list of all available {@link ArgumentType}s
      */
     public static Collection<ArgumentType<?>> values() {
-        return getFactory().getArgumentTypes();
+        return Sponge.getRegistry().requireFactory(Factory.class).getTypes();
     }
 
     /**
@@ -183,7 +178,7 @@ public final class ArgumentTypes {
      * @return The created argument type
      */
     public static ArgumentType<String> create(String key) {
-        return getFactory().createArgumentType(key);
+        return Sponge.getRegistry().requireFactory(Factory.class).createType(key);
     }
 
     /**
@@ -195,12 +190,23 @@ public final class ArgumentTypes {
      * @return The created argument type
      */
     public static <T> ArgumentType<T> create(String key, Class<T> type) {
-        return getFactory().createArgumentType(key, type);
+        return Sponge.getRegistry().requireFactory(Factory.class).createType(key, type);
     }
 
-    // Suppress default constructor to ensure non-instantiability.
     private ArgumentTypes() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    interface Factory {
+
+        ArgumentHolder.Limit<ArgumentType<Integer>> createLimitHolder(String name);
+
+        ArgumentType<String> createType(String key);
+
+        <T> ArgumentType<T> createType(String key, Class<T> type);
+
+        Optional<ArgumentType<?>> getType(String name);
+
+        Collection<ArgumentType<?>> getTypes();
+    }
 }

@@ -24,8 +24,7 @@
  */
 package org.spongepowered.api.text.selector;
 
-import static org.spongepowered.api.text.selector.ArgumentTypes.getFactory;
-
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.world.Locatable;
@@ -49,7 +48,7 @@ public interface Selector {
      * @return A new selector builder with the specified type
      */
     static Builder builder() {
-        return getFactory().createBuilder();
+        return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
     /**
@@ -59,7 +58,7 @@ public interface Selector {
      * @return A new selector containing the given selector data
      */
     static Selector parse(String selector) {
-        return getFactory().parseRawSelector(selector);
+        return Sponge.getRegistry().requireFactory(Factory.class).parseRawSelector(selector);
     }
 
     /**
@@ -69,7 +68,7 @@ public interface Selector {
      * @return Tab completions for the next part of the selector
      */
     static List<String> complete(String selector) {
-        return getFactory().complete(selector);
+        return Sponge.getRegistry().requireFactory(Factory.class).complete(selector);
     }
 
     /**
@@ -250,6 +249,12 @@ public interface Selector {
          *         builder
          */
         Selector build();
+    }
 
+    interface Factory {
+
+        Selector parseRawSelector(String selector);
+
+        List<String> complete(String selector);
     }
 }

@@ -190,7 +190,7 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
      */
     @SuppressWarnings("deprecation")
     static Text of(Object... objects) {
-        return Sponge.getRegistry().getTextFactory().of(objects);
+        return Sponge.getRegistry().requireFactory(Factory.class).of(objects);
     }
 
     /**
@@ -393,7 +393,7 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
      */
     @SuppressWarnings("deprecation")
     static Text joinWith(Text separator, Text... texts) {
-        return Sponge.getRegistry().getTextFactory().joinWith(separator, texts);
+        return Sponge.getRegistry().requireFactory(Factory.class).joinWith(separator, texts);
     }
 
     /**
@@ -416,7 +416,7 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
      */
     @SuppressWarnings("deprecation")
     static Text joinWith(Text separator, Iterator<? extends Text> texts) {
-        return Sponge.getRegistry().getTextFactory().joinWith(separator, texts);
+        return Sponge.getRegistry().requireFactory(Factory.class).joinWith(separator, texts);
     }
 
     /**
@@ -810,5 +810,13 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
          *         builder
          */
         Text build();
+    }
+
+    interface Factory {
+        Text of(Object... objects);
+
+        Text joinWith(Text separator, Text... texts);
+
+        Text joinWith(Text separator, Iterator<? extends Text> texts);
     }
 }

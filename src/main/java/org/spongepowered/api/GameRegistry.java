@@ -41,12 +41,8 @@ import org.spongepowered.api.registry.RegistryModule;
 import org.spongepowered.api.registry.RegistryModuleAlreadyRegisteredException;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
-import org.spongepowered.api.text.channel.MessageChannelFactory;
-import org.spongepowered.api.text.TextFactory;
 import org.spongepowered.api.text.format.TextColor;
-import org.spongepowered.api.text.selector.SelectorFactory;
 import org.spongepowered.api.text.translation.Translation;
-import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.rotation.Rotation;
 
@@ -192,7 +188,7 @@ public interface GameRegistry {
     GameRegistry registerModule(RegistryModule module) throws RegistryModuleAlreadyRegisteredException;
 
     /**
-     * Registers a {@link Supplier} for creating the desired {@link CopyableBuilder}.
+     * Registers a {@link Supplier} for creating the desired {@link T}.
      *
      * @param builderClass The builder class
      * @param supplier The supplier
@@ -214,6 +210,15 @@ public interface GameRegistry {
     <T extends ResettableBuilder<?, ? super T>> T createBuilder(Class<T> builderClass) throws IllegalArgumentException;
 
     /**
+     * Gets a factory used to churn instances.
+     *
+     * @param clazz The factory class
+     * @param <T> The type of factory
+     * @return The factory
+     */
+    <T> T requireFactory(Class<T> clazz);
+
+    /**
      * Gets the {@link Rotation} with the provided degrees.
      *
      * @param degrees The degrees of the rotation
@@ -221,53 +226,6 @@ public interface GameRegistry {
      *      <tt>Optional.empty()</tt> if not found
      */
     Optional<Rotation> getRotationFromDegree(int degrees);
-
-    /**
-     * Loads a {@link Favicon} from the specified encoded string. The format of
-     * the input depends on the implementation.
-     *
-     * @param raw The encoded favicon
-     * @return The loaded favicon
-     * @throws IOException If the favicon couldn't be loaded
-     */
-    Favicon loadFavicon(String raw) throws IOException;
-
-    /**
-     * Loads a favicon from a specified {@link Path}.
-     *
-     * @param path The path to the favicon
-     * @return The loaded favicon from the file
-     * @throws IOException If the favicon couldn't be loaded
-     * @throws FileNotFoundException If the file doesn't exist
-     */
-    Favicon loadFavicon(Path path) throws IOException;
-
-    /**
-     * Loads a favicon from a specified {@link URL}.
-     *
-     * @param url The favicon URL
-     * @return The loaded favicon from the URL
-     * @throws IOException If the favicon couldn't be loaded
-     */
-    Favicon loadFavicon(URL url) throws IOException;
-
-    /**
-     * Loads a favicon from a specified {@link InputStream}.
-     *
-     * @param in The favicon input stream
-     * @return The loaded favicon from the input stream
-     * @throws IOException If the favicon couldn't be loaded
-     */
-    Favicon loadFavicon(InputStream in) throws IOException;
-
-    /**
-     * Loads a favicon from a specified {@link BufferedImage}.
-     *
-     * @param image The favicon image
-     * @return The loaded favicon from the image
-     * @throws IOException If the favicon couldn't be loaded
-     */
-    Favicon loadFavicon(BufferedImage image) throws IOException;
 
     /**
      * Retrieves the crafting RecipeRegistry for this GameRegistry.
@@ -323,37 +281,12 @@ public interface GameRegistry {
     ValueFactory getValueFactory();
 
     /**
-     * Gets the {@link MessageChannelFactory} for creating message channels.
-     *
-     * @return The message channel factory
-     */
-    MessageChannelFactory getMessageChannelFactory();
-
-    /**
      * Gets the {@link VillagerRegistry} for the register mappings of
      * {@link Profession}s to {@link TradeOfferGenerator}s based on a level.
      *
      * @return The villager registry instance
      */
     VillagerRegistry getVillagerRegistry();
-
-    /**
-     * Gets the internal {@link TextFactory}.
-     *
-     * @return The text factory
-     * @deprecated Internal use only.
-     */
-    @Deprecated
-    TextFactory getTextFactory();
-
-    /**
-     * Gets the internal {@link SelectorFactory}.
-     *
-     * @return The selector factory
-     * @deprecated Use the appropriate class in the selector package instead
-     */
-    @Deprecated
-    SelectorFactory getSelectorFactory();
 
     /**
      * Gets a locale for the specified locale code, e.g. {@code en_US}.
@@ -371,13 +304,4 @@ public interface GameRegistry {
      *      not found
      */
     Optional<Translation> getTranslationById(String id);
-
-    /**
-     * Gets a factory used to churn instances.
-     *
-     * @param clazz The factory class
-     * @param <T> The type of factory
-     * @return The factory
-     */
-    <T> T requireFactory(Class<T> clazz);
 }

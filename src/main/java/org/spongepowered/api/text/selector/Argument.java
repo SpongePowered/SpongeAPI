@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.text.selector;
 
-import static org.spongepowered.api.text.selector.ArgumentTypes.getFactory;
+import org.spongepowered.api.Sponge;
 
 import java.util.Set;
 
@@ -49,7 +49,7 @@ public interface Argument<T> {
      * @return The created argument
      */
     static <T> Argument<T> create(ArgumentType<T> type, T value) {
-        return getFactory().createArgument(type, value);
+        return Sponge.getRegistry().requireFactory(Factory.class).createArgument(type, value);
     }
 
     /**
@@ -64,7 +64,7 @@ public interface Argument<T> {
      * @return The created invertible argument
      */
     static <T> Argument.Invertible<T> create(ArgumentType.Invertible<T> type, T value, boolean inverted) {
-        return getFactory().createArgument(type, value, inverted);
+        return Sponge.getRegistry().requireFactory(Factory.class).createArgument(type, value, inverted);
     }
 
     /**
@@ -78,7 +78,7 @@ public interface Argument<T> {
      * @return The created argument
      */
     static <T, V> Set<Argument<T>> createSet(ArgumentHolder<? extends ArgumentType<T>> type, V value) {
-        return getFactory().createArguments(type, value);
+        return Sponge.getRegistry().requireFactory(Factory.class).createArguments(type, value);
     }
 
     /**
@@ -92,7 +92,7 @@ public interface Argument<T> {
      *         due to invalid format)
      */
     static Argument<?> parse(String argument) throws IllegalArgumentException {
-        return getFactory().parseArgument(argument);
+        return Sponge.getRegistry().requireFactory(Factory.class).parseArgument(argument);
     }
 
     /**
@@ -144,4 +144,14 @@ public interface Argument<T> {
 
     }
 
+    interface Factory {
+
+        <T> Argument<T> createArgument(ArgumentType<T> type, T value);
+
+        <T> Invertible<T> createArgument(ArgumentType.Invertible<T> type, T value, boolean inverted);
+
+        <T, V> Set<Argument<T>> createArguments(ArgumentHolder<? extends ArgumentType<T>> type, V value);
+
+        Argument<?> parseArgument(String argument);
+    }
 }

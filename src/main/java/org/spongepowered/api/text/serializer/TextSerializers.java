@@ -100,7 +100,7 @@ public final class TextSerializers {
         } else if (formattingChar == FORMATTING_CODE.getCharacter()) {
             return FORMATTING_CODE;
         } else {
-            return Sponge.getRegistry().getTextFactory().createFormattingCodeSerializer(formattingChar);
+            return Sponge.getRegistry().requireFactory(Factory.class).createSerializer(formattingChar);
         }
     }
 
@@ -109,4 +109,8 @@ public final class TextSerializers {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    interface Factory {
+
+        FormattingCodeTextSerializer createSerializer(char formattingChar);
+    }
 }

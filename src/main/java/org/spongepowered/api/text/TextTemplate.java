@@ -136,7 +136,7 @@ public interface TextTemplate extends Iterable<Object>, TextRepresentable {
      */
     @SuppressWarnings("deprecation")
     static TextTemplate of(String openArg, String closeArg, Object[] elements) {
-        return Sponge.getRegistry().getTextFactory().template(openArg, closeArg, elements);
+        return Sponge.getRegistry().requireFactory(Factory.class).template(openArg, closeArg, elements);
     }
 
     /**
@@ -172,7 +172,7 @@ public interface TextTemplate extends Iterable<Object>, TextRepresentable {
      */
     @SuppressWarnings("deprecation")
     static TextTemplate of() {
-        return Sponge.getRegistry().getTextFactory().emptyTemplate();
+        return Sponge.getRegistry().requireFactory(Factory.class).emptyTemplate();
     }
 
     /**
@@ -313,5 +313,12 @@ public interface TextTemplate extends Iterable<Object>, TextRepresentable {
              */
             Arg build();
         }
+    }
+
+    interface Factory {
+
+        TextTemplate template(String openArg, String closeArg, Object[] elements);
+
+        TextTemplate emptyTemplate();
     }
 }

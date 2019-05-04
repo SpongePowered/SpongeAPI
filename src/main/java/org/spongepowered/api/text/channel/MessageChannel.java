@@ -51,45 +51,68 @@ public interface MessageChannel {
     MessageChannel TO_NONE = ImmutableSet::of;
 
     /**
-     * @see MessageChannelFactory#permission(String)
+     * Creates a message channel that targets all subjects with the given
+     * permission.
+     *
+     * @param permission The permission to target
+     * @return The channel
      */
     static MessageChannel permission(String permission) {
-        return Sponge.getRegistry().getMessageChannelFactory().permission(permission);
+        return Sponge.getRegistry().requireFactory(Factory.class).permission(permission);
     }
 
     /**
-     * @see MessageChannelFactory#combined(MessageChannel...)
+     * Creates a message channel that targets all subjects contained within the
+     * given channels and applies the message transformations of each channel in
+     * order.
+     *
+     * @param channels The channels to combine
+     * @return The channel
      */
     static MessageChannel combined(MessageChannel... channels) {
-        return Sponge.getRegistry().getMessageChannelFactory().combined(channels);
+        return Sponge.getRegistry().requireFactory(Factory.class).combined(channels);
     }
 
     /**
-     * @see MessageChannelFactory#combined(Collection)
+     * Gets a message channel that targets all subjects contained within the
+     * given channels and applies the message transformations of each channel in
+     * order.
+     *
+     * @param channels The channels to combine
+     * @return The channel
      */
     static MessageChannel combined(Collection<MessageChannel> channels) {
-        return Sponge.getRegistry().getMessageChannelFactory().combined(channels);
+        return Sponge.getRegistry().requireFactory(Factory.class).combined(channels);
     }
 
     /**
-     * @see MessageChannelFactory#fixed(MessageReceiver...)
+     * Creates a message channel that targets the given sources.
+     *
+     * @param recipients The recipients
+     * @return The channel
      */
     static MessageChannel fixed(MessageReceiver... recipients) {
-        return Sponge.getRegistry().getMessageChannelFactory().fixed(recipients);
+        return Sponge.getRegistry().requireFactory(Factory.class).fixed(recipients);
     }
 
     /**
-     * @see MessageChannelFactory#fixed(Collection)
+     * Creates a message channel that targets the given recipients.
+     *
+     * @param recipients The recipients
+     * @return The channel
      */
     static MessageChannel fixed(Collection<? extends MessageReceiver> recipients) {
-        return Sponge.getRegistry().getMessageChannelFactory().fixed(recipients);
+        return Sponge.getRegistry().requireFactory(Factory.class).fixed(recipients);
     }
 
     /**
-     * @see MessageChannelFactory#world(World)
+     * Creates a message channel that targets the given world.
+     *
+     * @param world The world
+     * @return The channel
      */
     static MessageChannel world(World world) {
-        return Sponge.getRegistry().getMessageChannelFactory().world(world);
+        return Sponge.getRegistry().requireFactory(Factory.class).world(world);
     }
 
     /**
@@ -168,9 +191,28 @@ public interface MessageChannel {
     Collection<MessageReceiver> getMembers();
 
     /**
-     * @see MessageChannelFactory#asMutable(MessageChannel)
+     * Creates a copy of this channel as a {@link MutableMessageChannel}.
+     *
+     * @return The mutable channel
      */
     default MutableMessageChannel asMutable() {
-        return Sponge.getRegistry().getMessageChannelFactory().asMutable(this);
+        return Sponge.getRegistry().requireFactory(Factory.class).asMutable(this);
+    }
+
+    interface Factory {
+
+        MessageChannel permission(String permission);
+
+        MessageChannel combined(MessageChannel... channels);
+
+        MessageChannel combined(Collection<MessageChannel> channels);
+
+        MessageChannel fixed(MessageReceiver... recipients);
+
+        MessageChannel fixed(Collection<? extends MessageReceiver> recipients);
+
+        MessageChannel world(World world);
+
+        MutableMessageChannel asMutable(MessageChannel channel);
     }
 }
