@@ -61,6 +61,9 @@ public interface OptionalValue<E> extends Value<Optional<E>> {
     OptionalValue.Mutable<E> asMutable();
 
     @Override
+    OptionalValue.Mutable<E> asMutableCopy();
+
+    @Override
     OptionalValue.Immutable<E> asImmutable();
 
     /**
@@ -99,6 +102,11 @@ public interface OptionalValue<E> extends Value<Optional<E>> {
         }
 
         @Override
+        default OptionalValue.Mutable<E> asMutableCopy() {
+            return copy();
+        }
+
+        @Override
         OptionalValue.Immutable<E> asImmutable();
     }
 
@@ -131,6 +139,11 @@ public interface OptionalValue<E> extends Value<Optional<E>> {
 
         @Override
         OptionalValue.Mutable<E> asMutable();
+
+        @Override
+        default OptionalValue.Mutable<E> asMutableCopy() {
+            return asMutable();
+        }
 
         @Override
         default OptionalValue.Immutable<E> asImmutable() {

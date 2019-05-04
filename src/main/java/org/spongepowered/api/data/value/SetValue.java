@@ -32,6 +32,9 @@ public interface SetValue<E> extends CollectionValue<E, Set<E>> {
     SetValue.Mutable<E> asMutable();
 
     @Override
+    SetValue.Mutable<E> asMutableCopy();
+
+    @Override
     SetValue.Immutable<E> asImmutable();
 
     /**
@@ -49,6 +52,11 @@ public interface SetValue<E> extends CollectionValue<E, Set<E>> {
         }
 
         @Override
+        default SetValue.Mutable<E> asMutableCopy() {
+            return copy();
+        }
+
+        @Override
         SetValue.Immutable<E> asImmutable();
     }
 
@@ -63,6 +71,11 @@ public interface SetValue<E> extends CollectionValue<E, Set<E>> {
 
         @Override
         SetValue.Mutable<E> asMutable();
+
+        @Override
+        default SetValue.Mutable<E> asMutableCopy() {
+            return asMutable();
+        }
 
         @Override
         default SetValue.Immutable<E> asImmutable() {

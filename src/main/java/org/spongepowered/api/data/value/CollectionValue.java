@@ -88,6 +88,9 @@ public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, I
     CollectionValue.Mutable<E, C, ?, ?> asMutable();
 
     @Override
+    CollectionValue.Mutable<E, C, ?, ?> asMutableCopy();
+
+    @Override
     CollectionValue.Immutable<E, C, ?, ?> asImmutable();
 
     /**
@@ -162,6 +165,11 @@ public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, I
         @Override
         M asMutable();
 
+        @Override
+        default M asMutableCopy() {
+            return asMutable();
+        }
+
         @SuppressWarnings("unchecked")
         @Override
         default I asImmutable() {
@@ -234,6 +242,11 @@ public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, I
 
         @Override
         V copy();
+
+        @Override
+        default V asMutableCopy() {
+            return copy();
+        }
 
         @SuppressWarnings("unchecked")
         @Override

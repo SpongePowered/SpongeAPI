@@ -82,6 +82,9 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
     MapValue.Mutable<K, V> asMutable();
 
     @Override
+    MapValue.Mutable<K, V> asMutableCopy();
+
+    @Override
     MapValue.Immutable<K, V> asImmutable();
 
     /**
@@ -152,6 +155,11 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
         @Override
         default MapValue.Mutable<K, V> asMutable() {
             return this;
+        }
+
+        @Override
+        default MapValue.Mutable<K, V> asMutableCopy() {
+            return copy();
         }
 
         @Override
@@ -227,6 +235,11 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
 
         @Override
         MapValue.Mutable<K, V> asMutable();
+
+        @Override
+        default MapValue.Mutable<K, V> asMutableCopy() {
+            return asMutable();
+        }
 
         @Override
         default MapValue.Immutable<K, V> asImmutable() {

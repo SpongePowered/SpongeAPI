@@ -107,6 +107,9 @@ public interface BoundedValue<E> extends Value<E> {
     BoundedValue.Mutable<E> asMutable();
 
     @Override
+    BoundedValue.Mutable<E> asMutableCopy();
+
+    @Override
     BoundedValue.Immutable<E> asImmutable();
 
     /**
@@ -131,6 +134,11 @@ public interface BoundedValue<E> extends Value<E> {
         }
 
         @Override
+        default BoundedValue.Mutable<E> asMutableCopy() {
+            return copy();
+        }
+
+        @Override
         BoundedValue.Mutable<E> copy();
 
     }
@@ -151,6 +159,11 @@ public interface BoundedValue<E> extends Value<E> {
 
         @Override
         BoundedValue.Mutable<E> asMutable();
+
+        @Override
+        default BoundedValue.Mutable<E> asMutableCopy() {
+            return asMutable();
+        }
 
         @Override
         default BoundedValue.Immutable<E> asImmutable() {

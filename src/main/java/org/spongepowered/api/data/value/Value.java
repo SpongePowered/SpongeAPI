@@ -90,18 +90,26 @@ public interface Value<E> {
      * value itself, some cases can already provide a {@link Mutable} instance
      * where this would simply return itself. In other cases, where the retrieved
      * value is an {@link Immutable} instance, a new mutable value is created
-     * with the same key, values, and defaults.
+     * with the same key and values.
      *
      * @return A mutable value
      */
     Mutable<E> asMutable();
 
     /**
+     * Retrieves a copy in the mutable form of this value. The new is created
+     * with the same key and values.
+     *
+     * @return A mutable value
+     */
+    Mutable<E> asMutableCopy();
+
+    /**
      * Retrieves an immutable form of this value. Due to the vague nature of the
      * value itself, some cases can already provide a {@link Immutable} instance
      * where this would simply return itself. In other cases, where the retrieved
      * value is a {@link Mutable} instance, a new immutable value is created
-     * with the same key, values, and defaults.
+     * with the same key and values.
      *
      * @return An immutable value
      */
@@ -143,10 +151,14 @@ public interface Value<E> {
         @Override
         Immutable<E> asImmutable();
 
-        @SuppressWarnings("unchecked")
         @Override
         default Mutable<E> asMutable() {
             return this;
+        }
+
+        @Override
+        default Mutable<E> asMutableCopy() {
+            return copy();
         }
 
         /**
@@ -215,7 +227,11 @@ public interface Value<E> {
         @Override
         Mutable<E> asMutable();
 
-        @SuppressWarnings("unchecked")
+        @Override
+        default Mutable<E> asMutableCopy() {
+            return asMutable();
+        }
+
         @Override
         default Immutable<E> asImmutable() {
             return this;

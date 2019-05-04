@@ -49,11 +49,22 @@ public interface DataProvider<V extends Value<E>, E> {
 
     DataTransactionResult offer(ValueContainer container, E element);
 
+    DataTransactionResult remove(ValueContainer container);
+
     default <I extends ImmutableValueStore<I>> Optional<I> withValue(I immutableStore, V value) {
         return with(immutableStore, value.get());
     }
 
-    <I extends ImmutableValueStore<I>> Optional<I> with(I existing, E element);
+    <I extends ImmutableValueStore<I>> Optional<I> with(I immutableStore, E element);
+
+    /**
+     * Gets a {@link ImmutableValueStore} without the target {@link Key}, if successful.
+     *
+     * @param immutableStore The immutable value store
+     * @param <I> The type of the immutable value store
+     * @return The new value store, if successful
+     */
+    <I extends ImmutableValueStore<I>> Optional<I> without(I immutableStore);
 
     boolean isSupported(ValueContainer container);
 

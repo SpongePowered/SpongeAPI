@@ -48,6 +48,7 @@ public interface ListValue<E> extends CollectionValue<E, List<E>> {
 
     @Override
     ListValue.Mutable<E> asMutable();
+
     @Override
     ListValue.Immutable<E> asImmutable();
 

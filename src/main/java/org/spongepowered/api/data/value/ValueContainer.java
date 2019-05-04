@@ -54,11 +54,19 @@ import javax.annotation.Nullable;
  */
 public interface ValueContainer {
 
-    static ValueContainer unmodifiableViewOf(Iterable<Value<?>> values) {
+    /**
+     * Creates a {@link ValueContainer} view directly based on the
+     * {@link Value}s. No unnecessary copies of the {@link Value}s
+     * will be created.
+     *
+     * @param values The values
+     * @return The value container view
+     */
+    static ValueContainer viewOf(Iterable<Value<?>> values) {
         return Sponge.getRegistry().requireFactory(Factory.class).unmodifiableViewOf(values);
     }
 
-    static ValueContainer unmodifiableViewOf(ValueContainer valueContainer) {
+    static ValueContainer viewOf(ValueContainer valueContainer) {
         return Sponge.getRegistry().requireFactory(Factory.class).unmodifiableViewOf(valueContainer);
     }
 
