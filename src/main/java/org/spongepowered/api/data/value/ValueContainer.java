@@ -27,6 +27,7 @@ package org.spongepowered.api.data.value;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableSet;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataProvider;
 import org.spongepowered.api.data.key.Key;
@@ -52,6 +53,14 @@ import javax.annotation.Nullable;
  * fundamental differences between them.</p>
  */
 public interface ValueContainer {
+
+    static ValueContainer unmodifiableViewOf(Iterable<Value<?>> values) {
+        return Sponge.getRegistry().requireFactory(Factory.class).unmodifiableViewOf(values);
+    }
+
+    static ValueContainer unmodifiableViewOf(ValueContainer valueContainer) {
+        return Sponge.getRegistry().requireFactory(Factory.class).unmodifiableViewOf(valueContainer);
+    }
 
     /**
      * Attempts to get the underlying value backed by a {@link Value}
@@ -187,17 +196,31 @@ public interface ValueContainer {
     interface Simple extends ValueContainer {
 
         /**
-         * Creates a immutable copy of this simple {@link ValueContainer}.
+         * Gets the immutable version of this simple {@link ValueContainer}.
          *
-         * @return The immutable copy
+         * @return The immutable value container
          */
         ImmutableValueStore.Simple toImmutable();
 
         /**
-         * Creates a mutable copy of this simple {@link ImmutableValueStore}.
+         * Gets the mutable version of this simple {@link ValueContainer}.
+         *
+         * @return The mutable value container
+         */
+        MutableValueStore.Simple toMutable();
+
+        /**
+         * Creates a mutable copy of this simple {@link ValueContainer}.
          *
          * @return The mutable copy
          */
-        MutableValueStore.Simple toMutable();
+        MutableValueStore.Simple toMutableCopy();
+    }
+
+    interface Factory {
+
+        ValueContainer unmodifiableViewOf(Iterable<Value<?>> values);
+
+        ValueContainer unmodifiableViewOf(ValueContainer valueContainer);
     }
 }

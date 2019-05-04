@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.data.value;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.key.Key;
 
 import java.util.Comparator;
 import java.util.function.Function;
@@ -41,6 +43,36 @@ import java.util.function.Function;
  * @param <E> The type of value that can be compared
  */
 public interface BoundedValue<E> extends Value<E> {
+
+    /**
+     * Constructs a {@link Value} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param minimum The minimum
+     * @param maximum The maximum
+     * @param <V> The value type
+     * @param <E> The element type
+     * @return The constructed value
+     */
+    static <V extends BoundedValue<E>, E> V of(Key<V> key, E element, E minimum, E maximum) {
+        return Sponge.getRegistry().requireFactory(Factory.class).of(key, element, minimum, maximum);
+    }
+
+    /**
+     * Constructs a {@link Value} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <V> The value type
+     * @param <E> The element type
+     * @return The constructed value
+     */
+    static <V extends BoundedValue<E>, E> V of(Key<V> key, E element) {
+        return Sponge.getRegistry().requireFactory(Factory.class).of(key, element);
+    }
 
     /**
      * Gets the required "minimum" value such that the value is only valid if
@@ -124,5 +156,12 @@ public interface BoundedValue<E> extends Value<E> {
         default BoundedValue.Immutable<E> asImmutable() {
             return this;
         }
+    }
+
+    interface Factory {
+
+        <V extends BoundedValue<E>, E> V of(Key<V> key, E element, E minimum, E maximum);
+
+        <V extends BoundedValue<E>, E> V of(Key<V> key, E element);
     }
 }

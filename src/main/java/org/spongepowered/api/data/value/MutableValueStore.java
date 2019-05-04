@@ -228,6 +228,11 @@ public interface MutableValueStore extends ValueContainer {
 
         @Override
         default MutableValueStore.Simple toMutable() {
+            return this;
+        }
+
+        @Override
+        default MutableValueStore.Simple toMutableCopy() {
             return copy();
         }
     }

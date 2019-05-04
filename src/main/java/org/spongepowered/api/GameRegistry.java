@@ -25,7 +25,6 @@
 package org.spongepowered.api;
 
 import org.spongepowered.api.data.type.Profession;
-import org.spongepowered.api.data.value.ValueFactory;
 import org.spongepowered.api.entity.ai.task.AITaskType;
 import org.spongepowered.api.entity.ai.task.AbstractAITask;
 import org.spongepowered.api.entity.living.Agent;
@@ -41,8 +40,8 @@ import org.spongepowered.api.registry.RegistryModule;
 import org.spongepowered.api.registry.RegistryModuleAlreadyRegisteredException;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
-import org.spongepowered.api.text.channel.MessageChannelFactory;
 import org.spongepowered.api.text.TextFactory;
+import org.spongepowered.api.text.channel.MessageChannelFactory;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.selector.SelectorFactory;
 import org.spongepowered.api.text.translation.Translation;
@@ -314,13 +313,6 @@ public interface GameRegistry {
      * @return The type
      */
     AITaskType registerAITaskType(PluginContainer plugin, String id, String name, Class<? extends AbstractAITask<? extends Agent>> aiClass);
-
-    /**
-     * Gets the {@link ValueFactory} for creating values.
-     *
-     * @return The value factory
-     */
-    ValueFactory getValueFactory();
 
     /**
      * Gets the {@link MessageChannelFactory} for creating message channels.

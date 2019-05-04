@@ -25,7 +25,9 @@
 package org.spongepowered.api.data;
 
 import com.google.common.reflect.TypeToken;
+import org.spongepowered.api.data.value.ImmutableValueStore;
 import org.spongepowered.api.data.value.MutableValueStore;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
 
 public interface DataStore {
@@ -34,6 +36,15 @@ public interface DataStore {
     TypeToken<?> getSupportedToken();
 
     //DataView serialize(Iterable<Value<?>> values, DataView view);
+
+    /**
+     * Serializes the {@link Value}s.
+     *
+     * @param values The value container
+     */
+    default DataView serialize(Iterable<Value<?>> values) {
+        return serialize(ValueContainer.unmodifiableViewOf(values));
+    }
 
     /**
      * Serializes the values from the {@link ValueContainer}.

@@ -136,6 +136,11 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I>> extends V
         default ImmutableValueStore.Simple toImmutable() {
             return this;
         }
+
+        @Override
+        default MutableValueStore.Simple toMutableCopy() {
+            return toMutable();
+        }
     }
 
     interface Factory {
