@@ -59,16 +59,34 @@ public interface Value<E> {
 
     /**
      * Constructs a {@link Value} of the appropriate type based
-     * on the given {@link Key} and the element.
+     * on the given {@link Key} and the element. The returned
+     * {@link Value} is guaranteed {@link Mutable}, meaning that
+     * calling {@link #asMutable()} will return itself.
      *
      * @param key The key
      * @param element The element
      * @param <V> The value type
      * @param <E> The element type
-     * @return The constructed value
+     * @return The constructed mutable value
      */
-    static <V extends Value<E>, E> V of(Key<V> key, E element) {
-        return Sponge.getRegistry().requireFactory(Factory.class).of(key, element);
+    static <V extends Value<E>, E> V mutableOf(Key<V> key, E element) {
+        return Sponge.getRegistry().requireFactory(Factory.class).mutableOf(key, element);
+    }
+
+    /**
+     * Constructs a {@link Value} of the appropriate type based
+     * on the given {@link Key} and the element. The returned
+     * {@link Value} is guaranteed {@link Immutable}, meaning that
+     * calling {@link #asImmutable()} will return itself.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <V> The value type
+     * @param <E> The element type
+     * @return The constructed immutable value
+     */
+    static <V extends Value<E>, E> V immutableOf(Key<V> key, E element) {
+        return Sponge.getRegistry().requireFactory(Factory.class).immutableOf(key, element);
     }
 
     /**
@@ -241,6 +259,8 @@ public interface Value<E> {
 
     interface Factory {
 
-        <V extends Value<E>, E> V of(Key<V> key, E element);
+        <V extends Value<E>, E> V mutableOf(Key<V> key, E element);
+
+        <V extends Value<E>, E> V immutableOf(Key<V> key, E element);
     }
 }

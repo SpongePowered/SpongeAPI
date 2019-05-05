@@ -38,7 +38,7 @@ public interface DataProvider<V extends Value<E>, E> {
     Key<V> getKey();
 
     default Optional<V> getValue(ValueContainer container) {
-        return get(container).map(element -> Value.of(getKey(), element));
+        return get(container).map(element -> Value.mutableOf(getKey(), element));
     }
 
     Optional<E> get(ValueContainer container);

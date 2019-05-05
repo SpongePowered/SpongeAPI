@@ -34,7 +34,10 @@ import javax.annotation.Nullable;
 public interface OptionalValue<E> extends Value<Optional<E>> {
 
     /**
-     * Constructs a {@link OptionalValue} for the given {@link Key} and element.
+     * Constructs a mutable {@link OptionalValue} for the
+     * given {@link Key} and element. The returned {@link Value}
+     * is guaranteed {@link Mutable}, meaning that calling
+     * {@link #asMutable()} will return itself.
      *
      * @param key The key
      * @param element The element
@@ -42,8 +45,24 @@ public interface OptionalValue<E> extends Value<Optional<E>> {
      * @param <E> The element type
      * @return The constructed value
      */
-    static <V extends OptionalValue<E>, E> V of(Key<V> key, @Nullable E element) {
-        return Value.of(key, Optional.ofNullable(element));
+    static <V extends OptionalValue<E>, E> V mutableOf(Key<V> key, @Nullable E element) {
+        return Value.mutableOf(key, Optional.ofNullable(element));
+    }
+
+    /**
+     * Constructs a immutable {@link OptionalValue} for the
+     * given {@link Key} and element. The returned {@link Value}
+     * is guaranteed {@link Immutable}, meaning that calling
+     * {@link #asImmutable()} will return itself.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <V> The value type
+     * @param <E> The element type
+     * @return The constructed value
+     */
+    static <V extends OptionalValue<E>, E> V immutableOf(Key<V> key, @Nullable E element) {
+        return Value.immutableOf(key, Optional.ofNullable(element));
     }
 
     /**
