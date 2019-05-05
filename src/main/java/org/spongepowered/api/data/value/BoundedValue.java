@@ -45,8 +45,11 @@ import java.util.function.Function;
 public interface BoundedValue<E> extends Value<E> {
 
     /**
-     * Constructs a {@link Value} of the appropriate type based
-     * on the given {@link Key} and the element.
+     * Constructs a mutable {@link Value} of the appropriate
+     * type based on the given {@link Key} and the element.
+     * The returned {@link Value} is guaranteed {@link Mutable},
+     * this means that calling {@link #asMutable()} will return
+     * itself.
      *
      * @param key The key
      * @param element The element
@@ -54,24 +57,63 @@ public interface BoundedValue<E> extends Value<E> {
      * @param maximum The maximum
      * @param <V> The value type
      * @param <E> The element type
-     * @return The constructed value
+     * @return The constructed mutable bounded value
      */
-    static <V extends BoundedValue<E>, E> V of(Key<V> key, E element, E minimum, E maximum) {
-        return Sponge.getRegistry().requireFactory(Factory.class).of(key, element, minimum, maximum);
+    static <V extends BoundedValue<E>, E> V mutableOf(Key<V> key, E element, E minimum, E maximum) {
+        return Sponge.getRegistry().requireFactory(Factory.class).mutableOf(key, element, minimum, maximum);
     }
 
     /**
-     * Constructs a {@link Value} of the appropriate type based
-     * on the given {@link Key} and the element.
+     * Constructs a immutable {@link Value} of the appropriate
+     * type based on the given {@link Key} and the element.
+     * The returned {@link Value} is guaranteed {@link Immutable},
+     * this means that calling {@link #asImmutable()} will return
+     * itself.
+     *
+     * @param key The key
+     * @param element The element
+     * @param minimum The minimum
+     * @param maximum The maximum
+     * @param <V> The value type
+     * @param <E> The element type
+     * @return The constructed immutable bounded value
+     */
+    static <V extends BoundedValue<E>, E> V immutableOf(Key<V> key, E element, E minimum, E maximum) {
+        return Sponge.getRegistry().requireFactory(Factory.class).immutableOf(key, element, minimum, maximum);
+    }
+
+    /**
+     * Constructs a mutable {@link Value} of the appropriate
+     * type based on the given {@link Key} and the element.
+     * The returned {@link Value} is guaranteed {@link Mutable},
+     * this means that calling {@link #asMutable()} will return
+     * itself.
      *
      * @param key The key
      * @param element The element
      * @param <V> The value type
      * @param <E> The element type
-     * @return The constructed value
+     * @return The constructed mutable bounded value
      */
-    static <V extends BoundedValue<E>, E> V of(Key<V> key, E element) {
-        return Sponge.getRegistry().requireFactory(Factory.class).of(key, element);
+    static <V extends BoundedValue<E>, E> V mutableOf(Key<V> key, E element) {
+        return Sponge.getRegistry().requireFactory(Factory.class).mutableOf(key, element);
+    }
+
+    /**
+     * Constructs a immutable {@link Value} of the appropriate
+     * type based on the given {@link Key} and the element.
+     * The returned {@link Value} is guaranteed {@link Immutable},
+     * this means that calling {@link #asImmutable()} will return
+     * itself.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <V> The value type
+     * @param <E> The element type
+     * @return The constructed immutable bounded value
+     */
+    static <V extends BoundedValue<E>, E> V immutableOf(Key<V> key, E element) {
+        return Sponge.getRegistry().requireFactory(Factory.class).immutableOf(key, element);
     }
 
     /**
@@ -173,8 +215,12 @@ public interface BoundedValue<E> extends Value<E> {
 
     interface Factory {
 
-        <V extends BoundedValue<E>, E> V of(Key<V> key, E element, E minimum, E maximum);
+        <V extends BoundedValue<E>, E> V mutableOf(Key<V> key, E element, E minimum, E maximum);
 
-        <V extends BoundedValue<E>, E> V of(Key<V> key, E element);
+        <V extends BoundedValue<E>, E> V mutableOf(Key<V> key, E element);
+
+        <V extends BoundedValue<E>, E> V immutableOf(Key<V> key, E element, E minimum, E maximum);
+
+        <V extends BoundedValue<E>, E> V immutableOf(Key<V> key, E element);
     }
 }

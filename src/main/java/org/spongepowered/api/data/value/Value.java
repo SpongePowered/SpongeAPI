@@ -60,7 +60,7 @@ public interface Value<E> {
     /**
      * Constructs a {@link Value} of the appropriate type based
      * on the given {@link Key} and the element. The returned
-     * {@link Value} is guaranteed {@link Mutable}, meaning that
+     * {@link Value} is guaranteed {@link Mutable}, this means that
      * calling {@link #asMutable()} will return itself.
      *
      * @param key The key
@@ -76,7 +76,7 @@ public interface Value<E> {
     /**
      * Constructs a {@link Value} of the appropriate type based
      * on the given {@link Key} and the element. The returned
-     * {@link Value} is guaranteed {@link Immutable}, meaning that
+     * {@link Value} is guaranteed {@link Immutable}, this means that
      * calling {@link #asImmutable()} will return itself.
      *
      * @param key The key

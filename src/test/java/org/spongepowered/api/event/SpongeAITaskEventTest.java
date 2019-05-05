@@ -37,7 +37,7 @@ import org.spongepowered.api.event.cause.EventContext;
 
 @SuppressWarnings({"rawtypes"})
 public class SpongeAITaskEventTest {
-    
+
     @Test
     public void testValidTargetAgentAndGoalOwner() {
         Agent targetEntity = mock(Agent.class);

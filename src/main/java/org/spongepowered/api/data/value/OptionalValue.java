@@ -36,7 +36,7 @@ public interface OptionalValue<E> extends Value<Optional<E>> {
     /**
      * Constructs a mutable {@link OptionalValue} for the
      * given {@link Key} and element. The returned {@link Value}
-     * is guaranteed {@link Mutable}, meaning that calling
+     * is guaranteed {@link Mutable}, this means that calling
      * {@link #asMutable()} will return itself.
      *
      * @param key The key
@@ -52,7 +52,7 @@ public interface OptionalValue<E> extends Value<Optional<E>> {
     /**
      * Constructs a immutable {@link OptionalValue} for the
      * given {@link Key} and element. The returned {@link Value}
-     * is guaranteed {@link Immutable}, meaning that calling
+     * is guaranteed {@link Immutable}, this means that calling
      * {@link #asImmutable()} will return itself.
      *
      * @param key The key
