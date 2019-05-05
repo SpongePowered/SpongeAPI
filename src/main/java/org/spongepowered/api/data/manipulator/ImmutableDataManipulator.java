@@ -24,11 +24,14 @@
  */
 package org.spongepowered.api.data.manipulator;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.spongepowered.api.data.key.Key;
+import org.spongepowered.api.data.value.ImmutableValueStore;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
 
-import java.util.Optional;
+import java.util.function.Function;
 
 /**
  * An {@code ImmutableDataManipulator} is an immutable {@link ValueContainer}
@@ -39,11 +42,20 @@ import java.util.Optional;
  * <p>As with {@link DataManipulator}, it is always possible to translate back
  * and forth between mutable and immutable with {@link #asMutable()} and
  * {@link DataManipulator#asImmutable()}.</p>
- *
- * @param <I> The type of immutable data manipulator
- * @param <M> The type of mutable data manipulator
  */
-public interface ImmutableDataManipulator extends ValueContainer {  // TODO: Bye bye
+public interface ImmutableDataManipulator extends ValueContainer {
+
+    /**
+     * Gets whether the {@link Key} is supported, which is always
+     * {@code true} in {@link ImmutableDataManipulator}s.
+     *
+     * @param key The key to check
+     * @return Whether the key is supported
+     */
+    @Override
+    default boolean supports(Key<?> key) {
+        return true;
+    }
 
     /**
      * Creates a new {@link ImmutableDataManipulator} with the provided value
@@ -53,29 +65,48 @@ public interface ImmutableDataManipulator extends ValueContainer {  // TODO: Bye
      * @param key The key to use
      * @param value The value to set
      * @param <E> The type of value
-     * @return The new immutable data manipulator, if compatible
+     * @return The new immutable data manipulator
      */
-    default <E> Optional<ImmutableDataManipulator> with(Key<? extends Value<E>> key, E value) {
-        DataManipulator data = asMutable();
-        return data.supports(key) ? Optional.of(data.set(key, value).asImmutable()) : Optional.empty();
+    default <E> ImmutableDataManipulator with(Key<? extends Value<E>> key, E value) {
+        return asMutable().set(key, value).asImmutable();
+    }
+
+    /**
+     * Creates a new {@link ImmutableDataManipulator} without the given {@link Key}.
+     *
+     * @param key The key to use
+     * @return The new immutable data manipulator
+     */
+    default ImmutableDataManipulator without(Key<?> key) {
+        return asMutable().remove(key).asImmutable();
     }
 
     /**
      * Creates a new {@link ImmutableDataManipulator} with the provided
      * {@link Value} provided that the {@link Value} is supported by
-     * this {@link ImmutableDataManipulator}. A simple check can be called for
-     * {@link #supports(Value)} prior to ensure
-     * {@link Optional#isPresent()} returns {@code true}.
+     * this {@link ImmutableDataManipulator}.
      *
      * @param value The value to set
-     * @return The new immutable data manipulator, if compatible
+     * @return The new immutable data manipulator
      */
-    @SuppressWarnings("unchecked")
-    default Optional<ImmutableDataManipulator> with(Value<?> value) {
-        return with((Key<? extends Value<Object>>) value.getKey(), value.get());
+    default <E> ImmutableDataManipulator with(Value<E> value) {
+        return with(value.getKey(), value.get());
     }
 
-    @SuppressWarnings("unchecked")
+    /**
+     * Applies a transformation on the provided value if the key is available. This
+     * is the same as {@link ImmutableValueStore#transform(Key, Function)}.
+     *
+     * @param key The key to use
+     * @param function The function to apply
+     * @param <E> The type of element
+     * @return This manipulator, for chaining
+     */
+    default <E> ImmutableDataManipulator transform(Key<? extends Value<E>> key, Function<E, E> function) {
+        checkNotNull(function, "function");
+        return get(key).map(element -> with(key, checkNotNull(function.apply(element)))).orElse(this);
+    }
+
     @Override
     default ImmutableDataManipulator copy() {
         return this;

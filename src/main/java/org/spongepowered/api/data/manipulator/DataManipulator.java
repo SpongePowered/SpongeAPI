@@ -24,10 +24,9 @@
  */
 package org.spongepowered.api.data.manipulator;
 
-import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.spongepowered.api.data.DataContainer;
+import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.merge.MergeFunction;
@@ -36,8 +35,8 @@ import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.util.annotation.eventgen.TransformWith;
 
-import java.util.Optional;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 /**
  * Represents a changelist of data that can be applied to a {@link DataHolder}.
@@ -49,65 +48,131 @@ import java.util.function.Function;
  * with specialized {@link Function}s to use {@link #transform(Key, Function)}
  * such that the {@link DataManipulator} is always returned.</p>
  */
-public interface DataManipulator extends ValueContainer { // TODO: Bye bye
+public interface DataManipulator extends ValueContainer {
 
     /**
-     * Attempts to read data from the given {@link DataHolder} and fills the
-     * associated data onto this {@link DataManipulator}.
+     * Attempts to read data from the given {@link ValueContainer} and fills the
+     * associated data onto this {@link DataManipulator}. Only {@link Key}s
+     * that match the predicate will be copied.
      *
-     * <p>Any data that overlaps existing data from the {@link DataHolder} will
+     * <p>Any data that overlaps existing data from the {@link ValueContainer} will
      * take priority and be overwritten from the pre-existing data from the
-     * {@link DataHolder}. It is recommended that a call from
-     * {@link DataHolder#supports(Class)} is checked prior to using this
-     * method on any {@link DataHolder}.</p>
+     * {@link ValueContainer}.
      *
-     * @param dataHolder The {@link DataHolder} to extract data
+     * @param valueContainer The {@link ValueContainer} to copy data from
      * @return This {@link DataManipulator} with relevant data filled from the
-     *     given {@link DataHolder}, if compatible
+     *           given {@link ValueContainer}
      */
-    default Optional<DataManipulator> fill(DataHolder dataHolder) {
-        return fill(dataHolder, MergeFunction.IGNORE_ALL);
+    DataManipulator copyFrom(ValueContainer valueContainer, Predicate<Key<?>> predicate);
+
+    /**
+     * Attempts to read data from the given {@link ValueContainer} and fills the
+     * associated data onto this {@link DataManipulator}. Only the values of
+     * the provided {@link Key}s will be copied if present.
+     *
+     * <p>Any data that overlaps existing data from the {@link ValueContainer} will
+     * take priority and be overwritten from the pre-existing data from the
+     * {@link ValueContainer}.
+     *
+     * @param valueContainer The {@link ValueContainer} to copy data from
+     * @return This {@link DataManipulator} with relevant data filled from the
+     *           given {@link ValueContainer}
+     */
+    default DataManipulator copyFrom(ValueContainer valueContainer, Key<?> first, Key<?>... more) {
+        return copyFrom(valueContainer, MergeFunction.IGNORE_ALL, first, more);
     }
 
     /**
-     * Attempts to read data from the given {@link DataHolder} and fills the
+     * Attempts to read data from the given {@link ValueContainer} and fills the
+     * associated data onto this {@link DataManipulator}. Only the values of
+     * the provided {@link Key}s will be copied if present. Any data that
+     * overlaps between this and the given {@link DataHolder} will be resolved
+     * using the given {@link MergeFunction}.
+     *
+     * <p>Any data that overlaps existing data from the {@link ValueContainer} will
+     * take priority and be overwritten from the pre-existing data from the
+     * {@link ValueContainer}.
+     *
+     * @param valueContainer The {@link ValueContainer} to copy data from
+     * @param overlap The overlap resolver to decide which value to retain
+     * @return This {@link DataManipulator} with relevant data filled from the
+     *           given {@link ValueContainer}
+     */
+    default DataManipulator copyFrom(ValueContainer valueContainer, MergeFunction overlap, Key<?> first, Key<?>... more) {
+        return copyFrom(valueContainer, overlap, ImmutableList.<Key<?>>builder().add(first).add(more).build());
+    }
+
+    /**
+     * Attempts to read data from the given {@link ValueContainer} and fills the
+     * associated data onto this {@link DataManipulator}. Only the values of
+     * the provided {@link Key}s will be copied if present.
+     *
+     * <p>Any data that overlaps existing data from the {@link ValueContainer} will
+     * take priority and be overwritten from the pre-existing data from the
+     * {@link ValueContainer}.
+     *
+     * @param valueContainer The {@link ValueContainer} to copy data from
+     * @return This {@link DataManipulator} with relevant data filled from the
+     *           given {@link ValueContainer}
+     */
+    default DataManipulator copyFrom(ValueContainer valueContainer, Iterable<Key<?>> keys) {
+        return copyFrom(valueContainer, MergeFunction.IGNORE_ALL, keys);
+    }
+
+    /**
+     * Attempts to read data from the given {@link ValueContainer} and fills the
+     * associated data onto this {@link DataManipulator}. Only the values of
+     * the provided {@link Key}s will be copied if present. Any data that
+     * overlaps between this and the given {@link DataHolder} will be resolved
+     * using the given {@link MergeFunction}.
+     *
+     * <p>Any data that overlaps existing data from the {@link ValueContainer} will
+     * take priority and be overwritten from the pre-existing data from the
+     * {@link ValueContainer}.
+     *
+     * @param valueContainer The {@link ValueContainer} to copy data from
+     * @param overlap The overlap resolver to decide which value to retain
+     * @return This {@link DataManipulator} with relevant data filled from the
+     *           given {@link ValueContainer}
+     */
+    DataManipulator copyFrom(ValueContainer valueContainer, MergeFunction overlap, Iterable<Key<?>> keys);
+
+    /**
+     * Attempts to read data from the given {@link ValueContainer} and fills the
+     * associated data onto this {@link DataManipulator}.
+     *
+     * <p>Any values that overlaps existing values from the {@link ValueContainer} will
+     * take priority and be overwritten from the pre-existing data from the
+     * {@link ValueContainer}.
+     *
+     * @param valueContainer The {@link ValueContainer} to extract data from
+     * @return This {@link DataManipulator} with relevant data filled from the
+     *           given {@link DataHolder}
+     */
+    default DataManipulator copyFrom(ValueContainer valueContainer) {
+        return copyFrom(valueContainer, MergeFunction.IGNORE_ALL);
+    }
+
+    /**
+     * Attempts to read data from the given {@link ValueContainer} and fills the
      * associated data onto this {@link DataManipulator}. Any data that
      * overlaps between this and the given {@link DataHolder} will be resolved
      * using the given {@link MergeFunction}.
      *
-     * <p>Any data that overlaps existing data from the {@link DataHolder} will
+     * <p>Any values that overlaps existing values from the {@link ValueContainer} will
      * take priority and be overwritten from the pre-existing data from the
-     * {@link DataHolder}. It is recommended that a call from
-     * {@link DataHolder#supports(Class)} is checked prior to using this
-     * method on any {@link DataHolder}.</p>
+     * {@link ValueContainer}.
      *
-     * @param dataHolder The {@link DataHolder} to extract data
-     * @param overlap The overlap resolver to decide which data to retain
+     * @param valueContainer The {@link ValueContainer} to extract data from
      * @return This {@link DataManipulator} with relevant data filled from the
-     *     given {@link DataHolder}, if compatible
+     *           given {@link DataHolder}
      */
-    Optional<DataManipulator> fill(DataHolder dataHolder, MergeFunction overlap);
+    DataManipulator copyFrom(ValueContainer valueContainer, MergeFunction overlap);
 
     /**
-     * Attempts to read the raw data from the provided {@link DataContainer}.
-     * This manipulator should be "reset" to a default state and apply all data
-     * from the given {@link DataContainer}. If data is missing from the
-     * {@link DataContainer}, {@link Optional#empty()} can be returned.
-     *
-     * @param container The container of raw data
-     * @return This {@link DataManipulator} with relevant data filled from the
-     *     given {@link DataContainer}, if compatible
-     */
-    Optional<DataManipulator> from(DataContainer container);
-
-    /**
-     * Sets the supported {@link Key}'s value such that the value is set on
+     * Sets the {@link Key}'s value such that the value is set on
      * this {@link DataManipulator} without having to directly set the
-     * {@link Value.Mutable} and {@link #set(Value)} afterwards. The requirement
-     * for this to succeed is that the {@link Key} must be checked that it is
-     * supported via {@link #supports(Value)} or {@link #supports(Key)}
-     * otherwise an {@link IllegalArgumentException} may be thrown. For
-     * fluency, after setting, this {@link DataManipulator} is returned.
+     * {@link Value.Mutable} and {@link #set(Value)} afterwards.
      *
      * @param key The key of the value to set
      * @param value The actual value to set
@@ -116,28 +181,20 @@ public interface DataManipulator extends ValueContainer { // TODO: Bye bye
      */
     <E> DataManipulator set(Key<? extends Value<E>> key, E value);
 
+    DataManipulator remove(Key<?> key);
+
     /**
-     * Sets the supported {@link Value} onto this {@link DataManipulator}.
-     * The requirement for this to succeed is that the {@link Value} is
-     * checked for support via {@link #supports(Value)} or
-     * {@link #supports(Key)} otherwise an {@link IllegalArgumentException}
-     * may be thrown. For fluency, after setting, this {@link DataManipulator}
-     * is returned.
+     * Sets the {@link Value} onto this {@link DataManipulator}.
      *
      * @param value The actual value to set
      * @return This manipulator, for chaining
      */
-    default DataManipulator set(Value<?> value) {
-        return set((Key<? extends Value<Object>>) value.getKey(), value.get());
+    default <E> DataManipulator set(Value<E> value) {
+        return set(value.getKey(), value.get());
     }
 
     /**
-     * Sets the supported {@link Value}s onto this {@link DataManipulator}.
-     * The requirement for this to succeed is that the {@link Value} is
-     * checked for support via {@link #supports(Value)} or
-     * {@link #supports(Key)} otherwise an {@link IllegalArgumentException}
-     * may be thrown. For fluency, after setting, this {@link DataManipulator}
-     * is returned.
+     * Sets the {@link Value}s onto this {@link DataManipulator}.
      *
      * @param values The actual values to set
      * @return This manipulator, for chaining
@@ -154,12 +211,7 @@ public interface DataManipulator extends ValueContainer { // TODO: Bye bye
     }
 
     /**
-     * Sets the supported {@link Value}s onto this {@link DataManipulator}.
-     * The requirement for this to succeed is that the {@link Value} is
-     * checked for support via {@link #supports(Value)} or
-     * {@link #supports(Key)} otherwise an {@link IllegalArgumentException}
-     * may be thrown. For fluency, after setting, this {@link DataManipulator}
-     * is returned.
+     * Sets the {@link Value}s onto this {@link DataManipulator}.
      *
      * @param values The actual values to set
      * @return This manipulator, for chaining
@@ -176,8 +228,8 @@ public interface DataManipulator extends ValueContainer { // TODO: Bye bye
     }
 
     /**
-     * Applies a transformation on the provided value if available. This is
-     * the same as {@link MutableValueStore#transform(Key, Function)}.
+     * Applies a transformation on the provided value if the key is available. This
+     * is the same as {@link MutableValueStore#transform(Key, Function)}.
      *
      * @param key The key to use
      * @param function The function to apply
@@ -185,8 +237,9 @@ public interface DataManipulator extends ValueContainer { // TODO: Bye bye
      * @return This manipulator, for chaining
      */
     default <E> DataManipulator transform(Key<? extends Value<E>> key, Function<E, E> function) {
-        checkArgument(supports(key), "The provided key is not supported!" + key.toString());
-        return set(key, checkNotNull(function.apply(get(key).get()), "The function can not be returning null!"));
+        checkNotNull(function, "function");
+        get(key).ifPresent(element -> set(key, checkNotNull(function.apply(element))));
+        return this;
     }
 
     @TransformWith

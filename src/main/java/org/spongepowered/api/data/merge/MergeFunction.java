@@ -26,7 +26,6 @@ package org.spongepowered.api.data.merge;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.spongepowered.api.data.value.MutableValueStore;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
 
@@ -36,7 +35,7 @@ import javax.annotation.Nullable;
 
 /**
  * Represents a unique form of {@link Function} that attempts to merge
- * two separate {@link ValueContainer}s into a singular {@link ValueContainer}.
+ * two separate {@link Value}s into a singular {@link Value}.
  * A merge function is similar to a {@link Function} such that it can be reused
  * for multiple purposes and should be "stateless" on its own.
  */
@@ -44,10 +43,9 @@ import javax.annotation.Nullable;
 public interface MergeFunction {
 
     /**
-     * Performs a merge of a type of {@link ValueContainer} such that a merge
-     * of the contained {@link Value}s has been performed and the resulting
-     * merged {@link ValueContainer} is returned. It is suffice to say that
-     * only one of the {@link ValueContainer} containers may be {@code null},
+     * Performs a merge of a type of {@link Value} such that a merge has been
+     * performed and the resulting merged {@link Value} is returned. It is
+     * suffice to say that only one of the {@link Value}s may be {@code null},
      * such that <pre> {@code
      * if (original == null) {
      *     return checkNotNull(replacement);
@@ -60,21 +58,12 @@ public interface MergeFunction {
      * It can be therefor discerned that both values are passed in as copies
      * and therefor either one can be modified and returned.
      *
-     * <p>Since
-     * {@link MutableValueStore#copyFrom(ValueContainer, MergeFunction)}
-     * accepts only a single {@link MergeFunction}, and a
-     * {@link MutableValueStore} may have multiple {@link ValueContainer}s,
-     * as provided by {@link MutableValueStore#getContainers()}, the merge
-     * function may be called for every single number of {@link ValueContainer}.
-     * This way, a {@link MergeFunction} can be fully customized to merge
-     * specific {@link ValueContainer}s of matching types.</p>
-     *
-     * @param original The original {@link ValueContainer} from the value store
-     * @param replacement The replacing value container
-     * @param <C> The type of {@link ValueContainer}
-     * @return The "merged" {@link ValueContainer}
+     * @param original The original value from the value store
+     * @param replacement The replacing value
+     * @param <V> The type of the value
+     * @return The "merged" value
      */
-    <C extends ValueContainer> C merge(@Nullable C original, @Nullable C replacement);
+    <V extends Value<E>, E> V merge(@Nullable V original, @Nullable V replacement);
 
     /**
      * Creates a new {@link MergeFunction} chaining this current merge function
@@ -92,7 +81,7 @@ public interface MergeFunction {
         final MergeFunction self = this;
         return new MergeFunction() {
             @Override
-            public <C extends ValueContainer> C merge(@Nullable C original, @Nullable C replacement) {
+            public <V extends Value<E>, E> V merge(@Nullable V original, @Nullable V replacement) {
                 return that.merge(self.merge(original, replacement), replacement);
             }
         };
@@ -104,7 +93,7 @@ public interface MergeFunction {
      */
     MergeFunction IGNORE_ALL = new MergeFunction() {
         @Override
-        public <C extends ValueContainer> C merge(@Nullable C original, @Nullable C replacement) {
+        public <V extends Value<E>, E> V merge(@Nullable V original, @Nullable V replacement) {
             return replacement == null ? checkNotNull(original, "Original and replacement cannot be null!") : replacement;
         }
     };
@@ -115,7 +104,7 @@ public interface MergeFunction {
      */
     MergeFunction FORCE_NOTHING = new MergeFunction() {
         @Override
-        public <C extends ValueContainer> C merge(@Nullable C original, @Nullable C replacement) {
+        public <V extends Value<E>, E> V merge(@Nullable V original, @Nullable V replacement) {
             return original == null ? checkNotNull(replacement, "Replacement and original cannot be null!") : original;
         }
     };
