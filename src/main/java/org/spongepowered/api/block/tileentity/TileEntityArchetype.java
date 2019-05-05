@@ -36,7 +36,6 @@ import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
 
 /**
  * Represents the data of a {@link TileEntity} which does not exist in the world

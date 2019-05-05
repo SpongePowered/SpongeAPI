@@ -24,12 +24,9 @@
  */
 package org.spongepowered.api.data;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.data.value.ImmutableValueStore;
 import org.spongepowered.api.data.value.Value;
-
-import java.util.List;
 
 /**
  * A type of {@link DataHolder} variant that is completely immutable once
@@ -43,15 +40,6 @@ import java.util.List;
  * @see DataHolder
  * @param <T> The sub type of immutable data holder
  */
-public interface ImmutableDataHolder<T extends ImmutableDataHolder<T>> extends DataSerializable, PropertyHolder,
-        ImmutableValueStore<T> {
-
-    /**
-     * Gets a copy of all properties defined on this
-     * {@link ImmutableDataHolder}, with their current values.
-     *
-     * @return A collection of all known manipulators
-     */
-    List<ImmutableDataManipulator> getManipulators();
+public interface ImmutableDataHolder<T extends ImmutableDataHolder<T>> extends DataSerializable, PropertyHolder, ImmutableValueStore<T> {
 
 }

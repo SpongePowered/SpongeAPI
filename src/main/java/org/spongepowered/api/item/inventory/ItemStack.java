@@ -36,7 +36,6 @@ import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.ItemType;
@@ -133,8 +132,8 @@ public interface ItemStack extends DataHolder, Translatable {
     int getMaxStackQuantity();
 
     /**
-     * Gets the {@link ItemStackSnapshot} of this {@link ItemStack}. All known
-     * {@link DataManipulator}s existing on this {@link ItemStack} are added
+     * Gets the {@link ItemStackSnapshot} of this {@link ItemStack}. All
+     * known {@link Value}s existing on this {@link ItemStack} are added
      * as copies to the {@link ItemStackSnapshot}.
      *
      * @return The newly created item stack snapshot
@@ -201,16 +200,6 @@ public interface ItemStack extends DataHolder, Translatable {
          *      with the item
          */
         Builder add(DataManipulator itemData) throws IllegalArgumentException;
-
-        /**
-         * Sets the {@link ImmutableDataManipulator} to add to the
-         * {@link ItemStack}.
-         *
-         * @param itemData The item data to set
-         * @return This builder, for chaining
-         * @throws IllegalArgumentException If the item data is incompatible
-         */
-        Builder add(ImmutableDataManipulator itemData) throws IllegalArgumentException;
 
         /**
          * Adds a {@link Key} and related {@link Object} value to apply to the
@@ -282,8 +271,6 @@ public interface ItemStack extends DataHolder, Translatable {
          * @return This builder, for chaining
          */
         Builder fromBlockSnapshot(BlockSnapshot blockSnapshot);
-
-        Builder remove(Class<? extends DataManipulator> manipulatorClass);
 
         default Builder apply(Predicate<Builder> predicate, Consumer<Builder> consumer) {
             if (predicate.test(this)) {

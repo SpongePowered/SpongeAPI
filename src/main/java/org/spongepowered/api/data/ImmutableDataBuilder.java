@@ -26,7 +26,6 @@ package org.spongepowered.api.data;
 
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.value.Value;
 
@@ -53,20 +52,14 @@ public interface ImmutableDataBuilder<H extends ImmutableDataHolder<H>, E extend
         return (E) add((Key) value.getKey(), value.get());
     }
 
-    @SuppressWarnings("unchecked")
-    default E add(DataManipulator manipulator) {
-        manipulator.getValues().forEach(this::add);
-        return (E) this;
-    }
-
     /**
-     * Adds the given {@link ImmutableDataManipulator} to the builder.
+     * Adds the given {@link DataManipulator} to the builder.
      *
      * @param manipulator The manipulator to add
      * @return This builder, for chaining
      */
     @SuppressWarnings("unchecked")
-    default E add(ImmutableDataManipulator manipulator) {
+    default E add(DataManipulator manipulator) {
         manipulator.getValues().forEach(this::add);
         return (E) this;
     }

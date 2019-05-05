@@ -26,6 +26,7 @@ package org.spongepowered.api.data.manipulator;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.ImmutableValueStore;
 import org.spongepowered.api.data.value.Value;
@@ -38,12 +39,27 @@ import java.util.function.Function;
  * such that once it is created, any {@link Value}s exist as
  * {@link Value.Immutable}s. Any modification methods result in new instances of
  * the same typed {@link ImmutableDataManipulator}.
- *
- * <p>As with {@link DataManipulator}, it is always possible to translate back
- * and forth between mutable and immutable with {@link #asMutable()} and
- * {@link DataManipulator#asImmutable()}.</p>
  */
-public interface ImmutableDataManipulator extends ValueContainer {
+public interface ImmutableDataManipulator extends DataManipulator {
+
+    /**
+     * Gets a empty {@link ImmutableValueStore}.
+     *
+     * @return The empty immutable data manipulator
+     */
+    static ImmutableDataManipulator empty() {
+        return Sponge.getRegistry().requireFactory(Factory.class).of();
+    }
+
+    /**
+     * Gets a {@link ImmutableValueStore} with the given values.
+     *
+     * @param values The values
+     * @return The immutable data manipulator
+     */
+    static ImmutableDataManipulator of(Iterable<? extends Value<?>> values) {
+        return Sponge.getRegistry().requireFactory(Factory.class).of(values);
+    }
 
     /**
      * Gets whether the {@link Key} is supported, which is always
@@ -112,16 +128,15 @@ public interface ImmutableDataManipulator extends ValueContainer {
         return this;
     }
 
-    /**
-     * Gets a {@link DataManipulator} copy of this
-     * {@link ImmutableDataManipulator} such that all backed
-     * {@link Value.Immutable}s are copied into their {@link Value.Mutable}
-     * counterparts. Any changes to this {@link ImmutableDataManipulator} will
-     * NOT be reflected on the returned {@link DataManipulator} and vice versa.
-     *
-     * @return This {@link ImmutableDataManipulator}'s data copied into a
-     *     {@link DataManipulator}
-     */
-    DataManipulator asMutable();
+    @Override
+    default ImmutableDataManipulator asImmutable() {
+        return this;
+    }
 
+    interface Factory {
+
+        ImmutableDataManipulator of();
+
+        ImmutableDataManipulator of(Iterable<? extends Value<?>> values);
+    }
 }

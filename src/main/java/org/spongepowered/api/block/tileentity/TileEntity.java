@@ -27,7 +27,8 @@ package org.spongepowered.api.block.tileentity;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.MutableDataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.LocatableBlock;
 import org.spongepowered.api.world.Location;
@@ -45,7 +46,7 @@ import org.spongepowered.api.world.schematic.Schematic;
  * <p>Since a {@link TileEntity} is performing various actions, all methods
  * that are purely functional methods reside in the {@link TileEntity}, whereas
  * customizable data associated with a {@link TileEntity} is represented by
- * {@link DataManipulator}.</p>
+ * {@link Value}s.</p>
  */
 public interface TileEntity extends DataHolder, Locatable {
 

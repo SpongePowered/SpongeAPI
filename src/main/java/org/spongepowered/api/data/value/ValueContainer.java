@@ -27,9 +27,7 @@ package org.spongepowered.api.data.value;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableSet;
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.DataProvider;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 
@@ -53,22 +51,6 @@ import javax.annotation.Nullable;
  * fundamental differences between them.</p>
  */
 public interface ValueContainer {
-
-    /**
-     * Creates a {@link ValueContainer} view directly based on the
-     * {@link Value}s. No unnecessary copies of the {@link Value}s
-     * will be created.
-     *
-     * @param values The values
-     * @return The value container view
-     */
-    static ValueContainer viewOf(Iterable<Value<?>> values) {
-        return Sponge.getRegistry().requireFactory(Factory.class).unmodifiableViewOf(values);
-    }
-
-    static ValueContainer viewOf(ValueContainer valueContainer) {
-        return Sponge.getRegistry().requireFactory(Factory.class).unmodifiableViewOf(valueContainer);
-    }
 
     /**
      * Attempts to get the underlying value backed by a {@link Value}
@@ -96,7 +78,7 @@ public interface ValueContainer {
      * @throws NoSuchElementException If the value is not supported or present
      */
     default <E> E require(Key<? extends Value<E>> key) {
-        final Optional<E> optional = this.get(key);
+        final Optional<E> optional = get(key);
         if (optional.isPresent()) {
             return optional.get();
         }
@@ -195,40 +177,4 @@ public interface ValueContainer {
      * @return An immutable set of copied values
      */
     Set<Value.Immutable<?>> getValues();
-
-    /**
-     * A simple version of the {@link ValueContainer}. By default will the simple
-     * {@link ImmutableValueStore} support every {@link Key} unless a bound
-     * {@link DataProvider} said otherwise.
-     */
-    interface Simple extends ValueContainer {
-
-        /**
-         * Gets the immutable version of this simple {@link ValueContainer}.
-         *
-         * @return The immutable value container
-         */
-        ImmutableValueStore.Simple toImmutable();
-
-        /**
-         * Gets the mutable version of this simple {@link ValueContainer}.
-         *
-         * @return The mutable value container
-         */
-        MutableValueStore.Simple toMutable();
-
-        /**
-         * Creates a mutable copy of this simple {@link ValueContainer}.
-         *
-         * @return The mutable copy
-         */
-        MutableValueStore.Simple toMutableCopy();
-    }
-
-    interface Factory {
-
-        ValueContainer unmodifiableViewOf(Iterable<Value<?>> values);
-
-        ValueContainer unmodifiableViewOf(ValueContainer valueContainer);
-    }
 }

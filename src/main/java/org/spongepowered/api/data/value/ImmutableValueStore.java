@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.data.value;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.DataProvider;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.merge.MergeFunction;
 
@@ -41,25 +39,6 @@ import java.util.function.Function;
  * @param <I> The type of immutable value store, for self referencing
  */
 public interface ImmutableValueStore<I extends ImmutableValueStore<I>> extends ValueContainer {
-
-    /**
-     * Gets a empty {@link ImmutableValueStore}.
-     *
-     * @return The empty immutable value store
-     */
-    static ImmutableValueStore.Simple empty() {
-        return Sponge.getRegistry().requireFactory(Factory.class).of();
-    }
-
-    /**
-     * Gets a {@link ImmutableValueStore} with the given values.
-     *
-     * @param values The values
-     * @return The immutable value store
-     */
-    static ImmutableValueStore.Simple of(Iterable<? extends Value<?>> values) {
-        return Sponge.getRegistry().requireFactory(Factory.class).of(values);
-    }
 
     /**
      * Applies a transformation on the provided {@link Value} such that
@@ -119,34 +98,4 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I>> extends V
 
     @Override
     I copy();
-
-    /**
-     * A simple version of the {@link ImmutableValueStore}. By default will the simple
-     * {@link ImmutableValueStore} support every {@link Key} unless a bound
-     * {@link DataProvider} said otherwise.
-     */
-    interface Simple extends ImmutableValueStore<Simple>, ValueContainer.Simple {
-
-        @Override
-        default ImmutableValueStore.Simple copy() {
-            return this;
-        }
-
-        @Override
-        default ImmutableValueStore.Simple toImmutable() {
-            return this;
-        }
-
-        @Override
-        default MutableValueStore.Simple toMutableCopy() {
-            return toMutable();
-        }
-    }
-
-    interface Factory {
-
-        Simple of();
-
-        Simple of(Iterable<? extends Value<?>> values);
-    }
 }

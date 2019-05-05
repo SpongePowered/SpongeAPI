@@ -39,7 +39,6 @@ import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.CatalogBuilder;
 
 import java.util.Optional;
-import java.util.function.Function;
 
 public interface DataRegistration extends CatalogType {
 
@@ -54,7 +53,7 @@ public interface DataRegistration extends CatalogType {
     static Builder builder() {
         BlockTypes.BLACK_WOOL.getDefaultState().with(Keys.DYE_COLOR, DyeColors.BLUE).get();
         DataProvider<Value<DyeColor>, DyeColor> dyeColorprovider = null;
-        dyeColorprovider.withValue(BlockTypes.BLACK_WOOL.getDefaultState(), DyeColors.BLUE);
+        dyeColorprovider.with(BlockTypes.BLACK_WOOL.getDefaultState(), DyeColors.BLUE);
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 

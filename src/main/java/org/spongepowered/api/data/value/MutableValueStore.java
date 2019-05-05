@@ -26,8 +26,6 @@ package org.spongepowered.api.data.value;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.DataProvider;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.merge.MergeFunction;
@@ -40,26 +38,6 @@ import java.util.function.Function;
  * manipulated separately from this {@link MutableValueStore}.
  */
 public interface MutableValueStore extends ValueContainer {
-
-    static MutableValueStore.Simple of() {
-        return Sponge.getRegistry().requireFactory(Factory.class).of();
-    }
-
-    static MutableValueStore.Simple of(Iterable<? extends Value<?>> values) {
-        return Sponge.getRegistry().requireFactory(Factory.class).of(values);
-    }
-
-    static MutableValueStore.Simple of(ValueContainer valueContainer) {
-        return Sponge.getRegistry().requireFactory(Factory.class).of(valueContainer);
-    }
-
-    static MutableValueStore.Simple ofKeysFrom(ValueContainer valueContainer, Key<?> firstKey, Key<?> moreKeys) { // TODO: Better name?
-        return Sponge.getRegistry().requireFactory(Factory.class).ofKeysFrom(valueContainer, firstKey, moreKeys);
-    }
-
-    static MutableValueStore.Simple ofKeysFrom(ValueContainer valueContainer, Iterable<Key<?>> keys) { // TODO: Better name?
-        return Sponge.getRegistry().requireFactory(Factory.class).ofKeysFrom(valueContainer, keys);
-    }
 
     /**
      * Applies a transformation on the provided {@link Value} such that
@@ -215,38 +193,4 @@ public interface MutableValueStore extends ValueContainer {
      * @return The transaction result
      */
     DataTransactionResult copyFrom(ValueContainer that, MergeFunction function);
-
-    /**
-     * A simple version of the {@link MutableValueStore}. By default will the simple
-     * {@link MutableValueStore} support every {@link Key} unless a bound
-     * {@link DataProvider} said otherwise.
-     */
-    interface Simple extends MutableValueStore, ValueContainer.Simple {
-
-        @Override
-        MutableValueStore.Simple copy();
-
-        @Override
-        default MutableValueStore.Simple toMutable() {
-            return this;
-        }
-
-        @Override
-        default MutableValueStore.Simple toMutableCopy() {
-            return copy();
-        }
-    }
-
-    interface Factory {
-
-        Simple of();
-
-        Simple of(Iterable<? extends Value<?>> values);
-
-        Simple of(ValueContainer valueContainer);
-
-        Simple ofKeysFrom(ValueContainer valueContainer, Key<?> firstKey, Key<?> moreKeys);
-
-        Simple ofKeysFrom(ValueContainer valueContainer, Iterable<Key<?>> keys);
-    }
 }
