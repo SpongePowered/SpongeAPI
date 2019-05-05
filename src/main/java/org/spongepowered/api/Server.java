@@ -27,8 +27,6 @@ package org.spongepowered.api;
 import org.spongepowered.api.command.source.CommandSource;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.profile.GameProfileManager;
-import org.spongepowered.api.resource.pack.PackRepository;
-import org.spongepowered.api.resource.ReloadableResourceManager;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.text.Text;
