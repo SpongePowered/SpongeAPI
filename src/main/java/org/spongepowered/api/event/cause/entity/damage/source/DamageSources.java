@@ -52,6 +52,8 @@ public final class DamageSources {
 
     public static final DamageSource DROWNING = DummyObjectProvider.createFor(DamageSource.class, "DROWNING");
 
+    public static final DamageSource DRYOUT = DummyObjectProvider.createFor(DamageSource.class, "DRYOUT");
+
     public static final DamageSource FALLING = DummyObjectProvider.createFor(DamageSource.class, "FALLING");
 
     public static final DamageSource FIRE_TICK = DummyObjectProvider.createFor(DamageSource.class, "FIRE_TICK");

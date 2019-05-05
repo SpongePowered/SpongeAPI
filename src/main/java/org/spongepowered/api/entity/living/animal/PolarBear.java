@@ -24,9 +24,21 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.value.Value;
+
 /**
  * Represents a polar bear.
  */
 public interface PolarBear extends Animal {
 
+    /**
+     * Returns a {@link Value} representing if the {@link PolarBear} is
+     * standing up or not.
+     *
+     * @return The standing value
+     */
+    default Value.Mutable<Boolean> isStanding() {
+        return this.getValue(Keys.IS_STANDING).get().asMutable();
+    }
 }

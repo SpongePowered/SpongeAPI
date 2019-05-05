@@ -92,6 +92,9 @@ import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.ExperienceOrb;
 import org.spongepowered.api.entity.FallingBlock;
 import org.spongepowered.api.entity.Item;
+import org.spongepowered.api.entity.living.animal.Chicken;
+import org.spongepowered.api.entity.living.animal.Dolphin;
+import org.spongepowered.api.entity.living.animal.PolarBear;
 import org.spongepowered.api.entity.projectile.ShulkerBullet;
 import org.spongepowered.api.entity.explosive.Explosive;
 import org.spongepowered.api.entity.explosive.FusedExplosive;
@@ -154,6 +157,7 @@ import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.RespawnLocation;
+import org.spongepowered.api.util.TemporalUnits;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
@@ -1248,8 +1252,7 @@ public final class Keys {
     public static final Key<BoundedValue<Double>> MAX_HEALTH = DummyObjectProvider.createExtendedFor(Key.class, "MAX_HEALTH");
 
     /**
-     * Represents the {@link Key} for representing the "moisture" state of
-     * {@link BlockTypes#FARMLAND}.
+     * Represents the {@link Key} for representing the "moisture" state of {@link BlockTypes#FARMLAND}.
      */
     public static final Key<BoundedValue<Integer>> MOISTURE = DummyObjectProvider.createExtendedFor(Key.class, "MOISTURE");
 
@@ -1849,6 +1852,31 @@ public final class Keys {
      * of a {@link Boat}.
      */
     public static final Key<Value<WoodType>> WOOD_TYPE = DummyObjectProvider.createExtendedFor(Key.class, "WOOD_TYPE");
+
+    /**
+     * Represents the {@link Key} for if a {@link PolarBear} is currently standing.
+     */
+    public static final Key<Value<Boolean>> IS_STANDING = DummyObjectProvider.createExtendedFor(Key.class, "IS_STANDING");
+
+    /**
+     * Represents the {@link Key} for if an {@link Ocelot} is currently trusting of {@link Player}s.
+     */
+    public static final Key<Value<Boolean>> IS_TRUSTING = DummyObjectProvider.createExtendedFor(Key.class, "IS_TRUSTING");
+
+    /**
+     * Represents the {@link Key} for the time until a {@link Chicken} lays an {@link ItemTypes#EGG}.
+     */
+    public static final Key<Value<Integer>> EGG_TIMER = DummyObjectProvider.createExtendedFor(Key.class, "EGG_TIMER");
+
+    /**
+     * Represents the {@link Key} for representing the "moisture" state of a {@link Dolphin}.
+     */
+    public static final Key<Value<Integer>> SKIN_MOISTURE = DummyObjectProvider.createExtendedFor(Key.class, "SKIN_MOISTURE");
+
+    /**
+     * Represents the {@link Key} for representing the "got fish" state of a {@link Dolphin}.
+     */
+    public static final Key<Value<Boolean>> GOT_FISH = DummyObjectProvider.createExtendedFor(Key.class, "GOT_FISH");
 
     // SORTFIELDS:OFF
 

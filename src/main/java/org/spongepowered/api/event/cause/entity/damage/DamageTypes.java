@@ -38,6 +38,8 @@ public final class DamageTypes {
 
     public static final DamageType DROWN = DummyObjectProvider.createFor(DamageType.class, "DROWN");
 
+    public static final DamageType DRYOUT = DummyObjectProvider.createFor(DamageType.class, "DRYOUT");
+
     public static final DamageType EXPLOSIVE = DummyObjectProvider.createFor(DamageType.class, "EXPLOSIVE");
 
     public static final DamageType FALL = DummyObjectProvider.createFor(DamageType.class, "FALL");

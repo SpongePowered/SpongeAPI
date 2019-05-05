@@ -24,8 +24,22 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.entity.living.player.Player;
+
 /**
  * Represents an Ocelot.
  */
 public interface Ocelot extends Animal {
+
+    /**
+     * Returns a {@link Value} representing if the {@link Ocelot} is
+     * currently trusting o {@link Player}s or not.
+     *
+     * @return The trusting value
+     */
+    default Value.Mutable<Boolean> isTrusting() {
+        return this.getValue(Keys.IS_TRUSTING).get().asMutable();
+    }
 }
