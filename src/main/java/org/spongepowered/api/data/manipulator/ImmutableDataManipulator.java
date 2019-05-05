@@ -43,6 +43,22 @@ import java.util.function.Function;
 public interface ImmutableDataManipulator extends DataManipulator {
 
     /**
+     * Creates a {@link ImmutableDataManipulator} view directly based on the
+     * {@link Value}s. No unnecessary copies of the {@link Value}s
+     * will be created.
+     *
+     * @param values The values
+     * @return The immutable data manipulator view
+     */
+    static ImmutableDataManipulator viewOf(Iterable<Value<?>> values) {
+        return Sponge.getRegistry().requireFactory(Factory.class).viewOf(values);
+    }
+
+    static ImmutableDataManipulator viewOf(ValueContainer valueContainer) {
+        return Sponge.getRegistry().requireFactory(Factory.class).viewOf(valueContainer);
+    }
+
+    /**
      * Gets a empty {@link ImmutableValueStore}.
      *
      * @return The empty immutable data manipulator
@@ -138,5 +154,9 @@ public interface ImmutableDataManipulator extends DataManipulator {
         ImmutableDataManipulator of();
 
         ImmutableDataManipulator of(Iterable<? extends Value<?>> values);
+
+        ImmutableDataManipulator viewOf(Iterable<Value<?>> values);
+
+        ImmutableDataManipulator viewOf(ValueContainer valueContainer);
     }
 }

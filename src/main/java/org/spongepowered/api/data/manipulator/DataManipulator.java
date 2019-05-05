@@ -24,9 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator;
 
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.util.annotation.eventgen.TransformWith;
 
@@ -37,22 +35,6 @@ import org.spongepowered.api.util.annotation.eventgen.TransformWith;
  * immutable forms with {@link #asMutable()} and {@link #asImmutable()}.</p>
  */
 public interface DataManipulator extends ValueContainer {
-
-    /**
-     * Creates a {@link DataManipulator} view directly based on the
-     * {@link Value}s. No unnecessary copies of the {@link Value}s
-     * will be created.
-     *
-     * @param values The values
-     * @return The value container view
-     */
-    static DataManipulator viewOf(Iterable<Value<?>> values) {
-        return Sponge.getRegistry().requireFactory(Factory.class).unmodifiableViewOf(values);
-    }
-
-    static DataManipulator viewOf(ValueContainer valueContainer) {
-        return Sponge.getRegistry().requireFactory(Factory.class).unmodifiableViewOf(valueContainer);
-    }
 
     @TransformWith
     @Override
@@ -87,11 +69,4 @@ public interface DataManipulator extends ValueContainer {
      * @return An immutable data manipulator
      */
     ImmutableDataManipulator asImmutable();
-
-    interface Factory {
-
-        DataManipulator unmodifiableViewOf(Iterable<Value<?>> values);
-
-        DataManipulator unmodifiableViewOf(ValueContainer valueContainer);
-    }
 }

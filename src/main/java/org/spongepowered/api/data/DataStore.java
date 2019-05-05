@@ -26,6 +26,7 @@ package org.spongepowered.api.data;
 
 import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.MutableDataManipulator;
 import org.spongepowered.api.data.value.MutableValueStore;
 import org.spongepowered.api.data.value.Value;
@@ -43,7 +44,7 @@ public interface DataStore {
      * @param values The value container
      */
     default DataView serialize(Iterable<Value<?>> values) {
-        return serialize(DataManipulator.viewOf(values));
+        return serialize(ImmutableDataManipulator.viewOf(values));
     }
 
     /**
