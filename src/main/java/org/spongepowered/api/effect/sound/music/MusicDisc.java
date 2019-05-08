@@ -25,7 +25,7 @@
 package org.spongepowered.api.effect.sound.music;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.block.tileentity.Jukebox;
+import org.spongepowered.api.block.entity.Jukebox;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;

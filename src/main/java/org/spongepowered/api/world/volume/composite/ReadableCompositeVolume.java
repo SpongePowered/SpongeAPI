@@ -26,24 +26,24 @@ package org.spongepowered.api.world.volume.composite;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.tileentity.TileEntity;
+import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.fluid.FluidState;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.volume.Volume;
 import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
-import org.spongepowered.api.world.volume.tileentity.ReadableTileEntityVolume;
+import org.spongepowered.api.world.volume.block.entity.ReadableBlockEntityVolume;
 
 import java.util.Optional;
 
 /**
  * A special {@link Volume} that assumes no guarantees about the instances of
- * {@link BlockState}s, and {@link TileEntity TileEntities}. While this is
+ * {@link BlockState}s, and {@link BlockEntity BlockEntities}. While this is
  * partially utilized for the sake of retrieving {@link BlockState}s,
- * {@link FluidState}s, and {@link TileEntity TileEntities}, there are chances
+ * {@link FluidState}s, and {@link BlockEntity BlockEntities}, there are chances
  * the volume itself is not associated with a {@link World} and the
- * {@link TileEntity} instances may yet to be fully loaded for usage by players.
+ * {@link BlockEntity} instances may yet to be fully loaded for usage by players.
  */
-public interface ReadableCompositeVolume extends ReadableBlockVolume, ReadableTileEntityVolume, PrimitiveGameVolume {
+public interface ReadableCompositeVolume extends ReadableBlockVolume, ReadableBlockEntityVolume, PrimitiveGameVolume {
 
     @Override
     default BlockState getBlock(Vector3i vector3i) {
@@ -51,8 +51,8 @@ public interface ReadableCompositeVolume extends ReadableBlockVolume, ReadableTi
     }
 
     @Override
-    default Optional<TileEntity> getTileEntity(Vector3i position) {
-        return getTileEntity(position.getX(), position.getY(), position.getZ());
+    default Optional<BlockEntity> getBlockEntity(Vector3i position) {
+        return getBlockEntity(position.getX(), position.getY(), position.getZ());
     }
 
 }

@@ -26,8 +26,8 @@ package org.spongepowered.api.block;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.block.tileentity.TileEntity;
-import org.spongepowered.api.block.tileentity.TileEntityArchetype;
+import org.spongepowered.api.block.entity.BlockEntity;
+import org.spongepowered.api.block.entity.BlockEntityArchetype;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.ImmutableDataBuilder;
@@ -35,7 +35,6 @@ import org.spongepowered.api.data.LocatableSnapshot;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.schematic.Schematic;
 import org.spongepowered.api.world.storage.WorldProperties;
 
@@ -44,7 +43,7 @@ import java.util.UUID;
 
 /**
  * An immutable representation of a {@link BlockState} and any extra data that
- * may be associated with it, including {@link TileEntity} related data.
+ * may be associated with it, including {@link BlockEntity} related data.
  */
 public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
 
@@ -73,10 +72,10 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
     /**
      * Creates a copy of the {@link BlockSnapshot} with the provided
      * {@link BlockState}. Any additional data associated with a
-     * {@link TileEntity} or custom data may be lost.
+     * {@link BlockEntity} or custom data may be lost.
      *
      * <p>Note: all custom data, including implementation detailed
-     * data relating to any and all {@link TileEntity} instances that
+     * data relating to any and all {@link BlockEntity} instances that
      * was included in this snapshot will NOT copy over to the new
      * snapshot.</p>
      *
@@ -133,15 +132,15 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
     Optional<UUID> getNotifier();
 
     /**
-     * Creates a new {@link TileEntityArchetype} for use with {@link Schematic}s
+     * Creates a new {@link BlockEntityArchetype} for use with {@link Schematic}s
      * and placing the archetype in multiple locations.
      * 
-     * <p>If this blocksnapshot does not contain a tile entity then this will
+     * <p>If this blocksnapshot does not contain a block entity then this will
      * return {@link Optional#empty()}.</p>
      *
-     * @return The created archetype for re-creating this tile entity
+     * @return The created archetype for re-creating this block entity
      */
-    Optional<TileEntityArchetype> createArchetype();
+    Optional<BlockEntityArchetype> createArchetype();
 
     interface Builder extends ImmutableDataBuilder<BlockSnapshot, Builder> {
 

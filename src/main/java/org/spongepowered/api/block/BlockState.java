@@ -25,7 +25,7 @@
 package org.spongepowered.api.block;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.block.tileentity.TileEntity;
+import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.data.ImmutableDataBuilder;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.property.DirectionRelativePropertyHolder;
@@ -85,7 +85,7 @@ public interface BlockState extends State<BlockState>, DirectionRelativeProperty
      * Creates a new {@link BlockSnapshot} with this current {@link BlockState}
      * at the desired {@link Location}. If the {@link Location} has the same
      * {@link BlockState}, and the {@link BlockType} can house a
-     * {@link TileEntity}, the data from the tile entity may be included in the
+     * {@link BlockEntity}, the data from the block entity may be included in the
      * returned  {@link BlockSnapshot}.
      *
      * @param location The location for the snapshot

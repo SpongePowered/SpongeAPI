@@ -28,7 +28,6 @@ import org.spongepowered.api.Server;
 import org.spongepowered.api.advancement.Advancement;
 import org.spongepowered.api.advancement.AdvancementProgress;
 import org.spongepowered.api.advancement.AdvancementTree;
-import org.spongepowered.api.block.tileentity.EnderChest;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.type.SkinPart;
 import org.spongepowered.api.data.value.Value;

@@ -25,7 +25,7 @@
 package org.spongepowered.api.data.meta;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.block.tileentity.Banner;
+import org.spongepowered.api.block.entity.Banner;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.type.BannerPatternShape;

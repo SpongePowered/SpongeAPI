@@ -35,7 +35,7 @@ import org.spongepowered.api.world.volume.biome.MutableBiomeVolume;
 import org.spongepowered.api.world.volume.LightCalculatingVolume;
 import org.spongepowered.api.world.volume.block.MutableBlockVolume;
 import org.spongepowered.api.world.volume.composite.ReadableCompositeVolume;
-import org.spongepowered.api.world.volume.tileentity.MutableTileEntityVolume;
+import org.spongepowered.api.world.volume.block.entity.MutableBlockEntityVolume;
 
 /**
  * A chunk is a specific grid-aligned partition of a {@link ProtoWorld}.
@@ -50,7 +50,7 @@ import org.spongepowered.api.world.volume.tileentity.MutableTileEntityVolume;
  */
 public interface ProtoChunk<P extends ProtoChunk<P>> extends
     ReadableCompositeVolume,
-        MutableBlockVolume<P>, MutableTileEntityVolume<P>, MutableBiomeVolume<P>, LightCalculatingVolume, UpdatableVolume {
+        MutableBlockVolume<P>, MutableBlockEntityVolume<P>, MutableBiomeVolume<P>, LightCalculatingVolume, UpdatableVolume {
 
     /**
      * Adds the {@link Entity} to this {@link ProtoChunk chunk}. It is not

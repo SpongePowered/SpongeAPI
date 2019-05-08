@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.gamerule;
 
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.block.tileentity.CommandBlock;
+import org.spongepowered.api.block.entity.CommandBlock;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Bat;
 import org.spongepowered.api.entity.living.complex.EnderDragon;

@@ -28,12 +28,12 @@ import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.world.volume.biome.StreamableBiomeVolume;
 import org.spongepowered.api.world.volume.block.StreamableBlockVolume;
 import org.spongepowered.api.world.volume.entity.StreamableEntityVolume;
-import org.spongepowered.api.world.volume.tileentity.StreamableTileEntityVolume;
+import org.spongepowered.api.world.volume.block.entity.StreamableBlockEntityVolume;
 
 public interface ArchetypeVolumeCreator extends StreamableBlockVolume<ArchetypeVolumeCreator>,
     StreamableBiomeVolume<ArchetypeVolumeCreator>,
     StreamableEntityVolume<ArchetypeVolumeCreator>,
-    StreamableTileEntityVolume<ArchetypeVolumeCreator>
+  StreamableBlockEntityVolume<ArchetypeVolumeCreator>
 {
 
     /**

@@ -27,7 +27,7 @@ package org.spongepowered.api.fluid;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.block.tileentity.TileEntity;
+import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.item.ItemType;
@@ -42,7 +42,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * a specified volume "exists" within a {@link Keys#FLUID_TANK_CONTENTS Fluid Tank Value}.
  *
  * <p>Normally, {@link Keys#FLUID_TANK_CONTENTS} can be either retrieved from
- * either a {@link BlockState} or {@link TileEntity} that specifically handles
+ * either a {@link BlockState} or {@link BlockEntity} that specifically handles
  * fluids. Depending on the implementation, a fluid stack may be used differently
  * than how vanilla implementations handle them.</p>
  */

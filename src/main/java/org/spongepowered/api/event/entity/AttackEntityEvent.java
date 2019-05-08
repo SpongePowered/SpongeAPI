@@ -25,11 +25,10 @@
 package org.spongepowered.api.event.entity;
 
 import com.google.common.collect.ImmutableMap;
-import org.spongepowered.api.block.tileentity.carrier.Dispenser;
+import org.spongepowered.api.block.entity.carrier.Dispenser;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.entity.living.monster.skeleton.AbstractSkeleton;
 import org.spongepowered.api.entity.living.monster.skeleton.Skeleton;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.projectile.arrow.Arrow;

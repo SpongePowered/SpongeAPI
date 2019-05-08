@@ -31,7 +31,7 @@ import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.block.tileentity.TileEntity;
+import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.property.DirectionRelativePropertyHolder;
@@ -344,19 +344,19 @@ public interface Location extends DataHolder, DirectionRelativePropertyHolder {
     FluidState getFluid();
 
     /**
-     * Checks for whether the block at this position contains tile entity data.
+     * Checks for whether the block at this position contains block entity data.
      *
-     * @return True if the block at this position has tile entity data, false
+     * @return True if the block at this position has block entity data, false
      *      otherwise
      */
-    boolean hasTileEntity();
+    boolean hasBlockEntity();
 
     /**
-     * Gets the associated {@link TileEntity} on this block.
+     * Gets the associated {@link BlockEntity} on this block.
      *
-     * @return The associated tile entity, if available
+     * @return The associated block entity, if available
      */
-    Optional<TileEntity> getTileEntity();
+    Optional<BlockEntity> getBlockEntity();
 
     /**
      * Replace the block at this position with a new state.

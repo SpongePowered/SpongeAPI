@@ -30,7 +30,7 @@ import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.world.volume.archetype.ArchetypeVolume;
 import org.spongepowered.api.world.volume.archetype.ArchetypeVolumeCreator;
 import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
-import org.spongepowered.api.world.volume.tileentity.ReadableTileEntityVolume;
+import org.spongepowered.api.world.volume.block.entity.ReadableBlockEntityVolume;
 
 /**
  * A special archetype volume designed to be persisted. Contains additional
@@ -84,7 +84,7 @@ public interface Schematic extends ArchetypeVolume {
          */
         Builder volume(ReadableBlockVolume volume);
 
-        Builder volume(ReadableTileEntityVolume volume);
+        Builder volume(ReadableBlockEntityVolume volume);
 
         /**
          * Specifies an extent view for the schematic to load its world data

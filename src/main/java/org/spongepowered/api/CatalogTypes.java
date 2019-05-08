@@ -29,7 +29,7 @@ import org.spongepowered.api.advancement.AdvancementTree;
 import org.spongepowered.api.advancement.AdvancementType;
 import org.spongepowered.api.advancement.criteria.trigger.Trigger;
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.block.tileentity.TileEntityType;
+import org.spongepowered.api.block.entity.BlockEntityType;
 import org.spongepowered.api.boss.BossBarColor;
 import org.spongepowered.api.boss.BossBarOverlay;
 import org.spongepowered.api.data.persistence.DataFormat;
@@ -121,6 +121,8 @@ public final class CatalogTypes {
     public static final Class<BanType> BAN_TYPE = BanType.class;
 
     public static final Class<BiomeType> BIOME_TYPE = BiomeType.class;
+
+    public static final Class<BlockEntityType> BLOCK_ENTITY_TYPE = BlockEntityType.class;
 
     public static final Class<BlockPaletteType> BLOCK_PALETTE_TYPE = BlockPaletteType.class;
 
@@ -273,8 +275,6 @@ public final class CatalogTypes {
     public static final Class<TextSerializer> TEXT_SERIALIZER = TextSerializer.class;
 
     public static final Class<TextStyle> TEXT_STYLE = TextStyle.class;
-
-    public static final Class<TileEntityType> TILE_ENTITY_TYPE = TileEntityType.class;
 
     public static final Class<ToolType> TOOL_TYPE = ToolType.class;
 

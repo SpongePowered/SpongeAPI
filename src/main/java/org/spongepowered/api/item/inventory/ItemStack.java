@@ -31,7 +31,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.block.tileentity.TileEntity;
+import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.key.Key;
@@ -275,7 +275,7 @@ public interface ItemStack extends DataHolder, Translatable {
 
         /**
          * Attempts to reconstruct a {@link BlockSnapshot} including all data
-         * and {@link TileEntity} related data if necessary for creating an
+         * and {@link BlockEntity} related data if necessary for creating an
          * {@link ItemStack} representation.
          *
          * @param blockSnapshot The snapshot to use

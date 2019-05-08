@@ -29,19 +29,19 @@ import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.block.tileentity.Banner;
-import org.spongepowered.api.block.tileentity.CommandBlock;
-import org.spongepowered.api.block.tileentity.EndGateway;
-import org.spongepowered.api.block.tileentity.MobSpawner;
-import org.spongepowered.api.block.tileentity.Piston;
-import org.spongepowered.api.block.tileentity.Sign;
-import org.spongepowered.api.block.tileentity.Structure;
-import org.spongepowered.api.block.tileentity.TileEntity;
-import org.spongepowered.api.block.tileentity.carrier.Beacon;
-import org.spongepowered.api.block.tileentity.carrier.BrewingStand;
-import org.spongepowered.api.block.tileentity.carrier.Furnace;
-import org.spongepowered.api.block.tileentity.carrier.Hopper;
-import org.spongepowered.api.block.tileentity.carrier.TileEntityCarrier;
+import org.spongepowered.api.block.entity.Banner;
+import org.spongepowered.api.block.entity.CommandBlock;
+import org.spongepowered.api.block.entity.EndGateway;
+import org.spongepowered.api.block.entity.MobSpawner;
+import org.spongepowered.api.block.entity.Piston;
+import org.spongepowered.api.block.entity.Sign;
+import org.spongepowered.api.block.entity.Structure;
+import org.spongepowered.api.block.entity.BlockEntity;
+import org.spongepowered.api.block.entity.carrier.Beacon;
+import org.spongepowered.api.block.entity.carrier.BrewingStand;
+import org.spongepowered.api.block.entity.carrier.Furnace;
+import org.spongepowered.api.block.entity.carrier.Hopper;
+import org.spongepowered.api.block.entity.carrier.BlockEntityCarrier;
 import org.spongepowered.api.data.meta.PatternLayer;
 import org.spongepowered.api.data.property.Properties;
 import org.spongepowered.api.data.type.ArtType;
@@ -157,7 +157,6 @@ import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.RespawnLocation;
-import org.spongepowered.api.util.TemporalUnits;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
@@ -648,7 +647,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the display name of an {@link Entity},
-     * {@link ItemStack} or {@link TileEntity}.
+     * {@link ItemStack} or {@link BlockEntity}.
      *
      * <p>On a {@link ItemTypes#WRITTEN_BOOK} item this will also set the title
      * of the book.</p>
@@ -1216,7 +1215,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the token used to lock a
-     * {@link TileEntityCarrier}.
+     * {@link BlockEntityCarrier}.
      */
     public static final Key<Value<String>> LOCK_TOKEN = DummyObjectProvider.createExtendedFor(Key.class, "LOCK_TOKEN");
 

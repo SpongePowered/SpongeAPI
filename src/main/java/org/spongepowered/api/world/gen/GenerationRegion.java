@@ -28,7 +28,7 @@ import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.tileentity.TileEntity;
+import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.world.Location;
@@ -42,7 +42,7 @@ import org.spongepowered.api.world.chunk.Chunk;
  * become {@link Chunk} instances. A region is similar to a {@link World}
  * in that there are {@link PrimitiveChunk}s available, {@link BlockState}s
  * are used in this region, and likewise, the region can contain and store
- * {@link TileEntity} instances being generated, {@link Entity} instances
+ * {@link BlockEntity} instances being generated, {@link Entity} instances
  * being generated or spawned by {@link Populator}s, etc. The major difference
  * is that a generation region cannot be utilized for {@link Location}s,
  * nor is it considered to be viewable by {@link Player}s or accessible

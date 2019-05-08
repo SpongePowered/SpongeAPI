@@ -37,7 +37,7 @@ import org.spongepowered.api.world.volume.block.StreamableBlockVolume;
 import org.spongepowered.api.world.volume.composite.ReadableCompositeVolume;
 import org.spongepowered.api.world.volume.entity.CollisionAwareEntityVolume;
 import org.spongepowered.api.world.volume.entity.StreamableEntityVolume;
-import org.spongepowered.api.world.volume.tileentity.StreamableTileEntityVolume;
+import org.spongepowered.api.world.volume.block.entity.StreamableBlockEntityVolume;
 
 import javax.annotation.Nullable;
 
@@ -49,7 +49,7 @@ public interface ReadableRegion<R extends ReadableRegion<R>> extends
     StreamableBiomeVolume<R>,
     StreamableBlockVolume<R>,
     StreamableEntityVolume<R>,
-    StreamableTileEntityVolume<R>,
+  StreamableBlockEntityVolume<R>,
     CollisionAwareEntityVolume,
     LightCalculatingVolume,
     HeightAwareVolume,

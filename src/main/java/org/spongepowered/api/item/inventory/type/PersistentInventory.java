@@ -27,7 +27,7 @@ package org.spongepowered.api.item.inventory.type;
 import org.spongepowered.api.item.inventory.Inventory;
 
 /**
- * An inventory with some kind of backing storage, for example Tile Entities.
+ * An inventory with some kind of backing storage, for example Block Entities.
  */
 public interface PersistentInventory extends Inventory {
 

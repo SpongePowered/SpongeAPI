@@ -29,7 +29,7 @@ import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.block.tileentity.TileEntity;
+import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
@@ -37,7 +37,6 @@ import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.EventContextKeys;
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -153,14 +152,14 @@ public interface ChangeBlockEvent extends Event, Cancellable {
      * {@link BlockType} having "ticked", in which the {@link Cause} will
      * have a {@link BlockSnapshot}, or, in the case that an {@link Entity}
      * has "ticked", in which the {@link Cause} will have an {@link Entity},
-     * or, in the case that a {@link TileEntity} "ticked", the {@link Cause}
-     * will have the {@link TileEntity}.
+     * or, in the case that a {@link BlockEntity} "ticked", the {@link Cause}
+     * will have the {@link BlockEntity}.
      *
      * <p>The {@link Cause} may contain {@link Event}s, such as {@link Break},
      * {@link Place}, and {@link Modify}. These events may be cancelled,
      * or have their transactions modified, just like normal events.</p>
      *
-     * <p>The idea is that  a block, entity, or tile entity "ticks" in which
+     * <p>The idea is that  a block, entity, or block entity "ticks" in which
      * during that "tick", they make different types of block changes. If the
      * block change is purely one type then the corresponding event is thrown
      * instead. For example, If the block change is purely "placing" of

@@ -145,7 +145,7 @@ sortClassFields {
     add 'main', 'org.spongepowered.api.data.type.WireAttachmentTypes'
     add 'main', 'org.spongepowered.api.data.type.WoodTypes'
     add 'main', 'org.spongepowered.api.block.BlockTypes'
-    add 'main', 'org.spongepowered.api.block.tileentity.TileEntityTypes'
+    add 'main', 'org.spongepowered.api.block.entity.BlockEntityTypes'
     add 'main', 'org.spongepowered.api.state.BooleanStateProperties'
     add 'main', 'org.spongepowered.api.state.EnumStateProperties'
     add 'main', 'org.spongepowered.api.state.IntegerStateProperties'

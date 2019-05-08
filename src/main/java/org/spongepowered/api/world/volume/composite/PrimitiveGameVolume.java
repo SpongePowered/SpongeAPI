@@ -27,7 +27,7 @@ package org.spongepowered.api.world.volume.composite;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.tileentity.TileEntity;
+import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.fluid.FluidState;
 import org.spongepowered.api.world.volume.Volume;
 
@@ -40,11 +40,11 @@ import java.util.Optional;
  */
 public interface PrimitiveGameVolume extends Volume {
 
-    default Optional<TileEntity> getTileEntity(Vector3i position) {
-        return getTileEntity(position.getX(), position.getY(), position.getZ());
+    default Optional<BlockEntity> getBlockEntity(Vector3i position) {
+        return getBlockEntity(position.getX(), position.getY(), position.getZ());
     }
 
-    Optional<TileEntity> getTileEntity(int x, int y, int z);
+    Optional<BlockEntity> getBlockEntity(int x, int y, int z);
 
     default BlockState getBlock(Vector3i pos) {
         return getBlock(pos.getX(), pos.getY(), pos.getZ());

@@ -25,7 +25,7 @@
 package org.spongepowered.api.item.enchantment;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.block.tileentity.EnchantmentTable;
+import org.spongepowered.api.block.entity.EnchantmentTable;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;

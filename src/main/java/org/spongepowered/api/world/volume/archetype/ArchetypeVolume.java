@@ -25,12 +25,12 @@
 package org.spongepowered.api.world.volume.archetype;
 
 import org.spongepowered.api.world.volume.archetype.entity.MutableEntityArchetypeVolume;
-import org.spongepowered.api.world.volume.archetype.tileentity.MutableTileEntityArchetypeVolume;
+import org.spongepowered.api.world.volume.archetype.block.entity.MutableBlockEntityArchetypeVolume;
 import org.spongepowered.api.world.volume.block.MutableBlockVolume;
 
 public interface ArchetypeVolume
     extends MutableBlockVolume<ArchetypeVolume>,
-    MutableTileEntityArchetypeVolume<ArchetypeVolume>,
+  MutableBlockEntityArchetypeVolume<ArchetypeVolume>,
     MutableEntityArchetypeVolume<ArchetypeVolume> {
 
 }

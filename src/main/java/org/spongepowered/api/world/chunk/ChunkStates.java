@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.world.chunk;
 
-import org.spongepowered.api.block.tileentity.TileEntity;
+import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.world.ProtoWorld;
@@ -48,7 +48,7 @@ public final class ChunkStates {
     /**
      * A {@link ProtoChunk} that is at this state means that it is being generated
      * with a "base" layer of terrain, usually by a {@link GenerationPopulator}(s).
-     * The chunk should not have any {@link Entity} instances or {@link TileEntity}
+     * The chunk should not have any {@link Entity} instances or {@link BlockEntity}
      * instances and may have a valid {@link ProtoWorld} used for world generation.
      */
     public static final ChunkState BASE = DummyObjectProvider.createFor(ChunkState.class, "EMPTY");
