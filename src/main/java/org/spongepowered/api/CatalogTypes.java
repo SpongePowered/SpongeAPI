@@ -88,7 +88,6 @@ import org.spongepowered.api.world.WorldArchetype;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.biome.VirtualBiomeType;
 import org.spongepowered.api.world.difficulty.Difficulty;
-import org.spongepowered.api.world.schematic.BlockPaletteType;
 import org.spongepowered.api.world.teleport.TeleportHelperFilter;
 import org.spongepowered.api.world.weather.Weather;
 
@@ -123,8 +122,6 @@ public final class CatalogTypes {
     public static final Class<BiomeType> BIOME_TYPE = BiomeType.class;
 
     public static final Class<BlockEntityType> BLOCK_ENTITY_TYPE = BlockEntityType.class;
-
-    public static final Class<BlockPaletteType> BLOCK_PALETTE_TYPE = BlockPaletteType.class;
 
     public static final Class<BlockType> BLOCK_TYPE = BlockType.class;
 

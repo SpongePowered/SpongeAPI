@@ -24,13 +24,24 @@
  */
 package org.spongepowered.api.world.schematic;
 
+import com.flowpowered.math.vector.Vector3d;
+import com.google.common.collect.ListMultimap;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.DataView;
+import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.util.CopyableBuilder;
+import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.volume.archetype.ArchetypeVolume;
 import org.spongepowered.api.world.volume.archetype.ArchetypeVolumeCreator;
+import org.spongepowered.api.world.volume.archetype.entity.ReadableEntityArchetypeVolume;
+import org.spongepowered.api.world.volume.biome.MutableBiomeVolume;
 import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
 import org.spongepowered.api.world.volume.block.entity.ReadableBlockEntityVolume;
+
+import java.util.Collection;
+import java.util.Optional;
 
 /**
  * A special archetype volume designed to be persisted. Contains additional
@@ -53,11 +64,19 @@ public interface Schematic extends ArchetypeVolume {
     }
 
     /**
-     * Gets the {@link BlockPalette} used by this schematic for serialization.
-     * 
-     * @return The palette
+     * Gets the {@link Palette} used by this schematic for serialization.
+     *
+     * @return The block palette
      */
-    BlockPalette getPalette();
+    @SuppressWarnings("deprecation")
+    Palette<BlockState> getBlockPalette();
+
+    /**
+     * Gets the {@link Palette Palette<BiomeType>} used by this schematic for serialization.
+     *
+     * @return The Palette for biomes
+     */
+    Palette<BiomeType> getBiomePalette();
 
     /**
      * Gets any additional metadata attached to this schematic.
@@ -65,6 +84,10 @@ public interface Schematic extends ArchetypeVolume {
      * @return The additional metadata
      */
     DataView getMetadata();
+
+    Optional<MutableBiomeVolume<?>> getBiomeVolume();
+
+    ListMultimap<Vector3d, EntityArchetype> getEntitiesByPosition();
 
     /**
      * A builder for {@link Schematic}s.
@@ -74,44 +97,69 @@ public interface Schematic extends ArchetypeVolume {
         /**
          * Specifies an archetype volume for the world data of the schematic.
          * 
-         * <p>If purely creating a schematic it is recommended to instead use
-         * the {@link #volume(Extent)} method and pass in an extent view (See
-         * {@link Extent#getExtentView}) of the volume to prevent creating
-         * multiple copies of the world data.</p>
-         * 
+         *
+         *
          * @param volume The archetype volume
          * @return This builder, for chaining
          */
-        Builder volume(ReadableBlockVolume volume);
+        Builder blocks(ReadableBlockVolume volume);
 
-        Builder volume(ReadableBlockEntityVolume volume);
+        Builder blockEntities(ReadableBlockEntityVolume volume);
+
+        Builder entities(ReadableEntityArchetypeVolume volume);
 
         /**
          * Specifies an extent view for the schematic to load its world data
          * from.
-         * 
+         *
          * @param volume The extent view
          * @return This builder, for chaining
          */
-        Builder volume(ArchetypeVolumeCreator volume);
+        Builder creator(ArchetypeVolumeCreator<?> volume);
+
+        Builder volume(ArchetypeVolume volume);
 
         /**
          * Specifies a palette for the schematic to use for serialization. This
-         * overrides the {@link #paletteType} value.
-         * 
+         * overrides the {@link #blockPaletteType(PaletteType)} value.
+         *
          * @param palette The palette to use for serialization
          * @return This builder, for chaining
          */
-        Builder palette(BlockPalette palette);
+        Builder blockPalette(Palette<BlockState> palette);
 
         /**
-         * Specifies the palette type to use if the {@link #palette} is not
+         * Specifies a palette for the schemtic to use for serialization. This
+         * overrides the {@link #biomePaletteType(PaletteType)} value.
+         *
+         * @param palette The palette to use for serialization
+         * @return This builder, for chaining
+         */
+        Builder biomePalette(Palette<BiomeType> palette);
+
+        /**
+         * Specifies the palette type to use if the {@link #getBlockPalette()} is not
          * specified.
-         * 
+         *
          * @param type The palette type
          * @return This builder, for chaining
          */
-        Builder paletteType(BlockPaletteType type);
+        Builder blockPaletteType(PaletteType<BlockState> type);
+
+        /**
+         * Specifies the palette type to use for biomes if the {@link #biomePalette(Palette)}
+         * is not specified.
+         *
+         * @param type The type of biome palette
+         * @return This builder, for chaining
+         */
+        Builder biomePaletteType(PaletteType<BiomeType> type);
+
+        Builder entity(EntityArchetype entityArchetype);
+
+        Builder entity(EntityArchetype entityArchetype, Vector3d position);
+
+        Builder entities(Collection<EntityArchetype> entities);
 
         /**
          * Specifies the metadata container.

@@ -47,7 +47,7 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
         MutableBiomeVolume<P>, // Because this is mutable
         MutableBlockVolume<P>, // Because this is mutable
         MutableEntityVolume<P>, // Because this is mutable
-  StreamableBlockEntityVolume<P>, // Because this is mutable
+        StreamableBlockEntityVolume<P>, // Because this is mutable
         ChunkVolume,
         InteractableVolume,
         LocationBasePropertyHolder,

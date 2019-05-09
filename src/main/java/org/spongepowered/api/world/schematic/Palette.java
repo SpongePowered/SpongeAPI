@@ -24,22 +24,27 @@
  */
 package org.spongepowered.api.world.schematic;
 
-import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.CatalogType;
 
 import java.util.Collection;
 import java.util.Optional;
 
 /**
- * Represents a mapping for block states to a local identifier.
+ * Represents a mapping for types to a local identifier. Can be used for
+ * mapping {@link CatalogType}s to {@code int} id's for storage purposes,
+ * or for converting stored information to a representable format back into
+ * {@link CatalogType}s.
+ *
+ * @param <T> The type this palette will maintain
  */
-public interface BlockPalette {
+public interface Palette<T extends CatalogType> {
 
     /**
      * Gets the type of this palette.
      *
      * @return The palette type
      */
-    BlockPaletteType getType();
+    PaletteType<T> getType();
 
     /**
      * Gets the highest identifier in this palette.
@@ -49,48 +54,48 @@ public interface BlockPalette {
     int getHighestId();
 
     /**
-     * Gets the blockstate represented by the given identifier from the mapping.
+     * Gets the {@code type} represented by the given identifier from the mapping.
      *
      * @param id The identifier
-     * @return The blockstate, if found
+     * @return The type, if found
      */
-    Optional<BlockState> get(int id);
+    Optional<T> get(int id);
 
     /**
-     * Gets the identifier for the given blockstate if it exists within the
+     * Gets the identifier for the given {@code type T} if it exists within the
      * mapping.
      *
-     * @param state The block state
+     * @param type The type
      * @return The identifier, if found
      */
-    Optional<Integer> get(BlockState state);
+    Optional<Integer> get(T type);
 
     /**
-     * Gets the identifier for the given blockstate from the mapping. If the
-     * blockstate is not yet registered in the mapping then it is registered and
+     * Gets the identifier for the given {@code type T} from the mapping. If the
+     * {@code type T} is not yet registered in the mapping then it is registered and
      * given the next available identifier.
      *
-     * @param state The blockstate
+     * @param type The type
      * @return The identifier
      */
-    int getOrAssign(BlockState state);
+    int getOrAssign(T type);
 
     /**
-     * Removes the given blockstate from the mapping.
+     * Removes the given {@code type T} from the mapping.
      *
-     * <p>If this palette is the {@link BlockPaletteTypes#GLOBAL} palette then
-     * removal is not supported.</p>
+     * <p>Note that if this palette is considered a global palette, removal is not supported.</p>
      *
-     * @param state The blockstate to remove
-     * @return If the blockstate existed in the mapping
+     * @param type The type to remove
+     * @return If the type existed in the mapping
      */
-    boolean remove(BlockState state);
+    boolean remove(T type);
 
     /**
-     * Gets all {@link BlockState}s contained in this palette.
+     * Gets all {@code type T}s contained in this palette.
      *
-     * @return All contained block states
+     * @return All contained types
      */
-    Collection<BlockState> getEntries();
+    Collection<T> getEntries();
+
 
 }

@@ -30,10 +30,10 @@ import org.spongepowered.api.world.volume.block.StreamableBlockVolume;
 import org.spongepowered.api.world.volume.entity.StreamableEntityVolume;
 import org.spongepowered.api.world.volume.block.entity.StreamableBlockEntityVolume;
 
-public interface ArchetypeVolumeCreator extends StreamableBlockVolume<ArchetypeVolumeCreator>,
-    StreamableBiomeVolume<ArchetypeVolumeCreator>,
-    StreamableEntityVolume<ArchetypeVolumeCreator>,
-  StreamableBlockEntityVolume<ArchetypeVolumeCreator>
+public interface ArchetypeVolumeCreator<A extends ArchetypeVolumeCreator<A>> extends StreamableBlockVolume<A>,
+    StreamableBiomeVolume<A>,
+    StreamableEntityVolume<A>,
+    StreamableBlockEntityVolume<A>
 {
 
     /**
@@ -49,6 +49,6 @@ public interface ArchetypeVolumeCreator extends StreamableBlockVolume<ArchetypeV
     ArchetypeVolume createArchetypeVolume(Vector3i min, Vector3i max, Vector3i origin);
 
     @Override
-    ArchetypeVolumeCreator getView(Vector3i newMin, Vector3i newMax);
+    A getView(Vector3i newMin, Vector3i newMax);
 
 }

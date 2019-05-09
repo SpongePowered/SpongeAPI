@@ -24,22 +24,14 @@
  */
 package org.spongepowered.api.world.schematic;
 
+import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.world.biome.BiomeType;
 
-public class BlockPaletteTypes {
+public class PaletteTypes {
 
-    /**
-     * The global palette containing a mapping of all block states to ids.
-     */
-    public static final BlockPaletteType GLOBAL = DummyObjectProvider.createFor(BlockPaletteType.class, "GLOBAL");
-    /**
-     * A local palette containing only a subset of the global palette.
-     */
-    public static final BlockPaletteType LOCAL = DummyObjectProvider.createFor(BlockPaletteType.class, "LOCAL");
-
-    // Suppress default constructor to ensure non-instantiability.
-    private BlockPaletteTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
-    }
-
+    public static final PaletteType<BlockState> GLOBAL_BLOCKS = DummyObjectProvider.createExtendedFor(PaletteType.class, "GLOBAL_BLOCKS");
+    public static final PaletteType<BlockState> LOCAL_BLOCKS = DummyObjectProvider.createExtendedFor(PaletteType.class, "LOCAL_BLOCKS");
+    public static final PaletteType<BiomeType> LOCAL_BIOMES = DummyObjectProvider.createExtendedFor(PaletteType.class, "LOCAL_BIOMNES");
+    public static final PaletteType<BiomeType> GLOBAL_BIOMES = DummyObjectProvider.createExtendedFor(PaletteType.class, "GLOBAL_BIOMES");
 }

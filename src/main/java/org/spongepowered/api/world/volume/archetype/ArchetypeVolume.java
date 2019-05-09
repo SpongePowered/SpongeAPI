@@ -30,7 +30,7 @@ import org.spongepowered.api.world.volume.block.MutableBlockVolume;
 
 public interface ArchetypeVolume
     extends MutableBlockVolume<ArchetypeVolume>,
-  MutableBlockEntityArchetypeVolume<ArchetypeVolume>,
+    MutableBlockEntityArchetypeVolume<ArchetypeVolume>,
     MutableEntityArchetypeVolume<ArchetypeVolume> {
 
 }

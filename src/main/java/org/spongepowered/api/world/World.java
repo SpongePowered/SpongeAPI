@@ -46,6 +46,7 @@ import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.storage.WorldStorage;
 import org.spongepowered.api.world.teleport.PortalAgent;
 import org.spongepowered.api.world.volume.TrackedVolume;
+import org.spongepowered.api.world.volume.archetype.ArchetypeVolumeCreator;
 import org.spongepowered.api.world.volume.block.PhysicsAwareMutableBlockVolume;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 
@@ -72,7 +73,9 @@ public interface World extends ProtoWorld<World>,
     MessageReceiver,
     ChatTypeMessageReceiver,
     TrackedVolume,
-    GameRuleHolder {
+    GameRuleHolder,
+    ArchetypeVolumeCreator<World>
+{
 
     /**
      * Gets an unmodifiable collection of {@link Player}s currently in this world.

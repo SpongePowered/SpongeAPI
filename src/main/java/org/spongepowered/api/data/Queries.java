@@ -87,6 +87,7 @@ public final class Queries {
     // UUID
     public static final DataQuery UUID_LEAST = of("UuidLeast");
     public static final DataQuery UUID_MOST = of("UuidMost");
+    public static final DataQuery POSITION = of("Pos");
 
     // Suppress default constructor to ensure non-instantiability.
     private Queries() {
