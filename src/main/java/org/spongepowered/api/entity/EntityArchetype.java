@@ -28,11 +28,13 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Archetype;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataView;
+import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.world.schematic.Schematic;
 
 public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
 
@@ -64,6 +66,11 @@ public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
     /**
      * Gets the raw {@link Entity} data that would be applied to the generated
      * entity. Note that this is a copied container.
+     *
+     * <p>Note: While normally, an archetype does not contain position information,
+     * it is possible that {@link Queries#POSITION} are included as required by
+     * {@link Schematic}s.
+     * </p>
      *
      * @return The copied container of the entity
      */
