@@ -26,8 +26,9 @@ package org.spongepowered.api.text.channel;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.chat.ChatTypes;
@@ -46,19 +47,63 @@ import javax.annotation.Nullable;
 public interface MessageChannel {
 
     /**
-     * A channel with no members.
+     * Creates a message channel that targets nothing.
+     *
+     * @return The channel
      */
-    MessageChannel TO_NONE = ImmutableSet::of;
+    static MessageChannel none() {
+        return Sponge.getRegistry().requireFactory(Factory.class).none();
+    }
 
     /**
-     * Creates a message channel that targets all subjects with the given
+     * Creates a message channel that targets the console.
+     *
+     * @return The channel
+     */
+    static MessageChannel console() {
+        return Sponge.getRegistry().requireFactory(Factory.class).console();
+    }
+
+    /**
+     * Creates a message channel that targets all the online
+     * {@link Player}s.
+     *
+     * @return The channel
+     */
+    static MessageChannel players() {
+        return Sponge.getRegistry().requireFactory(Factory.class).players();
+    }
+
+    /**
+     * Creates a message channel that targets all {@link Player}s with the given
      * permission.
      *
      * @param permission The permission to target
      * @return The channel
      */
-    static MessageChannel permission(String permission) {
-        return Sponge.getRegistry().requireFactory(Factory.class).permission(permission);
+    static MessageChannel playersWithPermission(String permission) {
+        return Sponge.getRegistry().requireFactory(Factory.class).playersWithPermission(permission);
+    }
+
+    /**
+     * Creates a message channel that targets all the online
+     * {@link Player}s and the console.
+     *
+     * @return The channel
+     */
+    static MessageChannel playersAndConsole() {
+        return Sponge.getRegistry().requireFactory(Factory.class).playersAndConsole();
+    }
+
+    /**
+     * Creates a message channel that targets all {@link Subject}s with the given
+     * permission.
+     *
+     * @param permission The permission to target
+     * @return The channel
+     */
+    static MessageChannel subjectsWithPermission(String permission) {
+        return Sponge.getRegistry().requireFactory(Factory.class).subjectsWithPermission(permission);
     }
 
     /**
@@ -201,7 +246,7 @@ public interface MessageChannel {
 
     interface Factory {
 
-        MessageChannel permission(String permission);
+        MessageChannel subjectsWithPermission(String permission);
 
         MessageChannel combined(MessageChannel... channels);
 
@@ -212,6 +257,16 @@ public interface MessageChannel {
         MessageChannel fixed(Collection<? extends MessageReceiver> recipients);
 
         MessageChannel world(World world);
+
+        MessageChannel none();
+
+        MessageChannel players();
+
+        MessageChannel playersWithPermission(String permission);
+
+        MessageChannel playersAndConsole();
+
+        MessageChannel console();
 
         MutableMessageChannel asMutable(MessageChannel channel);
     }
