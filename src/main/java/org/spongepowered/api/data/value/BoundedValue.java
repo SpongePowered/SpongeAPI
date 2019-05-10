@@ -36,7 +36,7 @@ import java.util.function.Function;
  * values, a {@link BoundedValue} is limited to being within it's destined
  * bounds. Any {@link BoundedValue} that is out of it's intended bounds will
  * throw an {@link IllegalStateException} if used or offered to a
- * {@link ValueContainer} or {@link DataHolder}.
+ * {@link ValueContainer} or {@link DataHolder.Mutable}.
  *
  * @param <E> The type of value that can be compared
  */

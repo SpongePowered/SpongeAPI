@@ -29,6 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.value.Value;
@@ -70,7 +71,7 @@ import javax.annotation.Nullable;
  *
  * <p>Blocks and items (when they are in inventories) are not entities.</p>
  */
-public interface Entity extends Identifiable, Locatable, DataHolder, Translatable, RandomProvider {
+public interface Entity extends Identifiable, Locatable, DataHolder.Mutable, Translatable, RandomProvider {
 
     /**
      * Gets the type of entity.
@@ -86,6 +87,9 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      * @return The snapshot
      */
     EntitySnapshot createSnapshot();
+
+    @Override
+    EntityArchetype copy();
 
     /**
      * Sets the location of this entity. This is equivalent to a teleport, and

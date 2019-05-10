@@ -34,19 +34,19 @@ import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
 import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 
 /**
- * An event that is associated with a {@link DataHolder} that may have some
+ * An event that is associated with a {@link DataHolder.Mutable} that may have some
  * {@link Value}s changed, offered, or removed. Note that calling any
- * methods relating to modifying a {@link DataHolder} while this event
+ * methods relating to modifying a {@link DataHolder.Mutable} while this event
  * is being processed may produce awkward results.
  */
 public interface ChangeDataHolderEvent extends Event, Cancellable {
 
     /**
-     * Gets the {@link DataHolder} targeted in this event.
+     * Gets the {@link DataHolder.Mutable} targeted in this event.
      *
      * @return The data holder targeted in this event
      */
-    DataHolder getTargetHolder();
+    DataHolder.Mutable getTargetHolder();
 
     @ImplementedBy(AbstractValueChangeEvent.class)
     interface ValueChange extends ChangeDataHolderEvent {
@@ -62,7 +62,7 @@ public interface ChangeDataHolderEvent extends Event, Cancellable {
         /**
          * Submits a new {@link DataTransactionResult} as a proposal of various
          * {@link Value.Mutable}s to be successfully offered/changed on the original
-         * {@link DataHolder}.
+         * {@link DataHolder.Mutable}.
          *
          * <p>If the proposed {@link DataTransactionResult} provides additional
          * values that were not changed in the {@link #getOriginalChanges()},

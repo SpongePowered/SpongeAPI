@@ -31,7 +31,7 @@ import org.spongepowered.api.data.Archetype;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.value.Value;
@@ -73,6 +73,14 @@ public interface BlockEntityArchetype extends Archetype<BlockSnapshot, BlockEnti
      * Gets the raw {@link BlockEntity} data that would be applied to the
      * generated block entity. Note that this is a copied container.
      *
+     * <p>The format used for this container follows the
+     * <a href="https://minecraft.gamepedia.com/Chunk_format#Block_entity_format">Mojang ChunkFormat for BlockEntities.</a>,
+     * and can be customized based on the origination of the {@link BlockEntity}.
+     * If the block entity originates from a content-adding mod, the format could
+     * vary based on it's implementation and may change at any time.
+     * </p>
+     *
+     *
      * @return The copied container of the block entity
      */
     DataContainer getBlockEntityData();
@@ -80,6 +88,13 @@ public interface BlockEntityArchetype extends Archetype<BlockSnapshot, BlockEnti
     /**
      * Sets the raw data for the desired {@link BlockEntity}. Note that position
      * values are not used as those are dependent on usage.
+     *
+     * <p>The format used for this container follows the
+     * <a href="https://minecraft.gamepedia.com/Chunk_format#Block_entity_format">Mojang ChunkFormat for BlockEntities.</a>,
+     * and can be customized based on the origination of the {@link BlockEntity}.
+     * If the block entity originates from a content-adding mod, the format could
+     * vary based on it's implementation and may change at any time.
+     * </p>
      *
      * @param container A container containing all raw data to set on this data
      *        holder
@@ -115,13 +130,62 @@ public interface BlockEntityArchetype extends Archetype<BlockSnapshot, BlockEnti
 
         Builder blockEntity(BlockEntityType type);
 
+        /**
+         * Copies the incoming {@link BlockEntity} for it's current state
+         * of information, such as {@link BlockState}, {@link BlockEntityType},
+         * and all related {@link DataView contained data}, except the position
+         * and potentially any Sponge-added tracking information, such as owner
+         * or notifier.
+         *
+         * <p>Note that this overwrites data set from the following methods:
+         * <ul>
+         *     <li>{@link #from(Location)}</li>
+         *     <li>{@link #state(BlockState)}</li>
+         *     <li>{@link #blockEntity(BlockEntityType)}</li>
+         *     <li>{@link #blockEntityData(DataView)}</li>
+         *     <li>{@link #set(Value)}</li>
+         *     <li>{@link #set(Key, Object)}</li>
+         *     <li>{@link #set(DataManipulator)}</li>
+         * </ul></p>
+         * @param blockEntity
+         * @return
+         */
         Builder blockEntity(BlockEntity blockEntity);
 
+        /**
+         * Sets the {@link DataView} to be used to copy data onto the created
+         * {@link BlockEntity} when {@link BlockEntityArchetype#apply(Location)}
+         * is called.
+         *
+         * <p>The format used for this container follows the
+         * <a href="https://minecraft.gamepedia.com/Chunk_format#Block_entity_format">Mojang ChunkFormat for BlockEntities.</a>,
+         * and can be customized based on the origination of the {@link BlockEntity}.
+         * If the block entity originates from a content-adding mod, the format could
+         * vary based on it's implementation and may change at any time.
+         * </p>
+         *
+         * @param dataView The data view containing data pertinent to the
+         *     {@link BlockEntity}
+         * @return This builder, for chaining
+         */
         Builder blockEntityData(DataView dataView);
 
-        Builder set(DataManipulator manipulator);
+        /**
+         * Sets the {@link DataManipulator}'s {@link Value}s onto this builder,
+         * to apply to the resulting {@link BlockEntity} when the built
+         * {@link BlockEntityArchetype} is used.
+         *
+         * @param manipulator The manipulator containing values
+         * @return This builder, for chaining
+         */
+        default Builder set(DataManipulator manipulator) {
+            manipulator.getValues().forEach(this::set);
+            return this;
+        }
 
-        <E, V extends Value<E>> Builder set(V value);
+        default <E, V extends Value<E>> Builder set(V value) {
+            return this.set(value.getKey(), value.get());
+        }
 
         <E, V extends Value<E>> Builder set(Key<V> key, E value);
 

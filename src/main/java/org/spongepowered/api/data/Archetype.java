@@ -25,16 +25,15 @@
 package org.spongepowered.api.data;
 
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
 
 import java.util.Optional;
 
 /**
- * A {@link DataHolder} which has no attachment to any particular world allowing
+ * A {@link DataHolder.Mutable DataHolder} which has no attachment to any particular world allowing
  * it to be used as a blueprint to create multiple copies of its containing
  * data.
  */
-public interface Archetype<S extends LocatableSnapshot<S>, E> extends DataHolder {
+public interface Archetype<S extends LocatableSnapshot<S>, E> extends DataHolder.Mutable {
 
     /**
      * Creates a new instance based on this archetype at the given location.
@@ -51,5 +50,8 @@ public interface Archetype<S extends LocatableSnapshot<S>, E> extends DataHolder
      * @return The snapshot
      */
     S toSnapshot(Location location);
+
+    @Override
+    Archetype<S, E> copy();
 
 }

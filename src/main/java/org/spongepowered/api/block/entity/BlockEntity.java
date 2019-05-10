@@ -27,7 +27,9 @@ package org.spongepowered.api.block.entity;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.LocatableBlock;
 import org.spongepowered.api.world.Location;
@@ -45,9 +47,9 @@ import org.spongepowered.api.world.schematic.Schematic;
  * <p>Since a {@link BlockEntity} is performing various actions, all methods
  * that are purely functional methods reside in the {@link BlockEntity}, whereas
  * customizable data associated with a {@link BlockEntity} is represented by
- * {@link DataManipulator}.</p>
+ * {@link Value Values}.</p>
  */
-public interface BlockEntity extends DataHolder, Locatable {
+public interface BlockEntity extends DataHolder.Mutable, Locatable {
 
     /**
      * Checks for whether the block entity is currently valid or not.
@@ -108,4 +110,12 @@ public interface BlockEntity extends DataHolder, Locatable {
      */
     LocatableBlock getLocatableBlock();
 
+    /**
+     * Creates a new {@link BlockEntityArchetype} for use with {@link Schematic}s
+     * and placing the archetype in multiple locations.
+     *
+     * @return The created archetype for re-creating this block entity
+     */
+    @Override
+    BlockEntityArchetype copy();
 }

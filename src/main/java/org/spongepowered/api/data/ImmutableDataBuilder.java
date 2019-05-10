@@ -25,24 +25,22 @@
 package org.spongepowered.api.data;
 
 import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.value.Value;
 
 /**
  * A builder, much like a normal {@link DataBuilder} except that it builds
- * {@link ImmutableDataHolder}s. While the {@link ImmutableDataHolder} is like
+ * {@link DataHolder.Immutable}s. While the {@link DataHolder.Immutable} is like
  * a {@link DataHolder}, it is immutable.
  *
- * @param <H> The type of {@link ImmutableDataHolder}
+ * @param <H> The type of {@link DataHolder.Immutable}
  * @param <E> The extended {@link ImmutableDataBuilder}
  */
-public interface ImmutableDataBuilder<H extends ImmutableDataHolder<H>, E extends ImmutableDataBuilder<H, E>> extends DataBuilder<H> {
+public interface ImmutableDataBuilder<H extends DataHolder.Immutable<H>, E extends ImmutableDataBuilder<H, E>> extends DataBuilder<H> {
 
     /**
      * Adds the given {@link Value} to the builder. The
-     * {@link Value} is copied when the {@link ImmutableDataHolder}
+     * {@link Value} is copied when the {@link DataHolder.Immutable}
      * is created.
      *
      * @param value The value to add
@@ -60,18 +58,6 @@ public interface ImmutableDataBuilder<H extends ImmutableDataHolder<H>, E extend
     }
 
     /**
-     * Adds the given {@link ImmutableDataManipulator} to the builder.
-     *
-     * @param manipulator The manipulator to add
-     * @return This builder, for chaining
-     */
-    @SuppressWarnings("unchecked")
-    default E add(ImmutableDataManipulator manipulator) {
-        manipulator.getValues().forEach(this::add);
-        return (E) this;
-    }
-
-    /**
      * Adds the given {@link Key} with the given value.
      *
      * @param key The key to assign the value with
@@ -83,17 +69,17 @@ public interface ImmutableDataBuilder<H extends ImmutableDataHolder<H>, E extend
 
     /**
      * Copies all known {@link DataManipulator}s from the given
-     * {@link ImmutableDataHolder}. This is a defensive copy as
+     * {@link DataHolder.Immutable}. This is a defensive copy as
      * {@link DataManipulator} is mutable.
      *
-     * @param holder The {@link ImmutableDataHolder} to copy from
+     * @param holder The {@link DataHolder.Immutable} to copy from
      * @return This builder for chaining
      */
     @Override
     E from(H holder);
 
     /**
-     * Attempts to build a new {@link ImmutableDataHolder}.
+     * Attempts to build a new {@link DataHolder.Immutable}.
      *
      * @return The new immutable data holder
      */

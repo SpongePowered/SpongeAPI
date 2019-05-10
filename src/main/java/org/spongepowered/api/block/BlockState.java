@@ -27,7 +27,7 @@ package org.spongepowered.api.block;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.data.ImmutableDataBuilder;
-import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.property.DirectionRelativePropertyHolder;
 import org.spongepowered.api.fluid.FluidState;
 import org.spongepowered.api.state.State;

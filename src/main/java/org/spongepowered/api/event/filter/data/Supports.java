@@ -22,5 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.data.merge;
+package org.spongepowered.api.event.filter.data;
+
+import org.spongepowered.api.data.key.Keys;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Target(ElementType.PARAMETER)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Supports {
+
+    Class<?> container() default Keys.class;
+
+    String value();
+
+    boolean inverse() default false;
+
+}

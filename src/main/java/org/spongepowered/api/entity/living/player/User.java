@@ -43,7 +43,7 @@ import java.util.UUID;
  * across server restarts. This is in contrast to Player which represents
  * the in-game entity associated with an online User.
  */
-public interface User extends DataHolder, ArmorEquipable, Tamer, Subject {
+public interface User extends DataHolder.Mutable, ArmorEquipable, Tamer, Subject {
 
     /**
      * Gets the associated {@link GameProfile} of this player.

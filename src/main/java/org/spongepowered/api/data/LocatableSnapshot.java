@@ -32,7 +32,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 /**
- * A type of {@link ImmutableDataHolder} that may be linked to a particular
+ * A type of {@link DataHolder.Immutable} that may be linked to a particular
  * {@link Location}. Being that a {@link LocatableSnapshot} may be built
  * by an {@link ImmutableDataBuilder}, the {@link Location} may be
  * <code>null</code> such that {@link #getLocation()} returns
@@ -40,7 +40,7 @@ import java.util.UUID;
  *
  * @param <T> The type of location snapshot for self referencing
  */
-public interface LocatableSnapshot<T extends LocatableSnapshot<T>> extends ImmutableDataHolder<T> {
+public interface LocatableSnapshot<T extends LocatableSnapshot<T>> extends DataHolder.Immutable<T> {
 
     /**
      * Gets the {@link UUID} of the world.

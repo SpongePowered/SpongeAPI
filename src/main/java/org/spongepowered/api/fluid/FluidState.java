@@ -28,7 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.ImmutableDataBuilder;
-import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.state.State;
 import org.spongepowered.api.world.Location;

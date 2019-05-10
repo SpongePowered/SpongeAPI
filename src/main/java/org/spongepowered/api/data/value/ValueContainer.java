@@ -29,7 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.DataManipulator;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -39,7 +39,7 @@ import javax.annotation.Nullable;
 
 /**
  * A ValueContainer is a holder of a particular set of {@link Value}s. While
- * there exists a {@link CompositeValueStore} and {@link ImmutableValueStore},
+ * there exists a {@link MutableValueStore} and {@link ImmutableValueStore},
  * the emphasis of {@link ValueContainer} is that it only contains "data". It
  * is not known whether a {@code ValueContainer} is mutable or immutable.
  *
@@ -47,12 +47,10 @@ import javax.annotation.Nullable;
  * {@link Value}s, it itself does not contain the underlying values of
  * data. A {@link ValueContainer} may not always be parented by another
  * {@link ValueContainer}, such as the case for {@link DataManipulator}s and
- * {@link DataHolder}s, it is recommended to knowingly understand the
+ * {@link DataHolder.Mutable}s, it is recommended to knowingly understand the
  * fundamental differences between them.</p>
- *
- * @param <C> The type of container for fluency
  */
-public interface ValueContainer<C extends ValueContainer<C>> {
+public interface ValueContainer {
 
     /**
      * Attempts to get the underlying value backed by a {@link Value}
@@ -154,11 +152,12 @@ public interface ValueContainer<C extends ValueContainer<C>> {
     /**
      * Creates a clone copy of this {@link ValueContainer} as a new
      * {@link ValueContainer} such that all the {@link Value}s are
-     * safely duplicated to the new instance.
+     * safely duplicated to the new instance. It is not guaranteed that
+     * the returning container is of the same type as this container.
      *
      * @return The new copy
      */
-    C copy();
+    ValueContainer copy();
 
     /**
      * Gets all applicable {@link Key}s for this {@link ValueContainer}.

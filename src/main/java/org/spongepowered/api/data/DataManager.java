@@ -111,9 +111,9 @@ public interface DataManager {
     <T extends DataSerializable> Optional<T> deserialize(Class<T> clazz, DataView dataView);
 
     /**
-     * Registers the given {@link ImmutableDataHolder} class with it's
+     * Registers the given {@link DataHolder.Immutable} class with it's
      * associated {@link ImmutableDataBuilder}. The builder can be used to
-     * create new instances of the given {@link ImmutableDataHolder} for data
+     * create new instances of the given {@link DataHolder.Immutable} for data
      * retrieval, data representation, etc.
      *
      * @param holderClass The class of the immutable data holder
@@ -121,7 +121,7 @@ public interface DataManager {
      * @param <T> The type of immutable data holder
      * @param <B> The type of immutable data builder
      */
-    <T extends ImmutableDataHolder<T>, B extends ImmutableDataBuilder<T, B>> void register(Class<T> holderClass, B builder);
+    <T extends DataHolder.Immutable<T>, B extends ImmutableDataBuilder<T, B>> void register(Class<T> holderClass, B builder);
 
     /**
      * Registers a legacy {@code id} that is used by a previous version of
@@ -135,9 +135,9 @@ public interface DataManager {
 
     /**
      * Attempts to retrieve the builder for the given
-     * {@link ImmutableDataHolder}.
+     * {@link DataHolder.Immutable}.
      *
-     * <p>If the {@link ImmutableDataHolder} was not registered, multiple
+     * <p>If the {@link DataHolder.Immutable} was not registered, multiple
      * systems could fail to retrieve specific data.</p>
      *
      * @param holderClass The immutable data holder class
@@ -145,7 +145,7 @@ public interface DataManager {
      * @param <B> The type of immutable data builder
      * @return The builder, if available
      */
-    <T extends ImmutableDataHolder<T>, B extends ImmutableDataBuilder<T, B>> Optional<B> getImmutableBuilder(Class<T> holderClass);
+    <T extends DataHolder.Immutable<T>, B extends ImmutableDataBuilder<T, B>> Optional<B> getImmutableBuilder(Class<T> holderClass);
 
 
     /**

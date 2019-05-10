@@ -32,9 +32,8 @@ import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.data.value.CompositeValueStore;
+import org.spongepowered.api.data.value.MutableValueStore;
 import org.spongepowered.api.data.value.Value;
 
 import java.util.ArrayList;
@@ -44,8 +43,8 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 /**
- * Represents a transaction taking place where a {@link DataHolder} is
- * accepting {@link DataManipulator}s.
+ * Represents a transaction taking place where a {@link DataHolder.Mutable} is
+ * accepting {@link Value}s.
  */
 public final class DataTransactionResult {
 
@@ -212,8 +211,8 @@ public final class DataTransactionResult {
         /**
          * The actual result of the operation is undefined, this probably
          * indicates that something went wrong with the operation that the
-         * {@link DataManipulator} couldn't handle or didn't expect. The
-         * state of the {@link DataManipulator} is undefined.
+         * {@link Value} couldn't handle or didn't expect. The
+         * state of the {@link Value} is undefined.
          */
         UNDEFINED,
 
@@ -223,24 +222,24 @@ public final class DataTransactionResult {
         SUCCESS,
 
         /**
-         * The {@link DataManipulator} operation failed for an
-         * <em>expected</em> reason (such as the {@link DataManipulator} being
+         * The {@link Value} operation failed for an
+         * <em>expected</em> reason (such as the {@link Value} being
          * incompatible with the {@link DataHolder}. The condition of the
-         * {@link DataManipulator} is unchanged.
+         * {@link Value} is unchanged.
          */
         FAILURE,
 
         /**
-         * The {@link DataManipulator} operation failed because an
+         * The {@link Value} operation failed because an
          * <em>unexpected</em> condition occurred. The state of the
-         * {@link DataManipulator} is undefined.
+         * {@link Value} is undefined.
          */
         ERROR,
 
         /**
          * An operation was cancelled by a third party (eg. a
-         * {@link DataManipulator} event was cancelled). The condition of the
-         * {@link DataManipulator} is unchanged.
+         * {@link Value} event was cancelled). The condition of the
+         * {@link Value} is unchanged.
          */
         CANCELLED,
         ;
@@ -290,7 +289,7 @@ public final class DataTransactionResult {
     }
 
     /**
-     * If any {@link Value}s applied onto a {@link CompositeValueStore} were
+     * If any {@link Value}s applied onto a {@link MutableValueStore} were
      * successful, they'll be stored in the given list.
      *
      * @return An immutable list of the values successfully offered

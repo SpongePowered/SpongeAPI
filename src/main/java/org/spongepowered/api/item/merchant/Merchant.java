@@ -38,7 +38,7 @@ import javax.annotation.Nullable;
 /**
  * Represents a Merchant which can offer trades to customers.
  */
-public interface Merchant extends DataHolder, Carrier, Locatable {
+public interface Merchant extends DataHolder.Mutable, Carrier, Locatable {
 
     /**
      * Gets the currently trading customer with this merchant.

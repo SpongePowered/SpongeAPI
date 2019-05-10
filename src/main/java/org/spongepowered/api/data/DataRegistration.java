@@ -27,19 +27,13 @@ package org.spongepowered.api.data;
 import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.type.DyeColor;
-import org.spongepowered.api.data.type.DyeColors;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.CatalogBuilder;
 
 import java.util.Optional;
-import java.util.function.Function;
 
 public interface DataRegistration extends CatalogType {
 
@@ -52,9 +46,6 @@ public interface DataRegistration extends CatalogType {
      */
     @SuppressWarnings("unchecked")
     static Builder builder() {
-        BlockTypes.BLACK_WOOL.getDefaultState().with(Keys.DYE_COLOR, DyeColors.BLUE).get();
-        DataProvider<Value<DyeColor>, DyeColor> dyeColorprovider = null;
-        dyeColorprovider.withValue(BlockTypes.BLACK_WOOL.getDefaultState(), DyeColors.BLUE);
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 

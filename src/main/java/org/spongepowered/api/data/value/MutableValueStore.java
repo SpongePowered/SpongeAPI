@@ -28,26 +28,20 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.merge.MergeFunction;
 
-import java.util.Collection;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 import java.util.function.Function;
 
 /**
  * Represents a {@link ValueContainer} that contains a various bundle of
  * {@link ValueContainer}s of type declared by the extension that can be
- * manipulated separately from this {@link org.spongepowered.api.data.value.CompositeValueStore}.
- *
- * @param <S> The type of composite store, for self referencing
+ * manipulated separately from this {@link MutableValueStore}.
  */
-public interface CompositeValueStore<S extends CompositeValueStore<S>> extends ValueContainer<S> {
+public interface MutableValueStore extends ValueContainer {
 
     /**
      * Applies a transformation on the provided {@link Value} such that
      * the return value of {@link Function#apply(Object)} will become the end
-     * resulting value set into this {@link org.spongepowered.api.data.value.CompositeValueStore}. It is not
+     * resulting value set into this {@link MutableValueStore}. It is not
      * necessary that the input is actually present, in which case the
      * {@link Key}ed data is compatible, but not necessarily present. Writing
      * a {@link Function} to properly handle the potential for a null input
@@ -69,7 +63,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S>> extends V
      * Offers the given {@code value} as defined by the provided {@link Key}
      * such that a {@link DataTransactionResult} is returned for any
      * successful, rejected, and replaced {@link Value}s from this
-     * {@link org.spongepowered.api.data.value.CompositeValueStore}.
+     * {@link MutableValueStore}.
      *
      * @param key The key to the value to set
      * @param value The value to set
@@ -82,7 +76,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S>> extends V
      * Offers the given {@link Value} as defined by the provided
      * {@link Key} such that a {@link DataTransactionResult} is returned for
      * any successful, rejected, and replaced {@link Value}s from this
-     * {@link org.spongepowered.api.data.value.CompositeValueStore}.
+     * {@link MutableValueStore}.
      *
      * @param value The value to set
      * @param <E> The type of the element wrapped by the value
@@ -96,7 +90,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S>> extends V
     /**
      * Offers the given {@code value} as defined by the provided {@link Key}
      * such that a {@link DataTransactionResult} is returned for any
-     * successful {@link Value}s from this {@link org.spongepowered.api.data.value.CompositeValueStore}.
+     * successful {@link Value}s from this {@link MutableValueStore}.
      * Intentionally, however, this differs from {@link #offer(Key, Object)}
      * as it will intentionally throw an exception if the result was a failure.
      *
@@ -118,7 +112,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S>> extends V
     /**
      * Offers the given {@code value} as defined by the provided {@link Key}
      * such that a {@link DataTransactionResult} is returned for any
-     * successful {@link Value}s from this {@link org.spongepowered.api.data.value.CompositeValueStore}.
+     * successful {@link Value}s from this {@link MutableValueStore}.
      * Intentionally, however, this differs from {@link #offer(Key, Object)}
      * as it will intentionally throw an exception if the result was a failure.
      *
@@ -177,27 +171,27 @@ public interface CompositeValueStore<S extends CompositeValueStore<S>> extends V
 
     /**
      * Performs an absolute copy of all {@link Value.Mutable}s and
-     * {@link ValueContainer}s to this {@link org.spongepowered.api.data.value.CompositeValueStore} such that
+     * {@link ValueContainer}s to this {@link MutableValueStore} such that
      * any overlapping {@link Value.Mutable}s are offered for replacement. The
      * result is provided as a {@link DataTransactionResult}.
      *
-     * @param that The other {@link org.spongepowered.api.data.value.CompositeValueStore} to copy values from
+     * @param that The other {@link MutableValueStore} to copy values from
      * @return The transaction result
      */
-    default DataTransactionResult copyFrom(S that) {
+    default DataTransactionResult copyFrom(ValueContainer that) {
         return copyFrom(that, MergeFunction.IGNORE_ALL);
     }
 
     /**
      * Performs an absolute copy of all {@link Value.Mutable}s and
-     * {@link ValueContainer}s to this {@link org.spongepowered.api.data.value.CompositeValueStore} such that
+     * {@link ValueContainer}s to this {@link MutableValueStore} such that
      * any overlapping {@link Value.Mutable}s are offered for replacement. The
      * result is provided as a {@link DataTransactionResult}.
      *
-     * @param that The other {@link org.spongepowered.api.data.value.CompositeValueStore} to copy values from
+     * @param that The other {@link MutableValueStore} to copy values from
      * @param function The function to resolve merge conflicts
      * @return The transaction result
      */
-    DataTransactionResult copyFrom(S that, MergeFunction function);
+    DataTransactionResult copyFrom(ValueContainer that, MergeFunction function);
 
 }

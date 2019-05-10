@@ -37,12 +37,12 @@ public interface DataProvider<V extends Value<E>, E> {
 
     Key<V> getKey();
 
-    Optional<V> getValue(ValueContainer<?> container);
+    Optional<V> getValue(ValueContainer container);
 
-    DataTransactionResult offerValue(E value, ValueContainer<?> container);
+    DataTransactionResult offerValue(E value, ValueContainer container);
 
     <I extends ImmutableValueStore<I>> Optional<I> withValue(I existing, E value);
 
-    boolean isSupported(ValueContainer<?> container);
+    boolean isSupported(ValueContainer container);
 
 }

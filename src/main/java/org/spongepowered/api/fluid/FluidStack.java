@@ -34,7 +34,7 @@ import org.spongepowered.api.item.ItemTypes;
  * volume measured in "milliBuckets" where <code>1000</code>mB is equal to
  * 1 {@link ItemTypes#BUCKET}.
  */
-public interface FluidStack extends DataHolder {
+public interface FluidStack extends DataHolder.Mutable {
 
     /**
      * Creates a new {@link Builder} to make fluid stacks.
@@ -81,6 +81,9 @@ public interface FluidStack extends DataHolder {
      * @return The fluid stack snapshot
      */
     FluidStackSnapshot createSnapshot();
+
+    @Override
+    FluidStack copy();
 
     interface Builder extends DataBuilder<FluidStack> {
 

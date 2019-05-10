@@ -24,46 +24,66 @@
  */
 package org.spongepowered.api.data;
 
-import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.property.PropertyHolder;
-import org.spongepowered.api.data.value.CompositeValueStore;
+import org.spongepowered.api.data.value.ImmutableValueStore;
+import org.spongepowered.api.data.value.MutableValueStore;
+import org.spongepowered.api.data.value.ValueContainer;
+import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.item.ItemType;
 
 /**
  * A data holder object allows the access of additional data on the object
  * that is not simply expressed by its basic type.
  */
-public interface DataHolder extends DataSerializable, PropertyHolder, CompositeValueStore<DataHolder> {
+public interface DataHolder extends DataSerializable, PropertyHolder {
 
-    /**
-     * Validates the container with known data required to set the raw data to
-     * this {@link DataHolder}. If the container is incomplete or contains
-     * invalid data, <code>false</code> is returned.
-     *
-     * <p>This validation should be checked prior to calling
-     * {@link #setRawData(DataView)} to avoid exceptions.</p>
-     *
-     * @param container The raw data to validate
-     * @return True if the data is valid
-     */
-    boolean validateRawData(DataView container);
+    interface Mutable extends DataHolder, MutableValueStore {
 
-    /**
-     * Attempts to set all data of this {@link DataHolder} according to the
-     * {@link DataContainer}'s held information. Using this to modify known
-     * {@link DataManipulator} is unsupported and if the data is invalid, an
-     * {@link InvalidDataException} is thrown.
-     *
-     * <p>This setter is used to provide setting custom data that is not
-     * represented by the Data API, including forge mods and other
-     * unknown data. Attempts at validating known {@link DataManipulator}s
-     * contained in the data container are made with the assumption that all
-     * necessary data exists.</p>
-     *
-     * @param container A container containing all raw data to set on this
-     *     data holder
-     * @throws InvalidDataException If the container is missing or has invalid
-     *     data that this holder will refuse
-     */
-    void setRawData(DataView container) throws InvalidDataException;
+        /**
+         * Validates the container with known data required to set the raw data to
+         * this {@link DataHolder}. If the container is incomplete or contains
+         * invalid data, <code>false</code> is returned.
+         *
+         * <p>This validation should be checked prior to calling
+         * {@link #setRawData(DataView)} to avoid exceptions.</p>
+         *
+         * @param container The raw data to validate
+         * @return True if the data is valid
+         */
+        boolean validateRawData(DataView container);
+
+        /**
+         * Attempts to set all data of this {@link DataHolder} according to the
+         * {@link DataView}'s held information. Using this to modify known to be
+         * {@link Key}s provided dynamically through {@link DataProvider}s is
+         * unsupported. The format of the {@link DataView}'s contained data is
+         * dependent on the type of {@link Mutable} this is. In some cases, the
+         * format is specified based on a more specific type, such as for
+         * {@link EntityType}s, or {@link ItemType}s.
+         *
+         * <p>This setter is used to provide setting custom data that is not
+         * represented by the Data API, including forge mods and other
+         * unknown data. Attempts to validate the provided view is not always
+         * possible due to the nature of the data being parsed by the implementation,
+         * and only understood by clients. Other cases where the data <b>can</b>
+         * be validated and the data is incompatible will end up throwing an
+         * {@link InvalidDataException}.</p>
+         *
+         * @param container A container containing all raw data to set on this
+         *     data holder
+         * @throws InvalidDataException If the container is missing or has invalid
+         *     data that this holder will refuse
+         */
+        void setRawData(DataView container) throws InvalidDataException;
+
+        @Override
+        ValueContainer copy();
+    }
+
+    interface Immutable<I extends Immutable<I>> extends DataHolder, ImmutableValueStore<I> {
+
+    }
+
 }

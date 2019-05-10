@@ -27,10 +27,10 @@ package org.spongepowered.api.world;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.data.ImmutableDataHolder;
+import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.persistence.DataBuilder;
 
-public interface LocatableBlock extends ImmutableDataHolder<LocatableBlock>, Locatable {
+public interface LocatableBlock extends DataHolder.Immutable<LocatableBlock>, Locatable {
 
     /**
      * Creates a new {@link Builder} for creating new {@link LocatableBlock}s.

@@ -25,10 +25,7 @@
 package org.spongepowered.api.data.value;
 
 import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.merge.MergeFunction;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -40,7 +37,7 @@ import java.util.function.Function;
  *
  * @param <I> The type of immutable value store, for self referencing
  */
-public interface ImmutableValueStore<I extends ImmutableValueStore<I>> extends ValueContainer<I> {
+public interface ImmutableValueStore<I extends ImmutableValueStore<I>> extends ValueContainer {
 
     /**
      * Applies a transformation on the provided {@link Value} such that

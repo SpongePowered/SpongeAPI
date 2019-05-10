@@ -25,7 +25,7 @@
 package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.property.Property;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
