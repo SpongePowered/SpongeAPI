@@ -53,6 +53,7 @@ import java.time.Duration;
 import java.time.temporal.TemporalUnit;
 import java.util.Collection;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.function.BiFunction;
 
 /**
@@ -64,27 +65,78 @@ import java.util.function.BiFunction;
 public interface Location extends DataHolder, DirectionRelativePropertyHolder {
 
     static Location of(World world, double x, double y, double z) {
-        return Sponge.getRegistry().requireFactory(Factory.class).create(world, x, y, z);
+        return Sponge.getRegistry().requireFactory(Factory.class).create(world, new Vector3d(x, y, z));
+    }
+
+    static Location of(UUID worldUniqueId, double x, double y, double z) {
+        return Sponge.getRegistry().requireFactory(Factory.class).create(worldUniqueId, new Vector3d(x, y, z));
     }
 
     static Location of(World world, Vector3d position) {
-        return Sponge.getRegistry().requireFactory(Factory.class).create(world, position.getX(), position.getY(), position.getZ());
+        return Sponge.getRegistry().requireFactory(Factory.class).create(world, position);
+    }
+
+    static Location of(UUID worldUniqueId, Vector3d position) {
+        return Sponge.getRegistry().requireFactory(Factory.class).create(worldUniqueId, position);
     }
 
     static Location of(World world, int x, int y, int z) {
-        return Sponge.getRegistry().requireFactory(Factory.class).create(world, x, y, z);
+        return Sponge.getRegistry().requireFactory(Factory.class).create(world, new Vector3i(x, y, z));
+    }
+
+    static Location of(UUID worldUniqueId, int x, int y, int z) {
+        return Sponge.getRegistry().requireFactory(Factory.class).create(worldUniqueId, new Vector3i(x, y, z));
     }
 
     static Location of(World world, Vector3i position) {
-        return Sponge.getRegistry().requireFactory(Factory.class).create(world, position.getX(), position.getY(), position.getZ());
+        return Sponge.getRegistry().requireFactory(Factory.class).create(world, position);
+    }
+
+    static Location of(UUID worldUniqueId, Vector3i position) {
+        return Sponge.getRegistry().requireFactory(Factory.class).create(worldUniqueId, position);
     }
 
     /**
-     * Gets the underlying world.
+     * Gets the underlying world. Throws a {@link IllegalStateException}
+     * if the world isn't available.
      *
-     * @return The underlying world.
+     * @return The underlying world
+     * @see #getWorldIfAvailable()
      */
     World getWorld();
+
+    /**
+     * Gets the underlying {@link World} if it's available. A {@link World}
+     * is available when it exists and is loaded.
+     *
+     * @return The underlying world, if available
+     * @see #isAvailable()
+     */
+    Optional<World> getWorldIfAvailable();
+
+    /**
+     * Gets the {@link UUID} of the world.
+     *
+     * @return The world unique id
+     */
+    UUID getWorldUniqueId();
+
+    /**
+     * Gets whether this location is available. A location is
+     * available when the target {@link World} exists and is loaded.
+     *
+     * @return Whether the location is available
+     */
+    boolean isAvailable();
+
+    /**
+     * Gets whether this location is valid. A location is valid
+     * when the target {@link World} exists, this can be loaded
+     * or unloaded.
+     *
+     * @return Whether the location is valid
+     */
+    boolean isValid();
 
     /**
      * Gets the underlying position.
@@ -581,8 +633,12 @@ public interface Location extends DataHolder, DirectionRelativePropertyHolder {
     ScheduledUpdate<FluidType> scheduleFluidUpdate(Duration delay, TaskPriority priority);
 
     interface Factory {
-        Location create(World world, double x, double y, double z);
+        Location create(World world, Vector3d position);
 
-        Location create(World world, int x, int y, int z);
+        Location create(World world, Vector3i blockPosition);
+
+        Location create(UUID worldUniqueId, Vector3d position);
+
+        Location create(UUID worldUniqueId, Vector3i blockPosition);
     }
 }
