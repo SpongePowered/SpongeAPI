@@ -88,7 +88,7 @@ public interface EntitySnapshot extends LocatableSnapshot<EntitySnapshot> {
      *
      * @return The EntityType
      */
-    EntityType getType();
+    EntityType<?> getType();
 
     /**
      * Restores the {@link EntitySnapshot} to the {@link Location} stored within
@@ -130,7 +130,7 @@ public interface EntitySnapshot extends LocatableSnapshot<EntitySnapshot> {
          * @param entityType The EntityType
          * @return This builder, for chaining
          */
-        Builder type(EntityType entityType);
+        Builder type(EntityType<?> entityType);
 
         /**
          * Sets the coordinates of this {@link EntitySnapshot} from a

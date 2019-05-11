@@ -58,7 +58,7 @@ public interface MutableEntityVolume<M extends MutableEntityVolume<M>> extends S
      *      valid to create
      * @throws IllegalStateException If a constructor cannot be found
      */
-    Entity createEntity(EntityType type, Vector3d position) throws IllegalArgumentException, IllegalStateException;
+    <E extends Entity> E createEntity(EntityType<E> type, Vector3d position) throws IllegalArgumentException, IllegalStateException;
 
     /**
      * Create an entity instance at the given position.
@@ -77,7 +77,7 @@ public interface MutableEntityVolume<M extends MutableEntityVolume<M>> extends S
      *      valid to create
      * @throws IllegalStateException If a constructor cannot be found
      */
-    default Entity createEntity(EntityType type, Vector3i position) throws IllegalArgumentException, IllegalStateException {
+    default <E extends Entity> E createEntity(EntityType<E> type, Vector3i position) throws IllegalArgumentException, IllegalStateException {
         checkNotNull(position, "position");
         return createEntity(type, position.toDouble());
     }
@@ -100,7 +100,7 @@ public interface MutableEntityVolume<M extends MutableEntityVolume<M>> extends S
      *     valid to create
      * @throws IllegalStateException If a constructor cannot be found
      */
-    Entity createEntityNaturally(EntityType type, Vector3d position) throws IllegalArgumentException, IllegalStateException;
+    <E extends Entity> E createEntityNaturally(EntityType<E> type, Vector3d position) throws IllegalArgumentException, IllegalStateException;
 
     /**
      * Create an entity instance at the given position with the default
@@ -120,7 +120,8 @@ public interface MutableEntityVolume<M extends MutableEntityVolume<M>> extends S
      *     valid to create
      * @throws IllegalStateException If a constructor cannot be found
      */
-    default Entity createEntityNaturally(EntityType type, Vector3i position) throws IllegalArgumentException, IllegalStateException {
+    default <E extends Entity> E createEntityNaturally(EntityType<E> type, Vector3i position) throws IllegalArgumentException,
+            IllegalStateException {
         checkNotNull(position, "position");
         return createEntityNaturally(type, position.toDouble());
     }

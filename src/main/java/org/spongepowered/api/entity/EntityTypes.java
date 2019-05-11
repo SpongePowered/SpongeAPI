@@ -347,7 +347,6 @@ public final class EntityTypes {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
-    @SuppressWarnings("unchecked")
     private static <A extends Entity> EntityType<A> dummy(final String fieldName) {
         return DummyObjectProvider.createFor(EntityType.class, fieldName);
     }

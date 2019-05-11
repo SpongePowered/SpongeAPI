@@ -36,13 +36,12 @@ public interface FallingBlockDamageSource extends EntityDamageSource {
      *
      * @return A new builder
      */
-    static Builder builder() {
+    static <B extends Builder<FallingBlockDamageSource, B>> B builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
     @Override
     FallingBlock getSource();
-
 
     /**
      * Gets the {@link Value.Immutable} for the damage to deal per block
@@ -99,17 +98,18 @@ public interface FallingBlockDamageSource extends EntityDamageSource {
     Value.Immutable<Boolean> canHurtEntities();
 
 
-    interface Builder extends EntityDamageSource.EntityDamageSourceBuilder<FallingBlockDamageSource, Builder> {
+    interface Builder<T extends FallingBlockDamageSource, B extends Builder<T, B>> extends EntityDamageSource.Builder<T,
+            B> {
 
-        Builder places(boolean canPlace);
+        B places(boolean canPlace);
 
-        Builder fallTime(int time);
+        B fallTime(int time);
 
-        Builder hurtsEntities(boolean hurts);
+        B hurtsEntities(boolean hurts);
 
-        Builder maxDamage(double damage);
+        B maxDamage(double damage);
 
-        Builder damagePerBlock(double damagePer);
+        B damagePerBlock(double damagePer);
 
     }
 }

@@ -30,6 +30,8 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.damage.source.IndirectEntityDamageSource;
 
+import javax.annotation.Nullable;
+
 public abstract class AbstractIndirectEntityDamageSource implements IndirectEntityDamageSource {
 
     private final DamageType apiDamageType;
@@ -43,7 +45,7 @@ public abstract class AbstractIndirectEntityDamageSource implements IndirectEnti
     private final Entity source;
     private final Entity indirect;
 
-    protected AbstractIndirectEntityDamageSource(AbstractIndirectEntityDamageSourceBuilder<?, ?> builder) {
+    protected AbstractIndirectEntityDamageSource(IndirectEntityDamageSourceBuilder<?, ?> builder) {
         this.apiDamageType = checkNotNull(builder.damageType, "DamageType cannot be null!");
         this.absolute = builder.absolute;
         this.bypassesArmor = builder.bypasses;
@@ -113,13 +115,13 @@ public abstract class AbstractIndirectEntityDamageSource implements IndirectEnti
     }
 
     @SuppressWarnings("unchecked")
-    public abstract static class AbstractIndirectEntityDamageSourceBuilder<T extends IndirectEntityDamageSource,
-            B extends IndirectEntityDamageSource.AbstractBuilder<T, B>>
+    public abstract static class IndirectEntityDamageSourceBuilder<T extends IndirectEntityDamageSource,
+            B extends Builder<T, B>>
             extends AbstractEntityDamageSource.AbstractEntityDamageSourceBuilder<T, B>
-            implements IndirectEntityDamageSource.AbstractBuilder<T, B> {
+            implements Builder<T, B> {
 
-        protected Entity sourceEntity;
-        protected Entity indirect;
+        @Nullable protected Entity sourceEntity;
+        @Nullable protected Entity indirect;
 
         @Override
         public B entity(Entity entity) {

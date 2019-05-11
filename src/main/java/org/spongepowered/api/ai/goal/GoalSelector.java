@@ -30,6 +30,7 @@ import org.spongepowered.api.entity.living.monster.Monster;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * Represents a set of tasks that will be updated together by an {@link Agent}.
@@ -58,24 +59,24 @@ public interface GoalSelector<O extends Agent> {
     O getOwner();
 
     /**
-     * Adds a new {@link org.spongepowered.api.ai.goal.Goal} to this {@link GoalSelector}.
+     * Adds a new {@link Goal} to this {@link GoalSelector}.
      *
      * @param priority The priority this goal should run at
      * @param task The goal to run
      * @return This goal, for chaining
      */
-    GoalSelector addTask(int priority, org.spongepowered.api.ai.goal.Goal<O> task);
+    GoalSelector<O> addTask(int priority, Goal<O> task);
 
     /**
-     * Removes a specific {@link org.spongepowered.api.ai.goal.Goal} from this {@link GoalSelector}.
+     * Removes a specific {@link Goal} from this {@link GoalSelector}.
      *
      * @param task The goal to remove
      * @return An optional containing the goal entry removed or {@link Optional#empty()} if none found
      */
-    Optional<GoalEntry<O>> removeTask(org.spongepowered.api.ai.goal.Goal<O> task);
+    Optional<GoalEntry<O>> removeTask(Goal<O> task);
 
     /**
-     * Removes all {@link org.spongepowered.api.ai.goal.Goal}s whose {@link GoalType} matches
+     * Removes all {@link Goal}s whose {@link GoalType} matches
      * the provided type in this {@link GoalSelector}.
      *
      * @param type The type to remove
@@ -84,7 +85,7 @@ public interface GoalSelector<O extends Agent> {
     Collection<GoalEntry<O>> removeTasks(GoalType type);
 
     /**
-     * Gets all {@link org.spongepowered.api.ai.goal.Goal}s whose {@link GoalType} matches
+     * Gets all {@link Goal}s whose {@link GoalType} matches
      * the provided type in this {@link GoalSelector}.
      *
      * @param type The type to look for
@@ -93,20 +94,24 @@ public interface GoalSelector<O extends Agent> {
     List<GoalEntry<O>> getTasksByType(GoalType type);
 
     /**
-     * Gets all {@link org.spongepowered.api.ai.goal.Goal}s in this {@link GoalSelector}.
+     * Gets all {@link Goal}s in this {@link GoalSelector}.
      *
      * @return The tasks
      */
     List<GoalEntry<O>> getTasks();
 
     /**
-     * Clears all {@link org.spongepowered.api.ai.goal.Goal}s from this goal.
+     * Clears all {@link Goal}s from this goal.
      */
     void clear();
 
-    interface GoalEntry <O extends Agent> extends Comparable<GoalEntry<O>> {
+    default Set<GoalCategoryFlag> getAvailableFlags() {
+        return getOwner().getAvailableGoalCategoryFlags();
+    }
 
-        GoalSelector getSelector();
+    interface GoalEntry<O extends Agent> extends Comparable<GoalEntry<O>> {
+
+        GoalSelector<O> getSelector();
 
         Goal<O> getGoal();
 

@@ -30,7 +30,7 @@ import org.spongepowered.api.ai.goal.Goal;
 import org.spongepowered.api.ai.goal.GoalBuilder;
 import org.spongepowered.api.entity.living.Creature;
 
-public interface WanderGoal extends Goal<Creature> {
+public interface WanderGoal<O extends Creature> extends Goal<O> {
 
     /**
      * Creates a new {@link Builder} to build a new
@@ -38,7 +38,7 @@ public interface WanderGoal extends Goal<Creature> {
      *
      * @return A new builder
      */
-    static Builder builder() {
+    static <O extends Creature, B extends Builder<O, WanderGoal<O>, B>> B builder(O type) {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
@@ -57,7 +57,7 @@ public interface WanderGoal extends Goal<Creature> {
      * @param speed The movement speed modifier
      * @return This goal, for chaining
      */
-    WanderGoal setSpeed(double speed);
+    WanderGoal<O> setSpeed(double speed);
 
     /**
      * Gets the chance that the owning {@link Entity} will "wander".
@@ -73,13 +73,13 @@ public interface WanderGoal extends Goal<Creature> {
      * @param executionChance The wandering chance
      * @return This goal, for chaining
      */
-    WanderGoal setExecutionChance(int executionChance);
+    WanderGoal<O> setExecutionChance(int executionChance);
 
-    interface Builder extends GoalBuilder<Creature, WanderGoal, Builder> {
+    interface Builder<O extends Creature, A extends WanderGoal<O>, B extends Builder<O, A, B>> extends GoalBuilder<O, A, B> {
 
-        Builder speed(double speed);
+        B speed(double speed);
 
-        Builder executionChance(int executionChance);
+        B executionChance(int executionChance);
 
     }
 }

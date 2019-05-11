@@ -33,14 +33,14 @@ import org.spongepowered.api.entity.living.Creature;
 
 import java.util.function.Predicate;
 
-public interface AvoidEntityGoal extends Goal<Creature> {
+public interface AvoidEntityGoal<O extends Creature> extends Goal<O> {
 
     /**
      * Creates a new {@link Builder} for creating a new {@link AvoidEntityGoal}.
      *
      * @return A new builder
      */
-    static Builder builder() {
+    static <O extends Creature, B extends Builder<O, AvoidEntityGoal<O>, B>> B builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
@@ -61,7 +61,7 @@ public interface AvoidEntityGoal extends Goal<Creature> {
      * @param predicate The predicate
      * @return This goal, for chaining
      */
-    AvoidEntityGoal setTargetSelector(Predicate<Entity> predicate);
+    AvoidEntityGoal<O> setTargetSelector(Predicate<Entity> predicate);
 
     /**
      * Gets the search distance at which any {@link Entity} instances in a
@@ -78,7 +78,7 @@ public interface AvoidEntityGoal extends Goal<Creature> {
      * @param distance The search distance
      * @return This goal, for chaining
      */
-    AvoidEntityGoal setSearchDistance(float distance);
+    AvoidEntityGoal<O> setSearchDistance(float distance);
 
     /**
      * Gets the speed "modifier" for which the parent {@link Agent} will
@@ -97,7 +97,7 @@ public interface AvoidEntityGoal extends Goal<Creature> {
      * @param speed The movement speed modifier
      * @return This goal, for chaining
      */
-    AvoidEntityGoal setCloseRangeSpeed(double speed);
+    AvoidEntityGoal<O> setCloseRangeSpeed(double speed);
 
     /**
      * Gets the close range speed "modifier" for which the parent {@link Agent}
@@ -116,9 +116,9 @@ public interface AvoidEntityGoal extends Goal<Creature> {
      * @param speed The movement speed modifier
      * @return This goal, for chaining
      */
-    AvoidEntityGoal setFarRangeSpeed(double speed);
+    AvoidEntityGoal<O> setFarRangeSpeed(double speed);
 
-    interface Builder extends GoalBuilder<Creature, AvoidEntityGoal, Builder> {
+    interface Builder<O extends Creature, A extends AvoidEntityGoal<O>, B extends Builder<O, A, B>> extends GoalBuilder<O, A, B> {
 
         /**
          * Sets the {@link Predicate} for filtering which {@link Entity} instances
@@ -127,7 +127,7 @@ public interface AvoidEntityGoal extends Goal<Creature> {
          * @param predicate The predicate
          * @return This builder, for chaining
          */
-        Builder targetSelector(Predicate<Entity> predicate);
+        B targetSelector(Predicate<Entity> predicate);
 
         /**
          * Sets the search distance at which any {@link Entity} instances in a
@@ -136,7 +136,7 @@ public interface AvoidEntityGoal extends Goal<Creature> {
          * @param distance The search distance
          * @return This builder, for chaining
          */
-        Builder searchDistance(float distance);
+        B searchDistance(float distance);
 
         /**
          * Sets the peed "modifier" for which the parent {@link Agent} will
@@ -146,7 +146,7 @@ public interface AvoidEntityGoal extends Goal<Creature> {
          * @param speed The movement speed modifier
          * @return This builder, for chaining
          */
-        Builder closeRangeSpeed(double speed);
+        B closeRangeSpeed(double speed);
 
         /**
          * Sets the close range speed "modifier" for which the parent {@link Agent}
@@ -156,7 +156,7 @@ public interface AvoidEntityGoal extends Goal<Creature> {
          * @param speed The movement speed modifier
          * @return This builder, for chaining
          */
-        Builder farRangeSpeed(double speed);
+        B farRangeSpeed(double speed);
 
     }
 }

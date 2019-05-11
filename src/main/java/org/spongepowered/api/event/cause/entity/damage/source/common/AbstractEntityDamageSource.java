@@ -30,6 +30,8 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.damage.source.EntityDamageSource;
 
+import javax.annotation.Nullable;
+
 public abstract class AbstractEntityDamageSource implements EntityDamageSource {
 
     private final DamageType apiDamageType;
@@ -107,11 +109,11 @@ public abstract class AbstractEntityDamageSource implements EntityDamageSource {
 
     @SuppressWarnings("unchecked")
     public abstract static class AbstractEntityDamageSourceBuilder<T extends EntityDamageSource,
-            B extends EntityDamageSource.EntityDamageSourceBuilder<T, B>>
+            B extends Builder<T, B>>
             extends AbstractDamageSourceBuilder<T, B>
-            implements EntityDamageSourceBuilder<T, B> {
+            implements Builder<T, B> {
 
-        protected Entity source;
+        @Nullable protected Entity source;
 
         @Override
         public B entity(Entity entity) {
@@ -122,7 +124,7 @@ public abstract class AbstractEntityDamageSource implements EntityDamageSource {
         @Override
         public B reset() {
             super.reset();
-            this.damageType = null;
+            this.source = null;
             return (B) this;
         }
     }

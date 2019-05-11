@@ -28,10 +28,11 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.ai.goal.Goal;
 import org.spongepowered.api.ai.goal.GoalBuilder;
+import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Creature;
 
-public interface AttackLivingGoal extends Goal<Creature> {
+public interface AttackLivingGoal<O extends Creature> extends Goal<O> {
 
     /**
      * Creates a new {@link Builder} to build a new
@@ -39,7 +40,17 @@ public interface AttackLivingGoal extends Goal<Creature> {
      *
      * @return A new builder
      */
-    static Builder builder() {
+    static <O extends Creature, B extends Builder<O, AttackLivingGoal<O>, B>> B builder(O type) {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    /**
+     * Creates a new {@link Builder} to build a new
+     * {@link AttackLivingGoal}.
+     *
+     * @return A new builder
+     */
+    static <O extends Creature, B extends Builder<O, AttackLivingGoal<O>, B>> B builder(EntityType<O> type) {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
@@ -58,7 +69,7 @@ public interface AttackLivingGoal extends Goal<Creature> {
      * @param speed The speed
      * @return This goal, for chaining
      */
-    AttackLivingGoal setSpeed(double speed);
+    AttackLivingGoal<O> setSpeed(double speed);
 
     /**
      * Gets whether the navigator will attempt to continue to "target"
@@ -82,9 +93,9 @@ public interface AttackLivingGoal extends Goal<Creature> {
      * @param longMemory Whether to continue targeting an entity
      * @return This goal, for chaining
      */
-    AttackLivingGoal setLongMemory(boolean longMemory);
+    AttackLivingGoal<O> setLongMemory(boolean longMemory);
 
-    interface Builder extends GoalBuilder<Creature, AttackLivingGoal, Builder> {
+    interface Builder<O extends Creature, A extends AttackLivingGoal<O>, B extends Builder<O, A, B>> extends GoalBuilder<O, A, B> {
 
         /**
          * Sets the speed modifier at which the owning {@link Agent} will be
@@ -93,7 +104,7 @@ public interface AttackLivingGoal extends Goal<Creature> {
          * @param speed The speed modifier
          * @return This builder, for chaining
          */
-        Builder speed(double speed);
+        B speed(double speed);
 
         /**
          * Sets whether the goal will force the owning {@link Agent} to
@@ -102,7 +113,7 @@ public interface AttackLivingGoal extends Goal<Creature> {
          *
          * @return This builder, for chaining
          */
-        Builder longMemory();
+        B longMemory();
 
     }
 }

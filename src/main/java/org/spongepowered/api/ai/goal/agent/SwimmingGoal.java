@@ -29,7 +29,7 @@ import org.spongepowered.api.ai.goal.Goal;
 import org.spongepowered.api.ai.goal.GoalBuilder;
 import org.spongepowered.api.entity.living.Agent;
 
-public interface SwimmingGoal extends Goal<Agent> {
+public interface SwimmingGoal<O extends Agent> extends Goal<O> {
 
     /**
      * Creates a new {@link Builder} to build a new
@@ -37,7 +37,7 @@ public interface SwimmingGoal extends Goal<Agent> {
      *
      * @return A new builder
      */
-    static Builder builder() {
+    static <O extends Agent, B extends Builder<O, SwimmingGoal<O>, B>> B builder(O type) {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
@@ -59,11 +59,11 @@ public interface SwimmingGoal extends Goal<Agent> {
      *
      * @param chance The chance that the entity will "swim"
      */
-    void setSwimChance(float chance);
+    SwimmingGoal<O> setSwimChance(float chance);
 
-    interface Builder extends GoalBuilder<Agent, SwimmingGoal, Builder> {
+    interface Builder<O extends Agent, A extends SwimmingGoal<O>, B extends Builder<O, A, B>> extends GoalBuilder<O, A, B> {
 
-        Builder swimChance(float chance);
+        B swimChance(float chance);
 
     }
 }

@@ -25,18 +25,19 @@
 package org.spongepowered.api.ai.goal.agent.creature.target;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.entity.living.Creature;
 import org.spongepowered.api.entity.living.Living;
 
 import java.util.function.Predicate;
 
-public interface FindNearestAttackableTargetGoal extends TargetGoal<FindNearestAttackableTargetGoal> {
+public interface FindNearestAttackableTargetGoal<O extends Creature> extends TargetGoal<O> {
 
     /**
      * Creates a new {@link Builder} for building a new {@link FindNearestAttackableTargetGoal}.
      *
      * @return A new builder
      */
-    static Builder builder() {
+    static <O extends Creature, A extends FindNearestAttackableTargetGoal<O>, B extends Builder<O, A, B>> B builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
@@ -53,7 +54,7 @@ public interface FindNearestAttackableTargetGoal extends TargetGoal<FindNearestA
      * @param targetClass The entity class to target
      * @return This goal, for chaining
      */
-    FindNearestAttackableTargetGoal setTargetClass(Class<? extends Living> targetClass);
+    FindNearestAttackableTargetGoal<O> setTargetClass(Class<? extends Living> targetClass);
 
     /**
      * Gets the chance that this goal will go through and attempt to find a
@@ -70,7 +71,7 @@ public interface FindNearestAttackableTargetGoal extends TargetGoal<FindNearestA
      * @param chance The chance that this goal will attemp to find a new target
      * @return This goal, for chaining
      */
-    FindNearestAttackableTargetGoal setChance(int chance);
+    FindNearestAttackableTargetGoal<O> setChance(int chance);
 
     /**
      * Sets the {@link Predicate} filter to determine whether a {@link Living}
@@ -79,7 +80,7 @@ public interface FindNearestAttackableTargetGoal extends TargetGoal<FindNearestA
      * @param predicate The predicate
      * @return This goal, for chaining
      */
-    FindNearestAttackableTargetGoal filter(Predicate<Living> predicate);
+    FindNearestAttackableTargetGoal<O> filter(Predicate<Living> predicate);
 
     /**
      * Gets the {@link Predicate} filter to determine whether a {@link Living living entity}
@@ -89,13 +90,18 @@ public interface FindNearestAttackableTargetGoal extends TargetGoal<FindNearestA
      */
     Predicate<Living> getFilter();
 
-    interface Builder extends TargetGoal.Builder<FindNearestAttackableTargetGoal, Builder> {
+    @Override FindNearestAttackableTargetGoal<O> setCheckSight(boolean checkSight);
 
-        Builder target(Class<? extends Living> targetClass);
+    @Override FindNearestAttackableTargetGoal<O> setOnlyNearby(boolean nearby);
 
-        Builder chance(int chance);
+    interface Builder<O extends Creature, A extends FindNearestAttackableTargetGoal<O>, B extends Builder<O, A, B>>
+            extends TargetGoal.Builder<O, A, B> {
 
-        Builder filter(Predicate<? extends Living> predicate);
+        B target(Class<? extends Living> targetClass);
+
+        B chance(int chance);
+
+        B filter(Predicate<? extends Living> predicate);
 
     }
 }

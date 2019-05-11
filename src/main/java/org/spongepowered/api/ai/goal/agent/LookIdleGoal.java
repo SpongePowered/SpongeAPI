@@ -29,18 +29,18 @@ import org.spongepowered.api.ai.goal.Goal;
 import org.spongepowered.api.ai.goal.GoalBuilder;
 import org.spongepowered.api.entity.living.Agent;
 
-public interface LookIdleGoal extends Goal<Agent> {
+public interface LookIdleGoal<O extends Agent> extends Goal<O> {
 
     /**
      * Creates a new {@link Builder} to build a new {@link LookIdleGoal}.
      *
      * @return A new builder
      */
-    static Builder builder() {
+    static <O extends Agent, B extends Builder<O, LookIdleGoal<O>, B>> B builder(O type) {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
-    interface Builder extends GoalBuilder<Agent, LookIdleGoal, Builder> {
+    interface Builder<O extends Agent, A extends LookIdleGoal<O>, B extends Builder<O, A, B>> extends GoalBuilder<O, A, B> {
 
     }
 }

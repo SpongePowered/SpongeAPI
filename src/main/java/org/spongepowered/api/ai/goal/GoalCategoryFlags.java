@@ -30,13 +30,13 @@ public final class GoalCategoryFlags {
 
     // SORTFIELDS:ON
 
-    public static GoalCategoryFlag MOVE = DummyObjectProvider.createFor(GoalCategoryFlag.class, "MOVE");
+    public static final GoalCategoryFlag MOVE = DummyObjectProvider.createFor(GoalCategoryFlag.class, "MOVE");
 
-    public static GoalCategoryFlag LOOK = DummyObjectProvider.createFor(GoalCategoryFlag.class, "LOOK");
+    public static final GoalCategoryFlag LOOK = DummyObjectProvider.createFor(GoalCategoryFlag.class, "LOOK");
 
-    public static GoalCategoryFlag JUMP = DummyObjectProvider.createFor(GoalCategoryFlag.class, "JUMP");
+    public static final GoalCategoryFlag JUMP = DummyObjectProvider.createFor(GoalCategoryFlag.class, "JUMP");
 
-    public static GoalCategoryFlag TARGET = DummyObjectProvider.createFor(GoalCategoryFlag.class, "TARGET");
+    public static final GoalCategoryFlag TARGET = DummyObjectProvider.createFor(GoalCategoryFlag.class, "TARGET");
 
     // SORTFIELDS:OFF
 

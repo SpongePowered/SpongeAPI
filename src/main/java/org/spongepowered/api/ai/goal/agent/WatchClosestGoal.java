@@ -30,7 +30,7 @@ import org.spongepowered.api.ai.goal.Goal;
 import org.spongepowered.api.ai.goal.GoalBuilder;
 import org.spongepowered.api.entity.living.Agent;
 
-public interface WatchClosestGoal extends Goal<Agent> {
+public interface WatchClosestGoal<O extends Agent> extends Goal<O> {
 
     /**
      * Creates a new {@link Builder} to build a new
@@ -38,7 +38,7 @@ public interface WatchClosestGoal extends Goal<Agent> {
      *
      * @return A new builder
      */
-    static Builder builder() {
+    static <O extends Agent, B extends Builder<O, WatchClosestGoal<O>, B>> B builder(O type) {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
@@ -57,7 +57,7 @@ public interface WatchClosestGoal extends Goal<Agent> {
      * @param watchedClass The class of entity to "watch"
      * @return This goal, for chaining
      */
-    WatchClosestGoal setWatchedClass(Class<? extends Entity> watchedClass);
+    WatchClosestGoal<O> setWatchedClass(Class<? extends Entity> watchedClass);
 
     /**
      * Gets the maximum distance to "watch" a targeted {@link Entity}.
@@ -72,7 +72,7 @@ public interface WatchClosestGoal extends Goal<Agent> {
      * @param maxDistance The maximum distance to watch an entity
      * @return This goal, for chaining
      */
-    WatchClosestGoal setMaxDistance(float maxDistance);
+    WatchClosestGoal<O> setMaxDistance(float maxDistance);
 
     /**
      * Gets the chance that an {@link Entity} will "watch" a targeted
@@ -88,15 +88,15 @@ public interface WatchClosestGoal extends Goal<Agent> {
      * @param chance The chance to "watch"
      * @return This goal, for chaining
      */
-    WatchClosestGoal setChance(float chance);
+    WatchClosestGoal<O> setChance(float chance);
 
-    interface Builder extends GoalBuilder<Agent, WatchClosestGoal, Builder> {
+    interface Builder<O extends Agent, A extends WatchClosestGoal<O>, B extends Builder<O, A, B>> extends GoalBuilder<O, A, B> {
 
-        Builder watch(Class<? extends Entity> watchClass);
+        B watch(Class<? extends Entity> watchClass);
 
-        Builder maxDistance(float maxDistance);
+        B maxDistance(float maxDistance);
 
-        Builder chance(float chance);
+        B chance(float chance);
 
     }
 }

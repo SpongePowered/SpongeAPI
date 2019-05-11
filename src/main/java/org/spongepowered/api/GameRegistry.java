@@ -191,12 +191,12 @@ public interface GameRegistry {
      * {@link org.spongepowered.api.item.inventory.ItemStack.Builder}, etc.
      *
      * @param builderClass The class of the builder
-     * @param <T> The type of builder
+     * @param <B> The reified type of builder
      * @return The builder, if available
      * @throws IllegalArgumentException If there is no supplier for the given
      *      builder class
      */
-    <T extends ResettableBuilder<?, ? super T>> T createBuilder(Class<T> builderClass) throws IllegalArgumentException;
+    <B extends ResettableBuilder<?, ? super B>> B createBuilder(Class<? super B> builderClass) throws IllegalArgumentException;
 
     /**
      * Gets a factory used to churn instances.

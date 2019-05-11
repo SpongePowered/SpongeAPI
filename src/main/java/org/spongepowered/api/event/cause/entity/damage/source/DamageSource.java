@@ -49,7 +49,7 @@ public interface DamageSource {
      *
      * @return A new builder
      */
-    static Builder builder() {
+    static <B extends Builder<DamageSource, B>> B builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
@@ -120,9 +120,7 @@ public interface DamageSource {
      */
     double getExhaustion();
 
-    interface Builder extends DamageSourceBuilder<DamageSource, Builder> { }
-
-    interface DamageSourceBuilder<T extends DamageSource, B extends DamageSourceBuilder<T, B>> extends CopyableBuilder<T, B> {
+    interface Builder<T extends DamageSource, B extends Builder<T, B>> extends CopyableBuilder<T, B> {
 
         /**
          * Sets this {@link DamageSource}'s damage to be scaled

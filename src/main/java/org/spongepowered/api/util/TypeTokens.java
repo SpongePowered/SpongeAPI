@@ -137,13 +137,17 @@ public final class TypeTokens {
 
     public static final TypeToken<EntitySnapshot> ENTITY_TOKEN = new TypeToken<EntitySnapshot>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<Map<EntityType, Double>> ENTITY_TYPE_DOUBLE_MAP_TOKEN = new TypeToken<Map<EntityType, Double>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<Map<EntityType<?>, Double>> ENTITY_TYPE_DOUBLE_MAP_TOKEN =
+            new TypeToken<Map<EntityType<?>, Double>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<MapValue<EntityType, Double>> ENTITY_TYPE_DOUBLE_MAP_VALUE_TOKEN = new TypeToken<MapValue<EntityType, Double>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<MapValue<EntityType<?>, Double>> ENTITY_TYPE_DOUBLE_MAP_VALUE_TOKEN =
+            new TypeToken<MapValue<EntityType<?>, Double>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<EntityType> ENTITY_TYPE_TOKEN = new TypeToken<EntityType>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<EntityType<?>> ENTITY_TYPE_TOKEN = new TypeToken<EntityType<?>>() {private static final long serialVersionUID =
+            -1;};
 
-    public static final TypeToken<Value<EntityType>> ENTITY_TYPE_VALUE_TOKEN = new TypeToken<Value<EntityType>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<Value<EntityType<?>>> ENTITY_TYPE_VALUE_TOKEN =
+            new TypeToken<Value<EntityType<?>>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<EntitySnapshot>> ENTITY_VALUE_TOKEN = new TypeToken<Value<EntitySnapshot>>() {private static final long serialVersionUID = -1;};
 

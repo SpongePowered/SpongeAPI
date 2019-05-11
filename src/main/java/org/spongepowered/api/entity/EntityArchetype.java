@@ -50,7 +50,7 @@ public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
      * @param type Type of the entity
      * @return An archetype of the given entity type
      */
-    static EntityArchetype of(EntityType type) {
+    static EntityArchetype of(EntityType<?> type) {
         return builder().type(type).build();
     }
 
@@ -100,7 +100,7 @@ public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
          * @param type The type of entity type
          * @return This builder, for chaining
          */
-        Builder type(EntityType type);
+        Builder type(EntityType<?> type);
 
         /**
          * Sets the desired {@link EntityType} of the produced {@link EntityArchetype}.

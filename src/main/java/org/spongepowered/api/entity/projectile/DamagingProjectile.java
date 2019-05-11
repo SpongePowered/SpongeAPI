@@ -55,7 +55,7 @@ public interface DamagingProjectile extends Projectile {
      *
      * @return The immutable map value for the entity damage values
      */
-    default MapValue.Mutable<EntityType, Double> damageForEntity() {
+    default MapValue.Mutable<EntityType<?>, Double> damageForEntity() {
         return getValue(Keys.DAMAGE_ENTITY_MAP).get().asMutable();
     }
 

@@ -128,7 +128,7 @@ public final class TextActions {
      * @param type The type of the entity
      * @return The created hover action instance
      */
-    public static HoverAction.ShowEntity showEntity(UUID uuid, String name, @Nullable EntityType type) {
+    public static HoverAction.ShowEntity showEntity(UUID uuid, String name, @Nullable EntityType<?> type) {
         return HoverAction.ShowEntity.builder()
                 .entity(HoverAction.ShowEntity.Ref.builder().uniqueId(uuid).name(name).type(type).build())
                 .build();

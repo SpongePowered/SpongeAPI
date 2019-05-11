@@ -59,7 +59,7 @@ public final class DummyObjectProvider {
      * @return The generated dummy class
      */
     @SuppressWarnings("unchecked")
-    public static <T> T createFor(Class<T> type, String fieldName) {
+    public static <T> T createFor(Class<? super T> type, String fieldName) {
         try {
             return (T) factories.getUnchecked(type).getConstructor(String.class).newInstance(fieldName);
         } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {

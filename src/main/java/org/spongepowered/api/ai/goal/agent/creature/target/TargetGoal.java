@@ -31,7 +31,7 @@ import org.spongepowered.api.ai.goal.GoalBuilder;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Creature;
 
-public interface TargetGoal<A extends TargetGoal<A>> extends Goal<Creature> {
+public interface TargetGoal<O extends Creature> extends Goal<O> {
 
     /**
      * Gets whether the owning {@link Agent} can visibly "see" the
@@ -52,7 +52,7 @@ public interface TargetGoal<A extends TargetGoal<A>> extends Goal<Creature> {
      * @param checkSight Whether line of sight is required to target
      * @return This goal, for chaining
      */
-    A setCheckSight(boolean checkSight);
+    TargetGoal<O> setCheckSight(boolean checkSight);
 
     /**
      * Gets whether an {@link Entity} can only be targeted within a "short"
@@ -69,9 +69,9 @@ public interface TargetGoal<A extends TargetGoal<A>> extends Goal<Creature> {
      * @param nearby Whether only nearby entities can be targeted
      * @return This goal, for chaining
      */
-    A setOnlyNearby(boolean nearby);
+    TargetGoal<O> setOnlyNearby(boolean nearby);
 
-    interface Builder<A extends TargetGoal<A>, B extends Builder<A, B>> extends GoalBuilder<Creature, A, B> {
+    interface Builder<O extends Creature, A extends TargetGoal<O>, B extends Builder<O, A, B>> extends GoalBuilder<O, A, B> {
 
         B checkSight();
 

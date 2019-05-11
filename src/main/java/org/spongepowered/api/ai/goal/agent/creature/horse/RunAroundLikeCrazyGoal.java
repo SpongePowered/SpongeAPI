@@ -28,9 +28,10 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.ai.goal.Goal;
 import org.spongepowered.api.ai.goal.GoalBuilder;
+import org.spongepowered.api.entity.living.animal.Horse;
 import org.spongepowered.api.entity.living.animal.RideableHorse;
 
-public interface RunAroundLikeCrazyGoal extends Goal<RideableHorse> {
+public interface RunAroundLikeCrazyGoal<O extends RideableHorse> extends Goal<O> {
 
     /**
      * Creates a new {@link Builder} to build a new
@@ -38,7 +39,7 @@ public interface RunAroundLikeCrazyGoal extends Goal<RideableHorse> {
      *
      * @return A new builder
      */
-    static Builder builder() {
+    static <O extends RideableHorse, B extends Builder<O, RunAroundLikeCrazyGoal<O>, B>> B builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
@@ -57,11 +58,11 @@ public interface RunAroundLikeCrazyGoal extends Goal<RideableHorse> {
      * @param speed The speed modifier at which an entity is "running around"
      * @return This goal, for chaining
      */
-    RunAroundLikeCrazyGoal setSpeed(double speed);
+    RunAroundLikeCrazyGoal<O> setSpeed(double speed);
 
-    interface Builder extends GoalBuilder<RideableHorse, RunAroundLikeCrazyGoal, Builder> {
+    interface Builder<O extends RideableHorse, A extends RunAroundLikeCrazyGoal<O>, B extends Builder<O, A, B>> extends GoalBuilder<O, A, B> {
 
-        Builder speed(double speed);
+        B speed(double speed);
 
     }
 }

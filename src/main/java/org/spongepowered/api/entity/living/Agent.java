@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.living;
 
+import org.spongepowered.api.ai.goal.GoalCategoryFlag;
 import org.spongepowered.api.ai.goal.GoalSelector;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.value.BoundedValue;
@@ -33,6 +34,7 @@ import org.spongepowered.api.ai.goal.GoalSelectorType;
 import org.spongepowered.api.ai.goal.Goal;
 
 import java.util.Optional;
+import java.util.Set;
 
 import javax.annotation.Nullable;
 
@@ -78,5 +80,7 @@ public interface Agent extends Living {
      * @param <T> Inferred agent type
      * @return The goal or {@link Optional#empty()} if not found.
      */
-    <T extends Agent> Optional<GoalSelector> getGoal(GoalSelectorType type);
+    <T extends Agent> Optional<GoalSelector<T>> getGoal(GoalSelectorType type);
+
+    Set<GoalCategoryFlag> getAvailableGoalCategoryFlags();
 }

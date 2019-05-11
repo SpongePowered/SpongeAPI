@@ -610,7 +610,8 @@ public final class Keys {
      * specific {@link EntityType}. Types not present in this mapping will be
      * dealt damage to according to {@link #ATTACK_DAMAGE}.
      */
-    public static final Key<MapValue<EntityType, Double>> DAMAGE_ENTITY_MAP = DummyObjectProvider.createExtendedFor(Key.class, "DAMAGE_ENTITY_MAP");
+    public static final Key<MapValue<EntityType<?>, Double>> DAMAGE_ENTITY_MAP = DummyObjectProvider.createExtendedFor(Key.class,
+            "DAMAGE_ENTITY_MAP");
 
     /**
      * Represents the {@link Key} for representing at which distance a {@link BlockState}

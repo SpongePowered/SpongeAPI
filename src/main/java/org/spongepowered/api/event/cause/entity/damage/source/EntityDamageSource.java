@@ -30,11 +30,11 @@ import org.spongepowered.api.entity.Entity;
 public interface EntityDamageSource extends DamageSource {
 
     /**
-     * Creates a new {@link Builder} for building an {@link EntityDamageSource}.
+     * Creates a new {@link DamageSource.Builder} for building an {@link EntityDamageSource}.
      *
      * @return A new builder
      */
-    static Builder builder() {
+    static <B extends Builder<EntityDamageSource, B>> B builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
@@ -45,11 +45,7 @@ public interface EntityDamageSource extends DamageSource {
      */
     Entity getSource();
 
-    interface Builder extends EntityDamageSourceBuilder<EntityDamageSource, Builder> {
-
-    }
-
-    interface EntityDamageSourceBuilder<T extends EntityDamageSource, B extends EntityDamageSourceBuilder<T, B>> extends DamageSourceBuilder<T, B> {
+    interface Builder<T extends EntityDamageSource, B extends Builder<T, B>> extends DamageSource.Builder<T, B> {
 
         /**
          * Sets the {@link Entity} as the damage "source".

@@ -75,9 +75,10 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
     /**
      * Gets the type of entity.
      *
+     * @param <T> The inferred self type
      * @return The type of entity
      */
-    EntityType getType();
+    <T extends Entity> EntityType<T> getType();
 
     /**
      * Creates a {@link EntitySnapshot} containing the {@link EntityType} and

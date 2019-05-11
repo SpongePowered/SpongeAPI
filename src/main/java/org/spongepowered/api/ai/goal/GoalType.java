@@ -35,5 +35,5 @@ public interface GoalType extends CatalogType {
      *
      * @return The ai class
      */
-    Class<Goal> getGoalClass();
+    Class<Goal<?>> getGoalClass();
 }
