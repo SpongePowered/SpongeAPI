@@ -704,27 +704,27 @@ public interface Parameter {
     /**
      * Parses the next element(s) in the {@link CommandContext}
      *
-     * @param args The {@link ArgumentReader.Mutable} containing the strings
-     *             that need to be parsed
+     * @param reader The {@link ArgumentReader.Mutable} containing the strings
+     *               that need to be parsed
      * @param context The {@link CommandContext.Builder} that contains the
      *                current state of the execution
      * @throws ArgumentParseException thrown if the parameter could not be
      *      parsed
      */
-    void parse(ArgumentReader.Mutable args, CommandContext.Builder context) throws ArgumentParseException;
+    void parse(ArgumentReader.Mutable reader, CommandContext.Builder context) throws ArgumentParseException;
 
     /**
      * Returns potential completions of the current tokenized argument.
      *
-     * @param args The {@link ArgumentReader} containing the strings that need
-     *             to be parsed
+     * @param reader The {@link ArgumentReader} containing the strings that need
+     *               to be parsed
      * @param context The {@link CommandContext} that contains the
      *                current state of the execution.
      * @return The potential completions.
      * @throws ArgumentParseException thrown if the parameter could not be
      *      parsed
      */
-    List<String> complete(ArgumentReader args, CommandContext context) throws ArgumentParseException;
+    List<String> complete(ArgumentReader.Immutable reader, CommandContext context) throws ArgumentParseException;
 
     /**
      * Gets the usage of this parameter.

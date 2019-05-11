@@ -425,6 +425,14 @@ public interface Command {
          * {@link #setExecutionRequirements(Predicate)}, both will be checked
          * during execution.</p>
          *
+         * <p>Any permission checks set here will be performed during the
+         * {@link Command#canExecute(Cause)}.</p>
+         *
+         * <p>Calling this repeatedly will not add additional permission
+         * checks, instead replacing the permission check. If multiple
+         * permission checks are required, use
+         * {@link #setExecutionRequirements(Predicate)}.</p>
+         *
          * @param permission The permission that is required, or {@code null}
          *                   for no permission
          * @return This builder, for chaining
@@ -437,6 +445,12 @@ public interface Command {
          *
          * <p>Any requirements here are in addition to the permission check
          * from {@link #setPermission(String)}</p>
+         *
+         * <p>Any requirements set here will be performed during the
+         * {@link Command#canExecute(Cause)}.</p>
+         *
+         * <p>Calling this repeatedly will not add additional checks, instead
+         * replacing the previous requirements.</p>
          *
          * @param executionRequirements A function that sets the
          * @return This builder, for chaining

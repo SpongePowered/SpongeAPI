@@ -179,7 +179,7 @@ public interface CommandContext {
     <T> T requireOne(Parameter.Key<T> key) throws NoSuchElementException, IllegalArgumentException;
 
     /**
-     * Gets all values for the given argument. May return an empty list if no#
+     * Gets all values for the given argument. May return an empty list if no
      * values are present.
      *
      * @param parameter the {@link Parameter} associated with the argument

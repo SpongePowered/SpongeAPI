@@ -78,7 +78,8 @@ public interface CommandMapping {
     Optional<Command> getCommand();
 
     /**
-     * Gets a {@link Predicate} that
+     * Gets a {@link Predicate} that checks whether a given {@link Cause}
+     * should be able to execute the command represented by this mapping.
      *
      * @return A {@link Predicate} that determines whether the command can be
      *         run by the given {@link Cause}.

@@ -89,8 +89,8 @@ public interface CommandManager {
 
     /**
      * Suggests possible completions based on the input argument string,
-     *  with a provided object that is both a {@link Subject} for permission
-     *  checks and a {@link MessageReceiver} to return command messages to.
+     * with a provided object that is both a {@link Subject} for permission
+     * checks and a {@link MessageReceiver} to return command messages to.
      *
      * @param subjectReceiver The {@link Subject} & {@link MessageReceiver}
      * @param arguments The arguments
@@ -100,8 +100,8 @@ public interface CommandManager {
 
     /**
      * Suggests possible completions based on the input argument string,
-     *  with a provided a {@link Subject} for permission checks and a
-     *  {@link MessageChannel} to return command messages to.
+     * with a provided a {@link Subject} for permission checks and a
+     * {@link MessageChannel} to return command messages to.
      *
      * @param subject The {@link Subject}
      * @param receiver The {@link MessageChannel}
