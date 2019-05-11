@@ -35,37 +35,61 @@ public final class ContainerTypes {
 
     // Containers backed by an inventory.
 
+    // TODO check container creation in 1.14 code especially merchant/horse
+
+
+    // TODO add new inventories
+
     // SORTFIELDS:ON
+
+    public static final ContainerType BLAST_FURNACE = DummyObjectProvider.createFor(ContainerType.class, "blast_furnace");
+
+    /**
+     * Size 5.
+     */
+    public static final ContainerType BREWING_STAND = DummyObjectProvider.createFor(ContainerType.class, "brewing_stand");
+
+    /**
+     * Size 3.
+     */
+    public static final ContainerType FURNACE = DummyObjectProvider.createFor(ContainerType.class, "furnace");
+
+    /**
+     * Size 9 (3x3 grid). (Dispenser)
+     */
+    public static final ContainerType GENERIC_3x3 = DummyObjectProvider.createFor(ContainerType.class, "generic_3x3");
+
+    public static final ContainerType GENERIC_9x1 = DummyObjectProvider.createFor(ContainerType.class, "generic_9x1");
+
+    public static final ContainerType GENERIC_9x2 = DummyObjectProvider.createFor(ContainerType.class, "generic_9x2");
 
     /**
      * Size 27 (3x9 grid)
      */
-    public static final ContainerType CHEST_3X9 = DummyObjectProvider.createFor(ContainerType.class, "chest_3x9"); // "minecraft:chest"
+    public static final ContainerType GENERIC_9x3 = DummyObjectProvider.createFor(ContainerType.class, "generic_9x3");
+
+    public static final ContainerType GENERIC_9x4 = DummyObjectProvider.createFor(ContainerType.class, "generic_9x4");
+
+    public static final ContainerType GENERIC_9x5 = DummyObjectProvider.createFor(ContainerType.class, "generic_9x5");
+
     /**
      * Size 54 (6x9 grid)
      */
-    public static final ContainerType CHEST_6x9 = DummyObjectProvider.createFor(ContainerType.class, "chest_6x9"); // "minecraft:chest"
-    /**
-     * Size 3.
-     */
-    public static final ContainerType FURNACE = DummyObjectProvider.createFor(ContainerType.class, "furnace"); // "minecraft:furnace"
-    /**
-     * Size 9 (3x3 grid).
-     */
-    public static final ContainerType DISPENSER = DummyObjectProvider.createFor(ContainerType.class, "dispenser"); // "minecraft:dispenser"
-    /**
-     * Size 5.
-     */
-    public static final ContainerType BREWING_STAND = DummyObjectProvider.createFor(ContainerType.class, "brewing_stand"); // "minecraft:brewing_stand"
+    public static final ContainerType GENERIC_9x6 = DummyObjectProvider.createFor(ContainerType.class, "generic_9x6");
+
     /**
      * Size 5 (1x5 grid).
      */
-    public static final ContainerType HOPPER = DummyObjectProvider.createFor(ContainerType.class, "hopper"); // "minecraft:hopper"
+    public static final ContainerType HOPPER = DummyObjectProvider.createFor(ContainerType.class, "hopper");
+
+    public static final ContainerType LECTERN = DummyObjectProvider.createFor(ContainerType.class, "lectern");
 
     /**
      * Size 27 (3x9 grid). Shulker boxes are not allowed in shulker boxes.
      */
-    public static final ContainerType SHULKER_BOX = DummyObjectProvider.createFor(ContainerType.class, "shulker_box"); // "minecraft:shulker_box"
+    public static final ContainerType SHULKER_BOX = DummyObjectProvider.createFor(ContainerType.class, "shulker_box");
+
+    public static final ContainerType SMOKER = DummyObjectProvider.createFor(ContainerType.class, "smoker");
 
     // SORTFIELDS:OFF
 
@@ -74,22 +98,32 @@ public final class ContainerTypes {
     // SORTFIELDS:ON
 
     /**
-     * Size 0. All slots present in the container only: 10 (3x3+1).
-     */
-    public static final ContainerType CRAFTING_TABLE = DummyObjectProvider.createFor(ContainerType.class, "crafting_table"); // "minecraft:crafting_table"
-    /**
-     * Size 0. All slots present in the container only 2.
-     */
-    public static final ContainerType ENCHANTING_TABLE = DummyObjectProvider.createFor(ContainerType.class, "enchanting_table"); // "minecraft:enchanting_table"
-    /**
      * Size 0. All slots present in the container only: 3.
      */
-    public static final ContainerType ANVIL = DummyObjectProvider.createFor(ContainerType.class, "anvil"); // "minecraft:anvil"
+    public static final ContainerType ANVIL = DummyObjectProvider.createFor(ContainerType.class, "anvil");
 
     /**
      * Size 0. All slots present in the container only: 1.
      */
-    public static final ContainerType BEACON = DummyObjectProvider.createFor(ContainerType.class, "beacon"); // "minecraft:beacon"
+    public static final ContainerType BEACON = DummyObjectProvider.createFor(ContainerType.class, "beacon");
+
+    public static final ContainerType CARTOGRAPHY = DummyObjectProvider.createFor(ContainerType.class, "cartography");
+
+    /**
+     * Size 0. All slots present in the container only: 10 (3x3+1).
+     */
+    public static final ContainerType CRAFTING = DummyObjectProvider.createFor(ContainerType.class, "crafting");
+
+    /**
+     * Size 0. All slots present in the container only 2.
+     */
+    public static final ContainerType ENCHANTMENT = DummyObjectProvider.createFor(ContainerType.class, "enchantment");
+
+    public static final ContainerType GRINDSTONE = DummyObjectProvider.createFor(ContainerType.class, "grindstone");
+
+    public static final ContainerType LOOM = DummyObjectProvider.createFor(ContainerType.class, "loom");
+
+    public static final ContainerType STONECUTTER = DummyObjectProvider.createFor(ContainerType.class, "stonecutter");
 
     // SORTFIELDS:OFF
 
@@ -100,12 +134,12 @@ public final class ContainerTypes {
     /**
      * Create a subtype of a {@link Horse} Entity instead of using this ContainerType.
      */
-    public static final ContainerType HORSE = DummyObjectProvider.createFor(ContainerType.class, "horse"); // "minecraft:horse" internally "EntityHorse"
+    public static final ContainerType HORSE = DummyObjectProvider.createFor(ContainerType.class, "horse");
 
     /**
      * Create a {@link Villager} Entity instead of using this ContainerType.
      */
-    public static final ContainerType VILLAGER = DummyObjectProvider.createFor(ContainerType.class, "villager"); // "minecraft:villager"
+    public static final ContainerType MERCHANT = DummyObjectProvider.createFor(ContainerType.class, "merchant");
 
     // SORTFIELDS:OFF
 
