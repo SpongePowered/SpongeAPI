@@ -25,11 +25,13 @@
 package org.spongepowered.api.item.inventory.transaction;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * An interface for data returned by inventory operations which encapsulates the
@@ -93,13 +95,20 @@ public interface InventoryTransactionResult {
          *
          * <p>The state of the inventory is undefined.</p>
          */
-        ERROR
+        ERROR,
+
+        /**
+         * The inventory operation failed because there was no slot at given index.
+         *
+         * <p>The state of the inventory is unchanged</p>
+         */
+        NO_SLOT
 
     }
 
     /**
-     * Combines two transaction-results into one. All slot-transactions and rejected items are combined.
-     * The resulting type is the first of this list to occur: {@link Type#ERROR}, {@link Type#FAILURE}, {@link Type#SUCCESS}
+     * Combines two transaction-results into one. All slot-transactions, rejected and polled items are combined.
+     * The resulting type is the first of this list to occur: {@link Type#ERROR}, {@link Type#FAILURE}, {@link Type#NO_SLOT}, {@link Type#SUCCESS}
      *
      * @param other The other transaction-result.
      * @return The combined transaction-result.
@@ -113,8 +122,10 @@ public interface InventoryTransactionResult {
 
     /**
      * Reverts all SlotTransactions from this transaction-result if it was a {@link Type#FAILURE}
+     *
+     * @return true when the transactions were reverted.
      */
-    void revertOnFailure();
+    boolean revertOnFailure();
 
     /**
      * Gets the type of result.
@@ -124,20 +135,38 @@ public interface InventoryTransactionResult {
     Type getType();
 
     /**
-     * If items were supplied to the operation, this collection will return any
-     * items which were rejected by the target inventory.
+     * Returns items that were supplied to the operation but rejected by the inventory.
      *
-     * @return any items which were rejected as part of the inventory operation
+     * @return the items which were rejected by the inventory.
      */
     List<ItemStackSnapshot> getRejectedItems();
 
     /**
-     * If the operation replaced items in the inventory, this collection returns
-     * the ItemStacks which were replaced.
+     * Returns the items polled by the operation.
      *
-     * @return any items which were ejected as part of the inventory operation
+     * @return the items which were polled from the inventory.
+     */
+    List<ItemStackSnapshot> getPolledItems();
+
+    /**
+     * Returns the {@link SlotTransaction}s that were executed by the operation.
+     *
+     * @return the slot-transactions caused by the inventory operation
      */
     List<SlotTransaction> getSlotTransactions();
+
+    /**
+     * The InventoryTransactionResult for a single {@link Inventory#poll} operation.
+     */
+    interface Poll extends InventoryTransactionResult {
+
+        /**
+         * Returns the item polled by the operation
+         *
+         * @return the item polled by the operation
+         */
+        ItemStackSnapshot getPolledItem();
+    }
 
     interface Builder extends CopyableBuilder<InventoryTransactionResult, Builder> {
 
@@ -167,6 +196,14 @@ public interface InventoryTransactionResult {
          */
         Builder reject(Iterable<ItemStackSnapshot> itemStacks);
 
+        /**
+         * Sets the provided {@link ItemStackSnapshot} as the stack that has been polled from the inventory.
+         *
+         * @param itemStack The polled itemstack
+         *
+         * @return This builder, for chaining
+         */
+        Builder.PollBuilder poll(ItemStackSnapshot itemStack);
 
         /**
          * Adds the provided {@link ItemStack itemstacks} as stacks that are
@@ -192,5 +229,10 @@ public interface InventoryTransactionResult {
          * @return A new inventory transaction result
          */
         InventoryTransactionResult build();
+
+        interface PollBuilder extends Builder {
+            @Override
+            InventoryTransactionResult.Poll build();
+        }
     }
 }

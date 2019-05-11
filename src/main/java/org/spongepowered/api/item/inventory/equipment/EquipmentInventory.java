@@ -48,7 +48,7 @@ public interface EquipmentInventory extends Inventory, CarriedInventory<Equipabl
      * @param equipmentType Type of equipment slot to query for
      * @return removed ItemStack, per the semantics of {@link Inventory#poll()}
      */
-    Optional<ItemStack> poll(EquipmentType equipmentType);
+     InventoryTransactionResult.Poll poll(EquipmentType equipmentType);
 
     /**
      * Gets and remove the items from the stack for the specified equipment type
@@ -59,7 +59,7 @@ public interface EquipmentInventory extends Inventory, CarriedInventory<Equipabl
      * @param limit item limit
      * @return removed ItemStack, per the semantics of {@link Inventory#poll()}
      */
-    Optional<ItemStack> poll(EquipmentType equipmentType, int limit);
+    InventoryTransactionResult.Poll poll(EquipmentType equipmentType, int limit);
 
     /**
      * Gets without removing the stack for the specified equipment type in this
@@ -72,20 +72,9 @@ public interface EquipmentInventory extends Inventory, CarriedInventory<Equipabl
     Optional<ItemStack> peek(EquipmentType equipmentType);
 
     /**
-     * Gets without removing the items from the stack for the specified
-     * equipment type in this Inventory.
-     *
-     * @see Inventory#peek()
-     * @param equipmentType Type of equipment slot to query for
-     * @param limit item limit
-     * @return removed ItemStack, per the semantics of {@link Inventory#peek()}
-     */
-    Optional<ItemStack> peek(EquipmentType equipmentType, int limit);
-
-    /**
      * Sets the item for the specified equipment type.
      *
-     * @see Inventory#set(ItemStack)
+     * @see Slot#set(ItemStack)
      * @param equipmentType Type of equipment slot to set
      * @param stack stack to insert
      * @return operation result, for details see {@link Inventory#set}

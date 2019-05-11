@@ -26,6 +26,7 @@ package org.spongepowered.api.item.inventory.type;
 
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult;
 import org.spongepowered.math.vector.Vector2i;
@@ -44,8 +45,8 @@ public interface Inventory2D extends Inventory {
      * @param pos Slot position to query
      * @return matching stacks, as per the semantics of {@link Inventory#poll()}
      */
-    default Optional<ItemStack> poll(Vector2i pos) {
-        return getSlot(pos).map(Inventory::poll);
+    default InventoryTransactionResult.Poll poll(Vector2i pos) {
+        return getSlot(pos).map(Inventory::poll).orElse(InventoryTransactionResult.builder().type(InventoryTransactionResult.Type.NO_SLOT).poll(ItemStackSnapshot.empty()).build());
     }
 
     /**
@@ -56,8 +57,8 @@ public interface Inventory2D extends Inventory {
      * @param limit item limit
      * @return matching stacks, as per the semantics of {@link Inventory#poll()}
      */
-    default Optional<ItemStack> poll(Vector2i pos, int limit) {
-        return getSlot(pos).map(slot -> slot.poll(limit));
+    default InventoryTransactionResult.Poll poll(Vector2i pos, int limit) {
+        return getSlot(pos).map(slot -> slot.poll(limit)).orElse(InventoryTransactionResult.builder().type(InventoryTransactionResult.Type.NO_SLOT).poll(ItemStackSnapshot.empty()).build());
     }
 
     /**
@@ -73,22 +74,9 @@ public interface Inventory2D extends Inventory {
     }
 
     /**
-     * Gets without removing the stack at the supplied position in this
-     * Inventory.
-     *
-     * @see Inventory#peek()
-     * @param pos Slot position to query
-     * @param limit item limit
-     * @return matching stacks, as per the semantics of {@link Inventory#peek()}
-     */
-    default Optional<ItemStack> peek(Vector2i pos, int limit) {
-        return getSlot(pos).map(slot -> slot.peek(limit));
-    }
-
-    /**
      * Sets the item in the specified slot.
      *
-     * @see Inventory#set(ItemStack)
+     * @see Slot#set(ItemStack)
      * @param pos Slot position to set
      * @param stack Stack to insert
      * @return matching stacks, as per the semantics of {@link Inventory#set}

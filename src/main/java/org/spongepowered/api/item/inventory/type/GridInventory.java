@@ -69,7 +69,7 @@ public interface GridInventory extends Inventory2D {
      * @return ItemStack at the specified position or {@link Optional#empty()}
      *      if the slot is empty or out of bounds
      */
-    Optional<ItemStack> poll(int x, int y);
+    InventoryTransactionResult.Poll poll(int x, int y);
 
     /**
      * Gets and remove the stack at the supplied position in this Inventory.
@@ -81,7 +81,7 @@ public interface GridInventory extends Inventory2D {
      * @return ItemStack at the specified position or {@link Optional#empty()}
      *      if the slot is empty or out of bounds
      */
-    Optional<ItemStack> poll(int x, int y, int limit);
+    InventoryTransactionResult.Poll poll(int x, int y, int limit);
 
     /**
      * Gets without removing the stack at the supplied position in this
@@ -96,22 +96,9 @@ public interface GridInventory extends Inventory2D {
     Optional<ItemStack> peek(int x, int y);
 
     /**
-     * Gets without removing the stack at the supplied position in this
-     * Inventory.
-     *
-     * @see Inventory#peek()
-     * @param x x coordinate
-     * @param y y coordinate
-     * @param limit item limit
-     * @return ItemStack at the specified position or {@link Optional#empty()}
-     *      if the slot is empty or out of bounds
-     */
-    Optional<ItemStack> peek(int x, int y, int limit);
-
-    /**
      * Sets the item in the specified slot.
      *
-     * @see Inventory#set(ItemStack)
+     * @see Slot#set(ItemStack)
      * @param x x coordinate
      * @param y y coordinate
      * @param stack Item stack to insert
