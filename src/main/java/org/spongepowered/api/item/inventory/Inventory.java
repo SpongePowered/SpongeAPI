@@ -29,7 +29,6 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.property.Property;
 import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.data.property.PropertyMatcher;
-import org.spongepowered.api.event.item.inventory.container.InteractContainerEvent;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.query.QueryOperation;
 import org.spongepowered.api.item.inventory.query.QueryOperationTypes;
@@ -37,11 +36,11 @@ import org.spongepowered.api.item.inventory.slot.SlotIndex;
 import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult;
 import org.spongepowered.api.item.inventory.type.ViewableInventory;
 import org.spongepowered.api.plugin.PluginContainer;
-import org.spongepowered.api.util.CopyableBuilder;
+import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Consumer;
+import java.util.UUID;
 
 /**
  * Base interface for queryable inventories.
@@ -49,7 +48,9 @@ import java.util.function.Consumer;
 public interface Inventory extends Nameable, PropertyHolder {
 
     /**
-     * Creates a new {@link Inventory.Builder} to build an {@link Inventory}.
+     * Creates a new {@link Inventory.Builder} to build a basic {@link Inventory}.
+     * <p>Inventories created by this builder cannot be opened.</p>
+     * <p>If you want to show the inventory to a Client use {@link ViewableInventory#builder()}</p>
      *
      * @return The builder
      */
@@ -448,13 +449,6 @@ public interface Inventory extends Nameable, PropertyHolder {
     PluginContainer getPlugin();
 
     /**
-     * Creates an {@link InventoryArchetype} based on this {@link Inventory}.
-     *
-     * @return The inventory archetype
-     */
-    InventoryArchetype getArchetype();
-
-    /**
      * Intersects the slots of both inventories.
      * The resulting inventory will only contain slots
      * that are present in both inventories.
@@ -520,69 +514,81 @@ public interface Inventory extends Nameable, PropertyHolder {
     Optional<ViewableInventory> asViewable();
 
     /**
-     * A Builder for Inventories based on {@link InventoryArchetype}s.
+     * A builder for free-form Inventories.
      */
-    interface Builder extends CopyableBuilder<Inventory, Builder> {
+    interface Builder extends ResettableBuilder<Inventory, Inventory.Builder> {
 
         /**
-         * Sets the base {@link InventoryArchetype} for the Inventory.
+         * Adds one or more slots.
          *
-         * @param archetype The InventoryArchetype
-         * @return Fluent pattern
+         * @param amount the amount of slots to add
+         *
+         * @return the building step
          */
-        Builder of(InventoryArchetype archetype);
+        BuildingStep slots(int amount);
 
         /**
-         * Adds a {@link Property} with a specific value.
+         * Adds a grid of slots.
          *
-         * @param property The property
-         * @param value The property value
-         * @return Fluent pattern
+         * @param sizeX the horizontal size
+         * @param sizeY the vertical size
+         *
+         * @return the building step
          */
-        <V> Builder property(Property<V> property, V value);
+        BuildingStep grid(int sizeX, int sizeY);
 
         /**
-         * Sets the {@link Carrier} that carries the Inventory.
+         * Adds an existing inventory.
          *
-         * @param carrier The Carrier
-         * @return Fluent pattern
+         * @param inventory the inventory to add.
+         *
+         * @return the building step
          */
-        Builder withCarrier(Carrier carrier);
+        BuildingStep inventory(Inventory inventory);
 
         /**
-         * Registers a listener for given Event type
-         *
-         * @param type The type
-         * @param listener The listener
-         * @return Fluent pattern
+         * The building step. The inventory structure can be completed at any time.
          */
-        <E extends InteractContainerEvent> Builder listener(Class<E> type, Consumer<E> listener);
+        interface BuildingStep extends Builder {
+
+            /**
+             * Completes the inventory structure.
+             *
+             * @return the end step
+             */
+            EndStep completeStructure();
+        }
 
         /**
-         * Sets the InventoryArchetype and Properties according to the
-         * {@link Carrier}s Inventory.
-         *
-         * @param carrier The Carrier
-         * @return Fluent pattern
+         * The end Step. You can set an identifier and/or carrier for the inventory before building it.
          */
-        Builder forCarrier(Carrier carrier);
+        interface EndStep {
 
-        /**
-         * Sets the InventoryArchetype and Properties for a default Inventory of
-         * given {@link Carrier}.
-         *
-         * @param carrier The Carrier class
-         * @return Fluent pattern
-         */
-        Builder forCarrier(Class<? extends Carrier> carrier);
+            /**
+             * Sets a unique identifier. Can be retrieved later using. {@link Inventory#getProperty(Property)} with {@link InventoryProperties#UNIQUE_ID}
+             *
+             * @param uuid the UUID.
+             *
+             * @return this step
+             */
+            EndStep identity(UUID uuid);
 
-        /**
-         * Builds the {@link Inventory}.
-         *
-         * @param plugin The plugin building this inventory
-         * @return The new Inventory instance
-         */
-        Inventory build(PluginContainer plugin);
+            /**
+             * Sets a carrier.
+             *
+             * @param carrier the carrier.
+             *
+             * @return this step
+             */
+            EndStep carrier(Carrier carrier);
 
+            /**
+             * Builds the inventory.
+             *
+             * @return the new inventory.
+             */
+            Inventory build();
+        }
     }
+
 }

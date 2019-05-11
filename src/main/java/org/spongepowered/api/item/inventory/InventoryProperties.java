@@ -28,8 +28,8 @@ import com.flowpowered.math.vector.Vector2i;
 import org.spongepowered.api.data.property.Property;
 import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
-import org.spongepowered.api.item.inventory.gui.GuiId;
 import org.spongepowered.api.item.inventory.slot.SlotIndex;
+import org.spongepowered.api.item.inventory.type.GridInventory;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
@@ -50,12 +50,6 @@ public final class InventoryProperties {
      */
     public static final Property<EquipmentType> EQUIPMENT_TYPE =
             DummyObjectProvider.createFor(Property.class, "EQUIPMENT_TYPE");
-
-    /**
-     * Represents the {@link GuiId} that the target inventory uses.
-     */
-    public static final Property<GuiId> GUI_ID =
-            DummyObjectProvider.createFor(Property.class, "GUI_ID");
 
     /**
      * Represents the capacity of a inventory.
