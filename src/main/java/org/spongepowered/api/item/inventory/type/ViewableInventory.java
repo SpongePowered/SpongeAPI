@@ -34,6 +34,7 @@ import org.spongepowered.api.item.inventory.InventoryProperties;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.ContainerType;
+import org.spongepowered.api.item.inventory.menu.InventoryMenu;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.List;
@@ -58,6 +59,14 @@ public interface ViewableInventory extends Inventory {
      * @return the ContainerType of this viewable inventory.
      */
     ContainerType getType();
+
+    /**
+     * Create a new {@link InventoryMenu} based on this ViewableInventory which allows for lightweight callbacks on inventory clicks and changes.
+     * To receive callbacks the inventory must be opened from {@link InventoryMenu#open(Player)}
+     *
+     * @return The new InventoryMenu
+     */
+    InventoryMenu asMenu();
 
     /**
      * Creates a new {@link Builder} to build an {@link ViewableInventory}.
