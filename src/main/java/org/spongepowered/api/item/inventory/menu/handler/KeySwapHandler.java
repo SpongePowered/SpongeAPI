@@ -29,7 +29,6 @@ import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.menu.ClickType;
 import org.spongepowered.api.item.inventory.menu.ClickTypes;
-import org.spongepowered.api.item.inventory.slot.SlotIndex;
 
 @FunctionalInterface
 public interface KeySwapHandler extends InventoryCallbackHandler {
@@ -46,5 +45,5 @@ public interface KeySwapHandler extends InventoryCallbackHandler {
      *
      * @return false to prevent the action
      */
-    boolean handle(Cause cause, Container container, Slot slot, SlotIndex slotIndex, ClickType<?> clickType, Slot slot2);
+    boolean handle(Cause cause, Container container, Slot slot, int slotIndex, ClickType<?> clickType, Slot slot2);
 }

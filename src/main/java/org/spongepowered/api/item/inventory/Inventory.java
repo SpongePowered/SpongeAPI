@@ -32,7 +32,6 @@ import org.spongepowered.api.data.property.PropertyMatcher;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.query.QueryOperation;
 import org.spongepowered.api.item.inventory.query.QueryOperationTypes;
-import org.spongepowered.api.item.inventory.slot.SlotIndex;
 import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult;
 import org.spongepowered.api.item.inventory.type.ViewableInventory;
 import org.spongepowered.api.plugin.PluginContainer;
@@ -202,7 +201,7 @@ public interface Inventory extends Nameable, PropertyHolder {
      *
      * @param stack The stack to insert into the Inventory, will be reduced by
      *      the number of items successfully consumed
-     * @return A SUCCESS transactionresult if the entire stack was consumed and
+     * @return A SUCCESS transaction-result if the entire stack was consumed and
      *      FAILURE when the stack was not or partially consumed.
      */
     InventoryTransactionResult set(ItemStack stack);
@@ -210,48 +209,48 @@ public interface Inventory extends Nameable, PropertyHolder {
     /**
      * Gets and remove the stack at the supplied index in this Inventory.
      *
-     * <p>Returns {@link Optional#empty()} when there is not Slot at {@link SlotIndex}</p>
+     * <p>Returns {@link Optional#empty()} when there is no Slot at given index</p>
      *
      * @see Inventory#poll()
      * @param index slot index to query
      * @return matching stacks, as per the semantics of {@link Inventory#poll()}
      */
-    Optional<ItemStack> poll(SlotIndex index);
+    Optional<ItemStack> pollFrom(int index);
 
     /**
      * Gets and remove the stack at the supplied index in this Inventory.
      *
-     * <p>Returns {@link Optional#empty()} when there is not Slot at {@link SlotIndex}</p>
+     * <p>Returns {@link Optional#empty()} when there is no Slot at given index</p>
      *
      * @see Inventory#poll()
      * @param index slot index to query
      * @param limit item limit
      * @return matching stacks, as per the semantics of {@link Inventory#poll()}
      */
-    Optional<ItemStack> poll(SlotIndex index, int limit);
+    Optional<ItemStack> pollFrom(int index, int limit);
 
     /**
      * Gets without removing the stack at the supplied index in this Inventory.
      *
-     * <p>Returns {@link Optional#empty()} when there is not Slot at {@link SlotIndex}</p>
+     * <p>Returns {@link Optional#empty()} when there is no Slot at given index</p>
      *
      * @see Inventory#peek()
      * @param index slot index to query
      * @return matching stacks, as per the semantics of {@link Inventory#peek()}
      */
-    Optional<ItemStack> peek(SlotIndex index);
+    Optional<ItemStack> peekAt(int index);
 
     /**
      * Gets without removing the stack at the supplied index in this Inventory.
      *
-     * <p>Returns {@link Optional#empty()} when there is not Slot at {@link SlotIndex}</p>
+     * <p>Returns {@link Optional#empty()} when there is no Slot at given index</p>
      *
      * @see Inventory#peek()
      * @param index slot index to query
      * @param limit item limit
      * @return matching stacks, as per the semantics of {@link Inventory#peek()}
      */
-    Optional<ItemStack> peek(SlotIndex index, int limit);
+    Optional<ItemStack> peekAt(int index, int limit);
 
     /**
      * Try to put an ItemStack into this Inventory at the supplied index.
@@ -274,29 +273,28 @@ public interface Inventory extends Nameable, PropertyHolder {
      *      FAILURE when the stack was not or partially consumed or no Slot exists
      *      at given index.
      */
-    InventoryTransactionResult offer(SlotIndex index, ItemStack stack);
+    InventoryTransactionResult offer(int index, ItemStack stack);
 
     /**
      * Sets the item in the specified slot.
      *
      * <p>Always returns a {@link org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult.Type#FAILURE} when
-     * there is not Slot at {@link SlotIndex}</p>
+     * there is no Slot at given index</p>
      *
      * @see Inventory#set(ItemStack)
      * @param index Slot index to set
      * @param stack Stack to insert
      * @return matching stacks, as per the semantics of {@link Inventory#set}
      */
-    InventoryTransactionResult set(SlotIndex index, ItemStack stack);
+    InventoryTransactionResult set(int index, ItemStack stack);
 
     /**
      * Gets the {@link Slot} at the specified position.
      *
      * @param index Slot index to retrieve
-     * @return slot at the specified position, or {@link Optional#empty()} if
-     *      no matching slot
+     * @return slot at the specified position, or {@link Optional#empty()} if no matching slot
      */
-    Optional<Slot> getSlot(SlotIndex index);
+    Optional<Slot> getSlot(int index);
 
     /**
      * Clears this inventory if it is clearable.

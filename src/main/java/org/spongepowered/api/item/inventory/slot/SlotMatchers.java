@@ -43,42 +43,19 @@ public final class SlotMatchers {
      * @param index The slot index
      * @return The property query
      */
-    public static PropertyMatcher<SlotIndex> index(SlotIndex index) {
+    public static PropertyMatcher<Integer> index(int index) {
         return PropertyMatcher.of(InventoryProperties.SLOT_INDEX, index);
     }
 
     /**
-     * Creates a {@link PropertyMatcher} with the default operator
-     * {@link org.spongepowered.api.data.property.PropertyMatcher.Operator#EQUAL} to match against slot
-     * indexes.
-     *
-     * @param index The slot index value
-     * @return The property query
-     */
-    public static PropertyMatcher<SlotIndex> index(int index) {
-        return index(SlotIndex.of(index));
-    }
-
-    /**
      * Creates a {@link PropertyMatcher} to match against slot indexes.
      *
-     * @param index The slot index
+     * @param index The slot index value
      * @param operator The operator
      * @return The property query
      */
-    public static PropertyMatcher<SlotIndex> index(SlotIndex index, PropertyMatcher.Operator operator) {
+    public static PropertyMatcher<Integer> index(int index, PropertyMatcher.Operator operator) {
         return PropertyMatcher.of(InventoryProperties.SLOT_INDEX, index, operator);
-    }
-
-    /**
-     * Creates a {@link PropertyMatcher} to match against slot indexes.
-     *
-     * @param index The slot index value
-     * @param operator The operator
-     * @return The property query
-     */
-    public static PropertyMatcher<SlotIndex> index(int index, PropertyMatcher.Operator operator) {
-        return PropertyMatcher.of(InventoryProperties.SLOT_INDEX, SlotIndex.of(index), operator);
     }
 
     /**

@@ -27,7 +27,6 @@ package org.spongepowered.api.item.inventory;
 import org.spongepowered.api.data.property.Property;
 import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
-import org.spongepowered.api.item.inventory.slot.SlotIndex;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
@@ -65,7 +64,7 @@ public final class InventoryProperties {
     /**
      * Represents the index of a slot.
      */
-    public static final Property<SlotIndex> SLOT_INDEX =
+    public static final Property<Integer> SLOT_INDEX =
             DummyObjectProvider.createFor(Property.class, "SLOT_INDEX");
 
     /**

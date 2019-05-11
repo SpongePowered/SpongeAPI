@@ -28,7 +28,6 @@ import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
-import org.spongepowered.api.item.inventory.slot.SlotIndex;
 
 @FunctionalInterface
 public interface SlotChangeHandler extends InventoryCallbackHandler {
@@ -43,5 +42,5 @@ public interface SlotChangeHandler extends InventoryCallbackHandler {
      * @param oldStack the old stack
      * @param newStack the new stack
      */
-    boolean handle(Cause cause, Container container, Slot slot, SlotIndex slotIndex, ItemStackSnapshot oldStack, ItemStackSnapshot newStack);
+    boolean handle(Cause cause, Container container, Slot slot, int slotIndex, ItemStackSnapshot oldStack, ItemStackSnapshot newStack);
 }
