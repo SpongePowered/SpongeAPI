@@ -57,7 +57,7 @@ import org.spongepowered.api.fluid.FluidType;
 import org.spongepowered.api.item.FireworkShape;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.enchantment.EnchantmentType;
-import org.spongepowered.api.item.inventory.InventoryArchetype;
+import org.spongepowered.api.item.inventory.ContainerType;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.item.inventory.equipment.HeldEquipmentType;
 import org.spongepowered.api.item.inventory.equipment.WornEquipmentType;
@@ -141,6 +141,8 @@ public final class CatalogTypes {
 
     public static final Class<ComparatorType> COMPARISON_TYPE = ComparatorType.class;
 
+    public static final Class<ContainerType> CONTAINER_TYPE = ContainerType.class;
+
     public static final Class<CraftingRecipe> CRAFTING_RECIPES = CraftingRecipe.class;
 
     public static final Class<Criterion> CRITERION = Criterion.class;
@@ -202,8 +204,6 @@ public final class CatalogTypes {
     public static final Class<HorseStyle> HORSE_STYLE = HorseStyle.class;
 
     public static final Class<InstrumentType> INSTRUMENT_TYPE = InstrumentType.class;
-
-    public static final Class<InventoryArchetype> INVENTORY_ARCHETYPE = InventoryArchetype.class;
 
     public static final Class<ItemType> ITEM_TYPE = ItemType.class;
 
