@@ -30,9 +30,15 @@ public class PackTypes {
 
     // SORTFIELDS:ON
 
-    public static final PackType ASSETS = DummyObjectProvider.createFor(PackType.class, "ASSETS");
-
+    /**
+     * Resources from the server. The root directory is {@code /data}.
+     */
     public static final PackType DATA = DummyObjectProvider.createFor(PackType.class, "DATA");
+
+    /**
+     * Resources from the client. The root directory is {@code /assets}.
+     */
+    public static final PackType RESOURCES = DummyObjectProvider.createFor(PackType.class, "RESOURCES");
 
     // SORTFIELDS:OFF
 }
