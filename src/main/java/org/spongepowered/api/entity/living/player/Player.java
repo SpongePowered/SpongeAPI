@@ -28,6 +28,7 @@ import org.spongepowered.api.Server;
 import org.spongepowered.api.advancement.Advancement;
 import org.spongepowered.api.advancement.AdvancementProgress;
 import org.spongepowered.api.advancement.AdvancementTree;
+import org.spongepowered.api.command.source.CommandSource;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.type.SkinPart;
 import org.spongepowered.api.data.value.Value;
@@ -41,6 +42,7 @@ import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.Inventory;
+import org.spongepowered.api.network.PlayerConnection;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
@@ -66,7 +68,7 @@ import javax.annotation.Nullable;
  * <p>Any methods called on Player that are not on User do not store any data
  * that persists across server restarts.</p>
  */
-public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver {
+public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver, CommandSource {
 
     /**
      * Returns whether this player has an open inventory at the moment
@@ -164,6 +166,14 @@ public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver 
      * @return A set of skin parts displayed
      */
     Set<SkinPart> getDisplayedSkinParts();
+
+    /**
+     * Gets the appropriate {@link PlayerConnection} linking this Player to a
+     * client.
+     *
+     * @return The connection
+     */
+    PlayerConnection getConnection();
 
     /**
      * Sends a given {@link ResourcePack} to this player.

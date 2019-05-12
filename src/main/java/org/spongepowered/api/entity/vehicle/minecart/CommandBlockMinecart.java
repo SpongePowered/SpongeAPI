@@ -24,9 +24,11 @@
  */
 package org.spongepowered.api.entity.vehicle.minecart;
 
+import org.spongepowered.api.command.source.CommandSource;
+
 /**
  * Represents a minecart with a command block inside it.
  */
-public interface CommandBlockMinecart extends Minecart {
+public interface CommandBlockMinecart extends Minecart, CommandSource {
 
 }
