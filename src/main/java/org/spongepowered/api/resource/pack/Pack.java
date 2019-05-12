@@ -32,7 +32,7 @@ import org.spongepowered.api.resource.ResourcePath;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
-import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 
 /**
@@ -55,13 +55,13 @@ public interface Pack {
      * Recursively gets all the resources loaded from this pack. All namespaces
      * are considered.
      *
-     * @param type The resource type
-     * @param path The resource path
+     * @param type   The resource type
+     * @param path   The resource path
      * @param filter The file name filter
      * @return Collection of resources
      * @see ResourceManager#getPaths(String, Predicate)
      */
-    Collection<ResourcePath> getPaths(PackType type, String path, Predicate<String> filter);
+    Collection<ResourcePath> getPaths(PackType type, String path, int depth, Predicate<String> filter);
 
     /**
      * Checks if a resource exists in this pack.
@@ -73,13 +73,20 @@ public interface Pack {
     boolean exists(PackType type, ResourcePath path);
 
     /**
+     * Gets all the namespaces which exist in this pack.
+     *
+     * @return The set of namespaces
+     */
+    Set<String> getNamespaces();
+
+    /**
      * Gets the metadata of this pack. The {@link DataView} represented is of
      * the pack.json file in the pack root. If the pack does not contain a
-     * pack.json, {@link Optional#empty()} is returned.
+     * pack.json, it is an error.
      *
      * @return The metadata if it exists
      */
-    Optional<DataView> getMetadata();
+    DataView getMetadata();
 
     /**
      * Gets the name of this pack which is displayed to the user.

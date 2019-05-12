@@ -89,7 +89,7 @@ public interface ResourceManager {
      * @param filter The file name filter
      * @return A collection of resource paths
      */
-    Collection<ResourcePath> getPaths(String path, Predicate<String> filter);
+    Collection<ResourcePath> getPaths(String path, Predicate<ResourcePath> filter);
 
     /**
      * Returns true if the given {@link ResourcePath} exists in the active

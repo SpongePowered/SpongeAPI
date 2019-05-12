@@ -29,12 +29,12 @@ import org.spongepowered.api.resource.ResourceManager;
 import org.spongepowered.api.resource.pack.PackRepository;
 import org.spongepowered.api.scheduler.Scheduler;
 
-import java.util.concurrent.Executor;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Shared functionality between {@link Client} and {@link Server} engines.
  */
-public interface Engine extends Executor {
+public interface Engine {
 
     /**
      * Gets the {@link Scheduler} used to schedule sync tasks on this {@link Engine}.
@@ -46,7 +46,7 @@ public interface Engine extends Executor {
     /**
      * Gets the {@link ResourceManager} for the server instance. As of
      * Minecraft 1.13 there is only one instance of the resource manager per
-     * server instance. It is not per-world.
+     * server/client instance. It is not per-world.
      *
      * @return The resource manager
      */
@@ -57,6 +57,14 @@ public interface Engine extends Executor {
      * activates resource and data packs.
      */
     PackRepository getPackRepository();
+
+    /**
+     * Reloads resources from the {@link ResourceManager} using active packs
+     * from the {@link PackRepository}.
+     *
+     * @return The future when it will finish.
+     */
+    CompletableFuture<Void> reloadResources();
 
     /**
      * Checks if the {@link Thread#currentThread() current thread} is the main thread of the engine.

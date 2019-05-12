@@ -25,12 +25,9 @@
 package org.spongepowered.api.resource;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.ResettableBuilder;
 
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -185,6 +182,7 @@ public interface ResourcePath extends Comparable<ResourcePath> {
      *
      * @implNote Implementation should override this for Map usage.
      */
+    @Override
     boolean equals(Object other);
 
     /**
@@ -192,6 +190,7 @@ public interface ResourcePath extends Comparable<ResourcePath> {
      *
      * @implNote Implementation should override this for Map usage.
      */
+    @Override
     int hashCode();
 
     /**
@@ -215,7 +214,7 @@ public interface ResourcePath extends Comparable<ResourcePath> {
          * @param plugin The owning plugin
          * @return This builder
          */
-        Builder plugin(Object plugin);
+        Builder namespace(PluginContainer plugin);
 
         /**
          * Sets the path of the {@link ResourcePath}.

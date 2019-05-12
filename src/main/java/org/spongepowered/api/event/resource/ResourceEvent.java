@@ -22,14 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.resource;
+package org.spongepowered.api.event.resource;
 
-public interface ReloadableResourceManager extends ResourceManager {
+import org.spongepowered.api.Engine;
+import org.spongepowered.api.event.Event;
+import org.spongepowered.api.resource.ResourceManager;
 
-    default AsyncReloader.Builder reload() {
-        return AsyncReloader.builder().manager(this);
+/**
+ * Base class for events related to resources.
+ */
+public interface ResourceEvent extends Event {
+
+    /**
+     * Gets the engine of the resources
+     * @return The engine
+     */
+    Engine getEngine();
+
+    /**
+     * Gets the {@link ResourceManager}.
+     * @return The resource manager
+     */
+    ResourceManager getResourceManager();
+
+    /**
+     * Fired after a {@link ResourceManager} has been reloaded. This can be
+     * used to reload some systems that are resource based.
+     */
+    interface Reload extends ResourceEvent {
+
     }
-
-    void addListener(AsyncReloadListener listener);
-
 }

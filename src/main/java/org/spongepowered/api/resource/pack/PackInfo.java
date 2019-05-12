@@ -42,7 +42,8 @@ public interface PackInfo extends DataSerializable, TextRepresentable {
     String getName();
 
     /**
-     * Gets the display name of the {@link Pack} which is displayed to the user.
+     * Gets the display name of the {@link Pack} which is displayed to the
+     * user. This is loaded from the pack.mcmeta
      *
      * @return The display name
      */
@@ -50,18 +51,18 @@ public interface PackInfo extends DataSerializable, TextRepresentable {
 
     /**
      * Gets the description of the {@link Pack} which is displayed as the hover
-     * text to the user.
+     * text to the user. This is loaded from the pack.mcmeta
      *
      * @return The description
      */
     Text getDescription();
 
     /**
-     * Gets the {@link Pack} associated with this pack info.
+     * Creates a new instance of {@link Pack} associated with this pack info.
      *
-     * @return
+     * @return The new Pack
      */
-    Pack getPack();
+    Pack createPack();
 
     /**
      * Gets whether or not this pack is required to be active. If it is
@@ -72,30 +73,11 @@ public interface PackInfo extends DataSerializable, TextRepresentable {
      */
     boolean isRequired();
 
-    /**
-     * Gets whether or not this pack was loaded from a remote location. For
-     * example, if this is a server-defined client resource pack.
-     *
-     * @return Whether this pack is remote
-     */
-    boolean isRemote();
+    InsertionPosition getPosition();
 
-    boolean isLocked();
-
-    Priority getPriority();
-
-    Compatibility getCompatability();
-
-    enum Priority {
+    enum InsertionPosition {
         FIRST,
         LAST
     }
-
-    enum Compatibility {
-        OLD,
-        NEW,
-        OK
-    }
-
 
 }

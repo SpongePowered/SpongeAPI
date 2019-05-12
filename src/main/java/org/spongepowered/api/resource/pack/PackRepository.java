@@ -24,9 +24,8 @@
  */
 package org.spongepowered.api.resource.pack;
 
+import org.spongepowered.api.Engine;
 import org.spongepowered.api.plugin.PluginContainer;
-import org.spongepowered.api.resource.ReloadableResourceManager;
-import org.spongepowered.api.resource.ResourceManager;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -34,13 +33,19 @@ import java.util.Optional;
 public interface PackRepository {
 
     /**
+     * Refreshes all the providers in the repository.
+     */
+    void refresh();
+
+    /**
      * Sets the active packs to be used when reloading resources. Calls to this
-     * should be followed by {@link ReloadableResourceManager#reload()}.
+     * should be followed by {@link Engine#reloadResources()} in order to take
+     * effect.
      *
      * @param packs The active packs
-     * @see ReloadableResourceManager#reload()
+     * @see Engine#reloadResources()
      */
-    void setActivePacks(Collection<PackInfo> packs);
+    void setEnabledPacks(Collection<PackInfo> packs);
 
     /**
      * Returns a collection of all available packs. An available pack could be
@@ -50,14 +55,7 @@ public interface PackRepository {
      */
     Collection<PackInfo> getAllPacks();
 
-    /**
-     * Returns a collection of the disabled packs. Disabled packs are present,
-     * but not used in the {@link ResourceManager}. Resources can still be
-     * accessed using {@link PackInfo#getPack()}.
-     *
-     * @return The disabled packs
-     */
-    Collection<PackInfo> getDisabledPacks();
+    Collection<PackInfo> getAvailablePacks();
 
     /**
      * Returns a collection of enabled packs.
@@ -67,14 +65,14 @@ public interface PackRepository {
     Collection<PackInfo> getEnabledPacks();
 
     /**
-     * Gets the {@link Pack} defined from {@link PluginContainer#getSource()}.
-     * The name of the pack will contain the plugin id.
+     * Gets the {@link Pack} defined from the plugin contains. The name of the
+     * pack will contain the plugin id.
      *
      * @param plugin The plugin instance or container.
      * @return The pack
      * @throws IllegalArgumentException if the object is not a plugin
      */
-    PackInfo getPack(Object plugin);
+    PackInfo getPack(PluginContainer plugin);
 
     /**
      * Gets the pack by its name.
