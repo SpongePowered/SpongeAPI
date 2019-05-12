@@ -22,24 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command.source;
+package org.spongepowered.api.network;
+
+import org.spongepowered.api.command.source.CommandSource;
 
 /**
- * Represents an Rcon client.
+ * Represents a connection by an RCON client.
  */
-public interface RconSource extends RemoteSource {
+public interface RconConnection extends RemoteConnection, CommandSource {
 
     /**
-     * Gets whether this client is logged in, or authenticated.
+     * Gets whether this client is authorized.
      *
-     * @return Whether this client is logged in
+     * @return Whether this client is authorized
      */
-    boolean getLoggedIn();
+    boolean isAuthorized();
 
     /**
-     * Sets whether this client is logged in, or authenticated.
+     * Sets whether this client is authorized.
      *
-     * @param loggedIn Whether this client is logged in
+     * @param authorized {@code true} if authorized, {@code false} otherwise
      */
-    void setLoggedIn(boolean loggedIn);
+    void setAuthorized(boolean authorized);
 }
