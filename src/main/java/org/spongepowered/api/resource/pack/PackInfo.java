@@ -24,14 +24,13 @@
  */
 package org.spongepowered.api.resource.pack;
 
-import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextRepresentable;
 
 /**
- * Basic info about a {@link Pack}
+ * Basic info about a {@link Pack}. Is also used to create new instances.
  */
-public interface PackInfo extends DataSerializable, TextRepresentable {
+public interface PackInfo extends TextRepresentable {
 
     /**
      * Gets the name of the {@link Pack} used to identify it in the
@@ -73,6 +72,11 @@ public interface PackInfo extends DataSerializable, TextRepresentable {
      */
     boolean isRequired();
 
+    /**
+     * Gets the insertion position of this pack. Should it be added before or
+     * after existing packs?
+     * @return
+     */
     InsertionPosition getPosition();
 
     enum InsertionPosition {

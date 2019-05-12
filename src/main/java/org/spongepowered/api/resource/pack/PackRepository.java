@@ -28,8 +28,14 @@ import org.spongepowered.api.Engine;
 import org.spongepowered.api.plugin.PluginContainer;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
+/**
+ * Manages the {@link PackInfo packs} which are known to the game. Use this
+ * class to get specific packs, as well as enable and disable packs from
+ * loading on the next call to {@link Engine#reloadResources()}.
+ */
 public interface PackRepository {
 
     /**
@@ -45,7 +51,7 @@ public interface PackRepository {
      * @param packs The active packs
      * @see Engine#reloadResources()
      */
-    void setEnabledPacks(Collection<PackInfo> packs);
+    void setEnabledPacks(List<PackInfo> packs);
 
     /**
      * Returns a collection of all available packs. An available pack could be
@@ -55,6 +61,11 @@ public interface PackRepository {
      */
     Collection<PackInfo> getAllPacks();
 
+    /**
+     * Gets the list of packs which are not enabled.
+     *
+     * @return The disabled packs
+     */
     Collection<PackInfo> getAvailablePacks();
 
     /**
@@ -62,15 +73,14 @@ public interface PackRepository {
      *
      * @return The enabled packs
      */
-    Collection<PackInfo> getEnabledPacks();
+    List<PackInfo> getEnabledPacks();
 
     /**
      * Gets the {@link Pack} defined from the plugin container. The name of the
      * pack will contain the plugin id.
      *
-     * @param plugin The plugin instance or container.
+     * @param plugin The plugin container.
      * @return The pack
-     * @throws IllegalArgumentException if the object is not a plugin
      */
     PackInfo getPack(PluginContainer plugin);
 

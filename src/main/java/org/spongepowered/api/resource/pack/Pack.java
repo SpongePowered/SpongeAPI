@@ -62,7 +62,7 @@ public interface Pack extends Closeable {
      * @return Collection of resources
      * @see ResourceManager#getPaths(String, Predicate)
      */
-    Collection<ResourcePath> getPaths(PackType type, String path, int depth, Predicate<String> filter);
+    Collection<ResourcePath> getPaths(PackType type, String path, int depth, Predicate<ResourcePath> filter);
 
     /**
      * Checks if a resource exists in this pack.
@@ -82,8 +82,8 @@ public interface Pack extends Closeable {
 
     /**
      * Gets the metadata of this pack. The {@link DataView} represented is of
-     * the pack.json file in the pack root. If the pack does not contain a
-     * pack.json, it is an error.
+     * the pack.mcmeta file in the pack root. If the pack does not contain a
+     * pack.mcmeta, it is an error.
      *
      * @return The metadata if it exists
      */
