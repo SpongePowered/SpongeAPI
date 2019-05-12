@@ -29,6 +29,7 @@ import org.spongepowered.api.resource.Resource;
 import org.spongepowered.api.resource.ResourceManager;
 import org.spongepowered.api.resource.ResourcePath;
 
+import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
@@ -39,7 +40,7 @@ import java.util.function.Predicate;
  * A pack can contain several {@link Resource Resources}. Each pack is
  * independently loaded with a configured priority.
  */
-public interface Pack {
+public interface Pack extends Closeable {
 
     /**
      * Opens a new {@link InputStream} to the specified resource.

@@ -65,7 +65,7 @@ public interface PackRepository {
     Collection<PackInfo> getEnabledPacks();
 
     /**
-     * Gets the {@link Pack} defined from the plugin contains. The name of the
+     * Gets the {@link Pack} defined from the plugin container. The name of the
      * pack will contain the plugin id.
      *
      * @param plugin The plugin instance or container.
