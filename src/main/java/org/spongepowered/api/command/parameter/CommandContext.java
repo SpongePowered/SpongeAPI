@@ -24,14 +24,9 @@
  */
 package org.spongepowered.api.command.parameter;
 
-import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.cause.EventContextKeys;
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageChannel;
-import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.util.ResettableBuilder;
-import org.spongepowered.api.world.Location;
 
 import java.util.Collection;
 import java.util.NoSuchElementException;
@@ -41,82 +36,12 @@ import java.util.Optional;
  * The {@link CommandContext} contains the parsed arguments for a
  * command, and any other information that might be important when
  * executing a command.
+ *
+ * <p>This context also contain methods that determine the
+ * {@link Cause} of the command.</p>
  */
-public interface CommandContext {
+public interface CommandContext extends CommandCause {
 
-    /**
-     * Gets the {@link Cause} of the command execution.
-     */
-    Cause getCause();
-
-    /**
-     * Gets the {@link MessageChannel} that should be the target for any
-     * messages sent by the command (by default).
-     *
-     * <p>The {@link MessageChannel} will be selected in the following way
-     * from the {@link Cause} in {@link #getCause()}:</p>
-     *
-     * <ul>
-     *    <li>The {@link EventContextKeys#MESSAGE_CHANNEL}, if any</li>
-     *    <li>A message channel containing the <strong>first</strong>
-     *    {@link MessageReceiver} in the {@link Cause}</li>
-     *    <li>The Console {@link MessageReceiver}</li>
-     * </ul>
-     *
-     * <p>Note that this returns a {@link MessageChannel} and not what
-     * may be thought of as a traditional entity executing the command.
-     * For the entity the invoked the command, check the
-     * {@link Cause#root()} of the {@link #getCause()}.</p>
-     *
-     * @return The default message channel for any messages.
-     */
-    MessageChannel getTargetMessageChannel();
-
-    /**
-     * Get the {@link Subject} that will be selected for permission checks
-     * during command execution (by default).
-     *
-     * <p>The {@link Subject} will be selected in the following way from the
-     * {@link Cause} in {@link #getCause()}:</p>
-     *
-     * <ul>
-     *    <li>The {@link EventContextKeys#SUBJECT}, if any</li>
-     *    <li>The <strong>first</strong> {@link Subject} in the {@link Cause}</li>
-     * </ul>
-     *
-     * <p>If no {@link Subject} is returned, permission checks should be done on
-     * the console.</p>
-     *
-     * <p><strong>Note:</strong> while it might be tempting to use this as the
-     * invoker of the command, the {@link Cause#root()} and this might be
-     * different. Command executors should generally use the root of the
-     * {@link Cause} as the target of their command.</p>
-     *
-     * @return The {@link Subject} responsible, if any.
-     */
-    Optional<Subject> getSubject();
-
-    /**
-     * Gets the {@link Location} that this command is associated with.
-     *
-     * <p>If not explicit location is set, the following are checked in order:
-     *
-     * <ul>
-     *     <li>{@link #getTargetBlock()}</li>
-     *     <li>the location of the first locatable in the {@link Cause}</li>
-     * </ul>
-     *
-     * @return The {@link Location}, if it exists
-     */
-    // TODO: is this really how this will work? Check, update JDs as necessary.
-    Optional<Location> getLocation();
-
-    /**
-     * Returns the target block {@link Location}, if applicable.
-     *
-     * @return The {@link BlockSnapshot} if applicable, or an empty optional.
-     */
-    Optional<BlockSnapshot> getTargetBlock();
 
     /**
      * Returns whether this context has any value for the given argument key.

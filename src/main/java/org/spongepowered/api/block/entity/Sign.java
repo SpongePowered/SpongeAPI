@@ -24,15 +24,16 @@
  */
 package org.spongepowered.api.block.entity;
 
-import org.spongepowered.api.command.source.CommandSource;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.ListValue;
+import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.Nameable;
 
 /**
  * Represents a sign.
  */
-public interface Sign extends BlockEntity, CommandSource {
+public interface Sign extends BlockEntity, Nameable {
 
     /**
      * Gets the {@link org.spongepowered.api.data.value.ListValue.Mutable} of {@link Text} for the {@link Sign}

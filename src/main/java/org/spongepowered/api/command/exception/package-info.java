@@ -22,20 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api;
-
-import org.spongepowered.api.text.translation.Translation;
-
-/**
- * An object which has a name.
- */
-public interface Nameable {
-
-    /**
-     * Gets the human-readable name of this object.
-     *
-     * @return The name of this object
-     */
-    Translation getName();
-
-}
+@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
+package org.spongepowered.api.command.exception;

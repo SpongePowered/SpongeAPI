@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.item.inventory;
 
-import org.spongepowered.api.Nameable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.property.Property;
 import org.spongepowered.api.data.property.PropertyHolder;
@@ -35,6 +34,7 @@ import org.spongepowered.api.item.inventory.query.QueryOperationTypes;
 import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult;
 import org.spongepowered.api.item.inventory.type.ViewableInventory;
 import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.api.util.Nameable;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.List;
@@ -44,7 +44,7 @@ import java.util.UUID;
 /**
  * Base interface for queryable inventories.
  */
-public interface Inventory extends Nameable, PropertyHolder {
+public interface Inventory extends Nameable.Translatable, PropertyHolder {
 
     /**
      * Creates a new {@link Inventory.Builder} to build a basic {@link Inventory}.

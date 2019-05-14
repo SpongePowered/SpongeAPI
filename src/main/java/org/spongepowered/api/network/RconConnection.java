@@ -24,12 +24,13 @@
  */
 package org.spongepowered.api.network;
 
-import org.spongepowered.api.command.source.CommandSource;
+import org.spongepowered.api.service.permission.Subject;
+import org.spongepowered.api.text.channel.MessageReceiver;
 
 /**
  * Represents a connection by an RCON client.
  */
-public interface RconConnection extends RemoteConnection, CommandSource {
+public interface RconConnection extends RemoteConnection, MessageReceiver, Subject {
 
     /**
      * Gets whether this client is authorized.

@@ -22,34 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command.exception;
+package org.spongepowered.api;
 
-import org.spongepowered.api.command.source.CommandSource;
-import org.spongepowered.api.text.Text;
+import org.spongepowered.api.service.permission.Subject;
+import org.spongepowered.api.text.channel.MessageReceiver;
 
 /**
- * This exception is thrown when the target {@link CommandSource}s is of the
- * correct type to call the target command.
+ * Represents the "super user" of the game.
+ *
+ * <p>The {@link SystemSubject} is intended to be the {@link Subject} that
+ * represents server actions. This subject may represent an interaction
+ * through a console.</p>
+ *
+ * <p>This object is also a {@link MessageReceiver}. Any message sent here
+ * should be directed to a system visible location, such as a log or a
+ * console.</p>
  */
-public class IncorrectCommandSourceException extends CommandException {
-    private static final long serialVersionUID = -2927330349931825821L;
+public interface SystemSubject extends Subject, MessageReceiver {
 
-    /**
-     * Create a permissions exception with a custom message.
-     *
-     * @param message The message
-     */
-    public IncorrectCommandSourceException(Text message) {
-        super(message);
-    }
-
-    /**
-     * Create a permissions exception with a custom message and cause.
-     *
-     * @param message the message
-     * @param cause the cause
-     */
-    public IncorrectCommandSourceException(Text message, Throwable cause) {
-        super(message, cause);
-    }
 }

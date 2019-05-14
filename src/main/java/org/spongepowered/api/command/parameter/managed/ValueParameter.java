@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.command.parameter.managed;
 
-import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.text.Text;
 
 /**
@@ -41,7 +41,7 @@ import org.spongepowered.api.text.Text;
 public interface ValueParameter<T> extends ValueCompleter, ValueParser<T>, ValueUsage {
 
     @Override
-    default Text getUsage(Cause cause, Text key) {
+    default Text getUsage(CommandCause cause, Text key) {
         return key;
     }
 

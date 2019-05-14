@@ -28,6 +28,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.Command;
+import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.command.CommandExecutor;
 import org.spongepowered.api.command.exception.ArgumentParseException;
 import org.spongepowered.api.command.parameter.managed.ValueCompleter;
@@ -36,7 +37,6 @@ import org.spongepowered.api.command.parameter.managed.ValueParser;
 import org.spongepowered.api.command.parameter.managed.ValueUsage;
 import org.spongepowered.api.command.parameter.managed.standard.CatalogedValueParameters;
 import org.spongepowered.api.command.parameter.managed.standard.VariableValueParameters;
-import org.spongepowered.api.command.source.CommandSource;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
@@ -44,6 +44,7 @@ import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.network.RemoteConnection;
 import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.ResettableBuilder;
@@ -84,7 +85,7 @@ import java.util.function.Supplier;
  *     <li>{@link Subcommand}s can be placed anywhere in a parameter
  *     chain where a {@link Parameter} can be added, if successfully parsed,
  *     any containing {@link Command} would take precedence and its
- *     {@link Command#process(Cause, String)} method will be called instead
+ *     {@link Command#process(org.spongepowered.api.command.CommandCause, String)} method will be called instead
  *     of any parent.</li>
  * </ul>
  *
@@ -110,9 +111,8 @@ public interface Parameter {
      *
      * @return The {@link Value.Builder}
      */
-    @SuppressWarnings("unchecked")
     static <T> Value.Builder<T> builder(Class<T> valueClass) {
-        return ((Value.Builder<T>) Sponge.getRegistry().createBuilder(Value.Builder.class)).setValueClass(valueClass);
+        return Sponge.getRegistry().requireFactory(Factory.class).createParameterBuilder(valueClass);
     }
 
     /**
@@ -120,9 +120,8 @@ public interface Parameter {
      *
      * @return The {@link Value.Builder}
      */
-    @SuppressWarnings("unchecked")
     static <T> Value.Builder<T> builder(Class<T> valueClass, ValueParameter<T> parameter) {
-        return ((Value.Builder<T>) Sponge.getRegistry().createBuilder(Value.Builder.class)).setValueClass(valueClass).parser(parameter);
+        return builder(valueClass).parser(parameter);
     }
 
     /**
@@ -350,7 +349,7 @@ public interface Parameter {
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<Entity> entityOrSource() {
-        return entity().orDefault(cause -> cause.root() instanceof Entity ? (Entity) cause.root() : null);
+        return entity().orDefault(cause -> cause.getCause().root() instanceof Entity ? (Entity) cause.getCause().root() : null);
     }
 
     /**
@@ -411,7 +410,8 @@ public interface Parameter {
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<InetAddress> ipOrSource() {
-        return ip().orDefault(cause -> cause.root() instanceof RemoteConnection ? ((RemoteConnection) cause.root()).getAddress().getAddress() : null);
+        return ip().orDefault(cause -> cause.getCause().root() instanceof RemoteConnection ?
+                ((RemoteConnection) cause.getCause().root()).getAddress().getAddress() : null);
     }
 
     /**
@@ -472,7 +472,7 @@ public interface Parameter {
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<Player> playerOrSource() {
-        return player().orDefault(cause -> cause.root() instanceof Player ? (Player) cause.root() : null);
+        return player().orDefault(cause -> cause.getCause().root() instanceof Player ? (Player) cause.getCause().root() : null);
     }
 
     /**
@@ -553,7 +553,7 @@ public interface Parameter {
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<User> userOrSource() {
-        return user().orDefault(cause -> cause.root() instanceof User ? (User) cause.root() : null);
+        return user().orDefault(cause -> cause.getCause().root() instanceof User ? (User) cause.getCause().root() : null);
     }
 
     /**
@@ -598,7 +598,7 @@ public interface Parameter {
      * @return A {@link Parameter.Value.Builder}
      */
     static <T extends CatalogType> Parameter.Value.Builder<T> catalogedElement(Class<T> type) {
-        return Parameter.builder(type, VariableValueParameters.catalogedElementParameterBuilder().setCatalogedType(type)
+        return Parameter.builder(type, VariableValueParameters.catalogedElementParameterBuilder(type)
                 .prefix("minecraft")
                 .prefix("sponge")
                 .build());
@@ -608,13 +608,14 @@ public interface Parameter {
      * Creates a builder that has a {@link ValueParameter} that allows you to
      * specify a set of choices that must be chosen from
      *
+     * <p>This will return a parser that will return {@link String}s</p>
+     *
      * @param choices The choices
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<String> choices(String... choices) {
         VariableValueParameters.StaticChoicesBuilder<String> builder = VariableValueParameters
-                .staticChoicesBuilder()
-                .setReturnType(String.class)
+                .staticChoicesBuilder(String.class)
                 .setShowInUsage(true);
         for (String choice : choices) {
             builder.choice(choice, choice);
@@ -629,13 +630,13 @@ public interface Parameter {
      * objects that will get put in the {@link CommandContext} when a choice is
      * selected.
      *
+     * @param returnType The type of object that will be returned by the parser
+     *                   to be built by this builder.
      * @param choices The choices
-     * @param returnType The type of the values returned by the parameter
      * @return A {@link Parameter.Value.Builder}
      */
-    static <T> Parameter.Value.Builder<T> choices(Map<String, ? extends T> choices, Class<T> returnType) {
-        return Parameter.builder(returnType, VariableValueParameters.staticChoicesBuilder()
-                .setReturnType(returnType)
+    static <T> Parameter.Value.Builder<T> choices(Class<T> returnType, Map<String, ? extends T> choices) {
+        return Parameter.builder(returnType, VariableValueParameters.staticChoicesBuilder(returnType)
                 .choices(choices)
                 .setShowInUsage(true).build());
     }
@@ -646,19 +647,25 @@ public interface Parameter {
      * objects that will get put in the {@link CommandContext} when a choice is
      * selected, through the use of the {@code valueFunction}.
      *
-     * @param choices The choices
+     * @param returnType The type of object that will be returned by the parser
+     *                   to be built by this builder.
      * @param valueFunction The function that returns an object to put in the
      *      {@link CommandContext} based on the supplied choice
+     * @param choices The choices
      * @return A {@link Parameter.Value.Builder}
      */
-    static <T> Parameter.Value.Builder<T> choices(Supplier<Iterable<String>> choices, Function<String, ? extends T> valueFunction, Class<T> returnType) {
+    static <T> Parameter.Value.Builder<T> choices(
+            Class<T> returnType,
+            Function<String, ? extends T> valueFunction,
+            Supplier<Iterable<String>> choices) {
+
         return Parameter.builder(returnType,
                 VariableValueParameters
-                        .dynamicChoicesBuilder()
+                        .dynamicChoicesBuilder(returnType)
                         .setShowInUsage(true)
                         .setChoices(choices)
-                        .setReturnType(returnType)
-                        .setResults(valueFunction).build());
+                        .setResults(valueFunction)
+                        .build());
     }
 
     /**
@@ -670,21 +677,23 @@ public interface Parameter {
      * @return A {@link Parameter.Value.Builder}
      */
     static <T extends Enum<T>> Parameter.Value.Builder<T> enumValue(Class<T> enumClass) {
-        return Parameter.builder(enumClass, VariableValueParameters.enumBuilder().setEnumClass(enumClass).build());
+        return Parameter.builder(enumClass, VariableValueParameters.enumChoices(enumClass));
     }
 
     /**
      * Creates a builder that has a {@link ValueParameter} that requires an
      * argument to be a literal specified
      *
+     * @param returnType The type of object that will be returned by the parser
+     *                   to be built by this builder.
      * @param returnedValue The object to put in the {@link CommandContext} if
-     *      the literal matches
+     *      the literal matches.
      * @param literal The literal to match
      * @return A {@link Parameter.Value.Builder}
      */
-    static <T> Parameter.Value.Builder<T> literal(T returnedValue, String... literal) {
+    static <T> Parameter.Value.Builder<T> literal(Class<T> returnType, T returnedValue, String... literal) {
         Iterable<String> iterable = Arrays.asList(literal);
-        return literal(returnedValue, () -> iterable);
+        return literal(returnType, returnedValue, () -> iterable);
     }
 
     /**
@@ -697,10 +706,11 @@ public interface Parameter {
      *      invocation
      * @return A {@link Parameter.Value.Builder}
      */
-    @SuppressWarnings("unchecked")
-    static <T> Parameter.Value.Builder<T> literal(T returnedValue, Supplier<Iterable<String>> literalSupplier) {
-        return Parameter.builder((Class<T>) returnedValue.getClass(),
-                VariableValueParameters.literalBuilder().setReturnValue(returnedValue).setLiteral(literalSupplier).build());
+    static <T> Parameter.Value.Builder<T> literal(Class<T> returnType, T returnedValue, Supplier<Iterable<String>> literalSupplier) {
+        return Parameter.builder(returnType,
+                VariableValueParameters.literalBuilder(returnType)
+                        .setReturnValue(() -> returnedValue)
+                        .setLiteral(literalSupplier).build());
     }
 
     /**
@@ -731,10 +741,10 @@ public interface Parameter {
     /**
      * Gets the usage of this parameter.
      *
-     * @param cause The {@link Cause} that requested the usage
+     * @param cause The {@link CommandCause} that requested the usage
      * @return The usage
      */
-    Text getUsage(Cause cause);
+    Text getUsage(CommandCause cause);
 
     /**
      * A {@link Key}
@@ -825,7 +835,7 @@ public interface Parameter {
          *
          * @return the predicate
          */
-        Predicate<Cause> getRequirement();
+        Predicate<CommandCause> getRequirement();
 
         /**
          * Gets whether this parameter is optional.
@@ -858,17 +868,6 @@ public interface Parameter {
              * @return This builder, for chaining
              */
             Builder<T> setKey(Parameter.Key<T> key);
-
-            /**
-             * Sets the type of object that this {@link Parameter.Value} will
-             * return.
-             *
-             * @param valueClass The {@link Class}
-             * @return This builder, for chaining.
-             * @throws IllegalStateException if the class is attempted to be set
-             *     more than once.
-             */
-            Builder<T> setValueClass(Class<T> valueClass) throws IllegalStateException;
 
             /**
              * The {@link ValueParser} that will extract the value(s) from the
@@ -911,8 +910,9 @@ public interface Parameter {
             Builder<T> setUsage(@Nullable ValueUsage usage);
 
             /**
-             * Sets the permission that the executing {@link CommandSource} is
-             * required to have in order for this parameter to be parsed.
+             * Sets a function that determines what is required of the
+             * appropriate {@link Subject} in the provided {@link Cause} before
+             * this parameter is parsed.
              *
              * <p>If the source does not have this permission, this parameter
              * will simply be skipped. Consider combining this with
@@ -938,7 +938,7 @@ public interface Parameter {
              * @param executionRequirements A function that sets the
              * @return This builder, for chaining
              */
-            Builder<T> setRequirements(@Nullable Predicate<Cause> executionRequirements);
+            Builder<T> setRequirements(@Nullable Predicate<CommandCause> executionRequirements);
 
             /**
              * If set, this parameter will repeat until the argument string has
@@ -1032,7 +1032,7 @@ public interface Parameter {
              *                             if the parameter is not optional.
              * @return This builder, for chaining
              */
-            Builder<T> orDefault(Function<Cause, T> defaultValueFunction);
+            Builder<T> orDefault(Function<CommandCause, T> defaultValueFunction);
 
             /**
              * Creates a {@link Parameter} from the builder.
@@ -1232,6 +1232,23 @@ public interface Parameter {
          * @return The {@link Parameter}
          */
         Parameter build();
+
+    }
+
+    /**
+     * Contains methods to create the generic builders.
+     */
+    interface Factory {
+
+        /**
+         * Creates a {@link Parameter.Value.Builder} of the indicated generic type.
+         *
+         * @param parameterClass The class
+         * @param <T> The type of object that will be returned by the built
+         *            {@link Parameter.Value}
+         * @return The builder.
+         */
+        <T> Value.Builder<T> createParameterBuilder(Class<T> parameterClass);
 
     }
 

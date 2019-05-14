@@ -22,32 +22,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command.source;
+package org.spongepowered.api.util;
 
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageReceiver;
+import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.text.translation.locale.Locales;
 
-import java.util.Locale;
-
 /**
- * Something that traditionally executes commands, can receive messages and
- * can have permissions associated with them.
- *
- * <p>Examples of potential implementations include players, the server console,
- * Rcon clients, web-based clients, command blocks, and so on.</p>
- *
- * <p>Note that while this source is provided, it is done so as a courtesy to
- * provide an indication as to what will both receive messages and act as a
- * permission {@link Subject}.</p>
+ * An identifiable object that uses a {@link String} as an identifier.
  */
-public interface CommandSource extends MessageReceiver, Subject {
+public interface Nameable {
 
     /**
-     * Gets the name identifying this command source.
+     * The name that represents this object.
      *
-     * @return The name of this command source
+     * @return The name.
      */
     String getName();
+
+    /**
+     * An object which has a name that is translatable.
+     */
+    interface Translatable extends Nameable {
+
+        /**
+         * Gets the human-readable name of this object.
+         *
+         * @return The name of this object
+         */
+        Translation getNameTranslation();
+
+        /**
+         * Gets the name in the {@link Locales#DEFAULT} locale of the
+         * {@link Translation}.
+         *
+         * @return The default translation of the name.
+         */
+        @Override
+        default String getName() {
+            return getNameTranslation().get();
+        }
+
+    }
 
 }

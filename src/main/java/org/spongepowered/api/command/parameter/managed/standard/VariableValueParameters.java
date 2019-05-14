@@ -36,8 +36,6 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-// TODO: Better name - or see if we can merge it with "CatalogedValueParameters" which
-// may require registry changes.
 public class VariableValueParameters {
 
     private VariableValueParameters() {}
@@ -48,10 +46,8 @@ public class VariableValueParameters {
      *
      * @return The builder
      */
-    // TODO: Better solution?
-    @SuppressWarnings("unchecked")
-    public static CatalogedTypeBuilder<? extends CatalogType> catalogedElementParameterBuilder() {
-        return (CatalogedTypeBuilder<? extends CatalogType>) Sponge.getRegistry().createBuilder(CatalogedTypeBuilder.class);
+    public static <T extends CatalogType> CatalogedTypeBuilder<T> catalogedElementParameterBuilder(Class<T> returnType) {
+        return Sponge.getRegistry().requireFactory(Factory.class).createCatalogedTypesBuilder(returnType);
     }
 
     /**
@@ -59,13 +55,15 @@ public class VariableValueParameters {
      * match an argument against a fixed list of choices.
      *
      * <p>If the list of choices changes during the lifetime of the server,
-     * use {@link #dynamicChoicesBuilder()} instead.</p>
+     * use {@link #dynamicChoicesBuilder(Class)} instead.</p>
      *
+     * @param returnType The type of object that the resulting
+     *                   {@link ValueParameter} will return.
+     * @param <T> The type that will be returned
      * @return The builder
      */
-    @SuppressWarnings("unchecked")
-    public static StaticChoicesBuilder<?> staticChoicesBuilder() {
-        return (StaticChoicesBuilder<?>) Sponge.getRegistry().createBuilder(StaticChoicesBuilder.class);
+    public static <T> StaticChoicesBuilder<T> staticChoicesBuilder(Class<T> returnType) {
+        return Sponge.getRegistry().requireFactory(Factory.class).createStaticChoicesBuilder(returnType);
     }
 
     /**
@@ -73,31 +71,28 @@ public class VariableValueParameters {
      * match an argument against a dynamic list of choices.
      *
      * <p>If the list of choices does not change during the lifetime of the
-     * server, use {@link #staticChoicesBuilder()} instead.</p>
+     * server, use {@link #staticChoicesBuilder(Class)} instead.</p>
      *
+     * @param returnType The type of object that the resulting
+     *                   {@link ValueParameter} will return.
+     * @param <T> The type that will be returned
      * @return The builder
      */
-    @SuppressWarnings("unchecked")
-    public static DynamicChoicesBuilder<?> dynamicChoicesBuilder() {
-        return (DynamicChoicesBuilder<?>) Sponge.getRegistry().createBuilder(DynamicChoicesBuilder.class);
-    }
-
-    /**
-     * Creates a builder that builds a {@link ValueParameter} that tries to
-     * match an argument with a value from a specified enum case-insensitively.
-     */
-    @SuppressWarnings("unchecked")
-    public static EnumBuilder<? extends Enum<?>> enumBuilder() {
-        return (EnumBuilder<? extends Enum<?>>) Sponge.getRegistry().createBuilder(EnumBuilder.class);
+    public static <T> DynamicChoicesBuilder<T> dynamicChoicesBuilder(Class<T> returnType) {
+        return Sponge.getRegistry().requireFactory(Factory.class).createDynamicChoicesBuilder(returnType);
     }
 
     /**
      * Creates a builder that builds a {@link ValueParameter} that tries to
      * match an a series of arguments with a supplied literal.
+     *
+     * @param returnType The type of object that the resulting
+     *                   {@link ValueParameter} will return.
+     * @param <T> The type that will be returned
+     * @return The builder
      */
-    @SuppressWarnings("unchecked")
-    public static LiteralBuilder<?> literalBuilder() {
-        return (LiteralBuilder<?>) Sponge.getRegistry().createBuilder(LiteralBuilder.class);
+    public static <T> LiteralBuilder<T> literalBuilder(Class<T> returnType) {
+        return Sponge.getRegistry().requireFactory(Factory.class).createLiteralBuilder(returnType);
     }
 
     /**
@@ -109,19 +104,22 @@ public class VariableValueParameters {
     }
 
     /**
+     * Creates a builder that builds a {@link ValueParameter} that tries to
+     * match an argument with a value from a specified enum case-insensitively.
+     *
+     * @param enumClass The {@link Enum} class type that this will represent
+     * @param <T> The {@link Enum} class type
+     * @return The appropriate {@link ValueParameter}
+     */
+    public static <T extends Enum<T>> ValueParameter<T> enumChoices(Class<T> enumClass) {
+        return Sponge.getRegistry().requireFactory(Factory.class).createEnumParameter(enumClass);
+    }
+
+    /**
      * A builder that creates a {@link ValueParameter} that attempts to get a
      * specific {@link CatalogType} by the supplied ID.
      */
     public interface CatalogedTypeBuilder<T extends CatalogType> extends ResettableBuilder<ValueParameter<T>, CatalogedTypeBuilder<T>> {
-
-        /**
-         * Sets the {@link CatalogType} that this parameter will search through.
-         *
-         * @param catalogedType The {@link Class} of the {@link CatalogType} to
-         *                      test for
-         * @return This builder, for chaining
-         */
-        <S extends CatalogType> CatalogedTypeBuilder<S> setCatalogedType(Class<S> catalogedType);
 
         /**
          * Adds a prefix that could be prepended to the input argument if it
@@ -173,8 +171,6 @@ public class VariableValueParameters {
          * Tests for validity and creates this {@link ValueParameter}
          *
          * @return The {@link ValueParameter}
-         * @throws IllegalStateException if {@link #setCatalogedType(Class)}
-         *         hasn't been called with a valid {@link CatalogType}
          */
         ValueParameter<T> build();
 
@@ -191,15 +187,6 @@ public class VariableValueParameters {
      * {@link DynamicChoicesBuilder} instead.</p>
      */
     public interface StaticChoicesBuilder<T> extends ResettableBuilder<ValueParameter<T>, StaticChoicesBuilder<T>> {
-
-        /**
-         * Sets the type of value that will be returned by this object.
-         *
-         * @param returnType The {@link Class} of the return type
-         * @param <S> The return type
-         * @return A builder of the given type.
-         */
-        <S> StaticChoicesBuilder<S> setReturnType(Class<S> returnType);
 
         /**
          * Adds a choice to the parameter, along with the object that would be
@@ -270,15 +257,6 @@ public class VariableValueParameters {
     public interface DynamicChoicesBuilder<T> extends ResettableBuilder<ValueParameter<T>, DynamicChoicesBuilder<T>> {
 
         /**
-         * Sets the type of value that will be returned by this object.
-         *
-         * @param returnType The {@link Class} of the return type
-         * @param <S> The return type
-         * @return A builder of the given type.
-         */
-        <S> DynamicChoicesBuilder<S> setReturnType(Class<S> returnType);
-
-        /**
          * Sets the parameter to get its choices from the supplied {@link Map},
          * where each choice is associated with its own object.
          *
@@ -329,28 +307,6 @@ public class VariableValueParameters {
     }
 
     /**
-     * A builder that creates {@link ValueParameter}s that allow arguments to be
-     * matched to {@link Enum}s
-     */
-    public interface EnumBuilder<T extends Enum<T>> extends ResettableBuilder<ValueParameter<?>, EnumBuilder<T>> {
-
-        /**
-         * Sets the {@link Enum} to test against.
-         */
-        <S extends Enum<S>> EnumBuilder<S> setEnumClass(Class<S> enumClass);
-
-        /**
-         * Tests for validity and creates this {@link ValueParameter}.
-         *
-         * @return The {@link ValueParameter}
-         * @throws IllegalStateException if {@link #setEnumClass(Class)} has not
-         *             been called with a valid enum class
-         */
-        ValueParameter<T> build();
-
-    }
-
-    /**
      * A builder that creates {@link ValueParameter}s that requires a specific
      * sequence of arguments.
      */
@@ -386,7 +342,7 @@ public class VariableValueParameters {
          * @param returnValueSupplier The {@link Supplier}
          * @return This builder, for chaining
          */
-        <S> LiteralBuilder<S> setReturnValue(Supplier<S> returnValueSupplier);
+        LiteralBuilder<T> setReturnValue(Supplier<T> returnValueSupplier);
 
         /**
          * Sets the object to return if this parameter parses correctly.
@@ -394,7 +350,7 @@ public class VariableValueParameters {
          * @param returnValue The {@link Object}
          * @return This builder, for chaining
          */
-        default <S> LiteralBuilder<S> setReturnValue(S returnValue) {
+        default LiteralBuilder<T> setReturnValue(T returnValue) {
             return setReturnValue(() -> returnValue);
         }
 
@@ -452,6 +408,62 @@ public class VariableValueParameters {
          *             been specified
          */
         ValueParameter<Text> build() throws IllegalStateException;
+
+    }
+
+    /**
+     * A factory that creates {@link ValueParameter}s or their builders.
+     */
+    public interface Factory {
+
+        /**
+         * Creates the {@link ValueParameter} for the specified {@link Enum}
+         *
+         * @param enumClass The {@link Enum} type to base the choices on
+         * @param <T> The type of {@link Enum}
+         * @return The {@link ValueParameter}
+         */
+        <T extends Enum<T>> ValueParameter<T> createEnumParameter(Class<T> enumClass);
+
+        /**
+         * Creates the {@link StaticChoicesBuilder} that will create objects
+         * that parse objects and return results of type {@code T}.
+         *
+         * @param returnType The {@link Class} of {@code T}
+         * @param <T> The parser return type
+         * @return The builder
+         */
+        <T> StaticChoicesBuilder<T> createStaticChoicesBuilder(Class<T> returnType);
+
+        /**
+         * Creates the {@link DynamicChoicesBuilder} that will create objects
+         * that parse objects and return results of type {@code T}.
+         *
+         * @param returnType The {@link Class} of {@code T}
+         * @param <T> The parser return type
+         * @return The builder
+         */
+        <T> DynamicChoicesBuilder<T> createDynamicChoicesBuilder(Class<T> returnType);
+
+        /**
+         * Creates the {@link CatalogedTypeBuilder} that will create objects
+         * that parse objects and return results of type {@code T}.
+         *
+         * @param returnType The {@link Class} of {@code T}
+         * @param <T> The parser return type
+         * @return The builder
+         */
+        <T extends CatalogType> CatalogedTypeBuilder<T> createCatalogedTypesBuilder(Class<T> returnType);
+
+        /**
+         * Creates the {@link LiteralBuilder} that will create objects
+         * that parse objects and return results of type {@code T}.
+         *
+         * @param returnType The {@link Class} of {@code T}
+         * @param <T> The parser return type
+         * @return The builder
+         */
+        <T> LiteralBuilder<T> createLiteralBuilder(Class<T> returnType);
 
     }
 

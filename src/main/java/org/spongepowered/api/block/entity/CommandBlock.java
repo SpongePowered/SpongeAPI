@@ -24,18 +24,20 @@
  */
 package org.spongepowered.api.block.entity;
 
-import org.spongepowered.api.command.source.CommandSource;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.channel.MessageReceiver;
+import org.spongepowered.api.util.Nameable;
 
 import java.util.Optional;
 
 /**
  * Represents a Command Block.
  */
-public interface CommandBlock extends BlockEntity, CommandSource {
+public interface CommandBlock extends BlockEntity, Subject, MessageReceiver, Nameable {
 
     /**
      * Executes the currently stored command.

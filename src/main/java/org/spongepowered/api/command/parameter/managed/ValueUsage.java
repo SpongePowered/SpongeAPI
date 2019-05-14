@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.command.parameter.managed;
 
+import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.text.Text;
 
@@ -40,6 +41,6 @@ public interface ValueUsage {
      * @param key The {@link Text} that defines the parameter key
      * @return The usage
      */
-    Text getUsage(Cause cause, Text key);
+    Text getUsage(CommandCause cause, Text key);
 
 }

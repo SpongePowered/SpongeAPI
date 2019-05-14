@@ -25,8 +25,7 @@
 package org.spongepowered.api.text.action;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.command.Command;
-import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.CopyableBuilder;
 
@@ -192,7 +191,7 @@ public interface ClickAction<R> extends TextAction<R> {
     /**
      * Execute a callback.
      */
-    interface ExecuteCallback extends ClickAction<Consumer<Cause>> {
+    interface ExecuteCallback extends ClickAction<Consumer<CommandCause>> {
 
         /**
          * Creates a new builder.
@@ -214,7 +213,7 @@ public interface ClickAction<R> extends TextAction<R> {
              * @param consumer The callback to execute
              * @return This builder
              */
-            ExecuteCallback.Builder callback(Consumer<Cause> consumer);
+            ExecuteCallback.Builder callback(Consumer<CommandCause> consumer);
 
             /**
              * Builds the action.

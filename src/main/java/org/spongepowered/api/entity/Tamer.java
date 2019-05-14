@@ -25,17 +25,19 @@
 package org.spongepowered.api.entity;
 
 import org.spongepowered.api.util.Identifiable;
+import org.spongepowered.api.util.Nameable;
 
 /**
  * Represents an entity which may tame other entities.
  */
-public interface Tamer extends Identifiable {
+public interface Tamer extends Identifiable, Nameable {
 
     /**
      * Gets the name of this tamer to reference on tamed entities.
      *
      * @return The name to reference this tamer
      */
+    @Override
     String getName();
 
 }

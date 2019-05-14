@@ -44,10 +44,13 @@ import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.text.channel.MessageChannel;
+import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.world.LocatableBlock;
+import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
+import org.spongepowered.math.vector.Vector3d;
 
 /**
  * Standard keys for use within {@link EventContext}s.
@@ -81,6 +84,12 @@ public final class EventContextKeys {
      * Used when an {@link Entity} interacts with a block.
      */
     public static final EventContextKey<BlockSnapshot> BLOCK_HIT = createFor("BLOCK_HIT");
+
+    /**
+     * Used during command execution, indicates the {@link BlockSnapshot} that
+     * is the target of the invocation.
+     */
+    public static final EventContextKey<BlockSnapshot> BLOCK_TARGET = createFor("BLOCK_TARGET");
 
     /**
      * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
@@ -172,10 +181,16 @@ public final class EventContextKeys {
     public static final EventContextKey<World> LIQUID_MIX = createFor("LIQUID_MIX");
 
     /**
-     * Used during command execution, indicates the {@link MessageChannel} to
+     * Used during command execution, indicates the {@link Location} that the
+     * command is centered around.
+     */
+    public static final EventContextKey<Location> LOCATION = createFor("LOCATION");
+
+    /**
+     * Used during command execution, indicates the {@link MessageReceiver} to
      * send any messages to.
      */
-    public static final EventContextKey<MessageChannel> MESSAGE_CHANNEL = createFor("MESSAGE_CHANNEL");
+    public static final EventContextKey<MessageReceiver> MESSAGE_TARGET = createFor("MESSAGE_TARGET");
 
     /**
      * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
@@ -243,6 +258,11 @@ public final class EventContextKeys {
      * Represents a {@link ProjectileSource}.
      */
     public static final EventContextKey<ProjectileSource> PROJECTILE_SOURCE = createFor("PROJECTILE_SOURCE");
+
+    /**
+     * Represents a rotation as a {@link Vector3d}, for use with commands.
+     */
+    public static final EventContextKey<Vector3d> ROTATION = createFor("ROTATION");
 
     /**
      * Represents the {@link ServiceManager}.

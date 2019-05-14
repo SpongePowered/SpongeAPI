@@ -25,6 +25,7 @@
 package org.spongepowered.api.text.action;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
+import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
@@ -32,6 +33,7 @@ import org.spongepowered.api.text.Text;
 
 import java.net.URL;
 import java.util.UUID;
+import java.util.function.Consumer;
 
 /**
  * Utility methods to create instances of {@link TextAction}s.
@@ -83,6 +85,18 @@ public final class TextActions {
      */
     public static ClickAction.SuggestCommand suggestCommand(String command) {
         return ClickAction.SuggestCommand.builder().command(command).build();
+    }
+
+    /**
+     * Creates a new {@link ClickAction} that will execute the given runnable on
+     * the server when clicked. The callback will expire after some amount of
+     * time (not particularly instantly, but not like overnight really either).
+     *
+     * @param callback The callback to execute
+     * @return The created click action instance
+     */
+    public static ClickAction.ExecuteCallback executeCallback(Consumer<CommandCause> callback) {
+        return ClickAction.ExecuteCallback.builder().callback(callback).build();
     }
 
     /**

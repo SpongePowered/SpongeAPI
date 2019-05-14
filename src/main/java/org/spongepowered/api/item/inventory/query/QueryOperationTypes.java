@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.item.inventory.query;
 
-import org.spongepowered.api.Nameable;
 import org.spongepowered.api.data.property.Property;
 import org.spongepowered.api.data.property.PropertyMatcher;
 import org.spongepowered.api.item.ItemType;
@@ -32,6 +31,7 @@ import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.InventoryProperties;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.translation.Translation;
+import org.spongepowered.api.util.Nameable;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 import java.util.function.Predicate;
@@ -45,7 +45,7 @@ public final class QueryOperationTypes {
      * Tests based on the title of the inventory.
      *
      * @see InventoryProperties#TITLE
-     * @see Nameable#getName()
+     * @see Nameable.Translatable#getNameTranslation()
      */
     public static final QueryOperationType<Translation> INVENTORY_TRANSLATION = DummyObjectProvider.createExtendedFor(QueryOperationType.class, "INVENTORY_TRANSLATION");
 

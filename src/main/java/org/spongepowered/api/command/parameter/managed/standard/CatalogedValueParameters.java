@@ -25,11 +25,11 @@
 package org.spongepowered.api.command.parameter.managed.standard;
 
 import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.command.source.CommandSource;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
+import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.text.Text;
@@ -180,7 +180,7 @@ public final class CatalogedValueParameters {
             DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "DURATION");
 
     /**
-     * TODO: This
+     * Require an argument to select one or more {@link Entity} objects.
      *
      * <p>This parameter accepts selectors.</p>
      *
@@ -293,8 +293,8 @@ public final class CatalogedValueParameters {
     /**
      * Does not parse any arguments, but instead returns a
      * {@link org.spongepowered.api.block.BlockSnapshot} if the
-     * current {@link CommandSource} (which thus
-     * must be a {@link org.spongepowered.api.world.Locatable}).
+     * current root of the {@link Cause} is targeting (looking at)
+     * a block.
      *
      * <p>This will always fail for non-locatable sources</p>
      *
@@ -306,7 +306,7 @@ public final class CatalogedValueParameters {
     /**
      * Does not parse any arguments, but instead returns a
      * {@link org.spongepowered.api.entity.Entity} if the
-     * current {@link CommandSource} (which thus
+     * current root of the {@link Cause} is such an entity (which thus
      * must be a {@link org.spongepowered.api.world.Locatable}).
      *
      * <p>This will always fail for non-locatable sources</p>
@@ -318,7 +318,7 @@ public final class CatalogedValueParameters {
 
     /**
      * Does not parse any arguments, but instead returns a {@link Player} if the
-     * current {@link CommandSource} (which thus
+     * current root of the {@link Cause} is as such (which thus
      * must be a {@link org.spongepowered.api.world.Locatable}).
      *
      * <p>This will always fail for non-locatable sources</p>

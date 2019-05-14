@@ -62,7 +62,6 @@ public interface CommandManager {
      * @throws CommandException if something goes wrong during parsing or
      *                          execution
      */
-    // TODO: If we keep CommandSource, this goes here.
     <T extends Subject & MessageReceiver> CommandResult process(T subjectReceiver, String arguments) throws CommandException;
 
     /**
