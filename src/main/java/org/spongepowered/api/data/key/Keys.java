@@ -253,58 +253,44 @@ public final class Keys {
      * {@link AreaEffectCloud} is increased or reduced when it applies its
      * effect.
      */
-    public static final Key<BoundedValue<Integer>>
-        AREA_EFFECT_CLOUD_DURATION_ON_USE =
-        DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_DURATION_ON_USE");
+    public static final Key<BoundedValue<Integer>> AREA_EFFECT_CLOUD_DURATION_ON_USE = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_DURATION_ON_USE");
 
     /**
      * Represents the {@link Key} for the particle type of an
      * {@link AreaEffectCloud} created by a lingering potion.
      */
-    public static final Key<Value<ParticleType>>
-        AREA_EFFECT_CLOUD_PARTICLE_TYPE =
-        DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_PARTICLE_TYPE");
+    public static final Key<Value<ParticleType>> AREA_EFFECT_CLOUD_PARTICLE_TYPE = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_PARTICLE_TYPE");
 
     /**
      * Represents the {@link Key} for the radius of an {@link AreaEffectCloud}.
      */
-    public static final Key<BoundedValue<Double>>
-        AREA_EFFECT_CLOUD_RADIUS =
-        DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_RADIUS");
+    public static final Key<BoundedValue<Double>> AREA_EFFECT_CLOUD_RADIUS = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_RADIUS");
 
     /**
      * Represents the {@link Key} for the amount the radius of an
      * {@link AreaEffectCloud} grows or shrinks each time it applies its
      * effect.
      */
-    public static final Key<BoundedValue<Double>>
-        AREA_EFFECT_CLOUD_RADIUS_ON_USE =
-        DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_RADIUS_ON_USE");
+    public static final Key<BoundedValue<Double>> AREA_EFFECT_CLOUD_RADIUS_ON_USE = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_RADIUS_ON_USE");
 
     /**
      * Represents the {@link Key} for the amount the radius of an
      * {@link AreaEffectCloud} grows or shrinks per tick.
      */
-    public static final Key<BoundedValue<Double>>
-        AREA_EFFECT_CLOUD_RADIUS_PER_TICK =
-        DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_RADIUS_PER_TICK");
+    public static final Key<BoundedValue<Double>> AREA_EFFECT_CLOUD_RADIUS_PER_TICK = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_RADIUS_PER_TICK");
 
     /**
      * Represents the {@link Key} for the delay (in ticks) after which an
      * {@link AreaEffectCloud} will reapply its effect on a previously
      * affected {@link Entity}.
      */
-    public static final Key<BoundedValue<Integer>>
-        AREA_EFFECT_CLOUD_REAPPLICATION_DELAY =
-        DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_REAPPLICATION_DELAY");
+    public static final Key<BoundedValue<Integer>> AREA_EFFECT_CLOUD_REAPPLICATION_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_REAPPLICATION_DELAY");
 
     /**
      * Represents the {@link Key} for the duration in ticks after which an
      * {@link AreaEffectCloud} will begin to apply its effect to entities.
      */
-    public static final Key<BoundedValue<Integer>>
-        AREA_EFFECT_CLOUD_WAIT_TIME =
-        DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_WAIT_TIME");
+    public static final Key<BoundedValue<Integer>> AREA_EFFECT_CLOUD_WAIT_TIME = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_WAIT_TIME");
 
     /**
      * Represents the {@link Key} for whether an {@link ArmorStand}'s arms are
@@ -316,9 +302,7 @@ public final class Keys {
      * Represents the {@link Key} for whether an {@link ArmorStand} has a
      * visible base plate.
      */
-    public static final Key<Value<Boolean>>
-        ARMOR_STAND_HAS_BASE_PLATE =
-        DummyObjectProvider.createExtendedFor(Key.class, "ARMOR_STAND_HAS_BASE_PLATE");
+    public static final Key<Value<Boolean>> ARMOR_STAND_HAS_BASE_PLATE = DummyObjectProvider.createExtendedFor(Key.class, "ARMOR_STAND_HAS_BASE_PLATE");
 
     /**
      * Represents the {@link Key} for whether an {@link ArmorStand} is small.
@@ -391,16 +375,12 @@ public final class Keys {
     /**
      * Represents the {@link Key} for a {@link Beacon}'s primary effect.
      */
-    public static final Key<OptionalValue<PotionEffectType>>
-        BEACON_PRIMARY_EFFECT =
-        DummyObjectProvider.createExtendedFor(Key.class, "BEACON_PRIMARY_EFFECT");
+    public static final Key<OptionalValue<PotionEffectType>> BEACON_PRIMARY_EFFECT = DummyObjectProvider.createExtendedFor(Key.class, "BEACON_PRIMARY_EFFECT");
 
     /**
      * Represents the {@link Key} for a {@link Beacon}'s secondary effect.
      */
-    public static final Key<OptionalValue<PotionEffectType>>
-        BEACON_SECONDARY_EFFECT =
-        DummyObjectProvider.createExtendedFor(Key.class, "BEACON_SECONDARY_EFFECT");
+    public static final Key<OptionalValue<PotionEffectType>> BEACON_SECONDARY_EFFECT = DummyObjectProvider.createExtendedFor(Key.class, "BEACON_SECONDARY_EFFECT");
 
     /**
      * Represents the {@link Key} for the pore sides
@@ -671,6 +651,11 @@ public final class Keys {
     public static final Key<Value<DyeColor>> DYE_COLOR = DummyObjectProvider.createExtendedFor(Key.class, "DYE_COLOR");
 
     /**
+     * Represents the {@link Key} for the time until a {@link Chicken} lays an {@link ItemTypes#EGG}.
+     */
+    public static final Key<Value<Integer>> EGG_TIMER = DummyObjectProvider.createExtendedFor(Key.class, "EGG_TIMER");
+
+    /**
      * Represents the {@link Key} for representing the age of
      * an {@link EndGateway}.
      */
@@ -877,6 +862,11 @@ public final class Keys {
      * glowing outline.
      */
     public static final Key<Value<Boolean>> GLOWING = DummyObjectProvider.createExtendedFor(Key.class, "GLOWING");
+
+    /**
+     * Represents the {@link Key} for representing the "got fish" state of a {@link Dolphin}.
+     */
+    public static final Key<Value<Boolean>> GOT_FISH = DummyObjectProvider.createExtendedFor(Key.class, "GOT_FISH");
 
     /**
      * Represents the {@link Key} for representing the "growth stage" state
@@ -1116,6 +1106,16 @@ public final class Keys {
      * Represents the {@link Key} for whether an {@link Entity} is sprinting.
      */
     public static final Key<Value<Boolean>> IS_SPRINTING = DummyObjectProvider.createExtendedFor(Key.class, "IS_SPRINTING");
+
+    /**
+     * Represents the {@link Key} for if a {@link PolarBear} is currently standing.
+     */
+    public static final Key<Value<Boolean>> IS_STANDING = DummyObjectProvider.createExtendedFor(Key.class, "IS_STANDING");
+
+    /**
+     * Represents the {@link Key} for if an {@link Ocelot} is currently trusting of {@link Player}s.
+     */
+    public static final Key<Value<Boolean>> IS_TRUSTING = DummyObjectProvider.createExtendedFor(Key.class, "IS_TRUSTING");
 
     /**
      * Represents the {@link Key} for whether a {@link Wolf}, a
@@ -1514,6 +1514,11 @@ public final class Keys {
     public static final Key<Value<ProfileProperty>> SKIN = DummyObjectProvider.createExtendedFor(Key.class, "SKIN");
 
     /**
+     * Represents the {@link Key} for representing the "moisture" state of a {@link Dolphin}.
+     */
+    public static final Key<Value<Integer>> SKIN_MOISTURE = DummyObjectProvider.createExtendedFor(Key.class, "SKIN_MOISTURE");
+
+    /**
      * Represents the {@link Key} for representing the {@link SlabPortion}
      * of a {@link BlockState}.
      */
@@ -1851,31 +1856,6 @@ public final class Keys {
      * of a {@link Boat}.
      */
     public static final Key<Value<WoodType>> WOOD_TYPE = DummyObjectProvider.createExtendedFor(Key.class, "WOOD_TYPE");
-
-    /**
-     * Represents the {@link Key} for if a {@link PolarBear} is currently standing.
-     */
-    public static final Key<Value<Boolean>> IS_STANDING = DummyObjectProvider.createExtendedFor(Key.class, "IS_STANDING");
-
-    /**
-     * Represents the {@link Key} for if an {@link Ocelot} is currently trusting of {@link Player}s.
-     */
-    public static final Key<Value<Boolean>> IS_TRUSTING = DummyObjectProvider.createExtendedFor(Key.class, "IS_TRUSTING");
-
-    /**
-     * Represents the {@link Key} for the time until a {@link Chicken} lays an {@link ItemTypes#EGG}.
-     */
-    public static final Key<Value<Integer>> EGG_TIMER = DummyObjectProvider.createExtendedFor(Key.class, "EGG_TIMER");
-
-    /**
-     * Represents the {@link Key} for representing the "moisture" state of a {@link Dolphin}.
-     */
-    public static final Key<Value<Integer>> SKIN_MOISTURE = DummyObjectProvider.createExtendedFor(Key.class, "SKIN_MOISTURE");
-
-    /**
-     * Represents the {@link Key} for representing the "got fish" state of a {@link Dolphin}.
-     */
-    public static final Key<Value<Boolean>> GOT_FISH = DummyObjectProvider.createExtendedFor(Key.class, "GOT_FISH");
 
     // SORTFIELDS:OFF
 
