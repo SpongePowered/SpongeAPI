@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.advancement.criteria;
 
+import org.spongepowered.api.Sponge;
+
 /**
  * A {@link AdvancementCriterion} that represents an AND operation. All
  * the criteria should be {@code true} in order for the final result
@@ -36,14 +38,14 @@ public interface AndCriterion extends OperatorCriterion {
      * given {@link AdvancementCriterion}s.
      *
      * <p>There is no guarantee that the returned extends {@link AndCriterion},
-     * this depends on if there are duplicate criteria, {@link #EMPTY}
+     * this depends on if there are duplicate criteria, {@link #empty()}
      * is present, or when no extra criteria are provided.</p>
      *
      * @param criteria The other criteria
      * @return The AND operation
      */
     static AdvancementCriterion of(AdvancementCriterion... criteria) {
-        return EMPTY.and(criteria);
+        return Sponge.getRegistry().requireFactory(Factory.class).of(criteria);
     }
 
     /**
@@ -51,14 +53,20 @@ public interface AndCriterion extends OperatorCriterion {
      * given {@link AdvancementCriterion}s.
      *
      * <p>There is no guarantee that the returned extends {@link AndCriterion},
-     * this depends on if there are duplicate criteria, {@link #EMPTY}
+     * this depends on if there are duplicate criteria, {@link #empty()}
      * is present, or when no extra criteria are provided.</p>
      *
      * @param criteria The other criteria
      * @return The AND operation
      */
     static AdvancementCriterion of(Iterable<AdvancementCriterion> criteria) {
-        return EMPTY.and(criteria);
+        return Sponge.getRegistry().requireFactory(Factory.class).of(criteria);
     }
 
+    interface Factory {
+
+        AdvancementCriterion of(AdvancementCriterion... criteria);
+
+        AdvancementCriterion of(Iterable<AdvancementCriterion> criteria);
+    }
 }

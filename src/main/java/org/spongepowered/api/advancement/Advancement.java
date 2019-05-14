@@ -70,7 +70,7 @@ public interface Advancement extends NamedCatalogType, TextRepresentable {
 
     /**
      * Gets all the {@link AdvancementCriterion} that should be achieved
-     * before this advancement is unlocked. {@link AdvancementCriterion#EMPTY}
+     * before this advancement is unlocked. {@link AdvancementCriterion#empty()}
      * will be returned if no criterion was assigned.
      *
      * <p>This {@link AdvancementCriterion} can be a AND or OR operation that
@@ -117,7 +117,7 @@ public interface Advancement extends NamedCatalogType, TextRepresentable {
 
         /**
          * Sets the {@link AdvancementCriterion} that should be used
-         * for the advancement. Defaults to {@link AdvancementCriterion#EMPTY}.
+         * for the advancement. Defaults to {@link AdvancementCriterion#empty()}.
          *
          * @param criterion The criterion
          * @return This builder, for chaining

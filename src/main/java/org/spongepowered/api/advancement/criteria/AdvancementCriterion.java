@@ -28,7 +28,6 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.Advancement;
 import org.spongepowered.api.advancement.criteria.trigger.FilteredTrigger;
 import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 import java.util.Optional;
 
@@ -39,16 +38,24 @@ import java.util.Optional;
 public interface AdvancementCriterion {
 
     /**
-     * Represents an empty criterion, this means that nothing has to be
-     * achieved to unlock a {@link Advancement}.
+     * Gets a {@link AdvancementCriterion} which is empty, this means that
+     * nothing has to be achieved to unlock a {@link Advancement}.
+     *
+     * @return The empty advancement criterion
      */
-    AdvancementCriterion EMPTY = DummyObjectProvider.createFor(AdvancementCriterion.class, "EMPTY");
+    static AdvancementCriterion empty() {
+        return Sponge.getRegistry().requireFactory(Factory.class).empty();
+    }
 
     /**
-     * Represents a dummy criterion, this will never be triggered
-     * by vanilla Minecraft.
+     * Gets a dummy {@link AdvancementCriterion}, this criterion will never
+     * be triggered by vanilla minecraft.
+     *
+     * @return The dummy advancement criterion
      */
-    AdvancementCriterion DUMMY = DummyObjectProvider.createFor(AdvancementCriterion.class, "DUMMY");
+    static AdvancementCriterion dummy() {
+        return Sponge.getRegistry().requireFactory(Factory.class).dummy();
+    }
 
     /**
      * Creates a new {@link Builder} to create {@link AdvancementCriterion}s.
@@ -71,7 +78,7 @@ public interface AdvancementCriterion {
      * to create an AND operation.
      *
      * <p>There is no guarantee that the returned extends {@link AndCriterion},
-     * this depends on if there are duplicate criteria, {@link #EMPTY}
+     * this depends on if there are duplicate criteria, {@link #empty()}
      * is present, or when no extra criteria are provided.</p>
      *
      * @param criteria The criteria
@@ -84,7 +91,7 @@ public interface AdvancementCriterion {
      * to create an AND operation.
      *
      * <p>There is no guarantee that the returned extends {@link AndCriterion},
-     * this depends on if there are duplicate criteria, {@link #EMPTY}
+     * this depends on if there are duplicate criteria, {@link #empty()}
      * is present, or when no extra criteria are provided.</p>
      *
      * @param criteria The criteria
@@ -97,7 +104,7 @@ public interface AdvancementCriterion {
      * to create an OR operation.
      *
      * <p>There is no guarantee that the returned extends {@link OrCriterion},
-     * this depends on if there are duplicate criteria, {@link #EMPTY}
+     * this depends on if there are duplicate criteria, {@link #empty()}
      * is present, or when no extra criteria are provided.</p>
      *
      * @param criteria The criteria
@@ -110,7 +117,7 @@ public interface AdvancementCriterion {
      * to create an OR operation.
      *
      * <p>There is no guarantee that the returned extends {@link OrCriterion},
-     * this depends on if there are duplicate criteria, {@link #EMPTY}
+     * this depends on if there are duplicate criteria, {@link #empty()}
      * is present, or when no extra criteria are provided.</p>
      *
      * @param criteria The criteria
@@ -162,6 +169,12 @@ public interface AdvancementCriterion {
          * @return The criterion
          */
         T build();
+    }
 
+    interface Factory {
+
+        AdvancementCriterion empty();
+
+        AdvancementCriterion dummy();
     }
 }

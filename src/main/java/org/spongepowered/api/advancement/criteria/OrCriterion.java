@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.advancement.criteria;
 
+import org.spongepowered.api.Sponge;
+
 /**
  * A {@link AdvancementCriterion} that represents an OR operation. One the criteria
  * should be {@code true} in order for the final result to be {@code true}.
@@ -35,14 +37,14 @@ public interface OrCriterion extends OperatorCriterion {
      * given {@link AdvancementCriterion}s.
      *
      * <p> There is no guarantee that the returned extends {@link OrCriterion},
-     * this depends on if there are duplicate criteria, {@link #EMPTY}
+     * this depends on if there are duplicate criteria, {@link #empty()}
      * is present, or when no extra criteria are provided.</p>
      *
      * @param criteria The other criteria
      * @return The OR operation
      */
     static AdvancementCriterion of(AdvancementCriterion... criteria) {
-        return EMPTY.or(criteria);
+        return Sponge.getRegistry().requireFactory(Factory.class).of(criteria);
     }
 
     /**
@@ -50,14 +52,20 @@ public interface OrCriterion extends OperatorCriterion {
      * given {@link AdvancementCriterion}s.
      *
      * <p>There is no guarantee that the returned extends {@link OrCriterion},
-     * this depends on if there are duplicate criteria, {@link #EMPTY}
+     * this depends on if there are duplicate criteria, {@link #empty()}
      * is present, or when no extra criteria are provided.</p>
      *
      * @param criteria The other criteria
      * @return The OR operation
      */
     static AdvancementCriterion of(Iterable<AdvancementCriterion> criteria) {
-        return EMPTY.or(criteria);
+        return Sponge.getRegistry().requireFactory(Factory.class).of(criteria);
     }
 
+    interface Factory {
+
+        AdvancementCriterion of(AdvancementCriterion... criteria);
+
+        AdvancementCriterion of(Iterable<AdvancementCriterion> criteria);
+    }
 }
