@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.resourcepack;
 
+import org.spongepowered.api.Sponge;
+
+import java.io.FileNotFoundException;
 import java.net.URI;
 import java.util.Optional;
 
@@ -33,15 +36,39 @@ import java.util.Optional;
 public interface ResourcePack {
 
     /**
-     * Gets the URI associated with this ResourcePack.
+     * Creates a {@link ResourcePack} from a URI and tries to download and hash
+     * it.
      *
-     * @return The URI associated with this ResourcePack
+     * @param uri The URI to look in
+     * @return A ResourcePack with the specified URI
+     * @throws FileNotFoundException If a valid resource pack could not be
+     *         downloaded from the URI
+     */
+    static ResourcePack fromUri(URI uri) throws FileNotFoundException {
+        return Sponge.getRegistry().requireFactory(Factory.class).fromUri(uri);
+    }
+
+    /**
+     * Creates a {@link ResourcePack} from a URI, without checking ("unchecked")
+     * if there is a valid pack at the URI.
+     *
+     * @param uri The URI to look in
+     * @return A ResourcePack with the specified URI
+     */
+    static ResourcePack fromUriUnchecked(URI uri) {
+        return Sponge.getRegistry().requireFactory(Factory.class).fromUriUnchecked(uri);
+    }
+
+    /**
+     * Gets the URI associated with this resource pack.
+     *
+     * @return The URI associated with this resource pack.
      */
     URI getUri();
 
     /**
      * Gets the name of this resource pack. This is the filename of the pack
-     * zipfile, with all non-word characters removed. Note to implementers: The
+     * zip file, with all non-word characters removed. Note to implementers: The
      * name <strong>MUST</strong> be calculated like above, or this API will not
      * work.
      *
@@ -59,7 +86,7 @@ public interface ResourcePack {
 
     /**
      * If this resource pack was initialized through
-     * {@link ResourcePackFactory#fromUri(URI)}, the hash, as calculated with
+     * {@link #fromUri(URI)}, the hash, as calculated with
      * <code>com.google.common.hash.Hashing.sha1().hashBytes(
      *      com.google.common.io.Files.toByteArray(resourcepackfile)
      *      ).toString();</code>.
@@ -68,4 +95,10 @@ public interface ResourcePack {
      */
     Optional<String> getHash();
 
+    interface Factory {
+
+        ResourcePack fromUri(URI uri) throws FileNotFoundException;
+
+        ResourcePack fromUriUnchecked(URI uri);
+    }
 }
