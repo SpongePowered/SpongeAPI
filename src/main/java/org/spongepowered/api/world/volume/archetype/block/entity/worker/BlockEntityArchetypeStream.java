@@ -46,5 +46,4 @@ public interface BlockEntityArchetypeStream<V extends StreamableBlockEntityArche
 
     @Override
     BlockEntityArchetypeStream<V, M> filter(Predicate<VolumeResult<V, ? super BlockEntityArchetype>> predicate);
-
 }

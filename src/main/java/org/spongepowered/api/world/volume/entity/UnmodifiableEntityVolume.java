@@ -45,5 +45,4 @@ public interface UnmodifiableEntityVolume<U extends UnmodifiableEntityVolume<U>>
 
     @Override
     U getView(Vector3i newMin, Vector3i newMax);
-
 }

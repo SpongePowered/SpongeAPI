@@ -35,5 +35,4 @@ public interface StreamableBlockEntityArchetypeVolume<B extends StreamableBlockE
      * @return The block worker
      */
     BlockEntityArchetypeStream<B, ?> toBlockEntityArchetypeStream();
-
 }

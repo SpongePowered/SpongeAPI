@@ -122,5 +122,4 @@ public interface TrackedVolume extends ReadableBlockVolume {
      * @param uuid The {@link UUID} to set as notifier
      */
     void setNotifier(int x, int y, int z, @Nullable UUID uuid);
-
 }

@@ -61,9 +61,9 @@ import org.spongepowered.api.world.gen.feature.config.TwoFeatureChoiceConfig;
 import org.spongepowered.api.world.gen.feature.config.VillageConfig;
 import org.spongepowered.api.world.gen.feature.config.WoodlandMansionConfig;
 
-public class Features {
+public final class Features {
 
-    // ripped directly from Feature and all of it's static fields. These are the vanilla features.
+    // SORTFIELDS:ON
 
     public static final Feature<VillageConfig> VILLAGE = DummyObjectProvider.createExtendedFor(Feature.class, "VILLAGE");
     public static final Feature<MineshaftConfig> MINESHAFT = DummyObjectProvider.createExtendedFor(Feature.class, "MINESHAFT");
@@ -145,4 +145,9 @@ public class Features {
     public static final Feature<CountConfig> SEA_PICKLE = DummyObjectProvider.createExtendedFor(Feature.class, "SEA_PICKLE");
     public static final Feature<BlockWithContextConfig> BLOCK_WITH_CONTEXT = DummyObjectProvider.createExtendedFor(Feature.class, "BLOCK_WITH_CONTEXT");
 
+    // SORTFIELDS:OFF
+
+    private Features() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 }

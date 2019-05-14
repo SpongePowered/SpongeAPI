@@ -44,5 +44,4 @@ public interface VolumePredicate<V extends Volume, U extends UnmodifiableVolume,
     default VolumePredicate<V, U, I, M> or(VolumePredicate<V, U, ? super I, M> other) {
         return (v, i, x, y, z) -> test(v, i, x, y, z) || other.test(v, i, x, y, z);
     }
-
 }

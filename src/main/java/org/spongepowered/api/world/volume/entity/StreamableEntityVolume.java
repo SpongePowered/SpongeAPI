@@ -33,5 +33,4 @@ public interface StreamableEntityVolume<E extends StreamableEntityVolume<E>> ext
 
     @Override
     E getView(Vector3i newMin, Vector3i newMax);
-
 }

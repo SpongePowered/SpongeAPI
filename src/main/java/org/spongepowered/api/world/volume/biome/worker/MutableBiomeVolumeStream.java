@@ -42,5 +42,4 @@ public interface MutableBiomeVolumeStream<M extends MutableBiomeVolume<M>>
 
     @Override
     MutableBiomeVolumeStream<M> filter(Predicate<VolumeResult<M, ? super BiomeType>> predicate);
-
 }

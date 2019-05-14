@@ -26,7 +26,7 @@ package org.spongepowered.api.world;
 
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-public class SerializationBehaviors {
+public final class SerializationBehaviors {
 
     // SORTFIELDS:ON
 

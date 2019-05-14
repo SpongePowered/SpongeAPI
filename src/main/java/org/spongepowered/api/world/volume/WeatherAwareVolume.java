@@ -68,5 +68,4 @@ public interface WeatherAwareVolume extends ReadableBlockVolume {
     default Vector3i getPrecipitationLevelAt(Vector3i position) {
         return new Vector3i(position.getX(), this.getPrecipitationLevelAt(position.getX(), position.getZ()), position.getZ());
     }
-
 }

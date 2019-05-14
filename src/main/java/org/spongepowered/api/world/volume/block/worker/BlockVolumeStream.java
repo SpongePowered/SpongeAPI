@@ -46,5 +46,4 @@ public interface BlockVolumeStream<V extends StreamableBlockVolume<V>, M extends
 
     @Override
     BlockVolumeStream<V, M> filter(Predicate<VolumeResult<V, ? super BlockState>> predicate);
-
 }

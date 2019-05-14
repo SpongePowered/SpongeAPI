@@ -29,6 +29,7 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 public final class HeightTypes {
 
     // SORTFIELDS:ON
+
     public static final HeightType WORLD_SURFACE_WG = DummyObjectProvider.createFor(HeightType.class, "WORLD_SURFACE_WG");
     public static final HeightType OCEAN_FLOOR_WG = DummyObjectProvider.createFor(HeightType.class, "OCEAN_FLOOR_WG");
     public static final HeightType LIGHT_BLOCKING = DummyObjectProvider.createFor(HeightType.class, "LIGHT_BLOCKING");
@@ -36,8 +37,10 @@ public final class HeightTypes {
     public static final HeightType MOTION_BLOCKING_NO_LEAVES = DummyObjectProvider.createFor(HeightType.class, "MOTION_BLOCKING_NO_LEAVES");
     public static final HeightType OCEAN_FLOOR = DummyObjectProvider.createFor(HeightType.class, "OCEAN_FLOOR");
     public static final HeightType WORLD_SURFACE = DummyObjectProvider.createFor(HeightType.class, "WORLD_SURFACE");
+
     // SORTFIELDS:OFF
 
-    private HeightTypes() { }
-
+    private HeightTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 }

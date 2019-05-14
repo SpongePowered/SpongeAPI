@@ -26,9 +26,6 @@ package org.spongepowered.api.world.gen.config;
 
 import org.spongepowered.api.world.gen.FeatureConfig;
 
-/**
- * @implNote Mixed into net.minecraft.world.gen.feature.ProbabilityConfig
- */
 public interface ProbabilityConfig extends FeatureConfig {
 
     float getProbability();

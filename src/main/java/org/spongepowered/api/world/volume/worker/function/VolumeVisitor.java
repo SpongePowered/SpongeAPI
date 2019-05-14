@@ -31,5 +31,4 @@ package org.spongepowered.api.world.volume.worker.function;
 public interface VolumeVisitor<V> {
 
     void visit(V volume, int x, int y, int z);
-
 }

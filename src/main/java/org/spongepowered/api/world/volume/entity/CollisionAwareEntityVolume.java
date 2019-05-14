@@ -232,5 +232,4 @@ public interface CollisionAwareEntityVolume extends ReadableEntityVolume {
      * @return All the intersecting collision boxes
      */
     Set<AABB> getIntersectingCollisionBoxes(Entity owner, AABB box);
-
 }

@@ -41,5 +41,4 @@ public interface MutableBlockVolumeStream<M extends MutableBlockVolume<M>>
 
     @Override
     MutableBlockVolumeStream<M> filter(Predicate<VolumeResult<M, ? super BlockState>> predicate);
-
 }

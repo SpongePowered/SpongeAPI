@@ -69,5 +69,4 @@ public interface PhysicsAwareMutableBlockVolume<P extends PhysicsAwareMutableBlo
      *         bounds of the volume
      */
     boolean setBlock(int x, int y, int z, BlockState blockState, BlockChangeFlag flag);
-
 }

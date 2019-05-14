@@ -31,5 +31,4 @@ public interface MutableEntityArchetypeVolume<M extends MutableEntityArchetypeVo
 
     @Override
     MutableEntityArchetypeStream<M> toEntityArchetypeStream();
-
 }

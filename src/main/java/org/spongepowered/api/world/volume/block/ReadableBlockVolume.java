@@ -89,6 +89,4 @@ public interface ReadableBlockVolume extends Volume {
     default Vector3i getHighestPositionAt(Vector3i position) {
         return new Vector3i(position.getX(), getHighestYAt(position.getX(), position.getZ()), position.getZ());
     }
-
-
 }

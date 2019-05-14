@@ -24,24 +24,8 @@
  */
 package org.spongepowered.api.world.volume.worker.function;
 
-/**
- * Reduces a biome given as its volume and coordinates into the ongoing
- * reduction.
- */
 @FunctionalInterface
 public interface VolumeReducer<T, V> {
 
-    /**
-     * Reduces a biome given as its volume and coordinates into the ongoing
-     * reduction.
-     *
-     * @param volume The volume containing the biome
-     * @param x The x coordinate of the biome
-     * @param y The y coordinate of the biome
-     * @param z The z coordinate of the biome
-     * @param reduction The ongoing reduction
-     * @return The new reduction
-     */
     T reduce(V volume, int x, int y, int z, T reduction);
-
 }

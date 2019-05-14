@@ -41,5 +41,4 @@ public interface UnmodifiableBlockVolume<U extends UnmodifiableBlockVolume<U>> e
     default U asUnmodifiableBlockVolume() {
         return (U) this;
     }
-
 }

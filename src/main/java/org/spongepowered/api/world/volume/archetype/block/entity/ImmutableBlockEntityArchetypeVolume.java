@@ -28,10 +28,8 @@ import org.spongepowered.api.world.volume.ImmutableVolume;
 
 public interface ImmutableBlockEntityArchetypeVolume extends UnmodifiableBlockEntityArchetypeVolume<ImmutableBlockEntityArchetypeVolume>, ImmutableVolume {
 
-
     @Override
     default ImmutableBlockEntityArchetypeVolume asImmutableBlockEntityArchetypeVolume() {
         return this;
     }
-
 }

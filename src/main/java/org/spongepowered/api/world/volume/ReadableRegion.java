@@ -41,15 +41,12 @@ import org.spongepowered.api.world.volume.block.entity.StreamableBlockEntityVolu
 
 import javax.annotation.Nullable;
 
-/**
- * @implNote Mixes into IWorldReaderBase
- */
 public interface ReadableRegion<R extends ReadableRegion<R>> extends
     ReadableCompositeVolume,
     StreamableBiomeVolume<R>,
     StreamableBlockVolume<R>,
     StreamableEntityVolume<R>,
-  StreamableBlockEntityVolume<R>,
+    StreamableBlockEntityVolume<R>,
     CollisionAwareEntityVolume,
     LightCalculatingVolume,
     HeightAwareVolume,

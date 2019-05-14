@@ -28,15 +28,15 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 public final class LightTypes {
 
-    // sortfields:ON
+    // SORTFIELDS:ON
+
     public static final LightType SKY = DummyObjectProvider.createFor(LightType.class, "SKY");
 
     public static final LightType BLOCK = DummyObjectProvider.createFor(LightType.class, "BLOCK");
 
-    // sortfields:OFF
+    // SORTFIELDS:OFF
 
     private LightTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
-
-
 }

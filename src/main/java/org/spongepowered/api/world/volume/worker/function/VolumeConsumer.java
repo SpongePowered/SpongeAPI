@@ -26,8 +26,8 @@ package org.spongepowered.api.world.volume.worker.function;
 
 import org.spongepowered.api.world.volume.Volume;
 
+@FunctionalInterface
 public interface VolumeConsumer<V extends Volume, T> {
 
     void consume(V volume, T type, int x, int y, int z);
-
 }

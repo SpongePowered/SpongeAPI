@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.world;
 
-import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
@@ -61,9 +60,9 @@ public final class ChunkRegenerateFlags {
      * No flags are set, triggers nothing.
      */
     public static final ChunkRegenerateFlag NONE = DummyObjectProvider.createFor(ChunkRegenerateFlag.class, "NONE");
+
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
     private ChunkRegenerateFlags() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }

@@ -26,27 +26,8 @@ package org.spongepowered.api.world.volume.worker.function;
 
 import org.spongepowered.api.world.volume.UnmodifiableVolume;
 
-/**
- * Produces a new biome from two original biomes given as their volume and their
- * coordinates.
- */
 @FunctionalInterface
 public interface VolumeMerger<I, V extends UnmodifiableVolume> {
 
-    /**
-     * Produces a new object for use from two original volumes given as their volumes and
-     * their coordinates.
-     *
-     * @param firstVolume The volume for the first biome
-     * @param xFirst The x coordinate for the first biome
-     * @param yFirst The y coordinate for the first biome
-     * @param zFirst The z coordinate for the first biome
-     * @param secondVolume The volume for the second biome
-     * @param xSecond The x coordinate for the second biome
-     * @param ySecond The y coordinate for the second biome
-     * @param zSecond The z coordinate for the second biome
-     * @return The produced biome
-     */
     I merge(V firstVolume, I value, int xFirst, int yFirst, int zFirst, V secondVolume, I secondValue, int xSecond, int ySecond, int zSecond);
-
 }

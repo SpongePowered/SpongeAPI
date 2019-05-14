@@ -28,6 +28,8 @@ import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.block.entity.CommandBlock;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Bat;
+import org.spongepowered.api.entity.living.animal.Rabbit;
+import org.spongepowered.api.entity.living.animal.Sheep;
 import org.spongepowered.api.entity.living.complex.EnderDragon;
 import org.spongepowered.api.entity.living.golem.SnowGolem;
 import org.spongepowered.api.entity.living.monster.Creeper;
@@ -277,7 +279,6 @@ public final class GameRules {
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
     private GameRules() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }

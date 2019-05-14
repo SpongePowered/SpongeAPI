@@ -26,10 +26,16 @@ package org.spongepowered.api.world.gen.carver;
 
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-public class CarvingLayers {
+public final class CarvingLayers {
+
+    // SORTFIELDS:ON
 
     public static final CarvingLayer AIR = DummyObjectProvider.createFor(CarvingLayer.class, "AIR");
     public static final CarvingLayer LIQUID = DummyObjectProvider.createFor(CarvingLayer.class, "AIR");
 
+    // SORTFIELDS:OFF
 
+    private CarvingLayers() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 }

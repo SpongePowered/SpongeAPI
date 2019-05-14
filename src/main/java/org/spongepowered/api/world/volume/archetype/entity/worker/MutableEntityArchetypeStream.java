@@ -42,5 +42,4 @@ public interface MutableEntityArchetypeStream<M extends MutableEntityArchetypeVo
 
     @Override
     MutableEntityArchetypeStream<M> filter(Predicate<VolumeResult<M, ? super EntityArchetype>> predicate);
-
 }

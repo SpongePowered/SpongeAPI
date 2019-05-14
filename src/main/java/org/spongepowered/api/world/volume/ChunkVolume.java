@@ -102,5 +102,4 @@ public interface ChunkVolume extends ReadableBlockVolume {
         return getChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ());
     }
 
-
 }

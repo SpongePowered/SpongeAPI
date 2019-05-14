@@ -25,6 +25,7 @@
 package org.spongepowered.api.world.schematic;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -37,6 +38,7 @@ import java.util.Optional;
  *
  * @param <T> The type this palette will maintain
  */
+@CatalogedBy(PaletteTypes.class)
 public interface Palette<T extends CatalogType> {
 
     /**
@@ -96,6 +98,4 @@ public interface Palette<T extends CatalogType> {
      * @return All contained types
      */
     Collection<T> getEntries();
-
-
 }

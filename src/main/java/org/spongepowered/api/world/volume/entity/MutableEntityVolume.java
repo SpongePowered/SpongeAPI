@@ -185,5 +185,4 @@ public interface MutableEntityVolume<M extends MutableEntityVolume<M>> extends S
 
     @Override
     MutableEntityStream<M> toEntityStream();
-
 }

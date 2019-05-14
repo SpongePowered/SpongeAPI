@@ -96,6 +96,4 @@ public interface VolumeStream<V extends Volume, U extends UnmodifiableVolume, I,
 
     void forEach(Consumer<VolumeResult<V, I>> consumer);
 
-
-
 }

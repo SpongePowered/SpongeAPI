@@ -28,5 +28,4 @@ package org.spongepowered.api.world.volume.worker.function;
 public interface VolumeFiller<I> {
 
     I provide(int x, int y, int z);
-
 }

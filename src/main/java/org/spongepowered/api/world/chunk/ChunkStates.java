@@ -36,7 +36,7 @@ import org.spongepowered.api.world.volume.block.MutableBlockVolume;
 
 public final class ChunkStates {
 
-    //sortfields:ON
+    // SORTFIELDS:ON
 
     /**
      * Identifies a {@link ProtoChunk} that is considered empty. The method
@@ -107,8 +107,9 @@ public final class ChunkStates {
      */
     public static final ChunkState WORLD_READY = DummyObjectProvider.createFor(ChunkState.class, "EMPTY");
 
-    //sortfields:OFF
-    private ChunkStates() {
-    }
+    // SORTFIELDS:OFF
 
+    private ChunkStates() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 }

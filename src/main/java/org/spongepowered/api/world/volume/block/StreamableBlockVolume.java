@@ -34,5 +34,4 @@ public interface StreamableBlockVolume<B extends StreamableBlockVolume<B>> exten
      * @return The block worker
      */
     BlockVolumeStream<B, ?> toBlockStream();
-
 }

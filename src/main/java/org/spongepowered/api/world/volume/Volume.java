@@ -59,7 +59,6 @@ public interface Volume {
      */
     boolean containsBlock(int x, int y, int z);
 
-
     default boolean isAreaAvailable(Vector3i vector3i) {
         return isAreaAvailable(vector3i.getX(), vector3i.getY(), vector3i.getZ());
     }
@@ -78,5 +77,4 @@ public interface Volume {
      *         outside the current volume
      */
     Volume getView(Vector3i newMin, Vector3i newMax);
-
 }

@@ -39,5 +39,4 @@ public interface StreamableEntityArchetypeVolume<B extends StreamableEntityArche
 
     @Override
     B getView(Vector3i newMin, Vector3i newMax);
-
 }

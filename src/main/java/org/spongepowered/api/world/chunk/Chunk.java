@@ -36,8 +36,6 @@ import java.util.Optional;
  *
  * <p>In Minecraft, the chunk is 16 by 16 blocks on the X and Z axes. The height
  * of each chunk varies between worlds.</p>
- *
- * @implementation Mixes onto Chunk
  */
 public interface Chunk extends ProtoChunk<Chunk> {
 
@@ -46,19 +44,8 @@ public interface Chunk extends ProtoChunk<Chunk> {
      *
      * @return The world
      */
+    @Override
     World getWorld();
-
-    /**
-     * Gets if the chunk has been populated by the generator.
-     *
-     * @return Whether or not the chunk has been populated.
-     * @deprecated Use {@link #getState()} to determine statefulness
-     */
-    @Deprecated
-    default boolean isPopulated() {
-        return getState().isAfter(ChunkStates.DECORATED);
-    }
-
 
     /**
      * Loads this chunk, and generates if specified and required.
@@ -134,6 +121,5 @@ public interface Chunk extends ProtoChunk<Chunk> {
         Optional<Vector3i> neighborPosition = Sponge.getServer().getChunkLayout().moveToChunk(this.getChunkPosition(), direction);
         return neighborPosition.flatMap(vector3i -> getWorld().loadChunk(vector3i, shouldLoad));
     }
-
 
 }

@@ -50,5 +50,4 @@ public interface ArchetypeVolumeCreator<A extends ArchetypeVolumeCreator<A>> ext
 
     @Override
     A getView(Vector3i newMin, Vector3i newMax);
-
 }

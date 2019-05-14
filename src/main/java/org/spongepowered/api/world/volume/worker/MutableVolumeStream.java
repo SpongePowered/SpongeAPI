@@ -64,8 +64,4 @@ public interface MutableVolumeStream<V extends MutableVolume, U extends Unmodifi
     <T> void fill(Function<VolumeResult<V, I>, T> function);
 
     void fill(VolumeFiller<I> filler);
-
-    default void doSomething() {
-        this.map(result -> BlockChangeFlags.ALL);
-    }
 }

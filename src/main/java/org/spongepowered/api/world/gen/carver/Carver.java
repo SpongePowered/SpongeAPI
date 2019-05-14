@@ -32,10 +32,6 @@ import org.spongepowered.api.world.volume.composite.ReadableCompositeVolume;
 import java.util.BitSet;
 import java.util.Random;
 
-/**
- * To represent IWorldCarver
- * @param <C>
- */
 public interface Carver<C extends FeatureConfig> {
 
     boolean shouldCarve(ReadableCompositeVolume volume, Random random, Vector2i chunkPosition, C config);

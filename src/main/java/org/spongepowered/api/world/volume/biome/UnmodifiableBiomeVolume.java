@@ -42,5 +42,4 @@ public interface UnmodifiableBiomeVolume<U extends UnmodifiableBiomeVolume<U>> e
     default U asUnmodifiableBiomeVolume() {
         return (U) this;
     }
-
 }

@@ -66,5 +66,4 @@ public interface ReadableBlockEntityArchetypeVolume extends ReadableBlockVolume 
     UnmodifiableBlockEntityArchetypeVolume<?> asUnmodifiableBlockEntityArchetypeVolume();
 
     ImmutableBlockEntityArchetypeVolume asImmutableBlockEntityArchetypeVolume();
-
 }

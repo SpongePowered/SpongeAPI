@@ -46,5 +46,4 @@ public interface BiomeVolumeStream<V extends StreamableBiomeVolume<V>, M extends
 
     @Override
     BiomeVolumeStream<V, M> filter(Predicate<VolumeResult<V, ? super BiomeType>> predicate);
-
 }

@@ -31,7 +31,7 @@ import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
 
 public interface UpdatableVolume extends ReadableBlockVolume {
 
-    ScheduledUpdateList<FluidType> getScheduledFluidUpdates();
-
     ScheduledUpdateList<BlockType> getScheduledBlockUpdates();
+
+    ScheduledUpdateList<FluidType> getScheduledFluidUpdates();
 }

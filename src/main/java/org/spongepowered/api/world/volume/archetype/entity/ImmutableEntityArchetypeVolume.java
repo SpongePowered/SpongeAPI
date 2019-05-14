@@ -37,5 +37,4 @@ public interface ImmutableEntityArchetypeVolume extends UnmodifiableEntityArchet
     default ImmutableEntityArchetypeVolume asImmutableEntityArchetypeVolume() {
         return this;
     }
-
 }

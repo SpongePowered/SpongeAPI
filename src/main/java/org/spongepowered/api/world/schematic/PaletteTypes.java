@@ -28,10 +28,18 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.world.biome.BiomeType;
 
-public class PaletteTypes {
+public final class PaletteTypes {
+
+    // SORTFIELDS:ON
 
     public static final PaletteType<BlockState> GLOBAL_BLOCKS = DummyObjectProvider.createExtendedFor(PaletteType.class, "GLOBAL_BLOCKS");
     public static final PaletteType<BlockState> LOCAL_BLOCKS = DummyObjectProvider.createExtendedFor(PaletteType.class, "LOCAL_BLOCKS");
     public static final PaletteType<BiomeType> LOCAL_BIOMES = DummyObjectProvider.createExtendedFor(PaletteType.class, "LOCAL_BIOMNES");
     public static final PaletteType<BiomeType> GLOBAL_BIOMES = DummyObjectProvider.createExtendedFor(PaletteType.class, "GLOBAL_BIOMES");
+
+    // SORTFIELDS:OFF
+
+    private PaletteTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 }
