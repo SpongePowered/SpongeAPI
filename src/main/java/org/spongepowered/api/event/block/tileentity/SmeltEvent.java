@@ -42,25 +42,44 @@ public interface SmeltEvent extends TargetTileEntityEvent {
      */
     ItemStackSnapshot getFuel();
 
+    /**
+     * The first tick of an item smelting.
+     * Note that actually no stacks are affected when starting to smelt.
+     */
     interface Start extends SmeltEvent, AffectItemStackEvent {}
 
+    /**
+     * Fires whenever fuel is consumed to refill the current burn time.
+     * Canceling this event prevents fuel from being consumed in a furnace In the current burn time to 0.
+     */
     interface ConsumeFuel extends SmeltEvent, AffectItemStackEvent {}
 
+    /**
+     * The smelting timer ticking up or down.
+     * Note that actually no stacks are affected when ticking.
+     */
     interface Tick extends SmeltEvent, AffectItemStackEvent {}
 
+    /**
+     * Fires when the smelting is interrupted causing the current smelting time to reset to 0.
+     */
     interface Interrupt extends SmeltEvent {
         /**
          * Gets an immutable {@link List} of {@link ItemStackSnapshot}s that are the result
          * of the smelt.
          * @return The smelt items
+         *
+         * @deprecated always empty
          */
+        @Deprecated
         List<ItemStackSnapshot> getSmeltedItems();
     }
 
     interface Finish extends SmeltEvent {
         /**
-         * Gets an immutable {@link List} of {@link ItemStackSnapshot}s that are the result
-         * of the smelt.
+         * Gets an immutable {@link List} of {@link ItemStackSnapshot}s that are the result of the smelt.
+         * Always exactly one item.
+         *
          * @return The smelt items
          */
         List<ItemStackSnapshot> getSmeltedItems();
