@@ -33,20 +33,20 @@ import org.spongepowered.api.text.TextRepresentable;
 public interface PackInfo extends TextRepresentable {
 
     /**
-     * Gets the name of the {@link Pack} used to identify it in the
+     * Gets the id of the {@link Pack} used to identify it in the
      * {@link PackRepository}.
      *
      * @return The pack name
      */
-    String getName();
+    String getId();
 
     /**
-     * Gets the display name of the {@link Pack} which is displayed to the
-     * user. This is loaded from the pack.mcmeta
+     * Gets the name of the {@link Pack} which is displayed to the
+     * user.
      *
      * @return The display name
      */
-    Text getDisplayName();
+    Text getName();
 
     /**
      * Gets the description of the {@link Pack} which is displayed as the hover

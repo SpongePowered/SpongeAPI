@@ -83,9 +83,9 @@ public interface Pack extends Closeable {
     /**
      * Gets the metadata of this pack. The {@link DataView} represented is of
      * the pack.mcmeta file in the pack root. If the pack does not contain a
-     * pack.mcmeta, it is an error.
+     * pack.mcmeta, an auto-generated view is returned.
      *
-     * @return The metadata if it exists
+     * @return The metadata
      */
     DataView getMetadata();
 
