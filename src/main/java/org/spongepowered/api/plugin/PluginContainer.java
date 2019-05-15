@@ -29,9 +29,6 @@ import com.google.common.collect.ImmutableSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.spongepowered.api.CatalogKey;
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.asset.Asset;
-import org.spongepowered.api.asset.AssetManager;
 import org.spongepowered.plugin.meta.PluginDependency;
 
 import java.nio.file.Path;
@@ -123,17 +120,6 @@ public interface PluginContainer {
      */
     default Optional<PluginDependency> getDependency(String id) {
         return Optional.empty();
-    }
-
-    /**
-     * Retrieves the {@link Asset} of the specified name from the
-     * {@link AssetManager} for this {@link Plugin}.
-     *
-     * @param name Name of asset
-     * @return Asset if present, empty otherwise
-     */
-    default Optional<Asset> getAsset(String name) {
-        return Sponge.getAssetManager().getAsset(this, name);
     }
 
     /**

@@ -28,7 +28,6 @@ import static com.google.common.base.Preconditions.checkState;
 
 import com.google.inject.Inject;
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.asset.AssetManager;
 import org.spongepowered.api.command.manager.CommandManager;
 import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataManager;
@@ -58,7 +57,6 @@ public final class Sponge {
     @Inject private static PropertyRegistry propertyRegistry;
     @Inject private static PluginManager pluginManager;
     @Inject private static EventManager eventManager;
-    @Inject private static AssetManager assetManager;
     @Inject private static ConfigManager configManager;
     @Inject private static ServiceManager serviceManager;
     @Inject private static ChannelRegistrar channelRegistrar;
@@ -138,16 +136,6 @@ public final class Sponge {
      */
     public static EventManager getEventManager() {
         return check(eventManager);
-    }
-
-    /**
-     * Gets the {@link AssetManager} instance.
-     *
-     * @return The asset manager instance
-     */
-    @Deprecated
-    public static AssetManager getAssetManager() {
-        return check(assetManager);
     }
 
     /**

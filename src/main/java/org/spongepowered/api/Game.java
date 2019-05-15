@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api;
 
-import org.spongepowered.api.asset.AssetManager;
 import org.spongepowered.api.client.Client;
 import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataManager;
@@ -161,16 +160,6 @@ public interface Game {
      */
     default EventManager getEventManager() {
         return Sponge.getEventManager();
-    }
-
-    /**
-     * Gets the {@link AssetManager}.
-     *
-     * @return The asset manager
-     */
-    @Deprecated
-    default AssetManager getAssetManager() {
-        return Sponge.getAssetManager();
     }
 
     /**
