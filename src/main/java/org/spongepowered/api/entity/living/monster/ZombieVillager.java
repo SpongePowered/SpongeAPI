@@ -32,7 +32,7 @@ import org.spongepowered.api.data.value.Value;
 public interface ZombieVillager extends Zombie {
 
     /**
-     * Gets the {@link Value.Mutable} for the {@link VillagerType} of this
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable}} for the {@link VillagerType} of this
      * {@link ZombieVillager}.
      *
      * @return The zombie villager type value

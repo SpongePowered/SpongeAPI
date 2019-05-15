@@ -46,7 +46,7 @@ public interface DamagingProjectile extends Projectile {
     }
 
     /**
-     * Gets the {@link MapValue.Mutable} for representing the custom damage values to
+     * Gets the {@link org.spongepowered.api.data.value.MapValue.Mutable} for representing the custom damage values to
      * use if the owner strikes an entity of that type.
      *
      * <p>Note that in events, the damage defined for the provided
@@ -55,7 +55,7 @@ public interface DamagingProjectile extends Projectile {
      *
      * @return The immutable map value for the entity damage values
      */
-    default MapValue.Mutable<EntityType, Double> damageForEntity() {
+    default MapValue.Mutable<EntityType<?>, Double> damageForEntity() {
         return getValue(Keys.DAMAGE_ENTITY_MAP).get().asMutable();
     }
 

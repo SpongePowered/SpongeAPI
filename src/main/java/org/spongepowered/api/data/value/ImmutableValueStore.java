@@ -42,7 +42,7 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I>> extends V
     /**
      * Applies a transformation on the provided {@link Value} such that
      * the return value of {@link Function#apply(Object)} will become the end
-     * resulting value set into the newly created {@link org.spongepowered.api.data.value.ImmutableValueStore}.
+     * resulting value set into the newly created {@link ImmutableValueStore}.
      *
      * @param key The key linked to
      * @param function The function to manipulate the value
@@ -52,7 +52,7 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I>> extends V
     <E> Optional<I> transform(Key<? extends Value<E>> key, Function<E, E> function);
 
     /**
-     * Creates a new {@link org.spongepowered.api.data.value.ImmutableValueStore} with the provided
+     * Creates a new {@link ImmutableValueStore} with the provided
      * value by {@link Key}. If the key is supported by this value store,
      * the returned value store will be present.
      *
@@ -66,7 +66,7 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I>> extends V
     /**
      * Offers the given {@code value} as defined by the provided {@link Key}
      * such that if the {@link Key} is supported, a new
-     * {@link org.spongepowered.api.data.value.ImmutableValueStore} is created.
+     * {@link ImmutableValueStore} is created.
      *
      * @param value The value to set
      * @return The new immutable value store
@@ -74,8 +74,8 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I>> extends V
     Optional<I> with(Value<?> value);
 
     /**
-     * Attempts to merge the {@link Value.Immutable}s from this
-     * {@link org.spongepowered.api.data.value.ImmutableValueStore} and the given {@link org.spongepowered.api.data.value.ImmutableValueStore} to
+     * Attempts to merge the {@link org.spongepowered.api.data.value.Value.Immutable}}s from this
+     * {@link ImmutableValueStore} and the given {@link ImmutableValueStore} to
      * produce a new instance of the merged result.
      *
      * @param that The other immutable value store to gather values from
@@ -84,8 +84,8 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I>> extends V
     I merge(I that);
 
     /**
-     * Attempts to merge the {@link Value.Immutable}s from this
-     * {@link org.spongepowered.api.data.value.ImmutableValueStore} and the given {@link org.spongepowered.api.data.value.ImmutableValueStore} to
+     * Attempts to merge the {@link org.spongepowered.api.data.value.Value.Immutable}}s from this
+     * {@link ImmutableValueStore} and the given {@link ImmutableValueStore} to
      * produce a new instance of the merged result. Any overlapping
      * {@link ValueContainer}s are merged through the {@link MergeFunction}.
      *
@@ -95,4 +95,6 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I>> extends V
      */
     I merge(I that, MergeFunction function);
 
+    @Override
+    I copy();
 }

@@ -26,4 +26,5 @@ package org.spongepowered.api.data;
 
 public class UnregisteredKeyException extends DataException {
 
+    private static final long serialVersionUID = 6734809326475064456L;
 }

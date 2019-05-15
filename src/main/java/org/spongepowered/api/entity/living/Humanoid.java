@@ -37,7 +37,7 @@ import org.spongepowered.api.entity.projectile.ProjectileLauncher;
 public interface Humanoid extends Living, ProjectileLauncher, ArmorEquipable, Tamer {
 
     /**
-     * Gets the current food level as an {@link BoundedValue.Mutable}.
+     * Gets the current food level as an {@link org.spongepowered.api.data.value.BoundedValue.Mutable}.
      *
      * <p>Food level has health effects, depending on game difficulty and
      * hunger levels. If the food level is high enough, the human entity
@@ -50,7 +50,7 @@ public interface Humanoid extends Living, ProjectileLauncher, ArmorEquipable, Ta
     }
 
     /**
-     * Gets the {@link BoundedValue.Mutable} for the "exhaustion" level.
+     * Gets the {@link org.spongepowered.api.data.value.BoundedValue.Mutable} for the "exhaustion" level.
      *
      * <p>When the exhaustion level reaches 0, saturation is usually diminished
      * such that saturation is decreased and then exhaustion is reset to the
@@ -64,7 +64,7 @@ public interface Humanoid extends Living, ProjectileLauncher, ArmorEquipable, Ta
     }
 
     /**
-     * Gets the {@link BoundedValue.Mutable} for the "saturation" level.
+     * Gets the {@link org.spongepowered.api.data.value.BoundedValue.Mutable} for the "saturation" level.
      *
      * <p>When the saturation level reaches 0, the food level is usually
      * diminished such that the food level is decreased by 1, then

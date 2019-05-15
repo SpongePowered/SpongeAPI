@@ -130,7 +130,7 @@ public interface AreaEffectCloud extends Entity {
     }
 
     /**
-     * Gets the {@link ListValue.Mutable} of {@link PotionEffect}s of this cloud. The
+     * Gets the {@link org.spongepowered.api.data.value.ListValue.Mutable} of {@link PotionEffect}s of this cloud. The
      * potion effects will affect any {@link Entity} according to the various
      * delays and ticks remaining of this cloud.
      *

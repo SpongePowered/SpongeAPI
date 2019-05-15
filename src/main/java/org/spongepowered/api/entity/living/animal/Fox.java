@@ -31,7 +31,7 @@ import org.spongepowered.api.data.value.Value;
 public interface Fox extends Animal {
 
     /**
-     * Gets the {@link Value.Mutable} for the {@link FoxType} of this
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable}} for the {@link FoxType} of this
      * {@link Fox}.
      *
      * @return The fox type value

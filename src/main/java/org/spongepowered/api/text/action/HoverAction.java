@@ -201,7 +201,7 @@ public interface HoverAction<R> extends TextAction<R>, TextRepresentable {
              *
              * @return The type, or {@link Optional#empty()}
              */
-            Optional<EntityType> getType();
+            Optional<EntityType<?>> getType();
 
             /**
              * A {@link Ref} builder.
@@ -230,7 +230,7 @@ public interface HoverAction<R> extends TextAction<R>, TextRepresentable {
                  * @param type The type
                  * @return This builder
                  */
-                Builder type(@Nullable EntityType type);
+                Builder type(@Nullable EntityType<?> type);
 
                 /**
                  * Builds the ref.

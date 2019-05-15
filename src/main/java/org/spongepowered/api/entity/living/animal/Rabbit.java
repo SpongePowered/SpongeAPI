@@ -34,7 +34,7 @@ import org.spongepowered.api.data.value.Value;
 public interface Rabbit extends Animal {
 
     /**
-     * Gets the {@link Value.Mutable} for the {@link RabbitType} of this {@link Rabbit}.
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable}} for the {@link RabbitType} of this {@link Rabbit}.
      *
      * @return The rabbit type for this rabit
      */

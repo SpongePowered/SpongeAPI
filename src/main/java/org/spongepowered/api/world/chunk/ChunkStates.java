@@ -24,15 +24,23 @@
  */
 package org.spongepowered.api.world.chunk;
 
+import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.gen.FeatureConfig;
+import org.spongepowered.api.world.gen.feature.Feature;
+import org.spongepowered.api.world.gen.feature.FeaturePlacer;
+import org.spongepowered.api.world.gen.feature.PlacementConfig;
+import org.spongepowered.api.world.gen.surface.Surface;
 import org.spongepowered.api.world.volume.biome.ImmutableBiomeVolume;
 import org.spongepowered.api.world.gen.TerrainGenerator;
 import org.spongepowered.api.world.volume.block.MutableBlockVolume;
+
+import java.util.Random;
 
 public final class ChunkStates {
 
@@ -47,15 +55,15 @@ public final class ChunkStates {
     public static final ChunkState EMPTY = DummyObjectProvider.createFor(ChunkState.class, "EMPTY");
     /**
      * A {@link ProtoChunk} that is at this state means that it is being generated
-     * with a "base" layer of terrain, usually by a {@link GenerationPopulator}(s).
+     * with a "base" layer of terrain, usually by a {@link Surface}(s).
      * The chunk should not have any {@link Entity} instances or {@link BlockEntity}
      * instances and may have a valid {@link ProtoWorld} used for world generation.
      */
     public static final ChunkState BASE = DummyObjectProvider.createFor(ChunkState.class, "EMPTY");
     /**
      * A {@link ProtoChunk} that is being "carved out" for general terrain features
-     * that require things like "caves" or "canyons". Refer to {@link GenerationPopulator}
-     * and {@link GenerationPopulator#populate(ProtoWorld, MutableBlockVolume, ImmutableBiomeVolume)}
+     * that require things like "caves" or "canyons". Refer to {@link FeaturePlacer}
+     * and {@link FeaturePlacer#place(ProtoWorld, TerrainGenerator, Random, Vector3i, PlacementConfig, Feature, FeatureConfig)}
      */
     public static final ChunkState CARVED = DummyObjectProvider.createFor(ChunkState.class, "EMPTY");
     /**
@@ -64,12 +72,12 @@ public final class ChunkStates {
      */
     public static final ChunkState LIQUID_CARVED = DummyObjectProvider.createFor(ChunkState.class, "EMPTY");
     /**
-     * A {@link ProtoChunk} state that is being populated by {@link Populator}s,
+     * A {@link ProtoChunk} state that is being populated by {@link Feature}s,
      * usually provided by {@link BiomeType}s and other aspects of a
-     * {@link TerrainGenerator#getPopulators()}. {@link Populator}s at this point
-     * should have their {@link PopulatorConfig} objects already finalized, but
-     * they can be modified on a global state of that populator, depending on
-     * the origin of said populator.
+     * {@link TerrainGenerator}. {@link Feature}s at this point
+     * should have their {@link FeatureConfig} objects already finalized, but
+     * they can be modified on a global state of that Feature, depending on
+     * the origin of said Feature.
      */
     public static final ChunkState DECORATED = DummyObjectProvider.createFor(ChunkState.class, "EMPTY");
     /**
@@ -81,7 +89,7 @@ public final class ChunkStates {
     public static final ChunkState LIT = DummyObjectProvider.createFor(ChunkState.class, "EMPTY");
     /**
      * A {@link ProtoChunk} state that is being used for entity spawning,
-     * usually by a {@link Populator} that specializes in entity placement.
+     * usually by a {@link Feature} that specializes in entity placement.
      * Generally requires that the neighboring chunks are adequately populated,
      * and requires that this chunk has proper lighting, for mob placement logic.
      */

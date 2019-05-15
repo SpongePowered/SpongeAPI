@@ -37,7 +37,7 @@ import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
  * without a {@link ProtoWorld} volume.
  *
  * @implNote There is no direct implementation to mix this onto
- * as the interface itsself is to store the many many isArea/isBlock
+ * as the interface its self is to store the many many isArea/isBlock
  * loaded from IWorld and IWorldReaderBase
  */
 public interface ChunkVolume extends ReadableBlockVolume {

@@ -38,6 +38,7 @@ import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.gen.feature.Feature;
 import org.spongepowered.api.world.weather.Weather;
 
 public final class SpawnTypes {
@@ -46,7 +47,7 @@ public final class SpawnTypes {
 
     /**
      * This is the equivalent to when a block break causes a normal entity to
-     * spawn, such as {@link BlockTypes#MONSTER_EGG} where a
+     * spawn, such as {@link BlockTypes#INFESTED_STONE} where a
      * {@link EntityTypes#SILVERFISH} may spawn.
      */
     public static final SpawnType BLOCK_SPAWNING = DummyObjectProvider.createFor(SpawnType.class, "BLOCK_SPAWNING");
@@ -123,12 +124,12 @@ public final class SpawnTypes {
     public static final SpawnType PROJECTILE = DummyObjectProvider.createFor(SpawnType.class, "PROJECTILE");
 
     /**
-     * When an entity is spawned from an {@link ItemTypes#SPAWN_EGG}.
+     * When an entity is spawned from any variant of spawn eggs.
      */
     public static final SpawnType SPAWN_EGG = DummyObjectProvider.createFor(SpawnType.class, "SPAWN_EGG");
 
     /**
-     * When an entity is spawned from a structure or {@link Populator}, usually
+     * When an entity is spawned from a structure or {@link Feature}, usually
      * during world/chunk generation.
      */
     public static final SpawnType STRUCTURE = DummyObjectProvider.createFor(SpawnType.class, "STRUCTURE");

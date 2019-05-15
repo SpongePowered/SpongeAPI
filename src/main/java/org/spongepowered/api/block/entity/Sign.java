@@ -34,7 +34,7 @@ import org.spongepowered.api.text.Text;
 public interface Sign extends BlockEntity {
 
     /**
-     * Gets the {@link ListValue.Mutable} of {@link Text} for the {@link Sign}
+     * Gets the {@link org.spongepowered.api.data.value.ListValue.Mutable} of {@link Text} for the {@link Sign}
      * to show.
      *
      * @return The list of text lines

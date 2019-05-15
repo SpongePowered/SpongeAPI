@@ -34,7 +34,7 @@ import org.spongepowered.api.data.value.Value;
 public interface Parrot extends Animal {
 
     /**
-     * Gets the {@link Value.Mutable} for the {@link ParrotType} of this
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable}} for the {@link ParrotType} of this
      * {@link Parrot}.
      *
      * @return The parrot type

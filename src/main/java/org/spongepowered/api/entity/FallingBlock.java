@@ -35,7 +35,7 @@ import org.spongepowered.api.data.value.Value;
 public interface FallingBlock extends Entity {
 
     /**
-     * Gets the {@link Value.Mutable} for the damage to deal per block the
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable}} for the damage to deal per block the
      * {@link FallingBlock} has fallen.
      *
      * @return The immutable value for the damage per block of falling

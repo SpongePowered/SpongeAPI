@@ -47,7 +47,7 @@ public interface Beacon extends BlockEntityCarrier {
 
 
     /**
-     * Gets the {@link OptionalValue.Mutable} for the primary
+     * Gets the {@link org.spongepowered.api.data.value.OptionalValue.Mutable} for the primary
      * {@link PotionEffectType}.
      *
      * @return The optional value for the primary potion effect
@@ -57,7 +57,7 @@ public interface Beacon extends BlockEntityCarrier {
     }
 
     /**
-     * Gets the {@link OptionalValue.Mutable} for the secondary
+     * Gets the {@link org.spongepowered.api.data.value.OptionalValue.Mutable} for the secondary
      * {@link PotionEffectType}.
      *
      * @return The optional value for the secondary potion effect

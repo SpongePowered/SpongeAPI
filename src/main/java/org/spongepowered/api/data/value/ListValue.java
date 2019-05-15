@@ -48,11 +48,12 @@ public interface ListValue<E> extends CollectionValue<E, List<E>> {
 
     @Override
     ListValue.Mutable<E> asMutable();
+
     @Override
     ListValue.Immutable<E> asImmutable();
 
     /**
-     * A type of {@link CollectionValue.Mutable} that is backed by a {@link List}. All
+     * A type of {@link org.spongepowered.api.data.value.CollectionValue.Mutable} that is backed by a {@link List}. All
      * mutator methods provided are similar to those existing in {@link List} with
      * the difference of returning itself, for fluency.
      *
@@ -113,7 +114,7 @@ public interface ListValue<E> extends CollectionValue<E, List<E>> {
     }
 
     /**
-     * A type of {@link CollectionValue.Immutable} that is backed by a {@link List}.
+     * A type of {@link org.spongepowered.api.data.value.CollectionValue.Immutable} that is backed by a {@link List}.
      * All "with" and "Without" methods are returning new instances as every
      * instance is immutable.
      *
@@ -123,7 +124,7 @@ public interface ListValue<E> extends CollectionValue<E, List<E>> {
 
 
         /**
-         * Creates a new {@link ListValue.Immutable} with the specified element
+         * Creates a new {@link org.spongepowered.api.data.value.ListValue.Immutable} with the specified element
          * at the specified position in the list. As well, the element at the
          * provided index is shifted to the right,  increasing its and the elements
          * thereafter their indices by one.
@@ -135,7 +136,7 @@ public interface ListValue<E> extends CollectionValue<E, List<E>> {
         ListValue.Immutable<E> with(int index, E value);
 
         /**
-         * Creates a new {@link ListValue.Immutable} with the specified elements
+         * Creates a new {@link org.spongepowered.api.data.value.ListValue.Immutable} with the specified elements
          * in the order that they are iterated to the list at the specified index.
          * The element at the provided index and elements thereafter are shifted to
          * the right, increasing their indices by one.
@@ -147,7 +148,7 @@ public interface ListValue<E> extends CollectionValue<E, List<E>> {
         ListValue.Immutable<E> with(int index, Iterable<E> values);
 
         /**
-         * Creates a new {@link ListValue.Immutable} without the element at the
+         * Creates a new {@link org.spongepowered.api.data.value.ListValue.Immutable} without the element at the
          * specified index. Shifts any subsequent elements to the left, subtracts
          * one from their indices.
          *
@@ -157,7 +158,7 @@ public interface ListValue<E> extends CollectionValue<E, List<E>> {
         ListValue.Immutable<E> without(int index);
 
         /**
-         * Creates a new {@link ListValue.Immutable} with the desired element at
+         * Creates a new {@link org.spongepowered.api.data.value.ListValue.Immutable} with the desired element at
          * the desired index.
          *
          * @param index The index to replace the element

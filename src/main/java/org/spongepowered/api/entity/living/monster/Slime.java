@@ -33,7 +33,7 @@ import org.spongepowered.api.data.value.BoundedValue;
 public interface Slime extends Monster {
 
     /**
-     * Gets the {@link BoundedValue.Mutable value} of this
+     * Gets the {@link org.spongepowered.api.data.value.BoundedValue.Mutable} of this
      * {@link Slime slime's} current size.
      *
      * @return The mutable bounded value for the current slime size

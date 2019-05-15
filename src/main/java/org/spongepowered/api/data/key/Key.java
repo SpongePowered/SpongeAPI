@@ -28,10 +28,8 @@ import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.DataQuery;
-import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.event.EventListener;
@@ -42,14 +40,14 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.lang.reflect.Type;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 
 /**
  * Represents a key to an underlying {@link Value} such that the underlying
- * value can be retrieved from a {@link ValueContainer}. As well, a {@link Key}
- * can be used for {@link DataSerializable}s with the included
- * {@link #getQuery()} to retrieve the recommended {@link DataQuery} to use.
+ * value can be retrieved from a {@link ValueContainer}.
  *
  * @param <V> The type of {@link Value}
  */
@@ -111,6 +109,9 @@ public interface Key<V extends Value<?>> extends CatalogType {
          * <a href="https://github.com/google/guava/wiki/ReflectionExplained#introduction">here</a>.
          * </p>
          *
+         * <p>If the value type is a {@link BoundedValue} the
+         * {@link #boundedType(TypeToken)} method should be used instead.</p>
+         *
          * @param token The type token, preferably an anonymous
          * @param <T> The element type of the Key
          * @param <B> The base value type of the key
@@ -118,27 +119,112 @@ public interface Key<V extends Value<?>> extends CatalogType {
          */
         <T, B extends Value<T>> Builder<T, B> type(TypeToken<B> token);
 
+        /**
+         * Starter method for the bounded builder, to be used immediately after
+         * {@link Key#builder()} is called. This defines the generics for the
+         * builder itself to provide the properly generified {@link Key}.
+         *
+         * <p>Common {@link TypeToken TypeTokens} can be found in
+         * {@link TypeTokens}. If a new TypeToken is to be created, it is
+         * recommended to create an anonymous class instance of a token,
+         * as recommended by Guava's wiki found
+         * <a href="https://github.com/google/guava/wiki/ReflectionExplained#introduction">here</a>.
+         * </p>
+         *
+         * @param token The type token, preferably an anonymous
+         * @param <T> The element type of the Key
+         * @param <B> The base value type of the key
+         * @return This builder, generified
+         */
+        <T, B extends BoundedValue<T>> BoundedBuilder<T, B> boundedType(TypeToken<B> token);
+
         @Override
         Builder<E, V> key(CatalogKey key);
-
-        /**
-         * Sets the {@link DataQuery} recommended for use with
-         * {@link DataContainer}s. See {@link Key#getQuery()}.
-         *
-         * @param query The DataQuery
-         * @return This builder, for chaining
-         */
-        Builder<E, V> query(DataQuery query);
 
         /**
          * Builds the {@link Key}.
          *
          * @return The built key
-         * @throws IllegalStateException If not all required options were specified; {@link #key(CatalogKey)},
-         *                               {@link #type(TypeToken)} and {@link #query(DataQuery)}.
+         * @throws IllegalStateException If not all required options were specified;
+         *                               {@link #key(CatalogKey)} and {@link #type(TypeToken)}.
          */
         @Override
         Key<V> build();
-    }
 
+        interface BoundedBuilder<E, V extends Value<E>> extends Builder<E, V> {
+
+            /**
+             * Sets the default minimum element.
+             *
+             * <p>Setting the minimum value is required.</p>
+             *
+             * @param minValue The minimum value
+             * @return This builder, for chaining
+             */
+            BoundedBuilder<E, V> minValue(E minValue);
+
+            /**
+             * Sets the default minimum element supplier.
+             *
+             * <p>Use this method instead of {@link #minValue(Object)} if
+             * the element type {@code E} isn't immutable.</p>
+             *
+             * <p>Setting the minimum value is required.</p>
+             *
+             * @param supplier The minimum value supplier
+             * @return This builder, for chaining
+             */
+            BoundedBuilder<E, V> minValueSupplier(Supplier<E> supplier);
+
+            /**
+             * Sets the default maximum element.
+             *
+             * <p>Setting the maximum value is required.</p>
+             *
+             * @param minValue The minimum value
+             * @return This builder, for chaining
+             */
+            BoundedBuilder<E, V> maxValue(E minValue);
+
+            /**
+             * Sets the default maximum element supplier.
+             *
+             * <p>Use this method instead of {@link #maxValue(Object)} if
+             * the element type {@code E} isn't immutable.</p>
+             *
+             * <p>Setting the maximum value is required.</p>
+             *
+             * @param supplier The maximum value supplier
+             * @return This builder, for chaining
+             */
+            BoundedBuilder<E, V> maxValueSupplier(Supplier<E> supplier);
+
+            /**
+             * Sets the {@link Comparator} that can be used to compare
+             * the elements.
+             *
+             * <p>Setting the comparator is a <strong>requirement</strong>
+             * if the element type isn't {@link Comparable}.</p>
+             *
+             * @param comparator The comparator
+             * @return This builder, for chaining
+             */
+            BoundedBuilder<E, V> comparator(Comparator<E> comparator);
+
+            @Override
+            BoundedBuilder<E, V> key(CatalogKey key);
+
+            /**
+             * Builds the {@link Key}.
+             *
+             * @return The built key
+             * @throws IllegalStateException If not all required options were specified;
+             *                               {@link #key(CatalogKey)}, {@link #boundedType(TypeToken)},
+             *                               {@link #minValue(Object)}, {@link #maxValue(Object)} and
+             *                               {@link #comparator(Comparator)} if needed.
+             */
+            @Override
+            Key<V> build();
+        }
+    }
 }

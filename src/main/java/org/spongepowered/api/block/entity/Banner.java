@@ -36,7 +36,7 @@ import org.spongepowered.api.data.value.Value;
 public interface Banner extends BlockEntity {
 
     /**
-     * Gets the {@link Value.Mutable} for the base {@link DyeColor}.
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable}} for the base {@link DyeColor}.
      *
      * @return The value for the base color
      */
@@ -45,7 +45,7 @@ public interface Banner extends BlockEntity {
     }
 
     /**
-     * Gets the {@link ListValue.Mutable} of all patterns for the
+     * Gets the {@link org.spongepowered.api.data.value.ListValue.Mutable} of all patterns for the
      * {@link Banner}.
      *
      * @return The pattern list

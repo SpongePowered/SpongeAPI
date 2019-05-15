@@ -39,7 +39,7 @@ public final class StatisticCategories {
 
     public static final StatisticCategory CUSTOM = DummyObjectProvider.createFor(StatisticCategory.class, "CUSTOM");
 
-    public static final StatisticCategory.ForCatalogType<EntityType> ENTITIES_KILLED =
+    public static final StatisticCategory.ForCatalogType<EntityType<?>> ENTITIES_KILLED =
             DummyObjectProvider.createFor(StatisticCategory.ForCatalogType.class, "ENTITIES_KILLED");
 
     public static final StatisticCategory.ForCatalogType<ItemType> ITEMS_BROKEN =
@@ -57,7 +57,7 @@ public final class StatisticCategories {
     public static final StatisticCategory.ForCatalogType<ItemType> ITEMS_USED =
             DummyObjectProvider.createFor(StatisticCategory.ForCatalogType.class, "ITEMS_USED");
 
-    public static final StatisticCategory.ForCatalogType<EntityType> KILLED_BY_ENTITIES =
+    public static final StatisticCategory.ForCatalogType<EntityType<?>> KILLED_BY_ENTITIES =
             DummyObjectProvider.createFor(StatisticCategory.ForCatalogType.class, "KILLED_BY_ENTITIES");
 
     // SORTFIELDS:OFF

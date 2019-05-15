@@ -60,7 +60,7 @@ public @interface ChannelId {
      * Get the channel name.
      *
      * <p>This corresponds to {@link CatalogKey#getValue()}</p>
-     * @return
+     * @return The channel name
      */
     String value();
 }

@@ -130,13 +130,12 @@ public interface MutableValueStore extends ValueContainer {
         return result;
     }
 
-
     /**
      * Attempts to remove the provided {@link Value}. All values that were
      * successfully removed will be provided in
      * {@link DataTransactionResult#getReplacedData()}. If the data can not be
      * removed, the result will be an expected
-     * {@link DataTransactionResult.Type#FAILURE}.
+     * {@link org.spongepowered.api.data.DataTransactionResult.Type#FAILURE}.
      *
      * @param value The value to remove
      * @return The transaction result
@@ -150,7 +149,7 @@ public interface MutableValueStore extends ValueContainer {
      * All values that were successfully removed will be provided in
      * {@link DataTransactionResult#getReplacedData()}. If the data can not be
      * removed, the result will be an expected
-     * {@link DataTransactionResult.Type#FAILURE}.
+     * {@link org.spongepowered.api.data.DataTransactionResult.Type#FAILURE}.
      *
      * @param key The key of the data
      * @return The transaction result
@@ -170,9 +169,9 @@ public interface MutableValueStore extends ValueContainer {
     DataTransactionResult undo(DataTransactionResult result);
 
     /**
-     * Performs an absolute copy of all {@link Value.Mutable}s and
+     * Performs an absolute copy of all {@link org.spongepowered.api.data.value.Value.Mutable}}s and
      * {@link ValueContainer}s to this {@link MutableValueStore} such that
-     * any overlapping {@link Value.Mutable}s are offered for replacement. The
+     * any overlapping {@link org.spongepowered.api.data.value.Value.Mutable}}s are offered for replacement. The
      * result is provided as a {@link DataTransactionResult}.
      *
      * @param that The other {@link MutableValueStore} to copy values from
@@ -183,9 +182,9 @@ public interface MutableValueStore extends ValueContainer {
     }
 
     /**
-     * Performs an absolute copy of all {@link Value.Mutable}s and
+     * Performs an absolute copy of all {@link org.spongepowered.api.data.value.Value.Mutable}}s and
      * {@link ValueContainer}s to this {@link MutableValueStore} such that
-     * any overlapping {@link Value.Mutable}s are offered for replacement. The
+     * any overlapping {@link org.spongepowered.api.data.value.Value.Mutable}}s are offered for replacement. The
      * result is provided as a {@link DataTransactionResult}.
      *
      * @param that The other {@link MutableValueStore} to copy values from

@@ -111,9 +111,9 @@ public interface DataManager {
     <T extends DataSerializable> Optional<T> deserialize(Class<T> clazz, DataView dataView);
 
     /**
-     * Registers the given {@link DataHolder.Immutable} class with it's
+     * Registers the given {@link org.spongepowered.api.data.DataHolder.Immutable} class with it's
      * associated {@link ImmutableDataBuilder}. The builder can be used to
-     * create new instances of the given {@link DataHolder.Immutable} for data
+     * create new instances of the given {@link org.spongepowered.api.data.DataHolder.Immutable} for data
      * retrieval, data representation, etc.
      *
      * @param holderClass The class of the immutable data holder
@@ -135,9 +135,9 @@ public interface DataManager {
 
     /**
      * Attempts to retrieve the builder for the given
-     * {@link DataHolder.Immutable}.
+     * {@link org.spongepowered.api.data.DataHolder.Immutable}.
      *
-     * <p>If the {@link DataHolder.Immutable} was not registered, multiple
+     * <p>If the {@link org.spongepowered.api.data.DataHolder.Immutable} was not registered, multiple
      * systems could fail to retrieve specific data.</p>
      *
      * @param holderClass The immutable data holder class

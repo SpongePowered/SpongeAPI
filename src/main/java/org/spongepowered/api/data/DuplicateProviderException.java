@@ -26,4 +26,5 @@ package org.spongepowered.api.data;
 
 public class DuplicateProviderException extends DataException {
 
+    private static final long serialVersionUID = 3114573556654523756L;
 }
