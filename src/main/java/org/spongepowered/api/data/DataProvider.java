@@ -24,48 +24,102 @@
  */
 package org.spongepowered.api.data;
 
-import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.value.ImmutableValueStore;
+import com.google.common.reflect.TypeToken;
+import org.spongepowered.api.Server;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.data.value.ValueContainer;
+import org.spongepowered.api.event.data.ChangeDataHolderEvent;
 
 import java.util.Optional;
 
 public interface DataProvider<V extends Value<E>, E> {
 
-    boolean allowsAsynchronousAccess();
+    /**
+     * Gets whether this provider will allow asynchronous access for retrieving
+     * and storing value changes through the API and implementation. This is
+     * usually sanity checked by the implementation through a simplified
+     * {@link Server#onMainThread()} as a majority of datas are required to be
+     * synchronous if the changes can end up throwing {@link ChangeDataHolderEvent}s.
+     *
+     * <p>A list of methods that are constrained by this check are:
+     * <ul>
+     *     <li>- {@link #get(DataHolder)}</li>
+     *     <li>- {@link #offer(DataHolder.Mutable, Object)}</li>
+     *     <li>- {@link #remove(DataHolder.Mutable)}</li>
+     * </ul>
+     * Conceptually, an immutable {@link DataHolder} will be ignorant of
+     * asynchronous access, however, some cases may exist where attempting to
+     * create new immutable  variants with different values can be still limited
+     * by synchronous access.
+     * </p>
+     *
+     * @param token The token of the {@link DataHolder} that is being requested
+     * @return True if this provider allows asynchronous access
+     */
+    boolean allowsAsynchronousAccess(TypeToken<? extends DataHolder> token);
 
+    /**
+     * Gets the {@link Key} this provider supports.
+     *
+     * @return The key
+     */
     Key<V> getKey();
 
-    default Optional<V> getValue(ValueContainer container) {
+    /**
+     * Gets the elemental value from the provided {@link DataHolder}. This is
+     * generally considered the underlying implementation access for any
+     * {@link DataHolder#get(Key)} where the {@link Key} is registered with
+     * this {@link DataProvider}. Nominally, this means the data is provided
+     * outside traditional serialized data that is stored with the
+     * {@link DataHolder}. It's possible that there may be changing return values
+     * for even immutable types, since the provider is providing the data.
+     *
+     * @param container The dataholder
+     * @return The value, if it's supported and exists
+     */
+    Optional<E> get(DataHolder container);
+
+    /**
+     * Gets a constructed {@link Value} for the provided {@link DataHolder}.
+     * Much like {@link #get(DataHolder)}, this is generally considered the
+     * underlying implementation access for any {@link DataHolder#get(Key)}
+     * where the {@link Key} is registered with this {@link DataProvider}.
+     * Nominally, this means the data is provided outside traditional serialized
+     * data that is stored with the {@link DataHolder}. It's possible that there
+     * may be changing return values for even immutable types, since the
+     * provider is providing the data.
+     *
+     * @param container The holder to get the constructed value from
+     * @return The value
+     */
+    default Optional<V> getValue(DataHolder container) {
         return get(container).map(element -> Value.mutableOf(getKey(), element));
     }
 
-    Optional<E> get(ValueContainer container);
 
-    default DataTransactionResult offerValue(ValueContainer container, V value) {
+    DataTransactionResult offer(DataHolder.Mutable container, E element);
+
+    default DataTransactionResult offerValue(DataHolder.Mutable container, V value) {
         return offer(container, value.get());
     }
 
-    DataTransactionResult offer(ValueContainer container, E element);
+    DataTransactionResult remove(DataHolder.Mutable container);
 
-    DataTransactionResult remove(ValueContainer container);
+    <I extends DataHolder.Immutable<I>> Optional<I> with(I immutable, E element);
 
-    default <I extends ImmutableValueStore<I>> Optional<I> withValue(I immutableStore, V value) {
-        return with(immutableStore, value.get());
+    default <I extends DataHolder.Immutable<I>> Optional<I> withValue(I immutable, V value) {
+        return with(immutable, value.get());
     }
 
-    <I extends ImmutableValueStore<I>> Optional<I> with(I immutableStore, E element);
-
     /**
-     * Gets a {@link ImmutableValueStore} without the target {@link Key}, if successful.
+     * Gets a {@link DataHolder.Immutable} without
+     * a {@link Value} with the target {@link Key}, if successful.
      *
-     * @param immutableStore The immutable value store
+     * @param immutable The immutable value store
      * @param <I> The type of the immutable value store
      * @return The new value store, if successful
      */
-    <I extends ImmutableValueStore<I>> Optional<I> without(I immutableStore);
+    <I extends DataHolder.Immutable<I>> Optional<I> without(I immutable);
 
-    boolean isSupported(ValueContainer container);
+    boolean isSupported(DataHolder container);
 
 }

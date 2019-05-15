@@ -25,7 +25,7 @@
 package org.spongepowered.api.data.value;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.key.Key;
+import org.spongepowered.api.data.Key;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
 

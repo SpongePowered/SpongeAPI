@@ -45,7 +45,7 @@ public interface FallingBlockDamageSource extends EntityDamageSource {
 
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.Value.Immutable}} for the damage to deal per block
+     * Gets the {@link org.spongepowered.api.data.value.Value.Immutable} for the damage to deal per block
      * the {@link FallingBlock} has fallen.
      *
      * @return The immutable value for the damage per block of falling

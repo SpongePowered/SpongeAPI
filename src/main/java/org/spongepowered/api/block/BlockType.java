@@ -28,7 +28,6 @@ import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.state.StateContainer;
 import org.spongepowered.api.state.StateProperty;
-import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.text.translation.Translatable;

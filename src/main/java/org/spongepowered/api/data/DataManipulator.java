@@ -29,10 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.value.ImmutableValueStore;
 import org.spongepowered.api.data.value.MergeFunction;
-import org.spongepowered.api.data.value.MutableValueStore;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.util.annotation.eventgen.TransformWith;
@@ -41,9 +38,9 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
- * Represents a changelist of data that can be applied to a {@link org.spongepowered.api.data.DataHolder.Mutable}.
+ * Represents a changelist of data that can be applied to a {@link DataHolder.Mutable}.
  * With a {@link DataManipulator}, specific sets of mutable data can be
- * represented and changed outside the live state of the {@link org.spongepowered.api.data.DataHolder.Mutable}.
+ * represented and changed outside the live state of the {@link DataHolder.Mutable}.
  *
  * <p>{@link DataManipulator}s are serializable such that they can be serialized
  * and deserialized from persistence, and applied to {@link DataHolder}s, even
@@ -51,6 +48,41 @@ import java.util.function.Predicate;
  * such that the {@link DataManipulator} is always returned.</p>
  */
 public interface DataManipulator extends ValueContainer {
+
+    /**
+     * Creates a {@link Immutable} view directly based on the
+     * {@link Value}s. No unnecessary copies of the {@link Value}s
+     * will be created.
+     *
+     * @param values The values
+     * @return The immutable data manipulator view
+     */
+    static Immutable immutableOf(Iterable<? extends Value<?>> values) {
+        return Sponge.getRegistry().requireFactory(Immutable.Factory.class).immutableOf(values);
+    }
+    static Immutable immutableOf(ValueContainer valueContainer) {
+        return Sponge.getRegistry().requireFactory(Immutable.Factory.class).immutableOf(valueContainer);
+    }
+    /**
+     * Gets a empty {@link Immutable}.
+     *
+     * @return The empty immutable data manipulator
+     */
+    static Immutable empty() {
+        return Sponge.getRegistry().requireFactory(Immutable.Factory.class).of();
+    }
+
+    static Mutable of() {
+        return Sponge.getRegistry().requireFactory(Mutable.Factory.class).of();
+    }
+
+    static Mutable of(Iterable<? extends Value<?>> values) {
+        return Sponge.getRegistry().requireFactory(Mutable.Factory.class).of(values);
+    }
+
+    static Mutable of(ValueContainer valueContainer) {
+        return Sponge.getRegistry().requireFactory(Mutable.Factory.class).of(valueContainer);
+    }
 
     @TransformWith
     @Override
@@ -61,7 +93,7 @@ public interface DataManipulator extends ValueContainer {
     /**
      * Gets a {@link Mutable} copy of this
      * {@link DataManipulator} such that all backed
-     * {@link Value}s are copied into their {@link org.spongepowered.api.data.value.Value.Mutable}}
+     * {@link Value}s are copied into their {@link org.spongepowered.api.data.value.Value.Mutable}
      * counterparts. Any changes to this {@link DataManipulator} will
      * NOT be reflected on the returned {@link Mutable} and vice versa.
      *
@@ -75,8 +107,8 @@ public interface DataManipulator extends ValueContainer {
 
     /**
      * Gets an {@link Immutable} copy of this
-     * {@link DataManipulator} such that all backed {@link org.spongepowered.api.data.value.Value.Mutable}}s are copied
-     * into {@link org.spongepowered.api.data.value.Value.Immutable}} counterparts. Any changes to this
+     * {@link DataManipulator} such that all backed {@link org.spongepowered.api.data.value.Value.Mutable}s are copied
+     * into {@link org.spongepowered.api.data.value.Value.Immutable} counterparts. Any changes to this
      * {@link DataManipulator} will NOT be reflected on the returned
      * {@link Immutable} and vice versa.
      *
@@ -99,41 +131,6 @@ public interface DataManipulator extends ValueContainer {
         }
 
         Mutable asMutable();
-
-        /**
-         * Creates a {@link Immutable} view directly based on the
-         * {@link Value}s. No unnecessary copies of the {@link Value}s
-         * will be created.
-         *
-         * @param values The values
-         * @return The immutable data manipulator view
-         */
-        static Immutable viewOf(Iterable<Value<?>> values) {
-            return Sponge.getRegistry().requireFactory(Factory.class).viewOf(values);
-        }
-
-        static Immutable viewOf(ValueContainer valueContainer) {
-            return Sponge.getRegistry().requireFactory(Factory.class).viewOf(valueContainer);
-        }
-
-        /**
-         * Gets a empty {@link ImmutableValueStore}.
-         *
-         * @return The empty immutable data manipulator
-         */
-        static Immutable empty() {
-            return Sponge.getRegistry().requireFactory(Factory.class).of();
-        }
-
-        /**
-         * Gets a {@link ImmutableValueStore} with the given values.
-         *
-         * @param values The values
-         * @return The immutable data manipulator
-         */
-        static Immutable of(Iterable<? extends Value<?>> values) {
-            return Sponge.getRegistry().requireFactory(Factory.class).of(values);
-        }
 
         /**
          * Creates a new {@link Immutable} with the provided value
@@ -173,7 +170,7 @@ public interface DataManipulator extends ValueContainer {
 
         /**
          * Applies a transformation on the provided value if the key is available. This
-         * is the same as {@link ImmutableValueStore#transform(Key, Function)}.
+         * is the same as {@link DataHolder.Immutable#transform(Key, Function)}.
          *
          * @param key The key to use
          * @param function The function to apply
@@ -189,11 +186,9 @@ public interface DataManipulator extends ValueContainer {
 
             Immutable of();
 
-            Immutable of(Iterable<? extends Value<?>> values);
+            Immutable immutableOf(Iterable<? extends Value<?>> values);
 
-            Immutable viewOf(Iterable<Value<?>> values);
-
-            Immutable viewOf(ValueContainer valueContainer);
+            Immutable immutableOf(ValueContainer valueContainer);
         }
     }
 
@@ -203,17 +198,6 @@ public interface DataManipulator extends ValueContainer {
      * represented and changed outside the live state of the {@link DataHolder}.
      */
     interface Mutable extends DataManipulator {
-        static Mutable of() {
-            return Sponge.getRegistry().requireFactory(Mutable.Factory.class).of();
-        }
-
-        static Mutable of(Iterable<? extends Value<?>> values) {
-            return Sponge.getRegistry().requireFactory(Mutable.Factory.class).of(values);
-        }
-
-        static Mutable of(ValueContainer valueContainer) {
-            return Sponge.getRegistry().requireFactory(Mutable.Factory.class).of(valueContainer);
-        }
 
 
         /**
@@ -245,7 +229,7 @@ public interface DataManipulator extends ValueContainer {
          *           given {@link ValueContainer}
          */
         default Mutable copyFrom(ValueContainer valueContainer, Key<?> first, Key<?>... more) {
-            return copyFrom(valueContainer, MergeFunction.IGNORE_ALL, first, more);
+            return copyFrom(valueContainer, MergeFunction.REPLACEMENT_PREFERRED, first, more);
         }
 
         /**
@@ -282,7 +266,7 @@ public interface DataManipulator extends ValueContainer {
          *           given {@link ValueContainer}
          */
         default Mutable copyFrom(ValueContainer valueContainer, Iterable<Key<?>> keys) {
-            return copyFrom(valueContainer, MergeFunction.IGNORE_ALL, keys);
+            return copyFrom(valueContainer, MergeFunction.REPLACEMENT_PREFERRED, keys);
         }
 
         /**
@@ -316,7 +300,7 @@ public interface DataManipulator extends ValueContainer {
          *           given {@link DataHolder}
          */
         default Mutable copyFrom(ValueContainer valueContainer) {
-            return copyFrom(valueContainer, MergeFunction.IGNORE_ALL);
+            return copyFrom(valueContainer, MergeFunction.REPLACEMENT_PREFERRED);
         }
 
         /**
@@ -338,7 +322,7 @@ public interface DataManipulator extends ValueContainer {
         /**
          * Sets the supported {@link Key}'s value such that the value is set on
          * this {@link Mutable} without having to directly set the
-         * {@link org.spongepowered.api.data.value.Value.Mutable}} and {@link #set(Value)} afterwards. The requirement
+         * {@link org.spongepowered.api.data.value.Value.Mutable} and {@link #set(Value)} afterwards. The requirement
          * for this to succeed is that the {@link Key} must be checked that it is
          * supported via {@link #supports(Value)} or {@link #supports(Key)}
          * otherwise an {@link IllegalArgumentException} may be thrown. For
@@ -413,7 +397,7 @@ public interface DataManipulator extends ValueContainer {
 
         /**
          * Applies a transformation on the provided value if available. This is
-         * the same as {@link MutableValueStore#transform(Key, Function)}.
+         * the same as {@link DataHolder.Mutable#transform(Key, Function)}.
          *
          * @param key The key to use
          * @param function The function to apply

@@ -31,7 +31,7 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
  * Represents a snapshot of an {@link ItemStack} as an
- * {@link org.spongepowered.api.data.DataHolder.Immutable} to represent all of the data associated with
+ * {@link DataHolder.Immutable} to represent all of the data associated with
  * the {@link ItemStack} of which the snapshot was created from. Being that
  * it is a snapshot, a snapshot cannot be modified, but modifications will
  * result in a new instance of the {@link ItemStackSnapshot}.

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living;
 
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.ai.Goal;
@@ -47,7 +47,9 @@ public interface Agent extends Living {
      *
      * @return The target entity, if available
      */
-    Optional<Entity> getTarget();
+    default Optional<Entity> getTarget() {
+        return get(Keys.TARGETED_ENTITY);
+    }
 
     /**
      * Sets the current target, usually to bypass what the {@link AITask}s are
@@ -55,10 +57,12 @@ public interface Agent extends Living {
      *
      * @param target The target entity, or null
      */
-    void setTarget(@Nullable Entity target);
+    default void setTarget(@Nullable Entity target) {
+        offer(Keys.TARGETED_ENTITY, target);
+    }
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable}} for whether AI tasks are enabled or not.
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for whether AI tasks are enabled or not.
      *
      * @return The value for the current "enabled" state of ai tasks
      */

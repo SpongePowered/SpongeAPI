@@ -26,10 +26,6 @@ package org.spongepowered.api.data.persistence;
 
 import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.data.DataQuery;
-import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Map;

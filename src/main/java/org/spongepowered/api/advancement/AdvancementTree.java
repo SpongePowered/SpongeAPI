@@ -98,7 +98,7 @@ public interface AdvancementTree extends NamedCatalogType {
          * Sets the name of the {@link AdvancementTree}. Defaults to
          * the plain {@link DisplayInfo#getTitle()} of the root
          * {@link Advancement} if {@link DisplayInfo} is present.
-         * Otherwise will it default to the identifier ({@link #key(CatalogKey)}}).
+         * Otherwise will it default to the identifier ({@link #key(CatalogKey)}).
          *
          * @param name The name
          * @return This builder, for chaining

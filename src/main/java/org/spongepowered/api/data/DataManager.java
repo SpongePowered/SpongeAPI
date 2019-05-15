@@ -25,8 +25,11 @@
 package org.spongepowered.api.data;
 
 import org.spongepowered.api.data.persistence.DataBuilder;
+import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.persistence.DataContentUpdater;
+import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.DataTranslator;
+import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.plugin.PluginContainer;
 
 import java.util.Collection;
@@ -111,9 +114,9 @@ public interface DataManager {
     <T extends DataSerializable> Optional<T> deserialize(Class<T> clazz, DataView dataView);
 
     /**
-     * Registers the given {@link org.spongepowered.api.data.DataHolder.Immutable} class with it's
-     * associated {@link ImmutableDataBuilder}. The builder can be used to
-     * create new instances of the given {@link org.spongepowered.api.data.DataHolder.Immutable} for data
+     * Registers the given {@link DataHolder.Immutable} class with it's
+     * associated {@link DataBuilder.Immutable}. The builder can be used to
+     * create new instances of the given {@link DataHolder.Immutable} for data
      * retrieval, data representation, etc.
      *
      * @param holderClass The class of the immutable data holder
@@ -121,7 +124,7 @@ public interface DataManager {
      * @param <T> The type of immutable data holder
      * @param <B> The type of immutable data builder
      */
-    <T extends DataHolder.Immutable<T>, B extends ImmutableDataBuilder<T, B>> void register(Class<T> holderClass, B builder);
+    <T extends DataHolder.Immutable<T>, B extends DataBuilder.Immutable<T, B>> void register(Class<T> holderClass, B builder);
 
     /**
      * Registers a legacy {@code id} that is used by a previous version of
@@ -135,9 +138,9 @@ public interface DataManager {
 
     /**
      * Attempts to retrieve the builder for the given
-     * {@link org.spongepowered.api.data.DataHolder.Immutable}.
+     * {@link DataHolder.Immutable}.
      *
-     * <p>If the {@link org.spongepowered.api.data.DataHolder.Immutable} was not registered, multiple
+     * <p>If the {@link DataHolder.Immutable} was not registered, multiple
      * systems could fail to retrieve specific data.</p>
      *
      * @param holderClass The immutable data holder class
@@ -145,7 +148,7 @@ public interface DataManager {
      * @param <B> The type of immutable data builder
      * @return The builder, if available
      */
-    <T extends DataHolder.Immutable<T>, B extends ImmutableDataBuilder<T, B>> Optional<B> getImmutableBuilder(Class<T> holderClass);
+    <T extends DataHolder.Immutable<T>, B extends DataBuilder.Immutable<T, B>> Optional<B> getImmutableBuilder(Class<T> holderClass);
 
 
     /**
@@ -169,8 +172,8 @@ public interface DataManager {
 
     /**
      * Creates a new {@link DataContainer} with a default
-     * {@link org.spongepowered.api.data.DataView.SafetyMode} of
-     * {@link org.spongepowered.api.data.DataView.SafetyMode#ALL_DATA_CLONED}.
+     * {@link DataView.SafetyMode} of
+     * {@link DataView.SafetyMode#ALL_DATA_CLONED}.
      *
      * @return A new data container
      */
@@ -178,10 +181,10 @@ public interface DataManager {
 
     /**
      * Creates a new {@link DataContainer} with the provided
-     * {@link org.spongepowered.api.data.DataView.SafetyMode}.
+     * {@link DataView.SafetyMode}.
      *
      * @param safety The safety mode to use
-     * @see org.spongepowered.api.data.DataView.SafetyMode
+     * @see DataView.SafetyMode
      * @return A new data container with the provided safety mode
      */
     DataContainer createContainer(DataView.SafetyMode safety);

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 
 /**
@@ -33,7 +33,7 @@ import org.spongepowered.api.data.value.Value;
 public interface Pig extends Animal {
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable}} for whether this {@link Pig} is saddled.
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for whether this {@link Pig} is saddled.
      *
      * @return The value whether this pig is saddled
      */

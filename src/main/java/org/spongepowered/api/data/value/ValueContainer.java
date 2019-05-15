@@ -28,18 +28,21 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.Key;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import java.util.OptionalLong;
 import java.util.Set;
 
 import javax.annotation.Nullable;
 
 /**
  * A ValueContainer is a holder of a particular set of {@link Value}s. While
- * there exists a {@link MutableValueStore} and {@link ImmutableValueStore},
+ * there exists a {@link DataHolder} and {@link DataManipulator},
  * the emphasis of {@link ValueContainer} is that it only contains "data". It
  * is not known whether a {@code ValueContainer} is mutable or immutable.
  *
@@ -47,7 +50,7 @@ import javax.annotation.Nullable;
  * {@link Value}s, it itself does not contain the underlying values of
  * data. A {@link ValueContainer} may not always be parented by another
  * {@link ValueContainer}, such as the case for {@link DataManipulator}s and
- * {@link org.spongepowered.api.data.DataHolder.Mutable}s, it is recommended to knowingly understand the
+ * {@link DataHolder.Mutable}s, it is recommended to knowingly understand the
  * fundamental differences between them.</p>
  */
 public interface ValueContainer {
@@ -64,6 +67,12 @@ public interface ValueContainer {
      * @return The value, if available
      */
     <E> Optional<E> get(Key<? extends Value<E>> key);
+
+    OptionalInt getInteger(Key<? extends Value<Integer>> key);
+
+    OptionalDouble getDouble(Key<? extends Value<Double>> key);
+
+    OptionalLong getLong(Key<? extends Value<Long>> key);
 
     /**
      * Attempts to get the underlying value backed by a {@link Value}

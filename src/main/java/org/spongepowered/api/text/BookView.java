@@ -26,7 +26,7 @@ package org.spongepowered.api.text;
 
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.CopyableBuilder;
 

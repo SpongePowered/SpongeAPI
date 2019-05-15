@@ -25,7 +25,7 @@
 package org.spongepowered.api.entity.living;
 
 import com.flowpowered.math.vector.Vector3d;
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.Entity;
@@ -78,14 +78,18 @@ public interface Living extends Entity, ProjectileSource, TeamMember {
      *
      * @return The last attacker
      */
-    Optional<Entity> getLastAttacker();
+    default Optional<Entity> getLastAttacker() {
+        return get(Keys.LAST_ATTACKER);
+    }
 
     /**
      * Sets the last attacker of this entity.
      *
      * @param entity The last attacker entity
      */
-    void setLastAttacker(Entity entity);
+    default void setLastAttacker(Entity entity) {
+        offer(Keys.LAST_ATTACKER, entity);
+    }
 
     /**
      * Gets the last amount of damage that was dealt to this entity.
@@ -108,7 +112,9 @@ public interface Living extends Entity, ProjectileSource, TeamMember {
      *
      * @return Head rotation
      */
-    Vector3d getHeadRotation();
+    default Vector3d getHeadRotation() {
+        return require(Keys.HEAD_ROTATION);
+    }
 
     /**
      * Sets the entity's head rotation.
@@ -123,7 +129,9 @@ public interface Living extends Entity, ProjectileSource, TeamMember {
      *
      * @param rotation Rotation of the entities head
      */
-    void setHeadRotation(Vector3d rotation);
+    default void setHeadRotation(Vector3d rotation) {
+        offer(Keys.HEAD_ROTATION, rotation);
+    }
 
     /**
      * Makes the entity look at the specified target position.

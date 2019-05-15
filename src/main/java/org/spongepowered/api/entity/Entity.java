@@ -29,9 +29,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.DataTransactionResult;
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.text.translation.Translatable;
@@ -436,7 +435,9 @@ public interface Entity extends Identifiable, Locatable, DataHolder.Mutable, Tra
      *
      * @return Whether this entity is on the ground or not
      */
-    boolean isOnGround();
+    default boolean isOnGround() {
+        return require(Keys.IS_ON_GROUND);
+    }
 
     /**
      * Returns whether this entity has been removed.
@@ -496,7 +497,9 @@ public interface Entity extends Identifiable, Locatable, DataHolder.Mutable, Tra
      *
      * @return The {@link UUID} if one exists
      */
-    Optional<UUID> getCreator();
+    default Optional<UUID> getCreator() {
+        return get(Keys.CREATOR);
+    }
 
     /**
      * Gets the {@link UUID}, if available, of the user who last notified this
@@ -504,21 +507,35 @@ public interface Entity extends Identifiable, Locatable, DataHolder.Mutable, Tra
      *
      * @return The {@link UUID} if one exists
      */
-    Optional<UUID> getNotifier();
+    default Optional<UUID> getNotifier() {
+        return get(Keys.NOTIFIER);
+    }
 
     /**
      * Sets the {@link UUID} of the user who created this {@link Entity}.
      *
      * @param uuid The {@link UUID} to set as creator
      */
-    void setCreator(@Nullable UUID uuid);
+    default void setCreator(@Nullable UUID uuid) {
+        if (uuid == null) {
+            remove(Keys.CREATOR);
+        } else {
+            offer(Keys.CREATOR, uuid);
+        }
+    }
 
     /**
      * Sets the {@link UUID} of the user who last notified this {@link Entity}.
      *
      * @param uuid The {@link UUID} to set as notifier
      */
-    void setNotifier(@Nullable UUID uuid);
+    default void setNotifier(@Nullable UUID uuid) {
+        if (uuid == null) {
+            remove(Keys.NOTIFIER);
+        } else {
+            offer(Keys.NOTIFIER, uuid);
+        }
+    }
 
     /**
      * Returns whether this entity can see the provided {@link Entity}.

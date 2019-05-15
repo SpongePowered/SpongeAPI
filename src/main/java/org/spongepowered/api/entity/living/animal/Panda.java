@@ -24,14 +24,14 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.PandaType;
 import org.spongepowered.api.data.value.Value;
 
 public interface Panda extends Animal {
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable}} for the {@link PandaType} of this
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the {@link PandaType} of this
      * {@link Panda}.
      *
      * @return The panda type value

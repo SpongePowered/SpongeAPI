@@ -30,27 +30,60 @@ import static com.google.common.base.Preconditions.checkState;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
-import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.data.value.MutableValueStore;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
+import java.util.function.BiConsumer;
+import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.stream.Collector;
 
 /**
- * Represents a transaction taking place where a {@link org.spongepowered.api.data.DataHolder.Mutable} is
+ * Represents a transaction taking place where a {@link DataHolder.Mutable} is
  * accepting {@link Value}s.
  */
 public final class DataTransactionResult {
 
     private static final DataTransactionResult SUCCESS_NODATA = builder().result(Type.SUCCESS).build();
     private static final DataTransactionResult FAIL_NODATA = builder().result(Type.FAILURE).build();
+    private static final Collector<DataTransactionResult, DataTransactionResult.Builder, DataTransactionResult> COLLECTOR = new Collector<DataTransactionResult, Builder, DataTransactionResult>() {
+        @Override
+        public Supplier<Builder> supplier() {
+            return DataTransactionResult::builder;
+        }
 
+        @Override
+        public BiConsumer<Builder, DataTransactionResult> accumulator() {
+            return Builder::absorbResult;
+        }
+
+        @Override
+        public BinaryOperator<Builder> combiner() {
+            return (left, right) -> { left.absorbResult(right.build()); return left; };
+        }
+
+        @Override
+        public Function<Builder, DataTransactionResult> finisher() {
+            return DataTransactionResult.Builder::build;
+        }
+
+        @Override
+        public Set<Characteristics> characteristics() {
+            return ImmutableSet.of();
+        }
+    };
+
+    public static Collector<DataTransactionResult, DataTransactionResult.Builder, DataTransactionResult> toTransaction() {
+        return COLLECTOR;
+    }
 
     /**
      * Gets a new {@link Builder} to build a new
@@ -77,12 +110,12 @@ public final class DataTransactionResult {
 
     /**
      * Creates a new {@link DataTransactionResult} with the provided
-     * {@link org.spongepowered.api.data.value.Value.Immutable}} being the successful addition. The result type is
-     * still {@link Type#SUCCESS}. If a {@link org.spongepowered.api.data.value.Value.Mutable}} is
+     * {@link org.spongepowered.api.data.value.Value.Immutable} being the successful addition. The result type is
+     * still {@link Type#SUCCESS}. If a {@link org.spongepowered.api.data.value.Value.Mutable} is
      * necessary, use {@link org.spongepowered.api.data.value.Value.Mutable}#asImmutable()} to use this method. A
      * {@link DataTransactionResult} is always immutable once created, and any
-     * {@link Value}s should be provided as {@link org.spongepowered.api.data.value.Value.Immutable}}s or
-     * transformed into {@link org.spongepowered.api.data.value.Value.Immutable}}s.
+     * {@link Value}s should be provided as {@link org.spongepowered.api.data.value.Value.Immutable}s or
+     * transformed into {@link org.spongepowered.api.data.value.Value.Immutable}s.
      *
      * @param value The successfully added immutable value
      * @return The new data transaction result
@@ -93,12 +126,12 @@ public final class DataTransactionResult {
 
     /**
      * Creates a new {@link DataTransactionResult} with the provided
-     * {@link org.spongepowered.api.data.value.Value.Immutable}} being the successful addition. The result type is
-     * still {@link Type#SUCCESS}. If a {@link org.spongepowered.api.data.value.Value.Mutable}} is
+     * {@link org.spongepowered.api.data.value.Value.Immutable} being the successful addition. The result type is
+     * still {@link Type#SUCCESS}. If a {@link org.spongepowered.api.data.value.Value.Mutable} is
      * necessary, use {@link org.spongepowered.api.data.value.Value.Mutable}#asImmutable()} to use this method. A
      * {@link DataTransactionResult} is always immutable once created, and any
-     * {@link Value}s should be provided as {@link org.spongepowered.api.data.value.Value.Immutable}}s or
-     * transformed into {@link org.spongepowered.api.data.value.Value.Immutable}}s.
+     * {@link Value}s should be provided as {@link org.spongepowered.api.data.value.Value.Immutable}s or
+     * transformed into {@link org.spongepowered.api.data.value.Value.Immutable}s.
      *
      * @param successful The successfully added immutable value
      * @param replaced The replaced value
@@ -110,13 +143,13 @@ public final class DataTransactionResult {
 
     /**
      * Creates a new {@link DataTransactionResult} with the provided
-     * {@link org.spongepowered.api.data.value.Value.Immutable}}s being the successful additions and
-     * the provided {@link org.spongepowered.api.data.value.Value.Immutable}}s that were replaced. The result type
-     * is still {@link Type#SUCCESS}. If a {@link org.spongepowered.api.data.value.Value.Mutable}}
+     * {@link org.spongepowered.api.data.value.Value.Immutable}s being the successful additions and
+     * the provided {@link org.spongepowered.api.data.value.Value.Immutable}s that were replaced. The result type
+     * is still {@link Type#SUCCESS}. If a {@link org.spongepowered.api.data.value.Value.Mutable}
      * is necessary, use {@link org.spongepowered.api.data.value.Value.Mutable}#asImmutable()} to use this method. A
      * {@link DataTransactionResult} is always immutable once created, and any
-     * {@link Value}s should be provided as {@link org.spongepowered.api.data.value.Value.Immutable}}s or
-     * transformed into {@link org.spongepowered.api.data.value.Value.Immutable}}s.
+     * {@link Value}s should be provided as {@link org.spongepowered.api.data.value.Value.Immutable}s or
+     * transformed into {@link org.spongepowered.api.data.value.Value.Immutable}s.
      *
      * @param successful The successfully added immutable values
      * @param replaced The successfully replaced immutable values
@@ -128,11 +161,11 @@ public final class DataTransactionResult {
 
     /**
      * Creates a {@link DataTransactionResult} with the provided
-     * {@link org.spongepowered.api.data.value.Value.Immutable}}s being successfully removed. The result type is
-     * still {@link Type#SUCCESS}. If a {@link org.spongepowered.api.data.value.Value.Mutable}} is necessary, use
+     * {@link org.spongepowered.api.data.value.Value.Immutable}s being successfully removed. The result type is
+     * still {@link Type#SUCCESS}. If a {@link org.spongepowered.api.data.value.Value.Mutable} is necessary, use
      * {@link org.spongepowered.api.data.value.Value.Mutable}#asImmutable()} to use this method. A {@link DataTransactionResult}
      * is always immutable once created, and any {@link Value}s should be provided
-     * as {@link org.spongepowered.api.data.value.Value.Immutable}}s or transformed into {@link org.spongepowered.api.data.value.Value.Immutable}}s.
+     * as {@link org.spongepowered.api.data.value.Value.Immutable}s or transformed into {@link org.spongepowered.api.data.value.Value.Immutable}s.
      *
      * @param removed The successfully removed values
      * @return The new data transaction result
@@ -143,12 +176,12 @@ public final class DataTransactionResult {
 
     /**
      * Creates a {@link DataTransactionResult} with the provided
-     * {@link org.spongepowered.api.data.value.Value.Immutable}} being successfully removed. The result type is
-     * still {@link Type#SUCCESS}. If a {@link org.spongepowered.api.data.value.Value.Mutable}} is necessary, use
+     * {@link org.spongepowered.api.data.value.Value.Immutable} being successfully removed. The result type is
+     * still {@link Type#SUCCESS}. If a {@link org.spongepowered.api.data.value.Value.Mutable} is necessary, use
      * {@link org.spongepowered.api.data.value.Value.Mutable}#asImmutable()} to use this method. A
      * {@link DataTransactionResult} is always immutable once created, and a
-     * {@link Value} should be provided as an {@link org.spongepowered.api.data.value.Value.Immutable}} or
-     * transformed into an {@link org.spongepowered.api.data.value.Value.Immutable}}.
+     * {@link Value} should be provided as an {@link org.spongepowered.api.data.value.Value.Immutable} or
+     * transformed into an {@link org.spongepowered.api.data.value.Value.Immutable}.
      *
      * @param removed The successfully removed value
      * @return The new data transaction result
@@ -159,7 +192,7 @@ public final class DataTransactionResult {
 
     /**
      * Creates a new {@link DataTransactionResult} that ends in failure. The
-     * provided {@link org.spongepowered.api.data.value.Value.Immutable}} is considered "rejected" and was not
+     * provided {@link org.spongepowered.api.data.value.Value.Immutable} is considered "rejected" and was not
      * successfully added.
      *
      * @param value The value that was rejected
@@ -171,7 +204,7 @@ public final class DataTransactionResult {
 
     /**
      * Creates a new {@link DataTransactionResult} that ends in failure. The
-     * provided {@link org.spongepowered.api.data.value.Value.Immutable}}s are considered "rejected" and were not
+     * provided {@link org.spongepowered.api.data.value.Value.Immutable}s are considered "rejected" and were not
      * successfully added.
      *
      * @param values The values that were rejected
@@ -193,7 +226,7 @@ public final class DataTransactionResult {
 
     /**
      * Creates a new {@link DataTransactionResult} that ends in failure. The
-     * provided {@link org.spongepowered.api.data.value.Value.Immutable}} is considered "incompatible" and was not
+     * provided {@link org.spongepowered.api.data.value.Value.Immutable} is considered "incompatible" and was not
      * successfully added.
      *
      * @param value The value that was incompatible or errored
@@ -289,7 +322,7 @@ public final class DataTransactionResult {
     }
 
     /**
-     * If any {@link Value}s applied onto a {@link MutableValueStore} were
+     * If any {@link Value}s applied onto a {@link DataHolder} were
      * successful, they'll be stored in the given list.
      *
      * @return An immutable list of the values successfully offered
@@ -299,8 +332,8 @@ public final class DataTransactionResult {
     }
 
     /**
-     * If {@link org.spongepowered.api.data.value.Value.Mutable}}s were supplied to the operation, this
-     * collection will return any {@link org.spongepowered.api.data.value.Value.Immutable}}s which were rejected
+     * If {@link org.spongepowered.api.data.value.Value.Mutable}s were supplied to the operation, this
+     * collection will return any {@link org.spongepowered.api.data.value.Value.Immutable}s which were rejected
      * by the target {@link DataHolder}.
      *
      * @return Any data that was rejected from the operation
@@ -310,8 +343,8 @@ public final class DataTransactionResult {
     }
 
     /**
-     * If the operation replaced any {@link org.spongepowered.api.data.value.Value.Mutable}}s, this returns a collection
-     * of the replaced {@link org.spongepowered.api.data.value.Value.Immutable}}s.
+     * If the operation replaced any {@link org.spongepowered.api.data.value.Value.Mutable}s, this returns a collection
+     * of the replaced {@link org.spongepowered.api.data.value.Value.Immutable}s.
      *
      * @return Any data that was replaced
      */
@@ -406,8 +439,8 @@ public final class DataTransactionResult {
         }
 
         /**
-         * Adds the provided {@link org.spongepowered.api.data.value.Value.Immutable}} to the {@link List} of
-         * "replaced" {@link org.spongepowered.api.data.value.Value.Immutable}}s. The replaced values are always
+         * Adds the provided {@link org.spongepowered.api.data.value.Value.Immutable} to the {@link List} of
+         * "replaced" {@link org.spongepowered.api.data.value.Value.Immutable}s. The replaced values are always
          * copied for every {@link DataTransactionResult} for referencing.
          *
          * @param value The value to replace
@@ -422,8 +455,8 @@ public final class DataTransactionResult {
         }
 
         /**
-         * Adds the provided {@link org.spongepowered.api.data.value.Value.Immutable}}s to the {@link List} of
-         * "replaced" {@link org.spongepowered.api.data.value.Value.Immutable}}s. The replaced values are always
+         * Adds the provided {@link org.spongepowered.api.data.value.Value.Immutable}s to the {@link List} of
+         * "replaced" {@link org.spongepowered.api.data.value.Value.Immutable}s. The replaced values are always
          * copied for every {@link DataTransactionResult} for referencing.
          *
          * @param values The values to replace
@@ -437,8 +470,8 @@ public final class DataTransactionResult {
         }
 
         /**
-         * Adds the provided {@link org.spongepowered.api.data.value.Value.Immutable}} to the {@link List} of
-         * "rejected" {@link org.spongepowered.api.data.value.Value.Immutable}}s. The rejected values are always
+         * Adds the provided {@link org.spongepowered.api.data.value.Value.Immutable} to the {@link List} of
+         * "rejected" {@link org.spongepowered.api.data.value.Value.Immutable}s. The rejected values are always
          * copied for every {@link DataTransactionResult} for referencing.
          *
          * @param value The values to reject
@@ -453,8 +486,8 @@ public final class DataTransactionResult {
         }
 
         /**
-         * Adds the provided {@link org.spongepowered.api.data.value.Value.Immutable}}s to the {@link List} of
-         * "rejected" {@link org.spongepowered.api.data.value.Value.Immutable}}s. The rejected values are always
+         * Adds the provided {@link org.spongepowered.api.data.value.Value.Immutable}s to the {@link List} of
+         * "rejected" {@link org.spongepowered.api.data.value.Value.Immutable}s. The rejected values are always
          * copied for every {@link DataTransactionResult} for referencing.
          *
          * @param values The values to reject
@@ -468,8 +501,8 @@ public final class DataTransactionResult {
         }
 
         /**
-         * Adds the provided {@link org.spongepowered.api.data.value.Value.Immutable}} to the {@link List} of
-         * "successful" {@link org.spongepowered.api.data.value.Value.Immutable}}s. The rejected values are always
+         * Adds the provided {@link org.spongepowered.api.data.value.Value.Immutable} to the {@link List} of
+         * "successful" {@link org.spongepowered.api.data.value.Value.Immutable}s. The rejected values are always
          * copied for every {@link DataTransactionResult} for referencing.
          *
          * @param value The value that was successfully provided
@@ -484,8 +517,8 @@ public final class DataTransactionResult {
         }
 
         /**
-         * Adds the provided {@link org.spongepowered.api.data.value.Value.Immutable}}s to the {@link List} of
-         * "successful" {@link org.spongepowered.api.data.value.Value.Immutable}}s. The rejected values are always
+         * Adds the provided {@link org.spongepowered.api.data.value.Value.Immutable}s to the {@link List} of
+         * "successful" {@link org.spongepowered.api.data.value.Value.Immutable}s. The rejected values are always
          * copied for every {@link DataTransactionResult} for referencing.
          *
          * @param values The values that were successfully provided
@@ -501,10 +534,10 @@ public final class DataTransactionResult {
         /**
          * Combines the currently building {@link DataTransactionResult} with the
          * one provided. Usually, this means that there is some merging of the
-         * {@link org.spongepowered.api.data.value.Value.Immutable}}s based on {@link Key}. If this builder already
-         * has an {@link org.spongepowered.api.data.value.Value.Immutable}} as being successfully offered, and the
+         * {@link org.spongepowered.api.data.value.Value.Immutable}s based on {@link Key}. If this builder already
+         * has an {@link org.spongepowered.api.data.value.Value.Immutable} as being successfully offered, and the
          * provided result shows the same key as being rejected, the rejected
-         * {@link org.spongepowered.api.data.value.Value.Immutable}} will remain in the final result.
+         * {@link org.spongepowered.api.data.value.Value.Immutable} will remain in the final result.
          *
          * @param result The result to merge
          * @return This builder, for chaining
@@ -659,9 +692,9 @@ public final class DataTransactionResult {
 
         /**
          * Builds a new {@link DataTransactionResult} with the providing
-         * {@link List}s of {@link org.spongepowered.api.data.value.Value.Immutable}}s that are successfully
-         * offered, {@link org.spongepowered.api.data.value.Value.Immutable}}s that were replaced, and
-         * {@link org.spongepowered.api.data.value.Value.Immutable}}s that were rejected.
+         * {@link List}s of {@link org.spongepowered.api.data.value.Value.Immutable}s that are successfully
+         * offered, {@link org.spongepowered.api.data.value.Value.Immutable}s that were replaced, and
+         * {@link org.spongepowered.api.data.value.Value.Immutable}s that were rejected.
          *
          * @return The newly created transaction result
          */

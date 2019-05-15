@@ -25,7 +25,7 @@
 package org.spongepowered.api.item;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.CopyableBuilder;
 

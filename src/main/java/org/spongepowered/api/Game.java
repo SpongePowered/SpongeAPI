@@ -28,7 +28,7 @@ import org.spongepowered.api.asset.AssetManager;
 import org.spongepowered.api.client.Client;
 import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataManager;
-import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.property.PropertyRegistry;
 import org.spongepowered.api.data.property.store.PropertyStore;

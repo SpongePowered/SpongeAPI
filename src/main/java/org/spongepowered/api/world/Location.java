@@ -33,7 +33,6 @@ import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.property.DirectionRelativePropertyHolder;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;

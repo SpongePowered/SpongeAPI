@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.data;
 
-import org.spongepowered.api.data.key.Key;
-
 public class DataAlreadyRegisteredException extends DataException {
 
     private static final long serialVersionUID = -2808546259310625417L;

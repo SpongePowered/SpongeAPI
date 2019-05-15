@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.value;
 
+import org.spongepowered.api.data.Key;
 import org.spongepowered.api.util.weighted.TableEntry;
 import org.spongepowered.api.util.weighted.WeightedTable;
 
@@ -31,6 +32,9 @@ import java.util.List;
 import java.util.Random;
 
 public interface WeightedCollectionValue<E> extends CollectionValue<TableEntry<E>, WeightedTable<E>>  {
+
+    @Override
+    Key<? extends WeightedCollectionValue<E>> getKey();
 
     /**
      * Selects random valued from this list based on their weight.

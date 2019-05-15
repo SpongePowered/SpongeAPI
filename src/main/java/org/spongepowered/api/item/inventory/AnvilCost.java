@@ -24,8 +24,7 @@
  */
 package org.spongepowered.api.item.inventory;
 
-import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.event.item.inventory.UpdateAnvilEvent;
+import org.spongepowered.api.data.persistence.DataSerializable;
 
 /**
  * The level and material costs for an anvil usage.

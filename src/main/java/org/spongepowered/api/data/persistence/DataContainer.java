@@ -22,11 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data;
+package org.spongepowered.api.data.persistence;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents a data structure that contains data. A DataContainer is
@@ -37,8 +35,8 @@ public interface DataContainer extends DataView {
 
     /**
      * Creates a new {@link DataContainer} with a default
-     * {@link org.spongepowered.api.data.DataView.SafetyMode} of
-     * {@link org.spongepowered.api.data.DataView.SafetyMode#ALL_DATA_CLONED}.
+     * {@link DataView.SafetyMode} of
+     * {@link DataView.SafetyMode#ALL_DATA_CLONED}.
      *
      * @return A new data container
      */
@@ -48,10 +46,10 @@ public interface DataContainer extends DataView {
 
     /**
      * Creates a new {@link DataContainer} with the provided
-     * {@link org.spongepowered.api.data.DataView.SafetyMode}.
+     * {@link DataView.SafetyMode}.
      *
      * @param safety The safety mode to use
-     * @see org.spongepowered.api.data.DataView.SafetyMode
+     * @see DataView.SafetyMode
      * @return A new data container with the provided safety mode
      */
     static DataContainer createNew(SafetyMode safety) {

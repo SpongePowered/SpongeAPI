@@ -24,9 +24,14 @@
  */
 package org.spongepowered.api.data.value;
 
+import org.spongepowered.api.data.Key;
+
 import java.util.List;
 
 public interface ListValue<E> extends CollectionValue<E, List<E>> {
+
+    @Override
+    Key<? extends ListValue<E>> getKey();
 
     /**
      * Gets the desired element at the desired index.

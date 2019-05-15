@@ -22,11 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data;
+package org.spongepowered.api.data.persistence;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.data.persistence.DataBuilder;
-import org.spongepowered.api.data.persistence.DataTranslator;
+import org.spongepowered.api.data.DataManager;
 
 import java.util.List;
 import java.util.Map;
@@ -584,7 +583,7 @@ public interface DataView {
     boolean isEmpty();
 
     /**
-     * Gets the {@link org.spongepowered.api.data.DataView.SafetyMode} of this data view.
+     * Gets the {@link DataView.SafetyMode} of this data view.
      *
      * @return The safety mode
      */

@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.data.value;
 
+import org.spongepowered.api.data.Key;
+
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
@@ -31,6 +33,9 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 public interface MapValue<K, V> extends Value<Map<K, V>> {
+
+    @Override
+    Key<? extends MapValue<K, V>> getKey();
 
     /**
      * Gets the size of this map.
@@ -88,7 +93,7 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
     MapValue.Immutable<K, V> asImmutable();
 
     /**
-     * Represents a specialized type of {@link org.spongepowered.api.data.value.Value.Mutable}} that is different from
+     * Represents a specialized type of {@link org.spongepowered.api.data.value.Value.Mutable} that is different from
      * a {@link org.spongepowered.api.data.value.CollectionValue.Mutable} such that the "elements" are
      * {@link java.util.Map.Entry}. Usually, this type of value is used to represent
      * a particular "type" of "key" that is associated to a particular "value".
@@ -167,7 +172,7 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
     }
 
     /**
-     * Represents a specialized type of {@link org.spongepowered.api.data.value.Value.Immutable}} that is different
+     * Represents a specialized type of {@link org.spongepowered.api.data.value.Value.Immutable} that is different
      * from an {@link org.spongepowered.api.data.value.CollectionValue.Immutable} such that the "elements" are
      * {@link java.util.Map.Entry}. Usually, this type of value is used to represent
      * a particular "type" of "key" that is associated to a particular "value".

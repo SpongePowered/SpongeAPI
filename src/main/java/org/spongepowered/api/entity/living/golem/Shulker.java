@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living.golem;
 
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;

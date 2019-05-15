@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.hanging;
 
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.ArtType;
 import org.spongepowered.api.data.value.Value;
 

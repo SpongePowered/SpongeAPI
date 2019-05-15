@@ -22,13 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.key;
+package org.spongepowered.api.data;
 
 import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
@@ -47,7 +46,19 @@ import java.util.function.Supplier;
 
 /**
  * Represents a key to an underlying {@link Value} such that the underlying
- * value can be retrieved from a {@link ValueContainer}.
+ * value can be retrieved from a {@link ValueContainer}. For the key to be used
+ * through retrieval of {@link DataHolder}s, it's required to use a
+ * {@link DataRegistration} if the data is needed to be serialized, or dynamically
+ * provided for through external mechanisms, through {@link DataProvider}s.
+ *
+ * <p>If dynamic or persistent retention of the {@link Value Values} by
+ * {@link Key keys} is not desired, a registration with {@link DataRegistration}
+ * is optional. This would mean that any submitted {@link Value}s of a
+ * {@link Key} without an associated {@link DataRegistration} will be only
+ * stored on a
+ * {@link org.spongepowered.api.data.DataHolder.Mutable mutable DataHolder} for
+ * the duration that that holder exists. The value would not persist between
+ * reloads, restarts, etc.</p>
  *
  * @param <V> The type of {@link Value}
  */
@@ -151,7 +162,7 @@ public interface Key<V extends Value<?>> extends CatalogType {
         @Override
         Key<V> build();
 
-        interface BoundedBuilder<E, V extends Value<E>> extends Builder<E, V> {
+        interface BoundedBuilder<E, V extends BoundedValue<E>> extends Builder<E, V> {
 
             /**
              * Sets the default minimum element.
@@ -174,7 +185,7 @@ public interface Key<V extends Value<?>> extends CatalogType {
              * @param supplier The minimum value supplier
              * @return This builder, for chaining
              */
-            BoundedBuilder<E, V> minValueSupplier(Supplier<E> supplier);
+            BoundedBuilder<E, V> minValueSupplier(Supplier<? extends E> supplier);
 
             /**
              * Sets the default maximum element.
@@ -197,7 +208,7 @@ public interface Key<V extends Value<?>> extends CatalogType {
              * @param supplier The maximum value supplier
              * @return This builder, for chaining
              */
-            BoundedBuilder<E, V> maxValueSupplier(Supplier<E> supplier);
+            BoundedBuilder<E, V> maxValueSupplier(Supplier<? extends E> supplier);
 
             /**
              * Sets the {@link Comparator} that can be used to compare
@@ -209,7 +220,7 @@ public interface Key<V extends Value<?>> extends CatalogType {
              * @param comparator The comparator
              * @return This builder, for chaining
              */
-            BoundedBuilder<E, V> comparator(Comparator<E> comparator);
+            BoundedBuilder<E, V> comparator(Comparator<? super E> comparator);
 
             @Override
             BoundedBuilder<E, V> key(CatalogKey key);

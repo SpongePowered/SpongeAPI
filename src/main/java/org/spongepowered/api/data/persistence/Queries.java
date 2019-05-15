@@ -22,9 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data;
+package org.spongepowered.api.data.persistence;
 
-import static org.spongepowered.api.data.DataQuery.of;
+import static org.spongepowered.api.data.persistence.DataQuery.of;
 
 public final class Queries {
 
