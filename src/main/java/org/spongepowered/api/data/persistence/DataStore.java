@@ -22,15 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data;
+package org.spongepowered.api.data.persistence;
 
 import com.google.common.reflect.TypeToken;
-import org.spongepowered.api.data.value.MutableValueStore;
+import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.value.Value;
 
 public interface DataStore {
 
-    TypeToken<?> getSupportedToken();
+    TypeToken<? extends DataHolder> getSupportedToken();
 
     /**
      * Serializes the values of the {@link DataManipulator}
@@ -42,7 +43,7 @@ public interface DataStore {
     DataView serialize(DataManipulator dataManipulator, DataView view);
 
     default DataView serialize(Iterable<Value<?>> values, DataView view) {
-        return serialize(DataManipulator.Immutable.viewOf(values), view);
+        return serialize(DataManipulator.immutableOf(values), view);
     }
 
     /**
@@ -51,7 +52,7 @@ public interface DataStore {
      * @param values The value container
      */
     default DataView serialize(Iterable<Value<?>> values) {
-        return serialize(DataManipulator.Immutable.viewOf(values));
+        return serialize(DataManipulator.immutableOf(values));
     }
 
     /**
@@ -67,7 +68,7 @@ public interface DataStore {
 
     /**
      * Deserializes the data from the {@link DataView} and puts
-     * it in the {@link MutableValueStore}.
+     * it in the {@link org.spongepowered.api.data.DataManipulator.Mutable}.
      *
      * @param dataManipulator The mutable data manipulator
      * @param view The data view to deserialize
@@ -75,13 +76,13 @@ public interface DataStore {
     void deserialize(DataManipulator.Mutable dataManipulator, DataView view);
 
     /**
-     * Deserializes the {@link DataView} as a {@link MutableValueStore}.
+     * Deserializes the {@link DataView} as a {@link org.spongepowered.api.data.DataManipulator.Mutable}.
      *
      * @param view The data view to deserialize
      * @return The value store
      */
-    default DataManipulator deserialize(DataView view) {
-        final DataManipulator.Mutable dataManipulator = DataManipulator.Mutable.of();
+    default DataManipulator.Mutable deserialize(DataView view) {
+        final DataManipulator.Mutable dataManipulator = DataManipulator.of();
         deserialize(dataManipulator, view);
         return dataManipulator;
     }

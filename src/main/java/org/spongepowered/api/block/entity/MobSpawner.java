@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.block.entity;
 
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.WeightedCollectionValue;
@@ -128,7 +128,7 @@ public interface MobSpawner extends BlockEntity {
     }
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable}}
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable}
      * for the overridden
      * {@link WeightedSerializableObject}{@code <EntitySnapshot>} to spawn
      * next. If possible, the next entity to spawn may be chosen from the

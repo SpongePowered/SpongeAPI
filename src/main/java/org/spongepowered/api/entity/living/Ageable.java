@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living;
 
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.Value;
 
@@ -50,7 +50,7 @@ public interface Ageable extends Creature {
     }
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable}} for the "adult" state.
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the "adult" state.
      *
      * @return The value for the "adult" state
      */

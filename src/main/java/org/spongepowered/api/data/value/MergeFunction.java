@@ -89,7 +89,7 @@ public interface MergeFunction {
      * Represents a {@link MergeFunction} that ignores all merges and uses the
      * replacement, or the original if the replacement is {@code null}.
      */
-    MergeFunction IGNORE_ALL = new MergeFunction() {
+    MergeFunction REPLACEMENT_PREFERRED = new MergeFunction() {
         @Override
         public <V extends Value<E>, E> V merge(@Nullable V original, @Nullable V replacement) {
             return replacement == null ? checkNotNull(original, "Original and replacement cannot be null!") : replacement;
@@ -97,10 +97,10 @@ public interface MergeFunction {
     };
 
     /**
-     * Represents a {@link MergeFunction} that forces no merges and uses the
-     * original, or proposed replacement if the original is {@code null}.
+     * Represents a {@link MergeFunction} that will preferr the original's
+     * value if it is not {@code null} over the replacement.
      */
-    MergeFunction FORCE_NOTHING = new MergeFunction() {
+    MergeFunction ORIGINAL_PREFERRED = new MergeFunction() {
         @Override
         public <V extends Value<E>, E> V merge(@Nullable V original, @Nullable V replacement) {
             return original == null ? checkNotNull(replacement, "Replacement and original cannot be null!") : original;

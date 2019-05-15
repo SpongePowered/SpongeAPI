@@ -26,11 +26,9 @@ package org.spongepowered.api;
 
 import ninja.leaping.configurate.ConfigurationNode;
 import org.spongepowered.api.data.DataRegistration;
-import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.DataTranslator;
 import org.spongepowered.api.plugin.PluginContainer;
-import org.spongepowered.api.util.CatalogBuilder;
-import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.ResettableBuilder;
 
 /**

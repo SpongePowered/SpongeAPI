@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.MooshroomType;
 import org.spongepowered.api.data.value.Value;
 
@@ -34,7 +34,7 @@ import org.spongepowered.api.data.value.Value;
 public interface Mooshroom extends Cow {
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable}} for the {@link MooshroomType} of this
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the {@link MooshroomType} of this
      * {@link Mooshroom}.
      *
      * @return The mooshroom type

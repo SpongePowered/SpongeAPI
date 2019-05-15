@@ -22,25 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data;
+package org.spongepowered.api.world;
 
 import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.persistence.DataBuilder;
 
 import java.util.Optional;
 import java.util.UUID;
 
 /**
- * A type of {@link org.spongepowered.api.data.DataHolder.Immutable} that may be linked to a particular
+ * A type of {@link Immutable} that may be linked to a particular
  * {@link Location}. Being that a {@link LocatableSnapshot} may be built
- * by an {@link ImmutableDataBuilder}, the {@link Location} may be
+ * by an {@link DataBuilder.Immutable}, the {@link Location} may be
  * <code>null</code> such that {@link #getLocation()} returns
  * {@link Optional#empty()}.
  *
  * @param <T> The type of location snapshot for self referencing
  */
-public interface LocatableSnapshot<T extends LocatableSnapshot<T>> extends DataHolder.Immutable<T> {
+public interface LocatableSnapshot<T extends LocatableSnapshot<T>> extends DataHolder.Immutable {
 
     /**
      * Gets the {@link UUID} of the world.

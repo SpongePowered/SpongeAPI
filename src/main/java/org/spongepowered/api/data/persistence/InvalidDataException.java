@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.data.persistence;
 
-import org.spongepowered.api.data.DataView;
-
 import java.io.InputStream;
 
 /**

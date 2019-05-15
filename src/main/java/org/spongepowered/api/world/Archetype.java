@@ -22,5 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.data.key;
+package org.spongepowered.api.world;
+
+import org.spongepowered.api.data.DataHolder;
+
+import java.util.Optional;
+
+/**
+ * A {@link DataHolder.Mutable DataHolder} which has no attachment to any particular world allowing
+ * it to be used as a blueprint to create multiple copies of its containing
+ * data.
+ */
+public interface Archetype<S extends LocatableSnapshot<S>, E> extends DataHolder.Mutable {
+
+    /**
+     * Creates a new instance based on this archetype at the given location.
+     *
+     * @param location The location to create the new instance at
+     * @return The created type, if successful
+     */
+    Optional<E> apply(Location location);
+
+    /**
+     * Creates a new immutable snapshot based on this archetype.
+     *
+     * @param location The location for the snapshot to be specified as at
+     * @return The snapshot
+     */
+    S toSnapshot(Location location);
+
+    @Override
+    Archetype<S, E> copy();
+
+}

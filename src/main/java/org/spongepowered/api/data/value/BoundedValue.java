@@ -26,7 +26,7 @@ package org.spongepowered.api.data.value;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.key.Key;
+import org.spongepowered.api.data.Key;
 
 import java.util.Comparator;
 import java.util.function.Function;
@@ -38,11 +38,14 @@ import java.util.function.Function;
  * values, a {@link BoundedValue} is limited to being within it's destined
  * bounds. Any {@link BoundedValue} that is out of it's intended bounds will
  * throw an {@link IllegalStateException} if used or offered to a
- * {@link ValueContainer} or {@link org.spongepowered.api.data.DataHolder.Mutable}.
+ * {@link ValueContainer} or {@link DataHolder.Mutable}.
  *
  * @param <E> The type of value that can be compared
  */
 public interface BoundedValue<E> extends Value<E> {
+
+    @Override
+    Key<? extends BoundedValue<E>> getKey();
 
     /**
      * Constructs a mutable {@link Value} of the appropriate
@@ -155,7 +158,7 @@ public interface BoundedValue<E> extends Value<E> {
     BoundedValue.Immutable<E> asImmutable();
 
     /**
-     * A type of {@link BoundedValue} that is modifiable as a {@link org.spongepowered.api.data.value.Value.Mutable}}.
+     * A type of {@link BoundedValue} that is modifiable as a {@link org.spongepowered.api.data.value.Value.Mutable}.
      *
      * @param <E> The type of element
      */
@@ -187,7 +190,7 @@ public interface BoundedValue<E> extends Value<E> {
 
     /**
      * A type of {@link BoundedValue} that is immutable as an
-     * {@link org.spongepowered.api.data.value.Value.Immutable}}.
+     * {@link org.spongepowered.api.data.value.Value.Immutable}.
      *
      * @param <E> The type of element
      */

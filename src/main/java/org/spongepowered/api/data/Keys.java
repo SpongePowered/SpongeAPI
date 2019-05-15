@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.key;
+package org.spongepowered.api.data;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
@@ -30,18 +30,18 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.block.entity.Banner;
+import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.block.entity.CommandBlock;
 import org.spongepowered.api.block.entity.EndGateway;
 import org.spongepowered.api.block.entity.MobSpawner;
 import org.spongepowered.api.block.entity.Piston;
 import org.spongepowered.api.block.entity.Sign;
 import org.spongepowered.api.block.entity.Structure;
-import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.block.entity.carrier.Beacon;
+import org.spongepowered.api.block.entity.carrier.BlockEntityCarrier;
 import org.spongepowered.api.block.entity.carrier.BrewingStand;
 import org.spongepowered.api.block.entity.carrier.Furnace;
 import org.spongepowered.api.block.entity.carrier.Hopper;
-import org.spongepowered.api.block.entity.carrier.BlockEntityCarrier;
 import org.spongepowered.api.data.meta.PatternLayer;
 import org.spongepowered.api.data.property.Properties;
 import org.spongepowered.api.data.type.ArtType;
@@ -92,10 +92,7 @@ import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.ExperienceOrb;
 import org.spongepowered.api.entity.FallingBlock;
 import org.spongepowered.api.entity.Item;
-import org.spongepowered.api.entity.living.animal.Chicken;
-import org.spongepowered.api.entity.living.animal.Dolphin;
-import org.spongepowered.api.entity.living.animal.PolarBear;
-import org.spongepowered.api.entity.projectile.ShulkerBullet;
+import org.spongepowered.api.entity.explosive.EndCrystal;
 import org.spongepowered.api.entity.explosive.Explosive;
 import org.spongepowered.api.entity.explosive.FusedExplosive;
 import org.spongepowered.api.entity.hanging.ItemFrame;
@@ -108,6 +105,8 @@ import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.animal.Animal;
 import org.spongepowered.api.entity.living.animal.Cat;
+import org.spongepowered.api.entity.living.animal.Chicken;
+import org.spongepowered.api.entity.living.animal.Dolphin;
 import org.spongepowered.api.entity.living.animal.Fox;
 import org.spongepowered.api.entity.living.animal.Horse;
 import org.spongepowered.api.entity.living.animal.Llama;
@@ -116,6 +115,7 @@ import org.spongepowered.api.entity.living.animal.Ocelot;
 import org.spongepowered.api.entity.living.animal.Panda;
 import org.spongepowered.api.entity.living.animal.Parrot;
 import org.spongepowered.api.entity.living.animal.Pig;
+import org.spongepowered.api.entity.living.animal.PolarBear;
 import org.spongepowered.api.entity.living.animal.Rabbit;
 import org.spongepowered.api.entity.living.animal.Sheep;
 import org.spongepowered.api.entity.living.animal.Wolf;
@@ -136,6 +136,7 @@ import org.spongepowered.api.entity.living.trader.Villager;
 import org.spongepowered.api.entity.projectile.DamagingProjectile;
 import org.spongepowered.api.entity.projectile.EyeOfEnder;
 import org.spongepowered.api.entity.projectile.FireworkRocket;
+import org.spongepowered.api.entity.projectile.ShulkerBullet;
 import org.spongepowered.api.entity.projectile.arrow.Arrow;
 import org.spongepowered.api.entity.projectile.explosive.fireball.Fireball;
 import org.spongepowered.api.entity.vehicle.Boat;
@@ -1701,7 +1702,7 @@ public final class Keys {
      * Represents the {@link Key} for a targeted entity,
      * like by a {@link ShulkerBullet}.
      */
-    public static final Key<Value<EntitySnapshot>> TARGETED_ENTITY = DummyObjectProvider.createExtendedFor(Key.class, "TARGETED_ENTITY");
+    public static final Key<Value<Entity>> TARGETED_ENTITY = DummyObjectProvider.createExtendedFor(Key.class, "TARGETED_ENTITY");
 
     /**
      * Represents the {@link Key} for the location targeted by an
@@ -1876,7 +1877,15 @@ public final class Keys {
      * Represents the {@link Key} for representing the "got fish" state of a {@link Dolphin}.
      */
     public static final Key<Value<Boolean>> GOT_FISH = DummyObjectProvider.createExtendedFor(Key.class, "GOT_FISH");
-
+    public static final Key<Value<Boolean>> IS_ON_GROUND = DummyObjectProvider.createExtendedFor(Key.class, "IS_ON_GROUND");
+    public static final Key<Value<UUID>> CREATOR = DummyObjectProvider.createExtendedFor(Key.class, "CREATOR");
+    public static final Key<Value<UUID>> NOTIFIER = DummyObjectProvider.createExtendedFor(Key.class, "NOTIFIER");
+    public static final Key<Value<Boolean>> IS_IN_WATER = DummyObjectProvider.createExtendedFor(Key.class, "IS_IN_WATER");
+    public static final Key<BoundedValue<Double>> BOAT_MAX_SPEED = DummyObjectProvider.createExtendedFor(Key.class, "BOAT_MAX_SPEED");
+    public static final Key<Value<Boolean>> BOAT_CAN_MOVE_ON_LAND = DummyObjectProvider.createExtendedFor(Key.class, "BOAT_CAN_MOVE_ON_LAND");
+    public static final Key<Value<Boolean>> IS_WEATHER_EFFECT = DummyObjectProvider.createExtendedFor(Key.class, "IS_WEATHER_EFFECT");
+    public static final Key<Value<Entity>> LEASHED_ENTITY = DummyObjectProvider.createExtendedFor(Key.class, "LEASHED_ENTITY");
+    public static final Key<Value<EndCrystal>> HEALING_CRYSTAL = DummyObjectProvider.createExtendedFor(Key.class, "HEALING_CRYSTAL");
     // SORTFIELDS:OFF
 
     private Keys() {

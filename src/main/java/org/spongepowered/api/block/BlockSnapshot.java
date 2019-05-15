@@ -28,10 +28,10 @@ import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.block.entity.BlockEntityArchetype;
-import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.data.DataView;
-import org.spongepowered.api.data.ImmutableDataBuilder;
-import org.spongepowered.api.data.LocatableSnapshot;
+import org.spongepowered.api.data.persistence.DataContainer;
+import org.spongepowered.api.data.persistence.DataView;
+import org.spongepowered.api.world.LocatableSnapshot;
+import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.Location;
@@ -142,7 +142,7 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
      */
     Optional<BlockEntityArchetype> createArchetype();
 
-    interface Builder extends ImmutableDataBuilder<BlockSnapshot, Builder> {
+    interface Builder extends DataBuilder.Immutable<BlockSnapshot, Builder> {
 
         /**
          * Sets the {@link WorldProperties} for this {@link BlockSnapshot}.

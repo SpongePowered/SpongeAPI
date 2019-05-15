@@ -32,8 +32,8 @@ import static org.spongepowered.api.util.weighted.VariableAmount.fixed;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.data.DataTransactionResult;
-import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Key;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.SetValue;
 import org.spongepowered.api.data.value.Value;
@@ -239,7 +239,7 @@ public final class ItemStackBuilderPopulators {
 
     /**
      * Creates a new {@link BiConsumer} where the {@link Key} is responsible
-     * for a {@link List} based {@link org.spongepowered.api.data.value.Value.Mutable}}. Given that the provided elements
+     * for a {@link List} based {@link org.spongepowered.api.data.value.Value.Mutable}. Given that the provided elements
      * are chosen with a {@link Random}, it's not clear that the elements will
      * be added in bundles or in the same iteration order.
      *
@@ -266,7 +266,7 @@ public final class ItemStackBuilderPopulators {
 
     /**
      * Creates a new {@link BiConsumer} where the {@link Key} is responsible
-     * for a {@link List} based {@link org.spongepowered.api.data.value.Value.Mutable}}. Given that the provided elements
+     * for a {@link List} based {@link org.spongepowered.api.data.value.Value.Mutable}. Given that the provided elements
      * are chosen with a {@link Random}, it's not clear that the elements will
      * be added in bundles or in the same iteration order. The default variance
      * is provided as {@link VariableAmount#baseWithRandomAddition(double, double)}
@@ -287,7 +287,7 @@ public final class ItemStackBuilderPopulators {
 
     /**
      * Creates a new {@link BiConsumer} where the {@link Key} is responsible
-     * for a {@link List} based {@link org.spongepowered.api.data.value.Value.Mutable}}. Given the {@link WeightedTable}
+     * for a {@link List} based {@link org.spongepowered.api.data.value.Value.Mutable}. Given the {@link WeightedTable}
      * is already generated, the values requested are only retrieved when
      * the generated biconsumer is called upon.
      *
@@ -308,7 +308,7 @@ public final class ItemStackBuilderPopulators {
 
     /**
      * Creates a new {@link BiConsumer} where the {@link Key} is responsible
-     * for a {@link List} based {@link org.spongepowered.api.data.value.Value.Mutable}}. Given the
+     * for a {@link List} based {@link org.spongepowered.api.data.value.Value.Mutable}. Given the
      * {@link WeightedTable} is exclusively used with {@link Function}s,
      * the {@link Function}s themselves are queried with a {@link Random}
      * and expected to present a singular element of the defined type. It's
@@ -346,7 +346,7 @@ public final class ItemStackBuilderPopulators {
 
     /**
      * Creates a new {@link BiConsumer} where the {@link Key} is responsible
-     * for a {@link Set} based {@link org.spongepowered.api.data.value.Value.Mutable}}. Given the {@link Set} of element
+     * for a {@link Set} based {@link org.spongepowered.api.data.value.Value.Mutable}. Given the {@link Set} of element
      * to act as a pool, the consumer will pull a random amount of the
      * given pool and apply it as a new {@link Set}.
      *
@@ -366,7 +366,7 @@ public final class ItemStackBuilderPopulators {
 
     /**
      * Creates a new {@link BiConsumer} where the {@link Key} is responsible
-     * for a {@link Set} based {@link org.spongepowered.api.data.value.Value.Mutable}}. Given the {@link Set} of
+     * for a {@link Set} based {@link org.spongepowered.api.data.value.Value.Mutable}. Given the {@link Set} of
      * elements to act as a pool, the consumer will pull a variable amount
      * based on the provided {@link VariableAmount}, and apply it as a new
      * {@link Set}.
@@ -391,7 +391,7 @@ public final class ItemStackBuilderPopulators {
 
     /**
      * Creates a new {@link BiConsumer} where the {@link Key} is
-     * responsible for a {@link Set} based {@link org.spongepowered.api.data.value.Value.Mutable}}. Given
+     * responsible for a {@link Set} based {@link org.spongepowered.api.data.value.Value.Mutable}. Given
      * the provided {@link WeightedTable}, the consumer will retrieve
      * a {@link List} of values and add them as a new {@link Set}.
      *
@@ -419,7 +419,7 @@ public final class ItemStackBuilderPopulators {
     }
 
     /**
-     * Creates a new {@link BiConsumer} that applies the provided {@link org.spongepowered.api.data.value.Value.Mutable}}
+     * Creates a new {@link BiConsumer} that applies the provided {@link org.spongepowered.api.data.value.Value.Mutable}
      * to the generated {@link ItemStack}.
      *
      * @param value The value to use

@@ -157,7 +157,7 @@ public interface TextStyle extends TextElement {
      * {@link TextStyle}.
      *
      * <p>For example, a {@link TextStyle} with {@code bold: true, italic:
-     * true}} would return {@code true} for <code>contains(
+     * true} would return {@code true} for <code>contains(
      * {@link TextStyles#BOLD})</code> and <code>contains(
      * {@link TextStyles#ITALIC}).</code></p>
      *

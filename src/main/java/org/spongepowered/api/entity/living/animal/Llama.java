@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.LlamaType;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.Value;
@@ -38,7 +38,7 @@ import org.spongepowered.api.entity.projectile.ProjectileLauncher;
 public interface Llama extends Horse, ProjectileLauncher {
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable}} for the {@link LlamaType} of this
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the {@link LlamaType} of this
      * {@link Llama}.
      *
      * @return The llama type
@@ -48,7 +48,7 @@ public interface Llama extends Horse, ProjectileLauncher {
     }
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable}} for the {@link Keys#LLAMA_STRENGTH llama strength}
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the {@link Keys#LLAMA_STRENGTH llama strength}
      * when attacking.
      *
      * @return The strength value of the llama

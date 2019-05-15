@@ -26,7 +26,7 @@ package org.spongepowered.api.state;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.key.Key;
+import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.util.Cycleable;
 

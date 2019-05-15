@@ -25,11 +25,11 @@
 package org.spongepowered.api.entity;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.Archetype;
-import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.data.DataView;
-import org.spongepowered.api.data.Queries;
-import org.spongepowered.api.data.key.Key;
+import org.spongepowered.api.world.Archetype;
+import org.spongepowered.api.data.persistence.DataContainer;
+import org.spongepowered.api.data.persistence.DataView;
+import org.spongepowered.api.data.persistence.Queries;
+import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.InvalidDataException;

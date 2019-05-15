@@ -28,7 +28,7 @@ import org.spongepowered.api.Server;
 import org.spongepowered.api.advancement.Advancement;
 import org.spongepowered.api.advancement.AdvancementProgress;
 import org.spongepowered.api.advancement.AdvancementTree;
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.SkinPart;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.effect.Viewer;
@@ -207,7 +207,7 @@ public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver 
     void setScoreboard(Scoreboard scoreboard);
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable}} of the {@link Instant} that a {@link Player}
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} of the {@link Instant} that a {@link Player}
      * joined the {@link Server} the first time.
      *
      * @return The value for the first time a player joined
@@ -217,7 +217,7 @@ public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver 
     }
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable}} of the {@link Instant} that a {@link Player}
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} of the {@link Instant} that a {@link Player}
      * joined the {@link Server} the last time.
      *
      * @return The value for the last time a player joined
@@ -258,7 +258,9 @@ public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver 
      * @return Whether this {@link Player} will be ignored when checking whether
      *     to skip the night
      */
-    boolean isSleepingIgnored();
+    default boolean isSleepingIgnored() {
+        return require(Keys.IS_SLEEPING_IGNORED);
+    }
 
     /**
      * Sets whether this {@link Player} will be ignored when checking whether
@@ -269,7 +271,9 @@ public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver 
      * @param sleepingIgnored Whether this {@link Player} will be ignored when
      *     checking whether to skip the night
      */
-    void setSleepingIgnored(boolean sleepingIgnored);
+    default void setSleepingIgnored(boolean sleepingIgnored) {
+        offer(Keys.IS_SLEEPING_IGNORED, sleepingIgnored);
+    }
 
     /**
      * Manually respawns the player.
@@ -286,7 +290,9 @@ public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver 
      *
      * @return The followed entity, if present, empty otherwise
      */
-    Optional<Entity> getSpectatorTarget();
+    default Optional<Entity> getSpectatorTarget() {
+        return get(Keys.SPECTATOR_TARGET);
+    }
 
     /**
      * Sets the {@link Entity} followed by the camera when in the
@@ -294,7 +300,13 @@ public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver 
      *
      * @param entity The entity to spectate
      */
-    void setSpectatorTarget(@Nullable Entity entity);
+    default void setSpectatorTarget(@Nullable Entity entity) {
+        if (entity == null) {
+            remove(Keys.SPECTATOR_TARGET);
+        } else {
+            offer(Keys.SPECTATOR_TARGET, entity);
+        }
+    }
 
     /**
      * Gets the {@link WorldBorder} for this player, if present. If no border is

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.filter.data;
 
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -37,6 +37,6 @@ public @interface GetValue {
 
     Class<?> container() default Keys.class;
 
-    String field();
+    String value();
 
 }

@@ -94,7 +94,7 @@ public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, I
     CollectionValue.Immutable<E, C, ?, ?> asImmutable();
 
     /**
-     * A {@link org.spongepowered.api.data.value.Value.Immutable}} type that handles a {@link Collection} of elements
+     * A {@link org.spongepowered.api.data.value.Value.Immutable} type that handles a {@link Collection} of elements
      * type <code>E</code>. All of the methods provided for modification return new
      * instances of the same type. Likewise, the underlying {@link ValueContainer}
      * is not modified.
@@ -178,7 +178,7 @@ public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, I
     }
 
     /**
-     * Represents a {@link org.spongepowered.api.data.value.Value.Mutable}} that is backed by a {@link Collection} of
+     * Represents a {@link org.spongepowered.api.data.value.Value.Mutable} that is backed by a {@link Collection} of
      * elements.
      *
      * @param <E> The type of element

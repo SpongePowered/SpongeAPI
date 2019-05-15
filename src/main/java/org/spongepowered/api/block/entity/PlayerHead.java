@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.block.entity;
 
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.profile.GameProfile;
 

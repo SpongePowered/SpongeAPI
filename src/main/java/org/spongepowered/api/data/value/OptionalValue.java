@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.data.value;
 
-import org.spongepowered.api.data.key.Key;
+import org.spongepowered.api.data.Key;
 
 import java.util.Optional;
 import java.util.function.Function;
@@ -32,6 +32,9 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 public interface OptionalValue<E> extends Value<Optional<E>> {
+
+    @Override
+    Key<? extends OptionalValue<E>> getKey();
 
     /**
      * Constructs a mutable {@link OptionalValue} for the
@@ -72,7 +75,7 @@ public interface OptionalValue<E> extends Value<Optional<E>> {
      * as a {@link Value}.
      *
      * @param defaultValue The value to substitute, if the underlying value is null
-     * @return A new {@link org.spongepowered.api.data.value.Value.Mutable}} with a non-null value
+     * @return A new {@link org.spongepowered.api.data.value.Value.Mutable} with a non-null value
      */
     Value<E> orElse(E defaultValue);
 
@@ -86,7 +89,7 @@ public interface OptionalValue<E> extends Value<Optional<E>> {
     OptionalValue.Immutable<E> asImmutable();
 
     /**
-     * Represents a {@link org.spongepowered.api.data.value.Value.Mutable}} that can be {@link Optional} such that the
+     * Represents a {@link org.spongepowered.api.data.value.Value.Mutable} that can be {@link Optional} such that the
      * underlying value may be present or {@code null}.
      *
      * @param <E> The type of element
@@ -130,7 +133,7 @@ public interface OptionalValue<E> extends Value<Optional<E>> {
     }
 
     /**
-     * Represents a {@link org.spongepowered.api.data.value.Value.Immutable}} that can be {@link Optional} such that
+     * Represents a {@link org.spongepowered.api.data.value.Value.Immutable} that can be {@link Optional} such that
      * the underlying value may be present or {@code null}.
      *
      * @param <E> The type of element

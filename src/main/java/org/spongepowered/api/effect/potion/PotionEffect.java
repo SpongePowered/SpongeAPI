@@ -25,8 +25,8 @@
 package org.spongepowered.api.effect.potion;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.persistence.DataSerializable;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.entity.Entity;

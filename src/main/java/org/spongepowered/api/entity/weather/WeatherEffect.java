@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.weather;
 
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 
@@ -40,17 +40,21 @@ public interface WeatherEffect extends Entity {
      *
      * @return Whether this weather effect is an effect
      */
-    boolean isEffect();
+    default boolean isEffect() {
+        return require(Keys.IS_WEATHER_EFFECT);
+    }
 
     /**
      * Sets whether this weather effect is an effect and doesn't deal damage.
      *
      * @param effect Whether this weather effect is an effect
      */
-    void setEffect(boolean effect);
+    default void setEffect(boolean effect) {
+        offer(Keys.IS_WEATHER_EFFECT, effect);
+    }
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable}} for the duration
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the duration
      *
      * @return The bounded value for the remaining duration
      */

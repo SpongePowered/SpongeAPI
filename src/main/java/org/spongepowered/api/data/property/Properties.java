@@ -28,7 +28,7 @@ import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.ArmorType;
 import org.spongepowered.api.data.type.HandPreference;
 import org.spongepowered.api.data.type.InstrumentType;

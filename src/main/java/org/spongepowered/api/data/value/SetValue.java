@@ -24,9 +24,14 @@
  */
 package org.spongepowered.api.data.value;
 
+import org.spongepowered.api.data.Key;
+
 import java.util.Set;
 
 public interface SetValue<E> extends CollectionValue<E, Set<E>> {
+
+    @Override
+    Key<? extends SetValue<E>> getKey();
 
     @Override
     SetValue.Mutable<E> asMutable();

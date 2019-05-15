@@ -24,9 +24,6 @@
  */
 package org.spongepowered.api.data.persistence;
 
-import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.data.DataView;
-
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;

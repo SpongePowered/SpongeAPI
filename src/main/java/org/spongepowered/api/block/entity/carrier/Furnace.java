@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.block.entity.carrier;
 
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.BoundedValue;
 
 /**
