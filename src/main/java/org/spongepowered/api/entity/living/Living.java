@@ -29,7 +29,8 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
+import org.spongepowered.api.projectile.source.EntityProjectileSource;
+import org.spongepowered.api.projectile.source.ProjectileSource;
 import org.spongepowered.api.scoreboard.TeamMember;
 
 import java.util.Optional;
@@ -42,7 +43,11 @@ import java.util.OptionalDouble;
  * under water, custom names, be meaningfully added to teams, and become
  * invisible.</p>
  */
-public interface Living extends Entity, ProjectileSource, TeamMember {
+public interface Living extends Entity, EntityProjectileSource, TeamMember {
+
+    default Entity getEntity() {
+        return this;
+    }
 
     /**
      * Returns the health amount.

@@ -100,11 +100,18 @@ public interface WorldArchetype extends CatalogType {
     boolean isSeedRandomized();
 
     /**
-     * Gets the gamemode.
+     * Gets the {@link GameMode}.
      *
      * @return The gamemode
      */
     GameMode getGameMode();
+
+    /**
+     * Gets the {@link DimensionType}.
+     *
+     * @return The dimension type
+     */
+    DimensionType getDimensionType();
 
     /**
      * Gets the generator type.
@@ -235,6 +242,15 @@ public interface WorldArchetype extends CatalogType {
          * @return The builder, for chaining
          */
         Builder gameMode(GameMode gameMode);
+
+        /**
+         * Sets the {@link DimensionType}. If not specified this will default
+         * to {@link DimensionTypes#OVERWORLD}
+         *
+         * @param type The type
+         * @return The builder, for chaining
+         */
+        Builder dimension(DimensionType type);
 
         /**
          * Sets the generator type. If not specified this will default

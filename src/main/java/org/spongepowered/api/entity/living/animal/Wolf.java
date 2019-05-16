@@ -27,11 +27,12 @@ package org.spongepowered.api.entity.living.animal;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.entity.living.Ageable;
 
 /**
  * Represents a Wolf.
  */
-public interface Wolf extends Animal {
+public interface Wolf extends Animal, Ageable {
 
     /**
      * Gets if this {@link Wolf} is currently aggressive, as a {@link Value}.

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.projectile;
 
-import org.spongepowered.api.entity.living.animal.Llama;
+import org.spongepowered.api.entity.living.animal.horse.llama.Llama;
 
 /**
  * A specific projectile that {@link Llama}s will use to attack other

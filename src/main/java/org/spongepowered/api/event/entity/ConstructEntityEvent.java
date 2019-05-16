@@ -26,16 +26,23 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.entity.Transform;
+import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
+import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 /**
  * Base event during the construction of an {@link Entity}.
- *
  */
 public interface ConstructEntityEvent extends Event {
+
+    /**
+     * Gets the {@link World} this {@link Entity} will be constructed with.
+     *
+     * @return The world
+     */
+    World getWorld();
 
     /**
      * Gets the {@link Transform} that the {@link Entity} will be constructed with.

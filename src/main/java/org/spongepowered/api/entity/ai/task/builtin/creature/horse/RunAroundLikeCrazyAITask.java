@@ -28,9 +28,9 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
-import org.spongepowered.api.entity.living.animal.RideableHorse;
+import org.spongepowered.api.entity.living.animal.horse.Horse;
 
-public interface RunAroundLikeCrazyAITask extends AITask<RideableHorse> {
+public interface RunAroundLikeCrazyAITask extends AITask<Horse> {
 
     /**
      * Creates a new {@link Builder} to build a new
@@ -59,7 +59,7 @@ public interface RunAroundLikeCrazyAITask extends AITask<RideableHorse> {
      */
     RunAroundLikeCrazyAITask setSpeed(double speed);
 
-    interface Builder extends AITaskBuilder<RideableHorse, RunAroundLikeCrazyAITask, Builder> {
+    interface Builder extends AITaskBuilder<Horse, RunAroundLikeCrazyAITask, Builder> {
 
         Builder speed(double speed);
 

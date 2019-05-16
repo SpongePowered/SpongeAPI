@@ -30,21 +30,21 @@ import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Bat;
 import org.spongepowered.api.entity.living.animal.Rabbit;
 import org.spongepowered.api.entity.living.animal.Sheep;
-import org.spongepowered.api.entity.living.complex.EnderDragon;
+import org.spongepowered.api.entity.living.monster.boss.dragon.EnderDragon;
 import org.spongepowered.api.entity.living.golem.SnowGolem;
 import org.spongepowered.api.entity.living.monster.Creeper;
 import org.spongepowered.api.entity.living.monster.Enderman;
 import org.spongepowered.api.entity.living.monster.Ghast;
 import org.spongepowered.api.entity.living.monster.Silverfish;
-import org.spongepowered.api.entity.living.monster.Wither;
-import org.spongepowered.api.entity.living.monster.Zombie;
-import org.spongepowered.api.entity.living.monster.ZombiePigman;
+import org.spongepowered.api.entity.living.monster.boss.Wither;
+import org.spongepowered.api.entity.living.monster.zombie.Zombie;
+import org.spongepowered.api.entity.living.monster.zombie.ZombiePigman;
 import org.spongepowered.api.entity.living.monster.skeleton.Skeleton;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.entity.living.trader.Villager;
 import org.spongepowered.api.entity.vehicle.Boat;
-import org.spongepowered.api.entity.vehicle.minecart.Minecart;
+import org.spongepowered.api.entity.vehicle.minecart.MinecartEntity;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
@@ -173,7 +173,7 @@ public final class GameRules {
      * {@link GameModes#ADVENTURE adventure mode} {@link Player}s, and all
      * mobs but bats. Pushable entities include non-spectator-mode
      * {@link Player}, any mob except {@link Bat}s, as well as
-     * {@link Boat}s and {@link Minecart}.</p>
+     * {@link Boat}s and {@link MinecartEntity}.</p>
      *
      * <p>Setting to {@code 0} disables the rule.</p>
      *

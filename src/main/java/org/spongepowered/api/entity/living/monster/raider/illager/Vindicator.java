@@ -26,13 +26,13 @@ package org.spongepowered.api.entity.living.monster.raider.illager;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.monster.Monster;
+import org.spongepowered.api.entity.living.Monster;
 import org.spongepowered.api.item.ItemTypes;
 
 /**
  * Represents a vindicator.
  */
-public interface Vindicator extends Monster {
+public interface Vindicator extends Illager {
 
     /**
      * Gets the {@link Value.Mutable} for whether this vindicator is considered a

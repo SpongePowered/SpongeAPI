@@ -33,20 +33,11 @@ public final class DimensionTypes {
 
     // SORTFIELDS:ON
 
-    /**
-     * Represents a nether based dimension.
-     */
-    public static final DimensionType NETHER = DummyObjectProvider.createFor(DimensionType.class, "NETHER");
-
-    /**
-     * Represents the default dimension type of a {@link World}.
-     */
     public static final DimensionType OVERWORLD = DummyObjectProvider.createFor(DimensionType.class, "OVERWORLD");
 
-    /**
-     * Represents an "end" based dimension.
-     */
     public static final DimensionType THE_END = DummyObjectProvider.createFor(DimensionType.class, "THE_END");
+
+    public static final DimensionType THE_NETHER = DummyObjectProvider.createFor(DimensionType.class, "THE_NETHER");
 
     // SORTFIELDS:OFF
 

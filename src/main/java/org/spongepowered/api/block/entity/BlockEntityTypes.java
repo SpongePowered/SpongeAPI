@@ -30,21 +30,32 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
  * An enumeration of all {@link BlockEntityType}s in vanilla Minecraft.
  */
 public final class BlockEntityTypes {
-    private BlockEntityTypes() {}
 
     // SORTFIELDS:ON
 
     public static final BlockEntityType BANNER = DummyObjectProvider.createFor(BlockEntityType.class, "BANNER");
 
+    public static final BlockEntityType BARREL = DummyObjectProvider.createFor(BlockEntityType.class, "BARREL");
+
     public static final BlockEntityType BEACON = DummyObjectProvider.createFor(BlockEntityType.class, "BEACON");
 
+    public static final BlockEntityType BED = DummyObjectProvider.createFor(BlockEntityType.class, "BED");
+
+    public static final BlockEntityType BELL = DummyObjectProvider.createFor(BlockEntityType.class, "BELL");
+
+    public static final BlockEntityType BLAST_FURNACE = DummyObjectProvider.createFor(BlockEntityType.class, "BLAST_FURNACE");
+
     public static final BlockEntityType BREWING_STAND = DummyObjectProvider.createFor(BlockEntityType.class, "BREWING_STAND");
+
+    public static final BlockEntityType CAMPFIRE = DummyObjectProvider.createFor(BlockEntityType.class, "CAMPFIRE");
 
     public static final BlockEntityType CHEST = DummyObjectProvider.createFor(BlockEntityType.class, "CHEST");
 
     public static final BlockEntityType COMMAND_BLOCK = DummyObjectProvider.createFor(BlockEntityType.class, "COMMAND_BLOCK");
 
     public static final BlockEntityType COMPARATOR = DummyObjectProvider.createFor(BlockEntityType.class, "COMPARATOR");
+
+    public static final BlockEntityType CONDUIT = DummyObjectProvider.createFor(BlockEntityType.class, "CONDUIT");
 
     public static final BlockEntityType DAYLIGHT_DETECTOR = DummyObjectProvider.createFor(BlockEntityType.class, "DAYLIGHT_DETECTOR");
 
@@ -64,7 +75,11 @@ public final class BlockEntityTypes {
 
     public static final BlockEntityType HOPPER = DummyObjectProvider.createFor(BlockEntityType.class, "HOPPER");
 
+    public static final BlockEntityType JIGSAW = DummyObjectProvider.createFor(BlockEntityType.class, "JIGSAW");
+
     public static final BlockEntityType JUKEBOX = DummyObjectProvider.createFor(BlockEntityType.class, "JUKEBOX");
+
+    public static final BlockEntityType LECTERN = DummyObjectProvider.createFor(BlockEntityType.class, "LECTERN");
 
     public static final BlockEntityType MOB_SPAWNER = DummyObjectProvider.createFor(BlockEntityType.class, "MOB_SPAWNER");
 
@@ -76,10 +91,13 @@ public final class BlockEntityTypes {
 
     public static final BlockEntityType SIGN = DummyObjectProvider.createFor(BlockEntityType.class, "SIGN");
 
+    public static final BlockEntityType SMOKER = DummyObjectProvider.createFor(BlockEntityType.class, "SMOKER");
+
     public static final BlockEntityType STRUCTURE = DummyObjectProvider.createFor(BlockEntityType.class, "STRUCTURE");
 
     public static final BlockEntityType TRAPPED_CHEST = DummyObjectProvider.createFor(BlockEntityType.class, "TRAPPED_CHEST");
 
     // SORTFIELDS:OFF
 
+    private BlockEntityTypes() {}
 }

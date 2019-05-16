@@ -25,13 +25,13 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.Transform;
+import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
-import org.spongepowered.api.world.teleport.PortalAgent;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.teleport.PortalAgent;
 
 /**
  * Called when an {@link Entity} performs movement.
@@ -71,7 +71,7 @@ public interface MoveEntityEvent extends Event, Cancellable {
      * Fired when an {@link Entity}'s position changes.
      */
     @GenerateFactoryMethod
-    interface Position extends MoveEntityEvent {};
+    interface Position extends MoveEntityEvent {}
 
     /**
      * Fired when an {@link Entity}'s position changes for reasons other than
@@ -79,6 +79,27 @@ public interface MoveEntityEvent extends Event, Cancellable {
      */
     @GenerateFactoryMethod
     interface Teleport extends MoveEntityEvent {
+
+        /**
+         * Gets the {@link World} the {@link Entity} is coming from.
+         *
+         * @return The world
+         */
+        World getFromWorld();
+
+        /**
+         * Gets the {@link World} the {@link Entity} is going to.
+         *
+         * @return The new world
+         */
+        World getToWorld();
+
+        /**
+         * Sets the {@link World} the {@link Entity} will go to.
+         *
+         * @param world The world
+         */
+        void setToWorld(World world);
 
         /**
          * Gets whether the entity teleporting will maintain its velocity

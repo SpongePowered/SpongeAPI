@@ -25,11 +25,11 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.entity.living.animal.RideableHorse;
+import org.spongepowered.api.entity.living.animal.horse.Horse;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents the color of a {@link RideableHorse}.
+ * Represents the color of a {@link Horse}.
  * <p>The color of a horse is a genetic trait that can be inherited to a new
  * born horse.</p>
  */

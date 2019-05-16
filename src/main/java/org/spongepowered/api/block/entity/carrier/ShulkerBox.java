@@ -33,7 +33,7 @@ import org.spongepowered.api.data.value.Value;
  * mined, they drop themselves with the contents added in themselves, so placing
  * them back as items will result in a restored inventory.
  */
-public interface ShulkerBox extends BlockEntityCarrier {
+public interface ShulkerBox extends CarrierBlockEntity {
 
     /**
      * Gets the current {@link Value} of {@link DyeColor} for this

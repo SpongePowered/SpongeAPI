@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.block.entity.carrier;
 
-import org.spongepowered.api.entity.projectile.source.BlockProjectileSource;
+import org.spongepowered.api.projectile.source.BlockProjectileSource;
 
 /**
  * Represents a Dispenser.
  */
-public interface Dispenser extends BlockEntityCarrier, BlockProjectileSource {
+public interface Dispenser extends CarrierBlockEntity, BlockProjectileSource {
 }

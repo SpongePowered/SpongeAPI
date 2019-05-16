@@ -25,7 +25,6 @@
 package org.spongepowered.api.entity.living.monster.raider;
 
 import org.spongepowered.api.entity.living.Ranger;
-import org.spongepowered.api.entity.living.monster.Monster;
 
 /**
  * Represents a Witch.

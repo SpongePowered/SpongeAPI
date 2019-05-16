@@ -26,11 +26,12 @@ package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.entity.living.Ageable;
 
 /**
  * Represents a polar bear.
  */
-public interface PolarBear extends Animal {
+public interface PolarBear extends Animal, Ageable {
 
     /**
      * Returns a {@link Value} representing if the {@link PolarBear} is

@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.entity.living.monster.raider;
 
-import org.spongepowered.api.entity.living.monster.Monster;
+import org.spongepowered.api.entity.living.monster.Patroller;
 
-public interface Raider extends Monster {
+public interface Raider extends Patroller {
 
 }

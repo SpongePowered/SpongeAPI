@@ -24,5 +24,5 @@
  */
 package org.spongepowered.api.entity.projectile.arrow;
 
-public interface Trident extends Arrow {
+public interface Trident extends ArrowEntity {
 }

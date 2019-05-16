@@ -143,7 +143,7 @@ public class InventoryArchetypes {
     // Entity
 
     /**
-     * A RideableHorse, Donkey or Mule usually 2 Slots.
+     * A Horse, Donkey or Mule usually 2 Slots.
      */
     public static final InventoryArchetype HORSE = DummyObjectProvider.createFor(InventoryArchetype.class, "horse");
 

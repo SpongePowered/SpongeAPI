@@ -97,6 +97,39 @@ public interface WorldManager {
     Optional<WorldProperties> getDefaultProperties();
 
     /**
+     * Submits a new {@link WorldRegistration} to be known to this {@link WorldManager}.
+     *
+     * <p>
+     *     While {@link WorldManager#createProperties(WorldRegistration, WorldArchetype)} will do this on the
+     *     plugin developer's behalf, it is wise to perform registration during a plugin's lifecycle events so
+     *     that the directory of the future {@link WorldProperties} will be reserved.
+     * </p>
+     * @param registration The registration
+     */
+    void submitRegistration(WorldRegistration registration);
+
+    /**
+     * Creates a new {@link WorldProperties} from the given
+     * {@link WorldArchetype}. For the creation of the WorldArchetype please see
+     * {@link org.spongepowered.api.world.WorldArchetype.Builder}.
+     *
+     * <p>If the {@link World} exists at the directory name given, the properties
+     * representing that directory name are returned instead.</p>
+     *
+     * <p>Although the world is created it is not loaded at this time. Please
+     * see one of the following methods for loading the world.</p>
+     *
+     * <ul> <li>{@link #loadWorld(String)}</li> <li>{@link #loadWorld(WorldProperties)}</li> </ul>
+     *
+     * @param registration The world registration
+     * @param archetype The archetype for creation
+     * @return The new or existing world properties, if creation was successful
+     * @throws IOException If there are any io issues creating the properties
+     *      file
+     */
+    Optional<WorldProperties> createProperties(WorldRegistration registration, WorldArchetype archetype) throws IOException;
+
+    /**
      * Loads a {@link World} from the default storage container. If a world with
      * the given name is already loaded then it is returned instead.
      *
@@ -114,6 +147,19 @@ public interface WorldManager {
      * @return The world, if found
      */
     Optional<World> loadWorld(WorldProperties properties);
+
+    /**
+     * Registers a {@link WorldRegistration}, creates the {@link WorldProperties} (if it doesn't exist), and loads the {@link World}
+     * in one step.
+     *
+     * @param registration The registration
+     * @param archetype The archetype
+     * @return The {@link World} or {@link Optional#empty()} if it was not loaded
+     * @throws IOException If the {@link WorldProperties} failed to create due to a filesystem error
+     */
+    default Optional<World> loadWorld(WorldRegistration registration, WorldArchetype archetype) throws IOException {
+        return this.createProperties(registration, archetype).flatMap(this::loadWorld);
+    }
 
     /**
      * Unloads a {@link World}.
@@ -170,27 +216,6 @@ public interface WorldManager {
      * @return A collection of world properties
      */
     Collection<WorldProperties> getAllProperties();
-
-    /**
-     * Creates a new {@link WorldProperties} from the given
-     * {@link WorldArchetype}. For the creation of the WorldArchetype please see
-     * {@link org.spongepowered.api.world.WorldArchetype.Builder}.
-     *
-     * <p>If the {@link World} exists at the directory name given, the properties
-     * representing that directory name are returned instead.</p>
-     *
-     * <p>Although the world is created it is not loaded at this time. Please
-     * see one of the following methods for loading the world.</p>
-     *
-     * <ul> <li>{@link #loadWorld(String)}</li> <li>{@link #loadWorld(WorldProperties)}</li> </ul>
-     *
-     * @param type The dimension type
-     * @param archetype The archetype for creation
-     * @return The new or existing world properties, if creation was successful
-     * @throws IOException If there are any io issues creating the properties
-     *      file
-     */
-    Optional<WorldProperties> createProperties(DimensionType type, WorldArchetype archetype) throws IOException;
 
     /**
      * Persists the given {@link WorldProperties} to the world storage for it,

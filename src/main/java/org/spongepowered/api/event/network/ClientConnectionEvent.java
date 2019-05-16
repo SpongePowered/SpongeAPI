@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.network;
 
-import org.spongepowered.api.entity.Transform;
+import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.event.Cancellable;
@@ -126,25 +126,41 @@ public interface ClientConnectionEvent extends Event {
         GameProfile getProfile();
 
         /**
-         * Gets the transform that the {@link Player} came from.
+         * Gets the previous {@link World} the {@link User} will login to.
          *
-         * @return the previous transform
+         * @return The world
+         */
+        World getFromWorld();
+
+        /**
+         * Gets the {@link Transform} the {@link User} will have at login.
+         *
+         * @return The transform
          */
         Transform getFromTransform();
 
         /**
-         * Gets the new transform that the {@link Player} will change to.
+         * Gets the {@link World} the {@link User} will login to.
          *
-         * @return the new transform
+         * @return The world
+         */
+        World getToWorld();
+
+        /**
+         * Gets the {@link Transform} the {@link User} will have at login.
+         *
+         * @return The transform
          */
         Transform getToTransform();
 
         /**
-         * Sets the new transform that the {@link Player} will change to.
+         * Sets the {@link World} and {@link Transform} the {@link User} will have
+         * at login.
          *
-         * @param transform The new transform
+         * @param world The world
+         * @param transform The transform
          */
-        void setToTransform(Transform transform);
+        void setLoginPosition(World world, Transform transform);
     }
 
     /**

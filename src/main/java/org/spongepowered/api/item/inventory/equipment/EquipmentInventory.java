@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.item.inventory.equipment;
 
-import org.spongepowered.api.entity.Equipable;
+import org.spongepowered.api.item.inventory.Equipable;
 import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;

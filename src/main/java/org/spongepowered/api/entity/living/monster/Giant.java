@@ -24,7 +24,8 @@
  */
 package org.spongepowered.api.entity.living.monster;
 
-import org.spongepowered.api.entity.ArmorEquipable;
+import org.spongepowered.api.item.inventory.ArmorEquipable;
+import org.spongepowered.api.entity.living.Monster;
 
 /**
  * Represents a Giant.

@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.entity.living.Ageable;
+import org.spongepowered.api.entity.living.Creature;
 
 /**
  * Represents an Animal, such as a Cow.
  */
-public interface Animal extends Ageable {
+public interface Animal extends Creature {
 
 }

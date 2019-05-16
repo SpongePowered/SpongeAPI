@@ -35,7 +35,7 @@ import org.spongepowered.api.effect.potion.PotionEffectType;
  * Depending on the completed levels of the beacon, the effects may be applied
  * at a further range or shorter range.</p>
  */
-public interface Beacon extends BlockEntityCarrier {
+public interface Beacon extends CarrierBlockEntity {
 
     /**
      * Gets the number of completed levels of valid beacon structure blocks
@@ -44,7 +44,6 @@ public interface Beacon extends BlockEntityCarrier {
      * @return The number of levels
      */
     int getCompletedLevels();
-
 
     /**
      * Gets the {@link OptionalValue.Mutable} for the primary

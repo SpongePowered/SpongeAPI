@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.entity.explosive;
 
-import org.spongepowered.api.entity.explosive.FusedExplosive;
+import org.spongepowered.api.entity.explosive.fused.FusedExplosive;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 

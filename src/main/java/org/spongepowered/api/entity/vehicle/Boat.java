@@ -24,12 +24,10 @@
  */
 package org.spongepowered.api.entity.vehicle;
 
-import org.spongepowered.api.entity.Entity;
-
 /**
  * Represents a Boat entity.
  */
-public interface Boat extends Entity {
+public interface Boat extends Vehicle {
 
     /**
      * Gets whether this boat is currently in water.

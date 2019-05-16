@@ -29,7 +29,7 @@ import java.time.Duration;
 /**
  * Represents a minecart with a furnace inside it.
  */
-public interface FurnaceMinecart extends Minecart {
+public interface FurnaceMinecart extends MinecartEntity {
 
     /**
      * Gets the duration of fuel the furnace has left before
