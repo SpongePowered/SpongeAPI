@@ -112,17 +112,6 @@ public interface Server extends Engine, CommandSource {
     ChunkLayout getChunkLayout();
 
     /**
-     * Gets the time, in ticks, since this server began running for the current
-     * session.
-     *
-     * <p>This value is not persisted across server restarts, it is set to zero
-     * each time the server starts.</p>
-     *
-     * @return The number of ticks since this server started running
-     */
-    int getRunningTimeTicks();
-
-    /**
      * Gets the message channel that server-wide messages are sent through.
      *
      * @return The server-wide broadcast channel
@@ -204,23 +193,6 @@ public interface Server extends Engine, CommandSource {
      * @return This server's game profile manager
      */
     GameProfileManager getGameProfileManager();
-
-    /**
-     * Gets the current ticks per second. A tick represents one cycle of the
-     * game loop.
-     *
-     * <p>Note: The server aims to limit itself at 20 ticks per second. Lower
-     * ticks per second may elude to the server taking more time to process
-     * information per tick. Examples of overburdening the server per tick
-     * include spawning 10,000 cows in a small area.</p>
-     *
-     * <p>Implementations that don't utilize ticks may give inaccurate
-     * return values.</p>
-     *
-     * @return The current minecraft ticks per second
-     * @see TemporalUnits#MINECRAFT_TICKS
-     */
-    double getMinecraftTicksPerSecond();
 
     /**
      * Gets the default resource pack. The default resource pack is sent to

@@ -45,4 +45,11 @@ public interface Engine {
      * @return {@code true} if main thread, {@code false} if not
      */
     boolean onMainThread();
+
+    /**
+     * Gets the statistics of this engine.
+     *
+     * @return The statistics
+     */
+    EngineStatistics getStatistics();
 }
