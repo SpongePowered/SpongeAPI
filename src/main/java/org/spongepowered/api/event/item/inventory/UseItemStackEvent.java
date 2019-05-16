@@ -31,28 +31,30 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
+import java.time.Duration;
+
 public interface UseItemStackEvent extends Event {
 
     /**
-     * Gets the original remaining duration of {@link ItemStack} in use.
+     * Gets the original remaining time of {@link ItemStack} in use.
      *
-     * @return The original remaining duration
+     * @return The original remaining time
      */
-    int getOriginalRemainingDuration();
+    Duration getOriginalRemainingTime();
 
     /**
-     * Gets the remaining duration of {@link ItemStack} in use.
+     * Gets the remaining time of {@link ItemStack} in use.
      *
-     * @return The remaining duration
+     * @return The remaining time
      */
-    int getRemainingDuration();
+    Duration getRemainingTime();
 
     /**
-     * Sets the remaining duration of {@link ItemStack} in use.
+     * Sets the remaining time of {@link ItemStack} in use.
      *
-     * @param duration The remaining duration to set
+     * @param duration The remaining time to set
      */
-    void setRemainingDuration(int duration);
+    void setRemainingTime(Duration duration);
 
     /**
      * Gets the {@link ItemStack} being consumed.
@@ -62,7 +64,7 @@ public interface UseItemStackEvent extends Event {
     ItemStackSnapshot getItemStackInUse();
 
     /**
-     * Called before {@link UseItemStackEvent.Tick} when a player starts using an
+     * Called before {@link UseItemStackEvent.Update} when a player starts using an
      * {@link ItemType}, typically when they hold right mouse.
      *
      * <p>Examples:</p>
@@ -80,26 +82,26 @@ public interface UseItemStackEvent extends Event {
     interface Start extends UseItemStackEvent, Cancellable  {}
 
     /**
-     * Called after {@link UseItemStackEvent.Start} during each tick as an
+     * Called after {@link UseItemStackEvent.Start} during each update as an
      * {@link ItemType} is being used.
      *
-     * <p>In Vanilla, tick actions are used to play eating particles and
+     * <p>In Vanilla, update actions are used to play eating particles and
      * sounds.</p>
      *
-     * <p>In Vanilla, items only perform an action every 4 ticks, and only
-     * when 25 or fewer ticks remaining. Cancelling this event on other
-     * ticks will have no effect in Vanilla.</p>
+     * <p>In Vanilla, items only perform an action every 4 minecraft ticks,
+     * and only when 25 or fewer minecraft ticks remaining. Cancelling this
+     * event on other updates will have no effect in Vanilla.</p>
      *
      * <p>Cancelling the event will cause no action to be taken for the
-     * particular item for the tick being processed.</p>
+     * particular item for the update being processed.</p>
      *
      * <p>Note: Setting the duration 0 will cause the player to finish using
      * the item.</p>
      */
-    interface Tick extends UseItemStackEvent, Cancellable {}
+    interface Update extends UseItemStackEvent, Cancellable {}
 
     /**
-     * Called after {@link UseItemStackEvent.Tick} when an {@link ItemType} has finished being
+     * Called after {@link UseItemStackEvent.Update} when an {@link ItemType} has finished being
      * used.
      *
      * <p>Examples:</p>

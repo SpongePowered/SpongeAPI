@@ -246,7 +246,7 @@ public interface ChunkTicketManager {
          * removed.
          *
          * <p>This does not cause an immediate load of the chunk. Forced chunks
-         * will be loaded eventually, but may not be available for a few ticks.
+         * will be loaded eventually, but may not be available for a long time.
          * Forced chunk loading is equivalent to the loading caused by a
          * player.</p>
          *

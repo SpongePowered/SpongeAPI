@@ -46,6 +46,7 @@ import org.spongepowered.api.entity.living.trader.Villager;
 import org.spongepowered.api.entity.vehicle.Boat;
 import org.spongepowered.api.entity.vehicle.minecart.Minecart;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.util.temporal.TemporalScaledInt;
 
 /**
  * An enumeration of all the possible game rules in vanilla minecraft.
@@ -224,15 +225,19 @@ public final class GameRules {
     public static final GameRule<Boolean> NATURAL_REGENERATION = DummyObjectProvider.createFor(GameRule.class, "NATURAL_REGENERATION");
 
     /**
-     * How often a random block tick occurs (such as plant growth,
-     * leaf decay, etc.) per chunk section per game tick.
+     * How often a random block update occurs (such as plant growth,
+     * leaf decay, etc.) per chunk section per time unit.
      *
-     * <p>0 will disable random ticks, higher numbers will increase random
-     * ticks</p>
+     * <p>0 will disable random updates, higher numbers will increase random
+     * updates.</p>
      *
-     * <p>This is a numerical game rule, with a default value of {@code 3}.</p>
+     * <p>This is a numerical game rule, with a default value of
+     * {@code 3} minecraft ticks.</p>
+     *
+     * <p>This game rule is also known as {@code randomTickSpeed} and
+     * can also be looked up as such.</p>
      */
-    public static final GameRule<Integer> RANDOM_TICK_SPEED = DummyObjectProvider.createFor(GameRule.class, "RANDOM_TICK_SPEED");
+    public static final GameRule<TemporalScaledInt> RANDOM_UPDATE_SPEED = DummyObjectProvider.createFor(GameRule.class, "RANDOM_UPDATE_SPEED");
 
     /**
      * Whether the debug screen shows all or reduced information.

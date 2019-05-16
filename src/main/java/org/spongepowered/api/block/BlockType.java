@@ -52,7 +52,7 @@ public interface BlockType extends CatalogType, StateContainer<BlockState>, Tran
     Optional<ItemType> getItem();
 
     /**
-     * Gets if this BlockType is set to receive random block ticks.
+     * Gets if this BlockType is set to receive random block updates.
      *
      * <p>Random block updates are most commonly used for growth of plants.</p>
      *

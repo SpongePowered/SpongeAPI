@@ -30,6 +30,8 @@ import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Ranger;
 
+import java.time.Duration;
+
 /**
  * An {@link AITask} which uses the ranging aspect of the Ranger to attack
  * the target.
@@ -63,21 +65,21 @@ public interface RangeAgentAITask extends AITask<Ranger> {
     RangeAgentAITask setMoveSpeed(double speed);
 
     /**
-     * Gets the delay in ticks between attempts to attack the targeted
+     * Gets the delay in delay between attempts to attack the targeted
      * {@link Entity}.
      *
-     * @return The delay in ticks between attempts to attack
+     * @return The delay between attempts to attack
      */
-    int getDelayBetweenAttacks();
+    Duration getDelayBetweenAttacks();
 
     /**
-     * The time, in ticks, this {@link Ranger} will wait before attacking
+     * The time, this {@link Ranger} will wait before attacking
      * again.
      *
-     * @param delay The delay, in ticks
+     * @param delay The delay
      * @return This task, for chaining
      */
-    RangeAgentAITask setDelayBetweenAttacks(int delay);
+    RangeAgentAITask setDelayBetweenAttacks(Duration delay);
 
     /**
      * Gets the radius of which the owning {@link Ranger} will attempt to
@@ -101,7 +103,7 @@ public interface RangeAgentAITask extends AITask<Ranger> {
 
         Builder moveSpeed(double speed);
 
-        Builder delayBetweenAttacks(int delay);
+        Builder delayBetweenAttacks(Duration delay);
 
         Builder attackRadius(float radius);
     }

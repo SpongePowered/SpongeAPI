@@ -48,7 +48,7 @@ public interface MutableEntityVolume<M extends MutableEntityVolume<M>> extends S
      * created means the entity can be spawned at the given location. If
      * {@link Optional#empty()} was returned, the entity is not able to spawn at
      * the given location. Furthermore, this allows for the {@link Entity} to be
-     * customized further prior to traditional "ticking" and processing by core
+     * customized further prior to traditional "updating" and processing by core
      * systems.</p>
      *
      * @param type The type
@@ -67,7 +67,7 @@ public interface MutableEntityVolume<M extends MutableEntityVolume<M>> extends S
      * created means the entity can be spawned at the given location. If
      * {@link Optional#empty()} was returned, the entity is not able to spawn at
      * the given location. Furthermore, this allows for the {@link Entity} to be
-     * customized further prior to traditional "ticking" and processing by core
+     * customized further prior to traditional "updating" and processing by core
      * systems.</p>
      *
      * @param type The type
@@ -90,7 +90,7 @@ public interface MutableEntityVolume<M extends MutableEntityVolume<M>> extends S
      * created means the entity can be spawned at the given location. If
      * {@link Optional#empty()} was returned, the entity is not able to spawn at
      * the given location. Furthermore, this allows for the {@link Entity} to be
-     * customized further prior to traditional "ticking" and processing by core
+     * customized further prior to traditional "updating" and processing by core
      * systems.</p>
      *
      * @param type The type
@@ -110,7 +110,7 @@ public interface MutableEntityVolume<M extends MutableEntityVolume<M>> extends S
      * created means the entity can be spawned at the given location. If
      * {@link Optional#empty()} was returned, the entity is not able to spawn at
      * the given location. Furthermore, this allows for the {@link Entity} to be
-     * customized further prior to traditional "ticking" and processing by core
+     * customized further prior to traditional "updating" and processing by core
      * systems.</p>
      *
      * @param type The type
@@ -132,7 +132,7 @@ public interface MutableEntityVolume<M extends MutableEntityVolume<M>> extends S
      * created means the entity can be spawned at the given location. If
      * {@link Optional#empty()} was returned, the entity is not able to spawn at
      * the given location. Furthermore, this allows for the {@link Entity} to be
-     * customized further prior to traditional "ticking" and processing by core
+     * customized further prior to traditional "updating" and processing by core
      * systems.</p>
      *
      * @param entityContainer The data container of the entity
@@ -147,7 +147,7 @@ public interface MutableEntityVolume<M extends MutableEntityVolume<M>> extends S
      * created means the entity can be spawned at the given location. If
      * {@link Optional#empty()} was returned, the entity is not able to spawn at
      * the given location. Furthermore, this allows for the {@link Entity} to be
-     * customized further prior to traditional "ticking" and processing by core
+     * customized further prior to traditional "updating" and processing by core
      * systems.</p>
      *
      * @param entityContainer The data container of the entity

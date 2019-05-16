@@ -31,6 +31,8 @@ import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.entity.Entity;
 
+import java.time.Duration;
+
 /**
  * Represents an effect of a {@link PotionEffectType} for a specified
  * {@link #getDuration()}, {@link #getAmplifier()}, and
@@ -51,18 +53,17 @@ public interface PotionEffect extends DataSerializable, PropertyHolder {
 
     /**
      * Creates a new {@link PotionEffect} with the provided
-     * {@link PotionEffectType}, the provided amplifier, and the provided
-     * duration in ticks.
+     * {@link PotionEffectType}, the provided amplifier and the provided
+     * duration.
      *
      * @param type The potion type
      * @param amplifier The amplifier
-     * @param duration The duration in ticks
+     * @param duration The duration
      * @return The potion effect
      */
-    static PotionEffect of(PotionEffectType type, int amplifier, int duration) {
+    static PotionEffect of(PotionEffectType type, int amplifier, Duration duration) {
         return builder().potionType(type).amplifier(amplifier).duration(duration).build();
     }
-
 
     /**
      * Gets the {@link PotionEffectType} of this potion.
@@ -72,12 +73,12 @@ public interface PotionEffect extends DataSerializable, PropertyHolder {
     PotionEffectType getType();
 
     /**
-     * Gets the duration in ticks for which this potion effect
+     * Gets the duration for which this potion effect
      * will apply for.
      *
-     * @return The duration.
+     * @return The duration
      */
-    int getDuration();
+    Duration getDuration();
 
     /**
      * Gets the amplifier at which this potion effect
@@ -119,12 +120,12 @@ public interface PotionEffect extends DataSerializable, PropertyHolder {
         Builder potionType(PotionEffectType potionEffectType);
 
         /**
-         * Sets the duration in ticks of the potion effect.
+         * Sets the duration of the potion effect.
          *
-         * @param duration The duration in ticks of this effect
+         * @param duration The duration of this effect
          * @return This builder, for chaining
          */
-        Builder duration(int duration);
+        Builder duration(Duration duration);
 
         /**
          * Sets the amplifier power of the potion effect.

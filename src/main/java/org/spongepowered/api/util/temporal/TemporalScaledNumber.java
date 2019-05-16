@@ -22,32 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.animal;
+package org.spongepowered.api.util.temporal;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.item.ItemTypes;
-
-import java.time.Duration;
+import java.time.temporal.TemporalAmount;
 
 /**
- * Represents a Chicken.
+ * Represents a number that is affected by a
+ * {@link TemporalAmount}.
+ *
+ * @param <V> The number type
  */
-public interface Chicken extends Animal {
+public interface TemporalScaledNumber<V extends Number> extends TemporalBasedValue<V>, Comparable<TemporalScaledNumber<V>> {
 
-    /**
-     * Gets a {@link Value} representing the time until a {@link Chicken} lays
-     * an {@link ItemTypes#EGG}.
-     *
-     * <p>
-     *     Vanilla will calculate the egg timer by taking a random value between
-     *     0 (inclusive) and 6000 (exclusive) and then add that by another 6000.
-     *     This unit ends up being in minecraft ticks. Once the chicken lays the
-     *     egg, this calculation is ran again.
-     * </p>
-     * @return The egg lay time value
-     */
-    default Value.Mutable<Duration> eggTimer() {
-        return this.getValue(Keys.EGG_TIMER).get().asMutable();
-    }
 }

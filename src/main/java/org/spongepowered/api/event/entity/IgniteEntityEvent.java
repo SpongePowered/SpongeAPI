@@ -28,6 +28,8 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 
+import java.time.Duration;
+
 /**
  * An event that occurs when an entity becomes ignited.
  */
@@ -41,23 +43,24 @@ public interface IgniteEntityEvent extends Event, Cancellable {
     Entity getEntity();
 
     /**
-     * Gets the original amount of fire ticks the entity will remain on fire.
-     * @return The original fire ticks
+     * Gets the original amount of time the entity will remain on fire.
+     *
+     * @return The original burn time
      */
-    int getOriginalFireTicks();
+    Duration getOriginalOnFireTime();
 
     /**
-     * Gets the amount of ticks the entity will remain on fire.
+     * Gets the amount of time the entity will remain on fire.
      *
-     * @return The amount of ticks the entity will remain on fire
+     * @return The time the entity will remain on fire
      */
-    int getFireTicks();
+    Duration getOnFireTime();
 
     /**
-     * Sets the amount of ticks the entity will remain on fire.
+     * Sets the amount of time the entity will remain on fire.
      *
-     * @param fireTicks The amount of ticks the entity will remain on fire
+     * @param duration The time the entity will remain on fire
      */
-    void setFireTicks(int fireTicks);
+    void setOnFireTime(Duration duration);
 
 }

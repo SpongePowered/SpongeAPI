@@ -27,6 +27,7 @@ package org.spongepowered.api.world;
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.CopyableBuilder;
+import org.spongepowered.api.util.temporal.TemporalScaledDouble;
 
 import java.time.Duration;
 import java.time.temporal.TemporalUnit;
@@ -242,20 +243,20 @@ public interface WorldBorder {
     void setDamageThreshold(double distance);
 
     /**
-     * Gets the damage done to a player per block per tick when outside the
+     * Gets the damage done to a player per block over time when outside the
      * buffer.
      *
      * @return The damage amount
      */
-    double getDamageAmount();
+    TemporalScaledDouble getDamageAmount();
 
     /**
-     * Sets the damage done to a player per block per tick when outside the
-     * buffer.
+     * Sets the damage done to a player per block over time when
+     * outside the buffer.
      *
      * @param damage The damage amount
      */
-    void setDamageAmount(double damage);
+    void setDamageAmount(TemporalScaledDouble damage);
 
     /**
      * Copies the properties of the passed border onto this border.

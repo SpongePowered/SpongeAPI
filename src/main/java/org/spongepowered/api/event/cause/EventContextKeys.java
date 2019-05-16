@@ -62,7 +62,7 @@ public final class EventContextKeys {
      * For example, a piston head retracting and extending.
      * 
      * Note: This represents vanilla's block event.
-     * Note: This occurs at the end of a world tick after
+     * Note: This occurs at the end of a world update after
      *  {@link #BLOCK_EVENT_QUEUE}.
      */
     public static final EventContextKey<LocatableBlock> BLOCK_EVENT_PROCESS = createFor("BLOCK_EVENT_PROCESS");

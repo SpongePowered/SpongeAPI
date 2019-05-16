@@ -26,8 +26,9 @@ package org.spongepowered.api.entity.living.player;
 
 import org.spongepowered.api.item.ItemType;
 
+import java.time.Duration;
+import java.util.Optional;
 import java.util.OptionalDouble;
-import java.util.OptionalInt;
 
 /**
  * Provides access to the item cooldowns of a {@link Player}.
@@ -44,25 +45,24 @@ public interface CooldownTracker {
     boolean hasCooldown(ItemType type);
 
     /**
-     * Gets the cooldown of the specified {@link ItemType} in ticks for the
+     * Gets the cooldown of the specified {@link ItemType} for the
      * player, or empty if the the item type is currently not on cooldown.
      *
      * @param type The item type to get the cooldown for
-     * @return The cooldown remaining for this item type in ticks, if not
-     *     on cooldown
+     * @return The cooldown remaining for this item type, if not {@link Optional#empty()}
      */
-    OptionalInt getCooldown(ItemType type);
+    Optional<Duration> getCooldown(ItemType type);
 
     /**
      * Sets the cooldown for the specified {@link ItemType} for the
-     * specified amount of ticks.
+     * specified duration.
      *
      * @param type The item type to set the cooldown for
-     * @param ticks The amount of ticks to set the item type on cooldown for
+     * @param duration The duration to set the item type on cooldown for
      * @return False if setting the cooldown failed, possibly due to the event
      *     being cancelled
      */
-    boolean setCooldown(ItemType type, int ticks);
+    boolean setCooldown(ItemType type, Duration duration);
 
     /**
      * Resets the cooldown of the specified {@link ItemType} for the

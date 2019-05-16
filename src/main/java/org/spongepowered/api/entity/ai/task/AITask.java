@@ -99,7 +99,7 @@ public interface AITask<O extends Agent> {
      * {@link Goal}.  To put it simply, this value can mean "Should I be added
      * as an updating task or "Should I continue updating?". Regardless of the
      * question, the next step that happens is transferring from this method to
-     * {@link AITask#canRunConcurrentWith(AITask)} in the next AI tick loop.</p>
+     * {@link AITask#canRunConcurrentWith(AITask)} in the next AI update loop.</p>
      *
      * @return True if can be interrupted, false if not
      */

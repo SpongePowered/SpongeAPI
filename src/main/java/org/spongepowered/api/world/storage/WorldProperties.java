@@ -30,7 +30,7 @@ import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.util.Identifiable;
-import org.spongepowered.api.util.TemporalUnits;
+import org.spongepowered.api.util.temporal.TemporalUnits;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.World;
@@ -185,7 +185,7 @@ public interface WorldProperties extends WeatherUniverse, DataSerializable, Iden
     Duration getTotalTime();
 
     /**
-     * Gets the time of day, in ticks. The amount of time that a minecraft day
+     * Gets the time of day. The amount of time that a minecraft day
      * takes can be determined with the unit {@link TemporalUnits#MINECRAFT_DAYS}.
      *
      * @return The time of day

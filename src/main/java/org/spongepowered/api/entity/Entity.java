@@ -450,7 +450,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
 
     /**
      * Mark this entity for removal in the very near future, preferably
-     * within one game tick.
+     * within one game update.
      */
     void remove();
 

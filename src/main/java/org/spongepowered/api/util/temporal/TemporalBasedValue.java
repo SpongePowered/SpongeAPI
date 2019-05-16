@@ -22,33 +22,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
+package org.spongepowered.api.util.temporal;
 
-import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.world.Location;
+import java.time.temporal.TemporalAmount;
+import java.time.temporal.TemporalUnit;
 
 /**
- * Called when a {@link BlockState} receives a tick.
+ * Represents a value that is affected by a
+ * {@link TemporalAmount}.
+ *
+ * @param <V> The number type
  */
-public interface TickBlockEvent extends Event, Cancellable {
+public interface TemporalBasedValue<V> {
 
     /**
-     * Gets the {@link BlockSnapshot}.
+     * Gets the value based on the given {@link TemporalUnit}.
      *
-     * @return The block snapshot
+     * @param temporalUnit The temporal unit
+     * @return The value based on the temporal unit
      */
-    BlockSnapshot getBlock();
+    default V get(TemporalUnit temporalUnit) {
+        return get(temporalUnit.getDuration());
+    }
 
     /**
-     * An event when a block at a {@link Location} is scheduled to tick.
+     * Gets the value based on the given {@link TemporalAmount}.
+     *
+     * @param temporalAmount The temporal amount
+     * @return The value based on the temporal amount
      */
-    interface Scheduled extends TickBlockEvent { }
+    V get(TemporalAmount temporalAmount);
 
-    /**
-     * An event when a block is told to "randomly" tick.
-     */
-    interface Random extends TickBlockEvent { }
 }

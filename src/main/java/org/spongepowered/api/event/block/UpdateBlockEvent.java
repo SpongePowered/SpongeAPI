@@ -22,32 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.animal;
+package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.item.ItemTypes;
-
-import java.time.Duration;
+import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
+import org.spongepowered.api.world.Location;
 
 /**
- * Represents a Chicken.
+ * Called when a {@link BlockState} receives a update.
  */
-public interface Chicken extends Animal {
+public interface UpdateBlockEvent extends Event, Cancellable {
 
     /**
-     * Gets a {@link Value} representing the time until a {@link Chicken} lays
-     * an {@link ItemTypes#EGG}.
+     * Gets the {@link BlockSnapshot}.
      *
-     * <p>
-     *     Vanilla will calculate the egg timer by taking a random value between
-     *     0 (inclusive) and 6000 (exclusive) and then add that by another 6000.
-     *     This unit ends up being in minecraft ticks. Once the chicken lays the
-     *     egg, this calculation is ran again.
-     * </p>
-     * @return The egg lay time value
+     * @return The block snapshot
      */
-    default Value.Mutable<Duration> eggTimer() {
-        return this.getValue(Keys.EGG_TIMER).get().asMutable();
-    }
+    BlockSnapshot getBlock();
+
+    /**
+     * An event when a block at a {@link Location} is scheduled to update.
+     */
+    interface Scheduled extends UpdateBlockEvent { }
+
+    /**
+     * An event when a block is told to "randomly" update.
+     */
+    interface Random extends UpdateBlockEvent { }
 }

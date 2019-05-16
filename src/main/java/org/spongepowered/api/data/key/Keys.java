@@ -157,6 +157,8 @@ import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.RespawnLocation;
+import org.spongepowered.api.util.temporal.TemporalScaledDouble;
+import org.spongepowered.api.util.temporal.TemporalUnits;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
@@ -203,10 +205,9 @@ public final class Keys {
     public static final Key<Value<Boolean>> AFFECTS_SPAWNING = DummyObjectProvider.createExtendedFor(Key.class, "AFFECTS_SPAWNING");
 
     /**
-     * Represents the {@link Key} for the age of any {@link Ageable} creature
-     * in ticks.
+     * Represents the {@link Key} for the age of any {@link Ageable} creature.
      */
-    public static final Key<BoundedValue<Integer>> AGE = DummyObjectProvider.createExtendedFor(Key.class, "AGE");
+    public static final Key<BoundedValue<Duration>> AGE = DummyObjectProvider.createExtendedFor(Key.class, "AGE");
 
     /**
      * Represents the {@link Key} for whether an {@link Agent}s AI is enabled.
@@ -230,10 +231,10 @@ public final class Keys {
     public static final Key<Value<Boolean>> ANGRY = DummyObjectProvider.createExtendedFor(Key.class, "ANGRY");
 
     /**
-     * Represents the {@link Key} for the age (in ticks) of an
+     * Represents the {@link Key} for the age of an
      * {@link AreaEffectCloud} created by a lingering potion.
      */
-    public static final Key<BoundedValue<Integer>> AREA_EFFECT_CLOUD_AGE = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_AGE");
+    public static final Key<BoundedValue<Duration>> AREA_EFFECT_CLOUD_AGE = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_AGE");
 
     /**
      * Represents the {@link Key} for the color of an {@link AreaEffectCloud}
@@ -242,18 +243,17 @@ public final class Keys {
     public static final Key<Value<Color>> AREA_EFFECT_CLOUD_COLOR = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_COLOR");
 
     /**
-     * Represents the {@link Key} for the maximum age (in ticks) of an
+     * Represents the {@link Key} for the maximum age of an
      * {@link AreaEffectCloud} created by a lingering potion.
      */
-    public static final Key<BoundedValue<Integer>> AREA_EFFECT_CLOUD_DURATION =
-        DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_DURATION");
+    public static final Key<BoundedValue<Duration>> AREA_EFFECT_CLOUD_DURATION = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_DURATION");
 
     /**
-     * Represents the {@link Key} for the amount of ticks the duration of an
+     * Represents the {@link Key} for the amount the duration of an
      * {@link AreaEffectCloud} is increased or reduced when it applies its
      * effect.
      */
-    public static final Key<BoundedValue<Integer>> AREA_EFFECT_CLOUD_DURATION_ON_USE = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_DURATION_ON_USE");
+    public static final Key<BoundedValue<Duration>> AREA_EFFECT_CLOUD_DURATION_ON_USE = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_DURATION_ON_USE");
 
     /**
      * Represents the {@link Key} for the particle type of an
@@ -275,22 +275,22 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the amount the radius of an
-     * {@link AreaEffectCloud} grows or shrinks per tick.
+     * {@link AreaEffectCloud} grows or shrinks over time.
      */
-    public static final Key<BoundedValue<Double>> AREA_EFFECT_CLOUD_RADIUS_PER_TICK = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_RADIUS_PER_TICK");
+    public static final Key<BoundedValue<TemporalScaledDouble>> AREA_EFFECT_CLOUD_RADIUS_REDUCTION_OVER_TIME = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_RADIUS_CHANGE_OVER_TIME");
 
     /**
-     * Represents the {@link Key} for the delay (in ticks) after which an
+     * Represents the {@link Key} for the delay after which an
      * {@link AreaEffectCloud} will reapply its effect on a previously
      * affected {@link Entity}.
      */
-    public static final Key<BoundedValue<Integer>> AREA_EFFECT_CLOUD_REAPPLICATION_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_REAPPLICATION_DELAY");
+    public static final Key<BoundedValue<Duration>> AREA_EFFECT_CLOUD_REAPPLICATION_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_REAPPLICATION_DELAY");
 
     /**
-     * Represents the {@link Key} for the duration in ticks after which an
+     * Represents the {@link Key} for the duration after which an
      * {@link AreaEffectCloud} will begin to apply its effect to entities.
      */
-    public static final Key<BoundedValue<Integer>> AREA_EFFECT_CLOUD_WAIT_TIME = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_WAIT_TIME");
+    public static final Key<BoundedValue<Duration>> AREA_EFFECT_CLOUD_WAIT_TIME = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_WAIT_TIME");
 
     /**
      * Represents the {@link Key} for whether an {@link ArmorStand}'s arms are
@@ -566,10 +566,10 @@ public final class Keys {
     public static final Key<BoundedValue<Integer>> CONTAINED_EXPERIENCE = DummyObjectProvider.createExtendedFor(Key.class, "CONTAINED_EXPERIENCE");
 
     /**
-     * Represents the {@link Key} for the amount of ticks a {@link Hopper} has
+     * Represents the {@link Key} for the amount of time a {@link Hopper} has
      * to cool down before transferring the next item.
      */
-    public static final Key<BoundedValue<Integer>> COOLDOWN = DummyObjectProvider.createExtendedFor(Key.class, "COOLDOWN");
+    public static final Key<BoundedValue<Duration>> COOLDOWN = DummyObjectProvider.createExtendedFor(Key.class, "COOLDOWN");
 
     /**
      * Represents the {@link Key} for whether a {@link Creeper} is charged.
@@ -653,7 +653,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for the time until a {@link Chicken} lays an {@link ItemTypes#EGG}.
      */
-    public static final Key<Value<Integer>> EGG_TIMER = DummyObjectProvider.createExtendedFor(Key.class, "EGG_TIMER");
+    public static final Key<Value<Duration>> EGG_TIMER = DummyObjectProvider.createExtendedFor(Key.class, "EGG_TIMER");
 
     /**
      * Represents the {@link Key} for representing the age of
@@ -757,10 +757,10 @@ public final class Keys {
     public static final Key<BoundedValue<Float>> FALL_DISTANCE = DummyObjectProvider.createExtendedFor(Key.class, "FALL_DISTANCE");
 
     /**
-     * Represents the {@link Key} for the amount of ticks a
+     * Represents the {@link Key} for the amount of time a
      * {@link FallingBlock} has been falling for.
      */
-    public static final Key<Value<Integer>> FALL_TIME = DummyObjectProvider.createExtendedFor(Key.class, "FALL_TIME");
+    public static final Key<Value<Duration>> FALL_TIME = DummyObjectProvider.createExtendedFor(Key.class, "FALL_TIME");
 
     /**
      * Represents the {@link Key} for representing the "filled" state
@@ -782,21 +782,21 @@ public final class Keys {
      *
      * <p>The duration is tiered and will stay partially random. A rocket will
      * fly for roughly {@code modifier * 10 + (random number from 0 to 13)}
-     * ticks in Vanilla Minecraft.</p>
+     * {@link TemporalUnits#MINECRAFT_TICKS} in Vanilla Minecraft.</p>
      */
-    public static final Key<BoundedValue<Integer>> FIREWORK_FLIGHT_MODIFIER = DummyObjectProvider.createExtendedFor(Key.class, "FIREWORK_FLIGHT_MODIFIER");
+    public static final Key<BoundedValue<Duration>> FIREWORK_FLIGHT_MODIFIER = DummyObjectProvider.createExtendedFor(Key.class, "FIREWORK_FLIGHT_MODIFIER");
 
     /**
-     * Represents the {@link Key} for the delay in ticks until the
+     * Represents the {@link Key} for the delay until the
      * {@link Entity} will be damaged by the fire.
      */
-    public static final Key<BoundedValue<Integer>> FIRE_DAMAGE_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "FIRE_DAMAGE_DELAY");
+    public static final Key<BoundedValue<Duration>> FIRE_DAMAGE_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "FIRE_DAMAGE_DELAY");
 
     /**
-     * Represents the {@link Key} for the amount of ticks an
+     * Represents the {@link Key} for the duration an
      * {@link Entity} is still burning.
      */
-    public static final Key<BoundedValue<Integer>> FIRE_TICKS = DummyObjectProvider.createExtendedFor(Key.class, "FIRE_TICKS");
+    public static final Key<BoundedValue<Duration>> ON_FIRE_TIME = DummyObjectProvider.createExtendedFor(Key.class, "ON_FIRE_TIME");
 
     /**
      * Represents the {@link Key} for the time a {@link Player} first played
@@ -991,10 +991,10 @@ public final class Keys {
     public static final Key<Value<Boolean>> INVISIBLE = DummyObjectProvider.createExtendedFor(Key.class, "INVISIBLE");
 
     /**
-     * Represents the {@link Key} for the amount of ticks an {@link Entity}
+     * Represents the {@link Key} for the duration an {@link Entity}
      * will remain invulnerable for.
      */
-    public static final Key<BoundedValue<Integer>> INVULNERABILITY_TICKS = DummyObjectProvider.createExtendedFor(Key.class, "INVULNERABILITY_TICKS");
+    public static final Key<BoundedValue<Duration>> INVULNERABILITY_DURATION = DummyObjectProvider.createExtendedFor(Key.class, "INVULNERABILITY_DURATION");
 
     /**
      * Represents the {@link Key} for representing if an {@link Entity}
@@ -1228,16 +1228,16 @@ public final class Keys {
     public static final Key<BoundedValue<Integer>> MAX_AIR = DummyObjectProvider.createExtendedFor(Key.class, "MAX_AIR");
 
     /**
-     * Represents the {@link Key} for the maximum amount of ticks a
+     * Represents the {@link Key} for the maximum duration a
      * {@link Furnace} can burn with the currently used fuel item.
      */
-    public static final Key<BoundedValue<Integer>> MAX_BURN_TIME = DummyObjectProvider.createExtendedFor(Key.class, "MAX_BURN_TIME");
+    public static final Key<BoundedValue<Duration>> MAX_BURN_TIME = DummyObjectProvider.createExtendedFor(Key.class, "MAX_BURN_DURATION");
 
     /**
      * Represents the {@link Key} for the total time the current
      * {@link ItemStack} in a {@link Furnace} has to be cooked.
      */
-    public static final Key<BoundedValue<Integer>> MAX_COOK_TIME = DummyObjectProvider.createExtendedFor(Key.class, "MAX_COOK_TIME");
+    public static final Key<BoundedValue<Duration>> MAX_COOK_TIME = DummyObjectProvider.createExtendedFor(Key.class, "MAX_COOK_DURATION");
 
     /**
      * Represents the {@link Key} for the maximum damage a {@link FallingBlock}
@@ -1294,7 +1294,7 @@ public final class Keys {
     public static final Key<Value<ParrotType>> PARROT_TYPE = DummyObjectProvider.createExtendedFor(Key.class, "PARROT_TYPE");
 
     /**
-     * Represents the {@link Key} for the amount of ticks a {@link Furnace} has
+     * Represents the {@link Key} for the amount of time a {@link Furnace} has
      * already been burning with the current fuel item.
      *
      * <p>Once this value reaches the one of {@link #MAX_BURN_TIME}, the
@@ -1303,7 +1303,7 @@ public final class Keys {
     public static final Key<BoundedValue<Integer>> PASSED_BURN_TIME = DummyObjectProvider.createExtendedFor(Key.class, "PASSED_BURN_TIME");
 
     /**
-     * Represents the {@link Key} for the amount of ticks a {@link Furnace} has
+     * Represents the {@link Key} for the amount of time a {@link Furnace} has
      * been cooking the current item for.
      *
      * <p>Once this value reaches the one of {@link #MAX_COOK_TIME}, the
@@ -1429,12 +1429,12 @@ public final class Keys {
     public static final Key<BoundedValue<Integer>> REMAINING_AIR = DummyObjectProvider.createExtendedFor(Key.class, "REMAINING_AIR");
 
     /**
-     * Represents the {@link Key} for how many more ticks the current brewing
+     * Represents the {@link Key} for how long the current brewing
      * process of a {@link BrewingStand} will take.
      *
      * <p>If nothing is being brewed, the remaining brew time will be 0.</p>
      */
-    public static final Key<BoundedValue<Integer>> REMAINING_BREW_TIME = DummyObjectProvider.createExtendedFor(Key.class, "REMAINING_BREW_TIME");
+    public static final Key<BoundedValue<Duration>> REMAINING_BREW_TIME = DummyObjectProvider.createExtendedFor(Key.class, "REMAINING_BREW_TIME");
 
     /**
      * Represents the {@link Key} for representing the {@link BlockState}
@@ -1542,10 +1542,10 @@ public final class Keys {
     public static final Key<WeightedCollectionValue<EntityArchetype>> SPAWNER_ENTITIES = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_ENTITIES");
 
     /**
-     * Represents the {@link Key} for the maximum amount of ticks between two
+     * Represents the {@link Key} for the maximum amount of time between two
      * batches of entities spawned by a {@link MobSpawner}.
      */
-    public static final Key<BoundedValue<Short>> SPAWNER_MAXIMUM_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_MAXIMUM_DELAY");
+    public static final Key<BoundedValue<Duration>> SPAWNER_MAXIMUM_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_MAXIMUM_DELAY");
 
     /**
      * Represents the {@link Key} for the maximum number of entities around a
@@ -1555,10 +1555,10 @@ public final class Keys {
     public static final Key<BoundedValue<Short>> SPAWNER_MAXIMUM_NEARBY_ENTITIES = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_MAXIMUM_NEARBY_ENTITIES");
 
     /**
-     * Represents the {@link Key} for the minimum amount of ticks between two
+     * Represents the {@link Key} for the minimum amount of time between two
      * batches of entities spawned by a {@link MobSpawner}.
      */
-    public static final Key<BoundedValue<Short>> SPAWNER_MINIMUM_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_MINIMUM_DELAY");
+    public static final Key<BoundedValue<Duration>> SPAWNER_MINIMUM_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_MINIMUM_DELAY");
 
     /**
      * Represents the {@link Key} for the next entity that will be spawned
@@ -1571,10 +1571,10 @@ public final class Keys {
     public static final Key<Value<WeightedSerializableObject<EntityArchetype>>> SPAWNER_NEXT_ENTITY_TO_SPAWN = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_NEXT_ENTITY_TO_SPAWN");
 
     /**
-     * Represents the {@link Key} for the remaining number of ticks to pass
+     * Represents the {@link Key} for the remaining time to pass
      * before another attempt to spawn entities is made by a {@link MobSpawner}.
      */
-    public static final Key<BoundedValue<Short>> SPAWNER_REMAINING_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_REMAINING_DELAY");
+    public static final Key<BoundedValue<Duration>> SPAWNER_REMAINING_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_REMAINING_DELAY");
 
     /**
      * Represents the {@link Key} for how close a {@link Player} has to be
@@ -1715,11 +1715,11 @@ public final class Keys {
     public static final Key<Value<Vector3d>> TARGETED_LOCATION = DummyObjectProvider.createExtendedFor(Key.class, "TARGETED_LOCATION");
 
     /**
-     * Represents the {@link Key} for the remaining fuse time in ticks of a
+     * Represents the {@link Key} for the remaining fuse time of a
      * {@link FusedExplosive}. This value may be set to an arbitrary value
      * if the explosive is not primed.
      */
-    public static final Key<Value<Integer>> TICKS_REMAINING = DummyObjectProvider.createExtendedFor(Key.class, "TICKS_REMAINING");
+    public static final Key<Value<Integer>> TIME_REMAINING = DummyObjectProvider.createExtendedFor(Key.class, "TIME_REMAINING");
 
     /**
      * Represents the {@link Key} for the full amount of experience a

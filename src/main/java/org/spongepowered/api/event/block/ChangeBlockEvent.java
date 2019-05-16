@@ -149,18 +149,18 @@ public interface ChangeBlockEvent extends Event, Cancellable {
 
     /**
      * Called when there are multiple block changes due to a
-     * {@link BlockType} having "ticked", in which the {@link Cause} will
+     * {@link BlockType} having "updated", in which the {@link Cause} will
      * have a {@link BlockSnapshot}, or, in the case that an {@link Entity}
      * has "ticked", in which the {@link Cause} will have an {@link Entity},
-     * or, in the case that a {@link BlockEntity} "ticked", the {@link Cause}
+     * or, in the case that a {@link BlockEntity} "updated", the {@link Cause}
      * will have the {@link BlockEntity}.
      *
      * <p>The {@link Cause} may contain {@link Event}s, such as {@link Break},
      * {@link Place}, and {@link Modify}. These events may be cancelled,
      * or have their transactions modified, just like normal events.</p>
      *
-     * <p>The idea is that  a block, entity, or block entity "ticks" in which
-     * during that "tick", they make different types of block changes. If the
+     * <p>The idea is that a block, entity, or block entity "updates" in which
+     * during that "update", they make different types of block changes. If the
      * block change is purely one type then the corresponding event is thrown
      * instead. For example, If the block change is purely "placing" of
      * blocks, the {@link Place} event would be thrown instead.</p>

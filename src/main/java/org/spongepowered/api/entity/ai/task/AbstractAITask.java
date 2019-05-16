@@ -39,7 +39,7 @@ import java.util.Optional;
  * Minecraft, use {@link GameRegistry#createBuilder(Class)} and pass a builder to
  * it instead.</p>
  *
- * <p>At the beginning of every "AI" tick, all {@link AITask}s that are added to
+ * <p>At the beginning of every "AI" update, all {@link AITask}s that are added to
  * the parent {@link Goal} are iterated through. If an {@link AITask} is already
  * marked as "in use", that task's {@link #continueUpdating()} is checked for
  * {@code true}. If {@link #continueUpdating()} is {@code false}, {@link #reset()}
@@ -51,7 +51,7 @@ import java.util.Optional;
  * is invoked. If {@link #shouldUpdate()} is {@code true}, the {@link AITask} is
  * marked as "in use", and {@link #start()} is invoked. After {@link #start()}
  * is called, {@link #update()} will be invoked to be used for the first time
- * in this "AI tick".</p>
+ * in this "AI update".</p>
  *
  * <p>Regardless whether the {@link AITask} was "in use" or not, if the {@link AITask}
  * is now "in use", {@link #continueUpdating()} is called to verify the validity of the
@@ -88,19 +88,19 @@ public abstract class AbstractAITask<O extends Agent> implements AITask<O> {
 
     /**
      * Invoked when the task is "started". A "start" of a task occurs at the
-     * "start" of the "AI" is "ticking". Depending on the case where
+     * "start" of the "AI" is "updating". Depending on the case where
      * {@link #shouldUpdate()} returns {@code false}, an {@link AITask} is
      * <strong>NOT</strong> going to be called, so this method would not be
-     * called at the "start" of the tick to "prepare" for {@link #update()}.
+     * called at the "start" of the update to "prepare" for {@link #update()}.
      */
     public abstract void start();
 
     /**
-     * Determines whether this {@link AITask} should be considered for "ticking"
+     * Determines whether this {@link AITask} should be considered for "updating"
      * or {@link #start()}, {@link #update()}, and {@link #reset()} are called
-     * for that "AI" tick.
+     * for that "AI" update.
      *
-     * @return Whether this task should be marked for use in the current tick
+     * @return Whether this task should be marked for use in the current update
      */
     public abstract boolean shouldUpdate();
 
@@ -115,19 +115,19 @@ public abstract class AbstractAITask<O extends Agent> implements AITask<O> {
 
     /**
      * Called to verify that this {@link AITask} needs to {@link #update()}
-     * in this tick. If this returns {@code false}, this {@link AITask}
+     * in this update. If this returns {@code false}, this {@link AITask}
      * is removed from use and {@link #reset()} is called.
      *
-     * @return Whether this task should update this "tick" or not
+     * @return Whether this task should update this "update" or not
      */
     public abstract boolean continueUpdating();
 
     /**
-     * Performs any reset necessary for this task during the current tick.
+     * Performs any reset necessary for this task during the current update.
      *
      * <p>Note that this may be called during any state during {@link #start()}
      * or {@link #update()} such that the task is removed from use for the
-     * current "AI" tick.</p>
+     * current "AI" update.</p>
      */
     public abstract void reset();
 }

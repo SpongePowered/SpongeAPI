@@ -30,6 +30,8 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.item.ItemType;
 
+import java.time.Duration;
+import java.util.Optional;
 import java.util.OptionalInt;
 
 /**
@@ -54,8 +56,6 @@ public interface CooldownEvent extends Event {
 
     /**
      * Handles an {@link ItemType} being given a cooldown for a {@link Player}.
-     *
-     * <p>The cooldowns are all in ticks.</p>
      */
     interface Set extends CooldownEvent, Cancellable {
 
@@ -64,28 +64,28 @@ public interface CooldownEvent extends Event {
          *
          * @return The cooldown of the item type beforehand
          */
-        OptionalInt getStartingCooldown();
+        Optional<Duration> getStartingCooldown();
 
         /**
          * Gets the original new set cooldown at the beginning of the event.
          *
          * @return The originally set cooldown
          */
-        int getOriginalNewCooldown();
+        Duration getOriginalNewCooldown();
 
         /**
          * Gets the new cooldown the item type has for the player.
          *
          * @return The new cooldown of the item type
          */
-        int getNewCooldown();
+        Duration getNewCooldown();
 
         /**
          * Sets the new cooldown for the item type for the player.
          *
-         * @param ticks The amount of ticks the cooldown should last for
+         * @param duration The duration the cooldown should last for
          */
-        void setNewCooldown(int ticks);
+        void setNewCooldown(Duration duration);
 
     }
 

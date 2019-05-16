@@ -40,7 +40,7 @@ public interface FusedExplosive extends Explosive {
     boolean isPrimed();
 
     /**
-     * Primes this explosive to detonate after the amount of ticks that
+     * Primes this explosive to detonate after the amount of time that
      * this entity explodes in defined by {@link Keys#FUSE_DURATION}.
      *
      * @throws IllegalStateException if explosive already primed

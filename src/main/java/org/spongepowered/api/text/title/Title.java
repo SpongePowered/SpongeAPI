@@ -28,6 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.CopyableBuilder;
 
+import java.time.Duration;
 import java.util.Optional;
 
 import javax.annotation.Nullable;
@@ -146,31 +147,31 @@ public interface Title {
      * period of time is over, the title will stay for the amount of time from
      * {@link #getStay}.
      *
-     * <p>The default value for Vanilla is 20 (1 second).</p>
+     * <p>The default value for vanilla is one second.</p>
      *
-     * @return The amount of ticks (1/20 second) for the fade in effect
+     * @return The duration of the fade in effect
      */
-    Optional<Integer> getFadeIn();
+    Optional<Duration> getFadeIn();
 
     /**
      * Returns the specified time how long the title should stay on the client.
      * Once this period of time is over, the title will fade out using the
      * duration specified from {@link #getFadeOut}.
      *
-     * <p>The default value for Vanilla is 60 (3 second).</p>
+     * <p>The default value for vanilla is 3 seconds.</p>
      *
-     * @return The amount of ticks (1/20 second) for the stay effect
+     * @return The duration of the stay effect
      */
-    Optional<Integer> getStay();
+    Optional<Duration> getStay();
 
     /**
      * Returns the specified time to fade out the title on the client.
      *
-     * <p>The default value for Vanilla is 20 (1 second).</p>
+     * <p>The default value for vanilla is 1 second.</p>
      *
-     * @return The amount of ticks (1/20 second) for the fade out effect
+     * @return The duration of the fade out effect
      */
-    Optional<Integer> getFadeOut();
+    Optional<Duration> getFadeOut();
 
     /**
      * Returns whether this configuration is clearing the current title from the
@@ -261,26 +262,25 @@ public interface Title {
         Builder actionBar(@Nullable Text actionBar);
 
         /**
-         * Returns the current fade in effect time of the title.
+         * Returns the current fade in effect duration of the title.
          *
-         * @return The current fade in time, or {@link Optional#empty()} if none
+         * @return The current fade in duration, or {@link Optional#empty()} if none
          * @see Title#getFadeIn()
          */
-        Optional<Integer> getFadeIn();
+        Optional<Duration> getFadeIn();
 
         /**
-         * Sets the duration in ticks of the fade in effect of the title. Once
+         * Sets the duration of the fade in effect of the title. Once
          * this period of time is over the title will stay for the amount of
-         * time specified in {@link #stay(Integer)}.
+         * time specified in {@link #stay(Duration)}.
          *
-         * <p>The default value for Vanilla is 20 (1 second).</p>
+         * <p>The default value for vanilla is 1 second.</p>
          *
-         * @param fadeIn The amount of ticks (1/20 second) for the fade in
-         *        effect, or {@code null} to reset
+         * @param fadeIn The duration of the fade in effect, or {@code null} to reset
          * @return This title builder
          * @see Title#getFadeIn()
          */
-        Builder fadeIn(@Nullable Integer fadeIn);
+        Builder fadeIn(@Nullable Duration fadeIn);
 
         /**
          * Returns the current stay effect time of the title.
@@ -288,42 +288,39 @@ public interface Title {
          * @return The current stay time, or {@link Optional#empty()} if none
          * @see Title#getStay()
          */
-        Optional<Integer> getStay();
+        Optional<Duration> getStay();
 
         /**
-         * Sets the duration in ticks how long the title should stay on the
+         * Sets the duration how long the title should stay on the
          * screen. Once this period of time is over the title will fade out
-         * using the duration specified in {@link #fadeOut(Integer)}.
+         * using the duration specified in {@link #fadeOut(Duration)}.
          *
-         * <p>The default value for Vanilla is 60 (3 seconds).</p>
+         * <p>The default value for Vanilla is 3 seconds.</p>
          *
-         * @param stay The amount of ticks (1/20 second) to stay, or
-         *        {@code null} to reset
+         * @param stay The duration to stay, or {@code null} to reset
          * @return This title builder
          * @see Title#getStay()
          */
-        Builder stay(@Nullable Integer stay);
+        Builder stay(@Nullable Duration stay);
 
         /**
-         * Returns the current fade out effect time of the title.
+         * Returns the current fade out effect duration of the title.
          *
-         * @return The current fade out time, or {@link Optional#empty()} if
-         *         none
+         * @return The current fade out duration, or {@link Optional#empty()} if none
          * @see Title#getFadeOut()
          */
-        Optional<Integer> getFadeOut();
+        Optional<Duration> getFadeOut();
 
         /**
-         * Sets the duration in ticks of the fade out effect of the title.
+         * Sets the duration of the fade out effect of the title.
          *
-         * <p>The default value for Vanilla is 20 (1 second).</p>
+         * <p>The default value for Vanilla is 1 second.</p>
          *
-         * @param fadeOut The amount of ticks (1/20 second) for the fade out
-         *        effect, or {@code null} to reset
+         * @param fadeOut The duration of the fade out effect, or {@code null} to reset
          * @return This title builder
          * @see Title#getFadeOut()
          */
-        Builder fadeOut(@Nullable Integer fadeOut);
+        Builder fadeOut(@Nullable Duration fadeOut);
 
         /**
          * Returns whether this builder is currently configured to clear.

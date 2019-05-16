@@ -22,9 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util;
+package org.spongepowered.api.util.temporal;
 
-import java.time.Duration;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalUnit;
 
@@ -32,8 +33,6 @@ import java.time.temporal.TemporalUnit;
  * An enumeration of all the default and minecraft related {@link TemporalUnit}s.
  */
 public final class TemporalUnits {
-
-    // The default temporal units, from ChronoUnit
 
     /**
      * @see ChronoUnit#NANOS
@@ -110,29 +109,16 @@ public final class TemporalUnits {
      */
     public static final ChronoUnit FOREVER = ChronoUnit.FOREVER;
 
-    // Minecraft related temporal units
-
-    // TODO: Move impl to sponge common?
+    /**
+     * A {@link TemporalUnit} which represents one minecraft tick.
+     */
+    public static final TemporalUnit MINECRAFT_TICKS = DummyObjectProvider.createFor(TemporalUnit.class, "MINECRAFT_TICKS");
 
     /**
-     * A {@link MinecraftTemporalUnit} which represents one minecraft tick.
+     * A {@link TemporalUnit} which represents a minecraft day.
      */
-    public static final MinecraftTemporalUnit MINECRAFT_TICKS =
-            new MinecraftTemporalUnit("MinecraftTicks", Duration.ofMillis(50));
+    public static final TemporalUnit MINECRAFT_DAYS = DummyObjectProvider.createFor(TemporalUnit.class, "MINECRAFT_DAYS");
 
-    /**
-     * A {@link MinecraftTemporalUnit} which represents a minecraft day.
-     */
-    public static final MinecraftTemporalUnit MINECRAFT_DAYS =
-            new MinecraftTemporalUnit("MinecraftDays", MINECRAFT_TICKS.getDuration().multipliedBy(24000));
-
-    /**
-     * A {@link MinecraftTemporalUnit} which represents a half minecraft day.
-     */
-    public static final MinecraftTemporalUnit HALF_MINECRAFT_DAYS =
-            new MinecraftTemporalUnit("HalfMinecraftDays", MINECRAFT_DAYS.getDuration().dividedBy(2));
-
-    // Suppress default constructor to ensure non-instantiability.
     private TemporalUnits() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }

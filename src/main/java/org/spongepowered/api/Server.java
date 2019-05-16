@@ -31,6 +31,7 @@ import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageChannel;
+import org.spongepowered.api.util.temporal.TemporalUnits;
 import org.spongepowered.api.world.WorldManager;
 import org.spongepowered.api.world.chunk.ChunkTicketManager;
 import org.spongepowered.api.world.storage.ChunkLayout;
@@ -213,9 +214,13 @@ public interface Server extends Engine, CommandSource {
      * information per tick. Examples of overburdening the server per tick
      * include spawning 10,000 cows in a small area.</p>
      *
-     * @return The current ticks per second
+     * <p>Implementations that don't utilize ticks may give inaccurate
+     * return values.</p>
+     *
+     * @return The current minecraft ticks per second
+     * @see TemporalUnits#MINECRAFT_TICKS
      */
-    double getTicksPerSecond();
+    double getMinecraftTicksPerSecond();
 
     /**
      * Gets the default resource pack. The default resource pack is sent to

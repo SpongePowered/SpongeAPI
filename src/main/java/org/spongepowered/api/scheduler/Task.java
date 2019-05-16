@@ -28,7 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.util.TemporalUnits;
+import org.spongepowered.api.util.temporal.TemporalUnits;
 
 import java.time.Duration;
 import java.time.temporal.TemporalUnit;
@@ -138,9 +138,9 @@ public interface Task {
         }
 
         /**
-         * Sets the delay before the task runs, in unit ticks.
+         * Sets the delay before the task runs, in the unit minecraft ticks.
          *
-         * @param ticks The delay in ticks
+         * @param ticks The delay in minecraft ticks
          * @return This builder, for chaining
          * @throws IllegalArgumentException If the delay is below 0
          * @see #delay(long, TemporalUnit)

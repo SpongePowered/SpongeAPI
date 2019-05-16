@@ -29,6 +29,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.World;
 
+import java.time.Duration;
 import java.util.Optional;
 
 /**
@@ -64,14 +65,14 @@ public interface Chunk extends ProtoChunk<Chunk> {
     boolean unloadChunk();
 
     /**
-     * Gets the number of ticks players have been present in this chunk, used
+     * Gets the amount of time players have been present in this chunk, used
      * for calculation of the regional difficulty factor. In vanilla, it is
      * increased by the number of players in the chunk every tick, and is capped
-     * at 3,600,000 ticks (50 hours).
+     * at 50 hours.
      *
-     * @return The number of ticks
+     * @return The inhabited time
      */
-    int getInhabitedTime();
+    Duration getInhabitedTime();
 
     /**
      * Gets the regional difficulty factor for this chunk. In vanilla, it is

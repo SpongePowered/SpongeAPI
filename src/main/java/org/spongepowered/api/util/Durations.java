@@ -24,58 +24,54 @@
  */
 package org.spongepowered.api.util;
 
-import static java.util.Objects.requireNonNull;
+import org.spongepowered.api.util.annotation.NonnullByDefault;
+import org.spongepowered.api.util.temporal.TemporalUnits;
 
 import java.time.Duration;
-import java.time.temporal.Temporal;
-import java.time.temporal.TemporalUnit;
 
-public class MinecraftTemporalUnit implements TemporalUnit {
+/**
+ * Utilities to create {@link Duration}s.
+ */
+@NonnullByDefault
+public final class Durations {
 
-    private final String name;
-    private final Duration duration;
-
-    public MinecraftTemporalUnit(String name, Duration duration) {
-        this.name = requireNonNull(name, "name");
-        this.duration = requireNonNull(duration, "duration");
+    /**
+     * Creates a {@link Duration} from the given milliseconds.
+     *
+     * @param millis The milliseconds
+     * @return The duration
+     */
+    public static Duration ofMillis(long millis) {
+        return Duration.ofMillis(millis);
     }
 
-    @Override
-    public Duration getDuration() {
-        return this.duration;
+    /**
+     * Creates a {@link Duration} from the given seconds.
+     *
+     * @param seconds The seconds
+     * @return The duration
+     */
+    public static Duration ofSeconds(long seconds) {
+        return Duration.ofSeconds(seconds);
     }
 
-    // Lets consider minecraft related time units to be always
-    // time related, and never date based.
-
-    @Override
-    public boolean isDurationEstimated() {
-        return false;
+    /**
+     * Creates a {@link Duration} from the given minecraft ticks.
+     *
+     * @param minecraftTicks The minecraft ticks
+     * @return The duration
+     */
+    public static Duration ofMinecraftTicks(long minecraftTicks) {
+        return Duration.of(minecraftTicks, TemporalUnits.MINECRAFT_TICKS);
     }
 
-    @Override
-    public boolean isDateBased() {
-        return false;
-    }
-
-    @Override
-    public boolean isTimeBased() {
-        return true;
-    }
-
-    @SuppressWarnings("unchecked")
-    @Override
-    public <R extends Temporal> R addTo(R temporal, long amount) {
-        return (R) temporal.plus(amount, this);
-    }
-
-    @Override
-    public long between(Temporal temporal1Inclusive, Temporal temporal2Exclusive) {
-        return temporal1Inclusive.until(temporal2Exclusive, this);
-    }
-
-    @Override
-    public String toString() {
-        return this.name;
+    /**
+     * Creates a {@link Duration} from the given minecraft days.
+     *
+     * @param minecraftDays The minecraft days
+     * @return The duration
+     */
+    public static Duration ofMinecraftDays(long minecraftDays) {
+        return Duration.of(minecraftDays, TemporalUnits.MINECRAFT_DAYS);
     }
 }

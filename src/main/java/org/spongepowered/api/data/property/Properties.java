@@ -43,6 +43,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
+import java.time.Duration;
 import java.util.Collection;
 
 @SuppressWarnings("unchecked")
@@ -146,9 +147,9 @@ public final class Properties {
 
     /**
      * Represents a item property that is used for defining the amount of fuel
-     * ticks an item will grant to a furnace.
+     * time an item will grant to a furnace.
      */
-    public static final Property<Integer> FUEL_BURN_TIME =
+    public static final Property<Duration> FUEL_BURN_TIME =
             DummyObjectProvider.createFor(Property.class, "FUEL_BURN_TIME");
 
     /**
