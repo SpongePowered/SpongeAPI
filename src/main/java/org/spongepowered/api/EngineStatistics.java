@@ -59,28 +59,6 @@ public interface EngineStatistics {
     }
 
     /**
-     * Gets the average amount of game loop updates that are
-     * being performed per {@link TemporalUnit}.
-     *
-     * @param unit The temporal unit
-     * @return The amount of updates
-     */
-    double getAverageUpdatesPerUnit(TemporalUnit unit);
-
-    /**
-     * Gets the average amount of game loop updates that are
-     * being performed per second.
-     *
-     * <p>In vanilla minecraft this value represents the
-     * average amount of ticks per second.</p>
-     *
-     * @return The amount of updates
-     */
-    default double getAverageUpdatesPerSecond() {
-        return getAverageUpdatesPerUnit(TemporalUnits.SECONDS);
-    }
-
-    /**
      * Gets a list with {@link Instant}s at which updates
      * have occurred recently.
      *

@@ -28,6 +28,8 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.Value;
 
+import java.time.Duration;
+
 /**
  * Represents a living entity that can change in size as it ages
  * and can spawn children.
@@ -45,7 +47,7 @@ public interface Ageable extends Creature {
      *
      * @return The mutable bounded value for the "age"
      */
-    default BoundedValue.Mutable<Integer> age() {
+    default BoundedValue.Mutable<Duration> age() {
         return getValue(Keys.AGE).get().asMutable();
     }
 

@@ -28,6 +28,8 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.value.Value;
 
+import java.time.Duration;
+
 /**
  * Represents a falling block. A falling block may harm entities where it lands,
  * and optionally may place a block, or drop an item.
@@ -87,7 +89,7 @@ public interface FallingBlock extends Entity {
      *
      * @return The time the block has been falling
      */
-    default Value.Mutable<Integer> fallTime() {
+    default Value.Mutable<Duration> fallTime() {
         return getValue(Keys.FALL_TIME).get().asMutable();
     }
 

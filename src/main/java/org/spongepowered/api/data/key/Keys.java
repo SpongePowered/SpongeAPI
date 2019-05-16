@@ -1300,7 +1300,7 @@ public final class Keys {
      * <p>Once this value reaches the one of {@link #MAX_BURN_TIME}, the
      * furnace will require more fuel in order to keep burning.</p>
      */
-    public static final Key<BoundedValue<Integer>> PASSED_BURN_TIME = DummyObjectProvider.createExtendedFor(Key.class, "PASSED_BURN_TIME");
+    public static final Key<BoundedValue<Duration>> PASSED_BURN_TIME = DummyObjectProvider.createExtendedFor(Key.class, "PASSED_BURN_TIME");
 
     /**
      * Represents the {@link Key} for the amount of time a {@link Furnace} has
@@ -1309,7 +1309,7 @@ public final class Keys {
      * <p>Once this value reaches the one of {@link #MAX_COOK_TIME}, the
      * item will be finished cooking.</p>
      */
-    public static final Key<BoundedValue<Integer>> PASSED_COOK_TIME = DummyObjectProvider.createExtendedFor(Key.class, "PASSED_COOK_TIME");
+    public static final Key<BoundedValue<Duration>> PASSED_COOK_TIME = DummyObjectProvider.createExtendedFor(Key.class, "PASSED_COOK_TIME");
 
     /**
      * Represents the {@link Key} for the entities that act as passengers for
