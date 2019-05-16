@@ -25,26 +25,24 @@
 package org.spongepowered.api.event.action;
 
 import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.Transform;
+import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.world.World;
 
-import java.util.Optional;
-
 /**
- * Called when a {@link Humanoid} enters a bed to sleep in.
+ * Called when a {@link Living} enters a bed to sleep in.
  */
 public interface SleepingEvent extends Event {
 
     /**
-     * Gets the {@link Entity}.
+     * Gets the {@link Living} entity.
      *
-     * @return The entity
+     * @return The living entity
      */
-    Entity getEntity();
+    Living getLiving();
 
     /**
      * Gets the {@link BlockSnapshot} of the bed being used to sleep.
@@ -57,40 +55,50 @@ public interface SleepingEvent extends Event {
 
     interface Tick extends SleepingEvent, Cancellable {}
 
-    interface Post extends SleepingEvent, Cancellable {
+    /**
+     * Called when the {@link Humanoid} was sleeping but failed.
+     */
+    interface Failed extends SleepingEvent, Cancellable {
 
-        /**
-         * Gets whether the spawn transform for the human was set.
-         *
-         * <p>The case that spawn may have not been set includes:</p>
-         * <ul><li>A player attempting to sleep in a bed in the nether</li></ul>
-         *
-         * @return Whether the spawn transform for the human was set
-         */
-        boolean isSpawnSet();
-
-        /**
-         * Gets a copy of the spawn transform of the human when leaving the bed.
-         *
-         * <p>This may have not been set by the event, so checking
-         * {@link #isSpawnSet()} is advisable. If spawn has not been set,
-         * it will return {@link Optional#empty()}.</p>
-         *
-         * @return The humans new spawn transform, if available
-         */
-        Optional<Transform> getSpawnTransform();
-
-        /**
-         * Sets the new spawn transform of the human leaving the bed.
-         *
-         * <p>If spawn {@link #isSpawnSet()} was not in fact set by this event,
-         * this does not override the return value. The given spawn should be
-         * a valid location.</p>
-         *
-         * @param transform The new spawn transform for the human
-         */
-        void setSpawnTransform(Transform transform);
     }
 
-    interface Finish extends SleepingEvent {}
+    interface Finish extends SleepingEvent {
+
+        /**
+         * Gets the previous {@link World} the {@link Living} will wake up in.
+         *
+         * @return The world
+         */
+        World getFromWorld();
+
+        /**
+         * Gets the previous {@link Transform} the {@link Living} will have at wake up.
+         *
+         * @return The transform
+         */
+        Transform getFromTransform();
+
+        /**
+         * Gets the {@link World} the {@link Living} will wake up in.
+         *
+         * @return The world
+         */
+        World getToWorld();
+
+        /**
+         * Gets the {@link Transform} the {@link Living} will have at wake up.
+         *
+         * @return The transform
+         */
+        Transform getToTransform();
+
+        /**
+         * Sets the {@link World} and {@link Transform} the {@link Living} will have
+         * at wake up.
+         *
+         * @param world The world
+         * @param transform The transform
+         */
+        void setWakeupPosition(World world, Transform transform);
+    }
 }

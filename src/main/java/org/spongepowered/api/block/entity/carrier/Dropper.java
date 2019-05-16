@@ -27,5 +27,5 @@ package org.spongepowered.api.block.entity.carrier;
 /**
  * Represents a Dropper.
  */
-public interface Dropper extends BlockEntityCarrier {
+public interface Dropper extends CarrierBlockEntity {
 }

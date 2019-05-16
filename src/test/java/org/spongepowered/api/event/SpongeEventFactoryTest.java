@@ -33,13 +33,11 @@ import com.flowpowered.math.vector.Vector3d;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.reflect.TypeToken;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.mockito.Mockito;
 import org.mockito.stubbing.Answer;
 import org.spongepowered.api.data.DataTransactionResult;
-import org.spongepowered.api.entity.Transform;
+import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.EventContext;
 import org.spongepowered.api.event.entity.AttackEntityEvent;
@@ -239,10 +237,7 @@ public class SpongeEventFactoryTest {
             Mockito.when(mock.getWorld()).thenReturn(world);
             return mock;
         } else if (paramType == Transform.class) {
-            final Transform transform = mock(Transform.class);
-            when(transform.getWorld()).thenReturn(mock(World.class));
-            when(transform.getLocation()).thenReturn(mock(Location.class));
-            return transform;
+            return mock(Transform.class);
         } else if (InetSocketAddress.class.isAssignableFrom(paramType)) {
             return new InetSocketAddress(12345);
         } else if (paramType == UUID.class) {

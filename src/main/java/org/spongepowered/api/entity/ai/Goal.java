@@ -27,7 +27,7 @@ package org.spongepowered.api.entity.ai;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskType;
 import org.spongepowered.api.entity.living.Agent;
-import org.spongepowered.api.entity.living.monster.Monster;
+import org.spongepowered.api.entity.living.Monster;
 
 import java.util.List;
 

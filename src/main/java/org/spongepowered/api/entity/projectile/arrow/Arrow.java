@@ -24,23 +24,9 @@
  */
 package org.spongepowered.api.entity.projectile.arrow;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.value.BoundedValue;
-import org.spongepowered.api.entity.projectile.DamagingProjectile;
-
 /**
- * Represents an arrow projectile.
+ * An arrow generally "tipped" with one or more potion effects.
  */
-public interface Arrow extends DamagingProjectile {
-
-    /**
-     * Gets the {@link BoundedValue.Mutable} for the "knockback strength"
-     * that this arrow has.
-     *
-     * @return The immutable value for the knockback strength
-     */
-    default BoundedValue.Mutable<Integer> knockbackStrength() {
-        return getValue(Keys.KNOCKBACK_STRENGTH).get().asMutable();
-    }
+public interface Arrow extends ArrowEntity {
 
 }

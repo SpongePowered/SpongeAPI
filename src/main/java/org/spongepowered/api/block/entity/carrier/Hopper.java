@@ -27,13 +27,13 @@ package org.spongepowered.api.block.entity.carrier;
 /**
  * Represents a Hopper.
  */
-public interface Hopper extends BlockEntityCarrier {
+public interface Hopper extends CarrierBlockEntity {
 
     /**
      * Requests this {@link Hopper} to transfer an item to the next carrier.
      *
      * <p>Since {@link Hopper}s normally send items to other
-     * {@link BlockEntityCarrier}s adjacent to themselves, if there is no
+     * {@link CarrierBlockEntity}s adjacent to themselves, if there is no
      * available carrier to send an item to, this will perform nothing.</p>
      */
     void transferItem();

@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.event.entity;
 
+import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.Transform;
+import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
-import org.spongepowered.api.world.World;
 
 /**
  * Called when an {@link Entity} performs rotation of their body or, if
@@ -45,23 +45,23 @@ public interface RotateEntityEvent extends Cancellable {
     Entity getEntity();
 
     /**
-     * Gets the transform that the {@link Entity} rotated from.
+     * Gets the rotation the {@link Entity} was performing.
      *
-     * @return the previous transform
+     * @return The rotation
      */
-    Transform getFromTransform();
+    Vector3d getFromRotation();
 
     /**
-     * Gets the new transform that the {@link Entity} will change to.
+     * Gets the {@link Vector3d rotation} the {@link Entity} will perform.
      *
-     * @return the new transform
+     * @return The new rotation
      */
-    Transform getToTransform();
+    Vector3d getToRotation();
 
     /**
-     * Sets the new transform that the {@link Entity} will change to.
+     * Sets the new {@link Vector3d rotation} that the {@link Entity} will perform.
      *
-     * @param transform The new transform
+     * @param rotation The new rotation
      */
-    void setToTransform(Transform transform);
+    void setToRotation(Vector3d rotation);
 }

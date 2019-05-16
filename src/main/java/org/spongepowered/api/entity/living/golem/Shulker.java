@@ -28,13 +28,13 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.Monster;
 import org.spongepowered.api.entity.projectile.EntityTargetingProjectile;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 import org.spongepowered.api.util.Direction;
 
 import java.util.Optional;
 
-public interface Shulker extends Golem, ProjectileSource {
+public interface Shulker extends Golem, Monster {
 
     /**
      * Gets the current {@link Value} of {@link DyeColor} for this

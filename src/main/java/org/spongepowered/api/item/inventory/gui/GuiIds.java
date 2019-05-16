@@ -74,7 +74,7 @@ public final class GuiIds {
      */
     public static final GuiId VILLAGER = DummyObjectProvider.createFor(GuiId.class, "villager"); // "minecraft:villager"
     /**
-     * Sizes 2 and more depending on the Horse Carrier.
+     * Sizes 2 and more depending on the HorseEntity Carrier.
      */
     public static final GuiId HORSE = DummyObjectProvider.createFor(GuiId.class, "horse"); // "minecraft:horse" internally "EntityHorse"
     /**

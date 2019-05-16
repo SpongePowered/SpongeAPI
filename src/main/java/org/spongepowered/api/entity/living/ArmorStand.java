@@ -26,7 +26,7 @@ package org.spongepowered.api.entity.living;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.ArmorEquipable;
+import org.spongepowered.api.item.inventory.ArmorEquipable;
 
 /**
  * Represents an armor stand.

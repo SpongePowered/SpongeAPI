@@ -27,7 +27,7 @@ package org.spongepowered.api.block.entity.carrier;
 /**
  * Represents a Brewing Stand.
  */
-public interface BrewingStand extends BlockEntityCarrier {
+public interface BrewingStand extends CarrierBlockEntity {
 
     /**
      * Attempts to brew the current potions if possible.

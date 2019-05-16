@@ -38,11 +38,11 @@ import org.spongepowered.api.util.AABB;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.RandomProvider;
 import org.spongepowered.api.util.RelativePositions;
+import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.TeleportHelper;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.WorldArchetype;
 import org.spongepowered.api.world.schematic.Schematic;
 
 import java.util.Collection;
@@ -73,42 +73,41 @@ import javax.annotation.Nullable;
 public interface Entity extends Identifiable, Locatable, DataHolder, Translatable, RandomProvider {
 
     /**
-     * Gets the type of entity.
+     * Gets the {@link EntityType}.
      *
-     * @return The type of entity
+     * @return The type
      */
     EntityType getType();
 
     /**
-     * Creates a {@link EntitySnapshot} containing the {@link EntityType} and
-     * data of this entity.
+     * Creates an {@link EntitySnapshot}.
      *
      * @return The snapshot
      */
     EntitySnapshot createSnapshot();
 
     /**
-     * Sets the location of this entity. This is equivalent to a teleport, and
-     * also moves this entity's passengers.
+     * Creates an {@link EntityArchetype} for use with {@link Schematic}s.
+     *
+     * @return The archetype
+     */
+    EntityArchetype createArchetype();
+
+    /**
+     * Sets the location of this entity.
      *
      * @param location The location to set
-     * @return True if location was set successfully, false if location couldn't
-     *     be set due to
-     *     {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
-     *     being cancelled.
+     * @return True if location was set successfully, false otherwise
      */
     boolean setLocation(Location location);
 
     /**
      * Sets the location of this entity using a safe one from
-     * {@link TeleportHelper#getSafeLocation(Location)}. This is equivalent to a
-     * teleport and also moves this entity's passengers.
+     * {@link TeleportHelper#getSafeLocation(Location)}.
      *
      * @param location The location to set
      * @return True if location was set successfully, false if location couldn't
-     *      be set as no safe location was found or
-     *      {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
-     *      was cancelled.
+     *      be set as no safe location was found
      */
     default boolean setLocationSafely(Location location) {
         return Sponge.getGame().getTeleportHelper()
@@ -140,7 +139,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
     void setRotation(Vector3d rotation);
 
     /**
-     * Moves the entity to the specified location, and sets the rotation.
+     * Moves the entity to the specified location and sets the rotation.
      *
      * <p>The format of the rotation is represented by:</p>
      *
@@ -148,15 +147,12 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      *
      * @param location The location to set
      * @param rotation The rotation to set
-     * @return True if location was set successfully, false if location couldn't
-     *     be set due to
-     *     {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
-     *     being cancelled
+     * @return True if location was set successfully, false otherwise
      */
     boolean setLocationAndRotation(Location location, Vector3d rotation);
 
     /**
-     * Moves the entity to the specified location, and sets the rotation.
+     * Moves the entity to the specified location and sets the rotation.
      * {@link RelativePositions} listed inside the EnumSet are considered
      * relative.
      *
@@ -167,10 +163,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      * @param location The location to set
      * @param rotation The rotation to set
      * @param relativePositions The coordinates to set relatively
-     * @return True if location was set successfully, false if location couldn't
-     *      be set due to
-     *      {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
-     *      being cancelled
+     * @return True if location was set successfully, false otherwise
      */
     boolean setLocationAndRotation(Location location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
 
@@ -186,9 +179,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      * @param location The location to set
      * @param rotation The rotation to set
      * @return True if location was set successfully, false if either location
-     *      couldn't be set as no safe location was found or
-     *      {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
-     *      was cancelled
+     *      couldn't be set as no safe location was found
      */
     default boolean setLocationAndRotationSafely(Location location, Vector3d rotation) {
         return Sponge.getGame().getTeleportHelper()
@@ -211,9 +202,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      * @param rotation The rotation to set
      * @param relativePositions The coordinates to set relatively
      * @return True if location was set successfully, false if either location
-     *      couldn't be set as no safe location was found or
-     *      {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
-     *      was cancelled
+     *      couldn't be set as no safe location was found
      */
     default boolean setLocationAndRotationSafely(Location location, Vector3d rotation, EnumSet<RelativePositions> relativePositions) {
         return Sponge.getGame().getTeleportHelper()
@@ -223,51 +212,45 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
     }
 
     /**
-     * Gets the entity scale. Not currently used. Returns {@link Vector3d#ONE}.
+     * Gets the scale.
      *
      * @return The entity scale
      */
     Vector3d getScale();
 
     /**
-     * Sets the entity scale. Not currently used. Does nothing.
+     * Sets the scale.
      *
      * @param scale The scale
      */
     void setScale(Vector3d scale);
 
     /**
-     * Returns the entity transform as a new copy. Combines the position,
-     * rotation and scale.
+     * Gets the {@link Transform}.
      *
-     * @return The transform as a new copy
+     * @return The transform
      */
     Transform getTransform();
 
     /**
-     * Sets the entity transform. Sets the position, rotation and scale at once.
+     * Sets the {@link Transform}.
      *
      * @param transform The transform to set
-     * @return True if the transform was set successfully, false if the
-     *     transform couldn't be set due to
-     *     {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
-     *     being cancelled.
+     * @return True if the transform was set successfully, false if the transform couldn't be set
      */
     boolean setTransform(Transform transform);
 
     /**
-     * Sets the transformation of this entity using a safe location from
+     * Sets the {@link Transform}using a safe location from
      * {@link TeleportHelper#getSafeLocation(Location)}.
      *
      * @param transform The transform to set
      * @return True if the transform was set successfully, or false if either
-     *     the transform couldn't be set as no safe location was found or
-     *     {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
-     *     was cancelled
+     *     the transform couldn't be set as no safe location was found
      */
     default boolean setTransformSafely(Transform transform) {
         checkNotNull(transform, "The transform cannot be null!");
-        return setLocationAndRotationSafely(transform.getLocation(), transform.getRotation());
+        return this.setLocationAndRotationSafely(Location.of(this.getWorld(), transform.getPosition()), transform.getRotation());
     }
 
     /**
@@ -280,7 +263,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      *      removed)
      */
     default boolean transferToWorld(World world) {
-        return transferToWorld(world, world.getSpawnLocation().getPosition());
+        return this.transferToWorld(world, world.getSpawnLocation().getPosition());
     }
 
     /**
@@ -293,48 +276,6 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      *      removed)
      */
     boolean transferToWorld(World world, Vector3d position);
-
-    /**
-     * Sets the location of this entity to a new position in a world which does
-     * not have to be loaded (but must at least be enabled).
-     *
-     * <p>If the target world is unloaded but is enabled according to its
-     * {@link WorldArchetype#isEnabled()} then this will first load the world
-     * before transferring the entity to that world.</p>
-     *
-     * <p>If the target world is unloaded and not enabled then the transfer
-     * will fail.</p>
-     *
-     * @param worldName The name of the world to transfer to
-     * @param position The position in the target world
-     * @return True if the teleport was successful
-     */
-    default boolean transferToWorld(String worldName, Vector3d position) {
-        return Sponge.getServer().getWorldManager().getWorld(worldName)
-                .map(world -> transferToWorld(world, position))
-                .orElse(false);
-    }
-
-    /**
-     * Sets the location of this entity to a new position in a world which does
-     * not have to be loaded (but must at least be enabled).
-     *
-     * <p>If the target world is unloaded but is enabled according to its
-     * {@link WorldArchetype#isEnabled()} then this will first load the world
-     * before transferring the entity to that world.</p>
-     *
-     * <p>If the target world is unloaded and not enabled then the transfer
-     * will fail.</p>
-     *
-     * @param uuid The UUID of the target world to transfer to
-     * @param position The position in the target world
-     * @return True if the teleport was successful
-     */
-    default boolean transferToWorld(UUID uuid, Vector3d position) {
-        return Sponge.getServer().getWorldManager().getWorld(uuid)
-                .map(world -> transferToWorld(world, position))
-                .orElse(false);
-    }
 
     /**
      * Gets the entity's bounding box, usually for collisions and interaction.
@@ -483,7 +424,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      */
     default Collection<Entity> getNearbyEntities(Predicate<Entity> predicate) {
         checkNotNull(predicate, "Null predicate!");
-        return getWorld().getEntities(predicate::test);
+        return this.getWorld().getEntities(predicate);
     }
 
     /**
@@ -526,14 +467,6 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
         Optional<Boolean> optional = entity.get(Keys.VANISH);
         return !optional.isPresent() || !optional.get();
     }
-
-    /**
-     * Creates a new {@link EntityArchetype} for use with {@link Schematic}s and
-     * placing the archetype in multiple locations.
-     *
-     * @return The created archetype for re-creating this entity
-     */
-    EntityArchetype createArchetype();
 
     /**
      * Returns whether this entity has gravity.

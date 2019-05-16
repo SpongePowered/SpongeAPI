@@ -28,11 +28,12 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.type.CatType;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.entity.living.Ageable;
 
 /**
  * Represents a cat, meow.
  */
-public interface Cat extends Animal {
+public interface Cat extends Animal, Ageable {
 
     /**
      * Gets the {@link Value.Mutable} for the {@link CatType} of this

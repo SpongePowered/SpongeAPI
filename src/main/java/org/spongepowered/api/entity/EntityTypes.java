@@ -25,62 +25,62 @@
 package org.spongepowered.api.entity;
 
 import org.spongepowered.api.entity.explosive.EndCrystal;
-import org.spongepowered.api.entity.explosive.PrimedTNT;
+import org.spongepowered.api.entity.explosive.fused.PrimedTNT;
 import org.spongepowered.api.entity.hanging.ItemFrame;
 import org.spongepowered.api.entity.hanging.LeashKnot;
 import org.spongepowered.api.entity.hanging.Painting;
 import org.spongepowered.api.entity.living.ArmorStand;
 import org.spongepowered.api.entity.living.Bat;
 import org.spongepowered.api.entity.living.Human;
-import org.spongepowered.api.entity.living.Squid;
-import org.spongepowered.api.entity.living.animal.TraderLlama;
+import org.spongepowered.api.entity.living.aquatic.Squid;
+import org.spongepowered.api.entity.living.animal.horse.llama.TraderLlama;
 import org.spongepowered.api.entity.living.animal.Cat;
 import org.spongepowered.api.entity.living.animal.Chicken;
-import org.spongepowered.api.entity.living.animal.Cow;
-import org.spongepowered.api.entity.living.animal.Dolphin;
-import org.spongepowered.api.entity.living.animal.Donkey;
+import org.spongepowered.api.entity.living.animal.cow.Cow;
+import org.spongepowered.api.entity.living.aquatic.Dolphin;
+import org.spongepowered.api.entity.living.animal.horse.Donkey;
 import org.spongepowered.api.entity.living.animal.Fox;
-import org.spongepowered.api.entity.living.animal.Llama;
-import org.spongepowered.api.entity.living.animal.Mooshroom;
-import org.spongepowered.api.entity.living.animal.Mule;
+import org.spongepowered.api.entity.living.animal.horse.llama.Llama;
+import org.spongepowered.api.entity.living.animal.cow.Mooshroom;
+import org.spongepowered.api.entity.living.animal.horse.Mule;
 import org.spongepowered.api.entity.living.animal.Ocelot;
 import org.spongepowered.api.entity.living.animal.Panda;
 import org.spongepowered.api.entity.living.animal.Parrot;
 import org.spongepowered.api.entity.living.animal.Pig;
 import org.spongepowered.api.entity.living.animal.PolarBear;
 import org.spongepowered.api.entity.living.animal.Rabbit;
-import org.spongepowered.api.entity.living.animal.RideableHorse;
+import org.spongepowered.api.entity.living.animal.horse.Horse;
 import org.spongepowered.api.entity.living.animal.Sheep;
-import org.spongepowered.api.entity.living.animal.SkeletonHorse;
+import org.spongepowered.api.entity.living.animal.horse.SkeletonHorse;
 import org.spongepowered.api.entity.living.animal.Turtle;
 import org.spongepowered.api.entity.living.animal.Wolf;
-import org.spongepowered.api.entity.living.animal.ZombieHorse;
-import org.spongepowered.api.entity.living.animal.fish.Cod;
-import org.spongepowered.api.entity.living.animal.fish.Pufferfish;
-import org.spongepowered.api.entity.living.animal.fish.Salmon;
-import org.spongepowered.api.entity.living.animal.fish.TropicalFish;
-import org.spongepowered.api.entity.living.complex.EnderDragon;
+import org.spongepowered.api.entity.living.animal.horse.ZombieHorse;
+import org.spongepowered.api.entity.living.aquatic.fish.Cod;
+import org.spongepowered.api.entity.living.aquatic.fish.Pufferfish;
+import org.spongepowered.api.entity.living.aquatic.fish.Salmon;
+import org.spongepowered.api.entity.living.aquatic.fish.TropicalFish;
+import org.spongepowered.api.entity.living.boss.dragon.EnderDragon;
 import org.spongepowered.api.entity.living.golem.IronGolem;
 import org.spongepowered.api.entity.living.golem.Shulker;
 import org.spongepowered.api.entity.living.golem.SnowGolem;
 import org.spongepowered.api.entity.living.monster.Blaze;
-import org.spongepowered.api.entity.living.monster.CaveSpider;
+import org.spongepowered.api.entity.living.monster.spider.CaveSpider;
 import org.spongepowered.api.entity.living.monster.Creeper;
-import org.spongepowered.api.entity.living.monster.Drowned;
-import org.spongepowered.api.entity.living.monster.ElderGuardian;
+import org.spongepowered.api.entity.living.monster.zombie.Drowned;
+import org.spongepowered.api.entity.living.monster.guardian.ElderGuardian;
 import org.spongepowered.api.entity.living.monster.Enderman;
 import org.spongepowered.api.entity.living.monster.Endermite;
-import org.spongepowered.api.entity.living.monster.raider.illager.Evoker;
+import org.spongepowered.api.entity.living.monster.raider.illager.spellcaster.Evoker;
 import org.spongepowered.api.entity.living.monster.Ghast;
 import org.spongepowered.api.entity.living.monster.Giant;
-import org.spongepowered.api.entity.living.monster.Guardian;
-import org.spongepowered.api.entity.living.monster.Husk;
-import org.spongepowered.api.entity.living.monster.raider.illager.Illusioner;
-import org.spongepowered.api.entity.living.monster.MagmaCube;
+import org.spongepowered.api.entity.living.monster.guardian.Guardian;
+import org.spongepowered.api.entity.living.monster.zombie.Husk;
+import org.spongepowered.api.entity.living.monster.raider.illager.spellcaster.Illusioner;
+import org.spongepowered.api.entity.living.monster.slime.MagmaCube;
 import org.spongepowered.api.entity.living.monster.Phantom;
 import org.spongepowered.api.entity.living.monster.Silverfish;
-import org.spongepowered.api.entity.living.monster.Slime;
-import org.spongepowered.api.entity.living.monster.Spider;
+import org.spongepowered.api.entity.living.monster.slime.Slime;
+import org.spongepowered.api.entity.living.monster.spider.Spider;
 import org.spongepowered.api.entity.living.monster.skeleton.Skeleton;
 import org.spongepowered.api.entity.living.monster.skeleton.Stray;
 import org.spongepowered.api.entity.living.monster.Vex;
@@ -88,11 +88,11 @@ import org.spongepowered.api.entity.living.monster.raider.illager.Pillager;
 import org.spongepowered.api.entity.living.monster.raider.illager.Vindicator;
 import org.spongepowered.api.entity.living.monster.raider.Ravager;
 import org.spongepowered.api.entity.living.monster.raider.Witch;
-import org.spongepowered.api.entity.living.monster.Wither;
+import org.spongepowered.api.entity.living.boss.Wither;
 import org.spongepowered.api.entity.living.monster.skeleton.WitherSkeleton;
-import org.spongepowered.api.entity.living.monster.Zombie;
-import org.spongepowered.api.entity.living.monster.ZombiePigman;
-import org.spongepowered.api.entity.living.monster.ZombieVillager;
+import org.spongepowered.api.entity.living.monster.zombie.Zombie;
+import org.spongepowered.api.entity.living.monster.zombie.ZombiePigman;
+import org.spongepowered.api.entity.living.monster.zombie.ZombieVillager;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.trader.Villager;
 import org.spongepowered.api.entity.living.trader.WanderingTrader;
@@ -101,25 +101,25 @@ import org.spongepowered.api.entity.projectile.EnderPearl;
 import org.spongepowered.api.entity.projectile.EvokerFangs;
 import org.spongepowered.api.entity.projectile.ExperienceBottle;
 import org.spongepowered.api.entity.projectile.EyeOfEnder;
-import org.spongepowered.api.entity.projectile.FireworkRocket;
+import org.spongepowered.api.entity.projectile.explosive.FireworkRocket;
 import org.spongepowered.api.entity.projectile.FishingBobber;
 import org.spongepowered.api.entity.projectile.LlamaSpit;
 import org.spongepowered.api.entity.projectile.Potion;
 import org.spongepowered.api.entity.projectile.ShulkerBullet;
 import org.spongepowered.api.entity.projectile.Snowball;
 import org.spongepowered.api.entity.projectile.arrow.SpectralArrow;
-import org.spongepowered.api.entity.projectile.arrow.TippedArrow;
+import org.spongepowered.api.entity.projectile.arrow.Arrow;
 import org.spongepowered.api.entity.projectile.arrow.Trident;
-import org.spongepowered.api.entity.projectile.explosive.DragonFireball;
+import org.spongepowered.api.entity.projectile.explosive.fireball.DragonFireball;
 import org.spongepowered.api.entity.projectile.explosive.WitherSkull;
 import org.spongepowered.api.entity.projectile.explosive.fireball.LargeFireball;
 import org.spongepowered.api.entity.projectile.explosive.fireball.SmallFireball;
 import org.spongepowered.api.entity.vehicle.Boat;
-import org.spongepowered.api.entity.vehicle.minecart.ChestMinecart;
+import org.spongepowered.api.entity.vehicle.minecart.carrier.ChestMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.CommandBlockMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.FurnaceMinecart;
-import org.spongepowered.api.entity.vehicle.minecart.HopperMinecart;
-import org.spongepowered.api.entity.vehicle.minecart.RideableMinecart;
+import org.spongepowered.api.entity.vehicle.minecart.carrier.HopperMinecart;
+import org.spongepowered.api.entity.vehicle.minecart.Minecart;
 import org.spongepowered.api.entity.vehicle.minecart.SpawnerMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.TNTMinecart;
 import org.spongepowered.api.entity.weather.LightningBolt;
@@ -136,7 +136,7 @@ public final class EntityTypes {
 
     public static final EntityType<ArmorStand> ARMOR_STAND = dummy("ARMOR_STAND");
 
-    public static final EntityType<TippedArrow> ARROW = dummy("ARROW");
+    public static final EntityType<Arrow> ARROW = dummy("ARROW");
 
     public static final EntityType<Bat> BAT = dummy("BAT");
 
@@ -212,7 +212,7 @@ public final class EntityTypes {
 
     public static final EntityType<HopperMinecart> HOPPER_MINECART = dummy("HOPPER_MINECART");
 
-    public static final EntityType<RideableHorse> HORSE = dummy("HORSE");
+    public static final EntityType<Horse> HORSE = dummy("HORSE");
 
     public static final EntityType<Husk> HUSK = dummy("HUSK");
 
@@ -234,7 +234,7 @@ public final class EntityTypes {
 
     public static final EntityType<MagmaCube> MAGMA_CUBE = dummy("MAGMA_CUBE");
 
-    public static final EntityType<RideableMinecart> MINECART = dummy("MINECART");
+    public static final EntityType<Minecart> MINECART = dummy("MINECART");
 
     public static final EntityType<Mooshroom> MOOSHROOM = dummy("MOOSHROOM");
 

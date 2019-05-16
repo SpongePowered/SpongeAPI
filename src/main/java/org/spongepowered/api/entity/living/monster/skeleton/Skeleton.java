@@ -27,6 +27,6 @@ package org.spongepowered.api.entity.living.monster.skeleton;
 /**
  * Represents a skeleton.
  */
-public interface Skeleton extends AbstractSkeleton {
+public interface Skeleton extends SkeletonEntity {
 
 }

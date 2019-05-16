@@ -27,7 +27,7 @@ package org.spongepowered.api.entity.living.monster.skeleton;
 /**
  * Represents a Stray.
  */
-public interface Stray extends AbstractSkeleton {
+public interface Stray extends SkeletonEntity {
 
 
 }

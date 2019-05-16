@@ -157,7 +157,7 @@ sortClassFields {
     add 'main', 'org.spongepowered.api.entity.EntityTypes'
     add 'main', 'org.spongepowered.api.entity.ai.task.AITaskTypes'
     add 'main', 'org.spongepowered.api.entity.ai.GoalTypes'
-    add 'main', 'org.spongepowered.api.entity.living.complex.dragon.phase.EnderDragonPhaseTypes'
+    add 'main', 'org.spongepowered.api.entity.living.boss.dragon.phase.DragonPhaseTypes'
     add 'main', 'org.spongepowered.api.entity.living.player.gamemode.GameModes'
     add 'main', 'org.spongepowered.api.event.cause.EventContextKeys'
     add 'main', 'org.spongepowered.api.event.cause.entity.damage.DamageModifierTypes'

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.block.entity;
 
-import org.spongepowered.api.block.entity.carrier.Furnace;
+import org.spongepowered.api.block.entity.carrier.furnace.FurnaceBlockEntity;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.item.inventory.AffectItemStackEvent;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
@@ -34,11 +34,11 @@ import java.util.List;
 public interface SmeltEvent extends Event {
 
     /**
-     * Gets the {@link Furnace}.
+     * Gets the {@link FurnaceBlockEntity}.
      *
      * @return The furnace
      */
-    Furnace getFurnace();
+    FurnaceBlockEntity getFurnace();
 
     /**
      * Gets the fuel represented as an {@link ItemStackSnapshot}.

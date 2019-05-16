@@ -24,15 +24,23 @@
  */
 package org.spongepowered.api.event.entity.living.humanoid.player;
 
-import org.spongepowered.api.entity.Transform;
+import org.spongepowered.api.block.entity.Bed;
+import org.spongepowered.api.block.entity.EndPortal;
+import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Event;
+import org.spongepowered.api.world.DimensionTypes;
 import org.spongepowered.api.world.World;
 
 /**
- * Called when a {@link Player} is cloned during a respawn.
+ * Called when a {@link Player} is undergoing a respawn.
  *
- * <p>Either caused by death, or by traveling from the End.</p>
+ * <p>Examples of respawn triggers include:</p>
+ *
+ * <ul>
+ *     <li>Death</li>
+ *     <li>Returning from {@link DimensionTypes#THE_END} via an {@link EndPortal} (Vanilla Minecraft)</li>
+ * </ul>
  */
 public interface RespawnPlayerEvent extends Event {
 
@@ -53,38 +61,53 @@ public interface RespawnPlayerEvent extends Event {
     Player getPlayer();
 
     /**
-     * Gets a copy of the transform that the entity came from.
+     * Gets the previous {@link World} the {@link Player} will respawn at.
      *
-     * @return the previous transform
+     * @return The world
+     */
+    World getFromWorld();
+
+    /**
+     * Gets the previous {@link Transform} the {@link Player} will have at respawn.
+     *
+     * @return The transform
      */
     Transform getFromTransform();
 
     /**
-     * Gets the new transform that the {@link Player} will change to.
+     * Gets the {@link World} the {@link Player} will respawn at.
      *
-     * @return the new transform
+     * @return The world
+     */
+    World getToWorld();
+
+    /**
+     * Gets the {@link Transform} the {@link Player} will have at respawn.
+     *
+     * @return The transform
      */
     Transform getToTransform();
 
     /**
-     * Sets the new transform that the entity will change to.
+     * Sets the {@link World} and {@link Transform} the {@link Player} will have
+     * at respawn.
      *
-     * @param respawnTransform The new transform
+     * @param world The world
+     * @param transform The transform
      */
-    void setToTransform(Transform respawnTransform);
+    void setSpawnPosition(World world, Transform transform);
 
     /**
-     * Gets whether the transform was set by a bed or not.
+     * Gets whether the position of spawn was set by a {@link Bed}.
      *
-     * @return Whether the transform was set by a bed
+     * @return True if the position of spawn was due to a bed, false otherwise
      */
     boolean isBedSpawn();
 
     /**
-     * Gets whether this event was fired because the {@link Player} died.
+     * Gets if this respawn is due to a {@link Player}'s death.
      *
-     * @return {@code true} if player died, {@code false} if the player switched
-     *      dimensions
+     * @return {@code true} if player died, {@code false} otherwise
      */
     boolean isDeath();
 }

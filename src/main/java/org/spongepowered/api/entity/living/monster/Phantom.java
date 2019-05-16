@@ -25,7 +25,8 @@
 package org.spongepowered.api.entity.living.monster;
 
 import org.spongepowered.api.entity.living.Aerial;
+import org.spongepowered.api.entity.living.Creature;
 import org.spongepowered.api.entity.living.Hostile;
 
-public interface Phantom extends Aerial, Hostile {
+public interface Phantom extends Aerial, Hostile, Creature {
 }

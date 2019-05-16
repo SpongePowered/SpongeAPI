@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.entity.living.trader;
 
-import org.spongepowered.api.entity.living.Ageable;
+import org.spongepowered.api.entity.living.Creature;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.item.merchant.Merchant;
 
-public interface Trader extends Ageable, Merchant {
+public interface Trader extends Creature, Merchant {
 
     /**
      * Returns true if this trader is currently trading with another

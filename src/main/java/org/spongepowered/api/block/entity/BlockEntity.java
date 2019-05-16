@@ -34,7 +34,7 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.schematic.Schematic;
 
 /**
- * Represents an abstract Block Entity. It is a functional block that is
+ * Represents a block entity. It is a functional block that is
  * continuously updated while residing in a world. It can perform specific
  * functions based on the data that it contains.
  *

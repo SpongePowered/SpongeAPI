@@ -26,12 +26,13 @@ package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.entity.living.Ageable;
 import org.spongepowered.api.item.ItemTypes;
 
 /**
  * Represents a Chicken.
  */
-public interface Chicken extends Animal {
+public interface Chicken extends Animal, Ageable {
 
     /**
      * Gets a {@link Value} representing the time until a {@link Chicken} lays

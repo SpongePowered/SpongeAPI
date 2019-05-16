@@ -25,7 +25,7 @@
 package org.spongepowered.api.entity.projectile;
 
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
+import org.spongepowered.api.projectile.source.ProjectileSource;
 
 /**
  * Represents entities that act as projectiles and can fly in the air.
@@ -52,5 +52,4 @@ public interface Projectile extends Entity {
      * @param shooter The projectile source that shot this projectile
      */
     void setShooter(ProjectileSource shooter);
-
 }

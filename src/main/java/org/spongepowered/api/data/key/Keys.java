@@ -35,13 +35,13 @@ import org.spongepowered.api.block.entity.EndGateway;
 import org.spongepowered.api.block.entity.MobSpawner;
 import org.spongepowered.api.block.entity.Piston;
 import org.spongepowered.api.block.entity.Sign;
-import org.spongepowered.api.block.entity.Structure;
+import org.spongepowered.api.block.entity.StructureBlock;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.block.entity.carrier.Beacon;
 import org.spongepowered.api.block.entity.carrier.BrewingStand;
-import org.spongepowered.api.block.entity.carrier.Furnace;
+import org.spongepowered.api.block.entity.carrier.furnace.FurnaceBlockEntity;
 import org.spongepowered.api.block.entity.carrier.Hopper;
-import org.spongepowered.api.block.entity.carrier.BlockEntityCarrier;
+import org.spongepowered.api.block.entity.carrier.CarrierBlockEntity;
 import org.spongepowered.api.data.meta.PatternLayer;
 import org.spongepowered.api.data.property.Properties;
 import org.spongepowered.api.data.type.ArtType;
@@ -93,11 +93,12 @@ import org.spongepowered.api.entity.ExperienceOrb;
 import org.spongepowered.api.entity.FallingBlock;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.living.animal.Chicken;
-import org.spongepowered.api.entity.living.animal.Dolphin;
+import org.spongepowered.api.entity.living.aquatic.Dolphin;
 import org.spongepowered.api.entity.living.animal.PolarBear;
+import org.spongepowered.api.entity.living.animal.horse.HorseEntity;
 import org.spongepowered.api.entity.projectile.ShulkerBullet;
 import org.spongepowered.api.entity.explosive.Explosive;
-import org.spongepowered.api.entity.explosive.FusedExplosive;
+import org.spongepowered.api.entity.explosive.fused.FusedExplosive;
 import org.spongepowered.api.entity.hanging.ItemFrame;
 import org.spongepowered.api.entity.hanging.Painting;
 import org.spongepowered.api.entity.living.Ageable;
@@ -109,9 +110,8 @@ import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.animal.Animal;
 import org.spongepowered.api.entity.living.animal.Cat;
 import org.spongepowered.api.entity.living.animal.Fox;
-import org.spongepowered.api.entity.living.animal.Horse;
-import org.spongepowered.api.entity.living.animal.Llama;
-import org.spongepowered.api.entity.living.animal.Mooshroom;
+import org.spongepowered.api.entity.living.animal.horse.llama.Llama;
+import org.spongepowered.api.entity.living.animal.cow.Mooshroom;
 import org.spongepowered.api.entity.living.animal.Ocelot;
 import org.spongepowered.api.entity.living.animal.Panda;
 import org.spongepowered.api.entity.living.animal.Parrot;
@@ -124,9 +124,9 @@ import org.spongepowered.api.entity.living.monster.Blaze;
 import org.spongepowered.api.entity.living.monster.Creeper;
 import org.spongepowered.api.entity.living.monster.Enderman;
 import org.spongepowered.api.entity.living.monster.Endermite;
-import org.spongepowered.api.entity.living.monster.Slime;
-import org.spongepowered.api.entity.living.monster.ZombiePigman;
-import org.spongepowered.api.entity.living.monster.ZombieVillager;
+import org.spongepowered.api.entity.living.monster.slime.Slime;
+import org.spongepowered.api.entity.living.monster.zombie.ZombiePigman;
+import org.spongepowered.api.entity.living.monster.zombie.ZombieVillager;
 import org.spongepowered.api.entity.living.monster.raider.illager.Vindicator;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
@@ -135,12 +135,12 @@ import org.spongepowered.api.entity.living.trader.Trader;
 import org.spongepowered.api.entity.living.trader.Villager;
 import org.spongepowered.api.entity.projectile.DamagingProjectile;
 import org.spongepowered.api.entity.projectile.EyeOfEnder;
-import org.spongepowered.api.entity.projectile.FireworkRocket;
-import org.spongepowered.api.entity.projectile.arrow.Arrow;
+import org.spongepowered.api.entity.projectile.explosive.FireworkRocket;
+import org.spongepowered.api.entity.projectile.arrow.ArrowEntity;
 import org.spongepowered.api.entity.projectile.explosive.fireball.Fireball;
 import org.spongepowered.api.entity.vehicle.Boat;
 import org.spongepowered.api.entity.vehicle.minecart.CommandBlockMinecart;
-import org.spongepowered.api.entity.vehicle.minecart.Minecart;
+import org.spongepowered.api.entity.vehicle.minecart.MinecartEntity;
 import org.spongepowered.api.fluid.FluidStackSnapshot;
 import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.ItemTypes;
@@ -335,7 +335,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the damage dealt by a
-     * {@link DamagingProjectile}, e.g. an {@link Arrow}.
+     * {@link DamagingProjectile}, e.g. an {@link ArrowEntity}.
      */
     public static final Key<BoundedValue<Double>> ATTACK_DAMAGE = DummyObjectProvider.createExtendedFor(Key.class, "ATTACK_DAMAGE");
 
@@ -949,12 +949,12 @@ public final class Keys {
     public static final Key<Value<Hinge>> HINGE_POSITION = DummyObjectProvider.createExtendedFor(Key.class, "HINGE_POSITION");
 
     /**
-     * Represents the {@link Key} for the color of a {@link Horse}.
+     * Represents the {@link Key} for the color of a {@link HorseEntity}.
      */
     public static final Key<Value<HorseColor>> HORSE_COLOR = DummyObjectProvider.createExtendedFor(Key.class, "HORSE_COLOR");
 
     /**
-     * Represents the {@link Key} for the style of a {@link Horse}.
+     * Represents the {@link Key} for the style of a {@link HorseEntity}.
      */
     public static final Key<Value<HorseStyle>> HORSE_STYLE = DummyObjectProvider.createExtendedFor(Key.class, "HORSE_STYLE");
 
@@ -1159,7 +1159,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the knockback strength applied by an
-     * {@link Arrow}.
+     * {@link ArrowEntity}.
      *
      * <p>For the knockback provided by hits with a weapon according to the
      * enchantment of the same name, see {@link #ITEM_ENCHANTMENTS}.</p>
@@ -1215,7 +1215,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the token used to lock a
-     * {@link BlockEntityCarrier}.
+     * {@link CarrierBlockEntity}.
      */
     public static final Key<Value<String>> LOCK_TOKEN = DummyObjectProvider.createExtendedFor(Key.class, "LOCK_TOKEN");
 
@@ -1229,13 +1229,13 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the maximum amount of ticks a
-     * {@link Furnace} can burn with the currently used fuel item.
+     * {@link FurnaceBlockEntity} can burn with the currently used fuel item.
      */
     public static final Key<BoundedValue<Integer>> MAX_BURN_TIME = DummyObjectProvider.createExtendedFor(Key.class, "MAX_BURN_TIME");
 
     /**
      * Represents the {@link Key} for the total time the current
-     * {@link ItemStack} in a {@link Furnace} has to be cooked.
+     * {@link ItemStack} in a {@link FurnaceBlockEntity} has to be cooked.
      */
     public static final Key<BoundedValue<Integer>> MAX_COOK_TIME = DummyObjectProvider.createExtendedFor(Key.class, "MAX_COOK_TIME");
 
@@ -1273,7 +1273,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for representing a block's offset when inside
-     * a {@link Minecart}.
+     * a {@link MinecartEntity}.
      */
     public static final Key<Value<Integer>> OFFSET = DummyObjectProvider.createExtendedFor(Key.class, "OFFSET");
 
@@ -1294,7 +1294,7 @@ public final class Keys {
     public static final Key<Value<ParrotType>> PARROT_TYPE = DummyObjectProvider.createExtendedFor(Key.class, "PARROT_TYPE");
 
     /**
-     * Represents the {@link Key} for the amount of ticks a {@link Furnace} has
+     * Represents the {@link Key} for the amount of ticks a {@link FurnaceBlockEntity} has
      * already been burning with the current fuel item.
      *
      * <p>Once this value reaches the one of {@link #MAX_BURN_TIME}, the
@@ -1303,7 +1303,7 @@ public final class Keys {
     public static final Key<BoundedValue<Integer>> PASSED_BURN_TIME = DummyObjectProvider.createExtendedFor(Key.class, "PASSED_BURN_TIME");
 
     /**
-     * Represents the {@link Key} for the amount of ticks a {@link Furnace} has
+     * Represents the {@link Key} for the amount of ticks a {@link FurnaceBlockEntity} has
      * been cooking the current item for.
      *
      * <p>Once this value reaches the one of {@link #MAX_COOK_TIME}, the
@@ -1315,7 +1315,7 @@ public final class Keys {
      * Represents the {@link Key} for the entities that act as passengers for
      * an {@link Entity}.
      *
-     * <p>For example, a {@link Player} riding on a {@link Horse} or a
+     * <p>For example, a {@link Player} riding on a {@link HorseEntity} or a
      * {@link Pig} would be considered its passenger.</p>
      */
     public static final Key<ListValue<UUID>> PASSENGERS = DummyObjectProvider.createExtendedFor(Key.class, "PASSENGERS");
@@ -1337,7 +1337,7 @@ public final class Keys {
     public static final Key<BoundedValue<Integer>> PICKUP_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "PICKUP_DELAY");
 
     /**
-     * Represents the {@link Key} for the "pickup rule" of an {@link Arrow}.
+     * Represents the {@link Key} for the "pickup rule" of an {@link ArrowEntity}.
      */
     public static final Key<Value<PickupRule>> PICKUP_RULE = DummyObjectProvider.createExtendedFor(Key.class, "PICKUP_RULE");
 
@@ -1438,7 +1438,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for representing the {@link BlockState}
-     * inside a {@link Minecart}.
+     * inside a {@link MinecartEntity}.
      */
     public static final Key<Value<BlockState>> REPRESENTED_BLOCK = DummyObjectProvider.createExtendedFor(Key.class, "REPRESENTED_BLOCK");
 
@@ -1618,52 +1618,52 @@ public final class Keys {
     public static final Key<ListValue<Enchantment>> STORED_ENCHANTMENTS = DummyObjectProvider.createExtendedFor(Key.class, "STORED_ENCHANTMENTS");
 
     /**
-     * Represents the {@link Key} for representing the mode of a {@link Structure}.
+     * Represents the {@link Key} for representing the mode of a {@link StructureBlock}.
      */
     public static final Key<Value<String>> STRUCTURE_AUTHOR = DummyObjectProvider.createExtendedFor(Key.class, "STRUCTURE_AUTHOR");
 
     /**
-     * Represents the {@link Key} for representing the mode of a {@link Structure}.
+     * Represents the {@link Key} for representing the mode of a {@link StructureBlock}.
      */
     public static final Key<Value<Boolean>> STRUCTURE_IGNORE_ENTITIES = DummyObjectProvider.createExtendedFor(Key.class, "STRUCTURE_IGNORE_ENTITIES");
 
     /**
-     * Represents the {@link Key} for representing the mode of a {@link Structure}.
+     * Represents the {@link Key} for representing the mode of a {@link StructureBlock}.
      */
     public static final Key<Value<Float>> STRUCTURE_INTEGRITY = DummyObjectProvider.createExtendedFor(Key.class, "STRUCTURE_INTEGRITY");
 
     /**
-     * Represents the {@link Key} for representing the mode of a {@link Structure}.
+     * Represents the {@link Key} for representing the mode of a {@link StructureBlock}.
      */
     public static final Key<Value<StructureMode>> STRUCTURE_MODE = DummyObjectProvider.createExtendedFor(Key.class, "STRUCTURE_MODE");
 
     /**
-     * Represents the {@link Key} for representing the position of a {@link Structure}.
+     * Represents the {@link Key} for representing the position of a {@link StructureBlock}.
      */
     public static final Key<Value<Vector3i>> STRUCTURE_POSITION = DummyObjectProvider.createExtendedFor(Key.class, "STRUCTURE_POSITION");
 
     /**
-     * Represents the {@link Key} for representing the mode of a {@link Structure}.
+     * Represents the {@link Key} for representing the mode of a {@link StructureBlock}.
      */
     public static final Key<Value<Boolean>> STRUCTURE_POWERED = DummyObjectProvider.createExtendedFor(Key.class, "STRUCTURE_POWERED");
 
     /**
-     * Represents the {@link Key} for representing the mode of a {@link Structure}.
+     * Represents the {@link Key} for representing the mode of a {@link StructureBlock}.
      */
     public static final Key<Value<Long>> STRUCTURE_SEED = DummyObjectProvider.createExtendedFor(Key.class, "STRUCTURE_SEED");
 
     /**
-     * Represents the {@link Key} for representing the mode of a {@link Structure}.
+     * Represents the {@link Key} for representing the mode of a {@link StructureBlock}.
      */
     public static final Key<Value<Boolean>> STRUCTURE_SHOW_AIR = DummyObjectProvider.createExtendedFor(Key.class, "STRUCTURE_SHOW_AIR");
 
     /**
-     * Represents the {@link Key} for representing the mode of a {@link Structure}.
+     * Represents the {@link Key} for representing the mode of a {@link StructureBlock}.
      */
     public static final Key<Value<Boolean>> STRUCTURE_SHOW_BOUNDING_BOX = DummyObjectProvider.createExtendedFor(Key.class, "STRUCTURE_SHOW_BOUNDING_BOX");
 
     /**
-     * Represents the {@link Key} for representing the size of a {@link Structure}.
+     * Represents the {@link Key} for representing the size of a {@link StructureBlock}.
      */
     public static final Key<Value<Vector3i>> STRUCTURE_SIZE = DummyObjectProvider.createExtendedFor(Key.class, "STRUCTURE_SIZE");
 
@@ -1698,7 +1698,7 @@ public final class Keys {
      * Represents the {@link Key} for the owner uuid of a tamed {@link Animal}.
      *
      * <p>Tamable animals in Vanilla may be a {@link Wolf}, an {@link Ocelot}
-     * or a {@link Horse}.</p>
+     * or a {@link HorseEntity}.</p>
      */
     public static final Key<OptionalValue<UUID>> TAMED_OWNER = DummyObjectProvider.createExtendedFor(Key.class, "TAMED_OWNER");
 

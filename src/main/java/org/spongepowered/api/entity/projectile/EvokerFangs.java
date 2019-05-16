@@ -24,7 +24,5 @@
  */
 package org.spongepowered.api.entity.projectile;
 
-import org.spongepowered.api.entity.Entity;
-
-public interface EvokerFangs extends Entity {
+public interface EvokerFangs extends Projectile {
 }

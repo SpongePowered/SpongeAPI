@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.entity.living.monster;
 
+import org.spongepowered.api.entity.living.Monster;
+
 public interface Vex extends Monster {
 
 }
