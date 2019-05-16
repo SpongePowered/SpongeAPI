@@ -111,6 +111,8 @@ public final class TemporalUnits {
 
     /**
      * A {@link TemporalUnit} which represents one minecraft tick.
+     *
+     * <p>One minecraft tick is 50 milliseconds.</p>
      */
     public static final TemporalUnit MINECRAFT_TICKS = DummyObjectProvider.createFor(TemporalUnit.class, "MINECRAFT_TICKS");
 

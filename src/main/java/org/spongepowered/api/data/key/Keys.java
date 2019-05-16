@@ -784,7 +784,7 @@ public final class Keys {
      * fly for roughly {@code modifier * 10 + (random number from 0 to 13)}
      * {@link TemporalUnits#MINECRAFT_TICKS} in Vanilla Minecraft.</p>
      */
-    public static final Key<BoundedValue<Duration>> FIREWORK_FLIGHT_MODIFIER = DummyObjectProvider.createExtendedFor(Key.class, "FIREWORK_FLIGHT_MODIFIER");
+    public static final Key<BoundedValue<Integer>> FIREWORK_FLIGHT_MODIFIER = DummyObjectProvider.createExtendedFor(Key.class, "FIREWORK_FLIGHT_MODIFIER");
 
     /**
      * Represents the {@link Key} for the delay until the
