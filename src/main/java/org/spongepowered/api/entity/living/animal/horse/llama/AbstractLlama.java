@@ -22,25 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.projectile.arrow;
+package org.spongepowered.api.entity.living.animal.horse.llama;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.value.BoundedValue;
-import org.spongepowered.api.entity.projectile.DamagingProjectile;
+import org.spongepowered.api.entity.living.animal.horse.AbstractHorse;
 
-/**
- * Represents an arrow projectile.
- */
-public interface ArrowEntity extends DamagingProjectile {
-
-    /**
-     * Gets the {@link BoundedValue.Mutable} for the "knockback strength"
-     * that this arrow has.
-     *
-     * @return The immutable value for the knockback strength
-     */
-    default BoundedValue.Mutable<Integer> knockbackStrength() {
-        return getValue(Keys.KNOCKBACK_STRENGTH).get().asMutable();
-    }
+public interface AbstractLlama extends AbstractHorse {
 
 }

@@ -22,24 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.entity.carrier.furnace;
+package org.spongepowered.api.block.entity.carrier.cooker.furnace;
 
-import org.spongepowered.api.block.entity.carrier.CarrierBlockEntity;
+import org.spongepowered.api.block.entity.carrier.cooker.CookingBlockEntity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.value.BoundedValue;
-import org.spongepowered.api.item.recipe.Recipe;
 
 /**
  * Represents the types of furnaces in Vanilla minecraft.
  */
-public interface FurnaceBlockEntity extends CarrierBlockEntity {
-
-    /**
-     * Attempts to process the {@link Recipe} for results.
-     *
-     * @return If the process was successful.
-     */
-    boolean process();
+public interface AbstractFurnace extends CookingBlockEntity {
 
     /**
      * Gets the {@link BoundedValue.Mutable} for the already passed burn time.

@@ -27,6 +27,6 @@ package org.spongepowered.api.entity.projectile.arrow;
 /**
  * An arrow generally "tipped" with one or more potion effects.
  */
-public interface Arrow extends ArrowEntity {
+public interface Arrow extends AbstractArrow {
 
 }

@@ -26,6 +26,6 @@ package org.spongepowered.api.entity.vehicle.minecart;
 
 import org.spongepowered.api.entity.vehicle.Vehicle;
 
-public interface Minecart extends MinecartEntity, Vehicle {
+public interface Minecart extends AbstractMinecart, Vehicle {
 
 }

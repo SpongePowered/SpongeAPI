@@ -24,6 +24,6 @@
  */
 package org.spongepowered.api.entity.living.animal.horse.llama;
 
-public interface TraderLlama extends LlamaEntity {
+public interface TraderLlama extends AbstractLlama {
 
 }

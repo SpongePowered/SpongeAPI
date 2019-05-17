@@ -26,6 +26,6 @@ package org.spongepowered.api.entity.living.animal.horse;
 
 import org.spongepowered.api.entity.living.Ageable;
 
-public interface AgeableHorse extends HorseEntity, Ageable {
+public interface AgeableHorse extends AbstractHorse, Ageable {
 
 }

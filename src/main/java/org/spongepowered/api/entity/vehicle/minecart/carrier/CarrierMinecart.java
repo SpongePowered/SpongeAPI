@@ -24,15 +24,15 @@
  */
 package org.spongepowered.api.entity.vehicle.minecart.carrier;
 
-import org.spongepowered.api.entity.vehicle.minecart.MinecartEntity;
+import org.spongepowered.api.entity.vehicle.minecart.AbstractMinecart;
 import org.spongepowered.api.item.inventory.Carrier;
+import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.type.CarriedInventory;
 
 /**
- * Represents a minecart with a container inside it. Common extensions of this
- * are {@link ChestMinecart} and {@link HopperMinecart}.
+ * Represents an {@link AbstractMinecart} that carries an {@link CarriedInventory}.
  */
-public interface CarrierMinecart<M extends CarrierMinecart<M>> extends MinecartEntity, Carrier {
+public interface CarrierMinecart<M extends CarrierMinecart<M>> extends AbstractMinecart, Carrier {
 
     @Override
     CarriedInventory<M> getInventory();

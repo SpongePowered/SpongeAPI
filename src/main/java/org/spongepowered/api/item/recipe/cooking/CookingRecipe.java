@@ -22,37 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.recipe.smelting;
+package org.spongepowered.api.item.recipe.cooking;
 
-import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.item.recipe.RecipeRegistry;
+import org.spongepowered.api.item.recipe.Recipe;
 
-import java.util.Optional;
+public interface CookingRecipe extends Recipe {
 
-/**
- * A registry for Crafting Table recipes.
- */
-public interface SmeltingRecipeRegistry extends RecipeRegistry<SmeltingRecipe> {
-
-    /**
-     * Retrieves the recipe used when smelting the given ingredient.
-     *
-     * @param ingredient The ingredient to check against
-     * @return The found {@link SmeltingRecipe}, or {@link Optional#empty()}
-     *         if no recipe was found for this {@link ItemStackSnapshot}
-     */
-    Optional<SmeltingRecipe> findMatchingRecipe(ItemStackSnapshot ingredient);
-
-    /**
-     * Finds the matching recipe and creates the {@link SmeltingResult},
-     * which is then returned.
-     *
-     * @param ingredient The ingredient to check against
-     * @return The {@link SmeltingResult} if a recipe was found, or
-     *         {@link Optional#empty()} if not
-     */
-    default Optional<SmeltingResult> getResult(ItemStackSnapshot ingredient) {
-        return findMatchingRecipe(ingredient)
-                .flatMap(recipe -> recipe.getResult(ingredient));
-    }
 }

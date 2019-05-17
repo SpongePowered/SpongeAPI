@@ -44,7 +44,7 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.entity.living.trader.Villager;
 import org.spongepowered.api.entity.vehicle.Boat;
-import org.spongepowered.api.entity.vehicle.minecart.MinecartEntity;
+import org.spongepowered.api.entity.vehicle.minecart.AbstractMinecart;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
@@ -173,7 +173,7 @@ public final class GameRules {
      * {@link GameModes#ADVENTURE adventure mode} {@link Player}s, and all
      * mobs but bats. Pushable entities include non-spectator-mode
      * {@link Player}, any mob except {@link Bat}s, as well as
-     * {@link Boat}s and {@link MinecartEntity}.</p>
+     * {@link Boat}s and {@link AbstractMinecart}.</p>
      *
      * <p>Setting to {@code 0} disables the rule.</p>
      *

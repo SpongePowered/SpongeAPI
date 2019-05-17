@@ -22,5 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.item.recipe.smelting;
+package org.spongepowered.api.block.entity.carrier.cooker;
+
+import org.spongepowered.api.block.entity.carrier.CarrierBlockEntity;
+
+public interface CookingBlockEntity extends CarrierBlockEntity {
+
+    /**
+     * Instructs this {@link CookingBlockEntity} to "cook"
+     *
+     * @return If the cook was successful.
+     */
+    boolean cook();
+}

@@ -27,8 +27,8 @@ package org.spongepowered.api.entity.vehicle.minecart;
 import org.spongepowered.api.entity.explosive.fused.FusedExplosive;
 
 /**
- * Represents a MinecartEntity with a TNT block in it.
+ * Represents a AbstractMinecart with a TNT block in it.
  */
-public interface TNTMinecart extends MinecartEntity, FusedExplosive {
+public interface TNTMinecart extends AbstractMinecart, FusedExplosive {
 
 }

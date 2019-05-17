@@ -22,11 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.animal.horse;
+package org.spongepowered.api.block.entity.carrier.cooker.furnace;
 
-import org.spongepowered.api.entity.living.animal.Animal;
-import org.spongepowered.api.item.inventory.Carrier;
-
-public interface HorseEntity extends Animal, Carrier {
+public interface Smoker extends AbstractFurnace {
 
 }

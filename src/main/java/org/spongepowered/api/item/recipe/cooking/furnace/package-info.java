@@ -22,8 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.entity.carrier;
-
-public interface Campfire extends CarrierBlockEntity {
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.item.recipe.cooking.furnace;

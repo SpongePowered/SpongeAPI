@@ -39,7 +39,7 @@ import org.spongepowered.api.block.entity.StructureBlock;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.block.entity.carrier.Beacon;
 import org.spongepowered.api.block.entity.carrier.BrewingStand;
-import org.spongepowered.api.block.entity.carrier.furnace.FurnaceBlockEntity;
+import org.spongepowered.api.block.entity.carrier.cooker.furnace.AbstractFurnace;
 import org.spongepowered.api.block.entity.carrier.Hopper;
 import org.spongepowered.api.block.entity.carrier.CarrierBlockEntity;
 import org.spongepowered.api.data.meta.PatternLayer;
@@ -93,9 +93,10 @@ import org.spongepowered.api.entity.ExperienceOrb;
 import org.spongepowered.api.entity.FallingBlock;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.living.animal.Chicken;
+import org.spongepowered.api.entity.living.animal.horse.AbstractHorse;
+import org.spongepowered.api.entity.living.animal.horse.Horse;
 import org.spongepowered.api.entity.living.aquatic.Dolphin;
 import org.spongepowered.api.entity.living.animal.PolarBear;
-import org.spongepowered.api.entity.living.animal.horse.HorseEntity;
 import org.spongepowered.api.entity.projectile.ShulkerBullet;
 import org.spongepowered.api.entity.explosive.Explosive;
 import org.spongepowered.api.entity.explosive.fused.FusedExplosive;
@@ -136,11 +137,11 @@ import org.spongepowered.api.entity.living.trader.Villager;
 import org.spongepowered.api.entity.projectile.DamagingProjectile;
 import org.spongepowered.api.entity.projectile.EyeOfEnder;
 import org.spongepowered.api.entity.projectile.explosive.FireworkRocket;
-import org.spongepowered.api.entity.projectile.arrow.ArrowEntity;
+import org.spongepowered.api.entity.projectile.arrow.AbstractArrow;
 import org.spongepowered.api.entity.projectile.explosive.fireball.Fireball;
 import org.spongepowered.api.entity.vehicle.Boat;
 import org.spongepowered.api.entity.vehicle.minecart.CommandBlockMinecart;
-import org.spongepowered.api.entity.vehicle.minecart.MinecartEntity;
+import org.spongepowered.api.entity.vehicle.minecart.AbstractMinecart;
 import org.spongepowered.api.fluid.FluidStackSnapshot;
 import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.ItemTypes;
@@ -335,7 +336,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the damage dealt by a
-     * {@link DamagingProjectile}, e.g. an {@link ArrowEntity}.
+     * {@link DamagingProjectile}, e.g. an {@link AbstractArrow}.
      */
     public static final Key<BoundedValue<Double>> ATTACK_DAMAGE = DummyObjectProvider.createExtendedFor(Key.class, "ATTACK_DAMAGE");
 
@@ -949,12 +950,12 @@ public final class Keys {
     public static final Key<Value<Hinge>> HINGE_POSITION = DummyObjectProvider.createExtendedFor(Key.class, "HINGE_POSITION");
 
     /**
-     * Represents the {@link Key} for the color of a {@link HorseEntity}.
+     * Represents the {@link Key} for the color of a {@link Horse}.
      */
     public static final Key<Value<HorseColor>> HORSE_COLOR = DummyObjectProvider.createExtendedFor(Key.class, "HORSE_COLOR");
 
     /**
-     * Represents the {@link Key} for the style of a {@link HorseEntity}.
+     * Represents the {@link Key} for the style of a {@link Horse}.
      */
     public static final Key<Value<HorseStyle>> HORSE_STYLE = DummyObjectProvider.createExtendedFor(Key.class, "HORSE_STYLE");
 
@@ -1159,7 +1160,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the knockback strength applied by an
-     * {@link ArrowEntity}.
+     * {@link AbstractArrow}.
      *
      * <p>For the knockback provided by hits with a weapon according to the
      * enchantment of the same name, see {@link #ITEM_ENCHANTMENTS}.</p>
@@ -1229,13 +1230,13 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the maximum amount of ticks a
-     * {@link FurnaceBlockEntity} can burn with the currently used fuel item.
+     * {@link AbstractFurnace} can burn with the currently used fuel item.
      */
     public static final Key<BoundedValue<Integer>> MAX_BURN_TIME = DummyObjectProvider.createExtendedFor(Key.class, "MAX_BURN_TIME");
 
     /**
      * Represents the {@link Key} for the total time the current
-     * {@link ItemStack} in a {@link FurnaceBlockEntity} has to be cooked.
+     * {@link ItemStack} in a {@link AbstractFurnace} has to be cooked.
      */
     public static final Key<BoundedValue<Integer>> MAX_COOK_TIME = DummyObjectProvider.createExtendedFor(Key.class, "MAX_COOK_TIME");
 
@@ -1273,7 +1274,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for representing a block's offset when inside
-     * a {@link MinecartEntity}.
+     * a {@link AbstractMinecart}.
      */
     public static final Key<Value<Integer>> OFFSET = DummyObjectProvider.createExtendedFor(Key.class, "OFFSET");
 
@@ -1294,7 +1295,7 @@ public final class Keys {
     public static final Key<Value<ParrotType>> PARROT_TYPE = DummyObjectProvider.createExtendedFor(Key.class, "PARROT_TYPE");
 
     /**
-     * Represents the {@link Key} for the amount of ticks a {@link FurnaceBlockEntity} has
+     * Represents the {@link Key} for the amount of ticks a {@link AbstractFurnace} has
      * already been burning with the current fuel item.
      *
      * <p>Once this value reaches the one of {@link #MAX_BURN_TIME}, the
@@ -1303,7 +1304,7 @@ public final class Keys {
     public static final Key<BoundedValue<Integer>> PASSED_BURN_TIME = DummyObjectProvider.createExtendedFor(Key.class, "PASSED_BURN_TIME");
 
     /**
-     * Represents the {@link Key} for the amount of ticks a {@link FurnaceBlockEntity} has
+     * Represents the {@link Key} for the amount of ticks a {@link AbstractFurnace} has
      * been cooking the current item for.
      *
      * <p>Once this value reaches the one of {@link #MAX_COOK_TIME}, the
@@ -1315,7 +1316,7 @@ public final class Keys {
      * Represents the {@link Key} for the entities that act as passengers for
      * an {@link Entity}.
      *
-     * <p>For example, a {@link Player} riding on a {@link HorseEntity} or a
+     * <p>For example, a {@link Player} riding on a {@link AbstractHorse} or a
      * {@link Pig} would be considered its passenger.</p>
      */
     public static final Key<ListValue<UUID>> PASSENGERS = DummyObjectProvider.createExtendedFor(Key.class, "PASSENGERS");
@@ -1337,7 +1338,7 @@ public final class Keys {
     public static final Key<BoundedValue<Integer>> PICKUP_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "PICKUP_DELAY");
 
     /**
-     * Represents the {@link Key} for the "pickup rule" of an {@link ArrowEntity}.
+     * Represents the {@link Key} for the "pickup rule" of an {@link AbstractArrow}.
      */
     public static final Key<Value<PickupRule>> PICKUP_RULE = DummyObjectProvider.createExtendedFor(Key.class, "PICKUP_RULE");
 
@@ -1438,7 +1439,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for representing the {@link BlockState}
-     * inside a {@link MinecartEntity}.
+     * inside a {@link AbstractMinecart}.
      */
     public static final Key<Value<BlockState>> REPRESENTED_BLOCK = DummyObjectProvider.createExtendedFor(Key.class, "REPRESENTED_BLOCK");
 
@@ -1698,7 +1699,7 @@ public final class Keys {
      * Represents the {@link Key} for the owner uuid of a tamed {@link Animal}.
      *
      * <p>Tamable animals in Vanilla may be a {@link Wolf}, an {@link Ocelot}
-     * or a {@link HorseEntity}.</p>
+     * or a {@link AbstractHorse}.</p>
      */
     public static final Key<OptionalValue<UUID>> TAMED_OWNER = DummyObjectProvider.createExtendedFor(Key.class, "TAMED_OWNER");
 

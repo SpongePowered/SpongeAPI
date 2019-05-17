@@ -25,8 +25,8 @@
 package org.spongepowered.api.entity.vehicle.minecart;
 
 /**
- * Represents a MinecartEntity with a MobSpawner inside it.
+ * Represents a AbstractMinecart with a MobSpawner inside it.
  */
-public interface SpawnerMinecart extends MinecartEntity {
+public interface SpawnerMinecart extends AbstractMinecart {
 
 }

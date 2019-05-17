@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.recipe.smelting;
+package org.spongepowered.api.item.recipe.cooking.furnace;
 
 import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.Sponge;
@@ -30,6 +30,7 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.Recipe;
+import org.spongepowered.api.item.recipe.cooking.CookingRecipe;
 import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.NamedCatalogBuilder;
 import org.spongepowered.api.util.ResettableBuilder;
@@ -40,15 +41,15 @@ import java.util.function.Predicate;
 /**
  * A general interface for furnace recipes. You can implement it manually to
  * suit your creative needs, or you can simply use the
- * {@link SmeltingRecipe.Builder}.
+ * {@link FurnaceRecipe.Builder}.
  */
-public interface SmeltingRecipe extends Recipe {
+public interface FurnaceRecipe extends CookingRecipe {
 
     /**
      * Builds a simple furnace recipe. Note, that you can implement the
-     * {@link SmeltingRecipe} manually, too.
+     * {@link FurnaceRecipe} manually, too.
      *
-     * @return A {@link SmeltingRecipe} builder
+     * @return A {@link FurnaceRecipe} builder
      */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
@@ -64,7 +65,7 @@ public interface SmeltingRecipe extends Recipe {
 
     /**
      * Checks if the given {@link ItemStackSnapshot} fits the required
-     * constraints to craft this {@link SmeltingRecipe}.
+     * constraints to craft this {@link FurnaceRecipe}.
      *
      * @param ingredient The ingredient to check against
      * @return Whether this ingredient can be used to craft the result
@@ -91,7 +92,7 @@ public interface SmeltingRecipe extends Recipe {
     /**
      * Builds a simple furnace recipe.
      */
-    interface Builder extends ResettableBuilder<SmeltingRecipe, Builder> {
+    interface Builder extends ResettableBuilder<FurnaceRecipe, Builder> {
 
         /**
          * Changes the ingredient predicate and returns this builder.
@@ -165,7 +166,7 @@ public interface SmeltingRecipe extends Recipe {
 
         }
 
-        interface EndStep extends Builder, NamedCatalogBuilder<SmeltingRecipe, Builder> {
+        interface EndStep extends Builder, NamedCatalogBuilder<FurnaceRecipe, Builder> {
 
             /**
              * Changes the experience and returns this builder. It is the
@@ -188,14 +189,14 @@ public interface SmeltingRecipe extends Recipe {
             EndStep name(Translation name);
 
             /**
-             * Builds the {@link SmeltingRecipe}.
+             * Builds the {@link FurnaceRecipe}.
              *
-             * @return The built smelting recipe
+             * @return The built furnace recipe
              * @throws IllegalStateException If not all the recipe builder steps are completed
              *                               or the {@link #key(CatalogKey)} isn't set.
              */
             @Override
-            SmeltingRecipe build() throws IllegalStateException;
+            FurnaceRecipe build() throws IllegalStateException;
         }
     }
 }

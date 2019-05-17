@@ -27,7 +27,7 @@ package org.spongepowered.api.item.recipe;
 import org.spongepowered.api.NamedCatalogType;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
-import org.spongepowered.api.item.recipe.smelting.SmeltingRecipe;
+import org.spongepowered.api.item.recipe.cooking.furnace.FurnaceRecipe;
 
 /**
  * A general interface for recipes. Every direct sub interface
@@ -35,7 +35,7 @@ import org.spongepowered.api.item.recipe.smelting.SmeltingRecipe;
  * for what purpose a {@link Recipe} is implemented, different
  * sub classes will be used.
  * <p>The currently supported recipe types are
- * {@link CraftingRecipe} and {@link SmeltingRecipe}.
+ * {@link CraftingRecipe} and {@link FurnaceRecipe}.
  */
 public interface Recipe extends NamedCatalogType {
 

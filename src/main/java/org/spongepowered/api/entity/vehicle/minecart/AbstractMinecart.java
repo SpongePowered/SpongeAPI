@@ -28,9 +28,9 @@ import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.entity.Entity;
 
 /**
- * Represents a MinecartEntity entity.
+ * Represents a AbstractMinecart entity.
  */
-public interface MinecartEntity extends Entity {
+public interface AbstractMinecart extends Entity {
 
     /**
      * Gets whether or not the minecart is currently on a valid rail block.
@@ -61,7 +61,7 @@ public interface MinecartEntity extends Entity {
      * Gets the maximum speed that this cart is allowed to travel at the instant
      * this method is called.
      *
-     * <p>This differs from {@link MinecartEntity#getSwiftness()} in that its value is
+     * <p>This differs from {@link AbstractMinecart#getSwiftness()} in that its value is
      * affected by the block/rail beneath the cart. However, it is still
      * impacted and limited by the cart's swiftness.</p>
      *

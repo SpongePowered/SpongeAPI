@@ -25,11 +25,12 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.entity.projectile.arrow.ArrowEntity;
+import org.spongepowered.api.entity.projectile.arrow.AbstractArrow;
+import org.spongepowered.api.entity.projectile.arrow.Arrow;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents a pickup rule used by {@link ArrowEntity}s.
+ * Represents a pickup rule used by {@link Arrow}s.
  */
 @CatalogedBy(PickupRules.class)
 public interface PickupRule extends CatalogType {

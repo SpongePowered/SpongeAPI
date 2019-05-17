@@ -22,12 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.inventory.slot;
+package org.spongepowered.api.block.entity.carrier.cooker;
 
-/**
- * An input slot used to supply items to a crafting, furnace, enchanting or
- * other automated process. 
- */
-public interface InputSlot extends FilteringSlot {
+public interface Campfire extends CookingBlockEntity {
 
 }

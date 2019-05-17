@@ -22,10 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.animal.horse.llama;
-
-import org.spongepowered.api.entity.living.animal.horse.HorseEntity;
-
-public interface LlamaEntity extends HorseEntity {
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.block.entity.carrier.cooker.furnace;

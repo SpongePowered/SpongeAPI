@@ -22,8 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.entity.carrier.furnace;
+package org.spongepowered.api.block.entity.carrier.cooker.furnace;
 
-public interface BlastFurnace extends FurnaceBlockEntity {
+public interface BlastFurnace extends AbstractFurnace {
 
 }

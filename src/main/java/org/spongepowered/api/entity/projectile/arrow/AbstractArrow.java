@@ -22,5 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.block.entity.carrier.furnace;
+package org.spongepowered.api.entity.projectile.arrow;
+
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.entity.projectile.DamagingProjectile;
+
+/**
+ * Represents an arrow projectile.
+ */
+public interface AbstractArrow extends DamagingProjectile {
+
+    /**
+     * Gets the {@link BoundedValue.Mutable} for the "knockback strength"
+     * that this arrow has.
+     *
+     * @return The immutable value for the knockback strength
+     */
+    default BoundedValue.Mutable<Integer> knockbackStrength() {
+        return getValue(Keys.KNOCKBACK_STRENGTH).get().asMutable();
+    }
+
+}

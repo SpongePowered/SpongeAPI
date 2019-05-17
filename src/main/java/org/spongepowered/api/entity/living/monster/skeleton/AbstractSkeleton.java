@@ -22,8 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.entity.carrier.furnace;
+package org.spongepowered.api.entity.living.monster.skeleton;
 
-public interface Smoker extends FurnaceBlockEntity {
+import org.spongepowered.api.item.inventory.ArmorEquipable;
+import org.spongepowered.api.entity.living.Ranger;
+import org.spongepowered.api.entity.living.Monster;
+
+public interface AbstractSkeleton extends Monster, ArmorEquipable, Ranger {
 
 }

@@ -24,52 +24,25 @@
  */
 package org.spongepowered.api.event.block.entity;
 
-import org.spongepowered.api.block.entity.carrier.furnace.FurnaceBlockEntity;
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.event.item.inventory.AffectItemStackEvent;
+import org.spongepowered.api.block.entity.carrier.cooker.furnace.AbstractFurnace;
+import org.spongepowered.api.data.Transaction;
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.item.recipe.cooking.furnace.FurnaceRecipe;
 
-import java.util.List;
+public interface ConsumeFuelEvent extends CookEvent, Cancellable {
 
-public interface SmeltEvent extends Event {
+    @Override
+    AbstractFurnace getCooker();
 
-    /**
-     * Gets the {@link FurnaceBlockEntity}.
-     *
-     * @return The furnace
-     */
-    FurnaceBlockEntity getFurnace();
+    @Override
+    FurnaceRecipe getRecipe();
 
     /**
-     * Gets the fuel represented as an {@link ItemStackSnapshot}.
+     * Gets the {@link ItemStackSnapshot fuel} as a {@link Transaction} that can be used to
+     * control the outcome of the fuel on each consumption.
      *
-     * @return The ingredient
+     * @return The transaction
      */
-    ItemStackSnapshot getFuel();
-
-    interface Start extends SmeltEvent, AffectItemStackEvent {}
-
-    interface ConsumeFuel extends SmeltEvent, AffectItemStackEvent {}
-
-    interface Tick extends SmeltEvent, AffectItemStackEvent {}
-
-    interface Interrupt extends SmeltEvent {
-
-        /**
-         * Gets an immutable {@link List} of {@link ItemStackSnapshot}s that are the result
-         * of the smelt.
-         * @return The smelt items
-         */
-        List<ItemStackSnapshot> getSmeltedItems();
-    }
-
-    interface Finish extends SmeltEvent {
-
-        /**
-         * Gets an immutable {@link List} of {@link ItemStackSnapshot}s that are the result
-         * of the smelt.
-         * @return The smelt items
-         */
-        List<ItemStackSnapshot> getSmeltedItems();
-    }
+    Transaction<ItemStackSnapshot> getFuel();
 }

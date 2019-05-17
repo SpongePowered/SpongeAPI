@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.entity;
 
+import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.event.Cancellable;
@@ -47,25 +48,25 @@ public interface MoveEntityEvent extends Event, Cancellable {
     Entity getEntity();
 
     /**
-     * Gets the transform that the {@link Entity} came from.
+     * Gets the {@link Vector3d position} that the {@link Entity} came from.
      *
-     * @return the previous transform
+     * @return The position
      */
-    Transform getFromTransform();
+    Vector3d getFromPosition();
 
     /**
-     * Gets the new transform that the {@link Entity} will change to.
+     * Gets the {@link Vector3d} that the {@link Entity} will move to.
      *
-     * @return the new transform
+     * @return The position
      */
-    Transform getToTransform();
+    Vector3d getToPosition();
 
     /**
-     * Sets the new transform that the {@link Entity} will change to.
+     * Sets the {@link Vector3d position} that the {@link Entity} will move to.
      *
-     * @param transform The new transform
+     * @param position The position
      */
-    void setToTransform(Transform transform);
+    void setToPosition(Vector3d position);
 
     /**
      * Fired when an {@link Entity}'s position changes.

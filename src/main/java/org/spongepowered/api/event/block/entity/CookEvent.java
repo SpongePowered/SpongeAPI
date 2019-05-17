@@ -22,12 +22,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.inventory.slot;
+package org.spongepowered.api.event.block.entity;
 
-/**
- * An input slot used to supply items to a crafting, furnace, enchanting or
- * other automated process. 
- */
-public interface InputSlot extends FilteringSlot {
+import org.spongepowered.api.block.entity.carrier.cooker.CookingBlockEntity;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
+import org.spongepowered.api.event.item.inventory.AffectItemStackEvent;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.item.recipe.Recipe;
+import org.spongepowered.api.item.recipe.cooking.CookingRecipe;
 
+import java.util.List;
+
+public interface CookEvent extends Event {
+
+    /**
+     * Gets the {@link CookingBlockEntity}.
+     *
+     * @return The cooker
+     */
+    CookingBlockEntity getCooker();
+
+    /**
+     * Gets the {@link Recipe} used by the cooker.
+     *
+     * @return The recipe
+     */
+    CookingRecipe getRecipe();
+
+    interface Start extends CookEvent, AffectItemStackEvent, Cancellable {}
+
+    interface Tick extends CookEvent, AffectItemStackEvent, Cancellable {}
+
+    interface Finish extends CookEvent {
+
+        /**
+         * Gets an immutable {@link List} of {@link ItemStackSnapshot}s that are the
+         * result of the cook.
+         *
+         * @return The items
+         */
+        List<ItemStackSnapshot> getCookedItems();
+    }
 }
