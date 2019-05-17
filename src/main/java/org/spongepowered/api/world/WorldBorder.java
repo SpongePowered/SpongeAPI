@@ -92,40 +92,8 @@ public interface WorldBorder {
      *
      * @param diameter The diameter where the border will expand/contract to
      * @param duration The duration over which to change
-     * @param temporalUnit The temporal unit of the duration
-     */
-    default void setDiameter(double diameter, long duration, TemporalUnit temporalUnit) {
-        setDiameter(diameter, Duration.of(duration, temporalUnit));
-    }
-
-    /**
-     * Sets the diameter of the world border, over the given duration.
-     *
-     * <p>The world border diameter increases/decrease linearly over the
-     * specified time. The specified diameter applies to the x and z axis. The
-     * world border extends over the entire y-axis.</p>
-     *
-     * @param diameter The diameter where the border will expand/contract to
-     * @param duration The duration over which to change
      */
     void setDiameter(double diameter, Duration duration);
-
-    /**
-     * Sets the starting diameter and the ending diameter of the world border,
-     * over the given duration.
-     *
-     * <p>The world border diameter increases/diameter linearly over the
-     * specified time. The specified diameter applies to the x and z axis. The
-     * world border extends over the entire y-axis.</p>
-     *
-     * @param startDiameter The diameter where the border will start
-     * @param endDiameter The diameter where the border will end
-     * @param duration The duration over which to change
-     * @param temporalUnit The temporal unit of the duration
-     */
-    default void setDiameter(double startDiameter, double endDiameter, long duration, TemporalUnit temporalUnit) {
-        setDiameter(startDiameter, endDiameter, Duration.of(duration, temporalUnit));
-    }
 
     /**
      * Sets the starting diameter and the ending diameter of the world border,
@@ -346,9 +314,9 @@ public interface WorldBorder {
          * 
          * @param damage The damage amount
          * @return The builder, for chaining
-         * @see WorldBorder#setDamageAmount(double)
+         * @see WorldBorder#setDamageAmount(TemporalScaledDouble)
          */
-        Builder damageAmount(double damage);
+        Builder damageAmount(TemporalScaledDouble damage);
         
         /**
          * Builds the world border from the information given. If no information

@@ -124,5 +124,4 @@ public final class TemporalUnits {
     private TemporalUnits() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }
-
 }

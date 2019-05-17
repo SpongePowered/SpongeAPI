@@ -74,4 +74,8 @@ public final class Durations {
     public static Duration ofMinecraftDays(long minecraftDays) {
         return Duration.of(minecraftDays, TemporalUnits.MINECRAFT_DAYS);
     }
+
+    private Durations() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 }

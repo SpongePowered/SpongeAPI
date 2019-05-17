@@ -32,6 +32,6 @@ import java.time.temporal.TemporalAmount;
  *
  * @param <V> The number type
  */
-public interface TemporalScaledNumber<V extends Number> extends TemporalBasedValue<V>, Comparable<TemporalScaledNumber<V>> {
+public interface TemporalScaledNumber<V extends Number> extends TemporalBasedValue<V> {
 
 }

@@ -38,7 +38,7 @@ import java.time.temporal.TemporalUnit;
  * Represents a double that is affected by a
  * {@link TemporalAmount}.
  */
-public final class TemporalScaledDouble implements TemporalScaledNumber<Double> {
+public final class TemporalScaledDouble implements TemporalScaledNumber<Double>, Comparable<TemporalScaledDouble> {
 
     /**
      * Represents a temporal scaled double value that is always 0.
@@ -115,8 +115,8 @@ public final class TemporalScaledDouble implements TemporalScaledNumber<Double> 
     }
 
     @Override
-    public int compareTo(TemporalScaledNumber<Double> o) {
-        return get(TemporalUnits.SECONDS).compareTo(o.get(TemporalUnits.SECONDS));
+    public int compareTo(TemporalScaledDouble o) {
+        return Double.compare(getDouble(TemporalUnits.SECONDS), o.getDouble(TemporalUnits.SECONDS));
     }
 
     @Override

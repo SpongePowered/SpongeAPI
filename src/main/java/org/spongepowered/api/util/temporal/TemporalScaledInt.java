@@ -38,7 +38,7 @@ import java.time.temporal.TemporalUnit;
  * Represents a int that is affected by a
  * {@link TemporalAmount}.
  */
-public final class TemporalScaledInt implements TemporalScaledNumber<Integer> {
+public final class TemporalScaledInt implements TemporalScaledNumber<Integer>, Comparable<TemporalScaledInt> {
 
     /**
      * Represents a temporal scaled int value that is always 0.
@@ -71,11 +71,11 @@ public final class TemporalScaledInt implements TemporalScaledNumber<Integer> {
     private final int value;
 
     // The duration this number is originally based on
-    private final Duration duration;
+    private final BigDecimal duration;
 
     private TemporalScaledInt(Duration duration, int value) {
         requireNonNull(duration, "duration");
-        this.duration = duration;
+        this.duration = BigDecimal.valueOf(duration.getSeconds()).add(BigDecimal.valueOf(duration.getNano(), 9));
         this.value = value;
     }
 
@@ -108,16 +108,15 @@ public final class TemporalScaledInt implements TemporalScaledNumber<Integer> {
         // Convert the temporal amount to a duration so we can divide them
         final Duration divisor = amount instanceof Duration ? (Duration) amount : Duration.from(amount);
         // Calculate the scaling factor
-        final BigDecimal durationValue = BigDecimal.valueOf(this.duration.getSeconds()).add(BigDecimal.valueOf(this.duration.getNano(), 9));
         final BigDecimal newDurationValue = BigDecimal.valueOf(divisor.getSeconds()).add(BigDecimal.valueOf(divisor.getNano(), 9));
-        final double scaleFactor = newDurationValue.divide(durationValue, RoundingMode.UNNECESSARY).doubleValue();
+        final double scaleFactor = newDurationValue.divide(this.duration, RoundingMode.UNNECESSARY).doubleValue();
         // Rescale the value
         return (int) (scaleFactor * this.value);
     }
 
     @Override
-    public int compareTo(TemporalScaledNumber<Integer> o) {
-        return get(TemporalUnits.SECONDS).compareTo(o.get(TemporalUnits.SECONDS));
+    public int compareTo(TemporalScaledInt o) {
+        return Integer.compare(getInt(TemporalUnits.SECONDS), o.getInt(TemporalUnits.SECONDS));
     }
 
     @Override
