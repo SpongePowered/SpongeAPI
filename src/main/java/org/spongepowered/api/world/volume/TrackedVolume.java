@@ -25,13 +25,12 @@
 package org.spongepowered.api.world.volume;
 
 import com.flowpowered.math.vector.Vector3i;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
 
 import java.util.Optional;
 import java.util.UUID;
-
-import javax.annotation.Nullable;
 
 public interface TrackedVolume extends ReadableBlockVolume {
 

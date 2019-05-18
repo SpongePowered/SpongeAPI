@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.text.format;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextElement;
@@ -31,8 +32,6 @@ import org.spongepowered.api.util.OptBool;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Optional;
-
-import javax.annotation.Nullable;
 
 /**
  * Represents an immutable text style of a {@link Text}. It is a utility that is

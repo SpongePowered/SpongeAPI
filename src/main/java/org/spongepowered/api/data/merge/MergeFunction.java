@@ -26,13 +26,12 @@ package org.spongepowered.api.data.merge;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.data.value.CompositeValueStore;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
 
 import java.util.function.Function;
-
-import javax.annotation.Nullable;
 
 /**
  * Represents a unique form of {@link Function} that attempts to merge

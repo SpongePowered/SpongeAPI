@@ -26,5 +26,5 @@
  * A common root package of all {@link org.spongepowered.api.event.Event}s that
  * lack a common "Source" and "Target" such that only the "Action" is known.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault
+@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
 package org.spongepowered.api.event.action;

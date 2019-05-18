@@ -24,11 +24,10 @@
  */
 package org.spongepowered.api.command;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.ResettableBuilder;
-
-import javax.annotation.Nullable;
 
 /**
  * Represents the result of a command in Sponge.

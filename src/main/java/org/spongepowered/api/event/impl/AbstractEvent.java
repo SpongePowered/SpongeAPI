@@ -24,10 +24,9 @@
  */
 package org.spongepowered.api.event.impl;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.Order;
-
-import javax.annotation.Nullable;
 
 /**
  * An abstract event that can be extended for any and all custom events as

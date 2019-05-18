@@ -24,13 +24,12 @@
  */
 package org.spongepowered.api.text.title;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.Optional;
-
-import javax.annotation.Nullable;
 
 /**
  * Represents an immutable configuration for an in-game title. Instances of this

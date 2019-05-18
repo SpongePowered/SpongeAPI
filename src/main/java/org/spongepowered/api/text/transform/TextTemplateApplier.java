@@ -26,12 +26,11 @@ package org.spongepowered.api.text.transform;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextElement;
 import org.spongepowered.api.text.TextRepresentable;
 import org.spongepowered.api.text.TextTemplate;
-
-import javax.annotation.Nullable;
 
 /**
  * Wrapper class to hold {@link TextTemplate} parameters and a TextTemplate.

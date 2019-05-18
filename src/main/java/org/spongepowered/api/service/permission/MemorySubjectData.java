@@ -30,6 +30,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.event.permission.SubjectDataUpdateEvent;
 import org.spongepowered.api.service.context.Context;
 import org.spongepowered.api.util.Tristate;
@@ -41,8 +42,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentMap;
-
-import javax.annotation.Nullable;
 
 /**
  * A subject data implementation storing all contained data in memory.

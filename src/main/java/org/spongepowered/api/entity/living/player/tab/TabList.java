@@ -24,14 +24,13 @@
  */
 package org.spongepowered.api.entity.living.player.tab;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 
 import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
-
-import javax.annotation.Nullable;
 
 /**
  * Represents a {@link Player}'s tab list.

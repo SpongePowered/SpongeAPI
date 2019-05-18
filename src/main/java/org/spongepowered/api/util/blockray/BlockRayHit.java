@@ -27,13 +27,12 @@ package org.spongepowered.api.util.blockray;
 import com.flowpowered.math.GenericMath;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 import java.util.function.BiFunction;
-
-import javax.annotation.Nullable;
 
 /**
  * Represents a block hit by a ray. Stores more information than a regular

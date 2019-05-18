@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.scheduler;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
+
 import java.time.temporal.TemporalUnit;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
-import javax.annotation.Nullable;
 
 /**
  * A delegating {@link ExecutorService} that schedules all its tasks on

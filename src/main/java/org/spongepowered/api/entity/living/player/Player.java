@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.living.player;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.advancement.Advancement;
 import org.spongepowered.api.advancement.AdvancementProgress;
@@ -57,8 +58,6 @@ import java.time.Instant;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
-
-import javax.annotation.Nullable;
 
 /**
  * A Player represents the in-game entity of a human playing on a server.

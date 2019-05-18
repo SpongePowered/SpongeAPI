@@ -27,5 +27,5 @@
  * game universe. Each "block" has a
  * {@link org.spongepowered.api.block.BlockState} that can be changed.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault
+@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
 package org.spongepowered.api.block;

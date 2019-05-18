@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.value;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.data.key.Key;
 
 import java.util.Comparator;
@@ -31,8 +32,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-
-import javax.annotation.Nullable;
 
 public interface ValueFactory {
 

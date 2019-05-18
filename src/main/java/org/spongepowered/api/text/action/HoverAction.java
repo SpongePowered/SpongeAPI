@@ -24,19 +24,18 @@
  */
 package org.spongepowered.api.text.action;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextRepresentable;
-import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.CopyableBuilder;
+import org.spongepowered.api.util.Identifiable;
 
 import java.util.Optional;
 import java.util.UUID;
-
-import javax.annotation.Nullable;
 
 /**
  * Represents a {@link TextAction} that responds to hovers.

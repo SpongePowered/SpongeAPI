@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.util;
 
-import java.util.Optional;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
-import javax.annotation.Nullable;
+import java.util.Optional;
 
 /**
  * Utility for working with {@code Optional&lt;Boolean&gt;}s.

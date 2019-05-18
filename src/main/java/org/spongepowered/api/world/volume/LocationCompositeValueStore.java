@@ -28,6 +28,7 @@ import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.collect.ImmutableSet;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataTransactionResult;
@@ -42,8 +43,6 @@ import org.spongepowered.api.world.Location;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
-
-import javax.annotation.Nullable;
 
 /**
  * A type of {@link Location} based value store that can handle proxied data api

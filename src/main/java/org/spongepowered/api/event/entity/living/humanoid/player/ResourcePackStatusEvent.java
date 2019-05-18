@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.event.entity.living.humanoid.player;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 import java.util.Optional;
-import javax.annotation.Nullable;
 
 /**
  * Called when a {@link Player} notifies the server of the status of a resource pack

@@ -24,14 +24,13 @@
  */
 package org.spongepowered.api.service.permission;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.text.Text;
 
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-
-import javax.annotation.Nullable;
 
 /**
  * A description object for permissions.

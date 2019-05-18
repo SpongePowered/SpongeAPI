@@ -27,6 +27,7 @@ package org.spongepowered.api.text;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableList;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.scoreboard.Score;
@@ -45,8 +46,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
-
-import javax.annotation.Nullable;
 
 /**
  * Represents an immutable tree-structure of formatted (text) components. Each

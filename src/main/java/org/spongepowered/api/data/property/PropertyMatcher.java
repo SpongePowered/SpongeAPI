@@ -26,13 +26,12 @@ package org.spongepowered.api.data.property;
 
 import static java.util.Objects.requireNonNull;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.equipment.EquipmentTypes;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.Optional;
-
-import javax.annotation.Nullable;
 
 /**
  * Represents a matcher for {@link Property}s.

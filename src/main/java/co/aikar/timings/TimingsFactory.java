@@ -24,10 +24,9 @@
  */
 package co.aikar.timings;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.text.channel.MessageChannel;
-
-import javax.annotation.Nullable;
 
 /**
  * A factory for the required implementation of {@link Timings}.

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.text;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.text.action.ClickAction;
 import org.spongepowered.api.text.action.HoverAction;
@@ -35,8 +36,6 @@ import org.spongepowered.api.text.selector.Selector;
 
 import java.util.Collection;
 import java.util.Iterator;
-
-import javax.annotation.Nullable;
 
 /**
  * Represents a {@link Text} containing a selector that will be replaced by the

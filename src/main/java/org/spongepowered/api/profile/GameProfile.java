@@ -27,6 +27,7 @@ package org.spongepowered.api.profile;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.Multimap;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.profile.property.ProfileProperty;
@@ -35,8 +36,6 @@ import org.spongepowered.api.util.Identifiable;
 
 import java.util.Optional;
 import java.util.UUID;
-
-import javax.annotation.Nullable;
 
 /**
  * Represents a profile of a user.

@@ -25,6 +25,7 @@
 package org.spongepowered.api.command.parameter;
 
 import com.flowpowered.math.vector.Vector3d;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.Command;
@@ -65,8 +66,6 @@ import java.util.UUID;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
-
-import javax.annotation.Nullable;
 
 /**
  * Defines how an element of a command argument string should be parsed.

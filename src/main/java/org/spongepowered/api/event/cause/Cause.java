@@ -30,6 +30,7 @@ import static com.google.common.base.Preconditions.checkState;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.ArrayList;
@@ -40,8 +41,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.StringJoiner;
-
-import javax.annotation.Nullable;
 
 /**
  * A cause represents the reason or initiator of an event.

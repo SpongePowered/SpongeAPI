@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.item.recipe.crafting;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -33,8 +34,6 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 import java.util.List;
 import java.util.function.Predicate;
-
-import javax.annotation.Nullable;
 
 /**
  * An Ingredient for a crafting recipe.

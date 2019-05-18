@@ -27,6 +27,7 @@ package org.spongepowered.api;
 import static com.google.common.base.Preconditions.checkState;
 
 import com.google.inject.Inject;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.asset.AssetManager;
 import org.spongepowered.api.command.manager.CommandManager;
 import org.spongepowered.api.config.ConfigManager;
@@ -42,8 +43,6 @@ import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.util.metric.MetricsConfigManager;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.TeleportHelper;
-
-import javax.annotation.Nullable;
 
 /**
  * A static all access class granting static access to various systems
