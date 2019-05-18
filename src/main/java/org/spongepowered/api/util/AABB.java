@@ -29,10 +29,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.Optional;
-
-import javax.annotation.Nullable;
 
 /**
  * An axis aligned bounding box. That is, an un-rotated cuboid.

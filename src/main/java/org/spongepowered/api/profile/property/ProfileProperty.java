@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.profile.property;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.key.Keys;
@@ -31,8 +32,6 @@ import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.profile.GameProfile;
 
 import java.util.Optional;
-
-import javax.annotation.Nullable;
 
 /**
  * Represents a property in a {@link GameProfile}'s profile property map.

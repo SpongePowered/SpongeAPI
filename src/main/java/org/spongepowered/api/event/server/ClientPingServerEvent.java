@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.server;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.network.status.Favicon;
@@ -35,8 +36,6 @@ import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 import java.util.List;
 import java.util.Optional;
-
-import javax.annotation.Nullable;
 
 /**
  * Called when a client pings the server from the server list.

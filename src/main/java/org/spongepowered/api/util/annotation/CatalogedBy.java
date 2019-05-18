@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.util.annotation;
 
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.api.CatalogType;
 
 import java.lang.annotation.Documented;
@@ -32,8 +33,6 @@ import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-
-import javax.annotation.Nonnull;
 
 /**
  * Annotates a {@link CatalogType} class to specify a set of special catalog
@@ -61,7 +60,7 @@ import javax.annotation.Nonnull;
  * </ul>
  * </p>
  */
-@Nonnull
+@NonNull
 @Target(ElementType.TYPE)
 @Inherited
 @Documented

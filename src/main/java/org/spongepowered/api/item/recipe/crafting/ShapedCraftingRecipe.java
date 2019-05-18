@@ -26,6 +26,7 @@ package org.spongepowered.api.item.recipe.crafting;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -35,8 +36,6 @@ import org.spongepowered.api.util.NamedCatalogBuilder;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Map;
-
-import javax.annotation.Nullable;
 
 /**
  * A ShapedCraftingRecipe is a CraftingRecipe that has shape and fits into

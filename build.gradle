@@ -47,7 +47,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.0'
     compile 'org.apache.commons:commons-lang3:3.5'
     // Only included in server
-    compile 'com.google.code.findbugs:jsr305:3.0.1'
+    compile 'org.checkerframework:checker-qual:2.8.1'
 
     // Dependency injection
     compile 'com.google.inject:guice:4.1.0'

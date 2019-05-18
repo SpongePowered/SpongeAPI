@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world.explosion;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.explosive.Explosive;
 import org.spongepowered.api.util.CopyableBuilder;
@@ -32,8 +33,6 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 import java.util.Optional;
-
-import javax.annotation.Nullable;
 
 /**
  * Represents an explosion in a {@link World}.

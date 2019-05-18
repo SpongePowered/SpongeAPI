@@ -24,10 +24,9 @@
  */
 package org.spongepowered.api.world.storage;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.world.chunk.Chunk;
-
-import javax.annotation.Nullable;
 
 /**
  * A chunk iterator represents a buffer for obtaining chunk data from storage

@@ -26,14 +26,12 @@ package org.spongepowered.api.data;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.collect.ImmutableList;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-
-import javax.annotation.Nullable;
 
 public class Transaction<T extends DataSerializable> implements DataSerializable {
 

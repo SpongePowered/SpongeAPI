@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.advancement;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.NamedCatalogType;
 import org.spongepowered.api.Sponge;
@@ -35,8 +36,6 @@ import org.spongepowered.api.util.NamedCatalogBuilder;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-
-import javax.annotation.Nullable;
 
 /**
  * An advancement.

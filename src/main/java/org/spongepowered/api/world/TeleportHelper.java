@@ -25,7 +25,6 @@
 package org.spongepowered.api.world;
 
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.util.annotation.NonnullByDefault;
 import org.spongepowered.api.world.teleport.TeleportHelperFilter;
 import org.spongepowered.api.world.teleport.TeleportHelperFilters;
 
@@ -40,7 +39,6 @@ import java.util.Optional;
  * favouring spots closer, and favouring a location above or below over the
  * x-z plane if two locations are equidistant.</p>
  */
-@NonnullByDefault
 public interface TeleportHelper {
 
     /** The default height radius to scan for safe locations. */

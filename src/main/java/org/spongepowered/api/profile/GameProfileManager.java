@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.profile;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.profile.property.ProfileProperty;
 
 import java.io.IOException;
@@ -31,8 +32,6 @@ import java.util.Collection;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-
-import javax.annotation.Nullable;
 
 /**
  * Manages {@link GameProfile} creation and data population.

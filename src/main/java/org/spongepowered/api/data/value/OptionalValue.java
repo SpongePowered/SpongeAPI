@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.data.value;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
+
 import java.util.Optional;
 import java.util.function.Function;
-
-import javax.annotation.Nullable;
 
 public interface OptionalValue<E> extends Value<Optional<E>> {
 

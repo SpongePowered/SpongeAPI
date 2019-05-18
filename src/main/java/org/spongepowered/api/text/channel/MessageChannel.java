@@ -26,6 +26,7 @@ package org.spongepowered.api.text.channel;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
@@ -36,8 +37,6 @@ import org.spongepowered.api.text.chat.ChatTypes;
 
 import java.util.Collection;
 import java.util.Optional;
-
-import javax.annotation.Nullable;
 
 /**
  * Represents a channel that takes a message and transforms it for distribution

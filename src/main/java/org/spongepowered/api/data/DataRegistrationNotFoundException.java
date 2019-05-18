@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.data;
 
-import javax.annotation.Nullable;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 public class DataRegistrationNotFoundException extends DataException {
 

@@ -24,14 +24,13 @@
  */
 package org.spongepowered.api.event.message;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 import java.util.Optional;
-
-import javax.annotation.Nullable;
 
 /**
  * Describes events when a involving a {@link Text} message and {@link MessageChannel}s.

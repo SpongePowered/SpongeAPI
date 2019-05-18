@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.text.action;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
@@ -31,8 +32,6 @@ import org.spongepowered.api.text.Text;
 
 import java.net.URL;
 import java.util.UUID;
-
-import javax.annotation.Nullable;
 
 /**
  * Utility methods to create instances of {@link TextAction}s.

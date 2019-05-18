@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.item.merchant;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackGenerator;
@@ -33,8 +34,6 @@ import org.spongepowered.api.util.weighted.VariableAmount;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Function;
-
-import javax.annotation.Nullable;
 
 /**
  * Represents a generator to create {@link TradeOffer}s with a bit of

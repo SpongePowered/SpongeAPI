@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.util;
 
-import java.util.function.Predicate;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
-import javax.annotation.Nullable;
+import java.util.function.Predicate;
 
 /**
  * Predicate that determines if the input string starts with the provided

@@ -24,11 +24,10 @@
  */
 package org.spongepowered.api.entity.projectile;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.entity.Entity;
 
 import java.util.Optional;
-
-import javax.annotation.Nullable;
 
 /**
  * Represents a fishing bobber.

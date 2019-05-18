@@ -26,6 +26,7 @@ package org.spongepowered.api.service.pagination;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageReceiver;
@@ -33,8 +34,6 @@ import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.List;
 import java.util.Optional;
-
-import javax.annotation.Nullable;
 
 /**
  * Represents an immutable iterable of {@link Text}s, which can be sent to

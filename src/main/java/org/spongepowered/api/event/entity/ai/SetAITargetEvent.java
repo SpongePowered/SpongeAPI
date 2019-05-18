@@ -24,14 +24,13 @@
  */
 package org.spongepowered.api.event.entity.ai;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 
 import java.util.Optional;
-
-import javax.annotation.Nullable;
 
 /**
  * Fires before the target of an {@link Agent} is set.

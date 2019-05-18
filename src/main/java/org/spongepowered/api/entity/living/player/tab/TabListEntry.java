@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.living.player.tab;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
@@ -33,8 +34,6 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.Optional;
-
-import javax.annotation.Nullable;
 
 /**
  * Represents the information attached to an entry in a {@link TabList}.

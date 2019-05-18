@@ -29,6 +29,7 @@ import static com.google.common.base.Preconditions.checkState;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.item.ItemTypes;
@@ -40,16 +41,12 @@ import org.spongepowered.api.util.CopyableBuilder;
 import java.util.Optional;
 import java.util.function.DoubleUnaryOperator;
 
-import javax.annotation.Nullable;
-import javax.annotation.concurrent.Immutable;
-
 /**
  * Represents a modifier that will apply a function on a damage value to deal
  * towards an entity such that the raw damage is the input of a
  * {@link DoubleUnaryOperator} such that the output will be the final damage
  * applied to the {@link Entity}.
  */
-@Immutable
 public interface DamageModifier {
 
     /**

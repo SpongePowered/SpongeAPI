@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.scoreboard;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.scoreboard.criteria.Criterion;
@@ -35,8 +36,6 @@ import org.spongepowered.api.util.CopyableBuilder;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-
-import javax.annotation.Nullable;
 
 /**
  * Represents a scoreboard, which contains {@link Team}s and {@link Objective}s.

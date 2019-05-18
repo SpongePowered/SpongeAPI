@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.item.merchant;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.value.ListValue;
@@ -32,8 +33,6 @@ import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.world.Locatable;
 
 import java.util.Optional;
-
-import javax.annotation.Nullable;
 
 /**
  * Represents a Merchant which can offer trades to customers.

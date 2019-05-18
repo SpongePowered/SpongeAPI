@@ -71,7 +71,7 @@ import java.util.OptionalInt;
 import java.util.Set;
 import java.util.UUID;
 
-import javax.annotation.Nullable;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 //@RunWith(Parameterized.class)
 public class SpongeEventFactoryTest {

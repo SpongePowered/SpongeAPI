@@ -42,5 +42,5 @@
  * bucket to just a normal empty bucket. This is also the case for lava buckets.
  * </p>
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault
+@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
 package org.spongepowered.api.fluid;

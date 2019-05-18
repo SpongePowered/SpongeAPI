@@ -24,17 +24,15 @@
  */
 package org.spongepowered.api.profile;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.service.user.UserStorageService;
 
 import java.time.Instant;
 import java.util.Collection;
-import java.util.Date;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
-
-import javax.annotation.Nullable;
 
 /**
  * Represents a cache of {@link GameProfile}s.

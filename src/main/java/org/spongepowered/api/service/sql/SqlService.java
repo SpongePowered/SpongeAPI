@@ -29,7 +29,6 @@ import org.spongepowered.api.plugin.PluginContainer;
 import java.sql.SQLException;
 import java.util.Optional;
 
-import javax.annotation.concurrent.ThreadSafe;
 import javax.sql.DataSource;
 
 /**
@@ -37,7 +36,6 @@ import javax.sql.DataSource;
  *
  * <p>Implementations of this service are expected to be thread-safe.</p>
  */
-@ThreadSafe
 public interface SqlService {
 
     /**

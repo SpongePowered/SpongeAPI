@@ -27,6 +27,7 @@ package org.spongepowered.api.data.value;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableSet;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
@@ -34,8 +35,6 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
-
-import javax.annotation.Nullable;
 
 /**
  * A ValueContainer is a holder of a particular set of {@link Value}s. While

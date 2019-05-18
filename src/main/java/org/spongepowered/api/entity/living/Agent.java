@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.living;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
@@ -32,8 +33,6 @@ import org.spongepowered.api.entity.ai.GoalType;
 import org.spongepowered.api.entity.ai.task.AITask;
 
 import java.util.Optional;
-
-import javax.annotation.Nullable;
 
 /**
  * An Agent represents a {@link Living} that has AI. In the future Sponge will

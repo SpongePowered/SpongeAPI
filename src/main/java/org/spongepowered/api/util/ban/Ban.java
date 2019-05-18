@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.util.ban;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.ban.BanService;
@@ -33,8 +34,6 @@ import org.spongepowered.api.util.CopyableBuilder;
 import java.net.InetAddress;
 import java.time.Instant;
 import java.util.Optional;
-
-import javax.annotation.Nullable;
 
 /**
  * Represents a ban made on an object.

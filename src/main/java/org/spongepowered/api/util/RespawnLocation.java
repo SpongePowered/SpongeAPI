@@ -27,6 +27,7 @@ package org.spongepowered.api.util;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3d;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
@@ -41,8 +42,6 @@ import org.spongepowered.api.world.World;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
-
-import javax.annotation.Nullable;
 
 /**
  * Represents a position for a player to respawn in in a particular world.

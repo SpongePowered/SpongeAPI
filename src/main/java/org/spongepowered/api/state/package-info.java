@@ -30,5 +30,5 @@
  * support only through a <code>StateProperty</code> is when mods are introduced
  * to the game, providing custom content and custom states.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault
+@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
 package org.spongepowered.api.state;

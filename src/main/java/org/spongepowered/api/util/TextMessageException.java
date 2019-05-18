@@ -24,9 +24,8 @@
  */
 package org.spongepowered.api.util;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.text.Text;
-
-import javax.annotation.Nullable;
 
 /**
  * A subclass of Exception that contains a rich message that is an instance of

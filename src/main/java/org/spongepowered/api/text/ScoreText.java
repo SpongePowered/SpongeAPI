@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.text;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.scoreboard.Score;
 import org.spongepowered.api.text.action.ClickAction;
@@ -36,8 +37,6 @@ import org.spongepowered.api.text.format.TextStyle;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Optional;
-
-import javax.annotation.Nullable;
 
 /**
  * Represents a {@link Text} displaying the current score of a player.
