@@ -30,14 +30,29 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextElement;
 import org.spongepowered.api.text.TextTemplate;
 import org.spongepowered.api.text.chat.ChatType;
+import org.spongepowered.api.text.chat.ChatTypes;
 
 import java.util.Map;
 
 /**
- * Represents something that can receive messages of certain types.
+ * Represents a {@link MessageReceiver} that can receive messages with a
+ * specified {@link ChatType}, as well as send messages through the use
+ * of a {@link MessageChannel}.
  */
-@FunctionalInterface
-public interface ChatTypeMessageReceiver {
+public interface ChatTypeMessageReceiver extends MessageReceiver {
+
+    /**
+     * Sends a message as a {@link ChatTypes#CHAT} message.
+     *
+     * <p>If text formatting is not supported in the implementation
+     * it will be displayed as plain text.</p>
+     *
+     * @param message The message to send
+     */
+    @Override
+    default void sendMessage(Text message) {
+        sendMessage(ChatTypes.CHAT, message);
+    }
 
     /**
      * Sends a message with the specified {@link ChatType} to this receiver.
@@ -76,7 +91,7 @@ public interface ChatTypeMessageReceiver {
      * @param parameters The parameters to apply to the template
      */
     default void sendMessage(ChatType type, TextTemplate template, Map<String, TextElement> parameters) {
-        this.sendMessage(type, checkNotNull(template, "template").apply(parameters).build());
+        sendMessage(type, checkNotNull(template, "template").apply(parameters).build());
     }
 
     /**
@@ -92,7 +107,7 @@ public interface ChatTypeMessageReceiver {
         checkNotNull(type, "type");
 
         for (Text message : checkNotNull(messages, "messages")) {
-            this.sendMessage(type, message);
+            sendMessage(type, message);
         }
     }
 
@@ -109,7 +124,7 @@ public interface ChatTypeMessageReceiver {
         checkNotNull(type, "type");
 
         for (Text message : checkNotNull(messages, "messages")) {
-            this.sendMessage(type, message);
+            sendMessage(type, message);
         }
     }
 

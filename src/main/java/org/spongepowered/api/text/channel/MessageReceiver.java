@@ -26,7 +26,6 @@ package org.spongepowered.api.text.channel;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.spongepowered.api.command.source.CommandSource;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextElement;
 import org.spongepowered.api.text.TextTemplate;
@@ -36,7 +35,8 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * Represents something that can receive (and send) messages.
+ * Represents an object that receive messages, as well as send messages through
+ * the use of a {@link MessageChannel}.
  */
 public interface MessageReceiver {
 
@@ -74,7 +74,7 @@ public interface MessageReceiver {
      * @param parameters The parameters to apply to the template
      */
     default void sendMessage(TextTemplate template, Map<String, TextElement> parameters) {
-        this.sendMessage(checkNotNull(template, "template").apply(parameters).build());
+        sendMessage(checkNotNull(template, "template").apply(parameters).build());
     }
 
     /**
@@ -89,7 +89,7 @@ public interface MessageReceiver {
         checkNotNull(messages, "messages");
 
         for (Text message : messages) {
-            this.sendMessage(message);
+            sendMessage(message);
         }
     }
 
@@ -103,7 +103,7 @@ public interface MessageReceiver {
      */
     default void sendMessages(Iterable<Text> messages) {
         for (Text message : checkNotNull(messages, "messages")) {
-            this.sendMessage(message);
+            sendMessage(message);
         }
     }
 
