@@ -27,6 +27,7 @@ package org.spongepowered.api.event.entity;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
+import org.spongepowered.api.util.TickBasedByDefault;
 
 import java.time.Duration;
 
@@ -47,20 +48,20 @@ public interface IgniteEntityEvent extends Event, Cancellable {
      *
      * @return The original burn time
      */
-    Duration getOriginalOnFireTime();
+    @TickBasedByDefault Duration getOriginalOnFireTime();
 
     /**
      * Gets the amount of time the entity will remain on fire.
      *
      * @return The time the entity will remain on fire
      */
-    Duration getOnFireTime();
+    @TickBasedByDefault Duration getOnFireTime();
 
     /**
      * Sets the amount of time the entity will remain on fire.
      *
      * @param duration The time the entity will remain on fire
      */
-    void setOnFireTime(Duration duration);
+    void setOnFireTime(@TickBasedByDefault Duration duration);
 
 }

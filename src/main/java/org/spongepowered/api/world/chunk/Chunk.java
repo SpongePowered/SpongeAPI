@@ -27,6 +27,7 @@ package org.spongepowered.api.world.chunk;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.util.TickBasedByDefault;
 import org.spongepowered.api.world.World;
 
 import java.time.Duration;
@@ -72,7 +73,7 @@ public interface Chunk extends ProtoChunk<Chunk> {
      *
      * @return The inhabited time
      */
-    Duration getInhabitedTime();
+    @TickBasedByDefault Duration getInhabitedTime();
 
     /**
      * Gets the regional difficulty factor for this chunk. In vanilla, it is

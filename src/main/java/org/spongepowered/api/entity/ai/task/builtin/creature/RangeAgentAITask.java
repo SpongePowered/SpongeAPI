@@ -29,6 +29,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Ranger;
+import org.spongepowered.api.util.TickBasedByDefault;
 
 import java.time.Duration;
 
@@ -70,7 +71,7 @@ public interface RangeAgentAITask extends AITask<Ranger> {
      *
      * @return The delay between attempts to attack
      */
-    Duration getDelayBetweenAttacks();
+    @TickBasedByDefault Duration getDelayBetweenAttacks();
 
     /**
      * The time, this {@link Ranger} will wait before attacking
@@ -79,7 +80,7 @@ public interface RangeAgentAITask extends AITask<Ranger> {
      * @param delay The delay
      * @return This task, for chaining
      */
-    RangeAgentAITask setDelayBetweenAttacks(Duration delay);
+    RangeAgentAITask setDelayBetweenAttacks(@TickBasedByDefault Duration delay);
 
     /**
      * Gets the radius of which the owning {@link Ranger} will attempt to
@@ -103,7 +104,7 @@ public interface RangeAgentAITask extends AITask<Ranger> {
 
         Builder moveSpeed(double speed);
 
-        Builder delayBetweenAttacks(Duration delay);
+        Builder delayBetweenAttacks(@TickBasedByDefault Duration delay);
 
         Builder attackRadius(float radius);
     }

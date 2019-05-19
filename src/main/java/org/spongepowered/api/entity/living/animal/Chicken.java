@@ -27,6 +27,7 @@ package org.spongepowered.api.entity.living.animal;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.ItemTypes;
+import org.spongepowered.api.util.TickBasedByDefault;
 
 import java.time.Duration;
 
@@ -47,7 +48,7 @@ public interface Chicken extends Animal {
      * </p>
      * @return The egg lay time value
      */
-    default Value.Mutable<Duration> eggTimer() {
+    default Value.Mutable<@TickBasedByDefault Duration> eggTimer() {
         return this.getValue(Keys.EGG_TIMER).get().asMutable();
     }
 }

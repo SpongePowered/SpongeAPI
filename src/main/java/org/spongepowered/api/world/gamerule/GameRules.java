@@ -45,6 +45,7 @@ import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.entity.living.trader.Villager;
 import org.spongepowered.api.entity.vehicle.Boat;
 import org.spongepowered.api.entity.vehicle.minecart.Minecart;
+import org.spongepowered.api.util.TickBasedByDefault;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.util.temporal.TemporalScaledInt;
 
@@ -237,7 +238,7 @@ public final class GameRules {
      * <p>This game rule is also known as {@code randomTickSpeed} and
      * can also be looked up as such.</p>
      */
-    public static final GameRule<TemporalScaledInt> RANDOM_UPDATE_SPEED = DummyObjectProvider.createFor(GameRule.class, "RANDOM_UPDATE_SPEED");
+    public static final GameRule<@TickBasedByDefault TemporalScaledInt> RANDOM_UPDATE_SPEED = DummyObjectProvider.createFor(GameRule.class, "RANDOM_UPDATE_SPEED");
 
     /**
      * Whether the debug screen shows all or reduced information.

@@ -30,6 +30,7 @@ import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.util.Identifiable;
+import org.spongepowered.api.util.TickBasedByDefault;
 import org.spongepowered.api.util.temporal.TemporalUnits;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.SerializationBehavior;
@@ -182,7 +183,7 @@ public interface WorldProperties extends WeatherUniverse, DataSerializable, Iden
      *
      * @return The total time
      */
-    Duration getTotalTime();
+    @TickBasedByDefault Duration getTotalTime();
 
     /**
      * Gets the time of day. The amount of time that a minecraft day
@@ -190,7 +191,7 @@ public interface WorldProperties extends WeatherUniverse, DataSerializable, Iden
      *
      * @return The time of day
      */
-    Duration getWorldTime();
+    @TickBasedByDefault Duration getWorldTime();
 
     /**
      * Sets the time of day. The amount of time that a minecraft day
@@ -198,7 +199,7 @@ public interface WorldProperties extends WeatherUniverse, DataSerializable, Iden
      *
      * @param time The time of day
      */
-    void setWorldTime(Duration time);
+    void setWorldTime(@TickBasedByDefault Duration time);
 
     /**
      * Gets the {@link DimensionType} of this world.

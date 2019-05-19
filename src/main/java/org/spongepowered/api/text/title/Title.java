@@ -27,6 +27,7 @@ package org.spongepowered.api.text.title;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.CopyableBuilder;
+import org.spongepowered.api.util.TickBasedByDefault;
 
 import java.time.Duration;
 import java.util.Optional;
@@ -151,7 +152,7 @@ public interface Title {
      *
      * @return The duration of the fade in effect
      */
-    Optional<Duration> getFadeIn();
+    Optional<@TickBasedByDefault Duration> getFadeIn();
 
     /**
      * Returns the specified time how long the title should stay on the client.
@@ -162,7 +163,7 @@ public interface Title {
      *
      * @return The duration of the stay effect
      */
-    Optional<Duration> getStay();
+    Optional<@TickBasedByDefault Duration> getStay();
 
     /**
      * Returns the specified time to fade out the title on the client.
@@ -171,7 +172,7 @@ public interface Title {
      *
      * @return The duration of the fade out effect
      */
-    Optional<Duration> getFadeOut();
+    Optional<@TickBasedByDefault Duration> getFadeOut();
 
     /**
      * Returns whether this configuration is clearing the current title from the
@@ -267,7 +268,7 @@ public interface Title {
          * @return The current fade in duration, or {@link Optional#empty()} if none
          * @see Title#getFadeIn()
          */
-        Optional<Duration> getFadeIn();
+        Optional<@TickBasedByDefault Duration> getFadeIn();
 
         /**
          * Sets the duration of the fade in effect of the title. Once
@@ -280,7 +281,7 @@ public interface Title {
          * @return This title builder
          * @see Title#getFadeIn()
          */
-        Builder fadeIn(@Nullable Duration fadeIn);
+        Builder fadeIn(@TickBasedByDefault @Nullable Duration fadeIn);
 
         /**
          * Returns the current stay effect time of the title.
@@ -288,7 +289,7 @@ public interface Title {
          * @return The current stay time, or {@link Optional#empty()} if none
          * @see Title#getStay()
          */
-        Optional<Duration> getStay();
+        Optional<@TickBasedByDefault Duration> getStay();
 
         /**
          * Sets the duration how long the title should stay on the
@@ -301,7 +302,7 @@ public interface Title {
          * @return This title builder
          * @see Title#getStay()
          */
-        Builder stay(@Nullable Duration stay);
+        Builder stay(@TickBasedByDefault @Nullable Duration stay);
 
         /**
          * Returns the current fade out effect duration of the title.
@@ -309,7 +310,7 @@ public interface Title {
          * @return The current fade out duration, or {@link Optional#empty()} if none
          * @see Title#getFadeOut()
          */
-        Optional<Duration> getFadeOut();
+        Optional<@TickBasedByDefault Duration> getFadeOut();
 
         /**
          * Sets the duration of the fade out effect of the title.
@@ -320,7 +321,7 @@ public interface Title {
          * @return This title builder
          * @see Title#getFadeOut()
          */
-        Builder fadeOut(@Nullable Duration fadeOut);
+        Builder fadeOut(@TickBasedByDefault @Nullable Duration fadeOut);
 
         /**
          * Returns whether this builder is currently configured to clear.

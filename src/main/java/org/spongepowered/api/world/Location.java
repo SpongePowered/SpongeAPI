@@ -46,6 +46,7 @@ import org.spongepowered.api.fluid.FluidType;
 import org.spongepowered.api.scheduler.ScheduledUpdate;
 import org.spongepowered.api.scheduler.TaskPriority;
 import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.util.TickBasedByDefault;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.volume.entity.MutableEntityVolume;
 
@@ -560,7 +561,7 @@ public interface Location extends DataHolder, DirectionRelativePropertyHolder {
      * @param temporalUnit The temporal unit of the delay
      * @return The newly created scheduled update
      */
-    ScheduledUpdate<BlockType> scheduleBlockUpdate(int delay, TemporalUnit temporalUnit);
+    ScheduledUpdate<BlockType> scheduleBlockUpdate(@TickBasedByDefault int delay, TemporalUnit temporalUnit);
 
     /**
      * Adds a new {@link ScheduledUpdate} for the block at this location.
@@ -570,7 +571,7 @@ public interface Location extends DataHolder, DirectionRelativePropertyHolder {
      * @param priority The priority of the scheduled update
      * @return The newly created scheduled update
      */
-    ScheduledUpdate<BlockType> scheduleBlockUpdate(int delay, TemporalUnit temporalUnit, TaskPriority priority);
+    ScheduledUpdate<BlockType> scheduleBlockUpdate(@TickBasedByDefault int delay, TemporalUnit temporalUnit, TaskPriority priority);
 
     /**
      * Adds a new {@link ScheduledUpdate} for the block at this location.
@@ -578,7 +579,7 @@ public interface Location extends DataHolder, DirectionRelativePropertyHolder {
      * @param delay The delay before the scheduled update should be processed
      * @return The newly created scheduled update
      */
-    ScheduledUpdate<BlockType> scheduleBlockUpdate(Duration delay);
+    ScheduledUpdate<BlockType> scheduleBlockUpdate(@TickBasedByDefault Duration delay);
 
     /**
      * Adds a new {@link ScheduledUpdate} for the block at this location.
@@ -587,7 +588,7 @@ public interface Location extends DataHolder, DirectionRelativePropertyHolder {
      * @param priority The priority of the scheduled update
      * @return The newly created scheduled update
      */
-    ScheduledUpdate<BlockType> scheduleBlockUpdate(Duration delay, TaskPriority priority);
+    ScheduledUpdate<BlockType> scheduleBlockUpdate(@TickBasedByDefault Duration delay, TaskPriority priority);
 
     /**
      * Gets a list of {@link ScheduledUpdate}s for the fluid at this location.
@@ -603,7 +604,7 @@ public interface Location extends DataHolder, DirectionRelativePropertyHolder {
      * @param temporalUnit The temporal unit of the delay
      * @return The newly created scheduled update
      */
-    ScheduledUpdate<FluidType> scheduleFluidUpdate(int delay, TemporalUnit temporalUnit);
+    ScheduledUpdate<FluidType> scheduleFluidUpdate(@TickBasedByDefault int delay, TemporalUnit temporalUnit);
 
     /**
      * Adds a new {@link ScheduledUpdate} for the fluid at this location.
@@ -613,7 +614,7 @@ public interface Location extends DataHolder, DirectionRelativePropertyHolder {
      * @param priority The priority of the scheduled update
      * @return The newly created scheduled update
      */
-    ScheduledUpdate<FluidType> scheduleFluidUpdate(int delay, TemporalUnit temporalUnit, TaskPriority priority);
+    ScheduledUpdate<FluidType> scheduleFluidUpdate(@TickBasedByDefault int delay, TemporalUnit temporalUnit, TaskPriority priority);
 
     /**
      * Adds a new {@link ScheduledUpdate} for the fluid at this location.
@@ -621,7 +622,7 @@ public interface Location extends DataHolder, DirectionRelativePropertyHolder {
      * @param delay The delay before the scheduled update should be processed
      * @return The newly created scheduled update
      */
-    ScheduledUpdate<FluidType> scheduleFluidUpdate(Duration delay);
+    ScheduledUpdate<FluidType> scheduleFluidUpdate(@TickBasedByDefault Duration delay);
 
     /**
      * Adds a new {@link ScheduledUpdate} for the fluid at this location.
@@ -630,7 +631,7 @@ public interface Location extends DataHolder, DirectionRelativePropertyHolder {
      * @param priority The priority of the scheduled update
      * @return The newly created scheduled update
      */
-    ScheduledUpdate<FluidType> scheduleFluidUpdate(Duration delay, TaskPriority priority);
+    ScheduledUpdate<FluidType> scheduleFluidUpdate(@TickBasedByDefault Duration delay, TaskPriority priority);
 
     interface Factory {
         Location create(World world, Vector3d position);

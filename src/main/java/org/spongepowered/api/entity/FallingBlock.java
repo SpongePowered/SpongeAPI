@@ -27,6 +27,7 @@ package org.spongepowered.api.entity;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.util.TickBasedByDefault;
 
 import java.time.Duration;
 
@@ -89,7 +90,7 @@ public interface FallingBlock extends Entity {
      *
      * @return The time the block has been falling
      */
-    default Value.Mutable<Duration> fallTime() {
+    default Value.Mutable<@TickBasedByDefault Duration> fallTime() {
         return getValue(Keys.FALL_TIME).get().asMutable();
     }
 

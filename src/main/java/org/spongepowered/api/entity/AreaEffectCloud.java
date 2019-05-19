@@ -31,6 +31,7 @@ import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.util.Color;
+import org.spongepowered.api.util.TickBasedByDefault;
 import org.spongepowered.api.util.temporal.TemporalScaledDouble;
 
 import java.time.Duration;
@@ -73,7 +74,7 @@ public interface AreaEffectCloud extends Entity {
      *
      * @return The bounded duration value
      */
-    default BoundedValue.Mutable<Duration> duration() {
+    default BoundedValue.Mutable<@TickBasedByDefault Duration> duration() {
         return getValue(Keys.AREA_EFFECT_CLOUD_DURATION).get().asMutable();
     }
 
@@ -84,7 +85,7 @@ public interface AreaEffectCloud extends Entity {
      *
      * @return The bounded wait time value
      */
-    default BoundedValue.Mutable<Duration> waitTime() {
+    default BoundedValue.Mutable<@TickBasedByDefault Duration> waitTime() {
         return getValue(Keys.AREA_EFFECT_CLOUD_WAIT_TIME).get().asMutable();
     }
 
@@ -117,7 +118,7 @@ public interface AreaEffectCloud extends Entity {
      *
      * @return The bounded duration on use value
      */
-    default BoundedValue.Mutable<Duration> durationOnUse() {
+    default BoundedValue.Mutable<@TickBasedByDefault Duration> durationOnUse() {
         return getValue(Keys.AREA_EFFECT_CLOUD_DURATION_ON_USE).get().asMutable();
     }
 
@@ -128,7 +129,7 @@ public interface AreaEffectCloud extends Entity {
      *
      * @return The bounded re-application delay value
      */
-    default BoundedValue.Mutable<Duration> applicationDelay() {
+    default BoundedValue.Mutable<@TickBasedByDefault Duration> applicationDelay() {
         return getValue(Keys.AREA_EFFECT_CLOUD_REAPPLICATION_DELAY).get().asMutable();
     }
 
@@ -148,7 +149,7 @@ public interface AreaEffectCloud extends Entity {
      *
      * @return The bounded age value
      */
-    default BoundedValue.Mutable<Duration> age() {
+    default BoundedValue.Mutable<@TickBasedByDefault Duration> age() {
         return getValue(Keys.AREA_EFFECT_CLOUD_AGE).get().asMutable();
     }
 

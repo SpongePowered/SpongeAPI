@@ -31,6 +31,7 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.util.TickBasedByDefault;
 import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
 
 import java.time.Duration;
@@ -195,7 +196,7 @@ public interface InteractableVolume extends ReadableBlockVolume {
      * @param profile The game profile of the player this is imitating
      * @return Whether the block was destroyed
      */
-    boolean digBlockWith(int x, int y, int z, ItemStack itemStack,GameProfile profile);
+    boolean digBlockWith(int x, int y, int z, ItemStack itemStack, GameProfile profile);
 
     /**
      * Gets the {@link Duration} it takes to dig this block with the specified item.
@@ -205,7 +206,7 @@ public interface InteractableVolume extends ReadableBlockVolume {
      * @param profile The game profile of the player this is imitating
      * @return The duration it takes to dig the block
      */
-    default Duration getBlockDigTimeWith(Vector3i position, ItemStack itemStack, GameProfile profile) {
+    default @TickBasedByDefault Duration getBlockDigTimeWith(Vector3i position, ItemStack itemStack, GameProfile profile) {
         return getBlockDigTimeWith(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), itemStack, profile);
     }
 
@@ -219,5 +220,5 @@ public interface InteractableVolume extends ReadableBlockVolume {
      * @param profile The game profile of the player this is imitating
      * @return The duration it takes to dig the block
      */
-    Duration getBlockDigTimeWith(int x, int y, int z, ItemStack itemStack, GameProfile profile);
+    @TickBasedByDefault Duration getBlockDigTimeWith(int x, int y, int z, ItemStack itemStack, GameProfile profile);
 }

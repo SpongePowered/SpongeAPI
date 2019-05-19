@@ -26,6 +26,7 @@ package org.spongepowered.api.block.entity.carrier;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.util.TickBasedByDefault;
 
 import java.time.Duration;
 
@@ -48,7 +49,7 @@ public interface Furnace extends BlockEntityCarrier {
      *
      * @return The value for the already passed burn time
      */
-    default BoundedValue.Mutable<Duration> passedBurnTime() {
+    default BoundedValue.Mutable<@TickBasedByDefault Duration> passedBurnTime() {
         return getValue(Keys.PASSED_BURN_TIME).get().asMutable();
     }
 
@@ -59,7 +60,7 @@ public interface Furnace extends BlockEntityCarrier {
      * @return The value for the maximum amount of fuel that can be supplied
      *         with the used fuel item
      */
-    default BoundedValue.Mutable<Duration> maxBurnTime() {
+    default BoundedValue.Mutable<@TickBasedByDefault Duration> maxBurnTime() {
         return getValue(Keys.MAX_BURN_TIME).get().asMutable();
     }
 
@@ -69,7 +70,7 @@ public interface Furnace extends BlockEntityCarrier {
      *
      * @return The value for the already passed cook time
      */
-    default BoundedValue.Mutable<Duration> passedCookTime() {
+    default BoundedValue.Mutable<@TickBasedByDefault Duration> passedCookTime() {
         return getValue(Keys.PASSED_COOK_TIME).get().asMutable();
     }
 
@@ -79,7 +80,7 @@ public interface Furnace extends BlockEntityCarrier {
      *
      * @return The value for the time the item has to cook
      */
-    default BoundedValue.Mutable<Duration> maxCookTime() {
+    default BoundedValue.Mutable<@TickBasedByDefault Duration> maxCookTime() {
         return getValue(Keys.MAX_COOK_TIME).get().asMutable();
     }
 

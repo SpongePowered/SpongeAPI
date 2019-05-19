@@ -27,6 +27,7 @@ package org.spongepowered.api.scheduler;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.fluid.FluidType;
+import org.spongepowered.api.util.TickBasedByDefault;
 
 import java.time.Duration;
 import java.time.temporal.TemporalUnit;
@@ -40,35 +41,35 @@ import java.util.Collection;
  */
 public interface ScheduledUpdateList<T> {
 
-    default ScheduledUpdate<T> schedule(Vector3i pos, T target, int delay, TemporalUnit temporalUnit) {
+    default ScheduledUpdate<T> schedule(Vector3i pos, T target, @TickBasedByDefault int delay, TemporalUnit temporalUnit) {
         return schedule(pos.getX(), pos.getY(), pos.getZ(), target, delay, temporalUnit, TaskPriorities.NORMAL);
     }
 
-    default ScheduledUpdate<T> schedule(Vector3i pos, T target, Duration delay) {
+    default ScheduledUpdate<T> schedule(Vector3i pos, T target, @TickBasedByDefault Duration delay) {
         return schedule(pos.getX(), pos.getY(), pos.getZ(), target, delay, TaskPriorities.NORMAL);
     }
 
-    default ScheduledUpdate<T> schedule(int x, int y, int z, T target, int delay, TemporalUnit temporalUnit) {
+    default ScheduledUpdate<T> schedule(int x, int y, int z, T target, @TickBasedByDefault int delay, TemporalUnit temporalUnit) {
         return schedule(x, y, z, target, delay, temporalUnit, TaskPriorities.NORMAL);
     }
 
-    default ScheduledUpdate<T> schedule(int x, int y, int z, T target, Duration delay) {
+    default ScheduledUpdate<T> schedule(int x, int y, int z, T target, @TickBasedByDefault Duration delay) {
         return schedule(x, y, z, target, delay, TaskPriorities.NORMAL);
     }
 
-    default ScheduledUpdate<T> schedule(Vector3i pos, T target, int delay, TemporalUnit temporalUnit, TaskPriority priority) {
+    default ScheduledUpdate<T> schedule(Vector3i pos, T target, @TickBasedByDefault int delay, TemporalUnit temporalUnit, TaskPriority priority) {
         return schedule(pos.getX(), pos.getY(), pos.getZ(), target, Duration.of(delay, temporalUnit), priority);
     }
 
-    default ScheduledUpdate<T> schedule(Vector3i pos, T target, Duration delay, TaskPriority priority) {
+    default ScheduledUpdate<T> schedule(Vector3i pos, T target, @TickBasedByDefault Duration delay, TaskPriority priority) {
         return schedule(pos.getX(), pos.getY(), pos.getZ(), target, delay, priority);
     }
 
-    default ScheduledUpdate<T> schedule(int x, int y, int z, T target, int delay, TemporalUnit temporalUnit, TaskPriority priority) {
+    default ScheduledUpdate<T> schedule(int x, int y, int z, T target, @TickBasedByDefault int delay, TemporalUnit temporalUnit, TaskPriority priority) {
         return schedule(x, y, z, target, Duration.of(delay, temporalUnit), priority);
     }
 
-    ScheduledUpdate<T> schedule(int x, int y, int z, T target, Duration delay, TaskPriority priority);
+    ScheduledUpdate<T> schedule(int x, int y, int z, T target, @TickBasedByDefault Duration delay, TaskPriority priority);
 
     default boolean isScheduled(Vector3i pos, T target) {
         return isScheduled(pos.getX(), pos.getY(), pos.getZ(), target);

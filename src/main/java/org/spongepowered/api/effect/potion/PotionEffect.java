@@ -30,6 +30,7 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.util.TickBasedByDefault;
 
 import java.time.Duration;
 
@@ -61,7 +62,7 @@ public interface PotionEffect extends DataSerializable, PropertyHolder {
      * @param duration The duration
      * @return The potion effect
      */
-    static PotionEffect of(PotionEffectType type, int amplifier, Duration duration) {
+    static PotionEffect of(PotionEffectType type, int amplifier, @TickBasedByDefault Duration duration) {
         return builder().potionType(type).amplifier(amplifier).duration(duration).build();
     }
 
@@ -78,7 +79,7 @@ public interface PotionEffect extends DataSerializable, PropertyHolder {
      *
      * @return The duration
      */
-    Duration getDuration();
+    @TickBasedByDefault Duration getDuration();
 
     /**
      * Gets the amplifier at which this potion effect
@@ -125,7 +126,7 @@ public interface PotionEffect extends DataSerializable, PropertyHolder {
          * @param duration The duration of this effect
          * @return This builder, for chaining
          */
-        Builder duration(Duration duration);
+        Builder duration(@TickBasedByDefault Duration duration);
 
         /**
          * Sets the amplifier power of the potion effect.

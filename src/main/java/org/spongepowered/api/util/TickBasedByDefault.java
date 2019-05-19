@@ -22,43 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living;
+package org.spongepowered.api.util;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.value.BoundedValue;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.util.TickBasedByDefault;
-
-import java.time.Duration;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * Represents a living entity that can change in size as it ages
- * and can spawn children.
+ * Used to annotate time based types that they are tick based. This means
+ * that e.g. a duration of 5 seconds will be ideally 100 minecraft ticks.
+ * But in reality can 100 ticks be longer then 5 seconds depending on the
+ * actual tick length.
+ *
+ * <p>You can't assume that the duration of a given length will be exactly
+ * the same, this depends on the implementation.</p>
  */
-public interface Ageable extends Creature {
-
-    /**
-     * Sets the scaling to be 1 if this entity is an adult and 0.5 if it is
-     * a baby.
-     */
-    void setScaleForAge();
-
-    /**
-     * Gets the {@link BoundedValue.Mutable} for the "age" state.
-     *
-     * @return The mutable bounded value for the "age"
-     */
-    default BoundedValue.Mutable<@TickBasedByDefault Duration> age() {
-        return getValue(Keys.AGE).get().asMutable();
-    }
-
-    /**
-     * Gets the {@link Value.Mutable} for the "adult" state.
-     *
-     * @return The value for the "adult" state
-     */
-    default Value.Mutable<Boolean> adult() {
-        return getValue(Keys.IS_ADULT).get().asMutable();
-    }
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE_USE)
+public @interface TickBasedByDefault {
 
 }

@@ -25,6 +25,7 @@
 package org.spongepowered.api.entity.living.player;
 
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.util.TickBasedByDefault;
 
 import java.time.Duration;
 import java.util.Optional;
@@ -51,7 +52,7 @@ public interface CooldownTracker {
      * @param type The item type to get the cooldown for
      * @return The cooldown remaining for this item type, if not {@link Optional#empty()}
      */
-    Optional<Duration> getCooldown(ItemType type);
+    Optional<@TickBasedByDefault Duration> getCooldown(ItemType type);
 
     /**
      * Sets the cooldown for the specified {@link ItemType} for the
@@ -62,7 +63,7 @@ public interface CooldownTracker {
      * @return False if setting the cooldown failed, possibly due to the event
      *     being cancelled
      */
-    boolean setCooldown(ItemType type, Duration duration);
+    boolean setCooldown(ItemType type, @TickBasedByDefault Duration duration);
 
     /**
      * Resets the cooldown of the specified {@link ItemType} for the

@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.entity.vehicle.minecart;
 
+import org.spongepowered.api.util.TickBasedByDefault;
+
 import java.time.Duration;
 
 /**
@@ -37,7 +39,7 @@ public interface FurnaceMinecart extends Minecart {
      *
      * @return The fuel duration
      */
-    Duration getFuelDuration();
+    @TickBasedByDefault Duration getFuelDuration();
 
     /**
      * Sets the duration of fuel the furnace has left before
@@ -45,6 +47,6 @@ public interface FurnaceMinecart extends Minecart {
      *
      * @param duration The fuel duration
      */
-    void setFuelDuration(Duration duration);
+    void setFuelDuration(@TickBasedByDefault Duration duration);
 
 }

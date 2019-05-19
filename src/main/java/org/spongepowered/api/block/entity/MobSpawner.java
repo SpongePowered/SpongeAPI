@@ -31,6 +31,7 @@ import org.spongepowered.api.data.value.WeightedCollectionValue;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.util.TickBasedByDefault;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 
 import java.time.Duration;
@@ -57,7 +58,7 @@ public interface MobSpawner extends BlockEntity {
      *
      * @return The immutable bounded value for the remaining delay
      */
-    default BoundedValue.Mutable<Duration> remainingDelay() {
+    default BoundedValue.Mutable<@TickBasedByDefault Duration> remainingDelay() {
         return getValue(Keys.SPAWNER_REMAINING_DELAY).get().asMutable();
     }
 
@@ -67,7 +68,7 @@ public interface MobSpawner extends BlockEntity {
      *
      * @return The bounded value of the minimum spawn delay
      */
-    default BoundedValue.Mutable<Duration> minimumSpawnDelay() {
+    default BoundedValue.Mutable<@TickBasedByDefault Duration> minimumSpawnDelay() {
         return getValue(Keys.SPAWNER_MINIMUM_DELAY).get().asMutable();
     }
 
@@ -77,7 +78,7 @@ public interface MobSpawner extends BlockEntity {
      *
      * @return The bounded value of the maximum spawn delay
      */
-    default BoundedValue.Mutable<Duration> maximumSpawnDelay() {
+    default BoundedValue.Mutable<@TickBasedByDefault Duration> maximumSpawnDelay() {
         return getValue(Keys.SPAWNER_MAXIMUM_DELAY).get().asMutable();
     }
 
