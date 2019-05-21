@@ -42,23 +42,23 @@ import java.util.Map;
 public interface ChatTypeMessageReceiver extends MessageReceiver {
 
     /**
-     * Sends a message as a {@link ChatTypes#CHAT} message.
+     * Sends a message as a {@link ChatTypes#SYSTEM} message to this receiver.
      *
      * <p>If text formatting is not supported in the implementation
-     * it will be displayed as plain text.</p>
+     * for this target, it will be displayed as plain text.</p>
      *
      * @param message The message to send
      */
     @Override
     default void sendMessage(Text message) {
-        sendMessage(ChatTypes.CHAT, message);
+        sendMessage(ChatTypes.SYSTEM, message);
     }
 
     /**
      * Sends a message with the specified {@link ChatType} to this receiver.
      *
      * <p>If text formatting is not supported in the implementation
-     * it will be displayed as plain text.</p>
+     * for this target, it will be displayed as plain text.</p>
      *
      * @param type The chat type to send the messages to
      * @param message The message to send
@@ -70,7 +70,7 @@ public interface ChatTypeMessageReceiver extends MessageReceiver {
      * specified {@link ChatType} to this receiver.
      *
      * <p>If text formatting is not supported in the implementation
-     * it will be displayed as plain text.</p>
+     * for this target, it will be displayed as plain text.</p>
      *
      * @param type The chat type to send the messages to
      * @param template The text template
@@ -84,7 +84,7 @@ public interface ChatTypeMessageReceiver extends MessageReceiver {
      * {@code parameters} with the specified {@link ChatType} to this receiver.
      *
      * <p>If text formatting is not supported in the implementation
-     * it will be displayed as plain text.</p>
+     * for this target, it will be displayed as plain text.</p>
      *
      * @param type The chat type to send the messages to
      * @param template The text template
@@ -98,7 +98,7 @@ public interface ChatTypeMessageReceiver extends MessageReceiver {
      * Sends the message(s) with the specified {@link ChatType} to this receiver.
      *
      * <p>If text formatting is not supported in the implementation
-     * it will be displayed as plain text.</p>
+     * for this target, it will be displayed as plain text.</p>
      *
      * @param type The chat type to send the messages to
      * @param messages The message(s) to send
@@ -115,7 +115,7 @@ public interface ChatTypeMessageReceiver extends MessageReceiver {
      * Sends the message(s) with the specified {@link ChatType} to this receiver.
      *
      * <p>If text formatting is not supported in the implementation
-     * it will be displayed as plain text.</p>
+     * for this target, it will be displayed as plain text.</p>
      *
      * @param type The chat type to send the messages to
      * @param messages The message(s) to send
