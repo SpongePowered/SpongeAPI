@@ -104,6 +104,19 @@ public class GroundCoverLayer {
     }
 
     /**
+     * Gets a representation of the depth of this layer. The variable amount
+     * will be seeded with the stone noise at generation time. This depth may
+     * vary based on the Y position.
+     *
+     * @param topYCoordinate The Y coordinate of the first block that this
+     * layer will apply to.
+     * @return The depth
+     */
+    public SeededVariableAmount<Double> getDepth(int topYCoordinate) {
+        return this.getDepth();
+    }
+
+    /**
      * Sets the {@link SeededVariableAmount} representing the depth of this
      * layer. The variable amount will be seeded with the stone noise at
      * generation time.
