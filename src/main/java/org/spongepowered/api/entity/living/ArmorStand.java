@@ -27,8 +27,11 @@ package org.spongepowered.api.entity.living;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.ArmorStandData;
 import org.spongepowered.api.data.manipulator.mutable.entity.BodyPartRotationalData;
+import org.spongepowered.api.data.manipulator.mutable.entity.DisabledSlotsData;
+import org.spongepowered.api.data.value.mutable.SetValue;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.ArmorEquipable;
+import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 
 /**
  * Represents an armor stand.
@@ -98,4 +101,15 @@ public interface ArmorStand extends Living, ArmorEquipable {
         return get(ArmorStandData.class).get();
     }
 
+    default SetValue<EquipmentType> placingDisabled() {
+        return getValue(Keys.ARMOR_STAND_PLACING_DISABLED).get();
+    }
+
+    default SetValue<EquipmentType> takingDisabled() {
+        return getValue(Keys.ARMOR_STAND_TAKING_DISABLED).get();
+    }
+
+    default DisabledSlotsData getDisabledSlotsData() {
+        return get(DisabledSlotsData.class).get();
+    }
 }

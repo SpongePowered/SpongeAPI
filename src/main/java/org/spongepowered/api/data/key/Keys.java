@@ -71,6 +71,7 @@ import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.statistic.Statistic;
@@ -87,6 +88,7 @@ import org.spongepowered.api.world.weather.Weather;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -276,6 +278,20 @@ public final class Keys {
      * @see ArmorStandData#marker()
      */
     public static final Key<Value<Boolean>> ARMOR_STAND_MARKER = DummyObjectProvider.createExtendedFor(Key.class,"ARMOR_STAND_MARKER");
+
+    /**
+     * Represents the {@link Key} for whether players are prevented from taking
+     * items from an equipment slot on an {@link ArmorStand}
+     */
+    public static final Key<SetValue<EquipmentType>> ARMOR_STAND_TAKING_DISABLED = DummyObjectProvider
+	    .createExtendedFor(Key.class, "ARMOR_STAND_TAKING_DISABLED");
+
+    /**
+     * Represents the {@link Key} for whether players are prevented from taking
+     * items from an equipment slot on an {@link ArmorStand}
+     */
+    public static final Key<SetValue<EquipmentType>> ARMOR_STAND_PLACING_DISABLED = DummyObjectProvider
+	    .createExtendedFor(Key.class, "ARMOR_STAND_PLACING_DISABLED");
 
     /**
      * Represents the {@link Key} for the type of {@link Art} shown by
