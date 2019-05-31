@@ -54,9 +54,9 @@ dependencies {
     compile 'org.spongepowered:plugin-meta:0.4.1'
 
     // Configuration
-    compile 'org.spongepowered:configurate-hocon:3.6'
-    compile 'org.spongepowered:configurate-gson:3.6'
-    compile 'org.spongepowered:configurate-yaml:3.6'
+    compile 'org.spongepowered:configurate-hocon:3.6.1'
+    compile 'org.spongepowered:configurate-gson:3.6.1'
+    compile 'org.spongepowered:configurate-yaml:3.6.1'
 
     compile 'com.flowpowered:flow-math:1.0.3'
     compile 'com.flowpowered:flow-noise:1.0.1-SNAPSHOT'
