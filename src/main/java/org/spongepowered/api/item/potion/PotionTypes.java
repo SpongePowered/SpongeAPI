@@ -61,13 +61,19 @@ public final class PotionTypes {
 
     public static final PotionType LONG_SLOWNESS = DummyObjectProvider.createFor(PotionType.class, "LONG_SLOWNESS");
 
+    public static final PotionType LONG_SLOW_FALLING = DummyObjectProvider.createFor(PotionType.class, "LONG_SLOW_FALLING");
+
     public static final PotionType LONG_STRENGTH = DummyObjectProvider.createFor(PotionType.class, "LONG_STRENGTH");
 
     public static final PotionType LONG_SWIFTNESS = DummyObjectProvider.createFor(PotionType.class, "LONG_SWIFTNESS");
 
+    public static final PotionType LONG_TURTLE_MASTER = DummyObjectProvider.createFor(PotionType.class, "LONG_TURTLE_MASTER");
+
     public static final PotionType LONG_WATER_BREATHING = DummyObjectProvider.createFor(PotionType.class, "LONG_WATER_BREATHING");
 
     public static final PotionType LONG_WEAKNESS = DummyObjectProvider.createFor(PotionType.class, "LONG_WEAKNESS");
+
+    public static final PotionType LUCK = DummyObjectProvider.createFor(PotionType.class, "LUCK");
 
     public static final PotionType MUNDANE = DummyObjectProvider.createFor(PotionType.class, "MUNDANE");
 
@@ -78,6 +84,8 @@ public final class PotionTypes {
     public static final PotionType REGENERATION = DummyObjectProvider.createFor(PotionType.class, "REGENERATION");
 
     public static final PotionType SLOWNESS = DummyObjectProvider.createFor(PotionType.class, "SLOWNESS");
+
+    public static final PotionType SLOW_FALLING = DummyObjectProvider.createFor(PotionType.class, "SLOW_FALLING");
 
     public static final PotionType STRENGTH = DummyObjectProvider.createFor(PotionType.class, "STRENGTH");
 
@@ -91,13 +99,19 @@ public final class PotionTypes {
 
     public static final PotionType STRONG_REGENERATION = DummyObjectProvider.createFor(PotionType.class, "STRONG_REGENERATION");
 
+    public static final PotionType STRONG_SLOWNESS = DummyObjectProvider.createFor(PotionType.class, "STRONG_SLOWNESS");
+
     public static final PotionType STRONG_STRENGTH = DummyObjectProvider.createFor(PotionType.class, "STRONG_STRENGTH");
 
     public static final PotionType STRONG_SWIFTNESS = DummyObjectProvider.createFor(PotionType.class, "STRONG_SWIFTNESS");
 
+    public static final PotionType STRONG_TURTLE_MASTER = DummyObjectProvider.createFor(PotionType.class, "STRONG_TURTLE_MASTER");
+
     public static final PotionType SWIFTNESS = DummyObjectProvider.createFor(PotionType.class, "SWIFTNESS");
 
     public static final PotionType THICK = DummyObjectProvider.createFor(PotionType.class, "THICK");
+
+    public static final PotionType TURTLE_MASTER = DummyObjectProvider.createFor(PotionType.class, "TURTLE_MASTER");
 
     public static final PotionType WATER = DummyObjectProvider.createFor(PotionType.class, "WATER");
 
