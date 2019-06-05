@@ -24,15 +24,14 @@
  */
 package org.spongepowered.api.item.inventory;
 
-import com.flowpowered.math.vector.Vector2i;
 import org.spongepowered.api.data.property.Property;
 import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.item.inventory.slot.SlotIndex;
-import org.spongepowered.api.item.inventory.type.GridInventory;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.math.vector.Vector2i;
 
 import java.util.UUID;
 

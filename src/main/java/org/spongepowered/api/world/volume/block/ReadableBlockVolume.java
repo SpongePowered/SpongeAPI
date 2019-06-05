@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.world.volume.block;
 
-import com.flowpowered.math.vector.Vector2i;
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.fluid.FluidState;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.volume.Volume;
+import org.spongepowered.math.vector.Vector2i;
+import org.spongepowered.math.vector.Vector3i;
 
 public interface ReadableBlockVolume extends Volume {
 

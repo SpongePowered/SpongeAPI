@@ -24,14 +24,13 @@
  */
 package org.spongepowered.api.entity.living;
 
-import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.projectile.source.EntityProjectileSource;
-import org.spongepowered.api.projectile.source.ProjectileSource;
 import org.spongepowered.api.scoreboard.TeamMember;
+import org.spongepowered.math.vector.Vector3d;
 
 import java.util.Optional;
 import java.util.OptionalDouble;

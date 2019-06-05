@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.world.storage;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.entity.Entity;
@@ -40,6 +39,7 @@ import org.spongepowered.api.world.gamerule.GameRuleHolder;
 import org.spongepowered.api.world.gen.GeneratorType;
 import org.spongepowered.api.world.teleport.PortalAgentType;
 import org.spongepowered.api.world.weather.WeatherUniverse;
+import org.spongepowered.math.vector.Vector3i;
 
 import java.time.Duration;
 

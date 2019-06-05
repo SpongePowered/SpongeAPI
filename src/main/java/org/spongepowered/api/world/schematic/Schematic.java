@@ -24,14 +24,12 @@
  */
 package org.spongepowered.api.world.schematic;
 
-import com.flowpowered.math.vector.Vector3d;
 import com.google.common.collect.ListMultimap;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.volume.archetype.ArchetypeVolume;
 import org.spongepowered.api.world.volume.archetype.ArchetypeVolumeCreator;
@@ -39,6 +37,7 @@ import org.spongepowered.api.world.volume.archetype.entity.ReadableEntityArchety
 import org.spongepowered.api.world.volume.biome.MutableBiomeVolume;
 import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
 import org.spongepowered.api.world.volume.block.entity.ReadableBlockEntityVolume;
+import org.spongepowered.math.vector.Vector3d;
 
 import java.util.Collection;
 import java.util.Optional;

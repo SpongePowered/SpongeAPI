@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.command.parameter.managed.standard;
 
-import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.command.source.CommandSource;
 import org.spongepowered.api.data.DataContainer;
@@ -39,6 +38,7 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.world.Dimension;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.storage.WorldProperties;
+import org.spongepowered.math.vector.Vector3d;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

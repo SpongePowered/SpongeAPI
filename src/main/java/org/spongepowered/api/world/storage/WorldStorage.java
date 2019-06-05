@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.world.storage;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.chunk.Chunk;
+import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;

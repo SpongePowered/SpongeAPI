@@ -26,7 +26,6 @@ package org.spongepowered.api.world.volume;
 
 import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
 
-import com.flowpowered.math.vector.Vector3i;
 import com.google.common.collect.ImmutableSet;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.data.DataContainer;
@@ -39,6 +38,7 @@ import org.spongepowered.api.data.merge.MergeFunction;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Optional;
 import java.util.Set;

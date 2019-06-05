@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.world.volume.entity;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.world.volume.entity.worker.EntityStream;
+import org.spongepowered.math.vector.Vector3i;
 
 public interface StreamableEntityVolume<E extends StreamableEntityVolume<E>> extends ReadableEntityVolume {
 

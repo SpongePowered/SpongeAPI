@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.world.volume.composite;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.fluid.FluidState;
@@ -32,6 +31,7 @@ import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.volume.Volume;
 import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
 import org.spongepowered.api.world.volume.block.entity.ReadableBlockEntityVolume;
+import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Optional;
 

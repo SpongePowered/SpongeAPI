@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.util;
 
-import com.flowpowered.math.vector.Vectord;
-import com.flowpowered.math.vector.Vectorf;
-import com.flowpowered.math.vector.Vectori;
+import org.spongepowered.math.vector.Vectord;
+import org.spongepowered.math.vector.Vectorf;
+import org.spongepowered.math.vector.Vectori;
 
 /**
  * An exception thrown when a position is outside of its expected bounds.

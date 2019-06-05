@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.world.gen;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
@@ -35,6 +34,7 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.chunk.Chunk;
+import org.spongepowered.math.vector.Vector3i;
 
 /**
  * A generating region of {@link PrimitiveChunk}s that are in the

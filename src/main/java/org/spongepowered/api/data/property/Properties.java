@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.property;
 
-import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
@@ -42,6 +41,7 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.math.vector.Vector3d;
 
 import java.util.Collection;
 

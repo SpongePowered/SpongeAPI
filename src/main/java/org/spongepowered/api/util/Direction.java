@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.util;
 
-import com.flowpowered.math.GenericMath;
-import com.flowpowered.math.TrigMath;
-import com.flowpowered.math.vector.Vector3d;
-import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.math.GenericMath;
+import org.spongepowered.math.TrigMath;
+import org.spongepowered.math.vector.Vector3d;
+import org.spongepowered.math.vector.Vector3i;
 
 /**
  * Represent the 16 main and secondary cardinal directions plus up and down.

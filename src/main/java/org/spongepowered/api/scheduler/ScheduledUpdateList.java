@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.scheduler;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.fluid.FluidType;
+import org.spongepowered.math.vector.Vector3i;
 
 import java.time.Duration;
 import java.time.temporal.TemporalUnit;

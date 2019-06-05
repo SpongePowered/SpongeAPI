@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.util.weighted;
 
-import com.flowpowered.math.GenericMath;
 import com.google.common.base.MoreObjects;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.Queries;
+import org.spongepowered.math.GenericMath;
 
 import java.util.Random;
 

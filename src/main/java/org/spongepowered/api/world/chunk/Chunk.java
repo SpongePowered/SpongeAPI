@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.world.chunk;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.World;
+import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Optional;
 

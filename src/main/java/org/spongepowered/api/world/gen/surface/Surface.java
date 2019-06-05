@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.world.gen.surface;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.chunk.ProtoChunk;
+import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Random;
 

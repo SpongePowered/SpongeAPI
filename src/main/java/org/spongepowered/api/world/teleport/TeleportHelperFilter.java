@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.world.teleport;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.util.Tristate;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.TeleportHelper;
 import org.spongepowered.api.world.World;
+import org.spongepowered.math.vector.Vector3i;
 
 /**
  * A {@link TeleportHelperFilter} contains routines to determine whether a

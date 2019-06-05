@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.world.gen;
 
-import com.flowpowered.math.vector.Vector2i;
 import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.volume.composite.ReadableCompositeVolume;
+import org.spongepowered.math.vector.Vector2i;
 
 import java.util.Random;
 

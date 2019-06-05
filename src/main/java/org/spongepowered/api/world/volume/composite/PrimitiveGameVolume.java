@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.world.volume.composite;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.fluid.FluidState;
 import org.spongepowered.api.world.volume.Volume;
+import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Optional;
 

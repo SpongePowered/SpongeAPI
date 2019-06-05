@@ -65,8 +65,8 @@ dependencies {
     compile 'org.spongepowered:configurate-hocon:3.6.1'
     compile 'org.spongepowered:configurate-gson:3.6.1'
     compile 'org.spongepowered:configurate-yaml:3.6.1'
-
-    compile 'com.flowpowered:flow-math:1.0.3'
+    compile 'org.spongepowered:math:2.0.0-SNAPSHOT'
+    
     compile 'com.flowpowered:flow-noise:1.0.1-SNAPSHOT'
 
     // Event generation

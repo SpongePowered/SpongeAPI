@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.world.volume;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
+import org.spongepowered.math.vector.Vector3i;
 
 public interface Volume {
 

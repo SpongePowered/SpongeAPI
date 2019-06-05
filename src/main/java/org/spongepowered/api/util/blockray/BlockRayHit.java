@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.util.blockray;
 
-import com.flowpowered.math.GenericMath;
-import com.flowpowered.math.vector.Vector3d;
-import com.flowpowered.math.vector.Vector3i;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
+import org.spongepowered.math.GenericMath;
+import org.spongepowered.math.vector.Vector3d;
+import org.spongepowered.math.vector.Vector3i;
 
 import java.util.function.BiFunction;
 

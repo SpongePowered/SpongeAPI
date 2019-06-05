@@ -29,7 +29,6 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
 
-import com.flowpowered.math.vector.Vector3d;
 import com.google.common.collect.Lists;
 import org.junit.Test;
 import org.spongepowered.api.block.BlockSnapshot;
@@ -42,6 +41,7 @@ import org.spongepowered.api.event.cause.EventContext;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
+import org.spongepowered.math.vector.Vector3d;
 
 import java.util.Optional;
 

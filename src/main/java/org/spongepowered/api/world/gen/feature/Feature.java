@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.world.gen.feature;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.ProtoWorld;
@@ -32,6 +31,7 @@ import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.gen.FeatureConfig;
 import org.spongepowered.api.world.gen.GenerationRegion;
 import org.spongepowered.api.world.gen.TerrainGenerator;
+import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Random;
 

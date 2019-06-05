@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.command.parameter;
 
-import com.flowpowered.math.vector.Vector3d;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
@@ -51,6 +50,7 @@ import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.Dimension;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.storage.WorldProperties;
+import org.spongepowered.math.vector.Vector3d;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

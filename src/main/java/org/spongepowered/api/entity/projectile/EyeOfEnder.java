@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.entity.projectile;
 
-import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.math.vector.Vector3d;
 
 /**
  * Represents an Eye of Ender.

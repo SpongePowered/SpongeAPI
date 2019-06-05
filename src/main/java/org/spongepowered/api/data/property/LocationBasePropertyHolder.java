@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.data.property;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.util.Direction;
+import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Collection;
 import java.util.Map;

@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.world.volume.archetype.entity;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.world.volume.Volume;
 import org.spongepowered.api.world.volume.entity.MutableEntityVolume;
+import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Collection;
 import java.util.function.Predicate;

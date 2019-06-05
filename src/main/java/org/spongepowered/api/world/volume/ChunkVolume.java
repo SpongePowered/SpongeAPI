@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.world.volume;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.chunk.ProtoChunk;
 import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
+import org.spongepowered.math.vector.Vector3i;
 
 /**
  * Presents a volume of {@link ProtoChunk}s that can exist

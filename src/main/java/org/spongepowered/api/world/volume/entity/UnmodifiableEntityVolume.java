@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.world.volume.entity;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.world.volume.UnmodifiableVolume;
 import org.spongepowered.api.world.volume.block.UnmodifiableBlockVolume;
+import org.spongepowered.math.vector.Vector3i;
 
 public interface UnmodifiableEntityVolume<U extends UnmodifiableEntityVolume<U>> extends ReadableEntityVolume, StreamableEntityVolume<U>,
     UnmodifiableVolume, UnmodifiableBlockVolume<U> {

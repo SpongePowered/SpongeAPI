@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.volume.biome;
 
 import org.spongepowered.api.world.volume.biome.worker.BiomeVolumeStream;
-import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.math.vector.Vector3i;
 
 public interface StreamableBiomeVolume<B extends StreamableBiomeVolume<B>> extends ReadableBiomeVolume {
 

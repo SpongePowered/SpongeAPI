@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.world.volume.block;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
 import org.spongepowered.api.world.volume.MutableVolume;
 import org.spongepowered.api.world.volume.block.worker.MutableBlockVolumeStream;
+import org.spongepowered.math.vector.Vector3i;
 
 public interface MutableBlockVolume<M extends MutableBlockVolume<M>> extends StreamableBlockVolume<M>, MutableVolume {
 

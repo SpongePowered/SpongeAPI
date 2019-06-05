@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.util;
 
-import com.flowpowered.math.vector.Vector3d;
-import com.flowpowered.math.vector.Vector3i;
 import org.junit.Assert;
 import org.junit.Test;
+import org.spongepowered.math.vector.Vector3d;
+import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Random;
 

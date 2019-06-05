@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.world.volume;
 
-import com.flowpowered.math.vector.Vector3d;
-import com.flowpowered.math.vector.Vector3i;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
@@ -39,6 +37,8 @@ import org.spongepowered.api.world.volume.block.entity.StreamableBlockEntityVolu
 import org.spongepowered.api.world.volume.composite.ReadableCompositeVolume;
 import org.spongepowered.api.world.volume.entity.CollisionAwareEntityVolume;
 import org.spongepowered.api.world.volume.entity.StreamableEntityVolume;
+import org.spongepowered.math.vector.Vector3d;
+import org.spongepowered.math.vector.Vector3i;
 
 public interface ReadableRegion<R extends ReadableRegion<R>> extends
     ReadableCompositeVolume,

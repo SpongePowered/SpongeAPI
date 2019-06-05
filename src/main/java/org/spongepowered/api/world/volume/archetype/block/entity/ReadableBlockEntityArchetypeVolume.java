@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.world.volume.archetype.block.entity;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.entity.BlockEntityArchetype;
 import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
+import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Map;
 import java.util.Optional;

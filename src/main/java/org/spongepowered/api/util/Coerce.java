@@ -26,13 +26,6 @@ package org.spongepowered.api.util;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.flowpowered.math.vector.Vector2i;
-import com.flowpowered.math.vector.Vector3i;
-import com.flowpowered.math.vector.Vector4i;
-import com.flowpowered.math.vector.VectorNi;
-import com.flowpowered.math.vector.Vectord;
-import com.flowpowered.math.vector.Vectorf;
-import com.flowpowered.math.vector.Vectorl;
 import com.google.common.collect.Lists;
 import com.google.common.primitives.Booleans;
 import com.google.common.primitives.Bytes;
@@ -43,6 +36,13 @@ import com.google.common.primitives.Ints;
 import com.google.common.primitives.Longs;
 import com.google.common.primitives.Shorts;
 import org.checkerframework.checker.nullness.qual.Nullable;
+import org.spongepowered.math.vector.Vector2i;
+import org.spongepowered.math.vector.Vector3i;
+import org.spongepowered.math.vector.Vector4i;
+import org.spongepowered.math.vector.VectorNi;
+import org.spongepowered.math.vector.Vectord;
+import org.spongepowered.math.vector.Vectorf;
+import org.spongepowered.math.vector.Vectorl;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;

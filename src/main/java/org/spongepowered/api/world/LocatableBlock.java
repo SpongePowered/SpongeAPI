@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.world;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.ImmutableDataHolder;
 import org.spongepowered.api.data.persistence.DataBuilder;
+import org.spongepowered.math.vector.Vector3i;
 
 public interface LocatableBlock extends ImmutableDataHolder<LocatableBlock>, Locatable {
 

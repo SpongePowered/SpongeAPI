@@ -25,8 +25,8 @@
 package org.spongepowered.api.world.volume.archetype.entity;
 
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.world.volume.archetype.entity.worker.EntityArchetypeStream;
+import org.spongepowered.math.vector.Vector3i;
 
 public interface StreamableEntityArchetypeVolume<B extends StreamableEntityArchetypeVolume<B>> extends ReadableEntityArchetypeVolume {
 

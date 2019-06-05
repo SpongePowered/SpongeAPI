@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.world.volume;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.world.HeightType;
+import org.spongepowered.math.vector.Vector3i;
 
 public interface HeightAwareVolume {
 

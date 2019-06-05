@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.advancement;
 
-import com.flowpowered.math.vector.Vector2d;
+import org.spongepowered.math.vector.Vector2d;
 
 /**
  * Represents a element in the {@link TreeLayout}.

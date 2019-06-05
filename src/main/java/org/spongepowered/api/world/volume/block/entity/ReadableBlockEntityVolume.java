@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.world.volume.block.entity;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.world.volume.Volume;
 import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
+import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Collection;
 import java.util.Optional;

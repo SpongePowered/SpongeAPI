@@ -26,11 +26,11 @@ package org.spongepowered.api.util;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.world.volume.composite.PrimitiveGameVolume;
+import org.spongepowered.math.vector.Vector3i;
 
 public interface BlockReaderAwareMatcher<T> {
 

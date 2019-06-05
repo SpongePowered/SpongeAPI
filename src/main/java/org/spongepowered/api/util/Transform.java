@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.util;
 
-import com.flowpowered.math.imaginary.Quaterniond;
-import com.flowpowered.math.matrix.Matrix4d;
-import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.math.imaginary.Quaterniond;
+import org.spongepowered.math.matrix.Matrix4d;
+import org.spongepowered.math.vector.Vector3d;
 
 /**
  * A utility interface which encapsulates a {@link Vector3d position}, {@link Vector3d rotation}, and {@link Vector3d scale}.

@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.item.inventory.slot;
 
-import com.flowpowered.math.vector.Vector2i;
 import org.spongepowered.api.data.property.PropertyMatcher;
 import org.spongepowered.api.item.inventory.InventoryProperties;
 import org.spongepowered.api.item.inventory.Slot;
+import org.spongepowered.math.vector.Vector2i;
 
 /**
  * A collection of {@link PropertyMatcher}s that

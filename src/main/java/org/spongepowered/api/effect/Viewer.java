@@ -26,17 +26,17 @@ package org.spongepowered.api.effect;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.flowpowered.math.vector.Vector3d;
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.effect.sound.music.MusicDisc;
 import org.spongepowered.api.effect.particle.ParticleEffect;
 import org.spongepowered.api.effect.sound.SoundCategories;
 import org.spongepowered.api.effect.sound.SoundCategory;
 import org.spongepowered.api.effect.sound.SoundType;
+import org.spongepowered.api.effect.sound.music.MusicDisc;
 import org.spongepowered.api.text.BookView;
 import org.spongepowered.api.text.title.Title;
 import org.spongepowered.api.world.World;
+import org.spongepowered.math.vector.Vector3d;
+import org.spongepowered.math.vector.Vector3i;
 
 /**
  * A Viewer is something that sees effects.

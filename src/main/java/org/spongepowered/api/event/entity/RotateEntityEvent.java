@@ -24,11 +24,10 @@
  */
 package org.spongepowered.api.event.entity;
 
-import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
+import org.spongepowered.math.vector.Vector3d;
 
 /**
  * Called when an {@link Entity} performs rotation of their body or, if

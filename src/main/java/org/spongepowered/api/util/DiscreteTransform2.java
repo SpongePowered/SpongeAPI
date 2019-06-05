@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.util;
 
-import com.flowpowered.math.GenericMath;
-import com.flowpowered.math.imaginary.Complexd;
-import com.flowpowered.math.matrix.Matrix3d;
-import com.flowpowered.math.vector.Vector2d;
-import com.flowpowered.math.vector.Vector2i;
-import com.flowpowered.math.vector.Vector3d;
 import com.google.common.base.Preconditions;
+import org.spongepowered.math.GenericMath;
+import org.spongepowered.math.imaginary.Complexd;
+import org.spongepowered.math.matrix.Matrix3d;
+import org.spongepowered.math.vector.Vector2d;
+import org.spongepowered.math.vector.Vector2i;
+import org.spongepowered.math.vector.Vector3d;
 
 import java.util.Arrays;
 import java.util.Optional;

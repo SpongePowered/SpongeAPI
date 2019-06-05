@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.world.chunk;
 
-import com.flowpowered.math.vector.Vector3i;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableListMultimap;
 import com.google.common.collect.ImmutableSet;
@@ -34,6 +33,7 @@ import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.world.World;
+import org.spongepowered.math.vector.Vector3i;
 
 import java.util.List;
 import java.util.Optional;

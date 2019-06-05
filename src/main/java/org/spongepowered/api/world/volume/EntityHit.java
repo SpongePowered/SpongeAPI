@@ -26,8 +26,8 @@ package org.spongepowered.api.world.volume;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.math.vector.Vector3d;
 
 /**
  * The result of an intersection between a ray and an entity.

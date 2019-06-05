@@ -26,12 +26,12 @@ package org.spongepowered.api.world.volume;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
+import org.spongepowered.math.vector.Vector3i;
 
 import java.time.Duration;
 

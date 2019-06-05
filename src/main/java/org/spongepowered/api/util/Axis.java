@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.util;
 
-import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.math.vector.Vector3d;
 
 /**
  * Represents a three dimensional cartesian axis.

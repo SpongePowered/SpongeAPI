@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.world.volume;
 
-import com.flowpowered.math.vector.Vector2i;
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
+import org.spongepowered.math.vector.Vector2i;
+import org.spongepowered.math.vector.Vector3i;
 
 public interface WeatherAwareVolume extends ReadableBlockVolume {
 

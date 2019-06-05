@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.projectile.source;
 
-import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.entity.projectile.Projectile;
+import org.spongepowered.math.vector.Vector3d;
 
 import java.util.Optional;
 

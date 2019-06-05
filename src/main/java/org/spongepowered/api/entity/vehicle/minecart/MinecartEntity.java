@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.entity.vehicle.minecart;
 
-import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.math.vector.Vector3d;
 
 /**
  * Represents a MinecartEntity entity.

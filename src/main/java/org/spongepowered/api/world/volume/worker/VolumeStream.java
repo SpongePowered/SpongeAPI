@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.world.volume.worker;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.volume.MutableVolume;
 import org.spongepowered.api.world.volume.UnmodifiableVolume;
@@ -34,6 +33,7 @@ import org.spongepowered.api.world.volume.worker.function.VolumeConsumer;
 import org.spongepowered.api.world.volume.worker.function.VolumeMapper;
 import org.spongepowered.api.world.volume.worker.function.VolumeMerger;
 import org.spongepowered.api.world.volume.worker.function.VolumePredicate;
+import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Optional;
 import java.util.function.Consumer;

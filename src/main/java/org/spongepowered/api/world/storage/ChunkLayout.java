@@ -27,9 +27,9 @@ package org.spongepowered.api.world.storage;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.Direction.Division;
+import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Optional;
 
