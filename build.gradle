@@ -66,8 +66,7 @@ dependencies {
     compile 'org.spongepowered:configurate-gson:3.6.1'
     compile 'org.spongepowered:configurate-yaml:3.6.1'
     compile 'org.spongepowered:math:2.0.0-SNAPSHOT'
-    
-    compile 'com.flowpowered:flow-noise:1.0.1-SNAPSHOT'
+    compile 'org.spongepowered:noise:2.0.0-SNAPSHOT'
 
     // Event generation
     compile 'org.ow2.asm:asm:5.2'
