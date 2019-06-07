@@ -30,7 +30,7 @@ import ninja.leaping.configurate.objectmapping.serialize.TypeSerializerCollectio
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
-import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.advancement.CriterionEvent;

@@ -48,10 +48,6 @@ public @interface UseField {
      * generated '{@link #toString()}' method, rather than calling the
      * normal accessor method.
      *
-     * <p>This should only be used when there are special restrictions
-     * on calling the accessor (for example,
-     * {@link AffectEntityEvent#getEntitySnapshots()}).</p>
-     *
      * @return Whether to override the toString
      */
     boolean overrideToString() default false;

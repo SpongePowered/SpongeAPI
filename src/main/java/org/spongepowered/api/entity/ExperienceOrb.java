@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity;
 
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 
 /**
@@ -33,7 +33,7 @@ import org.spongepowered.api.data.value.Value;
 public interface ExperienceOrb extends Entity {
 
     /**
-     * Gets the {@link Value.Mutable} for the amount of "experience" stored.
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the amount of "experience" stored.
      *
      * @return The immutable value for the amount of "experience" stored
      */

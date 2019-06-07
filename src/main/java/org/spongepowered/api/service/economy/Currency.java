@@ -47,7 +47,7 @@ public interface Currency extends CatalogType {
     /**
      * The currency's display name, in singular form. Ex: Dollar.
      *
-     * <p>This should be preferred over {@link CatalogType#getName()}
+     * <p>This should be preferred over {@link CatalogType#getKey()}
      * for display purposes.</p>
      *
      * @return displayName of the currency singular

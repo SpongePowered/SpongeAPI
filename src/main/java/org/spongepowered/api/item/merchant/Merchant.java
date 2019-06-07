@@ -26,7 +26,7 @@ package org.spongepowered.api.item.merchant;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.item.inventory.Carrier;
@@ -37,7 +37,7 @@ import java.util.Optional;
 /**
  * Represents a Merchant which can offer trades to customers.
  */
-public interface Merchant extends DataHolder, Carrier, Locatable {
+public interface Merchant extends DataHolder.Mutable, Carrier, Locatable {
 
     /**
      * Gets the currently trading customer with this merchant.

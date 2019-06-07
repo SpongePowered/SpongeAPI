@@ -45,5 +45,5 @@ public interface SlotClickHandler extends InventoryCallbackHandler{
      *
      * @return false to prevent the action
      */
-    boolean handle(Cause cause, Container container, Slot slot, SlotIndex slotIndex, ClickType clickType);
+    boolean handle(Cause cause, Container container, Slot slot, SlotIndex slotIndex, ClickType<?> clickType);
 }

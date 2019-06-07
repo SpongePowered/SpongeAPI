@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.projectile.arrow;
 
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.entity.projectile.DamagingProjectile;
 
@@ -34,7 +34,7 @@ import org.spongepowered.api.entity.projectile.DamagingProjectile;
 public interface ArrowEntity extends DamagingProjectile {
 
     /**
-     * Gets the {@link BoundedValue.Mutable} for the "knockback strength"
+     * Gets the {@link org.spongepowered.api.data.value.BoundedValue.Mutable} for the "knockback strength"
      * that this arrow has.
      *
      * @return The immutable value for the knockback strength

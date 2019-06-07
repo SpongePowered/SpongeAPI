@@ -25,9 +25,12 @@
 package org.spongepowered.api.util;
 
 import com.google.common.reflect.TypeToken;
+import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.block.entity.BlockEntity;
+import org.spongepowered.api.block.entity.BlockEntityArchetype;
+import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.meta.PatternLayer;
 import org.spongepowered.api.data.type.ArtType;
 import org.spongepowered.api.data.type.BodyPart;
@@ -61,13 +64,18 @@ import org.spongepowered.api.data.value.WeightedCollectionValue;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.effect.potion.PotionEffectType;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
+import org.spongepowered.api.fluid.FluidStack;
 import org.spongepowered.api.fluid.FluidStackSnapshot;
+import org.spongepowered.api.fluid.FluidState;
 import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.enchantment.Enchantment;
+import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.item.potion.PotionType;
@@ -90,6 +98,20 @@ import java.util.UUID;
 
 @SuppressWarnings("unused")
 public final class TypeTokens {
+
+    public static final TypeToken<Entity> ENTITY = new TypeToken<Entity>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<EntitySnapshot> ENTITY_SNAPSHOT = new TypeToken<EntitySnapshot>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<EntityArchetype> ENTITY_ARCHETYPE = new TypeToken<EntityArchetype>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<BlockEntityArchetype> TILE_ENTITY_ARCHETYPE = new TypeToken<BlockEntityArchetype>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<ItemStack> ITEM_STACK = new TypeToken<ItemStack>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<BlockEntity> TILE_ENTITY = new TypeToken<BlockEntity>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<ItemStackSnapshot> ITEM_STACK_SNAPSHOT = new TypeToken<ItemStackSnapshot>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<BlockSnapshot> BLOCK_SNAPSHOT = new TypeToken<BlockSnapshot>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<BlockState> BLOCK_STATE = new TypeToken<BlockState>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<FluidStack> FLUID_STACK = new TypeToken<FluidStack>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<FluidState> FLUID_STATE = new TypeToken<FluidState>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<User> USER = new TypeToken<User>() {private static final long serialVersionUID = -1;};
+
 
     // SORTFIELDS:ON
 
@@ -137,13 +159,13 @@ public final class TypeTokens {
 
     public static final TypeToken<EntitySnapshot> ENTITY_TOKEN = new TypeToken<EntitySnapshot>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<Map<EntityType, Double>> ENTITY_TYPE_DOUBLE_MAP_TOKEN = new TypeToken<Map<EntityType, Double>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<Map<EntityType<?>, Double>> ENTITY_TYPE_DOUBLE_MAP_TOKEN = new TypeToken<Map<EntityType<?>, Double>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<MapValue<EntityType, Double>> ENTITY_TYPE_DOUBLE_MAP_VALUE_TOKEN = new TypeToken<MapValue<EntityType, Double>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<MapValue<EntityType<?>, Double>> ENTITY_TYPE_DOUBLE_MAP_VALUE_TOKEN = new TypeToken<MapValue<EntityType<?>, Double>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<EntityType> ENTITY_TYPE_TOKEN = new TypeToken<EntityType>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<EntityType<?>> ENTITY_TYPE_TOKEN = new TypeToken<EntityType<?>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<Value<EntityType>> ENTITY_TYPE_VALUE_TOKEN = new TypeToken<Value<EntityType>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<Value<EntityType<?>>> ENTITY_TYPE_VALUE_TOKEN = new TypeToken<Value<EntityType<?>>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<EntitySnapshot>> ENTITY_VALUE_TOKEN = new TypeToken<Value<EntitySnapshot>>() {private static final long serialVersionUID = -1;};
 

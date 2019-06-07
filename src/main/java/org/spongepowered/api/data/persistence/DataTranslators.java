@@ -60,6 +60,9 @@ public final class DataTranslators {
     public static final DataTranslator<Schematic> LEGACY_SCHEMATIC = DummyObjectProvider
             .createExtendedFor(DataTranslator.class, "LEGACY_SCHEMATIC");
 
+    public static final DataTranslator<Schematic> MOJANG_TEMPLATE = DummyObjectProvider
+            .createExtendedFor(DataTranslator.class, "MOJANG_TEMPLATE");
+
     public static final DataTranslator<ConfigurationNode> CONFIGURATION_NODE = DummyObjectProvider
             .createExtendedFor(DataTranslator.class, "CONFIGURATION_NODE");
 

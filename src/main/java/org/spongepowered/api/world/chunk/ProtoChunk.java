@@ -45,8 +45,6 @@ import org.spongepowered.math.vector.Vector3i;
  * chunk loading from storage, or empty chunks on clients. Traditionally, a
  * usable "live" proto chunk instance will be a {@link Chunk} with a valid
  * {@link World} instance.</p>
- *
- * @implNote Mixes onto IChunk
  */
 public interface ProtoChunk<P extends ProtoChunk<P>> extends
     ReadableCompositeVolume,

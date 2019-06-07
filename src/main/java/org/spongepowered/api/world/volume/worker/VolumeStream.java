@@ -28,6 +28,7 @@ import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.volume.MutableVolume;
 import org.spongepowered.api.world.volume.UnmodifiableVolume;
 import org.spongepowered.api.world.volume.Volume;
+import org.spongepowered.api.world.volume.block.StreamableBlockVolume;
 import org.spongepowered.api.world.volume.entity.StreamableEntityVolume;
 import org.spongepowered.api.world.volume.worker.function.VolumeConsumer;
 import org.spongepowered.api.world.volume.worker.function.VolumeMapper;
@@ -48,11 +49,13 @@ import java.util.stream.Stream;
  * is equivalent to a live {@link World} instance, some volumes may be mutable, or
  * {@link UnmodifiableVolume} such that asynchronous access may be allowed. The
  * cases where a {@link Volume} may be available for streaming is dependent on
- * the type of volume, such as {@link StreamableEntityVolume}, {@link }
- * @param <V>
- * @param <U>
- * @param <I>
- * @param <M>
+ * the type of volume, such as {@link StreamableEntityVolume}, {@link StreamableBlockVolume},
+ * etc.
+ *
+ * @param <V> The type of Volume being acted on
+ * @param <U> The unmodifiable volume that may be providing data
+ * @param <I> The type of element being streamed
+ * @param <M> The mutable volume that may be modified on consumption
  */
 public interface VolumeStream<V extends Volume, U extends UnmodifiableVolume, I, M extends MutableVolume> {
 

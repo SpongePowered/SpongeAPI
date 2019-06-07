@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.vehicle.minecart;
 
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.math.vector.Vector3d;
 
@@ -37,7 +38,9 @@ public interface MinecartEntity extends Entity {
      *
      * @return If the cart is on a rail
      */
-    boolean isOnRail();
+    default boolean isOnRail() {
+        return require(Keys.MINECART_IS_ON_RAIL);
+    }
 
     /**
      * Gets the absolute maximum speed that this cart is allowed to travel at.
@@ -46,7 +49,9 @@ public interface MinecartEntity extends Entity {
      *
      * @return The maximum speed
      */
-    double getSwiftness();
+    default double getSwiftness() {
+        return require(Keys.MINECART_SWIFTNESS);
+    }
 
     /**
      * Sets the absolute maximum speed that this cart is allowed to travel at.
@@ -55,61 +60,77 @@ public interface MinecartEntity extends Entity {
      *
      * @param swiftness The new maximum speed
      */
-    void setSwiftness(double swiftness);
+    default void setSwiftness(double swiftness) {
+        offer(Keys.MINECART_SWIFTNESS, swiftness);
+    }
 
     /**
      * Gets the maximum speed that this cart is allowed to travel at the instant
      * this method is called.
      *
-     * <p>This differs from {@link MinecartEntity#getSwiftness()} in that its value is
+     * <p>This differs from {@link Minecart#getSwiftness()} in that its value is
      * affected by the block/rail beneath the cart. However, it is still
      * impacted and limited by the cart's swiftness.</p>
      *
      * @return The maximum speed at which the minecart may travel at the instant
      *     this method is called
      */
-    double getPotentialMaxSpeed();
+    default double getPotentialMaxSpeed() {
+        return require(Keys.MINECART_POTENTIAL_MAX_SPEED);
+    }
 
     /**
      * Gets whether or not the minecart slows down faster without a passenger.
      *
      * @return If the cart slows when empty
      */
-    boolean doesSlowWhenEmpty();
+    default boolean doesSlowWhenEmpty() {
+        return require(Keys.MINECART_SLOW_WHEN_EMPTY);
+    }
 
     /**
      * Sets whether or not the minecart slows down faster without a passenger.
      *
      * @param slowWhenEmpty If the cart should slow when empty
      */
-    void setSlowWhenEmpty(boolean slowWhenEmpty);
+    default void setSlowWhenEmpty(boolean slowWhenEmpty) {
+        offer(Keys.MINECART_SLOW_WHEN_EMPTY, slowWhenEmpty);
+    }
 
     /**
      * Gets the velocity modifier applied when the minecart is airborne.
      *
      * @return Airborne velocity modifier
      */
-    Vector3d getAirborneVelocityMod();
+    default Vector3d getAirborneVelocityMod() {
+        return require(Keys.MINECART_AIRBORNE_VELOCITY_MODIFIER);
+    }
 
     /**
      * Sets the velocity modifier applied when the minecart is airborne.
      *
      * @param airborneVelocityMod The new airborne velocity modifier
      */
-    void setAirborneVelocityMod(Vector3d airborneVelocityMod);
+    default void setAirborneVelocityMod(Vector3d airborneVelocityMod) {
+        offer(Keys.MINECART_AIRBORNE_VELOCITY_MODIFIER, airborneVelocityMod);
+    }
 
     /**
      * Gets the velocity modifier applied when the minecart is not on rails.
      *
      * @return Derailed velocity modifier
      */
-    Vector3d getDerailedVelocityMod();
+    default Vector3d getDerailedVelocityMod() {
+        return require(Keys.MINECART_DERAILED_VELOCITY_MODIFIER);
+    }
 
     /**
      * Sets the velocity modifier applied when the minecart is not on rails.
      *
      * @param derailedVelocityMod The new derailed velocity modifier
      */
-    void setDerailedVelocityMod(Vector3d derailedVelocityMod);
+    default void setDerailedVelocityMod(Vector3d derailedVelocityMod) {
+        offer(Keys.MINECART_DERAILED_VELOCITY_MODIFIER, derailedVelocityMod);
+    }
 
 }

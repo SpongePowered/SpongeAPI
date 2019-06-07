@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.persistence;
 
-import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.util.Updater;
 
 public interface DataContentUpdater extends Updater<DataView> {

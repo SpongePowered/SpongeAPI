@@ -22,20 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.merge;
+package org.spongepowered.api.data.value;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.data.value.CompositeValueStore;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.data.value.ValueContainer;
 
 import java.util.function.Function;
 
 /**
  * Represents a unique form of {@link Function} that attempts to merge
- * two separate {@link ValueContainer}s into a singular {@link ValueContainer}.
+ * two separate {@link Value}s into a singular {@link Value}.
  * A merge function is similar to a {@link Function} such that it can be reused
  * for multiple purposes and should be "stateless" on its own.
  */
@@ -43,10 +40,9 @@ import java.util.function.Function;
 public interface MergeFunction {
 
     /**
-     * Performs a merge of a type of {@link ValueContainer} such that a merge
-     * of the contained {@link Value}s has been performed and the resulting
-     * merged {@link ValueContainer} is returned. It is suffice to say that
-     * only one of the {@link ValueContainer} containers may be {@code null},
+     * Performs a merge of a type of {@link Value} such that a merge has been
+     * performed and the resulting merged {@link Value} is returned. It is
+     * suffice to say that only one of the {@link Value}s may be {@code null},
      * such that <pre> {@code
      * if (original == null) {
      *     return checkNotNull(replacement);
@@ -59,26 +55,18 @@ public interface MergeFunction {
      * It can be therefor discerned that both values are passed in as copies
      * and therefor either one can be modified and returned.
      *
-     * <p>Since
-     * {@link CompositeValueStore#copyFrom(CompositeValueStore, MergeFunction)}
-     * accepts only a single {@link MergeFunction}, and a
-     * {@link CompositeValueStore} may have multiple {@link ValueContainer}s,
-     * as provided by {@link CompositeValueStore#getContainers()}, the merge
-     * function may be called for every single number of {@link ValueContainer}.
-     * This way, a {@link MergeFunction} can be fully customized to merge
-     * specific {@link ValueContainer}s of matching types.</p>
-     *
-     * @param original The original {@link ValueContainer} from the value store
+     * @param original The original {@link Value} from the value store
      * @param replacement The replacing value container
-     * @param <C> The type of {@link ValueContainer}
-     * @return The "merged" {@link ValueContainer}
+     * @param <V> The type of {@link Value} being passed in
+     * @param <E> The type of {@code value} for the {@link Value}
+     * @return The "merged" {@link Value}
      */
-    <C extends ValueContainer<?>> C merge(@Nullable C original, @Nullable C replacement);
+    <V extends Value<E>, E> V merge(@Nullable V original, @Nullable V replacement);
 
     /**
      * Creates a new {@link MergeFunction} chaining this current merge function
      * with the provided merge function. The order of the merge is this
-     * performs {@link #merge(ValueContainer, ValueContainer)} then, the
+     * performs {@link #merge(Value, Value)} then, the
      * provided {@link MergeFunction} merges the returned merged
      * {@link ValueContainer} and the {@code replacement}. This can be used to
      * apply a custom merge strategy after a pre-defined {@link MergeFunction}
@@ -91,7 +79,7 @@ public interface MergeFunction {
         final MergeFunction self = this;
         return new MergeFunction() {
             @Override
-            public <C extends ValueContainer<?>> C merge(C original, C replacement) {
+            public <V extends Value<E>, E> V merge(@Nullable V original, @Nullable V replacement) {
                 return that.merge(self.merge(original, replacement), replacement);
             }
         };
@@ -101,20 +89,20 @@ public interface MergeFunction {
      * Represents a {@link MergeFunction} that ignores all merges and uses the
      * replacement, or the original if the replacement is {@code null}.
      */
-    MergeFunction IGNORE_ALL = new MergeFunction() {
+    MergeFunction REPLACEMENT_PREFERRED = new MergeFunction() {
         @Override
-        public <C extends ValueContainer<?>> C merge(@Nullable C original, @Nullable C replacement) {
+        public <V extends Value<E>, E> V merge(@Nullable V original, @Nullable V replacement) {
             return replacement == null ? checkNotNull(original, "Original and replacement cannot be null!") : replacement;
         }
     };
 
     /**
-     * Represents a {@link MergeFunction} that forces no merges and uses the
-     * original, or proposed replacement if the original is {@code null}.
+     * Represents a {@link MergeFunction} that will preferr the original's
+     * value if it is not {@code null} over the replacement.
      */
-    MergeFunction FORCE_NOTHING = new MergeFunction() {
+    MergeFunction ORIGINAL_PREFERRED = new MergeFunction() {
         @Override
-        public <C extends ValueContainer<?>> C merge(@Nullable C original, @Nullable C replacement) {
+        public <V extends Value<E>, E> V merge(@Nullable V original, @Nullable V replacement) {
             return original == null ? checkNotNull(replacement, "Replacement and original cannot be null!") : original;
         }
     };

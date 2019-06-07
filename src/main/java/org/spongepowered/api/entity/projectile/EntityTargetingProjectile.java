@@ -24,10 +24,9 @@
  */
 package org.spongepowered.api.entity.projectile;
 
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.EntitySnapshot;
 
 /**
  * Represents a {@link Projectile} targeting an {@link Entity}
@@ -39,7 +38,7 @@ public interface EntityTargetingProjectile extends Projectile {
      *
      * @return The targeted entity
      */
-    default Value<EntitySnapshot> target() {
+    default Value<Entity> target() {
         return getValue(Keys.TARGETED_ENTITY).get();
     }
 }

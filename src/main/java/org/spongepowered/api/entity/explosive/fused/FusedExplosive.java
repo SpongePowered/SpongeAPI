@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.explosive.fused;
 
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.entity.explosive.Explosive;
 
 /**

@@ -40,5 +40,5 @@ public interface ClickHandler extends InventoryCallbackHandler {
      *
      * @return false to prevent the action
      */
-    boolean handle(Cause cause, Container container, ClickType clickType);
+    boolean handle(Cause cause, Container container, ClickType<?> clickType);
 }

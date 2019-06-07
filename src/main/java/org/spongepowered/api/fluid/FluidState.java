@@ -27,9 +27,8 @@ package org.spongepowered.api.fluid;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.data.ImmutableDataBuilder;
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.state.State;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -37,7 +36,7 @@ import org.spongepowered.api.world.schematic.Schematic;
 
 /**
  * Represents a particular "state" that can exist at a {@link Location} with
- * a particular {@link BlockType} and various {@link Value.Immutable}s defining
+ * a particular {@link BlockType} and various {@link org.spongepowered.api.data.value.Value.Immutable}s defining
  * the information for the "block". Note that normally, there may exist only
  * a single instance of a particular {@link FluidState} as they are immutable,
  * a particular instance may be cached for various uses.
@@ -77,14 +76,14 @@ public interface FluidState extends State<FluidState> {
     boolean isEmpty();
 
     /**
-     * An {@link ImmutableDataBuilder} for a {@link FluidState}. Just like the
-     * {@link ImmutableDataBuilder}, the {@link DataManipulator}s passed in to
+     * An {@link org.spongepowered.api.data.persistence.DataBuilder.Immutable} for a {@link FluidState}. Just like the
+     * {@link org.spongepowered.api.data.persistence.DataBuilder.Immutable}, the {@link DataManipulator}s passed in to
      * create a {@link FluidState} are copied on creation.
      *
      * <p>Note that upon creation, the {@link FluidType} must be set for validation
      * of {@link DataManipulator}s, otherwise exceptions may be thrown.</p>
      */
-    interface Builder extends ImmutableDataBuilder<FluidState, Builder> {
+    interface Builder extends DataBuilder.Immutable<FluidState, Builder> {
 
         /**
          * Sets the {@link FluidType} for the {@link FluidState} to build.

@@ -27,7 +27,7 @@ package org.spongepowered.api.world;
 import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
@@ -341,7 +341,7 @@ public interface WorldArchetype extends CatalogType {
 
         /**
          * Builds the {@link WorldArchetype} which can be used to create
-         * a {@link WorldProperties} in {@link WorldManager#createWorldProperties(DimensionType, WorldArchetype)}.
+         * a {@link WorldProperties} in {@link WorldManager#createProperties(WorldRegistration, WorldArchetype)}.
          *
          * <p>Unlike other {@link CatalogBuilder}s, it's not required to apply a
          * {@link #key(CatalogKey)} to build a world archetype. However it's recommend

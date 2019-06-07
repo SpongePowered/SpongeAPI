@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living;
 
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.Value;
 
@@ -41,7 +41,7 @@ public interface Ageable extends Agent {
     void setScaleForAge();
 
     /**
-     * Gets the {@link BoundedValue.Mutable} for the "age" state.
+     * Gets the {@link org.spongepowered.api.data.value.BoundedValue.Mutable} for the "age" state.
      *
      * @return The mutable bounded value for the "age"
      */
@@ -50,7 +50,7 @@ public interface Ageable extends Agent {
     }
 
     /**
-     * Gets the {@link Value.Mutable} for the "adult" state.
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the "adult" state.
      *
      * @return The value for the "adult" state
      */

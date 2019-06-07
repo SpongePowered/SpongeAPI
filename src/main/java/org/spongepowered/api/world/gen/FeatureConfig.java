@@ -30,8 +30,6 @@ import org.spongepowered.api.world.gen.carver.Carver;
  * A base interface for all world gen region feature config options,
  * some objects like {@link Carver}s will use specialized objects
  * compared to others.
- *
- * @implementation Mixes onto IFeatureConfig
  */
 public interface FeatureConfig {
 

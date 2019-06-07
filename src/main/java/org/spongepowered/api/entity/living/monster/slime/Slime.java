@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living.monster.slime;
 
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.entity.living.Monster;
 
@@ -34,7 +34,7 @@ import org.spongepowered.api.entity.living.Monster;
 public interface Slime extends Monster {
 
     /**
-     * Gets the {@link BoundedValue.Mutable value} of this
+     * Gets the {@link org.spongepowered.api.data.value.BoundedValue.Mutable} of this
      * {@link Slime slime's} current size.
      *
      * @return The mutable bounded value for the current slime size

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living.monster;
 
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.explosive.fused.FusedExplosive;
 import org.spongepowered.api.entity.living.Monster;
@@ -35,7 +35,7 @@ import org.spongepowered.api.entity.living.Monster;
 public interface Creeper extends Monster, FusedExplosive {
 
     /**
-     * Gets the current {@link Value.Mutable value} of whether this {@link Creeper}
+     * Gets the current {@link org.spongepowered.api.data.value.Value.Mutable} value} of whether this {@link Creeper}
      * is considered "charged". Note that "charged" creepers will likely
      * cause larger than normal explosions.
      *

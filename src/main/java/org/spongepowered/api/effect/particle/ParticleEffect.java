@@ -25,7 +25,7 @@
 package org.spongepowered.api.effect.particle;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.math.vector.Vector3d;
 

@@ -25,9 +25,9 @@
 package org.spongepowered.api.util.weighted;
 
 import com.google.common.base.MoreObjects;
-import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.data.Queries;
+import org.spongepowered.api.data.persistence.DataContainer;
+import org.spongepowered.api.data.persistence.DataSerializable;
+import org.spongepowered.api.data.persistence.Queries;
 import org.spongepowered.math.GenericMath;
 
 import java.util.Random;

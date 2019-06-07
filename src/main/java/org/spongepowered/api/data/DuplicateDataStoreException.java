@@ -22,5 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
-package org.spongepowered.api.data.manipulator;
+package org.spongepowered.api.data;
+
+public class DuplicateDataStoreException extends DataException {
+
+    private static final long serialVersionUID = -5243293544309037725L;
+}

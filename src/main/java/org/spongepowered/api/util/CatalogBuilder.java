@@ -45,7 +45,7 @@ public interface CatalogBuilder<C extends CatalogType, B extends ResettableBuild
     B key(CatalogKey key);
 
     /**
-     * Builds the {@link CatalogType} of type {@link C}.
+     * Builds the {@link CatalogType} of type {@code C}.
      *
      * <p>The last {@link PluginContainer} in the cause stack will be used to
      * determine which plugin was used to construct the {@link CatalogType}.</p>

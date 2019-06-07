@@ -24,18 +24,26 @@
  */
 package org.spongepowered.api.data.value;
 
+import org.spongepowered.api.data.Key;
+
 import java.util.Set;
 
 public interface SetValue<E> extends CollectionValue<E, Set<E>> {
 
     @Override
+    Key<? extends SetValue<E>> getKey();
+
+    @Override
     SetValue.Mutable<E> asMutable();
+
+    @Override
+    SetValue.Mutable<E> asMutableCopy();
 
     @Override
     SetValue.Immutable<E> asImmutable();
 
     /**
-     * Represents a type of {@link CollectionValue.Mutable} backed by a {@link Set}. The
+     * Represents a type of {@link org.spongepowered.api.data.value.CollectionValue.Mutable} backed by a {@link Set}. The
      * reasoning is that a {@link Set} retains no ordering of the elements it
      * contains.
      *
@@ -49,11 +57,16 @@ public interface SetValue<E> extends CollectionValue<E, Set<E>> {
         }
 
         @Override
+        default SetValue.Mutable<E> asMutableCopy() {
+            return copy();
+        }
+
+        @Override
         SetValue.Immutable<E> asImmutable();
     }
 
     /**
-     * Represents a type of {@link CollectionValue.Immutable} backed by a
+     * Represents a type of {@link org.spongepowered.api.data.value.CollectionValue.Immutable} backed by a
      * {@link Set}. The reasoning is that a {@link Set} retains no ordering of the
      * elements it contains.
      *
@@ -63,6 +76,11 @@ public interface SetValue<E> extends CollectionValue<E, Set<E>> {
 
         @Override
         SetValue.Mutable<E> asMutable();
+
+        @Override
+        default SetValue.Mutable<E> asMutableCopy() {
+            return asMutable();
+        }
 
         @Override
         default SetValue.Immutable<E> asImmutable() {

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.block.entity.carrier;
 
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.effect.potion.PotionEffectType;
 
@@ -46,7 +46,7 @@ public interface Beacon extends CarrierBlockEntity {
     int getCompletedLevels();
 
     /**
-     * Gets the {@link OptionalValue.Mutable} for the primary
+     * Gets the {@link org.spongepowered.api.data.value.OptionalValue.Mutable} for the primary
      * {@link PotionEffectType}.
      *
      * @return The optional value for the primary potion effect
@@ -56,7 +56,7 @@ public interface Beacon extends CarrierBlockEntity {
     }
 
     /**
-     * Gets the {@link OptionalValue.Mutable} for the secondary
+     * Gets the {@link org.spongepowered.api.data.value.OptionalValue.Mutable} for the secondary
      * {@link PotionEffectType}.
      *
      * @return The optional value for the secondary potion effect

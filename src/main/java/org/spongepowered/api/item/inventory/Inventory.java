@@ -279,7 +279,7 @@ public interface Inventory extends Nameable, PropertyHolder {
     /**
      * Sets the item in the specified slot.
      *
-     * <p>Always returns a {@link InventoryTransactionResult.Type#FAILURE} when
+     * <p>Always returns a {@link org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult.Type#FAILURE} when
      * there is not Slot at {@link SlotIndex}</p>
      *
      * @see Inventory#set(ItemStack)

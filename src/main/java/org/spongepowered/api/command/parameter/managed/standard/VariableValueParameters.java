@@ -63,6 +63,7 @@ public class VariableValueParameters {
      *
      * @return The builder
      */
+    @SuppressWarnings("unchecked")
     public static StaticChoicesBuilder<?> staticChoicesBuilder() {
         return (StaticChoicesBuilder<?>) Sponge.getRegistry().createBuilder(StaticChoicesBuilder.class);
     }
@@ -76,6 +77,7 @@ public class VariableValueParameters {
      *
      * @return The builder
      */
+    @SuppressWarnings("unchecked")
     public static DynamicChoicesBuilder<?> dynamicChoicesBuilder() {
         return (DynamicChoicesBuilder<?>) Sponge.getRegistry().createBuilder(DynamicChoicesBuilder.class);
     }
@@ -84,6 +86,7 @@ public class VariableValueParameters {
      * Creates a builder that builds a {@link ValueParameter} that tries to
      * match an argument with a value from a specified enum case-insensitively.
      */
+    @SuppressWarnings("unchecked")
     public static EnumBuilder<? extends Enum<?>> enumBuilder() {
         return (EnumBuilder<? extends Enum<?>>) Sponge.getRegistry().createBuilder(EnumBuilder.class);
     }
@@ -92,6 +95,7 @@ public class VariableValueParameters {
      * Creates a builder that builds a {@link ValueParameter} that tries to
      * match an a series of arguments with a supplied literal.
      */
+    @SuppressWarnings("unchecked")
     public static LiteralBuilder<?> literalBuilder() {
         return (LiteralBuilder<?>) Sponge.getRegistry().createBuilder(LiteralBuilder.class);
     }
@@ -108,7 +112,7 @@ public class VariableValueParameters {
      * A builder that creates a {@link ValueParameter} that attempts to get a
      * specific {@link CatalogType} by the supplied ID.
      */
-    public interface CatalogedTypeBuilder<T extends CatalogType> extends ResettableBuilder<ValueParameter, CatalogedTypeBuilder<T>> {
+    public interface CatalogedTypeBuilder<T extends CatalogType> extends ResettableBuilder<ValueParameter<T>, CatalogedTypeBuilder<T>> {
 
         /**
          * Sets the {@link CatalogType} that this parameter will search through.
@@ -328,7 +332,7 @@ public class VariableValueParameters {
      * A builder that creates {@link ValueParameter}s that allow arguments to be
      * matched to {@link Enum}s
      */
-    public interface EnumBuilder<T extends Enum<T>> extends ResettableBuilder<ValueParameter, EnumBuilder<T>> {
+    public interface EnumBuilder<T extends Enum<T>> extends ResettableBuilder<ValueParameter<?>, EnumBuilder<T>> {
 
         /**
          * Sets the {@link Enum} to test against.

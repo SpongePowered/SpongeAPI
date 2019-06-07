@@ -25,7 +25,7 @@
 package org.spongepowered.api.block.entity;
 
 import org.spongepowered.api.command.source.CommandSource;
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.text.Text;

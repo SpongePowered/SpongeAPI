@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.value;
 
+import org.spongepowered.api.data.Key;
 import org.spongepowered.api.util.weighted.TableEntry;
 import org.spongepowered.api.util.weighted.WeightedTable;
 
@@ -31,6 +32,9 @@ import java.util.List;
 import java.util.Random;
 
 public interface WeightedCollectionValue<E> extends CollectionValue<TableEntry<E>, WeightedTable<E>>  {
+
+    @Override
+    Key<? extends WeightedCollectionValue<E>> getKey();
 
     /**
      * Selects random valued from this list based on their weight.
@@ -47,19 +51,27 @@ public interface WeightedCollectionValue<E> extends CollectionValue<TableEntry<E
     WeightedCollectionValue.Mutable<E> asMutable();
 
     @Override
+    WeightedCollectionValue.Mutable<E> asMutableCopy();
+
+    @Override
     WeightedCollectionValue.Immutable<E> asImmutable();
 
     /**
-     * Represents a particular type of {@link CollectionValue.Immutable} that is
+     * Represents a particular type of {@link org.spongepowered.api.data.value.CollectionValue.Immutable} that is
      * backed by a {@link WeightedTable}.
      *
      * @param <E> The type of weighted object
      */
     interface Immutable<E> extends WeightedCollectionValue<E>,
-        CollectionValue.Immutable<TableEntry<E>, WeightedTable<E>, Immutable<E>, Mutable<E>> {
+            CollectionValue.Immutable<TableEntry<E>, WeightedTable<E>, Immutable<E>, Mutable<E>> {
 
         @Override
         WeightedCollectionValue.Mutable<E> asMutable();
+
+        @Override
+        default WeightedCollectionValue.Mutable<E> asMutableCopy() {
+            return asMutable();
+        }
 
         @Override
         default WeightedCollectionValue.Immutable<E> asImmutable() {
@@ -68,17 +80,22 @@ public interface WeightedCollectionValue<E> extends CollectionValue<TableEntry<E
     }
 
     /**
-     * Represents a particular type of {@link CollectionValue.Mutable} that is backed by
+     * Represents a particular type of {@link org.spongepowered.api.data.value.CollectionValue.Mutable} that is backed by
      * a {@link WeightedTable}.
      *
      * @param <E> The type of weighted object
      */
     interface Mutable<E> extends WeightedCollectionValue<E>,
-        CollectionValue.Mutable<TableEntry<E>, WeightedTable<E>, Mutable<E>, Immutable<E>> {
+            CollectionValue.Mutable<TableEntry<E>, WeightedTable<E>, Mutable<E>, Immutable<E>> {
 
         @Override
         default WeightedCollectionValue.Mutable<E> asMutable() {
             return this;
+        }
+
+        @Override
+        default WeightedCollectionValue.Mutable<E> asMutableCopy() {
+            return copy();
         }
 
         @Override

@@ -25,12 +25,12 @@
 package org.spongepowered.api.entity;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.Archetype;
-import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.data.DataView;
-import org.spongepowered.api.data.Queries;
-import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.world.Archetype;
+import org.spongepowered.api.data.persistence.DataContainer;
+import org.spongepowered.api.data.persistence.DataView;
+import org.spongepowered.api.data.persistence.Queries;
+import org.spongepowered.api.data.Key;
+import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.value.Value;
@@ -52,7 +52,7 @@ public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
      * @param type Type of the entity
      * @return An archetype of the given entity type
      */
-    static EntityArchetype of(EntityType type) {
+    static EntityArchetype of(EntityType<?> type) {
         return builder().type(type).build();
     }
 
@@ -61,7 +61,7 @@ public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
      * 
      * @return The entity type
      */
-    EntityType getType();
+    EntityType<?> getType();
 
     /**
      * Gets the raw {@link Entity} data that would be applied to the generated
@@ -107,7 +107,7 @@ public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
          * @param type The type of entity type
          * @return This builder, for chaining
          */
-        Builder type(EntityType type);
+        Builder type(EntityType<?> type);
 
         /**
          * Sets the desired {@link EntityType} of the produced {@link EntityArchetype}.

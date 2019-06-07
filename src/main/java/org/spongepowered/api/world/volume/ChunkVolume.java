@@ -35,10 +35,6 @@ import org.spongepowered.math.vector.Vector3i;
 /**
  * Presents a volume of {@link ProtoChunk}s that can exist
  * without a {@link ProtoWorld} volume.
- *
- * @implNote There is no direct implementation to mix this onto
- * as the interface itsself is to store the many many isArea/isBlock
- * loaded from IWorld and IWorldReaderBase
  */
 public interface ChunkVolume extends ReadableBlockVolume {
 

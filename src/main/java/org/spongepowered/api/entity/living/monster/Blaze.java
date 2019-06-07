@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living.monster;
 
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Aerial;
 import org.spongepowered.api.entity.living.Monster;
@@ -36,7 +36,7 @@ import org.spongepowered.api.entity.living.Ranger;
 public interface Blaze extends Monster, Aerial, Ranger {
 
     /**
-     * Gets the current {@link Value.Mutable value} for whether this {@link Blaze}
+     * Gets the current {@link org.spongepowered.api.data.value.Value.Mutable} value} for whether this {@link Blaze}
      * is considered "aflame".
      *
      * @return The value for whether this blaze is aflame

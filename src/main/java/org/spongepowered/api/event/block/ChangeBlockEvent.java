@@ -92,7 +92,7 @@ public interface ChangeBlockEvent extends Event, Cancellable {
 
     /**
      * Called before running specific block logic at one or more 
-     * {@link Location}'s such as {@link BlockTypes#FLOWING_WATER}.
+     * {@link Location}'s such as {@link BlockTypes#WATER}.
      */
     interface Pre extends Event, Cancellable {
 

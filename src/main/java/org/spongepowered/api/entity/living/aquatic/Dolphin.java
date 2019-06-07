@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living.aquatic;
 
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSources;
 

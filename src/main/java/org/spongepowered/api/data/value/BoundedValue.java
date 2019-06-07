@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.data.value;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.Key;
 
 import java.util.Comparator;
 import java.util.function.Function;
@@ -36,11 +38,86 @@ import java.util.function.Function;
  * values, a {@link BoundedValue} is limited to being within it's destined
  * bounds. Any {@link BoundedValue} that is out of it's intended bounds will
  * throw an {@link IllegalStateException} if used or offered to a
- * {@link ValueContainer} or {@link DataHolder}.
+ * {@link ValueContainer} or {@link org.spongepowered.api.data.DataHolder.Mutable}.
  *
  * @param <E> The type of value that can be compared
  */
 public interface BoundedValue<E> extends Value<E> {
+
+    @Override
+    Key<? extends BoundedValue<E>> getKey();
+
+    /**
+     * Constructs a mutable {@link Value} of the appropriate
+     * type based on the given {@link Key} and the element.
+     * The returned {@link Value} is guaranteed {@link Mutable},
+     * this means that calling {@link #asMutable()} will return
+     * itself.
+     *
+     * @param key The key
+     * @param element The element
+     * @param minimum The minimum
+     * @param maximum The maximum
+     * @param <V> The value type
+     * @param <E> The element type
+     * @return The constructed mutable bounded value
+     */
+    static <V extends BoundedValue<E>, E> V mutableOf(Key<V> key, E element, E minimum, E maximum) {
+        return Sponge.getRegistry().requireFactory(Factory.class).mutableOf(key, element, minimum, maximum);
+    }
+
+    /**
+     * Constructs a immutable {@link Value} of the appropriate
+     * type based on the given {@link Key} and the element.
+     * The returned {@link Value} is guaranteed {@link Immutable},
+     * this means that calling {@link #asImmutable()} will return
+     * itself.
+     *
+     * @param key The key
+     * @param element The element
+     * @param minimum The minimum
+     * @param maximum The maximum
+     * @param <V> The value type
+     * @param <E> The element type
+     * @return The constructed immutable bounded value
+     */
+    static <V extends BoundedValue<E>, E> V immutableOf(Key<V> key, E element, E minimum, E maximum) {
+        return Sponge.getRegistry().requireFactory(Factory.class).immutableOf(key, element, minimum, maximum);
+    }
+
+    /**
+     * Constructs a mutable {@link Value} of the appropriate
+     * type based on the given {@link Key} and the element.
+     * The returned {@link Value} is guaranteed {@link Mutable},
+     * this means that calling {@link #asMutable()} will return
+     * itself.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <V> The value type
+     * @param <E> The element type
+     * @return The constructed mutable bounded value
+     */
+    static <V extends BoundedValue<E>, E> V mutableOf(Key<V> key, E element) {
+        return Sponge.getRegistry().requireFactory(Factory.class).mutableOf(key, element);
+    }
+
+    /**
+     * Constructs a immutable {@link Value} of the appropriate
+     * type based on the given {@link Key} and the element.
+     * The returned {@link Value} is guaranteed {@link Immutable},
+     * this means that calling {@link #asImmutable()} will return
+     * itself.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <V> The value type
+     * @param <E> The element type
+     * @return The constructed immutable bounded value
+     */
+    static <V extends BoundedValue<E>, E> V immutableOf(Key<V> key, E element) {
+        return Sponge.getRegistry().requireFactory(Factory.class).immutableOf(key, element);
+    }
 
     /**
      * Gets the required "minimum" value such that the value is only valid if
@@ -75,10 +152,13 @@ public interface BoundedValue<E> extends Value<E> {
     BoundedValue.Mutable<E> asMutable();
 
     @Override
+    BoundedValue.Mutable<E> asMutableCopy();
+
+    @Override
     BoundedValue.Immutable<E> asImmutable();
 
     /**
-     * A type of {@link BoundedValue} that is modifiable as a {@link Value.Mutable}.
+     * A type of {@link BoundedValue} that is modifiable as a {@link org.spongepowered.api.data.value.Value.Mutable}.
      *
      * @param <E> The type of element
      */
@@ -99,13 +179,18 @@ public interface BoundedValue<E> extends Value<E> {
         }
 
         @Override
+        default BoundedValue.Mutable<E> asMutableCopy() {
+            return copy();
+        }
+
+        @Override
         BoundedValue.Mutable<E> copy();
 
     }
 
     /**
      * A type of {@link BoundedValue} that is immutable as an
-     * {@link Value.Immutable}.
+     * {@link org.spongepowered.api.data.value.Value.Immutable}.
      *
      * @param <E> The type of element
      */
@@ -121,8 +206,24 @@ public interface BoundedValue<E> extends Value<E> {
         BoundedValue.Mutable<E> asMutable();
 
         @Override
+        default BoundedValue.Mutable<E> asMutableCopy() {
+            return asMutable();
+        }
+
+        @Override
         default BoundedValue.Immutable<E> asImmutable() {
             return this;
         }
+    }
+
+    interface Factory {
+
+        <V extends BoundedValue<E>, E> V mutableOf(Key<V> key, E element, E minimum, E maximum);
+
+        <V extends BoundedValue<E>, E> V mutableOf(Key<V> key, E element);
+
+        <V extends BoundedValue<E>, E> V immutableOf(Key<V> key, E element, E minimum, E maximum);
+
+        <V extends BoundedValue<E>, E> V immutableOf(Key<V> key, E element);
     }
 }

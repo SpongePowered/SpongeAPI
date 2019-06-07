@@ -46,5 +46,5 @@ public interface KeySwapHandler extends InventoryCallbackHandler {
      *
      * @return false to prevent the action
      */
-    boolean handle(Cause cause, Container container, Slot slot, SlotIndex slotIndex, ClickType clickType, Slot slot2);
+    boolean handle(Cause cause, Container container, Slot slot, SlotIndex slotIndex, ClickType<?> clickType, Slot slot2);
 }

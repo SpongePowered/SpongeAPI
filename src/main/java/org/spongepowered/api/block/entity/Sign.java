@@ -25,7 +25,7 @@
 package org.spongepowered.api.block.entity;
 
 import org.spongepowered.api.command.source.CommandSource;
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.text.Text;
 
@@ -35,7 +35,7 @@ import org.spongepowered.api.text.Text;
 public interface Sign extends BlockEntity, CommandSource {
 
     /**
-     * Gets the {@link ListValue.Mutable} of {@link Text} for the {@link Sign}
+     * Gets the {@link org.spongepowered.api.data.value.ListValue.Mutable} of {@link Text} for the {@link Sign}
      * to show.
      *
      * @return The list of text lines

@@ -22,5 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
-package org.spongepowered.api.data.key;
+package org.spongepowered.api.data;
+
+public class UnregisteredKeyException extends DataException {
+
+    private static final long serialVersionUID = 6734809326475064456L;
+}

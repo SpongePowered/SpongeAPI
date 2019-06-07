@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.living.trader;
 
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.entity.living.Creature;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.item.merchant.Merchant;
@@ -37,6 +38,8 @@ public interface Trader extends Creature, Merchant {
      *
      * @return True if this trader is trading with another player
      */
-    boolean isTrading();
+    default boolean isTrading() {
+        return require(Keys.IS_TRADING);
+    }
 
 }

@@ -38,7 +38,7 @@ public interface ValueCompleter {
     /**
      * Gets valid completions for this command.
      *
-     * @param reader The {@link ArgumentReader.Immutable} containing the arguments
+     * @param reader The {@link org.spongepowered.api.command.parameter.ArgumentReader.Immutable} containing the arguments
      *               that needs to be completed.
      * @param context The {@link CommandContext} that contains the parsed arguments
      */

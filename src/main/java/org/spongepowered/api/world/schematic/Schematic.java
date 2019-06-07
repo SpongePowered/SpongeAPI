@@ -27,7 +27,7 @@ package org.spongepowered.api.world.schematic;
 import com.google.common.collect.ListMultimap;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.data.DataView;
+import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.world.biome.BiomeType;

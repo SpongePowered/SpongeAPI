@@ -44,24 +44,24 @@ public interface ValueParser<T> {
      *
      * <p>This should have no side effects on anything except on the state of
      * the {@link ArgumentReader} and, in rare cases, the
-     * {@link CommandContext.Builder}.</p>
+     * {@link org.spongepowered.api.command.parameter.CommandContext.Builder}.</p>
      *
      * <p>This element may return nothing in the form of an empty optional.
      * This indicates that a parse succeeded, but no meaningful value was
      * returned, for example, the argument must be passed but it's not
      * necessary for the associated {@link CommandExecutor} to know what
-     * the result of the parse was. The {@link CommandContext.Builder}
+     * the result of the parse was. The {@link org.spongepowered.api.command.parameter.CommandContext.Builder}
      * may be updated in this case.</p>
      *
-     * <p>While the {@link CommandContext.Builder} is provided, in general,
+     * <p>While the {@link org.spongepowered.api.command.parameter.CommandContext.Builder} is provided, in general,
      * you do not need to add the parsed value to it yourself, instead
      * preferring to return your parsed value. It is permissible, however,
      * to add additional information to the context should it be required.</p>
      *
      * <p>The {@link Cause} of this parse is provided in the
-     * {@link CommandContext.Builder}.</p>
+     * {@link org.spongepowered.api.command.parameter.CommandContext.Builder}.</p>
      *
-     * @param parameterKey The {@link Parameter.Key} of the parameter being parsed
+     * @param parameterKey The {@link org.spongepowered.api.command.parameter.Parameter.Key} of the parameter being parsed
      * @param args The {@link ArgumentReader} that contains the unparsed arguments
      * @param context The {@link CommandContext} containing the state about this command
      * @return Returns the value(s)

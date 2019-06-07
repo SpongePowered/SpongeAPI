@@ -38,6 +38,7 @@ import org.spongepowered.api.event.cause.EventContext;
 @SuppressWarnings({"rawtypes"})
 public class SpongeAITaskEventTest {
 
+    @SuppressWarnings("unchecked")
     @Test
     public void testValidTargetAgentAndGoalOwner() {
         Agent targetEntity = mock(Agent.class);
@@ -48,6 +49,7 @@ public class SpongeAITaskEventTest {
         SpongeEventFactory.createAITaskEventRemove(Cause.of(EventContext.empty(), mock(Game.class)), targetEntity, goal, mock(AITask.class), 0);
     }
 
+    @SuppressWarnings("unchecked")
     @Test(expected = IllegalArgumentException.class)
     public void testAITaskEventAdd_invalidTargetAgentAndGoalOwner() {
         Agent targetEntity = mock(Agent.class);
@@ -58,6 +60,7 @@ public class SpongeAITaskEventTest {
         SpongeEventFactory.createAITaskEventAdd(Cause.of(EventContext.empty(), mock(Game.class)), 0, 0, targetEntity, goal, mock(AITask.class));
     }
 
+    @SuppressWarnings("unchecked")
     @Test(expected = IllegalArgumentException.class)
     public void testAITaskEventRemove_invalidTargetAgentAndGoalOwner() {
         Agent targetEntity = mock(Agent.class);

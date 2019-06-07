@@ -140,9 +140,9 @@ public interface ArgumentReader {
         char parseChar();
 
         /**
-         * Attempts to read an {@link int} from the input starting at the cursor
+         * Attempts to read an {@code int} from the input starting at the cursor
          * position. The cursor will advance until it finds a non-number and
-         * will return an {@link int} based on the consumed string.
+         * will return an {@code int} based on the consumed string.
          *
          * <p>Numbers may begin with "-" to indicate a negative number</p>
          *
@@ -153,9 +153,9 @@ public interface ArgumentReader {
         int parseInt() throws ArgumentParseException;
 
         /**
-         * Attempts to read a {@link double} from the input starting at the cursor
+         * Attempts to read a {@code double} from the input starting at the cursor
          * position. The cursor will advance until it finds a non-number and
-         * will return a {@link double} based on the consumed string.
+         * will return a {@code double} based on the consumed string.
          *
          * <p>Numbers may begin with "-" to indicate a negative number, and one
          * period (".") may be present in the string.</p>
@@ -167,9 +167,9 @@ public interface ArgumentReader {
         double parseDouble() throws ArgumentParseException;
 
         /**
-         * Attempts to read a {@link float} from the input starting at the cursor
+         * Attempts to read a {@code float} from the input starting at the cursor
          * position. The cursor will advance until it finds a non-number and
-         * will return a {@link float} based on the consumed string.
+         * will return a {@code float} based on the consumed string.
          *
          * <p>Numbers may begin with "-" to indicate a negative number, and one
          * period (".") may be present in the string.</p>
@@ -230,8 +230,8 @@ public interface ArgumentReader {
         /**
          * Parses "true" or "false", else throws an exception.
          *
-         * @return A {@link boolean}
-         * @throws ArgumentParseException if a {@link boolean} could not br read
+         * @return A {@code boolean}
+         * @throws ArgumentParseException if a {@code boolean} could not br read
          */
         boolean parseBoolean() throws ArgumentParseException;
 

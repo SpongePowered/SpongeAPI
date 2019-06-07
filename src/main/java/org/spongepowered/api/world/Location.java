@@ -31,8 +31,8 @@ import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.property.DirectionRelativePropertyHolder;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.event.cause.Cause;
@@ -62,7 +62,7 @@ import java.util.function.BiFunction;
  * <p>Locations are immutable. Methods that change the properties of the
  * location create a new instance.</p>
  */
-public interface Location extends DataHolder, DirectionRelativePropertyHolder {
+public interface Location extends DataHolder.Mutable, DirectionRelativePropertyHolder {
 
     static Location of(World world, double x, double y, double z) {
         return Sponge.getRegistry().requireFactory(Factory.class).create(world, new Vector3d(x, y, z));
@@ -489,11 +489,11 @@ public interface Location extends DataHolder, DirectionRelativePropertyHolder {
      * @throws IllegalStateException If a constructor cannot be found
      * @see MutableEntityVolume#createEntity(EntityType, Vector3d)
      */
-    Entity createEntity(EntityType type);
+    Entity createEntity(EntityType<?> type);
 
     /**
      * Spawns an {@link Entity} using the already set properties (world,
-     * position, rotation) and applicable {@link DataManipulator}s with the
+     * position, rotation) and applicable {@link Value}s with the
      * specified {@link Cause} for spawning the entity.
      *
      * <p>Note that for the {@link Cause} to be useful in the expected

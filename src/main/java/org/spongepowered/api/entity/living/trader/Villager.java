@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living.trader;
 
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.Profession;
 import org.spongepowered.api.data.type.VillagerType;
 import org.spongepowered.api.data.value.Value;
@@ -36,7 +36,7 @@ import org.spongepowered.api.entity.living.Ageable;
 public interface Villager extends Trader, Ageable {
 
     /**
-     * Gets the {@link Value.Mutable} for the {@link VillagerType} of this
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the {@link VillagerType} of this
      * {@link Villager}.
      *
      * @return The villager type value

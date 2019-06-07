@@ -25,8 +25,8 @@
 package org.spongepowered.api.state;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.data.ImmutableDataHolder;
-import org.spongepowered.api.data.key.Key;
+import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.util.Cycleable;
 
@@ -34,7 +34,7 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
 
-public interface State<S extends State<S>> extends ImmutableDataHolder<S>, CatalogType {
+public interface State<S extends State<S>> extends DataHolder.Immutable<S>, CatalogType {
 
     /**
      * Gets the {@link Comparable} value for the specific {@link StateProperty}

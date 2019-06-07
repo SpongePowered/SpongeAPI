@@ -26,17 +26,15 @@ package org.spongepowered.api;
 
 import ninja.leaping.configurate.ConfigurationNode;
 import org.spongepowered.api.data.DataRegistration;
-import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.DataTranslator;
 import org.spongepowered.api.plugin.PluginContainer;
-import org.spongepowered.api.util.CatalogBuilder;
-import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.ResettableBuilder;
 
 /**
  * An object representation of a location or pointer to a {@link CatalogType}
  * that can be used to retrieve said type from the {@link GameRegistry}. The
- * key can be represented as a {@link String} by {@link #toString()}. The key
+ * key can be represented as a {@link String} by {@link Object#toString()}. The key
  * is built with two parts:
  * <ol>
  *     <li>The Namespace</li>

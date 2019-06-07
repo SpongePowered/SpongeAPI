@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.projectile;
 
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
@@ -35,7 +35,7 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 public interface Potion extends Projectile {
 
     /**
-     * Gets the {@link Value.Mutable} for the represented {@link ItemStack} as an
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the represented {@link ItemStack} as an
      * {@link ItemStackSnapshot}.
      *
      * @return The value for the item stack snapshot

@@ -37,7 +37,7 @@ public final class SlotMatchers {
 
     /**
      * Creates a {@link PropertyMatcher} with the default operator
-     * {@link PropertyMatcher.Operator#EQUAL} to match against slot
+     * {@link org.spongepowered.api.data.property.PropertyMatcher.Operator#EQUAL} to match against slot
      * indexes.
      *
      * @param index The slot index
@@ -49,7 +49,7 @@ public final class SlotMatchers {
 
     /**
      * Creates a {@link PropertyMatcher} with the default operator
-     * {@link PropertyMatcher.Operator#EQUAL} to match against slot
+     * {@link org.spongepowered.api.data.property.PropertyMatcher.Operator#EQUAL} to match against slot
      * indexes.
      *
      * @param index The slot index value
@@ -83,7 +83,7 @@ public final class SlotMatchers {
 
     /**
      * Creates a {@link PropertyMatcher} with the default operator
-     * {@link PropertyMatcher.Operator#EQUAL} to match against a
+     * {@link org.spongepowered.api.data.property.PropertyMatcher.Operator#EQUAL} to match against a
      * slot position.
      *
      * @param pos The slot position
@@ -95,7 +95,7 @@ public final class SlotMatchers {
 
     /**
      * Creates a {@link PropertyMatcher} with the default operator
-     * {@link PropertyMatcher.Operator#EQUAL} to match against a
+     * {@link org.spongepowered.api.data.property.PropertyMatcher.Operator#EQUAL} to match against a
      * slot position.
      *
      * @param x The x coordinate

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living.monster.zombie;
 
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.BoundedValue;
 
 /**
@@ -33,7 +33,7 @@ import org.spongepowered.api.data.value.BoundedValue;
 public interface ZombiePigman extends ZombieEntity {
 
     /**
-     * Gets the {@link BoundedValue.Mutable value} of the current "anger" level
+     * Gets the {@link org.spongepowered.api.data.value.BoundedValue.Mutable} of the current "anger" level
      * of this {@link ZombiePigman pigzombie}.
      *
      * @return The current anger level value

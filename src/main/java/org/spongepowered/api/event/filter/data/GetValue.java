@@ -22,34 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data;
+package org.spongepowered.api.event.filter.data;
 
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.data.Keys;
 
-import java.util.Optional;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-/**
- * A {@link DataHolder} which has no attachment to any particular world allowing
- * it to be used as a blueprint to create multiple copies of its containing
- * data.
- */
-public interface Archetype<S extends LocatableSnapshot<S>, E> extends DataHolder {
+@Target(ElementType.PARAMETER)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface GetValue {
 
-    /**
-     * Creates a new instance based on this archetype at the given location.
-     * 
-     * @param location The location to create the new instance at
-     * @return The created type, if successful
-     */
-    Optional<E> apply(Location location);
+    Class<?> container() default Keys.class;
 
-    /**
-     * Creates a new immutable snapshot based on this archetype.
-     * 
-     * @param location The location for the snapshot to be specified as at
-     * @return The snapshot
-     */
-    S toSnapshot(Location location);
+    String value();
 
 }

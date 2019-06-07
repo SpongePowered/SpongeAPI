@@ -37,7 +37,7 @@ import org.spongepowered.api.command.parameter.managed.ValueUsage;
 import org.spongepowered.api.command.parameter.managed.standard.CatalogedValueParameters;
 import org.spongepowered.api.command.parameter.managed.standard.VariableValueParameters;
 import org.spongepowered.api.command.source.CommandSource;
-import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
@@ -88,7 +88,7 @@ import java.util.function.Supplier;
  *     of any parent.</li>
  * </ul>
  *
- * <p>{@link Parameter}s are intended for use with {@link Command.Builder}s.
+ * <p>{@link Parameter}s are intended for use with {@link org.spongepowered.api.command.Command.Builder}s.
  * </p>
  */
 public interface Parameter {
@@ -110,6 +110,7 @@ public interface Parameter {
      *
      * @return The {@link Value.Builder}
      */
+    @SuppressWarnings("unchecked")
     static <T> Value.Builder<T> builder(Class<T> valueClass) {
         return ((Value.Builder<T>) Sponge.getRegistry().createBuilder(Value.Builder.class)).setValueClass(valueClass);
     }
@@ -119,6 +120,7 @@ public interface Parameter {
      *
      * @return The {@link Value.Builder}
      */
+    @SuppressWarnings("unchecked")
     static <T> Value.Builder<T> builder(Class<T> valueClass, ValueParameter<T> parameter) {
         return ((Value.Builder<T>) Sponge.getRegistry().createBuilder(Value.Builder.class)).setValueClass(valueClass).parser(parameter);
     }
@@ -357,7 +359,7 @@ public interface Parameter {
      *
      * @return A {@link Parameter.Value.Builder}
      */
-    static Parameter.Value.Builder entityOrTarget() {
+    static Parameter.Value.Builder<Entity> entityOrTarget() {
         return entity().parser(CatalogedValueParameters.TARGET_ENTITY);
     }
 
@@ -408,7 +410,7 @@ public interface Parameter {
      *
      * @return A {@link Parameter.Value.Builder}
      */
-    static Parameter.Value.Builder ipOrSource() {
+    static Parameter.Value.Builder<InetAddress> ipOrSource() {
         return ip().orDefault(cause -> cause.root() instanceof RemoteConnection ? ((RemoteConnection) cause.root()).getAddress().getAddress() : null);
     }
 
@@ -649,7 +651,7 @@ public interface Parameter {
      *      {@link CommandContext} based on the supplied choice
      * @return A {@link Parameter.Value.Builder}
      */
-    static <T> Parameter.Value.Builder choices(Supplier<Iterable<String>> choices, Function<String, ? extends T> valueFunction, Class<T> returnType) {
+    static <T> Parameter.Value.Builder<T> choices(Supplier<Iterable<String>> choices, Function<String, ? extends T> valueFunction, Class<T> returnType) {
         return Parameter.builder(returnType,
                 VariableValueParameters
                         .dynamicChoicesBuilder()
@@ -667,7 +669,7 @@ public interface Parameter {
      * @param <T> The type of {@link Enum}
      * @return A {@link Parameter.Value.Builder}
      */
-    static <T extends Enum<T>> Parameter.Value.Builder enumValue(Class<T> enumClass) {
+    static <T extends Enum<T>> Parameter.Value.Builder<T> enumValue(Class<T> enumClass) {
         return Parameter.builder(enumClass, VariableValueParameters.enumBuilder().setEnumClass(enumClass).build());
     }
 
@@ -695,6 +697,7 @@ public interface Parameter {
      *      invocation
      * @return A {@link Parameter.Value.Builder}
      */
+    @SuppressWarnings("unchecked")
     static <T> Parameter.Value.Builder<T> literal(T returnedValue, Supplier<Iterable<String>> literalSupplier) {
         return Parameter.builder((Class<T>) returnedValue.getClass(),
                 VariableValueParameters.literalBuilder().setReturnValue(returnedValue).setLiteral(literalSupplier).build());
@@ -777,7 +780,7 @@ public interface Parameter {
 
     /**
      * Represents a {@link Parameter} that attempts to parse an argument to
-     * obtain a value of type {@link T}.
+     * obtain a value of type {@code T}.
      *
      * <p>This type of {@link Parameter} will attempt to parse an input
      * using the {@link ValueParser}s in the order that they are returned in

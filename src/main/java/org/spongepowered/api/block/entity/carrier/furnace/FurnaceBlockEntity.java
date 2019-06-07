@@ -25,7 +25,7 @@
 package org.spongepowered.api.block.entity.carrier.furnace;
 
 import org.spongepowered.api.block.entity.carrier.CarrierBlockEntity;
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.item.recipe.Recipe;
 
@@ -42,7 +42,7 @@ public interface FurnaceBlockEntity extends CarrierBlockEntity {
     boolean process();
 
     /**
-     * Gets the {@link BoundedValue.Mutable} for the already passed burn time.
+     * Gets the {@link org.spongepowered.api.data.value.BoundedValue.Mutable} for the already passed burn time.
      *
      * @return The value for the already passed burn time
      */
@@ -51,7 +51,7 @@ public interface FurnaceBlockEntity extends CarrierBlockEntity {
     }
 
     /**
-     * Gets the {@link BoundedValue.Mutable} for the maximum amount of fuel that
+     * Gets the {@link org.spongepowered.api.data.value.BoundedValue.Mutable} for the maximum amount of fuel that
      * can be supplied with the used fuel item.
      *
      * @return The value for the maximum amount of fuel that can be supplied
@@ -62,7 +62,7 @@ public interface FurnaceBlockEntity extends CarrierBlockEntity {
     }
 
     /**
-     * Gets the {@link BoundedValue.Mutable} for the already passed cook time of
+     * Gets the {@link org.spongepowered.api.data.value.BoundedValue.Mutable} for the already passed cook time of
      * the item stack in this furnace.
      *
      * @return The value for the already passed cook time
@@ -72,7 +72,7 @@ public interface FurnaceBlockEntity extends CarrierBlockEntity {
     }
 
     /**
-     * Gets the {@link BoundedValue.Mutable} for the total time the item stack
+     * Gets the {@link org.spongepowered.api.data.value.BoundedValue.Mutable} for the total time the item stack
      * has to cook until it is cooked.
      *
      * @return The value for the time the item has to cook

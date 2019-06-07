@@ -24,19 +24,19 @@
  */
 package org.spongepowered.api.item.inventory;
 
-import org.spongepowered.api.data.ImmutableDataHolder;
+import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
  * Represents a snapshot of an {@link ItemStack} as an
- * {@link ImmutableDataHolder} to represent all of the data associated with
+ * {@link org.spongepowered.api.data.DataHolder.Immutable} to represent all of the data associated with
  * the {@link ItemStack} of which the snapshot was created from. Being that
  * it is a snapshot, a snapshot cannot be modified, but modifications will
  * result in a new instance of the {@link ItemStackSnapshot}.
  */
-public interface ItemStackSnapshot extends ImmutableDataHolder<ItemStackSnapshot>, Translatable {
+public interface ItemStackSnapshot extends DataHolder.Immutable<ItemStackSnapshot>, Translatable {
 
     ItemStackSnapshot NONE = DummyObjectProvider.createFor(ItemStackSnapshot.class, "NONE");
 

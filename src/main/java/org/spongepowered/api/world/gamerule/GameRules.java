@@ -30,6 +30,8 @@ import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Bat;
 import org.spongepowered.api.entity.living.animal.Rabbit;
 import org.spongepowered.api.entity.living.animal.Sheep;
+import org.spongepowered.api.entity.living.animal.Rabbit;
+import org.spongepowered.api.entity.living.animal.Sheep;
 import org.spongepowered.api.entity.living.monster.boss.dragon.EnderDragon;
 import org.spongepowered.api.entity.living.golem.SnowGolem;
 import org.spongepowered.api.entity.living.monster.Creeper;

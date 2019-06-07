@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.storage;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.world.chunk.Chunk;
 
 /**

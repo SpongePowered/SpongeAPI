@@ -26,6 +26,8 @@ package org.spongepowered.api.entity.living.monster.spider;
 
 import org.spongepowered.api.entity.living.Monster;
 
+import org.spongepowered.api.data.Keys;
+
 /**
  * Represents a Spider.
  */
@@ -36,5 +38,7 @@ public interface Spider extends Monster {
      *
      * @return Whether or not the spider is climbing a wall
      */
-    boolean isClimbing();
+    default boolean isClimbing() {
+        return require(Keys.IS_CLIMBING);
+    }
 }

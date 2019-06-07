@@ -27,10 +27,10 @@ package org.spongepowered.api.util;
 import static com.google.common.base.Preconditions.checkArgument;
 
 import org.apache.commons.lang3.Validate;
-import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.data.DataView;
-import org.spongepowered.api.data.Queries;
+import org.spongepowered.api.data.persistence.DataContainer;
+import org.spongepowered.api.data.persistence.DataSerializable;
+import org.spongepowered.api.data.persistence.DataView;
+import org.spongepowered.api.data.persistence.Queries;
 import org.spongepowered.api.data.persistence.AbstractDataBuilder;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.type.DyeColor;

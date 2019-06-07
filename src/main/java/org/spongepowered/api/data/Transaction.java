@@ -27,6 +27,9 @@ package org.spongepowered.api.data;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
+import org.spongepowered.api.data.persistence.DataContainer;
+import org.spongepowered.api.data.persistence.DataSerializable;
+import org.spongepowered.api.data.persistence.Queries;
 
 import java.util.Collections;
 import java.util.List;

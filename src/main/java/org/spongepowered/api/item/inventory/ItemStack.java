@@ -33,12 +33,12 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.DataView;
-import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.persistence.DataView;
+import org.spongepowered.api.data.Key;
+import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.text.translation.Translatable;
@@ -53,10 +53,10 @@ import java.util.function.Predicate;
  * can be compared using the comparators listed in {@link ItemStackComparators}.
  *
  * <p>{@link ItemStack}s have a variety of properties and data. It is advised to
- * use {@link DataHolder#get(Class)} in order to retrieve information regarding
+ * use {@link ValueContainer#get(Key)} in order to retrieve information regarding
  * this item stack.</p>
  */
-public interface ItemStack extends DataHolder, Translatable {
+public interface ItemStack extends DataHolder.Mutable, Translatable {
 
     /**
      * Creates a new {@link Builder} to build an {@link ItemStack}.
@@ -133,8 +133,8 @@ public interface ItemStack extends DataHolder, Translatable {
     int getMaxStackQuantity();
 
     /**
-     * Gets the {@link ItemStackSnapshot} of this {@link ItemStack}. All known
-     * {@link DataManipulator}s existing on this {@link ItemStack} are added
+     * Gets the {@link ItemStackSnapshot} of this {@link ItemStack}. All
+     * known {@link Value}s existing on this {@link ItemStack} are added
      * as copies to the {@link ItemStackSnapshot}.
      *
      * @return The newly created item stack snapshot
@@ -201,16 +201,6 @@ public interface ItemStack extends DataHolder, Translatable {
          *      with the item
          */
         Builder add(DataManipulator itemData) throws IllegalArgumentException;
-
-        /**
-         * Sets the {@link ImmutableDataManipulator} to add to the
-         * {@link ItemStack}.
-         *
-         * @param itemData The item data to set
-         * @return This builder, for chaining
-         * @throws IllegalArgumentException If the item data is incompatible
-         */
-        Builder add(ImmutableDataManipulator itemData) throws IllegalArgumentException;
 
         /**
          * Adds a {@link Key} and related {@link Object} value to apply to the
@@ -282,8 +272,6 @@ public interface ItemStack extends DataHolder, Translatable {
          * @return This builder, for chaining
          */
         Builder fromBlockSnapshot(BlockSnapshot blockSnapshot);
-
-        Builder remove(Class<? extends DataManipulator> manipulatorClass);
 
         default Builder apply(Predicate<Builder> predicate, Consumer<Builder> consumer) {
             if (predicate.test(this)) {

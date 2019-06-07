@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.data.value;
 
+import org.spongepowered.api.data.Key;
+
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
@@ -31,6 +33,9 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 public interface MapValue<K, V> extends Value<Map<K, V>> {
+
+    @Override
+    Key<? extends MapValue<K, V>> getKey();
 
     /**
      * Gets the size of this map.
@@ -63,7 +68,7 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
     Set<K> keySet();
 
     /**
-     * Retrieves an {@link Set} of the {@link Map.Entry}s contained
+     * Retrieves an {@link Set} of the {@link java.util.Map.Entry}s contained
      * within this map value.
      *
      * @return The immutable set of entries
@@ -82,12 +87,15 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
     MapValue.Mutable<K, V> asMutable();
 
     @Override
+    MapValue.Mutable<K, V> asMutableCopy();
+
+    @Override
     MapValue.Immutable<K, V> asImmutable();
 
     /**
-     * Represents a specialized type of {@link Value.Mutable} that is different from
-     * a {@link CollectionValue.Mutable} such that the "elements" are
-     * {@link Map.Entry}. Usually, this type of value is used to represent
+     * Represents a specialized type of {@link org.spongepowered.api.data.value.Value.Mutable} that is different from
+     * a {@link org.spongepowered.api.data.value.CollectionValue.Mutable} such that the "elements" are
+     * {@link java.util.Map.Entry}. Usually, this type of value is used to represent
      * a particular "type" of "key" that is associated to a particular "value".
      *
      * @param <K> The type of the key
@@ -106,7 +114,7 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
         MapValue.Mutable<K, V> put(K key, V value);
 
         /**
-         * Associates all provided {@link Map.Entry} to this map value.
+         * Associates all provided {@link java.util.Map.Entry} to this map value.
          *
          * @param map The map of key values to set
          * @return This map value, for chaining
@@ -131,8 +139,8 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
         MapValue.Mutable<K, V> removeAll(Iterable<K> keys);
 
         /**
-         * Applies the {@link Predicate} to all {@link Map.Entry} within this
-         * {@link MapValue.Mutable}. Any entries that are false will be removed from the
+         * Applies the {@link Predicate} to all {@link java.util.Map.Entry} within this
+         * {@link org.spongepowered.api.data.value.MapValue.Mutable}. Any entries that are false will be removed from the
          * map value.
          *
          * @param predicate The predicate to filer
@@ -155,13 +163,18 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
         }
 
         @Override
+        default MapValue.Mutable<K, V> asMutableCopy() {
+            return copy();
+        }
+
+        @Override
         MapValue.Immutable<K, V> asImmutable();
     }
 
     /**
-     * Represents a specialized type of {@link Value.Immutable} that is different
-     * from an {@link CollectionValue.Immutable} such that the "elements" are
-     * {@link Map.Entry}. Usually, this type of value is used to represent
+     * Represents a specialized type of {@link org.spongepowered.api.data.value.Value.Immutable} that is different
+     * from an {@link org.spongepowered.api.data.value.CollectionValue.Immutable} such that the "elements" are
+     * {@link java.util.Map.Entry}. Usually, this type of value is used to represent
      * a particular "type" of "key" that is associated to a particular "value".
      *
      * @param <K> The type of the key
@@ -181,8 +194,8 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
         MapValue.Immutable<K, V> with(K key, V value);
 
         /**
-         * Associates all provided {@link Map.Entry} along with all pre-existing
-         * map entries in a new {@link MapValue.Immutable}.
+         * Associates all provided {@link java.util.Map.Entry} along with all pre-existing
+         * map entries in a new {@link org.spongepowered.api.data.value.MapValue.Immutable}.
          *
          * @param map The map of key values to set
          * @return The new value, for chaining
@@ -190,7 +203,7 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
         MapValue.Immutable<K, V> withAll(Map<K, V> map);
 
         /**
-         * Creates a new {@link MapValue.Immutable} without the provided key and the
+         * Creates a new {@link org.spongepowered.api.data.value.MapValue.Immutable} without the provided key and the
          * associated value.
          *
          * @param key The key to exclude the association
@@ -199,7 +212,7 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
         MapValue.Immutable<K, V> without(K key);
 
         /**
-         * Creates a new {@link MapValue.Immutable} without the provided keys and
+         * Creates a new {@link org.spongepowered.api.data.value.MapValue.Immutable} without the provided keys and
          * their associated values.
          *
          * @param keys The keys to exclude
@@ -208,7 +221,7 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
         MapValue.Immutable<K, V> withoutAll(Iterable<K> keys);
 
         /**
-         * Creates a new {@link MapValue.Immutable} such that all entries are
+         * Creates a new {@link org.spongepowered.api.data.value.MapValue.Immutable} such that all entries are
          * filtered by the provided {@link Predicate}, any that return
          * {@code true} are retained in the new value. Elements that return
          * <code>true</code> from {@link Predicate#test(Object)} are kept, and
@@ -227,6 +240,11 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
 
         @Override
         MapValue.Mutable<K, V> asMutable();
+
+        @Override
+        default MapValue.Mutable<K, V> asMutableCopy() {
+            return asMutable();
+        }
 
         @Override
         default MapValue.Immutable<K, V> asImmutable() {

@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.entity.vehicle;
 
+import org.spongepowered.api.data.Keys;
+
 /**
  * Represents a Boat entity.
  */
@@ -34,7 +36,9 @@ public interface Boat extends Vehicle {
      *
      * @return If the boat is in water
      */
-    boolean isInWater();
+    default boolean isInWater() {
+        return require(Keys.IS_IN_WATER);
+    }
 
     /**
      * Gets the maximum speed that this boat is allowed to travel at.
@@ -43,7 +47,9 @@ public interface Boat extends Vehicle {
      *
      * @return The maximum speed
      */
-    double getMaxSpeed();
+    default double getMaxSpeed() {
+        return require(Keys.BOAT_MAX_SPEED);
+    }
 
     /**
      * Sets the maximum speed that this boat is allowed to travel at.
@@ -52,21 +58,27 @@ public interface Boat extends Vehicle {
      *
      * @param maxSpeed The new max speed
      */
-    void setMaxSpeed(double maxSpeed);
+    default void setMaxSpeed(double maxSpeed) {
+        offer(Keys.BOAT_MAX_SPEED, maxSpeed);
+    }
 
     /**
      * Gets whether or not the boat is able to move freely on land.
      *
      * @return If the boat can move on land
      */
-    boolean canMoveOnLand();
+    default boolean canMoveOnLand() {
+        return require(Keys.BOAT_CAN_MOVE_ON_LAND);
+    }
 
     /**
      * Gets whether or not the boat is able to move freely on land.
      *
      * @param moveOnLand If the boat can move on land
      */
-    void setMoveOnLand(boolean moveOnLand);
+    default void setMoveOnLand(boolean moveOnLand) {
+
+    }
 
     /**
      * Gets the rate at which occupied boats decelerate.

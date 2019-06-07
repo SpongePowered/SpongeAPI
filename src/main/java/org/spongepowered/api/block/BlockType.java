@@ -25,9 +25,9 @@
 package org.spongepowered.api.block;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.state.StateContainer;
 import org.spongepowered.api.state.StateProperty;
-import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.text.translation.Translatable;
@@ -40,7 +40,7 @@ import java.util.Optional;
  *
  * <p>Blocks are further differentiated using a {@link BlockState}. Complex
  * data, such as inventory contents, are considered data, which is provided
- * via {@link DataHolder}.</p>
+ * via {@link BlockEntity}.</p>
  */
 @CatalogedBy(BlockTypes.class)
 public interface BlockType extends CatalogType, StateContainer<BlockState>, Translatable, PropertyHolder {

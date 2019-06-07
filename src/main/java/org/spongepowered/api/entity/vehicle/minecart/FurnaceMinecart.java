@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.entity.vehicle.minecart;
 
+import org.spongepowered.api.data.Keys;
+
 import java.time.Duration;
 
 /**
@@ -37,7 +39,9 @@ public interface FurnaceMinecart extends MinecartEntity {
      *
      * @return The fuel duration
      */
-    Duration getFuelDuration();
+    default Duration getFuelDuration() {
+        return require(Keys.MINECART_FUEL_DURATION);
+    }
 
     /**
      * Sets the duration of fuel the furnace has left before
@@ -45,6 +49,8 @@ public interface FurnaceMinecart extends MinecartEntity {
      *
      * @param duration The fuel duration
      */
-    void setFuelDuration(Duration duration);
+    default void setFuelDuration(Duration duration) {
+        offer(Keys.MINECART_FUEL_DURATION, duration);
+    }
 
 }

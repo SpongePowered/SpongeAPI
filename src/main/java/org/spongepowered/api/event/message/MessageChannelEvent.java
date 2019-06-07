@@ -49,7 +49,7 @@ public interface MessageChannelEvent extends MessageEvent {
      * Gets the current channel that this message will be sent to.
      *
      * <p>Note that an {@link Optional#empty()} channel is different from a
-     * {@link MessageChannel#TO_NONE} channel.</p>
+     * {@link MessageChannel#toNone()} channel.</p>
      *
      * @return The message channel the message in this event will be sent to
      */
@@ -59,7 +59,7 @@ public interface MessageChannelEvent extends MessageEvent {
      * Sets the channel for this message to go to.
      *
      * <p>Note that an {@link Optional#empty()} channel is different from a
-     * {@link MessageChannel#TO_NONE} channel.</p>
+     * {@link MessageChannel#toNone()} channel.</p>
      *
      * @param channel The channel to set
      */

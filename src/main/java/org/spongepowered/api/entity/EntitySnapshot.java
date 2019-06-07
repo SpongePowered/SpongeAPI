@@ -26,10 +26,8 @@ package org.spongepowered.api.entity;
 
 import org.spongepowered.api.Game;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.ImmutableDataBuilder;
-import org.spongepowered.api.data.LocatableSnapshot;
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.world.LocatableSnapshot;
+import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -43,7 +41,7 @@ import java.util.UUID;
 
 /**
  * Represents a snapshot of an {@link Entity} and all of it's related data in
- * the form of {@link ImmutableDataManipulator}s and {@link Value.Immutable}s.
+ * the form of {@link org.spongepowered.api.data.DataManipulator.Immutable}s and {@link org.spongepowered.api.data.value.Value.Immutable}s.
  * While an {@link Entity} is a live instance and therefor residing in a
  * {@link World}, an {@link EntitySnapshot} may be snapshotted of a
  * {@link World} that is not currently loaded, or may not exist any longer.
@@ -89,7 +87,7 @@ public interface EntitySnapshot extends LocatableSnapshot<EntitySnapshot> {
      *
      * @return The EntityType
      */
-    EntityType getType();
+    EntityType<?> getType();
 
     /**
      * Restores the {@link EntitySnapshot} to the {@link Location} stored within
@@ -109,10 +107,10 @@ public interface EntitySnapshot extends LocatableSnapshot<EntitySnapshot> {
     EntityArchetype createArchetype();
 
     /**
-     * An {@link ImmutableDataBuilder} for building {@link EntitySnapshot}s. The
+     * An {@link org.spongepowered.api.data.persistence.DataBuilder.Immutable} for building {@link EntitySnapshot}s. The
      * requirements
      */
-    interface Builder extends ImmutableDataBuilder<EntitySnapshot, Builder> {
+    interface Builder extends DataBuilder.Immutable<EntitySnapshot, Builder> {
 
         /**
          * Sets the {@link WorldProperties} for this {@link EntitySnapshot}.
@@ -131,7 +129,7 @@ public interface EntitySnapshot extends LocatableSnapshot<EntitySnapshot> {
          * @param entityType The EntityType
          * @return This builder, for chaining
          */
-        Builder type(EntityType entityType);
+        Builder type(EntityType<?> entityType);
 
         /**
          * Sets the coordinates of this {@link EntitySnapshot} from a

@@ -26,8 +26,8 @@ package org.spongepowered.api.block;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.entity.BlockEntity;
-import org.spongepowered.api.data.ImmutableDataBuilder;
-import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.property.DirectionRelativePropertyHolder;
 import org.spongepowered.api.fluid.FluidState;
 import org.spongepowered.api.state.State;
@@ -36,7 +36,7 @@ import org.spongepowered.api.world.Location;
 
 /**
  * Represents a particular "state" that can exist at a {@link Location} with
- * a particular {@link BlockType} and various {@link Value.Immutable}s defining
+ * a particular {@link BlockType} and various {@link org.spongepowered.api.data.value.Value.Immutable}s defining
  * the information for the "block". Note that normally, there may exist only
  * a single instance of a particular {@link BlockState} as they are immutable,
  * a particular instance may be cached for various uses.
@@ -94,14 +94,14 @@ public interface BlockState extends State<BlockState>, DirectionRelativeProperty
     BlockSnapshot snapshotFor(Location location);
 
     /**
-     * An {@link ImmutableDataBuilder} for a {@link BlockState}. Just like the
-     * {@link ImmutableDataBuilder}, the {@link Value}s passed in to
+     * An {@link org.spongepowered.api.data.persistence.DataBuilder.Immutable} for a {@link BlockState}. Just like the
+     * {@link org.spongepowered.api.data.persistence.DataBuilder.Immutable}, the {@link Value}s passed in to
      * create a {@link BlockState} are copied on creation.
      *
      * <p>Note that upon creation, the {@link BlockType} must be set for validation
      * of {@link DataManipulator}s, otherwise exceptions may be thrown.</p>
      */
-    interface Builder extends ImmutableDataBuilder<BlockState, Builder> {
+    interface Builder extends DataBuilder.Immutable<BlockState, Builder> {
 
         /**
          * Sets the {@link BlockType} for the {@link BlockState} to build.

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.FoxType;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Ageable;
@@ -32,7 +32,7 @@ import org.spongepowered.api.entity.living.Ageable;
 public interface Fox extends Animal, Ageable {
 
     /**
-     * Gets the {@link Value.Mutable} for the {@link FoxType} of this
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the {@link FoxType} of this
      * {@link Fox}.
      *
      * @return The fox type value

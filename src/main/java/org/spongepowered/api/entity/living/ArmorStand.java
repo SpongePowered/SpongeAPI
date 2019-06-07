@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living;
 
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.inventory.ArmorEquipable;
 
@@ -34,7 +34,7 @@ import org.spongepowered.api.item.inventory.ArmorEquipable;
 public interface ArmorStand extends Living, ArmorEquipable {
 
     /**
-     * Gets the {@link Boolean} {@link Value.Mutable} of whether this
+     * Gets the {@link Boolean} {@link org.spongepowered.api.data.value.Value.Mutable} of whether this
      * {@link ArmorStand} is considered a "marker" stand. If
      * {@code true}, the armor stand's bounding box is near
      * impossible to see, and the armor stand can no longer be
@@ -47,7 +47,7 @@ public interface ArmorStand extends Living, ArmorEquipable {
     }
 
     /**
-     * Gets the {@link Boolean} {@link Value.Mutable} of whether this
+     * Gets the {@link Boolean} {@link org.spongepowered.api.data.value.Value.Mutable} of whether this
      * {@link ArmorStand} is considered a "small" armor stand.
      *
      * @return The value for the small state
@@ -57,7 +57,7 @@ public interface ArmorStand extends Living, ArmorEquipable {
     }
 
     /**
-     * Gets the {@link Boolean} {@link Value.Mutable} of whether this
+     * Gets the {@link Boolean} {@link org.spongepowered.api.data.value.Value.Mutable} of whether this
      * {@link ArmorStand} will show that it has a base plate
      * visible to players.
      *
@@ -68,7 +68,7 @@ public interface ArmorStand extends Living, ArmorEquipable {
     }
 
     /**
-     * Gets the {@link Boolean} {@link Value.Mutable} of whether this
+     * Gets the {@link Boolean} {@link org.spongepowered.api.data.value.Value.Mutable} of whether this
      * {@link ArmorStand} will show that it has "arms".
      *
      * @return The value for the arms state
