@@ -77,7 +77,7 @@ public interface Boat extends Vehicle {
      * @param moveOnLand If the boat can move on land
      */
     default void setMoveOnLand(boolean moveOnLand) {
-
+        offer(Keys.BOAT_CAN_MOVE_ON_LAND, moveOnLand);
     }
 
     /**
@@ -85,27 +85,35 @@ public interface Boat extends Vehicle {
      *
      * @return The occupied deceleration rate
      */
-    double getOccupiedDeceleration();
+    default double getOccupiedDeceleration() {
+        return require(Keys.BOAT_OCCUPIED_DECELERATION);
+    }
 
     /**
      * Sets the rate at which occupied boats decelerate.
      *
      * @param occupiedDeceleration The new occupied deceleration rate
      */
-    void setOccupiedDeceleration(double occupiedDeceleration);
+    default void setOccupiedDeceleration(double occupiedDeceleration) {
+        offer(Keys.BOAT_OCCUPIED_DECELERATION, occupiedDeceleration);
+    }
 
     /**
      * Gets the rate at which unoccupied boats decelerate.
      *
      * @return The unoccupied deceleration rate
      */
-    double getUnoccupiedDeceleration();
+    default double getUnoccupiedDeceleration() {
+        return require(Keys.BOAT_UNOCCUPIED_DECELERATION);
+    }
 
     /**
      * Sets the rate at which unoccupied boats decelerate.
      *
      * @param unoccupiedDeceleration The new unoccupied deceleration rate
      */
-    void setUnoccupiedDeceleration(double unoccupiedDeceleration);
+    default void setUnoccupiedDeceleration(double unoccupiedDeceleration) {
+        offer(Keys.BOAT_UNOCCUPIED_DECELERATION, unoccupiedDeceleration);
+    }
 
 }

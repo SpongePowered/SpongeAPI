@@ -33,7 +33,6 @@ import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.event.EventListener;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
-import org.spongepowered.api.event.game.GameRegistryEvent;
 import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.TypeTokens;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -173,7 +172,7 @@ public interface Key<V extends Value<?>> extends CatalogType {
         @Override
         Key<V> build();
 
-        interface BoundedBuilder<E, V extends BoundedValue<E>> extends Builder<E, V> {
+        interface BoundedBuilder<E, V extends Value<E>> extends Builder<E, V> {
 
             /**
              * Sets the default minimum element.

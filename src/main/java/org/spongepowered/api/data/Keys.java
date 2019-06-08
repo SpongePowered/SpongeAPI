@@ -437,6 +437,10 @@ public final class Keys {
 
     public static final Key<BoundedValue<Double>> BOAT_MAX_SPEED = DummyObjectProvider.createExtendedFor(Key.class, "BOAT_MAX_SPEED");
 
+    public static final Key<BoundedValue<Double>> BOAT_OCCUPIED_DECELERATION = DummyObjectProvider.createExtendedFor(Key.class, "BOAT_OCCUPIED_DECELERATION");
+
+    public static final Key<BoundedValue<Double>> BOAT_UNOCCUPIED_DECELERATION = DummyObjectProvider.createExtendedFor(Key.class, "BOAT_UNOCCUPIED_DECELERATION");
+
     /**
      * Represents the {@link Key} for the rotation of specific body parts.
      *
