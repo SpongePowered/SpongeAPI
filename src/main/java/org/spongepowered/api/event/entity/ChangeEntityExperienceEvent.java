@@ -24,7 +24,16 @@
  */
 package org.spongepowered.api.event.entity;
 
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableExperienceHolderData;
+import org.spongepowered.api.data.manipulator.mutable.entity.ExperienceHolderData;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.SpongeEventFactory;
+import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.util.annotation.eventgen.AbsoluteSortPosition;
+import org.spongepowered.api.util.annotation.eventgen.FactoryMethod;
+import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 
 /**
  * An event that is related to experience.
@@ -32,25 +41,81 @@ import org.spongepowered.api.event.Cancellable;
 public interface ChangeEntityExperienceEvent extends TargetEntityEvent, Cancellable {
 
     /**
-     * Gets the original experience unmodified by event changes.
+     * Gets the original total experience unmodified by event changes.
      *
      * @return The experience
+     * @deprecated Use {@link #getOriginalData()} instead, which provides more
+     * information about the experience.
      */
-    int getOriginalExperience();
+    @PropertySettings(generateMethods = false, requiredParameter = false)
+    @Deprecated
+    default int getOriginalExperience() {
+        return getOriginalData().totalExperience().get();
+    }
 
     /**
-     * Gets the experience after an event has been processed.
+     * Gets the original values for the experience unmodified by event changes.
+     *
+     * @return The experience data
+     */
+    @AbsoluteSortPosition(1)
+    ImmutableExperienceHolderData getOriginalData();
+
+    /**
+     * Gets the total experience after event changes.
+     *
+     * @return The experience
+     * @deprecated Use {@link #getFinalData()} instead, which provides more
+     * information about the experience.
+     */
+    @PropertySettings(generateMethods = false, requiredParameter = false)
+    @Deprecated
+    default int getExperience() {
+        return getFinalData().totalExperience().get();
+    }
+
+    /**
+     * Sets the final total experience after event changes.
+     *
+     * @param experience The experience
+     * @deprecated Modify the value returned by {@link #getFinalData()}
+     * instead, which provides more information about the experience.
+     */
+    @PropertySettings(generateMethods = false, requiredParameter = false)
+    @Deprecated
+    default void setExperience(int experience) {
+        getFinalData().set(Keys.TOTAL_EXPERIENCE, experience);
+    }
+
+    /**
+     * Gets the experience after an event has been processed. Modify this
+     * data manipulator to change the final experience.
      *
      * @return The experience to receive
      */
-    int getExperience();
+    @AbsoluteSortPosition(2)
+    ExperienceHolderData getFinalData();
 
     /**
-     * Sets the amount of experience after an event has been processed.
-     * Negative values will remove experience.
+     * This method exists solely to provide backwards-compatibility with existing plugins
+     * using the old ChangeExperienceEvent. It should not be called directly - instead,
+     * plugins should use {@link SpongeEventFactory#createChangeEntityExperienceEvent(Cause, ImmutableExperienceHolderData, ExperienceHolderData, Entity)}
      *
-     * @param exp The experience to give or take
+     * @param cause The cause to use
+     * @param originalExperience The original experience amount
+     * @param experience
+     * @param targetEntity
+     * @return
      */
-    void setExperience(int exp);
+    @FactoryMethod
+    @Deprecated
+    static ChangeEntityExperienceEvent createChangeEntityExperienceEvent(Cause cause, int originalExperience, int experience, Entity targetEntity) {
+        ExperienceHolderData finalData = targetEntity.getOrCreate(ExperienceHolderData.class)
+                .orElseThrow(() -> new RuntimeException("Failed to get ExperienceHolderData from " + targetEntity));
+        ImmutableExperienceHolderData originalData = finalData.asImmutable();
+        originalData = originalData.with(Keys.TOTAL_EXPERIENCE, originalExperience).get();
+        finalData.set(Keys.TOTAL_EXPERIENCE, experience);
+        return SpongeEventFactory.createChangeEntityExperienceEvent(cause, originalData, finalData, targetEntity);
+    }
 
 }

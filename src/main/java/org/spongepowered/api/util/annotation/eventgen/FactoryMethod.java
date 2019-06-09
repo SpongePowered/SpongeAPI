@@ -22,45 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living.humanoid;
+package org.spongepowered.api.util.annotation.eventgen;
 
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.entity.ChangeEntityExperienceEvent;
-import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
-import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * Called when a human's level is changed.
+ * Marks the annotated method as a factory method.
+ * A matching method will be generated in the factory class, which forwards
+ * to this method.
  *
- * @deprecated Use {@link ChangeEntityExperienceEvent} instead
+ * <p>This annotation can be used to make backwards-compatible
+ * changes to an event class. By creating a method matching the old
+ * factory method signature, code expecting the old event signature
+ * will continue to function.</p>
  */
-@GenerateFactoryMethod
-@Deprecated
-public interface ChangeLevelEvent extends TargetHumanoidEvent, Cancellable {
-
-    /**
-     * Gets the original level of the human.
-     *
-     * @return The original level of the human
-     */
-    int getOriginalLevel();
-
-    /**
-     * Gets the new level of the human.
-     *
-     * @return The new level of the human
-     */
-    int getLevel();
-
-    /**
-     * Sets the new level of the human.
-     *
-     * <p>Technically, this can be set to the same level to
-     * cancel effects of the level being changed.</p>
-     *
-     * @param level The new level to change to
-     */
-    void setLevel(int level);
-
-    interface TargetPlayer extends ChangeLevelEvent, TargetPlayerEvent {}
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface FactoryMethod {
 }
