@@ -104,6 +104,13 @@ public final class CatalogEntityData {
      * will calm down after a certain amount of time has passed.
      */
     public static final Class<AngerableData> ANGERABLE_DATA = AngerableData.class;
+    
+    /**
+     * The {@link DisabledSlotsData} signifies which slots are unable to be taken
+     * from / placed into in an armour stand
+     */
+    public static final Class<DisabledSlotsData> DISABLED_SLOTS_DATA = DisabledSlotsData.class;
+    
     /**
      * The {@link ArtData} that signifies what piece of {@link Art} is being
      * displayed. It is applicable for {@link Painting} entities.

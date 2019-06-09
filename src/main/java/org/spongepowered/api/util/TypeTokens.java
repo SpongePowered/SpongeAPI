@@ -95,6 +95,7 @@ import org.spongepowered.api.extra.fluid.FluidStackSnapshot;
 import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.item.potion.PotionType;
 import org.spongepowered.api.profile.GameProfile;
@@ -415,6 +416,8 @@ public final class TypeTokens {
     public static final TypeToken<Set<Direction>> SET_DIRECTION_TOKEN = new TypeToken<Set<Direction>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<SetValue<Direction>> SET_DIRECTION_VALUE_TOKEN = new TypeToken<SetValue<Direction>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<SetValue<EquipmentType>> SET_EQUIPMENT_TYPE_TOKEN = new TypeToken<SetValue<EquipmentType>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Short> SHORT_TOKEN = new TypeToken<Short>() {private static final long serialVersionUID = -1;};
 
