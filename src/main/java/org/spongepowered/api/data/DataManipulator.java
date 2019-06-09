@@ -61,7 +61,7 @@ public interface DataManipulator extends ValueContainer {
      * @return The immutable data manipulator view
      */
     static Immutable immutableOf(Iterable<? extends Value<?>> values) {
-        return Sponge.getRegistry().requireFactory(Immutable.Factory.class).immutableOf(values);
+        return Sponge.getRegistry().requireFactory(Immutable.Factory.class).of(values);
     }
 
     /**
@@ -75,7 +75,7 @@ public interface DataManipulator extends ValueContainer {
      * @return The immutable manipulator
      */
     static Immutable immutableOf(ValueContainer valueContainer) {
-        return Sponge.getRegistry().requireFactory(Immutable.Factory.class).immutableOf(valueContainer);
+        return Sponge.getRegistry().requireFactory(Immutable.Factory.class).of(valueContainer);
     }
 
     /**
@@ -83,7 +83,7 @@ public interface DataManipulator extends ValueContainer {
      *
      * @return The empty immutable data manipulator
      */
-    static Immutable empty() {
+    static Immutable immutableOf() {
         return Sponge.getRegistry().requireFactory(Immutable.Factory.class).of();
     }
 
@@ -93,7 +93,7 @@ public interface DataManipulator extends ValueContainer {
      *
      * @return A new empty manipulator
      */
-    static Mutable of() {
+    static Mutable mutableOf() {
         return Sponge.getRegistry().requireFactory(Mutable.Factory.class).of();
     }
 
@@ -106,7 +106,7 @@ public interface DataManipulator extends ValueContainer {
      * @param values The values to populate the mutable container
      * @return The mutable manipulator containing all values
      */
-    static Mutable of(Iterable<? extends Value<?>> values) {
+    static Mutable mutableOf(Iterable<? extends Value<?>> values) {
         return Sponge.getRegistry().requireFactory(Mutable.Factory.class).of(values);
     }
 
@@ -120,7 +120,7 @@ public interface DataManipulator extends ValueContainer {
      * @param valueContainer The value container providing all values
      * @return The mutable manipulator containing all values
      */
-    static Mutable of(ValueContainer valueContainer) {
+    static Mutable mutableOf(ValueContainer valueContainer) {
         return Sponge.getRegistry().requireFactory(Mutable.Factory.class).of(valueContainer);
     }
 
@@ -252,7 +252,7 @@ public interface DataManipulator extends ValueContainer {
             /**
              * Creates an empty {@link Immutable}.
              *
-             * @see DataManipulator#of()
+             * @see DataManipulator#immutableOf()
              * @return An empty immutable manipulator
              */
             Immutable of();
@@ -268,7 +268,7 @@ public interface DataManipulator extends ValueContainer {
              * @param values The value container to populate values from
              * @return The immutable manipulator
              */
-            Immutable immutableOf(Iterable<? extends Value<?>> values);
+            Immutable of(Iterable<? extends Value<?>> values);
 
 
             /**
@@ -282,7 +282,7 @@ public interface DataManipulator extends ValueContainer {
              * @param valueContainer The value container to populate values from
              * @return The immutable manipulator
              */
-            Immutable immutableOf(ValueContainer valueContainer);
+            Immutable of(ValueContainer valueContainer);
         }
     }
 
