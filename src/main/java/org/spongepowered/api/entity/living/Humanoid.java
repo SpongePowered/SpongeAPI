@@ -29,11 +29,12 @@ import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.item.inventory.ArmorEquipable;
 import org.spongepowered.api.entity.Tamer;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.projectile.ProjectileLauncher;
 
 /**
  * Represents a human-like entity in game, such as {@link Player} or {@link Human}s.
  */
-public interface Humanoid extends Living, Ranger, ArmorEquipable, Tamer {
+public interface Humanoid extends Living, ProjectileLauncher, ArmorEquipable, Tamer {
 
     /**
      * Gets the current food level as an {@link org.spongepowered.api.data.value.BoundedValue.Mutable}.

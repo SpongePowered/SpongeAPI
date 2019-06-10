@@ -24,6 +24,6 @@
  */
 package org.spongepowered.api.entity.living;
 
-public interface Human extends Humanoid, Creature {
+public interface Human extends Humanoid, Creature, Ranger {
 
 }
