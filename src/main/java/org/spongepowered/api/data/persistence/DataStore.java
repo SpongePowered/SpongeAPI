@@ -82,7 +82,7 @@ public interface DataStore {
      * @return The value store
      */
     default DataManipulator.Mutable deserialize(DataView view) {
-        final DataManipulator.Mutable dataManipulator = DataManipulator.of();
+        final DataManipulator.Mutable dataManipulator = DataManipulator.mutableOf();
         deserialize(dataManipulator, view);
         return dataManipulator;
     }

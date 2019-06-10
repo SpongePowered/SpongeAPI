@@ -182,7 +182,7 @@ public final class Keys {
      * Represents the {@link Key} for the absorption amount of any
      * {@link Living} entity.
      */
-    public static final Key<Value<Double>> ABSORPTION = DummyObjectProvider.createExtendedFor(Key.class, "ABSORPTION");
+    public static final Key<BoundedValue<Double>> ABSORPTION = DummyObjectProvider.createExtendedFor(Key.class, "ABSORPTION");
 
     /**
      * Represents the {@link Key} for the item a {@link Living} is using.
@@ -364,7 +364,7 @@ public final class Keys {
      * <p>Together with {@link #HEIGHT} this defines the size of an
      * {@link Entity}.</p>
      */
-    public static final Key<BoundedValue<Float>> BASE_SIZE = DummyObjectProvider.createExtendedFor(Key.class, "BASE_SIZE");
+    public static final Key<BoundedValue<Double>> BASE_SIZE = DummyObjectProvider.createExtendedFor(Key.class, "BASE_SIZE");
 
     /**
      * Represents the {@link Key} for the base vehicle a passenger is riding
@@ -768,7 +768,7 @@ public final class Keys {
      * Represents the {@link Key} for representing the distance an entity has
      * fallen.
      */
-    public static final Key<BoundedValue<Float>> FALL_DISTANCE = DummyObjectProvider.createExtendedFor(Key.class, "FALL_DISTANCE");
+    public static final Key<BoundedValue<Double>> FALL_DISTANCE = DummyObjectProvider.createExtendedFor(Key.class, "FALL_DISTANCE");
 
     /**
      * Represents the {@link Key} for the amount of ticks a
@@ -920,7 +920,7 @@ public final class Keys {
      * <p>Together with {@link #BASE_SIZE} this defines the size of an
      * {@link Entity}.</p>
      */
-    public static final Key<BoundedValue<Float>> HEIGHT = DummyObjectProvider.createExtendedFor(Key.class, "HEIGHT");
+    public static final Key<BoundedValue<Double>> HEIGHT = DummyObjectProvider.createExtendedFor(Key.class, "HEIGHT");
 
     /**
      * Represents the {@link Key} for representing the "attributes hidden"
@@ -1533,7 +1533,7 @@ public final class Keys {
      * Represents the {@link Key} for the "scale" for the size of an
      * {@link Entity}.
      */
-    public static final Key<BoundedValue<Float>> SCALE = DummyObjectProvider.createExtendedFor(Key.class, "SCALE");
+    public static final Key<BoundedValue<Double>> SCALE = DummyObjectProvider.createExtendedFor(Key.class, "SCALE");
 
     /**
      * Represents the {@link Key} for representing the "should drop" state
@@ -1587,20 +1587,20 @@ public final class Keys {
      * Represents the {@link Key} for the maximum amount of ticks between two
      * batches of entities spawned by a {@link MobSpawner}.
      */
-    public static final Key<BoundedValue<Short>> SPAWNER_MAXIMUM_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_MAXIMUM_DELAY");
+    public static final Key<BoundedValue<Integer>> SPAWNER_MAXIMUM_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_MAXIMUM_DELAY");
 
     /**
      * Represents the {@link Key} for the maximum number of entities around a
      * {@link MobSpawner}. A spawner will not spawn entities if there are more
      * entities around than this value permits.
      */
-    public static final Key<BoundedValue<Short>> SPAWNER_MAXIMUM_NEARBY_ENTITIES = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_MAXIMUM_NEARBY_ENTITIES");
+    public static final Key<BoundedValue<Integer>> SPAWNER_MAXIMUM_NEARBY_ENTITIES = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_MAXIMUM_NEARBY_ENTITIES");
 
     /**
      * Represents the {@link Key} for the minimum amount of ticks between two
      * batches of entities spawned by a {@link MobSpawner}.
      */
-    public static final Key<BoundedValue<Short>> SPAWNER_MINIMUM_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_MINIMUM_DELAY");
+    public static final Key<BoundedValue<Integer>> SPAWNER_MINIMUM_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_MINIMUM_DELAY");
 
     /**
      * Represents the {@link Key} for the next entity that will be spawned
@@ -1616,26 +1616,26 @@ public final class Keys {
      * Represents the {@link Key} for the remaining number of ticks to pass
      * before another attempt to spawn entities is made by a {@link MobSpawner}.
      */
-    public static final Key<BoundedValue<Short>> SPAWNER_REMAINING_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_REMAINING_DELAY");
+    public static final Key<BoundedValue<Integer>> SPAWNER_REMAINING_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_REMAINING_DELAY");
 
     /**
      * Represents the {@link Key} for how close a {@link Player} has to be
      * around the {@link MobSpawner} in order for it to attempt to
      * spawn entities.
      */
-    public static final Key<BoundedValue<Short>> SPAWNER_REQUIRED_PLAYER_RANGE = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_REQUIRED_PLAYER_RANGE");
+    public static final Key<BoundedValue<Integer>> SPAWNER_REQUIRED_PLAYER_RANGE = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_REQUIRED_PLAYER_RANGE");
 
     /**
      * Represents the {@link Key} for how many entities a {@link MobSpawner} has
      * spawned so far.
      */
-    public static final Key<BoundedValue<Short>> SPAWNER_SPAWN_COUNT = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_SPAWN_COUNT");
+    public static final Key<BoundedValue<Integer>> SPAWNER_SPAWN_COUNT = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_SPAWN_COUNT");
 
     /**
      * Represents the {@link Key} for how far away from the
      * {@link MobSpawner} the entities spawned by it may appear.
      */
-    public static final Key<BoundedValue<Short>> SPAWNER_SPAWN_RANGE = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_SPAWN_RANGE");
+    public static final Key<BoundedValue<Integer>> SPAWNER_SPAWN_RANGE = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_SPAWN_RANGE");
 
     /**
      * Represents the {@link Key} for representing the {@link StairShape}
@@ -1672,7 +1672,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for representing the mode of a {@link StructureBlock}.
      */
-    public static final Key<Value<Float>> STRUCTURE_INTEGRITY = DummyObjectProvider.createExtendedFor(Key.class, "STRUCTURE_INTEGRITY");
+    public static final Key<Value<Double>> STRUCTURE_INTEGRITY = DummyObjectProvider.createExtendedFor(Key.class, "STRUCTURE_INTEGRITY");
 
     /**
      * Represents the {@link Key} for representing the mode of a {@link StructureBlock}.

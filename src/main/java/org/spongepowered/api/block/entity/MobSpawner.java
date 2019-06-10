@@ -56,7 +56,7 @@ public interface MobSpawner extends BlockEntity {
      *
      * @return The immutable bounded value for the remaining delay
      */
-    default BoundedValue.Mutable<Short> remainingDelay() {
+    default BoundedValue.Mutable<Integer> remainingDelay() {
         return getValue(Keys.SPAWNER_REMAINING_DELAY).get().asMutable();
     }
 
@@ -66,7 +66,7 @@ public interface MobSpawner extends BlockEntity {
      *
      * @return The bounded value of the minimum spawn delay
      */
-    default BoundedValue.Mutable<Short> minimumSpawnDelay() {
+    default BoundedValue.Mutable<Integer> minimumSpawnDelay() {
         return getValue(Keys.SPAWNER_MINIMUM_DELAY).get().asMutable();
     }
 
@@ -76,7 +76,7 @@ public interface MobSpawner extends BlockEntity {
      *
      * @return The bounded value of the maximum spawn delay
      */
-    default BoundedValue.Mutable<Short> maximumSpawnDelay() {
+    default BoundedValue.Mutable<Integer> maximumSpawnDelay() {
         return getValue(Keys.SPAWNER_MAXIMUM_DELAY).get().asMutable();
     }
 
@@ -88,7 +88,7 @@ public interface MobSpawner extends BlockEntity {
      *
      * @return The immutable bounded value
      */
-    default BoundedValue.Mutable<Short> spawnCount() {
+    default BoundedValue.Mutable<Integer> spawnCount() {
         return getValue(Keys.SPAWNER_SPAWN_COUNT).get().asMutable();
     }
 
@@ -100,7 +100,7 @@ public interface MobSpawner extends BlockEntity {
      *
      * @return The bounded value of the maximum supported nearby entities
      */
-    default BoundedValue.Mutable<Short> maximumNearbyEntities() {
+    default BoundedValue.Mutable<Integer> maximumNearbyEntities() {
         return getValue(Keys.SPAWNER_MAXIMUM_NEARBY_ENTITIES).get().asMutable();
     }
 
@@ -112,7 +112,7 @@ public interface MobSpawner extends BlockEntity {
      *
      * @return The value of the required player range to spawn entities
      */
-    default BoundedValue.Mutable<Short> requiredPlayerRange() {
+    default BoundedValue.Mutable<Integer> requiredPlayerRange() {
         return getValue(Keys.SPAWNER_REQUIRED_PLAYER_RANGE).get().asMutable();
     }
 
@@ -123,7 +123,7 @@ public interface MobSpawner extends BlockEntity {
      * @return The immutable value of the maximum spawn range an entity can be
      *     spawned
      */
-    default BoundedValue.Mutable<Short> spawnRange() {
+    default BoundedValue.Mutable<Integer> spawnRange() {
         return getValue(Keys.SPAWNER_SPAWN_RANGE).get().asMutable();
     }
 
