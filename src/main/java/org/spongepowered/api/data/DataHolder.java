@@ -303,6 +303,28 @@ public interface DataHolder extends DataSerializable, PropertyHolder, ValueConta
         Optional<I> with(Value<?> value);
 
         /**
+         * Creates a new {@link Immutable} without the key of the provided
+         * {@link Value}. If the key is supported by this value store,
+         * the returned value store will be present.
+         *
+         * @param value The value
+         * @return The new immutable value store
+         */
+        default Optional<I> without(Value<?> value) {
+            return without(value.getKey());
+        }
+
+        /**
+         * Creates a new {@link Immutable} without the provided {@link Key}. If the
+         * key is supported by this value store, the returned value store will
+         * be present.
+         *
+         * @param key The key to remove
+         * @return The new immutable value store
+         */
+        Optional<I> without(Key<?> key);
+
+        /**
          * Attempts to merge the {@link org.spongepowered.api.data.value.Value.Immutable}s from this
          * {@link Immutable} and the given {@link Immutable} to
          * produce a new instance of the merged result.
