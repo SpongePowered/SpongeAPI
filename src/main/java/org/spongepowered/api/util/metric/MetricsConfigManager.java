@@ -26,6 +26,7 @@ package org.spongepowered.api.util.metric;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.api.util.Tristate;
 
 /**
  * Provides information about whether a server has granted permission for
@@ -48,6 +49,7 @@ public interface MetricsConfigManager {
      * @return true if metrics gathering plugins have permission to gather
      *         data about this plugin
      */
+    @Deprecated
     boolean areMetricsEnabled(final PluginContainer container);
 
     /**
@@ -66,9 +68,37 @@ public interface MetricsConfigManager {
      * @return true if metrics gathering plugins have permission to gather
      *         data about this plugin
      */
+    @Deprecated
     default boolean areMetricsEnabled(final Object plugin) throws IllegalArgumentException {
         return this.areMetricsEnabled(Sponge.getPluginManager().fromInstance(plugin)
                 .orElseThrow(() -> new IllegalArgumentException("The supplied object is not a plugin object.")));
     }
 
+    /**
+     * Gets the current <em>global</em> state of collection. The collection state determines
+     * how data collection should be handled.
+     *
+     * Global state determines how an undefined state for a specific plugin should be handled.
+     * If a plugin has a state specified then it will override the global state.
+     *
+     * {@link Tristate#TRUE} Permits data collection
+     * {@link Tristate#FALSE} Disallows data collection, this has been explicitly set
+     * {@link Tristate#UNDEFINED} Disallows data collection, this is set by default
+     *
+     * @return The global state of collection
+     */
+    Tristate getGlobalCollectionState();
+
+    /**
+     * Gets the current state of collection for the specified plugin. The collection state
+     * determines how data collection should be handled.
+     *
+     * {@link Tristate#TRUE} Permits data collection
+     * {@link Tristate#FALSE} Disallows data collection, this has been explicitly set
+     * {@link Tristate#UNDEFINED} Inherit from {@link MetricsConfigManager#getGlobalCollectionState()}, this is set by default
+     *
+     * @param container The {@link org.spongepowered.api.plugin.PluginContainer}
+     * @return The current collection state
+     */
+    Tristate getCollectionState(final PluginContainer container);
 }
