@@ -16,7 +16,7 @@
     <suppress checks="LineLength" files="BooleanTraits\.java"/>
     <suppress checks="LineLength" files="SoundTypes\.java"/>
     <suppress checks="LineLength" files="CraftingRecipes\.java"/>
-    <suppress checks="LineLength" files="QueryOperationTypes\.java"/>
+    <suppress checks="LineLength" files="QueryTypes\.java"/>
     <suppress checks="LineLength" files="Keys\.java"/>
     <suppress checks="LineLength|OneStatementPerLine|WhitespaceAround" files="TypeTokens\.java"/>
     <suppress checks="AvoidStarImport" files="Keys\.java"/>

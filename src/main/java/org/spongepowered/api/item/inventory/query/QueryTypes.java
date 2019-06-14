@@ -30,41 +30,48 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.InventoryProperties;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.entity.Hotbar;
+import org.spongepowered.api.item.inventory.entity.PrimaryPlayerInventory;
+import org.spongepowered.api.item.inventory.query.QueryType.NoParam;
+import org.spongepowered.api.item.inventory.query.QueryType.OneParam;
+import org.spongepowered.api.item.inventory.query.QueryType.TwoParam;
 import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.Nameable;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.math.vector.Vector2i;
 
 import java.util.function.Predicate;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
-public final class QueryOperationTypes {
+public final class QueryTypes {
 
     // SORTFIELDS:ON
 
     /**
+     * TODO property instead?
      * Tests based on the title of the inventory.
      *
      * @see InventoryProperties#TITLE
      * @see Nameable.Translatable#getNameTranslation()
      */
-    public static final QueryOperationType<Translation> INVENTORY_TRANSLATION = DummyObjectProvider.createExtendedFor(QueryOperationType.class, "INVENTORY_TRANSLATION");
+    public static final OneParam<Translation> INVENTORY_TRANSLATION = DummyObjectProvider.createExtendedFor(OneParam.class, "INVENTORY_TRANSLATION");
 
     /**
      * Tests based on the class of the inventory.
      */
-    public static final QueryOperationType<Class<? extends Inventory>> INVENTORY_TYPE = DummyObjectProvider.createExtendedFor(QueryOperationType.class, "INVENTORY_TYPE");
+    public static final OneParam<Class<? extends Inventory>> INVENTORY_TYPE = DummyObjectProvider.createExtendedFor(OneParam.class, "INVENTORY_TYPE");
 
     /**
      * Allows a custom condition for the items contained within an item stack.
      */
-    public static final QueryOperationType<Predicate<ItemStack>> ITEM_STACK_CUSTOM = DummyObjectProvider.createExtendedFor(QueryOperationType.class, "ITEM_STACK_CUSTOM");
+    public static final OneParam<Predicate<ItemStack>> ITEM_STACK_CUSTOM = DummyObjectProvider.createExtendedFor(OneParam.class, "ITEM_STACK_CUSTOM");
 
     /**
      * Tests for an exact match of the item stack contained in each slot.
      *
      * <p>Generally uses {@link ItemStack}'s <code>#equals</code> method.</p>
      */
-    public static final QueryOperationType<ItemStack> ITEM_STACK_EXACT = DummyObjectProvider.createExtendedFor(QueryOperationType.class, "ITEM_STACK_EXACT");
+    public static final OneParam<ItemStack> ITEM_STACK_EXACT = DummyObjectProvider.createExtendedFor(OneParam.class, "ITEM_STACK_EXACT");
 
     /**
      * Tests for an exact match of the item stack contained in each slot, with
@@ -73,32 +80,47 @@ public final class QueryOperationTypes {
      *
      * @see ItemStack#equalTo(ItemStack)
      */
-    public static final QueryOperationType<ItemStack> ITEM_STACK_IGNORE_QUANTITY = DummyObjectProvider.createExtendedFor(QueryOperationType.class, "ITEM_STACK_IGNORE_QUANTITY");
+    public static final OneParam<ItemStack> ITEM_STACK_IGNORE_QUANTITY = DummyObjectProvider.createExtendedFor(OneParam.class, "ITEM_STACK_IGNORE_QUANTITY");
 
     /**
      * Tests for a match of the type of item contained in each slot.
      *
      * @see ItemStack#getType()
      */
-    public static final QueryOperationType<ItemType> ITEM_TYPE = DummyObjectProvider.createExtendedFor(QueryOperationType.class, "ITEM_TYPE");
+    public static final OneParam<ItemType> ITEM_TYPE = DummyObjectProvider.createExtendedFor(OneParam.class, "ITEM_TYPE");
 
     /**
      * Tests based on an inventory property present on the target inventory.
      *
      * @see Inventory#getProperty(Inventory, Property)
      */
-    public static final QueryOperationType<PropertyMatcher<?>> PROPERTY =
-            DummyObjectProvider.createExtendedFor(QueryOperationType.class, "PROPERTY");
+    public static final OneParam<PropertyMatcher<?>> PROPERTY = DummyObjectProvider.createExtendedFor(OneParam.class, "PROPERTY");
 
     /**
      * Tests based on the class of the inventory.
      */
-    public static final QueryOperationType<Class<?>> TYPE = DummyObjectProvider.createExtendedFor(QueryOperationType.class, "TYPE");
+    public static final OneParam<Class<?>> TYPE = DummyObjectProvider.createExtendedFor(OneParam.class, "TYPE");
+
+    /**
+     * Query for a modified order of slots in a player inventory.
+     * Ordering the {@link Hotbar} before the {@link PrimaryPlayerInventory}
+     */
+    public static final NoParam PLAYER_PRIMARY_HOTBAR_FIRST = DummyObjectProvider.createFor(NoParam.class, "PLAYER_PRIMARY_HOTBAR_FIRST");
+
+    /**
+     * Query for a reverse order of slots.
+     */
+    public static final NoParam REVERSE = DummyObjectProvider.createFor(NoParam.class, "REVERSE");
+
+    /**
+     * A grid query. Only works on grids. The first value is the offset the second value is the grid size.
+     */
+    public static final TwoParam<Vector2i, Vector2i> GRID = DummyObjectProvider.createExtendedFor(TwoParam.class, "GRID");
 
     // SORTFIELDS:OFF
 
     // Suppress default constructor to ensure non-instantiability.
-    private QueryOperationTypes() {
+    private QueryTypes() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
