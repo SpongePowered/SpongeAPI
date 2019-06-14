@@ -30,8 +30,9 @@ import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.data.property.PropertyMatcher;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.query.QueryOperation;
-import org.spongepowered.api.item.inventory.query.QueryOperationTypes;
+import org.spongepowered.api.item.inventory.query.Query;
+import org.spongepowered.api.item.inventory.query.QueryType;
+import org.spongepowered.api.item.inventory.query.QueryTypes;
 import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult;
 import org.spongepowered.api.item.inventory.type.ViewableInventory;
 import org.spongepowered.api.util.ResettableBuilder;
@@ -317,23 +318,22 @@ public interface Inventory extends PropertyHolder {
     <V> Optional<V> getProperty(Property<V> property);
 
     /**
-     * Query this inventory for inventories matching any of the supplied
-     * queries. Logical <code>OR</code> is applied between operands.
+     * Query this inventory with given {@link Query}
      *
-     * @param operations queries to check against
-     * @return the query result
+     * @param query The query
+     *
+     * @return The queried inventory
      */
-    Inventory query(QueryOperation<?>... operations);
+    Inventory query(Query query);
 
     /**
-     * Query this inventory for inventories matching
-     * the supplied {@link PropertyMatcher}.
+     * Query this inventory for inventories matching the supplied {@link PropertyMatcher}.
      *
      * @param propertyMatcher the property matcher
      * @return the query result
      */
     default Inventory query(PropertyMatcher<?> propertyMatcher) {
-        return query(QueryOperationTypes.PROPERTY.of(propertyMatcher));
+        return query(QueryTypes.PROPERTY.of(propertyMatcher));
     }
 
     /**
@@ -343,6 +343,7 @@ public interface Inventory extends PropertyHolder {
      *
      * @param inventoryType The inventory type to query for
      * @param <T> The Type of inventory
+     *
      * @return the query result
      */
     <T extends Inventory> Optional<T> query(Class<T> inventoryType);
@@ -395,16 +396,6 @@ public interface Inventory extends PropertyHolder {
      * @return whether the given inventory is contained in this one.
      */
     boolean containsInventory(Inventory inventory);
-
-    /**
-     * Transforms this inventory using the given transformation.
-     *
-     * @param transformation The transformation
-     * @return The transformed Inventory
-     */
-    default Inventory transform(InventoryTransformation transformation) {
-        return transformation.transform(this);
-    }
 
     /**
      * Returns true if the given inventory is a direct child of this one.

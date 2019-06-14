@@ -61,7 +61,7 @@ import org.spongepowered.api.item.inventory.ContainerType;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.item.inventory.equipment.HeldEquipmentType;
 import org.spongepowered.api.item.inventory.equipment.WornEquipmentType;
-import org.spongepowered.api.item.inventory.query.QueryOperationType;
+import org.spongepowered.api.item.inventory.query.QueryType;
 import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
 import org.spongepowered.api.scoreboard.CollisionRule;
 import org.spongepowered.api.scoreboard.Visibility;
@@ -235,7 +235,7 @@ public final class CatalogTypes {
 
     public static final Class<Profession> PROFESSION = Profession.class;
 
-    public static final Class<QueryOperationType> QUERY_OPERATION_TYPE = QueryOperationType.class;
+    public static final Class<QueryType> QUERY_TYPE = QueryType.class;
 
     public static final Class<RabbitType> RABBIT_TYPE = RabbitType.class;
 

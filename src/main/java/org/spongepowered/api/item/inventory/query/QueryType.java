@@ -29,21 +29,52 @@ import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents a possible type of operation for an {@linkplain
- * Inventory#query(QueryOperation...) inventory query}.
- *
- * @param <T> The argument type for the query
+ * Represents a possible type of operation for an {@link Inventory#query inventory query}.
  */
-@CatalogedBy(QueryOperationTypes.class)
-public interface QueryOperationType<T> extends CatalogType {
+@CatalogedBy(QueryTypes.class)
+public interface QueryType extends CatalogType {
 
     /**
-     * Returns a query operation that tests for the specified argument.
-     *
-     * @param arg The object to test the inventory against
-     * @return A query that may be passed to {@link
-     * Inventory#query(QueryOperation...)}
+     * A type of query that requires no parameters. It can directly be used as a query.
      */
-    QueryOperation<T> of(T arg);
+    interface NoParam extends QueryType {
+        Query toQuery();
+    }
 
+    /**
+     * A type of query that requires one parameter.
+     *
+     * @param <T> The parameter type for the query
+     */
+    interface OneParam<T> extends QueryType {
+
+        /**
+         * Returns the query for given parameter.
+         *
+         * @param param The parameter
+         *
+         * @return The new query
+         */
+        Query of(T param);
+
+    }
+
+    /**
+     * A type of query that requires two parameters.
+     *
+     * @param <T1> The first parameter type for the query
+     * @param <T2> The second parameter type for the query
+     */
+    interface TwoParam<T1, T2> extends QueryType {
+
+        /**
+         * Returns the query for given parameters.
+         *
+         * @param param1 The first parameter
+         * @param param2 The second parameter
+         *
+         * @return The new query
+         */
+        Query of(T1 param1, T2 param2);
+    }
 }
