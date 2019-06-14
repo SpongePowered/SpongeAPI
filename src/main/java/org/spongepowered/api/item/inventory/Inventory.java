@@ -350,13 +350,6 @@ public interface Inventory extends Nameable.Translatable, PropertyHolder {
     <T extends Inventory> Optional<T> query(Class<T> inventoryType);
 
     /**
-     * Returns the {@link PluginContainer} who built this inventory.
-     *
-     * @return The container
-     */
-    PluginContainer getPlugin();
-
-    /**
      * Intersects the slots of both inventories.
      * The resulting inventory will only contain slots
      * that are present in both inventories.
@@ -414,6 +407,15 @@ public interface Inventory extends Nameable.Translatable, PropertyHolder {
     default Inventory transform(InventoryTransformation transformation) {
         return transformation.transform(this);
     }
+
+    /**
+     * Returns true if the given inventory is a direct child of this one.
+     *
+     * @param child the child inventory to check for.
+     *
+     * @return whether the given inventory is a direct child of this one.
+     */
+    boolean containsChild(Inventory child);
 
     /**
      * Returns this inventory as a viewable inventory if possible.
