@@ -78,7 +78,6 @@ public interface MoveEntityEvent extends TargetEntityEvent, Cancellable {
          *
          * @return Whether the entity will maintain momentum after teleport
          */
-        @PropertySettings(requiredParameter = false)
         boolean getKeepsVelocity();
 
         /**
