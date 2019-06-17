@@ -222,6 +222,7 @@ public class SpongeEventFactoryTest {
         return mockParam(paramType, null);
     }
 
+    @SuppressWarnings({"unchecked", "rawtypes"})
     @Nullable
     public static Object mockParam(final Class<?> paramType, @Nullable TypeToken<?> token) {
         if (paramType == Class.class) {

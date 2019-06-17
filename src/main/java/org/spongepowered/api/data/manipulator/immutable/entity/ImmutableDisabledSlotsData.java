@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.immutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.DisabledSlotsData;
 import org.spongepowered.api.data.value.immutable.ImmutableSetValue;
@@ -43,7 +44,7 @@ public interface ImmutableDisabledSlotsData
      * Controls slots that players can't take items from.
      * 
      * @return A set of slots that players cannot take from.
-     * @see Key#ARMOR_STAND_TAKING_DISABLED
+     * @see Keys#ARMOR_STAND_TAKING_DISABLED
      */
     ImmutableSetValue<EquipmentType> takingDisabled();
 
@@ -51,7 +52,7 @@ public interface ImmutableDisabledSlotsData
      * Controls slots that players can't place items into.
      * 
      * @return A set of slots that players cannot place into.
-     * @see Key#ARMOR_STAND_PLACING_DISABLED
+     * @see Keys#ARMOR_STAND_PLACING_DISABLED
      */
     ImmutableSetValue<EquipmentType> placingDisabled();
 }

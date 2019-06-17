@@ -103,9 +103,9 @@ public interface ChangeEntityExperienceEvent extends TargetEntityEvent, Cancella
      *
      * @param cause The cause to use
      * @param originalExperience The original experience amount
-     * @param experience
-     * @param targetEntity
-     * @return
+     * @param experience New experience amount
+     * @param targetEntity The target entity
+     * @return The event
      */
     @FactoryMethod
     @Deprecated

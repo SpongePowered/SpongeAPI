@@ -96,7 +96,6 @@ import org.spongepowered.api.world.gen.PopulatorType;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 import org.spongepowered.api.world.gen.type.BiomeTreeType;
 import org.spongepowered.api.world.gen.type.MushroomType;
-import org.spongepowered.api.world.schematic.BlockPaletteType;
 import org.spongepowered.api.world.teleport.TeleportHelperFilter;
 import org.spongepowered.api.world.weather.Weather;
 
@@ -107,7 +106,7 @@ import org.spongepowered.api.world.weather.Weather;
  * <p>These are generally useful for {@link GameRegistry#getType(Class, String)}
  * and {@link GameRegistry#getAllOf(Class)}.</p>
  */
-@SuppressWarnings({"rawtypes", "unused", "WeakerAccess"})
+@SuppressWarnings({"rawtypes", "unused", "WeakerAccess", "deprecation"})
 public final class CatalogTypes {
 
     // SORTFIELDS:ON
@@ -134,7 +133,7 @@ public final class CatalogTypes {
 
     public static final Class<BiomeType> BIOME_TYPE = BiomeType.class;
 
-    public static final Class<BlockPaletteType> BLOCK_PALETTE_TYPE = BlockPaletteType.class;
+    public static final Class<org.spongepowered.api.world.schematic.BlockPaletteType> BLOCK_PALETTE_TYPE = org.spongepowered.api.world.schematic.BlockPaletteType.class;
 
     public static final Class<BlockStatistic> BLOCK_STATISTIC = BlockStatistic.class;
 

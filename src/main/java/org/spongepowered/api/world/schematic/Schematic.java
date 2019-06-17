@@ -85,7 +85,7 @@ public interface Schematic extends ArchetypeVolume {
     /**
      * Gets the {@link Palette Palette<BiomeType>} used by this schematic for serialization.
      *
-     * @return
+     * @return The biome palette used for this schematic
      */
     default Palette<BiomeType> getBiomePalette() {
         return PaletteTypes.GLOBAL_BIOMES.create();
@@ -174,6 +174,7 @@ public interface Schematic extends ArchetypeVolume {
          * @param palette The palette to use for serialization
          * @return This builder, for chaining
          */
+        @SuppressWarnings("deprecation")
         default Builder blockPalette(Palette<BlockState> palette) {
             return palette((BlockPalette) palette);
         }
