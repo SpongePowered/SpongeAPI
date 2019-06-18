@@ -61,8 +61,7 @@ import java.util.stream.Stream;
 public interface Resource extends Closeable {
 
     /**
-     * Returns a new {@link InputStream} of this resource. A new input stream
-     * should be created each time this method is called.
+     * Returns the {@link InputStream} of this resource.
      *
      * @return A new input stream
      */
