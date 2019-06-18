@@ -42,7 +42,6 @@ import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.stream.Stream;
-import javax.annotation.WillNotClose;
 
 /**
  * A resource can represent any kind of loaded data. It can be a file on the
@@ -171,7 +170,7 @@ public interface Resource extends Closeable {
      * @param out The output stream to write
      * @throws IOException if an error occurs
      */
-    default void copyTo(@WillNotClose OutputStream out) throws IOException {
+    default void copyTo(OutputStream out) throws IOException {
         ByteStreams.copy(getInputStream(), out);
     }
 
