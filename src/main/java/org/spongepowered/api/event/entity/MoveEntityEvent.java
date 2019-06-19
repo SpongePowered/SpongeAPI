@@ -24,9 +24,15 @@
  */
 package org.spongepowered.api.event.entity;
 
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableExperienceHolderData;
+import org.spongepowered.api.data.manipulator.mutable.entity.ExperienceHolderData;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.SpongeEventFactory;
+import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.util.annotation.eventgen.FactoryMethod;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 import org.spongepowered.api.world.PortalAgent;
@@ -78,7 +84,6 @@ public interface MoveEntityEvent extends TargetEntityEvent, Cancellable {
          *
          * @return Whether the entity will maintain momentum after teleport
          */
-        @PropertySettings(requiredParameter = false)
         boolean getKeepsVelocity();
 
         /**
@@ -88,6 +93,23 @@ public interface MoveEntityEvent extends TargetEntityEvent, Cancellable {
          * @param keepsVelocity Whether the entity will maintain velocity
          */
         void setKeepsVelocity(boolean keepsVelocity);
+
+        /**
+         * This method exists solely to provide backwards-compatibility with existing plugins
+         * using the old Teleport Event. It should not be called directly - instead,
+         * plugins should use {@link SpongeEventFactory#createMoveEntityEventTeleport(Cause, Transform, Transform, Entity, boolean)}
+         *
+         * @param cause The cause to use
+         * @param fromTransform The from transform
+         * @param toTransform The target transform
+         * @param targetEntity The target entity
+         * @return The event
+         */
+        @FactoryMethod
+        @Deprecated
+        static MoveEntityEvent.Teleport createMoveEntityEventTeleport(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Entity targetEntity) {
+            return SpongeEventFactory.createMoveEntityEventTeleport(cause, fromTransform, toTransform, targetEntity, false);
+        }
 
         @GenerateFactoryMethod
         interface Portal extends Teleport {
@@ -139,6 +161,26 @@ public interface MoveEntityEvent extends TargetEntityEvent, Cancellable {
              * @param portalAgent The portal agent
              */
             void setPortalAgent(PortalAgent portalAgent);
+
+            /**
+             * This method exists solely to provide backwards-compatibility with existing plugins
+             * using the old Teleport event. It should not be called directly - instead,
+             * plugins should use {@link SpongeEventFactory#createMoveEntityEventTeleportPortal(Cause, Transform, Transform, PortalAgent, Entity, boolean, boolean)}
+             *
+             * @param cause The cause to use
+             * @param fromTransform The from transform
+             * @param toTransform The target transform
+             * @param portalAgent The portal agent to use
+             * @param targetEntity The entity being teleported
+             * @param usePortalAgent Whether to use the portal agent
+             * @return The event
+             */
+            @FactoryMethod
+            @Deprecated
+            static MoveEntityEvent.Teleport.Portal createMoveEntityEventTeleportPortal(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, PortalAgent portalAgent, Entity targetEntity, boolean usePortalAgent) {
+                return SpongeEventFactory.createMoveEntityEventTeleportPortal(cause, fromTransform, toTransform, portalAgent, targetEntity, false, usePortalAgent);
+            }
+
         }
     }
 }
