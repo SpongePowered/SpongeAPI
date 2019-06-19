@@ -27,4 +27,19 @@ package org.spongepowered.api.data;
 public class DuplicateDataStoreException extends DataException {
 
     private static final long serialVersionUID = -5243293544309037725L;
+
+    public DuplicateDataStoreException() {
+    }
+
+    public DuplicateDataStoreException(String message) {
+        super(message);
+    }
+
+    public DuplicateDataStoreException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public DuplicateDataStoreException(Throwable cause) {
+        super(cause);
+    }
 }

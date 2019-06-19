@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.property.store;
+package org.spongepowered.api.data.property.provider;
 
 import org.spongepowered.api.data.property.DirectionRelativePropertyHolder;
 import org.spongepowered.api.data.property.PropertyHolder;
@@ -34,7 +34,7 @@ import java.util.OptionalInt;
 /**
  * A property store for int value types.
  */
-public interface IntPropertyStore extends PropertyStore<Integer> {
+public interface IntPropertyProvider extends PropertyProvider<Integer> {
 
     /**
      * Gets the desired property value for the provided {@link PropertyHolder} at

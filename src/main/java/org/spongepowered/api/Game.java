@@ -31,7 +31,7 @@ import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.property.PropertyRegistry;
-import org.spongepowered.api.data.property.store.PropertyStore;
+import org.spongepowered.api.data.property.provider.PropertyProvider;
 import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.network.ChannelRegistrar;
@@ -137,7 +137,7 @@ public interface Game {
 
     /**
      * Gets the {@link PropertyRegistry} instance to register
-     * {@link PropertyStore}s.
+     * {@link PropertyProvider}s.
      *
      * @return The property registry
      */

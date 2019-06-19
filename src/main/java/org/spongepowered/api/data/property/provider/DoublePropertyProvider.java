@@ -22,25 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.property.store;
+package org.spongepowered.api.data.property.provider;
 
 import org.spongepowered.api.data.property.DirectionRelativePropertyHolder;
-import org.spongepowered.api.data.property.Property;
 import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.util.Direction;
 
 import java.util.Optional;
+import java.util.OptionalDouble;
 
 /**
- * Represents a handler for a {@link PropertyHolder} such that if a
- * {@link PropertyHolder} cannot properly provide the {@link Property}
- * values natively, a {@link PropertyStore} can optionally provide
- * an "override" or "customized" support of a particular {@link Property}
- * for any variants of {@link PropertyHolder}s.
- *
- * @param <V> The value type of the property
+ * A property provider for double value types.
  */
-public interface PropertyStore<V> {
+public interface DoublePropertyProvider extends PropertyProvider<Double> {
 
     /**
      * Gets the desired property value for the provided {@link PropertyHolder} at
@@ -50,36 +44,30 @@ public interface PropertyStore<V> {
      * @param propertyHolder The data holder to get a property from
      * @return The property value
      */
-    Optional<V> getFor(PropertyHolder propertyHolder);
+    OptionalDouble getDoubleFor(PropertyHolder propertyHolder);
 
     /**
      * Gets the desired property value for the provided {@link DirectionRelativePropertyHolder}
-     * at present time, in relation to the provided {@link Direction}.
+     * and {@link Direction} at present time. A property may not be the same throughout
+     * the course of the lifetime of the {@link PropertyHolder}.
      *
      * @param propertyHolder The direction relative property holder
-     * @param direction The direction in relation to
+     * @param direction The direction
      * @return The property value
      */
-    default Optional<V> getFor(DirectionRelativePropertyHolder propertyHolder, Direction direction) {
-        return propertyHolder instanceof PropertyHolder ? getFor((PropertyHolder) propertyHolder) : Optional.empty();
+    default OptionalDouble getDoubleFor(DirectionRelativePropertyHolder propertyHolder, Direction direction) {
+        return propertyHolder instanceof PropertyHolder ? getDoubleFor((PropertyHolder) propertyHolder) : OptionalDouble.empty();
     }
 
-    /**
-     * Gets the priority of which this {@link PropertyStore} is used for
-     * handling a particular {@link PropertyHolder}. This is useful for
-     * multiple possible handlers of a {@link Property} being available
-     * in customized {@link PropertyHolder}s.
-     *
-     * <p>The priority is a measurement where the higher the priority, the
-     * sooner this {@link PropertyStore} is queried such that if
-     * {@link #getFor(PropertyHolder)} is called and returns a present value,
-     * that present value is returned. The default priority of a
-     * {@link PropertyStore} is <code>100</code>.</p>
-     *
-     * @return The priority
-     */
-    default int getPriority() {
-        return 100;
+    @Override
+    default Optional<Double> getFor(PropertyHolder propertyHolder) {
+        final OptionalDouble optionalDouble = getDoubleFor(propertyHolder);
+        return optionalDouble.isPresent() ? Optional.of(optionalDouble.getAsDouble()) : Optional.empty();
     }
 
+    @Override
+    default Optional<Double> getFor(DirectionRelativePropertyHolder propertyHolder, Direction direction) {
+        final OptionalDouble optionalDouble = getDoubleFor(propertyHolder, direction);
+        return optionalDouble.isPresent() ? Optional.of(optionalDouble.getAsDouble()) : Optional.empty();
+    }
 }

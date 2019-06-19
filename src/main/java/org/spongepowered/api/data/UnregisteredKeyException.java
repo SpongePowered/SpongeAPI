@@ -27,4 +27,19 @@ package org.spongepowered.api.data;
 public class UnregisteredKeyException extends DataException {
 
     private static final long serialVersionUID = 6734809326475064456L;
+
+    public UnregisteredKeyException() {
+    }
+
+    public UnregisteredKeyException(String message) {
+        super(message);
+    }
+
+    public UnregisteredKeyException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public UnregisteredKeyException(Throwable cause) {
+        super(cause);
+    }
 }

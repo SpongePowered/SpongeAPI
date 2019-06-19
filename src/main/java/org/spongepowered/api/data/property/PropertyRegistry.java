@@ -24,59 +24,57 @@
  */
 package org.spongepowered.api.data.property;
 
-import org.spongepowered.api.data.property.store.DoublePropertyStore;
-import org.spongepowered.api.data.property.store.IntPropertyStore;
-import org.spongepowered.api.data.property.store.PropertyStore;
+import org.spongepowered.api.data.property.provider.DoublePropertyProvider;
+import org.spongepowered.api.data.property.provider.IntPropertyProvider;
+import org.spongepowered.api.data.property.provider.PropertyProvider;
 import org.spongepowered.api.registry.CatalogRegistryModule;
 
 public interface PropertyRegistry extends CatalogRegistryModule<Property<?>> {
 
     /**
-     * Registers the provided {@link PropertyStore} for the given
-     * {@link Property}. Note that only a single {@link PropertyStore}
-     * can be registered per {@link Property}. Multiple
-     * registrations will result in exceptions being thrown.
+     * Registers the provided {@link PropertyProvider} for the given
+     * {@link Property}.
      *
      * @param property The property to register the store for
-     * @param propertyStore The property store
+     * @param propertyProvider The property provider
      * @param <V> The value type of the property
      */
-    <V> void register(Property<V> property, PropertyStore<V> propertyStore);
+    <V> void register(Property<V> property, PropertyProvider<V> propertyProvider);
 
     /**
-     * Retrieves the {@link PropertyStore} associated for the provided
+     * Retrieves the {@link PropertyProvider} associated for the provided
      * {@link Property}.
      *
-     * <p>If there are no registered {@link PropertyStore}s, then will the
-     * returned store always return empty.</p>
+     * <p>If there are no registered {@link PropertyProvider}s, then will the
+     * returned provider always return empty.</p>
      *
      * @param property The property
      * @param <V> The value type of the property
-     * @return The property store
+     * @return The property provider
      */
-    <V> PropertyStore<V> getStore(Property<V> property);
+    <V> PropertyProvider<V> getProvider(Property<V> property);
 
     /**
-     * Retrieves the {@link IntPropertyStore} associated for the provided
+     * Retrieves the {@link IntPropertyProvider} associated for the provided
      * {@link Property}.
      *
-     * <p>If there are no registered {@link PropertyStore}s, then will the
-     * returned store always return empty.</p>
+     * <p>If there are no registered {@link PropertyProvider}s, then will the
+     * returned provider always return empty.</p>
      *
      * @param property The property
-     * @return The property store
+     * @return The property provider
      */
-    IntPropertyStore getIntStore(Property<Integer> property);
+    IntPropertyProvider getIntProvider(Property<Integer> property);
 
     /**
-     * Retrieves the {@link DoublePropertyStore} associated for the provided
+     * Retrieves the {@link DoublePropertyProvider} associated for the provided
      * {@link Property}.
      *
-     * <p>If there are no registered {@link PropertyStore}s, then will the
-     * returned store always return empty.</p>
+     * <p>If there are no registered {@link PropertyProvider}s, then will the
+     * returned provider always return empty.</p>
      *
      * @param property The property
-     * @return The property store
+     * @return The property provider
      */
-    DoublePropertyStore getDoubleStore(Property<Double> property);
+    DoublePropertyProvider getDoubleProvider(Property<Double> property);
 }
