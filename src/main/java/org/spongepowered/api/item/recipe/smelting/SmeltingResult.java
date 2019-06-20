@@ -53,7 +53,7 @@ public final class SmeltingResult {
     @SuppressWarnings("ConstantConditions")
     public SmeltingResult(ItemStackSnapshot result, double experience) {
         checkNotNull(result, "result");
-        checkArgument(result != ItemStackSnapshot.NONE, "The result must not be ItemStackSnapshot.NONE.");
+        checkArgument(!result.isEmpty(), "The result must not be empty.");
         checkArgument(experience >= 0, "The experience must be non-negative.");
 
         this.result = result;

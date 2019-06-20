@@ -55,10 +55,10 @@ public final class CraftingResult {
     @SuppressWarnings("ConstantConditions")
     public CraftingResult(ItemStackSnapshot result, List<ItemStackSnapshot> remainingItems) {
         checkNotNull(result, "result");
-        checkArgument(result != ItemStackSnapshot.NONE, "The result must not be ItemStackSnapshot.NONE.");
+        checkArgument(!result.isEmpty(), "The result must not be empty.");
         checkNotNull(remainingItems, "remainingItems");
         checkArgument(!remainingItems.isEmpty(), "The remainingItems list must not be empty."
-                + " It should contain ItemStackSnapshot.NONE values for slots which should be cleared.");
+                + " It should contain empty ItemStackSnapshot values for slots which should be cleared.");
 
         this.result = result;
         this.remainingItems = ImmutableList.copyOf(remainingItems);
@@ -81,7 +81,7 @@ public final class CraftingResult {
 
     /**
      * Returns a list of {@link ItemStackSnapshot} to be set in the input
-     * {@link CraftingGridInventory}, contains {@link ItemStackSnapshot#NONE}s for
+     * {@link CraftingGridInventory}, contains {@link ItemStackSnapshot#empty()} for
      * slots which should be cleared.
      *
      * @return A list of {@link ItemStackSnapshot}s to be set in the input

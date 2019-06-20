@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.item.inventory;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.text.translation.Translatable;
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
  * Represents a snapshot of an {@link ItemStack} as an
@@ -38,7 +38,14 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
  */
 public interface ItemStackSnapshot extends DataHolder.Immutable<ItemStackSnapshot>, Translatable {
 
-    ItemStackSnapshot NONE = DummyObjectProvider.createFor(ItemStackSnapshot.class, "NONE");
+    /**
+     * Gets a empty {@link ItemStackSnapshot}.
+     *
+     * @return The empty item stack snapshot
+     */
+    static ItemStackSnapshot empty() {
+        return Sponge.getRegistry().requireFactory(Factory.class).empty();
+    }
 
     /**
      * Gets the {@link ItemType} of this {@link ItemStackSnapshot}. The
@@ -72,4 +79,8 @@ public interface ItemStackSnapshot extends DataHolder.Immutable<ItemStackSnapsho
      */
     ItemStack createStack();
 
+    interface Factory {
+
+        ItemStackSnapshot empty();
+    }
 }
