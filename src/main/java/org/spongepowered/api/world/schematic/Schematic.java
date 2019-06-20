@@ -180,8 +180,7 @@ public interface Schematic extends ArchetypeVolume {
         }
 
         /**
-         * Specifies a palette for the schemtic to use for serialization. This
-         * overrides the {@link #paletteType(BlockPaletteType)} value.
+         * Specifies a palette for the schemtic to use for serialization.
          *
          * @param palette The palette to use for serialization
          * @return This builder, for chaining
@@ -208,6 +207,7 @@ public interface Schematic extends ArchetypeVolume {
          * @param type The palette type
          * @return This builder, for chaining
          */
+        @SuppressWarnings("deprecation")
         default Builder blockPaletteType(PaletteType<BlockState> type) {
             return paletteType((BlockPaletteType) type);
         }
