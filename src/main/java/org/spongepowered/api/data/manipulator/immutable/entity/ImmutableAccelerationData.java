@@ -22,14 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.projectile.explosive;
+package org.spongepowered.api.data.manipulator.immutable.entity;
 
-import org.spongepowered.api.entity.explosive.Explosive;
+import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.manipulator.mutable.entity.AccelerationData;
+import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.entity.projectile.explosive.fireball.Fireball;
 
 /**
- * Represents a Wither Skull.
+ * An {@link ImmutableDataManipulator} representing the {@link Vector3d}
+ * acceleration of a {@link Fireball}.
  */
-public interface WitherSkull extends Fireball, Explosive {
+public interface ImmutableAccelerationData extends ImmutableDataManipulator<ImmutableAccelerationData, AccelerationData> {
+
+    /**
+     * Gets the {@link ImmutableValue} for the current acceleration as a
+     * {@link Vector3d}.
+     *
+     * @return The immutable value for the current acceleration
+     */
+    ImmutableValue<Vector3d> acceleration();
 
 }

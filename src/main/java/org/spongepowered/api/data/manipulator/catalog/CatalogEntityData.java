@@ -70,6 +70,7 @@ import org.spongepowered.api.entity.projectile.Firework;
 import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.entity.projectile.Snowball;
 import org.spongepowered.api.entity.projectile.arrow.Arrow;
+import org.spongepowered.api.entity.projectile.explosive.fireball.Fireball;
 import org.spongepowered.api.entity.vehicle.minecart.Minecart;
 import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -83,6 +84,10 @@ import org.spongepowered.api.world.weather.Weather;
  */
 public final class CatalogEntityData {
 
+    /**
+     * Represents the current acceleration of a {@link Fireball}.
+     */
+    public static final Class<AccelerationData> ACCELERATION_DATA = AccelerationData.class;
     /**
      * The {@link AgeableData} that represents age determining whether an
      * {@link Entity} is a child or an adult. Always exists for
