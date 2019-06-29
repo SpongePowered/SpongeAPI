@@ -96,6 +96,11 @@ public interface ChangeEntityEquipmentEvent extends TargetEntityEvent, TargetInv
     Slot getTargetInventory();
 
     /**
+     * Called when the players equipment is broken or otherwise replaced by an empty item-stack.
+     */
+    interface Break extends ChangeEntityEquipmentEvent, TargetPlayer { }
+
+    /**
      * An event where a {@link Living} entity is targeted.
      */
     interface TargetLiving extends ChangeEntityEquipmentEvent, TargetLivingEvent { }
