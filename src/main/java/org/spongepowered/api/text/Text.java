@@ -29,6 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Iterators;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
@@ -56,6 +57,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
 
@@ -281,6 +285,124 @@ public abstract class Text implements TextRepresentable, DataSerializable, Compa
      */
     public final Text trim() {
         return toBuilder().trim().build();
+    }
+
+    /**
+     * Replaces a pattern in this text with a {@link Text}, preserving
+     * formatting where possible.
+     *
+     * <p>If {@code lossy} is true, this will replace the pattern if this finds
+     * it spanning multiple child {@link Text}s, resulting in a potential loss
+     * of formatting; if false, it will only replace the pattern where it is
+     * contained within one child {@link Text}, to preserve all formatting.</p>
+     *
+     * <p>This method produces a copy with the specified replacements. The
+     * original is not modified.</p>
+     *
+     * @param oldValue The pattern to replace
+     * @param newValue The value to replace with
+     * @param lossy Whether lossy mode is enabled
+     * @return The resulting (copied) text
+     */
+    public Text replace(Pattern oldValue, Text newValue, boolean lossy) {
+        // recursively call the function on child elements and produce something ready to return
+        Text text = this.children.isEmpty() ? this : this.toBuilder().removeAll().append(this.children.stream()
+                .map(child -> child.replace(oldValue, newValue, lossy)).collect(Collectors.toList())).build();
+        String plain = text.toPlainSingle();
+        Matcher matcher = oldValue.matcher(plain);
+        if (!matcher.find()) {
+            if (lossy) {
+                // will assimilating children find it?
+                plain = text.toPlain();
+                matcher = oldValue.matcher(plain);
+                if (matcher.find()) {
+                    // lossy mode required
+                    text = text.toBuilder().removeAll().build();
+                } else {
+                    return text;
+                }
+            } else {
+                return text;
+            }
+        }
+        if (matcher.hitEnd()) {
+            // the entire component matches; no replacement necessary
+            return this.reformat(Text.builder()).append(newValue).append(text.children).build();
+        }
+        Builder builder = Text.builder();
+        // split and interleave
+        List<String> strs = Arrays.asList(oldValue.split(plain, -1));
+        for (String str : Iterables.limit(strs, strs.size() - 1)) {
+            builder.append(Text.of(str));
+            builder.append(newValue);
+        }
+        builder.append(Text.of(strs.get(strs.size() - 1))).append(text.children);
+        return this.reformat(builder).build();
+    }
+
+    /**
+     * Replaces a pattern in this text with a {@link Text}, preserving all
+     * formatting.
+     *
+     * <p>This method produces a copy with the specified replacements. The
+     * original is not modified.</p>
+     *
+     * @param oldValue The pattern to replace
+     * @param newValue The value to replace with
+     * @return The resulting (copied) text
+     */
+    public Text replace(Pattern oldValue, Text newValue) {
+        return this.replace(oldValue, newValue, false);
+    }
+
+    /**
+     * Replaces a string within this text with a {@link Text}, preserving
+     * formatting where possible.
+     *
+     * <p>If {@code lossy} is true, this will replace the pattern if this finds
+     * it spanning multiple child {@link Text}s, resulting in a potential loss
+     * of formatting; if false, it will only replace the pattern where it is
+     * contained within one child {@link Text}, to preserve all formatting.</p>
+     *
+     * <p>This method produces a copy with the specified replacements. The
+     * original is not modified.</p>
+     *
+     * @param oldValue The string to replace
+     * @param newValue The value to replace with
+     * @param lossy Whether lossy mode is enabled
+     * @return The resulting (copied) text
+     */
+    public Text replace(String oldValue, Text newValue, boolean lossy) {
+        return this.replace(Pattern.compile(oldValue, Pattern.LITERAL), newValue, lossy);
+    }
+
+    /**
+     * Replaces a string within this text with a {@link Text}, preserving all
+     * formatting.
+     *
+     * <p>This method produces a copy with the specified replacements. The
+     * original is not modified.</p>
+     *
+     * @param oldValue The string to replace
+     * @param newValue The value to replace with
+     * @return The resulting (copied) text
+     */
+    public Text replace(String oldValue, Text newValue) {
+        return this.replace(oldValue, newValue, false);
+    }
+
+    /**
+     * Applies all of this text's formatting to a builder.
+     *
+     * @param builder The builder to apply to
+     * @return The supplied builder
+     */
+    private Text.Builder reformat(Text.Builder builder) {
+        builder.format(this.format);
+        this.clickAction.ifPresent(builder::onClick);
+        this.shiftClickAction.ifPresent(builder::onShiftClick);
+        this.hoverAction.ifPresent(builder::onHover);
+        return builder;
     }
 
     @Override
