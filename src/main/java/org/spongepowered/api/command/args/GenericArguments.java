@@ -1434,10 +1434,7 @@ public final class GenericArguments {
 
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            if (args.size() == 0) {
-                return Collections.emptyList();
-            }
-            final String last = args.get(args.size() - 1);
+            final String last = (args.size() == 0) ? "" : args.get(args.size() - 1);
 
             return Sponge.getServer().getOnlinePlayers().stream()
                     .filter(p -> p.getName().startsWith(last))
