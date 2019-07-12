@@ -1433,16 +1433,6 @@ public final class GenericArguments {
         }
 
         @Override
-        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            final String last = (args.size() == 0) ? "" : args.get(args.size() - 1);
-
-            return Sponge.getServer().getOnlinePlayers().stream()
-                    .filter(p -> p.getName().startsWith(last))
-                    .map(User::getName)
-                    .collect(Collectors.toList());
-        }
-
-        @Override
         protected Iterable<String> getChoices(CommandSource source) {
             return Sponge.getGame().getServer().getOnlinePlayers().stream()
                 .map(input -> input == null ? null : input.getName())
