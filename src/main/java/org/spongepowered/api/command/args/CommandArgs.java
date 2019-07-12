@@ -165,6 +165,15 @@ public final class CommandArgs {
     }
 
     /**
+     * Get an arg at the specified position.
+     *
+     * @param index index of the element to return
+     */
+    public String get(int index) {
+        return this.args.get(index).getValue();
+    }
+
+    /**
      * Insert an arg as the next arg to be returned by {@link #next()}.
      *
      * @param value The argument to insert
@@ -212,6 +221,15 @@ public final class CommandArgs {
         for (int i = startIdx; i <= endIdx; ++i) {
             this.args.remove(startIdx);
         }
+    }
+
+    /**
+     * Returns the number of arguments
+     *
+     * @return the number of arguments
+     */
+    public int size() {
+        return this.args.size();
     }
 
     /**
