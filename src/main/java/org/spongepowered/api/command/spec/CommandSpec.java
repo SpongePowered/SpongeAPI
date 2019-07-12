@@ -243,7 +243,7 @@ public final class CommandSpec implements CommandCallable {
          */
         public Builder arguments(CommandElement args) {
             checkNotNull(args, "args");
-            this.args = args;
+            this.args = GenericArguments.seq(args);
             return this;
         }
 
