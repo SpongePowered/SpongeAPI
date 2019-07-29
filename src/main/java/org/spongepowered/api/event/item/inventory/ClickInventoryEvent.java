@@ -108,6 +108,11 @@ public interface ClickInventoryEvent extends ChangeInventoryEvent, InteractInven
              * A click with the secondary mouse button dropping a single item from the cursor.
              */
             interface Secondary extends Outside, ClickInventoryEvent.Secondary {}
+
+            /**
+             * A click outside of the creative inventory. The cursor transaction is unknown.
+             */
+            interface Creative extends Outside, ClickInventoryEvent.Creative {}
         }
     }
 
