@@ -109,11 +109,11 @@ public class TextTest {
                 .append(Text.of("."));
 
         assertThat(builder.getChildren().size(), is(4));
-        assertThat(builder.build().toPlainSingle(), is("Hello Sponge!."));
+        assertThat(builder.build().toPlain(), is("Hello Sponge!."));
         builder.remove(2);
         builder.removeLastChild();
         assertThat(builder.getChildren().size(), is(2));
-        assertThat(builder.build().toPlainSingle(), is("Hello Sponge"));
+        assertThat(builder.build().toPlain(), is("Hello Sponge"));
     }
 
     private static Text findText(Text root, String text) {
