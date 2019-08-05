@@ -102,7 +102,8 @@ public class TextTest {
 
     @Test
     public void testRemoveAtIndex() {
-        Text.Builder builder = Text.builder("Hello")
+        Text.Builder builder = Text.builder()
+                .append(Text.of("Hello"))
                 .append(Text.of("Sponge"))
                 .append(Text.of("!"))
                 .append(Text.of("."));
