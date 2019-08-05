@@ -766,6 +766,30 @@ public abstract class Text implements TextRepresentable, DataSerializable, Compa
         }
 
         /**
+         * Removes the last child in this builder.
+         *
+         * @return This text builder
+         * @see #remove(int)
+         */
+        public Builder removeLastChild() {
+            int lastIndex = this.children.size() - 1;
+            this.remove(lastIndex);
+            return this;
+        }
+
+        /**
+         * Removes the child at the given index.
+         *
+         * @param index The index of the child
+         * @return This text builder
+         * @throws IndexOutOfBoundsException if the given index is out of bounds
+         */
+        public Builder remove(int index) {
+            this.children.remove(index);
+            return this;
+        }
+
+        /**
          * Removes the specified {@link Text} from this builder.
          *
          * @param children The texts to remove
