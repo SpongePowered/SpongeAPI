@@ -28,7 +28,7 @@ package org.spongepowered.api.util;
  * Represents a simple tristate.
  */
 public enum Tristate {
-    TRUE(true) {
+    TRUE(true, 1) {
         @Override
         public Tristate and(Tristate other) {
             return other == TRUE || other == UNDEFINED ? TRUE : FALSE;
@@ -39,7 +39,7 @@ public enum Tristate {
             return TRUE;
         }
     },
-    FALSE(false) {
+    FALSE(false, -1) {
         @Override
         public Tristate and(Tristate other) {
             return FALSE;
@@ -50,7 +50,7 @@ public enum Tristate {
             return other == TRUE ? TRUE : FALSE;
         }
     },
-    UNDEFINED(false) {
+    UNDEFINED(false, 0) {
         @Override
         public Tristate and(Tristate other) {
             return other;
@@ -63,9 +63,11 @@ public enum Tristate {
     };
 
     private final boolean val;
+    private final int intVal;
 
-    Tristate(boolean val) {
+    Tristate(boolean val, int intVal) {
         this.val = val;
+        this.intVal = intVal;
     }
 
     /**
@@ -76,6 +78,22 @@ public enum Tristate {
      */
     public static Tristate fromBoolean(boolean val) {
         return val ? TRUE : FALSE;
+    }
+
+    /**
+     * Return the appropriate Tristate for a given integer value
+     *
+     * @param val The int value
+     * @return The appropriate tristate
+     */
+    public static Tristate fromInt(int val) {
+        if (val > 0) {
+            return TRUE;
+        } else if (val < 0) {
+            return FALSE;
+        } else {
+            return UNDEFINED;
+        }
     }
 
     /**
@@ -101,5 +119,14 @@ public enum Tristate {
      */
     public boolean asBoolean() {
         return this.val;
+    }
+
+    /**
+     * Returns the integer representation of this tristate.
+     *
+     * @return The integer tristate representation
+     */
+    public int asInt() {
+        return this.intVal;
     }
 }

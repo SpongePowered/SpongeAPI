@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.service.permission;
 
+import com.google.common.collect.Maps;
 import org.spongepowered.api.service.context.Context;
 import org.spongepowered.api.util.Tristate;
 
@@ -68,7 +69,9 @@ public interface SubjectData {
      *
      * @return an immutable copy of the mappings between contexts and lists of
      *         permissions containing every permission registered
+     * @deprecated Use {@link #getAllPermissionValues()}
      */
+    @Deprecated
     Map<Set<Context>, Map<String, Boolean>> getAllPermissions();
 
     /**
@@ -79,8 +82,44 @@ public interface SubjectData {
      *
      * @param contexts The particular context combination to check
      * @return Any permissions set
+     * @deprecated Use {@link #getPermissionValues(Set)} instead
      */
+    @Deprecated
     Map<String, Boolean> getPermissions(Set<Context> contexts);
+
+    /**
+     * Return all permissions associated with this data object.
+     *
+     * @return an immutable copy of the mappings between contexts and lists of
+     *         permissions containing every permission registered
+     */
+    default Map<Set<Context>, Map<String, Integer>> getAllPermissionValues() {
+        return Maps.transformValues(getAllPermissions(), innerMap -> Maps.transformValues(innerMap, b -> {
+            if (b == null) {
+                return 0;
+            }
+            return b ? 1 : -1;
+        }));
+
+    }
+
+    /**
+     * Returns the list of permissions set for the given context.
+     *
+     * <p>This list is immutable and is not a live view. If no permissions have
+     * been set, it returns an empty list.</p>
+     *
+     * @param contexts The particular context combination to check
+     * @return Any permissions set
+     */
+    default Map<String, Integer> getPermissionValues(Set<Context> contexts) {
+        return Maps.transformValues(getPermissions(contexts), b -> {
+            if (b == null) {
+                return 0;
+            }
+            return b ? 1 : -1;
+        });
+    }
 
     /**
      * Sets a permission to a given value.
@@ -95,8 +134,31 @@ public interface SubjectData {
      * @param permission The permission to set
      * @param value The value to set this permission to
      * @return Whether the operation was successful
+     * @deprecated Use {@link #setPermission(Set, String, int)} instead
      */
+    @Deprecated
     CompletableFuture<Boolean> setPermission(Set<Context> contexts, String permission, Tristate value);
+
+    /**
+     * Sets a permission to a given value.
+     *
+     * <p>A higher absolute value permission will take precedence over any lower-valued permission, even when the higher
+     * weight is less specific. For example, a higher weighted {@code myplugin.eat=5} will take precedence over a
+     * setting of {@code myplugin.eat.pear=-1}. When in doubt, permissions should generally be set with the lowest weight
+     * possible. Setting value as {@code 0} unsets the permission.</p>
+     *
+     * <p>An empty set of contexts applies this permission to the global
+     * context.</p>
+     *
+     *  @param contexts The particular combination of contexts to set this
+     *                  permission in
+     * @param permission The permission to set
+     * @param value The value to set this permission to. Positive values evaluate to true, negative to false, or zero for undefined
+     * @return Whether the operation was successful
+     */
+    default CompletableFuture<Boolean> setPermission(Set<Context> contexts, String permission, int value) {
+        return setPermission(contexts, permission, Tristate.fromInt(value));
+    }
 
     /**
      * Clear all permissions set in any context.

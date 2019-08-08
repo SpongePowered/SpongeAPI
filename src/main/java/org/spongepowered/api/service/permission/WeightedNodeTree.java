@@ -44,20 +44,18 @@ import java.util.Map;
  *     <li>Keys are case-insensitive.</li>
  *     <li>Segments of nodes are split by the '.' character</li>
  * </ul>
- * @deprecated See {@link WeightedNodeTree}
  */
-@Deprecated
-public class NodeTree {
+public class WeightedNodeTree {
 
     private static final Splitter NODE_SPLITTER = Splitter.on('.');
     private final Node rootNode;
 
-    private NodeTree(Tristate value) {
+    private WeightedNodeTree(int value) {
         this.rootNode = new Node(new HashMap<>());
         this.rootNode.value = value;
     }
 
-    private NodeTree(Node rootNode) {
+    private WeightedNodeTree(Node rootNode) {
         this.rootNode = rootNode;
     }
 
@@ -68,8 +66,8 @@ public class NodeTree {
      * @param values The values to set
      * @return The new node tree
      */
-    public static NodeTree of(Map<String, Boolean> values) {
-        return of(values, Tristate.UNDEFINED);
+    public static WeightedNodeTree of(Map<String, Integer> values) {
+        return of(values, 0);
     }
 
     /**
@@ -80,9 +78,9 @@ public class NodeTree {
      * @param defaultValue The fallback value for any completely undefined nodes
      * @return The newly created node tree
      */
-    public static NodeTree of(Map<String, Boolean> values, Tristate defaultValue) {
-        NodeTree newTree = new NodeTree(defaultValue);
-        for (Map.Entry<String, Boolean> value : values.entrySet()) {
+    public static WeightedNodeTree of(Map<String, Integer> values, int defaultValue) {
+        WeightedNodeTree newTree = new WeightedNodeTree(defaultValue);
+        for (Map.Entry<String, Integer> value : values.entrySet()) {
             Iterable<String> parts = NODE_SPLITTER.split(value.getKey().toLowerCase());
             Node currentNode = newTree.rootNode;
             for (String part : parts) {
@@ -94,7 +92,7 @@ public class NodeTree {
                     currentNode = newNode;
                 }
             }
-            currentNode.value = Tristate.fromBoolean(value.getValue());
+            currentNode.value = value.getValue();
         }
         return newTree;
     }
@@ -106,16 +104,16 @@ public class NodeTree {
      * @param node The path to get the node value at
      * @return The tristate value for the given node
      */
-    public Tristate get(String node) {
+    public int get(String node) {
         Iterable<String> parts = NODE_SPLITTER.split(node.toLowerCase());
         Node currentNode = this.rootNode;
-        Tristate lastUndefinedVal = Tristate.UNDEFINED;
+        int lastUndefinedVal = 0;
         for (String str : parts) {
             if (!currentNode.children.containsKey(str)) {
                 break;
             }
             currentNode = currentNode.children.get(str);
-            if (currentNode.value != Tristate.UNDEFINED) {
+            if (Math.abs(currentNode.value) >= Math.abs(lastUndefinedVal)) {
                 lastUndefinedVal = currentNode.value;
             }
         }
@@ -128,17 +126,17 @@ public class NodeTree {
      *
      * @return An immutable map representation of the nodes defined in this tree
      */
-    public Map<String, Boolean> asMap() {
-        ImmutableMap.Builder<String, Boolean> ret = ImmutableMap.builder();
+    public Map<String, Integer> asMap() {
+        ImmutableMap.Builder<String, Integer> ret = ImmutableMap.builder();
         for (Map.Entry<String, Node> ent : this.rootNode.children.entrySet()) {
             populateMap(ret, ent.getKey(), ent.getValue());
         }
         return ret.build();
     }
 
-    private void populateMap(ImmutableMap.Builder<String, Boolean> values, String prefix, Node currentNode) {
-        if (currentNode.value != Tristate.UNDEFINED) {
-            values.put(prefix, currentNode.value.asBoolean());
+    private void populateMap(ImmutableMap.Builder<String, Integer> values, String prefix, Node currentNode) {
+        if (currentNode.value != 0) {
+            values.put(prefix, currentNode.value);
         }
         for (Map.Entry<String, Node> ent : currentNode.children.entrySet()) {
             populateMap(values, prefix + '.' + ent.getKey(), ent.getValue());
@@ -152,13 +150,13 @@ public class NodeTree {
      * @param value The value to change, or UNDEFINED to remove
      * @return The new, modified node tree
      */
-    public NodeTree withValue(String node, Tristate value) {
+    public WeightedNodeTree withValue(String node, int value) {
         Iterable<String> parts = NODE_SPLITTER.split(node.toLowerCase());
         Node newRoot = new Node(new HashMap<>(this.rootNode.children));
         Node newPtr = newRoot;
         Node currentPtr = this.rootNode;
 
-        newPtr.value = currentPtr == null ? Tristate.UNDEFINED : currentPtr.value;
+        newPtr.value = currentPtr == null ? 0 : currentPtr.value;
         for (String part : parts) {
             Node oldChild = currentPtr == null ? null : currentPtr.children.get(part);
             Node newChild = new Node(oldChild != null ? new HashMap<>(oldChild.children) : new HashMap<>());
@@ -167,7 +165,7 @@ public class NodeTree {
             newPtr = newChild;
         }
         newPtr.value = value;
-        return new NodeTree(newRoot);
+        return new WeightedNodeTree(newRoot);
     }
 
     /**
@@ -176,9 +174,9 @@ public class NodeTree {
      * @param values The values to set
      * @return The new node tree
      */
-    public NodeTree withAll(Map<String, Tristate> values) {
-        NodeTree ret = this;
-        for (Map.Entry<String, Tristate> ent : values.entrySet()) {
+    public WeightedNodeTree withAll(Map<String, Integer> values) {
+        WeightedNodeTree ret = this;
+        for (Map.Entry<String, Integer> ent : values.entrySet()) {
             ret = ret.withValue(ent.getKey(), ent.getValue());
         }
         return ret;
@@ -187,7 +185,7 @@ public class NodeTree {
     private static class Node {
 
         final Map<String, Node> children;
-        Tristate value = Tristate.UNDEFINED;
+        int value = 0;
 
         Node(Map<String, Node> children) {
             this.children = children;

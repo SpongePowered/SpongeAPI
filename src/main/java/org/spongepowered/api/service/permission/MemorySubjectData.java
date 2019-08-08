@@ -53,7 +53,7 @@ public class MemorySubjectData implements SubjectData {
 
     private final PermissionService service;
     private final ConcurrentMap<Set<Context>, Map<String, String>> options = Maps.newConcurrentMap();
-    private final ConcurrentMap<Set<Context>, NodeTree> permissions = Maps.newConcurrentMap();
+    private final ConcurrentMap<Set<Context>, WeightedNodeTree> permissions = Maps.newConcurrentMap();
     private final ConcurrentMap<Set<Context>, List<Map.Entry<String, String>>> parents = Maps.newConcurrentMap();
 
     /**
@@ -70,7 +70,22 @@ public class MemorySubjectData implements SubjectData {
     @Override
     public Map<Set<Context>, Map<String, Boolean>> getAllPermissions() {
         ImmutableMap.Builder<Set<Context>, Map<String, Boolean>> ret = ImmutableMap.builder();
-        for (Map.Entry<Set<Context>, NodeTree> ent : this.permissions.entrySet()) {
+        for (Map.Entry<Set<Context>, WeightedNodeTree> ent : this.permissions.entrySet()) {
+            ret.put(ent.getKey(), Maps.transformValues(ent.getValue().asMap(), x -> x > 0));
+        }
+        return ret.build();
+    }
+
+    @Override
+    public Map<String, Boolean> getPermissions(Set<Context> contexts) {
+        WeightedNodeTree perms = this.permissions.get(contexts);
+        return perms == null ? Collections.emptyMap() : Maps.transformValues(perms.asMap(), x -> x > 0);
+    }
+
+    @Override
+    public Map<Set<Context>, Map<String, Integer>> getAllPermissionValues() {
+        ImmutableMap.Builder<Set<Context>, Map<String, Integer>> ret = ImmutableMap.builder();
+        for (Map.Entry<Set<Context>, WeightedNodeTree> ent : this.permissions.entrySet()) {
             ret.put(ent.getKey(), ent.getValue().asMap());
         }
         return ret.build();
@@ -79,33 +94,53 @@ public class MemorySubjectData implements SubjectData {
     /**
      * Gets the calculated node tree representation of the permissions for this
      * subject data instance. If no data is present for the given context,
-     * returns null.
+     * returns an empty tree.
      *
      * @param contexts The contexts to get a node tree for
      * @return The node tree
      */
+    @Deprecated
     public NodeTree getNodeTree(Set<Context> contexts) {
-        NodeTree perms = this.permissions.get(contexts);
-        return perms == null ? NodeTree.of(Collections.emptyMap()) : perms;
+        WeightedNodeTree perms = this.permissions.get(contexts);
+        return perms == null ? NodeTree.of(Collections.emptyMap())
+                : NodeTree.of(Maps.transformValues(perms.asMap(), x -> x > 0));
+    }
+
+    /**
+     * Gets the calculated node tree representation of the permissions for this
+     * subject data instance. If no data is present for the given context,
+     * returns an empty tree.
+     *
+     * @param contexts The contexts to get a node tree for
+     * @return The node tree
+     */
+    public WeightedNodeTree getWeightedNodeTree(Set<Context> contexts) {
+        WeightedNodeTree perms = this.permissions.get(contexts);
+        return perms == null ? WeightedNodeTree.of(Collections.emptyMap()) : perms;
     }
 
     @Override
-    public Map<String, Boolean> getPermissions(Set<Context> contexts) {
-        NodeTree perms = this.permissions.get(contexts);
+    public Map<String, Integer> getPermissionValues(Set<Context> contexts) {
+        WeightedNodeTree perms = this.permissions.get(contexts);
         return perms == null ? Collections.emptyMap() : perms.asMap();
     }
 
     @Override
     public CompletableFuture<Boolean> setPermission(Set<Context> contexts, String permission, Tristate value) {
+        return setPermission(contexts, permission, value.asInt());
+    }
+
+    @Override
+    public CompletableFuture<Boolean> setPermission(Set<Context> contexts, String permission, int value) {
         contexts = ImmutableSet.copyOf(contexts);
         while (true) {
-            NodeTree oldTree = this.permissions.get(contexts);
+            WeightedNodeTree oldTree = this.permissions.get(contexts);
             if (oldTree != null && oldTree.get(permission) == value) {
                 return CompletableFuture.completedFuture(false);
             }
 
-            if (oldTree == null && value != Tristate.UNDEFINED) {
-                if (this.permissions.putIfAbsent(contexts, NodeTree.of(ImmutableMap.of(permission, value.asBoolean()))) == null) {
+            if (oldTree == null && value != 0) {
+                if (this.permissions.putIfAbsent(contexts, WeightedNodeTree.of(ImmutableMap.of(permission, value))) == null) {
                     break;
                 }
             } else {

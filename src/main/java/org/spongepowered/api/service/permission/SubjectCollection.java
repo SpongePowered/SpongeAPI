@@ -25,6 +25,7 @@
 package org.spongepowered.api.service.permission;
 
 import com.google.common.base.Preconditions;
+import com.google.common.collect.Maps;
 import org.spongepowered.api.service.context.Context;
 
 import java.util.Collection;
@@ -250,7 +251,9 @@ public interface SubjectCollection {
      * @param permission The permission to check
      * @return A reference to any subject known to have this permission
      *         set, and the value this permission is set to
+     * @deprecated See {@link #getAllWithPermissionValue(String)}
      */
+    @Deprecated
     CompletableFuture<Map<SubjectReference, Boolean>> getAllWithPermission(String permission);
 
     /**
@@ -265,7 +268,9 @@ public interface SubjectCollection {
      * @param permission The permission to check
      * @return A reference to any subject known to have this permission
      *         set, and the value this permission is set to
+     * @deprecated See {@link #getAllWithPermissionValue(Set, String)}
      */
+    @Deprecated
     CompletableFuture<Map<SubjectReference, Boolean>> getAllWithPermission(Set<Context> contexts, String permission);
 
     /**
@@ -284,7 +289,9 @@ public interface SubjectCollection {
      * @param permission The permission to check
      * @return A map containing any subject known to have this permission set,
      *         and the value this permission is set to
+     * @deprecated See {@link #getLoadedWithPermissionValue(String)}
      */
+    @Deprecated
     Map<Subject, Boolean> getLoadedWithPermission(String permission);
 
     /**
@@ -298,8 +305,86 @@ public interface SubjectCollection {
      * @param permission The permission to check
      * @return A map containing any subject known to have this permission set,
      *         and the value this permission is set to
+     * @deprecated See {@link #getLoadedWithPermissionValue(Set, String)}
      */
+    @Deprecated
     Map<Subject, Boolean> getLoadedWithPermission(Set<Context> contexts, String permission);
+
+    /**
+     * Return the identifiers of all known subjects with the given permission
+     * set.
+     *
+     * <p>This method <p>DOES NOT</p> consider inheritance, and will only query
+     * the data set to the subjects {@link Subject#getSubjectData()}. Transient
+     * data is not considered.</p>
+     *
+     * <p>As no context is passed, it is up to the implementation to decide
+     * which contexts to use. When available,
+     * {@link Subject#getActiveContexts()} is used for the lookup. Otherwise, it
+     * is likely that {@link SubjectData#GLOBAL_CONTEXT} will be
+     * used.</p>
+     *
+     * @param permission The permission to check
+     * @return A reference to any subject known to have this permission
+     *         set, and the value this permission is set to
+     */
+    default CompletableFuture<Map<SubjectReference, Integer>> getAllWithPermissionValue(String permission) {
+        return getAllWithPermission(permission).thenApply(map -> Maps.transformValues(map, val -> val ? 1 : -1));
+    }
+
+    /**
+     * Return the identifiers of all known subjects with the given permission
+     * set.
+     *
+     * <p>This method <p>DOES NOT</p> consider inheritance, and will only query
+     * the data set to the subjects {@link Subject#getSubjectData()}. Transient
+     * data is not considered.</p>
+     *
+     * @param contexts The context combination to check for permissions in
+     * @param permission The permission to check
+     * @return A reference to any subject known to have this permission
+     *         set, and the value this permission is set to
+     */
+    default CompletableFuture<Map<SubjectReference, Integer>> getAllWithPermissionValue(Set<Context> contexts, String permission) {
+        return getAllWithPermission(contexts, permission).thenApply(map -> Maps.transformValues(map, val -> val ? 1 : -1));
+    }
+
+    /**
+     * Return all loaded subjects with the given permission set.
+     *
+     * <p>This method <p>DOES NOT</p> consider inheritance, and will only query
+     * the data set to the subjects {@link Subject#getSubjectData()}. Transient
+     * data is not considered.</p>
+     *
+     * <p>As no context is passed, it is up to the implementation to decide
+     * which contexts to use. When available,
+     * {@link Subject#getActiveContexts()} is used for the lookup. Otherwise, it
+     * is likely that {@link SubjectData#GLOBAL_CONTEXT} will be
+     * used.</p>
+     *
+     * @param permission The permission to check
+     * @return A map containing any subject known to have this permission set,
+     *         and the value this permission is set to
+     */
+    default Map<Subject, Integer> getLoadedWithPermissionValue(String permission) {
+        return Maps.transformValues(getLoadedWithPermission(permission), val -> val ? 1 : -1);
+    }
+
+    /**
+     * Return all loaded subjects with the given permission set.
+     *
+     * <p>This method <p>DOES NOT</p> consider inheritance, and will only query
+     * the data set to the subjects {@link Subject#getSubjectData()}. Transient
+     * data is not considered.</p>
+     *
+     * @param contexts The context combination to check for permissions in
+     * @param permission The permission to check
+     * @return A map containing any subject known to have this permission set,
+     *         and the value this permission is set to
+     */
+    default Map<Subject, Integer> getLoadedWithPermissionValue(Set<Context> contexts, String permission) {
+        return Maps.transformValues(getLoadedWithPermission(contexts, permission), val -> val ? 1 : -1);
+    }
 
     /**
      * Gets the subject holding data that is applied by default to all
@@ -316,10 +401,6 @@ public interface SubjectCollection {
      * <p>It is also recommended to use
      * {@link Subject#getTransientSubjectData()} where possible to avoid
      * persisting unnecessary data.</p>
-     *
-     * <p>Assigning default permissions should be used sparingly, and by
-     * convention, only in situations where "default" game behaviour is restored
-     * by granting a certain permission.</p>
      *
      * @return The subject holding defaults for this collection
      */

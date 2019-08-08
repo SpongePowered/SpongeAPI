@@ -27,7 +27,6 @@ package org.spongepowered.api.service.permission;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-import org.spongepowered.api.util.Tristate;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,75 +35,75 @@ public class NodeTreeTest {
 
     @Test
     public void testAsMap() {
-        final Map<String, Boolean> testPermissions = new HashMap<>();
-        testPermissions.put("generate.rainbow", true);
-        testPermissions.put("generate.sunset", false);
-        testPermissions.put("generate", true);
-        testPermissions.put("generate.thunderstorm.explosive", false);
+        final Map<String, Integer> testPermissions = new HashMap<>();
+        testPermissions.put("generate.rainbow", 1);
+        testPermissions.put("generate.sunset", -1);
+        testPermissions.put("generate", 1);
+        testPermissions.put("generate.thunderstorm.explosive", -1);
 
-        NodeTree oldTree = NodeTree.of(testPermissions);
+        WeightedNodeTree oldTree = WeightedNodeTree.of(testPermissions);
 
         assertEquals(testPermissions, oldTree.asMap());
     }
 
     @Test
-    public void testWithValue() throws Exception {
-        final Map<String, Boolean> testPermissions = new HashMap<>();
-        testPermissions.put("generate.rainbow", true);
-        testPermissions.put("generate.sunset", false);
-        testPermissions.put("generate", true);
-        testPermissions.put("generate.thunderstorm.explosive", false);
+    public void testWithValue() {
+        final Map<String, Integer> testPermissions = new HashMap<>();
+        testPermissions.put("generate.rainbow", 1);
+        testPermissions.put("generate.sunset", -1);
+        testPermissions.put("generate", 1);
+        testPermissions.put("generate.thunderstorm.explosive", -1);
 
-        NodeTree oldTree = NodeTree.of(testPermissions);
-        assertEquals(Tristate.FALSE, oldTree.get("generate.thunderstorm.explosive"));
-        NodeTree newTree = oldTree.withValue("generate.thunderstorm.explosive", Tristate.TRUE);
-        assertEquals(Tristate.FALSE, oldTree.get("generate.thunderstorm.explosive"));
-        assertEquals(Tristate.TRUE, newTree.get("generate.thunderstorm.explosive"));
+        WeightedNodeTree oldTree = WeightedNodeTree.of(testPermissions);
+        assertEquals(-1, oldTree.get("generate.thunderstorm.explosive"));
+        WeightedNodeTree newTree = oldTree.withValue("generate.thunderstorm.explosive", 1);
+        assertEquals(-1, oldTree.get("generate.thunderstorm.explosive"));
+        assertEquals(1, newTree.get("generate.thunderstorm.explosive"));
     }
 
     @Test
-    public void testWithAll() throws Exception {
-        final Map<String, Boolean> testPermissions = new HashMap<>();
-        testPermissions.put("generate.rainbow", true);
-        testPermissions.put("generate.sunset", false);
-        testPermissions.put("generate", true);
-        testPermissions.put("generate.thunderstorm.explosive", false);
+    public void testWithAll() {
+        final Map<String, Integer> testPermissions = new HashMap<>();
+        testPermissions.put("generate.rainbow", 1);
+        testPermissions.put("generate.sunset", -1);
+        testPermissions.put("generate", 1);
+        testPermissions.put("generate.thunderstorm.explosive", -1);
 
-        NodeTree oldTree = NodeTree.of(testPermissions);
+        WeightedNodeTree oldTree = WeightedNodeTree.of(testPermissions);
 
-        final Map<String, Tristate> newPermissions = new HashMap<>();
-        newPermissions.put("generate.sunset.red", Tristate.TRUE);
-        newPermissions.put("generate.thunderstorm.explosive", Tristate.UNDEFINED);
-        newPermissions.put("something.new", Tristate.FALSE);
+        final Map<String, Integer> newPermissions = new HashMap<>();
+        newPermissions.put("generate.sunset.red", 1);
+        newPermissions.put("generate.thunderstorm.explosive", 0);
+        newPermissions.put("something.new", -1);
 
-        NodeTree newTree = oldTree.withAll(newPermissions);
+        WeightedNodeTree newTree = oldTree.withAll(newPermissions);
 
-        assertEquals(Tristate.FALSE, oldTree.get("generate.sunset.red"));
-        assertEquals(Tristate.TRUE, newTree.get("generate.sunset.red"));
+        assertEquals(-1, oldTree.get("generate.sunset.red"));
+        assertEquals(1, newTree.get("generate.sunset.red"));
 
-        assertEquals(Tristate.FALSE, oldTree.get("generate.thunderstorm.explosive"));
-        assertEquals(Tristate.UNDEFINED, newTree.get("generate.thunderstorm.explosive"));
+        assertEquals(-1, oldTree.get("generate.thunderstorm.explosive"));
+        assertEquals(0, newTree.get("generate.thunderstorm.explosive"));
 
-        assertEquals(Tristate.UNDEFINED, oldTree.get("something.new"));
-        assertEquals(Tristate.FALSE, newTree.get("something.new"));
+        assertEquals(0, oldTree.get("something.new"));
+        assertEquals(-1, newTree.get("something.new"));
     }
 
     @Test
-    public void testCreateFromValues() throws Exception {
-        final Map<String, Boolean> testPermissions = new HashMap<>();
-        testPermissions.put("generate.rainbow", true);
-        testPermissions.put("generate.sunset", false);
-        testPermissions.put("generate", true);
-        testPermissions.put("generate.thunderstorm.explosive", false);
+    public void testCreateFromValues() {
+        final Map<String, Integer> testPermissions = new HashMap<>();
+        testPermissions.put("generate.rainbow", 1);
+        testPermissions.put("generate.sunset", -1);
+        testPermissions.put("generate", 1);
+        testPermissions.put("generate.thunderstorm.explosive", -1);
 
-        NodeTree nodes = NodeTree.of(testPermissions, Tristate.UNDEFINED);
+        WeightedNodeTree nodes = WeightedNodeTree.of(testPermissions, 0);
 
-        assertEquals(Tristate.TRUE, nodes.get("generate.rainbow"));
-        assertEquals(Tristate.TRUE, nodes.get("generate.rainbow.double"));
-        assertEquals(Tristate.FALSE, nodes.get("generate.sunset"));
-        assertEquals(Tristate.FALSE, nodes.get("generate.sunset.east"));
-        assertEquals(Tristate.TRUE, nodes.get("generate.thunderstorm"));
-        assertEquals(Tristate.FALSE, nodes.get("generate.thunderstorm.explosive"));
-        assertEquals(Tristate.UNDEFINED, nodes.get("random.perm"));
+        assertEquals(1, nodes.get("generate.rainbow"));
+        assertEquals(1, nodes.get("generate.rainbow.double"));
+        assertEquals(-1, nodes.get("generate.sunset"));
+        assertEquals(-1, nodes.get("generate.sunset.east"));
+        assertEquals(1, nodes.get("generate.thunderstorm"));
+        assertEquals(-1, nodes.get("generate.thunderstorm.explosive"));
+        assertEquals(0, nodes.get("random.perm"));
     }
 }

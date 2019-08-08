@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.service.permission;
 
+import com.google.common.collect.Maps;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.text.Text;
 
@@ -160,7 +161,9 @@ public interface PermissionDescription {
      * @return A reference to any subject known to have this permission
      *         set, and the value this permission is set to
      * @see SubjectCollection#getAllWithPermission(String)
+     * @deprecated See {@link #findAssignedSubjectValues(String)}
      */
+    @Deprecated
     CompletableFuture<Map<SubjectReference, Boolean>> findAssignedSubjects(String collectionIdentifier);
 
     /**
@@ -180,8 +183,51 @@ public interface PermissionDescription {
      * @param collectionIdentifier The subject collection to query
      * @return An immutable map of subjects that have this permission set
      * @see SubjectCollection#getLoadedWithPermission(String)
+     * @deprecated See {@link #getAssignedSubjectValues(String)}
      */
+    @Deprecated
     Map<Subject, Boolean> getAssignedSubjects(String collectionIdentifier);
+
+    /**
+     * Gets all subjects that have this permission set in the given collection.
+     *
+     * <p>If you want to know to which role-templates this permission is
+     * assigned, use {@link PermissionService#SUBJECTS_ROLE_TEMPLATE}.
+     *
+     * <p>This method is equivalent to calling
+     * {@link SubjectCollection#getAllWithPermission(String)} for the given
+     * collection, using {@link #getId()} as the permission.</p>
+     *
+     * @param collectionIdentifier The subject collection to query
+     * @return A reference to any subject known to have this permission
+     *         set, and the value this permission is set to
+     * @see SubjectCollection#getAllWithPermission(String)
+     */
+    default CompletableFuture<Map<SubjectReference, Integer>> findAssignedSubjectValues(String collectionIdentifier) {
+        return findAssignedSubjects(collectionIdentifier).thenApply(map -> Maps.transformValues(map, x -> x ? 1 : -1));
+    }
+
+    /**
+     * Gets all loaded subjects that have this permission set in the given
+     * collection.
+     *
+     * <p>If you want to know to which role-templates this permission is
+     * assigned, use {@link PermissionService#SUBJECTS_ROLE_TEMPLATE}.</p>
+     *
+     * <p>This method is equivalent to calling
+     * {@link SubjectCollection#getLoadedWithPermission(String)} for the given
+     * collection, using {@link #getId()} as the permission.</p>
+     *
+     * <p>This method will return an empty map if the given collection is not
+     * loaded or does not exist.</p>
+     *
+     * @param collectionIdentifier The subject collection to query
+     * @return An immutable map of subjects that have this permission set
+     * @see SubjectCollection#getLoadedWithPermission(String)
+     */
+    default Map<Subject, Integer> getAssignedSubjectValues(String collectionIdentifier) {
+        return Maps.transformValues(getAssignedSubjects(collectionIdentifier), x -> x ? 1 : -1);
+    }
 
     /**
      * A builder for permission descriptions.
@@ -233,7 +279,33 @@ public interface PermissionDescription {
          * @param value The value to to assign
          * @return This builder for chaining
          */
+        @Deprecated
         Builder assign(String role, boolean value);
+
+        /**
+         * Assigns this permission to the given role-template {@link Subject}.
+         *
+         * <p>If the given subject does not exist it will be created. Permission
+         * templates should not be assigned to regular subjects.</p>
+         *
+         * <p>It is recommended to use the standard role suggestions expressed
+         * as static parameters in {@link PermissionDescription}.</p>
+         *
+         * <p>Do not assign a permission to user, staff and admin at the same
+         * time but solve this with subject inheritance if possible.</p>
+         *
+         * <p><b>Note:</b> The permissions are only assigned during
+         * {@link #register()}.</p>
+         *
+         * @param role The role-template to assign the permission to. See
+         *             constants in {@link PermissionDescription} for common
+         *             roles (not exhaustive).
+         * @param value The value to to assign
+         * @return This builder for chaining
+         */
+        default Builder assign(String role, int value) {
+            return assign(role, value > 0);
+        }
 
         /**
          * Creates and registers a new {@link PermissionDescription} instance

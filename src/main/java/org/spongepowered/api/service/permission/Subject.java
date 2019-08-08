@@ -165,7 +165,7 @@ public interface Subject extends Contextual {
      * @return True if permission is granted
      */
     default boolean hasPermission(Set<Context> contexts, String permission) {
-        return getPermissionValue(contexts, permission).asBoolean();
+        return getPermission(contexts, permission) > 0;
     }
 
     /**
@@ -200,8 +200,53 @@ public interface Subject extends Contextual {
      * @param contexts The contexts to check for permissions in
      * @param permission The permission to check
      * @return The tristate result of the check
+     * @deprecated We are moving to integer weights, see {@link #getPermission(Set, String)}
      */
-    Tristate getPermissionValue(Set<Context> contexts, String permission);
+    @Deprecated
+    default Tristate getPermissionValue(Set<Context> contexts, String permission) {
+        int value = getPermission(contexts, permission);
+        if (value > 0) {
+            return Tristate.TRUE;
+        } else if (value < 0) {
+            return Tristate.FALSE;
+        } else {
+            return Tristate.UNDEFINED;
+        }
+    }
+
+    /**
+     * Returns the calculated value set for a given permission.
+     *
+     * <p>A higher absolute value permission will take precedence over any lower-valued permission, even when the higher
+     * weight is less specific. For example, a higher weighted {@code myplugin.eat=5} (even from a parent) will take precedence
+     * over a permission of {@code myplugin.eat.pear=-1}.</p>
+     *
+     * <p>It is expected that this method will also account for values
+     * inherited from parent subjects, as well as permission nodes inherited
+     * implicitly from a more generic level.</p>
+     *
+     * <p>Additionally, the defaults defined the {@link SubjectCollection}
+     * that holds this subject, as well as defaults defined in
+     * {@link PermissionService#getDefaults()} should be considered for this
+     * lookup.</p>
+     *
+     * <p>This method is likely to be called frequently, so it is desirable
+     * that implementations cache the results to method calls.</p>
+     *
+     * @param contexts The contexts to check for permissions in
+     * @param permission The permission to check
+     * @return The result of the check. Positive numbers evaluate to true, negative ones to false, and zero to undefined
+     */
+    default int getPermission(Set<Context> contexts, String permission) {
+        switch (getPermissionValue(contexts, permission)) {
+            case TRUE:
+                return 1;
+            case FALSE:
+                return -1;
+            default: // or UNDEFINED
+                return 0;
+        }
+    }
 
     /**
      * Check if this subject is a child of the given parent in the subject's
