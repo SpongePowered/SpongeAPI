@@ -108,6 +108,13 @@ public final class Keys {
     public static final Key<Value<Double>> ABSORPTION = DummyObjectProvider.createExtendedFor(Key.class, "ABSORPTION");
 
     /**
+     * Represents the {@link Key} for the acceleration of a {@link Fireball}.
+     *
+     * @see AccelerationData#acceleration()
+     */
+    public static final Key<Value<Vector3d>> ACCELERATION = DummyObjectProvider.createExtendedFor(Key.class, "ACCELERATION");
+
+    /**
      * Represents the {@link Key} for the item a {@link Living} is using.
      * For example a player eating a food or blocking with a shield.
      *
