@@ -25,6 +25,9 @@
 package org.spongepowered.api.event.sound;
 
 import org.spongepowered.api.block.tileentity.Jukebox;
+import org.spongepowered.api.block.tileentity.Note;
+import org.spongepowered.api.data.type.InstrumentType;
+import org.spongepowered.api.data.type.NotePitch;
 import org.spongepowered.api.effect.sound.SoundCategory;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.effect.sound.record.RecordType;
@@ -110,6 +113,16 @@ public interface PlaySoundEvent extends Event, Cancellable {
     interface AtEntity extends PlaySoundEvent {
 
         Optional<Player> getPlayer();
+
+    }
+
+    interface NoteBlock extends PlaySoundEvent {
+
+        Note getNote();
+
+        InstrumentType getInstrument();
+
+        NotePitch getNotePitch();
 
     }
 
