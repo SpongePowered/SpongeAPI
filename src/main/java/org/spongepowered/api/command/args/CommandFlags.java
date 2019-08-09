@@ -418,13 +418,17 @@ public final class CommandFlags extends CommandElement {
 
         /**
          * If this is true, any long flag (--) will be accepted and added as a
-         * flag.
+         * flag. If false, unknown long flags are considered errors.
          *
          * @param acceptsArbitraryLongFlags Whether any long flag is accepted
          * @return this
+         *
+         * @deprecated in favor of
+         *         {@link #setUnknownLongFlagBehavior(UnknownFlagBehavior)}.
          */
+        @Deprecated
         public Builder setAcceptsArbitraryLongFlags(boolean acceptsArbitraryLongFlags) {
-            setUnknownLongFlagBehavior(UnknownFlagBehavior.ACCEPT_NONVALUE);
+            setUnknownLongFlagBehavior(acceptsArbitraryLongFlags ? UnknownFlagBehavior.ACCEPT_NONVALUE : UnknownFlagBehavior.ERROR);
             return this;
         }
 
