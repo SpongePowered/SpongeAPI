@@ -504,14 +504,12 @@ public final class CommandFlags extends CommandElement {
         @Override
         public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
             String key = getUntranslatedKey();
-            if (key != null) {
-                context.addFlag(key);
-                if (valueElement != null) {
-                    valueElement.parse(source, args, context);
-                } else {
-                    context.putArg(key, true);
-                }
+            if (valueElement != null) {
+                valueElement.parse(source, args, context);
+            } else {
+                context.putArg(key, true);
             }
+            context.addFlag(key);
         }
 
         @Nullable
@@ -522,7 +520,7 @@ public final class CommandFlags extends CommandElement {
 
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            return Collections.emptyList();
+            return valueElement != null ? valueElement.complete(src, args, context) : Collections.emptyList();
         }
 
     }

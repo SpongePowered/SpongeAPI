@@ -282,7 +282,7 @@ public final class CommandContext {
      *      {@link CommandContext}
      */
     public Snapshot createSnapshot() {
-        return new Snapshot(this.parsedArgs);
+        return new Snapshot(this.parsedArgs, this.definedFlags);
     }
 
     /**
@@ -294,6 +294,8 @@ public final class CommandContext {
     public void applySnapshot(Snapshot snapshot) {
         this.parsedArgs.clear();
         this.parsedArgs.putAll(snapshot.args);
+        this.definedFlags.clear();
+        this.definedFlags.addAll(snapshot.flags);
     }
 
     /**
@@ -303,9 +305,11 @@ public final class CommandContext {
     public final class Snapshot {
 
         final Multimap<String, Object> args;
+        final Set<String> flags;
 
-        Snapshot(Multimap<String, Object> args) {
+        Snapshot(Multimap<String, Object> args, Set<String> flags) {
             this.args = ArrayListMultimap.create(args);
+            this.flags = Sets.newHashSet(flags);
         }
 
     }
