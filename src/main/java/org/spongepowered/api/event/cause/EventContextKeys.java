@@ -29,6 +29,7 @@ import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.type.HandType;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.entity.living.monster.Wither;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
@@ -36,6 +37,7 @@ import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.event.cause.entity.dismount.DismountType;
+import org.spongepowered.api.event.cause.entity.health.HealingType;
 import org.spongepowered.api.event.cause.entity.spawn.SpawnType;
 import org.spongepowered.api.event.cause.entity.teleport.TeleportType;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
@@ -53,6 +55,14 @@ import org.spongepowered.api.world.explosion.Explosion;
 public final class EventContextKeys {
 
     // SORTFIELDS:ON
+
+    /**
+     * Used when a {@link Living} entity is being "healed" by a source of a
+     * certain kind.
+     *
+     * For example, a {@link Wither} generating health on it's first spawn.
+     */
+    public static final EventContextKey<HealingType> HEALING_TYPE = createFor("HEALING_TYPE");
 
     /**
      * Used to queue a block event to be processed in a {@link World}.

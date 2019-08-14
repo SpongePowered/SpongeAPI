@@ -28,9 +28,6 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.event.cause.entity.ModifierFunction;
-import org.spongepowered.api.event.cause.entity.health.HealthFunction;
-import org.spongepowered.api.event.cause.entity.health.HealthModifier;
-import org.spongepowered.api.event.entity.HealEntityEvent;
 import org.spongepowered.api.util.annotation.eventgen.UseField;
 
 import java.util.Iterator;
@@ -38,10 +35,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.DoubleUnaryOperator;
 
-public abstract class AbstractHealEntityEvent extends AbstractModifierEvent<HealthFunction, HealthModifier> implements HealEntityEvent {
+@Deprecated
+@SuppressWarnings("deprecation")
+public abstract class AbstractHealEntityEvent extends AbstractModifierEvent<org.spongepowered.api.event.cause.entity.health.HealthFunction, org.spongepowered.api.event.cause.entity.health.HealthModifier> implements org.spongepowered.api.event.entity.HealEntityEvent {
 
     @UseField protected double originalHealAmount;
-    @UseField protected List<HealthFunction> originalFunctions;
+    @UseField protected List<org.spongepowered.api.event.cause.entity.health.HealthFunction> originalFunctions;
     @UseField protected double baseHealAmount;
 
     @Override
@@ -51,7 +50,7 @@ public abstract class AbstractHealEntityEvent extends AbstractModifierEvent<Heal
     }
 
     @Override
-    public final double getOriginalHealingModifierAmount(HealthModifier healthModifier) {
+    public final double getOriginalHealingModifierAmount(org.spongepowered.api.event.cause.entity.health.HealthModifier healthModifier) {
         checkArgument(this.originalModifierMap.containsKey(checkNotNull(healthModifier)), "The provided damage modifier is not applicable : "
                                                                                           + healthModifier.toString());
         return this.originalModifierMap.get(checkNotNull(healthModifier));
@@ -63,7 +62,7 @@ public abstract class AbstractHealEntityEvent extends AbstractModifierEvent<Heal
     }
 
     @Override
-    public final Map<HealthModifier, Double> getOriginalHealingAmounts() {
+    public final Map<org.spongepowered.api.event.cause.entity.health.HealthModifier, Double> getOriginalHealingAmounts() {
         return this.originalModifierMap;
     }
 
@@ -73,25 +72,25 @@ public abstract class AbstractHealEntityEvent extends AbstractModifierEvent<Heal
     }
 
     @Override
-    public final boolean isModifierApplicable(HealthModifier healthModifier) {
+    public final boolean isModifierApplicable(org.spongepowered.api.event.cause.entity.health.HealthModifier healthModifier) {
         return this.modifiers.containsKey(checkNotNull(healthModifier));
     }
 
     @Override
-    public final double getHealAmount(HealthModifier healthModifier) {
+    public final double getHealAmount(org.spongepowered.api.event.cause.entity.health.HealthModifier healthModifier) {
         checkArgument(this.modifiers.containsKey(checkNotNull(healthModifier)), "The provided damage modifier is not applicable : "
                                                                                 + healthModifier.toString());
         return this.modifiers.get(checkNotNull(healthModifier));
     }
 
     @Override
-    public final void setHealAmount(HealthModifier healthModifier, DoubleUnaryOperator function) {
+    public final void setHealAmount(org.spongepowered.api.event.cause.entity.health.HealthModifier healthModifier, DoubleUnaryOperator function) {
         checkNotNull(healthModifier, "Damage modifier was null!");
         checkNotNull(function, "Function was null!");
         int indexToAddTo = 0;
         boolean addAtEnd = true;
-        for (Iterator<HealthFunction> iterator = this.modifierFunctions.iterator(); iterator.hasNext(); ) {
-            ModifierFunction<HealthModifier> tuple = iterator.next();
+        for (Iterator<org.spongepowered.api.event.cause.entity.health.HealthFunction> iterator = this.modifierFunctions.iterator(); iterator.hasNext(); ) {
+            ModifierFunction<org.spongepowered.api.event.cause.entity.health.HealthModifier> tuple = iterator.next();
             if (tuple.getModifier().equals(healthModifier)) {
                 iterator.remove();
                 addAtEnd = false;
@@ -100,9 +99,9 @@ public abstract class AbstractHealEntityEvent extends AbstractModifierEvent<Heal
             indexToAddTo++;
         }
         if (addAtEnd) {
-            this.modifierFunctions.add(new HealthFunction(healthModifier, function));
+            this.modifierFunctions.add(new org.spongepowered.api.event.cause.entity.health.HealthFunction(healthModifier, function));
         } else {
-            this.modifierFunctions.add(indexToAddTo, new HealthFunction(healthModifier, function));
+            this.modifierFunctions.add(indexToAddTo, new org.spongepowered.api.event.cause.entity.health.HealthFunction(healthModifier, function));
         }
         this.recalculateDamages(this.baseHealAmount);
     }
@@ -119,7 +118,7 @@ public abstract class AbstractHealEntityEvent extends AbstractModifierEvent<Heal
     }
 
     @Override
-    protected HealthFunction convertTuple(HealthModifier obj, DoubleUnaryOperator function) {
-        return new HealthFunction(obj, function);
+    protected org.spongepowered.api.event.cause.entity.health.HealthFunction convertTuple(org.spongepowered.api.event.cause.entity.health.HealthModifier obj, DoubleUnaryOperator function) {
+        return new org.spongepowered.api.event.cause.entity.health.HealthFunction(obj, function);
     }
 }

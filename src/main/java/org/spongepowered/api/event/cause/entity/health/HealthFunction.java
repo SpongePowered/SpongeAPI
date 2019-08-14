@@ -32,6 +32,11 @@ import org.spongepowered.api.event.cause.entity.ModifierFunction;
 
 import java.util.function.DoubleUnaryOperator;
 
+/**
+ *
+ * @deprecated Not actually implemented, an oversight. Will be removed in API 8
+ */
+@Deprecated
 public class HealthFunction implements ModifierFunction<HealthModifier> {
 
     public static final DoubleUnaryOperator NO_HEALTH = value -> 0.0d;
@@ -42,7 +47,9 @@ public class HealthFunction implements ModifierFunction<HealthModifier> {
      * @param first The health modifier to use
      * @param second The unary operator to use
      * @return The resulting health function
+     * @deprecated Not actually implemented, an oversight. Will be removed in API 8
      */
+    @Deprecated
     public static HealthFunction of(HealthModifier first, DoubleUnaryOperator second) {
         return new HealthFunction(first, second);
     }
@@ -57,7 +64,9 @@ public class HealthFunction implements ModifierFunction<HealthModifier> {
      * healing modifications.
      *
      * @param modifier The damage modifier
+     * @deprecated Not actually implemented, an oversight. Will be removed in API 8
      */
+    @Deprecated
     public HealthFunction(HealthModifier modifier) {
         this(modifier, NO_HEALTH);
     }
@@ -68,7 +77,9 @@ public class HealthFunction implements ModifierFunction<HealthModifier> {
      *
      * @param modifier The health modifier to use
      * @param function The double unary operator to use
+     * @deprecated Not actually implemented, an oversight. Will be removed in API 8
      */
+    @Deprecated
     public HealthFunction(HealthModifier modifier, DoubleUnaryOperator function) {
         this.modifier = checkNotNull(modifier, "modifier");
         this.function = checkNotNull(function, "function");
@@ -78,7 +89,9 @@ public class HealthFunction implements ModifierFunction<HealthModifier> {
      * Gets the {@link HealthModifier} for this function.
      *
      * @return The health modifier
+     * @deprecated Not actually implemented, an oversight. Will be removed in API 8
      */
+    @Deprecated
     @Override
     public HealthModifier getModifier() {
         return this.modifier;
@@ -88,7 +101,9 @@ public class HealthFunction implements ModifierFunction<HealthModifier> {
      * Gets the {@link DoubleUnaryOperator} for this function.
      *
      * @return The healing function
+     * @deprecated Not actually implemented, an oversight. Will be removed in API 8
      */
+    @Deprecated
     @Override
     public DoubleUnaryOperator getFunction() {
         return this.function;

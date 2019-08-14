@@ -41,14 +41,19 @@ import java.util.function.DoubleUnaryOperator;
  * towards an entity such that the raw damage is the input of a
  * {@link DoubleUnaryOperator} such that the output will be the final damage
  * applied to the {@link Entity}.
+ * @deprecated Not actually implemented, an oversight. Will be removed in API 8
  */
+@SuppressWarnings({"DeprecatedIsStillUsed", "deprecation"})
+@Deprecated
 public interface HealthModifier {
 
     /**
      * Creates a new {@link Builder} for constructing new {@link HealthModifier}s.
      *
      * @return A new builder
+     * @deprecated Not actually implemented, an oversight. Will be removed in API 8
      */
+    @Deprecated
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
@@ -57,20 +62,26 @@ public interface HealthModifier {
      * Gets the {@link HealthModifierType} for this {@link HealthModifier}.
      *
      * @return The damage modifier type
+     * @deprecated Not actually implemented, an oversight. Will be removed in API 8
      */
+    @Deprecated
     HealthModifierType getType();
 
     /**
      * Gets the cause of this {@link HealthModifier}.
      *
      * @return The cause of this damage modifier
+     * @deprecated Not actually implemented, an oversight. Will be removed in API 8
      */
+    @Deprecated
     Cause getCause();
 
     /**
      * A builder that creates {@link HealthModifier}s, for use in both plugin
      * and implementation requirements.
+     * @deprecated Not actually implemented, an oversight. Will be removed in API 8
      */
+    @Deprecated
     final class Builder implements ResettableBuilder<HealthModifier, Builder> {
 
         HealthModifierType type;
@@ -83,7 +94,9 @@ public interface HealthModifier {
          * Creates a new {@link Builder}.
          *
          * @return The new builder instance
+         * @deprecated Not actually implemented, an oversight. Will be removed in API 8
          */
+        @Deprecated
         public static Builder builder() {
             return new Builder();
         }
@@ -94,7 +107,9 @@ public interface HealthModifier {
          *
          * @param healthModifierType The health modifier type
          * @return This builder, for chaining
+         * @deprecated Not actually implemented, an oversight. Will be removed in API 8
          */
+        @Deprecated
         public Builder type(HealthModifierType healthModifierType) {
             this.type = checkNotNull(healthModifierType);
             return this;
@@ -105,7 +120,9 @@ public interface HealthModifier {
          *
          * @param cause The cause for the health modifier
          * @return This builder, for chaining
+         * @deprecated Not actually implemented, an oversight. Will be removed in API 8
          */
+        @Deprecated
         public Builder cause(Cause cause) {
             this.cause = checkNotNull(cause);
             return this;
@@ -116,7 +133,9 @@ public interface HealthModifier {
          * {@link Cause} and {@link HealthModifierType}.
          *
          * @return The newly created health modifier
+         * @deprecated Not actually implemented, an oversight. Will be removed in API 8
          */
+        @Deprecated
         public HealthModifier build() {
             checkState(this.type != null, "The HealthModifierType must not be null!");
             checkState(this.cause != null, "The cause for the HealthModifier must not be null!");

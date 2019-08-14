@@ -26,10 +26,11 @@ package org.spongepowered.api.event.cause.entity.health;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.event.entity.HealEntityEvent;
+import org.spongepowered.api.event.entity.RegainHealthEvent;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents a type of "healing", used for {@link HealEntityEvent}s.
+ * Represents a type of "healing", used for {@link RegainHealthEvent}s.
  */
 @CatalogedBy(HealingTypes.class)
 public interface HealingType extends CatalogType {

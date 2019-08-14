@@ -22,22 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.health;
+package org.spongepowered.api.event.impl;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.event.entity.RegainHealthEvent;
 
-/**
- * A type of {@link HealthModifier} that can apply a "grouping" so to speak
- * for the damage modifier. The use case is being able to differentiate between
- * various {@link HealthModifier}s based on the {@link HealthModifierType}
- * without digging through the {@link Cause} provided by
- * {@link HealthModifier#getCause()}.
- */
-@SuppressWarnings({"DeprecatedIsStillUsed", "deprecation"})
-@Deprecated
-@CatalogedBy(HealthModifierTypes.class)
-public interface HealthModifierType extends CatalogType {
+public abstract class AbstractRegainHealthEvent extends AbstractEvent implements RegainHealthEvent {
+
+    private double originalAmount;
+
+    @Override
+    protected void init() {
+        this.originalAmount = getAmountToRegain();
+    }
+
+    @Override
+    public double getOriginalAmount() {
+        return this.originalAmount;
+    }
 
 }

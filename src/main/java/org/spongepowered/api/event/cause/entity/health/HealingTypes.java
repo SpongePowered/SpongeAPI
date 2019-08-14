@@ -30,6 +30,8 @@ public final class HealingTypes {
 
     // SORTFIELDS:ON
 
+    public static final HealingType GENERIC = DummyObjectProvider.createFor(HealingType.class, "GENERIC");
+
     public static final HealingType BOSS = DummyObjectProvider.createFor(HealingType.class, "BOSS");
 
     public static final HealingType FOOD = DummyObjectProvider.createFor(HealingType.class, "FOOD");
@@ -39,6 +41,8 @@ public final class HealingTypes {
     public static final HealingType POTION = DummyObjectProvider.createFor(HealingType.class, "POTION");
 
     public static final HealingType UNDEAD = DummyObjectProvider.createFor(HealingType.class, "UNDEAD");
+
+    public static final HealingType DIFFICULTY = DummyObjectProvider.createFor(HealingType.class, "DIFFICULTY");
 
     // SORTFIELDS:OFF
 
