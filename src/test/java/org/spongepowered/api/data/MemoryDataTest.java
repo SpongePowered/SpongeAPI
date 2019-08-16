@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -404,6 +405,14 @@ public class MemoryDataTest {
         main.set(DataQuery.of("SUB"), values);
 
         main.getMap(of()).get();
+    }
+
+    @Test
+    public void testArrayEquality() {
+        DataQuery path = DataQuery.of("path");
+        DataContainer container1 = DataContainer.createNew().set(path, new byte[][] {{1, 2}, {3}, {}});
+        DataContainer container2 = DataContainer.createNew().set(path, new byte[][] {{1, 2}, {3}, {}});
+        assertEquals(container1, container2);
     }
 
 }

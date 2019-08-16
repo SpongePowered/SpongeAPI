@@ -844,9 +844,39 @@ public class MemoryDataView implements DataView {
             return false;
         }
         final MemoryDataView other = (MemoryDataView) obj;
+        if (!Objects.equal(this.path, other.path) || this.map.size() != other.map.size()) {
+            return false;
+        }
+        for (Map.Entry<String, Object> entry : this.map.entrySet()) {
+            if (!equalsCheckArrays(entry.getValue(), other.map.get(entry.getKey()))) {
+                return false;
+            }
+        }
+        return true;
+    }
 
-        return Objects.equal(this.map.entrySet(), other.map.entrySet())
-               && Objects.equal(this.path, other.path);
+    private static boolean equalsCheckArrays(Object o1, Object o2) {
+        if (o1.getClass().isArray() && o2.getClass().isArray()) {
+            if (o1 instanceof byte[] && o2 instanceof byte[]) {
+                return Arrays.equals((byte[]) o1, (byte[]) o2);
+            } else if (o1 instanceof short[] && o2 instanceof short[]) {
+                return Arrays.equals((short[]) o1, (short[]) o2);
+            } else if (o1 instanceof int[] && o2 instanceof int[]) {
+                return Arrays.equals((int[]) o1, (int[]) o2);
+            } else if (o1 instanceof long[] && o2 instanceof long[]) {
+                return Arrays.equals((long[]) o1, (long[]) o2);
+            } else if (o1 instanceof float[] && o2 instanceof float[]) {
+                return Arrays.equals((float[]) o1, (float[]) o2);
+            } else if (o1 instanceof double[] && o2 instanceof double[]) {
+                return Arrays.equals((double[]) o1, (double[]) o2);
+            } else if (o1 instanceof boolean[] && o2 instanceof boolean[]) {
+                return Arrays.equals((boolean[]) o1, (boolean[]) o2);
+            } else if (o1 instanceof Object[] && o2 instanceof Object[]) {
+                return Arrays.deepEquals((Object[]) o1, (Object[]) o2);
+            }
+            return false;
+        }
+        return Objects.equal(o1, o2);
     }
 
     @Override
