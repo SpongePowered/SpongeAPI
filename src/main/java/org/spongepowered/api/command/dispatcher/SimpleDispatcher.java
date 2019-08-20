@@ -296,13 +296,16 @@ public final class SimpleDispatcher implements Dispatcher {
     @Override
     public synchronized Optional<CommandMapping> get(String alias, @Nullable CommandSource source) {
         List<CommandMapping> results = this.commands.get(alias.toLowerCase());
+        Optional<CommandMapping> result = Optional.empty();
         if (results.size() == 1) {
-            return Optional.of(results.get(0));
-        } else if (results.size() == 0) {
-            return Optional.empty();
-        } else {
-            return this.disambiguatorFunc.disambiguate(source, alias, results);
+            result = Optional.of(results.get(0));
+        } else if (results.size() > 1) {
+            result = this.disambiguatorFunc.disambiguate(source, alias, results);
         }
+        if (source != null) {
+            result = result.filter(m -> m.getCallable().testPermission(source));
+        }
+        return result;
     }
 
     @Override
