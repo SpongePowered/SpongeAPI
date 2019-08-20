@@ -300,7 +300,7 @@ public final class SimpleDispatcher implements Dispatcher {
         if (results.size() == 1) {
             result = Optional.of(results.get(0));
         } else if (results.size() > 1) {
-            result = disambiguatorFunc.disambiguate(source, alias, results);
+            result = this.disambiguatorFunc.disambiguate(source, alias, results);
         }
         if (source != null) {
             result = result.filter(m -> m.getCallable().testPermission(source));
