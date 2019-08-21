@@ -92,6 +92,27 @@ public interface Explosion extends Locatable {
     boolean shouldDamageEntities();
 
     /**
+     *
+     *
+     * @return
+     */
+    int getBoundingBoxSize();
+
+    /**
+     *
+     *
+     * @return
+     */
+    boolean isRandomnessReduced();
+
+    /**
+     *
+     *
+     * @return
+     */
+    double getEntityKnockbackMultiplier();
+
+    /**
      * A builder for {@link Explosion}.
      */
     interface Builder extends ResettableBuilder<Explosion, Builder> {
@@ -151,6 +172,30 @@ public interface Explosion extends Locatable {
          * @return The builder, for chaining
          */
         Builder shouldBreakBlocks(boolean destroy);
+
+        /**
+         *
+         *
+         * @param boundingBoxSize
+         * @return The builder, for chaining
+         */
+        Builder boundingBoxSize(int boundingBoxSize);
+
+        /**
+         *
+         *
+         * @param reducedRandomness
+         * @return The builder, for chaining
+         */
+        Builder reducedRandomness(boolean reducedRandomness);
+
+        /**
+         *
+         *
+         * @param entityKnockbackMultiplier
+         * @return The builder, for chaining
+         */
+        Builder entityKnockbackMultiplier(double entityKnockbackMultiplier);
 
         /**
          * Attempts to create a {@link Explosion} from the specified parameters.
