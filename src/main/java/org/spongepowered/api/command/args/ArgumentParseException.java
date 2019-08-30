@@ -133,7 +133,7 @@ public class ArgumentParseException extends CommandException {
 
         private final Text usage;
 
-        WithUsage(ArgumentParseException wrapped, Text usage) {
+        public WithUsage(ArgumentParseException wrapped, Text usage) {
             super(wrapped.getSuperText(), wrapped.getCause(), wrapped.getSourceString(), wrapped.getPosition());
             this.usage = usage;
         }
