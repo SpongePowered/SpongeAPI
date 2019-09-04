@@ -92,25 +92,30 @@ public interface Explosion extends Locatable {
     boolean shouldDamageEntities();
 
     /**
+     * Gets the number of rays cast per length of each side of the explosion bounding box.
      *
-     *
-     * @return
+     * @return The number of rays cast per length of each side of the explosion bounding box.
      */
-    int getBoundingBoxSize();
+    int getResolution();
 
     /**
+     * <pre>
+     * A numerical representation of variation in blast strength per ray.
+     * The blast strength of a ray is calculated as {@code (1 * [variation]) * [radius]}
+     * 0.0 = No Variation.
+     * 1.0 = +/-0.3 Variation (Vanilla Behaviour).
+     * </pre>
      *
-     *
-     * @return
+     * @return A numerical representation of variation in blast strength per ray.
      */
-    boolean isRandomnessReduced();
+    float getRandomness();
 
     /**
+     * Knockback multiplier for entities effected by the explosion.
      *
-     *
-     * @return
+     * @return The multiple by which the knockback of entities will be changed
      */
-    double getEntityKnockbackMultiplier();
+    double getKnockback();
 
     /**
      * A builder for {@link Explosion}.
@@ -174,28 +179,37 @@ public interface Explosion extends Locatable {
         Builder shouldBreakBlocks(boolean destroy);
 
         /**
+         * <pre>
+         * <b>WARNING: It is recommended that this variable be set no higher than the default of 16!</b>
+         * The number of rays cast per length of each side of the explosion bounding box.
+         * The total number of rays that will be cast can be calculated using {@code [resolution] * 12}
+         * </pre>
          *
-         *
-         * @param boundingBoxSize
+         * @param resolution The desired resolution of the explosion
          * @return The builder, for chaining
          */
-        Builder boundingBoxSize(int boundingBoxSize);
+        Builder resolution(int resolution);
 
         /**
+         * <pre>
+         * A numerical representation of variation in blast strength per ray.
+         * The blast strength of a ray is calculated as {@code (1 * [variation]) * [radius]}
+         * 0 = No Variation.
+         * 1 = +/-0.3 Variation (Vanilla Behaviour).
+         * </pre>
          *
-         *
-         * @param reducedRandomness
+         * @param randomness The desired variation in blast strength per ray for this explosion as a numerical representation
          * @return The builder, for chaining
          */
-        Builder reducedRandomness(boolean reducedRandomness);
+        Builder randomness(float randomness);
 
         /**
+         * Knockback multiplier for entities effected by the explosion.
          *
-         *
-         * @param entityKnockbackMultiplier
+         * @param knockback The multiple by which to change the knockback of entities
          * @return The builder, for chaining
          */
-        Builder entityKnockbackMultiplier(double entityKnockbackMultiplier);
+        Builder knockback(double knockback);
 
         /**
          * Attempts to create a {@link Explosion} from the specified parameters.
