@@ -24,20 +24,5 @@
  */
 package org.spongepowered.api.util.catalog;
 
-import org.junit.Test;
-import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
-
-public class DummyCatalogProviderTest {
-
-    @Test(expected = UnsupportedOperationException.class)
-    public void testCreate_BlockType() {
-        DummyObjectProvider.createFor(BlockType.class, "FOO").getDefaultState();
-    }
-
-    @Test()
-    public void testCreate_DuplicateName() {
-        DummyObjectProvider.createFor(org.spongepowered.api.data.type.Career.class, "FOO");
-        DummyObjectProvider.createFor(org.spongepowered.api.util.catalog.Career.class, "BAR");
-    }
+public interface Career {
 }
