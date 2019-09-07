@@ -1671,6 +1671,13 @@ public final class Keys {
     public static final Key<Value<PortionType>> PORTION_TYPE = DummyObjectProvider.createExtendedFor(Key.class,"PORTION_TYPE");
 
     /**
+     * Represents the {@link Key} for the color of an {@link ItemStack} potion.
+     *
+     * @see PotionColorData#color()
+     */
+    public static final Key<Value<Color>> POTION_COLOR = DummyObjectProvider.createExtendedFor(Key.class, "POTION_COLOR");
+
+    /**
      * Represents the {@link Key} for which potion effects are present on an
      * {@link Entity} or stored on an {@link ItemStack}.
      *
