@@ -1,3 +1,4 @@
+rootProject.name = name
 pluginManagement {
     repositories {
         jcenter()

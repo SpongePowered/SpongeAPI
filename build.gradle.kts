@@ -1,69 +1,63 @@
-import org.spongepowered.gradle.task.TaskSortClassMembers
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
-SpongeAPI.project = this
+
 plugins {
-    `java-library`
-    `maven-publish`
-    // The sponge buildscript will apply various plugins that are
-    // defined in the buildscript classpath (including plugin versions)
-    // that are not listed in Plugins or Versions in SpongeAPI.kt.
-    // They are uniquely defined in buildSrc/build.gradle.kts
-    id(Plugins.sponge)
-    id(Plugins.`event-impl-gen`) version Versions.`event-impl-gen`
+    id("org.spongepowered.gradle.sponge.dev")
+    id("org.spongepowered.gradle.sponge.deploy")
+    id("org.spongepowered.gradle.sort")
+
+    id("org.spongepowered.event-impl-gen") version "5.7.0"
 }
 
-apply(plugin = Plugins.spongegradle)
-apply(plugin = Plugins.spongemeta)
 base {
-    archivesBaseName = SpongeAPI.name.toLowerCase()
+    archivesBaseName = "spongeapi"
 }
 val ap by sourceSets.registering {
     compileClasspath += sourceSets.main.get().compileClasspath + sourceSets.main.get().output
 }
 
-version = SpongeAPI.version
+
+version = properties["apiVersion"] as String
 
 // Project dependencies
 dependencies {
-    // Logging
-    api(Libs.slf4j)
+    api("org.slf4j:slf4j-api:1.7.25")
 
-    // Dependency tied to Minecraft implementation
-    api(Libs.guava)
-    api(Libs.error_prone)
-    api(Libs.gson)
-    api(Libs.apache_commons)
+    // Directly tied to what's available from Minecraft
+    api("com.google.guava:guava:25.1-jre")
+    api("com.google.errorprone:error_prone_annotations:2.0.15")
+    api("com.google.code.gson:gson:2.8.0")
+    api("org.apache.commons:commons-lang3:3.5")
 
-    // Only in server
-    api(Libs.jsr305)
+    // Only available on the server
+    api("com.google.code.findbugs:jsr305:3.0.1")
 
     // Dependency injection
-    api(Libs.guice)
+    api("com.google.inject:guice:4.1.0")
 
-    // High performing cache + guava
-    api(Libs.caffeine)
-    api(Libs.caffeine_guava) {
-        exclude(group = Libs.Groups.guava, module = Libs.Modules.guava)
+    // High performance cache + guava - shaded guava
+    api("com.github.ben-manes.caffeine:caffeine:2.5.4")
+    api("com.github.ben-manes.caffeine:guava:2.5.4") {
+        exclude(group = "com.google.guava", module = "guava")
     }
 
     // Plugin meta
-    api(Libs.plugin_meta)
+    api("org.spongepowered:plugin-meta:0.4.1")
 
     // Configurate
-    api(Libs.configurate_hocon)
-    api(Libs.configurate_gson)
-    api(Libs.configurate_yaml)
+    api("org.spongepowered:configurate-hocon:3.6")
+    api("org.spongepowered:configurate-gson:3.6")
+    api("org.spongepowered:configurate-yaml:3.6")
 
-    // Math + Noise for world gen
-    api(Libs.flow_math)
-    api(Libs.flow_noise)
+    // Math and noise for world gen
+    api("com.flowpowered:flow-math:1.0.3")
+    api("com.flowpowered:flow-noise:1.0.1-SNAPSHOT")
 
-    // Asm for class generation (mostly event generation, and dummy object providers
-    api(Libs.asm)
+    // Asm for dummy object generation
+    api("org.ow2.asm:asm:5.2")
 }
 
 tasks {
-
     genEventImpl {
         outputFactory = "org.spongepowered.api.event.SpongeEventFactory"
         include("org/spongepowered/api/event/*/**/*")
@@ -72,32 +66,40 @@ tasks {
         exclude("org/spongepowered/api/event/impl/")
     }
 
-    findByName("setupDecompWorkspace")?.apply {
-        dependsOn(genEventImpl)
-    }
-
     jar {
         from(ap.get().output)
         manifest {
             attributes("Main-Class" to "org.spongepowered.api.util.InformativeMain")
         }
     }
+
     val sourceJar by registering(Jar::class) {
         archiveClassifier.set("sources")
         from(sourceSets["main"].allSource)
         from(sourceSets["ap"].allSource)
     }
-    shadowJar {
+
+    val shadowJar by registering(ShadowJar::class) {
         archiveClassifier.set("shaded")
         from(ap.get().output)
+
     }
-    val sortClassFields by existing(TaskSortClassMembers::class) {
-        SpongeAPI.catalogClasses.forEach {
-            add(sourceSets.main.get(), it)
+
+    sortClassFields {
+        catalogClasses.forEach {
+            add(sourceSets.main.name, it)
         }
     }
+
     artifacts {
         archives(sourceJar)
         archives(shadowJar)
     }
 }
+
+val catalogClasses = listOf(    "org.spongepowered.api.CatalogTypes",
+        "org.spongepowered.api.advancement.AdvancementTypes",
+        "org.spongepowered.api.advancement.criteria.trigger.Triggers",
+        "org.spongepowered.api.boss.BossBarColors",
+        "org.spongepowered.api.boss.BossBarOverlays",
+        "org.spongepowered.api.data.Keys") // TODO - repopulate
