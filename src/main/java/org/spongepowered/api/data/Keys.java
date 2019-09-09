@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;

@@ -29,8 +29,8 @@ dependencies {
     api("com.google.code.gson:gson:2.8.0")
     api("org.apache.commons:commons-lang3:3.5")
 
-    // Only available on the server
-    api("com.google.code.findbugs:jsr305:3.0.1")
+    // checkers
+    api("org.checkerframework:checker-qual:2.8.1")
 
     // Dependency injection
     api("com.google.inject:guice:4.1.0")
@@ -45,13 +45,13 @@ dependencies {
     api("org.spongepowered:plugin-meta:0.4.1")
 
     // Configurate
-    api("org.spongepowered:configurate-hocon:3.6")
-    api("org.spongepowered:configurate-gson:3.6")
-    api("org.spongepowered:configurate-yaml:3.6")
+    api("org.spongepowered:configurate-hocon:3.6.1")
+    api("org.spongepowered:configurate-gson:3.6.1")
+    api("org.spongepowered:configurate-yaml:3.6.1")
 
     // Math and noise for world gen
-    api("com.flowpowered:flow-math:1.0.3")
-    api("com.flowpowered:flow-noise:1.0.1-SNAPSHOT")
+    api("org.spongepowered:math:2.0.0-SNAPSHOT")
+    api("org.spongepowered:noise:2.0.0-SNAPSHOT")
 
     // Asm for dummy object generation
     api("org.ow2.asm:asm:5.2")
