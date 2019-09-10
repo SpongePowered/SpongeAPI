@@ -2,9 +2,9 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 
 plugins {
-    id("org.spongepowered.gradle.sponge.dev")
-    id("org.spongepowered.gradle.sponge.deploy")
-    id("org.spongepowered.gradle.sort")
+    org.spongepowered.gradle.sponge.dev
+    org.spongepowered.gradle.sponge.deploy
+    org.spongepowered.gradle.sort
 
     id("org.spongepowered.event-impl-gen") version "5.7.0"
 }
@@ -16,8 +16,6 @@ val ap by sourceSets.registering {
     compileClasspath += sourceSets.main.get().compileClasspath + sourceSets.main.get().output
 }
 
-
-version = properties["apiVersion"] as String
 
 // Project dependencies
 dependencies {
@@ -73,12 +71,6 @@ tasks {
         }
     }
 
-    val sourceJar by registering(Jar::class) {
-        archiveClassifier.set("sources")
-        from(sourceSets["main"].allSource)
-        from(sourceSets["ap"].allSource)
-    }
-
     val shadowJar by registering(ShadowJar::class) {
         archiveClassifier.set("shaded")
         from(ap.get().output)
@@ -92,7 +84,6 @@ tasks {
     }
 
     artifacts {
-        archives(sourceJar)
         archives(shadowJar)
     }
 }
