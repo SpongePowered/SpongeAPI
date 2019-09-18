@@ -45,6 +45,7 @@ import org.spongepowered.api.world.TeleportHelper;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.schematic.Schematic;
 import org.spongepowered.math.vector.Vector3d;
+import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Collection;
 import java.util.EnumSet;
@@ -415,20 +416,20 @@ public interface Entity extends Identifiable, Locatable, DataHolder.Mutable, Tra
      * @param distance The distance
      * @return The collection of nearby entities
      */
-    default Collection<Entity> getNearbyEntities(double distance) {
+    default Collection<? extends Entity> getNearbyEntities(double distance) {
         return this.getWorld().getNearbyEntities(this.getLocation().getPosition(), distance);
     }
 
     /**
      * Gets the nearby entities that satisfy the desired predicate.
      *
-     * @see World#getEntities(Predicate)
+     * @see World#getEntities(AABB, Predicate)
      * @param predicate The predicate to use
      * @return The collection of entities
      */
-    default Collection<Entity> getNearbyEntities(Predicate<Entity> predicate) {
+    default Collection<? extends Entity> getNearbyEntities(double distance, Predicate<? super Entity> predicate) {
         checkNotNull(predicate, "Null predicate!");
-        return this.getWorld().getEntities(predicate);
+        return this.getWorld().getEntities(this.getBoundingBox().get().expand(distance, distance, distance), predicate);
     }
 
     /**

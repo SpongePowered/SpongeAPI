@@ -26,7 +26,7 @@ package org.spongepowered.api.world;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
-import org.spongepowered.api.world.volume.LightCalculatingVolume;
+import org.spongepowered.api.world.volume.game.EnvironmentalVolume;
 
 @CatalogedBy(LightTypes.class)
 public interface LightType extends CatalogType {
@@ -34,7 +34,7 @@ public interface LightType extends CatalogType {
     /**
      * Gets the default light value for this light type. Useful
      * for defaulting a light value if there is a missing source
-     * for {@link LightCalculatingVolume#getLight(int, int, int)}.
+     * for {@link EnvironmentalVolume#getLight(int, int, int)}.
      *
      * @return The default light value
      */

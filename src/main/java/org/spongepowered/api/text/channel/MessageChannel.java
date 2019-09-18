@@ -27,7 +27,7 @@ package org.spongepowered.api.text.channel;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.Server;
+import org.spongepowered.api.server.Server;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.service.permission.Subject;

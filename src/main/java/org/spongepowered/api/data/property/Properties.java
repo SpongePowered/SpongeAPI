@@ -259,7 +259,7 @@ public final class Properties {
      * A property to represent the amount of light that emitted by a light source,
      * usually blocks.
      */
-    public static final Property<Double> LIGHT_EMISSION =
+    public static final Property<Integer> LIGHT_EMISSION =
             DummyObjectProvider.createFor(Property.class, "LIGHT_EMISSION");
 
     /**
@@ -267,7 +267,7 @@ public final class Properties {
      * location. The luminance is affected by {@link #BLOCK_LUMINANCE},
      * {@link #SKY_LUMINANCE} and possible other light sources.
      */
-    public static final Property<Double> LUMINANCE =
+    public static final Property<Integer> LUMINANCE =
             DummyObjectProvider.createFor(Property.class, "LUMINANCE");
 
     /**
@@ -315,7 +315,7 @@ public final class Properties {
      * A property to represent the amount of light that is emitted by the sky
      * at a block location.
      */
-    public static final Property<Double> SKY_LUMINANCE =
+    public static final Property<Integer> SKY_LUMINANCE =
             DummyObjectProvider.createFor(Property.class, "GROUND_LUMINANCE");
 
     /**

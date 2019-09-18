@@ -22,18 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen;
+package org.spongepowered.api.world.volume.game;
 
-import org.spongepowered.api.world.ProtoWorld;
-import org.spongepowered.api.world.volume.game.EnvironmentalVolume;
-import org.spongepowered.math.vector.Vector2i;
-
-import java.util.Random;
-
-public interface WorldCarver<C extends FeatureConfig> {
-
-    boolean canCarve(EnvironmentalVolume volume, Random random, Vector2i chunkPosition, C configuration);
-
-    boolean carve(ProtoWorld<?> world, Random random, Vector2i chunkPosition, Vector2i targetPosition, C configuration);
+public interface GenerationVolume extends ReadableGenerationVolume, MutableGameVolume {
 
 }

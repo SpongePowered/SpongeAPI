@@ -26,6 +26,7 @@ package org.spongepowered.api;
 
 import org.spongepowered.api.client.Client;
 import org.spongepowered.api.scheduler.Scheduler;
+import org.spongepowered.api.server.Server;
 
 /**
  * Shared functionality between {@link Client} and {@link Server} engines.

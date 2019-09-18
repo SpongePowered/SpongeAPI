@@ -25,16 +25,15 @@
 package org.spongepowered.api.world.chunk;
 
 import org.spongepowered.api.Game;
-import org.spongepowered.api.Server;
+import org.spongepowered.api.server.Server;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.volume.LightCalculatingVolume;
-import org.spongepowered.api.world.volume.UpdatableVolume;
+import org.spongepowered.api.world.volume.game.HeightAwareVolume;
+import org.spongepowered.api.world.volume.game.UpdatableVolume;
 import org.spongepowered.api.world.volume.biome.MutableBiomeVolume;
 import org.spongepowered.api.world.volume.block.MutableBlockVolume;
 import org.spongepowered.api.world.volume.block.entity.MutableBlockEntityVolume;
-import org.spongepowered.api.world.volume.composite.ReadableCompositeVolume;
 import org.spongepowered.math.vector.Vector3i;
 
 /**
@@ -47,8 +46,7 @@ import org.spongepowered.math.vector.Vector3i;
  * {@link World} instance.</p>
  */
 public interface ProtoChunk<P extends ProtoChunk<P>> extends
-    ReadableCompositeVolume,
-        MutableBlockVolume<P>, MutableBlockEntityVolume<P>, MutableBiomeVolume<P>, LightCalculatingVolume, UpdatableVolume {
+        MutableBlockVolume<P>, MutableBlockEntityVolume<P>, MutableBiomeVolume<P>, UpdatableVolume, HeightAwareVolume {
 
     /**
      * Adds the {@link Entity} to this {@link ProtoChunk chunk}. It is not
@@ -67,7 +65,7 @@ public interface ProtoChunk<P extends ProtoChunk<P>> extends
      * Gets this {@link ProtoChunk}'s current {@link ChunkState}.
      * The {@link ChunkState} stipulates the potential validity of various
      * operations that can be performed, including but not limited to:
-     * {@link #getLight(Vector3i)}, {@link #getWorld()}, etc. Usually,
+     * {@link #getWorld()}, etc. Usually,
      * this {@link ProtoChunk} is tied always to a {@link ProtoWorld},
      * but the validity of that world may also be questionable for feature
      * processing.
@@ -111,4 +109,35 @@ public interface ProtoChunk<P extends ProtoChunk<P>> extends
 
     @Override
     P getView(Vector3i newMin, Vector3i newMax);
+
+    /**
+     * Gets the regional difficulty factor for this chunk. In vanilla, it is
+     * dependent on the playtime of the world, inhabited time of the chunk, the
+     * phase of the moon, and the current difficulty setting. This number ranges
+     * from 0.75-1.5 on easy, 1.5-4.0 on normal, and 2.25-6.75 on hard.
+     *
+     * <p>This value is used for display only in vanilla.</p>
+     *
+     * @return The regional difficulty factor for this chunk
+     */
+    double getRegionalDifficultyFactor();
+
+    /**
+     * Gets the regional difficulty percentage for this chunk. It is calculated
+     * by taking the regional difficulty factor and using the following rules:
+     * If the factor is less than 2.0, the percentage is 0%. If the factor is
+     * greater than 4.0, the percentage is 100%. Otherwise, the percentage is
+     * the factor minus 2.0, divided by 2.0.
+     *
+     * <p>This is the value that is used in vanilla to find which effects are
+     * caused by the regional difficulty.</p>
+     *
+     * @return The regional difficulty percentage for this chunk
+     */
+    double getRegionalDifficultyPercentage();
+
+    void setInhabitedTime(long newInhabitedTime);
+
+    long getInhabitedTime();
+
 }

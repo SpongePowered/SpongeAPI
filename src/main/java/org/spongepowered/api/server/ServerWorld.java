@@ -22,27 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.volume;
+package org.spongepowered.api.server;
 
-import org.spongepowered.api.world.LightType;
-import org.spongepowered.api.world.LightTypes;
-import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
-import org.spongepowered.math.vector.Vector3i;
+import org.spongepowered.api.world.World;
 
-public interface LightCalculatingVolume extends ReadableBlockVolume {
+import java.util.Collection;
 
-    int getLight(LightType type, int x, int y, int z);
+public interface ServerWorld extends World {
 
-    default int getLight(LightType type, Vector3i pos) {
-        return getLight(type, pos.getX(), pos.getY(), pos.getZ());
-    }
+    @Override
+    Collection<? extends ServerPlayer> getPlayers();
 
-    default int getLight(int x, int y, int z) {
-        return getLight(LightTypes.BLOCK, x, y, z);
-    }
-
-    default int getLight(Vector3i pos) {
-        return getLight(pos.getX(), pos.getY(), pos.getZ());
+    @Override
+    default ServerWorld getWorld() {
+        return this;
     }
 
 }

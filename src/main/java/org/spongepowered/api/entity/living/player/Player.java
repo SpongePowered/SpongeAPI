@@ -25,7 +25,11 @@
 package org.spongepowered.api.entity.living.player;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.Server;
+import org.spongepowered.api.client.ClientPlayer;
+import org.spongepowered.api.client.ClientWorld;
+import org.spongepowered.api.client.RemoteClientPlayer;
+import org.spongepowered.api.client.SinglePlayer;
+import org.spongepowered.api.server.Server;
 import org.spongepowered.api.advancement.Advancement;
 import org.spongepowered.api.advancement.AdvancementProgress;
 import org.spongepowered.api.advancement.AdvancementTree;
@@ -53,6 +57,7 @@ import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.chat.ChatVisibility;
 import org.spongepowered.api.world.WorldBorder;
+import org.spongepowered.math.vector.Vector3d;
 
 import java.time.Instant;
 import java.util.Collection;
@@ -68,6 +73,17 @@ import java.util.Set;
  * that persists across server restarts.</p>
  */
 public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver, CommandSource {
+
+    /**
+     * Gets whether this {@link Player player} is local to the game or not. Because there
+     * is the possibility of having a game with running on the game client, there
+     * exists the possibility of having {@link ClientPlayer}s as instances, with a
+     * {@link ClientWorld} is potentially populated by {@link RemoteClientPlayer remote players}
+     * and {@link SinglePlayer the single player entity}.
+     *
+     * @return True if this player is local to the game instance
+     */
+    boolean isLocal();
 
     /**
      * Returns whether this player has an open inventory at the moment
@@ -359,4 +375,9 @@ public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver,
      * @return The advancement trees
      */
     Collection<AdvancementTree> getUnlockedAdvancementTrees();
+
+    @Override
+    default Vector3d getPosition() {
+        return getLocation().getPosition();
+    }
 }

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.service.whitelist;
 
-import org.spongepowered.api.Server;
+import org.spongepowered.api.server.Server;
 import org.spongepowered.api.profile.GameProfile;
 
 import java.util.Collection;

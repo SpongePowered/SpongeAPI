@@ -22,18 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen;
+package org.spongepowered.api.entity;
 
-import org.spongepowered.api.world.ProtoWorld;
-import org.spongepowered.api.world.volume.game.EnvironmentalVolume;
-import org.spongepowered.math.vector.Vector2i;
 
-import java.util.Random;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.entity.living.player.gamemode.GameModes;
+import org.spongepowered.math.vector.Vector3d;
 
-public interface WorldCarver<C extends FeatureConfig> {
+import java.util.function.Predicate;
 
-    boolean canCarve(EnvironmentalVolume volume, Random random, Vector2i chunkPosition, C configuration);
+public final class EntityPredicates {
 
-    boolean carve(ProtoWorld<?> world, Random random, Vector2i chunkPosition, Vector2i targetPosition, C configuration);
+    // TODO - decide whether we want this in the implementation or not.
+
+    public static final Predicate<? super Entity> NO_SPECTATOR = entity -> entity.get(Keys.GAME_MODE)
+        .map(gamemode -> gamemode == GameModes.SPECTATOR)
+        .orElse(false);
+
+    public static final Predicate<? super Entity> STILL_ALIVE = entity -> !entity.isRemoved() && entity.get(Keys.HEALTH).map(hp -> hp > 0).orElse(false);
+
+    public static Predicate<? super Entity> withinDistance(double x, double y, double z, double distance) {
+        final double distSqrd = distance * distance;
+        return entity -> {
+            if (entity == null) {
+                return false;
+            }
+            final Vector3d pos = entity.getLocation().getPosition();
+            final double xDist = pos.getX() - x;
+            final double yDist = pos.getY() - y;
+            final double zDist = pos.getZ() - z;
+            return xDist*xDist + yDist * yDist + zDist * zDist <= distSqrd;
+        };
+    }
 
 }

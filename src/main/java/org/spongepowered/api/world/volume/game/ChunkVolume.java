@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.volume;
+package org.spongepowered.api.world.volume.game;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.world.Locatable;
@@ -57,6 +57,22 @@ public interface ChunkVolume extends ReadableBlockVolume {
     ProtoChunk<?> getChunk(int x, int y, int z);
 
     /**
+     * Gets the loaded chunk at the given chunk coordinate position. The position
+     * is the same as {@link ProtoChunk#getChunkPosition()}. The difference
+     * between a block placed within a {@link ProtoWorld} is different from a
+     * {@link ProtoChunk}'s position, and therefore care should be taken when
+     * requesting a chunk. It is not guaranteed that the returned {@link ProtoChunk}
+     * is {@link ProtoChunk#isEmpty() empty} or not, nor the {@link ProtoChunk#getState() state}
+     * of the chunk.
+     *
+     * @param chunkPosition The position
+     * @return The chunk, if available
+     */
+    default ProtoChunk<?> getChunk(Vector3i chunkPosition) {
+        return getChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ());
+    }
+
+    /**
      * Gets the loaded chunk at the given block coordinate position.
      *
      * @param blockPosition The position
@@ -82,20 +98,13 @@ public interface ChunkVolume extends ReadableBlockVolume {
         return getChunk(Sponge.getServer().getChunkLayout().forceToChunk(bx, by, bz));
     }
 
-    /**
-     * Gets the loaded chunk at the given chunk coordinate position. The position
-     * is the same as {@link ProtoChunk#getChunkPosition()}. The difference
-     * between a block placed within a {@link ProtoWorld} is different from a
-     * {@link ProtoChunk}'s position, and therefore care should be taken when
-     * requesting a chunk. It is not guaranteed that the returned {@link ProtoChunk}
-     * is {@link ProtoChunk#isEmpty() empty} or not, nor the {@link ProtoChunk#getState() state}
-     * of the chunk.
-     *
-     * @param chunkPosition The position
-     * @return The chunk, if available
-     */
-    default ProtoChunk<?> getChunk(Vector3i chunkPosition) {
-        return getChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ());
+    boolean isChunkLoaded(int x, int y, int z, boolean allowEmpty);
+
+    default boolean isChunkLoaded(Vector3i position, boolean allowEmpty) {
+        return isChunkLoaded(position.getX(), position.getY(), position.getZ(), allowEmpty);
     }
 
+    boolean hasChunk(int x, int y, int z);
+
+    boolean hasChunk(Vector3i position);
 }

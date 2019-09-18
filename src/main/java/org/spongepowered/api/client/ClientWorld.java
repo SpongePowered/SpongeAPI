@@ -22,5 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
-package org.spongepowered.api.world.volume.composite;
+package org.spongepowered.api.client;
+
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.world.World;
+
+import java.util.Collection;
+
+public interface ClientWorld extends World {
+
+    @Override
+    Collection<? extends ClientPlayer> getPlayers();
+
+    @Override
+    default ClientWorld getWorld() {
+        return this;
+    }
+
+}

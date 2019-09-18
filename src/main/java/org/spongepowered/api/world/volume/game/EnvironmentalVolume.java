@@ -22,43 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.volume.composite;
+package org.spongepowered.api.world.volume.game;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.entity.BlockEntity;
-import org.spongepowered.api.fluid.FluidState;
-import org.spongepowered.api.world.volume.Volume;
+import org.spongepowered.api.world.LightType;
+import org.spongepowered.api.world.LightTypes;
+import org.spongepowered.api.world.volume.biome.ReadableBiomeVolume;
 import org.spongepowered.math.vector.Vector3i;
 
-import java.util.Optional;
+public interface EnvironmentalVolume extends PrimitiveGameVolume, ReadableBiomeVolume {
 
-/**
- * A very primitive rudimentary volume that can be used by the {@link Game}
- * without impunity, but no guarantees on the provider type of what this
- * primitive volume is based on.
- */
-public interface PrimitiveGameVolume extends Volume {
+    @Override
+    EnvironmentalVolume getView(Vector3i newMin, Vector3i newMax);
 
-    default Optional<BlockEntity> getBlockEntity(Vector3i position) {
-        return getBlockEntity(position.getX(), position.getY(), position.getZ());
+    int getLight(LightType type, int x, int y, int z);
+
+    default int getLight(LightType type, Vector3i pos) {
+        return getLight(type, pos.getX(), pos.getY(), pos.getZ());
     }
 
-    Optional<BlockEntity> getBlockEntity(int x, int y, int z);
-
-    default BlockState getBlock(Vector3i pos) {
-        return getBlock(pos.getX(), pos.getY(), pos.getZ());
+    default int getLight(int x, int y, int z) {
+        return getLight(LightTypes.BLOCK, x, y, z);
     }
 
-    BlockState getBlock(int x, int y, int z);
-
-    default FluidState getFluidState(Vector3i pos) {
-        return getFluidState(pos.getX(), pos.getY(), pos.getZ());
+    default int getLight(Vector3i pos) {
+        return getLight(pos.getX(), pos.getY(), pos.getZ());
     }
 
-    FluidState getFluidState(int x, int y, int z);
-
-    default int getMaxLightLevel() {
-        return 15;
+    default boolean isSkylightMax(Vector3i pos) {
+        return this.getLight(LightTypes.SKY, pos) >= this.getMaximumLight();
     }
+
 }

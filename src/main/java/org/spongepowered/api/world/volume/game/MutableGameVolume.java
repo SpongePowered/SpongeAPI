@@ -22,18 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen;
+package org.spongepowered.api.world.volume.game;
 
-import org.spongepowered.api.world.ProtoWorld;
-import org.spongepowered.api.world.volume.game.EnvironmentalVolume;
-import org.spongepowered.math.vector.Vector2i;
+import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.world.BlockChangeFlag;
+import org.spongepowered.api.world.LightType;
+import org.spongepowered.math.vector.Vector3i;
 
-import java.util.Random;
+public interface MutableGameVolume {
 
-public interface WorldCarver<C extends FeatureConfig> {
+    default boolean setBlock(Vector3i position, BlockState state, BlockChangeFlag flag) {
+        return setBlock(position.getX(), position.getY(), position.getZ(), state, flag);
+    }
 
-    boolean canCarve(EnvironmentalVolume volume, Random random, Vector2i chunkPosition, C configuration);
+    boolean setBlock(int x, int y, int z, BlockState state, BlockChangeFlag flag);
 
-    boolean carve(ProtoWorld<?> world, Random random, Vector2i chunkPosition, Vector2i targetPosition, C configuration);
+    boolean spawnEntity(Entity entity);
 
+    default boolean removeBlock(Vector3i pos) {
+        return removeBlock(pos.getX(), pos.getY(), pos.getZ());
+    }
+
+    boolean removeBlock(int x, int y, int z);
+
+    boolean destroyBlock(Vector3i pos, boolean performDrops);
 }

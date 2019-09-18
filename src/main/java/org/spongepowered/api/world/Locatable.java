@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.world;
 
+import org.spongepowered.math.vector.Vector3d;
+import org.spongepowered.math.vector.Vector3i;
+
 /**
  * Represents anything with a location.
  */
@@ -44,5 +47,9 @@ public interface Locatable {
      */
     default World getWorld() {
         return this.getLocation().getWorld();
+    }
+
+    default Vector3i getBlockPosition() {
+        return this.getLocation().getBlockPosition();
     }
 }

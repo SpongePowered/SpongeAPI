@@ -24,21 +24,24 @@
  */
 package org.spongepowered.api.world;
 
+import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.property.LocationBasePropertyHolder;
+import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.util.RandomProvider;
 import org.spongepowered.api.world.chunk.ProtoChunk;
+import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gen.TerrainGenerator;
 import org.spongepowered.api.world.storage.WorldProperties;
-import org.spongepowered.api.world.volume.ChunkVolume;
-import org.spongepowered.api.world.volume.InteractableVolume;
-import org.spongepowered.api.world.volume.LocationCompositeValueStore;
-import org.spongepowered.api.world.volume.ReadableRegion;
-import org.spongepowered.api.world.volume.UpdatableVolume;
+import org.spongepowered.api.world.volume.game.GenerationVolume;
+import org.spongepowered.api.world.volume.game.InteractableVolume;
+import org.spongepowered.api.world.volume.game.LocationCompositeValueStore;
+import org.spongepowered.api.world.volume.game.ReadableRegion;
+import org.spongepowered.api.world.volume.game.UpdatableVolume;
 import org.spongepowered.api.world.volume.biome.MutableBiomeVolume;
 import org.spongepowered.api.world.volume.block.MutableBlockVolume;
 import org.spongepowered.api.world.volume.block.PhysicsAwareMutableBlockVolume;
 import org.spongepowered.api.world.volume.block.entity.StreamableBlockEntityVolume;
-import org.spongepowered.api.world.volume.composite.MutableGameVolume;
+import org.spongepowered.api.world.volume.game.MutableGameVolume;
 import org.spongepowered.api.world.volume.entity.MutableEntityVolume;
 import org.spongepowered.math.vector.Vector3i;
 
@@ -48,13 +51,14 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
         MutableBlockVolume<P>, // Because this is mutable
         MutableEntityVolume<P>, // Because this is mutable
         StreamableBlockEntityVolume<P>, // Because this is mutable
-        ChunkVolume,
+        GenerationVolume,
         InteractableVolume,
         LocationBasePropertyHolder,
         LocationCompositeValueStore,
         UpdatableVolume,
         RandomProvider,
         PhysicsAwareMutableBlockVolume<P>,
+        Viewer,
         MutableGameVolume
 {
 
@@ -91,6 +95,25 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
      */
     WorldProperties getProperties();
 
+
+    /**
+     * Gets the current {@link Difficulty}.
+     *
+     * @see WorldProperties#getDifficulty()
+     * @return The difficulty for this world
+     */
+    default Difficulty getDifficulty() {
+        return getProperties().getDifficulty();
+    }
+
+    @Override
+    default boolean setBlock(Vector3i position, BlockState state, BlockChangeFlag flag) {
+        return setBlock(position.getX(), position.getY(), position.getZ(), state, flag);
+    }
+
+    @Override
+    boolean setBlock(int x, int y, int z, BlockState state, BlockChangeFlag flag);
+
     @Override
     default boolean removeBlock(Vector3i position) {
         return removeBlock(position.getX(), position.getY(), position.getZ());
@@ -98,4 +121,5 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
 
     @Override
     boolean removeBlock(int x, int y, int z);
+
 }

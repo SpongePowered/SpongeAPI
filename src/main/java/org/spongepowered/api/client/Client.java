@@ -26,9 +26,29 @@ package org.spongepowered.api.client;
 
 import org.spongepowered.api.Engine;
 
+import java.util.Optional;
+
 /**
  * Represents a typical Minecraft Client.
  */
 public interface Client extends Engine {
+
+    /**
+     * Gets the {@link ClientPlayer single player} responsible
+     * for controlling this client, expectedly in singleplayer.
+     * A client may not always have a local player if browsing
+     * menus prior to joining a world or server.
+     *
+     * @return The client player
+     */
+    Optional<? extends ClientPlayer> getLocalPlayer();
+
+    /**
+     *
+     * @return
+     */
+    Optional<? extends LocalClientServer> getLocalServer();
+
+    Optional<? extends ClientWorld> getViewingWorld();
 
 }

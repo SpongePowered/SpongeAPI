@@ -25,8 +25,8 @@
 package org.spongepowered.api.world.gen.carver;
 
 import org.spongepowered.api.world.ProtoWorld;
+import org.spongepowered.api.world.volume.game.EnvironmentalVolume;
 import org.spongepowered.api.world.gen.FeatureConfig;
-import org.spongepowered.api.world.volume.composite.ReadableCompositeVolume;
 import org.spongepowered.math.vector.Vector2i;
 
 import java.util.BitSet;
@@ -34,7 +34,7 @@ import java.util.Random;
 
 public interface Carver<C extends FeatureConfig> {
 
-    boolean shouldCarve(ReadableCompositeVolume volume, Random random, Vector2i chunkPosition, C config);
+    boolean shouldCarve(EnvironmentalVolume volume, Random random, Vector2i chunkPosition, C config);
 
     void carve(ProtoWorld<?> world, Random random, Vector2i chunkPosition, Vector2i range, BitSet mask, C config);
 

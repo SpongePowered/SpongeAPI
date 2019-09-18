@@ -46,7 +46,7 @@ public interface ReadableBlockEntityVolume extends ReadableBlockVolume, Volume {
      *
      * @return A collection of entities
      */
-    Collection<BlockEntity> getBlockEntities();
+    Collection<? extends BlockEntity> getBlockEntities();
 
     /**
      * Return a collection of block entities contained within this volume,
@@ -61,7 +61,7 @@ public interface ReadableBlockEntityVolume extends ReadableBlockVolume, Volume {
      * @param filter The filter to apply to the returned entities
      * @return A collection of filtered entities
      */
-    default Collection<BlockEntity> getBlockEntities(Predicate<BlockEntity> filter) {
+    default Collection<? extends BlockEntity> getBlockEntities(Predicate<? super BlockEntity> filter) {
         return getBlockEntities().stream().filter(filter).collect(Collectors.toList());
     }
 
@@ -71,7 +71,7 @@ public interface ReadableBlockEntityVolume extends ReadableBlockVolume, Volume {
      * @param position The position
      * @return The block entity, or {@link Optional#empty()}
      */
-    default Optional<BlockEntity> getBlockEntity(Vector3i position) {
+    default Optional<? extends BlockEntity> getBlockEntity(Vector3i position) {
         return getBlockEntity(position.getX(), position.getY(), position.getZ());
     }
 
@@ -83,7 +83,7 @@ public interface ReadableBlockEntityVolume extends ReadableBlockVolume, Volume {
      * @param z The Z position
      * @return The block entity, or {@link Optional#empty()}
      */
-    Optional<BlockEntity> getBlockEntity(int x, int y, int z);
+    Optional<? extends BlockEntity> getBlockEntity(int x, int y, int z);
 
     @Override
     ReadableBlockEntityVolume getView(Vector3i newMin, Vector3i newMax);

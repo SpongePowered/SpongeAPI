@@ -27,7 +27,7 @@ package org.spongepowered.api.boss;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableSet;
-import org.spongepowered.api.Server;
+import org.spongepowered.api.server.Server;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;

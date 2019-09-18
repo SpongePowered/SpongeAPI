@@ -22,37 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.volume.composite;
+package org.spongepowered.api.world.volume.game;
 
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.entity.BlockEntity;
-import org.spongepowered.api.fluid.FluidState;
-import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.volume.Volume;
+import org.spongepowered.api.Game;
+import org.spongepowered.api.data.property.Properties;
 import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
 import org.spongepowered.api.world.volume.block.entity.ReadableBlockEntityVolume;
 import org.spongepowered.math.vector.Vector3i;
 
-import java.util.Optional;
-
 /**
- * A special {@link Volume} that assumes no guarantees about the instances of
- * {@link BlockState}s, and {@link BlockEntity BlockEntities}. While this is
- * partially utilized for the sake of retrieving {@link BlockState}s,
- * {@link FluidState}s, and {@link BlockEntity BlockEntities}, there are chances
- * the volume itself is not associated with a {@link World} and the
- * {@link BlockEntity} instances may yet to be fully loaded for usage by players.
+ * A very primitive rudimentary volume that can be used by the {@link Game}
+ * without impunity, but no guarantees on the provider type of what this
+ * primitive volume is based on.
  */
-public interface ReadableCompositeVolume extends ReadableBlockVolume, ReadableBlockEntityVolume, PrimitiveGameVolume {
+public interface PrimitiveGameVolume extends ReadableBlockVolume, ReadableBlockEntityVolume {
 
     @Override
-    default BlockState getBlock(Vector3i vector3i) {
-        return this.getBlock(vector3i.getX(), vector3i.getY(), vector3i.getZ());
+    PrimitiveGameVolume getView(Vector3i newMin, Vector3i newMax);
+
+    default int getMaximumLight() {
+        return 15;
     }
 
-    @Override
-    default Optional<BlockEntity> getBlockEntity(Vector3i position) {
-        return getBlockEntity(position.getX(), position.getY(), position.getZ());
+    default int getEmittedLight(Vector3i pos) {
+        return getBlock(pos.getX(), pos.getY(), pos.getZ()).getProperty(Properties.LIGHT_EMISSION).orElse(0);
     }
 
+    default int getEmittedLight(int x, int y, int z) {
+        return getBlock(x, y, z).getProperty(Properties.LIGHT_EMISSION).orElse(0);
+    }
+
+    default int getHeight() {
+        return 256;
+    }
+
+    // TODO - Raytraces
 }

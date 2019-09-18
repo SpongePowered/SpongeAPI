@@ -22,10 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.volume.composite;
+package org.spongepowered.api.client;
 
-public interface LitCompositeVolume extends ReadableCompositeVolume {
+public interface SinglePlayer extends ClientPlayer {
 
-    int getMaximumLightLevel();
+    @Override
+    default boolean isLocal() {
+        return true;
+    }
 
 }

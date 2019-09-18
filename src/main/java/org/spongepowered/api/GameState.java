@@ -25,6 +25,7 @@
 package org.spongepowered.api;
 
 import org.spongepowered.api.plugin.Plugin;
+import org.spongepowered.api.server.Server;
 
 /**
  * Top to bottom order of the lifecycle.

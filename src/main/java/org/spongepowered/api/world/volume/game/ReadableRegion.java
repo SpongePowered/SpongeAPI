@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.volume;
+package org.spongepowered.api.world.volume.game;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
@@ -34,27 +34,25 @@ import org.spongepowered.api.world.WorldBorder;
 import org.spongepowered.api.world.volume.biome.StreamableBiomeVolume;
 import org.spongepowered.api.world.volume.block.StreamableBlockVolume;
 import org.spongepowered.api.world.volume.block.entity.StreamableBlockEntityVolume;
-import org.spongepowered.api.world.volume.composite.ReadableCompositeVolume;
-import org.spongepowered.api.world.volume.entity.CollisionAwareEntityVolume;
 import org.spongepowered.api.world.volume.entity.StreamableEntityVolume;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
 public interface ReadableRegion<R extends ReadableRegion<R>> extends
-    ReadableCompositeVolume,
+    EnvironmentalVolume,
     StreamableBiomeVolume<R>,
     StreamableBlockVolume<R>,
     StreamableEntityVolume<R>,
     StreamableBlockEntityVolume<R>,
-    CollisionAwareEntityVolume,
-    LightCalculatingVolume,
+    ChunkVolume,
     HeightAwareVolume,
     RandomProvider {
-
 
     WorldBorder getBorder();
 
     boolean isInBorder(Entity entity);
+
+    Dimension getDimension();
 
     default boolean canSeeSky(Vector3i pos) {
         return canSeeSky(pos.getX(), pos.getY(), pos.getZ());
@@ -87,7 +85,8 @@ public interface ReadableRegion<R extends ReadableRegion<R>> extends
 
     boolean isCollisionBoxesEmpty(@Nullable Entity entity, AABB aabb);
 
-    boolean isChunkLoaded(int x, int y, int z, boolean allowEmpty);
+    // TODO - Collision Boxes and VoxelShapes
+
 
     default boolean isBlockLoaded(int x, int y, int z) {
         return isBlockLoaded(x, y, z, true);
@@ -132,5 +131,4 @@ public interface ReadableRegion<R extends ReadableRegion<R>> extends
 
     boolean isAreaLoaded(int xStart, int yStart, int zStart, int xEnd, int yEnd, int zEnd, boolean allowEmpty);
 
-    Dimension getDimension();
 }

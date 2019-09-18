@@ -53,7 +53,7 @@ public interface LocatableBlock extends DataHolder.Immutable<LocatableBlock>, Lo
      *
      * @return The position for the block
      */
-    default Vector3i getPosition() {
+    default Vector3i getBlockPosition() {
         return getLocation().getBlockPosition();
     }
 

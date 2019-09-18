@@ -22,18 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen;
+package org.spongepowered.api.world.volume.game;
 
-import org.spongepowered.api.world.ProtoWorld;
-import org.spongepowered.api.world.volume.game.EnvironmentalVolume;
-import org.spongepowered.math.vector.Vector2i;
+import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.world.World;
+import org.spongepowered.math.vector.Vector3i;
 
-import java.util.Random;
+import java.util.function.Predicate;
 
-public interface WorldCarver<C extends FeatureConfig> {
+public interface ReadableGenerationVolume extends HeightAwareVolume {
 
-    boolean canCarve(EnvironmentalVolume volume, Random random, Vector2i chunkPosition, C configuration);
+    default boolean hasBlockState(Vector3i pos) {
+        return hasBlockState(pos.getX(), pos.getY(), pos.getZ(), block -> true);
+    }
 
-    boolean carve(ProtoWorld<?> world, Random random, Vector2i chunkPosition, Vector2i targetPosition, C configuration);
+    default boolean hasBlockState(Vector3i pos, Predicate<? super BlockState> predicate) {
+        return hasBlockState(pos.getX(), pos.getY(), pos.getZ(), predicate);
+    }
+
+    boolean hasBlockState(int x, int y, int z, Predicate<? super BlockState> predicate);
+
+    default int getMaximumHeight() {
+        return this instanceof World ? ((World) this).getBlockMax().getY() : 256;
+    }
 
 }

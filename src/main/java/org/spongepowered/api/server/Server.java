@@ -22,8 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api;
+package org.spongepowered.api.server;
 
+import org.spongepowered.api.Engine;
+import org.spongepowered.api.client.Client;
+import org.spongepowered.api.client.RemoteClientPlayer;
 import org.spongepowered.api.command.source.CommandSource;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.profile.GameProfileManager;
@@ -72,7 +75,7 @@ public interface Server extends Engine, CommandSource {
      * @param uniqueId The UUID to get the player from
      * @return The {@link Player} or empty if not found
      */
-    Optional<Player> getPlayer(UUID uniqueId);
+    Optional<? extends Player> getPlayer(UUID uniqueId);
 
     /**
      * Gets a {@link Player} by their name.
@@ -85,7 +88,7 @@ public interface Server extends Engine, CommandSource {
      * @param name The name to get the player from
      * @return The {@link Player} or empty if not found
      */
-    Optional<Player> getPlayer(String name);
+    Optional<? extends Player> getPlayer(String name);
 
     /**
      * Gets the 'server' scoreboard. In Vanilla, this is the scoreboard of
@@ -100,7 +103,7 @@ public interface Server extends Engine, CommandSource {
      *
      * @return the server scoreboard, if available.
      */
-    Optional<Scoreboard> getServerScoreboard();
+    Optional<? extends Scoreboard> getServerScoreboard();
 
     /**
      * Returns information about the chunk layout used by this server
@@ -242,4 +245,15 @@ public interface Server extends Engine, CommandSource {
      * @param timeout The player idle timeout
      */
     void setPlayerIdleTimeout(int timeout);
+
+    /**
+     * Gets whether this server is dedicated to being a global server, or
+     * whether this server is local to a game client where a {@link Client}
+     * instance may be available. The primary difference will be the types
+     * of {@link Player players} there may exist in the server, whether
+     * they are {@link ServerPlayer server players} or {@link RemoteClientPlayer remote players}.
+     *
+     * @return True if this is a dedicated server without a game client
+     */
+    boolean isDedicatedServer();
 }
