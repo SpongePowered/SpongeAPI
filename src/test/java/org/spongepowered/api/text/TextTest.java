@@ -100,6 +100,22 @@ public class TextTest {
         assertThat(server.getShiftClickAction().get(), is(insertText("Welcome Spongie!")));
     }
 
+    @Test
+    public void testRemoveAtIndex() {
+        Text.Builder builder = Text.builder()
+                .append(Text.of("Hello"))
+                .append(Text.of("Sponge"))
+                .append(Text.of("!"))
+                .append(Text.of("."));
+
+        assertThat(builder.getChildren().size(), is(4));
+        assertThat(builder.build().toPlain(), is("HelloSponge!."));
+        builder.remove(2);
+        builder.removeLastChild();
+        assertThat(builder.getChildren().size(), is(2));
+        assertThat(builder.build().toPlain(), is("HelloSponge"));
+    }
+
     private static Text findText(Text root, String text) {
         for (Text t : root.withChildren()) {
             if (t instanceof LiteralText && ((LiteralText) t).getContent().contains(text)) {
