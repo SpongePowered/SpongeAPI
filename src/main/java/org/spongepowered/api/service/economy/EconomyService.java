@@ -26,6 +26,8 @@ package org.spongepowered.api.service.economy;
 
 import org.spongepowered.api.service.context.ContextualService;
 import org.spongepowered.api.service.economy.account.Account;
+import org.spongepowered.api.service.economy.account.AccountDeletionResultType;
+import org.spongepowered.api.service.economy.account.AccountDeletionResultTypes;
 import org.spongepowered.api.service.economy.account.UniqueAccount;
 import org.spongepowered.api.service.economy.account.VirtualAccount;
 
@@ -115,4 +117,32 @@ public interface EconomyService extends ContextualService<Account> {
      * @return The {@link Account}, if available.
      */
     Optional<Account> getOrCreateAccount(String identifier);
+
+    /**
+     * Deletes the account for the user with the specified {@link UUID}.
+     *
+     * <p>Deletion might fail if the provided {@link UUID} does not correspond to
+     * an actual player, or for an implementation-defined reason.</p>
+     *
+     * @param uuid The {@link UUID} of the account to delete.
+     * @return The result of the deletion.
+     */
+    default AccountDeletionResultType deleteAccount(UUID uuid) {
+        return AccountDeletionResultTypes.UNSUPPORTED;
+    }
+
+    /**
+     * Deletes the account with the specified identifier.
+     *
+     * <p>If an account exists with the specified identifier,
+     * it will be deleted.</p>
+     *
+     * <p>Deletion may fail for an implementation-defined reason.</p>
+     *
+     * @param identifier The identifier of the account to delete.
+     * @return The result of the deletion.
+     */
+    default AccountDeletionResultType deleteAccount(String identifier) {
+        return AccountDeletionResultTypes.UNSUPPORTED;
+    }
 }
