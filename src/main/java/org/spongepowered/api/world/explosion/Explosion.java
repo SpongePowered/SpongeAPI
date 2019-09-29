@@ -94,9 +94,11 @@ public interface Explosion extends Locatable {
     /**
      * Gets the number of rays cast per length of each side of the explosion bounding box.
      *
-     * @return The number of rays cast per length of each side of the explosion bounding box.
+     * @return The number of rays cast per length of each side of the explosion bounding box
      */
-    int getResolution();
+    default int getResolution() {
+        return 16;
+    }
 
     /**
      * <pre>
@@ -106,16 +108,20 @@ public interface Explosion extends Locatable {
      * 1.0 = +/-0.3 Variation (Vanilla Behaviour).
      * </pre>
      *
-     * @return A numerical representation of variation in blast strength per ray.
+     * @return A numerical representation of variation in blast strength per ray
      */
-    float getRandomness();
+    default float getRandomness() {
+        return 1;
+    }
 
     /**
      * Knockback multiplier for entities effected by the explosion.
      *
      * @return The multiple by which the knockback of entities will be changed
      */
-    double getKnockback();
+    default double getKnockback() {
+        return 1;
+    }
 
     /**
      * A builder for {@link Explosion}.
@@ -188,7 +194,9 @@ public interface Explosion extends Locatable {
          * @param resolution The desired resolution of the explosion
          * @return The builder, for chaining
          */
-        Builder resolution(int resolution);
+        default Builder resolution(int resolution) {
+            return this;
+        }
 
         /**
          * <pre>
@@ -201,7 +209,9 @@ public interface Explosion extends Locatable {
          * @param randomness The desired variation in blast strength per ray for this explosion as a numerical representation
          * @return The builder, for chaining
          */
-        Builder randomness(float randomness);
+        default Builder randomness(float randomness) {
+            return this;
+        }
 
         /**
          * Knockback multiplier for entities effected by the explosion.
@@ -209,7 +219,9 @@ public interface Explosion extends Locatable {
          * @param knockback The multiple by which to change the knockback of entities
          * @return The builder, for chaining
          */
-        Builder knockback(double knockback);
+        default Builder knockback(double knockback) {
+            return this;
+        }
 
         /**
          * Attempts to create a {@link Explosion} from the specified parameters.
