@@ -33,6 +33,9 @@ import org.spongepowered.api.entity.living.animal.Sheep;
  */
 public interface Evoker extends Spellcaster {
 
+    /**
+     * {@link Keys#WOLOLO_TARGET}
+     */
     default OptionalValue.Mutable<Sheep> wololoTarget() {
         return this.getValue(Keys.WOLOLO_TARGET).get().asMutable();
     }

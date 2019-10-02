@@ -35,10 +35,10 @@ import org.spongepowered.math.vector.Vector3i;
 public interface EndCrystal extends Explosive {
 
     /**
-     * {@link Keys#BEAM_TARGET}
+     * {@link Keys#BEAM_TARGET_POSITION}
      */
     default OptionalValue.Mutable<Vector3i> beamTarget() {
-        return this.getValue(Keys.BEAM_TARGET).get().asMutable();
+        return this.getValue(Keys.BEAM_TARGET_POSITION).get().asMutable();
     }
 
     /**

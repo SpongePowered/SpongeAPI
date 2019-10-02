@@ -24,12 +24,11 @@
  */
 package org.spongepowered.api.entity.living.monster.guardian;
 
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.entity.living.aquatic.Aquatic;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.Monster;
-
-import java.util.Optional;
 
 /**
  * Represents a Guardian.
@@ -37,17 +36,9 @@ import java.util.Optional;
 public interface Guardian extends Aquatic, Monster {
 
     /**
-     * Gets the target of the guardian's beam or {@link Optional#empty()} otherwise.
-     *
-     * @return An optional containing the target, if any
+     * {@link Keys#BEAM_TARGET_ENTITY}
      */
-    Optional<Living> getBeamTarget();
-
-    /**
-     * Sets the target of the guardian's beam. Setting a null value removes the
-     * target.
-     *
-     * @param entity The entity or null to clear it
-     */
-    void setBeamTarget(@Nullable Living entity);
+    default OptionalValue.Mutable<Living> beamTarget() {
+        return this.getValue(Keys.BEAM_TARGET_ENTITY).get().asMutable();
+    }
 }

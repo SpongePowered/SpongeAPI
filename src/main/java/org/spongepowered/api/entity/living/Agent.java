@@ -42,7 +42,7 @@ public interface Agent extends Living {
     /**
      * {@link Keys#TARGETED_ENTITY}
      */
-    default OptionalValue.Mutable<Entity> target() {
+    default OptionalValue.Mutable<Entity> targetedEntity() {
         return this.getValue(Keys.TARGETED_ENTITY).get().asMutable();
     }
 

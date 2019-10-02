@@ -129,6 +129,7 @@ import org.spongepowered.api.entity.living.monster.Endermite;
 import org.spongepowered.api.entity.living.monster.Patroller;
 import org.spongepowered.api.entity.living.monster.boss.Wither;
 import org.spongepowered.api.entity.living.monster.boss.dragon.EnderDragon;
+import org.spongepowered.api.entity.living.monster.guardian.Guardian;
 import org.spongepowered.api.entity.living.monster.raider.Raider;
 import org.spongepowered.api.entity.living.monster.raider.illager.Pillager;
 import org.spongepowered.api.entity.living.monster.raider.illager.Vindicator;
@@ -396,9 +397,15 @@ public final class Keys {
     public static final Key<OptionalValue<PotionEffectType>> BEACON_SECONDARY_EFFECT = DummyObjectProvider.createExtendedFor(Key.class, "BEACON_SECONDARY_EFFECT");
 
     /**
+     * Represents the {@link Key} for the {@link Living} who is being targeted by a
+     * {@link Guardian}.
+     */
+    public static final Key<OptionalValue<Living>> BEAM_TARGET_ENTITY = DummyObjectProvider.createExtendedFor(Key.class, "BEAM_TARGET_ENTITY");
+
+    /**
      * Represents the {@link Key} for a {@link EndCrystal}'s beam target.
      */
-    public static final Key<OptionalValue<Vector3i>> BEAM_TARGET = DummyObjectProvider.createExtendedFor(Key.class, "BEAM_TARGET");
+    public static final Key<OptionalValue<Vector3i>> BEAM_TARGET_POSITION = DummyObjectProvider.createExtendedFor(Key.class, "BEAM_TARGET_POSITION");
 
     /**
      * Represents the {@link Key} for the pore sides
@@ -677,6 +684,11 @@ public final class Keys {
      * {@link BlockTypes#TRIPWIRE}s and {@link BlockTypes#TRIPWIRE_HOOK}s.
      */
     public static final Key<Value<Boolean>> DISARMED = DummyObjectProvider.createExtendedFor(Key.class, "DISARMED");
+
+    /**
+     * Represents the {@link Key} for displaying the chest of a {@link PackHorse}.
+     */
+    public static final Key<Value<Boolean>> DISPLAY_CHEST = DummyObjectProvider.createExtendedFor(Key.class, "DISPLAY_CHEST");
 
     /**
      * Represents the {@link Key} for the display name of an {@link Entity},
@@ -1983,21 +1995,16 @@ public final class Keys {
     public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_WEST = DummyObjectProvider.createExtendedFor(Key.class, "WIRE_ATTACHMENT_WEST");
 
     /**
-     * Represents the {@link Key} for representing the {@link WoodType}.
-     * of a {@link Boat}.
-     */
-    public static final Key<Value<WoodType>> WOOD_TYPE = DummyObjectProvider.createExtendedFor(Key.class, "WOOD_TYPE");
-
-    /**
-     * Represents the {@link Key} for displaying the chest of a {@link PackHorse}.
-     */
-    public static final Key<Value<Boolean>> DISPLAY_CHEST = DummyObjectProvider.createExtendedFor(Key.class, "DISPLAY_CHEST");
-
-    /**
      * Represents the {@link Key} for the {@link Sheep} who is being targeted by the {@link SpellTypes#WOLOLO}
      * spell being casted by an {@link Evoker}
      */
     public static final Key<OptionalValue<Sheep>> WOLOLO_TARGET = DummyObjectProvider.createExtendedFor(Key.class, "WOLOLO_TARGET");
+
+    /**
+     * Represents the {@link Key} for representing the {@link WoodType}.
+     * of a {@link Boat}.
+     */
+    public static final Key<Value<WoodType>> WOOD_TYPE = DummyObjectProvider.createExtendedFor(Key.class, "WOOD_TYPE");
 
     // SORTFIELDS:OFF
 
