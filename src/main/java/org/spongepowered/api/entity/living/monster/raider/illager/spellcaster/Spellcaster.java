@@ -24,8 +24,39 @@
  */
 package org.spongepowered.api.entity.living.monster.raider.illager.spellcaster;
 
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.type.SpellType;
+import org.spongepowered.api.data.value.OptionalValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.monster.raider.illager.Illager;
 
 public interface Spellcaster extends Illager {
 
+    /**
+     * {@link Keys#CURRENT_SPELL}.
+     */
+    default OptionalValue.Mutable<SpellType> currentSpell() {
+        return this.getValue(Keys.CURRENT_SPELL).get().asMutable();
+    }
+
+    /**
+     * Instructs this caster to cast it's current {@link SpellType}.
+     */
+    void castSpell();
+
+    /**
+     * {@link Keys#CASTING_TIME}
+     */
+    default Value.Mutable<Integer> castingTime() {
+        return this.getValue(Keys.CASTING_TIME).get().asMutable();
+    }
+
+    /**
+     * Gets if the caster is currently casting a spell.
+     *
+     * @return True if casting a spell, false if not
+     */
+    default boolean isCastingSpell() {
+        return this.castingTime().get() <= 0;
+    }
 }

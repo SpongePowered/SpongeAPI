@@ -34,11 +34,9 @@ import org.spongepowered.api.data.value.Value;
 public interface Painting extends Hanging {
 
     /**
-     * Gets the current {@link ArtType} value represented by this {@link Painting}.
-     *
-     * @return The current art value
+     * {@link Keys#ART}
      */
     default Value.Mutable<ArtType> art() {
-        return getValue(Keys.ART).get().asMutable();
+        return this.getValue(Keys.ART).get().asMutable();
     }
 }

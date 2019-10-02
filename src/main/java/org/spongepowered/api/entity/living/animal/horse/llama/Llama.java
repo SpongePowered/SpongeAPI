@@ -39,20 +39,14 @@ import org.spongepowered.api.entity.living.animal.horse.AgeableHorse;
 public interface Llama extends LlamaEntity, AgeableHorse, Ranger {
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the {@link LlamaType} of this
-     * {@link Llama}.
-     *
-     * @return The llama type
+     * {@link Keys#LLAMA_TYPE}
      */
     default Value.Mutable<LlamaType> type() {
         return this.getValue(Keys.LLAMA_TYPE).get().asMutable();
     }
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the {@link Keys#LLAMA_STRENGTH llama strength}
-     * when attacking.
-     *
-     * @return The strength value of the llama
+     * {@link Keys#LLAMA_STRENGTH}
      */
     default BoundedValue.Mutable<Integer> strength() {
         return this.getValue(Keys.LLAMA_STRENGTH).get().asMutable();

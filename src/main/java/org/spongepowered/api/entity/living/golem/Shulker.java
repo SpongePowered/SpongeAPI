@@ -44,7 +44,7 @@ public interface Shulker extends Golem, Monster, ProjectileSource {
      * @return The current value of dye color for this shulker
      */
     default Value.Mutable<DyeColor> color() {
-        return getValue(Keys.DYE_COLOR).get().asMutable();
+        return this.getValue(Keys.DYE_COLOR).get().asMutable();
     }
 
     /**
@@ -53,7 +53,7 @@ public interface Shulker extends Golem, Monster, ProjectileSource {
      * @return The current value of direction for this shulker
      */
     default Value.Mutable<Direction> direction() {
-        return getValue(Keys.DIRECTION).get().asMutable();
+        return this.getValue(Keys.DIRECTION).get().asMutable();
     }
 
     /**

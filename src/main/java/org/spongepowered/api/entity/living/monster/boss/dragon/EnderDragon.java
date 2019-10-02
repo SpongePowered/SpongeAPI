@@ -26,6 +26,7 @@ package org.spongepowered.api.entity.living.monster.boss.dragon;
 
 import org.spongepowered.api.boss.ServerBossBar;
 import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.entity.explosive.EndCrystal;
 import org.spongepowered.api.entity.living.Aerial;
 import org.spongepowered.api.entity.living.ComplexLiving;
@@ -35,7 +36,6 @@ import org.spongepowered.api.entity.living.monster.boss.dragon.phase.DragonPhase
 import org.spongepowered.api.entity.living.monster.boss.dragon.phase.DragonPhaseManager;
 import org.spongepowered.api.entity.living.monster.boss.Boss;
 
-import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -47,12 +47,10 @@ public interface EnderDragon extends ComplexLiving, Boss, Monster, Aerial, Range
     Set<EnderDragonPart> getParts();
 
     /**
-     * Returns the current {@link EndCrystal} that is healing this {@link EnderDragon}.
-     *
-     * @return The end crystal
+     * {@link Keys#HEALING_CRYSTAL}
      */
-    default Optional<EndCrystal> getHealingCrystal() {
-        return get(Keys.HEALING_CRYSTAL);
+    default OptionalValue.Mutable<EndCrystal> healingCrystal() {
+        return this.getValue(Keys.HEALING_CRYSTAL).get().asMutable();
     }
 
     /**

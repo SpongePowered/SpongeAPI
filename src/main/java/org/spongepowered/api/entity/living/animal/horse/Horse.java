@@ -40,7 +40,7 @@ public interface Horse extends AgeableHorse {
      * @return The value of the horse's style
      */
     default Value.Mutable<HorseStyle> style() {
-        return getValue(Keys.HORSE_STYLE).get().asMutable();
+        return this.getValue(Keys.HORSE_STYLE).get().asMutable();
     }
 
     /**
@@ -49,6 +49,6 @@ public interface Horse extends AgeableHorse {
      * @return The value of the horse's color
      */
     default Value.Mutable<HorseColor> color() {
-        return getValue(Keys.HORSE_COLOR).get().asMutable();
+        return this.getValue(Keys.HORSE_COLOR).get().asMutable();
     }
 }

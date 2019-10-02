@@ -22,41 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.monster;
+package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.OptionalValue;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.Monster;
-import org.spongepowered.math.vector.Vector3i;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-public interface Patroller extends Monster {
+public final class SpellTypes {
 
-    /**
-     * {@link Keys#TARGET_POSITION}
-     */
-    default OptionalValue.Mutable<Vector3i> targetPosition() {
-        return this.getValue(Keys.TARGET_POSITION).get().asMutable();
+    // SORTFIELDS:ON
+
+    public static final SpellType SUMMON_VEX = DummyObjectProvider.createFor(SpellType.class, "SUMMON_VEX");
+
+    public static final SpellType FANGS = DummyObjectProvider.createFor(SpellType.class, "FANGS");
+
+    public static final SpellType WOLOLO = DummyObjectProvider.createFor(SpellType.class, "WOLOLO");
+
+    public static final SpellType DISAPPEAR = DummyObjectProvider.createFor(SpellType.class, "DISAPPEAR");
+
+    public static final SpellType BLINDNESS = DummyObjectProvider.createFor(SpellType.class, "BLINDNESS");
+
+    // SORTFIELDS:OFF
+
+    private SpellTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
-
-    /**
-     * {@link Keys#LEADER}
-     */
-    default Value.Mutable<Boolean> leader() {
-        return this.getValue(Keys.LEADER).get().asMutable();
-    }
-
-    /**
-     * {@link Keys#PATROLLING
-     */
-    default Value.Mutable<Boolean> patrolling() {
-        return this.getValue(Keys.PATROLLING).get().asMutable();
-    }
-
-    /**
-     * Instructs the patroller to find a new patrol target.
-     *
-     * {@link Keys#TARGET_POSITION}
-     */
-    void findPatrolTarget();
 }

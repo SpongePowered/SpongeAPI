@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.living.monster.guardian;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.entity.living.aquatic.Aquatic;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.Monster;
@@ -48,5 +49,5 @@ public interface Guardian extends Aquatic, Monster {
      *
      * @param entity The entity or null to clear it
      */
-    void setBeamTarget(Living entity);
+    void setBeamTarget(@Nullable Living entity);
 }

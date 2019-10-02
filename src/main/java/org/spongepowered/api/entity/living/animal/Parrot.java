@@ -35,10 +35,7 @@ import org.spongepowered.api.entity.living.Ageable;
 public interface Parrot extends Animal, Ageable {
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the {@link ParrotType} of this
-     * {@link Parrot}.
-     *
-     * @return The parrot type
+     * {@link Keys#PARROT_TYPE}
      */
     default Value.Mutable<ParrotType> type() {
         return this.getValue(Keys.PARROT_TYPE).get().asMutable();

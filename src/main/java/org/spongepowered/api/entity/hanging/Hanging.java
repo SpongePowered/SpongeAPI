@@ -40,6 +40,6 @@ public interface Hanging extends Entity {
      * @return The current "facing" direction value
      */
     default Value.Mutable<Direction> direction() {
-        return getValue(Keys.DIRECTION).get().asMutable();
+        return this.getValue(Keys.DIRECTION).get().asMutable();
     }
 }

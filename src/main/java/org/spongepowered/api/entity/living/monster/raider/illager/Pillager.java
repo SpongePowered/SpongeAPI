@@ -24,9 +24,19 @@
  */
 package org.spongepowered.api.entity.living.monster.raider.illager;
 
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.item.inventory.Carrier;
+
 /**
  * Represents a pillager.
  */
-public interface Pillager extends Illager {
+public interface Pillager extends Illager, Carrier {
 
+    /**
+     * {@link Keys#CHARGING_CROSSBOW}.
+     */
+    default Value.Mutable<Boolean> chargingCrossbow() {
+        return this.getValue(Keys.CHARGING_CROSSBOW).get().asMutable();
+    }
 }

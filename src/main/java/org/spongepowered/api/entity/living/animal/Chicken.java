@@ -35,8 +35,7 @@ import org.spongepowered.api.item.ItemTypes;
 public interface Chicken extends Animal, Ageable {
 
     /**
-     * Gets a {@link Value} representing the time until a {@link Chicken} lays
-     * an {@link ItemTypes#EGG}.
+     * {@link Keys#EGG_TIMER}
      *
      * <p>
      *     Vanilla will calculate the egg timer by taking a random value between

@@ -40,7 +40,7 @@ public interface Rabbit extends Animal, Ageable {
      * @return The rabbit type for this rabit
      */
     default Value.Mutable<RabbitType> type() {
-        return getValue(Keys.RABBIT_TYPE).get().asMutable();
+        return this.getValue(Keys.RABBIT_TYPE).get().asMutable();
     }
 
 }

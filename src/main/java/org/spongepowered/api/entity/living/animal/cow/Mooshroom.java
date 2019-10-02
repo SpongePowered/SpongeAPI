@@ -34,12 +34,9 @@ import org.spongepowered.api.data.value.Value;
 public interface Mooshroom extends Cow {
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the {@link MooshroomType} of this
-     * {@link Mooshroom}.
-     *
-     * @return The mooshroom type
+     * {@link Keys#MOOSHROOM_TYPE}
      */
     default Value.Mutable<MooshroomType> type() {
-        return getValue(Keys.MOOSHROOM_TYPE).get().asMutable();
+        return this.getValue(Keys.MOOSHROOM_TYPE).get().asMutable();
     }
 }

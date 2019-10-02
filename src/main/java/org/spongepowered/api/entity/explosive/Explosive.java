@@ -42,12 +42,11 @@ public interface Explosive extends Entity {
      * @return Explosion radius
      */
     default OptionalValue.Mutable<Integer> explosionRadius() {
-        return getValue(Keys.EXPLOSION_RADIUS).get().asMutable();
+        return this.getValue(Keys.EXPLOSION_RADIUS).get().asMutable();
     }
 
     /**
-     * Detonates this explosive as soon as possible.
+     * Instructs this explosive to detonate as soon as possible.
      */
     void detonate();
-
 }

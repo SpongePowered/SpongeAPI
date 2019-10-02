@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.entity.living.aquatic;
 
-import org.spongepowered.api.entity.living.aquatic.Aquatic;
-
 /**
  * Represents a Squid.
  */

@@ -35,10 +35,7 @@ import org.spongepowered.api.entity.living.player.Player;
 public interface Ocelot extends Animal, Ageable {
 
     /**
-     * Returns a {@link Value} representing if the {@link Ocelot} is
-     * currently trusting o {@link Player}s or not.
-     *
-     * @return The trusting value
+     * {@link Keys#IS_TRUSTING}
      */
     default Value.Mutable<Boolean> isTrusting() {
         return this.getValue(Keys.IS_TRUSTING).get().asMutable();

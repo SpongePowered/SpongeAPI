@@ -25,6 +25,7 @@
 package org.spongepowered.api.entity.explosive.fused;
 
 import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.explosive.Explosive;
 
 /**
@@ -34,25 +35,16 @@ import org.spongepowered.api.entity.explosive.Explosive;
 public interface FusedExplosive extends Explosive {
 
     /**
-     * Returns true if this explosive is currently primed.
-     *
-     * @return True if primed
+     * {@link Keys#PRIMED}
      */
-    boolean isPrimed();
+    default Value.Mutable<Boolean> primed() {
+        return this.getValue(Keys.PRIMED).get().asMutable();
+    }
 
     /**
-     * Primes this explosive to detonate after the amount of ticks that
-     * this entity explodes in defined by {@link Keys#FUSE_DURATION}.
-     *
-     * @throws IllegalStateException if explosive already primed
+     * {@link Keys#FUSE_DURATION}
      */
-    void prime();
-
-    /**
-     * Cancels an actively primed explosive.
-     *
-     * @throws IllegalStateException if explosive is not primed
-     */
-    void defuse();
-
+    default Value.Mutable<Integer> fuseDuration() {
+        return this.getValue(Keys.FUSE_DURATION).get().asMutable();
+    }
 }

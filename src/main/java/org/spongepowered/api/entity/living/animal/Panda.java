@@ -38,6 +38,6 @@ public interface Panda extends Animal, Ageable {
      * @return The panda type value
      */
     default Value.Mutable<PandaType> type() {
-        return getValue(Keys.PANDA_TYPE).get().asMutable();
+        return this.getValue(Keys.PANDA_TYPE).get().asMutable();
     }
 }

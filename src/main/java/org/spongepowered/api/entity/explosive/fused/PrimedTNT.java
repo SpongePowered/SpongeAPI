@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.entity.explosive.fused;
 
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.entity.living.Living;
-
-import java.util.Optional;
 
 /**
  * Represents a TNT that will explode.
@@ -34,10 +34,9 @@ import java.util.Optional;
 public interface PrimedTNT extends FusedExplosive {
 
     /**
-     * Gets the living entity that set off this primed TNT.
-     *
-     * @return The living entity that set off this primed TNT, if available
+     * {@link Keys#DETONATOR}
      */
-    Optional<Living> getDetonator();
-
+    default OptionalValue.Mutable<Living> detonator() {
+        return this.getValue(Keys.DETONATOR).get().asMutable();
+    }
 }

@@ -34,12 +34,10 @@ import org.spongepowered.api.entity.living.Ageable;
 public interface Pig extends Animal, Ageable {
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for whether this {@link Pig} is saddled.
-     *
-     * @return The value whether this pig is saddled
+     * {@link Keys#PIG_SADDLE}
      */
     default Value.Mutable<Boolean> saddled() {
-        return getValue(Keys.PIG_SADDLE).get().asMutable();
+        return this.getValue(Keys.PIG_SADDLE).get().asMutable();
     }
 
 }

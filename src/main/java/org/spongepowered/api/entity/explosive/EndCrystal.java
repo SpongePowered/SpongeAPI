@@ -24,9 +24,27 @@
  */
 package org.spongepowered.api.entity.explosive;
 
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.OptionalValue;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.math.vector.Vector3i;
+
 /**
- * Represents an ender crystal.
+ * Represents an end crystal.
  */
 public interface EndCrystal extends Explosive {
 
+    /**
+     * {@link Keys#BEAM_TARGET}
+     */
+    default OptionalValue.Mutable<Vector3i> beamTarget() {
+        return this.getValue(Keys.BEAM_TARGET).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#SHOW_BOTTOM}
+     */
+    default Value.Mutable<Boolean> showBottom() {
+        return this.getValue(Keys.SHOW_BOTTOM).get().asMutable();
+    }
 }

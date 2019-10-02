@@ -24,8 +24,40 @@
  */
 package org.spongepowered.api.entity.living.monster.raider;
 
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.monster.Patroller;
+import org.spongepowered.api.raid.Raid;
+
+import java.util.Optional;
 
 public interface Raider extends Patroller {
 
+    /**
+     * {@link Keys#CAN_JOIN_RAID}
+     */
+    default Value.Mutable<Boolean> canJoinRaid() {
+        return this.getValue(Keys.CAN_JOIN_RAID).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#RAID_WAVE}
+     */
+    default Value.Mutable<Integer> raidWave() {
+        return this.getValue(Keys.RAID_WAVE).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#IS_CELEBRATING}
+     */
+    default Value.Mutable<Boolean> isCelebrating() {
+        return this.getValue(Keys.IS_CELEBRATING).get().asMutable();
+    }
+
+    /**
+     * Gets the {@link Raid} this raider is taking part in.
+     *
+     * @return The raid or {@link Optional#empty()} if not
+     */
+    Optional<Raid> getRaid();
 }

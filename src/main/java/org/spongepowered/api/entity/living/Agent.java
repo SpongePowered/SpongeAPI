@@ -24,13 +24,12 @@
  */
 package org.spongepowered.api.entity.living;
 
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.ai.Goal;
 import org.spongepowered.api.entity.ai.GoalType;
-import org.spongepowered.api.entity.ai.task.AITask;
 
 import java.util.Optional;
 
@@ -40,24 +39,8 @@ import java.util.Optional;
  */
 public interface Agent extends Living {
 
-    /**
-     * Gets the current target, usually according to the various
-     * {@link AITask}s that are acting on this agent.
-     *
-     * @return The target entity, if available
-     */
-    default Optional<Entity> getTarget() {
-        return get(Keys.TARGETED_ENTITY);
-    }
-
-    /**
-     * Sets the current target, usually to bypass what the {@link AITask}s are
-     * deciding to be the target.
-     *
-     * @param target The target entity, or null
-     */
-    default void setTarget(@Nullable Entity target) {
-        offer(Keys.TARGETED_ENTITY, target);
+    default OptionalValue.Mutable<Entity> target() {
+        return this.getValue(Keys.TARGETED_ENTITY).get().asMutable();
     }
 
     /**

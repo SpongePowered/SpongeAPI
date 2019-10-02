@@ -25,6 +25,7 @@
 package org.spongepowered.api.entity.hanging;
 
 import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -41,8 +42,8 @@ public interface LeashKnot extends Hanging {
      *
      * @return The currently leashed entity
      */
-    default Entity leashedEntity() {
-        return require(Keys.LEASHED_ENTITY);
+    default Value.Immutable<Entity> leashedEntity() {
+        return this.getValue(Keys.LEASHED_ENTITY).get().asImmutable();
     }
 
 }

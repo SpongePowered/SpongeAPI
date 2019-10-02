@@ -37,7 +37,7 @@ import org.spongepowered.api.item.ItemTypes;
 public interface FireworkRocket extends Projectile, FusedExplosive {
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.ListValue.Mutable} of {@link FireworkEffect}s.
+     * Gets the {@link Mutable} of {@link FireworkEffect}s.
      *
      * <p>Note that for {@link ItemTypes#FIRE_CHARGE} only the first effect
      * will apply to the charge.</p>
@@ -45,7 +45,7 @@ public interface FireworkRocket extends Projectile, FusedExplosive {
      * @return The list value of firework effects
      */
     default ListValue.Mutable<FireworkEffect> effects() {
-        return getValue(Keys.FIREWORK_EFFECTS).get().asMutable();
+        return this.getValue(Keys.FIREWORK_EFFECTS).get().asMutable();
     }
 
 }

@@ -25,14 +25,13 @@
 package org.spongepowered.api.entity.living.monster.boss;
 
 import org.spongepowered.api.boss.ServerBossBar;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.entity.explosive.fused.FusedExplosive;
 import org.spongepowered.api.entity.living.Aerial;
-import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.Ranger;
 import org.spongepowered.api.entity.living.Monster;
-
-import java.util.List;
 
 /**
  * Represents the Wither.
@@ -40,21 +39,11 @@ import java.util.List;
 public interface Wither extends Monster, Ranger, Boss, Aerial, FusedExplosive {
 
     /**
-     * Gets the list of {@link Living} targets that this wither is targeting.
-     * Usually, as an {@link Agent}, {@link #getTarget()} would be sufficient,
-     * however, due to a Wither having the possibility of 3 targets, this
-     * is preferred use.
-     *
-     * @return The list of living targets
+     * {@link Keys#TARGETED_ENTITIES}
      */
-    List<Living> getTargets();
-
-    /**
-     * Sets the list of living targets.
-     *
-     * @param targets The targets
-     */
-    void setTargets(List<Living> targets);
+    default ListValue.Mutable<Living> targetedEntities() {
+        return this.getValue(Keys.TARGETED_ENTITIES).get().asMutable();
+    }
 
     /**
      * Gets the boss bar this wither uses.

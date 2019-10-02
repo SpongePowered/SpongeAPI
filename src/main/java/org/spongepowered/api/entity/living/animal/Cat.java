@@ -36,15 +36,15 @@ import org.spongepowered.api.entity.living.Ageable;
 public interface Cat extends Animal, Ageable {
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the {@link CatType} of this
-     * {@link Cat}.
-     *
-     * @return The cat type value
+     * {@link Keys#CAT_TYPE}
      */
     default Value.Mutable<CatType> type() {
-        return getValue(Keys.CAT_TYPE).get().asMutable();
+        return this.getValue(Keys.CAT_TYPE).get().asMutable();
     }
 
+    /**
+     * {@link Keys#DYE_COLOR}
+     */
     default Value.Mutable<DyeColor> collarColor() {
         return this.getValue(Keys.DYE_COLOR).get().asMutable();
     }

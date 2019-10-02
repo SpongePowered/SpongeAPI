@@ -22,41 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.monster;
+package org.spongepowered.api.raid;
 
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.OptionalValue;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.Monster;
-import org.spongepowered.math.vector.Vector3i;
+public interface Raid {
 
-public interface Patroller extends Monster {
-
-    /**
-     * {@link Keys#TARGET_POSITION}
-     */
-    default OptionalValue.Mutable<Vector3i> targetPosition() {
-        return this.getValue(Keys.TARGET_POSITION).get().asMutable();
-    }
-
-    /**
-     * {@link Keys#LEADER}
-     */
-    default Value.Mutable<Boolean> leader() {
-        return this.getValue(Keys.LEADER).get().asMutable();
-    }
-
-    /**
-     * {@link Keys#PATROLLING
-     */
-    default Value.Mutable<Boolean> patrolling() {
-        return this.getValue(Keys.PATROLLING).get().asMutable();
-    }
-
-    /**
-     * Instructs the patroller to find a new patrol target.
-     *
-     * {@link Keys#TARGET_POSITION}
-     */
-    void findPatrolTarget();
 }
