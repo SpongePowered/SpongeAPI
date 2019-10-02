@@ -67,6 +67,7 @@ import org.spongepowered.api.data.type.RabbitType;
 import org.spongepowered.api.data.type.RailDirection;
 import org.spongepowered.api.data.type.SlabPortion;
 import org.spongepowered.api.data.type.SpellType;
+import org.spongepowered.api.data.type.SpellTypes;
 import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StructureMode;
 import org.spongepowered.api.data.type.Surface;
@@ -131,6 +132,7 @@ import org.spongepowered.api.entity.living.monster.boss.dragon.EnderDragon;
 import org.spongepowered.api.entity.living.monster.raider.Raider;
 import org.spongepowered.api.entity.living.monster.raider.illager.Pillager;
 import org.spongepowered.api.entity.living.monster.raider.illager.Vindicator;
+import org.spongepowered.api.entity.living.monster.raider.illager.spellcaster.Evoker;
 import org.spongepowered.api.entity.living.monster.raider.illager.spellcaster.Spellcaster;
 import org.spongepowered.api.entity.living.monster.slime.Slime;
 import org.spongepowered.api.entity.living.monster.zombie.ZombiePigman;
@@ -1528,7 +1530,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for the wave number of a raid.
      */
-    public static final Key<Value<Integer>> RAID_WAVE = DummyObjectProvider.createExtendedFor(Key.class, "RAID_WAVE");
+    public static final Key<OptionalValue<Integer>> RAID_WAVE = DummyObjectProvider.createExtendedFor(Key.class, "RAID_WAVE");
 
     /**
      * Represents the {@link Key} for representing the {@link RailDirection}
@@ -1990,6 +1992,12 @@ public final class Keys {
      * Represents the {@link Key} for displaying the chest of a {@link PackHorse}.
      */
     public static final Key<Value<Boolean>> DISPLAY_CHEST = DummyObjectProvider.createExtendedFor(Key.class, "DISPLAY_CHEST");
+
+    /**
+     * Represents the {@link Key} for the {@link Sheep} who is being targeted by the {@link SpellTypes#WOLOLO}
+     * spell being casted by an {@link Evoker}
+     */
+    public static final Key<OptionalValue<Sheep>> WOLOLO_TARGET = DummyObjectProvider.createExtendedFor(Key.class, "WOLOLO_TARGET");
 
     // SORTFIELDS:OFF
 

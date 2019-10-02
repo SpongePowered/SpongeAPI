@@ -39,14 +39,15 @@ import java.util.Optional;
  */
 public interface Agent extends Living {
 
+    /**
+     * {@link Keys#TARGETED_ENTITY}
+     */
     default OptionalValue.Mutable<Entity> target() {
         return this.getValue(Keys.TARGETED_ENTITY).get().asMutable();
     }
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for whether AI tasks are enabled or not.
-     *
-     * @return The value for the current "enabled" state of ai tasks
+     * {@link Keys#AI_ENABLED}
      */
     default Value.Mutable<Boolean> aiEnabled() {
         return getValue(Keys.AI_ENABLED).get().asMutable();

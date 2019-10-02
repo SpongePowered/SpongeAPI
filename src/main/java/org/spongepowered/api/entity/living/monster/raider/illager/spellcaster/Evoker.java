@@ -24,28 +24,16 @@
  */
 package org.spongepowered.api.entity.living.monster.raider.illager.spellcaster;
 
-import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.data.type.SpellTypes;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.entity.living.animal.Sheep;
-
-import java.util.Optional;
 
 /**
  * Represents an evoker.
  */
 public interface Evoker extends Spellcaster {
 
-    /**
-     * Gets the {@link Sheep} being targeted by the {@link SpellTypes#WOLOLO} spell.
-     *
-     * @return The sheep or {@link Optional#empty()} if none exists
-     */
-    Optional<Sheep> getWololoSpellTarget();
-
-    /**
-     * Sets the {@link Sheep} that will be targeted by the {@link SpellTypes#WOLOLO} spell.
-     *
-     * @param sheep The sheep
-     */
-    void setWololoSpellTarget(@Nullable Sheep sheep);
+    default OptionalValue.Mutable<Sheep> wololoTarget() {
+        return this.getValue(Keys.WOLOLO_TARGET).get().asMutable();
+    }
 }

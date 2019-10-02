@@ -41,7 +41,7 @@ public interface Creeper extends Monster, FusedExplosive {
      * cause larger than normal explosions.
      */
     default Value.Mutable<Boolean> charged() {
-        return getValue(Keys.CREEPER_CHARGED).get().asMutable();
+        return this.getValue(Keys.CREEPER_CHARGED).get().asMutable();
     }
 
 }
