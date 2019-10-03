@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.entity.living.monster.boss;
 
-import org.spongepowered.api.boss.ServerBossBar;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.entity.explosive.fused.FusedExplosive;
@@ -44,12 +43,5 @@ public interface Wither extends Monster, Ranger, Boss, Aerial, FusedExplosive {
     default ListValue.Mutable<Living> targetedEntities() {
         return this.getValue(Keys.TARGETED_ENTITIES).get().asMutable();
     }
-
-    /**
-     * Gets the boss bar this wither uses.
-     *
-     * @return The boss bar
-     */
-    ServerBossBar getBossBar();
 
 }

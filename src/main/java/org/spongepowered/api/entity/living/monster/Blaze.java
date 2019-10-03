@@ -36,10 +36,7 @@ import org.spongepowered.api.entity.living.Ranger;
 public interface Blaze extends Monster, Aerial, Ranger {
 
     /**
-     * Gets the current {@link org.spongepowered.api.data.value.Value.Mutable} value} for whether this {@link Blaze}
-     * is considered "aflame".
-     *
-     * @return The value for whether this blaze is aflame
+     * {@link Keys#IS_AFLAME}
      */
     default Value.Mutable<Boolean> aflame() {
         return getValue(Keys.IS_AFLAME).get().asMutable();

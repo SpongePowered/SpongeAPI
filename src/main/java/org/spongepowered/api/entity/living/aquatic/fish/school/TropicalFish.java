@@ -22,23 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.monster;
+package org.spongepowered.api.entity.living.aquatic.fish.school;
 
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.Monster;
-
-import java.time.Duration;
-
-/**
- * Represents an Endermite.
- */
-public interface Endermite extends Monster {
-
-    /**
-     * {@link Keys#EXPIRATION_DELAY}
-     */
-    default Value.Mutable<Duration> expirationDelay() {
-        return getValue(Keys.EXPIRATION_DELAY).get().asMutable();
-    }
+public interface TropicalFish extends SchoolingFish {
 }

@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.aquatic.fish;
+package org.spongepowered.api.entity.living.aquatic.fish.school;
 
-public interface Salmon extends Fish {
+public interface Cod extends SchoolingFish {
 }

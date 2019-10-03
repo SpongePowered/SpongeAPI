@@ -24,10 +24,11 @@
  */
 package org.spongepowered.api.entity.living.aquatic;
 
+import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.entity.living.Creature;
 
 /**
- * Represents an aquatic living entity that may normally spawn in water.
+ * Represents an aquatic creature that may be found in {@link BlockTypes#WATER}
  */
 public interface Aquatic extends Creature {
 

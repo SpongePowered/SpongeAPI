@@ -141,6 +141,7 @@ import org.spongepowered.api.entity.living.monster.raider.illager.Vindicator;
 import org.spongepowered.api.entity.living.monster.raider.illager.spellcaster.Evoker;
 import org.spongepowered.api.entity.living.monster.raider.illager.spellcaster.Spellcaster;
 import org.spongepowered.api.entity.living.monster.slime.Slime;
+import org.spongepowered.api.entity.living.monster.spider.Spider;
 import org.spongepowered.api.entity.living.monster.zombie.ZombiePigman;
 import org.spongepowered.api.entity.living.monster.zombie.ZombieVillager;
 import org.spongepowered.api.entity.living.player.Player;
@@ -158,6 +159,9 @@ import org.spongepowered.api.entity.projectile.explosive.fireball.Fireball;
 import org.spongepowered.api.entity.vehicle.Boat;
 import org.spongepowered.api.entity.vehicle.minecart.CommandBlockMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.MinecartEntity;
+import org.spongepowered.api.entity.weather.LightningBolt;
+import org.spongepowered.api.entity.weather.WeatherEffect;
+import org.spongepowered.api.event.cause.entity.damage.source.DamageSources;
 import org.spongepowered.api.fluid.FluidStackSnapshot;
 import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.ItemTypes;
@@ -233,14 +237,13 @@ public final class Keys {
     public static final Key<Value<Boolean>> IS_AI_ENABLED = DummyObjectProvider.createExtendedFor(Key.class, "IS_AI_ENABLED");
 
     /**
-     * Represents the {@link Key} for how angry an {@link Entity} is. This
-     * applies mostly to {@link ZombiePigman}.
+     * Represents the {@link Key} for how angry a {@link ZombiePigman} is.
      *
-     * <p>Unlike {@link #IS_ANGRY}, the aggressiveness represented by this key may
+     * <p>Unlike {@link Keys#IS_ANGRY}, the aggressiveness represented by this key may
      * fade over time and the entity will become peaceful again once its anger
      * reaches its minimum.</p>
      */
-    public static final Key<BoundedValue<Integer>> ANGER = DummyObjectProvider.createExtendedFor(Key.class, "ANGER");
+    public static final Key<BoundedValue<Integer>> ANGER_LEVEL = DummyObjectProvider.createExtendedFor(Key.class, "ANGER");
 
     /**
      * Represents the {@link Key} for the age (in ticks) of an
@@ -630,7 +633,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for whether a {@link Creeper} is charged.
      */
-    public static final Key<Value<Boolean>> CREEPER_CHARGED = DummyObjectProvider.createExtendedFor(Key.class, "CREEPER_CHARGED");
+    public static final Key<Value<Boolean>> IS_CHARGED = DummyObjectProvider.createExtendedFor(Key.class, "CREEPER_CHARGED");
 
     /**
      * Represents the {@link Key} for whether the next attack of an
@@ -790,12 +793,9 @@ public final class Keys {
     public static final Key<BoundedValue<Integer>> EXPERIENCE_SINCE_LEVEL = DummyObjectProvider.createExtendedFor(Key.class, "EXPERIENCE_SINCE_LEVEL");
 
     /**
-     * Represents the {@link Key} for how long an entity or
-     * {@link Weather} will last before expiring.
-     *
-     * <p>Usually applies to {@link Weather}, {@link Endermite}s or {@link Item}s.</p>
+     * Represents the {@link Key} for how long an {@link Endermite}, {@link Item}, or {@link Weather} will last before expiring.
      */
-    public static final Key<Value<Duration>> EXPIRATION_DURATION = DummyObjectProvider.createExtendedFor(Key.class, "EXPIRATION_DURATION");
+    public static final Key<Value<Duration>> EXPIRATION_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "EXPIRATION_DELAY");
 
     /**
      * Represents the {@link Key} for the radius of the {@link Explosion} to
@@ -957,6 +957,11 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for representing the "got fish" state of a {@link Dolphin}.
+     *
+     * <p>
+     *     Dolphins will navigate to a treasure (if a structure that provides one is nearby)
+     *     if they have been given a fish.
+     * </p>
      */
     public static final Key<Value<Boolean>> GOT_FISH = DummyObjectProvider.createExtendedFor(Key.class, "GOT_FISH");
 
@@ -1130,7 +1135,7 @@ public final class Keys {
      * Represents the {@link Key} for whether a {@link Blaze} is currently
      * burning.
      *
-     * <p>Unlike {@link #MAX_BURN_TIME}, the burning effect will not damage
+     * <p>Unlike {@link Keys#MAX_BURN_TIME}, the burning effect will not damage
      * the burning entity.</p>
      */
     public static final Key<Value<Boolean>> IS_AFLAME = DummyObjectProvider.createExtendedFor(Key.class, "IS_AFLAME");
@@ -1146,6 +1151,9 @@ public final class Keys {
      */
     public static final Key<Value<Boolean>> IS_CELEBRATING = DummyObjectProvider.createExtendedFor(Key.class, "IS_CELEBRATING");
 
+    /**
+     * Represents the {@link Key} for if a {@link Spider} is currently climbing.
+     */
     public static final Key<Value<Boolean>> IS_CLIMBING = DummyObjectProvider.createExtendedFor(Key.class, "IS_CLIMBING");
 
     /**
@@ -1294,7 +1302,14 @@ public final class Keys {
      */
     public static final Key<Value<Boolean>> IS_TRUSTING = DummyObjectProvider.createExtendedFor(Key.class, "IS_TRUSTING");
 
-    public static final Key<Value<Boolean>> IS_WEATHER_EFFECT = DummyObjectProvider.createExtendedFor(Key.class, "IS_WEATHER_EFFECT");
+    /**
+     * Represents the {@link Key} for if a {@link WeatherEffect} is harmful to other {@link Entity entities}.
+     *
+     * <p>
+     *     For example, {@link LightningBolt bolts} of lighting will strike entities and damage them
+     * </p>
+     */
+    public static final Key<Value<Boolean>> IS_HARMFUL = DummyObjectProvider.createExtendedFor(Key.class, "IS_WEATHER_EFFECT");
 
     /**
      * Represents the {@link Key} for whether a {@link Wolf}, a
@@ -1756,6 +1771,14 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for representing the "moisture" state of a {@link Dolphin}.
+     *
+     * <p>
+     *     Vanilla sets the dolphin's skin moisture to 2400 so long as the entity
+     *     is in water, being rained on, or in a bubble column. If not, the dolphin
+     *     will loose 1 moisture per tick. Once this value is 0 or below, the dolphin
+     *     will be damaged via {@link DamageSources#DRYOUT} with a value of 1 per tick
+     *     until death.
+     * </p>
      */
     public static final Key<Value<Integer>> SKIN_MOISTURE = DummyObjectProvider.createExtendedFor(Key.class, "SKIN_MOISTURE");
 

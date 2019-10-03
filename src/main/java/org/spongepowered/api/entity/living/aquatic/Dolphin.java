@@ -26,34 +26,21 @@ package org.spongepowered.api.entity.living.aquatic;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.event.cause.entity.damage.source.DamageSources;
 
+/**
+ * Represents a Dolphin
+ */
 public interface Dolphin extends Aquatic {
 
     /**
-     * Gets a {@link Value} representing the skin moisture of a {@link Dolphin}.
-     *
-     * <p>
-     *     Vanilla sets the dolphin's skin moisture to 2400 so long as the entity
-     *     is in water, being rained on, or in a bubble column. If not, the dolphin
-     *     will loose 1 moisture per tick. Once this value is 0 or below, the dolphin
-     *     will be damaged via {@link DamageSources#DRYOUT} with a value of 1 per tick
-     *     until death.
-     * </p>
-     * @return The skin moisture value
+     * {@link Keys#SKIN_MOISTURE}
      */
     default Value.Mutable<Integer> skinMoisture() {
         return this.getValue(Keys.SKIN_MOISTURE).get().asMutable();
     }
 
     /**
-     * Gets a {@link Value} representing if a {@link Dolphin} has a fish.
-     *
-     * <p>
-     *     Dolphins will navigate to a treasure (if a structure that provides one is nearby)
-     *     if they have been given a fish.
-     * </p>
-     * @return The got fish value
+     * {@link Keys#GOT_FISH}
      */
     default Value.Mutable<Boolean> gotFish() {
         return this.getValue(Keys.GOT_FISH).get().asMutable();

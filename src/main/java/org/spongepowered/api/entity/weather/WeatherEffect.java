@@ -36,30 +36,17 @@ import java.time.Duration;
 public interface WeatherEffect extends Entity {
 
     /**
-     * Returns whether this weather effect is an effect and doesn't deal damage.
-     *
-     * @return Whether this weather effect is an effect
+     * {@link Keys#IS_HARMFUL}
      */
-    default boolean isEffect() {
-        return require(Keys.IS_WEATHER_EFFECT);
+    default Value.Mutable<Boolean> harmful() {
+        return this.getValue(Keys.IS_HARMFUL).get().asMutable();
     }
 
     /**
-     * Sets whether this weather effect is an effect and doesn't deal damage.
-     *
-     * @param effect Whether this weather effect is an effect
+     * {@link Keys#EXPIRATION_DELAY}
      */
-    default void setEffect(boolean effect) {
-        offer(Keys.IS_WEATHER_EFFECT, effect);
-    }
-
-    /**
-     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the duration
-     *
-     * @return The bounded value for the remaining duration
-     */
-    default Value.Mutable<Duration> expireDuration() {
-        return getValue(Keys.EXPIRATION_DURATION).get().asMutable();
+    default Value.Mutable<Duration> expirationDelay() {
+        return this.getValue(Keys.EXPIRATION_DELAY).get().asMutable();
     }
 
 }

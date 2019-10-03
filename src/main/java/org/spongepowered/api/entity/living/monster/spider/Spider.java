@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.living.monster.spider;
 
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Monster;
 
 import org.spongepowered.api.data.Keys;
@@ -34,11 +35,9 @@ import org.spongepowered.api.data.Keys;
 public interface Spider extends Monster {
 
     /**
-     * Gets whether or not the spider is currently climbing a wall.
-     *
-     * @return Whether or not the spider is climbing a wall
+     * {@link Keys#IS_CLIMBING}
      */
-    default boolean isClimbing() {
-        return require(Keys.IS_CLIMBING);
+    default Value.Immutable<Boolean> isClimbing() {
+        return this.getValue(Keys.IS_CLIMBING).get().asImmutable();
     }
 }

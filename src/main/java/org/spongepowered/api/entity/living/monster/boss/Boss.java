@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.living.monster.boss;
 
+import org.spongepowered.api.boss.ServerBossBar;
 import org.spongepowered.api.entity.living.Hostile;
 
 /**
@@ -32,4 +33,10 @@ import org.spongepowered.api.entity.living.Hostile;
  */
 public interface Boss extends Hostile {
 
+    /**
+     * Gets the {@link ServerBossBar} this boss shows on the client.
+     *
+     * @return The boss bar
+     */
+    ServerBossBar getBossBar();
 }

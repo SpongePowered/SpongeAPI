@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.entity.living.monster.boss.dragon;
 
-import org.spongepowered.api.boss.ServerBossBar;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.entity.explosive.EndCrystal;
@@ -52,13 +51,6 @@ public interface EnderDragon extends ComplexLiving, Boss, Monster, Aerial, Range
     default OptionalValue.Mutable<EndCrystal> healingCrystal() {
         return this.getValue(Keys.HEALING_CRYSTAL).get().asMutable();
     }
-
-    /**
-     * Gets the boss bar this dragon uses.
-     *
-     * @return The boss bar
-     */
-    ServerBossBar getBossBar();
 
     /**
      * Gets the phase manager.
