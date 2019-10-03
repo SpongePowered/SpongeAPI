@@ -44,10 +44,6 @@ import java.util.OptionalDouble;
  */
 public interface Living extends Entity, EntityProjectileSource, TeamMember {
 
-    default Entity getEntity() {
-        return this;
-    }
-
     /**
      * {@link Keys#HEALTH}
      */

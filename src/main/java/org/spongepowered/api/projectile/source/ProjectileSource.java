@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.projectile.source;
 
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.golem.Shulker;
+import org.spongepowered.api.entity.projectile.EntityTargetingProjectile;
 import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.math.vector.Vector3d;
 
@@ -52,4 +55,15 @@ public interface ProjectileSource {
      * @return The projectile instance if it was launched, or absent
      */
     <T extends Projectile> Optional<T> launchProjectile(Class<T> projectileClass, Vector3d velocity);
+
+    /**
+     * Launches a new {@link Projectile} from this projectile source.
+     *
+     * @param projectileClass The class of the projectile
+     * @param <T> The Type of Projectile
+     * @param target the target to launch the projectile at
+     *
+     * @return the projectile if successfully launched, {@link Optional#empty()} otherwise
+     */
+    <T extends Projectile> Optional<T> launchToTarget(Class<T> projectileClass, Entity target);
 }

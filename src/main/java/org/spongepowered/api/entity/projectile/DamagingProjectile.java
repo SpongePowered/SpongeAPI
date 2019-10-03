@@ -28,7 +28,6 @@ import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.MapValue;
 import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.entity.living.Living;
 
 /**
  * Represents a {@link Projectile} that inflicts damage.
@@ -36,12 +35,9 @@ import org.spongepowered.api.entity.living.Living;
 public interface DamagingProjectile extends Projectile {
 
     /**
-     * Gets the damage this projectile will deal to a {@link Living}
-     * if hit.
-     *
-     * @return The damage to deal
+     * {@link Keys#ATTACK_DAMAGE}
      */
-    default BoundedValue.Mutable<Double> damage() {
+    default BoundedValue.Mutable<Double> attackDamage() {
         return getValue(Keys.ATTACK_DAMAGE).get().asMutable();
     }
 
@@ -51,7 +47,7 @@ public interface DamagingProjectile extends Projectile {
      *
      * <p>Note that in events, the damage defined for the provided
      * {@link EntityType} will take priority over the "default" damage as
-     * defined from {@link #damage()}.</p>
+     * defined from {@link DamagingProjectile#attackDamage()}.</p>
      *
      * @return The immutable map value for the entity damage values
      */

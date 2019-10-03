@@ -35,10 +35,7 @@ import org.spongepowered.api.util.Direction;
 public interface ShulkerBullet extends EntityTargetingProjectile, DamagingProjectile {
 
     /**
-     * Gets the {@link Value} for the current direction this
-     * {@link ShulkerBullet} is going to.
-     *
-     * @return The current direction value
+     * {@link Keys#DIRECTION}
      */
     default Value.Mutable<Direction> direction() {
         return getValue(Keys.DIRECTION).get().asMutable();

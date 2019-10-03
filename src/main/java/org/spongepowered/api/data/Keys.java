@@ -126,6 +126,7 @@ import org.spongepowered.api.entity.living.animal.horse.llama.Llama;
 import org.spongepowered.api.entity.living.animal.horse.llama.TraderLlama;
 import org.spongepowered.api.entity.living.aquatic.Dolphin;
 import org.spongepowered.api.entity.living.golem.IronGolem;
+import org.spongepowered.api.entity.living.golem.Shulker;
 import org.spongepowered.api.entity.living.monster.Blaze;
 import org.spongepowered.api.entity.living.monster.Creeper;
 import org.spongepowered.api.entity.living.monster.Enderman;
@@ -149,6 +150,7 @@ import org.spongepowered.api.entity.living.trader.Trader;
 import org.spongepowered.api.entity.living.trader.Villager;
 import org.spongepowered.api.entity.projectile.DamagingProjectile;
 import org.spongepowered.api.entity.projectile.EyeOfEnder;
+import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.entity.projectile.ShulkerBullet;
 import org.spongepowered.api.entity.projectile.arrow.ArrowEntity;
 import org.spongepowered.api.entity.projectile.explosive.FireworkRocket;
@@ -676,7 +678,8 @@ public final class Keys {
     public static final Key<OptionalValue<Living>> DETONATOR = DummyObjectProvider.createExtendedFor(Key.class, "DETONATOR");
 
     /**
-     * Represents the {@link Key} for representing the {@link Direction} a {@link BlockState} or {@link Hanging} is facing.
+     * Represents the {@link Key} for representing the {@link Direction} a {@link BlockState}, {@link Hanging}, or {@link Shulker} is facing or the
+     * heading of a {@link ShulkerBullet}.
      */
     public static final Key<Value<Direction>> DIRECTION = DummyObjectProvider.createExtendedFor(Key.class, "DIRECTION");
 
@@ -1578,10 +1581,9 @@ public final class Keys {
     public static final Key<ListValue<String>> PLAIN_BOOK_PAGES = DummyObjectProvider.createExtendedFor(Key.class, "PLAIN_BOOK_PAGES");
 
     /**
-     * Represents the {@link Key} for whether an {@link IronGolem} has been
-     * created by a {@link Player}.
+     * Represents the {@link Key} for if a {@link IronGolem} has been created by a {@link Player}.
      */
-    public static final Key<Value<Boolean>> PLAYER_CREATED = DummyObjectProvider.createExtendedFor(Key.class, "PLAYER_CREATED");
+    public static final Key<Value<Boolean>> IS_PLAYER_CREATED = DummyObjectProvider.createExtendedFor(Key.class, "IS_PLAYER_CREATED");
 
     /**
      * Represents the {@link Key} for representing the {@link PortionType}

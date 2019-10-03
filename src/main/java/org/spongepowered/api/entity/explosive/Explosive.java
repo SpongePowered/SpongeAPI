@@ -34,12 +34,7 @@ import org.spongepowered.api.entity.Entity;
 public interface Explosive extends Entity {
 
     /**
-     * The radius in blocks that the explosion will affect. This value may be
-     * missing if the explosion radius is unknown such as when it is generated
-     * randomly on detonation. Setting this value on such explosives will
-     * override that behavior.
-     *
-     * @return Explosion radius
+     * {@link Keys#EXPLOSION_RADIUS}
      */
     default OptionalValue.Mutable<Integer> explosionRadius() {
         return this.getValue(Keys.EXPLOSION_RADIUS).get().asMutable();
