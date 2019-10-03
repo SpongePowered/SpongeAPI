@@ -24,10 +24,11 @@
  */
 package org.spongepowered.api.entity.living;
 
+import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.projectile.ProjectileLauncher;
 
 /**
- * An {@link Agent} who fires ranged attacks.
+ * An {@link Agent} who launches {@link Projectile projectiles}.
  */
 public interface Ranger extends Agent, ProjectileLauncher {
 

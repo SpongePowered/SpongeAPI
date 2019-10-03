@@ -47,10 +47,10 @@ public interface Agent extends Living {
     }
 
     /**
-     * {@link Keys#AI_ENABLED}
+     * {@link Keys#IS_AI_ENABLED}
      */
     default Value.Mutable<Boolean> aiEnabled() {
-        return getValue(Keys.AI_ENABLED).get().asMutable();
+        return getValue(Keys.IS_AI_ENABLED).get().asMutable();
     }
 
     /**

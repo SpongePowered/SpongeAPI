@@ -28,9 +28,6 @@ import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.LlamaType;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.Ageable;
-import org.spongepowered.api.entity.living.Ranger;
-import org.spongepowered.api.entity.living.animal.horse.HorseEntity;
 import org.spongepowered.api.entity.living.animal.horse.PackHorse;
 import org.spongepowered.api.entity.living.animal.horse.TameableHorse;
 
@@ -39,7 +36,7 @@ import org.spongepowered.api.entity.living.animal.horse.TameableHorse;
  * they can be ridden by players, but not controlled by players. Likewise, they
  * have colors and styles and can have storage "strength".
  */
-public interface Llama extends LlamaEntity, TameableHorse, PackHorse, Ranger {
+public interface Llama extends LlamaEntity, TameableHorse, PackHorse {
 
     /**
      * {@link Keys#LLAMA_TYPE}

@@ -25,7 +25,7 @@
 package org.spongepowered.api.entity.hanging;
 
 /**
- * Represents an ItemFrame.
+ * Represents an Item Frame.
  */
 public interface ItemFrame extends Hanging {
 

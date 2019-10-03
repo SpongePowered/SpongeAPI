@@ -95,7 +95,9 @@ import org.spongepowered.api.entity.explosive.EndCrystal;
 import org.spongepowered.api.entity.explosive.Explosive;
 import org.spongepowered.api.entity.explosive.fused.FusedExplosive;
 import org.spongepowered.api.entity.explosive.fused.PrimedTNT;
+import org.spongepowered.api.entity.hanging.Hanging;
 import org.spongepowered.api.entity.hanging.ItemFrame;
+import org.spongepowered.api.entity.hanging.LeashKnot;
 import org.spongepowered.api.entity.hanging.Painting;
 import org.spongepowered.api.entity.living.Ageable;
 import org.spongepowered.api.entity.living.Agent;
@@ -121,6 +123,7 @@ import org.spongepowered.api.entity.living.animal.horse.Horse;
 import org.spongepowered.api.entity.living.animal.horse.HorseEntity;
 import org.spongepowered.api.entity.living.animal.horse.PackHorse;
 import org.spongepowered.api.entity.living.animal.horse.llama.Llama;
+import org.spongepowered.api.entity.living.animal.horse.llama.TraderLlama;
 import org.spongepowered.api.entity.living.aquatic.Dolphin;
 import org.spongepowered.api.entity.living.golem.IronGolem;
 import org.spongepowered.api.entity.living.monster.Blaze;
@@ -225,7 +228,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for whether an {@link Agent}s AI is enabled.
      */
-    public static final Key<Value<Boolean>> AI_ENABLED = DummyObjectProvider.createExtendedFor(Key.class, "AI_ENABLED");
+    public static final Key<Value<Boolean>> IS_AI_ENABLED = DummyObjectProvider.createExtendedFor(Key.class, "IS_AI_ENABLED");
 
     /**
      * Represents the {@link Key} for how angry an {@link Entity} is. This
@@ -663,8 +666,7 @@ public final class Keys {
     public static final Key<BoundedValue<Integer>> DELAY = DummyObjectProvider.createExtendedFor(Key.class, "DELAY");
 
     /**
-     * Represents the {@link Key} for representing the despawn delay
-     * of an {@link Item}.
+     * Represents the {@link Key} for representing the despawn delay of a {@link Item} or {@link TraderLlama}.
      */
     public static final Key<BoundedValue<Integer>> DESPAWN_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "DESPAWN_DELAY");
 
@@ -674,8 +676,7 @@ public final class Keys {
     public static final Key<OptionalValue<Living>> DETONATOR = DummyObjectProvider.createExtendedFor(Key.class, "DETONATOR");
 
     /**
-     * Represents the {@link Key} for representing the {@link Direction}
-     * of a {@link BlockState}.
+     * Represents the {@link Key} for representing the {@link Direction} a {@link BlockState} or {@link Hanging} is facing.
      */
     public static final Key<Value<Direction>> DIRECTION = DummyObjectProvider.createExtendedFor(Key.class, "DIRECTION");
 
@@ -755,9 +756,10 @@ public final class Keys {
      * Represents the {@link Key} for the current level of exhaustion of a
      * {@link Humanoid}.
      *
-     * <p>Exhaustion will <em>decrease</em> on activities like walking, running
-     * or jumping. Once it reaches 0, the {@link #SATURATION} will decrease and
-     * the exhaustion level will be reset to its maximum.</p>
+     * <p>When the exhaustion level reaches 0, saturation is usually diminished
+     * such that saturation is decreased and then exhaustion is reset to the
+     * maximum. This type of effect occurs over time and can be modified by
+     * movements and actions performed by the {@link Humanoid}.</p>
      */
     public static final Key<BoundedValue<Double>> EXHAUSTION = DummyObjectProvider.createExtendedFor(Key.class, "EXHAUSTION");
 
@@ -913,6 +915,10 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the food level of a {@link Humanoid}.
+     *
+     * <p>For a {@link Humanoid}, food level has health effects, depending on game difficulty and
+     * hunger levels. If the food level is high enough, the humanoid may heal. If the food level is at 0,
+     * the humanoid may starve.</p>
      */
     public static final Key<BoundedValue<Integer>> FOOD_LEVEL = DummyObjectProvider.createExtendedFor(Key.class, "FOOD_LEVEL");
 
@@ -976,6 +982,13 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for a {@link Living}'s current health.
+     *
+     * <p>The range of the health depends on the object on which this
+     * method is defined. For {@link Player Players} in Minecraft, the nominal range is
+     * between 0 and 20, inclusive, but the range can be adjusted.</p>
+     *
+     * <p>Convention dictates that health does not follow below 0 but this
+     * convention may be broken.</p>
      */
     public static final Key<BoundedValue<Double>> HEALTH = DummyObjectProvider.createExtendedFor(Key.class, "HEALTH");
 
@@ -1359,6 +1372,9 @@ public final class Keys {
      */
     public static final Key<Value<Boolean>> LEADER = DummyObjectProvider.createExtendedFor(Key.class, "LEADER");
 
+    /**
+     * Represents the {@link Key} for the leashed {@link Entity} of a {@link LeashKnot}.
+     */
     public static final Key<Value<Entity>> LEASHED_ENTITY = DummyObjectProvider.createExtendedFor(Key.class, "LEASHED_ENTITY");
 
     /**
@@ -1424,6 +1440,10 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the maximum health of a {@link Living}.
+     *
+     * <p>The maximum health set here may affect the attribute increasing
+     * health points. The base health should be minded that it may be lower
+     * than the total maximum health of the entity.</p>
      */
     public static final Key<BoundedValue<Double>> MAX_HEALTH = DummyObjectProvider.createExtendedFor(Key.class, "MAX_HEALTH");
 
@@ -1688,8 +1708,11 @@ public final class Keys {
     /**
      * Represents the {@link Key} for the current saturation of a {@link Living}.
      *
-     * <p>When the saturation reaches 0, the {@link #FOOD_LEVEL} will decrease
-     * and the saturation will be reset to maximum.</p>
+     * <p>When the saturation level reaches 0, the food level is usually
+     * diminished such that the food level is decreased by 1, then
+     * saturation is reset to the maximum value. This type of effect occurs
+     * over time and can be modified by movements and actions performed by the
+     * {@link Humanoid}.</p>
      */
     public static final Key<BoundedValue<Double>> SATURATION = DummyObjectProvider.createExtendedFor(Key.class, "SATURATION");
 

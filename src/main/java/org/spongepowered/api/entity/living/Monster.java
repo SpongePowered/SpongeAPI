@@ -27,7 +27,7 @@ package org.spongepowered.api.entity.living;
 import org.spongepowered.api.entity.living.monster.skeleton.Skeleton;
 
 /**
- * Represents a hostile Agent, such as a {@link Skeleton}.
+ * Represents a hostile Creature, such as a {@link Skeleton}.
  */
 public interface Monster extends Hostile, Creature {
 

@@ -34,7 +34,7 @@ import org.spongepowered.api.entity.Entity;
 public interface LeashKnot extends Hanging {
 
     /**
-     * Gets the currently leashed {@link Entity}.
+     * {@link Keys#LEASHED_ENTITY}
      *
      * <p>Usually, a {@link LeashKnot} will always exist so long as there is
      * a leashed {@link Entity} attached. If the leash is broken, the leash

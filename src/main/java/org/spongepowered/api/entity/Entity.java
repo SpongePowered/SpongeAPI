@@ -389,7 +389,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder.Mutable, Tra
     /**
      * {@link Keys#HAS_GRAVITY}
      */
-    default Value.Mutable<Boolean> hasGravity() {
+    default Value.Mutable<Boolean> gravity() {
         return this.getValue(Keys.HAS_GRAVITY).get().asMutable();
     }
 

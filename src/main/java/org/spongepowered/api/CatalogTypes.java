@@ -98,7 +98,7 @@ import org.spongepowered.api.world.weather.Weather;
  * <p>These are generally useful for {@link GameRegistry#getType(Class, CatalogKey)}
  * and {@link GameRegistry#getAllOf(Class)}.</p>
  */
-@SuppressWarnings({"rawtypes", "unused", "WeakerAccess"})
+@SuppressWarnings({"rawtypes", "unused"})
 public final class CatalogTypes {
 
     // SORTFIELDS:ON
@@ -217,7 +217,7 @@ public final class CatalogTypes {
 
     public static final Class<ObjectiveDisplayMode> OBJECTIVE_DISPLAY_MODE = ObjectiveDisplayMode.class;
 
-    public static final Class<PandaGene> PANDA_TYPE = PandaGene.class;
+    public static final Class<PandaGene> PANDA_GENE = PandaGene.class;
 
     public static final Class<ParrotType> PARROT_TYPE = ParrotType.class;
 

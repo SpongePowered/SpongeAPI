@@ -24,8 +24,15 @@
  */
 package org.spongepowered.api.entity.living.animal.horse.llama;
 
-import org.spongepowered.api.entity.living.animal.horse.PackHorse;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
 
-public interface TraderLlama extends LlamaEntity, PackHorse {
+public interface TraderLlama extends LlamaEntity {
 
+    /**
+     * {@link Keys#DESPAWN_DELAY}
+     */
+    default Value.Mutable<Integer> despawnDelay() {
+        return this.getValue(Keys.DESPAWN_DELAY).get().asMutable();
+    }
 }

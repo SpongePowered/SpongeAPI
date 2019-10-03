@@ -24,8 +24,9 @@
  */
 package org.spongepowered.api.entity.living.animal.horse.llama;
 
+import org.spongepowered.api.entity.living.Ranger;
 import org.spongepowered.api.entity.living.animal.horse.HorseEntity;
 
-public interface LlamaEntity extends HorseEntity {
+public interface LlamaEntity extends HorseEntity, Ranger {
 
 }
