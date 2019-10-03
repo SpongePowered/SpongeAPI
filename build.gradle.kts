@@ -88,9 +88,14 @@ tasks {
     }
 }
 
-val catalogClasses = listOf(    "org.spongepowered.api.CatalogTypes",
+// TODO - repopulate
+val catalogClasses = listOf(    
+        "org.spongepowered.api.CatalogTypes",
         "org.spongepowered.api.advancement.AdvancementTypes",
         "org.spongepowered.api.advancement.criteria.trigger.Triggers",
         "org.spongepowered.api.boss.BossBarColors",
         "org.spongepowered.api.boss.BossBarOverlays",
-        "org.spongepowered.api.data.Keys") // TODO - repopulate
+        "org.spongepowered.api.data.Keys",
+        "org.spongepowered.api.data.type.PandaGenes"
+)
+

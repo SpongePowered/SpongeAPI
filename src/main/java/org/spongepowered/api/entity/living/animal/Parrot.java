@@ -27,12 +27,11 @@ package org.spongepowered.api.entity.living.animal;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.ParrotType;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.Ageable;
 
 /**
- * Represents a parrot.
+ * Represents a Parrot.
  */
-public interface Parrot extends Animal, Ageable {
+public interface Parrot extends TameableAnimal {
 
     /**
      * {@link Keys#PARROT_TYPE}

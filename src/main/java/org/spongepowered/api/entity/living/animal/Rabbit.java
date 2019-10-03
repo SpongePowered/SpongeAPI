@@ -27,17 +27,14 @@ package org.spongepowered.api.entity.living.animal;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.RabbitType;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.Ageable;
 
 /**
- * Represents a rabbit.
+ * Represents a Rabbit.
  */
-public interface Rabbit extends Animal, Ageable {
+public interface Rabbit extends Animal {
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the {@link RabbitType} of this {@link Rabbit}.
-     *
-     * @return The rabbit type for this rabit
+     * {@link Keys#RABBIT_TYPE}
      */
     default Value.Mutable<RabbitType> type() {
         return this.getValue(Keys.RABBIT_TYPE).get().asMutable();

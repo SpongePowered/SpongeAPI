@@ -32,7 +32,7 @@ import org.spongepowered.api.data.value.Value;
 /**
  * Represents a Horse.
  */
-public interface Horse extends AgeableHorse {
+public interface Horse extends TameableHorse {
 
     /**
      * Gets the style of the horse.

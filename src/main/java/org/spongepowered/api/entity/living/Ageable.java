@@ -29,30 +29,19 @@ import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.Value;
 
 /**
- * Represents a living entity that can change in size as it ages
- * and can spawn children.
+ * Represents an {@link Agent} that produces offspring and grows into an adult
  */
 public interface Ageable extends Agent {
 
     /**
-     * Sets the scaling to be 1 if this entity is an adult and 0.5 if it is
-     * a baby.
-     */
-    void setScaleForAge();
-
-    /**
-     * Gets the {@link org.spongepowered.api.data.value.BoundedValue.Mutable} for the "age" state.
-     *
-     * @return The mutable bounded value for the "age"
+     * {@link Keys#AGE}
      */
     default BoundedValue.Mutable<Integer> age() {
         return getValue(Keys.AGE).get().asMutable();
     }
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the "adult" state.
-     *
-     * @return The value for the "adult" state
+     * {@link Keys#IS_ADULT}
      */
     default Value.Mutable<Boolean> adult() {
         return getValue(Keys.IS_ADULT).get().asMutable();

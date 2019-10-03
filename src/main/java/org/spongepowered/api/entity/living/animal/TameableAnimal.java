@@ -22,13 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.OptionalValue;
+import org.spongepowered.api.data.value.Value;
 
-/**
- * Represents the type of panda a panda is.
- */
-public interface PandaType extends CatalogType {
+import java.util.UUID;
 
+public interface TameableAnimal extends Animal {
+
+    /**
+     * {@link Keys#TAMER}
+     */
+    default OptionalValue.Mutable<UUID> tamer() {
+        return this.getValue(Keys.TAMER).get().asMutable();
+    }
+
+    /**
+     * // TODO api-8 - Could be tossed for a tamer check
+     * {@link Keys#IS_TAMED}
+     */
+    default Value.Mutable<Boolean> tamed() {
+        return this.getValue(Keys.IS_TAMED).get().asMutable();
+    }
 }

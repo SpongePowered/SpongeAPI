@@ -27,18 +27,14 @@ package org.spongepowered.api.entity.living.animal;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.Ageable;
 
 /**
  * Represents a Sheep.
  */
-public interface Sheep extends Animal, Ageable {
+public interface Sheep extends Animal {
 
     /**
-     * Gets the current {@link org.spongepowered.api.data.value.Value.Mutable} of {@link DyeColor} for this
-     * {@link Sheep}.
-     *
-     * @return The current value of dye color for this sheep
+     * {@link Keys#DYE_COLOR}
      */
     default Value.Mutable<DyeColor> color() {
         return this.getValue(Keys.DYE_COLOR).get().asMutable();

@@ -22,10 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.animal.horse;
+package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.entity.living.Ageable;
+import org.spongepowered.api.CatalogType;
 
-public interface AgeableHorse extends HorseEntity, Ageable {
+/**
+ * Represents the type of panda a panda is.
+ */
+public interface PandaGene extends CatalogType {
 
+    boolean isRecessive();
 }

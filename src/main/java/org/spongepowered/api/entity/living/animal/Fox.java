@@ -26,18 +26,92 @@ package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.FoxType;
+import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.Ageable;
 
-public interface Fox extends Animal, Ageable {
+import java.util.UUID;
+
+/**
+ * Represents a Fox.
+ */
+public interface Fox extends Animal {
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the {@link FoxType} of this
-     * {@link Fox}.
-     *
-     * @return The fox type value
+     * {@link Keys#FOX_TYPE}
      */
     default Value.Mutable<FoxType> type() {
         return this.getValue(Keys.FOX_TYPE).get().asMutable();
     }
+
+    /**
+     * {@link Keys#FIRST_TRUSTED}
+     */
+    default OptionalValue.Mutable<UUID> firstTrusted() {
+        return this.getValue(Keys.FIRST_TRUSTED).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#SECOND_TRUSTED}
+     */
+    default OptionalValue.Mutable<UUID> secondTrusted() {
+        return this.getValue(Keys.SECOND_TRUSTED).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#IS_SITTING}
+     */
+    default Value.Mutable<Boolean> sitting() {
+        return this.getValue(Keys.IS_SITTING).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#IS_FACEPLANTED}
+     */
+    default Value.Mutable<Boolean> faceplanted() {
+        return this.getValue(Keys.IS_FACEPLANTED).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#IS_DEFENDING}
+     */
+    default Value.Mutable<Boolean> defending() {
+        return this.getValue(Keys.IS_DEFENDING).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#IS_SLEEPING}
+     */
+    default Value.Mutable<Boolean> sleeping() {
+        return this.getValue(Keys.IS_SLEEPING).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#IS_POUNCING}
+     */
+    default Value.Mutable<Boolean> pouncing() {
+        return this.getValue(Keys.IS_POUNCING).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#IS_CROUCHING}
+     */
+    default Value.Mutable<Boolean> crouching() {
+        return this.getValue(Keys.IS_CROUCHING).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#IS_INTERESTED}
+     */
+    default Value.Mutable<Boolean> interested() {
+        return this.getValue(Keys.IS_INTERESTED).get().asMutable();
+    }
+
+    /**
+     * Determines if this fox trusts the provided {@link UUID}. In vanilla, {@link Fox#firstTrusted()} is checked
+     * first and then {@link Fox#secondTrusted()} is checked.
+     *
+     * @param uniqueId The unique id
+     * @return True if trusted, false if not
+     */
+    boolean trusts(UUID uniqueId);
 }

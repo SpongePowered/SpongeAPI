@@ -24,7 +24,5 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.entity.living.Ageable;
-
-public interface Turtle extends Animal, Ageable {
+public interface Turtle extends Animal {
 }

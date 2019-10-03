@@ -58,7 +58,7 @@ import org.spongepowered.api.data.type.InstrumentType;
 import org.spongepowered.api.data.type.LlamaType;
 import org.spongepowered.api.data.type.MooshroomType;
 import org.spongepowered.api.data.type.NotePitch;
-import org.spongepowered.api.data.type.PandaType;
+import org.spongepowered.api.data.type.PandaGene;
 import org.spongepowered.api.data.type.ParrotType;
 import org.spongepowered.api.data.type.PickupRule;
 import org.spongepowered.api.data.type.PortionType;
@@ -87,7 +87,6 @@ import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.entity.AreaEffectCloud;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityArchetype;
-import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.ExperienceOrb;
 import org.spongepowered.api.entity.FallingBlock;
@@ -115,8 +114,10 @@ import org.spongepowered.api.entity.living.animal.Pig;
 import org.spongepowered.api.entity.living.animal.PolarBear;
 import org.spongepowered.api.entity.living.animal.Rabbit;
 import org.spongepowered.api.entity.living.animal.Sheep;
+import org.spongepowered.api.entity.living.animal.TameableAnimal;
 import org.spongepowered.api.entity.living.animal.Wolf;
 import org.spongepowered.api.entity.living.animal.cow.Mooshroom;
+import org.spongepowered.api.entity.living.animal.horse.Horse;
 import org.spongepowered.api.entity.living.animal.horse.HorseEntity;
 import org.spongepowered.api.entity.living.animal.horse.PackHorse;
 import org.spongepowered.api.entity.living.animal.horse.llama.Llama;
@@ -145,7 +146,6 @@ import org.spongepowered.api.entity.living.trader.Trader;
 import org.spongepowered.api.entity.living.trader.Villager;
 import org.spongepowered.api.entity.projectile.DamagingProjectile;
 import org.spongepowered.api.entity.projectile.EyeOfEnder;
-import org.spongepowered.api.entity.projectile.ShulkerBullet;
 import org.spongepowered.api.entity.projectile.ShulkerBullet;
 import org.spongepowered.api.entity.projectile.arrow.ArrowEntity;
 import org.spongepowered.api.entity.projectile.explosive.FireworkRocket;
@@ -180,7 +180,6 @@ import org.spongepowered.math.vector.Vector3i;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -232,17 +231,11 @@ public final class Keys {
      * Represents the {@link Key} for how angry an {@link Entity} is. This
      * applies mostly to {@link ZombiePigman}.
      *
-     * <p>Unlike {@link #ANGRY}, the aggressiveness represented by this key may
+     * <p>Unlike {@link #IS_ANGRY}, the aggressiveness represented by this key may
      * fade over time and the entity will become peaceful again once its anger
      * reaches its minimum.</p>
      */
     public static final Key<BoundedValue<Integer>> ANGER = DummyObjectProvider.createExtendedFor(Key.class, "ANGER");
-
-    /**
-     * Represents the {@link Key} for whether an {@link Entity} is currently
-     * aggressive. This mostly applies to wolves.
-     */
-    public static final Key<Value<Boolean>> ANGRY = DummyObjectProvider.createExtendedFor(Key.class, "ANGRY");
 
     /**
      * Represents the {@link Key} for the age (in ticks) of an
@@ -384,7 +377,7 @@ public final class Keys {
      * vehicle an {@link Entity} is riding may itself be the passenger of
      * another vehicle.
      */
-    public static final Key<Value<EntitySnapshot>> BASE_VEHICLE = DummyObjectProvider.createExtendedFor(Key.class, "BASE_VEHICLE");
+    public static final Key<OptionalValue<Entity>> BASE_VEHICLE = DummyObjectProvider.createExtendedFor(Key.class, "BASE_VEHICLE");
 
     /**
      * Represents the {@link Key} for a {@link Beacon}'s primary effect.
@@ -496,9 +489,14 @@ public final class Keys {
     public static final Key<SetValue<BlockType>> BREAKABLE_BLOCK_TYPES = DummyObjectProvider.createExtendedFor(Key.class, "BREAKABLE_BLOCK_TYPES");
 
     /**
-     * Represents the {@link Key} for whether an {@link Entity} can breed.
+     * Represents the {@link Key} for the current breeder of an {@link Animal}, usually a {@link Player}.
      */
-    public static final Key<Value<Boolean>> CAN_BREED = DummyObjectProvider.createExtendedFor(Key.class, "CAN_BREED");
+    public static final Key<OptionalValue<UUID>> BREEDER = DummyObjectProvider.createExtendedFor(Key.class, "BREEDER");
+
+    /**
+     * Represents the {@link Key} for the breed time of an {@link Animal}.
+     */
+    public static final Key<Value<Integer>> BREED_TIME = DummyObjectProvider.createExtendedFor(Key.class, "BREED_TIME");
 
     /**
      * Represents the {@link Key} for whether a {@link FallingBlock} can drop
@@ -619,7 +617,10 @@ public final class Keys {
      */
     public static final Key<BoundedValue<Integer>> COOLDOWN = DummyObjectProvider.createExtendedFor(Key.class, "COOLDOWN");
 
-    public static final Key<Value<UUID>> CREATOR = DummyObjectProvider.createExtendedFor(Key.class, "CREATOR");
+    /**
+     * Represents the {@link Key} for the creator, usually of an {@link Entity}. It is up to the implementation to define.
+     */
+    public static final Key<OptionalValue<UUID>> CREATOR = DummyObjectProvider.createExtendedFor(Key.class, "CREATOR");
 
     /**
      * Represents the {@link Key} for whether a {@link Creeper} is charged.
@@ -716,9 +717,21 @@ public final class Keys {
     public static final Key<Value<DyeColor>> DYE_COLOR = DummyObjectProvider.createExtendedFor(Key.class, "DYE_COLOR");
 
     /**
-     * Represents the {@link Key} for the time until a {@link Chicken} lays an {@link ItemTypes#EGG}.
+     * Represents the {@link Key} for the time a {@link Panda} has been eating (in ticks)
      */
-    public static final Key<Value<Integer>> EGG_TIMER = DummyObjectProvider.createExtendedFor(Key.class, "EGG_TIMER");
+    public static final Key<Value<Integer>> EATING_TIME = DummyObjectProvider.createExtendedFor(Key.class, "EATING_TIME");
+
+    /**
+     * Represents the {@link Key} for the time until a {@link Chicken} lays an {@link ItemTypes#EGG}.
+     *
+     * <p>
+     *     Vanilla will calculate the egg timer by taking a random value between
+     *     0 (inclusive) and 6000 (exclusive) and then add that by another 6000.
+     *     This unit ends up being in ticks. Once the chicken lays the egg, this
+     *     calculation is ran again.
+     * </p>
+     */
+    public static final Key<Value<Integer>> EGG_TIME = DummyObjectProvider.createExtendedFor(Key.class, "EGG_TIME");
 
     /**
      * Represents the {@link Key} for representing the age of
@@ -870,6 +883,11 @@ public final class Keys {
     public static final Key<Value<Instant>> FIRST_DATE_PLAYED = DummyObjectProvider.createExtendedFor(Key.class, "FIRST_DATE_PLAYED");
 
     /**
+     * Represents the {@link Key} for a {@link Fox fox's} first trusted {@link UUID}, usually a {@link Player}.
+     */
+    public static final Key<OptionalValue<UUID>> FIRST_TRUSTED = DummyObjectProvider.createExtendedFor(Key.class, "FIRST_TRUSTED");
+
+    /**
      * Represents the {@link Key} for representing the
      * {@link FluidStackSnapshot} contained within an item container. Item
      * containers may include buckets and other mod added items.
@@ -975,6 +993,11 @@ public final class Keys {
      * {@link Entity}.</p>
      */
     public static final Key<BoundedValue<Double>> HEIGHT = DummyObjectProvider.createExtendedFor(Key.class, "HEIGHT");
+
+    /**
+     * Represents the {@link Key} for the hidden {@link PandaGene gene} of a {@link Panda}.
+     */
+    public static final Key<Value<PandaGene>> HIDDEN_GENE = DummyObjectProvider.createExtendedFor(Key.class, "HIDDEN_GENE");
 
     /**
      * Represents the {@link Key} for representing the "attributes hidden"
@@ -1097,6 +1120,12 @@ public final class Keys {
     public static final Key<Value<Boolean>> IS_AFLAME = DummyObjectProvider.createExtendedFor(Key.class, "IS_AFLAME");
 
     /**
+     * Represents the {@link Key} for whether an {@link Entity} is currently
+     * aggressive. This mostly applies to wolves.
+     */
+    public static final Key<Value<Boolean>> IS_ANGRY = DummyObjectProvider.createExtendedFor(Key.class, "IS_ANGRY");
+
+    /**
      * Represents the {@link Key} for if {@link Raider}s are currently celebrating.
      */
     public static final Key<Value<Boolean>> IS_CELEBRATING = DummyObjectProvider.createExtendedFor(Key.class, "IS_CELEBRATING");
@@ -1104,10 +1133,25 @@ public final class Keys {
     public static final Key<Value<Boolean>> IS_CLIMBING = DummyObjectProvider.createExtendedFor(Key.class, "IS_CLIMBING");
 
     /**
+     * Represents the {@link Key} for if a {@link Fox} is currently crouching.
+     */
+    public static final Key<Value<Boolean>> IS_CROUCHING = DummyObjectProvider.createExtendedFor(Key.class, "IS_CROUCHING");
+
+    /**
+     * Represents the {@link Key} for if a {@link Fox} is currently defending.
+     */
+    public static final Key<Value<Boolean>> IS_DEFENDING = DummyObjectProvider.createExtendedFor(Key.class, "IS_DEFENDING");
+
+    /**
      * Represents the {@link Key} for whether a {@link Player} is flying with an
      * {@link ItemTypes#ELYTRA}.
      */
     public static final Key<Value<Boolean>> IS_ELYTRA_FLYING = DummyObjectProvider.createExtendedFor(Key.class, "IS_ELYTRA_FLYING");
+
+    /**
+     * Represents the {@link Key} for if a {@link Fox} is currently faceplanted.
+     */
+    public static final Key<Value<Boolean>> IS_FACEPLANTED = DummyObjectProvider.createExtendedFor(Key.class, "IS_FACEPLANTED");
 
     /**
      * Represents the {@link Key} for whether an {@link Entity} is flying.
@@ -1118,6 +1162,11 @@ public final class Keys {
      * his flying state, check {@link #CAN_FLY}.</p>
      */
     public static final Key<Value<Boolean>> IS_FLYING = DummyObjectProvider.createExtendedFor(Key.class, "IS_FLYING");
+
+    /**
+     * Represents the {@link Key} for if a {@link Fox} is currently interested in something.
+     */
+    public static final Key<Value<Boolean>> IS_INTERESTED = DummyObjectProvider.createExtendedFor(Key.class, "IS_INTERESTED");
 
     public static final Key<Value<Boolean>> IS_IN_WATER = DummyObjectProvider.createExtendedFor(Key.class, "IS_IN_WATER");
 
@@ -1132,6 +1181,14 @@ public final class Keys {
      */
     public static final Key<Value<Boolean>> IS_JOHNNY = DummyObjectProvider.createExtendedFor(Key.class, "IS_JOHNNY");
 
+    /**
+     * Represents the {@link Key} for if a {@link Panda} is lying on it's back.
+     */
+    public static final Key<Value<Boolean>> IS_LYING_ON_BACK = DummyObjectProvider.createExtendedFor(Key.class, "IS_LYING_ON_BACK");
+
+    /**
+     * Represents the {@link Key} for if an {@link Entity} is currently considered to be on the ground or not.
+     */
     public static final Key<Value<Boolean>> IS_ON_GROUND = DummyObjectProvider.createExtendedFor(Key.class, "IS_ON_GROUND");
 
     /**
@@ -1141,6 +1198,16 @@ public final class Keys {
      * "babies" according to {@link #AGE}.</p>
      */
     public static final Key<Value<Boolean>> IS_PLAYING = DummyObjectProvider.createExtendedFor(Key.class, "IS_PLAYING");
+
+    /**
+     * Represents the {@link Key} for if a {@link Fox} is currently pouncing.
+     */
+    public static final Key<Value<Boolean>> IS_POUNCING = DummyObjectProvider.createExtendedFor(Key.class, "IS_POUNCING");
+
+    /**
+     * Represents the {@link Key} for if a {@link Panda} is rolling around.
+     */
+    public static final Key<Value<Boolean>> IS_ROLLING_AROUND = DummyObjectProvider.createExtendedFor(Key.class, "IS_ROLLING_AROUND");
 
     /**
      * Represents the {@link Key} for whether an {@link Enderman} is screaming.
@@ -1160,13 +1227,12 @@ public final class Keys {
     public static final Key<Value<Boolean>> IS_SILENT = DummyObjectProvider.createExtendedFor(Key.class, "IS_SILENT");
 
     /**
-     * Represents the {@link Key} for whether a {@link Wolf} or {@link Ocelot}
-     * is sitting.
+     * Represents the {@link Key} for whether a {@link Wolf}, {@link Cat}, {@link Panda}, or {@link Fox} is sitting.
      */
     public static final Key<Value<Boolean>> IS_SITTING = DummyObjectProvider.createExtendedFor(Key.class, "IS_SITTING");
 
     /**
-     * Represents the {@link Key} for whether a {@link Bat} or {@link Player}
+     * Represents the {@link Key} for whether a {@link Bat}, {@link Fox} or {@link Player}
      * is sleeping.
      *
      * <p>If a player is considered sleeping as per this data value, he does
@@ -1186,6 +1252,11 @@ public final class Keys {
     public static final Key<Value<Boolean>> IS_SNEAKING = DummyObjectProvider.createExtendedFor(Key.class, "IS_SNEAKING");
 
     /**
+     * Represents the {@link Key} for if a {@link Panda} is sneezing.
+     */
+    public static final Key<Value<Boolean>> IS_SNEEZING = DummyObjectProvider.createExtendedFor(Key.class, "IS_SNEEZING");
+
+    /**
      * Represents the {@link Key} for whether an {@link Entity} is sprinting.
      */
     public static final Key<Value<Boolean>> IS_SPRINTING = DummyObjectProvider.createExtendedFor(Key.class, "IS_SPRINTING");
@@ -1194,6 +1265,11 @@ public final class Keys {
      * Represents the {@link Key} for if a {@link PolarBear} is currently standing.
      */
     public static final Key<Value<Boolean>> IS_STANDING = DummyObjectProvider.createExtendedFor(Key.class, "IS_STANDING");
+
+    /**
+     * Represents the {@link Key} for if a {@link TameableAnimal} is currently tamed
+     */
+    public static final Key<Value<Boolean>> IS_TAMED = DummyObjectProvider.createExtendedFor(Key.class, "IS_TAMED");
 
     public static final Key<Value<Boolean>> IS_TRADING = DummyObjectProvider.createExtendedFor(Key.class, "IS_TRADING");
 
@@ -1252,6 +1328,11 @@ public final class Keys {
      * enchantment of the same name, see {@link #ITEM_ENCHANTMENTS}.</p>
      */
     public static final Key<BoundedValue<Integer>> KNOCKBACK_STRENGTH = DummyObjectProvider.createExtendedFor(Key.class, "KNOCKBACK_STRENGTH");
+
+    /**
+     * Represents the {@link Key} for the known {@link PandaGene gene} of a {@link Panda}.
+     */
+    public static final Key<Value<PandaGene>> KNOWN_GENE = DummyObjectProvider.createExtendedFor(Key.class, "KNOWN_GENE");
 
     public static final Key<Value<Entity>> LAST_ATTACKER = DummyObjectProvider.createExtendedFor(Key.class, "LAST_ATTACKER");
 
@@ -1375,7 +1456,10 @@ public final class Keys {
      */
     public static final Key<Value<NotePitch>> NOTE_PITCH = DummyObjectProvider.createExtendedFor(Key.class, "NOTE_PITCH");
 
-    public static final Key<Value<UUID>> NOTIFIER = DummyObjectProvider.createExtendedFor(Key.class, "NOTIFIER");
+    /**
+     * Represents the {@link Key} for the notifier, usually of an {@link Entity}. It is up to the implementation to define.
+     */
+    public static final Key<OptionalValue<UUID>> NOTIFIER = DummyObjectProvider.createExtendedFor(Key.class, "NOTIFIER");
 
     /**
      * Represents the {@link Key} for representing the "occupied" state of
@@ -1394,11 +1478,6 @@ public final class Keys {
      * various door typed blocks.
      */
     public static final Key<Value<Boolean>> OPEN = DummyObjectProvider.createExtendedFor(Key.class, "OPEN");
-
-    /**
-     * Represents the {@link Key} for the type of a {@link Panda}.
-     */
-    public static final Key<Value<PandaType>> PANDA_TYPE = DummyObjectProvider.createExtendedFor(Key.class, "PANDA_TYPE");
 
     /**
      * Represents the {@link ParrotType type} of a {@link Parrot}.
@@ -1427,10 +1506,10 @@ public final class Keys {
      * Represents the {@link Key} for the entities that act as passengers for
      * an {@link Entity}.
      *
-     * <p>For example, a {@link Player} riding on a {@link HorseEntity} or a
+     * <p>For example, a {@link Player} riding on a {@link Horse} or a
      * {@link Pig} would be considered its passenger.</p>
      */
-    public static final Key<ListValue<UUID>> PASSENGERS = DummyObjectProvider.createExtendedFor(Key.class, "PASSENGERS");
+    public static final Key<ListValue<Entity>> PASSENGERS = DummyObjectProvider.createExtendedFor(Key.class, "PASSENGERS");
 
     /**
      * Represents the {@link Key} for if a {@link Patroller} is currently patrolling.
@@ -1621,6 +1700,11 @@ public final class Keys {
     public static final Key<BoundedValue<Double>> SCALE = DummyObjectProvider.createExtendedFor(Key.class, "SCALE");
 
     /**
+     * Represents the {@link Key} for a {@link Fox fox's} second trusted {@link UUID}, usually a {@link Player}.
+     */
+    public static final Key<OptionalValue<UUID>> SECOND_TRUSTED = DummyObjectProvider.createExtendedFor(Key.class, "SECOND_TRUSTED");
+
+    /**
      * Represents the {@link Key} for representing the "should drop" state
      * of a {@link BlockState}.
      */
@@ -1660,6 +1744,11 @@ public final class Keys {
      * Represents the {@link Key} for the size of a {@link Slime}.
      */
     public static final Key<BoundedValue<Integer>> SLIME_SIZE = DummyObjectProvider.createExtendedFor(Key.class, "SLIME_SIZE");
+
+    /**
+     * Represents the {@link Key} for the time a {@link Panda} has been sneezing (in ticks)
+     */
+    public static final Key<Value<Integer>> SNEEZING_TIME = DummyObjectProvider.createExtendedFor(Key.class, "SNEEZING_TIME");
 
     /**
      * Represents the {@link Key} for representing the "snowed" state
@@ -1829,12 +1918,9 @@ public final class Keys {
     public static final Key<SetValue<String>> TAGS = DummyObjectProvider.createExtendedFor(Key.class, "TAGS");
 
     /**
-     * Represents the {@link Key} for the owner uuid of a tamed {@link Animal}.
-     *
-     * <p>Tamable animals in Vanilla may be a {@link Wolf}, an {@link Ocelot}
-     * or a {@link HorseEntity}.</p>
+     * Represents the {@link Key} for the tamer of a {@link TameableAnimal} or {@link HorseEntity}.
      */
-    public static final Key<OptionalValue<UUID>> TAMED_OWNER = DummyObjectProvider.createExtendedFor(Key.class, "TAMED_OWNER");
+    public static final Key<OptionalValue<UUID>> TAMER = DummyObjectProvider.createExtendedFor(Key.class, "TAMER");
 
     /**
      * Represents the {@link Key} for a {@link Wither}'s targets.
@@ -1894,6 +1980,11 @@ public final class Keys {
     public static final Key<Value<Boolean>> UNBREAKABLE = DummyObjectProvider.createExtendedFor(Key.class, "UNBREAKABLE");
 
     /**
+     * Represents the {@link Key} for the time a {@link Panda} has been unhappy (in ticks)
+     */
+    public static final Key<Value<Integer>> UNHAPPY_TIME = DummyObjectProvider.createExtendedFor(Key.class, "UNHAPPY_TIME");
+
+    /**
      * Represents the {@link Key} for whether or not changes to {@link Keys#SKIN} should
      * be reflected in an entitie's {@link GameProfile}.
      */
@@ -1939,9 +2030,9 @@ public final class Keys {
      * Represents the {@link Key} for the vehicle an {@link Entity} is riding.
      *
      * <p>Vehicles may be nested as a vehicle might itself ride another entity.
-     * To get the vehicle on bottom, use {@link #BASE_VEHICLE}.</p>
+     * To get the vehicle on bottom, use {@link Keys#BASE_VEHICLE}.</p>
      */
-    public static final Key<Value<EntitySnapshot>> VEHICLE = DummyObjectProvider.createExtendedFor(Key.class, "VEHICLE");
+    public static final Key<OptionalValue<Entity>> VEHICLE = DummyObjectProvider.createExtendedFor(Key.class, "VEHICLE");
 
     /**
      * Represents the {@link Key} for the velocity of an {@link Entity}.

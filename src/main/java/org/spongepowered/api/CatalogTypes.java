@@ -217,7 +217,7 @@ public final class CatalogTypes {
 
     public static final Class<ObjectiveDisplayMode> OBJECTIVE_DISPLAY_MODE = ObjectiveDisplayMode.class;
 
-    public static final Class<PandaType> PANDA_TYPE = PandaType.class;
+    public static final Class<PandaGene> PANDA_TYPE = PandaGene.class;
 
     public static final Class<ParrotType> PARROT_TYPE = ParrotType.class;
 

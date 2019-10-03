@@ -26,11 +26,11 @@ package org.spongepowered.api.entity;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.ListValue;
+import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.text.translation.Translatable;
@@ -45,11 +45,9 @@ import org.spongepowered.api.world.TeleportHelper;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.schematic.Schematic;
 import org.spongepowered.math.vector.Vector3d;
-import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Collection;
 import java.util.EnumSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Predicate;
@@ -113,7 +111,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder.Mutable, Tra
      *      be set as no safe location was found
      */
     default boolean setLocationSafely(Location location) {
-        return Sponge.getGame().getTeleportHelper()
+        return Sponge.getTeleportHelper()
                 .getSafeLocation(location)
                 .map(this::setLocation)
                 .orElse(false);
@@ -185,7 +183,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder.Mutable, Tra
      *      couldn't be set as no safe location was found
      */
     default boolean setLocationAndRotationSafely(Location location, Vector3d rotation) {
-        return Sponge.getGame().getTeleportHelper()
+        return Sponge.getTeleportHelper()
                 .getSafeLocation(location)
                 .map(safe -> this.setLocationAndRotation(safe, rotation))
                 .orElse(false);
@@ -208,7 +206,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder.Mutable, Tra
      *      couldn't be set as no safe location was found
      */
     default boolean setLocationAndRotationSafely(Location location, Vector3d rotation, EnumSet<RelativePositions> relativePositions) {
-        return Sponge.getGame().getTeleportHelper()
+        return Sponge.getTeleportHelper()
                 .getSafeLocation(location)
                 .map(safe -> this.setLocationAndRotation(safe, rotation, relativePositions))
                 .orElse(false);
@@ -252,7 +250,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder.Mutable, Tra
      *     the transform couldn't be set as no safe location was found
      */
     default boolean setTransformSafely(Transform transform) {
-        checkNotNull(transform, "The transform cannot be null!");
+        checkNotNull(transform);
         return this.setLocationAndRotationSafely(Location.of(this.getWorld(), transform.getPosition()), transform.getRotation());
     }
 
@@ -266,6 +264,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder.Mutable, Tra
      *      removed)
      */
     default boolean transferToWorld(World world) {
+        checkNotNull(world);
         return this.transferToWorld(world, world.getSpawnLocation().getPosition());
     }
 
@@ -288,97 +287,6 @@ public interface Entity extends Identifiable, Locatable, DataHolder.Mutable, Tra
      * @return The axis aligned bounding box
      */
     Optional<AABB> getBoundingBox();
-
-    /**
-     * Gets the entity passenger that rides this entity, if available.
-     *
-     * @return The passenger entity, if it exists
-     */
-    List<Entity> getPassengers();
-
-    /**
-     * Checks if the given entity is a passenger.
-     *
-     * @param entity The entity passenger
-     * @return If it is a passenger
-     */
-    boolean hasPassenger(Entity entity);
-
-    /**
-     * Sets the passenger entity(the entity that rides this one).
-     *
-     * @param entity The entity passenger, or null to eject
-     * @return If adding the passenger succeeded
-     */
-    boolean addPassenger(Entity entity);
-
-    /**
-     * Removes the given entity as a passenger.
-     *
-     * @param entity The entity to remove as passenger
-     */
-    void removePassenger(Entity entity);
-
-    /**
-     * Removes all currently riding passengers from this entity.
-     */
-    void clearPassengers();
-
-    /**
-     * Gets the entity vehicle that this entity is riding, if available.
-     *
-     * @return The vehicle entity, if it exists
-     */
-    Optional<Entity> getVehicle();
-
-    /**
-     * Sets the vehicle entity(the entity that is ridden by this one).
-     *
-     * @param entity The entity vehicle, or null to dismount
-     * @return True if the set was successful
-     */
-    boolean setVehicle(@Nullable Entity entity);
-
-    /**
-     * Gets the entity vehicle that is the base of what ever stack the current
-     * entity is a part of. This can be the current entity, if it is not riding
-     * any vehicle.
-     *
-     * <p>The returned entity can never ride another entity, that would make the
-     * ridden entity the base of the stack.</p>
-     *
-     * @return The vehicle entity, if available
-     */
-    Entity getBaseVehicle();
-
-    /**
-     * Gets the {@link Vector3d} representation of this entity's current
-     * velocity.
-     *
-     * @return The current velocity
-     */
-    default Vector3d getVelocity() {
-        return get(Keys.VELOCITY).get();
-    }
-
-    /**
-     * Sets the velocity for this entity.
-     *
-     * @param vector3d The vector 3d velocity
-     * @return The resulting data transaction result
-     */
-    default DataTransactionResult setVelocity(Vector3d vector3d) {
-        return offer(Keys.VELOCITY, vector3d);
-    }
-
-    /**
-     * Returns whether this entity is on the ground (not in the air) or not.
-     *
-     * @return Whether this entity is on the ground or not
-     */
-    default boolean isOnGround() {
-        return require(Keys.IS_ON_GROUND);
-    }
 
     /**
      * Returns whether this entity has been removed.
@@ -428,54 +336,8 @@ public interface Entity extends Identifiable, Locatable, DataHolder.Mutable, Tra
      * @return The collection of entities
      */
     default Collection<? extends Entity> getNearbyEntities(double distance, Predicate<? super Entity> predicate) {
-        checkNotNull(predicate, "Null predicate!");
+        checkNotNull(predicate);
         return this.getWorld().getEntities(this.getBoundingBox().get().expand(distance, distance, distance), predicate);
-    }
-
-    /**
-     * Gets the {@link UUID}, if available, of the user who created this
-     * {@link Entity}.
-     *
-     * @return The {@link UUID} if one exists
-     */
-    default Optional<UUID> getCreator() {
-        return get(Keys.CREATOR);
-    }
-
-    /**
-     * Gets the {@link UUID}, if available, of the user who last notified this
-     * {@link Entity}.
-     *
-     * @return The {@link UUID} if one exists
-     */
-    default Optional<UUID> getNotifier() {
-        return get(Keys.NOTIFIER);
-    }
-
-    /**
-     * Sets the {@link UUID} of the user who created this {@link Entity}.
-     *
-     * @param uuid The {@link UUID} to set as creator
-     */
-    default void setCreator(@Nullable UUID uuid) {
-        if (uuid == null) {
-            remove(Keys.CREATOR);
-        } else {
-            offer(Keys.CREATOR, uuid);
-        }
-    }
-
-    /**
-     * Sets the {@link UUID} of the user who last notified this {@link Entity}.
-     *
-     * @param uuid The {@link UUID} to set as notifier
-     */
-    default void setNotifier(@Nullable UUID uuid) {
-        if (uuid == null) {
-            remove(Keys.NOTIFIER);
-        } else {
-            offer(Keys.NOTIFIER, uuid);
-        }
     }
 
     /**
@@ -490,11 +352,58 @@ public interface Entity extends Identifiable, Locatable, DataHolder.Mutable, Tra
     }
 
     /**
-     * Returns whether this entity has gravity.
-     *
-     * @return True if this entity has gravity
+     * {@link Keys#PASSENGERS}
      */
-    default Value.Mutable<Boolean> gravity() {
-        return getValue(Keys.HAS_GRAVITY).get().asMutable();
+    default ListValue.Mutable<Entity> passengers() {
+        return this.getValue(Keys.PASSENGERS).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#VEHICLE}
+     */
+    default OptionalValue.Mutable<Entity> vehicle() {
+        return this.getValue(Keys.VEHICLE).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#BASE_VEHICLE}
+     */
+    default OptionalValue.Mutable<Entity> baseVehicle() {
+        return this.getValue(Keys.BASE_VEHICLE).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#IS_ON_GROUND}
+     */
+    default Value.Mutable<Boolean> onGround() {
+        return this.getValue(Keys.IS_ON_GROUND).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#VELOCITY}
+     */
+    default Value.Mutable<Vector3d> velocity() {
+        return this.getValue(Keys.VELOCITY).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#HAS_GRAVITY}
+     */
+    default Value.Mutable<Boolean> hasGravity() {
+        return this.getValue(Keys.HAS_GRAVITY).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#CREATOR}
+     */
+    default OptionalValue.Mutable<UUID> creator() {
+        return this.getValue(Keys.CREATOR).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#NOTIFIER}
+     */
+    default OptionalValue.Mutable<UUID> notifier() {
+        return this.getValue(Keys.NOTIFIER).get().asMutable();
     }
 }

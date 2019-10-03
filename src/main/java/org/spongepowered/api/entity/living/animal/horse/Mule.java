@@ -24,6 +24,6 @@
  */
 package org.spongepowered.api.entity.living.animal.horse;
 
-public interface Mule extends AgeableHorse, PackHorse {
+public interface Mule extends TameableHorse, PackHorse {
 
 }

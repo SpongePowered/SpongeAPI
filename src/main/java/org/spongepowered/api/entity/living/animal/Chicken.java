@@ -26,26 +26,16 @@ package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.Ageable;
-import org.spongepowered.api.item.ItemTypes;
 
 /**
  * Represents a Chicken.
  */
-public interface Chicken extends Animal, Ageable {
+public interface Chicken extends Animal {
 
     /**
-     * {@link Keys#EGG_TIMER}
-     *
-     * <p>
-     *     Vanilla will calculate the egg timer by taking a random value between
-     *     0 (inclusive) and 6000 (exclusive) and then add that by another 6000.
-     *     This unit ends up being in ticks. Once the chicken lays the egg, this
-     *     calculation is ran again.
-     * </p>
-     * @return The egg lay time value
+     * {@link Keys#EGG_TIME}
      */
-    default Value.Mutable<Integer> eggTimer() {
-        return this.getValue(Keys.EGG_TIMER).get().asMutable();
+    default Value.Mutable<Integer> eggTime() {
+        return this.getValue(Keys.EGG_TIME).get().asMutable();
     }
 }

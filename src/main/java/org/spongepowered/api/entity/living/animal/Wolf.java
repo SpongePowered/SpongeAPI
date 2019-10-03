@@ -27,28 +27,24 @@ package org.spongepowered.api.entity.living.animal;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.Ageable;
 
 /**
  * Represents a Wolf.
  */
-public interface Wolf extends Animal, Ageable {
+public interface Wolf extends TameableAnimal {
 
     /**
-     * Gets if this {@link Wolf} is currently aggressive, as a {@link Value}.
-     *
-     * @return The current aggressive value
+     * {@link Keys#IS_ANGRY}
      */
-    default Value.Mutable<Boolean> aggressive() {
-        return this.getValue(Keys.ANGRY).get().asMutable();
+    default Value.Mutable<Boolean> angry() {
+        return this.getValue(Keys.IS_ANGRY).get().asMutable();
     }
 
     /**
-     * Gets the {@link Wolf}'s {@link DyeColor} of it's collar.
-     *
-     * @return The current dyecolor of the collar
+     * {@link Keys#DYE_COLOR}
      */
     default Value.Mutable<DyeColor> collarColor() {
         return this.getValue(Keys.DYE_COLOR).get().asMutable();
     }
+
 }

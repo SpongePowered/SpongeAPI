@@ -22,10 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.animal.horse.llama;
+package org.spongepowered.api.entity.living.animal.horse;
 
-import org.spongepowered.api.entity.living.animal.horse.PackHorse;
+import org.spongepowered.api.entity.living.animal.TameableAnimal;
 
-public interface TraderLlama extends LlamaEntity, PackHorse {
+public interface TameableHorse extends HorseEntity, TameableAnimal {
 
 }

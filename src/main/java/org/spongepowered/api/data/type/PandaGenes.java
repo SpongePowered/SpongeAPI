@@ -27,29 +27,29 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * An enumeration of vanilla {@link PandaType}s.
+ * An enumeration of vanilla {@link PandaGene}s.
  */
-public final class PandaTypes {
+public final class PandaGenes {
 
     // SORTFIELDS:ON
 
-    public static final CatType AGGRESSIVE = DummyObjectProvider.createFor(CatType.class, "RAGDOLL");
+    public static final PandaGene AGGRESSIVE = DummyObjectProvider.createFor(PandaGene.class, "AGGRESSIVE");
 
-    public static final CatType BROWN = DummyObjectProvider.createFor(CatType.class, "JELLIE");
+    public static final PandaGene BROWN = DummyObjectProvider.createFor(PandaGene.class, "BROWN");
 
-    public static final CatType LAZY = DummyObjectProvider.createFor(CatType.class, "BLACK");
+    public static final PandaGene LAZY = DummyObjectProvider.createFor(PandaGene.class, "LAZY");
 
-    public static final CatType NORMAL = DummyObjectProvider.createFor(CatType.class, "ALL_BLACK");
+    public static final PandaGene NORMAL = DummyObjectProvider.createFor(PandaGene.class, "NORMAL");
 
-    public static final CatType PLAYFUL = DummyObjectProvider.createFor(CatType.class, "CALICO");
+    public static final PandaGene PLAYFUL = DummyObjectProvider.createFor(PandaGene.class, "PLAYFUL");
 
-    public static final CatType WEAK = DummyObjectProvider.createFor(CatType.class, "PERSIAN");
+    public static final PandaGene WEAK = DummyObjectProvider.createFor(PandaGene.class, "WEAK");
 
-    public static final CatType WORRIED = DummyObjectProvider.createFor(CatType.class, "BRITISH_SHORTHAIR");
+    public static final PandaGene WORRIED = DummyObjectProvider.createFor(PandaGene.class, "WORRIED");
 
     // SORTFIELDS:OFF
 
-    private PandaTypes() {
+    private PandaGenes() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 }

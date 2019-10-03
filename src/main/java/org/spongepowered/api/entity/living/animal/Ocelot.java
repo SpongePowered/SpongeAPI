@@ -32,12 +32,12 @@ import org.spongepowered.api.entity.living.player.Player;
 /**
  * Represents an Ocelot.
  */
-public interface Ocelot extends Animal, Ageable {
+public interface Ocelot extends Animal {
 
     /**
      * {@link Keys#IS_TRUSTING}
      */
-    default Value.Mutable<Boolean> isTrusting() {
+    default Value.Mutable<Boolean> trusting() {
         return this.getValue(Keys.IS_TRUSTING).get().asMutable();
     }
 }

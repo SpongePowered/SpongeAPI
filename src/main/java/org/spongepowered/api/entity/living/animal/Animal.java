@@ -24,11 +24,73 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.entity.living.Creature;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.OptionalValue;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.entity.living.Ageable;
+import org.spongepowered.api.entity.living.animal.cow.Cow;
+import org.spongepowered.api.item.inventory.ItemStack;
+
+import java.util.UUID;
 
 /**
- * Represents an Animal, such as a Cow.
+ * Represents an animal, such as a {@link Cow}.
  */
-public interface Animal extends Creature {
+public interface Animal extends Ageable {
 
+    /**
+     * {@link Keys#BREEDER}
+     */
+    default OptionalValue.Mutable<UUID> breeder() {
+        return this.getValue(Keys.BREEDER).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#BREED_TIME}
+     */
+    default Value.Mutable<Integer> breedTime() {
+        return this.getValue(Keys.BREED_TIME).get().asMutable();
+    }
+
+    /**
+     * Determines if the {@link ItemStack} is considered to be food by this animal.
+     *
+     * @param stack The stack
+     * @return True if food, false if not
+     */
+    boolean isFood(ItemStack stack);
+
+    /**
+     * Determines if this animal can currently be bred. In vanilla, the {@link Animal#breedTime()} has to be <= 0.
+     *
+     * @return True if can breed, false if not
+     */
+    boolean canBreed();
+
+    /**
+     * Determines if the animal is currently breeding. In vanilla, this is {@link Animal#breedTime()} > 0.
+     *
+     * @return True if currently breeding, false if not
+     */
+    boolean isBreeding();
+
+    /**
+     * Determines if this animal can be bred with the provided animal. In vanilla, two animals can only be breed if they
+     * are the same {@link EntityType} and are {@link Keys#IS_ADULT adults}.
+     *
+     * @param other The animal
+     * @return True if can breed with, false if not
+     */
+    boolean canBreedWith(Animal other);
+
+    /**
+     * Instructs this animal to breed with the provided animal.
+     */
+    void breedWith(Animal animal);
+
+    /**
+     * Instructs this animal to stop breeding.
+     */
+    void stopBreeding();
 }

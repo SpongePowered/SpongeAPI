@@ -26,20 +26,16 @@ package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.Ageable;
 
 /**
- * Represents a polar bear.
+ * Represents a Polar Bear.
  */
-public interface PolarBear extends Animal, Ageable {
+public interface PolarBear extends Animal {
 
     /**
-     * Returns a {@link Value} representing if the {@link PolarBear} is
-     * standing up or not.
-     *
-     * @return The standing value
+     * {@link Keys#IS_STANDING}
      */
-    default Value.Mutable<Boolean> isStanding() {
+    default Value.Mutable<Boolean> standing() {
         return this.getValue(Keys.IS_STANDING).get().asMutable();
     }
 }
