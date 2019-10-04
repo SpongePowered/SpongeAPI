@@ -26,7 +26,6 @@ package org.spongepowered.api.raid;
 
 import org.spongepowered.api.boss.ServerBossBar;
 import org.spongepowered.api.data.type.RaidStatus;
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.monster.raider.Raider;
 import org.spongepowered.api.server.ServerWorld;
@@ -97,8 +96,10 @@ public interface Raid {
     int getTotalWaveAmount();
 
     /**
-     * Gets the health of this raid. Health is calculated by the sum of all of the {@link Raider Raider's} {@link Living#health()}
-     * @return
+     * Gets the health of this raid. Health is calculated by the sum of all of the {@link Raider Raider's}
+     * {@link Living#health()}. As long as the raider was added to a {@link Wave} as part of the health.
+     * 
+     * @return The health
      */
     double getHealth();
 }

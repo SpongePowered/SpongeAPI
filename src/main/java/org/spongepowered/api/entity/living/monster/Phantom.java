@@ -33,7 +33,7 @@ import org.spongepowered.api.entity.living.Creature;
 public interface Phantom extends Aerial, Creature {
 
     /**
-     * Gets the current {@link PhantomPhase} of this phantom.
+     * Gets the current {@link PhantomPhase phase} of this phantom.
      *
      * @return The phase
      */
