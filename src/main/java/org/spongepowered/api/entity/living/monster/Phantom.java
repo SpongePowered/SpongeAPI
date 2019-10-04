@@ -24,8 +24,25 @@
  */
 package org.spongepowered.api.entity.living.monster;
 
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.type.PhantomPhase;
+import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.entity.living.Aerial;
 import org.spongepowered.api.entity.living.Creature;
 
 public interface Phantom extends Aerial, Creature {
+
+    /**
+     * Gets the current {@link PhantomPhase} of this phantom.
+     *
+     * @return The phase
+     */
+    PhantomPhase getPhase();
+
+    /**
+     * {@link Keys#PHANTOM_SIZE}
+     */
+    default BoundedValue.Mutable<Integer> size() {
+        return this.getValue(Keys.PHANTOM_SIZE).get().asMutable();
+    }
 }

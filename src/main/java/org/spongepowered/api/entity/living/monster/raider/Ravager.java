@@ -24,6 +24,70 @@
  */
 package org.spongepowered.api.entity.living.monster.raider;
 
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
+
+/**
+ * Represents a Ravager.
+ */
 public interface Ravager extends Raider {
 
+    /**
+     * {@link Keys#ATTACK_TIME}
+     */
+    default Value.Mutable<Integer> attackTime() {
+        return this.getValue(Keys.ATTACK_TIME).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#ROARING_TIME}
+     */
+    default Value.Mutable<Integer> roaringTime() {
+        return this.getValue(Keys.ROARING_TIME).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#STUNNED_TIME}
+     */
+    default Value.Mutable<Integer> stunnedTime() {
+        return this.getValue(Keys.STUNNED_TIME).get().asMutable();
+    }
+
+    /**
+     * Determines if the ravager is immobilized. In vanilla, if {@link Ravager#attackTime()} > 0 or
+     * {@link Ravager#roaringTime()} > 0 or {@link Ravager#stunnedTime()} > 0 then the ravager is considered immobilized.
+     *
+     * @return True if immobilized, false if not
+     */
+    boolean isImmobilized();
+
+    /**
+     * Determines if the ravager is roaring. In vanilla, this is {@link Ravager#roaringTime()} > 0.
+     *
+     * @return True if roaring, false if not
+     */
+    boolean isRoaring();
+
+    /**
+     * Instructs the ravager to roar or not. In vanilla, if true, this will set {@link Ravager#roaringTime()} to 10. Otherwise,
+     * it will be set to 0.
+     *
+     * @param roaring True to roar, false to stop
+     */
+    void setRoaring(boolean roaring);
+
+    /**
+     * Determines if the ravager is stunned. In vanilla, this is {@link Ravager#stunnedTime()} > 0.
+     *
+     * @return True if stunned, false if not
+     */
+    boolean isStunned();
+
+    /**
+     * Instructs the ravager to be stunned or not. In vanilla, if true, this will set {@link Ravager#stunnedTime()} to 40. Otherwise,
+     * it will be set to 0.
+     *
+     * @param stunned True to be stunned, false to be not
+     */
+    void setStunned(boolean stunned);
 }

@@ -34,10 +34,10 @@ import org.spongepowered.api.data.value.Value;
 public interface Ageable extends Agent {
 
     /**
-     * {@link Keys#AGE}
+     * {@link Keys#AGEABLE_AGE}
      */
     default BoundedValue.Mutable<Integer> age() {
-        return getValue(Keys.AGE).get().asMutable();
+        return getValue(Keys.AGEABLE_AGE).get().asMutable();
     }
 
     /**

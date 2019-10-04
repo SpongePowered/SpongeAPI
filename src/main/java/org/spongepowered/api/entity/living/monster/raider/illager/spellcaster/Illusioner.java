@@ -25,7 +25,7 @@
 package org.spongepowered.api.entity.living.monster.raider.illager.spellcaster;
 
 /**
- * Represents an illusioner.
+ * Represents an Illusioner.
  */
 public interface Illusioner extends Spellcaster {
 

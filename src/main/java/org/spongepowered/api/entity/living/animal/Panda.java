@@ -111,14 +111,9 @@ public interface Panda extends Animal {
     boolean isUnhappy();
 
     /**
-     * Instructs the panda to now be happy. In vanilla, this will set the {@link Panda#unhappyTime()} to 0.
+     * Instructs the panda to be unhappy or not. In vanilla, if false, this will set the {@link Panda#unhappyTime()} to 0. Otherwise 32.
      */
-    void makeHappy();
-
-    /**
-     * Instructs the panda to now be un-happy. In vanilla, this will set the {@link Panda#unhappyTime()} to 32.
-     */
-    void makeUnhappy();
+    void setUnhappy(boolean unhappy);
 
     /**
      * Determines if the panda is currently eating. In vanilla, this is {@link Panda#eatingTime()} > 0.
@@ -130,18 +125,11 @@ public interface Panda extends Animal {
     boolean isEating();
 
     /**
-     * Instructs the panda to eat. In vanilla, this will set the {@link Panda#eatingTime()} to 1.
+     * Instructs the panda to eat or not. In vanilla, if true, this will set the {@link Panda#eatingTime()} to 1. Otherwise 0.
      *
      * {@link Panda#eatingTime()}
      */
-    void eat();
-
-    /**
-     * Instructs the panda to stop eating. In vanilla, this will set the {@link Panda#eatingTime()} to 0.
-     *
-     * {@link Panda#eatingTime()}
-     */
-    void stopEating();
+    void setEating(boolean eating);
 
     /**
      * Determines if the panda is currently sneezing. In vanilla, this is {@link Panda#sneezingTime()} >= 0.
@@ -151,15 +139,10 @@ public interface Panda extends Animal {
     boolean isSneezing();
 
     /**
-     * Instructs the panda to sneeze. In vanilla, this will set {@link Panda#sneezing()} to true and {@link Panda#sneezingTime()} to 0.
+     * Instructs the panda to sneeze or not. In vanilla, if true, this will set {@link Panda#sneezing()} to true and {@link Panda#sneezingTime()}
+     * to 0. Otherwise if the panda was sneezing, the sneezingTime will be set to 20 and if not will be set to 0.
      */
-    void sneeze();
-
-    /**
-     * Instructs the panda to stop sneezing. In vanilla, this will set {@link Panda#sneezing()} to false. If the panda was sneezing, this
-     * will also set {@link Panda#sneezingTime()} to 20. Otherwise it will be set to 0.
-     */
-    void stopSneezing();
+    void setSneezing(boolean sneeze);
 
     /**
      * Gets if the panda is currently frightened. In vanilla, pandas that have a {@link Panda#knownGene()}

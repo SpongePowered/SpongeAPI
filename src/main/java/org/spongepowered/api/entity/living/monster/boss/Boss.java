@@ -39,4 +39,11 @@ public interface Boss extends Hostile {
      * @return The boss bar
      */
     ServerBossBar getBossBar();
+
+    /**
+     * Sets the {@link ServerBossBar} this boss shows on the client.
+     *
+     * @param bossBar The boss bar
+     */
+    void setBossBar(ServerBossBar bossBar);
 }

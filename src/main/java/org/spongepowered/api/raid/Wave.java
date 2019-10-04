@@ -22,41 +22,56 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.monster.raider.illager.spellcaster;
+package org.spongepowered.api.raid;
 
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.type.SpellType;
-import org.spongepowered.api.data.value.OptionalValue;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.monster.raider.illager.Illager;
+import org.spongepowered.api.entity.living.monster.raider.Raider;
 
-public interface Spellcaster extends Illager {
+import java.util.Optional;
+
+public interface Wave {
 
     /**
-     * {@link Keys#CURRENT_SPELL}.
-     */
-    default OptionalValue.Mutable<SpellType> currentSpell() {
-        return this.getValue(Keys.CURRENT_SPELL).get().asMutable();
-    }
-
-    /**
-     * {@link Keys#CASTING_TIME}
-     */
-    default Value.Mutable<Integer> castingTime() {
-        return this.getValue(Keys.CASTING_TIME).get().asMutable();
-    }
-
-    /**
-     * Determines if the caster is currently casting a spell. In vanilla, this is {@link Spellcaster#castingTime()} > 0.
+     * Gets the {@link Raid} this wave is apart of.
      *
-     * @return True if casting a spell, false if not
+     * @return The raid
      */
-    boolean isCastingSpell();
+    Raid getRaid();
 
     /**
-     * Instructs this caster to cast it's {@link Spellcaster#currentSpell()} or not.
+     * Determines if this wave was a bonus of the {@link Raid}.
      *
-     * @param castSpell Whether to cast spell or not
+     * @return True if bonus, false if not
      */
-    void setCastingSpell(boolean castSpell);
+    boolean isBonus();
+
+    /**
+     * Determines if this wave was the final wave of the {@link Raid}.
+     *
+     * @return True if the final wave, false if not
+     */
+    boolean isFinal();
+
+    /**
+     * Gets the {@link Raider leader} of this wave.
+     *
+     * @return The leader or {@link Optional#empty()} if not present
+     */
+    Optional<Raider> getLeader();
+
+    /**
+     * Adds a {@link Raider} to this wave.
+     *
+     * @param raider The raider
+     * @param addToRaidHealth Whether to add on to a {@link Raid Raid's} health
+     * @return True if raider was added, false if not
+     */
+    boolean addRaider(Raider raider, boolean addToRaidHealth);
+
+    /**
+     * Removes a {@link Raider} from this wave.
+     *
+     * @param raider The raider to remove
+     * @return True if remove succeeded, false if not (or wasn't in the wave to begin with)
+     */
+    boolean removeRaider(Raider raider);
 }

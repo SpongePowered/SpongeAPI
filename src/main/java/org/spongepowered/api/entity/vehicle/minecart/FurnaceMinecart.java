@@ -24,33 +24,21 @@
  */
 package org.spongepowered.api.entity.vehicle.minecart;
 
+import org.spongepowered.api.block.entity.carrier.furnace.Furnace;
 import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
 
 import java.time.Duration;
 
 /**
- * Represents a minecart with a furnace inside it.
+ * Represents a {@link Minecart} with a {@link Furnace} inside it.
  */
 public interface FurnaceMinecart extends MinecartEntity {
 
     /**
-     * Gets the duration of fuel the furnace has left before
-     * the minecraft starts to decelerate to a stop.
-     *
-     * @return The fuel duration
+     * {@link Keys#FURNACE_MINECART_FUEL_DURATION}
      */
-    default Duration getFuelDuration() {
-        return require(Keys.MINECART_FUEL_DURATION);
+    default Value.Mutable<Duration> fuelDuration() {
+        return this.getValue(Keys.FURNACE_MINECART_FUEL_DURATION).get().asMutable();
     }
-
-    /**
-     * Sets the duration of fuel the furnace has left before
-     * the minecraft starts to decelerate to a stop.
-     *
-     * @param duration The fuel duration
-     */
-    default void setFuelDuration(Duration duration) {
-        offer(Keys.MINECART_FUEL_DURATION, duration);
-    }
-
 }

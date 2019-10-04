@@ -24,8 +24,11 @@
  */
 package org.spongepowered.api.entity.vehicle.minecart.carrier;
 
+import org.spongepowered.api.block.entity.carrier.chest.Chest;
+import org.spongepowered.api.entity.vehicle.minecart.Minecart;
+
 /**
- * Represents a minecart with a chest inside it.
+ * Represents a {@link Minecart} with a {@link Chest} inside it.
  */
 public interface ChestMinecart extends CarrierMinecart<ChestMinecart> {
 

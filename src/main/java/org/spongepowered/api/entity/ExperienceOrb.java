@@ -33,12 +33,10 @@ import org.spongepowered.api.data.value.Value;
 public interface ExperienceOrb extends Entity {
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the amount of "experience" stored.
-     *
-     * @return The immutable value for the amount of "experience" stored
+     * {@link Keys#EXPERIENCE}
      */
     default Value.Mutable<Integer> experience() {
-        return getValue(Keys.CONTAINED_EXPERIENCE).get().asMutable();
+        return getValue(Keys.EXPERIENCE).get().asMutable();
     }
 
 }

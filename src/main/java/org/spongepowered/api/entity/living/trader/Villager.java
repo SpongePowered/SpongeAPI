@@ -31,24 +31,19 @@ import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Ageable;
 
 /**
- * Represents a villager.
+ * Represents a Villager.
  */
 public interface Villager extends Trader, Ageable {
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the {@link VillagerType} of this
-     * {@link Villager}.
-     *
-     * @return The villager type value
+     * {@link Keys#VILLAGER_TYPE}
      */
     default Value.Mutable<VillagerType> type() {
         return getValue(Keys.VILLAGER_TYPE).get().asMutable();
     }
 
     /**
-     * Gets the current {@link Profession} of this {@link Villager}.
-     *
-     * @return The current profession value
+     * {@link Keys#PROFESSION}
      */
     default Value.Mutable<Profession> profession() {
         return getValue(Keys.PROFESSION).get().asMutable();

@@ -29,7 +29,7 @@ import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.entity.living.animal.Sheep;
 
 /**
- * Represents an evoker.
+ * Represents an Evoker.
  */
 public interface Evoker extends Spellcaster {
 

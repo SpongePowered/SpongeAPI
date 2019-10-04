@@ -25,7 +25,7 @@
 package org.spongepowered.api.entity.living.trader;
 
 /**
- * Represents a wandering trader.
+ * Represents a Wandering Trader.
  */
 public interface WanderingTrader extends Trader {
 

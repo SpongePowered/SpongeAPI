@@ -25,6 +25,7 @@
 package org.spongepowered.api.entity.living.trader;
 
 import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Creature;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.item.merchant.Merchant;
@@ -32,14 +33,9 @@ import org.spongepowered.api.item.merchant.Merchant;
 public interface Trader extends Creature, Merchant {
 
     /**
-     * Returns true if this trader is currently trading with another
-     * {@link Humanoid}. A trader is normally unable to trade with
-     * multiple humanoids at the same time.
-     *
-     * @return True if this trader is trading with another player
+     * {@link Keys#IS_TRADING}
      */
-    default boolean isTrading() {
-        return require(Keys.IS_TRADING);
+    default Value.Immutable<Boolean> trading() {
+        return this.getValue(Keys.IS_TRADING).get().asImmutable();
     }
-
 }

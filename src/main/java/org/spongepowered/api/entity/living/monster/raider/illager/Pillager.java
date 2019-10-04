@@ -29,14 +29,14 @@ import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.inventory.Carrier;
 
 /**
- * Represents a pillager.
+ * Represents a Pillager.
  */
 public interface Pillager extends Illager, Carrier {
 
     /**
-     * {@link Keys#CHARGING_CROSSBOW}.
+     * {@link Keys#IS_CHARGING_CROSSBOW}.
      */
     default Value.Mutable<Boolean> chargingCrossbow() {
-        return this.getValue(Keys.CHARGING_CROSSBOW).get().asMutable();
+        return this.getValue(Keys.IS_CHARGING_CROSSBOW).get().asMutable();
     }
 }

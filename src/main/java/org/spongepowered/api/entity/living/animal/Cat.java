@@ -28,9 +28,10 @@ import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.CatType;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.entity.living.monster.Phantom;
 
 /**
- * Represents a cat, meow.
+ * Represents a Cat, meow.
  */
 public interface Cat extends TameableAnimal {
 
@@ -42,9 +43,46 @@ public interface Cat extends TameableAnimal {
     }
 
     /**
+     * {@link Keys#IS_LYING_DOWN}
+     */
+    default Value.Mutable<Boolean> lyingDown() {
+        return this.getValue(Keys.IS_LYING_DOWN).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#IS_RELAXED}
+     */
+    default Value.Mutable<Boolean> relaxed() {
+        return this.getValue(Keys.IS_RELAXED).get().asMutable();
+    }
+
+    /**
      * {@link Keys#DYE_COLOR}
      */
     default Value.Mutable<DyeColor> collarColor() {
         return this.getValue(Keys.DYE_COLOR).get().asMutable();
     }
+
+    /**
+     * Determines if the {@link Cat} is purring. In vanilla, a cat purrs every so many ticks when lying down or relaxed.
+     * Otherwise it will also pur if it is currently breeding.
+     *
+     * @return True if purring, false if not
+     */
+    boolean isPurring();
+
+    /**
+     * Determines if the {@link Cat} is begging for food. In vanilla, a cat begs for food every so many ticks
+     * if {@link TameableAnimal#tamed()} returns false.
+     *
+     * @return True if begging for food, false if not
+     */
+    boolean isBeggingForFood();
+
+    /**
+     * Determines if the {@link Cat} is hissing. In vanilla, a cat hisses when a {@link Phantom} is detected near it.
+     *
+     * @return True if hissing, false if not
+     */
+    boolean isHissing();
 }

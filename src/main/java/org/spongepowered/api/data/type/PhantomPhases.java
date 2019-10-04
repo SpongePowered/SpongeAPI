@@ -22,41 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.monster.raider.illager.spellcaster;
+package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.type.SpellType;
-import org.spongepowered.api.data.value.OptionalValue;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.monster.raider.illager.Illager;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-public interface Spellcaster extends Illager {
+public final class PhantomPhases {
 
-    /**
-     * {@link Keys#CURRENT_SPELL}.
-     */
-    default OptionalValue.Mutable<SpellType> currentSpell() {
-        return this.getValue(Keys.CURRENT_SPELL).get().asMutable();
+    // SORTFIELDS:ON
+
+    public static final PhantomPhase CIRCLING = DummyObjectProvider.createFor(PhantomPhase.class, "CIRCLING");
+
+    public static final PhantomPhase SWOOPING = DummyObjectProvider.createFor(PhantomPhase.class, "SWOOPING");
+
+    // SORTFIELDS:OFF
+
+    private PhantomPhases() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
-
-    /**
-     * {@link Keys#CASTING_TIME}
-     */
-    default Value.Mutable<Integer> castingTime() {
-        return this.getValue(Keys.CASTING_TIME).get().asMutable();
-    }
-
-    /**
-     * Determines if the caster is currently casting a spell. In vanilla, this is {@link Spellcaster#castingTime()} > 0.
-     *
-     * @return True if casting a spell, false if not
-     */
-    boolean isCastingSpell();
-
-    /**
-     * Instructs this caster to cast it's {@link Spellcaster#currentSpell()} or not.
-     *
-     * @param castSpell Whether to cast spell or not
-     */
-    void setCastingSpell(boolean castSpell);
 }

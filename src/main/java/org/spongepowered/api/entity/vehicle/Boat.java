@@ -25,6 +25,7 @@
 package org.spongepowered.api.entity.vehicle;
 
 import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents a Boat entity.
@@ -32,88 +33,37 @@ import org.spongepowered.api.data.Keys;
 public interface Boat extends Vehicle {
 
     /**
-     * Gets whether this boat is currently in water.
-     *
-     * @return If the boat is in water
+     * {@link Keys#IS_IN_WATER}
      */
-    default boolean isInWater() {
-        return require(Keys.IS_IN_WATER);
+    default Value.Mutable<Boolean> inWater() {
+        return this.getValue(Keys.IS_IN_WATER).get().asMutable();
     }
 
     /**
-     * Gets the maximum speed that this boat is allowed to travel at.
-     *
-     * <p>The Default value is 0.4.</p>
-     *
-     * @return The maximum speed
+     * {@link Keys#BOAT_CAN_MOVE_ON_LAND}
      */
-    default double getMaxSpeed() {
-        return require(Keys.BOAT_MAX_SPEED);
+    default Value.Mutable<Boolean> moveOnLand() {
+        return this.getValue(Keys.BOAT_CAN_MOVE_ON_LAND).get().asMutable();
     }
 
     /**
-     * Sets the maximum speed that this boat is allowed to travel at.
-     *
-     * <p>The Default value is 0.4.</p>
-     *
-     * @param maxSpeed The new max speed
+     * {@link Keys#BOAT_MAX_SPEED}
      */
-    default void setMaxSpeed(double maxSpeed) {
-        offer(Keys.BOAT_MAX_SPEED, maxSpeed);
+    default Value.Mutable<Double> maxSpeed() {
+        return this.getValue(Keys.BOAT_MAX_SPEED).get().asMutable();
     }
 
     /**
-     * Gets whether or not the boat is able to move freely on land.
-     *
-     * @return If the boat can move on land
+     * {@link Keys#BOAT_UNOCCUPIED_DECELERATION}
      */
-    default boolean canMoveOnLand() {
-        return require(Keys.BOAT_CAN_MOVE_ON_LAND);
+    default Value.Mutable<Double> unoccupiedDeceleration() {
+        return this.getValue(Keys.BOAT_UNOCCUPIED_DECELERATION).get().asMutable();
     }
 
     /**
-     * Gets whether or not the boat is able to move freely on land.
-     *
-     * @param moveOnLand If the boat can move on land
+     * {@link Keys#BOAT_OCCUPIED_DECELERATION}
      */
-    default void setMoveOnLand(boolean moveOnLand) {
-        offer(Keys.BOAT_CAN_MOVE_ON_LAND, moveOnLand);
+    default Value.Mutable<Double> occupiedDeceleration() {
+        return this.getValue(Keys.BOAT_OCCUPIED_DECELERATION).get().asMutable();
     }
-
-    /**
-     * Gets the rate at which occupied boats decelerate.
-     *
-     * @return The occupied deceleration rate
-     */
-    default double getOccupiedDeceleration() {
-        return require(Keys.BOAT_OCCUPIED_DECELERATION);
-    }
-
-    /**
-     * Sets the rate at which occupied boats decelerate.
-     *
-     * @param occupiedDeceleration The new occupied deceleration rate
-     */
-    default void setOccupiedDeceleration(double occupiedDeceleration) {
-        offer(Keys.BOAT_OCCUPIED_DECELERATION, occupiedDeceleration);
-    }
-
-    /**
-     * Gets the rate at which unoccupied boats decelerate.
-     *
-     * @return The unoccupied deceleration rate
-     */
-    default double getUnoccupiedDeceleration() {
-        return require(Keys.BOAT_UNOCCUPIED_DECELERATION);
-    }
-
-    /**
-     * Sets the rate at which unoccupied boats decelerate.
-     *
-     * @param unoccupiedDeceleration The new unoccupied deceleration rate
-     */
-    default void setUnoccupiedDeceleration(double unoccupiedDeceleration) {
-        offer(Keys.BOAT_UNOCCUPIED_DECELERATION, unoccupiedDeceleration);
-    }
-
 }
