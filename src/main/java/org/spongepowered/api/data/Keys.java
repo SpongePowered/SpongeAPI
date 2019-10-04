@@ -132,6 +132,7 @@ import org.spongepowered.api.entity.living.monster.Creeper;
 import org.spongepowered.api.entity.living.monster.Enderman;
 import org.spongepowered.api.entity.living.monster.Endermite;
 import org.spongepowered.api.entity.living.monster.Patroller;
+import org.spongepowered.api.entity.living.monster.Phantom;
 import org.spongepowered.api.entity.living.monster.boss.Wither;
 import org.spongepowered.api.entity.living.monster.boss.dragon.EnderDragon;
 import org.spongepowered.api.entity.living.monster.guardian.Guardian;
@@ -231,11 +232,6 @@ public final class Keys {
      * in ticks.
      */
     public static final Key<BoundedValue<Integer>> AGEABLE_AGE = DummyObjectProvider.createExtendedFor(Key.class, "AGE");
-
-    /**
-     * Represents the {@link Key} for whether an {@link Agent}s AI is enabled.
-     */
-    public static final Key<Value<Boolean>> IS_AI_ENABLED = DummyObjectProvider.createExtendedFor(Key.class, "IS_AI_ENABLED");
 
     /**
      * Represents the {@link Key} for how angry a {@link ZombiePigman} is.
@@ -356,6 +352,11 @@ public final class Keys {
     public static final Key<BoundedValue<Double>> ATTACK_DAMAGE = DummyObjectProvider.createExtendedFor(Key.class, "ATTACK_DAMAGE");
 
     /**
+     * Represents the {@link Key} for the time of a {@link Ravager} is considered attacking.
+     */
+    public static final Key<Value<Integer>> ATTACK_TIME = DummyObjectProvider.createExtendedFor(Key.class, "ATTACK_TIME");
+
+    /**
      * Represents the {@link Key} for representing the {@link Axis} direction
      * of a {@link BlockState}.
      */
@@ -459,6 +460,12 @@ public final class Keys {
     public static final Key<Value<Boolean>> BIG_MUSHROOM_PORES_WEST = DummyObjectProvider.createExtendedFor(Key.class, "BIG_MUSHROOM_PORES_WEST");
 
     /**
+     * Represents the {@link Key} for the {@link BlockState} of a
+     * {@link FallingBlock}.
+     */
+    public static final Key<Value<BlockState>> BLOCK_STATE = DummyObjectProvider.createExtendedFor(Key.class, "BLOCK_STATE");
+
+    /**
      * Represents the {@link Key} for if a {@link Boat} can move on land.
      */
     public static final Key<Value<Boolean>> BOAT_CAN_MOVE_ON_LAND = DummyObjectProvider.createExtendedFor(Key.class, "BOAT_CAN_MOVE_ON_LAND");
@@ -541,6 +548,12 @@ public final class Keys {
     public static final Key<Value<Boolean>> CAN_GRIEF = DummyObjectProvider.createExtendedFor(Key.class, "CAN_GRIEF");
 
     /**
+     * Represents the {@link Key} for whether a {@link FallingBlock} will
+     * damage an {@link Entity} it lands on.
+     */
+    public static final Key<Value<Boolean>> CAN_HURT_ENTITIES = DummyObjectProvider.createExtendedFor(Key.class, "CAN_HURT_ENTITIES");
+
+    /**
      * Represents the {@link Key} for if a {@link Raider} can join a raid.
      */
     public static final Key<Value<Boolean>> CAN_JOIN_RAID = DummyObjectProvider.createExtendedFor(Key.class, "CAN_JOIN_RAID");
@@ -560,11 +573,6 @@ public final class Keys {
      * Represents the {@link Key} for the type of a {@link Cat}.
      */
     public static final Key<Value<CatType>> CAT_TYPE = DummyObjectProvider.createExtendedFor(Key.class, "CAT_TYPE");
-
-    /**
-     * Represents the {@link Key} for if a {@link Pillager} is charging it's crossbow.
-     */
-    public static final Key<Value<Boolean>> IS_CHARGING_CROSSBOW = DummyObjectProvider.createExtendedFor(Key.class, "CHARGING_CROSSBOW");
 
     /**
      * Represents the {@link Key} for the attachment of a {@link BlockTypes#CHEST}
@@ -638,11 +646,6 @@ public final class Keys {
     public static final Key<OptionalValue<UUID>> CREATOR = DummyObjectProvider.createExtendedFor(Key.class, "CREATOR");
 
     /**
-     * Represents the {@link Key} for whether a {@link Creeper} is charged.
-     */
-    public static final Key<Value<Boolean>> IS_CHARGED = DummyObjectProvider.createExtendedFor(Key.class, "CREEPER_CHARGED");
-
-    /**
      * Represents the {@link Key} for whether the next attack of an
      * {@link Entity} will be a critical hit.
      */
@@ -665,6 +668,14 @@ public final class Keys {
      * dealt damage to according to {@link #ATTACK_DAMAGE}.
      */
     public static final Key<MapValue<EntityType<?>, Double>> DAMAGE_ENTITY_MAP = DummyObjectProvider.createExtendedFor(Key.class, "DAMAGE_ENTITY_MAP");
+
+    /**
+     * Represents the {@link Key} for how much damage a {@link FallingBlock}
+     * deals to {@link Living} entities it hits.
+     *
+     * <p>This damage is capped by {@link #MAX_FALL_DAMAGE}.</p>
+     */
+    public static final Key<BoundedValue<Double>> DAMAGE_PER_BLOCK = DummyObjectProvider.createExtendedFor(Key.class, "DAMAGE_PER_BLOCK");
 
     /**
      * Represents the {@link Key} for representing at which distance a {@link BlockState}
@@ -783,6 +794,11 @@ public final class Keys {
     public static final Key<Value<Vector3i>> EXIT_POSITION = DummyObjectProvider.createExtendedFor(Key.class, "EXIT_PORTAL");
 
     /**
+     * Represents the {@link Key} for the amount of experience a {@link Player} has or an {@link ExperienceOrb} contains
+     */
+    public static final Key<BoundedValue<Integer>> EXPERIENCE = DummyObjectProvider.createExtendedFor(Key.class, "EXPERIENCE");
+
+    /**
      * Represents the {@link Key} for the total experience a {@link Player}
      * requires to advance from his current level to the next one.
      */
@@ -819,26 +835,6 @@ public final class Keys {
      * currently extended.
      */
     public static final Key<Value<Boolean>> EXTENDED = DummyObjectProvider.createExtendedFor(Key.class, "EXTENDED");
-
-    /**
-     * Represents the {@link Key} for whether a {@link FallingBlock} will
-     * damage an {@link Entity} it lands on.
-     */
-    public static final Key<Value<Boolean>> CAN_HURT_ENTITIES = DummyObjectProvider.createExtendedFor(Key.class, "CAN_HURT_ENTITIES");
-
-    /**
-     * Represents the {@link Key} for the {@link BlockState} of a
-     * {@link FallingBlock}.
-     */
-    public static final Key<Value<BlockState>> BLOCK_STATE = DummyObjectProvider.createExtendedFor(Key.class, "BLOCK_STATE");
-
-    /**
-     * Represents the {@link Key} for how much damage a {@link FallingBlock}
-     * deals to {@link Living} entities it hits.
-     *
-     * <p>This damage is capped by {@link #MAX_FALL_DAMAGE}.</p>
-     */
-    public static final Key<BoundedValue<Double>> DAMAGE_PER_BLOCK = DummyObjectProvider.createExtendedFor(Key.class, "DAMAGE_PER_BLOCK");
 
     /**
      * Represents the {@link Key} for the distance an entity has
@@ -935,6 +931,11 @@ public final class Keys {
      * Represents the {@link Key} for the type of a {@link Fox}.
      */
     public static final Key<Value<FoxType>> FOX_TYPE = DummyObjectProvider.createExtendedFor(Key.class, "FOX_TYPE");
+
+    /**
+     * Represents the {@link Key} for the modifier to {@link Keys#VELOCITY} of a {@link Minecart} while airborne.
+     */
+    public static final Key<Value<Duration>> FURNACE_MINECART_FUEL_DURATION = DummyObjectProvider.createExtendedFor(Key.class, "MINECART_FUEL_DURATION");
 
     /**
      * Represents the {@link Key} for the time a {@link FusedExplosive}'s fuse
@@ -1147,6 +1148,11 @@ public final class Keys {
     public static final Key<Value<Boolean>> IS_AFLAME = DummyObjectProvider.createExtendedFor(Key.class, "IS_AFLAME");
 
     /**
+     * Represents the {@link Key} for whether an {@link Agent}s AI is enabled.
+     */
+    public static final Key<Value<Boolean>> IS_AI_ENABLED = DummyObjectProvider.createExtendedFor(Key.class, "IS_AI_ENABLED");
+
+    /**
      * Represents the {@link Key} for whether an {@link Entity} is currently
      * aggressive. This mostly applies to wolves.
      */
@@ -1156,6 +1162,16 @@ public final class Keys {
      * Represents the {@link Key} for if {@link Raider}s are currently celebrating.
      */
     public static final Key<Value<Boolean>> IS_CELEBRATING = DummyObjectProvider.createExtendedFor(Key.class, "IS_CELEBRATING");
+
+    /**
+     * Represents the {@link Key} for whether a {@link Creeper} is charged.
+     */
+    public static final Key<Value<Boolean>> IS_CHARGED = DummyObjectProvider.createExtendedFor(Key.class, "CREEPER_CHARGED");
+
+    /**
+     * Represents the {@link Key} for if a {@link Pillager} is charging it's crossbow.
+     */
+    public static final Key<Value<Boolean>> IS_CHARGING_CROSSBOW = DummyObjectProvider.createExtendedFor(Key.class, "CHARGING_CROSSBOW");
 
     /**
      * Represents the {@link Key} for if a {@link Spider} is currently climbing.
@@ -1194,6 +1210,15 @@ public final class Keys {
     public static final Key<Value<Boolean>> IS_FLYING = DummyObjectProvider.createExtendedFor(Key.class, "IS_FLYING");
 
     /**
+     * Represents the {@link Key} for if a {@link WeatherEffect} is harmful to other {@link Entity entities}.
+     *
+     * <p>
+     *     For example, {@link LightningBolt bolts} of lighting will strike entities and damage them
+     * </p>
+     */
+    public static final Key<Value<Boolean>> IS_HARMFUL = DummyObjectProvider.createExtendedFor(Key.class, "IS_WEATHER_EFFECT");
+
+    /**
      * Represents the {@link Key} for if a {@link Fox} is currently interested in something.
      */
     public static final Key<Value<Boolean>> IS_INTERESTED = DummyObjectProvider.createExtendedFor(Key.class, "IS_INTERESTED");
@@ -1215,6 +1240,11 @@ public final class Keys {
     public static final Key<Value<Boolean>> IS_JOHNNY = DummyObjectProvider.createExtendedFor(Key.class, "IS_JOHNNY");
 
     /**
+     * Represents the {@link Key} for if a {@link Cat} is lying down.
+     */
+    public static final Key<Value<Boolean>> IS_LYING_DOWN = DummyObjectProvider.createExtendedFor(Key.class, "IS_LYING_DOWN");
+
+    /**
      * Represents the {@link Key} for if a {@link Panda} is lying on it's back.
      */
     public static final Key<Value<Boolean>> IS_LYING_ON_BACK = DummyObjectProvider.createExtendedFor(Key.class, "IS_LYING_ON_BACK");
@@ -1223,6 +1253,11 @@ public final class Keys {
      * Represents the {@link Key} for if an {@link Entity} is currently considered to be on the ground or not.
      */
     public static final Key<Value<Boolean>> IS_ON_GROUND = DummyObjectProvider.createExtendedFor(Key.class, "IS_ON_GROUND");
+
+    /**
+     * Represents the {@link Key} for if a {@link IronGolem} has been created by a {@link Player}.
+     */
+    public static final Key<Value<Boolean>> IS_PLAYER_CREATED = DummyObjectProvider.createExtendedFor(Key.class, "IS_PLAYER_CREATED");
 
     /**
      * Represents the {@link Key} for whether a {@link Villager} is playing.
@@ -1236,6 +1271,11 @@ public final class Keys {
      * Represents the {@link Key} for if a {@link Fox} is currently pouncing.
      */
     public static final Key<Value<Boolean>> IS_POUNCING = DummyObjectProvider.createExtendedFor(Key.class, "IS_POUNCING");
+
+    /**
+     * Represents the {@link Key} for if a {@link Cat} is relaxed.
+     */
+    public static final Key<Value<Boolean>> IS_RELAXED = DummyObjectProvider.createExtendedFor(Key.class, "RELAXED");
 
     /**
      * Represents the {@link Key} for if a {@link Panda} is rolling around.
@@ -1313,15 +1353,6 @@ public final class Keys {
      * Represents the {@link Key} for if an {@link Ocelot} is currently trusting of {@link Player}s.
      */
     public static final Key<Value<Boolean>> IS_TRUSTING = DummyObjectProvider.createExtendedFor(Key.class, "IS_TRUSTING");
-
-    /**
-     * Represents the {@link Key} for if a {@link WeatherEffect} is harmful to other {@link Entity entities}.
-     *
-     * <p>
-     *     For example, {@link LightningBolt bolts} of lighting will strike entities and damage them
-     * </p>
-     */
-    public static final Key<Value<Boolean>> IS_HARMFUL = DummyObjectProvider.createExtendedFor(Key.class, "IS_WEATHER_EFFECT");
 
     /**
      * Represents the {@link Key} for whether a {@link Wolf}, a
@@ -1488,12 +1519,6 @@ public final class Keys {
     public static final Key<Value<Vector3d>> MINECART_DERAILED_VELOCITY_MODIFIER = DummyObjectProvider.createExtendedFor(Key.class, "MINECART_DERAILED_VELOCITY_MODIFIER");
 
     /**
-     * Represents the {@link Key} for the modifier to {@link Keys#VELOCITY} of a {@link Minecart} while airborne.
-     */
-    public static final Key<Value<Duration>>
-        FURNACE_MINECART_FUEL_DURATION = DummyObjectProvider.createExtendedFor(Key.class, "MINECART_FUEL_DURATION");
-
-    /**
      * Represents the {@link Key} for if a {@link Minecart} is on it's rail
      */
     public static final Key<Value<Boolean>> MINECART_IS_ON_RAIL = DummyObjectProvider.createExtendedFor(Key.class, "MINECART_IS_ON_RAIL");
@@ -1599,6 +1624,11 @@ public final class Keys {
     public static final Key<Value<Boolean>> PERSISTENT = DummyObjectProvider.createExtendedFor(Key.class, "PERSISTENT");
 
     /**
+     * Represents the {@link Key} of the size of a {@link Phantom}. In vanilla, this ranges between 0 and 64.
+     */
+    public static final Key<BoundedValue<Integer>> PHANTOM_SIZE = DummyObjectProvider.createExtendedFor(Key.class, "");
+
+    /**
      * Represents the {@link Key} for representing the pickup delay
      * of an {@link Item}.
      */
@@ -1628,11 +1658,6 @@ public final class Keys {
      * {@link ItemTypes#WRITTEN_BOOK}</p>
      */
     public static final Key<ListValue<String>> PLAIN_BOOK_PAGES = DummyObjectProvider.createExtendedFor(Key.class, "PLAIN_BOOK_PAGES");
-
-    /**
-     * Represents the {@link Key} for if a {@link IronGolem} has been created by a {@link Player}.
-     */
-    public static final Key<Value<Boolean>> IS_PLAYER_CREATED = DummyObjectProvider.createExtendedFor(Key.class, "IS_PLAYER_CREATED");
 
     /**
      * Represents the {@link Key} for representing the {@link PortionType}
@@ -1749,6 +1774,11 @@ public final class Keys {
      * leg.
      */
     public static final Key<Value<Vector3d>> RIGHT_LEG_ROTATION = DummyObjectProvider.createExtendedFor(Key.class, "RIGHT_LEG_ROTATION");
+
+    /**
+     * Represents the {@link Key} for the time a {@link Ravager} is roaring.
+     */
+    public static final Key<Value<Integer>> ROARING_TIME = DummyObjectProvider.createExtendedFor(Key.class, "ATTACK_TIME");
 
     /**
      * Represents the {@link Key} for the {@link Rotation} of a block or an
@@ -1979,6 +2009,11 @@ public final class Keys {
     public static final Key<BoundedValue<Integer>> STUCK_ARROWS = DummyObjectProvider.createExtendedFor(Key.class, "STUCK_ARROWS");
 
     /**
+     * Represents the {@link Key} for the time a {@link Ravager} is stunned.
+     */
+    public static final Key<Value<Integer>> STUNNED_TIME = DummyObjectProvider.createExtendedFor(Key.class, "STUNNED_TIME");
+
+    /**
      * Represents a key for the amount of successful executions of a command
      * stored in a {@link CommandBlock} or {@link CommandBlockMinecart}.
      */
@@ -2031,11 +2066,6 @@ public final class Keys {
      * if the explosive is not primed.
      */
     public static final Key<Value<Integer>> TICKS_REMAINING = DummyObjectProvider.createExtendedFor(Key.class, "TICKS_REMAINING");
-
-    /**
-     * Represents the {@link Key} for the amount of experience a {@link Player} has or an {@link ExperienceOrb} contains
-     */
-    public static final Key<BoundedValue<Integer>> EXPERIENCE = DummyObjectProvider.createExtendedFor(Key.class, "EXPERIENCE");
 
     /**
      * Represents the {@link Key} for whether a {@link CommandBlock} does track
@@ -2177,32 +2207,6 @@ public final class Keys {
      * of a {@link Boat}.
      */
     public static final Key<Value<WoodType>> WOOD_TYPE = DummyObjectProvider.createExtendedFor(Key.class, "WOOD_TYPE");
-
-    /**
-     * Represents the {@link Key} for the time of a {@link Ravager} is considered attacking.
-     */
-    public static final Key<Value<Integer>> ATTACK_TIME = DummyObjectProvider.createExtendedFor(Key.class, "ATTACK_TIME");
-
-    /**
-     * Represents the {@link Key} for the time a {@link Ravager} is roaring.
-     */
-    public static final Key<Value<Integer>> ROARING_TIME = DummyObjectProvider.createExtendedFor(Key.class, "ATTACK_TIME");
-
-    /**
-     * Represents the {@link Key} for the time a {@link Ravager} is stunned.
-     */
-    public static final Key<Value<Integer>> STUNNED_TIME = DummyObjectProvider.createExtendedFor(Key.class, "STUNNED_TIME");
-
-    /**
-     * Represents the {@link Key} for if a {@link Cat} is lying down.
-     */
-    public static final Key<Value<Boolean>> IS_LYING_DOWN = DummyObjectProvider.createExtendedFor(Key.class, "IS_LYING_DOWN");
-
-    /**
-     * Represents the {@link Key} for if a {@link Cat} is relaxed.
-     */
-    public static final Key<Value<Boolean>> IS_RELAXED = DummyObjectProvider.createExtendedFor(Key.class, "RELAXED");
-    public static final Key<BoundedValue<Integer>> PHANTOM_SIZE = DummyObjectProvider.createExtendedFor(Key.class, "");
 
     // SORTFIELDS:OFF
 
