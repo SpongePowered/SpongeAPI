@@ -34,21 +34,39 @@ import java.util.Optional;
 public interface Client extends Engine {
 
     /**
-     * Gets the {@link ClientPlayer single player} responsible
-     * for controlling this client, expectedly in singleplayer.
-     * A client may not always have a local player if browsing
-     * menus prior to joining a world or server.
+     * Gets the {@link ClientPlayer player} responsible
+     * for controlling this client.
      *
-     * @return The client player
+     * <p>
+     *     A client may not always have a local player if browsing menus prior to joining a
+     *     world or server.
+     * </p>
+     *
+     * @return The local player or {@link Optional#empty()} if it is not found
      */
-    Optional<? extends ClientPlayer> getLocalPlayer();
+    Optional<LocalPlayer> getPlayer();
 
     /**
+     * Gets the {@link LocalServer server} that powers a local SinglePlayer game instance
+     * of a typical Minecraft client.
      *
-     * @return
+     * <p>
+     *     A client will not have a local server if it is outside of SinglePlayer
+     * </p>
+     *
+     * @return The local server or {@link Optional#empty()} if it is not found
      */
-    Optional<? extends LocalClientServer> getLocalServer();
+    Optional<LocalServer> getServer();
 
-    Optional<? extends ClientWorld> getViewingWorld();
-
+    /**
+     * Gets the {@link ClientWorld world} that a typical Minecraft client will be viewing
+     * while in some game instance (local or remote).
+     *
+     * <p>
+     *     A client will not have a client world if it is browsing the main menus
+     * </p>
+     *
+     * @return The client world or {@link Optional#empty()}} if it is not found
+     */
+    Optional<ClientWorld> getWorld();
 }

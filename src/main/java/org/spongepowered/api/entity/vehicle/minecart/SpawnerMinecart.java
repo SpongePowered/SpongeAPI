@@ -29,6 +29,6 @@ import org.spongepowered.api.block.entity.MobSpawner;
 /**
  * Represents a {@link Minecart} with a {@link MobSpawner} inside it.
  */
-public interface SpawnerMinecart extends MinecartEntity {
+public interface SpawnerMinecart extends BlockOccupiedMinecart {
 
 }

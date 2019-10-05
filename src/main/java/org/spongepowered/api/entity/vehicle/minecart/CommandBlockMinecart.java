@@ -30,6 +30,6 @@ import org.spongepowered.api.command.source.CommandSource;
 /**
  * Represents a {@link Minecart} with a {@link CommandBlock} inside it.
  */
-public interface CommandBlockMinecart extends MinecartEntity, CommandSource {
+public interface CommandBlockMinecart extends BlockOccupiedMinecart, CommandSource {
 
 }

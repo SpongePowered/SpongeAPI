@@ -22,8 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.client;
+package org.spongepowered.api.entity.vehicle.minecart;
 
-public interface RemoteClientPlayer extends ClientPlayer {
+import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
 
+public interface BlockOccupiedMinecart extends MinecartEntity {
+
+    /**
+     * {@link Keys#BLOCK_STATE}
+     */
+    default Value.Immutable<BlockState> block() {
+        return this.getValue(Keys.BLOCK_STATE).get().asImmutable();
+    }
+
+    /**
+     * Gets the {@link BlockType} represented by this minecart.
+     *
+     * @return The block type
+     */
+    default BlockType getBlockType() {
+        return this.block().get().getType();
+    }
 }

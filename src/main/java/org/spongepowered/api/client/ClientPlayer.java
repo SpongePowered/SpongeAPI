@@ -25,7 +25,6 @@
 package org.spongepowered.api.client;
 
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.world.World;
 
 public interface ClientPlayer extends Player {
 

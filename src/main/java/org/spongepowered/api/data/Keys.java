@@ -153,11 +153,13 @@ import org.spongepowered.api.entity.living.trader.Trader;
 import org.spongepowered.api.entity.living.trader.Villager;
 import org.spongepowered.api.entity.projectile.DamagingProjectile;
 import org.spongepowered.api.entity.projectile.EyeOfEnder;
+import org.spongepowered.api.entity.projectile.Potion;
 import org.spongepowered.api.entity.projectile.ShulkerBullet;
 import org.spongepowered.api.entity.projectile.arrow.ArrowEntity;
 import org.spongepowered.api.entity.projectile.explosive.FireworkRocket;
 import org.spongepowered.api.entity.projectile.explosive.fireball.Fireball;
 import org.spongepowered.api.entity.vehicle.Boat;
+import org.spongepowered.api.entity.vehicle.minecart.BlockOccupiedMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.CommandBlockMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.Minecart;
 import org.spongepowered.api.entity.vehicle.minecart.MinecartEntity;
@@ -460,8 +462,7 @@ public final class Keys {
     public static final Key<Value<Boolean>> BIG_MUSHROOM_PORES_WEST = DummyObjectProvider.createExtendedFor(Key.class, "BIG_MUSHROOM_PORES_WEST");
 
     /**
-     * Represents the {@link Key} for the {@link BlockState} of a
-     * {@link FallingBlock}.
+     * Represents the {@link Key} for the {@link BlockState} of a {@link BlockOccupiedMinecart} or {@link FallingBlock}.
      */
     public static final Key<Value<BlockState>> BLOCK_STATE = DummyObjectProvider.createExtendedFor(Key.class, "BLOCK_STATE");
 
@@ -1362,12 +1363,6 @@ public final class Keys {
     public static final Key<Value<Boolean>> IS_WET = DummyObjectProvider.createExtendedFor(Key.class, "IS_WET");
 
     /**
-     * Represents the {@link Key} for the {@link BlockState} represented by
-     * an {@link ItemStack}.
-     */
-    public static final Key<Value<BlockState>> ITEM_BLOCKSTATE = DummyObjectProvider.createExtendedFor(Key.class, "ITEM_BLOCKSTATE");
-
-    /**
      * Represents the {@link Key} for the durability of an {@link ItemStack}.
      */
     public static final Key<BoundedValue<Integer>> ITEM_DURABILITY = DummyObjectProvider.createExtendedFor(Key.class, "ITEM_DURABILITY");
@@ -1739,16 +1734,9 @@ public final class Keys {
     public static final Key<BoundedValue<Integer>> REMAINING_BREW_TIME = DummyObjectProvider.createExtendedFor(Key.class, "REMAINING_BREW_TIME");
 
     /**
-     * Represents the {@link Key} for representing the {@link BlockState}
-     * inside a {@link MinecartEntity}.
+     * Represents the {@link Key} for the {@link ItemStackSnapshot item} in an {@link Item}, {@link ItemFrame}, or {@link Potion}.
      */
-    public static final Key<Value<BlockState>> REPRESENTED_BLOCK = DummyObjectProvider.createExtendedFor(Key.class, "REPRESENTED_BLOCK");
-
-    /**
-     * Represents the {@link Key} for the item displayed in an
-     * {@link ItemFrame}.
-     */
-    public static final Key<Value<ItemStackSnapshot>> REPRESENTED_ITEM = DummyObjectProvider.createExtendedFor(Key.class, "REPRESENTED_ITEM");
+    public static final Key<Value<ItemStackSnapshot>> ITEM_STACK_SNAPSHOT = DummyObjectProvider.createExtendedFor(Key.class, "REPRESENTED_ITEM");
 
     /**
      * Represents the {@link Key} for the player represented by a

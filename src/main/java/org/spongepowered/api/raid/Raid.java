@@ -98,7 +98,7 @@ public interface Raid {
     /**
      * Gets the health of this raid. Health is calculated by the sum of all of the {@link Raider Raider's}
      * {@link Living#health()}. As long as the raider was added to a {@link Wave} as part of the health.
-     * 
+     *
      * @return The health
      */
     double getHealth();

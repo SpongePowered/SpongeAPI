@@ -26,7 +26,7 @@ package org.spongepowered.api.server;
 
 import org.spongepowered.api.Engine;
 import org.spongepowered.api.client.Client;
-import org.spongepowered.api.client.RemoteClientPlayer;
+import org.spongepowered.api.client.RemotePlayer;
 import org.spongepowered.api.command.source.CommandSource;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.profile.GameProfileManager;
@@ -251,7 +251,7 @@ public interface Server extends Engine, CommandSource {
      * whether this server is local to a game client where a {@link Client}
      * instance may be available. The primary difference will be the types
      * of {@link Player players} there may exist in the server, whether
-     * they are {@link ServerPlayer server players} or {@link RemoteClientPlayer remote players}.
+     * they are {@link ServerPlayer server players} or {@link RemotePlayer remote players}.
      *
      * @return True if this is a dedicated server without a game client
      */

@@ -85,7 +85,5 @@ public interface GenerationRegion extends ProtoWorld<GenerationRegion> {
     @Override
     PrimitiveChunk getChunk(int cx, int cy, int cz);
 
-    @Override
     ServerWorld getWorld();
-
 }

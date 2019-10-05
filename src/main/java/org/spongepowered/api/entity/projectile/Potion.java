@@ -35,13 +35,10 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 public interface Potion extends Projectile {
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the represented {@link ItemStack} as an
-     * {@link ItemStackSnapshot}.
-     *
-     * @return The value for the item stack snapshot
+     * {@link Keys#ITEM_STACK_SNAPSHOT}
      */
     default Value.Mutable<ItemStackSnapshot> item() {
-        return getValue(Keys.REPRESENTED_ITEM).get().asMutable();
+        return getValue(Keys.ITEM_STACK_SNAPSHOT).get().asMutable();
     }
 
 }

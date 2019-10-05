@@ -31,11 +31,6 @@ import java.util.Collection;
 public interface ServerWorld extends World {
 
     @Override
-    Collection<? extends ServerPlayer> getPlayers();
-
-    @Override
-    default ServerWorld getWorld() {
-        return this;
-    }
+    Collection<ServerPlayer> getPlayers();
 
 }

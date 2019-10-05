@@ -30,6 +30,6 @@ import org.spongepowered.api.entity.explosive.fused.FusedExplosive;
 /**
  * Represents a {@link Minecart} with a {@link BlockTypes#TNT} in it.
  */
-public interface TNTMinecart extends MinecartEntity, FusedExplosive {
+public interface TNTMinecart extends BlockOccupiedMinecart, FusedExplosive {
 
 }

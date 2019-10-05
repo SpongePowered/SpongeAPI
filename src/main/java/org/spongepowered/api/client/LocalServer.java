@@ -22,33 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world;
+package org.spongepowered.api.client;
 
-import org.spongepowered.math.vector.Vector3i;
+import org.spongepowered.api.server.Server;
 
-/**
- * Represents anything with a location.
- */
-@FunctionalInterface
-public interface Locatable {
+public interface LocalServer extends Server {
 
-    /**
-     * Gets the location of the source.
-     *
-     * @return The location
-     */
-    Location getLocation();
-
-    /**
-     * Gets the world that this source resides in.
-     *
-     * @return The World
-     */
-    default World getWorld() {
-        return this.getLocation().getWorld();
-    }
-
-    default Vector3i getBlockPosition() {
-        return this.getLocation().getBlockPosition();
+    @Override
+    default boolean isDedicatedServer() {
+        return false;
     }
 }

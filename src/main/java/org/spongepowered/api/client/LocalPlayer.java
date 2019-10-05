@@ -24,7 +24,10 @@
  */
 package org.spongepowered.api.client;
 
-public interface SinglePlayer extends ClientPlayer {
+/**
+ * Represents the client's player
+ */
+public interface LocalPlayer extends ClientPlayer {
 
     @Override
     default boolean isLocal() {

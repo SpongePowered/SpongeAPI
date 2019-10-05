@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.vehicle.minecart.carrier;
 
+import org.spongepowered.api.entity.vehicle.minecart.BlockOccupiedMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.Minecart;
 import org.spongepowered.api.entity.vehicle.minecart.MinecartEntity;
 import org.spongepowered.api.item.inventory.Carrier;
@@ -32,7 +33,7 @@ import org.spongepowered.api.item.inventory.type.CarriedInventory;
 /**
  * Represents a {@link Minecart} with a {@link Carrier} inside it.
  */
-public interface CarrierMinecart<M extends CarrierMinecart<M>> extends MinecartEntity, Carrier {
+public interface CarrierMinecart<M extends CarrierMinecart<M>> extends BlockOccupiedMinecart, Carrier {
 
     @Override
     CarriedInventory<M> getInventory();

@@ -33,7 +33,7 @@ import java.time.Duration;
 /**
  * Represents a {@link Minecart} with a {@link Furnace} inside it.
  */
-public interface FurnaceMinecart extends MinecartEntity {
+public interface FurnaceMinecart extends BlockOccupiedMinecart {
 
     /**
      * {@link Keys#FURNACE_MINECART_FUEL_DURATION}

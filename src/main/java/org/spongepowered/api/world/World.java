@@ -262,11 +262,6 @@ public interface World extends ProtoWorld<World>,
     @Override
     Chunk getChunk(int cx, int cy, int cz);
 
-    @Override
-    default World getWorld() {
-        return this;
-    }
-
     /**
      * Gets the chunk at the given chunk coordinate position if it exists or if
      * {@code shouldGenerate} is true and the chunk is generated.

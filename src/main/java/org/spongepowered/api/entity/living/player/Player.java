@@ -27,8 +27,8 @@ package org.spongepowered.api.entity.living.player;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.client.ClientPlayer;
 import org.spongepowered.api.client.ClientWorld;
-import org.spongepowered.api.client.RemoteClientPlayer;
-import org.spongepowered.api.client.SinglePlayer;
+import org.spongepowered.api.client.RemotePlayer;
+import org.spongepowered.api.client.LocalPlayer;
 import org.spongepowered.api.server.Server;
 import org.spongepowered.api.advancement.Advancement;
 import org.spongepowered.api.advancement.AdvancementProgress;
@@ -78,8 +78,8 @@ public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver,
      * Gets whether this {@link Player player} is local to the game or not. Because there
      * is the possibility of having a game with running on the game client, there
      * exists the possibility of having {@link ClientPlayer}s as instances, with a
-     * {@link ClientWorld} is potentially populated by {@link RemoteClientPlayer remote players}
-     * and {@link SinglePlayer the single player entity}.
+     * {@link ClientWorld} is potentially populated by {@link RemotePlayer remote players}
+     * and {@link LocalPlayer the client's player representation}.
      *
      * @return True if this player is local to the game instance
      */

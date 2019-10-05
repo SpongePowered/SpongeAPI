@@ -64,8 +64,6 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
 
     ProtoChunk<?> getChunk(int cx, int cy, int cz);
 
-    World getWorld();
-
     @Override
     P getView(Vector3i newMin, Vector3i newMax);
 
@@ -76,7 +74,6 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
      * @return The seed
      */
     long getSeed();
-
 
     /**
      * Gets the {@link TerrainGenerator} for this world.
@@ -94,7 +91,6 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
      * @return The properties
      */
     WorldProperties getProperties();
-
 
     /**
      * Gets the current {@link Difficulty}.

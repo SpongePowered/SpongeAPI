@@ -24,12 +24,9 @@
  */
 package org.spongepowered.api.client;
 
-import org.spongepowered.api.server.Server;
+/**
+ * Represents a player on a client that is not the client's {@link LocalPlayer player}.
+ */
+public interface RemotePlayer extends ClientPlayer {
 
-public interface LocalClientServer extends Server {
-
-    @Override
-    default boolean isDedicatedServer() {
-        return false;
-    }
 }

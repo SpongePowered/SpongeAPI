@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.client;
 
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.world.World;
 
 import java.util.Collection;
@@ -33,10 +32,4 @@ public interface ClientWorld extends World {
 
     @Override
     Collection<? extends ClientPlayer> getPlayers();
-
-    @Override
-    default ClientWorld getWorld() {
-        return this;
-    }
-
 }
