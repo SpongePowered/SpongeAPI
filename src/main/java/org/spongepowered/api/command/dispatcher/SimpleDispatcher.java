@@ -68,7 +68,7 @@ import javax.annotation.Nullable;
 /**
  * A simple implementation of a {@link Dispatcher}.
  */
-public final class SimpleDispatcher implements Dispatcher {
+public class SimpleDispatcher implements Dispatcher {
 
     /**
      * This is a disambiguator function that returns the first matching command.
@@ -170,7 +170,6 @@ public final class SimpleDispatcher implements Dispatcher {
         checkNotNull(callback, "callback");
 
         // Invoke the callback with the commands that /can/ be registered
-        // noinspection ConstantConditions
         aliases = ImmutableList.copyOf(callback.apply(aliases));
         if (aliases.isEmpty()) {
             return Optional.empty();
@@ -296,16 +295,13 @@ public final class SimpleDispatcher implements Dispatcher {
     @Override
     public synchronized Optional<CommandMapping> get(String alias, @Nullable CommandSource source) {
         List<CommandMapping> results = this.commands.get(alias.toLowerCase());
-        Optional<CommandMapping> result = Optional.empty();
         if (results.size() == 1) {
-            result = Optional.of(results.get(0));
-        } else if (results.size() > 1) {
-            result = this.disambiguatorFunc.disambiguate(source, alias, results);
+            return Optional.of(results.get(0));
+        } else if (results.size() == 0) {
+            return Optional.empty();
+        } else {
+            return this.disambiguatorFunc.disambiguate(source, alias, results);
         }
-        if (source != null) {
-            result = result.filter(m -> m.getCallable().testPermission(source));
-        }
-        return result;
     }
 
     @Override
@@ -333,8 +329,11 @@ public final class SimpleDispatcher implements Dispatcher {
         if (!cmdOptional.isPresent()) {
             throw new CommandNotFoundException(t("commands.generic.notFound"), argSplit[0]); // TODO: Fix properly to use a SpongeTranslation??
         }
+        return process(source, argSplit, cmdOptional.get());
+    }
+
+    protected CommandResult process(CommandSource source, String[] argSplit, CommandMapping mapping) throws CommandException {
         final String arguments = argSplit.length > 1 ? argSplit[1] : "";
-        CommandMapping mapping = cmdOptional.get();
         Optional<PluginContainer> pluginOwner = Sponge.getCommandManager().getOwner(mapping);
         pluginOwner.ifPresent(pluginContainer -> Sponge.getCauseStackManager().pushCause(pluginContainer));
         final CommandCallable spec = mapping.getCallable();
@@ -356,12 +355,20 @@ public final class SimpleDispatcher implements Dispatcher {
     public List<String> getSuggestions(CommandSource src, final String arguments, @Nullable Location<World> targetPosition) throws CommandException {
         final String[] argSplit = arguments.split(" ", 2);
         Optional<CommandMapping> cmdOptional = get(argSplit[0], src);
+        return getSuggestions(src, argSplit, targetPosition, cmdOptional.orElse(null));
+    }
+
+    protected List<String> getSuggestions(
+            CommandSource src,
+            final String[] argSplit,
+            @Nullable Location<World> targetPosition,
+            @Nullable CommandMapping mapping) throws CommandException {
         if (argSplit.length == 1) {
             return filterCommands(src, argSplit[0]).stream().collect(ImmutableList.toImmutableList());
-        } else if (!cmdOptional.isPresent()) {
+        } else if (mapping == null) {
             return ImmutableList.of();
         }
-        return cmdOptional.get().getCallable().getSuggestions(src, argSplit[1], targetPosition);
+        return mapping.getCallable().getSuggestions(src, argSplit[1], targetPosition);
     }
 
     @Override
