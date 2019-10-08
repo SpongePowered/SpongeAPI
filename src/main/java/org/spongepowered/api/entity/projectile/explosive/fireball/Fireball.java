@@ -24,11 +24,20 @@
  */
 package org.spongepowered.api.entity.projectile.explosive.fireball;
 
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.projectile.DamagingProjectile;
+import org.spongepowered.math.vector.Vector3d;
 
 /**
  * Represents an abstract fireball, such as {@link SmallFireball}.
  */
 public interface Fireball extends DamagingProjectile {
 
+    /**
+     * @see Keys#ACCELERATION
+     */
+    default Value<Vector3d> acceleration() {
+        return this.getValue(Keys.ACCELERATION).get();
+    }
 }

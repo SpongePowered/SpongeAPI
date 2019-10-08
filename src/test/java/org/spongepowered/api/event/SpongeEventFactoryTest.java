@@ -25,6 +25,7 @@
 package org.spongepowered.api.event;
 
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.withSettings;
 
@@ -35,6 +36,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 import org.junit.runners.Parameterized;
 import org.mockito.Mockito;
 import org.mockito.stubbing.Answer;
+import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.EventContext;
@@ -60,6 +62,7 @@ import org.spongepowered.math.vector.Vector3d;
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.lang.reflect.Type;
 import java.net.InetSocketAddress;
 import java.time.Duration;
 import java.time.Instant;
@@ -87,12 +90,33 @@ public class SpongeEventFactoryTest {
     private static final Answer<Object> EVENT_MOCKING_ANSWER = (invoc -> {
         Class<?> clazz = invoc.getMethod().getReturnType();
 
-        if (clazz.equals(Class.class)) {
-            return PEBKACException.class;
-        } else if (clazz.equals(Text.class)) {
-            return Text.of();
+        // We use the original mock type to try to get more information about
+        // the return type. For example, imagine that SignData#asImmutable is called
+        // on a mocked SignData instance. The return type given to use by
+        // by 'invoc.getMethod().getReturnType()' will be 'ImmutableDataManipulator',
+        // since that's the return type of the method itself. However, we need to consider
+        // the 'generic' return type of SignData#asImmutable, which is ImmutableSignData.
+        // Guava's TypeToken takes generic parameters into account, allowing us to mock
+        // the most specific known return type.
+        Type returnType = TypeToken.of(
+                Mockito.mockingDetails(invoc.getMock()).getMockCreationSettings().getTypeToMock()
+        )
+                .method(invoc.getMethod())
+                .getReturnType().getType();
+
+        if (returnType instanceof Class<?> && clazz != returnType) {
+            clazz = (Class<?>) returnType;
         }
-        return mockParam(clazz);
+
+        // We pass along a TypeToken built from the generic return type.
+        // This allows 'mockParam' to take into account generic parameters when
+        // resolving the return type of future method invocations.
+        // For example, imagine that we're mocking MutableBoundedValue<Integer>.
+        // For 'mockParam' to know that the mocked 'get()' method should return
+        // Integer, and not Object, it needs the TypeToken to provide the information
+        // not present in the base class.
+        TypeToken<?> token = TypeToken.of(invoc.getMethod().getGenericReturnType());
+        return mockParam(clazz, token);
     });
 
     @Parameterized.Parameters(name = "{0}")
@@ -100,7 +124,7 @@ public class SpongeEventFactoryTest {
         ImmutableList.Builder<Object[]> methods = ImmutableList.builder();
         for (Method method : SpongeEventFactory.class.getMethods()) {
             if (method.getName().startsWith("create") && Modifier.isStatic(method.getModifiers())
-                && !excludedEvents.contains(method.getReturnType())) {
+                    && !excludedEvents.contains(method.getReturnType())) {
                 methods.add(new Object[]{method.getReturnType().getName(), method});
             }
         }
@@ -122,7 +146,7 @@ public class SpongeEventFactoryTest {
             Class<?>[] paramTypes = this.method.getParameterTypes();
             Object[] params = new Object[paramTypes.length];
             for (int i = 0; i < paramTypes.length; i++) {
-                params[i] = mockParam(paramTypes[i], this.method.getReturnType());
+                params[i] = mockParam(paramTypes[i], null);
             }
             Object testEvent = this.method.invoke(null, params);
             for (Method eventMethod : testEvent.getClass().getMethods()) {
@@ -144,48 +168,48 @@ public class SpongeEventFactoryTest {
 
                 } catch (Exception e) {
                     throw new RuntimeException(
-                        "Invocation of the method '" + eventMethod + "' failed\n\n"
-                        + "(To avoid the need to create numerous boilerplate concrete classes for Sponge's many event "
-                        + "interfaces, the " + SpongeEventFactory.class.getSimpleName()
-                        + " class dynamically creates concrete classes at "
-                        + "runtime. However, as this means that errors may only become known at runtime, this test ensures that problems "
-                        + "are caught during development.)\n\n"
-                        + "The failure of this test is in regards to invocation of a method of the '" + this.method.getReturnType().getName()
-                        + "' event.\n\n"
-                        + "Reasons for failure include:\n"
-                        + "(1) The called method does not conform to format that the class generator expects for getters or setters,"
-                        + "and is not implemented by the abstract class used as the superclass of the generated event."
-                        + "See the wrapped exception for more details.\n"
-                        + "\tSolution: Modify the method name and/or signature to follow the expected getter/sett er semantics,"
-                        + "or annotate the event with @ImplementedBy to indicate the abstract class used as the superclass."
-                        + "(2) A bug in the class generator was found\n"
-                        + "\tSolution: Look into event-impl-gen.\n",
-                        e);
+                            "Invocation of the method '" + eventMethod + "' failed\n\n"
+                                    + "(To avoid the need to create numerous boilerplate concrete classes for Sponge's many event "
+                                    + "interfaces, the " + SpongeEventFactory.class.getSimpleName()
+                                    + " class dynamically creates concrete classes at "
+                                    + "runtime. However, as this means that errors may only become known at runtime, this test ensures that problems "
+                                    + "are caught during development.)\n\n"
+                                    + "The failure of this test is in regards to invocation of a method of the '" + this.method.getReturnType().getName()
+                                    + "' event.\n\n"
+                                    + "Reasons for failure include:\n"
+                                    + "(1) The called method does not conform to format that the class generator expects for getters or setters,"
+                                    + "and is not implemented by the abstract class used as the superclass of the generated event."
+                                    + "See the wrapped exception for more details.\n"
+                                    + "\tSolution: Modify the method name and/or signature to follow the expected getter/sett er semantics,"
+                                    + "or annotate the event with @ImplementedBy to indicate the abstract class used as the superclass."
+                                    + "(2) A bug in the class generator was found\n"
+                                    + "\tSolution: Look into event-impl-gen.\n",
+                            e);
                 }
             }
         } catch (Exception e) {
             throw new RuntimeException(
-                "Runtime creation of the '" + this.method.getReturnType().getName() + "' event failed\n\n"
-                + "(To avoid the need to create numerous boilerplate concrete classes for Sponge's many event "
-                + "interfaces, the " + SpongeEventFactory.class.getSimpleName()
-                + " class dynamically creates concrete classes at "
-                + "runtime. However, as this means that errors may only become known at runtime, this test ensures that problems "
-                + "are caught during development.)\n\n"
-                + "The failure of this test is in regards to creation of the '" + this.method.getReturnType().getName()
-                + "' event.\n\n"
-                + "Reasons for failure include:\n"
-                + "(1) The event was changed and there are new, removed, or modified properties (most likely)\n"
-                + "\tSolution: Make appropriate changes to " + SpongeEventFactory.class.getName() + "." + this.method.getName()
-                + "(). "
-                + "See the wrapped exception for more details.\n"
-                + "(2) A bug in the class generator was found\n"
-                + "\tSolution: Look into event-impl-gen.\n"
-                + "(3) A method that does not follow getter/setter semantics (getProp(), isBool(), setProp()) "
-                + "was added (i.e. blockList())\n"
-                + "\tSolution: Revisit " + this.method.getReturnType().getName() + " and its supertypes. If the method in question "
-                + "must exist, then the event factory is capable of accepting a base class to build the "
-                + "runtime concrete class upon (i.e. " + AbstractEvent.class.getName()
-                + " is the supertype of all generated event classes).\n", e);
+                    "Runtime creation of the '" + this.method.getReturnType().getName() + "' event failed\n\n"
+                            + "(To avoid the need to create numerous boilerplate concrete classes for Sponge's many event "
+                            + "interfaces, the " + SpongeEventFactory.class.getSimpleName()
+                            + " class dynamically creates concrete classes at "
+                            + "runtime. However, as this means that errors may only become known at runtime, this test ensures that problems "
+                            + "are caught during development.)\n\n"
+                            + "The failure of this test is in regards to creation of the '" + this.method.getReturnType().getName()
+                            + "' event.\n\n"
+                            + "Reasons for failure include:\n"
+                            + "(1) The event was changed and there are new, removed, or modified properties (most likely)\n"
+                            + "\tSolution: Make appropriate changes to " + SpongeEventFactory.class.getName() + "." + this.method.getName()
+                            + "(). "
+                            + "See the wrapped exception for more details.\n"
+                            + "(2) A bug in the class generator was found\n"
+                            + "\tSolution: Look into event-impl-gen.\n"
+                            + "(3) A method that does not follow getter/setter semantics (getProp(), isBool(), setProp()) "
+                            + "was added (i.e. blockList())\n"
+                            + "\tSolution: Revisit " + this.method.getReturnType().getName() + " and its supertypes. If the method in question "
+                            + "must exist, then the event factory is capable of accepting a base class to build the "
+                            + "runtime concrete class upon (i.e. " + AbstractEvent.class.getName()
+                            + " is the supertype of all generated event classes).\n", e);
         }
     }
 
@@ -194,9 +218,12 @@ public class SpongeEventFactoryTest {
         return mockParam(paramType, null);
     }
 
+    @SuppressWarnings({"unchecked", "rawtypes"})
     @Nullable
-    public static Object mockParam(final Class<?> paramType, @Nullable final Class<?> target) {
-        if (paramType == byte.class || paramType == Byte.class) {
+    public static Object mockParam(final Class<?> paramType, @Nullable TypeToken<?> token) {
+        if (paramType == Class.class) {
+            return PEBKACException.class;
+        } else if (paramType == byte.class || paramType == Byte.class) {
             return (byte) 0;
         } else if (paramType == short.class || paramType == Short.class) {
             return (short) 0;
@@ -266,9 +293,23 @@ public class SpongeEventFactoryTest {
             return TypeToken.of(Object.class);
         } else if (paramType == Color.class) {
             return Color.BLACK;
+        } else if (DataHolder.class.isAssignableFrom(paramType)) {
+            DataHolder mock = (DataHolder) mock(paramType,
+                    withSettings().defaultAnswer(EVENT_MOCKING_ANSWER));
+            return mock;
+
         } else {
+            if (token != null) {
+                // If we hsve a TypeToken available, we use to try to resolve a more specific
+                // return type on any of the methods that we mock. This allows us to correctly
+                // return an Integer from MutableBoundedValue<Integer>#get(), instead of accidentally
+                // returning an Object mock.
+                return mock(paramType, withSettings().defaultAnswer(invoc -> {
+                    Class<?> realReturnType = token.method(invoc.getMethod()).getReturnType().getRawType();
+                    return mockParam(realReturnType, null);
+                }));
+            }
             return mock(paramType, withSettings().defaultAnswer(EVENT_MOCKING_ANSWER));
         }
     }
-
 }

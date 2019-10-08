@@ -35,4 +35,9 @@ public class DummyCatalogProviderTest {
         DummyObjectProvider.createFor(BlockType.class, "FOO").getDefaultState();
     }
 
+    @Test()
+    public void testCreate_DuplicateName() {
+        DummyObjectProvider.createFor(org.spongepowered.api.data.type.VillagerType.class, "FOO");
+        DummyObjectProvider.createFor(org.spongepowered.api.util.catalog.VillagerType.class, "BAR");
+    }
 }

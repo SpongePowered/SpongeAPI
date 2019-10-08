@@ -22,36 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.entity;
+package org.spongepowered.api.util.catalog;
 
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.item.inventory.ItemStack;
-
-/**
- * Represents a jukebox, also know as a music disc player.
- */
-public interface Jukebox extends BlockEntity {
-
-    /**
-     * Attempts to play the currently stored music disc according to the
-     * {@link Keys#ITEM_STACK_SNAPSHOT} of this {@link Jukebox}.
-     */
-    void play();
-
-    /**
-     * Stops the currently playing music disc, if any.
-     */
-    void stop();
-
-    /**
-     * Ejects the music disc item in this Jukebox into the world.
-     */
-    void eject();
-
-    /**
-     * Ejects the current music disc item in this Jukebox and inserts the given one.
-     *
-     * @param disc The music disc item to insert
-     */
-    void insert(ItemStack disc);
+public interface VillagerType {
 }

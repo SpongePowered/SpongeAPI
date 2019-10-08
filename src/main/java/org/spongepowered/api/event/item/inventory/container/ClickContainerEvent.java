@@ -32,10 +32,6 @@ import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 
 import java.util.Optional;
 
-import org.spongepowered.api.item.inventory.Slot;
-
-import java.util.Optional;
-
 /**
  * A click interaction in an open container.
  */
@@ -118,6 +114,11 @@ public interface ClickContainerEvent extends ChangeInventoryEvent, InteractConta
              * A click with the secondary mouse button dropping a single item from the cursor.
              */
             interface Secondary extends Outside, ClickContainerEvent.Secondary {}
+
+            /**
+             * A click outside of the creative inventory. The cursor transaction is unknown.
+             */
+            interface Creative extends Outside, ClickContainerEvent.Creative {}
         }
     }
 

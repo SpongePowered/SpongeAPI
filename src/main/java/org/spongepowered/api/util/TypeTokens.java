@@ -77,6 +77,7 @@ import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.item.potion.PotionType;
 import org.spongepowered.api.profile.GameProfile;
@@ -344,6 +345,8 @@ public final class TypeTokens {
     public static final TypeToken<SetValue<String>> SET_STRING_VALUE_TOKEN = new TypeToken<SetValue<String>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Set<String>> SET_STRING__TOKEN = new TypeToken<Set<String>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<SetValue<EquipmentType>> SET_EQUIPMENT_TYPE_TOKEN = new TypeToken<SetValue<EquipmentType>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Short> SHORT_TOKEN = new TypeToken<Short>() {private static final long serialVersionUID = -1;};
 

@@ -25,8 +25,10 @@
 package org.spongepowered.api.entity.living;
 
 import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.SetValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.inventory.ArmorEquipable;
+import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 
 /**
  * Represents an armor stand.
@@ -75,5 +77,13 @@ public interface ArmorStand extends Living, ArmorEquipable {
      */
     default Value.Mutable<Boolean> arms() {
         return getValue(Keys.ARMOR_STAND_HAS_ARMS).get().asMutable();
+    }
+
+    default SetValue.Mutable<EquipmentType> placingDisabled() {
+        return getValue(Keys.ARMOR_STAND_PLACING_DISABLED).get().asMutable();
+    }
+
+    default SetValue.Mutable<EquipmentType> takingDisabled() {
+        return getValue(Keys.ARMOR_STAND_TAKING_DISABLED).get().asMutable();
     }
 }

@@ -25,11 +25,10 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
+import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
-import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.teleport.PortalAgent;
 
@@ -107,7 +106,6 @@ public interface MoveEntityEvent extends Event, Cancellable {
          *
          * @return Whether the entity will maintain momentum after teleport
          */
-        @PropertySettings(requiredParameter = false)
         boolean getKeepsVelocity();
 
         /**

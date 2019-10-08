@@ -42,11 +42,7 @@ public final class GeneratorUtils {
      * @return The java class name equivalent with the provided classifier
      */
     public static String getClassName(String targetPackage, Class<?> clazz, String classifier) {
-        String name = clazz.getSimpleName();
-        while (clazz.getEnclosingClass() != null) {
-            clazz = clazz.getEnclosingClass();
-            name = clazz.getSimpleName() + "$" + name;
-        }
+        final String name = clazz.getName();
         return targetPackage + "." + name + "$" + classifier;
     }
 

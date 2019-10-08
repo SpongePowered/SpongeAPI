@@ -172,6 +172,7 @@ import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.item.potion.PotionType;
 import org.spongepowered.api.profile.GameProfile;
@@ -208,6 +209,12 @@ public final class Keys {
      * {@link Living} entity.
      */
     public static final Key<BoundedValue<Double>> ABSORPTION = DummyObjectProvider.createExtendedFor(Key.class, "ABSORPTION");
+
+    /**
+     * Represents the {@link Key} for the acceleration of a {@link Fireball}.
+     */
+    public static final Key<Value<Vector3d>> ACCELERATION = DummyObjectProvider.createExtendedFor(Key.class, "ACCELERATION");
+
 
     /**
      * Represents the {@link Key} for the item a {@link Living} is using.
@@ -328,6 +335,18 @@ public final class Keys {
      * significantly smaller collision box in order to act as a marker.
      */
     public static final Key<Value<Boolean>> ARMOR_STAND_MARKER = DummyObjectProvider.createExtendedFor(Key.class, "ARMOR_STAND_MARKER");
+
+    /**
+     * Represents the {@link Key} for whether players are prevented from taking
+     * items from an equipment slot on an {@link ArmorStand}
+     */
+    public static final Key<SetValue<EquipmentType>> ARMOR_STAND_TAKING_DISABLED = DummyObjectProvider.createExtendedFor(Key.class, "ARMOR_STAND_TAKING_DISABLED");
+
+    /**
+     * Represents the {@link Key} for whether players are prevented from taking
+     * items from an equipment slot on an {@link ArmorStand}
+     */
+    public static final Key<SetValue<EquipmentType>> ARMOR_STAND_PLACING_DISABLED = DummyObjectProvider.createExtendedFor(Key.class, "ARMOR_STAND_PLACING_DISABLED");
 
     /**
      * Represents the {@link Key} for the type of {@link ArtType} shown by
@@ -1661,6 +1680,11 @@ public final class Keys {
     public static final Key<Value<PortionType>> PORTION_TYPE = DummyObjectProvider.createExtendedFor(Key.class, "PORTION_TYPE");
 
     /**
+     * Represents the {@link Key} for the color of an {@link ItemStack} potion.
+     */
+    public static final Key<Value<Color>> POTION_COLOR = DummyObjectProvider.createExtendedFor(Key.class, "POTION_COLOR");
+
+    /**
      * Represents the {@link Key} for which potion effects are present on an
      * {@link Entity} or stored on an {@link ItemStack}.
      */
@@ -1736,7 +1760,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for the {@link ItemStackSnapshot item} in an {@link Item}, {@link ItemFrame}, or {@link Potion}.
      */
-    public static final Key<Value<ItemStackSnapshot>> ITEM_STACK_SNAPSHOT = DummyObjectProvider.createExtendedFor(Key.class, "REPRESENTED_ITEM");
+    public static final Key<Value<ItemStackSnapshot>> ITEM_STACK_SNAPSHOT = DummyObjectProvider.createExtendedFor(Key.class, "ITEM_STACK_SNAPSHOT");
 
     /**
      * Represents the {@link Key} for the player represented by a

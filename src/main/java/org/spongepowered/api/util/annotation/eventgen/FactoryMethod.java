@@ -22,36 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.entity;
+package org.spongepowered.api.util.annotation.eventgen;
 
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.item.inventory.ItemStack;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * Represents a jukebox, also know as a music disc player.
+ * Marks the annotated method as a factory method.
+ * A matching method will be generated in the factory class, which forwards
+ * to this method.
+ *
+ * <p>This annotation can be used to make backwards-compatible
+ * changes to an event class. By creating a method matching the old
+ * factory method signature, code expecting the old event signature
+ * will continue to function.</p>
  */
-public interface Jukebox extends BlockEntity {
-
-    /**
-     * Attempts to play the currently stored music disc according to the
-     * {@link Keys#ITEM_STACK_SNAPSHOT} of this {@link Jukebox}.
-     */
-    void play();
-
-    /**
-     * Stops the currently playing music disc, if any.
-     */
-    void stop();
-
-    /**
-     * Ejects the music disc item in this Jukebox into the world.
-     */
-    void eject();
-
-    /**
-     * Ejects the current music disc item in this Jukebox and inserts the given one.
-     *
-     * @param disc The music disc item to insert
-     */
-    void insert(ItemStack disc);
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface FactoryMethod {
 }

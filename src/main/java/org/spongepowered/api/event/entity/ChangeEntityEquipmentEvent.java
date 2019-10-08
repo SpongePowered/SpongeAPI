@@ -62,4 +62,10 @@ public interface ChangeEntityEquipmentEvent extends Event, Cancellable {
      * @return The transaction of the item
      */
     Transaction<ItemStackSnapshot> getTransaction();
+
+    /**
+     * Called when the players equipment is broken or otherwise replaced by an empty item-stack.
+     */
+    interface Break extends ChangeEntityEquipmentEvent { }
+
 }

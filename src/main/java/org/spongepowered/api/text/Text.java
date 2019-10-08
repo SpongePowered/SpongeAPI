@@ -46,6 +46,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 /**
  * Represents an immutable tree-structure of formatted (text) components. Each
@@ -532,6 +533,69 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
      * @return Text result
      */
     Text trim();
+    /**
+     * Replaces a pattern in this text with a {@link Text}, preserving
+     * formatting where possible.
+     *
+     * <p>If {@code lossy} is true, this will replace the pattern if this finds
+     * it spanning multiple child {@link Text}s, resulting in a potential loss
+     * of formatting; if false, it will only replace the pattern where it is
+     * contained within one child {@link Text}, to preserve all formatting.</p>
+     *
+     * <p>This method produces a copy with the specified replacements. The
+     * original is not modified.</p>
+     *
+     * @param oldValue The pattern to replace
+     * @param newValue The value to replace with
+     * @param lossy Whether lossy mode is enabled
+     * @return The resulting (copied) text
+     */
+    Text replace(Pattern oldValue, Text newValue, boolean lossy);
+
+    /**
+     * Replaces a pattern in this text with a {@link Text}, preserving all
+     * formatting.
+     *
+     * <p>This method produces a copy with the specified replacements. The
+     * original is not modified.</p>
+     *
+     * @param oldValue The pattern to replace
+     * @param newValue The value to replace with
+     * @return The resulting (copied) text
+     */
+    Text replace(Pattern oldValue, Text newValue);
+
+    /**
+     * Replaces a string within this text with a {@link Text}, preserving
+     * formatting where possible.
+     *
+     * <p>If {@code lossy} is true, this will replace the pattern if this finds
+     * it spanning multiple child {@link Text}s, resulting in a potential loss
+     * of formatting; if false, it will only replace the pattern where it is
+     * contained within one child {@link Text}, to preserve all formatting.</p>
+     *
+     * <p>This method produces a copy with the specified replacements. The
+     * original is not modified.</p>
+     *
+     * @param oldValue The string to replace
+     * @param newValue The value to replace with
+     * @param lossy Whether lossy mode is enabled
+     * @return The resulting (copied) text
+     */
+    Text replace(String oldValue, Text newValue, boolean lossy);
+
+    /**
+     * Replaces a string within this text with a {@link Text}, preserving all
+     * formatting.
+     *
+     * <p>This method produces a copy with the specified replacements. The
+     * original is not modified.</p>
+     *
+     * @param oldValue The string to replace
+     * @param newValue The value to replace with
+     * @return The resulting (copied) text
+     */
+    Text replace(String oldValue, Text newValue);
 
     @Override
     default Text toText() {
@@ -748,6 +812,23 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
          * @see Text#getChildren()
          */
         Builder insert(int pos, Iterator<? extends Text> children);
+
+        /**
+         * Removes the last child in this builder.
+         *
+         * @return This text builder
+         * @see #remove(int)
+         */
+        Builder removeLastChild();
+
+        /**
+         * Removes the child at the given index.
+         *
+         * @param index The index of the child
+         * @return This text builder
+         * @throws IndexOutOfBoundsException if the given index is out of bounds
+         */
+        Builder remove(int index);
 
         /**
          * Removes the specified {@link Text} from this builder.
