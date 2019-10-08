@@ -27,25 +27,24 @@ package org.spongepowered.api.event.entity;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Ageable;
 import org.spongepowered.api.entity.living.animal.Animal;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.TristateResult;
 
-// TODO Rename this to BreedingEvent in API 8 and remove InteractEntity
-@Deprecated
-public interface BreedEntityEvent extends InteractEntityEvent {
+public interface BreedingEvent extends Event, Cancellable {
 
     /**
      * Called when an {@link Animal} has made it known it is ready to breed.
      */
-    interface ReadyToMate extends BreedEntityEvent {
+    interface ReadyToMate extends BreedingEvent {
 
-        @Override
         Animal getEntity();
     }
 
     /**
      * Called when an {@link Animal} finds an {@link Animal} to mate with.
      */
-    interface FindMate extends BreedEntityEvent, TristateResult {
+    interface FindMate extends BreedingEvent, TristateResult {
 
         /**
          * Returns the {@link Animal} this entity will mate with.
@@ -58,7 +57,7 @@ public interface BreedEntityEvent extends InteractEntityEvent {
     /**
      * Called when an {@link Animal} begins to breed with an {@link Animal}.
      */
-    interface Breed extends BreedEntityEvent {
+    interface Breed extends BreedingEvent {
 
         /**
          * Gets the offspring {@link Entity}.
