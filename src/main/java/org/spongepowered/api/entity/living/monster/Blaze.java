@@ -39,7 +39,7 @@ public interface Blaze extends Monster, Aerial, Ranger {
      * {@link Keys#IS_AFLAME}
      */
     default Value.Mutable<Boolean> aflame() {
-        return getValue(Keys.IS_AFLAME).get().asMutable();
+        return this.getValue(Keys.IS_AFLAME).get().asMutable();
     }
 
 }

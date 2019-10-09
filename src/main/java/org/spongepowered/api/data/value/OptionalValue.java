@@ -32,6 +32,8 @@ import java.util.function.Function;
 
 public interface OptionalValue<E> extends Value<Optional<E>> {
 
+    boolean isPresent();
+
     @Override
     Key<? extends OptionalValue<E>> getKey();
 

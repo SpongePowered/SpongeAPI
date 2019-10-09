@@ -36,7 +36,7 @@ public interface ZombiePigman extends ZombieEntity {
      * {@link Keys#ANGER_LEVEL}
      */
     default BoundedValue.Mutable<Integer> angerLevel() {
-        return getValue(Keys.ANGER_LEVEL).get().asMutable();
+        return this.getValue(Keys.ANGER_LEVEL).get().asMutable();
     }
 
 }

@@ -33,6 +33,7 @@ import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
+import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.AABB;
 import org.spongepowered.api.util.Identifiable;
@@ -349,6 +350,13 @@ public interface Entity extends Identifiable, Locatable, DataHolder.Mutable, Tra
     default boolean canSee(Entity entity) {
         Optional<Boolean> optional = entity.get(Keys.VANISH);
         return !optional.isPresent() || !optional.get();
+    }
+
+    /**
+     * {@link Keys#DISPLAY_NAME}
+     */
+    default Value.Mutable<Text> displayName() {
+        return this.getValue(Keys.DISPLAY_NAME).get().asMutable();
     }
 
     /**

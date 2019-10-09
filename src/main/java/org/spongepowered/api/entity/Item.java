@@ -36,13 +36,10 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 public interface Item extends Entity {
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the represented {@link ItemStack} as
-     * an {@link ItemStackSnapshot}.
-     *
-     * @return The value for the item stack snapshot
+     * {@link Keys#ITEM_STACK_SNAPSHOT}
      */
     default Value.Mutable<ItemStackSnapshot> item() {
-        return getValue(Keys.ITEM_STACK_SNAPSHOT).get().asMutable();
+        return this.getValue(Keys.ITEM_STACK_SNAPSHOT).get().asMutable();
     }
 
     /**
@@ -51,7 +48,7 @@ public interface Item extends Entity {
      * @return The item type
      */
     default ItemType getItemType() {
-        return item().get().getType();
+        return this.item().get().getType();
     }
 
 }

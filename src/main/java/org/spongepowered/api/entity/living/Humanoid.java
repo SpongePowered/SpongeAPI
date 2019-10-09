@@ -26,6 +26,8 @@ package org.spongepowered.api.entity.living;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.item.inventory.ArmorEquipable;
 import org.spongepowered.api.entity.Tamer;
 import org.spongepowered.api.entity.living.player.Player;
@@ -40,20 +42,27 @@ public interface Humanoid extends Living, ProjectileLauncher, ArmorEquipable, Ta
      * {@link Keys#FOOD_LEVEL}
      */
     default BoundedValue.Mutable<Integer> foodLevel() {
-        return getValue(Keys.FOOD_LEVEL).get().asMutable();
+        return this.getValue(Keys.FOOD_LEVEL).get().asMutable();
     }
 
     /**
      * {@link Keys#EXHAUSTION}
      */
     default BoundedValue.Mutable<Double> exhaustion() {
-        return getValue(Keys.EXHAUSTION).get().asMutable();
+        return this.getValue(Keys.EXHAUSTION).get().asMutable();
     }
 
     /**
      * {@link Keys#SATURATION}
      */
     default BoundedValue.Mutable<Double> saturation() {
-        return getValue(Keys.SATURATION).get().asMutable();
+        return this.getValue(Keys.SATURATION).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#GAME_MODE}
+     */
+    default Value.Mutable<GameMode> gameMode() {
+        return this.getValue(Keys.GAME_MODE).get().asMutable();
     }
 }

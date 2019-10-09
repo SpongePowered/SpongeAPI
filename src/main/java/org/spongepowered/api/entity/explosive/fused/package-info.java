@@ -22,15 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.projectile.explosive.fireball;
-
-import org.spongepowered.api.entity.explosive.Explosive;
-import org.spongepowered.api.entity.living.monster.Ghast;
-import org.spongepowered.api.entity.projectile.Projectile;
-
-/**
- * Represents a larger fireball, such as {@link Projectile profectiles} launched by {@link Ghast ghasts}.
- */
-public interface LargeFireball extends Fireball, Explosive {
-
-}
+@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
+package org.spongepowered.api.entity.explosive.fused;

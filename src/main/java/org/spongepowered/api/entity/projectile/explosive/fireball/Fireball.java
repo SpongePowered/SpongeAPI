@@ -35,9 +35,9 @@ import org.spongepowered.math.vector.Vector3d;
 public interface Fireball extends DamagingProjectile {
 
     /**
-     * @see Keys#ACCELERATION
+     * {@link Keys#ACCELERATION}
      */
-    default Value<Vector3d> acceleration() {
-        return this.getValue(Keys.ACCELERATION).get();
+    default Value.Mutable<Vector3d> acceleration() {
+        return this.getValue(Keys.ACCELERATION).get().asMutable();
     }
 }

@@ -40,17 +40,17 @@ import java.util.Optional;
 public interface Agent extends Living {
 
     /**
-     * {@link Keys#TARGETED_ENTITY}
+     * {@link Keys#TARGET_ENTITY}
      */
-    default OptionalValue.Mutable<Entity> targetedEntity() {
-        return this.getValue(Keys.TARGETED_ENTITY).get().asMutable();
+    default OptionalValue.Mutable<Entity> targetEntity() {
+        return this.getValue(Keys.TARGET_ENTITY).get().asMutable();
     }
 
     /**
      * {@link Keys#IS_AI_ENABLED}
      */
     default Value.Mutable<Boolean> aiEnabled() {
-        return getValue(Keys.IS_AI_ENABLED).get().asMutable();
+        return this.getValue(Keys.IS_AI_ENABLED).get().asMutable();
     }
 
     /**

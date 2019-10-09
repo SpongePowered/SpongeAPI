@@ -29,6 +29,7 @@ import org.spongepowered.api.client.ClientPlayer;
 import org.spongepowered.api.client.ClientWorld;
 import org.spongepowered.api.client.RemotePlayer;
 import org.spongepowered.api.client.LocalPlayer;
+import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.server.Server;
 import org.spongepowered.api.advancement.Advancement;
 import org.spongepowered.api.advancement.AdvancementProgress;
@@ -40,8 +41,6 @@ import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Humanoid;
-import org.spongepowered.api.entity.living.player.gamemode.GameMode;
-import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.entity.living.player.tab.TabList;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.message.MessageChannelEvent;
@@ -57,7 +56,6 @@ import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.chat.ChatVisibility;
 import org.spongepowered.api.world.WorldBorder;
-import org.spongepowered.math.vector.Vector3d;
 
 import java.time.Instant;
 import java.util.Collection;
@@ -92,7 +90,7 @@ public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver,
      * @return Whether this player is viewing an inventory or not
      */
     default boolean isViewingInventory() {
-        return getOpenInventory().isPresent();
+        return this.getOpenInventory().isPresent();
     }
 
     /**
@@ -232,23 +230,17 @@ public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver,
     void setScoreboard(Scoreboard scoreboard);
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} of the {@link Instant} that a {@link Player}
-     * joined the {@link Server} the first time.
-     *
-     * @return The value for the first time a player joined
+     * {@link Keys#FIRST_DATE_PLAYED}
      */
     default Value.Mutable<Instant> firstPlayed() {
-        return getValue(Keys.FIRST_DATE_PLAYED).get().asMutable();
+        return this.getValue(Keys.FIRST_DATE_PLAYED).get().asMutable();
     }
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} of the {@link Instant} that a {@link Player}
-     * joined the {@link Server} the last time.
-     *
-     * @return The value for the last time a player joined
+     * {@link Keys#LAST_DATE_PLAYED}
      */
     default Value.Mutable<Instant> lastPlayed() {
-        return getValue(Keys.LAST_DATE_PLAYED).get().asMutable();
+        return this.getValue(Keys.LAST_DATE_PLAYED).get().asMutable();
     }
 
     /**
@@ -258,46 +250,14 @@ public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver,
      * @return True if played before, false otherwise
      */
     default boolean hasPlayedBefore() {
-        return !firstPlayed().equals(lastPlayed());
-    }
-
-    default Value.Mutable<Text> displayName() {
-        return getValue(Keys.DISPLAY_NAME).get().asMutable();
+        return !this.firstPlayed().equals(this.lastPlayed());
     }
 
     /**
-     * Gets the current {@link GameMode} for this {@link Player}.
-     *
-     * @return The current game mode value
+     * {@link Keys#IS_SLEEPING_IGNORED}
      */
-    default Value.Mutable<GameMode> gameMode() {
-        return getValue(Keys.GAME_MODE).get().asMutable();
-    }
-
-    /**
-     * Gets whether this {@link Player} will be ignored when checking whether to
-     * skip the night due to players sleeping. The time in a world will be
-     * advanced to day if all players in it either are sleeping or have this
-     * tag.
-     *
-     * @return Whether this {@link Player} will be ignored when checking whether
-     *     to skip the night
-     */
-    default boolean isSleepingIgnored() {
-        return require(Keys.IS_SLEEPING_IGNORED);
-    }
-
-    /**
-     * Sets whether this {@link Player} will be ignored when checking whether
-     * to skip the night due to players sleeping. The time in a world will be
-     * advanced to day if all players in it either are sleeping or have this
-     * tag.
-     *
-     * @param sleepingIgnored Whether this {@link Player} will be ignored when
-     *     checking whether to skip the night
-     */
-    default void setSleepingIgnored(boolean sleepingIgnored) {
-        offer(Keys.IS_SLEEPING_IGNORED, sleepingIgnored);
+    default Value.Mutable<Boolean> sleepingIgnored() {
+        return this.getValue(Keys.IS_SLEEPING_IGNORED).get().asMutable();
     }
 
     /**
@@ -309,28 +269,8 @@ public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver,
      */
     boolean respawnPlayer();
 
-    /**
-     * Gets the {@link Entity} followed by the camera when in the
-     * {@link GameModes#SPECTATOR spectator gamemode}.
-     *
-     * @return The followed entity, if present, empty otherwise
-     */
-    default Optional<Entity> getSpectatorTarget() {
-        return get(Keys.SPECTATOR_TARGET);
-    }
-
-    /**
-     * Sets the {@link Entity} followed by the camera when in the
-     * {@link GameModes#SPECTATOR spectator gamemode}.
-     *
-     * @param entity The entity to spectate
-     */
-    default void setSpectatorTarget(@Nullable Entity entity) {
-        if (entity == null) {
-            remove(Keys.SPECTATOR_TARGET);
-        } else {
-            offer(Keys.SPECTATOR_TARGET, entity);
-        }
+    default OptionalValue.Mutable<Entity> spectatorTarget() {
+        return this.getValue(Keys.SPECTATOR_TARGET).get().asMutable();
     }
 
     /**
@@ -375,9 +315,4 @@ public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver,
      * @return The advancement trees
      */
     Collection<AdvancementTree> getUnlockedAdvancementTrees();
-
-    @Override
-    default Vector3d getPosition() {
-        return getLocation().getPosition();
-    }
 }

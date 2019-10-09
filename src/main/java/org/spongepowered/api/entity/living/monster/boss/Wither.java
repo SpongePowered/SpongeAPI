@@ -38,10 +38,10 @@ import org.spongepowered.api.entity.living.Monster;
 public interface Wither extends Monster, Ranger, Boss, Aerial, FusedExplosive {
 
     /**
-     * {@link Keys#TARGETED_ENTITIES}
+     * {@link Keys#TARGET_ENTITIES}
      */
-    default ListValue.Mutable<Living> targetedEntities() {
-        return this.getValue(Keys.TARGETED_ENTITIES).get().asMutable();
+    default ListValue.Mutable<Living> targetEntities() {
+        return this.getValue(Keys.TARGET_ENTITIES).get().asMutable();
     }
 
 }

@@ -91,6 +91,7 @@ import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.ExperienceOrb;
 import org.spongepowered.api.entity.FallingBlock;
 import org.spongepowered.api.entity.Item;
+import org.spongepowered.api.entity.ai.GoalTypes;
 import org.spongepowered.api.entity.explosive.EndCrystal;
 import org.spongepowered.api.entity.explosive.Explosive;
 import org.spongepowered.api.entity.explosive.fused.FusedExplosive;
@@ -153,6 +154,7 @@ import org.spongepowered.api.entity.living.trader.Trader;
 import org.spongepowered.api.entity.living.trader.Villager;
 import org.spongepowered.api.entity.projectile.DamagingProjectile;
 import org.spongepowered.api.entity.projectile.EyeOfEnder;
+import org.spongepowered.api.entity.projectile.FishingBobber;
 import org.spongepowered.api.entity.projectile.Potion;
 import org.spongepowered.api.entity.projectile.ShulkerBullet;
 import org.spongepowered.api.entity.projectile.arrow.ArrowEntity;
@@ -214,7 +216,6 @@ public final class Keys {
      * Represents the {@link Key} for the acceleration of a {@link Fireball}.
      */
     public static final Key<Value<Vector3d>> ACCELERATION = DummyObjectProvider.createExtendedFor(Key.class, "ACCELERATION");
-
 
     /**
      * Represents the {@link Key} for the item a {@link Living} is using.
@@ -331,8 +332,11 @@ public final class Keys {
     public static final Key<Value<Boolean>> ARMOR_STAND_IS_SMALL = DummyObjectProvider.createExtendedFor(Key.class, "ARMOR_STAND_IS_SMALL");
 
     /**
-     * Represents the {@link Key} for whether an {@link ArmorStand} has a
-     * significantly smaller collision box in order to act as a marker.
+     * Represents the {@link Key} for if an {@link ArmorStand} if a "marker" stand.
+     *
+     * <p>If {@code true}, the armor stand's bounding box is near
+     * impossible to see, and the armor stand can no longer be
+     * interacted with.</p>
      */
     public static final Key<Value<Boolean>> ARMOR_STAND_MARKER = DummyObjectProvider.createExtendedFor(Key.class, "ARMOR_STAND_MARKER");
 
@@ -340,13 +344,13 @@ public final class Keys {
      * Represents the {@link Key} for whether players are prevented from taking
      * items from an equipment slot on an {@link ArmorStand}
      */
-    public static final Key<SetValue<EquipmentType>> ARMOR_STAND_TAKING_DISABLED = DummyObjectProvider.createExtendedFor(Key.class, "ARMOR_STAND_TAKING_DISABLED");
+    public static final Key<SetValue<EquipmentType>> ARMOR_STAND_PLACING_DISABLED = DummyObjectProvider.createExtendedFor(Key.class, "ARMOR_STAND_PLACING_DISABLED");
 
     /**
      * Represents the {@link Key} for whether players are prevented from taking
      * items from an equipment slot on an {@link ArmorStand}
      */
-    public static final Key<SetValue<EquipmentType>> ARMOR_STAND_PLACING_DISABLED = DummyObjectProvider.createExtendedFor(Key.class, "ARMOR_STAND_PLACING_DISABLED");
+    public static final Key<SetValue<EquipmentType>> ARMOR_STAND_TAKING_DISABLED = DummyObjectProvider.createExtendedFor(Key.class, "ARMOR_STAND_TAKING_DISABLED");
 
     /**
      * Represents the {@link Key} for the type of {@link ArtType} shown by
@@ -677,17 +681,23 @@ public final class Keys {
     public static final Key<OptionalValue<SpellType>> CURRENT_SPELL = DummyObjectProvider.createExtendedFor(Key.class, "CURRENT_SPELL");
 
     /**
+     * Represents the {@link Key} for the damage dealt towards entities of a
+     * specific {@link EntityType}.
+     *
+     * <p>Note that in events, the damage defined for the provided
+     * {@link EntityType} will take priority over the "default" damage as
+     * defined from {@link DamagingProjectile#attackDamage()}.</p>
+     *
+     * <p>Types not present in this mapping will be
+     * dealt damage to according to {@link #ATTACK_DAMAGE}.</p>
+     */
+    public static final Key<MapValue<EntityType<?>, Double>> CUSTOM_ATTACK_DAMAGE = DummyObjectProvider.createExtendedFor(Key.class, "CUSTOM_ATTACK_DAMAGE_MAPPING");
+
+    /**
      * Represents the {@link Key} for whether a custom name is visible on an
      * {@link Entity}.
      */
     public static final Key<Value<Boolean>> CUSTOM_NAME_VISIBLE = DummyObjectProvider.createExtendedFor(Key.class, "CUSTOM_NAME_VISIBLE");
-
-    /**
-     * Represents the {@link Key} for the damage dealt towards entities of a
-     * specific {@link EntityType}. Types not present in this mapping will be
-     * dealt damage to according to {@link #ATTACK_DAMAGE}.
-     */
-    public static final Key<MapValue<EntityType<?>, Double>> DAMAGE_ENTITY_MAP = DummyObjectProvider.createExtendedFor(Key.class, "DAMAGE_ENTITY_MAP");
 
     /**
      * Represents the {@link Key} for how much damage a {@link FallingBlock}
@@ -1005,8 +1015,16 @@ public final class Keys {
     public static final Key<Value<Boolean>> HAS_GRAVITY = DummyObjectProvider.createExtendedFor(Key.class, "HAS_GRAVITY");
 
     /**
-     * Represents the {@link Key} for the direction an entities head is
-     * rotated to.
+     * Represents the {@link Key} for the rotation of a {@link Living Living's} head.
+     *
+     * <p>The format of the rotation is represented by:</p>
+     *
+     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
+     * </code></ul>
+     *
+     * <p>Note that the pitch will be the same x value returned by
+     * {@link Entity#getRotation()} and Minecraft does not currently support
+     * head roll so the z value will always be zero.</p>
      */
     public static final Key<Value<Vector3d>> HEAD_ROTATION = DummyObjectProvider.createExtendedFor(Key.class, "HEAD_ROTATION");
 
@@ -1090,12 +1108,12 @@ public final class Keys {
     public static final Key<Value<Hinge>> HINGE_POSITION = DummyObjectProvider.createExtendedFor(Key.class, "HINGE_POSITION");
 
     /**
-     * Represents the {@link Key} for the color of a {@link HorseEntity}.
+     * Represents the {@link Key} for the color of a {@link Horse}.
      */
     public static final Key<Value<HorseColor>> HORSE_COLOR = DummyObjectProvider.createExtendedFor(Key.class, "HORSE_COLOR");
 
     /**
-     * Represents the {@link Key} for the style of a {@link HorseEntity}.
+     * Represents the {@link Key} for the style of a {@link Horse}.
      */
     public static final Key<Value<HorseStyle>> HORSE_STYLE = DummyObjectProvider.createExtendedFor(Key.class, "HORSE_STYLE");
 
@@ -1249,10 +1267,8 @@ public final class Keys {
     public static final Key<Value<Boolean>> IS_IN_WATER = DummyObjectProvider.createExtendedFor(Key.class, "IS_IN_WATER");
 
     /**
-     * Gets the {@link Value} for whether this mob is exhibiting
+     * Represents the {@link Key} for whether a {@link Vindicator} is exhibiting
      * "johnny" behavior.
-     *
-     * <p>In vanilla this currently only applies to {@link Vindicator}s.</p>
      *
      * @see <a href="https://minecraft.gamepedia.com/Vindicator#Behavior">
      * The Minecraft Wiki for more information about "johnny" behavior</a>
@@ -1334,6 +1350,11 @@ public final class Keys {
      */
     public static final Key<Value<Boolean>> IS_SLEEPING = DummyObjectProvider.createExtendedFor(Key.class, "IS_SLEEPING");
 
+    /**
+     * Represents the {@link Key} for if a {@link Player Player's} sleeping status is ignored when checking whether to
+     * skip the night due to players sleeping. The time in a world will be
+     * advanced to day if all players in it either are sleeping or are set to ignore.
+     */
     public static final Key<Value<Boolean>> IS_SLEEPING_IGNORED = DummyObjectProvider.createExtendedFor(Key.class, "IS_SLEEPING_IGNORED");
 
     /**
@@ -1409,6 +1430,11 @@ public final class Keys {
     public static final Key<ListValue<Text>> ITEM_LORE = DummyObjectProvider.createExtendedFor(Key.class, "ITEM_LORE");
 
     /**
+     * Represents the {@link Key} for the {@link ItemStackSnapshot item} in an {@link Item}, {@link ItemFrame}, or {@link Potion}.
+     */
+    public static final Key<Value<ItemStackSnapshot>> ITEM_STACK_SNAPSHOT = DummyObjectProvider.createExtendedFor(Key.class, "ITEM_STACK_SNAPSHOT");
+
+    /**
      * Represents the {@link Key} for the knockback strength applied by an
      * {@link ArrowEntity}.
      *
@@ -1422,6 +1448,9 @@ public final class Keys {
      */
     public static final Key<Value<PandaGene>> KNOWN_GENE = DummyObjectProvider.createExtendedFor(Key.class, "KNOWN_GENE");
 
+    /**
+     * Represents the {@link Key} for the last attacking {@link Entity} of a {@link Living}.
+     */
     public static final Key<Value<Entity>> LAST_ATTACKER = DummyObjectProvider.createExtendedFor(Key.class, "LAST_ATTACKER");
 
     /**
@@ -1449,6 +1478,10 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the leashed {@link Entity} of a {@link LeashKnot}.
+     *
+     * <p>Usually, a {@link LeashKnot} will always exist so long as there is
+     * a leashed {@link Entity} attached. If the leash is broken, the leash
+     * hitch is removed.</p>
      */
     public static final Key<Value<Entity>> LEASHED_ENTITY = DummyObjectProvider.createExtendedFor(Key.class, "LEASHED_ENTITY");
 
@@ -1758,11 +1791,6 @@ public final class Keys {
     public static final Key<BoundedValue<Integer>> REMAINING_BREW_TIME = DummyObjectProvider.createExtendedFor(Key.class, "REMAINING_BREW_TIME");
 
     /**
-     * Represents the {@link Key} for the {@link ItemStackSnapshot item} in an {@link Item}, {@link ItemFrame}, or {@link Potion}.
-     */
-    public static final Key<Value<ItemStackSnapshot>> ITEM_STACK_SNAPSHOT = DummyObjectProvider.createExtendedFor(Key.class, "ITEM_STACK_SNAPSHOT");
-
-    /**
      * Represents the {@link Key} for the player represented by a
      * {@link BlockTypes#PLAYER_HEAD} (and {@link BlockTypes#PLAYER_WALL_HEAD})
      * block or a {@link ItemTypes#PLAYER_HEAD} item stack.
@@ -1940,7 +1968,10 @@ public final class Keys {
      */
     public static final Key<BoundedValue<Integer>> SPAWNER_SPAWN_RANGE = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_SPAWN_RANGE");
 
-    public static final Key<Value<Entity>> SPECTATOR_TARGET = DummyObjectProvider.createExtendedFor(Key.class, "SPECTATOR_TARGET");
+    /**
+     * Represents the {@link Key} for the {@link Entity target} of the spectator camera of a {@link Player}.
+     */
+    public static final Key<OptionalValue<Entity>> SPECTATOR_TARGET = DummyObjectProvider.createExtendedFor(Key.class, "SPECTATOR_TARGET");
 
     /**
      * Represents the {@link Key} for representing the {@link StairShape}
@@ -2054,18 +2085,19 @@ public final class Keys {
     /**
      * Represents the {@link Key} for a {@link Wither}'s targets.
      */
-    public static final Key<ListValue<Living>> TARGETED_ENTITIES = DummyObjectProvider.createExtendedFor(Key.class, "TARGETS");
+    public static final Key<ListValue<Living>> TARGET_ENTITIES = DummyObjectProvider.createExtendedFor(Key.class, "TARGET_ENTITIES");
 
     /**
-     * Represents the {@link Key} for a targeted entity, like by a {@link ShulkerBullet}.
+     * Represents the {@link Key} for a targeted entity either by an {@link Agent} and it's
+     * {@link GoalTypes#TARGET} selector or by a {@link FishingBobber} or {@link ShulkerBullet}.
      */
-    public static final Key<OptionalValue<Entity>> TARGETED_ENTITY = DummyObjectProvider.createExtendedFor(Key.class, "TARGETED_ENTITY");
+    public static final Key<OptionalValue<Entity>> TARGET_ENTITY = DummyObjectProvider.createExtendedFor(Key.class, "TARGET_ENTITY");
 
     /**
      * Represents the {@link Key} for the location targeted by an
      * {@link EyeOfEnder} or a {@link Player}'s compass.
      */
-    public static final Key<Value<Vector3d>> TARGETED_LOCATION = DummyObjectProvider.createExtendedFor(Key.class, "TARGETED_LOCATION");
+    public static final Key<Value<Vector3d>> TARGET_LOCATION = DummyObjectProvider.createExtendedFor(Key.class, "TARGET_LOCATION");
 
     /**
      * Represents the {@link Key} for a {@link Vector3i} that is currently a target. Example usage is a {@link Patroller}'s patrol target.

@@ -26,13 +26,13 @@ package org.spongepowered.api.entity.living;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.projectile.source.EntityProjectileSource;
 import org.spongepowered.api.scoreboard.TeamMember;
 import org.spongepowered.math.vector.Vector3d;
 
-import java.util.Optional;
 import java.util.OptionalDouble;
 
 /**
@@ -48,32 +48,28 @@ public interface Living extends Entity, EntityProjectileSource, TeamMember {
      * {@link Keys#HEALTH}
      */
     default BoundedValue.Mutable<Double> health() {
-        return getValue(Keys.HEALTH).get().asMutable();
+        return this.getValue(Keys.HEALTH).get().asMutable();
     }
 
     /**
      * {@link Keys#MAX_HEALTH}
      */
     default BoundedValue.Mutable<Double> maxHealth() {
-        return getValue(Keys.MAX_HEALTH).get().asMutable();
+        return this.getValue(Keys.MAX_HEALTH).get().asMutable();
     }
 
     /**
-     * Gets the last attacker of this entity.
-     *
-     * @return The last attacker
+     * {@link Keys#LAST_ATTACKER}
      */
-    default Optional<Entity> getLastAttacker() {
-        return get(Keys.LAST_ATTACKER);
+    default Value.Mutable<Entity> lastAttacker() {
+        return this.getValue(Keys.LAST_ATTACKER).get().asMutable();
     }
 
     /**
-     * Sets the last attacker of this entity.
-     *
-     * @param entity The last attacker entity
+     * {@link Keys#HEAD_ROTATION}
      */
-    default void setLastAttacker(Entity entity) {
-        offer(Keys.LAST_ATTACKER, entity);
+    default Value.Mutable<Vector3d> headRotation() {
+        return this.getValue(Keys.HEAD_ROTATION).get().asMutable();
     }
 
     /**
@@ -82,41 +78,6 @@ public interface Living extends Entity, EntityProjectileSource, TeamMember {
      * @return The last damage, if present
      */
     OptionalDouble getLastDamage();
-
-    /**
-     * Returns this entity's head rotation.
-     *
-     * <p>The format of the rotation is represented by:</p>
-     *
-     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
-     * </code></ul>
-     *
-     * <p>Note that the pitch will be the same x value returned by
-     * {@link Entity#getRotation()} and Minecraft does not currently support
-     * head roll so the z value will always be zero.</p>
-     *
-     * @return Head rotation
-     */
-    default Vector3d getHeadRotation() {
-        return require(Keys.HEAD_ROTATION);
-    }
-
-    /**
-     * Sets the entity's head rotation.
-     *
-     * <p>The format of the rotation is represented by:</p>
-     *
-     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
-     * </code></ul>
-     *
-     * <p>Note that the pitch (x value) supplied will update the entity's pitch
-     * via {@link Entity#setRotation(Vector3d)}.</p>
-     *
-     * @param rotation Rotation of the entities head
-     */
-    default void setHeadRotation(Vector3d rotation) {
-        offer(Keys.HEAD_ROTATION, rotation);
-    }
 
     /**
      * Makes the entity look at the specified target position.

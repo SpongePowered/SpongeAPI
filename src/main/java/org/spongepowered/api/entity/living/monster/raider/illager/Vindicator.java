@@ -26,23 +26,17 @@ package org.spongepowered.api.entity.living.monster.raider.illager;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.Monster;
-import org.spongepowered.api.item.ItemTypes;
 
 /**
- * Represents a vindicator.
+ * Represents a Vindicator.
  */
 public interface Vindicator extends Illager {
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for whether this vindicator is considered a
-     * "johnny" vindicator. "Johnny" vindicators will deal more damage and
-     * often times carry an {@link ItemTypes#IRON_AXE} of sorts.
-     *
-     * @return Whether this is a johnny vindicator
+     * {@link Keys#IS_JOHNNY}
      */
     default Value.Mutable<Boolean> johnny() {
-        return getValue(Keys.IS_JOHNNY).get().asMutable();
+        return this.getValue(Keys.IS_JOHNNY).get().asMutable();
     }
 
 }

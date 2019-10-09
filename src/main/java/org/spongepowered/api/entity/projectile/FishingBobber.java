@@ -24,10 +24,9 @@
  */
 package org.spongepowered.api.entity.projectile;
 
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.entity.Entity;
-
-import java.util.Optional;
 
 /**
  * Represents a fishing bobber.
@@ -35,23 +34,7 @@ import java.util.Optional;
 public interface FishingBobber extends Projectile {
 
     /**
-     * Gets the hooked entity for this fish hook.
-     *
-     * <p>Fishooks can attach to {@link Entity} objects in the world, as though
-     * they are temporarily leashed. The hooked entity may also be null.</p>
-     *
-     * @return The hooked item, if available
+     * {@link Keys#TARGET_ENTITY}
      */
-    Optional<Entity> getHookedEntity();
-
-    /**
-     * Sets the hooked entity for this fish hook.
-     *
-     * <p>Fishhooks can attach to {@link Entity} objects in the world, as though
-     * they are temporarily leashed. The hooked entity may also be null.</p>
-     *
-     * @param entity The hooked entity
-     */
-    void setHookedEntity(@Nullable Entity entity);
-
+    OptionalValue.Mutable<Entity> targetEntity();
 }

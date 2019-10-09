@@ -73,7 +73,7 @@ public interface Cat extends TameableAnimal {
 
     /**
      * Determines if the {@link Cat} is begging for food. In vanilla, a cat begs for food every so many ticks
-     * if {@link TameableAnimal#tamed()} returns false.
+     * if {@link TameableAnimal#isTamed()} returns false.
      *
      * @return True if begging for food, false if not
      */

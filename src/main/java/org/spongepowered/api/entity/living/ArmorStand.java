@@ -31,59 +31,49 @@ import org.spongepowered.api.item.inventory.ArmorEquipable;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 
 /**
- * Represents an armor stand.
+ * Represents an Armor Stand.
  */
 public interface ArmorStand extends Living, ArmorEquipable {
 
     /**
-     * Gets the {@link Boolean} {@link org.spongepowered.api.data.value.Value.Mutable} of whether this
-     * {@link ArmorStand} is considered a "marker" stand. If
-     * {@code true}, the armor stand's bounding box is near
-     * impossible to see, and the armor stand can no longer be
-     * interacted with.
-     *
-     * @return The value for the marker state
+     * {@link Keys#ARMOR_STAND_MARKER}
      */
     default Value.Mutable<Boolean> marker() {
-        return getValue(Keys.ARMOR_STAND_MARKER).get().asMutable();
+        return this.getValue(Keys.ARMOR_STAND_MARKER).get().asMutable();
     }
 
     /**
-     * Gets the {@link Boolean} {@link org.spongepowered.api.data.value.Value.Mutable} of whether this
-     * {@link ArmorStand} is considered a "small" armor stand.
-     *
-     * @return The value for the small state
+     * {@link Keys#ARMOR_STAND_IS_SMALL}
      */
     default Value.Mutable<Boolean> small() {
-        return getValue(Keys.ARMOR_STAND_IS_SMALL).get().asMutable();
+        return this.getValue(Keys.ARMOR_STAND_IS_SMALL).get().asMutable();
     }
 
     /**
-     * Gets the {@link Boolean} {@link org.spongepowered.api.data.value.Value.Mutable} of whether this
-     * {@link ArmorStand} will show that it has a base plate
-     * visible to players.
-     *
-     * @return The value for the base plate state
+     * {@link Keys#ARMOR_STAND_HAS_BASE_PLATE}
      */
     default Value.Mutable<Boolean> basePlate() {
-        return getValue(Keys.ARMOR_STAND_HAS_BASE_PLATE).get().asMutable();
+        return this.getValue(Keys.ARMOR_STAND_HAS_BASE_PLATE).get().asMutable();
     }
 
     /**
-     * Gets the {@link Boolean} {@link org.spongepowered.api.data.value.Value.Mutable} of whether this
-     * {@link ArmorStand} will show that it has "arms".
-     *
-     * @return The value for the arms state
+     * {@link Keys#ARMOR_STAND_HAS_ARMS}
      */
     default Value.Mutable<Boolean> arms() {
-        return getValue(Keys.ARMOR_STAND_HAS_ARMS).get().asMutable();
+        return this.getValue(Keys.ARMOR_STAND_HAS_ARMS).get().asMutable();
     }
 
+    /**
+     * {@link Keys#ARMOR_STAND_PLACING_DISABLED}
+     */
     default SetValue.Mutable<EquipmentType> placingDisabled() {
-        return getValue(Keys.ARMOR_STAND_PLACING_DISABLED).get().asMutable();
+        return this.getValue(Keys.ARMOR_STAND_PLACING_DISABLED).get().asMutable();
     }
 
+    /**
+     * {@link Keys#ARMOR_STAND_TAKING_DISABLED}
+     */
     default SetValue.Mutable<EquipmentType> takingDisabled() {
-        return getValue(Keys.ARMOR_STAND_TAKING_DISABLED).get().asMutable();
+        return this.getValue(Keys.ARMOR_STAND_TAKING_DISABLED).get().asMutable();
     }
 }

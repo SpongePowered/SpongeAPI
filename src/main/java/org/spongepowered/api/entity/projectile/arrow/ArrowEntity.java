@@ -46,6 +46,6 @@ public interface ArrowEntity extends DamagingProjectile {
      * {@link Keys#KNOCKBACK_STRENGTH}
      */
     default BoundedValue.Mutable<Integer> knockbackStrength() {
-        return getValue(Keys.KNOCKBACK_STRENGTH).get().asMutable();
+        return this.getValue(Keys.KNOCKBACK_STRENGTH).get().asMutable();
     }
 }

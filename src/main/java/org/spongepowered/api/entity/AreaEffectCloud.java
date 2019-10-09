@@ -39,114 +39,80 @@ import org.spongepowered.api.util.Color;
 public interface AreaEffectCloud extends Entity {
 
     /**
-     * Gets the {@link Color} of this cloud, can be changed.
-     *
-     * @return The color of this cloud
+     * {@link Keys#AREA_EFFECT_CLOUD_COLOR}
      */
     default Value.Mutable<Color> color() {
-        return getValue(Keys.AREA_EFFECT_CLOUD_COLOR).get().asMutable();
+        return this.getValue(Keys.AREA_EFFECT_CLOUD_COLOR).get().asMutable();
     }
 
     /**
-     * Gets the {@code radius} value of this cloud.
-     *
-     * @return The radius value of this cloud
+     * {@link Keys#AREA_EFFECT_CLOUD_RADIUS}
      */
     default BoundedValue.Mutable<Double> radius() {
-        return getValue(Keys.AREA_EFFECT_CLOUD_RADIUS).get().asMutable();
+        return this.getValue(Keys.AREA_EFFECT_CLOUD_RADIUS).get().asMutable();
     }
 
     /**
-     * Gets the {@link ParticleType} of this cloud.
-     *
-     * @return The particle type of this cloud
+     * {@link Keys#AREA_EFFECT_CLOUD_PARTICLE_TYPE}
      */
     default Value.Mutable<ParticleType> particleType() {
-        return getValue(Keys.AREA_EFFECT_CLOUD_PARTICLE_TYPE).get().asMutable();
+        return this.getValue(Keys.AREA_EFFECT_CLOUD_PARTICLE_TYPE).get().asMutable();
     }
 
     /**
-     * Gets the bounded {@code duration} value of this cloud.
-     *
-     * @return The bounded duration value
+     * {@link Keys#AREA_EFFECT_CLOUD_DURATION}
      */
     default BoundedValue.Mutable<Integer> duration() {
-        return getValue(Keys.AREA_EFFECT_CLOUD_DURATION).get().asMutable();
+        return this.getValue(Keys.AREA_EFFECT_CLOUD_DURATION).get().asMutable();
     }
 
     /**
-     * Gets the bounded {@code waitTime} value of this cloud. The wait time
-     * dictates how long until this cloud will affect {@link Entity} instances
-     * with {@link PotionEffect}s.
-     *
-     * @return The bounded wait time value
+     * {@link Keys#AREA_EFFECT_CLOUD_WAIT_TIME}
      */
     default BoundedValue.Mutable<Integer> waitTime() {
-        return getValue(Keys.AREA_EFFECT_CLOUD_WAIT_TIME).get().asMutable();
+        return this.getValue(Keys.AREA_EFFECT_CLOUD_WAIT_TIME).get().asMutable();
     }
 
     /**
-     * Gets the bounded {@code radiusOnUse} value of this cloud. The radius is
-     * reduced per {@link Entity} affected. Once the radius is {@code 0}, the
-     * cloud dissipates.
-     *
-     * @return The bounded radius reduced on use value
+     * {@link Keys#AREA_EFFECT_CLOUD_RADIUS_ON_USE}
      */
     default BoundedValue.Mutable<Double> radiusOnUse() {
-        return getValue(Keys.AREA_EFFECT_CLOUD_RADIUS_ON_USE).get().asMutable();
+        return this.getValue(Keys.AREA_EFFECT_CLOUD_RADIUS_ON_USE).get().asMutable();
     }
 
     /**
-     * Gets the bounded {@code radiusPerTick} value of this cloud. The radius is
-     * reduced per tick (so technically can be set to {@code 0} to have it
-     * remain permanent until it's effects have been used up.
-     *
-     * @return The bounded radius reduction per tick value
+     * {@link Keys#AREA_EFFECT_CLOUD_RADIUS_PER_TICK}
      */
     default BoundedValue.Mutable<Double> radiusPerTick() {
-        return getValue(Keys.AREA_EFFECT_CLOUD_RADIUS_PER_TICK).get().asMutable();
+        return this.getValue(Keys.AREA_EFFECT_CLOUD_RADIUS_PER_TICK).get().asMutable();
     }
 
     /**
-     * Gets the bounded {@code durationOnUse} value of this cloud. The duration
-     * on use is reduced for every time that this cloud applies its
-     * {@link PotionEffect}s on an {@link Entity}.
-     *
-     * @return The bounded duration on use value
+     * {@link Keys#AREA_EFFECT_CLOUD_DURATION_ON_USE}
      */
     default BoundedValue.Mutable<Integer> durationOnUse() {
-        return getValue(Keys.AREA_EFFECT_CLOUD_DURATION_ON_USE).get().asMutable();
+        return this.getValue(Keys.AREA_EFFECT_CLOUD_DURATION_ON_USE).get().asMutable();
     }
 
     /**
-     * Gets the bounded {@code applicationDelay} value of this cloud. What this
-     * means is the application delay between times of application on an
-     * {@link Entity}.
-     *
-     * @return The bounded re-application delay value
+     * {@link Keys#AREA_EFFECT_CLOUD_REAPPLICATION_DELAY}
      */
     default BoundedValue.Mutable<Integer> applicationDelay() {
-        return getValue(Keys.AREA_EFFECT_CLOUD_REAPPLICATION_DELAY).get().asMutable();
+        return this.getValue(Keys.AREA_EFFECT_CLOUD_REAPPLICATION_DELAY).get().asMutable();
     }
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.ListValue.Mutable} of {@link PotionEffect}s of this cloud. The
-     * potion effects will affect any {@link Entity} according to the various
-     * delays and ticks remaining of this cloud.
-     *
-     * @return The list of potion effects
+     * {@link Keys#POTION_EFFECTS}
      */
     default ListValue.Mutable<PotionEffect> effects() {
-        return getValue(Keys.POTION_EFFECTS).get().asMutable();
+        return this.getValue(Keys.POTION_EFFECTS).get().asMutable();
     }
 
     /**
-     * Gets the bounded {@code age} value of this cloud.
-     *
-     * @return The bounded age value
+     * {@link Keys#AREA_EFFECT_CLOUD_AGE}
      */
     default BoundedValue.Mutable<Integer> age() {
-        return getValue(Keys.AREA_EFFECT_CLOUD_AGE).get().asMutable();
+        return this.getValue(Keys.AREA_EFFECT_CLOUD_AGE).get().asMutable();
     }
 
 }

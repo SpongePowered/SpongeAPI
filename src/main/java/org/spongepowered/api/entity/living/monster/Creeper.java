@@ -37,8 +37,8 @@ public interface Creeper extends Monster, FusedExplosive {
     /**
      * {@link Keys#IS_CHARGED}
      *
-     * Note that "charged" creepers will likely
-     * cause larger than normal explosions.
+     * <p>Note that "charged" creepers will likely
+     * cause larger than normal explosions.</p>
      */
     default Value.Mutable<Boolean> charged() {
         return this.getValue(Keys.IS_CHARGED).get().asMutable();

@@ -32,17 +32,12 @@ import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.ItemTypes;
 
 /**
- * Represents a firework.
+ * Represents a Firework.
  */
 public interface FireworkRocket extends Projectile, FusedExplosive {
 
     /**
-     * Gets the {@link Mutable} of {@link FireworkEffect}s.
-     *
-     * <p>Note that for {@link ItemTypes#FIRE_CHARGE} only the first effect
-     * will apply to the charge.</p>
-     *
-     * @return The list value of firework effects
+     * {@link Keys#FIREWORK_EFFECTS}
      */
     default ListValue.Mutable<FireworkEffect> effects() {
         return this.getValue(Keys.FIREWORK_EFFECTS).get().asMutable();

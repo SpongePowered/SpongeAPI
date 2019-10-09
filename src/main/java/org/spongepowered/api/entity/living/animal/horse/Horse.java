@@ -35,18 +35,14 @@ import org.spongepowered.api.data.value.Value;
 public interface Horse extends TameableHorse {
 
     /**
-     * Gets the style of the horse.
-     *
-     * @return The value of the horse's style
+     * {@link Keys#HORSE_STYLE}
      */
     default Value.Mutable<HorseStyle> style() {
         return this.getValue(Keys.HORSE_STYLE).get().asMutable();
     }
 
     /**
-     * Gets the color of the horse.
-     *
-     * @return The value of the horse's color
+     * {@link Keys#HORSE_COLOR}
      */
     default Value.Mutable<HorseColor> color() {
         return this.getValue(Keys.HORSE_COLOR).get().asMutable();

@@ -35,13 +35,13 @@ public interface ZombieVillager extends ZombieEntity {
      * {@link Keys#VILLAGER_TYPE}
      */
     default Value.Mutable<VillagerType> type() {
-        return getValue(Keys.VILLAGER_TYPE).get().asMutable();
+        return this.getValue(Keys.VILLAGER_TYPE).get().asMutable();
     }
 
     /**
      * {@link Keys#PROFESSION}
      */
     default Value.Mutable<Profession> profession() {
-        return getValue(Keys.PROFESSION).get().asMutable();
+        return this.getValue(Keys.PROFESSION).get().asMutable();
     }
 }

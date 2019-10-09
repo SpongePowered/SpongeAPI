@@ -26,7 +26,6 @@ package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.OptionalValue;
-import org.spongepowered.api.data.value.Value;
 
 import java.util.UUID;
 
@@ -40,10 +39,11 @@ public interface TameableAnimal extends Animal {
     }
 
     /**
-     * // TODO api-8 - Could be tossed for a tamer check
-     * {@link Keys#IS_TAMED}
+     * Determines if this animal is tamed or not.
+     *
+     * @return True if tamed, false if not
      */
-    default Value.Mutable<Boolean> tamed() {
-        return this.getValue(Keys.IS_TAMED).get().asMutable();
+    default boolean isTamed() {
+        return this.tamer().isPresent();
     }
 }

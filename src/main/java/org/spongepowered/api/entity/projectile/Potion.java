@@ -38,7 +38,7 @@ public interface Potion extends Projectile {
      * {@link Keys#ITEM_STACK_SNAPSHOT}
      */
     default Value.Mutable<ItemStackSnapshot> item() {
-        return getValue(Keys.ITEM_STACK_SNAPSHOT).get().asMutable();
+        return this.getValue(Keys.ITEM_STACK_SNAPSHOT).get().asMutable();
     }
 
 }

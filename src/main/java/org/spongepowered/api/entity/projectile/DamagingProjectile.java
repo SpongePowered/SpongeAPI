@@ -38,21 +38,14 @@ public interface DamagingProjectile extends Projectile {
      * {@link Keys#ATTACK_DAMAGE}
      */
     default BoundedValue.Mutable<Double> attackDamage() {
-        return getValue(Keys.ATTACK_DAMAGE).get().asMutable();
+        return this.getValue(Keys.ATTACK_DAMAGE).get().asMutable();
     }
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.MapValue.Mutable} for representing the custom damage values to
-     * use if the owner strikes an entity of that type.
-     *
-     * <p>Note that in events, the damage defined for the provided
-     * {@link EntityType} will take priority over the "default" damage as
-     * defined from {@link DamagingProjectile#attackDamage()}.</p>
-     *
-     * @return The immutable map value for the entity damage values
+     * {@link Keys#CUSTOM_ATTACK_DAMAGE}
      */
-    default MapValue.Mutable<EntityType<?>, Double> damageForEntity() {
-        return getValue(Keys.DAMAGE_ENTITY_MAP).get().asMutable();
+    default MapValue.Mutable<EntityType<?>, Double> customAttackDamage() {
+        return this.getValue(Keys.CUSTOM_ATTACK_DAMAGE).get().asMutable();
     }
 
 }

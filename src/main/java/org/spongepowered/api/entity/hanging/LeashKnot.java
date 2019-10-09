@@ -35,12 +35,6 @@ public interface LeashKnot extends Hanging {
 
     /**
      * {@link Keys#LEASHED_ENTITY}
-     *
-     * <p>Usually, a {@link LeashKnot} will always exist so long as there is
-     * a leashed {@link Entity} attached. If the leash is broken, the leash
-     * hitch is removed.</p>
-     *
-     * @return The currently leashed entity
      */
     default Value.Immutable<Entity> leashedEntity() {
         return this.getValue(Keys.LEASHED_ENTITY).get().asImmutable();
