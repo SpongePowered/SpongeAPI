@@ -757,6 +757,29 @@ public final class Keys {
     public static final Key<Value<Text>> DISPLAY_NAME = DummyObjectProvider.createExtendedFor(Key.class, "DISPLAY_NAME");
 
     /**
+     * Represents the {@link Key} for representing the "got fish" state of a {@link Dolphin}.
+     *
+     * <p>
+     *     Dolphins will navigate to a treasure (if a structure that provides one is nearby)
+     *     if they have been given a fish.
+     * </p>
+     */
+    public static final Key<Value<Boolean>> DOLPHIN_DOES_GOT_FISH = DummyObjectProvider.createExtendedFor(Key.class, "DOLPHIN_DOES_GOT_FISH");
+
+    /**
+     * Represents the {@link Key} for representing the "moisture" state of a {@link Dolphin}.
+     *
+     * <p>
+     *     Vanilla sets the dolphin's skin moisture to 2400 so long as the entity
+     *     is in water, being rained on, or in a bubble column. If not, the dolphin
+     *     will loose 1 moisture per tick. Once this value is 0 or below, the dolphin
+     *     will be damaged via {@link DamageSources#DRYOUT} with a value of 1 per tick
+     *     until death.
+     * </p>
+     */
+    public static final Key<Value<Integer>> DOLPHIN_SKIN_MOISTURE = DummyObjectProvider.createExtendedFor(Key.class, "DOLPHIN_SKIN_MOISTURE");
+
+    /**
      * Represents the {@link Key} for representing the dominant {@link HandPreference}
      * of a {@link Living} entity.
      *
@@ -992,16 +1015,6 @@ public final class Keys {
      * glowing outline.
      */
     public static final Key<Value<Boolean>> GLOWING = DummyObjectProvider.createExtendedFor(Key.class, "GLOWING");
-
-    /**
-     * Represents the {@link Key} for representing the "got fish" state of a {@link Dolphin}.
-     *
-     * <p>
-     *     Dolphins will navigate to a treasure (if a structure that provides one is nearby)
-     *     if they have been given a fish.
-     * </p>
-     */
-    public static final Key<Value<Boolean>> DOLPHIN_DOES_GOT_FISH = DummyObjectProvider.createExtendedFor(Key.class, "GOT_FISH");
 
     /**
      * Represents the {@link Key} for representing the "growth stage" state
@@ -1873,19 +1886,6 @@ public final class Keys {
      * customized skins are not possible.</p>
      */
     public static final Key<Value<ProfileProperty>> SKIN = DummyObjectProvider.createExtendedFor(Key.class, "SKIN");
-
-    /**
-     * Represents the {@link Key} for representing the "moisture" state of a {@link Dolphin}.
-     *
-     * <p>
-     *     Vanilla sets the dolphin's skin moisture to 2400 so long as the entity
-     *     is in water, being rained on, or in a bubble column. If not, the dolphin
-     *     will loose 1 moisture per tick. Once this value is 0 or below, the dolphin
-     *     will be damaged via {@link DamageSources#DRYOUT} with a value of 1 per tick
-     *     until death.
-     * </p>
-     */
-    public static final Key<Value<Integer>> DOLPHIN_SKIN_MOISTURE = DummyObjectProvider.createExtendedFor(Key.class, "SKIN_MOISTURE");
 
     /**
      * Represents the {@link Key} for representing the {@link SlabPortion}
