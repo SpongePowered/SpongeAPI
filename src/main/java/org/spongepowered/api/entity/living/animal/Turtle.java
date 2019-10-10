@@ -28,6 +28,9 @@ import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.math.vector.Vector3i;
 
+/**
+ * Represents a Turtle
+ */
 public interface Turtle extends Animal {
 
     /**

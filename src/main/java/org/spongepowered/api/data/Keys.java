@@ -1001,7 +1001,7 @@ public final class Keys {
      *     if they have been given a fish.
      * </p>
      */
-    public static final Key<Value<Boolean>> GOT_FISH = DummyObjectProvider.createExtendedFor(Key.class, "GOT_FISH");
+    public static final Key<Value<Boolean>> DOLPHIN_DOES_GOT_FISH = DummyObjectProvider.createExtendedFor(Key.class, "GOT_FISH");
 
     /**
      * Represents the {@link Key} for representing the "growth stage" state
@@ -1885,7 +1885,7 @@ public final class Keys {
      *     until death.
      * </p>
      */
-    public static final Key<Value<Integer>> SKIN_MOISTURE = DummyObjectProvider.createExtendedFor(Key.class, "SKIN_MOISTURE");
+    public static final Key<Value<Integer>> DOLPHIN_SKIN_MOISTURE = DummyObjectProvider.createExtendedFor(Key.class, "SKIN_MOISTURE");
 
     /**
      * Represents the {@link Key} for representing the {@link SlabPortion}
