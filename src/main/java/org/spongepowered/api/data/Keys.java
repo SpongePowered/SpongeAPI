@@ -118,6 +118,7 @@ import org.spongepowered.api.entity.living.animal.PolarBear;
 import org.spongepowered.api.entity.living.animal.Rabbit;
 import org.spongepowered.api.entity.living.animal.Sheep;
 import org.spongepowered.api.entity.living.animal.TameableAnimal;
+import org.spongepowered.api.entity.living.animal.Turtle;
 import org.spongepowered.api.entity.living.animal.Wolf;
 import org.spongepowered.api.entity.living.animal.cow.Mooshroom;
 import org.spongepowered.api.entity.living.animal.horse.Horse;
@@ -2127,6 +2128,36 @@ public final class Keys {
     public static final Key<ListValue<TradeOffer>> TRADE_OFFERS = DummyObjectProvider.createExtendedFor(Key.class, "TRADE_OFFERS");
 
     /**
+     * Represents the {@link Key} for if a {@link Turtle} currently has an egg.
+     */
+    public static final Key<Value<Boolean>> TURTLE_DOES_HAVE_EGG = DummyObjectProvider.createExtendedFor(Key.class, "TURTLE_DOES_HAS_EGG");
+
+    /**
+     * Represents the {@link Key} for the {@link Vector3i position} where a {@link Turtle} lays {@link BlockTypes#TURTLE_EGG eggs}.
+     */
+    public static final Key<Value<Vector3i>> TURTLE_HOME_POSITION = DummyObjectProvider.createExtendedFor(Key.class, "TURTLE_HOME_POSITION");
+
+    /**
+     * Represents the {@link Key} for the if a {@link Turtle} is proceeding to it's {@link Vector3i home position}.
+     */
+    public static final Key<Value<Boolean>> TURTLE_IS_GOING_HOME = DummyObjectProvider.createExtendedFor(Key.class, "TURTLE_IS_GOING_HOME");
+
+    /**
+     * Represents the {@link Key} for if a {@link Turtle} is currently laying an egg.
+     */
+    public static final Key<Value<Boolean>> TURTLE_IS_LAYING_EGG = DummyObjectProvider.createExtendedFor(Key.class, "TURTLE_IS_LAYING_EGG");
+
+    /**
+     * Represents the {@link Key} for if a {@link Turtle} is currently traveling.
+     */
+    public static final Key<Value<Boolean>> TURTLE_IS_TRAVELING = DummyObjectProvider.createExtendedFor(Key.class, "TURTLE_IS_TRAVELING");
+
+    /**
+     * Represents the {@link Key} for the {@link Vector3i position} where a {@link Turtle} travels to when it is not currently laying an egg.
+     */
+    public static final Key<Value<Vector3i>> TURTLE_TRAVELING_POSITION = DummyObjectProvider.createExtendedFor(Key.class, "TURTLE_TRAVELING_POSITION");
+
+    /**
      * Represents the {@link Key} for whether an {@link ItemStack} is unbreakable.
      *
      * <p>Setting this to {@code  true} will prevent the item stack's
@@ -2247,8 +2278,7 @@ public final class Keys {
     public static final Key<OptionalValue<Sheep>> WOLOLO_TARGET = DummyObjectProvider.createExtendedFor(Key.class, "WOLOLO_TARGET");
 
     /**
-     * Represents the {@link Key} for representing the {@link WoodType}.
-     * of a {@link Boat}.
+     * Represents the {@link Key} for the {@link WoodType} of a {@link Boat}.
      */
     public static final Key<Value<WoodType>> WOOD_TYPE = DummyObjectProvider.createExtendedFor(Key.class, "WOOD_TYPE");
 

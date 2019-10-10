@@ -24,5 +24,51 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.math.vector.Vector3i;
+
 public interface Turtle extends Animal {
+
+    /**
+     * {@link Keys#TURTLE_HOME_POSITION}
+     */
+    default Value.Mutable<Vector3i> homePosition() {
+        return this.getValue(Keys.TURTLE_HOME_POSITION).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#TURTLE_DOES_HAVE_EGG}
+     */
+    default Value.Mutable<Boolean> hasEgg() {
+        return this.getValue(Keys.TURTLE_DOES_HAVE_EGG).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#TURTLE_IS_LAYING_EGG}
+     */
+    default Value.Mutable<Boolean> layingEgg() {
+        return this.getValue(Keys.TURTLE_IS_LAYING_EGG).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#TURTLE_TRAVELING_POSITION}
+     */
+    default Value.Mutable<Vector3i> travelingPosition() {
+        return this.getValue(Keys.TURTLE_TRAVELING_POSITION).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#TURTLE_IS_GOING_HOME}
+     */
+    default Value.Mutable<Boolean> goingHome() {
+        return this.getValue(Keys.TURTLE_IS_GOING_HOME).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#TURTLE_IS_TRAVELING}
+     */
+    default Value.Mutable<Boolean> traveling() {
+        return this.getValue(Keys.TURTLE_IS_TRAVELING).get().asMutable();
+    }
 }
