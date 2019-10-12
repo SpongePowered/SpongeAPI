@@ -8,7 +8,7 @@ pipeline {
             }
             steps {
                 sh './gradlew -PspongeUsername=$MAVEN_USR -PspongePassword=$MAVEN_PSW ' +
-                        'clean build :uploadArchives --refresh-dependencies'
+                        'clean build :publish --refresh-dependencies'
             }
         }
     }
