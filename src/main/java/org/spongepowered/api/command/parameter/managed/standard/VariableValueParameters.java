@@ -104,8 +104,8 @@ public class VariableValueParameters {
     }
 
     /**
-     * Creates a builder that builds a {@link ValueParameter} that tries to
-     * match an argument with a value from a specified enum case-insensitively.
+     * Creates a {@link ValueParameter} that tries to match an argument with a
+     * value from a specified enum case-insensitively.
      *
      * @param enumClass The {@link Enum} class type that this will represent
      * @param <T> The {@link Enum} class type
