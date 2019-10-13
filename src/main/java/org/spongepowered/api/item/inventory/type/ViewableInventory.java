@@ -38,12 +38,27 @@ import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.math.vector.Vector2i;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 /**
  * Interface for inventories which may be interacted with by Players.
  */
 public interface ViewableInventory extends Inventory {
+
+    /**
+     * Gets the current viewers looking at this Inventory.
+     *
+     * @return The current viewers of this inventory
+     */
+    Set<Player> getViewers();
+
+    /**
+     * Checks for whether this Inventory currently has viewers.
+     *
+     * @return True if viewers are currently looking at this inventory
+     */
+    boolean hasViewers();
 
     /**
      * Gets whether the specified player can interact with this object.

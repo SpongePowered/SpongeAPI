@@ -28,6 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.property.Property;
 import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.data.property.PropertyMatcher;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.query.QueryOperation;
 import org.spongepowered.api.item.inventory.query.QueryOperationTypes;
@@ -49,7 +50,7 @@ public interface Inventory extends Nameable.Translatable, PropertyHolder {
     /**
      * Creates a new {@link Inventory.Builder} to build a basic {@link Inventory}.
      * <p>Inventories created by this builder cannot be opened.</p>
-     * <p>If you want to show the inventory to a Client use {@link ViewableInventory#builder()}</p>
+     * <p>If you want to show the inventory to a {@link Player} use {@link ViewableInventory#builder()}</p>
      *
      * @return The builder
      */
@@ -60,8 +61,7 @@ public interface Inventory extends Nameable.Translatable, PropertyHolder {
     /**
      * Gets the parent {@link Inventory} of this {@link Inventory}.
      *
-     * @return the parent inventory, returns this inventory if there is no
-     *      parent (this is a top-level inventory)
+     * @return the parent inventory, returns this inventory if there is no parent (this is a top-level inventory)
      */
     Inventory parent();
 
@@ -69,8 +69,7 @@ public interface Inventory extends Nameable.Translatable, PropertyHolder {
      * Gets the root {@link Inventory} of this {@link Inventory}.
      * This is equivalent to calling {@link #parent()} until it returns itself.
      *
-     * @return the root inventory, returns this inventory if there is no
-     *       parent (this is a top-level inventory)
+     * @return the root inventory, returns this inventory if there is no parent (this is a top-level inventory)
      */
     Inventory root();
 
@@ -89,35 +88,35 @@ public interface Inventory extends Nameable.Translatable, PropertyHolder {
     List<Inventory> children();
 
     /**
-     * Gets and remove the first non empty stack from this Inventory.
+     * Returns true if this Inventory contains children.
      *
-     * <p>If this inventory is empty {@link ItemStack#empty()} is returned</p>
-     *
-     * @return The first available item stack, or {@link ItemStack#empty()} if unavailable
+     * @return true if this inventory contains child inventories
      */
-    ItemStack poll();
+    boolean hasChildren();
 
     /**
-     * Get and remove up to <code>limit</code> items of the type in the first
+     * Gets and removes the first non empty stack from this Inventory.
+     *
+     * @return A SUCCESS transaction-result if an item was removed.
+     *           FAILURE when nothing was removed.
+     */
+    InventoryTransactionResult.Poll poll();
+
+    /**
+     * Gets and removes up to {@code limit} items of the type in the first
      * non empty stack in this Inventory from all stacks in this Inventory.
      *
-     * <p>If this inventory is empty {@link ItemStack#empty()} is returned
-     * otherwise otherwise a new {@link ItemStack} is returned containing
-     * the removed items.</p>
+     * <p>Note that this method attempts to consume items up to {@code limit},
+     * which may consume items from an arbitrary number of slots.</p>
      *
-     * <p>Note that this method attempts to consume items into the output up
-     * to <code>limit</code>, which may consume items from an arbitrary number
-     * of internal slots.</p>
-     *
-     * <p>For example, assume an inventory containing 4 slots contains stacks as
-     * follows:</p>
+     * <p>For example, assume an inventory containing 4 slots contains stacks as follows:</p>
      *
      * <blockquote>
      *     <pre>[Stone x10] [Dirt x3] [Arrows x9] [Stone x32]</pre>
      * </blockquote>
      *
-     * <p>Calling <code>poll(16)</code> on this inventory will consume <em>Stone
-     * </em> from the Inventory (because the first stack contains stone), and
+     * <p>Calling <code>poll(16)</code> on this inventory will consume <em>Stone</em>
+     * from the Inventory (because the first stack contains stone), and
      * will then consume the remaining 6 items from the 4th slot.</p>
      *
      * <p>It is intended that this method is used in conjunction with a query
@@ -128,55 +127,33 @@ public interface Inventory extends Nameable.Translatable, PropertyHolder {
      *     </pre>
      * </blockquote>
      *
-     * @param limit Maximum number of items to consume from the inventory
-     * @return Matching {@link ItemStack} guaranteed to have items less than or
-     *      equal to the specified <em>limit</em>.
+     * @param limit Maximum quantity of items to consume from the inventory
+     *
+     * @return A SUCCESS transaction-result only if all {@code limit} items were removed else FAILURE.
      */
-    ItemStack poll(int limit);
+    InventoryTransactionResult.Poll poll(int limit);
 
     /**
-     * Gets without removing the first non empty stack from this Inventory.
+     * Returns a copy of the first non empty stack from this Inventory.
      *
-     * @return First non empty itemstack, or {@link ItemStack#empty()} if unavailable
+     * @return First non empty ItemStack, or {@link ItemStack#empty()} if unavailable
      */
     ItemStack peek();
 
     /**
-     * Gets without removing up to <code>limit</code> items of the type in the first
-     * non empty stack in this Inventory from all stacks in this Inventory.
+     * Adds one or more ItemStacks to this inventory.
      *
-     * @see #peek
-     * @param limit Maximum number of items to consume from the inventory
-     * @return Matching {@link ItemStack} guaranteed to have items less than or
-     *      equal to the specified <em>limit</em>.
+     * @param stacks The stacks to add to this inventory.
+     *
+     * @return A SUCCESS transaction-result if all stacks were added and
+     *           FAILURE when at least one stack was not or only partially added to the inventory.
      */
-    ItemStack peek(int limit);
-
-    /**
-     * Try to put an ItemStack into this Inventory. The {@link InventoryTransactionResult}
-     * will be a success only when the entire itemstack fits the inventory.
-     *
-     * <p>The size of the supplied stack is reduced by the number of items
-     * successfully consumed by the inventory.</p>
-     *
-     * <p>Any rejected items are also available in the transaction result.</p>
-     *
-     * <p>Unlike {@link #set}, this method's general contract does not permit
-     * items in the Inventory to be replaced.</p>
-     *
-     * @param stack A stack of items to attempt to insert into the Inventory,
-     *      note that upon successful insertion the supplied ItemStack itself
-     *      will be reduced by the number of items successfully consumed by the
-     *      Inventory
-     * @return A SUCCESS transactionresult if the entire stack was consumed and
-     *      FAILURE when the stack was not or partially consumed.
-     */
-    InventoryTransactionResult offer(ItemStack stack);
+    InventoryTransactionResult offer(ItemStack... stacks);
 
     /**
      * Returns true if the entire stack can fit in this inventory.
      *
-     * <p>If this returns {@code true} {@link #offer(ItemStack)} should always succeed.</p>
+     * <p>If this returns {@code true} {@link #offer(ItemStack...)} should always succeed.</p>
      *
      * @param stack The stack of items to check if it can fit in this inventory.
      *
@@ -185,113 +162,71 @@ public interface Inventory extends Nameable.Translatable, PropertyHolder {
     boolean canFit(ItemStack stack);
 
     /**
-     * Forcibly put the supplied stack into this inventory. Overwrites existing
-     * objects in the inventory as required to accommodate the entire stack.
-     *
-     * <p>The general contract of this method is to prioritise insertion of the
-     * supplied items over items already in the Inventory. However the Inventory
-     * may still reject the supplied items for example if the number of items is
-     * larger than the total capacity of the inventory and not all items from the
-     * supplied stack can be consumed.</p>
-     *
-     * <p>The size of the supplied stack is reduced by the number of items
-     * successfully consumed by the inventory.</p>
-     *
-     * <p>Any rejected items are also available in the transaction result.</p>
-     *
-     * @param stack The stack to insert into the Inventory, will be reduced by
-     *      the number of items successfully consumed
-     * @return A SUCCESS transaction-result if the entire stack was consumed and
-     *      FAILURE when the stack was not or partially consumed.
-     */
-    InventoryTransactionResult set(ItemStack stack);
-
-    /**
-     * Gets and remove the stack at the supplied index in this Inventory.
-     *
-     * <p>Returns {@link Optional#empty()} when there is no Slot at given index</p>
+     * Gets and removes the stack at the supplied index in this Inventory.
      *
      * @see Inventory#poll()
-     * @param index slot index to query
-     * @return matching stacks, as per the semantics of {@link Inventory#poll()}
+     *
+     * @param index The slot index
+     *
+     * @return SUCCESS transaction-result if an item was removed.
+     *         FAILURE when nothing was removed.
      */
-    Optional<ItemStack> pollFrom(int index);
+    InventoryTransactionResult.Poll pollFrom(int index);
 
     /**
-     * Gets and remove the stack at the supplied index in this Inventory.
-     *
-     * <p>Returns {@link Optional#empty()} when there is no Slot at given index</p>
+     * Gets and removes the stack at the supplied index in this Inventory.
      *
      * @see Inventory#poll()
-     * @param index slot index to query
-     * @param limit item limit
-     * @return matching stacks, as per the semantics of {@link Inventory#poll()}
+     *
+     * @param index The slot index
+     * @param limit The item limit
+     *
+     * @return A SUCCESS transaction-result only if all {@code limit} items were removed else FAILURE.
      */
-    Optional<ItemStack> pollFrom(int index, int limit);
+    InventoryTransactionResult.Poll pollFrom(int index, int limit);
 
     /**
-     * Gets without removing the stack at the supplied index in this Inventory.
+     * Returns a copy of the stack at given slot index.
      *
      * <p>Returns {@link Optional#empty()} when there is no Slot at given index</p>
      *
-     * @see Inventory#peek()
-     * @param index slot index to query
-     * @return matching stacks, as per the semantics of {@link Inventory#peek()}
+     * @param index The slot index
+     *
+     * @return a copy of the stack at given slot index. {@link Optional#empty()} if there is no matching slot.
      */
     Optional<ItemStack> peekAt(int index);
 
     /**
-     * Gets without removing the stack at the supplied index in this Inventory.
+     * Adds an ItemStack to the slot at given index.
+     * Returns a {@link InventoryTransactionResult.Type#SUCCESS} only if the entire {@link ItemStack} fits the slot.
      *
-     * <p>Returns {@link Optional#empty()} when there is no Slot at given index</p>
+     * @param index The slot index
+     * @param stack The stack to add to this inventory.
      *
-     * @see Inventory#peek()
-     * @param index slot index to query
-     * @param limit item limit
-     * @return matching stacks, as per the semantics of {@link Inventory#peek()}
-     */
-    Optional<ItemStack> peekAt(int index, int limit);
-
-    /**
-     * Try to put an ItemStack into this Inventory at the supplied index.
-     * The {@link InventoryTransactionResult} will be a success only when
-     * the entire itemstack fits the slot.
-     *
-     * <p>The size of the supplied stack is reduced by the number of items
-     * successfully consumed by the inventory.</p>
-     *
-     * <p>Any rejected items are also available in the transaction result.</p>
-     *
-     * <p>Unlike {@link #set}, this method's general contract does not permit
-     * items in the Inventory to be replaced.</p>
-     *
-     * @param stack A stack of items to attempt to insert into the Slot,
-     *      note that upon successful insertion the supplied ItemStack itself
-     *      will be reduced by the number of items successfully consumed by the
-     *      Inventory
-     * @return A SUCCESS transactionresult if the entire stack was consumed and
-     *      FAILURE when the stack was not or partially consumed or no Slot exists
-     *      at given index.
+     * @return A SUCCESS transaction-result if the entire stack was added and
+     *           FAILURE when the stack was not or only partially added to the inventory.
      */
     InventoryTransactionResult offer(int index, ItemStack stack);
 
     /**
-     * Sets the item in the specified slot.
+     * Adds the ItemStack to the slot at given index overwriting the existing item.
      *
      * <p>Always returns a {@link org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult.Type#FAILURE} when
      * there is no Slot at given index</p>
+     * <p>Stacks bigger than the max stack size will be partially rejected.</p>
      *
-     * @see Inventory#set(ItemStack)
-     * @param index Slot index to set
-     * @param stack Stack to insert
-     * @return matching stacks, as per the semantics of {@link Inventory#set}
+     * @param index The slot index
+     * @param stack The stack to add to the slot.
+     *
+     * @return A SUCCESS transaction-result if the entire stack was added and
+     *           FAILURE when the stack was not or only partially added to the inventory.
      */
     InventoryTransactionResult set(int index, ItemStack stack);
 
     /**
-     * Gets the {@link Slot} at the specified position.
+     * Gets the {@link Slot} at the given index.
      *
-     * @param index Slot index to retrieve
+     * @param index The slot index
      * @return slot at the specified position, or {@link Optional#empty()} if no matching slot
      */
     Optional<Slot> getSlot(int index);
@@ -302,94 +237,68 @@ public interface Inventory extends Nameable.Translatable, PropertyHolder {
     void clear();
 
     /**
-     * The number of non-empty slots in the Inventory. Either 1 or 0 for
-     * {@link Slot}s and always 0 for {@link EmptyInventory}s.
+     * The number of empty slots in this inventory. Either 1 or 0 for {@link Slot}s and always 0 for {@link EmptyInventory}s.
      *
-     * @return the number non-empty in the inventory
+     * @return the number of empty slots in this inventory
      */
-    int size();
+    int freeCapacity();
 
     /**
-     * Returns the number total number of individual <em>items</em> in this
-     * inventory.
-     * <p>This equivalent to counting up the stack sizes of all slots.</p>
+     * Returns the total quantity of <em>items</em> in this inventory.
+     * <p>This equivalent to summing {@link ItemStack#getQuantity()} for all slots.</p>
      *
-     * @return the total number of items in the inventory
+     * @return the total quantity of items in this inventory
      */
-    int totalItems();
+    int totalQuantity();
 
     /**
-     * The maximum number of stacks the Inventory can hold. Always 1 for
-     * {@link Slot}s and always 0 for {@link EmptyInventory}s.
+     * The number of slots in this inventory. Always 1 for {@link Slot}s and always 0 for {@link EmptyInventory}s.
      *
-     * @return the number of stacks the inventory can hold
+     * @return the number of slots in this inventory
      */
     int capacity();
 
     /**
-     * Returns true if this Inventory contains children. If false, this does not
-     * imply that the Inventory accepts no items, and an Inventory is perfectly
-     * at liberty to provide {@link #peek}, {@link #poll}, {@link #offer} and
-     * {@link #set} semantics even if it has no internal storage of its own.
-     *
-     * @return true if and only if this inventory contains child inventories
-     */
-    boolean hasChildren();
-
-    /**
-     * Checks whether the stacks quantity or more of given stack is
-     * contained in this Inventory. This is equivalent to calling
-     * <code>!inv.query(stack).hasChildren();</code> To check if an
-     * inventory contains any amount use {@link #containsAny(ItemStack)}.
+     * Checks whether the stacks quantity or more of given stack is contained in this Inventory.
+     * To check if an inventory contains any amount use {@link #containsAny(ItemStack)}.
      *
      * @param stack The stack to check for
-     * @return True if there are at least the given stack's amount of items
-     *      present in this inventory.
+     *
+     * @return True if there are at least the given stack's amount of items present in this inventory.
      */
     boolean contains(ItemStack stack);
 
     /**
-     * Checks for whether there is a stack in this Inventory with the given
-     * ItemType. This is equivalent to calling <code>!inv.query(stack)
-     * .hasChildren();</code>
+     * Checks whether the given ItemType is contained in this Inventory
      *
      * @param type The type to search for
+     *
      * @return True if at least one stack in this list has the given type
      */
     boolean contains(ItemType type);
 
     /**
      * Checks whether the given stack is contained in this Inventory.
-     * The stack size is ignored. Note this will return true if any amount
-     * of the supplied stack is found. To check if an inventory contains at
-     * least an amount use {@link #contains(ItemStack)}.
+     * The stack size is ignored.
+     *
+     * <p>Note this will return true if any amount of the supplied stack is found.
+     * To check if an inventory contains at least a given quantity use {@link #contains(ItemStack)}.</p>
      *
      * @param stack The stack to check for
+     *
      * @return True if the stack is present in this inventory
      */
     boolean containsAny(ItemStack stack);
 
+    // TODO remove from API? do we need to get a property relative to another parent in API?
     /**
-     * Returns the maximum size of any stack in this Inventory.
-     *
-     * @return The maximum stack size of this list
-     */
-    int getMaxStackSize();
-
-    /**
-     * Sets the maximum stack size of any stack in this ItemList.
-     *
-     * @param size The new maximum stack size
-     */
-    void setMaxStackSize(int size);
-
-    /**
-     * Gets the property with the default key defined in <em>this</em>
+     * Gets the property defined in <em>this</em>
      * inventory for the specified (immediate) sub-inventory.
      *
      * @param child The child inventory to inspect
      * @param property The property to retrieve the value for
      * @param <V> The property value type
+     *
      * @return The property value, if available
      */
     <V> Optional<V> getProperty(Inventory child, Property<V> property);
@@ -397,12 +306,13 @@ public interface Inventory extends Nameable.Translatable, PropertyHolder {
     /**
      * Gets a property defined directly on this Inventory if one is defined.
      * For sub-inventories this is effectively the same as
-     * <code>inv.getParent().getProperty(inv, property);</code> but for
+     * {@code inv.getParent().getProperty(inv, property);} but for
      * top-level inventories may include properties defined on the inventory
      * directly.
      *
      * @param property The property to retrieve the value for
      * @param <V> The property value type
+     *
      * @return The property value, if available
      */
     @Override
@@ -440,20 +350,13 @@ public interface Inventory extends Nameable.Translatable, PropertyHolder {
     <T extends Inventory> Optional<T> query(Class<T> inventoryType);
 
     /**
-     * Returns the {@link PluginContainer} who built this inventory.
-     *
-     * @return The container
-     */
-    PluginContainer getPlugin();
-
-    /**
      * Intersects the slots of both inventories.
      * The resulting inventory will only contain slots
      * that are present in both inventories.
      *
      * @param inventory the other inventory
-     * @return an inventory wrapping all slots that are present in
-     *     both inventories
+     *
+     * @return an inventory wrapping all slots that are present in both inventories
      */
     Inventory intersect(Inventory inventory);
 
@@ -470,10 +373,12 @@ public interface Inventory extends Nameable.Translatable, PropertyHolder {
      * in the second one is removed.</p>
      *
      * @param inventory the other inventory
+     *
      * @return an inventory wrapping all slots of both inventories.
      */
     Inventory union(Inventory inventory);
 
+    // TODO does this actually work? When lenses are reused they cannot be used for this
     /**
      * Returns true if the given inventory is a descendant of this one.
      * This method will check for deeply nested inventories but
@@ -488,6 +393,7 @@ public interface Inventory extends Nameable.Translatable, PropertyHolder {
      * </p>
      *
      * @param inventory the other inventory
+     *
      * @return whether the given inventory is contained in this one.
      */
     boolean containsInventory(Inventory inventory);
@@ -503,6 +409,15 @@ public interface Inventory extends Nameable.Translatable, PropertyHolder {
     }
 
     /**
+     * Returns true if the given inventory is a direct child of this one.
+     *
+     * @param child the child inventory to check for.
+     *
+     * @return whether the given inventory is a direct child of this one.
+     */
+    boolean containsChild(Inventory child);
+
+    /**
      * Returns this inventory as a viewable inventory if possible.
      *
      * <p>Not all inventories are viewable (e.g. a custom inventory of size 5x5)</p>
@@ -513,6 +428,7 @@ public interface Inventory extends Nameable.Translatable, PropertyHolder {
 
     /**
      * A builder for free-form Inventories.
+     * <p>To build inventories that can be viewed by a player use {@link ViewableInventory.Builder}</p>
      */
     interface Builder extends ResettableBuilder<Inventory, Inventory.Builder> {
 
