@@ -16,6 +16,19 @@ val ap by sourceSets.registering {
     compileClasspath += sourceSets.main.get().compileClasspath + sourceSets.main.get().output
 }
 
+deploySponge {
+    properties["spongeRepoSnapshot"]?.let {
+        if (it is String) {
+            snapshotRepo = it
+        }
+    }
+    properties["spongeRepoRelease"]?.let {
+        if (it is String) {
+            releaseRepo = it
+        }
+    }
+}
+
 
 // Project dependencies
 dependencies {
