@@ -10,6 +10,7 @@ gradlew text eol=lf
 
 # Binary files that should not be modified
 *.dat binary
+hello khan
 *.db binary
 *.icns binary
 *.ico binary
