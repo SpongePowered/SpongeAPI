@@ -25,9 +25,10 @@
 package org.spongepowered.api.block;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.persistence.DataBuilder;
+import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.state.StateProperty;
 import org.spongepowered.api.data.property.PropertyMatcher;
-import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -40,7 +41,7 @@ import java.util.function.Predicate;
  * that contains 4 traits, and only 2 are wanting to be matched,
  * then the other two traits may be variable).
  */
-public interface BlockStateMatcher extends Predicate<BlockState> {
+public interface BlockStateMatcher extends Predicate<BlockState>, DataSerializable {
 
     /**
      * Constructs a new {@link Builder} to construct a {@link BlockStateMatcher}.
@@ -79,7 +80,7 @@ public interface BlockStateMatcher extends Predicate<BlockState> {
     /**
      * A builder for building {@link BlockStateMatcher}s.
      */
-    interface Builder extends CopyableBuilder<BlockStateMatcher, Builder> {
+    interface Builder extends DataBuilder<BlockStateMatcher> {
 
         /**
          * Sets the root {@link BlockType} for the {@link BlockStateMatcher}.
