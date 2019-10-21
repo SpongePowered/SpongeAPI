@@ -194,6 +194,25 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
     }
 
     /**
+     * Builds a compact {@link Text} from a given array of objects.
+     *
+     * <p>Like the normal {@link #of(Object...)} method, but will try to
+     * compact the passed in text objects if possible. No guarantees are given
+     * regarding the structure of the {@link Text}, only that it will
+     * display the same.</p>
+     *
+     * <p>The result of this might be, but does not need to be equivalent to
+     * {@code Text.of(arrayOfObjects).compact()}.</p>
+     *
+     * @see #of(Object...) For more information on the normal of factory.
+     * @param objects The object array
+     * @return The built compact text object
+     */
+    static Text ofCompact(Object... objects) {
+        return Sponge.getRegistry().requireFactory(Factory.class).ofCompact(objects);
+    }
+
+    /**
      * Creates a {@link Text.Builder} with empty text.
      *
      * @return A new text builder with empty text
@@ -597,6 +616,17 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
      */
     Text replace(String oldValue, Text newValue);
 
+    /**
+     * Removes unneeded children from this {@link Text} and it's children
+     * while keeping the appearance the same.
+     *
+     * <p>No guarantees are given regarding the structure of the {@link Text},
+     * only that it will display the same.</p>
+     *
+     * @return Text result
+     */
+    Text compact();
+
     @Override
     default Text toText() {
         return this;
@@ -728,6 +758,18 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
          * @see Text#getChildren()
          */
         List<Text> getChildren();
+
+		/**
+		 * Gets if this builder should try to compact when appending text.
+		 *
+		 * @return If this builder will compact when appended text
+		 */
+		boolean shouldCompact();
+
+		/**
+		 * Sets if this builder should compact when appending text.
+		 */
+		Builder setCompact(boolean compact);
 
         /**
          * Appends the specified {@link Text} to the end of this text.
@@ -894,6 +936,8 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
 
     interface Factory {
         Text of(Object... objects);
+
+        Text ofCompact(Object... objects);
 
         Text joinWith(Text separator, Text... texts);
 
