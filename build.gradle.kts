@@ -93,6 +93,7 @@ tasks {
         exclude("org/spongepowered/api/event/cause/")
         exclude("org/spongepowered/api/event/filter/")
         exclude("org/spongepowered/api/event/impl/")
+        inclusiveAnnotations = setOf("org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod")
     }
 
     jar {
