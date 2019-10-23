@@ -27,6 +27,7 @@ package org.spongepowered.api.state;
 import com.google.common.collect.ImmutableList;
 
 import java.util.Collection;
+import java.util.Optional;
 
 public interface StateContainer<S extends State<S>> {
 
@@ -35,5 +36,15 @@ public interface StateContainer<S extends State<S>> {
     S getDefaultState();
 
     Collection<StateProperty<?>> getStateProperties();
+
+    /**
+     * Attempts to retrieve the {@link StateProperty} instance associated with
+     * this {@link StateContainer} by string id. If there is no
+     * {@link StateProperty} available, {@link Optional#empty()} is returned.
+     *
+     * @param statePropertyId The state property id
+     * @return The state property, if available
+     */
+    Optional<StateProperty<?>> getStatePropertyByName(String statePropertyId);
 
 }

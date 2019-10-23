@@ -26,10 +26,9 @@ package org.spongepowered.api.block;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.entity.BlockEntity;
-import org.spongepowered.api.state.StateContainer;
-import org.spongepowered.api.state.StateProperty;
 import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.state.StateContainer;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -76,13 +75,4 @@ public interface BlockType extends CatalogType, StateContainer<BlockState>, Tran
      */
     BlockSoundGroup getSoundGroup();
 
-    /**
-     * Attempts to retrieve the {@link StateProperty} instance associated with
-     * this {@link BlockState}s {@link BlockType} by string id. If there is no
-     * {@link StateProperty} available, {@link Optional#empty()} is returned.
-     *
-     * @param property The property id
-     * @return The property, if available
-     */
-    Optional<StateProperty<?>> getProperty(String property);
 }
