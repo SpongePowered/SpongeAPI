@@ -24,9 +24,10 @@
  */
 package org.spongepowered.api.event.cause;
 
+import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.CopyableBuilder;
+import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -40,36 +41,26 @@ public interface EventContextKey<T> extends CatalogType {
     /**
      * Creates a builder to be used for creating a new {@link EventContextKey}.
      *
-     * @param clazz The class the key will allow access to
-     * @param <T> The type of the value stored with this key
      * @return The constructed builder
      */
     @SuppressWarnings("unchecked")
-    static <T> Builder<T> builder(Class<T> clazz) {
-        return Sponge.getRegistry().createBuilder(Builder.class).type(clazz);
+    static Builder<?> builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
     /**
      * Gets the allowed type for the value of this key.
-     * 
+     *
      * @return The allowed type
      */
-    Class<T> getAllowedType();
+    TypeToken<T> getAllowedType();
 
-    interface Builder<T> extends CopyableBuilder<EventContextKey<T>, Builder<T>> {
+    interface Builder<T> extends CatalogBuilder<EventContextKey<T>, Builder<T>> {
 
-        Builder<T> type(Class<T> tClass);
+        default <N> Builder<N> type(Class<N> allowedType) {
+            return type(TypeToken.of(allowedType));
+        }
 
-        Builder<T> id(String id);
-
-        Builder<T> name(String name);
-
-        EventContextKey<T> build();
-
-        @Override
-        Builder<T> from(EventContextKey<T> value) throws UnsupportedOperationException;
-
-        @Override
-        Builder<T> reset();
+        <N> Builder<N> type(TypeToken<N> allowedType);
     }
 }
