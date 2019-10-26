@@ -28,6 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.persistence.DataBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.math.vector.Vector3i;
 
 public interface LocatableBlock extends DataHolder.Immutable<LocatableBlock>, Locatable {
@@ -57,7 +58,7 @@ public interface LocatableBlock extends DataHolder.Immutable<LocatableBlock>, Lo
         return getLocation().getBlockPosition();
     }
 
-    interface Builder extends DataBuilder<LocatableBlock> {
+    interface Builder extends CopyableBuilder<LocatableBlock, Builder>, DataBuilder<LocatableBlock> {
 
         /**
          * Sets the {@link BlockState} for this builder.

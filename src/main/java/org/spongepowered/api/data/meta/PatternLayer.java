@@ -30,6 +30,7 @@ import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.type.BannerPatternShape;
 import org.spongepowered.api.data.type.DyeColor;
+import org.spongepowered.api.util.CopyableBuilder;
 
 /**
  * A representation on a single layer of a {@link Banner}'s pattern.
@@ -66,7 +67,7 @@ public interface PatternLayer extends DataSerializable {
      */
     DyeColor getColor();
 
-    interface Builder extends DataBuilder<PatternLayer> {
+    interface Builder extends CopyableBuilder<PatternLayer, Builder>, DataBuilder<PatternLayer> {
 
         /**
          * Sets the {@link BannerPatternShape} to be used.

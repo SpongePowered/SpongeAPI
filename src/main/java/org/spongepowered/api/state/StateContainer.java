@@ -39,12 +39,12 @@ public interface StateContainer<S extends State<S>> {
 
     /**
      * Attempts to retrieve the {@link StateProperty} instance associated with
-     * this {@link StateContainer} by string id. If there is no
+     * this {@link StateContainer} by name. If there is no
      * {@link StateProperty} available, {@link Optional#empty()} is returned.
      *
-     * @param statePropertyId The state property id
+     * @param name The state property name
      * @return The state property, if available
      */
-    Optional<StateProperty<?>> getStatePropertyByName(String statePropertyId);
+    Optional<StateProperty<?>> getStatePropertyByName(String name);
 
 }

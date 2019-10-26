@@ -27,6 +27,7 @@ package org.spongepowered.api.block.entity;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.world.Archetype;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.persistence.DataView;
@@ -110,7 +111,7 @@ public interface BlockEntityArchetype extends Archetype<BlockSnapshot, BlockEnti
     /**
      * A builder for {@link BlockEntityArchetype}s.
      */
-    interface Builder extends DataBuilder<BlockEntityArchetype> {
+    interface Builder extends CopyableBuilder<BlockEntityArchetype, Builder>, DataBuilder<BlockEntityArchetype> {
 
         @Override
         Builder reset();
@@ -191,7 +192,7 @@ public interface BlockEntityArchetype extends Archetype<BlockSnapshot, BlockEnti
 
         /**
          * Creates a new {@link BlockEntityArchetype} from this builder.
-         * 
+         *
          * @return The new instance
          */
         BlockEntityArchetype build();

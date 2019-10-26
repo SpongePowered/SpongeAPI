@@ -27,12 +27,12 @@ package org.spongepowered.api.block;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.block.entity.BlockEntityArchetype;
+import org.spongepowered.api.data.DataHolderBuilder;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.persistence.DataView;
-import org.spongepowered.api.world.LocatableSnapshot;
-import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.world.BlockChangeFlag;
+import org.spongepowered.api.world.LocatableSnapshot;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.schematic.Schematic;
 import org.spongepowered.api.world.storage.WorldProperties;
@@ -134,7 +134,7 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
     /**
      * Creates a new {@link BlockEntityArchetype} for use with {@link Schematic}s
      * and placing the archetype in multiple locations.
-     * 
+     *
      * <p>If this blocksnapshot does not contain a block entity then this will
      * return {@link Optional#empty()}.</p>
      *
@@ -142,7 +142,7 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
      */
     Optional<BlockEntityArchetype> createArchetype();
 
-    interface Builder extends DataBuilder.Immutable<BlockSnapshot, Builder> {
+    interface Builder extends DataHolderBuilder.Immutable<BlockSnapshot, Builder> {
 
         /**
          * Sets the {@link WorldProperties} for this {@link BlockSnapshot}.

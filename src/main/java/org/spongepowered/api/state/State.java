@@ -49,13 +49,13 @@ public interface State<S extends State<S>> extends DataHolder.Immutable<S>, Cata
 
     /**
      * Attempts to retrieve the {@link StateProperty} instance associated with
-     * this {@link State}s {@link StateContainer} by string id. If there is no
+     * this {@link State}s {@link StateContainer} by name. If there is no
      * {@link StateProperty} available, {@link Optional#empty()} is returned.
      *
-     * @param statePropertyId The state property id
+     * @param name The state property name
      * @return The state property, if available
      */
-    Optional<StateProperty<?>> getStatePropertyByName(String statePropertyId);
+    Optional<StateProperty<?>> getStatePropertyByName(String name);
 
     /**
      * Gets the {@link State} with the appropriate value for the given

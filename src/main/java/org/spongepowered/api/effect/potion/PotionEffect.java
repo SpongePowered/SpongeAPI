@@ -30,6 +30,7 @@ import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.util.CopyableBuilder;
 
 /**
  * Represents an effect of a {@link PotionEffectType} for a specified
@@ -105,10 +106,7 @@ public interface PotionEffect extends DataSerializable, PropertyHolder {
     /**
      * Represents a builder interface to create a {@link PotionEffect}.
      */
-    interface Builder extends DataBuilder<PotionEffect> {
-
-        @Override
-        Builder from(PotionEffect potionEffect);
+    interface Builder extends CopyableBuilder<PotionEffect, Builder>, DataBuilder<PotionEffect> {
 
         /**
          * Sets the {@link PotionEffectType} of the potion.
@@ -160,8 +158,5 @@ public interface PotionEffect extends DataSerializable, PropertyHolder {
          * @throws IllegalStateException If the potion effect is not completed
          */
         PotionEffect build() throws IllegalStateException;
-
-        @Override
-        Builder reset();
     }
 }

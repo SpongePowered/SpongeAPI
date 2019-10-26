@@ -156,7 +156,8 @@ public final class RespawnLocation implements DataSerializable {
     /**
      * A helper class to build {@link RespawnLocation}s.
      */
-    public static final class Builder extends AbstractDataBuilder<RespawnLocation> {
+    public static final class Builder extends AbstractDataBuilder<RespawnLocation>
+            implements CopyableBuilder<RespawnLocation, Builder> {
 
         @Nullable UUID world;
         @Nullable Vector3d position;

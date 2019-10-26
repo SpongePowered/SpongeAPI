@@ -115,7 +115,7 @@ public interface DataManager {
 
     /**
      * Registers the given {@link org.spongepowered.api.data.DataHolder.Immutable} class with it's
-     * associated {@link org.spongepowered.api.data.persistence.DataBuilder.Immutable}. The builder can be used to
+     * associated {@link org.spongepowered.api.data.DataHolderBuilder.Immutable}. The builder can be used to
      * create new instances of the given {@link org.spongepowered.api.data.DataHolder.Immutable} for data
      * retrieval, data representation, etc.
      *
@@ -124,7 +124,7 @@ public interface DataManager {
      * @param <T> The type of immutable data holder
      * @param <B> The type of immutable data builder
      */
-    <T extends DataHolder.Immutable<T>, B extends DataBuilder.Immutable<T, B>> void register(Class<T> holderClass, B builder);
+    <T extends DataHolder.Immutable<T>, B extends DataHolderBuilder.Immutable<T, B>> void register(Class<T> holderClass, B builder);
 
     /**
      * Registers a legacy {@code id} that is used by a previous version of
@@ -148,8 +148,7 @@ public interface DataManager {
      * @param <B> The type of immutable data builder
      * @return The builder, if available
      */
-    <T extends DataHolder.Immutable<T>, B extends DataBuilder.Immutable<T, B>> Optional<B> getImmutableBuilder(Class<T> holderClass);
-
+    <T extends DataHolder.Immutable<T>, B extends DataHolderBuilder.Immutable<T, B>> Optional<B> getImmutableBuilder(Class<T> holderClass);
 
     /**
      * Gets the desired {@link DataTranslator} for the provided class.

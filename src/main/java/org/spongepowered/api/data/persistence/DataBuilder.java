@@ -24,12 +24,6 @@
  */
 package org.spongepowered.api.data.persistence;
 
-import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.DataManipulator;
-import org.spongepowered.api.data.Key;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.util.CopyableBuilder;
-
 import java.util.Optional;
 
 /**
@@ -42,7 +36,7 @@ import java.util.Optional;
  *
  * @param <T> The type of data serializable this builder can build
  */
-public interface DataBuilder<T extends DataSerializable> extends CopyableBuilder<T, DataBuilder<T>> {
+public interface DataBuilder<T extends DataSerializable> {
 
     /**
      * Attempts to build the provided {@link DataSerializable} from the given
@@ -56,75 +50,4 @@ public interface DataBuilder<T extends DataSerializable> extends CopyableBuilder
      *     properly construct the data serializable from the data view
      */
     Optional<T> build(DataView container) throws InvalidDataException;
-
-    @Override
-    default DataBuilder<T> reset() {
-        return this;
-    }
-
-    @Override
-    default DataBuilder<T> from(T value) {
-        return this;
-    }
-
-    /**
-     * A builder, much like a normal {@link DataBuilder} except that it builds
-     * {@link org.spongepowered.api.data.DataHolder.Immutable}s. While the {@link org.spongepowered.api.data.DataHolder.Immutable} is like
-     * a {@link DataHolder}, it is immutable.
-     *
-     * @param <H> The type of {@link org.spongepowered.api.data.DataHolder.Immutable}
-     * @param <E> The extended {@link Immutable}
-     */
-    interface Immutable<H extends DataHolder.Immutable<H>, E extends Immutable<H, E>> extends DataBuilder<H> {
-
-        /**
-         * Adds the given {@link Value} to the builder. The
-         * {@link Value} is copied when the {@link org.spongepowered.api.data.DataHolder.Immutable}
-         * is created.
-         *
-         * @param value The value to add
-         * @return This builder, for chaining
-         */
-        @SuppressWarnings("unchecked")
-        default E add(Value<?> value) {
-            return (E) add((Key) value.getKey(), value.get());
-        }
-
-        @SuppressWarnings("unchecked")
-        default E add(DataManipulator manipulator) {
-            manipulator.getValues().forEach(this::add);
-            return (E) this;
-        }
-
-        /**
-         * Adds the given {@link Key} with the given value.
-         *
-         * @param key The key to assign the value with
-         * @param value The value to assign with the key
-         * @param <V> The type of the value
-         * @return This builder, for chaining
-         */
-        <V> E add(Key<? extends Value<V>> key, V value);
-
-        /**
-         * Copies all known {@link DataManipulator}s from the given
-         * {@link org.spongepowered.api.data.DataHolder.Immutable}. This is a defensive copy as
-         * {@link DataManipulator} is mutable.
-         *
-         * @param holder The {@link org.spongepowered.api.data.DataHolder.Immutable} to copy from
-         * @return This builder for chaining
-         */
-        @Override
-        E from(H holder);
-
-        /**
-         * Attempts to build a new {@link org.spongepowered.api.data.DataHolder.Immutable}.
-         *
-         * @return The new immutable data holder
-         */
-        H build();
-
-        @Override
-        E reset();
-    }
 }
