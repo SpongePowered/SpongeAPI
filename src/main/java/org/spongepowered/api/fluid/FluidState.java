@@ -27,8 +27,8 @@ package org.spongepowered.api.fluid;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.data.DataHolderBuilder;
 import org.spongepowered.api.data.DataManipulator;
-import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.state.State;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -76,14 +76,14 @@ public interface FluidState extends State<FluidState> {
     boolean isEmpty();
 
     /**
-     * An {@link org.spongepowered.api.data.persistence.DataBuilder.Immutable} for a {@link FluidState}. Just like the
-     * {@link org.spongepowered.api.data.persistence.DataBuilder.Immutable}, the {@link DataManipulator}s passed in to
+     * An {@link org.spongepowered.api.data.DataHolderBuilder.Immutable} for a {@link FluidState}. Just like the
+     * {@link org.spongepowered.api.data.DataHolderBuilder.Immutable}, the {@link DataManipulator}s passed in to
      * create a {@link FluidState} are copied on creation.
      *
      * <p>Note that upon creation, the {@link FluidType} must be set for validation
      * of {@link DataManipulator}s, otherwise exceptions may be thrown.</p>
      */
-    interface Builder extends DataBuilder.Immutable<FluidState, Builder> {
+    interface Builder extends DataHolderBuilder.Immutable<FluidState, Builder> {
 
         /**
          * Sets the {@link FluidType} for the {@link FluidState} to build.

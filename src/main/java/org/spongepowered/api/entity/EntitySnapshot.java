@@ -26,9 +26,9 @@ package org.spongepowered.api.entity;
 
 import org.spongepowered.api.Game;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.world.LocatableSnapshot;
-import org.spongepowered.api.data.persistence.DataBuilder;
+import org.spongepowered.api.data.DataHolderBuilder;
 import org.spongepowered.api.util.Transform;
+import org.spongepowered.api.world.LocatableSnapshot;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.schematic.Schematic;
@@ -107,10 +107,10 @@ public interface EntitySnapshot extends LocatableSnapshot<EntitySnapshot> {
     EntityArchetype createArchetype();
 
     /**
-     * An {@link org.spongepowered.api.data.persistence.DataBuilder.Immutable} for building {@link EntitySnapshot}s. The
+     * An {@link org.spongepowered.api.data.DataHolderBuilder.Immutable} for building {@link EntitySnapshot}s. The
      * requirements
      */
-    interface Builder extends DataBuilder.Immutable<EntitySnapshot, Builder> {
+    interface Builder extends DataHolderBuilder.Immutable<EntitySnapshot, Builder> {
 
         /**
          * Sets the {@link WorldProperties} for this {@link EntitySnapshot}.

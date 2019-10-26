@@ -36,6 +36,7 @@ import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Collection;
 import java.util.Map;

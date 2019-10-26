@@ -30,6 +30,7 @@ import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.Optional;
 
@@ -130,7 +131,7 @@ public interface TradeOffer extends DataSerializable {
     /**
      * Represents a builder to generate immutable {@link TradeOffer}s.
      */
-    interface Builder extends DataBuilder<TradeOffer> {
+    interface Builder extends CopyableBuilder<TradeOffer, Builder>, DataBuilder<TradeOffer> {
 
         /**
          * <p>Sets the first selling item of the trade offer to be
@@ -194,24 +195,6 @@ public interface TradeOffer extends DataSerializable {
          *      invalid
          */
         TradeOffer build() throws IllegalStateException;
-
-        /**
-         * Sets all the settings of this builder with the provided trade offer
-         * as a blueprint.
-         *
-         * @param offer The offer to copy
-         * @return This builder
-         */
-        @Override
-        Builder from(TradeOffer offer);
-
-        /**
-         * Clears all settings of this builder.
-         *
-         * @return This builder
-         */
-        @Override
-        Builder reset();
 
     }
 }

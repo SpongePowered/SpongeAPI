@@ -28,6 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.List;
@@ -91,7 +92,7 @@ public interface Enchantment extends DataSerializable {
      * Represents a builder interface which can be used
      * to create a {@link Enchantment}.
      */
-    interface Builder extends DataBuilder<Enchantment> {
+    interface Builder extends CopyableBuilder<Enchantment, Builder>, DataBuilder<Enchantment> {
 
         /**
          * Sets the {@link EnchantmentType} for this enchantment.

@@ -26,12 +26,12 @@ package org.spongepowered.api.block;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.entity.BlockEntity;
+import org.spongepowered.api.data.DataHolderBuilder;
 import org.spongepowered.api.data.DataManipulator;
-import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.property.DirectionRelativePropertyHolder;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.fluid.FluidState;
 import org.spongepowered.api.state.State;
-import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.world.Location;
 
 /**
@@ -94,14 +94,14 @@ public interface BlockState extends State<BlockState>, DirectionRelativeProperty
     BlockSnapshot snapshotFor(Location location);
 
     /**
-     * An {@link org.spongepowered.api.data.persistence.DataBuilder.Immutable} for a {@link BlockState}. Just like the
-     * {@link org.spongepowered.api.data.persistence.DataBuilder.Immutable}, the {@link Value}s passed in to
+     * An {@link org.spongepowered.api.data.DataHolderBuilder.Immutable} for a {@link BlockState}. Just like the
+     * {@link org.spongepowered.api.data.DataHolderBuilder.Immutable}, the {@link Value}s passed in to
      * create a {@link BlockState} are copied on creation.
      *
      * <p>Note that upon creation, the {@link BlockType} must be set for validation
      * of {@link DataManipulator}s, otherwise exceptions may be thrown.</p>
      */
-    interface Builder extends DataBuilder.Immutable<BlockState, Builder> {
+    interface Builder extends DataHolderBuilder.Immutable<BlockState, Builder> {
 
         /**
          * Sets the {@link BlockType} for the {@link BlockState} to build.

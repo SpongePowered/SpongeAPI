@@ -26,7 +26,7 @@ package org.spongepowered.api.fluid;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.persistence.DataBuilder;
+import org.spongepowered.api.data.DataHolderBuilder;
 
 public interface FluidStackSnapshot extends DataHolder.Immutable<FluidStackSnapshot> {
 
@@ -64,7 +64,7 @@ public interface FluidStackSnapshot extends DataHolder.Immutable<FluidStackSnaps
      */
     FluidStack createStack();
 
-    interface Builder extends DataBuilder.Immutable<FluidStackSnapshot, Builder> {
+    interface Builder extends DataHolderBuilder.Immutable<FluidStackSnapshot, Builder> {
 
         Builder fluid(FluidType fluidType);
 

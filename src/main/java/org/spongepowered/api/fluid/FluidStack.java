@@ -26,7 +26,7 @@ package org.spongepowered.api.fluid;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.persistence.DataBuilder;
+import org.spongepowered.api.data.DataHolderBuilder;
 import org.spongepowered.api.item.ItemTypes;
 
 /**
@@ -85,7 +85,7 @@ public interface FluidStack extends DataHolder.Mutable {
     @Override
     FluidStack copy();
 
-    interface Builder extends DataBuilder<FluidStack> {
+    interface Builder extends DataHolderBuilder.Mutable<FluidStack, Builder> {
 
         /**
          * Sets the {@link FluidType} to use to build the {@link FluidStack}.
@@ -114,6 +114,7 @@ public interface FluidStack extends DataHolder.Mutable {
          *
          * @return The newly created fluid stack
          */
+        @Override
         FluidStack build();
 
         /**
@@ -124,13 +125,6 @@ public interface FluidStack extends DataHolder.Mutable {
          * @return This builder, for chaining
          */
         Builder from(FluidStackSnapshot fluidStackSnapshot);
-
-        @Override
-        Builder from(FluidStack value);
-
-        @Override
-        Builder reset();
-
     }
 
 }
