@@ -44,6 +44,82 @@ import java.util.UUID;
  */
 public interface HoverAction<R> extends TextAction<R>, TextRepresentable {
 
+    /**
+     * Creates a new {@link HoverAction} that will show a text on the client
+     * when it is hovered.
+     *
+     * @param text The text to display
+     * @return The created hover action instance
+     */
+    static ShowText showText(Text text) {
+        return ShowText.builder().text(text).build();
+    }
+
+    /**
+     * Creates a new {@link HoverAction} that will show information about an
+     * item when it is hovered.
+     *
+     * @param item The item to display
+     * @return The created hover action instance
+     */
+    static ShowItem showItem(ItemStackSnapshot item) {
+        return ShowItem.builder().item(item).build();
+    }
+
+    /**
+     * Creates a new {@link HoverAction} that will show information about an
+     * entity when it is hovered.
+     *
+     * @param entity The entity to display
+     * @return The created hover action instance
+     */
+    static ShowEntity showEntity(ShowEntity.Ref entity) {
+        return ShowEntity.builder().entity(entity).build();
+    }
+
+    /**
+     * Creates a new {@link HoverAction} that will show information about an
+     * entity when it is hovered.
+     *
+     * @param uuid The UUID of the entity
+     * @param name The name of the entity
+     * @param type The type of the entity
+     * @return The created hover action instance
+     */
+    static ShowEntity showEntity(UUID uuid, String name, @Nullable EntityType<?> type) {
+        return ShowEntity.builder()
+                .entity(ShowEntity.Ref.builder().uniqueId(uuid).name(name).type(type).build())
+                .build();
+    }
+
+    /**
+     * Creates a new {@link HoverAction} that will show information about an
+     * entity when it is hovered.
+     *
+     * @param uuid The UUID of the entity
+     * @param name The name of the entity
+     * @return The created hover action instance
+     */
+    static ShowEntity showEntity(UUID uuid, String name) {
+        return ShowEntity.builder()
+                .entity(ShowEntity.Ref.builder().uniqueId(uuid).name(name).build())
+                .build();
+    }
+
+    /**
+     * Creates a new {@link HoverAction} that will show information about an
+     * entity when it is hovered.
+     *
+     * @param entity The entity
+     * @param name The name of the entity
+     * @return The created hover action instance
+     */
+    static ShowEntity showEntity(Entity entity, String name) {
+        return ShowEntity.builder()
+                .entity(entity, name)
+                .build();
+    }
+
     @Override
     default void applyTo(Text.Builder builder) {
         builder.onHover(this);

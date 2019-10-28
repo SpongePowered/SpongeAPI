@@ -280,11 +280,11 @@ public class SpongeEventFactoryTest {
         } else if (paramType == TextFormat.class) {
             return TextFormat.of();
         } else if (paramType == ShiftClickAction.class) {
-            return TextActions.insertText("MOCK_SPONGE_SHIFT_CLICK_INSERT");
+            return ShiftClickAction.insertText("MOCK_SPONGE_SHIFT_CLICK_INSERT");
         } else if (paramType == HoverAction.class) {
-            return TextActions.showText(Text.of("MOCK_SPONGE_HOVER_ACTION_SHOW_TEXT"));
+            return HoverAction.showText(Text.of("MOCK_SPONGE_HOVER_ACTION_SHOW_TEXT"));
         } else if (paramType == ClickAction.class) {
-            return TextActions.runCommand("MOCK_SPONGE_EVENT_FACTORY_RUN_COMMAND");
+            return ClickAction.runCommand("MOCK_SPONGE_EVENT_FACTORY_RUN_COMMAND");
         } else if (paramType == Duration.class) {
             return Duration.ZERO;
         } else if (paramType == Instant.class) {

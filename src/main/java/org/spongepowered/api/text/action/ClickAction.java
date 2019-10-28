@@ -39,6 +39,73 @@ import java.util.function.Consumer;
  */
 public interface ClickAction<R> extends TextAction<R> {
 
+    /**
+     * Creates a new {@link ClickAction} that will ask the player to open an URL
+     * when it is clicked.
+     *
+     * @param url The URL to open
+     * @return The created click action instance
+     */
+    static OpenUrl openUrl(URL url) {
+        return OpenUrl.builder().url(url).build();
+    }
+
+    /**
+     * Creates a new {@link ClickAction} that will type a command on the client
+     * when it is clicked.
+     *
+     * @param command The command to execute
+     * @return The created click action instance
+     */
+    static RunCommand runCommand(String command) {
+        return RunCommand.builder().command(command).build();
+    }
+
+    /**
+     * Creates a new {@link ClickAction} that will change the page in a book
+     * when it is clicked.
+     *
+     * @param page The book page to switch to
+     * @return The created click action instance
+     */
+    static ChangePage changePage(int page) {
+        return ChangePage.builder().page(page).build();
+    }
+
+    /**
+     * Creates a new {@link ClickAction} that will suggest the player a command
+     * when it is clicked.
+     *
+     * @param command The command to suggest
+     * @return The created click action instance
+     */
+    static SuggestCommand suggestCommand(String command) {
+        return SuggestCommand.builder().command(command).build();
+    }
+
+    /**
+     * Creates a new {@link ClickAction} that will copy the value to the clipboard
+     * when it is clicked.
+     *
+     * @param value The value to copy to clipboard
+     * @return The created click action instance
+     */
+    static CopyToClipboard copyToClipboard(String value) {
+        return CopyToClipboard.builder().value(value).build();
+    }
+
+    /**
+     * Creates a new {@link ClickAction} that will execute the given runnable on
+     * the server when clicked. The callback will expire after some amount of
+     * time (not particularly instantly, but not like overnight really either).
+     *
+     * @param callback The callback to execute
+     * @return The created click action instance
+     */
+    static ExecuteCallback executeCallback(Consumer<CommandCause> callback) {
+        return ExecuteCallback.builder().callback(callback).build();
+    }
+
     @Override
     default void applyTo(Text.Builder builder) {
         builder.onClick(this);
@@ -185,6 +252,42 @@ public interface ClickAction<R> extends TextAction<R> {
              * @return The built action
              */
             SuggestCommand build();
+        }
+    }
+
+    /**
+     * Copies a value to the clipboard.
+     */
+    interface CopyToClipboard extends ClickAction<String> {
+
+        /**
+         * Creates a new builder.
+         *
+         * @return A new builder
+         */
+        static Builder builder() {
+            return Sponge.getRegistry().createBuilder(Builder.class);
+        }
+
+        /**
+         * A builder for {@link SuggestCommand} click actions.
+         */
+        interface Builder extends CopyableBuilder<CopyToClipboard, Builder> {
+
+            /**
+             * Sets the value to copy to the clipboard.
+             *
+             * @param command The command
+             * @return This builder
+             */
+            Builder value(String command);
+
+            /**
+             * Builds the action.
+             *
+             * @return The built action
+             */
+            CopyToClipboard build();
         }
     }
 

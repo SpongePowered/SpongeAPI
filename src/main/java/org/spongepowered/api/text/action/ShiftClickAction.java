@@ -35,6 +35,17 @@ import org.spongepowered.api.util.CopyableBuilder;
  */
 public interface ShiftClickAction<R> extends TextAction<R> {
 
+    /**
+     * Creates a new {@link ShiftClickAction} that will insert text at the
+     * current cursor position in the chat when it is shift-clicked.
+     *
+     * @param text The text to insert
+     * @return The created shift click action instance
+     */
+    static InsertText insertText(String text) {
+        return InsertText.builder().text(text).build();
+    }
+
     @Override
     default void applyTo(Text.Builder builder) {
         builder.onShiftClick(this);
