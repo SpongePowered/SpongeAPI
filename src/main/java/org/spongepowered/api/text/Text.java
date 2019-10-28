@@ -38,9 +38,9 @@ import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextFormat;
 import org.spongepowered.api.text.format.TextStyle;
 import org.spongepowered.api.text.selector.Selector;
-import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.CopyableBuilder;
+import org.spongepowered.api.util.Nameable;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -75,9 +75,8 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
      *
      * @return An empty text
      */
-    @SuppressWarnings("deprecation")
     static Text empty() {
-        return Sponge.getRegistry().createBuilder(LiteralText.Builder.class).build();
+        return LiteralText.builder().build();
     }
 
     /**
@@ -85,9 +84,8 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
      *
      * @return An empty text
      */
-    @SuppressWarnings("deprecation")
     static Text newLine() {
-        return Sponge.getRegistry().createBuilder(LiteralText.Builder.class).newLine().build();
+        return LiteralText.builder().newLine().build();
     }
 
     /**
@@ -98,49 +96,58 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
      * @return The created text
      * @see LiteralText
      */
-    @SuppressWarnings("deprecation")
     static LiteralText of(String content) {
-        return Sponge.getRegistry().createBuilder(LiteralText.Builder.class).content(content).build();
+        return LiteralText.of(content);
     }
 
     /**
      * Creates a {@link Text} with the specified char as plain text. The created
      * text won't have any formatting or events configured.
      *
-     * @param content The contant of the text as char
+     * @param content The content of the text as char
      * @return The created text
      * @see LiteralText
      */
-    @SuppressWarnings("deprecation")
     static LiteralText of(char content) {
-        return Sponge.getRegistry().createBuilder(LiteralText.Builder.class).content(String.valueOf(content)).build();
+        return LiteralText.of(content);
     }
 
     /**
      * Creates a new unformatted {@link TranslatableText} with the given
-     * {@link Translation} and arguments.
+     * {@link Translation}.
      *
      * @param translation The translation for the text
-     * @param args The arguments for the translation
      * @return The created text
      * @see TranslatableText
      */
-    @SuppressWarnings("deprecation")
-    static TranslatableText of(Translation translation, Object... args) {
-        return Sponge.getRegistry().createBuilder(TranslatableText.Builder.class).translation(translation, checkNotNull(args, "args")).build();
+    static TranslatableText of(Translation translation) {
+        return builder(translation).build();
     }
 
     /**
-     * Creates a new unformatted {@link TranslatableText} from the given
-     * {@link Translatable}.
+     * Creates a new unformatted {@link TranslatableText} with the given
+     * {@link Translation}.
      *
-     * @param translatable The translatable for the text
-     * @param args The arguments for the translation
+     * @param nameable The translatable nameable for the text
      * @return The created text
      * @see TranslatableText
      */
-    static TranslatableText of(Translatable translatable, Object... args) {
-        return of(checkNotNull(translatable, "translatable").getTranslation(), args);
+    static TranslatableText of(Nameable.Translatable nameable) {
+        return builder(nameable).build();
+    }
+
+    /**
+     * Creates a new {@link Text} from the given {@link Nameable}.
+     *
+     * @param nameable The nameable for the text
+     * @return The created text
+     */
+    static Text of(Nameable nameable) {
+        checkNotNull(nameable, "nameable");
+        if (nameable instanceof Nameable.Translatable) {
+            return of(((Nameable.Translatable) nameable).getNameTranslation());
+        }
+        return of(nameable.getName());
     }
 
     /**
@@ -150,9 +157,8 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
      * @return The created text
      * @see SelectorText
      */
-    @SuppressWarnings("deprecation")
     static SelectorText of(Selector selector) {
-        return Sponge.getRegistry().createBuilder(SelectorText.Builder.class).selector(selector).build();
+        return SelectorText.of(selector);
     }
 
     /**
@@ -163,7 +169,7 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
      * @see ScoreText
      */
     static ScoreText of(Score score) {
-        return Sponge.getRegistry().createBuilder(ScoreText.Builder.class).score(score).build();
+        return ScoreText.of(score);
     }
 
     /**
@@ -188,7 +194,6 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
      * @param objects The object array
      * @return The built text object
      */
-    @SuppressWarnings("deprecation")
     static Text of(Object... objects) {
         return Sponge.getRegistry().requireFactory(Factory.class).of(objects);
     }
@@ -212,7 +217,7 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
      * @see LiteralText.Builder
      */
     static LiteralText.Builder builder(String content) {
-        return LiteralText.builder().content(content);
+        return LiteralText.builder(content);
     }
 
     /**
@@ -225,80 +230,7 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
      * @see LiteralText.Builder
      */
     static LiteralText.Builder builder(char content) {
-        return builder(String.valueOf(content));
-    }
-
-    /**
-     * Creates a new {@link LiteralText.Builder} with the formatting and actions
-     * of the specified {@link Text} and the given content.
-     *
-     * @param text The text to apply the properties from
-     * @param content The content for the text builder
-     * @return The created text builder
-     * @see LiteralText
-     * @see LiteralText.Builder
-     */
-    static LiteralText.Builder builder(Text text, String content) {
-        return LiteralText.builder().from(text).content(content);
-    }
-
-    /**
-     * Creates a new unformatted {@link TranslatableText.Builder} with the given
-     * {@link Translation} and arguments.
-     *
-     * @param translation The translation for the builder
-     * @param args The arguments for the translation
-     * @return The created text builder
-     * @see TranslatableText
-     * @see TranslatableText.Builder
-     */
-    static TranslatableText.Builder builder(Translation translation, Object... args) {
-        return TranslatableText.builder().translation(translation, args);
-    }
-
-    /**
-     * Creates a new unformatted {@link TranslatableText.Builder} from the given
-     * {@link Translatable}.
-     *
-     * @param translatable The translatable for the builder
-     * @param args The arguments for the translation
-     * @return The created text builder
-     * @see TranslatableText
-     * @see TranslatableText.Builder
-     */
-    static TranslatableText.Builder builder(Translatable translatable, Object... args) {
-        return TranslatableText.builder().translation(translatable, args);
-    }
-
-    /**
-     * Creates a new {@link TranslatableText.Builder} with the formatting and
-     * actions of the specified {@link Text} and the given {@link Translation}
-     * and arguments.
-     *
-     * @param text The text to apply the properties from
-     * @param translation The translation for the builder
-     * @param args The arguments for the translation
-     * @return The created text builder
-     * @see TranslatableText
-     * @see TranslatableText.Builder
-     */
-    static TranslatableText.Builder builder(Text text, Translation translation, Object... args) {
-        return TranslatableText.builder().from(text).translation(translation, args);
-    }
-
-    /**
-     * Creates a new {@link TranslatableText.Builder} with the formatting and
-     * actions of the specified {@link Text} and the given {@link Translatable}.
-     *
-     * @param text The text to apply the properties from
-     * @param translatable The translatable for the builder
-     * @param args The arguments for the translation
-     * @return The created text builder
-     * @see TranslatableText
-     * @see TranslatableText.Builder
-     */
-    static TranslatableText.Builder builder(Text text, Translatable translatable, Object... args) {
-        return TranslatableText.builder().from(text).translation(translatable, args);
+        return LiteralText.builder(content);
     }
 
     /**
@@ -311,21 +243,7 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
      * @see SelectorText.Builder
      */
     static SelectorText.Builder builder(Selector selector) {
-        return SelectorText.builder().selector(selector);
-    }
-
-    /**
-     * Creates a new {@link SelectorText.Builder} with the formatting and
-     * actions of the specified {@link Text} and the given selector.
-     *
-     * @param text The text to apply the properties from
-     * @param selector The selector for the builder
-     * @return The created text builder
-     * @see SelectorText
-     * @see SelectorText.Builder
-     */
-    static SelectorText.Builder builder(Text text, Selector selector) {
-        return SelectorText.builder().from(text).selector(selector);
+        return SelectorText.builder(selector);
     }
 
     /**
@@ -337,21 +255,31 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
      * @see ScoreText.Builder
      */
     static ScoreText.Builder builder(Score score) {
-        return ScoreText.builder().score(score);
+        return ScoreText.builder(score);
     }
 
     /**
-     * Creates a new {@link ScoreText.Builder} with the formatting and actions
-     * of the specified {@link Text} and the given score.
+     * Creates a new unformatted {@link TranslatableText} builder with the given
+     * {@link Translation} and arguments.
      *
-     * @param text The text to apply the properties from
-     * @param score The score for the text builder
-     * @return The created text builder
-     * @see ScoreText
-     * @see ScoreText.Builder
+     * @param translation The translation for the text
+     * @param args The arguments for the translation
+     * @return The created text
      */
-    static ScoreText.Builder builder(Text text, Score score) {
-        return ScoreText.builder().from(text).score(score);
+    static TranslatableText.Builder builder(Translation translation, Object... args) {
+        return TranslatableText.builder(translation, args);
+    }
+
+    /**
+     * Creates a new unformatted {@link TranslatableText} from the given
+     * {@link org.spongepowered.api.util.Nameable.Translatable}.
+     *
+     * @param nameable The translatable nameable for the text
+     * @param args The arguments for the translation
+     * @return The created text
+     */
+    static TranslatableText.Builder builder(Nameable.Translatable nameable, Object... args) {
+        return TranslatableText.builder(nameable, args);
     }
 
     /**
@@ -391,7 +319,6 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
      * @param texts The texts to join
      * @return A text object that joins the given text objects
      */
-    @SuppressWarnings("deprecation")
     static Text joinWith(Text separator, Text... texts) {
         return Sponge.getRegistry().requireFactory(Factory.class).joinWith(separator, texts);
     }
@@ -414,7 +341,6 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
      * @param texts An iterator for the texts to join
      * @return A text object that joins the given text objects
      */
-    @SuppressWarnings("deprecation")
     static Text joinWith(Text separator, Iterator<? extends Text> texts) {
         return Sponge.getRegistry().requireFactory(Factory.class).joinWith(separator, texts);
     }
@@ -533,6 +459,7 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
      * @return Text result
      */
     Text trim();
+
     /**
      * Replaces a pattern in this text with a {@link Text}, preserving
      * formatting where possible.

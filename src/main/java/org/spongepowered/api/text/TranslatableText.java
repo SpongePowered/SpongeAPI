@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.text;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.google.common.collect.ImmutableList;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
@@ -34,6 +36,7 @@ import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextFormat;
 import org.spongepowered.api.text.format.TextStyle;
 import org.spongepowered.api.text.translation.Translation;
+import org.spongepowered.api.util.Nameable;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -45,6 +48,54 @@ import java.util.Iterator;
  * @see Builder
  */
 public interface TranslatableText extends Text {
+
+    /**
+     * Creates a new unformatted {@link TranslatableText} with the given
+     * {@link Translation} and arguments.
+     *
+     * @param translation The translation for the text
+     * @param args The arguments for the translation
+     * @return The created text
+     */
+    static TranslatableText of(Translation translation, Object... args) {
+        return builder(translation, args).build();
+    }
+
+    /**
+     * Creates a new unformatted {@link TranslatableText} from the given
+     * {@link org.spongepowered.api.util.Nameable.Translatable}.
+     *
+     * @param nameable The translatable nameable for the text
+     * @param args The arguments for the translation
+     * @return The created text
+     */
+    static TranslatableText of(Nameable.Translatable nameable, Object... args) {
+        return builder(nameable, args).build();
+    }
+
+    /**
+     * Creates a new unformatted {@link TranslatableText} builder with the given
+     * {@link Translation} and arguments.
+     *
+     * @param translation The translation for the text
+     * @param args The arguments for the translation
+     * @return The created text
+     */
+    static TranslatableText.Builder builder(Translation translation, Object... args) {
+        return builder().translation(translation, args);
+    }
+
+    /**
+     * Creates a new unformatted {@link TranslatableText} from the given
+     * {@link org.spongepowered.api.util.Nameable.Translatable}.
+     *
+     * @param nameable The translatable nameable for the text
+     * @param args The arguments for the translation
+     * @return The created text
+     */
+    static TranslatableText.Builder builder(Nameable.Translatable nameable, Object... args) {
+        return builder(checkNotNull(nameable, "nameable").getNameTranslation(), args);
+    }
 
     /**
      * Creates a {@link Builder}.
@@ -105,15 +156,6 @@ public interface TranslatableText extends Text {
          * @return This text builder
          */
         Builder translation(Translation translation, Object... args);
-
-        /**
-         * Sets the translation of the text.
-         *
-         * @param translatable The translatable object to use for this builder
-         * @param args The arguments for the translation
-         * @return This text builder
-         */
-        Builder translation(org.spongepowered.api.text.translation.Translatable translatable, Object... args);
 
         @Override
         Builder format(TextFormat format);

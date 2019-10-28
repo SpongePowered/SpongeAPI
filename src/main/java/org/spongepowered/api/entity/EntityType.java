@@ -24,15 +24,14 @@
  */
 package org.spongepowered.api.entity;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.NamedCatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Describes a type of entity.
  */
 @CatalogedBy(EntityTypes.class)
-public interface EntityType<A extends Entity> extends CatalogType, Translatable {
+public interface EntityType<A extends Entity> extends NamedCatalogType.Translatable {
 
     /**
      * Returns the entity class for this type.

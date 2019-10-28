@@ -24,15 +24,14 @@
  */
 package org.spongepowered.api.text.chat;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.NamedCatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a visibility mode for a client's chat.
  */
 @CatalogedBy(ChatVisibilities.class)
-public interface ChatVisibility extends CatalogType, Translatable {
+public interface ChatVisibility extends NamedCatalogType.Translatable {
 
     /**
      * Tests whether the given chat type will be visible to a player's chat.

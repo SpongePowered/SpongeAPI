@@ -24,14 +24,13 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.NamedCatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a part of a player's skin.
  */
 @CatalogedBy(SkinParts.class)
-public interface SkinPart extends CatalogType, Translatable {
+public interface SkinPart extends NamedCatalogType.Translatable {
 
 }

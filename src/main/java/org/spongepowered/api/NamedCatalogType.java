@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api;
 
-public interface NamedCatalogType extends CatalogType {
+import org.spongepowered.api.util.Nameable;
+
+public interface NamedCatalogType extends CatalogType, Nameable {
 
     /**
      * Gets the human-readable name of this individual {@link CatalogType}. This
@@ -38,7 +40,14 @@ public interface NamedCatalogType extends CatalogType {
      *
      * @return The human-readable name of this dummy type
      */
+    @Override
     default String getName() {
-        return this.getKey().getValue();
+        return getKey().getValue();
+    }
+
+    interface Translatable extends NamedCatalogType, Nameable.Translatable {
+
+        @Override
+        String getName();
     }
 }

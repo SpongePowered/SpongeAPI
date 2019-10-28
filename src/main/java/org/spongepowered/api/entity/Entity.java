@@ -34,9 +34,9 @@ import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.AABB;
 import org.spongepowered.api.util.Identifiable;
+import org.spongepowered.api.util.Nameable;
 import org.spongepowered.api.util.RandomProvider;
 import org.spongepowered.api.util.RelativePositions;
 import org.spongepowered.api.util.Transform;
@@ -69,7 +69,7 @@ import java.util.function.Predicate;
  *
  * <p>Blocks and items (when they are in inventories) are not entities.</p>
  */
-public interface Entity extends Identifiable, Locatable, DataHolder.Mutable, Translatable, RandomProvider {
+public interface Entity extends Identifiable, Locatable, DataHolder.Mutable, Nameable.Translatable, RandomProvider {
 
     /**
      * Gets the {@link EntityType}.

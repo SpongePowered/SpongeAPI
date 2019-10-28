@@ -47,6 +47,30 @@ import java.util.Iterator;
 public interface SelectorText extends Text {
 
     /**
+     * Creates a new unformatted {@link SelectorText} with the given selector.
+     *
+     * @param selector The selector for the text
+     * @return The created text
+     * @see SelectorText
+     */
+    static SelectorText of(Selector selector) {
+        return builder(selector).build();
+    }
+
+    /**
+     * Creates a new unformatted {@link SelectorText.Builder} with the given
+     * selector.
+     *
+     * @param selector The selector for the builder
+     * @return The created text builder
+     * @see SelectorText
+     * @see SelectorText.Builder
+     */
+    static SelectorText.Builder builder(Selector selector) {
+        return builder().selector(selector);
+    }
+
+    /**
      * Creates a {@link Builder}.
      *
      * @return A new text builder

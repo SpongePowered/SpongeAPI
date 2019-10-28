@@ -24,17 +24,16 @@
  */
 package org.spongepowered.api.item.enchantment;
 
-import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.NamedCatalogType;
 import org.spongepowered.api.block.entity.EnchantmentTable;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a modifier on an item that has various effects.
  */
 @CatalogedBy(EnchantmentTypes.class)
-public interface EnchantmentType extends CatalogType, Translatable {
+public interface EnchantmentType extends NamedCatalogType.Translatable {
 
     /**
      * Gets the weight of this enchantment type.

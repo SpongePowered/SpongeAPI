@@ -24,8 +24,7 @@
  */
 package org.spongepowered.api.effect.potion;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.NamedCatalogType;
 import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -33,7 +32,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a possible type of {@link PotionEffect}.
  */
 @CatalogedBy(PotionEffectTypes.class)
-public interface PotionEffectType extends CatalogType, Translatable {
+public interface PotionEffectType extends NamedCatalogType.Translatable {
 
     /**
      * Gets whether this potion effect is applied instantly or over time.

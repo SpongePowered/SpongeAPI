@@ -44,6 +44,56 @@ import java.util.Iterator;
 public interface LiteralText extends Text {
 
     /**
+     * Creates a {@link LiteralText} with the specified plain text. The created text
+     * won't have any formatting or events configured.
+     *
+     * @param content The content of the text
+     * @return The created text
+     * @see LiteralText
+     */
+    static LiteralText of(String content) {
+        return builder(content).build();
+    }
+
+    /**
+     * Creates a {@link LiteralText} with the specified char as plain text. The created
+     * text won't have any formatting or events configured.
+     *
+     * @param content The content of the text as char
+     * @return The created text
+     * @see LiteralText
+     */
+    static LiteralText of(char content) {
+        return builder(content).build();
+    }
+
+    /**
+     * Creates a new unformatted {@link LiteralText.Builder} with the specified
+     * content.
+     *
+     * @param content The content of the text
+     * @return The created text builder
+     * @see LiteralText
+     * @see LiteralText.Builder
+     */
+    static LiteralText.Builder builder(String content) {
+        return builder().content(content);
+    }
+
+    /**
+     * Creates a new unformatted {@link LiteralText.Builder} with the specified
+     * content.
+     *
+     * @param content The content of the text as char
+     * @return The created text builder
+     * @see LiteralText
+     * @see LiteralText.Builder
+     */
+    static LiteralText.Builder builder(char content) {
+        return builder(String.valueOf(content));
+    }
+
+    /**
      * Creates a {@link Builder} with empty text.
      *
      * @return A new text builder with empty text

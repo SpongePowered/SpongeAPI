@@ -26,13 +26,13 @@ package org.spongepowered.api.statistic;
 
 import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.NamedCatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Collection;
 
 @CatalogedBy(StatisticCategories.class)
-public interface StatisticCategory extends CatalogType, Translatable {
+public interface StatisticCategory extends NamedCatalogType.Translatable {
 
     /**
      * Gets all the {@link Statistic}s that are listed

@@ -47,6 +47,29 @@ import java.util.Optional;
 public interface ScoreText extends Text {
 
     /**
+     * Creates a new unformatted {@link ScoreText} with the given score.
+     *
+     * @param score The score for the text
+     * @return The created text
+     * @see ScoreText
+     */
+    static ScoreText of(Score score) {
+        return builder(score).build();
+    }
+
+    /**
+     * Creates a new unformatted {@link ScoreText.Builder} with the given score.
+     *
+     * @param score The score for the text builder
+     * @return The created text builder
+     * @see ScoreText
+     * @see ScoreText.Builder
+     */
+    static ScoreText.Builder builder(Score score) {
+        return builder().score(score);
+    }
+
+    /**
      * Creates a {@link Builder}.
      *
      * @return A new text builder

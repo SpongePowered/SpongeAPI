@@ -40,7 +40,7 @@ import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;
-import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.util.Nameable;
 
 import java.util.Map;
 import java.util.Set;
@@ -55,7 +55,7 @@ import java.util.function.Predicate;
  * use {@link ValueContainer#get(Key)} in order to retrieve information regarding
  * this item stack.</p>
  */
-public interface ItemStack extends DataHolder.Mutable, Translatable {
+public interface ItemStack extends DataHolder.Mutable, Nameable.Translatable {
 
     /**
      * Creates a new {@link Builder} to build an {@link ItemStack}.

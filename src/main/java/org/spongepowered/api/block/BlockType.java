@@ -24,12 +24,11 @@
  */
 package org.spongepowered.api.block;
 
-import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.NamedCatalogType;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.state.StateContainer;
-import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Optional;
@@ -42,7 +41,7 @@ import java.util.Optional;
  * via {@link BlockEntity}.</p>
  */
 @CatalogedBy(BlockTypes.class)
-public interface BlockType extends CatalogType, StateContainer<BlockState>, Translatable, PropertyHolder {
+public interface BlockType extends NamedCatalogType.Translatable, StateContainer<BlockState>, PropertyHolder {
 
     /**
      * Return the {@link ItemType} that represents this block.
