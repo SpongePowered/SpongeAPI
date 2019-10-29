@@ -38,6 +38,9 @@ import org.spongepowered.api.projectile.ProjectileLauncher;
  */
 public interface Humanoid extends Living, ProjectileLauncher, ArmorEquipable, Tamer {
 
+    @Override
+    String getName();
+
     /**
      * {@link Keys#FOOD_LEVEL}
      */
