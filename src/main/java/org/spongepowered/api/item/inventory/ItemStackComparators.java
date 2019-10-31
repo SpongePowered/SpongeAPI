@@ -25,7 +25,6 @@
 package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.property.Property;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
@@ -66,11 +65,6 @@ public final class ItemStackComparators {
      * The default comparator for {@link ItemStack}s.
      */
     public static final Comparator<ItemStack> DEFAULT = DummyObjectProvider.createExtendedFor(Comparator.class, "TYPE_SIZE");
-
-    /**
-     * Compares ItemStacks based on its {@link Property} list.
-     */
-    public static final Comparator<ItemStack> PROPERTIES = DummyObjectProvider.createExtendedFor(Comparator.class, "PROPERTIES");
 
     /**
      * Compares ItemStacks based on their {@link Value}s.

@@ -28,10 +28,11 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.fluid.FluidState;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.volume.Volume;
+import org.spongepowered.api.world.volume.game.LocationBaseDataHolder;
 import org.spongepowered.math.vector.Vector2i;
 import org.spongepowered.math.vector.Vector3i;
 
-public interface ReadableBlockVolume extends Volume {
+public interface ReadableBlockVolume extends Volume, LocationBaseDataHolder {
 
     BlockState getBlock(int x, int y, int z);
 

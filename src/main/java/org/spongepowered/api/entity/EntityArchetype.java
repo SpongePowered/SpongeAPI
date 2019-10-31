@@ -25,7 +25,7 @@
 package org.spongepowered.api.entity;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.DataHolderBuilder;
+import org.spongepowered.api.data.SerializableDataHolderBuilder;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.data.persistence.InvalidDataException;
@@ -82,7 +82,7 @@ public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
     /**
      * A builder for {@link EntityArchetype}s.
      */
-    interface Builder extends DataHolderBuilder.Mutable<EntityArchetype, Builder> {
+    interface Builder extends SerializableDataHolderBuilder.Mutable<EntityArchetype, Builder> {
 
         /**
          * Sets all possible bits of information from the provided {@link Entity}.

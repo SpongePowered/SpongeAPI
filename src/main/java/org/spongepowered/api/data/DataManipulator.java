@@ -29,6 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.value.CopyableValueContainer;
 import org.spongepowered.api.data.value.MergeFunction;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
@@ -50,7 +51,7 @@ import java.util.function.Predicate;
  * with specialized {@link Function}s to use {@link Mutable#transform(Key, Function)}
  * such that the {@link DataManipulator} is always returned.</p>
  */
-public interface DataManipulator extends ValueContainer {
+public interface DataManipulator extends CopyableValueContainer {
 
     /**
      * Creates a {@link Immutable} view directly based on the
@@ -294,7 +295,6 @@ public interface DataManipulator extends ValueContainer {
      */
     interface Mutable extends DataManipulator {
 
-
         /**
          * Attempts to read data from the given {@link ValueContainer} and fills the
          * associated data onto this {@link Mutable}. Only {@link Key}s
@@ -309,7 +309,26 @@ public interface DataManipulator extends ValueContainer {
          * @return This {@link Mutable} with relevant data filled from the
          *           given {@link ValueContainer}
          */
-        Mutable copyFrom(ValueContainer valueContainer, Predicate<Key<?>> predicate);
+        default Mutable copyFrom(ValueContainer valueContainer, Predicate<Key<?>> predicate) {
+            return this.copyFrom(valueContainer, MergeFunction.REPLACEMENT_PREFERRED, predicate);
+        }
+
+        /**
+         * Attempts to read data from the given {@link ValueContainer} and fills the
+         * associated data onto this {@link Mutable}. Only {@link Key}s
+         * that match the predicate will be copied.
+         *
+         * <p>Any data that overlaps existing data from the {@link ValueContainer} will
+         * take priority and be overwritten from the pre-existing data from the
+         * {@link ValueContainer}.
+         *
+         * @param valueContainer The {@link ValueContainer} to copy data from
+         * @param overlap The overlap resolver to decide which value to retain
+         * @param predicate The predicate to filter which keys can be copied
+         * @return This {@link Mutable} with relevant data filled from the
+         *           given {@link ValueContainer}
+         */
+        Mutable copyFrom(ValueContainer valueContainer, MergeFunction overlap, Predicate<Key<?>> predicate);
 
         /**
          * Attempts to read data from the given {@link ValueContainer} and fills the
@@ -327,7 +346,7 @@ public interface DataManipulator extends ValueContainer {
          *           given {@link ValueContainer}
          */
         default Mutable copyFrom(ValueContainer valueContainer, Key<?> first, Key<?>... more) {
-            return copyFrom(valueContainer, MergeFunction.REPLACEMENT_PREFERRED, first, more);
+            return this.copyFrom(valueContainer, MergeFunction.REPLACEMENT_PREFERRED, first, more);
         }
 
         /**
@@ -349,7 +368,7 @@ public interface DataManipulator extends ValueContainer {
          *           given {@link ValueContainer}
          */
         default Mutable copyFrom(ValueContainer valueContainer, MergeFunction overlap, Key<?> first, Key<?>... more) {
-            return copyFrom(valueContainer, overlap, ImmutableList.<Key<?>>builder().add(first).add(more).build());
+            return this.copyFrom(valueContainer, overlap, ImmutableList.<Key<?>>builder().add(first).add(more).build());
         }
 
         /**
@@ -367,7 +386,7 @@ public interface DataManipulator extends ValueContainer {
          *           given {@link ValueContainer}
          */
         default Mutable copyFrom(ValueContainer valueContainer, Iterable<Key<?>> keys) {
-            return copyFrom(valueContainer, MergeFunction.REPLACEMENT_PREFERRED, keys);
+            return this.copyFrom(valueContainer, MergeFunction.REPLACEMENT_PREFERRED, keys);
         }
 
         /**
@@ -402,7 +421,7 @@ public interface DataManipulator extends ValueContainer {
          *           given {@link DataHolder}
          */
         default Mutable copyFrom(ValueContainer valueContainer) {
-            return copyFrom(valueContainer, MergeFunction.REPLACEMENT_PREFERRED);
+            return this.copyFrom(valueContainer, MergeFunction.REPLACEMENT_PREFERRED);
         }
 
         /**
@@ -449,7 +468,6 @@ public interface DataManipulator extends ValueContainer {
          * @param value The actual value to set
          * @return This manipulator, for chaining
          */
-        @SuppressWarnings("unchecked")
         default Mutable set(Value<?> value) {
             return set((Key<? extends Value<Object>>) value.getKey(), value.get());
         }

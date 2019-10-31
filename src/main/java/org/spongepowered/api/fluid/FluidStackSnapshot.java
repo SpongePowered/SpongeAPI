@@ -25,10 +25,10 @@
 package org.spongepowered.api.fluid;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.DataHolderBuilder;
+import org.spongepowered.api.data.SerializableDataHolder;
+import org.spongepowered.api.data.SerializableDataHolderBuilder;
 
-public interface FluidStackSnapshot extends DataHolder.Immutable<FluidStackSnapshot> {
+public interface FluidStackSnapshot extends SerializableDataHolder.Immutable<FluidStackSnapshot> {
 
     /**
      * Creates a new {@link Builder} to build a new {@link FluidStackSnapshot}.
@@ -64,7 +64,7 @@ public interface FluidStackSnapshot extends DataHolder.Immutable<FluidStackSnaps
      */
     FluidStack createStack();
 
-    interface Builder extends DataHolderBuilder.Immutable<FluidStackSnapshot, Builder> {
+    interface Builder extends SerializableDataHolderBuilder.Immutable<FluidStackSnapshot, Builder> {
 
         Builder fluid(FluidType fluidType);
 

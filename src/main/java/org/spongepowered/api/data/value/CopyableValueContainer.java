@@ -22,5 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
-package org.spongepowered.api.data.property;
+package org.spongepowered.api.data.value;
+
+/**
+ * Represents a {@link ValueContainer} that can be copied.
+ */
+public interface CopyableValueContainer extends ValueContainer {
+
+    /**
+     * Creates a clone copy of this {@link CopyableValueContainer} as a new
+     * {@link CopyableValueContainer} such that all the {@link Value}s are
+     * safely duplicated to the new instance. It is not guaranteed that
+     * the returning container is of the same type as this container.
+     *
+     * @return The new copy
+     */
+    CopyableValueContainer copy();
+}

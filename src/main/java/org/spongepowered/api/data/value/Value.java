@@ -28,7 +28,12 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Key;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.util.weighted.WeightedTable;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 import java.util.function.Function;
 
 /**
@@ -58,6 +63,190 @@ import java.util.function.Function;
 public interface Value<E> {
 
     /**
+     * Constructs a mutable {@link Value} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed mutable value
+     */
+    static <E> Value.Mutable<E> mutableOf(Key<? extends Value<E>> key, E element) {
+        return genericMutableOf(key, element).asMutable();
+    }
+
+    /**
+     * Constructs an immutable {@link Value} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed immutable value
+     */
+    static <E> Value.Immutable<E> immutableOf(Key<? extends Value<E>> key, E element) {
+        return genericImmutableOf(key, element).asImmutable();
+    }
+
+    /**
+     * Constructs a mutable {@link Value} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed mutable value
+     */
+    static <E extends Comparable<E>> BoundedValue.Mutable<E> mutableOf(Key<? extends BoundedValue<E>> key, E element) {
+        return genericMutableOf(key, element).asMutable();
+    }
+
+    /**
+     * Constructs an immutable {@link Value} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed immutable value
+     */
+    static <E extends Comparable<E>> BoundedValue.Immutable<E> immutableOf(Key<? extends BoundedValue<E>> key, E element) {
+        return genericImmutableOf(key, element).asImmutable();
+    }
+
+    /**
+     * Constructs a mutable {@link OptionalValue} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed mutable value
+     */
+    static <E> OptionalValue.Mutable<E> mutableOf(Key<? extends OptionalValue<E>> key, Optional<E> element) {
+        return genericMutableOf(key, element).asMutable();
+    }
+
+    /**
+     * Constructs an immutable {@link OptionalValue} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed immutable value
+     */
+    static <E> OptionalValue.Immutable<E> immutableOf(Key<? extends OptionalValue<E>> key, Optional<E> element) {
+        return genericImmutableOf(key, element).asImmutable();
+    }
+
+    /**
+     * Constructs a mutable {@link ListValue} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed mutable value
+     */
+    static <E> ListValue.Mutable<E> mutableOf(Key<? extends ListValue<E>> key, List<E> element) {
+        return genericMutableOf(key, element).asMutable();
+    }
+
+    /**
+     * Constructs an immutable {@link ListValue} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed immutable value
+     */
+    static <E> ListValue.Immutable<E> immutableOf(Key<? extends ListValue<E>> key, List<E> element) {
+        return genericImmutableOf(key, element).asImmutable();
+    }
+
+    /**
+     * Constructs a mutable {@link SetValue} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed mutable value
+     */
+    static <E> SetValue.Mutable<E> mutableOf(Key<? extends SetValue<E>> key, Set<E> element) {
+        return genericMutableOf(key, element).asMutable();
+    }
+
+    /**
+     * Constructs an immutable {@link SetValue} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed immutable value
+     */
+    static <E> SetValue.Immutable<E> immutableOf(Key<? extends SetValue<E>> key, Set<E> element) {
+        return genericImmutableOf(key, element).asImmutable();
+    }
+
+    /**
+     * Constructs a mutable {@link MapValue} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <K> The map key type
+     * @param <V> The map value type
+     * @return The constructed mutable value
+     */
+    static <K, V> MapValue.Mutable<K, V> mutableOf(Key<? extends MapValue<K, V>> key, Map<K, V> element) {
+        return genericMutableOf(key, element).asMutable();
+    }
+
+    /**
+     * Constructs an immutable {@link MapValue} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <K> The map key type
+     * @param <V> The map value type
+     * @return The constructed immutable value
+     */
+    static <K, V> MapValue.Immutable<K, V> immutableOf(Key<? extends MapValue<K, V>> key, Map<K, V> element) {
+        return genericImmutableOf(key, element).asImmutable();
+    }
+
+    /**
+     * Constructs a mutable {@link WeightedCollectionValue} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed mutable value
+     */
+    static <E> WeightedCollectionValue.Mutable<E> mutableOf(Key<? extends WeightedCollectionValue<E>> key, WeightedTable<E> element) {
+        return genericMutableOf(key, element).asMutable();
+    }
+
+    /**
+     * Constructs an immutable {@link WeightedCollectionValue} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed immutable value
+     */
+    static <E> WeightedCollectionValue.Immutable<E> immutableOf(Key<? extends WeightedCollectionValue<E>> key, WeightedTable<E> element) {
+        return genericImmutableOf(key, element).asImmutable();
+    }
+
+    /**
      * Constructs a {@link Value} of the appropriate type based
      * on the given {@link Key} and the element. The returned
      * {@link Value} is guaranteed {@link Mutable}, this means that
@@ -69,7 +258,7 @@ public interface Value<E> {
      * @param <E> The element type
      * @return The constructed mutable value
      */
-    static <V extends Value<E>, E> V mutableOf(Key<V> key, E element) {
+    static <V extends Value<E>, E> V genericMutableOf(Key<V> key, E element) {
         return Sponge.getRegistry().requireFactory(Factory.class).mutableOf(key, element);
     }
 
@@ -85,7 +274,7 @@ public interface Value<E> {
      * @param <E> The element type
      * @return The constructed immutable value
      */
-    static <V extends Value<E>, E> V immutableOf(Key<V> key, E element) {
+    static <V extends Value<E>, E> V genericImmutableOf(Key<V> key, E element) {
         return Sponge.getRegistry().requireFactory(Factory.class).immutableOf(key, element);
     }
 

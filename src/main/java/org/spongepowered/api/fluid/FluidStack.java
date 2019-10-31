@@ -25,8 +25,8 @@
 package org.spongepowered.api.fluid;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.DataHolderBuilder;
+import org.spongepowered.api.data.SerializableDataHolder;
+import org.spongepowered.api.data.SerializableDataHolderBuilder;
 import org.spongepowered.api.item.ItemTypes;
 
 /**
@@ -34,7 +34,7 @@ import org.spongepowered.api.item.ItemTypes;
  * volume measured in "milliBuckets" where <code>1000</code>mB is equal to
  * 1 {@link ItemTypes#BUCKET}.
  */
-public interface FluidStack extends DataHolder.Mutable {
+public interface FluidStack extends SerializableDataHolder.Mutable {
 
     /**
      * Creates a new {@link Builder} to make fluid stacks.
@@ -85,7 +85,7 @@ public interface FluidStack extends DataHolder.Mutable {
     @Override
     FluidStack copy();
 
-    interface Builder extends DataHolderBuilder.Mutable<FluidStack, Builder> {
+    interface Builder extends SerializableDataHolderBuilder.Mutable<FluidStack, Builder> {
 
         /**
          * Sets the {@link FluidType} to use to build the {@link FluidStack}.

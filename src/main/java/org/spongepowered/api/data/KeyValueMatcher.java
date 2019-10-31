@@ -22,69 +22,76 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.property;
+package org.spongepowered.api.data;
 
 import static java.util.Objects.requireNonNull;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.persistence.DataBuilder;
+import org.spongepowered.api.data.persistence.DataSerializable;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.item.inventory.equipment.EquipmentTypes;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.Optional;
 
 /**
- * Represents a matcher for {@link Property}s.
+ * Represents a matcher for {@link Key} values.
+ *
+ * <p>This matcher can only be serialized if the underlying
+ * value {@link V} can also be serialized.</p>
  *
  * @param <V> The value type
  */
 @SuppressWarnings("unchecked")
-public interface PropertyMatcher<V> {
+public interface KeyValueMatcher<V> extends DataSerializable {
 
     /**
      * Represents a operator to match the
-     * values of a property query.
+     * values of a key query.
      */
     enum Operator {
         /**
-         * Matches when the property and the matcher
+         * Matches when the key and the matcher
          * values are equal.
          */
         EQUAL,
         /**
-         * Matches when the property and the matcher
+         * Matches when the key and the matcher
          * values are equal.
          */
         NOT_EQUAL,
         /**
-         * Matches when the property value is greater
+         * Matches when the key value is greater
          * compared to the matcher value.
          */
         GREATER,
         /**
-         * Matches when the property value is greater or
+         * Matches when the key value is greater or
          * equal compared to the matcher value.
          */
         GREATER_OR_EQUAL,
         /**
-         * Matches when the property value is less compared
+         * Matches when the key value is less compared
          * to the matcher value.
          */
         LESS,
         /**
-         * Matches when the property value is less or equal
+         * Matches when the key value is less or equal
          * compared to the matcher value.
          */
         LESS_OR_EQUAL,
         /**
-         * Matches when the property value is included in the
+         * Matches when the key value is included in the
          * matcher value. For example, the {@link EquipmentTypes#CHESTPLATE}
          * is included in the {@link EquipmentTypes#WORN} and
          * {@link EquipmentTypes#ANY} types.
          */
         INCLUDES,
         /**
-         * Matches when the property is excluded from the
+         * Matches when the key is excluded from the
          * matcher value. This is the inverted operator of {@link #INCLUDES}.
          */
         EXCLUDES,
@@ -92,34 +99,34 @@ public interface PropertyMatcher<V> {
     }
 
     /**
-     * Creates a {@link PropertyMatcher} from the given property and value. The
+     * Creates a {@link KeyValueMatcher} from the given key and value. The
      * default operator {@link Operator#EQUAL} will be used.
      *
-     * @param property The property of which the value should be matched
-     * @param value The matcher value that property values will be matched against
+     * @param key The key of which the value should be matched
+     * @param value The matcher value that key values will be matched against
      * @param <V> The value type
-     * @return The property matcher
+     * @return The key value matcher
      */
-    static <V> PropertyMatcher<V> of(Property<V> property, V value) {
-        return of(property, value, Operator.EQUAL);
+    static <V> KeyValueMatcher<V> of(Key<? extends Value<V>> key, V value) {
+        return of(key, value, Operator.EQUAL);
     }
 
     /**
-     * Creates a {@link PropertyMatcher} from the
-     * given property, value and operator.
+     * Creates a {@link KeyValueMatcher} from the
+     * given key, value and operator.
      *
-     * @param property The property of which the value should be matched
-     * @param value The matcher value that property values will be matched against
+     * @param key The key of which the value should be matched
+     * @param value The matcher value that key values will be matched against
      * @param operator The operator how the value should be matched
      * @param <V> The value type
-     * @return The property matcher
+     * @return The key value matcher
      */
-    static <V> PropertyMatcher<V> of(Property<V> property, V value, Operator operator) {
-        return builder().property(property).value(value).operator(operator).build();
+    static <V> KeyValueMatcher<V> of(Key<? extends Value<V>> key, V value, Operator operator) {
+        return builder().key(key).value(value).operator(operator).build();
     }
 
     /**
-     * Constructs a new {@link Builder} to create {@link PropertyMatcher}s.
+     * Constructs a new {@link Builder} to create {@link KeyValueMatcher}s.
      *
      * @return The builder
      */
@@ -128,15 +135,15 @@ public interface PropertyMatcher<V> {
     }
 
     /**
-     * Gets the {@link Property} that is being used to
-     * match property and matcher values.
+     * Gets the {@link Key} that is being used to
+     * match key and matcher values.
      *
-     * @return The property
+     * @return The key
      */
-    Property<V> getProperty();
+    Key<? extends Value<V>> getKey();
 
     /**
-     * Gets the operator of the query.
+     * Gets the operator of the matcher.
      *
      * @return The operator
      */
@@ -151,39 +158,39 @@ public interface PropertyMatcher<V> {
     Optional<V> getValue();
 
     /**
-     * Checks whether the value of the {@link PropertyHolder} is matched by this matcher.
+     * Checks whether the value of the {@link ValueContainer} is matched by this matcher.
      *
-     * @param propertyHolder The property holder to get the property value from
-     * @return Whether this matcher matches the property value
+     * @param valueContainer The value container to get the key value from
+     * @return Whether this matcher matches the key value
      */
-    default boolean matchesHolder(PropertyHolder propertyHolder) {
-        requireNonNull(propertyHolder, "propertyHolder");
-        return matches(propertyHolder.getProperty(getProperty()).orElse(null));
+    default boolean matcherContainer(ValueContainer valueContainer) {
+        requireNonNull(valueContainer, "valueContainer");
+        return this.matches(valueContainer.get(this.getKey()).orElse(null));
     }
 
     /**
      * Checks whether the given value is matched by this matcher.
      *
-     * @param value The property value, a null value represents that the property doesn't exist
-     * @return Whether this matcher matches the property value
+     * @param value The key value, a null value represents that the key doesn't exist
+     * @return Whether this matcher matches the key value
      */
     boolean matches(@Nullable V value);
 
     /**
-     * A builder to create {@link PropertyMatcher}s.
+     * A builder to create {@link KeyValueMatcher}s.
      *
      * @param <V> The value type
      */
-    interface Builder<V> extends CopyableBuilder<PropertyMatcher<V>, Builder<V>> {
+    interface Builder<V> extends CopyableBuilder<KeyValueMatcher<V>, Builder<V>>, DataBuilder<KeyValueMatcher<V>> {
 
         /**
-         * Sets the {@link Property}.
+         * Sets the {@link Key}.
          *
-         * @param property The property
-         * @param <NV> The property value type
+         * @param key The key
+         * @param <NV> The key value type
          * @return This builder, for chaining
          */
-        <NV> Builder<NV> property(Property<NV> property);
+        <NV> Builder<NV> key(Key<? extends Value<NV>> key);
 
         /**
          * Sets the {@link Operator}.
@@ -202,10 +209,18 @@ public interface PropertyMatcher<V> {
         Builder<V> value(@Nullable V value);
 
         /**
-         * Builds the {@link PropertyMatcher}.
+         * Sets the value.
          *
-         * @return The property matcher
+         * @param value The value
+         * @return This builder, for chaining
          */
-        PropertyMatcher<V> build();
+        Builder<V> value(@Nullable Value<? extends V> value);
+
+        /**
+         * Builds the {@link KeyValueMatcher}.
+         *
+         * @return The key value matcher
+         */
+        KeyValueMatcher<V> build();
     }
 }

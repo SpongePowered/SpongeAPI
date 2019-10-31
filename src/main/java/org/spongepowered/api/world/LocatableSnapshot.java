@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.world;
 
-import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Optional;
@@ -39,7 +39,7 @@ import java.util.UUID;
  *
  * @param <T> The type of location snapshot for self referencing
  */
-public interface LocatableSnapshot<T extends LocatableSnapshot<T>> extends DataHolder.Immutable<T> {
+public interface LocatableSnapshot<T extends LocatableSnapshot<T>> extends SerializableDataHolder.Immutable<T> {
 
     /**
      * Gets the {@link UUID} of the world.

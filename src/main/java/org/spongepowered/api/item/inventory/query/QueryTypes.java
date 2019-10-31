@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.item.inventory.query;
 
-import org.spongepowered.api.data.property.Property;
-import org.spongepowered.api.data.property.PropertyMatcher;
+import org.spongepowered.api.data.Key;
+import org.spongepowered.api.data.KeyValueMatcher;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.Inventory;
-import org.spongepowered.api.item.inventory.InventoryProperties;
+import org.spongepowered.api.item.inventory.InventoryKeys;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.entity.Hotbar;
 import org.spongepowered.api.item.inventory.entity.PrimaryPlayerInventory;
@@ -51,7 +51,7 @@ public final class QueryTypes {
      * TODO property instead?
      * Tests based on the title of the inventory.
      *
-     * @see InventoryProperties#TITLE
+     * @see InventoryKeys#TITLE
      * @see Nameable.Translatable#getNameTranslation()
      */
     public static final OneParam<Translation> INVENTORY_TRANSLATION = DummyObjectProvider.createExtendedFor(OneParam.class, "INVENTORY_TRANSLATION");
@@ -92,9 +92,9 @@ public final class QueryTypes {
     /**
      * Tests based on an inventory property present on the target inventory.
      *
-     * @see Inventory#getProperty(Inventory, Property)
+     * @see Inventory#get(Inventory, Key)
      */
-    public static final OneParam<PropertyMatcher<?>> PROPERTY = DummyObjectProvider.createExtendedFor(OneParam.class, "PROPERTY");
+    public static final OneParam<KeyValueMatcher<?>> KEY_VALUE = DummyObjectProvider.createExtendedFor(OneParam.class, "KEY_VALUE");
 
     /**
      * Tests based on the class of the inventory.

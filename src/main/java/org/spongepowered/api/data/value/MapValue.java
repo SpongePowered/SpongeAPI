@@ -34,6 +34,34 @@ import java.util.function.Predicate;
 
 public interface MapValue<K, V> extends Value<Map<K, V>> {
 
+    /**
+     * Constructs a mutable {@link MapValue} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <K> The map key type
+     * @param <V> The map value type
+     * @return The constructed mutable value
+     */
+    static <K, V> MapValue.Mutable<K, V> mutableOf(Key<? extends MapValue<K, V>> key, Map<K, V> element) {
+        return Value.mutableOf(key, element);
+    }
+
+    /**
+     * Constructs an immutable {@link MapValue} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <K> The map key type
+     * @param <V> The map value type
+     * @return The constructed immutable value
+     */
+    static <K, V> MapValue.Immutable<K, V> immutableOf(Key<? extends MapValue<K, V>> key, Map<K, V> element) {
+        return Value.immutableOf(key, element);
+    }
+
     @Override
     Key<? extends MapValue<K, V>> getKey();
 

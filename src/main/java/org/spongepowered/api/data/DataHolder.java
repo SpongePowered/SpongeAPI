@@ -24,19 +24,11 @@
  */
 package org.spongepowered.api.data;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.spongepowered.api.data.persistence.DataSerializable;
-import org.spongepowered.api.data.persistence.DataView;
-import org.spongepowered.api.data.persistence.InvalidDataException;
-import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.data.value.CollectionValue;
 import org.spongepowered.api.data.value.MapValue;
 import org.spongepowered.api.data.value.MergeFunction;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
-import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Collection;
 import java.util.Map;
@@ -47,49 +39,12 @@ import java.util.function.Function;
  * A data holder object allows the access of additional data on the object
  * that is not simply expressed by its basic type.
  */
-public interface DataHolder extends DataSerializable, PropertyHolder, ValueContainer {
+public interface DataHolder extends ValueContainer {
 
+    /**
+     * Represents a data holder that allows its data to be modified.
+     */
     interface Mutable extends DataHolder {
-
-        /**
-         * Validates the container with known data required to set the raw data to
-         * this {@link DataHolder}. If the container is incomplete or contains
-         * invalid data, <code>false</code> is returned.
-         *
-         * <p>This validation should be checked prior to calling
-         * {@link #setRawData(DataView)} to avoid exceptions.</p>
-         *
-         * @param container The raw data to validate
-         * @return True if the data is valid
-         */
-        boolean validateRawData(DataView container);
-
-        /**
-         * Attempts to set all data of this {@link DataHolder} according to the
-         * {@link DataView}'s held information. Using this to modify known to be
-         * {@link Key}s provided dynamically through {@link DataProvider}s is
-         * unsupported. The format of the {@link DataView}'s contained data is
-         * dependent on the type of {@link Mutable} this is. In some cases, the
-         * format is specified based on a more specific type, such as for
-         * {@link EntityType}s, or {@link ItemType}s.
-         *
-         * <p>This setter is used to provide setting custom data that is not
-         * represented by the Data API, including forge mods and other
-         * unknown data. Attempts to validate the provided view is not always
-         * possible due to the nature of the data being parsed by the implementation,
-         * and only understood by clients. Other cases where the data <b>can</b>
-         * be validated and the data is incompatible will end up throwing an
-         * {@link InvalidDataException}.</p>
-         *
-         * @param container A container containing all raw data to set on this
-         *     data holder
-         * @throws InvalidDataException If the container is missing or has invalid
-         *     data that this holder will refuse
-         */
-        void setRawData(DataView container) throws InvalidDataException;
-
-        @Override
-        ValueContainer copy();
 
         /**
          * Applies a transformation on the provided {@link Value} such that
@@ -105,11 +60,11 @@ public interface DataHolder extends DataSerializable, PropertyHolder, ValueConta
          * @param <E> The type of value
          * @return The end resulting value
          */
-        default <E> DataTransactionResult transform(Key<? extends Value<E>> key, Function<@NonNull E, @NonNull E> function) {
-            if (supports(key)) {
-                return get(key)
+        default <E> DataTransactionResult transform(Key<? extends Value<E>> key, Function<E, E> function) {
+            if (this.supports(key)) {
+                return this.get(key)
                     .map(function)
-                    .map(value -> offer(key, value))
+                    .map(value -> this.offer(key, value))
                     .orElseGet(DataTransactionResult::failNoData);
             }
             return DataTransactionResult.failNoData();
@@ -139,7 +94,7 @@ public interface DataHolder extends DataSerializable, PropertyHolder, ValueConta
          * @return The transaction result
          */
         default <E> DataTransactionResult offer(Value<E> value) {
-            return offer(value.getKey(), value.get());
+            return this.offer(value.getKey(), value.get());
         }
 
         <E> DataTransactionResult offerSingle(Key<? extends CollectionValue<E, ?>> key, E element);
@@ -196,7 +151,7 @@ public interface DataHolder extends DataSerializable, PropertyHolder, ValueConta
          *     incompatibility
          */
         default <E> DataTransactionResult tryOffer(Value<E> value) throws IllegalArgumentException {
-            final DataTransactionResult result = offer(value.getKey(), value.get());
+            final DataTransactionResult result = this.offer(value.getKey(), value.get());
             if (!result.isSuccessful()) {
                 throw new IllegalArgumentException("Failed offer transaction!");
             }
@@ -214,7 +169,7 @@ public interface DataHolder extends DataSerializable, PropertyHolder, ValueConta
          * @return The transaction result
          */
         default DataTransactionResult remove(Value<?> value) {
-            return remove(value.getKey());
+            return this.remove(value.getKey());
         }
 
         /**
@@ -251,7 +206,7 @@ public interface DataHolder extends DataSerializable, PropertyHolder, ValueConta
          * @return The transaction result
          */
         default DataTransactionResult copyFrom(ValueContainer that) {
-            return copyFrom(that, MergeFunction.REPLACEMENT_PREFERRED);
+            return this.copyFrom(that, MergeFunction.REPLACEMENT_PREFERRED);
         }
 
         /**
@@ -267,6 +222,10 @@ public interface DataHolder extends DataSerializable, PropertyHolder, ValueConta
         DataTransactionResult copyFrom(ValueContainer that, MergeFunction function);
     }
 
+    /**
+     * Represents a {@link DataHolder} that is immutable and can be transformed
+     * into other immutable data holders.
+     */
     interface Immutable<I extends Immutable<I>> extends DataHolder {
 
         /**
@@ -312,7 +271,7 @@ public interface DataHolder extends DataSerializable, PropertyHolder, ValueConta
          * @return The new immutable value store
          */
         default Optional<I> without(Value<?> value) {
-            return without(value.getKey());
+            return this.without(value.getKey());
         }
 
         /**
@@ -333,8 +292,8 @@ public interface DataHolder extends DataSerializable, PropertyHolder, ValueConta
          * @param that The other immutable value store to gather values from
          * @return The new immutable value store instance
          */
-        default I merge(I that) {
-            return merge(that, MergeFunction.REPLACEMENT_PREFERRED);
+        default I mergeWith(I that) {
+            return this.mergeWith(that, MergeFunction.REPLACEMENT_PREFERRED);
         }
 
         /**
@@ -347,10 +306,6 @@ public interface DataHolder extends DataSerializable, PropertyHolder, ValueConta
          * @param function The function to resolve merge conflicts
          * @return The new immutable value store instance
          */
-        I merge(I that, MergeFunction function);
-
-        @Override
-        I copy();
+        I mergeWith(I that, MergeFunction function);
     }
-
 }

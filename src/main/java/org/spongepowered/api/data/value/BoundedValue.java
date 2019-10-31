@@ -25,7 +25,6 @@
 package org.spongepowered.api.data.value;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.Key;
 
 import java.util.Comparator;
@@ -44,80 +43,76 @@ import java.util.function.Function;
  */
 public interface BoundedValue<E> extends Value<E> {
 
+    /**
+     * Constructs a mutable {@link Value} of the appropriate
+     * type based on the given {@link Key} and the element.
+     * The returned {@link Value} is guaranteed {@link Mutable},
+     * this means that calling {@link #asMutable()} will return
+     * itself.
+     *
+     * @param key The key
+     * @param element The element
+     * @param minimum The minimum
+     * @param maximum The maximum
+     * @param <E> The element type
+     * @return The constructed mutable bounded value
+     */
+    static <E> BoundedValue.Mutable<E> mutableOf(Key<? extends BoundedValue<E>> key, E element, E minimum, E maximum) {
+        return Sponge.getRegistry().requireFactory(Factory.class).mutableOf(key, element, minimum, maximum).asMutable();
+    }
+
+    /**
+     * Constructs an immutable {@link Value} of the appropriate
+     * type based on the given {@link Key} and the element.
+     * The returned {@link Value} is guaranteed {@link Immutable},
+     * this means that calling {@link #asImmutable()} will return
+     * itself.
+     *
+     * @param key The key
+     * @param element The element
+     * @param minimum The minimum
+     * @param maximum The maximum
+     * @param <E> The element type
+     * @return The constructed immutable bounded value
+     */
+    static <E> BoundedValue.Immutable<E> immutableOf(Key<? extends BoundedValue<E>> key, E element, E minimum, E maximum) {
+        return Sponge.getRegistry().requireFactory(Factory.class).immutableOf(key, element, minimum, maximum).asImmutable();
+    }
+
+    /**
+     * Constructs a mutable {@link Value} of the appropriate
+     * type based on the given {@link Key} and the element.
+     * The returned {@link Value} is guaranteed {@link Mutable},
+     * this means that calling {@link #asMutable()} will return
+     * itself.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed mutable bounded value
+     */
+    static <E> BoundedValue.Mutable<E> mutableOf(Key<? extends BoundedValue<E>> key, E element) {
+        return Value.genericMutableOf(key, element).asMutable();
+    }
+
+    /**
+     * Constructs an immutable {@link Value} of the appropriate
+     * type based on the given {@link Key} and the element.
+     * The returned {@link Value} is guaranteed {@link Immutable},
+     * this means that calling {@link #asImmutable()} will return
+     * itself.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed immutable bounded value
+     */
+    static <E> BoundedValue.Immutable<E> immutableOf(Key<? extends BoundedValue<E>> key, E element) {
+        return Value.genericImmutableOf(key, element).asImmutable();
+    }
+
     @Override
     Key<? extends BoundedValue<E>> getKey();
-
-    /**
-     * Constructs a mutable {@link Value} of the appropriate
-     * type based on the given {@link Key} and the element.
-     * The returned {@link Value} is guaranteed {@link Mutable},
-     * this means that calling {@link #asMutable()} will return
-     * itself.
-     *
-     * @param key The key
-     * @param element The element
-     * @param minimum The minimum
-     * @param maximum The maximum
-     * @param <V> The value type
-     * @param <E> The element type
-     * @return The constructed mutable bounded value
-     */
-    static <V extends BoundedValue<E>, E> V mutableOf(Key<V> key, E element, E minimum, E maximum) {
-        return Sponge.getRegistry().requireFactory(Factory.class).mutableOf(key, element, minimum, maximum);
-    }
-
-    /**
-     * Constructs a immutable {@link Value} of the appropriate
-     * type based on the given {@link Key} and the element.
-     * The returned {@link Value} is guaranteed {@link Immutable},
-     * this means that calling {@link #asImmutable()} will return
-     * itself.
-     *
-     * @param key The key
-     * @param element The element
-     * @param minimum The minimum
-     * @param maximum The maximum
-     * @param <V> The value type
-     * @param <E> The element type
-     * @return The constructed immutable bounded value
-     */
-    static <V extends BoundedValue<E>, E> V immutableOf(Key<V> key, E element, E minimum, E maximum) {
-        return Sponge.getRegistry().requireFactory(Factory.class).immutableOf(key, element, minimum, maximum);
-    }
-
-    /**
-     * Constructs a mutable {@link Value} of the appropriate
-     * type based on the given {@link Key} and the element.
-     * The returned {@link Value} is guaranteed {@link Mutable},
-     * this means that calling {@link #asMutable()} will return
-     * itself.
-     *
-     * @param key The key
-     * @param element The element
-     * @param <V> The value type
-     * @param <E> The element type
-     * @return The constructed mutable bounded value
-     */
-    static <V extends BoundedValue<E>, E> V mutableOf(Key<V> key, E element) {
-        return Sponge.getRegistry().requireFactory(Factory.class).mutableOf(key, element);
-    }
-
-    /**
-     * Constructs a immutable {@link Value} of the appropriate
-     * type based on the given {@link Key} and the element.
-     * The returned {@link Value} is guaranteed {@link Immutable},
-     * this means that calling {@link #asImmutable()} will return
-     * itself.
-     *
-     * @param key The key
-     * @param element The element
-     * @param <V> The value type
-     * @param <E> The element type
-     * @return The constructed immutable bounded value
-     */
-    static <V extends BoundedValue<E>, E> V immutableOf(Key<V> key, E element) {
-        return Sponge.getRegistry().requireFactory(Factory.class).immutableOf(key, element);
-    }
 
     /**
      * Gets the required "minimum" value such that the value is only valid if

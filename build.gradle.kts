@@ -107,7 +107,7 @@ tasks {
 }
 
 // TODO - repopulate
-val catalogClasses = listOf(    
+val catalogClasses = listOf(
         "org.spongepowered.api.CatalogTypes",
         "org.spongepowered.api.advancement.AdvancementTypes",
         "org.spongepowered.api.advancement.criteria.trigger.Triggers",
@@ -119,7 +119,6 @@ val catalogClasses = listOf(
         "org.spongepowered.api.data.Keys",
         "org.spongepowered.api.data.persistence.DataFormats",
         "org.spongepowered.api.data.persistence.DataTranslators",
-        "org.spongepowered.api.data.property.Properties",
         "org.spongepowered.api.data.type.ArmorTypes",
         "org.spongepowered.api.data.type.ArtTypes",
         "org.spongepowered.api.data.type.BannerPatternShapes",
@@ -177,7 +176,7 @@ val catalogClasses = listOf(
         "org.spongepowered.api.item.ItemTypes",
         "org.spongepowered.api.item.enchantment.EnchantmentTypes",
         "org.spongepowered.api.item.inventory.ContainerTypes",
-        "org.spongepowered.api.item.inventory.InventoryProperties",
+        "org.spongepowered.api.item.inventory.InventoryKeys",
         "org.spongepowered.api.item.inventory.menu.ClickTypes",
         "org.spongepowered.api.item.potion.PotionTypes",
         "org.spongepowered.api.scoreboard.CollisionRules",

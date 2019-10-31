@@ -41,7 +41,7 @@ import org.spongepowered.api.block.entity.carrier.CarrierBlockEntity;
 import org.spongepowered.api.block.entity.carrier.Hopper;
 import org.spongepowered.api.block.entity.carrier.furnace.FurnaceBlockEntity;
 import org.spongepowered.api.data.meta.PatternLayer;
-import org.spongepowered.api.data.property.Properties;
+import org.spongepowered.api.data.type.ArmorType;
 import org.spongepowered.api.data.type.ArtType;
 import org.spongepowered.api.data.type.BodyPart;
 import org.spongepowered.api.data.type.BodyParts;
@@ -171,6 +171,7 @@ import org.spongepowered.api.entity.weather.WeatherEffect;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSources;
 import org.spongepowered.api.fluid.FluidStackSnapshot;
 import org.spongepowered.api.item.FireworkEffect;
+import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -333,13 +334,13 @@ public final class Keys {
     public static final Key<Value<Boolean>> ARMOR_STAND_IS_SMALL = DummyObjectProvider.createExtendedFor(Key.class, "ARMOR_STAND_IS_SMALL");
 
     /**
-     * Represents the {@link Key} for if an {@link ArmorStand} if a "marker" stand.
+     * Represents the {@link Key} for if an {@link ArmorStand} is a "marker" stand.
      *
      * <p>If {@code true}, the armor stand's bounding box is near
      * impossible to see, and the armor stand can no longer be
      * interacted with.</p>
      */
-    public static final Key<Value<Boolean>> ARMOR_STAND_MARKER = DummyObjectProvider.createExtendedFor(Key.class, "ARMOR_STAND_MARKER");
+    public static final Key<Value<Boolean>> ARMOR_STAND_HAS_MARKER = DummyObjectProvider.createExtendedFor(Key.class, "ARMOR_STAND_HAS_MARKER");
 
     /**
      * Represents the {@link Key} for whether players are prevented from taking
@@ -381,6 +382,11 @@ public final class Keys {
      * Represents the {@link Key} for the time of a {@link Ravager} is considered attacking.
      */
     public static final Key<Value<Integer>> ATTACK_TIME = DummyObjectProvider.createExtendedFor(Key.class, "ATTACK_TIME");
+
+    /**
+     * Represents the {@link Key} for representing the {@link ArmorType} of a {@link ItemType}.
+     */
+    public static final Key<Value<ArmorType>> ARMOR_TYPE = DummyObjectProvider.createExtendedFor(Key.class, "ARMOR_TYPE");
 
     /**
      * Represents the {@link Key} for representing the {@link Axis} direction
@@ -660,6 +666,12 @@ public final class Keys {
     public static final Key<Value<Boolean>> CONNECTED_WEST = DummyObjectProvider.createExtendedFor(Key.class, "CONNECTED_WEST");
 
     /**
+     * Represents the {@link Key} for representing the "connected to up"
+     * state of a {@link BlockState}.
+     */
+    public static final Key<Value<Boolean>> CONNECTED_UP = DummyObjectProvider.createExtendedFor(Key.class, "CONNECTED_UP");
+
+    /**
      * Represents the {@link Key} for the amount of ticks a {@link Hopper} has
      * to cool down before transferring the next item.
      */
@@ -783,9 +795,8 @@ public final class Keys {
      * Represents the {@link Key} for representing the dominant {@link HandPreference}
      * of a {@link Living} entity.
      *
-     * <p><em>NOTE:</em> Does not apply to {@link Player}s as their
-     * {@link HandPreference} can not be changed server-side.
-     * See {@link Properties#DOMINANT_HAND}.</p>
+     * <p><em>NOTE:</em> For {@link Player}s is this key read-only, the
+     * {@link HandPreference} of a player can not be changed server-side.</p>
      */
     public static final Key<Value<HandPreference>> DOMINANT_HAND = DummyObjectProvider.createExtendedFor(Key.class, "DOMINANT_HAND");
 
@@ -1512,6 +1523,12 @@ public final class Keys {
     public static final Key<Value<Vector3d>> LEFT_LEG_ROTATION = DummyObjectProvider.createExtendedFor(Key.class, "LEFT_LEG_ROTATION");
 
     /**
+     * Represents the {@link Key} of the amount of light that emitted by a light source,
+     * usually blocks.
+     */
+    public static final Key<Value<Integer>> LIGHT_EMISSION = DummyObjectProvider.createExtendedFor(Key.class, "LIGHT_EMISSION");
+
+    /**
      * Represents the {@link Key} for the state that something is "lit",
      * for example a {@link BlockTypes#FURNACE} or {@link BlockTypes#REDSTONE_TORCH}.
      */
@@ -2163,7 +2180,12 @@ public final class Keys {
      * <p>Setting this to {@code  true} will prevent the item stack's
      * {@link #ITEM_DURABILITY} from changing.</p>
      */
-    public static final Key<Value<Boolean>> UNBREAKABLE = DummyObjectProvider.createExtendedFor(Key.class, "UNBREAKABLE");
+    public static final Key<Value<Boolean>> IS_UNBREAKABLE = DummyObjectProvider.createExtendedFor(Key.class, "IS_UNBREAKABLE");
+
+    /**
+     * Represents the {@link Key} for whether a TNT block is unstable.
+     */
+    public static final Key<Value<Boolean>> UNSTABLE = DummyObjectProvider.createExtendedFor(Key.class, "UNSTABLE");
 
     /**
      * Represents the {@link Key} for the time a {@link Panda} has been unhappy (in ticks)
@@ -2282,7 +2304,32 @@ public final class Keys {
      */
     public static final Key<Value<WoodType>> WOOD_TYPE = DummyObjectProvider.createExtendedFor(Key.class, "WOOD_TYPE");
 
+    /**
+     * Represents the {@link Key} for the temperature of a biome at a block location.
+     */
+    public static final Key<Value<Double>> BIOME_TEMPERATURE = DummyObjectProvider.createExtendedFor(Key.class, "BIOME_TEMPERATURE");
+
+    /**
+     * Represents the {@link Key} for the blast resistance of a block.
+     */
+    public static final Key<Value<Double>> BLAST_RESISTANCE = DummyObjectProvider.createExtendedFor(Key.class, "BLAST_RESISTANCE");
+
+    /**
+     * Represents the {@link Key} for the amount of light that is emitted by the
+     * surrounding blocks at a block location. The value scales normally from 0 to 1.
+     *
+     * <p>In vanilla minecraft is this value in steps of 1/15 from 0 to 1.</p>
+     */
+    public static final Key<Value<Double>> BLOCK_LUMINANCE = DummyObjectProvider.createExtendedFor(Key.class, "BLOCK_LUMINANCE");
+
+    /**
+     * Represents the {@link Key} for the hardness of something, usually a block.
+     */
+    public static final Key<BoundedValue<Double>> HARDNESS = DummyObjectProvider.createExtendedFor(Key.class, "HARDNESS");
+
     // SORTFIELDS:OFF
+
+    // TODO: Convert missing properties to keys.
 
     private Keys() {
         throw new AssertionError("You should not be attempting to instantiate this class.");

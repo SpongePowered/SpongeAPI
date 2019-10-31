@@ -22,39 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.volume.game;
+package org.spongepowered.api.data;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
-import org.spongepowered.api.world.volume.block.entity.ReadableBlockEntityVolume;
-import org.spongepowered.math.vector.Vector3i;
+import org.spongepowered.api.data.value.Value;
 
 /**
- * A very primitive rudimentary volume that can be used by the {@link Game}
- * without impunity, but no guarantees on the provider type of what this
- * primitive volume is based on.
+ * Represents a {@link DataHolder} that can be copied.
  */
-public interface PrimitiveGameVolume extends ReadableBlockVolume, ReadableBlockEntityVolume {
+public interface CopyableDataHolder extends DataHolder {
 
-    @Override
-    PrimitiveGameVolume getView(Vector3i newMin, Vector3i newMax);
-
-    default int getMaximumLight() {
-        return 15;
-    }
-
-    default int getEmittedLight(Vector3i pos) {
-        return this.getInt(pos, Keys.LIGHT_EMISSION).orElse(0);
-    }
-
-    default int getEmittedLight(int x, int y, int z) {
-        return this.getInt(x, y, z, Keys.LIGHT_EMISSION).orElse(0);
-    }
-
-    default int getHeight() {
-        return 256;
-    }
-
-    // TODO - Raytraces
+    /**
+     * Creates a clone copy of this {@link CopyableDataHolder} as a new
+     * {@link CopyableDataHolder} such that all the {@link Value}s are
+     * safely duplicated to the new instance. It is not guaranteed that
+     * the returning container is of the same type as this container.
+     *
+     * @return The new copy
+     */
+    CopyableDataHolder copy();
 }

@@ -24,11 +24,10 @@
  */
 package org.spongepowered.api.data;
 
-import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.util.CopyableBuilder;
 
-public interface DataHolderBuilder<H extends DataHolder, B extends DataHolderBuilder<H, B>> extends CopyableBuilder<H, B>, DataBuilder<H> {
+public interface DataHolderBuilder<H extends DataHolder, B extends DataHolderBuilder<H, B>> extends CopyableBuilder<H, B> {
 
     /**
      * Adds the given {@link Value} to the builder. The
@@ -40,7 +39,7 @@ public interface DataHolderBuilder<H extends DataHolder, B extends DataHolderBui
      */
     @SuppressWarnings("unchecked")
     default B add(Value<?> value) {
-        return (B) add((Key) value.getKey(), value.get());
+        return (B) this.add((Key) value.getKey(), value.get());
     }
 
     /**
@@ -66,7 +65,7 @@ public interface DataHolderBuilder<H extends DataHolder, B extends DataHolderBui
      * @return This builder, for chaining
      */
     default B add(DataManipulator manipulator) {
-        return add(manipulator.getValues());
+        return this.add(manipulator.getValues());
     }
 
     /**
@@ -78,7 +77,7 @@ public interface DataHolderBuilder<H extends DataHolder, B extends DataHolderBui
      * @return This builder, for chaining
      */
     default B addFrom(DataHolder dataHolder) {
-        return add(dataHolder.getValues());
+        return this.add(dataHolder.getValues());
     }
 
     /**

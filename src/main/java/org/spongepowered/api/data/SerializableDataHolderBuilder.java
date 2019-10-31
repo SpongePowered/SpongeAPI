@@ -22,5 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
-package org.spongepowered.api.data.property.provider;
+package org.spongepowered.api.data;
+
+import org.spongepowered.api.data.persistence.DataBuilder;
+
+public interface SerializableDataHolderBuilder<H extends SerializableDataHolder, B extends SerializableDataHolderBuilder<H, B>>
+        extends DataHolderBuilder<H, B>, DataBuilder<H> {
+
+    interface Mutable<H extends SerializableDataHolder.Mutable, B extends SerializableDataHolderBuilder.Mutable<H, B>>
+            extends SerializableDataHolderBuilder<H, B>, DataHolderBuilder.Mutable<H, B> {
+
+    }
+
+    interface Immutable<H extends SerializableDataHolder.Immutable<H>, B extends SerializableDataHolderBuilder.Immutable<H, B>>
+            extends SerializableDataHolderBuilder<H, B>, DataHolderBuilder.Immutable<H, B> {
+
+    }
+}

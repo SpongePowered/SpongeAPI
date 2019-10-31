@@ -24,79 +24,79 @@
  */
 package org.spongepowered.api.item.inventory.slot;
 
-import org.spongepowered.api.data.property.PropertyMatcher;
-import org.spongepowered.api.item.inventory.InventoryProperties;
+import org.spongepowered.api.data.KeyValueMatcher;
+import org.spongepowered.api.item.inventory.InventoryKeys;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.math.vector.Vector2i;
 
 /**
- * A collection of {@link PropertyMatcher}s that
+ * A collection of {@link KeyValueMatcher}s that
  * can be used to query for {@link Slot}s.
  */
 public final class SlotMatchers {
 
     /**
-     * Creates a {@link PropertyMatcher} with the default operator
-     * {@link org.spongepowered.api.data.property.PropertyMatcher.Operator#EQUAL} to match against slot
+     * Creates a {@link KeyValueMatcher} with the default operator
+     * {@link org.spongepowered.api.data.KeyValueMatcher.Operator#EQUAL} to match against slot
      * indexes.
      *
      * @param index The slot index
      * @return The property query
      */
-    public static PropertyMatcher<Integer> index(int index) {
-        return PropertyMatcher.of(InventoryProperties.SLOT_INDEX, index);
+    public static KeyValueMatcher<Integer> index(int index) {
+        return KeyValueMatcher.of(InventoryKeys.SLOT_INDEX, index);
     }
 
     /**
-     * Creates a {@link PropertyMatcher} to match against slot indexes.
+     * Creates a {@link KeyValueMatcher} to match against slot indexes.
      *
      * @param index The slot index value
      * @param operator The operator
      * @return The property query
      */
-    public static PropertyMatcher<Integer> index(int index, PropertyMatcher.Operator operator) {
-        return PropertyMatcher.of(InventoryProperties.SLOT_INDEX, index, operator);
+    public static KeyValueMatcher<Integer> index(int index, KeyValueMatcher.Operator operator) {
+        return KeyValueMatcher.of(InventoryKeys.SLOT_INDEX, index, operator);
     }
 
     /**
-     * Creates a {@link PropertyMatcher} with the default operator
-     * {@link org.spongepowered.api.data.property.PropertyMatcher.Operator#EQUAL} to match against a
+     * Creates a {@link KeyValueMatcher} with the default operator
+     * {@link org.spongepowered.api.data.KeyValueMatcher.Operator#EQUAL} to match against a
      * slot position.
      *
      * @param pos The slot position
      * @return The property query
      */
-    public static PropertyMatcher<Vector2i> position(Vector2i pos) {
-        return PropertyMatcher.of(InventoryProperties.SLOT_POSITION, pos);
+    public static KeyValueMatcher<Vector2i> position(Vector2i pos) {
+        return KeyValueMatcher.of(InventoryKeys.SLOT_POSITION, pos);
     }
 
     /**
-     * Creates a {@link PropertyMatcher} with the default operator
-     * {@link org.spongepowered.api.data.property.PropertyMatcher.Operator#EQUAL} to match against a
+     * Creates a {@link KeyValueMatcher} with the default operator
+     * {@link org.spongepowered.api.data.KeyValueMatcher.Operator#EQUAL} to match against a
      * slot position.
      *
      * @param x The x coordinate
      * @param y The y coordinate
      * @return The property query
      */
-    public static PropertyMatcher<Vector2i> position(int x, int y) {
+    public static KeyValueMatcher<Vector2i> position(int x, int y) {
         return position(new Vector2i(x, y));
     }
 
     /**
-     * Creates a {@link PropertyMatcher} to match against a
+     * Creates a {@link KeyValueMatcher} to match against a
      * slot position.
      *
      * @param pos The slot position
      * @param operator The operator
      * @return The property query
      */
-    public static PropertyMatcher<Vector2i> position(Vector2i pos, PropertyMatcher.Operator operator) {
-        return PropertyMatcher.of(InventoryProperties.SLOT_POSITION, pos, operator);
+    public static KeyValueMatcher<Vector2i> position(Vector2i pos, KeyValueMatcher.Operator operator) {
+        return KeyValueMatcher.of(InventoryKeys.SLOT_POSITION, pos, operator);
     }
 
     /**
-     * Creates a {@link PropertyMatcher} to match against a
+     * Creates a {@link KeyValueMatcher} to match against a
      * slot position.
      *
      * @param x The x coordinate
@@ -104,7 +104,7 @@ public final class SlotMatchers {
      * @param operator The operator
      * @return The property query
      */
-    public static PropertyMatcher<Vector2i> position(int x, int y, PropertyMatcher.Operator operator) {
+    public static KeyValueMatcher<Vector2i> position(int x, int y, KeyValueMatcher.Operator operator) {
         return position(new Vector2i(x, y), operator);
     }
 

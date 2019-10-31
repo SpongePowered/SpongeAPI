@@ -26,9 +26,9 @@ package org.spongepowered.api.block;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.entity.BlockEntity;
-import org.spongepowered.api.data.DataHolderBuilder;
 import org.spongepowered.api.data.DataManipulator;
-import org.spongepowered.api.data.property.DirectionRelativePropertyHolder;
+import org.spongepowered.api.data.SerializableDataHolderBuilder;
+import org.spongepowered.api.data.DirectionRelativeDataHolder;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.fluid.FluidState;
 import org.spongepowered.api.state.State;
@@ -41,7 +41,7 @@ import org.spongepowered.api.world.Location;
  * a single instance of a particular {@link BlockState} as they are immutable,
  * a particular instance may be cached for various uses.
  */
-public interface BlockState extends State<BlockState>, DirectionRelativePropertyHolder {
+public interface BlockState extends State<BlockState>, DirectionRelativeDataHolder.Immutable<BlockState> {
 
     /**
      * Creates a new {@link Builder} for building {@link BlockState}s.
@@ -101,7 +101,7 @@ public interface BlockState extends State<BlockState>, DirectionRelativeProperty
      * <p>Note that upon creation, the {@link BlockType} must be set for validation
      * of {@link DataManipulator}s, otherwise exceptions may be thrown.</p>
      */
-    interface Builder extends DataHolderBuilder.Immutable<BlockState, Builder> {
+    interface Builder extends SerializableDataHolderBuilder.Immutable<BlockState, Builder> {
 
         /**
          * Sets the {@link BlockType} for the {@link BlockState} to build.

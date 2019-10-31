@@ -26,12 +26,12 @@ package org.spongepowered.api.world;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.math.vector.Vector3i;
 
-public interface LocatableBlock extends DataHolder.Immutable<LocatableBlock>, Locatable {
+public interface LocatableBlock extends SerializableDataHolder.Immutable<LocatableBlock>, Locatable {
 
     /**
      * Creates a new {@link Builder} for creating new {@link LocatableBlock}s.

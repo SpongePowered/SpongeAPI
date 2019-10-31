@@ -25,7 +25,6 @@
 package org.spongepowered.api.world;
 
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.data.property.LocationBasePropertyHolder;
 import org.spongepowered.api.util.RandomProvider;
 import org.spongepowered.api.world.chunk.ProtoChunk;
 import org.spongepowered.api.world.difficulty.Difficulty;
@@ -37,7 +36,7 @@ import org.spongepowered.api.world.volume.block.PhysicsAwareMutableBlockVolume;
 import org.spongepowered.api.world.volume.block.entity.StreamableBlockEntityVolume;
 import org.spongepowered.api.world.volume.entity.MutableEntityVolume;
 import org.spongepowered.api.world.volume.game.GenerationVolume;
-import org.spongepowered.api.world.volume.game.LocationCompositeValueStore;
+import org.spongepowered.api.world.volume.game.LocationBaseDataHolder;
 import org.spongepowered.api.world.volume.game.MutableGameVolume;
 import org.spongepowered.api.world.volume.game.ReadableRegion;
 import org.spongepowered.api.world.volume.game.UpdatableVolume;
@@ -50,8 +49,7 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
         MutableEntityVolume<BoundedWorldView<P>>, // Because this is mutable
         StreamableBlockEntityVolume<BoundedWorldView<P>>, // Because this is mutable
         GenerationVolume,
-        LocationBasePropertyHolder,
-        LocationCompositeValueStore,
+        LocationBaseDataHolder.Mutable,
         UpdatableVolume,
         RandomProvider,
         PhysicsAwareMutableBlockVolume<BoundedWorldView<P>>,

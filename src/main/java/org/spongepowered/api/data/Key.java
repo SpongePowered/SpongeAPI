@@ -42,6 +42,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiPredicate;
 import java.util.function.Supplier;
 
 /**
@@ -107,6 +108,27 @@ public interface Key<V extends Value<?>> extends CatalogType {
     TypeToken<?> getElementToken();
 
     /**
+     * Gets the {@link Comparator} to
+     * compare values of this key.
+     *
+     * @return The value comparator
+     */
+    Comparator<?> getElementComparator();
+
+    /**
+     * Gets the includes tester {@link BiPredicate}. This predicate should
+     * return {@code true} when the second parameter (the key value)
+     * is included in the first one (the matcher value).
+     *
+     * <p>The default tester will always return {@code false}.</p>
+     *
+     * @return The includes tester bi predicate
+     * @see KeyValueMatcher.Operator#INCLUDES
+     * @see KeyValueMatcher.Operator#EXCLUDES
+     */
+    BiPredicate<?, ?> getElementIncludesTester();
+
+    /**
      * Register an event listener which listens to the value the key accesses
      * changing.
      *
@@ -159,6 +181,31 @@ public interface Key<V extends Value<?>> extends CatalogType {
          */
         <T, B extends BoundedValue<T>> BoundedBuilder<T, B> boundedType(TypeToken<B> token);
 
+        /**
+         * Sets the {@link Comparator} that can be used to compare
+         * the elements.
+         *
+         * <p>Setting the comparator is a <strong>requirement</strong>
+         * if the element type isn't {@link Comparable}.</p>
+         *
+         * @param comparator The comparator
+         * @return This builder, for chaining
+         */
+        Builder<E, V> comparator(Comparator<? super E> comparator);
+
+        /**
+         * Sets the includes tester {@link BiPredicate}. This predicate should
+         * return {@code true} when the second parameter is included in the first one.
+         *
+         * <p>The default tester will always return {@code false}.</p>
+         *
+         * @param predicate The tester bi predicate
+         * @return This builder, for chaining
+         * @see KeyValueMatcher.Operator#INCLUDES
+         * @see KeyValueMatcher.Operator#EXCLUDES
+         */
+        Builder<E, V> includesTester(BiPredicate<? super E, ? super E> predicate);
+
         @Override
         Builder<E, V> key(CatalogKey key);
 
@@ -202,10 +249,10 @@ public interface Key<V extends Value<?>> extends CatalogType {
              *
              * <p>Setting the maximum value is required.</p>
              *
-             * @param minValue The minimum value
+             * @param maxValue The maximum value
              * @return This builder, for chaining
              */
-            BoundedBuilder<E, V> maxValue(E minValue);
+            BoundedBuilder<E, V> maxValue(E maxValue);
 
             /**
              * Sets the default maximum element supplier.
@@ -220,17 +267,11 @@ public interface Key<V extends Value<?>> extends CatalogType {
              */
             BoundedBuilder<E, V> maxValueSupplier(Supplier<? extends E> supplier);
 
-            /**
-             * Sets the {@link Comparator} that can be used to compare
-             * the elements.
-             *
-             * <p>Setting the comparator is a <strong>requirement</strong>
-             * if the element type isn't {@link Comparable}.</p>
-             *
-             * @param comparator The comparator
-             * @return This builder, for chaining
-             */
+            @Override
             BoundedBuilder<E, V> comparator(Comparator<? super E> comparator);
+
+            @Override
+            BoundedBuilder<E, V> includesTester(BiPredicate<? super E, ? super E> predicate);
 
             @Override
             BoundedBuilder<E, V> key(CatalogKey key);

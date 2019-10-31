@@ -29,6 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.data.value.Value;
@@ -69,7 +70,7 @@ import java.util.function.Predicate;
  *
  * <p>Blocks and items (when they are in inventories) are not entities.</p>
  */
-public interface Entity extends Identifiable, Locatable, DataHolder.Mutable, Translatable, RandomProvider {
+public interface Entity extends Identifiable, Locatable, SerializableDataHolder.Mutable, Translatable, RandomProvider {
 
     /**
      * Gets the {@link EntityType}.
@@ -86,7 +87,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder.Mutable, Tra
     EntitySnapshot createSnapshot();
 
     @Override
-    EntityArchetype copy();
+    Entity copy();
 
     /**
      * Creates an {@link EntityArchetype} for use with {@link Schematic}s.

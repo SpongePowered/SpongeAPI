@@ -29,7 +29,7 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.property.PropertyHolder;
+import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.state.StateContainer;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -47,6 +47,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * than how vanilla implementations handle them.</p>
  */
 @CatalogedBy(FluidTypes.class)
-public interface FluidType extends StateContainer<FluidState>, CatalogType, PropertyHolder {
+public interface FluidType extends StateContainer<FluidState>, ValueContainer, CatalogType {
 
 }

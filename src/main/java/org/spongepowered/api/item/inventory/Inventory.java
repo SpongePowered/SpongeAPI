@@ -25,9 +25,10 @@
 package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.property.Property;
-import org.spongepowered.api.data.property.PropertyHolder;
-import org.spongepowered.api.data.property.PropertyMatcher;
+import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.Key;
+import org.spongepowered.api.data.KeyValueMatcher;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.query.Query;
@@ -44,7 +45,7 @@ import java.util.UUID;
 /**
  * Base interface for queryable inventories.
  */
-public interface Inventory extends PropertyHolder {
+public interface Inventory extends DataHolder.Mutable {
 
     /**
      * Creates a new {@link Inventory.Builder} to build a basic {@link Inventory}.
@@ -291,31 +292,31 @@ public interface Inventory extends PropertyHolder {
 
     // TODO remove from API? do we need to get a property relative to another parent in API?
     /**
-     * Gets the property defined in <em>this</em>
+     * Gets the key defined in <em>this</em>
      * inventory for the specified (immediate) sub-inventory.
      *
      * @param child The child inventory to inspect
-     * @param property The property to retrieve the value for
-     * @param <V> The property value type
+     * @param key The key to retrieve the value for
+     * @param <V> The key value type
      *
-     * @return The property value, if available
+     * @return The key value, if available
      */
-    <V> Optional<V> getProperty(Inventory child, Property<V> property);
+    <V> Optional<V> get(Inventory child, Key<? extends Value<V>> key);
 
     /**
-     * Gets a property defined directly on this Inventory if one is defined.
+     * Gets a key defined directly on this Inventory if one is defined.
      * For sub-inventories this is effectively the same as
      * {@code inv.getParent().getProperty(inv, property);} but for
      * top-level inventories may include properties defined on the inventory
      * directly.
      *
-     * @param property The property to retrieve the value for
-     * @param <V> The property value type
+     * @param key The key to retrieve the value for
+     * @param <V> The key value type
      *
-     * @return The property value, if available
+     * @return The key value, if available
      */
     @Override
-    <V> Optional<V> getProperty(Property<V> property);
+    <V> Optional<V> get(Key<? extends Value<V>> key);
 
     /**
      * Query this inventory with given {@link Query}
@@ -327,13 +328,14 @@ public interface Inventory extends PropertyHolder {
     Inventory query(Query query);
 
     /**
-     * Query this inventory for inventories matching the supplied {@link PropertyMatcher}.
+     * Query this inventory for inventories matching
+     * the supplied {@link KeyValueMatcher}.
      *
-     * @param propertyMatcher the property matcher
-     * @return the query result
+     * @param matcher The key value matcher
+     * @return The query result
      */
-    default Inventory query(PropertyMatcher<?> propertyMatcher) {
-        return query(QueryTypes.PROPERTY.of(propertyMatcher));
+    default Inventory query(KeyValueMatcher<?> matcher) {
+        return this.query(QueryTypes.KEY_VALUE.of(matcher));
     }
 
     /**
@@ -468,7 +470,7 @@ public interface Inventory extends PropertyHolder {
         interface EndStep {
 
             /**
-             * Sets a unique identifier. Can be retrieved later using. {@link Inventory#getProperty(Property)} with {@link InventoryProperties#UNIQUE_ID}
+             * Sets a unique identifier. Can be retrieved later using. {@link Inventory#get(Key)} with {@link InventoryKeys#UNIQUE_ID}
              *
              * @param uuid the UUID.
              *

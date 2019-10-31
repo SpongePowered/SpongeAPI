@@ -26,7 +26,7 @@ package org.spongepowered.api.item;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.data.property.PropertyHolder;
+import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -37,11 +37,11 @@ import java.util.Optional;
  * A type of item.
  */
 @CatalogedBy(ItemTypes.class)
-public interface ItemType extends CatalogType, Translatable, PropertyHolder {
+public interface ItemType extends CatalogType, Translatable, DataHolder.Immutable<ItemType> {
 
     /**
      * Gets the corresponding {@link BlockType} of this item if one exists.
-     * 
+     *
      *  @return The Block
      */
     Optional<BlockType> getBlock();

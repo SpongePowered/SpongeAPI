@@ -32,9 +32,9 @@ import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.entity.BlockEntity;
-import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataHolderBuilder;
 import org.spongepowered.api.data.Key;
+import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
@@ -55,7 +55,7 @@ import java.util.function.Predicate;
  * use {@link ValueContainer#get(Key)} in order to retrieve information regarding
  * this item stack.</p>
  */
-public interface ItemStack extends DataHolder.Mutable, Translatable {
+public interface ItemStack extends SerializableDataHolder.Mutable, Translatable {
 
     /**
      * Creates a new {@link Builder} to build an {@link ItemStack}.

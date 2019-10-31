@@ -25,10 +25,9 @@
 package org.spongepowered.api.effect.potion;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.persistence.DataBuilder;
-import org.spongepowered.api.data.property.PropertyHolder;
+import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.CopyableBuilder;
 
@@ -39,7 +38,7 @@ import org.spongepowered.api.util.CopyableBuilder;
  * once created and can be offered to {@link Entity} instances through
  * the {@link Keys#POTION_EFFECTS}.
  */
-public interface PotionEffect extends DataSerializable, PropertyHolder {
+public interface PotionEffect extends DataSerializable {
 
     /**
      * Creates a new {@link Builder} to build a {@link PotionEffect}.

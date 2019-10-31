@@ -30,6 +30,32 @@ import java.util.Set;
 
 public interface SetValue<E> extends CollectionValue<E, Set<E>> {
 
+    /**
+     * Constructs a mutable {@link SetValue} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed mutable value
+     */
+    static <E> SetValue.Mutable<E> mutableOf(Key<? extends SetValue<E>> key, Set<E> element) {
+        return Value.mutableOf(key, element);
+    }
+
+    /**
+     * Constructs an immutable {@link SetValue} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed immutable value
+     */
+    static <E> SetValue.Immutable<E> immutableOf(Key<? extends SetValue<E>> key, Set<E> element) {
+        return Value.immutableOf(key, element);
+    }
+
     @Override
     Key<? extends SetValue<E>> getKey();
 

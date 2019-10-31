@@ -25,12 +25,12 @@
 package org.spongepowered.api.item.inventory.type;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.property.Property;
+import org.spongepowered.api.data.Key;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.item.inventory.ContainerType;
 import org.spongepowered.api.item.inventory.Inventory;
-import org.spongepowered.api.item.inventory.InventoryProperties;
+import org.spongepowered.api.item.inventory.InventoryKeys;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.menu.InventoryMenu;
@@ -62,7 +62,7 @@ public interface ViewableInventory extends Inventory {
 
     /**
      * Gets whether the specified player can interact with this object.
-     * 
+     *
      * @param player the Player wishing to interact with this Inventory
      * @return true if the Entity is able to interact with this Inventory
      */
@@ -258,7 +258,7 @@ public interface ViewableInventory extends Inventory {
         interface EndStep extends Builder {
 
             /**
-             * Sets a unique identifier. Can be retrieved later using. {@link Inventory#getProperty(Property)} with {@link InventoryProperties#UNIQUE_ID}
+             * Sets a unique identifier. Can be retrieved later using. {@link Inventory#get(Key)} with {@link InventoryKeys#UNIQUE_ID}
              *
              * @param uuid the UUID.
              *

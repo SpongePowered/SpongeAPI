@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.world;
 
-import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.SerializableDataHolder;
 
 import java.util.Optional;
 
@@ -33,7 +33,7 @@ import java.util.Optional;
  * it to be used as a blueprint to create multiple copies of its containing
  * data.
  */
-public interface Archetype<S extends LocatableSnapshot<S>, E> extends DataHolder.Mutable {
+public interface Archetype<S extends LocatableSnapshot<S>, E> extends SerializableDataHolder.Mutable {
 
     /**
      * Creates a new instance based on this archetype at the given location.

@@ -26,7 +26,7 @@ package org.spongepowered.api.block.entity;
 
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.LocatableBlock;
@@ -47,7 +47,7 @@ import org.spongepowered.api.world.schematic.Schematic;
  * customizable data associated with a {@link BlockEntity} is represented by
  * {@link Value Values}.</p>
  */
-public interface BlockEntity extends DataHolder.Mutable, Locatable {
+public interface BlockEntity extends SerializableDataHolder.Mutable, Locatable {
 
     /**
      * Checks for whether the block entity is currently valid or not.
@@ -115,5 +115,5 @@ public interface BlockEntity extends DataHolder.Mutable, Locatable {
      * @return The created archetype for re-creating this block entity
      */
     @Override
-    BlockEntityArchetype copy();
+    BlockEntity copy();
 }

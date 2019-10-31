@@ -40,12 +40,12 @@ import java.util.OptionalLong;
 import java.util.Set;
 
 /**
- * A ValueContainer is a holder of a particular set of {@link Value}s. While
+ * A value holder is a holder of a particular set of {@link Value}s. While
  * there exists a {@link DataHolder} and {@link DataManipulator},
  * the emphasis of {@link ValueContainer} is that it only contains "data". It
- * is not known whether a {@code ValueContainer} is mutable or immutable.
+ * is not known whether a {@code ValueHolder} is mutable or immutable.
  *
- * <p>Being that a {@code ValueContainer} is literally a container of
+ * <p>Being that a {@code ValueHolder} is literally a container of
  * {@link Value}s, it itself does not contain the underlying values of
  * data. A {@link ValueContainer} may not always be parented by another
  * {@link ValueContainer}, such as the case for {@link DataManipulator}s and
@@ -61,17 +61,53 @@ public interface ValueContainer {
      * to check for support of a {@link Key} by either calling
      * {@link #supports(Value)} or {@link #supports(Key)}.
      *
-     * @param key The key linking the
+     * @param key The key to retrieve the value for
      * @param <E> The type of value
      * @return The value, if available
      */
     <E> Optional<E> get(Key<? extends Value<E>> key);
 
-    OptionalInt getInt(Key<? extends Value<Integer>> key);
+    /**
+     * Attempts to get the underlying int value backed by a {@link Value}
+     * linked to the provided {@link Key}. If the {@link Key} is not
+     * supported, {@link Optional#empty()} is returned. It is important
+     * to check for support of a {@link Key} by either calling
+     * {@link #supports(Value)} or {@link #supports(Key)}.
+     *
+     * @param key The key to retrieve the value for
+     * @return The value, if available
+     */
+    default OptionalInt getInt(Key<? extends Value<Integer>> key) {
+        return this.get(key).map(OptionalInt::of).orElse(OptionalInt.empty());
+    }
 
-    OptionalDouble getDouble(Key<? extends Value<Double>> key);
+    /**
+     * Attempts to get the underlying double value backed by a {@link Value}
+     * linked to the provided {@link Key}. If the {@link Key} is not
+     * supported, {@link Optional#empty()} is returned. It is important
+     * to check for support of a {@link Key} by either calling
+     * {@link #supports(Value)} or {@link #supports(Key)}.
+     *
+     * @param key The key to retrieve the value for
+     * @return The value, if available
+     */
+    default OptionalDouble getDouble(Key<? extends Value<Double>> key) {
+        return this.get(key).map(OptionalDouble::of).orElse(OptionalDouble.empty());
+    }
 
-    OptionalLong getLong(Key<? extends Value<Long>> key);
+    /**
+     * Attempts to get the underlying long value backed by a {@link Value}
+     * linked to the provided {@link Key}. If the {@link Key} is not
+     * supported, {@link Optional#empty()} is returned. It is important
+     * to check for support of a {@link Key} by either calling
+     * {@link #supports(Value)} or {@link #supports(Key)}.
+     *
+     * @param key The key to retrieve the value for
+     * @return The value, if available
+     */
+    default OptionalLong getLong(Key<? extends Value<Long>> key) {
+        return this.get(key).map(OptionalLong::of).orElse(OptionalLong.empty());
+    }
 
     /**
      * Attempts to get the underlying value backed by a {@link Value}
@@ -86,11 +122,8 @@ public interface ValueContainer {
      * @throws NoSuchElementException If the value is not supported or present
      */
     default <E> E require(Key<? extends Value<E>> key) {
-        final Optional<E> optional = get(key);
-        if (optional.isPresent()) {
-            return optional.get();
-        }
-        throw new NoSuchElementException(String.format("Could not retrieve value for key '%s'", key.toString()));
+        return this.get(key).orElseThrow(() -> new NoSuchElementException(String.format(
+                "Could not retrieve value for key '%s'", key.toString())));
     }
 
     /**
@@ -102,13 +135,12 @@ public interface ValueContainer {
      * @param <E> The type of value
      * @return The value, or null if not set
      */
-    @Nullable
-    default <E> E getOrNull(Key<? extends Value<E>> key) {
-        Optional<E> value = get(key);
+    default <E> @Nullable E getOrNull(Key<? extends Value<E>> key) {
+        final Optional<E> value = this.get(key);
         if (value.isPresent()) {
             return value.get();
         }
-        if (!supports(key)) {
+        if (!this.supports(key)) {
             throw new UnsupportedOperationException("Key not supported. Key: " + key);
         }
         return null;
@@ -125,7 +157,7 @@ public interface ValueContainer {
      * @return The value, or default if not set
      */
     default <E> E getOrElse(Key<? extends Value<E>> key, E defaultValue) {
-        return get(key).orElse(checkNotNull(defaultValue, "Provided a null default value for 'getOrElse(Key, null)'!"));
+        return this.get(key).orElse(checkNotNull(defaultValue, "defaultValue"));
     }
 
     /**
@@ -154,18 +186,8 @@ public interface ValueContainer {
      * @return True if the base value is supported
      */
     default boolean supports(Value<?> value) {
-        return supports(value.getKey());
+        return this.supports(value.getKey());
     }
-
-    /**
-     * Creates a clone copy of this {@link ValueContainer} as a new
-     * {@link ValueContainer} such that all the {@link Value}s are
-     * safely duplicated to the new instance. It is not guaranteed that
-     * the returning container is of the same type as this container.
-     *
-     * @return The new copy
-     */
-    ValueContainer copy();
 
     /**
      * Gets all applicable {@link Key}s for this {@link ValueContainer}.

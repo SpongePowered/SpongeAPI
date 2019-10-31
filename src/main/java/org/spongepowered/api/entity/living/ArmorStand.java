@@ -36,11 +36,11 @@ import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 public interface ArmorStand extends Living, ArmorEquipable {
 
     /**
-     * {@link Keys#ARMOR_STAND_MARKER}
+     * {@link Keys#ARMOR_STAND_HAS_MARKER}
      * @return Whether this is a marker (non-visible) armor stand
      */
     default Value.Mutable<Boolean> marker() {
-        return this.getValue(Keys.ARMOR_STAND_MARKER).get().asMutable();
+        return this.getValue(Keys.ARMOR_STAND_HAS_MARKER).get().asMutable();
     }
 
     /**

@@ -30,6 +30,32 @@ import java.util.List;
 
 public interface ListValue<E> extends CollectionValue<E, List<E>> {
 
+    /**
+     * Constructs a mutable {@link ListValue} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed mutable value
+     */
+    static <E> ListValue.Mutable<E> mutableOf(Key<? extends ListValue<E>> key, List<E> element) {
+        return Value.mutableOf(key, element);
+    }
+
+    /**
+     * Constructs an immutable {@link ListValue} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed immutable value
+     */
+    static <E> ListValue.Immutable<E> immutableOf(Key<? extends ListValue<E>> key, List<E> element) {
+        return Value.immutableOf(key, element);
+    }
+
     @Override
     Key<? extends ListValue<E>> getKey();
 

@@ -26,7 +26,6 @@ package org.spongepowered.api.block;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.state.StateProperty;
-import org.spongepowered.api.data.property.PropertyMatcher;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.List;
@@ -108,14 +107,6 @@ public interface BlockStateMatcher extends Predicate<BlockState> {
          *     with the desired block type
          */
         <T extends Comparable<T>> Builder trait(StateProperty<T> trait, T value) throws IllegalArgumentException;
-
-        /**
-         * Adds the desired {@link PropertyMatcher} to this builder.
-         *
-         * @param propertyMatcher The property matcher
-         * @return This builder
-         */
-        Builder property(PropertyMatcher<?> propertyMatcher);
 
         /**
          * Creates a new {@link BlockStateMatcher}.

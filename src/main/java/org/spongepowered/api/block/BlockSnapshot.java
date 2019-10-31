@@ -27,7 +27,7 @@ package org.spongepowered.api.block;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.block.entity.BlockEntityArchetype;
-import org.spongepowered.api.data.DataHolderBuilder;
+import org.spongepowered.api.data.SerializableDataHolderBuilder;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
@@ -142,7 +142,7 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
      */
     Optional<BlockEntityArchetype> createArchetype();
 
-    interface Builder extends DataHolderBuilder.Immutable<BlockSnapshot, Builder> {
+    interface Builder extends SerializableDataHolderBuilder.Immutable<BlockSnapshot, Builder> {
 
         /**
          * Sets the {@link WorldProperties} for this {@link BlockSnapshot}.

@@ -27,15 +27,14 @@ package org.spongepowered.api.block.entity;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.world.Archetype;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.Key;
+import org.spongepowered.api.data.SerializableDataHolderBuilder;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.persistence.DataView;
-import org.spongepowered.api.data.Key;
-import org.spongepowered.api.data.DataManipulator;
-import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.world.Archetype;
 import org.spongepowered.api.world.Location;
 
 /**
@@ -111,7 +110,7 @@ public interface BlockEntityArchetype extends Archetype<BlockSnapshot, BlockEnti
     /**
      * A builder for {@link BlockEntityArchetype}s.
      */
-    interface Builder extends CopyableBuilder<BlockEntityArchetype, Builder>, DataBuilder<BlockEntityArchetype> {
+    interface Builder extends SerializableDataHolderBuilder.Mutable<BlockEntityArchetype, Builder> {
 
         @Override
         Builder reset();
@@ -138,16 +137,17 @@ public interface BlockEntityArchetype extends Archetype<BlockSnapshot, BlockEnti
          * and potentially any Sponge-added tracking information, such as owner
          * or notifier.
          *
-         * <p>Note that this overwrites data set from the following methods:
+         * <p>Note that this overwrites data set from the following methods:</p>
          * <ul>
          *     <li>{@link #from(Location)}</li>
          *     <li>{@link #state(BlockState)}</li>
          *     <li>{@link #blockEntity(BlockEntityType)}</li>
          *     <li>{@link #blockEntityData(DataView)}</li>
-         *     <li>{@link #set(Value)}</li>
-         *     <li>{@link #set(Key, Object)}</li>
-         *     <li>{@link #set(DataManipulator)}</li>
+         *     <li>{@link #add(Value)}</li>
+         *     <li>{@link #add(Key, Object)}</li>
+         *     <li>{@link #add(DataManipulator)}</li>
          * </ul>
+         *
          * @param blockEntity The block entity to absorb all data
          * @return This builder, for chaining
          */
@@ -170,25 +170,6 @@ public interface BlockEntityArchetype extends Archetype<BlockSnapshot, BlockEnti
          * @return This builder, for chaining
          */
         Builder blockEntityData(DataView dataView);
-
-        /**
-         * Sets the {@link DataManipulator}'s {@link Value}s onto this builder,
-         * to apply to the resulting {@link BlockEntity} when the built
-         * {@link BlockEntityArchetype} is used.
-         *
-         * @param manipulator The manipulator containing values
-         * @return This builder, for chaining
-         */
-        default Builder set(DataManipulator manipulator) {
-            manipulator.getValues().forEach(this::set);
-            return this;
-        }
-
-        default <E, V extends Value<E>> Builder set(V value) {
-            return this.set(value.getKey(), value.get());
-        }
-
-        <E, V extends Value<E>> Builder set(Key<V> key, E value);
 
         /**
          * Creates a new {@link BlockEntityArchetype} from this builder.

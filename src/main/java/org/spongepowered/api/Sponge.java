@@ -32,8 +32,6 @@ import org.spongepowered.api.asset.AssetManager;
 import org.spongepowered.api.command.manager.CommandManager;
 import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataManager;
-import org.spongepowered.api.data.property.PropertyRegistry;
-import org.spongepowered.api.data.property.provider.PropertyProvider;
 import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.network.ChannelRegistrar;
@@ -55,7 +53,6 @@ public final class Sponge {
     @Inject private static Platform platform;
     @Inject private static GameRegistry registry;
     @Inject private static DataManager dataManager;
-    @Inject private static PropertyRegistry propertyRegistry;
     @Inject private static PluginManager pluginManager;
     @Inject private static EventManager eventManager;
     @Inject private static AssetManager assetManager;
@@ -110,16 +107,6 @@ public final class Sponge {
      */
     public static DataManager getDataManager() {
         return check(dataManager);
-    }
-
-    /**
-     * Gets the {@link PropertyRegistry} instance to register
-     * {@link PropertyProvider}s.
-     *
-     * @return The property registry
-     */
-    public static PropertyRegistry getPropertyRegistry() {
-        return check(propertyRegistry);
     }
 
     /**
