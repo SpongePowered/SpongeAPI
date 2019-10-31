@@ -28,7 +28,7 @@ import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
-public interface LocationCreator<E extends World> extends ReadableBlockVolume {
+public interface LocationCreator extends ReadableBlockVolume {
 
     /**
      * Gets a location in this extent at the given position. Essentially, this
@@ -49,7 +49,7 @@ public interface LocationCreator<E extends World> extends ReadableBlockVolume {
      * @return The location in this extent
      */
     default Location getLocation(int x, int y, int z) {
-        return getLocation(new Vector3i(x, y, z));
+        return this.getLocation(new Vector3i(x, y, z));
     }
 
     /**
@@ -73,7 +73,7 @@ public interface LocationCreator<E extends World> extends ReadableBlockVolume {
      * @return The location in this extent
      */
     default Location getLocation(double x, double y, double z) {
-        return getLocation(new Vector3i(x, y, z));
+        return this.getLocation(new Vector3i(x, y, z));
     }
 
 
@@ -83,9 +83,8 @@ public interface LocationCreator<E extends World> extends ReadableBlockVolume {
      * @param position The position to get the locatable block
      * @return The locatable block
      */
-    @SuppressWarnings("unchecked")
     default LocatableBlock getLocatableBlock(Vector3i position) {
-        return LocatableBlock.builder().world((E) this).position(position).build();
+        return LocatableBlock.builder().location(this.getLocation(position)).build();
     }
 
     /**
@@ -96,9 +95,8 @@ public interface LocationCreator<E extends World> extends ReadableBlockVolume {
      * @param z The z position
      * @return The locatable block
      */
-    @SuppressWarnings("unchecked")
     default LocatableBlock getLocatableBlock(int x, int y, int z) {
-        return LocatableBlock.builder().world((E) this).position(x, y, z).build();
+        return LocatableBlock.builder().location(this.getLocation(x, y, z)).build();
     }
 
 }

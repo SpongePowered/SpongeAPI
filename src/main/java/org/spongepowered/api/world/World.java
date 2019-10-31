@@ -62,7 +62,7 @@ import java.util.function.Predicate;
  * A loaded Minecraft world.
  */
 public interface World extends ProtoWorld<World>,
-    LocationCreator<World>,
+    LocationCreator,
     PhysicsAwareMutableBlockVolume<World>,
     Identifiable,
     WeatherUniverse,
