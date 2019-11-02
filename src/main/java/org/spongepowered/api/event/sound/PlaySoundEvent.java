@@ -116,6 +116,9 @@ public interface PlaySoundEvent extends Event, Cancellable {
 
     }
 
+    /**
+     * Fired when a noteblock is triggered
+     */
     interface NoteBlock extends PlaySoundEvent {
 
         Note getNote();
