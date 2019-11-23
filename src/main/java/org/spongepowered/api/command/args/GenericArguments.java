@@ -467,15 +467,17 @@ public final class GenericArguments {
                         // What we might also have - we have no args left to parse so
                         // while the parse itself was successful, there could be other
                         // valid entries to add...
-                        CommandArgs.Snapshot afterArgSnapshot = args.getSnapshot();
                         context.applySnapshot(contextSnapshot);
                         args.applySnapshot(state);
                         completions.addAll(element.complete(src, args, context));
                         if (!(element instanceof OptionalCommandElement)) {
                             break;
                         }
-                        context.applySnapshot(afterSnapshot);
-                        args.applySnapshot(afterArgSnapshot);
+
+                        // The last element was optional, so we go back to before this
+                        // element would have been parsed, and assume it never existed...
+                        context.applySnapshot(contextSnapshot);
+                        args.applySnapshot(state);
                     }
                 } catch (ArgumentParseException ignored) {
                     args.applySnapshot(state);
