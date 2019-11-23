@@ -82,7 +82,7 @@ public class CompletionTest {
     private static final CommandElement tr = GenericArguments.optionalWeak(GenericArguments.markTrue(Text.of("true")));
     private static final CommandElement element4 = GenericArguments.seq(tr, first, second);
 
-    @Parameterized.Parameters(name = "{0} - {1}")
+    @Parameterized.Parameters(name = "{index}: {0} - {1}")
     public static List<Object[]> getTests() {
         ImmutableList.Builder<Object[]> tests = ImmutableList.builder();
         tests.add(new Object[] { "", Lists.newArrayList("arg", "arg1", "test1", "arg2", "test2", "arg3", "arg4"), element1 });
