@@ -446,25 +446,40 @@ public final class GenericArguments {
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
             Set<String> completions = Sets.newHashSet();
-            for (CommandElement element : elements) {
+            for (CommandElement element : this.elements) {
                 CommandArgs.Snapshot state = args.getSnapshot();
+                CommandContext.Snapshot contextSnapshot = context.createSnapshot();
                 try {
                     element.parse(src, args, context);
+
+                    // If we get here, the parse occurred successfully.
+                    // However, if nothing was consumed, then we should consider
+                    // what could have been.
+                    CommandContext.Snapshot afterSnapshot = context.createSnapshot();
                     if (state.equals(args.getSnapshot())) {
+                        context.applySnapshot(contextSnapshot);
                         completions.addAll(element.complete(src, args, context));
                         args.applySnapshot(state);
+                        context.applySnapshot(afterSnapshot);
                     } else if (args.hasNext()) {
                         completions.clear();
                     } else {
+                        // What we might also have - we have no args left to parse so
+                        // while the parse itself was successful, there could be other
+                        // valid entries to add...
+                        CommandArgs.Snapshot afterArgSnapshot = args.getSnapshot();
+                        context.applySnapshot(contextSnapshot);
                         args.applySnapshot(state);
                         completions.addAll(element.complete(src, args, context));
                         if (!(element instanceof OptionalCommandElement)) {
                             break;
                         }
-                        args.applySnapshot(state);
+                        context.applySnapshot(afterSnapshot);
+                        args.applySnapshot(afterArgSnapshot);
                     }
                 } catch (ArgumentParseException ignored) {
                     args.applySnapshot(state);
+                    context.applySnapshot(contextSnapshot);
                     completions.addAll(element.complete(src, args, context));
                     break;
                 }
