@@ -129,6 +129,37 @@ public interface SubjectData {
     CompletableFuture<Boolean> setPermissions(Set<Context> contexts, @Nullable Map<String, Boolean> permissions, TransferMethod method);
 
     /**
+     * Get the permission value that will be returned if no more specific permission setting matches.
+     *
+     * @param contexts The context combination to set this permission in.
+     * @return The tristate
+     */
+    Tristate getFallbackPermissionValue(Set<Context> contexts);
+
+    /**
+     * Get all fallback permission values set on this subject data
+     *
+     * @return An immutable map from context combination to fallback value
+     */
+    Map<Set<Context>, Tristate> getAllFallbackPermissionValues();
+
+    /**
+     * Set the permission value at the root of the node tree, that will be returned as a response
+     * to permissions queries when no more specific permission matches.
+     *
+     * @param contexts The context combination
+     * @param fallback The new fallback value. {@link Tristate#UNDEFINED} unsets the fallback value.
+     * @return A future completing when the change has been applied
+     */
+    CompletableFuture<Boolean> setFallbackPermissionValue(Set<Context> contexts, Tristate fallback);
+
+    /**
+     * Clear all fallback permission values from this subject
+     * @return A future completing when the change has been applied
+     */
+    CompletableFuture<Boolean> clearFallbackPermissionValues();
+
+    /**
      * Clear all permissions set in any context.
      *
      * @return Whether any change occurred

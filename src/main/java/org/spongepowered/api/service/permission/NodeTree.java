@@ -32,6 +32,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * An immutable tree structure for determining node data. Any changes will
  * create new copies of the necessary tree objects.
@@ -150,6 +152,17 @@ public class NodeTree {
         return lastUndefinedVal;
 
     }
+
+    public Tristate getRootValue() {
+        return this.rootNode.value;
+    }
+
+    public NodeTree withRootValue(Tristate state) {
+        Node newRoot = new Node(this.rootNode.children);
+        newRoot.value = checkNotNull(state, "state");
+        return new NodeTree(newRoot);
+    }
+
 
     /**
      * Convert this node tree into a map of the defined nodes in this tree.

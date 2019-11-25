@@ -178,6 +178,67 @@ public class MemorySubjectData implements SubjectData {
     }
 
     @Override
+    public Tristate getFallbackPermissionValue(Set<Context> contexts) {
+        NodeTree tree = this.permissions.get(checkNotNull(contexts, "contexts"));
+        return tree == null ? Tristate.UNDEFINED : tree.getRootValue();
+    }
+
+    @Override
+    public Map<Set<Context>, Tristate> getAllFallbackPermissionValues() {
+        ImmutableMap.Builder<Set<Context>, Tristate> builder = ImmutableMap.builder();
+
+        for (Map.Entry<Set<Context>, NodeTree> entry : this.permissions.entrySet()) {
+            builder.put(entry.getKey(), entry.getValue().getRootValue());
+        }
+        return builder.build();
+    }
+
+    @Override
+    public CompletableFuture<Boolean> setFallbackPermissionValue(Set<Context> contexts, Tristate fallback) {
+        contexts = ImmutableSet.copyOf(checkNotNull(contexts, "contexts"));
+        checkNotNull(fallback, "fallback");
+
+        while (true) {
+            NodeTree oldTree = this.permissions.get(contexts);
+            if (oldTree != null && oldTree.getRootValue() == fallback) {
+                return CompletableFuture.completedFuture(false);
+            }
+
+            if (oldTree == null && fallback != Tristate.UNDEFINED) {
+                if (this.permissions.putIfAbsent(contexts, NodeTree.of(ImmutableMap.of(), fallback)) == null) {
+                    break;
+                }
+            } else {
+                if (oldTree == null || this.permissions.replace(contexts, oldTree, oldTree.withRootValue(fallback))) {
+                    break;
+                }
+            }
+        }
+        onUpdate();
+        return CompletableFuture.completedFuture(true);
+    }
+
+    @Override
+    public CompletableFuture<Boolean> clearFallbackPermissionValues() {
+        boolean anyUpdated = false;
+        for (Set<Context> key : this.permissions.keySet()) {
+            while (true) {
+                NodeTree oldTree = this.permissions.get(key);
+                if (oldTree == null || oldTree.getRootValue() == Tristate.UNDEFINED) {
+                    continue;
+                }
+
+                if (updateCollection(this.permissions, key, oldTree, oldTree.withRootValue(Tristate.UNDEFINED))) {
+                    anyUpdated = true;
+                    break;
+                }
+            }
+        }
+        onUpdate();
+        return CompletableFuture.completedFuture(anyUpdated);
+    }
+
+    @Override
     public CompletableFuture<Boolean> clearPermissions() {
         final boolean wasEmpty = this.permissions.isEmpty();
         this.permissions.clear();
