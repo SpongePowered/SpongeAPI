@@ -24,17 +24,22 @@
  */
 package org.spongepowered.api.service.permission;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.service.context.ContextualService;
 import org.spongepowered.plugin.PluginContainer;
 
+import java.util.AbstractMap;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * Represents a provider of permissions data.
@@ -152,6 +157,67 @@ public interface PermissionService extends ContextualService<Subject> {
      * @return The subject holding defaults for all other subjects.
      */
     Subject defaults();
+
+    /**
+     * Get data for a role template for a specific plugin. If the plugin has not set any permissions
+     * for the given role template, an empty {@link Optional} will be returned. Whether role template information
+     * is persistent or transient is implementation-dependent, though the final choice should most likely be
+     * up to the user.
+     *
+     * @param plugin The plugin to query the role template for.
+     * @param roleTemplate The specific role template identifier. Any string may be used,
+     *                     but {@link PermissionDescription} contains some common suggestions.
+     * @return An optional possibly containing the subject data for the given role template
+     */
+    default Optional<? extends SubjectData> getRoleTemplate(PluginContainer plugin, String roleTemplate) {
+        Objects.requireNonNull(plugin, "plugin");
+
+        return getCollection(SUBJECTS_ROLE_TEMPLATE).flatMap(coll ->
+                coll.getSubject(plugin.getMetadata().getId() + ":"
+                        + Objects.requireNonNull(roleTemplate, "roleTemplate")))
+                .map(Subject::getTransientSubjectData);
+    }
+
+
+    /**
+     * Get the data contained in role templates for all plugins providing data at the given key
+     *
+     * @param roleTemplate The specific role template identifier. Any string may be used,
+     *                     but {@link PermissionDescription} contains some common suggestions.
+     * @return An immutable set of mappings from plugin to subject data holder.
+     */
+    default Set<Map.Entry<PluginContainer, ? extends SubjectData>> getRoleTemplates(String roleTemplate) {
+        Optional<? extends SubjectCollection> coll = getCollection(SUBJECTS_ROLE_TEMPLATE);
+        if (!coll.isPresent()) {
+            return Collections.emptySet();
+        }
+
+        Optional<? extends Subject> globalSubj
+                = coll.get().getSubject(Objects.requireNonNull(roleTemplate, "roleTemplate"));
+        if (!globalSubj.isPresent()) {
+            return Collections.emptySet();
+        }
+
+        return Collections.unmodifiableSet(globalSubj.get()
+                .getTransientSubjectData().getParents(SubjectData.GLOBAL_CONTEXT).stream()
+                .map(SubjectReference::resolve)
+                .map(CompletableFuture::join)
+                .map(it -> {
+                    String[] name = it.getIdentifier().split(":", 2);
+                    if (name.length < 2) {
+                        return null;
+                    }
+
+                    Optional<PluginContainer> container = Sponge.getPluginManager().getPlugin(name[0]);
+                    if (!container.isPresent()) {
+                        return null;
+                    }
+
+                    return new AbstractMap.SimpleImmutableEntry<>(container.get(), it.getTransientSubjectData());
+                }).filter(Objects::nonNull)
+                .collect(Collectors.toSet()));
+
+    }
 
     /**
      * Returns a predicate which determines whether or not a given identifier

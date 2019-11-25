@@ -27,6 +27,7 @@ package org.spongepowered.api.service.permission;
 import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.plugin.PluginContainer;
+import org.spongepowered.api.util.Tristate;
 
 import java.util.Map;
 import java.util.Optional;
@@ -143,6 +144,13 @@ public interface PermissionDescription {
     Optional<PluginContainer> owner();
 
     /**
+     * Gets the default value this permission should have on this server
+     *
+     * @return The default value for this permission.
+     */
+    Tristate getDefaultValue();
+
+    /**
      * Gets all subjects that have this permission set in the given collection.
      *
      * <p>If you want to know to which role-templates this permission is
@@ -211,6 +219,11 @@ public interface PermissionDescription {
         /**
          * Assigns this permission to the given role-template {@link Subject}.
          *
+         * <p>Role templates will be namespaced by the plugin that owns each registered permission.
+         * The expected format of the namespaced subject identifier is
+         * {@code  &lt;plugin id>:&lt;role>}. Implementations must provide an un-namespaced role template
+         * that inherits its permissions from every plugin-namespaced role template.</p>
+         *
          * <p>If the given subject does not exist it will be created. Permission
          * templates should not be assigned to regular subjects.</p>
          *
@@ -230,6 +243,21 @@ public interface PermissionDescription {
          * @return This builder for chaining
          */
         Builder assign(String role, boolean value);
+
+
+        /**
+         * Sets a value that this permission should have by default.
+         * This can be used to exclude permissions from node tree inheritance,
+         * or to provide a permission to users by default.
+         *
+         * <p>Assigning default permissions should be used sparingly, and by
+         * convention, only in situations where "default" game behaviour is restored
+         * by granting a certain permission.</p>
+         *
+         * @param defaultValue The value this permission should have for subjects where none has been assigned.
+         * @return The builder for chaining.
+         */
+        Builder defaultValue(Tristate defaultValue);
 
         /**
          * Creates and registers a new {@link PermissionDescription} instance
