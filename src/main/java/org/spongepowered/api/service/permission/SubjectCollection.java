@@ -90,7 +90,7 @@ public interface SubjectCollection {
      *                                  the validity predicate for this
      *                                  collection.
      */
-    CompletableFuture<Subject> loadSubject(String identifier);
+    CompletableFuture<? extends Subject> loadSubject(String identifier);
 
     /**
      * Returns a subject with the given identifier, if the subject is already
@@ -107,7 +107,7 @@ public interface SubjectCollection {
      * @param identifier The identifier
      * @return A subject for the given identifier
      */
-    Optional<Subject> subject(String identifier);
+    Optional<? extends Subject> subject(String identifier);
 
     /**
      * Returns whether a subject with the given identifier currently exists.
@@ -130,7 +130,7 @@ public interface SubjectCollection {
      * @param identifiers A set of identifiers to get subjects for
      * @return a map of subjects corresponding to the identifiers passed
      */
-    CompletableFuture<Map<String, Subject>> loadSubjects(Set<String> identifiers);
+    CompletableFuture<Map<String, ? extends Subject>> loadSubjects(Set<String> identifiers);
 
     /**
      * Returns an immutable copy of all subjects currently loaded in this
@@ -139,7 +139,7 @@ public interface SubjectCollection {
      * @return A collection containing the subjects currently loaded into this
      *         subject collection.
      */
-    Collection<Subject> loadedSubjects();
+    Collection<? extends Subject> loadedSubjects();
 
     /**
      * Gets a set of Subject identifiers being stored in the collection. This
@@ -157,7 +157,7 @@ public interface SubjectCollection {
      * @return A set containing the identifiers of every Subject in this
      *         collection
      */
-    CompletableFuture<Set<String>> allIdentifiers();
+    CompletableFuture<? extends Set<String>> allIdentifiers();
 
     /**
      * Creates a new subject reference to represent the expressed subject.
@@ -251,7 +251,7 @@ public interface SubjectCollection {
      * @return A reference to any subject known to have this permission
      *         set, and the value this permission is set to
      */
-    CompletableFuture<Map<SubjectReference, Boolean>> allWithPermission(String permission);
+    CompletableFuture<Map<? extends SubjectReference, Boolean>> allWithPermission(String permission);
 
     /**
      * Return the identifiers of all known subjects with the given permission
@@ -266,7 +266,7 @@ public interface SubjectCollection {
      * @return A reference to any subject known to have this permission
      *         set, and the value this permission is set to
      */
-    CompletableFuture<Map<SubjectReference, Boolean>> allWithPermission(Set<Context> contexts, String permission);
+    CompletableFuture<Map<? extends SubjectReference, Boolean>> allWithPermission(Set<Context> contexts, String permission);
 
     /**
      * Return all loaded subjects with the given permission set.
@@ -285,7 +285,7 @@ public interface SubjectCollection {
      * @return A map containing any subject known to have this permission set,
      *         and the value this permission is set to
      */
-    Map<Subject, Boolean> loadedWithPermission(String permission);
+    Map<? extends Subject, Boolean> loadedWithPermission(String permission);
 
     /**
      * Return all loaded subjects with the given permission set.
@@ -299,7 +299,7 @@ public interface SubjectCollection {
      * @return A map containing any subject known to have this permission set,
      *         and the value this permission is set to
      */
-    Map<Subject, Boolean> loadedWithPermission(Set<Context> contexts, String permission);
+    Map<? extends Subject, Boolean> loadedWithPermission(Set<Context> contexts, String permission);
 
     /**
      * Gets the subject holding data that is applied by default to all

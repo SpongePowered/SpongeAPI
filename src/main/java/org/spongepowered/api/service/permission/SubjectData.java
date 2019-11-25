@@ -155,7 +155,7 @@ public interface SubjectData {
      *
      * @return All registered parents and the context they are registered in
      */
-    Map<Set<Context>, List<SubjectReference>> allParents();
+    Map<Set<Context>, List<? extends SubjectReference>> allParents();
 
     /**
      * Return all registered parent subjects for a given context.
@@ -167,7 +167,7 @@ public interface SubjectData {
      * @param contexts The context to check
      * @return names of parents valid in the given context
      */
-    List<SubjectReference> parents(Set<Context> contexts);
+    List<? extends SubjectReference> parents(Set<Context> contexts);
 
     /**
      * Sets the parents in a particular context combination.
@@ -179,7 +179,7 @@ public interface SubjectData {
      * @param parents A list of the parents this subject should have
      * @return Whether the operation was successful
      */
-    CompletableFuture<Boolean> setParents(Set<Context> contexts, List<SubjectReference> parents, TransferMethod method);
+    CompletableFuture<Boolean> setParents(Set<Context> contexts, List<? extends SubjectReference> parents, TransferMethod method);
 
     /**
      * Adds a parent in a particular context combination.

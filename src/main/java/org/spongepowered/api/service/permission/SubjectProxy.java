@@ -80,7 +80,7 @@ public interface SubjectProxy extends Subject {
     }
 
     @Override
-    default List<SubjectReference> parents(final Set<Context> contexts) {
+    default List<? extends SubjectReference> parents(final Set<Context> contexts) {
         return this.subject().parents();
     }
 
@@ -115,7 +115,7 @@ public interface SubjectProxy extends Subject {
     }
 
     @Override
-    default List<SubjectReference> parents() {
+    default List<? extends SubjectReference> parents() {
         return this.subject().parents();
     }
 
