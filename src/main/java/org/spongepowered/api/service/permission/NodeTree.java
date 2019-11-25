@@ -30,6 +30,7 @@ import org.spongepowered.api.util.Tristate;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * An immutable tree structure for determining node data. Any changes will
@@ -79,10 +80,40 @@ public class NodeTree {
      * @return The newly created node tree
      */
     public static NodeTree of(Map<String, Boolean> values, Tristate defaultValue) {
-        final NodeTree newTree = new NodeTree(defaultValue);
-        for (Map.Entry<String, Boolean> value : values.entrySet()) {
-            final Iterable<String> parts = NodeTree.NODE_SPLITTER.split(value.getKey().toLowerCase());
-            Node currentNode = newTree.rootNode;
+        NodeTree newTree = new NodeTree(defaultValue);
+        newTree.populate(values, Tristate::fromBoolean);
+        return newTree;
+    }
+
+    /**
+     * Create a new node tree with the given values, and a default value of
+     * {@link Tristate#UNDEFINED}.
+     *
+     * @param values The values to set
+     * @return The new node tree
+     */
+    public static NodeTree ofTristates(Map<String, Tristate> values) {
+        return ofTristates(values, Tristate.UNDEFINED);
+    }
+
+    /**
+     * Create a new node tree with the given values, and the specified root
+     * fallback value.
+     *
+     * @param values The values to be contained in this node tree
+     * @param defaultValue The fallback value for any completely undefined nodes
+     * @return The newly created node tree
+     */
+    public static NodeTree ofTristates(Map<String, Tristate> values, Tristate defaultValue) {
+        NodeTree newTree = new NodeTree(defaultValue);
+        newTree.populate(values, Function.identity());
+        return newTree;
+    }
+
+    private <T> void populate(Map<String, T> values, Function<T, Tristate> converter) {
+        for (Map.Entry<String, T> value : values.entrySet()) {
+            Iterable<String> parts = NodeTree.NODE_SPLITTER.split(value.getKey().toLowerCase());
+            Node currentNode = rootNode;
             for (String part : parts) {
                 if (currentNode.children.containsKey(part)) {
                     currentNode = currentNode.children.get(part);
@@ -92,9 +123,8 @@ public class NodeTree {
                     currentNode = newNode;
                 }
             }
-            currentNode.value = Tristate.fromBoolean(value.getValue());
+            currentNode.value = converter.apply(value.getValue());
         }
-        return newTree;
     }
 
     /**
@@ -174,7 +204,21 @@ public class NodeTree {
      * @param values The values to set
      * @return The new node tree
      */
-    public NodeTree withAll(Map<String, Tristate> values) {
+    public NodeTree withAll(Map<String, Boolean> values) {
+        NodeTree ret = this;
+        for (Map.Entry<String, Boolean> ent : values.entrySet()) {
+            ret = ret.withValue(ent.getKey(), Tristate.fromBoolean(ent.getValue()));
+        }
+        return ret;
+    }
+
+    /**
+     * Return a modified new node tree with the specified values set.
+     *
+     * @param values The values to set
+     * @return The new node tree
+     */
+    public NodeTree withAllTristates(Map<String, Tristate> values) {
         NodeTree ret = this;
         for (Map.Entry<String, Tristate> ent : values.entrySet()) {
             ret = ret.withValue(ent.getKey(), ent.getValue());

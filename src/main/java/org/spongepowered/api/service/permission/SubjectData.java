@@ -113,6 +113,22 @@ public interface SubjectData {
     CompletableFuture<Boolean> setPermission(Set<Context> contexts, String permission, Tristate value);
 
     /**
+     * Sets all permissions in a given context combination.
+     *
+     * <p>Providing a {@code null} map will unset all permissions.</p>
+     *
+     * <p>An empty set of contexts applies these permissions to the global
+     * context.</p>
+     *
+     *  @param contexts The particular combination of contexts to set these
+     *                  permissions in
+     * @param permissions The permissions to set
+     * @param method How to treat existing values in this subject
+     * @return Whether the operation was successful
+     */
+    CompletableFuture<Boolean> setPermissions(Set<Context> contexts, @Nullable Map<String, Boolean> permissions, TransferMethod method);
+
+    /**
      * Clear all permissions set in any context.
      *
      * @return Whether any change occurred
@@ -144,7 +160,7 @@ public interface SubjectData {
     /**
      * Return all registered parent subjects for a given context.
      *
-     * <p>The returned map is immutable and not a live view. The results of this
+     * <p>The returned list is immutable and not a live view. The results of this
      * method do not traverse any sort of inheritance structure a permissions
      * plugin may implement.</p>
      *
@@ -152,6 +168,18 @@ public interface SubjectData {
      * @return names of parents valid in the given context
      */
     List<SubjectReference> parents(Set<Context> contexts);
+
+    /**
+     * Sets the parents in a particular context combination.
+     *
+     * <p>Passing an empty context combination means the parents are set in the
+     * global context.</p>
+     *
+     * @param contexts The context combination this operation is applicable to
+     * @param parents A list of the parents this subject should have
+     * @return Whether the operation was successful
+     */
+    CompletableFuture<Boolean> setParents(Set<Context> contexts, List<SubjectReference> parents, TransferMethod method);
 
     /**
      * Adds a parent in a particular context combination.
@@ -223,6 +251,17 @@ public interface SubjectData {
     CompletableFuture<Boolean> setOption(Set<Context> contexts, String key, @Nullable String value);
 
     /**
+     * Sets all options in a particular context. This will first remove any existing options.
+     *
+     * <p>Passing a null value will unset the option.</p>
+     *
+     * @param contexts The context combination to set the options in
+     * @param options The map of options to set
+     * @return Whether the operation was successful
+     */
+    CompletableFuture<Boolean> setOptions(Set<Context> contexts, @Nullable Map<String, String> options, TransferMethod method);
+
+    /**
      * Clear all options.
      *
      * @return Whether the operation was successful
@@ -239,5 +278,27 @@ public interface SubjectData {
      * @return Whether the operation was successful (any options were removed)
      */
     CompletableFuture<Boolean> clearOptions(Set<Context> contexts);
+
+    /**
+     * Copy all data from another subject data instance into this one, preserving the original subject.
+     * It is expected that the other subject data is provided by the same permissions service.
+     * This methods's behaviour is undefined otherwise.
+     *
+     * @param other The other subject to copy data from
+     * @param method How to treat existing values in this subject
+     * @return A future completing with {@code true} if the operation is successful
+     */
+    CompletableFuture<Boolean> copyFrom(SubjectData other, TransferMethod method);
+
+    /**
+     * Move all data from another subject data instance into this one, clearing the source
+     * It is expected that the other subject data is provided by the same permissions service.
+     * This methods's behaviour is undefined otherwise.
+     *
+     * @param other The other subject to move data from
+     * @param method How to treat existing values in this subject
+     * @return A future completing with {@code true} if the operation is successful
+     */
+    CompletableFuture<Boolean> moveFrom(SubjectData other, TransferMethod method);
 
 }

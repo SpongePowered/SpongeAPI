@@ -77,7 +77,7 @@ class NodeTreeTest {
         newPermissions.put("generate.thunderstorm.explosive", Tristate.UNDEFINED);
         newPermissions.put("something.new", Tristate.FALSE);
 
-        final NodeTree newTree = oldTree.withAll(newPermissions);
+        final NodeTree newTree = oldTree.withAllTristates(newPermissions);
 
         Assertions.assertEquals(Tristate.FALSE, oldTree.get("generate.sunset.red"));
         Assertions.assertEquals(Tristate.TRUE, newTree.get("generate.sunset.red"));
