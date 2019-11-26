@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.command;
 
+import java.util.Objects;
 import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
@@ -39,6 +40,7 @@ import org.spongepowered.api.command.registrar.tree.CommandTreeNodeTypes;
 import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.event.EventContext;
 import org.spongepowered.api.event.lifecycle.RegisterCommandEvent;
+import org.spongepowered.api.service.permission.PermissionDescription;
 import org.spongepowered.api.service.permission.Subject;
 
 import java.util.Arrays;
@@ -554,6 +556,31 @@ public interface Command {
          * @return This builder, for chaining
          */
         Builder permission(@Nullable String permission);
+
+        /**
+         * The permission that the responsible {@link Subject} in the given
+         * {@link Cause} requires to run this command.
+         *
+         * <p>For more control over whether a command can be executed, use
+         * {@link #setExecutionRequirements(Predicate)}. However, note that
+         * setting a permission here will not override anything set in
+         * {@link #setExecutionRequirements(Predicate)}, both will be checked
+         * during execution.</p>
+         *
+         * <p>Any permission checks set here will be performed during the
+         * {@link Command#canExecute(CommandCause)}.</p>
+         *
+         * <p>Calling this repeatedly will not add additional permission
+         * checks, instead replacing the permission check. If multiple
+         * permission checks are required, use
+         * {@link #setExecutionRequirements(Predicate)}.</p>
+         *
+         * @param permission The description for the required permission.
+         * @return This builder, for chaining
+         */
+        default Builder setPermission(PermissionDescription permission) {
+            return this.setPermission(Objects.requireNonNull(permission, "permission").getId());
+        }
 
         /**
          * Sets a function that determines what is required of the provided
