@@ -113,6 +113,7 @@ public interface WorldManager {
      *     Other uses is for "reserving" directory names and notifying other plugins of your world registrations. In the vanilla
      *     implementation of this API, worlds that are loaded will have their registrations restored on subsequent server loads.
      * </p>
+     * 
      * @param registration The registration
      * @param archetype The archetype
      */

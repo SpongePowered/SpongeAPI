@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.world;
 
-import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
@@ -341,14 +340,11 @@ public interface WorldArchetype extends CatalogType {
         Builder from(WorldProperties properties);
 
         /**
-         * Builds the {@link WorldArchetype} which can be used to create
-         * a {@link WorldProperties} in {@link WorldManager#createProperties(WorldRegistration, WorldArchetype)}.
+         * Builds the {@link WorldArchetype} which can be used to create a {@link WorldProperties} in
+         * {@link WorldManager#createProperties(WorldRegistration, WorldArchetype)} or a {@link WorldRegistration} in
+         * {@link WorldManager#submitRegistration(WorldRegistration, WorldArchetype)}.
          *
-         * <p>Unlike other {@link CatalogBuilder}s, it's not required to apply a
-         * {@link #key(CatalogKey)} to build a world archetype. However it's recommend
-         * if you intend to register it to the registry.</p>
-         *
-         * @return The build world archetype
+         * @return The archetype
          */
         @Override
         WorldArchetype build();
