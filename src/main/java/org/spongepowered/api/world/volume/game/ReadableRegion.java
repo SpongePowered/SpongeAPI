@@ -29,7 +29,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.AABB;
 import org.spongepowered.api.util.RandomProvider;
-import org.spongepowered.api.world.Dimension;
+import org.spongepowered.api.world.dimension.Dimension;
 import org.spongepowered.api.world.WorldBorder;
 import org.spongepowered.api.world.volume.biome.StreamableBiomeVolume;
 import org.spongepowered.api.world.volume.block.StreamableBlockVolume;

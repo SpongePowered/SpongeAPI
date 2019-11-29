@@ -30,7 +30,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.TemporalUnits;
-import org.spongepowered.api.world.DimensionType;
+import org.spongepowered.api.world.dimension.DimensionType;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldBorder;

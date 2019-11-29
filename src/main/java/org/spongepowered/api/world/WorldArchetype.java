@@ -34,6 +34,8 @@ import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.difficulty.Difficulty;
+import org.spongepowered.api.world.dimension.DimensionType;
+import org.spongepowered.api.world.dimension.DimensionTypes;
 import org.spongepowered.api.world.gen.GeneratorType;
 import org.spongepowered.api.world.gen.GeneratorTypes;
 import org.spongepowered.api.world.server.WorldManager;

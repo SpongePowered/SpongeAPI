@@ -29,7 +29,7 @@ import org.spongepowered.api.block.entity.EndPortal;
 import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.world.DimensionTypes;
+import org.spongepowered.api.world.dimension.DimensionTypes;
 import org.spongepowered.api.world.World;
 
 /**

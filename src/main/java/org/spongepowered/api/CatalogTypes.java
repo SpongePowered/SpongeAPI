@@ -80,7 +80,7 @@ import org.spongepowered.api.text.selector.SelectorType;
 import org.spongepowered.api.text.serializer.TextSerializer;
 import org.spongepowered.api.util.ban.BanType;
 import org.spongepowered.api.util.rotation.Rotation;
-import org.spongepowered.api.world.DimensionType;
+import org.spongepowered.api.world.dimension.DimensionType;
 import org.spongepowered.api.world.gen.GeneratorType;
 import org.spongepowered.api.world.teleport.PortalAgentType;
 import org.spongepowered.api.world.SerializationBehavior;

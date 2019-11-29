@@ -48,7 +48,7 @@ import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.ResettableBuilder;
-import org.spongepowered.api.world.Dimension;
+import org.spongepowered.api.world.dimension.Dimension;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.math.vector.Vector3d;

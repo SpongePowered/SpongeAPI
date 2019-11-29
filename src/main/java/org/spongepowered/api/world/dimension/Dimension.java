@@ -22,8 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world;
+package org.spongepowered.api.world.dimension;
 
+import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.gen.TerrainGenerator;
 
 /**
