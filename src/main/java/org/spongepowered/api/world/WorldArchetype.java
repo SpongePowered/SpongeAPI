@@ -141,7 +141,15 @@ public interface WorldArchetype extends CatalogType {
      * 
      * @return True if commands are allowed, false if not
      */
-    boolean areCommandsAllowed();
+    boolean areCommandsEnabled();
+
+    /**
+     * Gets whether the bonus chest will generate.
+     *
+     * @see <a href="https://minecraft.gamepedia.com/Chest#Bonus_chest">https://minecraft.gamepedia.com/Chest#Bonus_chest</a>
+     * @return True if bonus chest will generate, false if not.
+     */
+    boolean doesGenerateBonusChest();
 
     /**
      * Gets the {@link PortalAgentType} for the world.
@@ -163,14 +171,6 @@ public interface WorldArchetype extends CatalogType {
      * @return True if PVP combat is enabled, false if not
      */
     boolean isPVPEnabled();
-
-    /**
-     * Gets a {@link DataContainer} of any extra settings required by the
-     * generator.
-     *
-     * @return The generator settings
-     */
-    DataContainer getGeneratorSettings();
 
     /**
      * Gets the {@link SerializationBehavior} that worlds built from this will use.
@@ -200,7 +200,7 @@ public interface WorldArchetype extends CatalogType {
          * @param state Should load on startup
          * @return The builder, for chaining
          */
-        Builder loadsOnStartup(boolean state);
+        Builder loadOnStartup(boolean state);
 
         /**
          * Sets whether the spawn chunks should remain loaded when
@@ -209,7 +209,7 @@ public interface WorldArchetype extends CatalogType {
          * @param state Should keep spawn loaded
          * @return The builder, for chaining
          */
-        Builder keepsSpawnLoaded(boolean state);
+        Builder keepSpawnLoaded(boolean state);
 
         /**
          * Sets whether the spawn chunks generate on load.
@@ -250,7 +250,7 @@ public interface WorldArchetype extends CatalogType {
          * @param type The type
          * @return The builder, for chaining
          */
-        Builder dimension(DimensionType type);
+        Builder dimensionType(DimensionType type);
 
         /**
          * Sets the generator type. If not specified this will default
@@ -259,7 +259,7 @@ public interface WorldArchetype extends CatalogType {
          * @param type The type
          * @return The builder, for chaining
          */
-        Builder generator(GeneratorType type);
+        Builder generatorType(GeneratorType type);
 
         /**
          * Sets the difficulty.
@@ -289,15 +289,6 @@ public interface WorldArchetype extends CatalogType {
         Builder hardcore(boolean state);
 
         /**
-         * Sets any extra settings required by the {@link GeneratorType}.
-         * If not specified these will default to the settings within {@link GeneratorType#getGeneratorSettings()}.
-         *
-         * @param settings The generator settings
-         * @return The builder, for chaining
-         */
-        Builder generatorSettings(DataContainer settings);
-
-        /**
          * Sets the desired {@link PortalAgentType} for the world.
          *
          * @param type The type
@@ -311,7 +302,7 @@ public interface WorldArchetype extends CatalogType {
          * @param state Whether PVP is enabled
          * @return The builder, for chaining
          */
-        Builder pvp(boolean state);
+        Builder pvpEnabled(boolean state);
 
         /**
          * Sets whether commands are allowed to be executed.
@@ -319,7 +310,16 @@ public interface WorldArchetype extends CatalogType {
          * @param state Whether commands are allowed
          * @return The builder, for chaining
          */
-        Builder commandsAllowed(boolean state);
+        Builder commandsEnabled(boolean state);
+
+        /**
+         * Sets whether the bonus chest is to be generated.
+         *
+         * @see <a href="https://minecraft.gamepedia.com/Chest#Bonus_chest">https://minecraft.gamepedia.com/Chest#Bonus_chest</a>
+         * @param state Whether bonus chest is enabled
+         * @return This builder, for chaining
+         */
+        Builder generateBonusChest(boolean state);
 
         /**
          * Sets the serialization behavior that will be used when saving.

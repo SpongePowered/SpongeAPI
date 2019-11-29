@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.world.storage;
 
-import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
@@ -273,20 +272,44 @@ public interface WorldProperties extends WeatherUniverse, DataSerializable, Iden
     void setHardcore(boolean state);
 
     /**
-     * Gets whether commands are allowed within this world. May not be respected
+     * Gets whether commands are enabled within this world. May not be respected
      * when not in single player.
      *
      * @return Whether commands are allowed
      */
-    boolean areCommandsAllowed();
+    boolean areCommandsEnabled();
 
     /**
-     * Sets whether commands are allowed within this world. May not be respected
+     * Sets whether commands are enabled within this world. May not be respected
      * when not in single player.
      *
      * @param state Whether commands are allowed
      */
-    void setCommandsAllowed(boolean state);
+    void setCommandsEnabled(boolean state);
+
+    /**
+     * Gets whether the bonus chest will generate within this world.
+     *
+     * <p>
+     *     Only will generate at spawn and never afterwards.
+     * </p>
+     *
+     * @see <a href="https://minecraft.gamepedia.com/Chest#Bonus_chest">https://minecraft.gamepedia.com/Chest#Bonus_chest</a>
+     * @return Whether the bonus chest will generate
+     */
+    boolean doesGenerateBonusChest();
+
+    /**
+     * Sets whether the bonus chest will generate within this world.
+     *
+     * <p>
+     *     Only will generate at spawn and never afterwards.
+     * </p>
+     *
+     * @see <a href="https://minecraft.gamepedia.com/Chest#Bonus_chest">https://minecraft.gamepedia.com/Chest#Bonus_chest</a>
+     * @param state Whether the bonus chest will generate
+     */
+    void setGenerateBonusChest(boolean state);
 
     /**
      * Gets the difficulty of this world.
@@ -322,12 +345,4 @@ public interface WorldProperties extends WeatherUniverse, DataSerializable, Iden
      * @return The world border
      */
     WorldBorder getWorldBorder();
-
-    /**
-     * Gets the generator settings. These can be used by the generator type
-     * and/or by the generator modifiers.
-     *
-     * @return The generator settings.
-     */
-    DataContainer getGeneratorSettings();
 }
