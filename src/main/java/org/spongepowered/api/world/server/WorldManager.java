@@ -28,7 +28,6 @@ import org.spongepowered.api.Game;
 import org.spongepowered.api.GameState;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldArchetype;
-import org.spongepowered.api.world.WorldRegistration;
 import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.io.IOException;

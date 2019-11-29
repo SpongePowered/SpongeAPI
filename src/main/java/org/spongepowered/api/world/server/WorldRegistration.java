@@ -22,13 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world;
+package org.spongepowered.api.world.server;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.GameState;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.CatalogBuilder;
-import org.spongepowered.api.util.CopyableBuilder;
 
 /**
  * Represents a registration of a world.
