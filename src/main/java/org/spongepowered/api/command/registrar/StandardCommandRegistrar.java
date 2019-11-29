@@ -1,5 +1,5 @@
 /*
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
  * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
@@ -22,21 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command.manager;
+package org.spongepowered.api.command.registrar;
+
+import org.spongepowered.api.command.Command;
+import org.spongepowered.api.event.lifecycle.RegisterCommandEvent;
 
 /**
- * Indicates that a command could not be registered.
+ * A {@link CommandRegistrar} for registering Sponge commands. Plugins using the
+ * standard Sponge {@link Command} interface should register their commands using
+ * {@link RegisterCommandEvent} with this registrar.
  */
-public class FailedRegistrationException extends RuntimeException {
-
-    private static final long serialVersionUID = -783923658025L;
-
-    public FailedRegistrationException(String message) {
-        super(message);
-    }
-
-    public FailedRegistrationException(String message, Throwable inner) {
-        super(message, inner);
-    }
-
+public interface StandardCommandRegistrar extends CommandRegistrar<Command> {
 }

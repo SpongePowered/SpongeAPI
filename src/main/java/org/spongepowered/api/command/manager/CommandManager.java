@@ -25,8 +25,11 @@
 package org.spongepowered.api.command.manager;
 
 import org.spongepowered.api.command.Command;
+import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.exception.CommandException;
+import org.spongepowered.api.command.registrar.CommandRegistrar;
+import org.spongepowered.api.command.registrar.tree.CommandTreeBuilder;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.text.channel.MessageReceiver;
@@ -34,7 +37,7 @@ import org.spongepowered.plugin.PluginContainer;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
+import java.util.function.Predicate;
 
 /**
  * Registers and dispatches commands
@@ -112,14 +115,17 @@ public interface CommandManager {
     List<String> suggest(Subject subject, MessageChannel receiver, String arguments);
 
     /**
-     * Registers a {@link Command} with the {@link CommandManager}.
+     * Registers a set of command aliases with this manager.
+     * This method should only be used by plugins that implement their own
+     * command framework, as described in the description of the
+     * {@link CommandRegistrar} class.
      *
      * <p>When registering a command, any aliases provided are prefixed with
-     * {@link PluginContainer#getId()} followed by a colon to provide command
-     * namespacing in addition to the unnamespaced aliases. As an example,
-     * if a plugin with ID {@code foo} tries to register the command
-     * {@code bar}, the command manager will attempt to register the commands
-     * {@code /bar} and {@code /foo:bar}.</p>
+     * the plugin's ID, followed by a colon to provide command namespacing in
+     * addition to the unnamespaced aliases. As an example, if a plugin with
+     * ID {@code foo} tries to register the command {@code bar}, the command
+     * manager will attempt to register the commands {@code /bar} and
+     * {@code /foo:bar}.</p>
      *
      * <p>Command aliases may not contain whitespace.</p>
      *
@@ -127,38 +133,35 @@ public interface CommandManager {
      * inspect the returned {@link CommandMapping} for the registered aliases.
      * </p>
      *
+     * @param registrar The {@link CommandRegistrar} that is requesting the
+     *                  aliases
      * @param container The {@link PluginContainer} to register the command for
-     * @param command The {@link Command} to register
+     * @param commandTree The {@link CommandTreeBuilder} that represents this command
+     *                    structure.
+     * @param requirement What a {@link CommandCause} needs to fulfil in order for this
+     *                    command to be executed.
      * @param primaryAlias The first command alias to register
      * @param secondaryAliases Secondary aliases to register, if any
      * @return The {@link CommandMapping} containing the command mapping
      *         information.
-     * @throws FailedRegistrationException thrown if the command could not be
+     * @throws CommandFailedRegistrationException thrown if the command could not be
      *                                     registered.
      */
-    CommandMapping register(PluginContainer container, Command command, String primaryAlias, String... secondaryAliases)
-        throws FailedRegistrationException;
+    CommandMapping registerAlias(
+            CommandRegistrar<?> registrar,
+            PluginContainer container,
+            CommandTreeBuilder.Basic commandTree,
+            Predicate<CommandCause> requirement,
+            String primaryAlias,
+            String... secondaryAliases)
+            throws CommandFailedRegistrationException;
 
     /**
-     * Unregisters a command based on the alias and provided
-     * {@link PluginContainer}
+     * Gets the standard Sponge {@link CommandRegistrar}.
      *
-     * @param mapping The {@link CommandMapping} that represents the command to remove.
-     * @return A {@link CommandMapping} representing what was unregistered, if anything.
+     * @return The {@link CommandRegistrar}
      */
-    Optional<CommandMapping> unregister(CommandMapping mapping);
-
-    /**
-     * Unregisters all commands associated with the provided
-     * {@link PluginContainer}
-     *
-     * <p>Note that some system {@link PluginContainer}s may not allow for their
-     * commands to be removed.</p>
-     *
-     * @param container The {@link PluginContainer} to remove commands from
-     * @return A {@link Collection} of removed {@link CommandMapping}s
-     */
-    Collection<CommandMapping> unregisterAll(PluginContainer container);
+    CommandRegistrar<Command> getStandardRegistrar();
 
     /**
      * Gets a {@link Collection} of {@link PluginContainer}s with commands

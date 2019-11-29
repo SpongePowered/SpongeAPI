@@ -43,6 +43,7 @@ import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.projectile.source.ProjectileSource;
 import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.service.permission.Subject;
+import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.world.LocatableBlock;
 import org.spongepowered.api.world.ServerLocation;
@@ -98,6 +99,11 @@ public final class EventContextKeys {
      * the block event without relying on existing in the {@link Cause} stack.
      */
     public static final Supplier<EventContextKey<ChangeBlockEvent.Break>> BREAK_EVENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "BREAK_EVENT");
+
+    /**
+     * Represents the command string that was provided to the command processor.
+     */
+    public static final Supplier<EventContextKey<String>> COMMAND_STRING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "COMMAND_STRING");
 
     /**
      * Represents the creator of an {@link Entity}.
@@ -189,10 +195,10 @@ public final class EventContextKeys {
     public static final Supplier<EventContextKey<ServerLocation>> LOCATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "LOCATION");
 
     /**
-     * Used during command execution, indicates the {@link MessageReceiver} to
+     * Used during command execution, indicates the {@link MessageChannel} to
      * send any messages to.
      */
-    public static final Supplier<EventContextKey<MessageReceiver>> MESSAGE_TARGET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "MESSAGE_TARGET");
+    public static final Supplier<EventContextKey<MessageChannel>> MESSAGE_CHANNEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "MESSAGE_CHANNEL");
 
     /**
      * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide

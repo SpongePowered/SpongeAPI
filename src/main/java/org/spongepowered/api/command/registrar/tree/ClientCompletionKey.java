@@ -22,22 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command.parameter.managed;
+package org.spongepowered.api.command.registrar.tree;
 
-import org.spongepowered.api.text.Text;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Defines the usage string for the parameter.
+ * Represents the client-side behaviour of a command parameter.
  */
-@FunctionalInterface
-public interface ValueUsage {
+@CatalogedBy(ClientCompletionKeys.class)
+public interface ClientCompletionKey<T extends CommandTreeBuilder<T>> extends CatalogType {
 
     /**
-     * Gets the usage string for the argument.
+     * Creates a {@link CommandTreeBuilder} that represents this
+     * {@link ClientCompletionKey}
      *
-     * @param key The {@link Text} that defines the parameter key
-     * @return The usage
+     * @return The new {@link CommandTreeBuilder}
      */
-    Text getUsage(Text key);
+    T createCommandTreeBuilder();
 
 }

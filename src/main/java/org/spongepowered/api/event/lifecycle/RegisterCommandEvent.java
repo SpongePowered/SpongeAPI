@@ -22,22 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command.parameter.managed;
+package org.spongepowered.api.event.lifecycle;
 
-import org.spongepowered.api.text.Text;
+import org.spongepowered.api.command.registrar.CommandRegistrar;
+import org.spongepowered.api.event.GenericEvent;
 
 /**
- * Defines the usage string for the parameter.
+ * Lifecycle event to indicate when commands should be registered.
+ *
+ * @param <T> The {@link CommandRegistrar} that is handling this event.
  */
-@FunctionalInterface
-public interface ValueUsage {
+public interface RegisterCommandEvent<T extends CommandRegistrar<?>> extends GenericEvent<T> {
 
     /**
-     * Gets the usage string for the argument.
+     * Gets the {@link CommandRegistrar} that handles the command registration
+     * for this event. Commands should be registered via the appropriate method
+     * on the registrar.
      *
-     * @param key The {@link Text} that defines the parameter key
-     * @return The usage
+     * @return The {@link CommandRegistrar}
      */
-    Text getUsage(Text key);
+    T getRegistrar();
 
 }
