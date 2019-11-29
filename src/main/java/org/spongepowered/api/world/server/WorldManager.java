@@ -25,6 +25,7 @@
 package org.spongepowered.api.world.server;
 
 import org.spongepowered.api.Game;
+import org.spongepowered.api.GameState;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldArchetype;
 import org.spongepowered.api.world.WorldRegistration;
@@ -100,20 +101,27 @@ public interface WorldManager {
     Optional<WorldProperties> getDefaultProperties();
 
     /**
-     * Submits a new {@link WorldRegistration} to be known to this {@link WorldManager}.
+     * Submits a new {@link WorldRegistration} to be known to this {@link WorldManager} and an {@link WorldArchetype}
+     * that will be used to load it.
      *
      * <p>
-     *     While {@link WorldManager#createProperties(WorldRegistration, WorldArchetype)} will do this on the
-     *     plugin developer's behalf, it is wise to perform registration during a plugin's lifecycle events so
-     *     that the directory of the future {@link WorldProperties} will be reserved.
+     *     {@link WorldManager#createProperties(WorldRegistration, WorldArchetype)} will do this on the plugin developer's behalf but
+     *     if the desire is present for the server to handle the loading in a more natural way, assuming the implementation behaves in
+     *     that manner, then this is recommended to be used in the appropriate {@link GameState state}.
+     * </p>
+     *
+     * <p>
+     *     Other uses is for "reserving" directory names and notifying other plugins of your world registrations. In the vanilla
+     *     implementation of this API, worlds that are loaded will have their registrations restored on subsequent server loads.
      * </p>
      * @param registration The registration
+     * @param archetype The archetype
      */
-    void submitRegistration(WorldRegistration registration);
+    void submitRegistration(WorldRegistration registration, WorldArchetype archetype);
 
     /**
      * Creates a new {@link WorldProperties} from the given
-     * {@link WorldArchetype}. For the creation of the WorldArchetype please see {@link WorldArchetype.Builder}.
+     * {@link WorldArchetype}. For the creation of the {@link WorldArchetype} please see {@link WorldArchetype.Builder}.
      *
      * <p>If the {@link ServerWorld} exists at the directory name given, the properties
      * representing that directory name are returned instead.</p>
@@ -138,7 +146,7 @@ public interface WorldManager {
      * @param directoryName The name to lookup
      * @return The world, if found
      */
-    Optional<World> loadWorld(String directoryName);
+    Optional<ServerWorld> loadWorld(String directoryName);
 
     /**
      * Loads a {@link ServerWorld} from the default storage container. If the world

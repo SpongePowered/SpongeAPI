@@ -24,13 +24,52 @@
  */
 package org.spongepowered.api.world;
 
-import org.spongepowered.api.CatalogKey;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.GameState;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.util.CatalogBuilder;
+import org.spongepowered.api.util.CopyableBuilder;
 
-public interface WorldRegistration {
+/**
+ * Represents a registration of a world.
+ *
+ * <p>
+ *     It is left up to the implementation on how it handles the registrations.
+ *
+ *     In vanilla Minecraft, the server will load all worlds that have registrations during {@link GameState#SERVER_STARTING}.
+ * </p>
+ */
+public interface WorldRegistration extends CatalogType {
 
-    CatalogKey getKey();
+    /**
+     * Gets a new Builder instance for world registration.
+     *
+     * @return A new builder instance
+     */
+    static WorldRegistration.Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
-    String getName();
+    /**
+     * Gets the directory name to be used for this world registration.
+     *
+     * <p>
+     *     In vanilla Minecraft, examples include DIM-1 and DIM1 (The Nether and The End respectively). The default,
+     *     "overworld", world will change it's name based on what is set in the server.properties.
+     * </p>
+     *
+     * @return The directory name
+     */
+    String getDirectoryName();
 
-    DimensionType getDimensionType();
+    interface Builder extends CatalogBuilder<WorldRegistration, Builder>, CopyableBuilder<WorldRegistration, Builder> {
+
+        /**
+         * Sets the directory name
+         *
+         * @param name The directory name
+         * @return The builder, for chaining
+         */
+        Builder directoryName(String name);
+    }
 }
