@@ -25,12 +25,12 @@
 package org.spongepowered.api.entity.living.player;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.client.ClientPlayer;
-import org.spongepowered.api.client.ClientWorld;
-import org.spongepowered.api.client.RemotePlayer;
-import org.spongepowered.api.client.LocalPlayer;
+import org.spongepowered.api.entity.living.player.client.ClientPlayer;
+import org.spongepowered.api.world.client.ClientWorld;
+import org.spongepowered.api.entity.living.player.client.RemotePlayer;
+import org.spongepowered.api.entity.living.player.client.LocalPlayer;
 import org.spongepowered.api.data.value.OptionalValue;
-import org.spongepowered.api.server.Server;
+import org.spongepowered.api.Server;
 import org.spongepowered.api.advancement.Advancement;
 import org.spongepowered.api.advancement.AdvancementProgress;
 import org.spongepowered.api.advancement.AdvancementTree;

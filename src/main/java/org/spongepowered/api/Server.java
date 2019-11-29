@@ -22,19 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.server;
+package org.spongepowered.api;
 
-import org.spongepowered.api.Engine;
-import org.spongepowered.api.client.Client;
-import org.spongepowered.api.client.RemotePlayer;
+import org.spongepowered.api.entity.living.player.client.RemotePlayer;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.profile.GameProfileManager;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.text.channel.MessageReceiver;
-import org.spongepowered.api.world.WorldManager;
+import org.spongepowered.api.world.server.WorldManager;
 import org.spongepowered.api.world.chunk.ChunkTicketManager;
 import org.spongepowered.api.world.storage.ChunkLayout;
 

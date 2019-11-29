@@ -22,14 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.client;
+package org.spongepowered.api.entity.living.player.client;
 
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.entity.living.player.client.ClientPlayer;
+import org.spongepowered.api.entity.living.player.client.LocalPlayer;
 
-import java.util.Collection;
+/**
+ * Represents a player on a client that is not the client's {@link LocalPlayer player}.
+ */
+public interface RemotePlayer extends ClientPlayer {
 
-public interface ClientWorld extends World {
-
-    @Override
-    Collection<? extends ClientPlayer> getPlayers();
 }

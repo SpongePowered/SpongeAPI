@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.client;
+package org.spongepowered.api.entity.living.player.client;
 
 /**
  * Represents the client's player

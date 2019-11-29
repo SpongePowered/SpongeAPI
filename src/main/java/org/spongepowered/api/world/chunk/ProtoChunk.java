@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.chunk;
 
 import org.spongepowered.api.Game;
-import org.spongepowered.api.server.Server;
+import org.spongepowered.api.Server;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.World;

@@ -22,13 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.server;
+package org.spongepowered.api.entity.living.player.client;
 
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.world.client.ClientWorld;
 
-public interface ServerPlayer extends Player {
+public interface ClientPlayer extends Player {
 
     @Override
-    ServerWorld getWorld();
+    ClientWorld getWorld();
 
 }

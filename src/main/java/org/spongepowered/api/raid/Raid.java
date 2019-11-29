@@ -28,7 +28,7 @@ import org.spongepowered.api.boss.ServerBossBar;
 import org.spongepowered.api.data.type.RaidStatus;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.monster.raider.Raider;
-import org.spongepowered.api.server.ServerWorld;
+import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.difficulty.Difficulties;
 
 import java.util.List;

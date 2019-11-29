@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.client;
 
-import org.spongepowered.api.server.Server;
+import org.spongepowered.api.Server;
 
 public interface LocalServer extends Server {
 

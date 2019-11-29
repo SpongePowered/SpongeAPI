@@ -22,9 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world;
+package org.spongepowered.api.world.server;
 
 import org.spongepowered.api.Game;
+import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.WorldArchetype;
+import org.spongepowered.api.world.WorldRegistration;
 import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.io.IOException;
@@ -57,28 +60,28 @@ public interface WorldManager {
     Path getSavesDirectory();
 
     /**
-     * Gets a loaded {@link World} by its unique id ({@link UUID}), if it
+     * Gets a loaded {@link ServerWorld} by its unique id ({@link UUID}), if it
      * exists.
      *
      * @param uniqueId UUID to lookup
      * @return The world, if found
      */
-    Optional<World> getWorld(UUID uniqueId);
+    Optional<ServerWorld> getWorld(UUID uniqueId);
 
     /**
-     * Gets a loaded {@link World} by it's directory name, if it exists.
+     * Gets a loaded {@link ServerWorld} by it's directory name, if it exists.
      *
      * @param directoryName Name to lookup
      * @return The world, if found
      */
-    Optional<World> getWorld(String directoryName);
+    Optional<ServerWorld> getWorld(String directoryName);
 
     /**
-     * Gets all currently loaded {@link World}s.
+     * Gets all currently loaded {@link ServerWorld}s.
      *
      * @return A collection of loaded worlds
      */
-    Collection<World> getWorlds();
+    Collection<ServerWorld> getWorlds();
 
     /**
      * Gets the default {@link WorldProperties} name that the {@link WorldManager} creates and loads.
@@ -110,10 +113,9 @@ public interface WorldManager {
 
     /**
      * Creates a new {@link WorldProperties} from the given
-     * {@link WorldArchetype}. For the creation of the WorldArchetype please see
-     * {@link org.spongepowered.api.world.WorldArchetype.Builder}.
+     * {@link WorldArchetype}. For the creation of the WorldArchetype please see {@link WorldArchetype.Builder}.
      *
-     * <p>If the {@link World} exists at the directory name given, the properties
+     * <p>If the {@link ServerWorld} exists at the directory name given, the properties
      * representing that directory name are returned instead.</p>
      *
      * <p>Although the world is created it is not loaded at this time. Please
@@ -130,7 +132,7 @@ public interface WorldManager {
     Optional<WorldProperties> createProperties(WorldRegistration registration, WorldArchetype archetype) throws IOException;
 
     /**
-     * Loads a {@link World} from the default storage container. If a world with
+     * Loads a {@link ServerWorld} from the default storage container. If a world with
      * the given name is already loaded then it is returned instead.
      *
      * @param directoryName The name to lookup
@@ -139,30 +141,30 @@ public interface WorldManager {
     Optional<World> loadWorld(String directoryName);
 
     /**
-     * Loads a {@link World} from the default storage container. If the world
+     * Loads a {@link ServerWorld} from the default storage container. If the world
      * associated with the given properties is already loaded then it is
      * returned instead.
      *
      * @param properties The properties of the world to load
      * @return The world, if found
      */
-    Optional<World> loadWorld(WorldProperties properties);
+    Optional<ServerWorld> loadWorld(WorldProperties properties);
 
     /**
-     * Registers a {@link WorldRegistration}, creates the {@link WorldProperties} (if it doesn't exist), and loads the {@link World}
+     * Registers a {@link WorldRegistration}, creates the {@link WorldProperties} (if it doesn't exist), and loads the {@link ServerWorld}
      * in one step.
      *
      * @param registration The registration
      * @param archetype The archetype
-     * @return The {@link World} or {@link Optional#empty()} if it was not loaded
+     * @return The {@link ServerWorld} or {@link Optional#empty()} if it was not loaded
      * @throws IOException If the {@link WorldProperties} failed to create due to a filesystem error
      */
-    default Optional<World> loadWorld(WorldRegistration registration, WorldArchetype archetype) throws IOException {
+    default Optional<ServerWorld> loadWorld(WorldRegistration registration, WorldArchetype archetype) throws IOException {
         return this.createProperties(registration, archetype).flatMap(this::loadWorld);
     }
 
     /**
-     * Unloads a {@link World}.
+     * Unloads a {@link ServerWorld}.
      *
      * <p>The conditions for how and when a world may be unloaded are left up to the
      * implementation to define.</p>
@@ -173,7 +175,7 @@ public interface WorldManager {
      * @param world The world to unload
      * @return Whether the operation was successful
      */
-    boolean unloadWorld(World world);
+    boolean unloadWorld(ServerWorld world);
 
     /**
      * Gets the {@link WorldProperties} of a world. If a world with the given
@@ -189,7 +191,7 @@ public interface WorldManager {
     /**
      * Gets the {@link WorldProperties} of a world. If a world with the given
      * UUID is loaded then this is equivalent to calling
-     * {@link World#getProperties()}. However, if no loaded world is found then
+     * {@link ServerWorld#getProperties()}. However, if no loaded world is found then
      * an attempt will be made to match to a known unloaded world.
      *
      * @param uniqueId The UUID to lookup

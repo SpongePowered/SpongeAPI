@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.world.gen;
 
-import org.spongepowered.api.server.Server;
+import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.entity.BlockEntity;
@@ -32,7 +32,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.ProtoWorld;
-import org.spongepowered.api.server.ServerWorld;
+import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.gen.feature.Feature;

@@ -25,7 +25,7 @@
 package org.spongepowered.api.data;
 
 import com.google.common.reflect.TypeToken;
-import org.spongepowered.api.server.Server;
+import org.spongepowered.api.Server;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
 
