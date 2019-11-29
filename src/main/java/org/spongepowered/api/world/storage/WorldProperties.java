@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world.storage;
 
+import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
@@ -338,6 +339,20 @@ public interface WorldProperties extends WeatherUniverse, DataSerializable, Iden
      * @param behavior The serialization behavior
      */
     void setSerializationBehavior(SerializationBehavior behavior);
+
+    /**
+     * Gets the {@link DataContainer} that represents the settings used by the generator.
+     *
+     * @return The data
+     */
+    DataContainer getGeneratorSettings();
+
+    /**
+     * Sets the {@link DataContainer} that represents the settings to be used by the generator.
+     *
+     * @param generatorSettings The data
+     */
+    void setGeneratorSettings(DataContainer generatorSettings);
 
     /**
      * Gets the {@link WorldBorder}.

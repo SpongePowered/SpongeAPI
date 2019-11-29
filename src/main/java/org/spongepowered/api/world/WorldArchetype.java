@@ -26,6 +26,7 @@ package org.spongepowered.api.world;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
@@ -180,6 +181,13 @@ public interface WorldArchetype extends CatalogType {
     SerializationBehavior getSerializationBehavior();
 
     /**
+     * Gets a {@link DataContainer} that holds the settings used for the generator.
+     *
+     * @return The data
+     */
+    DataContainer getGeneratorSettings();
+
+    /**
      * A builder to create {@link WorldArchetype}s.
      */
     interface Builder extends CatalogBuilder<WorldArchetype, Builder>, CopyableBuilder<WorldArchetype, Builder> {
@@ -322,12 +330,20 @@ public interface WorldArchetype extends CatalogType {
         Builder generateBonusChest(boolean state);
 
         /**
-         * Sets the serialization behavior that will be used when saving.
+         * Sets the {@link SerializationBehavior} that will be used when saving.
          *
          * @param behavior The serialization behavior
          * @return This builder, for chaining
          */
         Builder serializationBehavior(SerializationBehavior behavior);
+
+        /**
+         * Sets the {@link DataContainer} that will be used for the generator settings.
+         *
+         * @param generatorSettings The data
+         * @return This builder, for chaining
+         */
+        Builder generatorSettings(DataContainer generatorSettings);
 
         /**
          * Fills this {@link Builder} for creating {@link WorldArchetype}s,

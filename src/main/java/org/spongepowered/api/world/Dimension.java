@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.world;
 
-import org.spongepowered.api.world.gen.GeneratorType;
+import org.spongepowered.api.world.gen.TerrainGenerator;
 
 /**
  * Represents the dimension of a {@link World}.
@@ -39,11 +39,11 @@ public interface Dimension {
     DimensionType getType();
 
     /**
-     * Gets the generator type of dimension.
+     * Creates a new {@link TerrainGenerator} based on the properties of this dimension.
      *
-     * @return The generator type of dimension.
+     * @return The generator
      */
-    GeneratorType getGeneratorType();
+    TerrainGenerator<?> createGenerator();
 
     /**
      * Returns whether players can respawn within {@link Dimension} after death.
@@ -60,9 +60,30 @@ public interface Dimension {
     boolean doesWaterEvaporate();
 
     /**
-     * Returns whether this {@link Dimension} has a sky (lack of bedrock).
+     * Returns whether this {@link Dimension} has a sky (lack of a bedrock ceiling).
      *
      * @return True if sky is present, false if not
      */
     boolean hasSky();
+
+    /**
+     * Returns whether this {@link Dimension} has light provided by the sky.
+     *
+     * @return True if light is provided by the sky, false if not
+     */
+    boolean hasSkyLight();
+
+    /**
+     * Returns whether this {@link Dimension} contains worlds that are considered surface-like.
+     *
+     * <p>
+     *     In vanilla Minecraft, this is used to determine logic for several spots:
+     *     <ul>
+     *         <li>Can Player's sleep?</li>
+     *         <li>Can Zombie Pigmen spawn around a nether portal?</li>
+     *     </ul>
+     * </p>
+     * @return True if surface like, false if not
+     */
+    boolean isSurfaceLike();
 }

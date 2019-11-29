@@ -27,30 +27,26 @@ package org.spongepowered.api.world.gen;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.util.annotation.CatalogedBy;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.server.ServerWorld;
 
 /**
- * Represents a world type. This is in general a {@link TerrainGenerator} and the
- * settings for the generator.
+ * Represents a generator used to generate a world.
  */
 @CatalogedBy(GeneratorTypes.class)
 public interface GeneratorType extends CatalogType {
 
     /**
-     * Gets a copy of the default settings for this generator type.
+     * Gets the default settings of this generator.
      *
      * @return The settings
      */
-    DataContainer getGeneratorSettings();
+    DataContainer getDefaultGeneratorSettings();
 
     /**
-     * Creates a new {@link TerrainGenerator} for this generator type.
-     *
-     * <p>This will use the default settings of this generator type.</p>
+     * Creates a new {@link TerrainGenerator} for this generator type using the settings from {@link GeneratorType#getDefaultGeneratorSettings()}.
      *
      * @param world The world to create the world generator for.
      * @return The new generator
      */
-    TerrainGenerator<?> createGenerator(World world);
-
+    TerrainGenerator<?> createGenerator(ServerWorld world);
 }
