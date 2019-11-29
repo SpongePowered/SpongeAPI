@@ -62,7 +62,7 @@ public interface WorldRegistration extends CatalogType {
      */
     String getDirectoryName();
 
-    interface Builder extends CatalogBuilder<WorldRegistration, Builder>, CopyableBuilder<WorldRegistration, Builder> {
+    interface Builder extends CatalogBuilder<WorldRegistration, Builder> {
 
         /**
          * Sets the directory name
