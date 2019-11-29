@@ -25,24 +25,14 @@
 package org.spongepowered.api.world;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.service.context.ContextSource;
 import org.spongepowered.api.util.annotation.CatalogedBy;
-import org.spongepowered.api.world.storage.WorldProperties;
 
 /**
  * Represents a type of {@link Dimension}.
  */
 @CatalogedBy(DimensionTypes.class)
-public interface DimensionType extends CatalogType {
-
-    /**
-     * Returns the {@link Dimension}'s class for this {@link DimensionType}.
-     *
-     * <p>This is used to determine how a {@link WorldProperties} loaded as a {@link World}
-     * will be generated, simulated, and represented to game clients.</p>
-     *
-     * @return The dimension class
-     */
-    Class<? extends Dimension> getDimensionClass();
+public interface DimensionType extends CatalogType, ContextSource {
 
     /**
      * Returns if this {@link DimensionType} has skylight.
