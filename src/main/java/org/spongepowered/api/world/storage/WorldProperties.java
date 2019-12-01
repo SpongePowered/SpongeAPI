@@ -24,10 +24,13 @@
  */
 package org.spongepowered.api.world.storage;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
+import org.spongepowered.api.boss.BossBar;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
+import org.spongepowered.api.entity.living.trader.WanderingTrader;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.TemporalUnits;
 import org.spongepowered.api.world.dimension.DimensionType;
@@ -42,6 +45,9 @@ import org.spongepowered.api.world.weather.WeatherUniverse;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.time.Duration;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 /**
  * Represents the properties of a {@link World} which are persisted across runtime instances.
@@ -339,6 +345,74 @@ public interface WorldProperties extends WeatherUniverse, DataSerializable, Iden
      * @param behavior The serialization behavior
      */
     void setSerializationBehavior(SerializationBehavior behavior);
+
+    /**
+     * Gets the delay before a {@link WanderingTrader} will be spawned, in ticks.
+     *
+     * <p>
+     *     In vanilla minecraft, 24,000 ticks is the default delay.
+     * </p>
+     *
+     * @return The delay, in ticks
+     */
+    int getWanderingTraderSpawnDelay();
+
+    /**
+     * Sets the delay before a {@link WanderingTrader} will be spawned.
+     *
+     * @param delay The delay, in ticks
+     */
+    void setWanderingTraderSpawnDelay(int delay);
+
+    /**
+     * Gets the chance that a {@link WanderingTrader} will be spawned, as a percentage
+     *
+     * <p>
+     *     In vanilla Minecraft, 25% is the default chance
+     * </p>
+     *
+     * @return The delay, as a percentage
+     */
+    int getWanderingTraderSpawnChance();
+
+    /**
+     * Sets the chance that a {@link WanderingTrader} will be spawned.
+     *
+     * @param chance The chance, as a percentage
+     */
+    void setWanderingTraderSpawnChance(int chance);
+
+    /**
+     * Gets the {@link UUID unique id} of the {@link WanderingTrader} that has been spawned.
+     *
+     * @return The unique id or {@link Optional#empty()} if one has not been spawned
+     */
+    Optional<UUID> getWanderTraderUniqueId();
+
+    /**
+     * Sets the {@link WanderingTrader} of this world properties.
+     *
+     * <p>
+     *     In vanilla Minecraft, this will become the spawned trader.
+     * </p>
+     *
+     * @param trader The trader
+     */
+    void setWanderingTrader(@Nullable WanderingTrader trader);
+
+    /**
+     * Gets the custom {@link BossBar bars} that have been set for this world properties.
+     *
+     * @return The boss bars
+     */
+    List<BossBar> getCustomBossBars();
+
+    /**
+     * Sets the custom {@link BossBar bars} for this world properties.
+     *
+     * @param bars The boss bars
+     */
+    void setCustomBossBars(@Nullable List<BossBar> bars);
 
     /**
      * Gets the {@link DataContainer} that represents the settings used by the generator.
