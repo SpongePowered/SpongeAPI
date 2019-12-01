@@ -27,7 +27,6 @@ package org.spongepowered.api.world.storage;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.boss.BossBar;
 import org.spongepowered.api.data.persistence.DataContainer;
-import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.trader.WanderingTrader;
@@ -52,7 +51,7 @@ import java.util.UUID;
 /**
  * Represents the properties of a {@link World} which are persisted across runtime instances.
  */
-public interface WorldProperties extends WeatherUniverse, DataSerializable, Identifiable, GameRuleHolder {
+public interface WorldProperties extends WeatherUniverse, Identifiable, GameRuleHolder {
 
     /**
      * Gets whether this world has been initialized.
@@ -188,7 +187,7 @@ public interface WorldProperties extends WeatherUniverse, DataSerializable, Iden
      *
      * @return The total time
      */
-    Duration getTotalTime();
+    Duration getGameTime();
 
     /**
      * Gets the time of day, in ticks. The amount of time that a minecraft day
@@ -196,7 +195,7 @@ public interface WorldProperties extends WeatherUniverse, DataSerializable, Iden
      *
      * @return The time of day
      */
-    Duration getWorldTime();
+    Duration getDayTime();
 
     /**
      * Sets the time of day. The amount of time that a minecraft day
@@ -204,7 +203,7 @@ public interface WorldProperties extends WeatherUniverse, DataSerializable, Iden
      *
      * @param time The time of day
      */
-    void setWorldTime(Duration time);
+    void setDayTime(Duration time);
 
     /**
      * Gets the {@link DimensionType} of this world.
