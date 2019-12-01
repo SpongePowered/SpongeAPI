@@ -75,6 +75,13 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
     String getWorldName();
 
     /**
+     * Sets the name of this world.
+     *
+     * @param worldName The world name
+     */
+    void setWorldName(String worldName);
+
+    /**
      * Gets whether this world is enabled. A world which is enabled but unloaded
      * may be loaded automatically if an attempt is made to transfer an entity
      * to the world using {@link Entity#transferToWorld} .
