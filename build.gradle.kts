@@ -2,9 +2,9 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 
 plugins {
-    org.spongepowered.gradle.sponge.dev
-    org.spongepowered.gradle.sponge.deploy
-    org.spongepowered.gradle.sort
+    id("org.spongepowered.gradle.sponge.dev")
+    id("org.spongepowered.gradle.sponge.deploy")
+    id("org.spongepowered.gradle.sort")
 
     id("org.spongepowered.event-impl-gen") version "5.7.0"
 }
