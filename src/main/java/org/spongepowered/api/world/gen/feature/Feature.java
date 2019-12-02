@@ -49,6 +49,7 @@ public interface Feature<C extends FeatureConfig> extends CatalogType {
      * @param random The random number provider
      * @param origin The origin point of the feature
      * @param config The config object for configuring the feature to be placed
+     * @param generator The generator being used
      * @return True if generation reported to be successful, false otherwise
      */
     boolean generate(ProtoWorld<?> world, TerrainGenerator<?> generator, Random random, Vector3i origin, C config);

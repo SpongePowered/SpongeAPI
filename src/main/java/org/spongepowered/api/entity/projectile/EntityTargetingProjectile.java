@@ -35,6 +35,7 @@ public interface EntityTargetingProjectile extends Projectile {
 
     /**
      * {@link Keys#TARGET_ENTITY}
+     * @return The targeted entity, if available
      */
     default OptionalValue<Entity> targetEntity() {
         return this.getValue(Keys.TARGET_ENTITY).get();

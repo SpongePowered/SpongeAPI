@@ -85,6 +85,7 @@ public interface ChannelBinding {
          * the message. The handler is invoked every time the message is sent to
          * <strong>either</strong> side.
          *
+         * @param <M> The type of message
          * @param messageClass The class of the message being registered
          * @param messageId A unique ID for this message
          * @param handler The handler that acts upon the message being received
@@ -96,6 +97,7 @@ public interface ChannelBinding {
          * the message. The handler is invoked every time the message is sent to
          * the given side.
          *
+         * @param <M> The type of message
          * @param messageClass The class of the message being registered
          * @param messageId A unique ID for this message
          * @param side The side to listen to messages on

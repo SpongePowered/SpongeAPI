@@ -39,6 +39,7 @@ public interface Wither extends Monster, Ranger, Boss, Aerial, FusedExplosive {
 
     /**
      * {@link Keys#TARGET_ENTITIES}
+     * @return The list of targeted entities, if available
      */
     default ListValue.Mutable<Living> targetEntities() {
         return this.getValue(Keys.TARGET_ENTITIES).get().asMutable();

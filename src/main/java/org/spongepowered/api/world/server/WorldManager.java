@@ -48,9 +48,9 @@ public interface WorldManager {
      *
      * <ul>
      *     <li>Client
-     *      <ul>This directory will point to {@link Game#getGameDirectory()}.resolve("saves").resolve(currentSaveName)</ul>
+     *      <ul><li>This directory will point to {@link Game#getGameDirectory()}.resolve("saves").resolve(currentSaveName)</li></ul>
      *     <li>Server
-     *      <ul>This directory will be equivalent to {@link Game#getGameDirectory()}.resolve(level-name).</ul>
+     *      <ul><li>This directory will be equivalent to {@link Game#getGameDirectory()}.resolve(level-name).</li></ul>
      * </ul>
      *
      * <p>Consult your specific implementation if they support placing this elsewhere.</p>

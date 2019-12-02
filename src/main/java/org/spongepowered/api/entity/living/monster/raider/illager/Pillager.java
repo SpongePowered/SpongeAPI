@@ -35,6 +35,7 @@ public interface Pillager extends Illager, Carrier {
 
     /**
      * {@link Keys#IS_CHARGING_CROSSBOW}.
+     * @return whether this pillager is charging a crossbow
      */
     default Value.Mutable<Boolean> chargingCrossbow() {
         return this.getValue(Keys.IS_CHARGING_CROSSBOW).get().asMutable();

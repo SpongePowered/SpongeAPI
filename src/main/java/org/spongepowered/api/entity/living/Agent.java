@@ -41,6 +41,8 @@ public interface Agent extends Living {
 
     /**
      * {@link Keys#TARGET_ENTITY}
+     * @return The targeted entity
+     * @see org.spongepowered.api.entity.ai.task.builtin.creature.target.TargetAITask
      */
     default OptionalValue.Mutable<Entity> targetEntity() {
         return this.getValue(Keys.TARGET_ENTITY).get().asMutable();
@@ -48,6 +50,7 @@ public interface Agent extends Living {
 
     /**
      * {@link Keys#IS_AI_ENABLED}
+     * @return Whether ai modules are enabled on this entity or it's a "dumb" entity
      */
     default Value.Mutable<Boolean> aiEnabled() {
         return this.getValue(Keys.IS_AI_ENABLED).get().asMutable();

@@ -36,6 +36,7 @@ public interface MinecartEntity extends Entity {
 
     /**
      * {@link Keys#MINECART_IS_ON_RAIL}
+     * @return Whether this minecart is on a rail or not
      */
     default Value.Mutable<Boolean> onRail() {
         return this.getValue(Keys.MINECART_IS_ON_RAIL).get().asMutable();
@@ -43,6 +44,7 @@ public interface MinecartEntity extends Entity {
 
     /**
      * {@link Keys#MINECART_SWIFTNESS}
+     * @return The current swiftness of the minecart
      */
     default Value.Mutable<Double> swiftness() {
         return this.getValue(Keys.MINECART_SWIFTNESS).get().asMutable();
@@ -54,6 +56,7 @@ public interface MinecartEntity extends Entity {
      * <p>This differs from {@link Minecart#swiftness()} in that its value is
      * affected by the block/rail beneath the cart. However, it is still
      * impacted and limited by the cart's swiftness.</p>
+     * @return The potential maximum speed
      */
     default Value.Mutable<Double> potentialMaxSpeed() {
         return this.getValue(Keys.MINECART_POTENTIAL_MAX_SPEED).get().asMutable();
@@ -61,6 +64,7 @@ public interface MinecartEntity extends Entity {
 
     /**
      * {@link Keys#MINECART_SLOWS_UNOCCUPIED}
+     * @return Whether this minecart will slow when unoccupied
      */
     default Value.Mutable<Boolean> slowsUnoccupied() {
         return this.getValue(Keys.MINECART_SLOWS_UNOCCUPIED).get().asMutable();
@@ -68,6 +72,7 @@ public interface MinecartEntity extends Entity {
 
     /**
      * {@link Keys#MINECART_AIRBORNE_VELOCITY_MODIFIER}
+     * @return The airborne velocity modifier
      */
     default Value.Mutable<Vector3d> airborneVelocityModifier() {
         return this.getValue(Keys.MINECART_AIRBORNE_VELOCITY_MODIFIER).get().asMutable();
@@ -75,6 +80,7 @@ public interface MinecartEntity extends Entity {
 
     /**
      * {@link Keys#MINECART_DERAILED_VELOCITY_MODIFIER}
+     * @return The derailed velocity modifier
      */
     default Value.Mutable<Vector3d> derailedVelocityModifier() {
         return this.getValue(Keys.MINECART_DERAILED_VELOCITY_MODIFIER).get().asMutable();

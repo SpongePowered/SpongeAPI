@@ -39,8 +39,8 @@ import java.lang.annotation.Target;
  * the 'namespace' and 'value' components of the {@link CatalogKey}
  * must be specified separately, instead of using a {@link CatalogKey} directly.</p>
  *
- * <p><pre>{@code @ChannelId(namespace="myplugin", value="SomeChannel") @Inject
- * ChannelBinding.RawDataChannel channel;}</pre></p>
+ * <pre>{@code @ChannelId(namespace="myplugin", value="SomeChannel") @Inject
+ * ChannelBinding.RawDataChannel channel;}</pre>
  */
 @BindingAnnotation
 @Retention(RetentionPolicy.RUNTIME)

@@ -33,6 +33,7 @@ public interface BlockOccupiedMinecart extends MinecartEntity {
 
     /**
      * {@link Keys#BLOCK_STATE}
+     * @return The block state in this minecart
      */
     default Value.Immutable<BlockState> block() {
         return this.getValue(Keys.BLOCK_STATE).get().asImmutable();

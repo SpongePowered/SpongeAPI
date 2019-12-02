@@ -35,6 +35,7 @@ public interface Explosive extends Entity {
 
     /**
      * {@link Keys#EXPLOSION_RADIUS}
+     * @return The explosion radius
      */
     default OptionalValue.Mutable<Integer> explosionRadius() {
         return this.getValue(Keys.EXPLOSION_RADIUS).get().asMutable();

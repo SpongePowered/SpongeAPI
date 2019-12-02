@@ -133,6 +133,7 @@ public interface CommandContext extends CommandCause {
         /**
          * Adds a parsed object into the context, for use by commands.
          *
+         * @param <T> The type of parameter key
          * @param parameter The key to store the entry under.
          * @param value The collection of objects to store.
          */
@@ -143,6 +144,7 @@ public interface CommandContext extends CommandCause {
         /**
          * Adds a collection of parsed objects into the context, for use by commands.
          *
+         * @param <T> The type of parameter key
          * @param parameter The key to store the entry under.
          * @param value The collection of objects to store.
          */
@@ -153,6 +155,7 @@ public interface CommandContext extends CommandCause {
         /**
          * Adds a collection of parsed objects into the context, for use by commands.
          *
+         * @param <T> The type of parameter key
          * @param parameter The key to store the entry under.
          * @param value The collection of objects to store.
          */
@@ -163,6 +166,7 @@ public interface CommandContext extends CommandCause {
         /**
          * Adds a parsed object into the context, for use by commands.
          *
+         * @param <T> The type of parameter key
          * @param key The key to store the entry under.
          * @param object The object to store.
          */

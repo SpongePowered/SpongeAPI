@@ -65,8 +65,10 @@ public interface State<S extends State<S>> extends DataHolder.Immutable<S>, Cata
      * an instance {@link Object#toString()}, {@link Optional#empty()} may be
      * returned.
      *
+     * @param <T> The type of cycleable value
      * @param stateProperty The state property
      * @param value The value
+     * @param <V> The type of extended value
      * @return The state, if the state property and value are supported
      */
     <T extends Comparable<T>, V extends T> Optional<S> withStateProperty(StateProperty<T> stateProperty, V value);
@@ -76,6 +78,7 @@ public interface State<S extends State<S>> extends DataHolder.Immutable<S>, Cata
      * the new {@link State}. Returns {@link Optional#empty()} if the state property or
      * the value isn't supported.
      *
+     * @param <T> The type of cycleable value
      * @param stateProperty The state property
      * @return The cycled state if successful
      */
@@ -86,6 +89,7 @@ public interface State<S extends State<S>> extends DataHolder.Immutable<S>, Cata
      * the new {@link State}. Returns {@link Optional#empty()} if the key or
      * the value isn't supported.
      *
+     * @param <T> The type of cycleable value
      * @param key The key
      * @return The cycled state if successful
      */

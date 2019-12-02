@@ -80,7 +80,7 @@ public interface Task {
     Duration getInterval();
 
     /**
-     * Gets the {@link Consumer}<{@link Task}> that this task is running.
+     * Gets the {@link Consumer}&gt;{@link Task}&lt; that this task is running.
      *
      * @return The consumer
      */

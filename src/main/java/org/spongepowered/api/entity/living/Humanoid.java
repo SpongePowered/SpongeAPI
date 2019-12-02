@@ -40,6 +40,7 @@ public interface Humanoid extends Living, ProjectileLauncher, ArmorEquipable, Ta
 
     /**
      * {@link Keys#FOOD_LEVEL}
+     * @return The human's food level
      */
     default BoundedValue.Mutable<Integer> foodLevel() {
         return this.getValue(Keys.FOOD_LEVEL).get().asMutable();
@@ -47,6 +48,7 @@ public interface Humanoid extends Living, ProjectileLauncher, ArmorEquipable, Ta
 
     /**
      * {@link Keys#EXHAUSTION}
+     * @return The human's exhaustion
      */
     default BoundedValue.Mutable<Double> exhaustion() {
         return this.getValue(Keys.EXHAUSTION).get().asMutable();
@@ -54,6 +56,7 @@ public interface Humanoid extends Living, ProjectileLauncher, ArmorEquipable, Ta
 
     /**
      * {@link Keys#SATURATION}
+     * @return The human's saturation
      */
     default BoundedValue.Mutable<Double> saturation() {
         return this.getValue(Keys.SATURATION).get().asMutable();
@@ -61,6 +64,7 @@ public interface Humanoid extends Living, ProjectileLauncher, ArmorEquipable, Ta
 
     /**
      * {@link Keys#GAME_MODE}
+     * @return The gamemode
      */
     default Value.Mutable<GameMode> gameMode() {
         return this.getValue(Keys.GAME_MODE).get().asMutable();

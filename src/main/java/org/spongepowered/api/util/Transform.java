@@ -67,9 +67,9 @@ public interface Transform {
      *
      * <p>The format of the rotation is represented by:</p>
      * <ul>
-     *     <li><code>x -> pitch</code></li>
-     *     <li><code>y -> yaw</code></li>
-     *     <li><code>z -> roll</code></li>
+     *     <li><code>x -&gt; pitch</code></li>
+     *     <li><code>y -&gt; yaw</code></li>
+     *     <li><code>z -&gt; roll</code></li>
      * </ul>
      *
      * @return The rotation vector
@@ -92,9 +92,9 @@ public interface Transform {
      *
      * <p>The format of the rotation is represented by:</p>
      * <ul>
-     *     <li><code>x -> pitch</code></li>
-     *     <li><code>y -> yaw</code></li>
-     *     <li><code>z -> roll</code></li>
+     *     <li><code>x -&gt; pitch</code></li>
+     *     <li><code>y -&gt; yaw</code></li>
+     *     <li><code>z -&gt; roll</code></li>
      * </ul>
      *
      * @param rotation The new rotation
@@ -208,11 +208,11 @@ public interface Transform {
      * <p>This includes the position, rotation and scale. To apply the transform
      * to a vector, use the following:</p>
      *
-     * <blockquote><code>Vector3d original = ...;<br />
+     * <blockquote><pre>{@code Vector3d original = ...;<br />
      * Transform transform = ...;<br /><br />
      * Vector3d transformed =
      * transform.toMatrix().transform(original.toVector4(1)).toVector3();<br />
-     * }</code></blockquote>
+     * }}</pre></blockquote>
      *
      * <p>This converts the original 3D vector to 4D by appending 1 as the w
      * coordinate, applies the transformation, then converts it back to 3D by

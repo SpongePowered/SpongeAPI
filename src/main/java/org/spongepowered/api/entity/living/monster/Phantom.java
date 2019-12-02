@@ -41,6 +41,7 @@ public interface Phantom extends Aerial, Creature {
 
     /**
      * {@link Keys#PHANTOM_SIZE}
+     * @return The size of this phantom
      */
     default BoundedValue.Mutable<Integer> size() {
         return this.getValue(Keys.PHANTOM_SIZE).get().asMutable();

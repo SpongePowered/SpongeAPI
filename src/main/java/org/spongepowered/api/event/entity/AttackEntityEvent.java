@@ -118,13 +118,13 @@ import java.util.function.Function;
  * the "base" damage. The implementation for {@link #getFinalOutputDamage()} can
  * be exemplified like so:</p>
  *
- * <blockquote><code>double damage = this.baseDamage;<br />
+ * <blockquote><pre>{@code double damage = this.baseDamage;<br />
  * for (Map.Entry&lt;DamageModifier, Function&lt;? super Double, Double&gt;&gt;
  * entry : this.modifierFunctions.entrySet()) {<br />
  * &nbsp;&nbsp;damage += checkNotNull(entry.getValue().apply(damage));<br />
  * }<br />
  * return damage;
- * </code></blockquote>
+ * }</pre></blockquote>
  *
  * <p>After which, the "final" damage is simply the summation of the
  * "base" damage and all "modified damage" for each {@link DamageModifier}

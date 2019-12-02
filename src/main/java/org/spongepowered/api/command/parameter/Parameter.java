@@ -109,6 +109,8 @@ public interface Parameter {
     /**
      * Gets a builder that builds a {@link Parameter.Value}.
      *
+     * @param <T> The type of parameter
+     * @param valueClass The type of value class
      * @return The {@link Value.Builder}
      */
     static <T> Value.Builder<T> builder(Class<T> valueClass) {
@@ -118,6 +120,9 @@ public interface Parameter {
     /**
      * Gets a builder that builds a {@link Parameter.Value}.
      *
+     * @param <T> The type of parameter
+     * @param parameter The value parameter
+     * @param valueClass The type of value class
      * @return The {@link Value.Builder}
      */
     static <T> Value.Builder<T> builder(Class<T> valueClass, ValueParameter<T> parameter) {
@@ -630,6 +635,7 @@ public interface Parameter {
      * objects that will get put in the {@link CommandContext} when a choice is
      * selected.
      *
+     * @param <T> The type of parameter
      * @param returnType The type of object that will be returned by the parser
      *                   to be built by this builder.
      * @param choices The choices
@@ -647,6 +653,7 @@ public interface Parameter {
      * objects that will get put in the {@link CommandContext} when a choice is
      * selected, through the use of the {@code valueFunction}.
      *
+     * @param <T> The type of parameter
      * @param returnType The type of object that will be returned by the parser
      *                   to be built by this builder.
      * @param valueFunction The function that returns an object to put in the
@@ -689,6 +696,7 @@ public interface Parameter {
      * @param returnedValue The object to put in the {@link CommandContext} if
      *      the literal matches.
      * @param literal The literal to match
+     * @param <T> The type of value
      * @return A {@link Parameter.Value.Builder}
      */
     static <T> Parameter.Value.Builder<T> literal(Class<T> returnType, T returnedValue, String... literal) {
@@ -700,10 +708,12 @@ public interface Parameter {
      * Creates a builder that has a {@link ValueParameter} that requires an
      * argument to be a literal specified
      *
+     * @param <T> The type of parameter
      * @param returnedValue The object to put in the {@link CommandContext} if
      *      the literal matches
      * @param literalSupplier A function that provies the literal to match at
      *      invocation
+     * @param returnType The type of return
      * @return A {@link Parameter.Value.Builder}
      */
     static <T> Parameter.Value.Builder<T> literal(Class<T> returnType, T returnedValue, Supplier<Iterable<String>> literalSupplier) {

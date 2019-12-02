@@ -39,6 +39,7 @@ public interface Panda extends Animal {
 
     /**
      * {@link Keys#KNOWN_GENE}
+     * @return Whether this panda has a known gene
      */
     default Value.Mutable<PandaGene> knownGene() {
         return this.getValue(Keys.KNOWN_GENE).get().asMutable();
@@ -46,6 +47,7 @@ public interface Panda extends Animal {
 
     /**
      * {@link Keys#HIDDEN_GENE}
+     * @return Whether this panda has a hidden gene
      */
     default Value.Mutable<PandaGene> hiddenGene() {
         return this.getValue(Keys.HIDDEN_GENE).get().asMutable();
@@ -53,6 +55,7 @@ public interface Panda extends Animal {
 
     /**
      * {@link Keys#IS_SITTING}
+     * @return Whether this panda is sitting
      */
     default Value.Mutable<Boolean> sitting() {
         return this.getValue(Keys.IS_SITTING).get().asMutable();
@@ -60,6 +63,7 @@ public interface Panda extends Animal {
 
     /**
      * {@link Keys#IS_SNEEZING}
+     * @return Whether this panda is sneezing
      */
     default Value.Mutable<Boolean> sneezing() {
         return this.getValue(Keys.IS_SNEEZING).get().asMutable();
@@ -67,6 +71,7 @@ public interface Panda extends Animal {
 
     /**
      * {@link Keys#IS_LYING_ON_BACK}
+     * @return The time remaining to lie on it's back
      */
     default Value.Mutable<Boolean> lyingOnBack() {
         return this.getValue(Keys.IS_LYING_ON_BACK).get().asMutable();
@@ -74,6 +79,7 @@ public interface Panda extends Animal {
 
     /**
      * {@link Keys#IS_ROLLING_AROUND}
+     * @return The time remaining to roll around
      */
     default Value.Mutable<Boolean> rollingAround() {
         return this.getValue(Keys.IS_ROLLING_AROUND).get().asMutable();
@@ -81,6 +87,7 @@ public interface Panda extends Animal {
 
     /**
      * {@link Keys#UNHAPPY_TIME}
+     * @return The time remaining to be unhappy
      */
     default Value.Mutable<Integer> unhappyTime() {
         return this.getValue(Keys.UNHAPPY_TIME).get().asMutable();
@@ -88,6 +95,7 @@ public interface Panda extends Animal {
 
     /**
      * {@link Keys#EATING_TIME}
+     * @return The eating time
      */
     default Value.Mutable<Integer> eatingTime() {
         return this.getValue(Keys.EATING_TIME).get().asMutable();
@@ -95,13 +103,14 @@ public interface Panda extends Animal {
 
     /**
      * {@link Keys#SNEEZING_TIME}
+     * @return The sneezing time
      */
     default Value.Mutable<Integer> sneezingTime() {
         return this.getValue(Keys.SNEEZING_TIME).get().asMutable();
     }
 
     /**
-     * Determines if the panda is currently eating. In vanilla, this is {@link Panda#unhappyTime()} > 0. Affects their ability to produce
+     * Determines if the panda is currently eating. In vanilla, this is {@link Panda#unhappyTime()} &gt; 0. Affects their ability to produce
      * offspring or sit down.
      *
      * {@link Panda#unhappyTime()}
@@ -112,11 +121,12 @@ public interface Panda extends Animal {
 
     /**
      * Instructs the panda to be unhappy or not. In vanilla, if false, this will set the {@link Panda#unhappyTime()} to 0. Otherwise 32.
+     * @param unhappy Whether this is an unhappy panda
      */
     void setUnhappy(boolean unhappy);
 
     /**
-     * Determines if the panda is currently eating. In vanilla, this is {@link Panda#eatingTime()} > 0.
+     * Determines if the panda is currently eating. In vanilla, this is {@link Panda#eatingTime()} &gt; 0.
      *
      * {@link Panda#eatingTime()}
      *
@@ -128,11 +138,12 @@ public interface Panda extends Animal {
      * Instructs the panda to eat or not. In vanilla, if true, this will set the {@link Panda#eatingTime()} to 1. Otherwise 0.
      *
      * {@link Panda#eatingTime()}
+     * @param eating Whether to be eating or not
      */
     void setEating(boolean eating);
 
     /**
-     * Determines if the panda is currently sneezing. In vanilla, this is {@link Panda#sneezingTime()} >= 0.
+     * Determines if the panda is currently sneezing. In vanilla, this is {@link Panda#sneezingTime()} &gt;= 0.
      *
      * @return True if sneezing, false if not
      */
@@ -141,6 +152,7 @@ public interface Panda extends Animal {
     /**
      * Instructs the panda to sneeze or not. In vanilla, if true, this will set {@link Panda#sneezing()} to true and {@link Panda#sneezingTime()}
      * to 0. Otherwise if the panda was sneezing, the sneezingTime will be set to 20 and if not will be set to 0.
+     * @param sneeze Whether this panda is sneezing
      */
     void setSneezing(boolean sneeze);
 

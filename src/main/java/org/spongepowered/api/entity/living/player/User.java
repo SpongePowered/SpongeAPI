@@ -100,7 +100,7 @@ public interface User extends DataHolder.Mutable, ArmorEquipable, Tamer, Subject
      *
      * @param position The position to set
      * @param world The world UUID to set
-     *
+     * @return True if the location was accepted
      * @throws IllegalArgumentException When the UUID does not belong to an existing world.
      */
     boolean setLocation(Vector3d position, UUID world);

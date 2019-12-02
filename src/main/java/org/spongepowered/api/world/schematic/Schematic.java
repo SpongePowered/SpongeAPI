@@ -70,7 +70,7 @@ public interface Schematic extends ArchetypeVolume {
     Palette<BlockState> getBlockPalette();
 
     /**
-     * Gets the {@link Palette Palette<BiomeType>} used by this schematic for serialization.
+     * Gets the {@link Palette Palette&lt;BiomeType&gt;} used by this schematic for serialization.
      *
      * @return The biome palette used for this schematic
      */

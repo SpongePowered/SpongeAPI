@@ -49,7 +49,7 @@ public interface SidedSlot extends Slot {
      * Attempts to insert the supplied stack into this inventory from the
      * specified direction.
      *
-     * @see Inventory#offer(ItemStack)
+     * @see Inventory#offer(ItemStack...)
      * @param stack Stack to insert
      * @param from Direction to check for insertion from
      * @return true if this inventory can accept the supplied stack from the

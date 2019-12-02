@@ -36,7 +36,7 @@ import java.util.function.Function;
  * convenience, most users will want to wrap this in a class that keeps track of
  * resource bundles. A simple implementation would look like:</p>
  *
- * <blockquote><code>public class TranslationHelper {<br />&nbsp; &nbsp; private
+ * <blockquote><pre>{@code public class TranslationHelper {<br />&nbsp; &nbsp; private
  * static final Function&lt;Locale, ResourceBundle&gt; LOOKUP_FUNC = new
  * Function&lt;Locale, ResourceBundle&gt;() {<br />&nbsp; &nbsp; &nbsp; &nbsp;
  * &#064;Nullable &#064;Override<br />&nbsp; &nbsp; &nbsp; &nbsp; public
@@ -47,7 +47,7 @@ import java.util.function.Function;
  * <br /><br />&nbsp; &nbsp; public static Text t(String key, Object... args) {
  * <br />&nbsp; &nbsp; &nbsp; &nbsp; return Texts.of(new
  * ResourceBundleTranslation(key, LOOKUP_FUNC), args);<br />&nbsp; &nbsp; }
- * <br />}</code></blockquote>
+ * <br />}}</pre></blockquote>
  */
 public class ResourceBundleTranslation implements Translation {
 

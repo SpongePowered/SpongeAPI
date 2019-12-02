@@ -35,6 +35,7 @@ public interface Slime extends Monster {
 
     /**
      * {@link Keys#SLIME_SIZE}
+     * @return The size of slime
      */
     default BoundedValue.Mutable<Integer> slimeSize() {
         return this.getValue(Keys.SLIME_SIZE).get().asMutable();

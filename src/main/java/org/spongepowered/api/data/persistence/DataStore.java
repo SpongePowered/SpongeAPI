@@ -39,9 +39,17 @@ public interface DataStore {
      *
      * @param dataManipulator The data manipulator
      * @param view The data view to serialize to
+     * @return The view, for chaining
      */
     DataView serialize(DataManipulator dataManipulator, DataView view);
 
+    /**
+     * Serializes the passed in {@link Value values} to the {@link DataView view}.
+     *
+     * @param values The values to serialize
+     * @param view The view
+     * @return The view, for chaining
+     */
     default DataView serialize(Iterable<Value<?>> values, DataView view) {
         return serialize(DataManipulator.immutableOf(values), view);
     }
@@ -50,6 +58,7 @@ public interface DataStore {
      * Serializes the {@link Value}s.
      *
      * @param values The value container
+     * @return This view, for chaining
      */
     default DataView serialize(Iterable<Value<?>> values) {
         return serialize(DataManipulator.immutableOf(values));
@@ -59,6 +68,7 @@ public interface DataStore {
      * Serializes the values of the {@link DataManipulator}.
      *
      * @param dataManipulator The data manipulator
+     * @return This view, for chaining
      */
     default DataView serialize(DataManipulator dataManipulator) {
         final DataView dataView = DataContainer.createNew();

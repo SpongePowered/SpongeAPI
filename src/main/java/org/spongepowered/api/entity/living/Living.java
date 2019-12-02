@@ -46,6 +46,7 @@ public interface Living extends Entity, EntityProjectileSource, TeamMember {
 
     /**
      * {@link Keys#HEALTH}
+     * @return The health value
      */
     default BoundedValue.Mutable<Double> health() {
         return this.getValue(Keys.HEALTH).get().asMutable();
@@ -53,6 +54,7 @@ public interface Living extends Entity, EntityProjectileSource, TeamMember {
 
     /**
      * {@link Keys#MAX_HEALTH}
+     * @return The maximum health value
      */
     default BoundedValue.Mutable<Double> maxHealth() {
         return this.getValue(Keys.MAX_HEALTH).get().asMutable();
@@ -60,6 +62,7 @@ public interface Living extends Entity, EntityProjectileSource, TeamMember {
 
     /**
      * {@link Keys#LAST_ATTACKER}
+     * @return The last attacker who attacked this entity
      */
     default Value.Mutable<Entity> lastAttacker() {
         return this.getValue(Keys.LAST_ATTACKER).get().asMutable();
@@ -67,6 +70,7 @@ public interface Living extends Entity, EntityProjectileSource, TeamMember {
 
     /**
      * {@link Keys#HEAD_ROTATION}
+     * @return The rotation of the head
      */
     default Value.Mutable<Vector3d> headRotation() {
         return this.getValue(Keys.HEAD_ROTATION).get().asMutable();

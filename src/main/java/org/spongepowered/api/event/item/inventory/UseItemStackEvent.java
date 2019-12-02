@@ -74,7 +74,7 @@ public interface UseItemStackEvent extends Event {
      *     <li>Guarding with a sword</li>
      * </ul>
      *
-     * <p>Note: Cancelling the event, or setting the duration to <= 0
+     * <p>Note: Cancelling the event, or setting the duration to &lt;= 0
      * prevents the {@link ItemType} from processing.</p>
      */
     interface Start extends UseItemStackEvent, Cancellable  {}
@@ -175,7 +175,7 @@ public interface UseItemStackEvent extends Event {
     /**
      * Called before an entity's used item state is reset.
      *
-     * <p>In Vanilla, this usually occurs after {@link Replace} or {@link Stop}./p>
+     * <p>In Vanilla, this usually occurs after {@link Replace} or {@link Stop}.</p>
      *
      * <p>If an entity has finished using an item normally, either
      * by using it for the maximum duration or by stopping

@@ -58,7 +58,7 @@ import java.lang.annotation.Target;
  * <li>It is also possible that one or more values are not listed in the
  * catalog classes (Especially plugin or mod provided ones).</li>
  * </ul>
- * </p>
+ *
  */
 @NonNull
 @Target(ElementType.TYPE)

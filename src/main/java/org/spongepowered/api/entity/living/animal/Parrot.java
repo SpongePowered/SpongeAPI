@@ -35,6 +35,8 @@ public interface Parrot extends TameableAnimal {
 
     /**
      * {@link Keys#PARROT_TYPE}
+     * @return The type of parrot
+     * @see org.spongepowered.api.data.type.ParrotTypes
      */
     default Value.Mutable<ParrotType> type() {
         return this.getValue(Keys.PARROT_TYPE).get().asMutable();

@@ -34,6 +34,7 @@ public interface Ravager extends Raider {
 
     /**
      * {@link Keys#ATTACK_TIME}
+     * @return The time this ravager is attacking
      */
     default Value.Mutable<Integer> attackTime() {
         return this.getValue(Keys.ATTACK_TIME).get().asMutable();
@@ -41,6 +42,7 @@ public interface Ravager extends Raider {
 
     /**
      * {@link Keys#ROARING_TIME}
+     * @return The time this ravager is roaring
      */
     default Value.Mutable<Integer> roaringTime() {
         return this.getValue(Keys.ROARING_TIME).get().asMutable();
@@ -48,21 +50,22 @@ public interface Ravager extends Raider {
 
     /**
      * {@link Keys#STUNNED_TIME}
+     * @return The time this ravager is being stunned for
      */
     default Value.Mutable<Integer> stunnedTime() {
         return this.getValue(Keys.STUNNED_TIME).get().asMutable();
     }
 
     /**
-     * Determines if the ravager is immobilized. In vanilla, if {@link Ravager#attackTime()} > 0 or
-     * {@link Ravager#roaringTime()} > 0 or {@link Ravager#stunnedTime()} > 0 then the ravager is considered immobilized.
+     * Determines if the ravager is immobilized. In vanilla, if {@link Ravager#attackTime()} &gt; 0 or
+     * {@link Ravager#roaringTime()} &gt; 0 or {@link Ravager#stunnedTime()} &gt; 0 then the ravager is considered immobilized.
      *
      * @return True if immobilized, false if not
      */
     boolean isImmobilized();
 
     /**
-     * Determines if the ravager is roaring. In vanilla, this is {@link Ravager#roaringTime()} > 0.
+     * Determines if the ravager is roaring. In vanilla, this is {@link Ravager#roaringTime()} &gt; 0.
      *
      * @return True if roaring, false if not
      */
@@ -77,7 +80,7 @@ public interface Ravager extends Raider {
     void setRoaring(boolean roaring);
 
     /**
-     * Determines if the ravager is stunned. In vanilla, this is {@link Ravager#stunnedTime()} > 0.
+     * Determines if the ravager is stunned. In vanilla, this is {@link Ravager#stunnedTime()} &gt; 0.
      *
      * @return True if stunned, false if not
      */

@@ -221,7 +221,7 @@ public final class CatalogedValueParameters {
      * <p>Listens to:</p>
      *
      * <ul>
-     *     <li>#spawn:&lt;world></li>
+     *     <li>#spawn:&lt;world&gt;</li>
      *     <li>#me: Location of the current source</li>
      * </ul>
      *
@@ -417,8 +417,8 @@ public final class CatalogedValueParameters {
      *
      * <ul>
      *     <li>#first</li>
-     *     <li>#&lt;dimension></li>
-     *     <li>&lt;name></li>
+     *     <li>#&lt;dimension&gt;</li>
+     *     <li>&lt;name&gt;</li>
      *     <li>#me</li>
      * </ul>
      *

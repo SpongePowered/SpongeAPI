@@ -95,10 +95,10 @@ public interface PortalAgent {
      * If {@link org.spongepowered.api.event.block.ChangeBlockEvent.Place}
      * is cancelled, {@link Optional#empty()} is returned.
      *
-     * </p>Note: In order to adjust or prevent the {@link Location}'s of each
+     * <p>Note: In order to adjust or prevent the {@link Location}'s of each
      * {@link BlockState} set, listen to
      * {@link org.spongepowered.api.event.block.ChangeBlockEvent.Place} and
-     * check for the root cause of this portal agent.
+     * check for the root cause of this portal agent.</p>
      *
      * @param targetLocation The targeted location
      * @return The newly created "portal" location, if available

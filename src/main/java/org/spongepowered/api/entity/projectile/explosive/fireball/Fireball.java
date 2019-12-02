@@ -36,6 +36,7 @@ public interface Fireball extends DamagingProjectile {
 
     /**
      * {@link Keys#ACCELERATION}
+     * @return The fireball's acceleration
      */
     default Value.Mutable<Vector3d> acceleration() {
         return this.getValue(Keys.ACCELERATION).get().asMutable();

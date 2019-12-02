@@ -31,6 +31,7 @@ public interface PackHorse extends HorseEntity {
 
     /**
      * {@link Keys#DISPLAY_CHEST}
+     * @return Whether the horse is displaying a chest or not
      */
     default Value.Mutable<Boolean> displayChest() {
         return this.getValue(Keys.DISPLAY_CHEST).get().asMutable();

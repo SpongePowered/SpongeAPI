@@ -1033,8 +1033,8 @@ public final class Keys {
      *
      * <p>The format of the rotation is represented by:</p>
      *
-     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
-     * </code></ul>
+     * <ul><li>{@code x -&gt; pitch</code></li><li> <code>y -&gt; yaw</code></li><li><code>z -&gt; roll
+     * }</li></ul>
      *
      * <p>Note that the pitch will be the same x value returned by
      * {@link Entity#getRotation()} and Minecraft does not currently support

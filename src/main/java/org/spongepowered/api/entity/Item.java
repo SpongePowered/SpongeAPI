@@ -37,6 +37,7 @@ public interface Item extends Entity {
 
     /**
      * {@link Keys#ITEM_STACK_SNAPSHOT}
+     * @return The item being represented by this entity
      */
     default Value.Mutable<ItemStackSnapshot> item() {
         return this.getValue(Keys.ITEM_STACK_SNAPSHOT).get().asMutable();

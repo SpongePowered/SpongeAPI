@@ -36,6 +36,7 @@ public interface DamagingProjectile extends Projectile {
 
     /**
      * {@link Keys#ATTACK_DAMAGE}
+     * @return The attack damage
      */
     default BoundedValue.Mutable<Double> attackDamage() {
         return this.getValue(Keys.ATTACK_DAMAGE).get().asMutable();
@@ -43,6 +44,7 @@ public interface DamagingProjectile extends Projectile {
 
     /**
      * {@link Keys#CUSTOM_ATTACK_DAMAGE}
+     * @return The attack damage per type
      */
     default MapValue.Mutable<EntityType<?>, Double> customAttackDamage() {
         return this.getValue(Keys.CUSTOM_ATTACK_DAMAGE).get().asMutable();

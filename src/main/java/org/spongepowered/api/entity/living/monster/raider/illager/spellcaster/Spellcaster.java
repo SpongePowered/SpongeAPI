@@ -34,6 +34,8 @@ public interface Spellcaster extends Illager {
 
     /**
      * {@link Keys#CURRENT_SPELL}.
+     * @return The current spell being casted
+     * @see org.spongepowered.api.data.type.SpellTypes
      */
     default OptionalValue.Mutable<SpellType> currentSpell() {
         return this.getValue(Keys.CURRENT_SPELL).get().asMutable();
@@ -41,13 +43,14 @@ public interface Spellcaster extends Illager {
 
     /**
      * {@link Keys#CASTING_TIME}
+     * @return The time to cast
      */
     default Value.Mutable<Integer> castingTime() {
         return this.getValue(Keys.CASTING_TIME).get().asMutable();
     }
 
     /**
-     * Determines if the caster is currently casting a spell. In vanilla, this is {@link Spellcaster#castingTime()} > 0.
+     * Determines if the caster is currently casting a spell. In vanilla, this is {@link Spellcaster#castingTime()} &gt; 0.
      *
      * @return True if casting a spell, false if not
      */

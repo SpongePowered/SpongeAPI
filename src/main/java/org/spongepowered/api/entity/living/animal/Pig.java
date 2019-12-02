@@ -34,6 +34,7 @@ public interface Pig extends Animal {
 
     /**
      * {@link Keys#PIG_SADDLE}
+     * @return Whether this pig has a saddle, and ready to be ridden
      */
     default Value.Mutable<Boolean> saddled() {
         return this.getValue(Keys.PIG_SADDLE).get().asMutable();

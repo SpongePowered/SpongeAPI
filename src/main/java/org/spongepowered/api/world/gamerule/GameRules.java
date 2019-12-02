@@ -201,7 +201,7 @@ public final class GameRules {
      *     <li>{@link Villager}</li>
      *     <li>{@link SnowGolem}</li>
      *     <li>{@link Silverfish}</li>
-     * </ul></p>
+     * </ul>
      *
      * <p>In vanilla Minecraft, the following entities can pick up items when
      * this game rule is {@code true}:
@@ -210,7 +210,7 @@ public final class GameRules {
      *     <li>{@link Zombie}</li>
      *     <li>{@link Skeleton}</li>
      *     <li>{@link ZombiePigman}</li>
-     * </ul></p>
+     * </ul>
      *
      * <p>This is a boolean game rule, with a default value of {@code true}.</p>
      */

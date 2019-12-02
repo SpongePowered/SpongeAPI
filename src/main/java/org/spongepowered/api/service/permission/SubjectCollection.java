@@ -237,7 +237,7 @@ public interface SubjectCollection {
      * Return the identifiers of all known subjects with the given permission
      * set.
      *
-     * <p>This method <p>DOES NOT</p> consider inheritance, and will only query
+     * <p>This method <strong>DOES NOT</strong> consider inheritance, and will only query
      * the data set to the subjects {@link Subject#getSubjectData()}. Transient
      * data is not considered.</p>
      *
@@ -257,7 +257,7 @@ public interface SubjectCollection {
      * Return the identifiers of all known subjects with the given permission
      * set.
      *
-     * <p>This method <p>DOES NOT</p> consider inheritance, and will only query
+     * <p>This method <strong>DOES NOT</strong> consider inheritance, and will only query
      * the data set to the subjects {@link Subject#getSubjectData()}. Transient
      * data is not considered.</p>
      *
@@ -271,7 +271,7 @@ public interface SubjectCollection {
     /**
      * Return all loaded subjects with the given permission set.
      *
-     * <p>This method <p>DOES NOT</p> consider inheritance, and will only query
+     * <p>This method <strong>DOES NOT</strong> consider inheritance, and will only query
      * the data set to the subjects {@link Subject#getSubjectData()}. Transient
      * data is not considered.</p>
      *
@@ -290,7 +290,7 @@ public interface SubjectCollection {
     /**
      * Return all loaded subjects with the given permission set.
      *
-     * <p>This method <p>DOES NOT</p> consider inheritance, and will only query
+     * <p>This method <strong>DOES NOT</strong> consider inheritance, and will only query
      * the data set to the subjects {@link Subject#getSubjectData()}. Transient
      * data is not considered.</p>
      *

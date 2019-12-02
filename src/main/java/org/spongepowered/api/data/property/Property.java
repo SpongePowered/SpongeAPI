@@ -108,6 +108,7 @@ public interface Property<V> extends CatalogType {
          * <p>Setting the value type will reset the {@link Comparator}.</p>
          *
          * @param type The value type
+         * @param <NV> The new value type
          * @return This builder, for chaining
          */
         default <NV> Builder<NV> valueType(Class<NV> type) {
@@ -120,6 +121,7 @@ public interface Property<V> extends CatalogType {
          * <p>Setting the value type will reset the {@link Comparator}.</p>
          *
          * @param typeToken The value type token
+         * @param <NV> The new value type
          * @return This builder, for chaining
          */
         <NV> Builder<NV> valueType(TypeToken<NV> typeToken);

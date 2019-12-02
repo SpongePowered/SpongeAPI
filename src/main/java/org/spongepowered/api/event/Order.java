@@ -117,7 +117,7 @@ public enum Order {
     /**
      * The order point of POST handles last minute things and monitoring
      * of events for rollback or logging POST is read only and
-     * cannot cancel events.</p>
+     * cannot cancel events.
      */
     POST
 

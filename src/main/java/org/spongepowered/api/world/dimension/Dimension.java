@@ -83,7 +83,7 @@ public interface Dimension {
      *         <li>Can Player's sleep?</li>
      *         <li>Can Zombie Pigmen spawn around a nether portal?</li>
      *     </ul>
-     * </p>
+     *
      * @return True if surface like, false if not
      */
     boolean isSurfaceLike();

@@ -35,6 +35,7 @@ public interface Evoker extends Spellcaster {
 
     /**
      * {@link Keys#WOLOLO_TARGET}
+     * @return The targeted sheep being herded
      */
     default OptionalValue.Mutable<Sheep> wololoTarget() {
         return this.getValue(Keys.WOLOLO_TARGET).get().asMutable();

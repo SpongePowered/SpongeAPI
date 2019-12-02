@@ -333,6 +333,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder.Mutable, Tra
      * Gets the nearby entities that satisfy the desired predicate.
      *
      * @see World#getEntities(AABB, Predicate)
+     * @param distance The distance
      * @param predicate The predicate to use
      * @return The collection of entities
      */
@@ -354,6 +355,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder.Mutable, Tra
 
     /**
      * {@link Keys#DISPLAY_NAME}
+     * @return The display name of this entity
      */
     default Value.Mutable<Text> displayName() {
         return this.getValue(Keys.DISPLAY_NAME).get().asMutable();
@@ -361,6 +363,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder.Mutable, Tra
 
     /**
      * {@link Keys#PASSENGERS}
+     * @return The list of passengers that may be riding this entity
      */
     default ListValue.Mutable<Entity> passengers() {
         return this.getValue(Keys.PASSENGERS).get().asMutable();
@@ -368,6 +371,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder.Mutable, Tra
 
     /**
      * {@link Keys#VEHICLE}
+     * @return The vehicle this entity may be riding
      */
     default OptionalValue.Mutable<Entity> vehicle() {
         return this.getValue(Keys.VEHICLE).get().asMutable();
@@ -375,6 +379,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder.Mutable, Tra
 
     /**
      * {@link Keys#BASE_VEHICLE}
+     * @return The "base vehicle" of the entity vehicle riding chain
      */
     default OptionalValue.Mutable<Entity> baseVehicle() {
         return this.getValue(Keys.BASE_VEHICLE).get().asMutable();
@@ -382,6 +387,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder.Mutable, Tra
 
     /**
      * {@link Keys#IS_ON_GROUND}
+     * @return Whether this entity is on the ground
      */
     default Value.Mutable<Boolean> onGround() {
         return this.getValue(Keys.IS_ON_GROUND).get().asMutable();
@@ -389,6 +395,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder.Mutable, Tra
 
     /**
      * {@link Keys#VELOCITY}
+     * @return The velocity of this entity
      */
     default Value.Mutable<Vector3d> velocity() {
         return this.getValue(Keys.VELOCITY).get().asMutable();
@@ -396,6 +403,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder.Mutable, Tra
 
     /**
      * {@link Keys#HAS_GRAVITY}
+     * @return Whether this entity is affected by gravity
      */
     default Value.Mutable<Boolean> gravity() {
         return this.getValue(Keys.HAS_GRAVITY).get().asMutable();
@@ -403,6 +411,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder.Mutable, Tra
 
     /**
      * {@link Keys#CREATOR}
+     * @return The unique id of the creator of this entity
      */
     default OptionalValue.Mutable<UUID> creator() {
         return this.getValue(Keys.CREATOR).get().asMutable();
@@ -410,6 +419,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder.Mutable, Tra
 
     /**
      * {@link Keys#NOTIFIER}
+     * @return The unique id of the notifier of this entity
      */
     default OptionalValue.Mutable<UUID> notifier() {
         return this.getValue(Keys.NOTIFIER).get().asMutable();

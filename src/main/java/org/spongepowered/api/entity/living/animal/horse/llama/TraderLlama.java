@@ -31,6 +31,7 @@ public interface TraderLlama extends LlamaEntity {
 
     /**
      * {@link Keys#DESPAWN_DELAY}
+     * @return The delay before this llama will despawn
      */
     default Value.Mutable<Integer> despawnDelay() {
         return this.getValue(Keys.DESPAWN_DELAY).get().asMutable();

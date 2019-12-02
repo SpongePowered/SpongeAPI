@@ -54,9 +54,10 @@ public final class Timings {
     /**
      * Gets a handler that has a groupHandler timer handler. Parent timers
      * should not have their start/stop methods called directly, as the children
-     * will call it for you. <p/> Parent timers are used to group multiple
+     * will call it for you.
+     * <p>Parent timers are used to group multiple
      * subsections together and get a summary of them combined parent handler
-     * can not be changed after first call.
+     * can not be changed after first call.</p>
      *
      * @param plugin The plugin instance to own the timing
      * @param name Name of the timing
@@ -69,7 +70,7 @@ public final class Timings {
 
     /**
      * Returns a {@link Timing} object after starting it, useful for
-     * try-with-resources.</p>
+     * try-with-resources.
      *
      * <pre>
      * try (Timing ignored = Timings.ofStart(plugin, someName)) {
@@ -89,7 +90,7 @@ public final class Timings {
 
     /**
      * Returns a {@link Timing} object after starting it, useful for
-     * try-with-resources.</p>
+     * try-with-resources.
      *
      * <pre>
      * try (Timing ignored = Timings.ofStart(plugin, someName,
@@ -119,7 +120,7 @@ public final class Timings {
     }
 
     /**
-     * Sets whether or not the timings system should be enabled. <p/> Calling
+     * Sets whether or not the timings system should be enabled. Calling
      * this will reset timing data.
      *
      * @param enabled Should timings be reported
@@ -129,7 +130,7 @@ public final class Timings {
     }
 
     /**
-     * Gets whether or not the verbose level of timings is enabled. <p/> When
+     * Gets whether or not the verbose level of timings is enabled. When
      * verbose is disabled, high-frequency timings will not be available.
      *
      * @return Enabled or not
@@ -139,7 +140,7 @@ public final class Timings {
     }
 
     /**
-     * Sets whether or not the timings should monitor at verbose level. <p/>
+     * Sets whether or not the timings should monitor at verbose level.
      * When verbose is disabled, high-frequency timings will not be available.
      * Calling this will reset timing data.
      *

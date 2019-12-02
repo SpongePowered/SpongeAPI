@@ -36,6 +36,7 @@ public interface Horse extends TameableHorse {
 
     /**
      * {@link Keys#HORSE_STYLE}
+     * @return The horse's style
      */
     default Value.Mutable<HorseStyle> style() {
         return this.getValue(Keys.HORSE_STYLE).get().asMutable();
@@ -43,6 +44,7 @@ public interface Horse extends TameableHorse {
 
     /**
      * {@link Keys#HORSE_COLOR}
+     * @return The horse's color
      */
     default Value.Mutable<HorseColor> color() {
         return this.getValue(Keys.HORSE_COLOR).get().asMutable();

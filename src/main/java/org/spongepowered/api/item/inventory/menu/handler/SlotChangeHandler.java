@@ -41,6 +41,7 @@ public interface SlotChangeHandler extends InventoryCallbackHandler {
      * @param slotIndex the changed slot index
      * @param oldStack the old stack
      * @param newStack the new stack
+     * @return Whether the slot change is valid
      */
     boolean handle(Cause cause, Container container, Slot slot, int slotIndex, ItemStackSnapshot oldStack, ItemStackSnapshot newStack);
 }

@@ -46,10 +46,7 @@ public @interface Dependency {
     /**
      * The required version range of the dependency.
      *
-     * <p>The version range will be specified in <b>Maven version range
-     * syntax</b>:</p>
-     *
-     * <table>
+     * <table summary="The version range will be specified in Maven version range syntax">
      * <tr><th>Range</th><th>Meaning</th></tr>
      * <tr><td>1.0</td><td>Any dependency version, 1.0 is recommended</td></tr>
      * <tr><td>[1.0]</td><td>x == 1.0</td></tr>

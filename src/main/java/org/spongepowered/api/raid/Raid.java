@@ -83,14 +83,12 @@ public interface Raid {
      *
      * <p>
      *     In vanilla, a raid determines wave amounts based on difficulty:
-     *     <p><u1>
-     *         <i1>{@link Difficulties#EASY}: 3</i1>
-     *         <i1>{@link Difficulties#NORMAL}: 5</i1>
-     *         <i1>{@link Difficulties#HARD}: 7</i1>
-     *     </u1><p>
-     *
+     *     <ul>
+     *         <li>{@link Difficulties#EASY}: 3</li>
+     *         <li>{@link Difficulties#NORMAL}: 5</li>
+     *         <li>{@link Difficulties#HARD}: 7</li>
+     *     </ul>
      *     Keep in mind that wave amount will be affected by waves added by plugins
-     * </p>
      * @return The total wave amount
      */
     int getTotalWaveAmount();

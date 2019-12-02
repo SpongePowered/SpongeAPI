@@ -207,6 +207,7 @@ public interface CauseStackManager {
          *
          * @param key The context key
          * @param value The object
+         * @param <T> The type of value key
          * @return The stack frame, for chaining
          * @see EventContextKeys
          * @see CauseStackManager#addContext(EventContextKey, Object)
@@ -217,6 +218,7 @@ public interface CauseStackManager {
          * Removes the given context key from the current context.
          *
          * @param key The key to clear
+         * @param <T> The type of value key
          * @return The existing context value, if it was present
          * @see EventContextKeys
          * @see CauseStackManager#removeContext(EventContextKey)

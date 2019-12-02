@@ -37,6 +37,7 @@ public interface Endermite extends Monster {
 
     /**
      * {@link Keys#EXPIRATION_DELAY}
+     * @return The expiration delay
      */
     default Value.Mutable<Duration> expirationDelay() {
         return this.getValue(Keys.EXPIRATION_DELAY).get().asMutable();

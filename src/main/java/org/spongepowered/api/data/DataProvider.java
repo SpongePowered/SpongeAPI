@@ -50,7 +50,6 @@ public interface DataProvider<V extends Value<E>, E> {
      * asynchronous access, however, some cases may exist where attempting to
      * create new immutable  variants with different values can be still limited
      * by synchronous access.
-     * </p>
      *
      * @param token The token of the {@link DataHolder} that is being requested
      * @return True if this provider allows asynchronous access

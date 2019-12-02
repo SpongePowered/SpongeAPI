@@ -56,7 +56,6 @@ import java.util.function.Function;
  *     taken to avoid (indirect) calls to
  *     {@link Contextual#getActiveContexts()}.</li>
  * </ul>
- * <p></p>
  *
  * <p>Calculators should be registered with the corresponding
  * {@link ContextualService} using

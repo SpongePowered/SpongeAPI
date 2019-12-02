@@ -170,7 +170,7 @@ public interface ChangeBlockEvent extends Event, Cancellable {
      * the piston head moving, and the adjacent block being set in a new
      * position.</p>
      *
-     * <p>>Note: This event is fired after processing all other
+     * <p>Note: This event is fired after processing all other
      * ChangeBlockEvent's.</p>
      */
     interface Post extends ChangeBlockEvent {}

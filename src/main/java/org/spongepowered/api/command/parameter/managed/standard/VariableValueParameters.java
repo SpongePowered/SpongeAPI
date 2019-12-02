@@ -44,6 +44,8 @@ public class VariableValueParameters {
      * Creates a builder that can build a {@link ValueParameter} that returns
      * an appropriate {@link CatalogType} from an argument.
      *
+     * @param <T> The type of catalog
+     * @param returnType The return type
      * @return The builder
      */
     public static <T extends CatalogType> CatalogedTypeBuilder<T> catalogedElementParameterBuilder(Class<T> returnType) {
@@ -98,6 +100,7 @@ public class VariableValueParameters {
     /**
      * Creates a builder that builds a {@link ValueParameter} that tries to
      * construct a {@link Text} from an argument.
+     * @return The new builder
      */
     public static TextBuilder textBuilder() {
         return Sponge.getRegistry().createBuilder(TextBuilder.class);

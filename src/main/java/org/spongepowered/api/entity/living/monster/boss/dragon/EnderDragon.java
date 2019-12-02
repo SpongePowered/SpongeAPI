@@ -47,6 +47,7 @@ public interface EnderDragon extends ComplexLiving, Boss, Monster, Aerial, Range
 
     /**
      * {@link Keys#HEALING_CRYSTAL}
+     * @return The current crystal healing this dragon
      */
     default OptionalValue.Mutable<EndCrystal> healingCrystal() {
         return this.getValue(Keys.HEALING_CRYSTAL).get().asMutable();

@@ -223,6 +223,7 @@ public interface DataManipulator extends ValueContainer {
          * {@link Value} provided that the {@link Value} is supported by
          * this {@link Immutable}.
          *
+         * @param <E> The type of value
          * @param value The value to set
          * @return The new immutable data manipulator
          */
@@ -304,6 +305,7 @@ public interface DataManipulator extends ValueContainer {
          * {@link ValueContainer}.
          *
          * @param valueContainer The {@link ValueContainer} to copy data from
+         * @param predicate The predicate to filter which keys can be copied
          * @return This {@link Mutable} with relevant data filled from the
          *           given {@link ValueContainer}
          */
@@ -319,6 +321,8 @@ public interface DataManipulator extends ValueContainer {
          * {@link ValueContainer}.
          *
          * @param valueContainer The {@link ValueContainer} to copy data from
+         * @param first The first key to copy
+         * @param more The additional keys to copy
          * @return This {@link Mutable} with relevant data filled from the
          *           given {@link ValueContainer}
          */
@@ -339,6 +343,8 @@ public interface DataManipulator extends ValueContainer {
          *
          * @param valueContainer The {@link ValueContainer} to copy data from
          * @param overlap The overlap resolver to decide which value to retain
+         * @param first The first key
+         * @param more The keys to copy
          * @return This {@link Mutable} with relevant data filled from the
          *           given {@link ValueContainer}
          */
@@ -356,6 +362,7 @@ public interface DataManipulator extends ValueContainer {
          * {@link ValueContainer}.
          *
          * @param valueContainer The {@link ValueContainer} to copy data from
+         * @param keys The keys to copy
          * @return This {@link Mutable} with relevant data filled from the
          *           given {@link ValueContainer}
          */
@@ -376,6 +383,7 @@ public interface DataManipulator extends ValueContainer {
          *
          * @param valueContainer The {@link ValueContainer} to copy data from
          * @param overlap The overlap resolver to decide which value to retain
+         * @param keys The keys to copy
          * @return This {@link Mutable} with relevant data filled from the
          *           given {@link ValueContainer}
          */
@@ -408,6 +416,7 @@ public interface DataManipulator extends ValueContainer {
          * {@link ValueContainer}.
          *
          * @param valueContainer The {@link ValueContainer} to extract data from
+         * @param overlap  The overlap resolver
          * @return This {@link Mutable} with relevant data filled from the
          *           given {@link DataHolder}
          */

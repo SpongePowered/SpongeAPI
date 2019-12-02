@@ -34,6 +34,7 @@ public interface ExperienceOrb extends Entity {
 
     /**
      * {@link Keys#EXPERIENCE}
+     * @return The amount of experience contained in this entity
      */
     default Value.Mutable<Integer> experience() {
         return getValue(Keys.EXPERIENCE).get().asMutable();

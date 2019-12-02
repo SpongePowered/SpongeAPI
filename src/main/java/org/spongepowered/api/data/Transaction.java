@@ -67,9 +67,10 @@ public class Transaction<T extends DataSerializable> implements DataSerializable
      * outside this created {@link Transaction} synchronously and
      * asynchronously as consumers of the provided list will not be able
      * to react accordingly.</p>
-     * @param original
-     * @param defaultReplacement
-     * @param intermediary
+     *
+     * @param original The original
+     * @param defaultReplacement The replacement
+     * @param intermediary The intermediary results
      */
     public Transaction(T original, T defaultReplacement, @Nullable List<? extends T> intermediary) {
         this.original = checkNotNull(original, "Original cannot be null");

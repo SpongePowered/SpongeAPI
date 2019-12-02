@@ -35,6 +35,7 @@ public interface Wolf extends TameableAnimal {
 
     /**
      * {@link Keys#IS_ANGRY}
+     * @return Whether this wolf is angry
      */
     default Value.Mutable<Boolean> angry() {
         return this.getValue(Keys.IS_ANGRY).get().asMutable();
@@ -42,6 +43,7 @@ public interface Wolf extends TameableAnimal {
 
     /**
      * {@link Keys#DYE_COLOR}
+     * @return The collar color
      */
     default Value.Mutable<DyeColor> collarColor() {
         return this.getValue(Keys.DYE_COLOR).get().asMutable();

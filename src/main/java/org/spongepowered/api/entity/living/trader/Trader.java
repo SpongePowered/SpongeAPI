@@ -34,6 +34,7 @@ public interface Trader extends Creature, Merchant {
 
     /**
      * {@link Keys#IS_TRADING}
+     * @return Whether this trader is currently trading with a player
      */
     default Value.Immutable<Boolean> trading() {
         return this.getValue(Keys.IS_TRADING).get().asImmutable();

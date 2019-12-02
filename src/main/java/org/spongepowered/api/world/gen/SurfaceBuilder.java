@@ -34,10 +34,10 @@ public interface SurfaceBuilder<C extends FeatureConfig> {
     /**
      * Takes the provided {@link ProtoChunk} and fills in a base surface layer
      * with extra information provided by the {@link ImmutableBiomeVolume}.
-     * @param chunk
-     * @param biomes
-     * @param random
-     * @param seaLevel
+     * @param chunk The chunk being built on
+     * @param biomes The biome volume according to the surface
+     * @param random The random generator
+     * @param seaLevel The current sea level
      */
     void buildSurface(ProtoChunk<?> chunk, ImmutableBiomeVolume biomes, Random random, int seaLevel);
 

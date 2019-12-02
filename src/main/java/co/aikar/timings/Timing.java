@@ -38,7 +38,7 @@ public interface Timing extends AutoCloseable {
 
     /**
      * Stops timing and records the data. Propagates the data up to group
-     * handlers. <p/> Will automatically be called when this timing is used with
+     * handlers. Will automatically be called when this timing is used with
      * try-with-resources.
      */
     void stopTiming();
@@ -51,7 +51,7 @@ public interface Timing extends AutoCloseable {
 
     /**
      * Stops timing and records the data. Propagates the data up to group
-     * handlers. <p/> Will automatically be called when this timing is used with
+     * handlers. Will automatically be called when this timing is used with
      * try-with-resources.
      *
      * <p>But only if called from the main server thread.</p>

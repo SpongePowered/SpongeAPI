@@ -147,7 +147,7 @@ public interface BlockEntityArchetype extends Archetype<BlockSnapshot, BlockEnti
          *     <li>{@link #set(Value)}</li>
          *     <li>{@link #set(Key, Object)}</li>
          *     <li>{@link #set(DataManipulator)}</li>
-         * </ul></p>
+         * </ul>
          * @param blockEntity The block entity to absorb all data
          * @return This builder, for chaining
          */

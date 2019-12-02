@@ -89,7 +89,7 @@ public interface ArgumentReader {
      * Gets whether this reader has <strong>not</strong> finished reading the
      * input string.
      *
-     * <p>This is equivalent to {@link #getRemainingLength()} > 0</p>
+     * <p>This is equivalent to {@link #getRemainingLength()} &gt; 0</p>
      *
      * @return {@code true} if there are further characters to read.
      */

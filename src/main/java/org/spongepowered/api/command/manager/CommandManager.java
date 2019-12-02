@@ -56,8 +56,9 @@ public interface CommandManager {
      * object that is both a {@link Subject} for permission checks and a
      * {@link MessageReceiver} to return command messages to.
      *
-     * @param subjectReceiver The {@link Subject} & {@link MessageReceiver}
+     * @param subjectReceiver The {@link Subject} &amp; {@link MessageReceiver}
      * @param arguments The arguments to parse and execute
+     * @param <T> The type of receiver
      * @return The {@link CommandResult}
      * @throws CommandException if something goes wrong during parsing or
      *                          execution
@@ -91,8 +92,9 @@ public interface CommandManager {
      * with a provided object that is both a {@link Subject} for permission
      * checks and a {@link MessageReceiver} to return command messages to.
      *
-     * @param subjectReceiver The {@link Subject} & {@link MessageReceiver}
+     * @param subjectReceiver The {@link Subject} &amp; {@link MessageReceiver}
      * @param arguments The arguments
+     * @param <T> The type of receiver
      * @return The completions
      */
     <T extends Subject & MessageReceiver> List<String> suggest(T subjectReceiver, String arguments);

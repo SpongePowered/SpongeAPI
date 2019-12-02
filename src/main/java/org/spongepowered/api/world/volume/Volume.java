@@ -37,7 +37,7 @@ public interface Volume {
 
     /**
      * Returns true if the block volume contains a block at the specified
-     * position. This is defined as <code>{{@link #getBlockMin()} <= position <=
+     * position. This is defined as <code>{{@link #getBlockMin()} &lt;= position &lt;=
      * {@link #getBlockMax()}</code>
      *
      * @param position The position to check
@@ -49,8 +49,8 @@ public interface Volume {
 
     /**
      * Returns true if the block volume contains a block at the specified
-     * position. This is defined as <code>{{@link #getBlockMin()} <= (x, y, z)
-     * <= {@link #getBlockMax()}</code>
+     * position. This is defined as <code>{{@link #getBlockMin()} &lt;= (x, y, z)
+     * &gt;= {@link #getBlockMax()}</code>
      *
      * @param x The X coordinate to check
      * @param y The Y coordinate to check

@@ -46,25 +46,27 @@ public interface PlaySoundEvent extends Event, Cancellable {
 
     /**
      * Gets the {@link SoundCategory} for the sound being played
-     * @return
+     * @return The category
+     * @see org.spongepowered.api.effect.sound.SoundCategories
      */
     SoundCategory getSoundCategory();
 
     /**
      * Gets the {@link SoundType} for the sound being played
-     * @return
+     * @return The sound type
+     * @see org.spongepowered.api.effect.sound.SoundTypes
      */
     SoundType getSoundType();
 
     /**
      * Gets the volume of the sound being played
-     * @return
+     * @return The volume being played
      */
     float getVolume();
 
     /**
      * Gets the pitch of the sound being played
-     * @return
+     * @return The pitch of the sound being played
      */
     float getPitch();
 

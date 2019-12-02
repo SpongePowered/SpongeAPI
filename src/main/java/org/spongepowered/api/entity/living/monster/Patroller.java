@@ -34,6 +34,7 @@ public interface Patroller extends Monster {
 
     /**
      * {@link Keys#TARGET_POSITION}
+     * @return The target position for a patrol
      */
     default OptionalValue.Mutable<Vector3i> targetPosition() {
         return this.getValue(Keys.TARGET_POSITION).get().asMutable();
@@ -41,13 +42,15 @@ public interface Patroller extends Monster {
 
     /**
      * {@link Keys#LEADER}
+     * @return Whether this is the leader of a patrol
      */
     default Value.Mutable<Boolean> leader() {
         return this.getValue(Keys.LEADER).get().asMutable();
     }
 
     /**
-     * {@link Keys#PATROLLING
+     * {@link Keys#PATROLLING}
+     * @return Whether this patroller is patrolling
      */
     default Value.Mutable<Boolean> patrolling() {
         return this.getValue(Keys.PATROLLING).get().asMutable();

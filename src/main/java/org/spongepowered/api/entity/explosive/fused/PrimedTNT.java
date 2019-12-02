@@ -35,6 +35,7 @@ public interface PrimedTNT extends FusedExplosive {
 
     /**
      * {@link Keys#DETONATOR}
+     * @return The living entity that primed this tnt
      */
     default OptionalValue.Mutable<Living> detonator() {
         return this.getValue(Keys.DETONATOR).get().asMutable();

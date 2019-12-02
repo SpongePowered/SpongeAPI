@@ -38,9 +38,9 @@ import java.util.function.Predicate;
  * Similar to {@link VolumeStream} but allows altering the underlying
  * {@link MutableVolume}.
  *
- * @param <V>
- * @param <U>
- * @param <I>
+ * @param <V> The type of mutable volume
+ * @param <U> The unmodifiable volume type, for viewing
+ * @param <I> The type of object being iterated over
  */
 public interface MutableVolumeStream<V extends MutableVolume, U extends UnmodifiableVolume, I> extends VolumeStream<V, U, I, V> {
 

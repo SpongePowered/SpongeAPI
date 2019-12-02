@@ -42,6 +42,8 @@ public interface DragonPhaseManager {
      * Sets the dragon phase.
      *
      * @param phase The new dragon phase
+     * @return The phase
+     * @see DragonPhaseTypes
      */
     DragonPhase setPhase(DragonPhaseType phase);
 

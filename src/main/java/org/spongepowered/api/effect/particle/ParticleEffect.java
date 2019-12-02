@@ -102,6 +102,7 @@ public interface ParticleEffect extends DataSerializable {
          *
          * @param option The option
          * @param value The value
+         * @param <V> The type of option value
          * @return This builder for chaining
          * @throws IllegalArgumentException If the specified value isn't valid
          */

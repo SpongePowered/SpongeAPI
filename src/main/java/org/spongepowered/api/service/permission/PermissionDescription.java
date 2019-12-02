@@ -79,11 +79,10 @@ public interface PermissionDescription {
      * <ul>
      * <li>CHARACTER  = "A" - "Z" | "a" - "z" | "0" - "9" | "_" | "-"</li>
      * <li>NAME       = CHARACTER , { CHARACTER }</li>
-     * <li>TEMPLATE   = "&lt" , NAME , "&gt"</li>
+     * <li>TEMPLATE   = "&lt;" , NAME , "&gt;"</li>
      * <li>PART       = NAME | TEMPLATE</li>
      * <li>PERMISSION = NAME , { "." , PART }</li>
      * </ul>
-     * </p>
      *
      * <p>The following examples shall help you to structure your permissions
      * well:
@@ -93,7 +92,7 @@ public interface PermissionDescription {
      * all ItemTypes and Enchantments</li>
      * <li>"myplugin.give.execute" - Allows the execution of give</li>
      * <li>"myplugin.give.type" - Grants all ItemTypes</li>
-     * <li>"myplugin.give.type.&ltItemType&gt" - A template should not be
+     * <li>"myplugin.give.type.&lt;ItemType&gt;" - A template should not be
      * granted to anybody</li>
      * <li>"myplugin.give.type.minecraft.diamond" - Only
      * grants minecraft:diamond</li>
@@ -103,7 +102,6 @@ public interface PermissionDescription {
      * The addition of the "execute" permission instead of just "myPlugin.give"
      * permission is useful to prevent unauthorized access to sub-permissions
      * that are not documented or have been added lately.
-     * </p>
      *
      * <p>
      * So if you want to allow someone to give themself only DIAMONDs, you would
@@ -112,7 +110,6 @@ public interface PermissionDescription {
      * <li>"myPlugin.give.execute"</li>
      * <li>"myPlugin.give.type.DIAMOND"</li>
      * </ul>
-     * </p>
      *
      * <p><b>Note:</b> Permission ids are case insensitive! Permission ids
      * should start with the owning plugin's id.</p>

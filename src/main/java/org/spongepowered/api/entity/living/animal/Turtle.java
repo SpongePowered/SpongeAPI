@@ -35,6 +35,7 @@ public interface Turtle extends Animal {
 
     /**
      * {@link Keys#TURTLE_HOME_POSITION}
+     * @return The position that is considered "home"
      */
     default Value.Mutable<Vector3i> homePosition() {
         return this.getValue(Keys.TURTLE_HOME_POSITION).get().asMutable();
@@ -42,6 +43,7 @@ public interface Turtle extends Animal {
 
     /**
      * {@link Keys#TURTLE_DOES_HAVE_EGG}
+     * @return Whether this turtle has an egg laid
      */
     default Value.Mutable<Boolean> hasEgg() {
         return this.getValue(Keys.TURTLE_DOES_HAVE_EGG).get().asMutable();
@@ -49,6 +51,7 @@ public interface Turtle extends Animal {
 
     /**
      * {@link Keys#TURTLE_IS_LAYING_EGG}
+     * @return Whether this turtle is laying an egg
      */
     default Value.Mutable<Boolean> layingEgg() {
         return this.getValue(Keys.TURTLE_IS_LAYING_EGG).get().asMutable();
@@ -56,6 +59,7 @@ public interface Turtle extends Animal {
 
     /**
      * {@link Keys#TURTLE_TRAVELING_POSITION}
+     * @return The position that this turtle is traveling to
      */
     default Value.Mutable<Vector3i> travelingPosition() {
         return this.getValue(Keys.TURTLE_TRAVELING_POSITION).get().asMutable();
@@ -63,6 +67,7 @@ public interface Turtle extends Animal {
 
     /**
      * {@link Keys#TURTLE_IS_GOING_HOME}
+     * @return Whether this turtle is heading home
      */
     default Value.Mutable<Boolean> goingHome() {
         return this.getValue(Keys.TURTLE_IS_GOING_HOME).get().asMutable();
@@ -70,6 +75,7 @@ public interface Turtle extends Animal {
 
     /**
      * {@link Keys#TURTLE_IS_TRAVELING}
+     * @return Whether this turtle is traveling
      */
     default Value.Mutable<Boolean> traveling() {
         return this.getValue(Keys.TURTLE_IS_TRAVELING).get().asMutable();

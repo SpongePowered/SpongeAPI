@@ -41,6 +41,7 @@ public interface ValueCompleter {
      * @param reader The {@link org.spongepowered.api.command.parameter.ArgumentReader.Immutable} containing the arguments
      *               that needs to be completed.
      * @param context The {@link CommandContext} that contains the parsed arguments
+     * @return The list of values
      */
     List<String> complete(ArgumentReader.Immutable reader, CommandContext context);
 

@@ -33,6 +33,8 @@ public interface ZombieVillager extends ZombieEntity {
 
     /**
      * {@link Keys#VILLAGER_TYPE}
+     * @return The villager type
+     * @see org.spongepowered.api.data.type.VillagerTypes
      */
     default Value.Mutable<VillagerType> type() {
         return this.getValue(Keys.VILLAGER_TYPE).get().asMutable();
@@ -40,6 +42,8 @@ public interface ZombieVillager extends ZombieEntity {
 
     /**
      * {@link Keys#PROFESSION}
+     * @return The profession of this zombie villager
+     * @see org.spongepowered.api.data.type.Professions
      */
     default Value.Mutable<Profession> profession() {
         return this.getValue(Keys.PROFESSION).get().asMutable();

@@ -36,7 +36,7 @@ import java.lang.annotation.Target;
  * <p>This annotation should be placed on the method with the least specific
  * return type, if covariant return types are used.</p>
  *
- * <p>The method annotated with this annotation <bold>must</bold> either return
+ * <p>The method annotated with this annotation <strong>must</strong> either return
  * an instance of the method's class, or Object (for compatibility with
  * generics).</p>
  */
