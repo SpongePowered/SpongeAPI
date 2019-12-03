@@ -16,20 +16,6 @@ val ap by sourceSets.registering {
     compileClasspath += sourceSets.main.get().compileClasspath + sourceSets.main.get().output
 }
 
-deploySponge {
-    properties["spongeRepoSnapshot"]?.let {
-        if (it is String) {
-            snapshotRepo = it
-        }
-    }
-    properties["spongeRepoRelease"]?.let {
-        if (it is String) {
-            releaseRepo = it
-        }
-    }
-}
-
-
 // Project dependencies
 dependencies {
     api("org.slf4j:slf4j-api:1.7.25")
@@ -125,9 +111,109 @@ val catalogClasses = listOf(
         "org.spongepowered.api.CatalogTypes",
         "org.spongepowered.api.advancement.AdvancementTypes",
         "org.spongepowered.api.advancement.criteria.trigger.Triggers",
+        "org.spongepowered.api.block.BlockTypes",
+        "org.spongepowered.api.block.entity.BlockEntityTypes",
         "org.spongepowered.api.boss.BossBarColors",
         "org.spongepowered.api.boss.BossBarOverlays",
+        "org.spongepowered.api.command.parameter.managed.standard.CatalogedValueParameters",
         "org.spongepowered.api.data.Keys",
-        "org.spongepowered.api.data.type.PandaGenes"
+        "org.spongepowered.api.data.persistence.DataFormats",
+        "org.spongepowered.api.data.persistence.DataTranslators",
+        "org.spongepowered.api.data.property.Properties",
+        "org.spongepowered.api.data.type.ArmorTypes",
+        "org.spongepowered.api.data.type.ArtTypes",
+        "org.spongepowered.api.data.type.BannerPatternShapes",
+        "org.spongepowered.api.data.type.BodyParts",
+        "org.spongepowered.api.data.type.CatTypes",
+        "org.spongepowered.api.data.type.ChestAttachmentTypes",
+        "org.spongepowered.api.data.type.DyeColors",
+        "org.spongepowered.api.data.type.ComparatorTypes",
+        "org.spongepowered.api.data.type.FoxTypes",
+        "org.spongepowered.api.data.type.HandTypes",
+        "org.spongepowered.api.data.type.Hinges",
+        "org.spongepowered.api.data.type.HorseColors",
+        "org.spongepowered.api.data.type.HorseStyles",
+        "org.spongepowered.api.data.type.InstrumentTypes",
+        "org.spongepowered.api.data.type.LlamaTypes",
+        "org.spongepowered.api.data.type.MooshroomTypes",
+        "org.spongepowered.api.data.type.NotePitches",
+        "org.spongepowered.api.data.type.PandaGenes",
+        "org.spongepowered.api.data.type.ParrotTypes",
+        "org.spongepowered.api.data.type.PhantomPhases",
+        "org.spongepowered.api.data.type.PickupRules",
+        "org.spongepowered.api.data.type.PortionTypes",
+        "org.spongepowered.api.data.type.Professions",
+        "org.spongepowered.api.data.type.RabbitTypes",
+        "org.spongepowered.api.data.type.RaidStatuses",
+        "org.spongepowered.api.data.type.RailDirections",
+        "org.spongepowered.api.data.type.SkinParts",
+        "org.spongepowered.api.data.type.SlabPortions",
+        "org.spongepowered.api.data.type.SpellTypes",
+        "org.spongepowered.api.data.type.StairShapes",
+        "org.spongepowered.api.data.type.StructureModes",
+        "org.spongepowered.api.data.type.Surfaces",
+        "org.spongepowered.api.data.type.ToolTypes",
+        "org.spongepowered.api.data.type.VillagerTypes",
+        "org.spongepowered.api.data.type.WireAttachmentTypes",
+        "org.spongepowered.api.data.type.WoodTypes",
+        "org.spongepowered.api.effect.particle.ParticleOptions",
+        "org.spongepowered.api.effect.particle.ParticleTypes",
+        "org.spongepowered.api.effect.potion.PotionEffectTypes",
+        "org.spongepowered.api.effect.sound.SoundCategories",
+        "org.spongepowered.api.effect.sound.SoundTypes",
+        "org.spongepowered.api.effect.sound.music.MusicDiscs",
+        "org.spongepowered.api.entity.EntityTypes",
+        "org.spongepowered.api.entity.ai.GoalTypes",
+        "org.spongepowered.api.entity.ai.task.AITaskTypes",
+        "org.spongepowered.api.entity.living.monster.boss.dragon.phase.DragonPhaseTypes",
+        "org.spongepowered.api.entity.living.player.gamemode.GameModes",
+        "org.spongepowered.api.event.cause.EventContextKeys",
+        "org.spongepowered.api.event.cause.entity.damage.DamageModifierTypes",
+        "org.spongepowered.api.event.cause.entity.damage.DamageTypes",
+        "org.spongepowered.api.event.cause.entity.damage.source.DamageSources",
+        "org.spongepowered.api.event.cause.entity.dismount.DismountTypes",
+        "org.spongepowered.api.event.cause.entity.teleport.TeleportTypes",
+        "org.spongepowered.api.item.FireworkShapes",
+        "org.spongepowered.api.item.ItemTypes",
+        "org.spongepowered.api.item.enchantment.EnchantmentTypes",
+        "org.spongepowered.api.item.inventory.ContainerTypes",
+        "org.spongepowered.api.item.inventory.InventoryProperties",
+        "org.spongepowered.api.item.inventory.menu.ClickTypes",
+        "org.spongepowered.api.item.inventory.query.QueryOperationTypes",
+        "org.spongepowered.api.item.potion.PotionTypes",
+        "org.spongepowered.api.scoreboard.CollisionRules",
+        "org.spongepowered.api.scoreboard.Visibilities",
+        "org.spongepowered.api.scoreboard.criteria.Criteria",
+        "org.spongepowered.api.scoreboard.displayslot.DisplaySlots",
+        "org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayModes",
+        "org.spongepowered.api.service.economy.transaction.TransactionTypes",
+        "org.spongepowered.api.state.BooleanStateProperties",
+        "org.spongepowered.api.state.EnumStateProperties",
+        "org.spongepowered.api.state.IntegerStateProperties",
+        "org.spongepowered.api.statistic.StatisticCategories",
+        "org.spongepowered.api.statistic.Statistics",
+        "org.spongepowered.api.text.chat.ChatTypes",
+        "org.spongepowered.api.text.chat.ChatVisibilities",
+        "org.spongepowered.api.text.format.TextColors",
+        "org.spongepowered.api.text.selector.SelectorTypes",
+        "org.spongepowered.api.util.TypeTokens",
+        "org.spongepowered.api.util.ban.BanTypes",
+        "org.spongepowered.api.util.rotation.Rotations",
+        "org.spongepowered.api.world.BlockChangeFlags",
+        "org.spongepowered.api.world.ChunkRegenerateFlags",
+        "org.spongepowered.api.world.DimensionTypes",
+        "org.spongepowered.api.world.HeightTypes",
+        "org.spongepowered.api.world.LightTypes",
+        "org.spongepowered.api.world.SerializationBehaviors",
+        "org.spongepowered.api.world.WorldArchetypes",
+        "org.spongepowered.api.world.biome.BiomeTypes",
+        "org.spongepowered.api.world.chunk.ChunkStates",
+        "org.spongepowered.api.world.difficulty.Difficulties",
+        "org.spongepowered.api.world.gamerule.GameRules",
+        "org.spongepowered.api.world.gen.GeneratorTypes",
+        "org.spongepowered.api.world.gen.feature.Features",
+        "org.spongepowered.api.world.schematic.PaletteTypes",
+        "org.spongepowered.api.world.teleport.TeleportHelperFilters",
+        "org.spongepowered.api.world.weather.Weathers"
 )
 
