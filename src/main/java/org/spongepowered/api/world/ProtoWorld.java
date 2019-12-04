@@ -26,23 +26,21 @@ package org.spongepowered.api.world;
 
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.property.LocationBasePropertyHolder;
-import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.util.RandomProvider;
 import org.spongepowered.api.world.chunk.ProtoChunk;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gen.TerrainGenerator;
 import org.spongepowered.api.world.storage.WorldProperties;
-import org.spongepowered.api.world.volume.game.GenerationVolume;
-import org.spongepowered.api.world.volume.game.InteractableVolume;
-import org.spongepowered.api.world.volume.game.LocationCompositeValueStore;
-import org.spongepowered.api.world.volume.game.ReadableRegion;
-import org.spongepowered.api.world.volume.game.UpdatableVolume;
 import org.spongepowered.api.world.volume.biome.MutableBiomeVolume;
 import org.spongepowered.api.world.volume.block.MutableBlockVolume;
 import org.spongepowered.api.world.volume.block.PhysicsAwareMutableBlockVolume;
 import org.spongepowered.api.world.volume.block.entity.StreamableBlockEntityVolume;
-import org.spongepowered.api.world.volume.game.MutableGameVolume;
 import org.spongepowered.api.world.volume.entity.MutableEntityVolume;
+import org.spongepowered.api.world.volume.game.GenerationVolume;
+import org.spongepowered.api.world.volume.game.LocationCompositeValueStore;
+import org.spongepowered.api.world.volume.game.MutableGameVolume;
+import org.spongepowered.api.world.volume.game.ReadableRegion;
+import org.spongepowered.api.world.volume.game.UpdatableVolume;
 import org.spongepowered.math.vector.Vector3i;
 
 public interface ProtoWorld<P extends ProtoWorld<P>> extends
@@ -52,7 +50,6 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
         MutableEntityVolume<P>, // Because this is mutable
         StreamableBlockEntityVolume<P>, // Because this is mutable
         GenerationVolume,
-        InteractableVolume,
         LocationBasePropertyHolder,
         LocationCompositeValueStore,
         UpdatableVolume,

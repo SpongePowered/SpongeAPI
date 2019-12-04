@@ -45,6 +45,7 @@ import org.spongepowered.api.scheduler.ScheduledUpdate;
 import org.spongepowered.api.scheduler.TaskPriority;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.volume.entity.MutableEntityVolume;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
@@ -62,7 +63,7 @@ import java.util.function.BiFunction;
  * <p>Locations are immutable. Methods that change the properties of the
  * location create a new instance.</p>
  */
-public interface Location extends DataHolder.Mutable, DirectionRelativePropertyHolder {
+public interface Location extends DataHolder.Mutable, DirectionRelativePropertyHolder, WorldLocation<ServerWorld> {
 
     static Location of(World world, double x, double y, double z) {
         return Sponge.getRegistry().requireFactory(Factory.class).create(world, new Vector3d(x, y, z));

@@ -36,6 +36,7 @@ import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.storage.WorldStorage;
+import org.spongepowered.api.world.volume.game.InteractableVolume;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.io.IOException;
@@ -44,7 +45,7 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface ServerWorld extends World, Identifiable {
+public interface ServerWorld extends World, Identifiable, InteractableVolume {
 
     @Override
     Server getServer();
