@@ -58,7 +58,6 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
         UpdatableVolume,
         RandomProvider,
         PhysicsAwareMutableBlockVolume<P>,
-        Viewer,
         MutableGameVolume
 {
 

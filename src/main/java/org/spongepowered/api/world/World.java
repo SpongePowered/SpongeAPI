@@ -24,10 +24,12 @@
  */
 package org.spongepowered.api.world;
 
+import org.spongepowered.api.Engine;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.service.context.ContextSource;
@@ -63,12 +65,12 @@ import java.util.function.Predicate;
 public interface World extends ProtoWorld<World>,
     LocationCreator,
     PhysicsAwareMutableBlockVolume<World>,
-    Identifiable,
     WeatherUniverse,
     ContextSource,
     ChatTypeMessageReceiver,
     TrackedVolume,
     GameRuleHolder,
+    Viewer,
     ArchetypeVolumeCreator<World>
 {
 
@@ -226,7 +228,7 @@ public interface World extends ProtoWorld<World>,
      */
     @Override
     default Chunk getChunkAtBlock(int bx, int by, int bz) {
-        final Vector3i chunkPos = Sponge.getServer().getChunkLayout().forceToChunk(bx, by, bz);
+        final Vector3i chunkPos = this.getServer().getChunkLayout().forceToChunk(bx, by, bz);
         return getChunk(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ());
     }
 
@@ -330,58 +332,6 @@ public interface World extends ProtoWorld<World>,
         return CompletableFuture.completedFuture(loadChunk(cx, cy, cz, shouldGenerate));
     }
 
-    /**
-     * Regenerates a chunk at the given chunk coordinate position.
-     * 
-     * @param chunkPosition The chunk position to regenerate
-     * @return The regenerated chunk, if available
-     */
-    default Optional<Chunk> regenerateChunk(Vector3i chunkPosition) {
-        return regenerateChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), ChunkRegenerateFlags.ALL);
-    }
-
-    /**
-     * Regenerates a chunk at the given chunk coordinates.
-     * 
-     * @param cx The chunk x coordinate
-     * @param cy The chunk y coordinate
-     * @param cz The chunk z coordinate
-     * @return The regenerated chunk, if available
-     */
-    default Optional<Chunk> regenerateChunk(int cx, int cy, int cz) {
-        return regenerateChunk(cx, cy, cz, ChunkRegenerateFlags.ALL);
-    }
-
-    /**
-     * Regenerates a chunk at the given chunk coordinate position.
-     * 
-     * @param chunkPosition The chunk position to regenerate
-     * @param flag The chunk regenerate flag to use
-     * @return The regenerated chunk, if available
-     */
-    default Optional<Chunk> regenerateChunk(Vector3i chunkPosition, ChunkRegenerateFlag flag) {
-        return regenerateChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), flag);
-    }
-
-    /**
-     * Regenerates a chunk at the given chunk coordinates.
-     * 
-     * @param cx The chunk x coordinate
-     * @param cy The chunk y coordinate
-     * @param cz The chunk z coordinate
-     * @param flag The chunk regenerate flag to use
-     * @return The regenerated chunk, if available
-     */
-    Optional<Chunk> regenerateChunk(int cx, int cy, int cz, ChunkRegenerateFlag flag);
-
-    /**
-     * Unloads the given chunk from the world. Returns a {@code boolean} flag
-     * for whether the operation was successful.
-     *
-     * @param chunk The chunk to unload
-     * @return Whether the operation was successful
-     */
-    boolean unloadChunk(Chunk chunk);
 
     /**
      * Returns a Collection of all actively loaded chunks in this world.
@@ -392,26 +342,6 @@ public interface World extends ProtoWorld<World>,
      */
     Iterable<Chunk> getLoadedChunks();
 
-
-    /**
-     * Gets the {@link Path} pointing to the root of where the world's data
-     * is being stored.
-     *
-     * @return The path
-     */
-    Path getDirectory();
-
-    /**
-     * Gets this {@link World}'s {@link UUID}.
-     *
-     * @see WorldProperties#getUniqueId()
-     * @return The uuid for this world
-     */
-    @Override
-    default UUID getUniqueId() {
-        return getProperties().getUniqueId();
-    }
-
     /**
      * Gets the name of this {@link World world}.
      *
@@ -421,7 +351,6 @@ public interface World extends ProtoWorld<World>,
     default String getName() {
         return getProperties().getWorldName();
     }
-
 
     @Override
     default <V> V getGameRule(GameRule<V> gameRule) {
@@ -488,35 +417,11 @@ public interface World extends ProtoWorld<World>,
     }
 
     /**
-     * Gets the associated {@link WorldStorage} persisting this world.
-     *
-     * @return The associated world storage
-     */
-    WorldStorage getWorldStorage();
-
-    /**
-     * Causes an {@link Explosion} in a world.
-     *
-     * @param explosion The explosion to cause
-     */
-    void triggerExplosion(Explosion explosion);
-
-    /**
      * Gets the portal agent, used for manipulating teleporters.
      *
      * @return The portal agent
      */
     PortalAgent getPortalAgent();
-
-
-    /**
-     * Instructs the world to save all data.
-     *
-     * @return True if save was successfull, or false if
-     *     {@link SerializationBehavior} is {@link SerializationBehaviors#NONE}
-     * @throws IOException If the save failed
-     */
-    boolean save() throws IOException;
 
     /**
      * Gets the view distance (in chunks) for this world.
@@ -541,4 +446,6 @@ public interface World extends ProtoWorld<World>,
     void resetViewDistance();
 
     boolean isLoaded();
+
+    Server getServer();
 }

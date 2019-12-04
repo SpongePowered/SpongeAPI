@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.client;
 
+import org.spongepowered.api.Client;
 import org.spongepowered.api.Server;
 
 public interface LocalServer extends Server {
@@ -32,4 +33,7 @@ public interface LocalServer extends Server {
     default boolean isDedicatedServer() {
         return false;
     }
+
+    Client getClient();
+
 }

@@ -195,7 +195,7 @@ public interface InteractableVolume extends ReadableBlockVolume {
      * @param profile The game profile of the player this is imitating
      * @return Whether the block was destroyed
      */
-    boolean digBlockWith(int x, int y, int z, ItemStack itemStack,GameProfile profile);
+    boolean digBlockWith(int x, int y, int z, ItemStack itemStack, GameProfile profile);
 
     /**
      * Gets the {@link Duration} it takes to dig this block with the specified item.
