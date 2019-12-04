@@ -31,7 +31,6 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import org.spongepowered.api.event.cause.entity.ModifierFunction;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
-import org.spongepowered.api.event.entity.HealEntityEvent;
 import org.spongepowered.api.util.Tuple;
 
 import java.util.ArrayList;
@@ -41,7 +40,7 @@ import java.util.Map;
 import java.util.function.DoubleUnaryOperator;
 
 /**
- * An abstract base class for implementations of {@link DamageEntityEvent} and {@link HealEntityEvent}.
+ * An abstract base class for implementations of {@link DamageEntityEvent}.
  *
  * @param <T> The modifier type to use
  */

@@ -32,6 +32,7 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.WorldLocation;
 
 import java.util.Optional;
 
@@ -42,7 +43,7 @@ public interface PlaySoundEvent extends Event, Cancellable {
      *
      * @return the location of the sound being played
      */
-    Location getLocation();
+    WorldLocation<?> getLocation();
 
     /**
      * Gets the {@link SoundCategory} for the sound being played
