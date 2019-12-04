@@ -27,10 +27,6 @@ package org.spongepowered.api.world;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.property.LocationBasePropertyHolder;
 import org.spongepowered.api.util.RandomProvider;
-import org.spongepowered.api.world.chunk.ProtoChunk;
-import org.spongepowered.api.world.difficulty.Difficulty;
-import org.spongepowered.api.world.gen.TerrainGenerator;
-import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.volume.biome.MutableBiomeVolume;
 import org.spongepowered.api.world.volume.block.MutableBlockVolume;
 import org.spongepowered.api.world.volume.block.PhysicsAwareMutableBlockVolume;
@@ -40,10 +36,26 @@ import org.spongepowered.api.world.volume.game.GenerationVolume;
 import org.spongepowered.api.world.volume.game.LocationCompositeValueStore;
 import org.spongepowered.api.world.volume.game.MutableGameVolume;
 import org.spongepowered.api.world.volume.game.ReadableRegion;
-import org.spongepowered.api.world.volume.game.UpdatableVolume;
 import org.spongepowered.math.vector.Vector3i;
 
-public interface ProtoWorld<P extends ProtoWorld<P>> extends
+/**
+ * A "downsized" or "bounded" view on a {@link ProtoWorld world} that has
+ * a custom set bound of what it has access to, specifically the area
+ * contained within {@link #getBlockMin()} and {@link #getBlockMax()} will
+ * be restricted based on the view defined by
+ * {@link ProtoWorld#getView(Vector3i, Vector3i)} such that access to coordinates
+ * outside the bounds will result in a
+ * {@link org.spongepowered.api.util.PositionOutOfBoundsException}. It is
+ * still considered unsafe to perform operations on this view outside the
+ * control of the parented {@link ProtoWorld world's} context, or otherwise
+ * the world's thread context. It is safe to suggest that actions performed
+ * on the parent world will reflect on this view, such that reading through
+ * the supplied {@link #toBlockStream() streams} may be similar to
+ * the {@link ProtoWorld#toBlockStream()}.
+ *
+ * @param <P> The type of world to reflect back on
+ */
+public interface BoundedWorldView<P extends ProtoWorld<P>> extends
         ReadableRegion<BoundedWorldView<P>>,
         MutableBiomeVolume<BoundedWorldView<P>>, // Because this is mutable
         MutableBlockVolume<BoundedWorldView<P>>, // Because this is mutable
@@ -52,51 +64,9 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
         GenerationVolume,
         LocationBasePropertyHolder,
         LocationCompositeValueStore,
-        UpdatableVolume,
         RandomProvider,
         PhysicsAwareMutableBlockVolume<BoundedWorldView<P>>,
-        MutableGameVolume
-{
-
-    ProtoChunk<?> getChunk(int cx, int cy, int cz);
-
-    @Override
-    BoundedWorldView<P> getView(Vector3i newMin, Vector3i newMax);
-
-
-    /**
-     * Gets the seed of this world.
-     *
-     * @return The seed
-     */
-    long getSeed();
-
-    /**
-     * Gets the {@link TerrainGenerator} for this world.
-     *
-     * <p>Any changes made to the world generator will only affect newly
-     * generated chunks.</p>
-     *
-     * @return The world generator
-     */
-    TerrainGenerator<?> getTerrainGenerator();
-
-    /**
-     * Gets the properties for this world.
-     *
-     * @return The properties
-     */
-    WorldProperties getProperties();
-
-    /**
-     * Gets the current {@link Difficulty}.
-     *
-     * @see WorldProperties#getDifficulty()
-     * @return The difficulty for this world
-     */
-    default Difficulty getDifficulty() {
-        return getProperties().getDifficulty();
-    }
+        MutableGameVolume {
 
     @Override
     default boolean setBlock(Vector3i position, BlockState state, BlockChangeFlag flag) {
@@ -104,14 +74,13 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
     }
 
     @Override
-    boolean setBlock(int x, int y, int z, BlockState state, BlockChangeFlag flag);
-
-    @Override
     default boolean removeBlock(Vector3i position) {
-        return removeBlock(position.getX(), position.getY(), position.getZ());
+        return false;
     }
 
     @Override
     boolean removeBlock(int x, int y, int z);
+
+    P getWorld();
 
 }
