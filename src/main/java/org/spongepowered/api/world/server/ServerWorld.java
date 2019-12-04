@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.world.server;
 
-import org.spongepowered.api.Engine;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.util.Identifiable;
@@ -46,6 +45,9 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface ServerWorld extends World, Identifiable {
+
+    @Override
+    Server getServer();
 
     /**
      * Regenerates a chunk at the given chunk coordinate position.
@@ -115,7 +117,6 @@ public interface ServerWorld extends World, Identifiable {
      */
     boolean save() throws IOException;
 
-
     /**
      * Unloads the given chunk from the world. Returns a {@code boolean} flag
      * for whether the operation was successful.
@@ -133,7 +134,7 @@ public interface ServerWorld extends World, Identifiable {
      */
     @Override
     default UUID getUniqueId() {
-        return getProperties().getUniqueId();
+        return this.getProperties().getUniqueId();
     }
 
     /**
@@ -145,8 +146,4 @@ public interface ServerWorld extends World, Identifiable {
 
     @Override
     Collection<ServerPlayer> getPlayers();
-
-    @Override
-    Server getServer();
-
 }

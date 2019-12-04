@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.world;
 
-import org.spongepowered.api.Engine;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
@@ -34,13 +33,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.service.context.ContextSource;
 import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
-import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.world.chunk.Chunk;
-import org.spongepowered.api.world.explosion.Explosion;
-import org.spongepowered.api.world.gamerule.GameRule;
-import org.spongepowered.api.world.gamerule.GameRuleHolder;
-import org.spongepowered.api.world.storage.WorldProperties;
-import org.spongepowered.api.world.storage.WorldStorage;
 import org.spongepowered.api.world.teleport.PortalAgent;
 import org.spongepowered.api.world.volume.game.TrackedVolume;
 import org.spongepowered.api.world.volume.archetype.ArchetypeVolumeCreator;
@@ -49,12 +42,8 @@ import org.spongepowered.api.world.weather.WeatherUniverse;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
-import java.io.IOException;
-import java.nio.file.Path;
 import java.util.Collection;
-import java.util.Map;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
 import java.util.function.Predicate;
@@ -69,10 +58,26 @@ public interface World extends ProtoWorld<World>,
     ContextSource,
     ChatTypeMessageReceiver,
     TrackedVolume,
-    GameRuleHolder,
     Viewer,
     ArchetypeVolumeCreator<World>
 {
+
+    /**
+     * Gets the {@link Server} that is managing this world.
+     *
+     * @return The server
+     */
+    Server getServer();
+
+    /**
+     * Gets if this world is currently loaded.
+     *
+     * <p>
+     *     An assumption can be made that if this returns false, this is considered a stale object.
+     * </p>
+     * @return True if loaded, false if not
+     */
+    boolean isLoaded();
 
     /**
      * Gets an unmodifiable collection of {@link Player}s currently in this world.
@@ -116,7 +121,7 @@ public interface World extends ProtoWorld<World>,
      * @return A snapshot
      */
     default BlockSnapshot createSnapshot(Vector3i position) {
-        return createSnapshot(position.getX(), position.getY(), position.getZ());
+        return this.createSnapshot(position.getX(), position.getY(), position.getZ());
     }
 
     /**
@@ -167,7 +172,7 @@ public interface World extends ProtoWorld<World>,
      * @return true if the restore was successful, false otherwise
      */
     default boolean restoreSnapshot(Vector3i position, BlockSnapshot snapshot, boolean force, BlockChangeFlag flag) {
-        return restoreSnapshot(position.getX(), position.getY(), position.getZ(), snapshot, force, flag);
+        return this.restoreSnapshot(position.getX(), position.getY(), position.getZ(), snapshot, force, flag);
     }
 
     /**
@@ -207,7 +212,7 @@ public interface World extends ProtoWorld<World>,
     @Override
     default Chunk getChunkAtBlock(Vector3i blockPosition) {
         final Vector3i chunkPos = Sponge.getServer().getChunkLayout().forceToChunk(blockPosition);
-        return getChunk(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ());
+        return this.getChunk(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ());
     }
 
     /**
@@ -229,7 +234,7 @@ public interface World extends ProtoWorld<World>,
     @Override
     default Chunk getChunkAtBlock(int bx, int by, int bz) {
         final Vector3i chunkPos = this.getServer().getChunkLayout().forceToChunk(bx, by, bz);
-        return getChunk(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ());
+        return this.getChunk(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ());
     }
 
     /**
@@ -244,7 +249,7 @@ public interface World extends ProtoWorld<World>,
      */
     @Override
     default Chunk getChunk(Vector3i chunkPos) {
-        return getChunk(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ());
+        return this.getChunk(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ());
     }
 
     /**
@@ -306,7 +311,7 @@ public interface World extends ProtoWorld<World>,
      * @return The future callback for the loaded chunk
      */
     default CompletableFuture<Optional<Chunk>> loadChunkAsync(Vector3i chunkPosition, boolean shouldGenerate) {
-        return loadChunkAsync(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), shouldGenerate);
+        return this.loadChunkAsync(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), shouldGenerate);
     }
 
     /**
@@ -332,7 +337,6 @@ public interface World extends ProtoWorld<World>,
         return CompletableFuture.completedFuture(loadChunk(cx, cy, cz, shouldGenerate));
     }
 
-
     /**
      * Returns a Collection of all actively loaded chunks in this world.
      *
@@ -343,51 +347,6 @@ public interface World extends ProtoWorld<World>,
     Iterable<Chunk> getLoadedChunks();
 
     /**
-     * Gets the name of this {@link World world}.
-     *
-     * @see WorldProperties#getWorldName()
-     * @return The name for this world
-     */
-    default String getName() {
-        return getProperties().getWorldName();
-    }
-
-    @Override
-    default <V> V getGameRule(GameRule<V> gameRule) {
-        return getProperties().getGameRule(gameRule);
-    }
-
-    @Override
-    default <V> void setGameRule(GameRule<V> gameRule, V value) {
-        getProperties().setGameRule(gameRule, value);
-    }
-
-    @Override
-    default Map<GameRule<?>, ?> getGameRules() {
-        return getProperties().getGameRules();
-    }
-
-    /**
-     * Gets whether the spawn chunks should remain loaded.
-     *
-     * @see WorldProperties#doesKeepSpawnLoaded()
-     * @return True if the spawn of this world should remain loaded
-     */
-    default boolean doesKeepSpawnLoaded() {
-        return getProperties().doesKeepSpawnLoaded();
-    }
-
-    /**
-     * Sets whether the spawn chunks should remain loaded.
-     *
-     * @see WorldProperties#setKeepSpawnLoaded(boolean)
-     * @param keepLoaded Whether to keep spawn loaded
-     */
-    default void setKeepSpawnLoaded(boolean keepLoaded) {
-        getProperties().setKeepSpawnLoaded(keepLoaded);
-    }
-
-    /**
      * Gets the {@link Location} of the spawn point.
      *
      * @return The location
@@ -395,57 +354,4 @@ public interface World extends ProtoWorld<World>,
     default Location getSpawnLocation() {
         return Location.of(this, this.getProperties().getSpawnPosition());
     }
-
-    /**
-     * Gets the {@link SerializationBehavior} to use.
-     *
-     * @see WorldProperties#getSerializationBehavior()
-     * @return The serialization behavior of this world
-     */
-    default SerializationBehavior getSerializationBehavior() {
-        return getProperties().getSerializationBehavior();
-    }
-
-    /**
-     * Sets the {@link SerializationBehavior} for use.
-     *
-     * @see WorldProperties#setSerializationBehavior(SerializationBehavior)
-     * @param behavior The serialization behavior to set
-     */
-    default void setSerializationBehavior(SerializationBehavior behavior) {
-        getProperties().setSerializationBehavior(behavior);
-    }
-
-    /**
-     * Gets the portal agent, used for manipulating teleporters.
-     *
-     * @return The portal agent
-     */
-    PortalAgent getPortalAgent();
-
-    /**
-     * Gets the view distance (in chunks) for this world.
-     *
-     * @return The view distance
-     */
-    int getViewDistance();
-
-    /**
-     * Sets the view distance (in chunks) for this world.
-     *
-     * <p>The view distance must be greater than or equal to 3,
-     * and less than or equal to 32.</p>
-     *
-     * @param viewDistance The view distance
-     */
-    void setViewDistance(int viewDistance);
-
-    /**
-     * Resets the view distance to the default value for this world.
-     */
-    void resetViewDistance();
-
-    boolean isLoaded();
-
-    Server getServer();
 }

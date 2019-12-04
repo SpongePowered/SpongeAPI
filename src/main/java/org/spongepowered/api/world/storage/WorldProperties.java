@@ -54,46 +54,42 @@ import java.util.UUID;
 public interface WorldProperties extends WeatherUniverse, Identifiable, GameRuleHolder {
 
     /**
-     * Gets whether this world has been initialized.
+     * Gets if this has been initialized.
      *
      * @return Is initialized
      */
     boolean isInitialized();
 
     /**
-     * Gets the name of the directory that this data exists in.
+     * Gets the directory name.
      *
      * @return The directory name
      */
     String getDirectoryName();
 
     /**
-     * Gets the name of this world.
+     * Gets the name.
      *
      * @return The world name
      */
-    String getWorldName();
+    String getName();
 
     /**
-     * Sets the name of this world.
+     * Sets the name.
      *
-     * @param worldName The world name
+     * @param name The name
      */
-    void setWorldName(String worldName);
+    void setName(String name);
 
     /**
-     * Gets whether this world is enabled. A world which is enabled but unloaded
-     * may be loaded automatically if an attempt is made to transfer an entity
-     * to the world using {@link Entity#transferToWorld} .
+     * Gets whether this is enabled.
      *
      * @return Is enabled
      */
     boolean isEnabled();
 
     /**
-     * Sets this world as enabled. A world which is enabled but unloaded may be
-     * loaded automatically if an attempt is made to transfer an entity to the
-     * world using {@link Entity#transferToWorld} .
+     * Sets whether this is enabled.
      *
      * @param state The new state
      */
@@ -107,17 +103,17 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
     boolean doesLoadOnStartup();
 
     /**
-     * Sets whether this world should load when the server starts up.
+     * Sets whether this should load when the server starts up.
      *
      * @param state Should load on startup
      */
     void setLoadOnStartup(boolean state);
 
     /**
-     * Gets whether spawn chunks of this world remain loaded when no players are
+     * Gets whether spawn chunks remain loaded when no players are
      * present.
      *
-     * @return True if spawn chunks of this world remain loaded without players,
+     * @return True if spawn chunks remain loaded without players,
      *         false if not
      */
     boolean doesKeepSpawnLoaded();
@@ -145,47 +141,47 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
     void setGenerateSpawnOnLoad(boolean state);
 
     /**
-     * Gets the default spawn position of this world.
+     * Gets the default spawn position.
      *
      * @return The spawn position
      */
     Vector3i getSpawnPosition();
 
     /**
-     * Sets the default spawn position of this world.
+     * Sets the default spawn position.
      *
      * @param position The spawn position
      */
     void setSpawnPosition(Vector3i position);
 
     /**
-     * Gets the {@link GeneratorType} of this world.
+     * Gets the {@link GeneratorType}.
      *
      * @return The type
      */
     GeneratorType getGeneratorType();
 
     /**
-     * Sets the {@link GeneratorType} of this world.
+     * Sets the {@link GeneratorType}.
      *
      * @param type The generator type
      */
     void setGeneratorType(GeneratorType type);
 
     /**
-     * Gets the seed of this world.
+     * Gets the seed.
      *
      * @return The seed
      */
     long getSeed();
 
     /**
-     * Sets the seed of this world.
+     * Sets the seed.
      * 
      * <p>Warning: this may cause the edge of currently generated chunks to no
      * longer align with newly generated chunks.</p>
      * 
-     * @param seed The new world seed
+     * @param seed The new seed
      */
     void setSeed(long seed);
 
@@ -213,79 +209,79 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
     void setDayTime(Duration time);
 
     /**
-     * Gets the {@link DimensionType} of this world.
+     * Gets the {@link DimensionType}.
      *
      * @return The dimension type
      */
     DimensionType getDimensionType();
 
     /**
-     * Gets the {@link PortalAgentType} for the world.
+     * Gets the {@link PortalAgentType}.
      *
      * @return The portal agent type
      */
     PortalAgentType getPortalAgentType();
 
     /**
-     * Gets whether PVP combat is enabled in this world.
+     * Gets whether PVP combat is enabled.
      *
      * @return Whether PVP is enabled
      */
     boolean isPVPEnabled();
 
     /**
-     * Sets whether PVP combat is enabled in this world.
+     * Sets whether PVP combat is enabled.
      *
      * @param enabled Whether PVP is enabled
      */
     void setPVPEnabled(boolean enabled);
 
     /**
-     * Gets the default {@link GameMode} of this world.
+     * Gets the default {@link GameMode}.
      *
      * @return The game mode
      */
     GameMode getGameMode();
 
     /**
-     * Sets the default {@link GameMode} of this world.
+     * Sets the default {@link GameMode}.
      *
      * @param gamemode The game mode
      */
     void setGameMode(GameMode gamemode);
 
     /**
-     * Gets whether this world will generate structures such as villages and
+     * Gets whether this will generate structures such as villages and
      * strongholds.
      *
-     * @return Whether map features enabled
+     * @return Whether structure features enabled
      */
     boolean areStructuresEnabled();
 
     /**
-     * Sets whether this world will generate structures such as villages and
+     * Sets whether this will generate structures such as villages and
      * strongholds.
      *
-     * @param state Whether map features enabled
+     * @param state Whether structure features enabled
      */
     void setStructuresEnabled(boolean state);
 
     /**
-     * Gets whether this world is set to hardcore mode.
+     * Gets if this is in hardcore mode.
      *
      * @return Is hardcore
      */
     boolean isHardcore();
 
     /**
-     * Sets whether this world is set to hardcore mode.
+     * Sets if this is in hardcore mode.
      *
      * @param state Is hardcore
      */
     void setHardcore(boolean state);
 
     /**
-     * Gets whether commands are enabled within this world. May not be respected
+     * Gets whether commands are enabled. May not be respected
      * when not in single player.
      *
      * @return Whether commands are allowed
@@ -293,7 +289,7 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
     boolean areCommandsEnabled();
 
     /**
-     * Sets whether commands are enabled within this world. May not be respected
+     * Sets whether commands are enabled. May not be respected
      * when not in single player.
      *
      * @param state Whether commands are allowed
@@ -301,7 +297,7 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
     void setCommandsEnabled(boolean state);
 
     /**
-     * Gets whether the bonus chest will generate within this world.
+     * Gets whether the bonus chest will generate.
      *
      * <p>
      *     Only will generate at spawn and never afterwards.
@@ -313,7 +309,7 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
     boolean doesGenerateBonusChest();
 
     /**
-     * Sets whether the bonus chest will generate within this world.
+     * Sets whether the bonus chest will generate.
      *
      * <p>
      *     Only will generate at spawn and never afterwards.
@@ -325,28 +321,28 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
     void setGenerateBonusChest(boolean state);
 
     /**
-     * Gets the difficulty of this world.
+     * Gets the {@link Difficulty}.
      *
      * @return The difficulty
      */
     Difficulty getDifficulty();
 
     /**
-     * Sets the difficulty of this world.
+     * Sets the {@link Difficulty}.
      *
      * @param difficulty The difficulty
      */
     void setDifficulty(Difficulty difficulty);
 
     /**
-     * Gets the {@link SerializationBehavior} in use.
+     * Gets the {@link SerializationBehavior}.
      *
      * @return The serialization behavior
      */
     SerializationBehavior getSerializationBehavior();
 
     /**
-     * Sets the {@link SerializationBehavior} for use.
+     * Sets the {@link SerializationBehavior}.
      *
      * @param behavior The serialization behavior
      */
@@ -396,7 +392,7 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
     Optional<UUID> getWanderTraderUniqueId();
 
     /**
-     * Sets the {@link WanderingTrader} of this world properties.
+     * Sets the {@link WanderingTrader}.
      *
      * <p>
      *     In vanilla Minecraft, this will become the spawned trader.
@@ -407,18 +403,35 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
     void setWanderingTrader(@Nullable WanderingTrader trader);
 
     /**
-     * Gets the custom {@link BossBar bars} that have been set for this world properties.
+     * Gets the custom {@link BossBar bars}.
      *
      * @return The boss bars
      */
     List<BossBar> getCustomBossBars();
 
     /**
-     * Sets the custom {@link BossBar bars} for this world properties.
+     * Sets the custom {@link BossBar bars}.
      *
      * @param bars The boss bars
      */
     void setCustomBossBars(@Nullable List<BossBar> bars);
+
+    /**
+     * Gets the view distance (in chunks).
+     *
+     * @return The view distance
+     */
+    int getViewDistance();
+
+    /**
+     * Sets the view distance (in chunks).
+     *
+     * <p>The view distance must be greater than or equal to 3,
+     * and less than or equal to 32.</p>
+     *
+     * @param viewDistance The view distance
+     */
+    void setViewDistance(int viewDistance);
 
     /**
      * Gets the {@link DataContainer} that represents the settings used by the generator.
