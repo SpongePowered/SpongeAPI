@@ -22,32 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.ai;
+package org.spongepowered.api.entity.ai.goal.builtin;
 
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.entity.ai.goal.Goal;
+import org.spongepowered.api.entity.ai.goal.GoalBuilder;
 import org.spongepowered.api.entity.living.Agent;
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-public final class GoalTypes {
-
-    // SORTFIELDS:ON
+public interface LookIdleGoal extends Goal<Agent> {
 
     /**
-     * {@link Goal} that is the default set of tasks for most {@link Agent}s.
-     */
-    public static final GoalType NORMAL = DummyObjectProvider.createFor(GoalType.class, "NORMAL");
-
-    /**
-     * {@link Goal} that is the "target" set of tasks.
+     * Creates a new {@link Builder} to build a new {@link LookIdleGoal}.
      *
-     * <p>In this goal, the objective is to formulate the target so that the
-     * {@link Agent} can act on it. The best example is how monsters like zombie
-     * and skeleton attack enemies: they seek out a target and if a task in
-     * their normal goal sees that they have a target, they act accordingly.</p>
+     * @return A new builder
      */
-    public static final GoalType TARGET = DummyObjectProvider.createFor(GoalType.class, "TARGET");
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
-    // SORTFIELDS:OFF
+    interface Builder extends GoalBuilder<Agent, LookIdleGoal, Builder> {
 
-    private GoalTypes() {
     }
 }

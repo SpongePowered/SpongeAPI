@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.event.entity.ai;
 
-import org.spongepowered.api.entity.ai.Goal;
-import org.spongepowered.api.entity.ai.task.AITask;
+import org.spongepowered.api.entity.ai.GoalExecutor;
+import org.spongepowered.api.entity.ai.goal.Goal;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
@@ -43,18 +43,18 @@ public interface AITaskEvent extends Event, Cancellable {
     Agent getAgent();
 
     /**
-     * Gets the {@link Goal} the task will be assigned to.
+     * Gets the {@link GoalExecutor} the task will be assigned to.
      *
      * @return The goal
      */
-    Goal<? extends Agent> getGoal();
+    GoalExecutor<? extends Agent> getGoal();
 
     /**
-     * Gets the {@link AITask} to be assigned.
+     * Gets the {@link Goal} to be assigned.
      *
      * @return The task
      */
-    AITask<? extends Agent> getTask();
+    Goal<? extends Agent> getTask();
 
     /**
      * Gets the priority the task will be assigned to. Lower numbers mean
@@ -65,7 +65,7 @@ public interface AITaskEvent extends Event, Cancellable {
     int getPriority();
 
     /**
-     * Fired when an {@link AITask} is added to an {@link Agent}'s {@link Goal}.
+     * Fired when an {@link Goal} is added to an {@link Agent}'s {@link GoalExecutor}.
      */
     interface Add extends AITaskEvent {
         /**
@@ -86,8 +86,8 @@ public interface AITaskEvent extends Event, Cancellable {
     }
 
     /**
-     * Fired when an {@link AITask} is removed from an {@link Agent}'s
-     * {@link Goal}.
+     * Fired when an {@link Goal} is removed from an {@link Agent}'s
+     * {@link GoalExecutor}.
      */
     interface Remove extends AITaskEvent {
 

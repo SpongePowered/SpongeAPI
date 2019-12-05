@@ -22,25 +22,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.ai.task;
+package org.spongepowered.api.entity.ai.goal.builtin;
 
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.entity.ai.goal.Goal;
+import org.spongepowered.api.entity.ai.goal.GoalBuilder;
 import org.spongepowered.api.entity.living.Agent;
-import org.spongepowered.api.util.CopyableBuilder;
 
-/**
- * A utility to assist in building {@link AITask}s.
- *
- * @param <O> The type of agent
- * @param <A> The type of task
- * @param <B> The type of builder, self-referencing
- */
-public interface AITaskBuilder<O extends Agent, A extends AITask<O>, B extends AITaskBuilder<O, A, B>> extends CopyableBuilder<A, B> {
+public interface SwimmingGoal extends Goal<Agent> {
 
     /**
-     * Builds the {@link AITask}.
+     * Creates a new {@link Builder} to build a new
+     * {@link SwimmingGoal}.
      *
-     * @param owner The owner of the task
-     * @return The task
+     * @return A new builder
      */
-    A build(O owner);
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    /**
+     * Gets the chance that the owning {@link Agent} will perform
+     * a "jump". The chance is limited between {@code 0} and {@code 1},
+     * to where the higher the chance, the more likely the entity will
+     * "jump" to appear "swimming".
+     *
+     * @return The chance that the owning entity will "swim"
+     */
+    float getSwimChance();
+
+    /**
+     * Sets the chance that the owning {@link Agent} will perform
+     * a "jump". The chance is limited between {@code 0} and {@code 1},
+     * to where the higher the chance, the more likely the entity will
+     * "jump" to appear "swimming".
+     *
+     * @param chance The chance that the entity will "swim"
+     */
+    void setSwimChance(float chance);
+
+    interface Builder extends GoalBuilder<Agent, SwimmingGoal, Builder> {
+
+        Builder swimChance(float chance);
+
+    }
 }

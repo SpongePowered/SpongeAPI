@@ -22,46 +22,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.ai.task.builtin.creature.horse;
+package org.spongepowered.api.entity.ai.goal;
 
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.ai.task.AITask;
-import org.spongepowered.api.entity.ai.task.AITaskBuilder;
+import org.spongepowered.api.entity.living.Agent;
+import org.spongepowered.api.entity.living.Creature;
+import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.animal.horse.Horse;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-public interface RunAroundLikeCrazyAITask extends AITask<Horse> {
+import java.util.function.Predicate;
 
-    /**
-     * Creates a new {@link Builder} to build a new
-     * {@link RunAroundLikeCrazyAITask}.
-     *
-     * @return A new builder
-     */
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
-    }
+public final class GoalTypes {
+
+    // SORTFIELDS:ON
 
     /**
-     * Gets the speed modifier at which when an {@link Entity} is running
-     * around, the movement speed is amplified by this modifier.
-     *
-     * @return The speed modifier
+     * {@link Goal} where {@link Creature}s avoid other {@link Agent}s based on a {@link Predicate}.
      */
-    double getSpeed();
+    public static final GoalType AVOID_ENTITY = DummyObjectProvider.createFor(GoalType.class, "AVOID_ENTITY");
 
     /**
-     * Sets the speed modifier at which when an {@link Entity} is running
-     * around, the movement speed is amplified by this modifier.
-     *
-     * @param speed The speed modifier at which an entity is "running around"
-     * @return This task, for chaining
+     * {@link Goal} where {@link Horse}s run around while {@link Humanoid}s attempt to tame them.
      */
-    RunAroundLikeCrazyAITask setSpeed(double speed);
+    public static final GoalType RUN_AROUND_LIKE_CRAZY = DummyObjectProvider.createFor(GoalType.class, "RUN_AROUND_LIKE_CRAZY");
 
-    interface Builder extends AITaskBuilder<Horse, RunAroundLikeCrazyAITask, Builder> {
+    /**
+     * {@link Goal} where {@link Agent}s swim in liquids.
+     */
+    public static final GoalType SWIMMING = DummyObjectProvider.createFor(GoalType.class, "SWIMMING");
 
-        Builder speed(double speed);
+    /**
+     * {@link Goal} where {@link Creature}s walk around.
+     */
+    public static final GoalType WANDER = DummyObjectProvider.createFor(GoalType.class, "WANDER");
 
+    /**
+     * {@link Goal} where {@link Agent}s will "watch" other {@link Entity}s.
+     */
+    public static final GoalType WATCH_CLOSEST = DummyObjectProvider.createFor(GoalType.class, "WATCH_CLOSEST");
+
+    // SORTFIELDS:OFF
+
+    private GoalTypes() {
     }
 }

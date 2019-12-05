@@ -91,7 +91,7 @@ import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.ExperienceOrb;
 import org.spongepowered.api.entity.FallingBlock;
 import org.spongepowered.api.entity.Item;
-import org.spongepowered.api.entity.ai.GoalTypes;
+import org.spongepowered.api.entity.ai.GoalExecutorTypes;
 import org.spongepowered.api.entity.explosive.EndCrystal;
 import org.spongepowered.api.entity.explosive.Explosive;
 import org.spongepowered.api.entity.explosive.fused.FusedExplosive;
@@ -2090,7 +2090,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for a targeted entity either by an {@link Agent} and it's
-     * {@link GoalTypes#TARGET} selector or by a {@link FishingBobber} or {@link ShulkerBullet}.
+     * {@link GoalExecutorTypes#TARGET} selector or by a {@link FishingBobber} or {@link ShulkerBullet}.
      */
     public static final Key<OptionalValue<Entity>> TARGET_ENTITY = DummyObjectProvider.createExtendedFor(Key.class, "TARGET_ENTITY");
 

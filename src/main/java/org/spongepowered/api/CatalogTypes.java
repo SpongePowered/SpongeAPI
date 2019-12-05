@@ -42,8 +42,8 @@ import org.spongepowered.api.effect.sound.SoundCategory;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.effect.sound.music.MusicDisc;
 import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.entity.ai.GoalType;
-import org.spongepowered.api.entity.ai.task.AITaskType;
+import org.spongepowered.api.entity.ai.GoalExecutorType;
+import org.spongepowered.api.entity.ai.goal.GoalType;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.event.cause.EventContextKey;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifierType;
@@ -109,7 +109,7 @@ public final class CatalogTypes {
 
     public static final Class<AdvancementType> ADVANCEMENT_TYPE = AdvancementType.class;
 
-    public static final Class<AITaskType> AI_TASK_TYPE = AITaskType.class;
+    public static final Class<GoalType> AI_TASK_TYPE = GoalType.class;
 
     public static final Class<ArmorType> ARMOR_TYPE = ArmorType.class;
 
@@ -185,7 +185,7 @@ public final class CatalogTypes {
 
     public static final Class<GeneratorType> GENERATOR_TYPE = GeneratorType.class;
 
-    public static final Class<GoalType> GOAL_TYPE = GoalType.class;
+    public static final Class<GoalExecutorType> GOAL_TYPE = GoalExecutorType.class;
 
     public static final Class<HandPreference> HAND_PREFERENCE = HandPreference.class;
 

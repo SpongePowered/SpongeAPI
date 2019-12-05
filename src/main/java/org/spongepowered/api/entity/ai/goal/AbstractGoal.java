@@ -22,90 +22,90 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.ai.task;
+package org.spongepowered.api.entity.ai.goal;
 
 import com.google.common.base.Preconditions;
 import org.spongepowered.api.GameRegistry;
-import org.spongepowered.api.entity.ai.Goal;
+import org.spongepowered.api.entity.ai.GoalExecutor;
 import org.spongepowered.api.entity.living.Agent;
 
 import java.util.Optional;
 
 /**
- * An abstract implementation of a {@link AITask} that a {@link Goal} can run.
+ * An abstract implementation of a {@link Goal} that a {@link GoalExecutor} can run.
  *
  * <p>It is required for anyone wanting to write their own logic that a Goal can
  * run to utilize this class. If you desire to use the builtin AI included with
  * Minecraft, use {@link GameRegistry#createBuilder(Class)} and pass a builder to
  * it instead.</p>
  *
- * <p>At the beginning of every "AI" tick, all {@link AITask}s that are added to
- * the parent {@link Goal} are iterated through. If an {@link AITask} is already
- * marked as "in use", that task's {@link #continueUpdating()} is checked for
+ * <p>At the beginning of every "AI" tick, all {@link Goal}s that are added to
+ * the parent {@link GoalExecutor} are iterated through. If a {@link Goal} is already
+ * marked as "in use", that goal's {@link #continueUpdating()} is checked for
  * {@code true}. If {@link #continueUpdating()} is {@code false}, {@link #reset()}
- * is invoked, and the {@link AITask} is "flagged" as unused for the parent {@link Goal}.
+ * is invoked, and the {@link Goal} is "flagged" as unused for the parent {@link GoalExecutor}.
  * If {@link #continueUpdating()} is {@code true}, {@link #update()} is invoked
  * to perform any major logic.</p>
  *
- * <p>If an {@link AITask} is not currently flagged as "in use", then {@link #shouldUpdate()}
- * is invoked. If {@link #shouldUpdate()} is {@code true}, the {@link AITask} is
+ * <p>If an {@link Goal} is not currently flagged as "in use", then {@link #shouldUpdate()}
+ * is invoked. If {@link #shouldUpdate()} is {@code true}, the {@link Goal} is
  * marked as "in use", and {@link #start()} is invoked. After {@link #start()}
  * is called, {@link #update()} will be invoked to be used for the first time
  * in this "AI tick".</p>
  *
- * <p>Regardless whether the {@link AITask} was "in use" or not, if the {@link AITask}
+ * <p>Regardless whether the {@link Goal} was "in use" or not, if the {@link Goal}
  * is now "in use", {@link #continueUpdating()} is called to verify the validity of the
  * task. If {@link #continueUpdating()} is {@code false}, {@link #reset()} is called
- * to clean up the {@link AITask}.</p>
+ * to clean up the {@link Goal}.</p>
  *
  * @param <O> The type of Agent
  */
-public abstract class AbstractAITask<O extends Agent> implements AITask<O> {
+public abstract class AbstractGoal<O extends Agent> implements Goal<O> {
 
-    private final AITaskType type;
+    private final GoalType type;
 
     /**
-     * Creates a new {@link AbstractAITask} with the provided
-     * {@link AITask}.
+     * Creates a new {@link AbstractGoal} with the provided
+     * {@link Goal}.
      *
      * @param type The type
      */
-    public AbstractAITask(AITaskType type) {
+    public AbstractGoal(GoalType type) {
         Preconditions.checkNotNull(type);
         this.type = type;
     }
 
     @Override
-    public final AITaskType getType() {
+    public final GoalType getType() {
         return this.type;
     }
 
     @Override
-    public final Optional<Goal<O>> getGoal() {
+    public final Optional<GoalExecutor<O>> getGoal() {
         // Assigned by implementation
         return Optional.empty();
     }
 
     /**
-     * Invoked when the task is "started". A "start" of a task occurs at the
+     * Invoked when the goal is "started". A "start" of a goal occurs at the
      * "start" of the "AI" is "ticking". Depending on the case where
-     * {@link #shouldUpdate()} returns {@code false}, an {@link AITask} is
+     * {@link #shouldUpdate()} returns {@code false}, an {@link Goal} is
      * <strong>NOT</strong> going to be called, so this method would not be
      * called at the "start" of the tick to "prepare" for {@link #update()}.
      */
     public abstract void start();
 
     /**
-     * Determines whether this {@link AITask} should be considered for "ticking"
+     * Determines whether this {@link Goal} should be considered for "ticking"
      * or {@link #start()}, {@link #update()}, and {@link #reset()} are called
      * for that "AI" tick.
      *
-     * @return Whether this task should be marked for use in the current tick
+     * @return Whether this goal should be marked for use in the current tick
      */
     public abstract boolean shouldUpdate();
 
     /**
-     * Performs any customary logic for this "task" to modify the parent
+     * Performs any customary logic for this goal to modify the parent
      * {@link Agent} in any way, including navigation, health, potion effects,
      * etc. Only called when {@link #shouldUpdate()} returns {@code true},
      * and after {@link #start()} has completed. Likewise, if
@@ -114,19 +114,19 @@ public abstract class AbstractAITask<O extends Agent> implements AITask<O> {
     public abstract void update();
 
     /**
-     * Called to verify that this {@link AITask} needs to {@link #update()}
-     * in this tick. If this returns {@code false}, this {@link AITask}
-     * is removed from use and {@link #reset()} is called.
+     * Called to verify that this {@link Goal} needs to {@link #update()}
+     * in this tick. If this returns {@code false}, this goal is removed from use
+     * and {@link #reset()} is called.
      *
      * @return Whether this task should update this "tick" or not
      */
     public abstract boolean continueUpdating();
 
     /**
-     * Performs any reset necessary for this task during the current tick.
+     * Performs any reset necessary for this goal during the current tick.
      *
      * <p>Note that this may be called during any state during {@link #start()}
-     * or {@link #update()} such that the task is removed from use for the
+     * or {@link #update()} such that the goal is removed from use for the
      * current "AI" tick.</p>
      */
     public abstract void reset();

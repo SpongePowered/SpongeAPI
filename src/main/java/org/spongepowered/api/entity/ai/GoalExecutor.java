@@ -24,31 +24,29 @@
  */
 package org.spongepowered.api.entity.ai;
 
-import org.spongepowered.api.entity.ai.task.AITask;
-import org.spongepowered.api.entity.ai.task.AITaskType;
+import org.spongepowered.api.entity.ai.goal.Goal;
+import org.spongepowered.api.entity.ai.goal.GoalType;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Monster;
 
 import java.util.List;
 
 /**
- * Represents a set of tasks that will be updated together by an {@link Agent}.
+ * Represents a set of goals that will be updated together by an {@link Agent}.
  *
- * <p>In Minecraft, most agents have just one goal which is living or
- * simulating, or whichever term you want to call it. Other agents, such as
- * {@link Monster}s, use a "target" goal which serves to seek out potential
- * victims and execute a series of attack tasks.</p>
+ * <p>In Minecraft, most agents "live" by performing goals of their simulation (while sometimes
+ * using specialized "targeting" goals for logic).
  *
  * @param <O> The type of agent
  */
-public interface Goal<O extends Agent> {
+public interface GoalExecutor<O extends Agent> {
 
     /**
      * The type of this goal.
      *
      * @return The type
      */
-    GoalType getType();
+    GoalExecutorType getType();
 
     /**
      * The {@link Agent} that owns this goal.
@@ -58,49 +56,49 @@ public interface Goal<O extends Agent> {
     O getOwner();
 
     /**
-     * Adds a new {@link AITask} to this goal.
+     * Adds a new {@link Goal} to this goal.
      *
      * @param priority The priority this task should run at
-     * @param task The task to run
+     * @param goal The goal to run
      * @return This goal, for chaining
      */
-    Goal<O> addTask(int priority, AITask<? extends O> task);
+    GoalExecutor<O> addGoal(int priority, Goal<? extends O> goal);
 
     /**
-     * Removes a specific {@link AITask} from this goal.
+     * Removes a specific {@link Goal} from this goal.
      *
-     * @param task The task to remove
+     * @param goal The goal to remove
      * @return This goal, for chaining
      */
-    Goal<O> removeTask(AITask<? extends O> task);
+    GoalExecutor<O> removeGoal(Goal<? extends O> goal);
 
     /**
-     * Removes all {@link AITask}s whose {@link AITaskType} matches
+     * Removes all {@link Goal}s whose {@link GoalType} matches
      * the provided type.
      *
      * @param type The type to remove
      * @return The goal, for chaining
      */
-    Goal<O> removeTasks(AITaskType type);
+    GoalExecutor<O> removeGoals(GoalType type);
 
     /**
-     * Gets all {@link AITask}s whose {@link AITaskType} matches
+     * Gets all {@link Goal}s whose {@link GoalType} matches
      * the provided type.
      *
      * @param type The type to look for
      * @return All the tasks found
      */
-    List<? super AITask<? extends O>> getTasksByType(AITaskType type);
+    List<? super Goal<? extends O>> getTasksByType(GoalType type);
 
     /**
-     * Gets all {@link AITask}s in this goal.
+     * Gets all {@link Goal}s in this goal.
      *
      * @return The tasks
      */
-    List<? super AITask<? extends O>> getTasks();
+    List<? super Goal<? extends O>> getTasks();
 
     /**
-     * Clears all {@link AITask}s from this goal.
+     * Clears all {@link Goal}s from this goal.
      */
     void clear();
 }

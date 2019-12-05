@@ -22,5 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
-package org.spongepowered.api.entity.ai.task.builtin;
+package org.spongepowered.api.entity.ai.goal;
+
+import org.spongepowered.api.entity.living.Agent;
+import org.spongepowered.api.util.CopyableBuilder;
+
+/**
+ * A utility to assist in building {@link Goal}s.
+ *
+ * @param <O> The type of agent
+ * @param <G> The type of goal
+ * @param <B> The type of builder, self-referencing
+ */
+public interface GoalBuilder<O extends Agent, G extends Goal<O>, B extends GoalBuilder<O, G, B>> extends CopyableBuilder<G, B> {
+
+    /**
+     * Builds the {@link Goal}.
+     *
+     * @param owner The owner of the task
+     * @return The goal
+     */
+    G build(O owner);
+}

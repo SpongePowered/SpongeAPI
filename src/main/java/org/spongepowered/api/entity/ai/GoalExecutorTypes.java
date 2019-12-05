@@ -22,48 +22,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.ai.task;
+package org.spongepowered.api.entity.ai;
 
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Agent;
-import org.spongepowered.api.entity.living.Creature;
-import org.spongepowered.api.entity.living.Humanoid;
-import org.spongepowered.api.entity.living.animal.horse.Horse;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-import java.util.function.Predicate;
-
-public final class AITaskTypes {
+public final class GoalExecutorTypes {
 
     // SORTFIELDS:ON
 
     /**
-     * {@link AITask} where {@link Creature}s avoid other {@link Agent}s based on a {@link Predicate}.
+     * {@link GoalExecutor} that is the default set of goals for most {@link Agent}s.
      */
-    public static final AITaskType AVOID_ENTITY = DummyObjectProvider.createFor(AITaskType.class, "AVOID_ENTITY");
+    public static final GoalExecutorType NORMAL = DummyObjectProvider.createFor(GoalExecutorType.class, "NORMAL");
 
     /**
-     * {@link AITask} where {@link Horse}s run around while {@link Humanoid}s attempt to tame them.
+     * {@link GoalExecutor} that is the "target" set of goals.
+     *
+     * <p>The objective is to formulate the target so that the
+     * {@link Agent} can act on it. The best example is how monsters like zombie
+     * and skeleton attack enemies: they seek out a target and if any of their non-target
+     * goals see that they have a target, they act accordingly.</p>
      */
-    public static final AITaskType RUN_AROUND_LIKE_CRAZY = DummyObjectProvider.createFor(AITaskType.class, "RUN_AROUND_LIKE_CRAZY");
-
-    /**
-     * {@link AITask} where {@link Agent}s swim in liquids.
-     */
-    public static final AITaskType SWIMMING = DummyObjectProvider.createFor(AITaskType.class, "SWIMMING");
-
-    /**
-     * {@link AITask} where {@link Creature}s walk around.
-     */
-    public static final AITaskType WANDER = DummyObjectProvider.createFor(AITaskType.class, "WANDER");
-
-    /**
-     * {@link AITask} where {@link Agent}s will "watch" other {@link Entity}s.
-     */
-    public static final AITaskType WATCH_CLOSEST = DummyObjectProvider.createFor(AITaskType.class, "WATCH_CLOSEST");
+    public static final GoalExecutorType TARGET = DummyObjectProvider.createFor(GoalExecutorType.class, "TARGET");
 
     // SORTFIELDS:OFF
 
-    private AITaskTypes() {
+    private GoalExecutorTypes() {
     }
 }

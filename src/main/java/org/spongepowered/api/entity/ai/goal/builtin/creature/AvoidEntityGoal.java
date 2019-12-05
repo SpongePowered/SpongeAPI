@@ -22,21 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.ai.task.builtin.creature;
+package org.spongepowered.api.entity.ai.goal.builtin.creature;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.ai.task.AITask;
-import org.spongepowered.api.entity.ai.task.AITaskBuilder;
+import org.spongepowered.api.entity.ai.goal.Goal;
+import org.spongepowered.api.entity.ai.goal.GoalBuilder;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Creature;
 
 import java.util.function.Predicate;
 
-public interface AvoidEntityAITask extends AITask<Creature> {
+public interface AvoidEntityGoal extends Goal<Creature> {
 
     /**
-     * Creates a new {@link Builder} for creating a new {@link AvoidEntityAITask}.
+     * Creates a new {@link Builder} for creating a new {@link AvoidEntityGoal}.
      *
      * @return A new builder
      */
@@ -61,7 +61,7 @@ public interface AvoidEntityAITask extends AITask<Creature> {
      * @param predicate The predicate
      * @return This task, for chaining
      */
-    AvoidEntityAITask setTargetSelector(Predicate<Entity> predicate);
+    AvoidEntityGoal setTargetSelector(Predicate<Entity> predicate);
 
     /**
      * Gets the search distance at which any {@link Entity} instances in a
@@ -78,7 +78,7 @@ public interface AvoidEntityAITask extends AITask<Creature> {
      * @param distance The search distance
      * @return This task, for chaining
      */
-    AvoidEntityAITask setSearchDistance(float distance);
+    AvoidEntityGoal setSearchDistance(float distance);
 
     /**
      * Gets the speed "modifier" for which the parent {@link Agent} will
@@ -97,7 +97,7 @@ public interface AvoidEntityAITask extends AITask<Creature> {
      * @param speed The movement speed modifier
      * @return This task, for chaining
      */
-    AvoidEntityAITask setCloseRangeSpeed(double speed);
+    AvoidEntityGoal setCloseRangeSpeed(double speed);
 
     /**
      * Gets the close range speed "modifier" for which the parent {@link Agent}
@@ -116,9 +116,9 @@ public interface AvoidEntityAITask extends AITask<Creature> {
      * @param speed The movement speed modifier
      * @return This task, for chaining
      */
-    AvoidEntityAITask setFarRangeSpeed(double speed);
+    AvoidEntityGoal setFarRangeSpeed(double speed);
 
-    interface Builder extends AITaskBuilder<Creature, AvoidEntityAITask, Builder> {
+    interface Builder extends GoalBuilder<Creature, AvoidEntityGoal, Builder> {
 
         /**
          * Sets the {@link Predicate} for filtering which {@link Entity} instances

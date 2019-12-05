@@ -25,8 +25,8 @@
 package org.spongepowered.api;
 
 import org.spongepowered.api.data.type.Profession;
-import org.spongepowered.api.entity.ai.task.AITaskType;
-import org.spongepowered.api.entity.ai.task.AbstractAITask;
+import org.spongepowered.api.entity.ai.goal.GoalType;
+import org.spongepowered.api.entity.ai.goal.AbstractGoal;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.item.merchant.TradeOfferGenerator;
 import org.spongepowered.api.item.merchant.VillagerRegistry;
@@ -253,7 +253,7 @@ public interface GameRegistry {
     Optional<DisplaySlot> getDisplaySlotForColor(TextColor color);
 
     /**
-     * Registers a new {@link AbstractAITask} with an {@link Agent} as the
+     * Registers a new {@link AbstractGoal} with an {@link Agent} as the
      * owner. The complete id will be in the format of
      * <code>{@link PluginContainer#getId()}:id</code>.
      *
@@ -263,7 +263,7 @@ public interface GameRegistry {
      * @param aiClass The class of the task
      * @return The type
      */
-    AITaskType registerAITaskType(PluginContainer plugin, String id, String name, Class<? extends AbstractAITask<? extends Agent>> aiClass);
+    GoalType registerAITaskType(PluginContainer plugin, String id, String name, Class<? extends AbstractGoal<? extends Agent>> aiClass);
 
     /**
      * Gets the {@link VillagerRegistry} for the register mappings of

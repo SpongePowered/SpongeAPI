@@ -22,25 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.ai.task.builtin;
+package org.spongepowered.api.entity.ai.goal;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.ai.task.AITask;
-import org.spongepowered.api.entity.ai.task.AITaskBuilder;
-import org.spongepowered.api.entity.living.Agent;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-public interface LookIdleAITask extends AITask<Agent> {
+@CatalogedBy(GoalTypes.class)
+public interface GoalType extends CatalogType {
 
     /**
-     * Creates a new {@link Builder} to build a new {@link LookIdleAITask}.
+     * Gets the {@link Goal} class that this type represents.
      *
-     * @return A new builder
+     * @return The goal class
      */
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
-    }
-
-    interface Builder extends AITaskBuilder<Agent, LookIdleAITask, Builder> {
-
-    }
+    Class<? extends Goal<?>> getGoalClass();
 }

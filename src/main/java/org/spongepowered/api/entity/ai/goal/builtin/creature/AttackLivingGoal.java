@@ -22,20 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.ai.task.builtin.creature;
+package org.spongepowered.api.entity.ai.goal.builtin.creature;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.ai.task.AITask;
-import org.spongepowered.api.entity.ai.task.AITaskBuilder;
+import org.spongepowered.api.entity.ai.goal.Goal;
+import org.spongepowered.api.entity.ai.goal.GoalBuilder;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Creature;
 
-public interface AttackLivingAITask extends AITask<Creature> {
+public interface AttackLivingGoal extends Goal<Creature> {
 
     /**
      * Creates a new {@link Builder} to build a new
-     * {@link AttackLivingAITask}.
+     * {@link AttackLivingGoal}.
      *
      * @return A new builder
      */
@@ -56,9 +56,9 @@ public interface AttackLivingAITask extends AITask<Creature> {
      * is targeting an {@link Entity}.
      *
      * @param speed The speed
-     * @return This task, for chaining
+     * @return This goal, for chaining
      */
-    AttackLivingAITask setSpeed(double speed);
+    AttackLivingGoal setSpeed(double speed);
 
     /**
      * Gets whether the navigator will attempt to continue to "target"
@@ -80,11 +80,11 @@ public interface AttackLivingAITask extends AITask<Creature> {
      * available.
      *
      * @param longMemory Whether to continue targeting an entity
-     * @return This task, for chaining
+     * @return This goal, for chaining
      */
-    AttackLivingAITask setLongMemory(boolean longMemory);
+    AttackLivingGoal setLongMemory(boolean longMemory);
 
-    interface Builder extends AITaskBuilder<Creature, AttackLivingAITask, Builder> {
+    interface Builder extends GoalBuilder<Creature, AttackLivingGoal, Builder> {
 
         /**
          * Sets the speed modifier at which the owning {@link Agent} will be

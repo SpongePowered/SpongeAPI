@@ -22,22 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.ai.task.builtin.creature;
+package org.spongepowered.api.entity.ai.goal.builtin.creature;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.ai.task.AITask;
-import org.spongepowered.api.entity.ai.task.AITaskBuilder;
+import org.spongepowered.api.entity.ai.goal.Goal;
+import org.spongepowered.api.entity.ai.goal.GoalBuilder;
 import org.spongepowered.api.entity.living.Ranger;
 
 /**
- * An {@link AITask} which uses the ranging aspect of the Ranger to attack
+ * An {@link Goal} which uses the ranging aspect of the Ranger to attack
  * the target.
  */
-public interface RangeAgentAITask extends AITask<Ranger> {
+public interface RangeAgentGoal extends Goal<Ranger> {
 
     /**
-     * Creates a new {@link Builder} to build a new {@link RangeAgentAITask}.
+     * Creates a new {@link Builder} to build a new {@link RangeAgentGoal}.
      *
      * @return A new builder
      */
@@ -58,9 +58,9 @@ public interface RangeAgentAITask extends AITask<Ranger> {
      * {@link Entity}.
      *
      * @param speed The movement speed modifier
-     * @return This task, for chaining
+     * @return This goal, for chaining
      */
-    RangeAgentAITask setMoveSpeed(double speed);
+    RangeAgentGoal setMoveSpeed(double speed);
 
     /**
      * Gets the delay in ticks between attempts to attack the targeted
@@ -75,9 +75,9 @@ public interface RangeAgentAITask extends AITask<Ranger> {
      * again.
      *
      * @param delay The delay, in ticks
-     * @return This task, for chaining
+     * @return This goal, for chaining
      */
-    RangeAgentAITask setDelayBetweenAttacks(int delay);
+    RangeAgentGoal setDelayBetweenAttacks(int delay);
 
     /**
      * Gets the radius of which the owning {@link Ranger} will attempt to
@@ -93,11 +93,11 @@ public interface RangeAgentAITask extends AITask<Ranger> {
      *
      * @param radius The radius of which the owning entity will attempt to
      *     attack
-     * @return This task, for chaining
+     * @return This goal, for chaining
      */
-    RangeAgentAITask setAttackRadius(float radius);
+    RangeAgentGoal setAttackRadius(float radius);
 
-    interface Builder extends AITaskBuilder<Ranger, RangeAgentAITask, RangeAgentAITask.Builder> {
+    interface Builder extends GoalBuilder<Ranger, RangeAgentGoal, Builder> {
 
         Builder moveSpeed(double speed);
 

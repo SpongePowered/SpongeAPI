@@ -22,5 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
-package org.spongepowered.api.entity.ai.task.builtin.creature.target;
+package org.spongepowered.api.entity.ai;
+
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
+
+@CatalogedBy(GoalExecutorTypes.class)
+public interface GoalExecutorType extends CatalogType {
+
+    /**
+     * Gets the {@link GoalExecutor} class that this type represents.
+     *
+     * @return The goal class
+     */
+    Class<? extends GoalExecutor<?>> getGoalExecutorClass();
+}

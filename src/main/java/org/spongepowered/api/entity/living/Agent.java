@@ -28,8 +28,9 @@ import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.ai.Goal;
-import org.spongepowered.api.entity.ai.GoalType;
+import org.spongepowered.api.entity.ai.GoalExecutor;
+import org.spongepowered.api.entity.ai.GoalExecutorType;
+import org.spongepowered.api.entity.ai.goal.builtin.creature.target.TargetGoal;
 
 import java.util.Optional;
 
@@ -42,7 +43,7 @@ public interface Agent extends Living {
     /**
      * {@link Keys#TARGET_ENTITY}
      * @return The targeted entity
-     * @see org.spongepowered.api.entity.ai.task.builtin.creature.target.TargetAITask
+     * @see TargetGoal
      */
     default OptionalValue.Mutable<Entity> targetEntity() {
         return this.getValue(Keys.TARGET_ENTITY).get().asMutable();
@@ -57,11 +58,11 @@ public interface Agent extends Living {
     }
 
     /**
-     * Gets a {@link Goal} based on the {@link GoalType}.
+     * Gets a {@link GoalExecutor} based on the {@link GoalExecutorType}.
      *
      * @param type GoalType to lookup
      * @param <T> Inferred agent type
      * @return The goal or {@link Optional#empty()} if not found.
      */
-    <T extends Agent> Optional<Goal<T>> getGoal(GoalType type);
+    <T extends Agent> Optional<GoalExecutor<T>> getGoal(GoalExecutorType type);
 }
