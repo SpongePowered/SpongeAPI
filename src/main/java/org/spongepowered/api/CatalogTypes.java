@@ -49,8 +49,6 @@ import org.spongepowered.api.event.cause.EventContextKey;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifierType;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.dismount.DismountType;
-import org.spongepowered.api.event.cause.entity.health.HealingType;
-import org.spongepowered.api.event.cause.entity.health.HealthModifierType;
 import org.spongepowered.api.event.cause.entity.spawn.SpawnType;
 import org.spongepowered.api.event.cause.entity.teleport.TeleportType;
 import org.spongepowered.api.fluid.FluidType;
@@ -190,10 +188,6 @@ public final class CatalogTypes {
     public static final Class<HandPreference> HAND_PREFERENCE = HandPreference.class;
 
     public static final Class<HandType> HAND_TYPE = HandType.class;
-
-    public static final Class<HealingType> HEALING_TYPE = HealingType.class;
-
-    public static final Class<HealthModifierType> HEALTH_MODIFIER_TYPE = HealthModifierType.class;
 
     public static final Class<HeldEquipmentType> HELD_EQUIPMENT_TYPE = HeldEquipmentType.class;
 

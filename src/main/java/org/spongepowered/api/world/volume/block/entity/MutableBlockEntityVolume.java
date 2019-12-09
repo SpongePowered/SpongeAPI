@@ -27,8 +27,6 @@ package org.spongepowered.api.world.volume.block.entity;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.world.volume.MutableVolume;
 import org.spongepowered.api.world.volume.block.MutableBlockVolume;
-import org.spongepowered.api.world.volume.block.entity.worker.MutableBlockEntityStream;
-import org.spongepowered.api.world.volume.block.worker.MutableBlockVolumeStream;
 import org.spongepowered.math.vector.Vector3i;
 
 public interface MutableBlockEntityVolume<M extends MutableBlockEntityVolume<M>> extends StreamableBlockEntityVolume<M>, MutableBlockVolume<M>, MutableVolume {
@@ -48,9 +46,4 @@ public interface MutableBlockEntityVolume<M extends MutableBlockEntityVolume<M>>
     @Override
     M getView(Vector3i newMin, Vector3i newMax);
 
-    @Override
-    MutableBlockEntityStream<M> toBlockEntityStream();
-
-    @Override
-    MutableBlockVolumeStream<M> toBlockStream();
 }

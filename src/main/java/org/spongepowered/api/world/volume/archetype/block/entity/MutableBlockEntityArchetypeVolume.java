@@ -25,10 +25,7 @@
 package org.spongepowered.api.world.volume.archetype.block.entity;
 
 import org.spongepowered.api.world.volume.MutableVolume;
-import org.spongepowered.api.world.volume.archetype.block.entity.worker.MutableBlockEntityArchetypeStream;
 
 public interface MutableBlockEntityArchetypeVolume<M extends MutableBlockEntityArchetypeVolume<M>> extends StreamableBlockEntityArchetypeVolume<M>, MutableVolume {
 
-    @Override
-    MutableBlockEntityArchetypeStream<M> toBlockEntityArchetypeStream();
 }

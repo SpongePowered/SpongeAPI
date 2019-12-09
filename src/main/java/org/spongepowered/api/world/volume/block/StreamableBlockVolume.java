@@ -24,14 +24,6 @@
  */
 package org.spongepowered.api.world.volume.block;
 
-import org.spongepowered.api.world.volume.block.worker.BlockVolumeStream;
-
 public interface StreamableBlockVolume<B extends StreamableBlockVolume<B>> extends ReadableBlockVolume {
 
-    /**
-     * Gets a new block worker for this block volume.
-     *
-     * @return The block worker
-     */
-    BlockVolumeStream<B, ?> toBlockStream();
 }

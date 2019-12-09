@@ -113,7 +113,7 @@ public interface Schematic extends ArchetypeVolume {
          * @param volume The extent view
          * @return This builder, for chaining
          */
-        Builder creator(ArchetypeVolumeCreator<?> volume);
+        Builder creator(ArchetypeVolumeCreator volume);
 
         Builder volume(ArchetypeVolume volume);
 

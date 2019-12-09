@@ -25,12 +25,11 @@
 package org.spongepowered.api.event.cause.entity;
 
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
-import org.spongepowered.api.event.cause.entity.health.HealthModifier;
 
 import java.util.function.DoubleUnaryOperator;
 
 /**
- * A function associating either a {@link HealthModifier} or a
+ * A function associating a
  * {@link DamageModifier} with a {@link DoubleUnaryOperator} of the resultant
  * effect.
  *

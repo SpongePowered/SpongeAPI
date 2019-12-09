@@ -25,14 +25,6 @@
 package org.spongepowered.api.world.volume.archetype.block.entity;
 
 
-import org.spongepowered.api.world.volume.archetype.block.entity.worker.BlockEntityArchetypeStream;
-
 public interface StreamableBlockEntityArchetypeVolume<B extends StreamableBlockEntityArchetypeVolume<B>> extends ReadableBlockEntityArchetypeVolume {
 
-    /**
-     * Gets a new block worker for this block volume.
-     *
-     * @return The block worker
-     */
-    BlockEntityArchetypeStream<B, ?> toBlockEntityArchetypeStream();
 }

@@ -45,7 +45,7 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface ServerWorld extends World, Identifiable, InteractableVolume {
+public interface ServerWorld extends World<ServerWorld>, Identifiable, InteractableVolume {
 
     @Override
     Server getServer();

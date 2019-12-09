@@ -66,13 +66,7 @@ public interface ReadableRegion<R extends ReadableRegion<R>> extends
 
     boolean hasWater(int x, int y, int z);
 
-    default boolean containsAnyLiquids(AABB aabb) {
-        final Vector3d min = aabb.getMin();
-        final Vector3d max = aabb.getMax();
-        return getView(min.floor().toInt(), max.ceil().toInt())
-            .toBlockStream()
-            .anyMatch((volume, element, x, y, z) -> !element.getFluidState().isEmpty());
-    }
+    boolean containsAnyLiquids(AABB aabb);
 
     int getSkylightSubtracted();
 

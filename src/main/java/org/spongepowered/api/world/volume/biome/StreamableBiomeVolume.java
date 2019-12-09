@@ -24,17 +24,9 @@
  */
 package org.spongepowered.api.world.volume.biome;
 
-import org.spongepowered.api.world.volume.biome.worker.BiomeVolumeStream;
 import org.spongepowered.math.vector.Vector3i;
 
 public interface StreamableBiomeVolume<B extends StreamableBiomeVolume<B>> extends ReadableBiomeVolume {
-
-    /**
-     * Gets a new block worker for this block volume.
-     *
-     * @return The block worker
-     */
-    BiomeVolumeStream<B, ?> toBiomeStream();
 
     @Override
     B getView(Vector3i newMin, Vector3i newMax);

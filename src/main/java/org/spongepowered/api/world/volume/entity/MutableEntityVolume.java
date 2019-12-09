@@ -32,7 +32,6 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.world.volume.MutableVolume;
 import org.spongepowered.api.world.volume.block.MutableBlockVolume;
-import org.spongepowered.api.world.volume.entity.worker.MutableEntityStream;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
@@ -183,6 +182,4 @@ public interface MutableEntityVolume<M extends MutableEntityVolume<M>> extends S
      */
     Collection<Entity> spawnEntities(Iterable<? extends Entity> entities);
 
-    @Override
-    MutableEntityStream<M> toEntityStream();
 }

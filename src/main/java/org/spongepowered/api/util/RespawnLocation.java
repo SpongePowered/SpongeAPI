@@ -178,8 +178,8 @@ public final class RespawnLocation implements DataSerializable {
          * @param world The world to get the uuid from
          * @return This builder, for chaining
          */
-        public Builder world(World world) {
-            return world(checkNotNull(world, "World cannot be null!").getUniqueId());
+        public Builder world(World<?> world) {
+            return world(checkNotNull(world, "World cannot be null!").getProperties().getUniqueId());
         }
 
         /**
@@ -205,9 +205,9 @@ public final class RespawnLocation implements DataSerializable {
          */
         public Builder location(Location location) {
             checkNotNull(location, "Location cannot be null!");
-            final World world = location.getWorld();
+            final World<?> world = location.getWorld();
             position(location.getPosition());
-            world(world.getUniqueId());
+            world(world.getProperties().getUniqueId());
             return this;
         }
 

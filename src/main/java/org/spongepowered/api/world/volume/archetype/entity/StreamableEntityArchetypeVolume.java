@@ -25,17 +25,9 @@
 package org.spongepowered.api.world.volume.archetype.entity;
 
 
-import org.spongepowered.api.world.volume.archetype.entity.worker.EntityArchetypeStream;
 import org.spongepowered.math.vector.Vector3i;
 
 public interface StreamableEntityArchetypeVolume<B extends StreamableEntityArchetypeVolume<B>> extends ReadableEntityArchetypeVolume {
-
-    /**
-     * Gets a new block worker for this block volume.
-     *
-     * @return The block worker
-     */
-    EntityArchetypeStream<B, ?> toEntityArchetypeStream();
 
     @Override
     B getView(Vector3i newMin, Vector3i newMax);

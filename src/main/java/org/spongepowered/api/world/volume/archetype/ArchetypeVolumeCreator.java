@@ -24,17 +24,14 @@
  */
 package org.spongepowered.api.world.volume.archetype;
 
+import org.spongepowered.api.world.volume.Volume;
 import org.spongepowered.api.world.volume.biome.StreamableBiomeVolume;
 import org.spongepowered.api.world.volume.block.StreamableBlockVolume;
 import org.spongepowered.api.world.volume.block.entity.StreamableBlockEntityVolume;
 import org.spongepowered.api.world.volume.entity.StreamableEntityVolume;
 import org.spongepowered.math.vector.Vector3i;
 
-public interface ArchetypeVolumeCreator<A extends ArchetypeVolumeCreator<A>> extends StreamableBlockVolume<A>,
-    StreamableBiomeVolume<A>,
-    StreamableEntityVolume<A>,
-    StreamableBlockEntityVolume<A>
-{
+public interface ArchetypeVolumeCreator extends Volume {
 
     /**
      * Creates a new archetype volume from the specified section of this extent.
@@ -48,6 +45,4 @@ public interface ArchetypeVolumeCreator<A extends ArchetypeVolumeCreator<A>> ext
      */
     ArchetypeVolume createArchetypeVolume(Vector3i min, Vector3i max, Vector3i origin);
 
-    @Override
-    A getView(Vector3i newMin, Vector3i newMax);
 }

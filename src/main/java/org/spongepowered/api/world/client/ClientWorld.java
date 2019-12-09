@@ -29,7 +29,7 @@ import org.spongepowered.api.world.World;
 
 import java.util.Collection;
 
-public interface ClientWorld extends World {
+public interface ClientWorld extends World<ClientWorld> {
 
     @Override
     Collection<? extends ClientPlayer> getPlayers();

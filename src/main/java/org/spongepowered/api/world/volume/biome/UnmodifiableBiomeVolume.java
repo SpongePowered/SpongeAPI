@@ -27,13 +27,12 @@ package org.spongepowered.api.world.volume.biome;
 import org.spongepowered.api.world.volume.MutableVolume;
 import org.spongepowered.api.world.volume.UnmodifiableVolume;
 import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
-import org.spongepowered.api.world.volume.block.worker.BlockVolumeStream;
 
 /**
  * Like a {@link ReadableBlockVolume} except in the case that
  * while the parent volume can potentially be a {@link MutableVolume},
  * this volume returned will not be. This is useful if needing to simply
- * scan blocks or use {@link BlockVolumeStream}s to perform various operations.
+ * scan blocks or use {@link java.util.stream.Stream}s to perform various operations.
  */
 public interface UnmodifiableBiomeVolume<U extends UnmodifiableBiomeVolume<U>> extends ReadableBiomeVolume, StreamableBiomeVolume<U>, UnmodifiableVolume {
 

@@ -34,10 +34,9 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.service.context.ContextSource;
 import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
 import org.spongepowered.api.world.chunk.Chunk;
-import org.spongepowered.api.world.teleport.PortalAgent;
-import org.spongepowered.api.world.volume.game.TrackedVolume;
 import org.spongepowered.api.world.volume.archetype.ArchetypeVolumeCreator;
 import org.spongepowered.api.world.volume.block.PhysicsAwareMutableBlockVolume;
+import org.spongepowered.api.world.volume.game.TrackedVolume;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
@@ -51,15 +50,15 @@ import java.util.function.Predicate;
 /**
  * A loaded Minecraft world.
  */
-public interface World extends ProtoWorld<World>,
+public interface World<W extends World<W>> extends ProtoWorld<W>,
     LocationCreator,
-    PhysicsAwareMutableBlockVolume<World>,
+    PhysicsAwareMutableBlockVolume<BoundedWorldView<W>>,
     WeatherUniverse,
     ContextSource,
     ChatTypeMessageReceiver,
     TrackedVolume,
     Viewer,
-    ArchetypeVolumeCreator<World>
+    ArchetypeVolumeCreator
 {
 
     /**
