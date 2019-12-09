@@ -48,10 +48,7 @@ import org.spongepowered.math.vector.Vector3i;
  * {@link org.spongepowered.api.util.PositionOutOfBoundsException}. It is
  * still considered unsafe to perform operations on this view outside the
  * control of the parented {@link ProtoWorld world's} context, or otherwise
- * the world's thread context. It is safe to suggest that actions performed
- * on the parent world will reflect on this view, such that reading through
- * the supplied {@link #toBlockStream() streams} may be similar to
- * the {@link ProtoWorld#toBlockStream()}.
+ * the world's thread context.
  *
  * @param <P> The type of world to reflect back on
  */
