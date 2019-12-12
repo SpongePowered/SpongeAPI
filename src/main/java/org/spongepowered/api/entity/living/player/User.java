@@ -83,13 +83,13 @@ public interface User extends DataHolder.Mutable, ArmorEquipable, Tamer, Subject
     Vector3d getPosition();
 
     /**
-     * Gets the World UUID of this User.
+     * Gets the world {@link UUID} of this User.
      *
      * <p>May return empty when the world the player is in does not exist anymore</p>
      *
      * @return The World UUID of this User if found
      */
-    Optional<UUID> getWorldUniqueId();
+    UUID getWorldUniqueId();
 
     /**
      * Sets the position and world of this User.
@@ -99,11 +99,11 @@ public interface User extends DataHolder.Mutable, ArmorEquipable, Tamer, Subject
      * <p>When the User {@link #isOnline()} this redirects to {@link Entity#setLocation(Location)}</p>
      *
      * @param position The position to set
-     * @param world The world UUID to set
+     * @param worldUniqueId The world UUID to set
      * @return True if the location was accepted
      * @throws IllegalArgumentException When the UUID does not belong to an existing world.
      */
-    boolean setLocation(Vector3d position, UUID world);
+    boolean setLocation(Vector3d position, UUID worldUniqueId);
 
     /**
      * Sets the rotation of this entity.

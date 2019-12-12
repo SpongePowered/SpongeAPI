@@ -92,7 +92,7 @@ import org.spongepowered.api.entity.ExperienceOrb;
 import org.spongepowered.api.entity.FallingBlock;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.ai.GoalExecutorTypes;
-import org.spongepowered.api.entity.explosive.EndCrystal;
+import org.spongepowered.api.entity.explosive.EnderCrystal;
 import org.spongepowered.api.entity.explosive.Explosive;
 import org.spongepowered.api.entity.explosive.fused.FusedExplosive;
 import org.spongepowered.api.entity.explosive.fused.PrimedTNT;
@@ -160,7 +160,7 @@ import org.spongepowered.api.entity.projectile.Potion;
 import org.spongepowered.api.entity.projectile.ShulkerBullet;
 import org.spongepowered.api.entity.projectile.arrow.ArrowEntity;
 import org.spongepowered.api.entity.projectile.explosive.FireworkRocket;
-import org.spongepowered.api.entity.projectile.explosive.fireball.Fireball;
+import org.spongepowered.api.entity.projectile.explosive.fireball.FireballEntity;
 import org.spongepowered.api.entity.vehicle.Boat;
 import org.spongepowered.api.entity.vehicle.minecart.BlockOccupiedMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.CommandBlockMinecart;
@@ -214,7 +214,7 @@ public final class Keys {
     public static final Key<BoundedValue<Double>> ABSORPTION = DummyObjectProvider.createExtendedFor(Key.class, "ABSORPTION");
 
     /**
-     * Represents the {@link Key} for the acceleration of a {@link Fireball}.
+     * Represents the {@link Key} for the acceleration of a {@link FireballEntity}.
      */
     public static final Key<Value<Vector3d>> ACCELERATION = DummyObjectProvider.createExtendedFor(Key.class, "ACCELERATION");
 
@@ -432,7 +432,7 @@ public final class Keys {
     public static final Key<OptionalValue<Living>> BEAM_TARGET_ENTITY = DummyObjectProvider.createExtendedFor(Key.class, "BEAM_TARGET_ENTITY");
 
     /**
-     * Represents the {@link Key} for a {@link EndCrystal}'s beam target.
+     * Represents the {@link Key} for a {@link EnderCrystal}'s beam target.
      */
     public static final Key<OptionalValue<Vector3i>> BEAM_TARGET_POSITION = DummyObjectProvider.createExtendedFor(Key.class, "BEAM_TARGET_POSITION");
 
@@ -568,7 +568,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for whether a {@link Living} entity may
      * change blocks. This mostly applies to {@link Enderman} or
-     * {@link Creeper}s, but also to some projectiles like {@link Fireball}s.
+     * {@link Creeper}s, but also to some projectiles like {@link FireballEntity}s.
      */
     public static final Key<Value<Boolean>> CAN_GRIEF = DummyObjectProvider.createExtendedFor(Key.class, "CAN_GRIEF");
 
@@ -1043,9 +1043,9 @@ public final class Keys {
     public static final Key<Value<Vector3d>> HEAD_ROTATION = DummyObjectProvider.createExtendedFor(Key.class, "HEAD_ROTATION");
 
     /**
-     * Represents the {@link Key} for the {@link EndCrystal} currently healing an {@link EnderDragon}.
+     * Represents the {@link Key} for the {@link EnderCrystal} currently healing an {@link EnderDragon}.
      */
-    public static final Key<OptionalValue<EndCrystal>> HEALING_CRYSTAL = DummyObjectProvider.createExtendedFor(Key.class, "HEALING_CRYSTAL");
+    public static final Key<OptionalValue<EnderCrystal>> HEALING_CRYSTAL = DummyObjectProvider.createExtendedFor(Key.class, "HEALING_CRYSTAL");
 
     /**
      * Represents the {@link Key} for a {@link Living}'s current health.
@@ -1869,7 +1869,7 @@ public final class Keys {
     public static final Key<Value<Boolean>> SHOULD_DROP = DummyObjectProvider.createExtendedFor(Key.class, "SHOULD_DROP");
 
     /**
-     * Represents the {@link Key} for if a {@link EndCrystal} should show it's bottom bedrock platform.
+     * Represents the {@link Key} for if a {@link EnderCrystal} should show it's bottom bedrock platform.
      */
     public static final Key<Value<Boolean>> SHOW_BOTTOM = DummyObjectProvider.createExtendedFor(Key.class, "SHOW_BOTTOM");
 

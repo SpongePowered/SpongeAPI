@@ -32,7 +32,7 @@ import org.spongepowered.math.vector.Vector3d;
 /**
  * Represents an abstract fireball, such as {@link SmallFireball}.
  */
-public interface Fireball extends DamagingProjectile {
+public interface FireballEntity extends DamagingProjectile {
 
     /**
      * {@link Keys#ACCELERATION}

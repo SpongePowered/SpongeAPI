@@ -22,31 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.explosive;
+package org.spongepowered.api.entity.projectile.explosive.fireball;
 
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.OptionalValue;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.math.vector.Vector3i;
+import org.spongepowered.api.entity.explosive.Explosive;
+import org.spongepowered.api.entity.living.monster.Ghast;
+import org.spongepowered.api.entity.projectile.Projectile;
 
 /**
- * Represents an end crystal.
+ * Represents an explosive fireball, such as {@link Projectile profectiles} launched by {@link Ghast ghasts}.
  */
-public interface EndCrystal extends Explosive {
+public interface ExplosiveFireball extends FireballEntity, Explosive {
 
-    /**
-     * {@link Keys#BEAM_TARGET_POSITION}
-     * @return The target position of the beam
-     */
-    default OptionalValue.Mutable<Vector3i> beamTarget() {
-        return this.getValue(Keys.BEAM_TARGET_POSITION).get().asMutable();
-    }
-
-    /**
-     * {@link Keys#SHOW_BOTTOM}
-     * @return The value whether this crystal is showing a bottom "pedestal"
-     */
-    default Value.Mutable<Boolean> showBottom() {
-        return this.getValue(Keys.SHOW_BOTTOM).get().asMutable();
-    }
 }

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity;
 
-import org.spongepowered.api.entity.explosive.EndCrystal;
+import org.spongepowered.api.entity.explosive.EnderCrystal;
 import org.spongepowered.api.entity.explosive.fused.PrimedTNT;
 import org.spongepowered.api.entity.hanging.ItemFrame;
 import org.spongepowered.api.entity.hanging.LeashKnot;
@@ -112,7 +112,7 @@ import org.spongepowered.api.entity.projectile.arrow.Arrow;
 import org.spongepowered.api.entity.projectile.arrow.Trident;
 import org.spongepowered.api.entity.projectile.explosive.fireball.DragonFireball;
 import org.spongepowered.api.entity.projectile.explosive.WitherSkull;
-import org.spongepowered.api.entity.projectile.explosive.fireball.LargeFireball;
+import org.spongepowered.api.entity.projectile.explosive.fireball.ExplosiveFireball;
 import org.spongepowered.api.entity.projectile.explosive.fireball.SmallFireball;
 import org.spongepowered.api.entity.vehicle.Boat;
 import org.spongepowered.api.entity.vehicle.minecart.carrier.ChestMinecart;
@@ -180,7 +180,7 @@ public final class EntityTypes {
 
     public static final EntityType<EnderPearl> ENDER_PEARL = dummy("ENDER_PEARL");
 
-    public static final EntityType<EndCrystal> END_CRYSTAL = dummy("END_CRYSTAL");
+    public static final EntityType<EnderCrystal> END_CRYSTAL = dummy("END_CRYSTAL");
 
     public static final EntityType<Evoker> EVOKER = dummy("EVOKER");
 
@@ -194,7 +194,7 @@ public final class EntityTypes {
 
     public static final EntityType<FallingBlock> FALLING_BLOCK = dummy("FALLING_BLOCK");
 
-    public static final EntityType<LargeFireball> FIREBALL = dummy("FIREBALL");
+    public static final EntityType<ExplosiveFireball> FIREBALL = dummy("FIREBALL");
 
     public static final EntityType<FireworkRocket> FIREWORK_ROCKET = dummy("FIREWORK_ROCKET");
 

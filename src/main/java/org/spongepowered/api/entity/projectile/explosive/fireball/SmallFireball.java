@@ -30,6 +30,6 @@ import org.spongepowered.api.entity.projectile.Projectile;
 /**
  * Represents a smaller fireball, such as {@link Projectile profectiles} launched by {@link Blaze blazes}.
  */
-public interface SmallFireball extends Fireball {
+public interface SmallFireball extends FireballEntity {
 
 }
