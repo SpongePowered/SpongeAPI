@@ -72,7 +72,7 @@ public interface Dimension {
      *
      * @return True if light is provided by the sky, false if not
      */
-    boolean hasSkyLight();
+    boolean hasSkylight();
 
     /**
      * Returns whether this {@link Dimension} contains worlds that are considered surface-like.
