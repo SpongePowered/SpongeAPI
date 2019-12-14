@@ -32,6 +32,7 @@ import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
+import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 /**
  * Called when an entity changes an equipped item. This can occur whenever
@@ -40,6 +41,7 @@ import org.spongepowered.api.item.inventory.Slot;
  * or swapped with an {@link ItemStack}. In the event that a change to the
  * {@link ItemStack}, the use of the {@link Transaction} is recommended.
  */
+@GenerateFactoryMethod
 public interface ChangeEntityEquipmentEvent extends Event, Cancellable {
 
     /**

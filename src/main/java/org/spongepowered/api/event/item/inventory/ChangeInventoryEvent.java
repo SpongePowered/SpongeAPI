@@ -30,7 +30,6 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.item.inventory.Inventory;
-import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
@@ -47,13 +46,6 @@ public interface ChangeInventoryEvent extends Event, AffectSlotEvent {
      * @return The inventory
      */
     Inventory getInventory();
-
-    /**
-     * Fired when a {@link Living} changes it's equipment.
-     */
-    interface Equipment extends ChangeInventoryEvent {
-
-    }
 
     /**
      * Fired when a {@link Living} changes it's held {@link Slot}.
