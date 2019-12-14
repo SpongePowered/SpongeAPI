@@ -89,7 +89,7 @@ public interface User extends DataHolder.Mutable, ArmorEquipable, Tamer, Subject
      *
      * @return The World UUID of this User if found
      */
-    UUID getWorldUniqueId();
+    Optional<UUID> getWorldUniqueId();
 
     /**
      * Sets the position and world of this User.
