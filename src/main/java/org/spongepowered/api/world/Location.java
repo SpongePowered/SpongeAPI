@@ -775,7 +775,7 @@ public final class Location<E extends Extent> implements DataHolder {
 
     @Override
     public int getContentVersion() {
-        return 1;
+        return 2;
     }
 
     @Override
