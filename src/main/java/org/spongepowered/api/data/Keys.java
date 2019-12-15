@@ -81,6 +81,8 @@ import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.data.value.SetValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.WeightedCollectionValue;
+import org.spongepowered.api.effect.particle.ParticleEffect;
+import org.spongepowered.api.effect.particle.ParticleOption;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.effect.potion.PotionEffectType;
@@ -282,8 +284,12 @@ public final class Keys {
     /**
      * Represents the {@link Key} for the particle type of an
      * {@link AreaEffectCloud} created by a lingering potion.
+     *
+     * <p>Only a few {@link ParticleOption}s will be usable for this
+     * effect for specific {@link ParticleType}s and not every
+     * {@link ParticleType} will be applicable.</p>
      */
-    public static final Key<Value<ParticleType>> AREA_EFFECT_CLOUD_PARTICLE_TYPE = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_PARTICLE_TYPE");
+    public static final Key<Value<ParticleEffect>> AREA_EFFECT_CLOUD_PARTICLE_EFFECT = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_PARTICLE_EFFECT");
 
     /**
      * Represents the {@link Key} for the radius of an {@link AreaEffectCloud}.
@@ -1313,7 +1319,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for if an {@link Entity} is currently considered to be on the ground or not.
      */
-    public static final Key<Value<Boolean>> IS_ON_GROUND = DummyObjectProvider.createExtendedFor(Key.class, "IS_ON_GROUND");
+    public static final Key<Value<Boolean>> ON_GROUND = DummyObjectProvider.createExtendedFor(Key.class, "ON_GROUND");
 
     /**
      * Represents the {@link Key} for if a {@link IronGolem} has been created by a {@link Player}.
@@ -1718,9 +1724,9 @@ public final class Keys {
     public static final Key<Value<PickupRule>> PICKUP_RULE = DummyObjectProvider.createExtendedFor(Key.class, "PICKUP_RULE");
 
     /**
-     * Represents the {@link Key} for whether a {@link Pig} is saddled.
+     * Represents the {@link Key} for whether a {@link Entity} is saddled.
      */
-    public static final Key<Value<Boolean>> PIG_SADDLE = DummyObjectProvider.createExtendedFor(Key.class, "PIG_SADDLE");
+    public static final Key<Value<Boolean>> IS_SADDLED = DummyObjectProvider.createExtendedFor(Key.class, "IS_SADDLED");
 
     /**
      * Represents the {@link Key} for which block types an {@link ItemStack}

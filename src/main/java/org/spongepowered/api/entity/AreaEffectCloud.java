@@ -28,6 +28,7 @@ import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.effect.particle.ParticleEffect;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.util.Color;
@@ -55,12 +56,12 @@ public interface AreaEffectCloud extends Entity {
     }
 
     /**
-     * {@link Keys#AREA_EFFECT_CLOUD_PARTICLE_TYPE}
+     * {@link Keys#AREA_EFFECT_CLOUD_PARTICLE_EFFECT}
      * @return The particle type
      * @see org.spongepowered.api.effect.particle.ParticleTypes
      */
-    default Value.Mutable<ParticleType> particleType() {
-        return this.getValue(Keys.AREA_EFFECT_CLOUD_PARTICLE_TYPE).get().asMutable();
+    default Value.Mutable<ParticleEffect> particleEffect() {
+        return this.getValue(Keys.AREA_EFFECT_CLOUD_PARTICLE_EFFECT).get().asMutable();
     }
 
     /**

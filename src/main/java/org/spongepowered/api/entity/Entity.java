@@ -27,7 +27,6 @@ package org.spongepowered.api.entity;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.api.data.value.ListValue;
@@ -387,11 +386,11 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
     }
 
     /**
-     * {@link Keys#IS_ON_GROUND}
+     * {@link Keys#ON_GROUND}
      * @return Whether this entity is on the ground
      */
     default Value.Mutable<Boolean> onGround() {
-        return this.getValue(Keys.IS_ON_GROUND).get().asMutable();
+        return this.getValue(Keys.ON_GROUND).get().asMutable();
     }
 
     /**

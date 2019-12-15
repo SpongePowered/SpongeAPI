@@ -33,11 +33,11 @@ import org.spongepowered.api.data.value.Value;
 public interface Pig extends Animal {
 
     /**
-     * {@link Keys#PIG_SADDLE}
+     * {@link Keys#IS_SADDLED}
      * @return Whether this pig has a saddle, and ready to be ridden
      */
     default Value.Mutable<Boolean> saddled() {
-        return this.getValue(Keys.PIG_SADDLE).get().asMutable();
+        return this.getValue(Keys.IS_SADDLED).get().asMutable();
     }
 
 }
