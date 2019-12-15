@@ -25,8 +25,9 @@
 package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.OptionalValue;
+import org.spongepowered.api.data.value.Value;
 
+import java.util.Optional;
 import java.util.UUID;
 
 public interface TameableAnimal extends Animal {
@@ -35,8 +36,8 @@ public interface TameableAnimal extends Animal {
      * {@link Keys#TAMER}
      * @return The unique id of the tamer
      */
-    default OptionalValue.Mutable<UUID> tamer() {
-        return this.getValue(Keys.TAMER).get().asMutable();
+    default Optional<Value.Mutable<UUID>> tamer() {
+        return this.getValue(Keys.TAMER).map(Value::asMutable);
     }
 
     /**

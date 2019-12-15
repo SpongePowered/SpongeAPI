@@ -32,7 +32,6 @@ import org.spongepowered.api.util.weighted.WeightedTable;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 
@@ -111,32 +110,6 @@ public interface Value<E> {
      * @return The constructed immutable value
      */
     static <E extends Comparable<E>> BoundedValue.Immutable<E> immutableOf(Key<? extends BoundedValue<E>> key, E element) {
-        return genericImmutableOf(key, element).asImmutable();
-    }
-
-    /**
-     * Constructs a mutable {@link OptionalValue} of the appropriate type based
-     * on the given {@link Key} and the element.
-     *
-     * @param key The key
-     * @param element The element
-     * @param <E> The element type
-     * @return The constructed mutable value
-     */
-    static <E> OptionalValue.Mutable<E> mutableOf(Key<? extends OptionalValue<E>> key, Optional<E> element) {
-        return genericMutableOf(key, element).asMutable();
-    }
-
-    /**
-     * Constructs an immutable {@link OptionalValue} of the appropriate type based
-     * on the given {@link Key} and the element.
-     *
-     * @param key The key
-     * @param element The element
-     * @param <E> The element type
-     * @return The constructed immutable value
-     */
-    static <E> OptionalValue.Immutable<E> immutableOf(Key<? extends OptionalValue<E>> key, Optional<E> element) {
         return genericImmutableOf(key, element).asImmutable();
     }
 

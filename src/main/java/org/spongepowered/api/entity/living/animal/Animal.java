@@ -25,13 +25,13 @@
 package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.Ageable;
 import org.spongepowered.api.entity.living.animal.cow.Cow;
 import org.spongepowered.api.item.inventory.ItemStack;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -43,8 +43,8 @@ public interface Animal extends Ageable {
      * {@link Keys#BREEDER}
      * @return The breeder's unique id
      */
-    default OptionalValue.Mutable<UUID> breeder() {
-        return this.getValue(Keys.BREEDER).get().asMutable();
+    default Optional<Value.Mutable<UUID>> breeder() {
+        return this.getValue(Keys.BREEDER).map(Value::asMutable);
     }
 
     /**

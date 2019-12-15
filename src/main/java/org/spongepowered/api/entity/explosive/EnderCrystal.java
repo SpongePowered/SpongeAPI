@@ -25,9 +25,10 @@
 package org.spongepowered.api.entity.explosive;
 
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.math.vector.Vector3i;
+
+import java.util.Optional;
 
 /**
  * Represents an ender crystal.
@@ -38,8 +39,8 @@ public interface EnderCrystal extends Explosive {
      * {@link Keys#BEAM_TARGET_POSITION}
      * @return The target position of the beam
      */
-    default OptionalValue.Mutable<Vector3i> beamTarget() {
-        return this.getValue(Keys.BEAM_TARGET_POSITION).get().asMutable();
+    default Optional<Value.Mutable<Vector3i>> beamTarget() {
+        return this.getValue(Keys.BEAM_TARGET_POSITION).map(Value::asMutable);
     }
 
     /**

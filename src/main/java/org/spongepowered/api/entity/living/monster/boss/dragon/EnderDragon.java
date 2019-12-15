@@ -25,16 +25,17 @@
 package org.spongepowered.api.entity.living.monster.boss.dragon;
 
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.OptionalValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.explosive.EnderCrystal;
 import org.spongepowered.api.entity.living.Aerial;
 import org.spongepowered.api.entity.living.ComplexLiving;
 import org.spongepowered.api.entity.living.Monster;
 import org.spongepowered.api.entity.living.Ranger;
+import org.spongepowered.api.entity.living.monster.boss.Boss;
 import org.spongepowered.api.entity.living.monster.boss.dragon.phase.DragonPhase;
 import org.spongepowered.api.entity.living.monster.boss.dragon.phase.DragonPhaseManager;
-import org.spongepowered.api.entity.living.monster.boss.Boss;
 
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -49,8 +50,8 @@ public interface EnderDragon extends ComplexLiving, Boss, Monster, Aerial, Range
      * {@link Keys#HEALING_CRYSTAL}
      * @return The current crystal healing this dragon
      */
-    default OptionalValue.Mutable<EnderCrystal> healingCrystal() {
-        return this.getValue(Keys.HEALING_CRYSTAL).get().asMutable();
+    default Optional<Value.Mutable<EnderCrystal>> healingCrystal() {
+        return this.getValue(Keys.HEALING_CRYSTAL).map(Value::asMutable);
     }
 
     /**

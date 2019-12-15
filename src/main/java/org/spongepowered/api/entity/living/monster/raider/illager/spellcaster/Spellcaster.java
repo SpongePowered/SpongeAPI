@@ -26,9 +26,10 @@ package org.spongepowered.api.entity.living.monster.raider.illager.spellcaster;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.SpellType;
-import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.monster.raider.illager.Illager;
+
+import java.util.Optional;
 
 public interface Spellcaster extends Illager {
 
@@ -37,8 +38,8 @@ public interface Spellcaster extends Illager {
      * @return The current spell being casted
      * @see org.spongepowered.api.data.type.SpellTypes
      */
-    default OptionalValue.Mutable<SpellType> currentSpell() {
-        return this.getValue(Keys.CURRENT_SPELL).get().asMutable();
+    default Optional<Value.Mutable<SpellType>> currentSpell() {
+        return this.getValue(Keys.CURRENT_SPELL).map(Value::asMutable);
     }
 
     /**

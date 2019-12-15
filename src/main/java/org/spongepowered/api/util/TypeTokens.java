@@ -57,7 +57,6 @@ import org.spongepowered.api.data.type.WoodType;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.MapValue;
-import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.data.value.SetValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.WeightedCollectionValue;
@@ -274,25 +273,9 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<CatType>> OCELOT_VALUE_TOKEN = new TypeToken<Value<CatType>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<Optional<Double>> OPTIONAL_DOUBLE_TOKEN = new TypeToken<Optional<Double>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<EntitySnapshot> ENTITY_SNAPSHOT_TOKEN = new TypeToken<EntitySnapshot>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<OptionalValue<Double>> OPTIONAL_DOUBLE_VALUE_TOKEN = new TypeToken<OptionalValue<Double>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Optional<EntitySnapshot>> OPTIONAL_ENTITY_SNAPSHOT_TOKEN = new TypeToken<Optional<EntitySnapshot>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<OptionalValue<EntitySnapshot>> OPTIONAL_ENTITY_SNAPSHOT_VALUE_TOKEN = new TypeToken<OptionalValue<EntitySnapshot>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Optional<PotionEffectType>> OPTIONAL_POTION_TOKEN = new TypeToken<Optional<PotionEffectType>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<OptionalValue<PotionEffectType>> OPTIONAL_POTION_VALUE_TOKEN = new TypeToken<OptionalValue<PotionEffectType>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Optional<Text>> OPTIONAL_TEXT_TOKEN = new TypeToken<Optional<Text>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<OptionalValue<Text>> OPTIONAL_TEXT_VALUE_TOKEN = new TypeToken<OptionalValue<Text>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Optional<UUID>> OPTIONAL_UUID_TOKEN = new TypeToken<Optional<UUID>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<OptionalValue<UUID>> OPTIONAL_UUID_VALUE_TOKEN = new TypeToken<OptionalValue<UUID>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<PotionEffectType> POTION_EFFECT_TYPE_TOKEN = new TypeToken<PotionEffectType>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<ParrotType> PARROT_TYPE_TOKEN = new TypeToken<ParrotType>() {private static final long serialVersionUID = -1;};
 

@@ -25,8 +25,10 @@
 package org.spongepowered.api.block.entity.carrier;
 
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.OptionalValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.effect.potion.PotionEffectType;
+
+import java.util.Optional;
 
 /**
  * Represents a Beacon.
@@ -46,23 +48,23 @@ public interface Beacon extends CarrierBlockEntity {
     int getCompletedLevels();
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.OptionalValue.Mutable} for the primary
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the primary
      * {@link PotionEffectType}.
      *
      * @return The optional value for the primary potion effect
      */
-    default OptionalValue.Mutable<PotionEffectType> primaryEffect() {
-        return getValue(Keys.BEACON_PRIMARY_EFFECT).get().asMutable();
+    default Optional<Value.Mutable<PotionEffectType>> primaryEffect() {
+        return this.getValue(Keys.BEACON_PRIMARY_EFFECT).map(Value::asMutable);
     }
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.OptionalValue.Mutable} for the secondary
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the secondary
      * {@link PotionEffectType}.
      *
      * @return The optional value for the secondary potion effect
      */
-    default OptionalValue.Mutable<PotionEffectType> secondaryEffect() {
-        return getValue(Keys.BEACON_SECONDARY_EFFECT).get().asMutable();
+    default Optional<Value.Mutable<PotionEffectType>> secondaryEffect() {
+        return this.getValue(Keys.BEACON_SECONDARY_EFFECT).map(Value::asMutable);
     }
 
 }

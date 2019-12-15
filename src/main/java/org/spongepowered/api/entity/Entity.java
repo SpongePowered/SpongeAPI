@@ -30,7 +30,6 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.api.data.value.ListValue;
-import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.text.Text;
@@ -373,16 +372,16 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
      * {@link Keys#VEHICLE}
      * @return The vehicle this entity may be riding
      */
-    default OptionalValue.Mutable<Entity> vehicle() {
-        return this.getValue(Keys.VEHICLE).get().asMutable();
+    default Optional<Value.Mutable<Entity>> vehicle() {
+        return this.getValue(Keys.VEHICLE).map(Value::asMutable);
     }
 
     /**
      * {@link Keys#BASE_VEHICLE}
      * @return The "base vehicle" of the entity vehicle riding chain
      */
-    default OptionalValue.Mutable<Entity> baseVehicle() {
-        return this.getValue(Keys.BASE_VEHICLE).get().asMutable();
+    default Optional<Value.Mutable<Entity>> baseVehicle() {
+        return this.getValue(Keys.BASE_VEHICLE).map(Value::asMutable);
     }
 
     /**
@@ -413,15 +412,15 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
      * {@link Keys#CREATOR}
      * @return The unique id of the creator of this entity
      */
-    default OptionalValue.Mutable<UUID> creator() {
-        return this.getValue(Keys.CREATOR).get().asMutable();
+    default Optional<Value.Mutable<UUID>> creator() {
+        return this.getValue(Keys.CREATOR).map(Value::asMutable);
     }
 
     /**
      * {@link Keys#NOTIFIER}
      * @return The unique id of the notifier of this entity
      */
-    default OptionalValue.Mutable<UUID> notifier() {
-        return this.getValue(Keys.NOTIFIER).get().asMutable();
+    default Optional<Value.Mutable<UUID>> notifier() {
+        return this.getValue(Keys.NOTIFIER).map(Value::asMutable);
     }
 }

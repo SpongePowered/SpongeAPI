@@ -25,7 +25,6 @@
 package org.spongepowered.api.block.entity;
 
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.text.Text;
@@ -50,7 +49,7 @@ public interface CommandBlock extends BlockEntity, Subject, MessageReceiver, Nam
      * @return The command
      */
     default Value.Mutable<String> storedCommand() {
-        return getValue(Keys.COMMAND).get().asMutable();
+        return this.getValue(Keys.COMMAND).get().asMutable();
     }
 
     /**
@@ -66,7 +65,7 @@ public interface CommandBlock extends BlockEntity, Subject, MessageReceiver, Nam
      * @return The last success count
      */
     default Value.Mutable<Integer> successCount() {
-        return getValue(Keys.SUCCESS_COUNT).get().asMutable();
+        return this.getValue(Keys.SUCCESS_COUNT).get().asMutable();
     }
 
     /**
@@ -76,7 +75,7 @@ public interface CommandBlock extends BlockEntity, Subject, MessageReceiver, Nam
      * @return Whether the command output is tracked
      */
     default Value.Mutable<Boolean> doesTrackOutput() {
-        return getValue(Keys.TRACKS_OUTPUT).get().asMutable();
+        return this.getValue(Keys.TRACKS_OUTPUT).get().asMutable();
     }
 
     /**
@@ -87,7 +86,7 @@ public interface CommandBlock extends BlockEntity, Subject, MessageReceiver, Nam
      *
      * @return The last command output, if available
      */
-    default OptionalValue.Mutable<Text> lastOutput() {
-        return getValue(Keys.LAST_COMMAND_OUTPUT).get().asMutable();
+    default Optional<Value.Mutable<Text>> lastOutput() {
+        return this.getValue(Keys.LAST_COMMAND_OUTPUT).map(Value::asMutable);
     }
 }

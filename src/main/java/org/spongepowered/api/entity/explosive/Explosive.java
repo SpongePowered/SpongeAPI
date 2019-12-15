@@ -25,8 +25,10 @@
 package org.spongepowered.api.entity.explosive;
 
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.OptionalValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
+
+import java.util.Optional;
 
 /**
  * Represents an explosive entity that explodes.
@@ -37,8 +39,8 @@ public interface Explosive extends Entity {
      * {@link Keys#EXPLOSION_RADIUS}
      * @return The explosion radius
      */
-    default OptionalValue.Mutable<Integer> explosionRadius() {
-        return this.getValue(Keys.EXPLOSION_RADIUS).get().asMutable();
+    default Optional<Value.Mutable<Integer>> explosionRadius() {
+        return this.getValue(Keys.EXPLOSION_RADIUS).map(Value::asMutable);
     }
 
     /**

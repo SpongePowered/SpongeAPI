@@ -77,7 +77,6 @@ import org.spongepowered.api.data.type.WoodType;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.MapValue;
-import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.data.value.SetValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.WeightedCollectionValue;
@@ -425,28 +424,28 @@ public final class Keys {
      * vehicle an {@link Entity} is riding may itself be the passenger of
      * another vehicle.
      */
-    public static final Key<OptionalValue<Entity>> BASE_VEHICLE = DummyObjectProvider.createExtendedFor(Key.class, "BASE_VEHICLE");
+    public static final Key<Value<Entity>> BASE_VEHICLE = DummyObjectProvider.createExtendedFor(Key.class, "BASE_VEHICLE");
 
     /**
      * Represents the {@link Key} for a {@link Beacon}'s primary effect.
      */
-    public static final Key<OptionalValue<PotionEffectType>> BEACON_PRIMARY_EFFECT = DummyObjectProvider.createExtendedFor(Key.class, "BEACON_PRIMARY_EFFECT");
+    public static final Key<Value<PotionEffectType>> BEACON_PRIMARY_EFFECT = DummyObjectProvider.createExtendedFor(Key.class, "BEACON_PRIMARY_EFFECT");
 
     /**
      * Represents the {@link Key} for a {@link Beacon}'s secondary effect.
      */
-    public static final Key<OptionalValue<PotionEffectType>> BEACON_SECONDARY_EFFECT = DummyObjectProvider.createExtendedFor(Key.class, "BEACON_SECONDARY_EFFECT");
+    public static final Key<Value<PotionEffectType>> BEACON_SECONDARY_EFFECT = DummyObjectProvider.createExtendedFor(Key.class, "BEACON_SECONDARY_EFFECT");
 
     /**
      * Represents the {@link Key} for the {@link Living} who is being targeted by a
      * {@link Guardian}.
      */
-    public static final Key<OptionalValue<Living>> BEAM_TARGET_ENTITY = DummyObjectProvider.createExtendedFor(Key.class, "BEAM_TARGET_ENTITY");
+    public static final Key<Value<Living>> BEAM_TARGET_ENTITY = DummyObjectProvider.createExtendedFor(Key.class, "BEAM_TARGET_ENTITY");
 
     /**
      * Represents the {@link Key} for a {@link EnderCrystal}'s beam target.
      */
-    public static final Key<OptionalValue<Vector3i>> BEAM_TARGET_POSITION = DummyObjectProvider.createExtendedFor(Key.class, "BEAM_TARGET_POSITION");
+    public static final Key<Value<Vector3i>> BEAM_TARGET_POSITION = DummyObjectProvider.createExtendedFor(Key.class, "BEAM_TARGET_POSITION");
 
     /**
      * Represents the {@link Key} for the pore sides
@@ -556,7 +555,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for the current breeder of an {@link Animal}, usually a {@link Player}.
      */
-    public static final Key<OptionalValue<UUID>> BREEDER = DummyObjectProvider.createExtendedFor(Key.class, "BREEDER");
+    public static final Key<Value<UUID>> BREEDER = DummyObjectProvider.createExtendedFor(Key.class, "BREEDER");
 
     /**
      * Represents the {@link Key} for the breed time of an {@link Animal}.
@@ -686,7 +685,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for the creator, usually of an {@link Entity}. It is up to the implementation to define.
      */
-    public static final Key<OptionalValue<UUID>> CREATOR = DummyObjectProvider.createExtendedFor(Key.class, "CREATOR");
+    public static final Key<Value<UUID>> CREATOR = DummyObjectProvider.createExtendedFor(Key.class, "CREATOR");
 
     /**
      * Represents the {@link Key} for whether the next attack of an
@@ -697,7 +696,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} of the current {@link SpellType} a {@link Spellcaster} is casting.
      */
-    public static final Key<OptionalValue<SpellType>> CURRENT_SPELL = DummyObjectProvider.createExtendedFor(Key.class, "CURRENT_SPELL");
+    public static final Key<Value<SpellType>> CURRENT_SPELL = DummyObjectProvider.createExtendedFor(Key.class, "CURRENT_SPELL");
 
     /**
      * Represents the {@link Key} for the damage dealt towards entities of a
@@ -745,7 +744,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for the detonator of a {@link PrimedTNT}.
      */
-    public static final Key<OptionalValue<Living>> DETONATOR = DummyObjectProvider.createExtendedFor(Key.class, "DETONATOR");
+    public static final Key<Value<Living>> DETONATOR = DummyObjectProvider.createExtendedFor(Key.class, "DETONATOR");
 
     /**
      * Represents the {@link Key} for representing the {@link Direction} a {@link BlockState}, {@link Hanging}, or {@link Shulker} is facing or the
@@ -899,7 +898,7 @@ public final class Keys {
      * determined randomly at the time of the explosion or computed from the
      * context in which the {@link Explosive} explodes.</p>
      */
-    public static final Key<OptionalValue<Integer>> EXPLOSION_RADIUS = DummyObjectProvider.createExtendedFor(Key.class, "EXPLOSION_RADIUS");
+    public static final Key<Value<Integer>> EXPLOSION_RADIUS = DummyObjectProvider.createExtendedFor(Key.class, "EXPLOSION_RADIUS");
 
     /**
      * Represents the {@link Key} for representing whether a {@link Piston} is
@@ -963,7 +962,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for a {@link Fox fox's} first trusted {@link UUID}, usually a {@link Player}.
      */
-    public static final Key<OptionalValue<UUID>> FIRST_TRUSTED = DummyObjectProvider.createExtendedFor(Key.class, "FIRST_TRUSTED");
+    public static final Key<Value<UUID>> FIRST_TRUSTED = DummyObjectProvider.createExtendedFor(Key.class, "FIRST_TRUSTED");
 
     /**
      * Represents the {@link Key} for representing the
@@ -1062,7 +1061,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for the {@link EnderCrystal} currently healing an {@link EnderDragon}.
      */
-    public static final Key<OptionalValue<EnderCrystal>> HEALING_CRYSTAL = DummyObjectProvider.createExtendedFor(Key.class, "HEALING_CRYSTAL");
+    public static final Key<Value<EnderCrystal>> HEALING_CRYSTAL = DummyObjectProvider.createExtendedFor(Key.class, "HEALING_CRYSTAL");
 
     /**
      * Represents the {@link Key} for a {@link Living}'s current health.
@@ -1488,7 +1487,7 @@ public final class Keys {
      * Represents the {@link Key} for the output yielded by the last command of
      * a {@link CommandBlock}.
      */
-    public static final Key<OptionalValue<Text>> LAST_COMMAND_OUTPUT = DummyObjectProvider.createExtendedFor(Key.class, "LAST_COMMAND_OUTPUT");
+    public static final Key<Value<Text>> LAST_COMMAND_OUTPUT = DummyObjectProvider.createExtendedFor(Key.class, "LAST_COMMAND_OUTPUT");
 
     /**
      * Represents the {@link Key} for the last time a {@link User} has been
@@ -1640,7 +1639,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for the notifier, usually of an {@link Entity}. It is up to the implementation to define.
      */
-    public static final Key<OptionalValue<UUID>> NOTIFIER = DummyObjectProvider.createExtendedFor(Key.class, "NOTIFIER");
+    public static final Key<Value<UUID>> NOTIFIER = DummyObjectProvider.createExtendedFor(Key.class, "NOTIFIER");
 
     /**
      * Represents the {@link Key} for representing the "occupied" state of
@@ -1806,7 +1805,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for the wave number of a raid.
      */
-    public static final Key<OptionalValue<Integer>> RAID_WAVE = DummyObjectProvider.createExtendedFor(Key.class, "RAID_WAVE");
+    public static final Key<Value<Integer>> RAID_WAVE = DummyObjectProvider.createExtendedFor(Key.class, "RAID_WAVE");
 
     /**
      * Represents the {@link Key} for representing the {@link RailDirection}
@@ -1883,7 +1882,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for a {@link Fox fox's} second trusted {@link UUID}, usually a {@link Player}.
      */
-    public static final Key<OptionalValue<UUID>> SECOND_TRUSTED = DummyObjectProvider.createExtendedFor(Key.class, "SECOND_TRUSTED");
+    public static final Key<Value<UUID>> SECOND_TRUSTED = DummyObjectProvider.createExtendedFor(Key.class, "SECOND_TRUSTED");
 
     /**
      * Represents the {@link Key} for representing the "should drop" state
@@ -1995,7 +1994,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for the {@link Entity target} of the spectator camera of a {@link Player}.
      */
-    public static final Key<OptionalValue<Entity>> SPECTATOR_TARGET = DummyObjectProvider.createExtendedFor(Key.class, "SPECTATOR_TARGET");
+    public static final Key<Value<Entity>> SPECTATOR_TARGET = DummyObjectProvider.createExtendedFor(Key.class, "SPECTATOR_TARGET");
 
     /**
      * Represents the {@link Key} for representing the {@link StairShape}
@@ -2104,7 +2103,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for the tamer of a {@link TameableAnimal} or {@link HorseEntity}.
      */
-    public static final Key<OptionalValue<UUID>> TAMER = DummyObjectProvider.createExtendedFor(Key.class, "TAMER");
+    public static final Key<Value<UUID>> TAMER = DummyObjectProvider.createExtendedFor(Key.class, "TAMER");
 
     /**
      * Represents the {@link Key} for a {@link Wither}'s targets.
@@ -2115,7 +2114,7 @@ public final class Keys {
      * Represents the {@link Key} for a targeted entity either by an {@link Agent} and it's
      * {@link GoalExecutorTypes#TARGET} selector or by a {@link FishingBobber} or {@link ShulkerBullet}.
      */
-    public static final Key<OptionalValue<Entity>> TARGET_ENTITY = DummyObjectProvider.createExtendedFor(Key.class, "TARGET_ENTITY");
+    public static final Key<Value<Entity>> TARGET_ENTITY = DummyObjectProvider.createExtendedFor(Key.class, "TARGET_ENTITY");
 
     /**
      * Represents the {@link Key} for the location targeted by an
@@ -2126,7 +2125,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for a {@link Vector3i} that is currently a target. Example usage is a {@link Patroller}'s patrol target.
      */
-    public static final Key<OptionalValue<Vector3i>> TARGET_POSITION = DummyObjectProvider.createExtendedFor(Key.class, "TARGET_POSITION");
+    public static final Key<Value<Vector3i>> TARGET_POSITION = DummyObjectProvider.createExtendedFor(Key.class, "TARGET_POSITION");
 
     /**
      * Represents the {@link Key} for the remaining fuse time in ticks of a
@@ -2246,7 +2245,7 @@ public final class Keys {
      * <p>Vehicles may be nested as a vehicle might itself ride another entity.
      * To get the vehicle on bottom, use {@link Keys#BASE_VEHICLE}.</p>
      */
-    public static final Key<OptionalValue<Entity>> VEHICLE = DummyObjectProvider.createExtendedFor(Key.class, "VEHICLE");
+    public static final Key<Value<Entity>> VEHICLE = DummyObjectProvider.createExtendedFor(Key.class, "VEHICLE");
 
     /**
      * Represents the {@link Key} for the velocity of an {@link Entity}.
@@ -2303,7 +2302,7 @@ public final class Keys {
      * Represents the {@link Key} for the {@link Sheep} who is being targeted by the {@link SpellTypes#WOLOLO}
      * spell being casted by an {@link Evoker}
      */
-    public static final Key<OptionalValue<Sheep>> WOLOLO_TARGET = DummyObjectProvider.createExtendedFor(Key.class, "WOLOLO_TARGET");
+    public static final Key<Value<Sheep>> WOLOLO_TARGET = DummyObjectProvider.createExtendedFor(Key.class, "WOLOLO_TARGET");
 
     /**
      * Represents the {@link Key} for the {@link WoodType} of a {@link Boat}.

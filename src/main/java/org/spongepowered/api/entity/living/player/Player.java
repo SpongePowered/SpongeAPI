@@ -29,7 +29,6 @@ import org.spongepowered.api.entity.living.player.client.ClientPlayer;
 import org.spongepowered.api.world.client.ClientWorld;
 import org.spongepowered.api.entity.living.player.client.RemotePlayer;
 import org.spongepowered.api.entity.living.player.client.LocalPlayer;
-import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.advancement.Advancement;
 import org.spongepowered.api.advancement.AdvancementProgress;
@@ -272,8 +271,8 @@ public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver,
      */
     boolean respawnPlayer();
 
-    default OptionalValue.Mutable<Entity> spectatorTarget() {
-        return this.getValue(Keys.SPECTATOR_TARGET).get().asMutable();
+    default Optional<Value.Mutable<Entity>> spectatorTarget() {
+        return this.getValue(Keys.SPECTATOR_TARGET).map(Value::asMutable);
     }
 
     /**
@@ -286,9 +285,9 @@ public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver,
     Optional<WorldBorder> getWorldBorder();
 
     /**
-     * Sets the {@link WorldBorder} instance for this player to the given world 
+     * Sets the {@link WorldBorder} instance for this player to the given world
      * border. If {@code null} is passed, the world border is unset.
-     * 
+     *
      * @param border The world border to be used, may be {@code null}
      * @param cause The cause of the border's change
      */

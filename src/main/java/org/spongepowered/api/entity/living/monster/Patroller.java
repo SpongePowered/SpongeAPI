@@ -25,10 +25,11 @@
 package org.spongepowered.api.entity.living.monster;
 
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Monster;
 import org.spongepowered.math.vector.Vector3i;
+
+import java.util.Optional;
 
 public interface Patroller extends Monster {
 
@@ -36,8 +37,8 @@ public interface Patroller extends Monster {
      * {@link Keys#TARGET_POSITION}
      * @return The target position for a patrol
      */
-    default OptionalValue.Mutable<Vector3i> targetPosition() {
-        return this.getValue(Keys.TARGET_POSITION).get().asMutable();
+    default Optional<Value.Mutable<Vector3i>> targetPosition() {
+        return this.getValue(Keys.TARGET_POSITION).map(Value::asMutable);
     }
 
     /**

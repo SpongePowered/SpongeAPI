@@ -26,9 +26,9 @@ package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.FoxType;
-import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.data.value.Value;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -49,16 +49,16 @@ public interface Fox extends Animal {
      * {@link Keys#FIRST_TRUSTED}
      * @return The first trusted unique id
      */
-    default OptionalValue.Mutable<UUID> firstTrusted() {
-        return this.getValue(Keys.FIRST_TRUSTED).get().asMutable();
+    default Optional<Value.Mutable<UUID>> firstTrusted() {
+        return this.getValue(Keys.FIRST_TRUSTED).map(Value::asMutable);
     }
 
     /**
      * {@link Keys#SECOND_TRUSTED}
      * @return The second trusted uuid
      */
-    default OptionalValue.Mutable<UUID> secondTrusted() {
-        return this.getValue(Keys.SECOND_TRUSTED).get().asMutable();
+    default Optional<Value.Mutable<UUID>> secondTrusted() {
+        return this.getValue(Keys.SECOND_TRUSTED).map(Value::asMutable);
     }
 
     /**

@@ -25,8 +25,10 @@
 package org.spongepowered.api.entity.living.monster.raider.illager.spellcaster;
 
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.OptionalValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.animal.Sheep;
+
+import java.util.Optional;
 
 /**
  * Represents an Evoker.
@@ -37,7 +39,7 @@ public interface Evoker extends Spellcaster {
      * {@link Keys#WOLOLO_TARGET}
      * @return The targeted sheep being herded
      */
-    default OptionalValue.Mutable<Sheep> wololoTarget() {
-        return this.getValue(Keys.WOLOLO_TARGET).get().asMutable();
+    default Optional<Value.Mutable<Sheep>> wololoTarget() {
+        return this.getValue(Keys.WOLOLO_TARGET).map(Value::asMutable);
     }
 }
