@@ -29,11 +29,10 @@ import org.spongepowered.api.entity.ai.goal.Goal;
 import org.spongepowered.api.entity.ai.goal.GoalBuilder;
 import org.spongepowered.api.entity.living.Agent;
 
-public interface SwimmingGoal extends Goal<Agent> {
+public interface LookRandomlyGoal extends Goal<Agent> {
 
     /**
-     * Creates a new {@link Builder} to build a new
-     * {@link SwimmingGoal}.
+     * Creates a new {@link Builder} to build a new {@link LookRandomlyGoal}.
      *
      * @return A new builder
      */
@@ -41,29 +40,7 @@ public interface SwimmingGoal extends Goal<Agent> {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
-    /**
-     * Gets the chance that the owning {@link Agent} will perform
-     * a "jump". The chance is limited between {@code 0} and {@code 1},
-     * to where the higher the chance, the more likely the entity will
-     * "jump" to appear "swimming".
-     *
-     * @return The chance that the owning entity will "swim"
-     */
-    float getSwimChance();
-
-    /**
-     * Sets the chance that the owning {@link Agent} will perform
-     * a "jump". The chance is limited between {@code 0} and {@code 1},
-     * to where the higher the chance, the more likely the entity will
-     * "jump" to appear "swimming".
-     *
-     * @param chance The chance that the entity will "swim"
-     */
-    void setSwimChance(float chance);
-
-    interface Builder extends GoalBuilder<Agent, SwimmingGoal, Builder> {
-
-        Builder swimChance(float chance);
+    interface Builder extends GoalBuilder<Agent, LookRandomlyGoal, Builder> {
 
     }
 }

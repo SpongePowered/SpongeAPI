@@ -60,7 +60,7 @@ public interface TargetGoal<A extends TargetGoal<A>> extends Goal<Creature> {
      *
      * @return Whether only nearby entities can be targeted
      */
-    boolean onlyNearby();
+    boolean shouldCheckOnlyNearby();
 
     /**
      * Sets whether an {@link Entity} can only be targeted within a "short"
@@ -69,13 +69,13 @@ public interface TargetGoal<A extends TargetGoal<A>> extends Goal<Creature> {
      * @param nearby Whether only nearby entities can be targeted
      * @return This goal, for chaining
      */
-    A setOnlyNearby(boolean nearby);
+    A setCheckOnlyNearby(boolean nearby);
 
     interface Builder<A extends TargetGoal<A>, B extends Builder<A, B>> extends GoalBuilder<Creature, A, B> {
 
-        B checkSight();
+        B checkSight(boolean state);
 
-        B onlyNearby();
+        B checkOnlyNearby(boolean state);
 
         @Override
         B reset();

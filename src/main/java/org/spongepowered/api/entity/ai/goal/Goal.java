@@ -49,7 +49,7 @@ public interface Goal<O extends Agent> {
      *
      * @return The goal or {@link Optional#empty()} if not present
      */
-    Optional<GoalExecutor<O>> getGoal();
+    Optional<GoalExecutor<O>> getExecutor();
 
     /**
      * Gets the {@link Agent} that owns this goal, if any.
@@ -57,7 +57,7 @@ public interface Goal<O extends Agent> {
      * @return The owner or {@link Optional#empty()} if not present
      */
     default Optional<O> getOwner() {
-        return getGoal().map(GoalExecutor::getOwner);
+        return getExecutor().map(GoalExecutor::getOwner);
     }
 
     /**
@@ -69,7 +69,7 @@ public interface Goal<O extends Agent> {
      *
      * <ol>
      *   <li>This task has higher priority than the provided goal for our
-     *   {@link Goal#getGoal()}.</li>
+     *   {@link Goal#getExecutor()}.</li>
      *   <li>Returning "false" will remove the provided goal from the list of
      *   updated goals, if not there already.</li>
      *   <li>Returning "true" will add the provided task to the list of updated

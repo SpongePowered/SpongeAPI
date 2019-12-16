@@ -29,12 +29,13 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.ai.goal.Goal;
 import org.spongepowered.api.entity.ai.goal.GoalBuilder;
 import org.spongepowered.api.entity.living.Agent;
+import org.spongepowered.api.entity.living.Living;
 
-public interface WatchClosestGoal extends Goal<Agent> {
+public interface LookAtGoal extends Goal<Agent> {
 
     /**
      * Creates a new {@link Builder} to build a new
-     * {@link WatchClosestGoal}.
+     * {@link LookAtGoal}.
      *
      * @return A new builder
      */
@@ -43,60 +44,59 @@ public interface WatchClosestGoal extends Goal<Agent> {
     }
 
     /**
-     * Gets the {@link Class} of the {@link Entity} type to "stare" or
+     * Gets the {@link Class} of the {@link Living} type to "stare" or
      * "watch" when that type of entity is nearby.
      *
      * @return The class of entity to "watch"
      */
-    Class<? extends Entity> getWatchedClass();
+    Class<? extends Living> getWatchedClass();
 
     /**
-     * Sets the {@link Class} of the {@link Entity} type to "stare" or
+     * Sets the {@link Class} of the {@link Living} type to "stare" or
      * "watch" when that type of entity is nearby.
      *
      * @param watchedClass The class of entity to "watch"
      * @return This goal, for chaining
      */
-    WatchClosestGoal setWatchedClass(Class<? extends Entity> watchedClass);
+    LookAtGoal setWatchedClass(Class<? extends Living> watchedClass);
 
     /**
-     * Gets the maximum distance to "watch" a targeted {@link Entity}.
+     * Gets the maximum distance to "watch" a targeted {@link Living}.
      *
      * @return The distance to watch a targeted entity
      */
     float getMaxDistance();
 
     /**
-     * Sets the maximum distance to "watch" a targeted {@link Entity}.
+     * Sets the maximum distance to "watch" a targeted {@link Living}.
      *
      * @param maxDistance The maximum distance to watch an entity
      * @return This goal, for chaining
      */
-    WatchClosestGoal setMaxDistance(float maxDistance);
+    LookAtGoal setMaxDistance(float maxDistance);
 
     /**
      * Gets the chance that an {@link Entity} will "watch" a targeted
-     * {@link Entity}.
+     * {@link Living}.
      *
      * @return The chance to watch
      */
     float getChance();
 
     /**
-     * SEts the chance to "watch" a targeted {@link Entity}.
+     * SEts the chance to "watch" a targeted {@link Living}.
      *
      * @param chance The chance to "watch"
      * @return This goal, for chaining
      */
-    WatchClosestGoal setChance(float chance);
+    LookAtGoal setChance(float chance);
 
-    interface Builder extends GoalBuilder<Agent, WatchClosestGoal, Builder> {
+    interface Builder extends GoalBuilder<Agent, LookAtGoal, Builder> {
 
-        Builder watch(Class<? extends Entity> watchClass);
+        Builder watch(Class<? extends Living> watchClass);
 
         Builder maxDistance(float maxDistance);
 
         Builder chance(float chance);
-
     }
 }

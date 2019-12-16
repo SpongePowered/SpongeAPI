@@ -25,18 +25,18 @@
 package org.spongepowered.api.entity.ai.goal.builtin.creature;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.ai.goal.Goal;
 import org.spongepowered.api.entity.ai.goal.GoalBuilder;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Creature;
+import org.spongepowered.api.entity.living.Living;
 
 import java.util.function.Predicate;
 
-public interface AvoidEntityGoal extends Goal<Creature> {
+public interface AvoidLivingGoal extends Goal<Creature> {
 
     /**
-     * Creates a new {@link Builder} for creating a new {@link AvoidEntityGoal}.
+     * Creates a new {@link Builder} for creating a new {@link AvoidLivingGoal}.
      *
      * @return A new builder
      */
@@ -45,26 +45,26 @@ public interface AvoidEntityGoal extends Goal<Creature> {
     }
 
     /**
-     * Gets the {@link Predicate} for filtering which {@link Entity} instances
+     * Gets the {@link Predicate} for filtering which {@link Living} instances
      * are qualified to have the owning {@link Agent} move away from the
-     * {@link Entity} of which the {@link Predicate#test(Object)} returns
+     * {@link Living} of which the {@link Predicate#test(Object)} returns
      * {@code true}.
      *
      * @return The predicate used to filter which entities to avoid
      */
-    Predicate<Entity> getTargetSelector();
+    Predicate<Living> getTargetSelector();
 
     /**
-     * Sets the {@link Predicate} for filtering which {@link Entity} instances
+     * Sets the {@link Predicate} for filtering which {@link Living} instances
      * are considered to be "avoided" by the owning {@link Agent}.
      *
      * @param predicate The predicate
      * @return This task, for chaining
      */
-    AvoidEntityGoal setTargetSelector(Predicate<Entity> predicate);
+    AvoidLivingGoal setTargetSelector(Predicate<Living> predicate);
 
     /**
-     * Gets the search distance at which any {@link Entity} instances in a
+     * Gets the search distance at which any {@link Living} instances in a
      * radius of the parent {@link Agent} are considered for avoiding.
      *
      * @return The search distance
@@ -72,17 +72,17 @@ public interface AvoidEntityGoal extends Goal<Creature> {
     float getSearchDistance();
 
     /**
-     * Sets the search distance at which any {@link Entity} instances in a
+     * Sets the search distance at which any {@link Living} instances in a
      * radius of the parent {@link Agent} are considered for avoiding.
      *
      * @param distance The search distance
      * @return This task, for chaining
      */
-    AvoidEntityGoal setSearchDistance(float distance);
+    AvoidLivingGoal setSearchDistance(float distance);
 
     /**
      * Gets the speed "modifier" for which the parent {@link Agent} will
-     * move away from a found {@link Entity} to "avoid" when in close
+     * move away from a found {@link Living} to "avoid" when in close
      * range. Close range is currently defined as {@code 7} blocks.
      *
      * @return The close range movement speed modifier
@@ -91,17 +91,17 @@ public interface AvoidEntityGoal extends Goal<Creature> {
 
     /**
      * Sets the peed "modifier" for which the parent {@link Agent} will
-     * move away from a found {@link Entity} to "avoid" when in close
+     * move away from a found {@link Living} to "avoid" when in close
      * range. Close range is currently defined as {@code 7} blocks.
      *
      * @param speed The movement speed modifier
      * @return This task, for chaining
      */
-    AvoidEntityGoal setCloseRangeSpeed(double speed);
+    AvoidLivingGoal setCloseRangeSpeed(double speed);
 
     /**
      * Gets the close range speed "modifier" for which the parent {@link Agent}
-     * will move away from a found {@link Entity} to "avoid" when in
+     * will move away from a found {@link Living} to "avoid" when in
      * a farther range than 7 blocks.
      *
      * @return The close range speed
@@ -110,27 +110,27 @@ public interface AvoidEntityGoal extends Goal<Creature> {
 
     /**
      * Sets the close range speed "modifier" for which the parent {@link Agent}
-     * will move away from a found {@link Entity} to "avoid" when in
+     * will move away from a found {@link Living} to "avoid" when in
      * a farther range than 7 blocks.
      *
      * @param speed The movement speed modifier
      * @return This task, for chaining
      */
-    AvoidEntityGoal setFarRangeSpeed(double speed);
+    AvoidLivingGoal setFarRangeSpeed(double speed);
 
-    interface Builder extends GoalBuilder<Creature, AvoidEntityGoal, Builder> {
+    interface Builder extends GoalBuilder<Creature, AvoidLivingGoal, Builder> {
 
         /**
-         * Sets the {@link Predicate} for filtering which {@link Entity} instances
+         * Sets the {@link Predicate} for filtering which {@link Living} instances
          * are considered to be "avoided" by the owning {@link Agent}.
          *
          * @param predicate The predicate
          * @return This builder, for chaining
          */
-        Builder targetSelector(Predicate<Entity> predicate);
+        Builder targetSelector(Predicate<Living> predicate);
 
         /**
-         * Sets the search distance at which any {@link Entity} instances in a
+         * Sets the search distance at which any {@link Living} instances in a
          * radius of the parent {@link Agent} are considered for avoiding.
          *
          * @param distance The search distance
@@ -140,7 +140,7 @@ public interface AvoidEntityGoal extends Goal<Creature> {
 
         /**
          * Sets the peed "modifier" for which the parent {@link Agent} will
-         * move away from a found {@link Entity} to "avoid" when in close
+         * move away from a found {@link Living} to "avoid" when in close
          * range. Close range is currently defined as {@code 7} blocks.
          *
          * @param speed The movement speed modifier
@@ -150,13 +150,12 @@ public interface AvoidEntityGoal extends Goal<Creature> {
 
         /**
          * Sets the close range speed "modifier" for which the parent {@link Agent}
-         * will move away from a found {@link Entity} to "avoid" when in
+         * will move away from a found {@link Living} to "avoid" when in
          * a farther range than 7 blocks.
          *
          * @param speed The movement speed modifier
          * @return This builder, for chaining
          */
         Builder farRangeSpeed(double speed);
-
     }
 }

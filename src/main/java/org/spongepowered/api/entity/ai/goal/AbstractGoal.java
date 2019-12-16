@@ -81,7 +81,7 @@ public abstract class AbstractGoal<O extends Agent> implements Goal<O> {
     }
 
     @Override
-    public final Optional<GoalExecutor<O>> getGoal() {
+    public final Optional<GoalExecutor<O>> getExecutor() {
         // Assigned by implementation
         return Optional.empty();
     }

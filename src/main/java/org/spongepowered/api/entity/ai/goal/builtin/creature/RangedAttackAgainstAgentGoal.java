@@ -34,10 +34,10 @@ import org.spongepowered.api.entity.living.Ranger;
  * An {@link Goal} which uses the ranging aspect of the Ranger to attack
  * the target.
  */
-public interface RangeAgentGoal extends Goal<Ranger> {
+public interface RangedAttackAgainstAgentGoal extends Goal<Ranger> {
 
     /**
-     * Creates a new {@link Builder} to build a new {@link RangeAgentGoal}.
+     * Creates a new {@link Builder} to build a new {@link RangedAttackAgainstAgentGoal}.
      *
      * @return A new builder
      */
@@ -60,7 +60,7 @@ public interface RangeAgentGoal extends Goal<Ranger> {
      * @param speed The movement speed modifier
      * @return This goal, for chaining
      */
-    RangeAgentGoal setMoveSpeed(double speed);
+    RangedAttackAgainstAgentGoal setMoveSpeed(double speed);
 
     /**
      * Gets the delay in ticks between attempts to attack the targeted
@@ -77,7 +77,7 @@ public interface RangeAgentGoal extends Goal<Ranger> {
      * @param delay The delay, in ticks
      * @return This goal, for chaining
      */
-    RangeAgentGoal setDelayBetweenAttacks(int delay);
+    RangedAttackAgainstAgentGoal setDelayBetweenAttacks(int delay);
 
     /**
      * Gets the radius of which the owning {@link Ranger} will attempt to
@@ -95,9 +95,9 @@ public interface RangeAgentGoal extends Goal<Ranger> {
      *     attack
      * @return This goal, for chaining
      */
-    RangeAgentGoal setAttackRadius(float radius);
+    RangedAttackAgainstAgentGoal setAttackRadius(float radius);
 
-    interface Builder extends GoalBuilder<Ranger, RangeAgentGoal, Builder> {
+    interface Builder extends GoalBuilder<Ranger, RangedAttackAgainstAgentGoal, Builder> {
 
         Builder moveSpeed(double speed);
 
