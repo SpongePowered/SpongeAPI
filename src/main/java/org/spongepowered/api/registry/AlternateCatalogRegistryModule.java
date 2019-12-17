@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.registry;
 
+import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.registry.util.RegisterCatalog;
 
@@ -37,5 +38,5 @@ public interface AlternateCatalogRegistryModule<T extends CatalogType> extends C
      *
      * @return The catalog map to use for the registry system
      */
-    Map<String, T> provideCatalogMap();
+    Map<CatalogKey, T> provideCatalogMap();
 }
