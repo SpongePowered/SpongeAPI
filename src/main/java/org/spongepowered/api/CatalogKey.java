@@ -105,6 +105,17 @@ public interface CatalogKey extends Comparable<CatalogKey> {
     }
 
     /**
+     * Creates a catalog key
+     *
+     * @param container The container
+     * @param value The value
+     * @return A new catalog key
+     */
+    static CatalogKey of(final PluginContainer container, final String value) {
+        return Sponge.getRegistry().createBuilder(Builder.class).namespace(container).value(value).build();
+    }
+
+    /**
      * Resolves a catalog key from a string.
      *
      * <p>If no namespace is found in {@code string} then
