@@ -37,20 +37,6 @@ public interface CatalogRegistryModule<T extends CatalogType> extends RegistryMo
      * If a {@link CatalogType catalog type} is not registered for the given {@code id},
      * {@link Optional#empty()} is returned.
      *
-     * @param id The id of the catalog type requested
-     * @return The catalog type, if available
-     * @deprecated use {@link #get(CatalogKey)}
-     */
-    @Deprecated
-    default Optional<T> getById(String id) {
-        return this.get(CatalogKey.resolve(id));
-    }
-
-    /**
-     * Gets the desired {@link CatalogType} from the provided {@link String} id.
-     * If a {@link CatalogType catalog type} is not registered for the given {@code id},
-     * {@link Optional#empty()} is returned.
-     *
      * @param key The key of the catalog type requested
      * @return The catalog type, if available
      */
