@@ -22,42 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.trader;
+package org.spongepowered.api.event.block.entity;
 
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.type.Profession;
-import org.spongepowered.api.data.type.VillagerType;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.Ageable;
+import org.spongepowered.api.block.entity.Bell;
+import org.spongepowered.api.effect.potion.PotionEffectTypes;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.entity.AffectEntityEvent;
 
 /**
- * Represents a Villager.
+ * An event when a {@link Bell} is rung.
+ *
+ * <p>Entities which are affected by this event will be given a {@link PotionEffectTypes#GLOWING} effect.</p>
  */
-public interface Villager extends Trader, Ageable {
+public interface RingBellEvent extends AffectEntityEvent, Cancellable {
 
-    /**
-     * {@link Keys#VILLAGER_TYPE}
-     * @return The villager type
-     * @see org.spongepowered.api.data.type.VillagerTypes
-     */
-    default Value.Mutable<VillagerType> type() {
-        return getValue(Keys.VILLAGER_TYPE.get()).get().asMutable();
-    }
+	/**
+	 * The {@link Bell} which was rung.
+	 *
+	 * @return The bell which was rung.
+	 */
+	Bell getBell();
 
-    /**
-     * {@link Keys#PROFESSION}
-     * @return The profession of this villager
-     * @see org.spongepowered.api.data.type.Professions
-     */
-    default Value.Mutable<Profession> profession() {
-        return getValue(Keys.PROFESSION.get()).get().asMutable();
-    }
-
-    /**
-     * {@link Keys#PROFESSION_LEVEL}
-     * @return The profession level of this villager
-     */
-    default Value.Mutable<Integer> professionLevel() {
-        return getValue(Keys.PROFESSION_LEVEL).get().asMutable();
-    }
 }

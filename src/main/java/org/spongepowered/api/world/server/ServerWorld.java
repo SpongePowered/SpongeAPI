@@ -26,6 +26,7 @@ package org.spongepowered.api.world.server;
 
 import org.spongepowered.api.Server;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
+import org.spongepowered.api.raid.Raid;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.world.ChunkRegenerateFlag;
 import org.spongepowered.api.world.ChunkRegenerateFlags;
@@ -33,6 +34,8 @@ import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.SerializationBehaviors;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.chunk.Chunk;
+import org.spongepowered.api.world.dimension.DimensionType;
+import org.spongepowered.api.world.dimension.DimensionTypes;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.storage.WorldStorage;
@@ -112,7 +115,7 @@ public interface ServerWorld extends World<ServerWorld>, Identifiable, Interacta
     /**
      * Instructs the world to save all data.
      *
-     * @return True if save was successfull, or false if
+     * @return True if save was successful, or false if
      *     {@link SerializationBehavior} is {@link SerializationBehaviors#NONE}
      * @throws IOException If the save failed
      */
@@ -147,4 +150,23 @@ public interface ServerWorld extends World<ServerWorld>, Identifiable, Interacta
 
     @Override
     Collection<ServerPlayer> getPlayers();
+
+    /**
+     * Gets all {@link Raid}s occuring in this {@link ServerWorld}.
+     *
+     * <p>Please note by default, some {@link DimensionType}s such as {@link DimensionTypes#THE_NETHER}
+     * will not contain any Raids because the game prevents Raids from starting in the nether.</p>
+     *
+     * @return All the raids in this world.
+     */
+    Collection<Raid> getRaids();
+
+    /**
+     * Gets the {@link Raid} occurring at a position in the world.
+     *
+     * @param blockPosition The location of the Raid.
+     * @return The raid at that location, if present
+     */
+    Optional<Raid> getRaidAt(Vector3i blockPosition);
+
 }

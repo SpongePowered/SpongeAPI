@@ -22,42 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.trader;
+package org.spongepowered.api.event.item.merchant;
 
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.type.Profession;
-import org.spongepowered.api.data.type.VillagerType;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.Ageable;
+import org.spongepowered.api.entity.living.Humanoid;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
+import org.spongepowered.api.item.merchant.Merchant;
+import org.spongepowered.api.item.merchant.TradeOffer;
 
 /**
- * Represents a Villager.
+ * An event when a {@link Humanoid} trades with a {@link Merchant}.
  */
-public interface Villager extends Trader, Ageable {
+public interface TradeWithMerchantEvent extends Event, Cancellable {
 
-    /**
-     * {@link Keys#VILLAGER_TYPE}
-     * @return The villager type
-     * @see org.spongepowered.api.data.type.VillagerTypes
-     */
-    default Value.Mutable<VillagerType> type() {
-        return getValue(Keys.VILLAGER_TYPE.get()).get().asMutable();
-    }
+	/**
+	 * Gets the {@link Merchant} which is trading.
+	 *
+	 * @return The trading merchant.
+	 */
+	Merchant getMerchant();
 
-    /**
-     * {@link Keys#PROFESSION}
-     * @return The profession of this villager
-     * @see org.spongepowered.api.data.type.Professions
-     */
-    default Value.Mutable<Profession> profession() {
-        return getValue(Keys.PROFESSION.get()).get().asMutable();
-    }
+	/**
+	 * The TradeOffer being traded.
+	 *
+	 * @return The trade offer.
+	 */
+	TradeOffer getTradeOffer();
 
-    /**
-     * {@link Keys#PROFESSION_LEVEL}
-     * @return The profession level of this villager
-     */
-    default Value.Mutable<Integer> professionLevel() {
-        return getValue(Keys.PROFESSION_LEVEL).get().asMutable();
-    }
+	/**
+	 * Gets the {@link Humanoid} who is the customer of this transaction.
+	 *
+	 * @return The customer.
+	 */
+	Humanoid getCustomer();
+
 }
