@@ -22,41 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.rotation;
+package org.spongepowered.api.event.impl.entity;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import com.google.common.base.Preconditions;
+import org.spongepowered.api.event.cause.EventContextKeys;
+import org.spongepowered.api.event.entity.SpawnEntityEvent;
+import org.spongepowered.api.event.impl.AbstractEvent;
 
-import java.util.Optional;
+public abstract class AbstractSpawnEntityEvent extends AbstractEvent implements SpawnEntityEvent {
 
-/**
- * Represents an angle of rotation.
- */
-@CatalogedBy(Rotations.class)
-public interface Rotation extends CatalogType {
-
-    /**
-     * Gets the {@link Rotation} with the provided degrees.
-     *
-     * @param degrees The degrees of the rotation
-     * @return The {@link Rotation} with the given degrees or
-     *      <tt>Optional.empty()</tt> if not found
-     */
-    static Optional<Rotation> fromDegrees(int degrees) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).fromDegrees(degrees);
-    }
-
-    /**
-     * The angle in degrees.
-     *
-     * @return The angle in degrees
-     */
-    //TODO we should have an Angle class in the future
-    int getAngle();
-
-    interface Factory {
-
-        Optional<Rotation> fromDegrees(int degrees);
+    @Override
+    protected void init() {
+        Preconditions.checkState(getContext().containsKey(EventContextKeys.SPAWN_TYPE), "SpawnType not set for SpawnEvent as required per contract!");
     }
 }

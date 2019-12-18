@@ -22,41 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.rotation;
+package org.spongepowered.api.event.registry;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.annotation.CatalogedBy;
 
-import java.util.Optional;
+import java.util.Set;
+import java.util.function.Supplier;
 
-/**
- * Represents an angle of rotation.
- */
-@CatalogedBy(Rotations.class)
-public interface Rotation extends CatalogType {
+public interface RegistryEvent {
 
-    /**
-     * Gets the {@link Rotation} with the provided degrees.
-     *
-     * @param degrees The degrees of the rotation
-     * @return The {@link Rotation} with the given degrees or
-     *      <tt>Optional.empty()</tt> if not found
-     */
-    static Optional<Rotation> fromDegrees(int degrees) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).fromDegrees(degrees);
+    interface CatalogRegistry extends RegistryEvent {
+
+        <T extends CatalogType> void register(Class<T> catalogClass);
+
+        <T extends CatalogType> void register(Class<T> catalogClass, Supplier<Set<T>> defaultsSupplier);
     }
 
-    /**
-     * The angle in degrees.
-     *
-     * @return The angle in degrees
-     */
-    //TODO we should have an Angle class in the future
-    int getAngle();
+    interface Catalog<T extends CatalogType> extends RegistryEvent {
 
-    interface Factory {
-
-        Optional<Rotation> fromDegrees(int degrees);
+        void register(T catalogType);
     }
 }

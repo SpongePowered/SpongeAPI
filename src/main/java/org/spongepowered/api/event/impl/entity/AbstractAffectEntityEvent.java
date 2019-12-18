@@ -22,32 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.event.impl.entity;
 
+import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.impl.entity.AbstractSpawnEntityEvent;
-import org.spongepowered.api.event.network.ClientConnectionEvent;
-import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
-import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
+import org.spongepowered.api.entity.EntitySnapshot;
+import org.spongepowered.api.event.Order;
+import org.spongepowered.api.event.entity.AffectEntityEvent;
+import org.spongepowered.api.event.impl.AbstractEvent;
+import org.spongepowered.api.util.annotation.eventgen.UseField;
 
-/**
- * Raised when an {@link Entity} is spawned. This usually follows the chain of
- * the various entity creation events: {@link ConstructEntityEvent.Pre},
- * {@link ConstructEntityEvent.Post}, and finally {@link SpawnEntityEvent}.
- *
- * <p>Note: To determine the {@link Cause}, refer to package
- * org.spongepowered.api.event.cause.entity.spawn.</p>
- *
- * <p>For players, this event is fired before they have fully
- * joined the world. {@link ClientConnectionEvent} is the
- * recommended event to interact with connecting players.</p>
- */
-@GenerateFactoryMethod
-@ImplementedBy(AbstractSpawnEntityEvent.class)
-public interface SpawnEntityEvent extends AffectEntityEvent {
+import java.util.List;
 
-    interface ChunkLoad extends SpawnEntityEvent {}
+public abstract class AbstractAffectEntityEvent extends AbstractEvent implements AffectEntityEvent {
 
-    interface Custom extends SpawnEntityEvent {}
+    @UseField
+    protected List<Entity> entities;
+
+    @UseField(overrideToString = true) private List<EntitySnapshot> entitySnapshots;
+
+    @Override
+    public List<EntitySnapshot> getEntitySnapshots() {
+        if (this.entitySnapshots == null) {
+            if (this.currentOrder == Order.PRE) {
+                ImmutableList.Builder<EntitySnapshot> builder = ImmutableList.builder();
+                for (Entity entity: this.entities) {
+                    builder.add(entity.createSnapshot());
+                }
+                this.entitySnapshots = builder.build();
+            } else {
+                throw new IllegalStateException("Can't initialize entity snapshots after PRE!");
+            }
+        }
+        return this.entitySnapshots;
+    }
 }

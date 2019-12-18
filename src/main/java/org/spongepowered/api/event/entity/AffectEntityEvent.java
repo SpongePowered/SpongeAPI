@@ -29,11 +29,10 @@ import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.Order;
-import org.spongepowered.api.event.impl.AbstractAffectEntityEvent;
+import org.spongepowered.api.event.impl.entity.AbstractAffectEntityEvent;
 import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
 import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
 
 import java.util.ArrayList;

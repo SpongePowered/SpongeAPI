@@ -39,7 +39,7 @@ import org.spongepowered.api.event.cause.entity.damage.DamageModifier.Builder;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifierType;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
-import org.spongepowered.api.event.impl.AbstractDamageEntityEvent;
+import org.spongepowered.api.event.impl.entity.AbstractDamageEntityEvent;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.Tuple;

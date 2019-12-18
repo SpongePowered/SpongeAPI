@@ -22,41 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.rotation;
+package org.spongepowered.api.event.entity.living;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.data.type.HandType;
+import org.spongepowered.api.event.action.InteractEvent;
 
-import java.util.Optional;
-
-/**
- * Represents an angle of rotation.
- */
-@CatalogedBy(Rotations.class)
-public interface Rotation extends CatalogType {
+public interface HandInteractEvent extends InteractEvent {
 
     /**
-     * Gets the {@link Rotation} with the provided degrees.
+     * Gets the {@link HandType} used for interaction.
      *
-     * @param degrees The degrees of the rotation
-     * @return The {@link Rotation} with the given degrees or
-     *      <tt>Optional.empty()</tt> if not found
+     * @return The hand type
      */
-    static Optional<Rotation> fromDegrees(int degrees) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).fromDegrees(degrees);
-    }
-
-    /**
-     * The angle in degrees.
-     *
-     * @return The angle in degrees
-     */
-    //TODO we should have an Angle class in the future
-    int getAngle();
-
-    interface Factory {
-
-        Optional<Rotation> fromDegrees(int degrees);
-    }
+    HandType getHandType();
 }

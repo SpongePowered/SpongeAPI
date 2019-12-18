@@ -24,10 +24,14 @@
  */
 package org.spongepowered.api.text.translation;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.text.translation.locale.Locales;
 import org.spongepowered.api.text.translation.locale.NamedLocales;
 
 import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -44,6 +48,17 @@ import java.util.ResourceBundle;
  * translations usually support only {@link NamedLocales#AMERICAN_ENGLISH}.</p>
  */
 public interface Translation {
+
+    /**
+     * Finds a translation by the given id.
+     *
+     * @param id The id
+     * @return The translation or {@link Optional#empty()} if none found
+     */
+    static Optional<Translation> find(String id) {
+        checkNotNull(id);
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).find(id);
+    }
 
     /**
      * Gets the identifier for this {@link Translation}.
@@ -87,4 +102,9 @@ public interface Translation {
      * @return The translation with the specified parameters
      */
     String get(Locale locale, Object... args);
+
+    interface Factory {
+
+        Optional<Translation> find(String id);
+    }
 }

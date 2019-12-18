@@ -22,41 +22,47 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.rotation;
+package org.spongepowered.api.event.entity.living;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.annotation.CatalogedBy;
-
-import java.util.Optional;
+import org.spongepowered.api.entity.living.Humanoid;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
+import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 /**
- * Represents an angle of rotation.
+ * Called when a human's level is changed.
  */
-@CatalogedBy(Rotations.class)
-public interface Rotation extends CatalogType {
+@GenerateFactoryMethod
+public interface ChangeLevelEvent extends Event, Cancellable {
 
     /**
-     * Gets the {@link Rotation} with the provided degrees.
+     * Gets the {@link Humanoid}.
      *
-     * @param degrees The degrees of the rotation
-     * @return The {@link Rotation} with the given degrees or
-     *      <tt>Optional.empty()</tt> if not found
+     * @return The humanoid
      */
-    static Optional<Rotation> fromDegrees(int degrees) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).fromDegrees(degrees);
-    }
+    Humanoid getHumanoid();
 
     /**
-     * The angle in degrees.
+     * Gets the original level of the human.
      *
-     * @return The angle in degrees
+     * @return The original level of the human
      */
-    //TODO we should have an Angle class in the future
-    int getAngle();
+    int getOriginalLevel();
 
-    interface Factory {
+    /**
+     * Gets the new level of the human.
+     *
+     * @return The new level of the human
+     */
+    int getLevel();
 
-        Optional<Rotation> fromDegrees(int degrees);
-    }
+    /**
+     * Sets the new level of the human.
+     *
+     * <p>Technically, this can be set to the same level to
+     * cancel effects of the level being changed.</p>
+     *
+     * @param level The new level to change to
+     */
+    void setLevel(int level);
 }

@@ -29,7 +29,7 @@ import static org.spongepowered.api.text.TextTemplate.arg;
 import static org.spongepowered.api.text.TextTemplate.of;
 
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.event.impl.AbstractMessageEvent;
+import org.spongepowered.api.event.impl.message.AbstractMessageEvent;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextRepresentable;
 import org.spongepowered.api.text.transform.FixedPartitionedTextFormatter;

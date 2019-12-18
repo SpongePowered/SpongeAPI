@@ -22,41 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.rotation;
+package org.spongepowered.api.event.entity;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.annotation.CatalogedBy;
-
-import java.util.Optional;
+import org.spongepowered.api.entity.Item;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
 
 /**
- * Represents an angle of rotation.
+ * Called when an {@link Item} is merged with another {@link Item}.
  */
-@CatalogedBy(Rotations.class)
-public interface Rotation extends CatalogType {
+public interface ItemMergeWithItemEvent extends Event, Cancellable {
 
     /**
-     * Gets the {@link Rotation} with the provided degrees.
+     * Gets the {@link Item}.
      *
-     * @param degrees The degrees of the rotation
-     * @return The {@link Rotation} with the given degrees or
-     *      <tt>Optional.empty()</tt> if not found
+     * @return The item
      */
-    static Optional<Rotation> fromDegrees(int degrees) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).fromDegrees(degrees);
-    }
+    Item getItem();
 
     /**
-     * The angle in degrees.
+     * Gets a copy of the second item to be merged.
      *
-     * @return The angle in degrees
+     * @return A copy of the second item to be merged
      */
-    //TODO we should have an Angle class in the future
-    int getAngle();
+    Item getItemToMerge();
 
-    interface Factory {
-
-        Optional<Rotation> fromDegrees(int degrees);
-    }
 }

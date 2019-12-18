@@ -22,41 +22,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.rotation;
+package org.spongepowered.api.event.entity.living;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.annotation.CatalogedBy;
-
-import java.util.Optional;
+import org.spongepowered.api.entity.living.Humanoid;
+import org.spongepowered.api.entity.living.player.gamemode.GameMode;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
+import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 /**
- * Represents an angle of rotation.
+ * Called when a {@link Humanoid} changes {@link GameMode}.
  */
-@CatalogedBy(Rotations.class)
-public interface Rotation extends CatalogType {
+@GenerateFactoryMethod
+public interface ChangeGameModeEvent extends Event, Cancellable {
 
     /**
-     * Gets the {@link Rotation} with the provided degrees.
+     * Gets the {@link Humanoid}.
      *
-     * @param degrees The degrees of the rotation
-     * @return The {@link Rotation} with the given degrees or
-     *      <tt>Optional.empty()</tt> if not found
+     * @return The humanoid
      */
-    static Optional<Rotation> fromDegrees(int degrees) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).fromDegrees(degrees);
-    }
+    Humanoid getHumanoid();
 
     /**
-     * The angle in degrees.
+     * Gets the original {@link GameMode}.
      *
-     * @return The angle in degrees
+     * @return The original {@link GameMode}.
      */
-    //TODO we should have an Angle class in the future
-    int getAngle();
+    GameMode getOriginalGameMode();
 
-    interface Factory {
+    /**
+     * Gets the new {@link GameMode}.
+     *
+     * @return The new {@link GameMode}.
+     */
+    GameMode getGameMode();
 
-        Optional<Rotation> fromDegrees(int degrees);
-    }
+    /**
+     * Sets the new {@link GameMode}.
+     *
+     * @param gameMode The new {@link GameMode} value.
+     */
+    void setGameMode(GameMode gameMode);
 }

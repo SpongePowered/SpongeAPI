@@ -25,7 +25,7 @@
 package org.spongepowered.api.event.item.inventory;
 
 import org.spongepowered.api.event.action.InteractEvent;
-import org.spongepowered.api.event.entity.living.humanoid.HandInteractEvent;
+import org.spongepowered.api.event.entity.living.HandInteractEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 

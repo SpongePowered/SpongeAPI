@@ -26,7 +26,6 @@ package org.spongepowered.api.entity.ai.goal;
 
 import com.google.common.base.Preconditions;
 import org.spongepowered.api.registry.GameRegistry;
-import org.spongepowered.api.entity.ai.GoalExecutor;
 import org.spongepowered.api.entity.living.Agent;
 
 import java.util.Optional;

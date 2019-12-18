@@ -22,41 +22,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.rotation;
+package org.spongepowered.api.entity.ai.goal;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.entity.living.Agent;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-import java.util.Optional;
+public final class GoalExecutorTypes {
 
-/**
- * Represents an angle of rotation.
- */
-@CatalogedBy(Rotations.class)
-public interface Rotation extends CatalogType {
+    // SORTFIELDS:ON
 
     /**
-     * Gets the {@link Rotation} with the provided degrees.
-     *
-     * @param degrees The degrees of the rotation
-     * @return The {@link Rotation} with the given degrees or
-     *      <tt>Optional.empty()</tt> if not found
+     * {@link GoalExecutor} that is the default set of goals for most {@link Agent}s.
      */
-    static Optional<Rotation> fromDegrees(int degrees) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).fromDegrees(degrees);
-    }
+    public static final GoalExecutorType NORMAL = DummyObjectProvider.createFor(GoalExecutorType.class, "NORMAL");
 
     /**
-     * The angle in degrees.
+     * {@link GoalExecutor} that is the "target" set of goals.
      *
-     * @return The angle in degrees
+     * <p>The objective is to formulate the target so that the
+     * {@link Agent} can act on it. The best example is how monsters like zombie
+     * and skeleton attack enemies: they seek out a target and if any of their non-target
+     * goals see that they have a target, they act accordingly.</p>
      */
-    //TODO we should have an Angle class in the future
-    int getAngle();
+    public static final GoalExecutorType TARGET = DummyObjectProvider.createFor(GoalExecutorType.class, "TARGET");
 
-    interface Factory {
+    // SORTFIELDS:OFF
 
-        Optional<Rotation> fromDegrees(int degrees);
+    private GoalExecutorTypes() {
     }
 }

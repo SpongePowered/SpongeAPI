@@ -26,7 +26,7 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.action.InteractEvent;
-import org.spongepowered.api.event.entity.living.humanoid.HandInteractEvent;
+import org.spongepowered.api.event.entity.living.HandInteractEvent;
 
 /**
  * Base event for all interactions targeting an {@link Entity}.

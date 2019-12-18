@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.entity.ai.goal;
 
-import org.spongepowered.api.entity.ai.GoalExecutor;
 import org.spongepowered.api.entity.living.Agent;
 
 import java.util.Optional;

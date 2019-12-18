@@ -29,7 +29,7 @@ import static org.mockito.Mockito.mock;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.spongepowered.api.Game;
-import org.spongepowered.api.entity.ai.GoalExecutor;
+import org.spongepowered.api.entity.ai.goal.GoalExecutor;
 import org.spongepowered.api.entity.ai.goal.Goal;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.event.cause.Cause;

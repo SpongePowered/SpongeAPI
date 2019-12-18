@@ -22,41 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.rotation;
+package org.spongepowered.api.event.impl.data;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.data.DataTransactionResult;
+import org.spongepowered.api.event.data.ChangeDataHolderEvent;
+import org.spongepowered.api.util.annotation.eventgen.UseField;
 
-import java.util.Optional;
+public abstract class AbstractValueChangeEvent implements ChangeDataHolderEvent.ValueChange {
 
-/**
- * Represents an angle of rotation.
- */
-@CatalogedBy(Rotations.class)
-public interface Rotation extends CatalogType {
+    @UseField
+    protected DataTransactionResult originalChanges;
+    @UseField
+    protected DataTransactionResult endResult;
 
-    /**
-     * Gets the {@link Rotation} with the provided degrees.
-     *
-     * @param degrees The degrees of the rotation
-     * @return The {@link Rotation} with the given degrees or
-     *      <tt>Optional.empty()</tt> if not found
-     */
-    static Optional<Rotation> fromDegrees(int degrees) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).fromDegrees(degrees);
+    protected void init() {
+        this.endResult = this.originalChanges;
     }
 
-    /**
-     * The angle in degrees.
-     *
-     * @return The angle in degrees
-     */
-    //TODO we should have an Angle class in the future
-    int getAngle();
-
-    interface Factory {
-
-        Optional<Rotation> fromDegrees(int degrees);
+    @Override
+    public ValueChange proposeChanges(DataTransactionResult result) {
+        this.endResult = result;
+        return this;
     }
 }

@@ -22,41 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.rotation;
+package org.spongepowered.api.event.entity.living;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.annotation.CatalogedBy;
-
-import java.util.Optional;
+import org.spongepowered.api.data.type.HandType;
+import org.spongepowered.api.entity.living.Humanoid;
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
 
 /**
- * Represents an angle of rotation.
+ * Called when a {@link Humanoid} hand animation occurs.
+ *
+ * <p>Note: Canceling this event will only stop animation from being seen
+ * on server. Animation will always occur on client-side for {@link Player}'s.</p>
  */
-@CatalogedBy(Rotations.class)
-public interface Rotation extends CatalogType {
+public interface AnimateHandEvent extends Event, Cancellable {
 
     /**
-     * Gets the {@link Rotation} with the provided degrees.
+     * Gets the {@link Humanoid}.
      *
-     * @param degrees The degrees of the rotation
-     * @return The {@link Rotation} with the given degrees or
-     *      <tt>Optional.empty()</tt> if not found
+     * @return The humanoid
      */
-    static Optional<Rotation> fromDegrees(int degrees) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).fromDegrees(degrees);
-    }
+    Humanoid getHumanoid();
 
     /**
-     * The angle in degrees.
+     * Gets the {@link HandType} used for animation.
      *
-     * @return The angle in degrees
+     * @return The hand type
      */
-    //TODO we should have an Angle class in the future
-    int getAngle();
-
-    interface Factory {
-
-        Optional<Rotation> fromDegrees(int degrees);
-    }
+    HandType getHandType();
 }
