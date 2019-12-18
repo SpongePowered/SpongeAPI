@@ -33,7 +33,7 @@ import org.spongepowered.api.util.weighted.VariableAmount;
 
 import java.util.List;
 import java.util.Random;
-import java.util.function.Function;
+import java.util.function.BiFunction;
 
 /**
  * Represents a generator to create {@link TradeOffer}s with a bit of
@@ -41,7 +41,7 @@ import java.util.function.Function;
  * {@link ItemStack}s and finally generating a {@link TradeOffer}.
  *
  * <p>The primary use of this, and why the {@link Random} must be provided as
- * part of the {@link Function} signature is that during multiple world
+ * part of the {@link BiFunction} signature is that during multiple world
  * instances, there's different {@link Random} instances instantiated, and more
  * can be provided without the necessity to change the generator. One advantage
  * to using a generator is the ability to provide some "randomization" or
@@ -51,7 +51,7 @@ import java.util.function.Function;
  * what the {@link ItemStack} can be customized as.</p>
  */
 @FunctionalInterface
-public interface TradeOfferGenerator extends Function<Random, TradeOffer>, TradeOfferListMutator {
+public interface TradeOfferGenerator extends BiFunction<Random, Merchant, TradeOffer>, TradeOfferListMutator {
 
     /**
      * Gets a new {@link Builder} to create a new {@link TradeOfferGenerator}.
@@ -64,7 +64,7 @@ public interface TradeOfferGenerator extends Function<Random, TradeOffer>, Trade
 
     @Override
     default void accept(Merchant owner, List<TradeOffer> tradeOffers, Random random) {
-        tradeOffers.add(apply(random));
+        tradeOffers.add(apply(random, owner));
     }
 
     /**
