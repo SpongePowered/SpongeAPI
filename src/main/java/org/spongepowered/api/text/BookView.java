@@ -67,7 +67,7 @@ public interface BookView extends DataSerializable {
      * @return Builder for chaining
      */
     static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().createBuilder(Builder.class);
     }
 
     /**

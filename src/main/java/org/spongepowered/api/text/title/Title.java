@@ -116,7 +116,7 @@ public interface Title {
      * @see #builder
      */
     static Builder update() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().createBuilder(Builder.class);
     }
 
     /**

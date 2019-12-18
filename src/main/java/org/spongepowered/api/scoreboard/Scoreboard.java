@@ -52,7 +52,7 @@ public interface Scoreboard {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().createBuilder(Builder.class);
     }
 
     /**

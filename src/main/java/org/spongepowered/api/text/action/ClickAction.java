@@ -55,7 +55,7 @@ public interface ClickAction<R> extends TextAction<R> {
          * @return A new builder
          */
         static Builder builder() {
-            return Sponge.getRegistry().createBuilder(Builder.class);
+            return Sponge.getRegistry().getBuilderRegistry().createBuilder(Builder.class);
         }
 
         /**
@@ -91,7 +91,7 @@ public interface ClickAction<R> extends TextAction<R> {
          * @return A new builder
          */
         static Builder builder() {
-            return Sponge.getRegistry().createBuilder(Builder.class);
+            return Sponge.getRegistry().getBuilderRegistry().createBuilder(Builder.class);
         }
 
         /**
@@ -127,7 +127,7 @@ public interface ClickAction<R> extends TextAction<R> {
          * @return A new builder
          */
         static Builder builder() {
-            return Sponge.getRegistry().createBuilder(Builder.class);
+            return Sponge.getRegistry().getBuilderRegistry().createBuilder(Builder.class);
         }
 
         /**
@@ -163,7 +163,7 @@ public interface ClickAction<R> extends TextAction<R> {
          * @return A new builder
          */
         static Builder builder() {
-            return Sponge.getRegistry().createBuilder(Builder.class);
+            return Sponge.getRegistry().getBuilderRegistry().createBuilder(Builder.class);
         }
 
         /**
@@ -199,7 +199,7 @@ public interface ClickAction<R> extends TextAction<R> {
          * @return A new builder
          */
         static ExecuteCallback.Builder builder() {
-            return Sponge.getRegistry().createBuilder(ExecuteCallback.Builder.class);
+            return Sponge.getRegistry().getBuilderRegistry().createBuilder(ExecuteCallback.Builder.class);
         }
 
         /**

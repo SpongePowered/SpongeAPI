@@ -50,11 +50,11 @@ public interface Enchantment extends DataSerializable {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Enchantment.Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().createBuilder(Enchantment.Builder.class);
     }
 
     static RandomListBuilder randomListBuilder() {
-        return Sponge.getRegistry().createBuilder(RandomListBuilder.class);
+        return Sponge.getRegistry().getBuilderRegistry().createBuilder(RandomListBuilder.class);
     }
 
     /**

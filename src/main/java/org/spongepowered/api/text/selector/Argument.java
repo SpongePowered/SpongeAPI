@@ -49,7 +49,7 @@ public interface Argument<T> {
      * @return The created argument
      */
     static <T> Argument<T> create(ArgumentType<T> type, T value) {
-        return Sponge.getRegistry().requireFactory(Factory.class).createArgument(type, value);
+        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).createArgument(type, value);
     }
 
     /**
@@ -64,7 +64,7 @@ public interface Argument<T> {
      * @return The created invertible argument
      */
     static <T> Argument.Invertible<T> create(ArgumentType.Invertible<T> type, T value, boolean inverted) {
-        return Sponge.getRegistry().requireFactory(Factory.class).createArgument(type, value, inverted);
+        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).createArgument(type, value, inverted);
     }
 
     /**
@@ -78,7 +78,7 @@ public interface Argument<T> {
      * @return The created argument
      */
     static <T, V> Set<Argument<T>> createSet(ArgumentHolder<? extends ArgumentType<T>> type, V value) {
-        return Sponge.getRegistry().requireFactory(Factory.class).createArguments(type, value);
+        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).createArguments(type, value);
     }
 
     /**
@@ -92,7 +92,7 @@ public interface Argument<T> {
      *         due to invalid format)
      */
     static Argument<?> parse(String argument) throws IllegalArgumentException {
-        return Sponge.getRegistry().requireFactory(Factory.class).parseArgument(argument);
+        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).parseArgument(argument);
     }
 
     /**

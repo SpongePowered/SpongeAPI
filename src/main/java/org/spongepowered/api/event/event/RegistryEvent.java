@@ -22,21 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.registry;
+package org.spongepowered.api.event.event;
 
-import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.registry.util.RegisterCatalog;
 
-import java.util.Map;
+import java.util.Set;
+import java.util.function.Supplier;
 
-public interface AlternateCatalogRegistryModule<T extends CatalogType> extends CatalogRegistryModule<T> {
+public interface RegistryEvent {
 
-    /**
-     * Gets the catalog {@link Map map} instead of defaulting to utilizing
-     * {@link RegisterCatalog} annotated field for the map of catalog types.
-     *
-     * @return The catalog map to use for the registry system
-     */
-    Map<CatalogKey, T> provideCatalogMap();
+    interface CatalogRegistry extends RegistryEvent {
+
+        <T extends CatalogType> void register(Class<T> catalogClass);
+
+        <T extends CatalogType> void register(Class<T> catalogClass, Supplier<Set<T>> defaultsSupplier);
+    }
+
+    interface Catalog<T extends CatalogType> extends RegistryEvent {
+
+        void register(T catalogType);
+    }
 }

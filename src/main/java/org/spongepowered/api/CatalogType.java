@@ -24,13 +24,11 @@
  */
 package org.spongepowered.api;
 
-import org.spongepowered.api.registry.AdditionalCatalogRegistryModule;
+import org.spongepowered.api.registry.GameRegistry;
 
 /**
  * Represents a type of a dummy that can be used to identify types without
- * using an {@link Enum}, and possibly allows for extension beyond the
- * default provided types by way of using {@link AdditionalCatalogRegistryModule}
- * registered with the {@link GameRegistry}.
+ * using an {@link Enum}.
  *
  * <p>All implementing classes, including those not listed in the dummy
  * specified by the {@link org.spongepowered.api.util.annotation.CatalogedBy
@@ -51,5 +49,4 @@ public interface CatalogType {
      * @return The catalog key
      */
     CatalogKey getKey();
-
 }

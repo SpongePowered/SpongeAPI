@@ -77,7 +77,7 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
      */
     @SuppressWarnings("deprecation")
     static Text empty() {
-        return Sponge.getRegistry().createBuilder(LiteralText.Builder.class).build();
+        return Sponge.getRegistry().getBuilderRegistry().createBuilder(LiteralText.Builder.class).build();
     }
 
     /**
@@ -87,7 +87,7 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
      */
     @SuppressWarnings("deprecation")
     static Text newLine() {
-        return Sponge.getRegistry().createBuilder(LiteralText.Builder.class).newLine().build();
+        return Sponge.getRegistry().getBuilderRegistry().createBuilder(LiteralText.Builder.class).newLine().build();
     }
 
     /**
@@ -100,7 +100,7 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
      */
     @SuppressWarnings("deprecation")
     static LiteralText of(String content) {
-        return Sponge.getRegistry().createBuilder(LiteralText.Builder.class).content(content).build();
+        return Sponge.getRegistry().getBuilderRegistry().createBuilder(LiteralText.Builder.class).content(content).build();
     }
 
     /**
@@ -113,7 +113,7 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
      */
     @SuppressWarnings("deprecation")
     static LiteralText of(char content) {
-        return Sponge.getRegistry().createBuilder(LiteralText.Builder.class).content(String.valueOf(content)).build();
+        return Sponge.getRegistry().getBuilderRegistry().createBuilder(LiteralText.Builder.class).content(String.valueOf(content)).build();
     }
 
     /**
@@ -127,7 +127,7 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
      */
     @SuppressWarnings("deprecation")
     static TranslatableText of(Translation translation, Object... args) {
-        return Sponge.getRegistry().createBuilder(TranslatableText.Builder.class).translation(translation, checkNotNull(args, "args")).build();
+        return Sponge.getRegistry().getBuilderRegistry().createBuilder(TranslatableText.Builder.class).translation(translation, checkNotNull(args, "args")).build();
     }
 
     /**
@@ -152,7 +152,7 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
      */
     @SuppressWarnings("deprecation")
     static SelectorText of(Selector selector) {
-        return Sponge.getRegistry().createBuilder(SelectorText.Builder.class).selector(selector).build();
+        return Sponge.getRegistry().getBuilderRegistry().createBuilder(SelectorText.Builder.class).selector(selector).build();
     }
 
     /**
@@ -163,7 +163,7 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
      * @see ScoreText
      */
     static ScoreText of(Score score) {
-        return Sponge.getRegistry().createBuilder(ScoreText.Builder.class).score(score).build();
+        return Sponge.getRegistry().getBuilderRegistry().createBuilder(ScoreText.Builder.class).score(score).build();
     }
 
     /**
@@ -190,7 +190,7 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
      */
     @SuppressWarnings("deprecation")
     static Text of(Object... objects) {
-        return Sponge.getRegistry().requireFactory(Factory.class).of(objects);
+        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).of(objects);
     }
 
     /**
@@ -393,7 +393,7 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
      */
     @SuppressWarnings("deprecation")
     static Text joinWith(Text separator, Text... texts) {
-        return Sponge.getRegistry().requireFactory(Factory.class).joinWith(separator, texts);
+        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).joinWith(separator, texts);
     }
 
     /**
@@ -414,9 +414,8 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
      * @param texts An iterator for the texts to join
      * @return A text object that joins the given text objects
      */
-    @SuppressWarnings("deprecation")
     static Text joinWith(Text separator, Iterator<? extends Text> texts) {
-        return Sponge.getRegistry().requireFactory(Factory.class).joinWith(separator, texts);
+        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).joinWith(separator, texts);
     }
 
     /**

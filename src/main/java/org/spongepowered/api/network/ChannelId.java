@@ -50,7 +50,7 @@ public @interface ChannelId {
     /**
      * Gets the channel namespace.
      *
-     * <p>This corresponds to {@link CatalogKey#getNamespace()}</p>
+     * <p>This corresponds to {@link CatalogKey#shadow$getNamespace()}</p>
      *
      * @return The channel namespace
      */

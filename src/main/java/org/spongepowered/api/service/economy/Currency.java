@@ -25,7 +25,6 @@
 package org.spongepowered.api.service.economy;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.registry.util.PluginProvidedRegistryModule;
 import org.spongepowered.api.text.Text;
 
 import java.math.BigDecimal;
@@ -41,7 +40,6 @@ import java.math.BigDecimal;
  *
  * <p>Depending on the provider of the {@link EconomyService}, more currencies may be available.</p>
  */
-@PluginProvidedRegistryModule
 public interface Currency extends CatalogType {
 
     /**
@@ -109,5 +107,4 @@ public interface Currency extends CatalogType {
      * @return true if this is the default currency
      */
     boolean isDefault();
-
 }

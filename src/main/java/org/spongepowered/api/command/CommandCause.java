@@ -102,7 +102,7 @@ public interface CommandCause {
      * @return The {@link CommandCause}
      */
     static CommandCause of(Cause cause) {
-        return Sponge.getRegistry().requireFactory(Factory.class).create(cause);
+        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).create(cause);
     }
 
     /**

@@ -25,7 +25,7 @@
 package org.spongepowered.api.text.serializer;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.GameRegistry;
+import org.spongepowered.api.registry.GameRegistry;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 

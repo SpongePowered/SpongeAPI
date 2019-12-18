@@ -43,7 +43,6 @@ import org.spongepowered.api.event.cause.EventContext;
 import org.spongepowered.api.event.entity.AttackEntityEvent;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.event.entity.ai.AITaskEvent;
-import org.spongepowered.api.event.game.GameRegistryEvent;
 import org.spongepowered.api.event.impl.AbstractEvent;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.action.ClickAction;

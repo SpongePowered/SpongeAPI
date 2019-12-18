@@ -46,7 +46,7 @@ public interface WorldRegistration extends CatalogType {
      * @return A new builder instance
      */
     static WorldRegistration.Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().createBuilder(Builder.class);
     }
 
     /**

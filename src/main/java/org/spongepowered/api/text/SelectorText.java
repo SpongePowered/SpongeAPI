@@ -52,7 +52,7 @@ public interface SelectorText extends Text {
      * @return A new text builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().createBuilder(Builder.class);
     }
 
     /**

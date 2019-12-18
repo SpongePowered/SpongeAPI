@@ -39,7 +39,7 @@ public interface TextFormat extends TextElement {
      * @return The empty text format
      */
     static TextFormat of() {
-        return Sponge.getRegistry().requireFactory(Factory.class).emptyFormat();
+        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).emptyFormat();
     }
 
     /**
@@ -49,7 +49,7 @@ public interface TextFormat extends TextElement {
      * @return The new text format
      */
     static TextFormat of(TextStyle style) {
-        return Sponge.getRegistry().requireFactory(Factory.class).format(TextColors.NONE, style);
+        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).format(TextColors.NONE, style);
     }
 
     /**
@@ -59,7 +59,7 @@ public interface TextFormat extends TextElement {
      * @return The new text format
      */
     static TextFormat of(TextColor color) {
-        return Sponge.getRegistry().requireFactory(Factory.class).format(color, TextStyles.NONE);
+        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).format(color, TextStyles.NONE);
     }
 
     /**
@@ -70,7 +70,7 @@ public interface TextFormat extends TextElement {
      * @return The new text format
      */
     static TextFormat of(TextColor color, TextStyle style) {
-        return Sponge.getRegistry().requireFactory(Factory.class).format(color, style);
+        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).format(color, style);
     }
 
     /**

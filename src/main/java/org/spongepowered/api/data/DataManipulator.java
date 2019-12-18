@@ -62,7 +62,7 @@ public interface DataManipulator extends CopyableValueContainer {
      * @return The immutable data manipulator view
      */
     static Immutable immutableOf(Iterable<? extends Value<?>> values) {
-        return Sponge.getRegistry().requireFactory(Immutable.Factory.class).of(values);
+        return Sponge.getRegistry().getFactoryRegistry().require(Immutable.Factory.class).of(values);
     }
 
     /**
@@ -76,7 +76,7 @@ public interface DataManipulator extends CopyableValueContainer {
      * @return The immutable manipulator
      */
     static Immutable immutableOf(ValueContainer valueContainer) {
-        return Sponge.getRegistry().requireFactory(Immutable.Factory.class).of(valueContainer);
+        return Sponge.getRegistry().getFactoryRegistry().require(Immutable.Factory.class).of(valueContainer);
     }
 
     /**
@@ -85,7 +85,7 @@ public interface DataManipulator extends CopyableValueContainer {
      * @return The empty immutable data manipulator
      */
     static Immutable immutableOf() {
-        return Sponge.getRegistry().requireFactory(Immutable.Factory.class).of();
+        return Sponge.getRegistry().getFactoryRegistry().require(Immutable.Factory.class).of();
     }
 
     /**
@@ -95,7 +95,7 @@ public interface DataManipulator extends CopyableValueContainer {
      * @return A new empty manipulator
      */
     static Mutable mutableOf() {
-        return Sponge.getRegistry().requireFactory(Mutable.Factory.class).of();
+        return Sponge.getRegistry().getFactoryRegistry().require(Mutable.Factory.class).of();
     }
 
     /**
@@ -108,7 +108,7 @@ public interface DataManipulator extends CopyableValueContainer {
      * @return The mutable manipulator containing all values
      */
     static Mutable mutableOf(Iterable<? extends Value<?>> values) {
-        return Sponge.getRegistry().requireFactory(Mutable.Factory.class).of(values);
+        return Sponge.getRegistry().getFactoryRegistry().require(Mutable.Factory.class).of(values);
     }
 
     /**
@@ -122,7 +122,7 @@ public interface DataManipulator extends CopyableValueContainer {
      * @return The mutable manipulator containing all values
      */
     static Mutable mutableOf(ValueContainer valueContainer) {
-        return Sponge.getRegistry().requireFactory(Mutable.Factory.class).of(valueContainer);
+        return Sponge.getRegistry().getFactoryRegistry().require(Mutable.Factory.class).of(valueContainer);
     }
 
     @TransformWith

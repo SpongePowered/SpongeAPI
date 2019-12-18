@@ -51,7 +51,7 @@ public interface MessageChannel {
      * @return The channel
      */
     static MessageChannel toNone() {
-        return Sponge.getRegistry().requireFactory(Factory.class).toNone();
+        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).toNone();
     }
 
     /**
@@ -60,7 +60,7 @@ public interface MessageChannel {
      * @return The channel
      */
     static MessageChannel toServer() {
-        return Sponge.getRegistry().requireFactory(Factory.class).toServer();
+        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).toServer();
     }
 
     /**
@@ -70,7 +70,7 @@ public interface MessageChannel {
      * @return The channel
      */
     static MessageChannel toPlayers() {
-        return Sponge.getRegistry().requireFactory(Factory.class).toPlayers();
+        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).toPlayers();
     }
 
     /**
@@ -81,7 +81,7 @@ public interface MessageChannel {
      * @return The channel
      */
     static MessageChannel toPlayersWithPermission(String permission) {
-        return Sponge.getRegistry().requireFactory(Factory.class).toPlayersWithPermission(permission);
+        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).toPlayersWithPermission(permission);
     }
 
     /**
@@ -91,7 +91,7 @@ public interface MessageChannel {
      * @return The channel
      */
     static MessageChannel toPlayersAndServer() {
-        return Sponge.getRegistry().requireFactory(Factory.class).toPlayersAndServer();
+        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).toPlayersAndServer();
     }
 
     /**
@@ -102,7 +102,7 @@ public interface MessageChannel {
      * @return The channel
      */
     static MessageChannel toSubjectsWithPermission(String permission) {
-        return Sponge.getRegistry().requireFactory(Factory.class).toSubjectsWithPermission(permission);
+        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).toSubjectsWithPermission(permission);
     }
 
     /**
@@ -114,7 +114,7 @@ public interface MessageChannel {
      * @return The channel
      */
     static MessageChannel combined(MessageChannel... channels) {
-        return Sponge.getRegistry().requireFactory(Factory.class).combined(channels);
+        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).combined(channels);
     }
 
     /**
@@ -126,7 +126,7 @@ public interface MessageChannel {
      * @return The channel
      */
     static MessageChannel combined(Iterable<? extends MessageChannel> channels) {
-        return Sponge.getRegistry().requireFactory(Factory.class).combined(channels);
+        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).combined(channels);
     }
 
     /**
@@ -136,7 +136,7 @@ public interface MessageChannel {
      * @return The channel
      */
     static MessageChannel to(MessageReceiver... recipients) {
-        return Sponge.getRegistry().requireFactory(Factory.class).to(recipients);
+        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).to(recipients);
     }
 
     /**
@@ -146,7 +146,7 @@ public interface MessageChannel {
      * @return The channel
      */
     static MessageChannel to(Iterable<? extends MessageReceiver> recipients) {
-        return Sponge.getRegistry().requireFactory(Factory.class).to(recipients);
+        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).to(recipients);
     }
 
     /**
@@ -230,7 +230,7 @@ public interface MessageChannel {
      * @return The mutable channel
      */
     default MutableMessageChannel asMutable() {
-        return Sponge.getRegistry().requireFactory(Factory.class).asMutable(this);
+        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).asMutable(this);
     }
 
     interface Factory {

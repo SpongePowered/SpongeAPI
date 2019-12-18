@@ -24,11 +24,31 @@
  */
 package org.spongepowered.api.registry;
 
-public enum RegistrationPhase {
-    PRE_REGISTRY,
-    PRE_INIT,
-    INIT,
-    POST_INIT,
-    LOADED,
-    ;
+import org.spongepowered.api.util.ResettableBuilder;
+
+import java.util.function.Supplier;
+
+public interface BuilderRegistry {
+
+    /**
+     * Registers a {@link Supplier} for creating the desired {@code T}.
+     *
+     * @param builderClass The builder class
+     * @param supplier The supplier
+     * @param <T> The type of builder/supplier
+     * @return This registry, for chaining
+     */
+    <T> GameRegistry register(Class<T> builderClass, Supplier<? extends T> supplier);
+
+    /**
+     * Gets a builder of the desired class type, examples may include:
+     * {@link org.spongepowered.api.item.inventory.ItemStack.Builder}, etc.
+     *
+     * @param builderClass The class of the builder
+     * @param <T> The type of builder
+     * @return The builder, if available
+     * @throws IllegalArgumentException If there is no supplier for the given
+     *      builder class
+     */
+    <T extends ResettableBuilder<?, ? super T>> T createBuilder(Class<T> builderClass) throws IllegalArgumentException;
 }

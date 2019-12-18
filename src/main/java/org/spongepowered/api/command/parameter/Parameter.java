@@ -103,7 +103,7 @@ public interface Parameter {
      * @return The {@link Key}
      */
     static <T> Key<T> key(String key, Class<T> valueClass) {
-        return Sponge.getRegistry().createBuilder(Key.Builder.class).build(key, valueClass);
+        return Sponge.getRegistry().getBuilderRegistry().createBuilder(Key.Builder.class).build(key, valueClass);
     }
 
     /**
@@ -114,7 +114,7 @@ public interface Parameter {
      * @return The {@link Value.Builder}
      */
     static <T> Value.Builder<T> builder(Class<T> valueClass) {
-        return Sponge.getRegistry().requireFactory(Factory.class).createParameterBuilder(valueClass);
+        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).createParameterBuilder(valueClass);
     }
 
     /**
@@ -145,7 +145,7 @@ public interface Parameter {
      */
     static Subcommand subcommand(Command subcommand, String alias, String... aliases) {
         Subcommand.Builder builder = Sponge.getRegistry()
-                .createBuilder(Subcommand.Builder.class)
+                .getBuilderRegistry().createBuilder(Subcommand.Builder.class)
                 .setSubcommand(subcommand)
                 .alias(alias);
         for (String a : aliases) {
@@ -165,7 +165,7 @@ public interface Parameter {
      * @return The {@link Parameter.FirstOfBuilder} to continue chaining
      */
     static Parameter.FirstOfBuilder firstOf(Parameter parameter) {
-        return Sponge.getRegistry().createBuilder(FirstOfBuilder.class).or(parameter);
+        return Sponge.getRegistry().getBuilderRegistry().createBuilder(FirstOfBuilder.class).or(parameter);
     }
 
     /**
@@ -180,7 +180,7 @@ public interface Parameter {
      * @return The {@link Parameter}
      */
     static Parameter firstOf(Parameter first, Parameter second, Parameter... parameters) {
-        return Sponge.getRegistry().createBuilder(FirstOfBuilder.class).or(first).or(second).orFirstOf(parameters).build();
+        return Sponge.getRegistry().getBuilderRegistry().createBuilder(FirstOfBuilder.class).or(first).or(second).orFirstOf(parameters).build();
     }
 
     /**
@@ -192,7 +192,7 @@ public interface Parameter {
      * @return The {@link Parameter}
      */
     static Parameter firstOf(Iterable<Parameter> parameters) {
-        return Sponge.getRegistry().createBuilder(FirstOfBuilder.class).orFirstOf(parameters).build();
+        return Sponge.getRegistry().getBuilderRegistry().createBuilder(FirstOfBuilder.class).orFirstOf(parameters).build();
     }
 
     /**
@@ -204,7 +204,7 @@ public interface Parameter {
      *         chain
      */
     static Parameter.SequenceBuilder seq(Parameter parameter) {
-        return Sponge.getRegistry().createBuilder(SequenceBuilder.class).then(parameter);
+        return Sponge.getRegistry().getBuilderRegistry().createBuilder(SequenceBuilder.class).then(parameter);
     }
 
     /**
@@ -218,7 +218,7 @@ public interface Parameter {
      * @return The {@link Parameter}
      */
     static Parameter seq(Parameter first, Parameter second, Parameter... parameters) {
-        return Sponge.getRegistry().createBuilder(SequenceBuilder.class).then(first).then(second).then(parameters).build();
+        return Sponge.getRegistry().getBuilderRegistry().createBuilder(SequenceBuilder.class).then(first).then(second).then(parameters).build();
     }
 
     /**
@@ -229,7 +229,7 @@ public interface Parameter {
      * @return The {@link Parameter}
      */
     static Parameter seq(Iterable<Parameter> parameters) {
-        return Sponge.getRegistry().createBuilder(SequenceBuilder.class).then(parameters).build();
+        return Sponge.getRegistry().getBuilderRegistry().createBuilder(SequenceBuilder.class).then(parameters).build();
     }
 
     // Convenience methods for getting the common parameter types - all in once place.

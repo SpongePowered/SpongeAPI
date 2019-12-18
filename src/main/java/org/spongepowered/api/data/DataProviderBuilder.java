@@ -43,7 +43,7 @@ public interface DataProviderBuilder<H extends DataHolder, V extends Value<E>, E
         extends ResettableBuilder<DataProvider<V, E>, DataProviderBuilder.BaseBuilder<V, E>> {
 
     static BaseBuilder<?, ?> builder() {
-        return Sponge.getRegistry().createBuilder(BaseBuilder.class);
+        return Sponge.getRegistry().getBuilderRegistry().createBuilder(BaseBuilder.class);
     }
 
     <NV extends Value<NE>, NE> DataProviderBuilder<H, NV, NE> key(Key<NV> key);

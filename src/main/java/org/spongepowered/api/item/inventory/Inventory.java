@@ -55,7 +55,7 @@ public interface Inventory extends DataHolder.Mutable {
      * @return The builder
      */
     static Inventory.Builder builder() {
-        return Sponge.getRegistry().createBuilder(Inventory.Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().createBuilder(Inventory.Builder.class);
     }
 
     /**

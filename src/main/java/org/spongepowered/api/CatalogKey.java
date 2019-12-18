@@ -29,6 +29,7 @@ import org.spongepowered.api.data.DataRegistration;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.DataTranslator;
 import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.api.registry.GameRegistry;
 import org.spongepowered.api.util.ResettableBuilder;
 
 /**
@@ -90,7 +91,7 @@ public interface CatalogKey extends Comparable<CatalogKey> {
      * @return The new builder instance
      */
     static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().createBuilder(Builder.class);
     }
 
     /**
@@ -101,7 +102,7 @@ public interface CatalogKey extends Comparable<CatalogKey> {
      * @return A new catalog key
      */
     static CatalogKey of(final String namespace, final String value) {
-        return Sponge.getRegistry().createBuilder(Builder.class).namespace(namespace).value(value).build();
+        return Sponge.getRegistry().getBuilderRegistry().createBuilder(Builder.class).namespace(namespace).value(value).build();
     }
 
     /**
@@ -112,7 +113,7 @@ public interface CatalogKey extends Comparable<CatalogKey> {
      * @return A new catalog key
      */
     static CatalogKey of(final PluginContainer container, final String value) {
-        return Sponge.getRegistry().createBuilder(Builder.class).namespace(container).value(value).build();
+        return Sponge.getRegistry().getBuilderRegistry().createBuilder(Builder.class).namespace(container).value(value).build();
     }
 
     /**
@@ -125,7 +126,7 @@ public interface CatalogKey extends Comparable<CatalogKey> {
      * @return A new catalog key
      */
     static CatalogKey resolve(final String value) {
-        return Sponge.getRegistry().resolveKey(value);
+        return Sponge.getRegistry().getCatalogRegistry().resolveKey(value);
     }
 
     /**
