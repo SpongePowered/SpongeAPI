@@ -31,7 +31,6 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * An interface for data returned by inventory operations which encapsulates the
@@ -45,7 +44,7 @@ public interface InventoryTransactionResult {
      * @return A new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().createBuilder(Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
     }
 
     /**

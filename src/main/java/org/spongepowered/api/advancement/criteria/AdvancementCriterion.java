@@ -44,7 +44,7 @@ public interface AdvancementCriterion {
      * @return The empty advancement criterion
      */
     static AdvancementCriterion empty() {
-        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).empty();
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).empty();
     }
 
     /**
@@ -54,7 +54,7 @@ public interface AdvancementCriterion {
      * @return The dummy advancement criterion
      */
     static AdvancementCriterion dummy() {
-        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).dummy();
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).dummy();
     }
 
     /**
@@ -63,7 +63,7 @@ public interface AdvancementCriterion {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().createBuilder(Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
     }
 
     /**

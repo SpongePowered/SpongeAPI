@@ -32,7 +32,6 @@ import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.query.Query;
-import org.spongepowered.api.item.inventory.query.QueryType;
 import org.spongepowered.api.item.inventory.query.QueryTypes;
 import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult;
 import org.spongepowered.api.item.inventory.type.ViewableInventory;
@@ -55,7 +54,7 @@ public interface Inventory extends DataHolder.Mutable {
      * @return The builder
      */
     static Inventory.Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().createBuilder(Inventory.Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Inventory.Builder.class);
     }
 
     /**

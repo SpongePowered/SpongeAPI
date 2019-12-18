@@ -35,24 +35,6 @@ import java.util.function.Supplier;
 public interface CatalogRegistry {
 
     /**
-     * Resolves a catalog key. This should only be used when transforming
-     * legacy {@link String} id's that were properly formatted to the
-     * {@link CatalogType}s previous id requirements. This does not guarantee
-     * that the returned {@link CatalogKey} is valid for the game's current
-     * state, as the key may well point to an invalid {@link CatalogType}
-     * that is no longer available.
-     *
-     * <p>If chaining this method with {@link #get(Class, CatalogKey)},
-     * be aware that the value may still be {@link Optional#empty()} as the
-     * value is only "translated" into a {@link CatalogKey}. No guarantees
-     * are made about the validity of the key's format.</p>
-     *
-     * @param value The value
-     * @return A new catalog key
-     */
-    CatalogKey resolveKey(String value);
-
-    /**
      * Creates a {@link Supplier} that will be used to get {@link CatalogType} instances.
      *
      * <p>

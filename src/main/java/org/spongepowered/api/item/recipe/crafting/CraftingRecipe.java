@@ -124,7 +124,7 @@ public interface CraftingRecipe extends Recipe {
      * @return The Builder.
      */
     static ShapedCraftingRecipe.Builder shapedBuilder() {
-        return Sponge.getRegistry().getBuilderRegistry().createBuilder(ShapedCraftingRecipe.Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(ShapedCraftingRecipe.Builder.class);
     }
 
     /**
@@ -133,7 +133,7 @@ public interface CraftingRecipe extends Recipe {
      * @return The Builder.
      */
     static ShapelessCraftingRecipe.Builder shapelessBuilder() {
-        return Sponge.getRegistry().getBuilderRegistry().createBuilder(ShapelessCraftingRecipe.Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(ShapelessCraftingRecipe.Builder.class);
     }
 
 }

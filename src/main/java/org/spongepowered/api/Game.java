@@ -40,6 +40,7 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.TeleportHelper;
 
 import java.nio.file.Path;
+import java.util.Locale;
 
 /**
  * The core accessor of the API. The implementation uses this to pass
@@ -91,6 +92,14 @@ public interface Game {
      * @return The {@link SystemSubject}
      */
     SystemSubject getSystemSubject();
+
+    /**
+     * Gets a locale for the specified locale code, e.g. {@code en_US}.
+     *
+     * @param locale The locale to lookup (e.g. {@code en_US}.
+     * @return The locale
+     */
+    Locale getLocale(String locale);
 
     /**
      * Returns if the {@link Client} is available for use. The result of this method is entirely
@@ -217,5 +226,4 @@ public interface Game {
     default CauseStackManager getCauseStackManager() {
         return Sponge.getCauseStackManager();
     }
-
 }

@@ -47,7 +47,7 @@ public interface Favicon {
      * @throws IOException If the favicon couldn't be loaded
      */
     static Favicon load(String raw) throws IOException {
-        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).load(raw);
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).load(raw);
     }
 
     /**
@@ -59,7 +59,7 @@ public interface Favicon {
      * @throws FileNotFoundException If the file doesn't exist
      */
     static Favicon load(Path path) throws IOException {
-        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).load(path);
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).load(path);
     }
 
     /**
@@ -70,7 +70,7 @@ public interface Favicon {
      * @throws IOException If the favicon couldn't be loaded
      */
     static Favicon load(URL url) throws IOException {
-        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).load(url);
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).load(url);
     }
 
     /**
@@ -81,7 +81,7 @@ public interface Favicon {
      * @throws IOException If the favicon couldn't be loaded
      */
     static Favicon load(InputStream in) throws IOException {
-        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).load(in);
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).load(in);
     }
 
     /**
@@ -92,7 +92,7 @@ public interface Favicon {
      * @throws IOException If the favicon couldn't be loaded
      */
     static Favicon load(BufferedImage image) throws IOException {
-        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).load(image);
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).load(image);
     }
 
     /**

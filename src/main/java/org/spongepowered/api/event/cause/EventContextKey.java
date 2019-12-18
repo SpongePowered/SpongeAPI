@@ -45,7 +45,7 @@ public interface EventContextKey<T> extends CatalogType {
      */
     @SuppressWarnings("unchecked")
     static Builder<?> builder() {
-        return Sponge.getRegistry().getBuilderRegistry().createBuilder(Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
     }
 
     /**

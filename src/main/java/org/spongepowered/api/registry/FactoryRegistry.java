@@ -27,11 +27,11 @@ package org.spongepowered.api.registry;
 public interface FactoryRegistry {
 
     /**
-     * Gets a factory used to churn instances.
+     * Provides a factory used to create instances of the specified type
      *
      * @param clazz The factory class
      * @param <T> The type of factory
      * @return The factory
      */
-    <T> T require(Class<T> clazz);
+    <T> T provideFactory(Class<T> clazz);
 }

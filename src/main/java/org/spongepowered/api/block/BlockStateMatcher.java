@@ -47,7 +47,7 @@ public interface BlockStateMatcher extends Predicate<BlockState> {
      * @return The builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().createBuilder(Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
     }
 
     /**

@@ -66,35 +66,35 @@ import java.util.function.BiFunction;
 public interface Location extends DataHolder.Mutable, DirectionRelativeDataHolder.Mutable, WorldLocation<ServerWorld> {
 
     static Location of(World world, double x, double y, double z) {
-        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).create(world, new Vector3d(x, y, z));
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(world, new Vector3d(x, y, z));
     }
 
     static Location of(UUID worldUniqueId, double x, double y, double z) {
-        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).create(worldUniqueId, new Vector3d(x, y, z));
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(worldUniqueId, new Vector3d(x, y, z));
     }
 
     static Location of(World world, Vector3d position) {
-        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).create(world, position);
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(world, position);
     }
 
     static Location of(UUID worldUniqueId, Vector3d position) {
-        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).create(worldUniqueId, position);
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(worldUniqueId, position);
     }
 
     static Location of(World world, int x, int y, int z) {
-        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).create(world, new Vector3i(x, y, z));
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(world, new Vector3i(x, y, z));
     }
 
     static Location of(UUID worldUniqueId, int x, int y, int z) {
-        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).create(worldUniqueId, new Vector3i(x, y, z));
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(worldUniqueId, new Vector3i(x, y, z));
     }
 
     static Location of(World world, Vector3i position) {
-        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).create(world, position);
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(world, position);
     }
 
     static Location of(UUID worldUniqueId, Vector3i position) {
-        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).create(worldUniqueId, position);
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(worldUniqueId, position);
     }
 
     /**

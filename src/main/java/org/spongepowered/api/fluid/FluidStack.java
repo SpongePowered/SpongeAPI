@@ -42,7 +42,7 @@ public interface FluidStack extends SerializableDataHolder.Mutable {
      * @return The newly created builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().createBuilder(Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
     }
 
     /**

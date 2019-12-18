@@ -49,7 +49,7 @@ public interface LiteralText extends Text {
      * @return A new text builder with empty text
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().createBuilder(Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
     }
 
     /**

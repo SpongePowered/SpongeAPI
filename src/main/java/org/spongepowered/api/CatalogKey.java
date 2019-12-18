@@ -91,7 +91,7 @@ public interface CatalogKey extends Comparable<CatalogKey> {
      * @return The new builder instance
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().createBuilder(Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
     }
 
     /**
@@ -102,7 +102,7 @@ public interface CatalogKey extends Comparable<CatalogKey> {
      * @return A new catalog key
      */
     static CatalogKey of(final String namespace, final String value) {
-        return Sponge.getRegistry().getBuilderRegistry().createBuilder(Builder.class).namespace(namespace).value(value).build();
+        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class).namespace(namespace).value(value).build();
     }
 
     /**
@@ -113,7 +113,7 @@ public interface CatalogKey extends Comparable<CatalogKey> {
      * @return A new catalog key
      */
     static CatalogKey of(final PluginContainer container, final String value) {
-        return Sponge.getRegistry().getBuilderRegistry().createBuilder(Builder.class).namespace(container).value(value).build();
+        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class).namespace(container).value(value).build();
     }
 
     /**
@@ -126,7 +126,7 @@ public interface CatalogKey extends Comparable<CatalogKey> {
      * @return A new catalog key
      */
     static CatalogKey resolve(final String value) {
-        return Sponge.getRegistry().getCatalogRegistry().resolveKey(value);
+        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class).value(value).build();
     }
 
     /**

@@ -26,9 +26,6 @@ package org.spongepowered.api.world.biome;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.CatalogBuilder;
-import org.spongepowered.api.world.World;
-
-import java.util.function.Function;
 
 /**
  * A virtual biome is one which exists purely for generation and therefore
@@ -44,7 +41,7 @@ public interface VirtualBiomeType extends BiomeType {
      * @return The builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().createBuilder(Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
     }
 
     /**

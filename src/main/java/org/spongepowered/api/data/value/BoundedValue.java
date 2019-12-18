@@ -58,7 +58,7 @@ public interface BoundedValue<E> extends Value<E> {
      * @return The constructed mutable bounded value
      */
     static <E> BoundedValue.Mutable<E> mutableOf(Key<? extends BoundedValue<E>> key, E element, E minimum, E maximum) {
-        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).mutableOf(key, element, minimum, maximum).asMutable();
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).mutableOf(key, element, minimum, maximum).asMutable();
     }
 
     /**
@@ -76,7 +76,7 @@ public interface BoundedValue<E> extends Value<E> {
      * @return The constructed immutable bounded value
      */
     static <E> BoundedValue.Immutable<E> immutableOf(Key<? extends BoundedValue<E>> key, E element, E minimum, E maximum) {
-        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).immutableOf(key, element, minimum, maximum).asImmutable();
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).immutableOf(key, element, minimum, maximum).asImmutable();
     }
 
     /**

@@ -44,7 +44,7 @@ public interface ItemStackSnapshot extends SerializableDataHolder.Immutable<Item
      * @return The empty item stack snapshot
      */
     static ItemStackSnapshot empty() {
-        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).empty();
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).empty();
     }
 
     /**

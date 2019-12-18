@@ -50,5 +50,5 @@ public interface BuilderRegistry {
      * @throws IllegalArgumentException If there is no supplier for the given
      *      builder class
      */
-    <T extends ResettableBuilder<?, ? super T>> T createBuilder(Class<T> builderClass) throws IllegalArgumentException;
+    <T extends ResettableBuilder<?, ? super T>> T provideBuilder(Class<T> builderClass) throws IllegalArgumentException;
 }

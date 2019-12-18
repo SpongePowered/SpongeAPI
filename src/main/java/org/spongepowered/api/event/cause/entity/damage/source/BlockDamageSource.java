@@ -27,7 +27,6 @@ package org.spongepowered.api.event.cause.entity.damage.source;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
 
 public interface BlockDamageSource extends DamageSource {
 
@@ -38,7 +37,7 @@ public interface BlockDamageSource extends DamageSource {
      * @return A new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().createBuilder(Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
     }
 
     /**

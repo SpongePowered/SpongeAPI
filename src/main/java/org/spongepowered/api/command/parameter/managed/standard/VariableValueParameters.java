@@ -49,7 +49,7 @@ public class VariableValueParameters {
      * @return The builder
      */
     public static <T extends CatalogType> CatalogedTypeBuilder<T> catalogedElementParameterBuilder(Class<T> returnType) {
-        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).createCatalogedTypesBuilder(returnType);
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createCatalogedTypesBuilder(returnType);
     }
 
     /**
@@ -65,7 +65,7 @@ public class VariableValueParameters {
      * @return The builder
      */
     public static <T> StaticChoicesBuilder<T> staticChoicesBuilder(Class<T> returnType) {
-        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).createStaticChoicesBuilder(returnType);
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createStaticChoicesBuilder(returnType);
     }
 
     /**
@@ -81,7 +81,7 @@ public class VariableValueParameters {
      * @return The builder
      */
     public static <T> DynamicChoicesBuilder<T> dynamicChoicesBuilder(Class<T> returnType) {
-        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).createDynamicChoicesBuilder(returnType);
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createDynamicChoicesBuilder(returnType);
     }
 
     /**
@@ -94,7 +94,7 @@ public class VariableValueParameters {
      * @return The builder
      */
     public static <T> LiteralBuilder<T> literalBuilder(Class<T> returnType) {
-        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).createLiteralBuilder(returnType);
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createLiteralBuilder(returnType);
     }
 
     /**
@@ -103,7 +103,7 @@ public class VariableValueParameters {
      * @return The new builder
      */
     public static TextBuilder textBuilder() {
-        return Sponge.getRegistry().getBuilderRegistry().createBuilder(TextBuilder.class);
+        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(TextBuilder.class);
     }
 
     /**
@@ -115,7 +115,7 @@ public class VariableValueParameters {
      * @return The appropriate {@link ValueParameter}
      */
     public static <T extends Enum<T>> ValueParameter<T> enumChoices(Class<T> enumClass) {
-        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).createEnumParameter(enumClass);
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createEnumParameter(enumClass);
     }
 
     /**

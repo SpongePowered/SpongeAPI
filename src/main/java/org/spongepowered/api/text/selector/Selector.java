@@ -49,7 +49,7 @@ public interface Selector {
      * @return A new selector builder with the specified type
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().createBuilder(Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
     }
 
     /**
@@ -59,7 +59,7 @@ public interface Selector {
      * @return A new selector containing the given selector data
      */
     static Selector parse(String selector) {
-        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).parseRawSelector(selector);
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).parseRawSelector(selector);
     }
 
     /**
@@ -69,7 +69,7 @@ public interface Selector {
      * @return Tab completions for the next part of the selector
      */
     static List<String> complete(String selector) {
-        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).complete(selector);
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).complete(selector);
     }
 
     /**

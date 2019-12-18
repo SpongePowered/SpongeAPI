@@ -148,7 +148,7 @@ public final class ArgumentTypes {
      * @return The created argument type
      */
     public static ArgumentHolder.Limit<ArgumentType<Integer>> score(String name) {
-        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).createLimitHolder(name);
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createLimitHolder(name);
     }
 
     /**
@@ -159,7 +159,7 @@ public final class ArgumentTypes {
      *         if not found
      */
     public static Optional<ArgumentType<?>> valueOf(String name) {
-        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).getType(name);
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).getType(name);
     }
 
     /**
@@ -168,7 +168,7 @@ public final class ArgumentTypes {
      * @return The list of all available {@link ArgumentType}s
      */
     public static Collection<ArgumentType<?>> values() {
-        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).getTypes();
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).getTypes();
     }
 
     /**
@@ -178,7 +178,7 @@ public final class ArgumentTypes {
      * @return The created argument type
      */
     public static ArgumentType<String> create(String key) {
-        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).createType(key);
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createType(key);
     }
 
     /**
@@ -190,7 +190,7 @@ public final class ArgumentTypes {
      * @return The created argument type
      */
     public static <T> ArgumentType<T> create(String key, Class<T> type) {
-        return Sponge.getRegistry().getFactoryRegistry().require(Factory.class).createType(key, type);
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createType(key, type);
     }
 
     private ArgumentTypes() {
