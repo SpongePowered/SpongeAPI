@@ -24,18 +24,17 @@
  */
 package org.spongepowered.api.registry;
 
-import org.spongepowered.api.util.ResettableBuilder;
+public final class DuplicateRegistrationException extends RuntimeException {
 
-public interface BuilderRegistry {
+    public DuplicateRegistrationException(String message) {
+        super(message);
+    }
 
-    /**
-     * Gets a builder of the desired class type, examples may include:
-     * {@link org.spongepowered.api.item.inventory.ItemStack.Builder}, etc.
-     *
-     * @param builderClass The class of the builder
-     * @param <T> The type of builder
-     * @throws UnknownTypeException If the type provided has not been registered
-     * @return The builder, if available
-     */
-    <T extends ResettableBuilder<?, ? super T>> T provideBuilder(Class<T> builderClass) throws UnknownTypeException;
+    public DuplicateRegistrationException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public DuplicateRegistrationException(Throwable cause) {
+        super(cause);
+    }
 }

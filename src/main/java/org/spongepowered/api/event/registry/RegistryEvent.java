@@ -25,21 +25,69 @@
 package org.spongepowered.api.event.registry;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.registry.DuplicateRegistrationException;
+import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Set;
 import java.util.function.Supplier;
 
 public interface RegistryEvent {
 
+    interface Builder {
+
+        /**
+         * Registers a new {@link ResettableBuilder builder}.
+         *
+         * @param builderClass The builder type
+         * @param supplier The supplier of the builder instance
+         * @param <T> The type
+         * @throws DuplicateRegistrationException If the type is already registered
+         */
+        <T extends ResettableBuilder<?, ? super T>> void register(Class<T> builderClass, Supplier<? super T> supplier) throws DuplicateRegistrationException;
+    }
+
     interface CatalogRegistry extends RegistryEvent {
 
-        <T extends CatalogType> void register(Class<T> catalogClass);
+        /**
+         * Registers a new {@link CatalogType catalog type} registry.
+         *
+         * @param catalogClass The catalog type
+         * @param <T> The type
+         * @throws DuplicateRegistrationException If the type is already registered
+         */
+        <T extends CatalogType> void register(Class<T> catalogClass) throws DuplicateRegistrationException;
 
-        <T extends CatalogType> void register(Class<T> catalogClass, Supplier<Set<T>> defaultsSupplier);
+        /**
+         * Registers a new {@link CatalogType catalog type} registry.
+         *
+         * @param catalogClass The catalog type
+         * @param defaultsSupplier The default added types, added for convenience
+         * @param <T> The type
+         * @throws DuplicateRegistrationException If the type is already registered
+         */
+        <T extends CatalogType> void register(Class<T> catalogClass, Supplier<Set<T>> defaultsSupplier) throws DuplicateRegistrationException;
     }
 
     interface Catalog<T extends CatalogType> extends RegistryEvent {
 
-        void register(T catalogType);
+        /**
+         * Registers a new {@link CatalogType catalog type}.
+         *
+         * @param catalogType The catalog type
+         * @throws DuplicateRegistrationException If the type is already registered
+         */
+        void register(T catalogType) throws DuplicateRegistrationException;
+    }
+
+    interface Factory {
+
+        /**
+         * Registers an object meant to be used to churn object references
+         *
+         * @param factoryClass The factory type
+         * @param <T> The type
+         * @throws DuplicateRegistrationException If the type is already registered
+         */
+        <T> void register(Class<T> factoryClass) throws DuplicateRegistrationException;
     }
 }
