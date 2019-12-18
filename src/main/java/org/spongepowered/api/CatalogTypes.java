@@ -61,6 +61,7 @@ import org.spongepowered.api.item.inventory.equipment.HeldEquipmentType;
 import org.spongepowered.api.item.inventory.equipment.WornEquipmentType;
 import org.spongepowered.api.item.inventory.query.QueryType;
 import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
+import org.spongepowered.api.registry.CatalogRegistry;
 import org.spongepowered.api.registry.GameRegistry;
 import org.spongepowered.api.scoreboard.CollisionRule;
 import org.spongepowered.api.scoreboard.Visibility;
@@ -94,8 +95,8 @@ import org.spongepowered.api.world.weather.Weather;
  * Enumeration of all known {@link CatalogType}s for autocompletion when using
  * the {@link GameRegistry} to retrieve specific types or all of a certain type.
  *
- * <p>These are generally useful for {@link GameRegistry#getType(Class, CatalogKey)}
- * and {@link GameRegistry#getAllOf(Class)}.</p>
+ * <p>These are generally useful for {@link CatalogRegistry#get(Class, CatalogKey)}
+ * and {@link CatalogRegistry#getAllOf(Class)}.</p>
  */
 @SuppressWarnings({"rawtypes", "unused"})
 public final class CatalogTypes {
@@ -108,7 +109,7 @@ public final class CatalogTypes {
 
     public static final Class<AdvancementType> ADVANCEMENT_TYPE = AdvancementType.class;
 
-    public static final Class<GoalType> AI_TASK_TYPE = GoalType.class;
+    public static final Class<GoalType> GOAL_TYPE = GoalType.class;
 
     public static final Class<ArmorType> ARMOR_TYPE = ArmorType.class;
 
@@ -184,7 +185,7 @@ public final class CatalogTypes {
 
     public static final Class<GeneratorType> GENERATOR_TYPE = GeneratorType.class;
 
-    public static final Class<GoalExecutorType> GOAL_TYPE = GoalExecutorType.class;
+    public static final Class<GoalExecutorType> GOAL_EXECUTOR_TYPE = GoalExecutorType.class;
 
     public static final Class<HandPreference> HAND_PREFERENCE = HandPreference.class;
 
