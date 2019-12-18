@@ -45,9 +45,10 @@ public interface CatalogRegistry {
      * @param suggestedId The suggested id to use
      * @param <T> The type of catalog
      * @param <E> The generic of the catalog (if applicable)
+     * @throws UnknownTypeException If the type provided has not been registered
      * @return The supplier
      */
-    <T extends CatalogType, E extends T> Supplier<E> provideSupplier(Class<T> catalogClass, String suggestedId);
+    <T extends CatalogType, E extends T> Supplier<E> provideSupplier(Class<T> catalogClass, String suggestedId) throws UnknownTypeException;
 
     /**
      * Attempts to retrieve the specific type of {@link CatalogType} based on

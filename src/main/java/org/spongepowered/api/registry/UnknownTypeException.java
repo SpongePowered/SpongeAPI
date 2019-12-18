@@ -24,30 +24,17 @@
  */
 package org.spongepowered.api.registry;
 
-import org.spongepowered.api.util.ResettableBuilder;
+public final class UnknownTypeException extends RuntimeException {
 
-import java.util.function.Supplier;
+    public UnknownTypeException(String message) {
+        super(message);
+    }
 
-public interface BuilderRegistry {
+    public UnknownTypeException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-    /**
-     * Registers a {@link Supplier} for creating the desired {@code T}.
-     *
-     * @param builderClass The builder class
-     * @param supplier The supplier
-     * @param <T> The type of builder/supplier
-     * @return This registry, for chaining
-     */
-    <T> BuilderRegistry register(Class<T> builderClass, Supplier<? extends T> supplier);
-
-    /**
-     * Gets a builder of the desired class type, examples may include:
-     * {@link org.spongepowered.api.item.inventory.ItemStack.Builder}, etc.
-     *
-     * @param builderClass The class of the builder
-     * @param <T> The type of builder
-     * @throws UnknownTypeException If the type provided has not been registered
-     * @return The builder, if available
-     */
-    <T extends ResettableBuilder<?, ? super T>> T provideBuilder(Class<T> builderClass) throws UnknownTypeException;
+    public UnknownTypeException(Throwable cause) {
+        super(cause);
+    }
 }
