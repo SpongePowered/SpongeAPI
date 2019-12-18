@@ -76,8 +76,7 @@ import java.util.UUID;
 public class SpongeEventFactoryTest {
 
     private static final Set<Class<?>> excludedEvents = ImmutableSet.of(DamageEntityEvent.class,
-            AITaskEvent.class, AITaskEvent.Add.class, AITaskEvent.Remove.class, AttackEntityEvent.class,
-            GameRegistryEvent.Register.class);
+            AITaskEvent.class, AITaskEvent.Add.class, AITaskEvent.Remove.class, AttackEntityEvent.class);
 
     private static final Set<String> excludedMethods = ImmutableSet.of("getEntitySnapshots");
 

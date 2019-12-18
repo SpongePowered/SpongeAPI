@@ -62,9 +62,10 @@ public interface CatalogRegistry {
      * @param catalogClass The catalog class
      * @param suggestedId The suggested id to use
      * @param <T> The type of catalog
+     * @param <E> The generic of the catalog (if applicable)
      * @return The supplier
      */
-    <T extends CatalogType> Supplier<T> provideSupplier(Class<T> catalogClass, String suggestedId);
+    <T extends CatalogType, E extends T> Supplier<E> provideSupplier(Class<T> catalogClass, String suggestedId);
 
     /**
      * Attempts to retrieve the specific type of {@link CatalogType} based on
