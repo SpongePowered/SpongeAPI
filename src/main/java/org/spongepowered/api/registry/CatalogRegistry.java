@@ -85,11 +85,11 @@ public interface CatalogRegistry {
      * {@link CatalogType} requested.
      *
      * @param typeClass The class of {@link CatalogType}
-     * @param pluginId The plugin id to check for types
+     * @param namespace The namespace to check for types
      * @param <T> The type of {@link CatalogType}
      * @return A collection of all known types of the requested catalog type
      */
-    <T extends CatalogType> Collection<T> getAllFor(Class<T> typeClass, String pluginId);
+    <T extends CatalogType> Collection<T> getAllFor(Class<T> typeClass, String namespace);
 
     /**
      * Gets all {@link CatalogType} for Minecraft as a base mod. Note that
