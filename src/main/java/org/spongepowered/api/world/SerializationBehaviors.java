@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.world;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 public final class SerializationBehaviors {
 
@@ -33,17 +35,17 @@ public final class SerializationBehaviors {
     /**
      * A {@link SerializationBehavior} where data is saved automatically. This is considered the default across the game.
      */
-    public static final SerializationBehavior AUTOMATIC = DummyObjectProvider.createFor(SerializationBehavior.class, "automatic");
+    public static final Supplier<SerializationBehavior> AUTOMATIC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SerializationBehavior.class, "automatic");
 
     /**
      * A {@link SerializationBehavior} where data is only saved when requested.
      */
-    public static final SerializationBehavior MANUAL = DummyObjectProvider.createFor(SerializationBehavior.class, "manual");
+    public static final Supplier<SerializationBehavior> MANUAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SerializationBehavior.class, "manual");
 
     /**
      * A {@link SerializationBehavior} where data is not saved to disk.
      */
-    public static final SerializationBehavior NONE = DummyObjectProvider.createFor(SerializationBehavior.class, "none");
+    public static final Supplier<SerializationBehavior> NONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SerializationBehavior.class, "none");
 
     // SORTFIELDS:OFF
 

@@ -30,6 +30,8 @@ import org.spongepowered.api.text.action.ClickAction;
 import org.spongepowered.api.text.action.HoverAction;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
+import java.util.function.Supplier;
+
 /**
  * The list of {@link TextSerializer} available together with SpongeAPI.
  */
@@ -39,7 +41,7 @@ public final class TextSerializers {
      * The {@link TextSerializer} for plain text input, without support for
      * formatting or special text types.
      */
-    public static final SafeTextSerializer PLAIN = DummyObjectProvider.createFor(SafeTextSerializer.class, "PLAIN");
+    public static final Supplier<SafeTextSerializer> PLAIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SafeTextSerializer.class, "PLAIN");
 
     /**
      * The {@link FormattingCodeTextSerializer} using the internal formatting
@@ -83,7 +85,7 @@ public final class TextSerializers {
      * The {@link TextSerializer} for Mojang's JSON (<i>Mojangson</i>)
      * representation of a {@link Text} object.
      */
-    public static final TextSerializer JSON = DummyObjectProvider.createFor(TextSerializer.class, "JSON");
+    public static final Supplier<TextSerializer> JSON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TextSerializer.class, "JSON");
 
     /**
      * Returns a representation that accepts and outputs formatting codes, using

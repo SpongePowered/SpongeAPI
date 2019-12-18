@@ -33,15 +33,15 @@ public final class StairShapes {
 
     // SORTFIELDS:ON
 
-    public static final StairShape INNER_LEFT = DummyObjectProvider.createFor(StairShape.class, "INNER_LEFT");
+    public static final Supplier<StairShape> INNER_LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StairShape.class, "INNER_LEFT");
 
-    public static final StairShape INNER_RIGHT = DummyObjectProvider.createFor(StairShape.class, "INNER_RIGHT");
+    public static final Supplier<StairShape> INNER_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StairShape.class, "INNER_RIGHT");
 
-    public static final StairShape OUTER_LEFT = DummyObjectProvider.createFor(StairShape.class, "OUTER_LEFT");
+    public static final Supplier<StairShape> OUTER_LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StairShape.class, "OUTER_LEFT");
 
-    public static final StairShape OUTER_RIGHT = DummyObjectProvider.createFor(StairShape.class, "OUTER_RIGHT");
+    public static final Supplier<StairShape> OUTER_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StairShape.class, "OUTER_RIGHT");
 
-    public static final StairShape STRAIGHT = DummyObjectProvider.createFor(StairShape.class, "STRAIGHT");
+    public static final Supplier<StairShape> STRAIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StairShape.class, "STRAIGHT");
 
     // SORTFIELDS:OFF
 

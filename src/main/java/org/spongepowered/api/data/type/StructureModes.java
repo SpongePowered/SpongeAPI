@@ -37,7 +37,7 @@ public final class StructureModes {
      * Corner mode allows for an easier and automatic size calculation while
      * saving or loading structures.
      */
-    public static final StructureMode CORNER = DummyObjectProvider.createFor(StructureMode.class, "CORNER");
+    public static final Supplier<StructureMode> CORNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StructureMode.class, "CORNER");
 
     /**
      * Data mode can only be used during natural generation.
@@ -50,18 +50,18 @@ public final class StructureModes {
      * <p>This mode is the default mode when a structure block is first
      * placed.</p>
      */
-    public static final StructureMode DATA = DummyObjectProvider.createFor(StructureMode.class, "DATA");
+    public static final Supplier<StructureMode> DATA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StructureMode.class, "DATA");
 
     /**
      * Load mode allows a player to load and rotate saved structure files.
      */
-    public static final StructureMode LOAD = DummyObjectProvider.createFor(StructureMode.class, "LOAD");
+    public static final Supplier<StructureMode> LOAD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StructureMode.class, "LOAD");
 
     /**
      * Save mode allows a player to highlight a structure in the world and
      * save it to a file.
      */
-    public static final StructureMode SAVE = DummyObjectProvider.createFor(StructureMode.class, "SAVE");
+    public static final Supplier<StructureMode> SAVE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StructureMode.class, "SAVE");
 
     // SORTFIELDS:OFF
 

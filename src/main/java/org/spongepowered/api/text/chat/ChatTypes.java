@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.text.chat;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 /**
  * ChatTypes is a list of the default chat types that are available in Vanilla
@@ -40,19 +42,19 @@ public final class ChatTypes {
      * The position right above the inventory, experience, health, item name,
      * etc. bars.
      */
-    public static final ChatType ACTION_BAR = DummyObjectProvider.createFor(ChatType.class, "ACTION_BAR");
+    public static final Supplier<ChatType> ACTION_BAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChatType.class, "ACTION_BAR");
 
     /**
      * The standard chat position in prompt at the bottom-left.
      */
-    public static final ChatType CHAT = DummyObjectProvider.createFor(ChatType.class, "CHAT");
+    public static final Supplier<ChatType> CHAT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChatType.class, "CHAT");
 
     /**
      * The same position as the {@link #CHAT} position, except messages sent to
      * this position are still seen when chat is turned off on the Minecraft
      * client.
      */
-    public static final ChatType SYSTEM = DummyObjectProvider.createFor(ChatType.class, "SYSTEM");
+    public static final Supplier<ChatType> SYSTEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChatType.class, "SYSTEM");
 
     // SORTFIELDS:OFF
 

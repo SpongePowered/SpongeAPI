@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.boss;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 /**
  * An enumeration of {@link BossBarOverlay}s.
@@ -36,27 +38,27 @@ public final class BossBarOverlays {
     /**
      * An overlay with 10 segments.
      */
-    public static final BossBarOverlay NOTCHED_10 = DummyObjectProvider.createFor(BossBarOverlay.class, "NOTCHED_10");
+    public static final Supplier<BossBarOverlay> NOTCHED_10 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BossBarOverlay.class, "NOTCHED_10");
 
     /**
      * An overlay with 12 segments.
      */
-    public static final BossBarOverlay NOTCHED_12 = DummyObjectProvider.createFor(BossBarOverlay.class, "NOTCHED_12");
+    public static final Supplier<BossBarOverlay> NOTCHED_12 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BossBarOverlay.class, "NOTCHED_12");
 
     /**
      * An overlay with 20 segments.
      */
-    public static final BossBarOverlay NOTCHED_20 = DummyObjectProvider.createFor(BossBarOverlay.class, "NOTCHED_20");
+    public static final Supplier<BossBarOverlay> NOTCHED_20 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BossBarOverlay.class, "NOTCHED_20");
 
     /**
      * An overlay with 6 segments.
      */
-    public static final BossBarOverlay NOTCHED_6 = DummyObjectProvider.createFor(BossBarOverlay.class, "NOTCHED_6");
+    public static final Supplier<BossBarOverlay> NOTCHED_6 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BossBarOverlay.class, "NOTCHED_6");
 
     /**
      * A progress bar overlay.
      */
-    public static final BossBarOverlay PROGRESS = DummyObjectProvider.createFor(BossBarOverlay.class, "PROGRESS");
+    public static final Supplier<BossBarOverlay> PROGRESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BossBarOverlay.class, "PROGRESS");
 
     // SORTFIELDS:OFF
 

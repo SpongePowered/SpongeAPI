@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.item.inventory.equipment;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 /**
  * All built-in equipment types.
@@ -35,34 +37,34 @@ public final class EquipmentTypes {
      * Any type, all other types should subclass this to allow instanceof
      * checks to succeed.
      */
-    public static final EquipmentType ANY = DummyObjectProvider.createFor(EquipmentType.class, "ANY");
+    public static final Supplier<EquipmentType> ANY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "ANY");
 
     /**
      * Held or otherwise equipped items.
      */
-    public static final EquipmentType EQUIPPED = DummyObjectProvider.createFor(EquipmentType.class, "EQUIPPED");
+    public static final Supplier<EquipmentType> EQUIPPED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "EQUIPPED");
 
     /**
      * Any held types like MAINHAND and OFFHAND.
      */
-    public static final HeldEquipmentType HELD = DummyObjectProvider.createFor(HeldEquipmentType.class, "HELD");
+    public static final Supplier<HeldEquipmentType> HELD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HeldEquipmentType.class, "HELD");
 
-    public static final HeldEquipmentType MAIN_HAND = DummyObjectProvider.createFor(HeldEquipmentType.class, "MAINHAND");
+    public static final Supplier<HeldEquipmentType> MAIN_HAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HeldEquipmentType.class, "MAINHAND");
 
-    public static final HeldEquipmentType OFF_HAND = DummyObjectProvider.createFor(HeldEquipmentType.class, "OFFHAND");
+    public static final Supplier<HeldEquipmentType> OFF_HAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HeldEquipmentType.class, "OFFHAND");
 
     /**
      * Any worn types like HEADWEAR, CHESTPLATE, LEGGINGS and BOOTS.
      */
-    public static final WornEquipmentType WORN = DummyObjectProvider.createFor(WornEquipmentType.class, "WORN");
+    public static final Supplier<WornEquipmentType> WORN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WornEquipmentType.class, "WORN");
 
-    public static final WornEquipmentType BOOTS = DummyObjectProvider.createFor(WornEquipmentType.class, "BOOTS");
+    public static final Supplier<WornEquipmentType> BOOTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WornEquipmentType.class, "BOOTS");
 
-    public static final WornEquipmentType CHESTPLATE = DummyObjectProvider.createFor(WornEquipmentType.class, "CHESTPLATE");
+    public static final Supplier<WornEquipmentType> CHESTPLATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WornEquipmentType.class, "CHESTPLATE");
 
-    public static final WornEquipmentType HEADWEAR = DummyObjectProvider.createFor(WornEquipmentType.class, "HEADWEAR");
+    public static final Supplier<WornEquipmentType> HEADWEAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WornEquipmentType.class, "HEADWEAR");
 
-    public static final WornEquipmentType LEGGINGS = DummyObjectProvider.createFor(WornEquipmentType.class, "LEGGINGS");
+    public static final Supplier<WornEquipmentType> LEGGINGS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WornEquipmentType.class, "LEGGINGS");
 
     // Suppress default constructor to ensure non-instantiability.
     private EquipmentTypes() {

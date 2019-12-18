@@ -30,13 +30,13 @@ public final class RaidStatuses {
 
     // SORTFIELDS:ON
 
-    public static final RaidStatus ONGOING = DummyObjectProvider.createFor(RaidStatus.class, "ONGOING");
+    public static final Supplier<RaidStatus> ONGOING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RaidStatus.class, "ONGOING");
 
-    public static final RaidStatus VICTORY = DummyObjectProvider.createFor(RaidStatus.class, "VICTORY");
+    public static final Supplier<RaidStatus> VICTORY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RaidStatus.class, "VICTORY");
 
-    public static final RaidStatus LOSS = DummyObjectProvider.createFor(RaidStatus.class, "LOSS");
+    public static final Supplier<RaidStatus> LOSS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RaidStatus.class, "LOSS");
 
-    public static final RaidStatus STOPPED = DummyObjectProvider.createFor(RaidStatus.class, "STOPPED");
+    public static final Supplier<RaidStatus> STOPPED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RaidStatus.class, "STOPPED");
 
     // SORTFIELDS:OFF
 

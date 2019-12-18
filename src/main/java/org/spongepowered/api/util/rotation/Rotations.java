@@ -24,9 +24,11 @@
  */
 package org.spongepowered.api.util.rotation;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.hanging.ItemFrame;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
+import java.util.function.Supplier;
 
 /**
  * An enumeration of possible rotations for something that can rotate,
@@ -37,21 +39,21 @@ public final class Rotations {
 
     // SORTFIELDS:ON
 
-    public static final Rotation BOTTOM = DummyObjectProvider.createFor(Rotation.class, "BOTTOM");
+    public static final Supplier<Rotation> BOTTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "BOTTOM");
 
-    public static final Rotation BOTTOM_LEFT = DummyObjectProvider.createFor(Rotation.class, "BOTTOM_LEFT");
+    public static final Supplier<Rotation> BOTTOM_LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "BOTTOM_LEFT");
 
-    public static final Rotation BOTTOM_RIGHT = DummyObjectProvider.createFor(Rotation.class, "BOTTOM_RIGHT");
+    public static final Supplier<Rotation> BOTTOM_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "BOTTOM_RIGHT");
 
-    public static final Rotation LEFT = DummyObjectProvider.createFor(Rotation.class, "LEFT");
+    public static final Supplier<Rotation> LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "LEFT");
 
-    public static final Rotation RIGHT = DummyObjectProvider.createFor(Rotation.class, "RIGHT");
+    public static final Supplier<Rotation> RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "RIGHT");
 
-    public static final Rotation TOP = DummyObjectProvider.createFor(Rotation.class, "TOP");
+    public static final Supplier<Rotation> TOP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "TOP");
 
-    public static final Rotation TOP_LEFT = DummyObjectProvider.createFor(Rotation.class, "TOP_LEFT");
+    public static final Supplier<Rotation> TOP_LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "TOP_LEFT");
 
-    public static final Rotation TOP_RIGHT = DummyObjectProvider.createFor(Rotation.class, "TOP_RIGHT");
+    public static final Supplier<Rotation> TOP_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "TOP_RIGHT");
 
     // SORTFIELDS:OFF
 

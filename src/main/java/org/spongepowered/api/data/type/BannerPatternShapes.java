@@ -33,83 +33,83 @@ public final class BannerPatternShapes {
 
     // SORTFIELDS:ON
 
-    public static final BannerPatternShape BASE = DummyObjectProvider.createFor(BannerPatternShape.class, "BASE");
+    public static final Supplier<BannerPatternShape> BASE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "BASE");
 
-    public static final BannerPatternShape BORDER = DummyObjectProvider.createFor(BannerPatternShape.class, "BORDER");
+    public static final Supplier<BannerPatternShape> BORDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "BORDER");
 
-    public static final BannerPatternShape BRICKS = DummyObjectProvider.createFor(BannerPatternShape.class, "BRICKS");
+    public static final Supplier<BannerPatternShape> BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "BRICKS");
 
-    public static final BannerPatternShape CIRCLE_MIDDLE = DummyObjectProvider.createFor(BannerPatternShape.class, "CIRCLE_MIDDLE");
+    public static final Supplier<BannerPatternShape> CIRCLE_MIDDLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "CIRCLE_MIDDLE");
 
-    public static final BannerPatternShape CREEPER = DummyObjectProvider.createFor(BannerPatternShape.class, "CREEPER");
+    public static final Supplier<BannerPatternShape> CREEPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "CREEPER");
 
-    public static final BannerPatternShape CROSS = DummyObjectProvider.createFor(BannerPatternShape.class, "CROSS");
+    public static final Supplier<BannerPatternShape> CROSS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "CROSS");
 
-    public static final BannerPatternShape CURLY_BORDER = DummyObjectProvider.createFor(BannerPatternShape.class, "CURLY_BORDER");
+    public static final Supplier<BannerPatternShape> CURLY_BORDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "CURLY_BORDER");
 
-    public static final BannerPatternShape DIAGONAL_LEFT = DummyObjectProvider.createFor(BannerPatternShape.class, "DIAGONAL_LEFT");
+    public static final Supplier<BannerPatternShape> DIAGONAL_LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "DIAGONAL_LEFT");
 
-    public static final BannerPatternShape DIAGONAL_LEFT_MIRROR = DummyObjectProvider.createFor(BannerPatternShape.class, "DIAGONAL_LEFT_MIRROR");
+    public static final Supplier<BannerPatternShape> DIAGONAL_LEFT_MIRROR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "DIAGONAL_LEFT_MIRROR");
 
-    public static final BannerPatternShape DIAGONAL_RIGHT = DummyObjectProvider.createFor(BannerPatternShape.class, "DIAGONAL_RIGHT");
+    public static final Supplier<BannerPatternShape> DIAGONAL_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "DIAGONAL_RIGHT");
 
-    public static final BannerPatternShape DIAGONAL_RIGHT_MIRROR = DummyObjectProvider.createFor(BannerPatternShape.class, "DIAGONAL_RIGHT_MIRROR");
+    public static final Supplier<BannerPatternShape> DIAGONAL_RIGHT_MIRROR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "DIAGONAL_RIGHT_MIRROR");
 
-    public static final BannerPatternShape FLOWER = DummyObjectProvider.createFor(BannerPatternShape.class, "FLOWER");
+    public static final Supplier<BannerPatternShape> FLOWER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "FLOWER");
 
-    public static final BannerPatternShape GRADIENT = DummyObjectProvider.createFor(BannerPatternShape.class, "GRADIENT");
+    public static final Supplier<BannerPatternShape> GRADIENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "GRADIENT");
 
-    public static final BannerPatternShape GRADIENT_UP = DummyObjectProvider.createFor(BannerPatternShape.class, "GRADIENT_UP");
+    public static final Supplier<BannerPatternShape> GRADIENT_UP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "GRADIENT_UP");
 
-    public static final BannerPatternShape HALF_HORIZONTAL = DummyObjectProvider.createFor(BannerPatternShape.class, "HALF_HORIZONTAL");
+    public static final Supplier<BannerPatternShape> HALF_HORIZONTAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "HALF_HORIZONTAL");
 
-    public static final BannerPatternShape HALF_HORIZONTAL_MIRROR = DummyObjectProvider.createFor(BannerPatternShape.class, "HALF_HORIZONTAL_MIRROR");
+    public static final Supplier<BannerPatternShape> HALF_HORIZONTAL_MIRROR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "HALF_HORIZONTAL_MIRROR");
 
-    public static final BannerPatternShape HALF_VERTICAL = DummyObjectProvider.createFor(BannerPatternShape.class, "HALF_VERTICAL");
+    public static final Supplier<BannerPatternShape> HALF_VERTICAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "HALF_VERTICAL");
 
-    public static final BannerPatternShape HALF_VERTICAL_MIRROR = DummyObjectProvider.createFor(BannerPatternShape.class, "HALF_VERTICAL_MIRROR");
+    public static final Supplier<BannerPatternShape> HALF_VERTICAL_MIRROR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "HALF_VERTICAL_MIRROR");
 
-    public static final BannerPatternShape MOJANG = DummyObjectProvider.createFor(BannerPatternShape.class, "MOJANG");
+    public static final Supplier<BannerPatternShape> MOJANG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "MOJANG");
 
-    public static final BannerPatternShape RHOMBUS_MIDDLE = DummyObjectProvider.createFor(BannerPatternShape.class, "RHOMBUS_MIDDLE");
+    public static final Supplier<BannerPatternShape> RHOMBUS_MIDDLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "RHOMBUS_MIDDLE");
 
-    public static final BannerPatternShape SKULL = DummyObjectProvider.createFor(BannerPatternShape.class, "SKULL");
+    public static final Supplier<BannerPatternShape> SKULL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "SKULL");
 
-    public static final BannerPatternShape SQUARE_BOTTOM_LEFT = DummyObjectProvider.createFor(BannerPatternShape.class, "SQUARE_BOTTOM_LEFT");
+    public static final Supplier<BannerPatternShape> SQUARE_BOTTOM_LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "SQUARE_BOTTOM_LEFT");
 
-    public static final BannerPatternShape SQUARE_BOTTOM_RIGHT = DummyObjectProvider.createFor(BannerPatternShape.class, "SQUARE_BOTTOM_RIGHT");
+    public static final Supplier<BannerPatternShape> SQUARE_BOTTOM_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "SQUARE_BOTTOM_RIGHT");
 
-    public static final BannerPatternShape SQUARE_TOP_LEFT = DummyObjectProvider.createFor(BannerPatternShape.class, "SQUARE_TOP_LEFT");
+    public static final Supplier<BannerPatternShape> SQUARE_TOP_LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "SQUARE_TOP_LEFT");
 
-    public static final BannerPatternShape SQUARE_TOP_RIGHT = DummyObjectProvider.createFor(BannerPatternShape.class, "SQUARE_TOP_RIGHT");
+    public static final Supplier<BannerPatternShape> SQUARE_TOP_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "SQUARE_TOP_RIGHT");
 
-    public static final BannerPatternShape STRAIGHT_CROSS = DummyObjectProvider.createFor(BannerPatternShape.class, "STRAIGHT_CROSS");
+    public static final Supplier<BannerPatternShape> STRAIGHT_CROSS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "STRAIGHT_CROSS");
 
-    public static final BannerPatternShape STRIPE_BOTTOM = DummyObjectProvider.createFor(BannerPatternShape.class, "STRIPE_BOTTOM");
+    public static final Supplier<BannerPatternShape> STRIPE_BOTTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "STRIPE_BOTTOM");
 
-    public static final BannerPatternShape STRIPE_CENTER = DummyObjectProvider.createFor(BannerPatternShape.class, "STRIPE_CENTER");
+    public static final Supplier<BannerPatternShape> STRIPE_CENTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "STRIPE_CENTER");
 
-    public static final BannerPatternShape STRIPE_DOWNLEFT = DummyObjectProvider.createFor(BannerPatternShape.class, "STRIPE_DOWNLEFT");
+    public static final Supplier<BannerPatternShape> STRIPE_DOWNLEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "STRIPE_DOWNLEFT");
 
-    public static final BannerPatternShape STRIPE_DOWNRIGHT = DummyObjectProvider.createFor(BannerPatternShape.class, "STRIPE_DOWNRIGHT");
+    public static final Supplier<BannerPatternShape> STRIPE_DOWNRIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "STRIPE_DOWNRIGHT");
 
-    public static final BannerPatternShape STRIPE_LEFT = DummyObjectProvider.createFor(BannerPatternShape.class, "STRIPE_LEFT");
+    public static final Supplier<BannerPatternShape> STRIPE_LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "STRIPE_LEFT");
 
-    public static final BannerPatternShape STRIPE_MIDDLE = DummyObjectProvider.createFor(BannerPatternShape.class, "STRIPE_MIDDLE");
+    public static final Supplier<BannerPatternShape> STRIPE_MIDDLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "STRIPE_MIDDLE");
 
-    public static final BannerPatternShape STRIPE_RIGHT = DummyObjectProvider.createFor(BannerPatternShape.class, "STRIPE_RIGHT");
+    public static final Supplier<BannerPatternShape> STRIPE_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "STRIPE_RIGHT");
 
-    public static final BannerPatternShape STRIPE_SMALL = DummyObjectProvider.createFor(BannerPatternShape.class, "STRIPE_SMALL");
+    public static final Supplier<BannerPatternShape> STRIPE_SMALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "STRIPE_SMALL");
 
-    public static final BannerPatternShape STRIPE_TOP = DummyObjectProvider.createFor(BannerPatternShape.class, "STRIPE_TOP");
+    public static final Supplier<BannerPatternShape> STRIPE_TOP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "STRIPE_TOP");
 
-    public static final BannerPatternShape TRIANGLES_BOTTOM = DummyObjectProvider.createFor(BannerPatternShape.class, "TRIANGLES_BOTTOM");
+    public static final Supplier<BannerPatternShape> TRIANGLES_BOTTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "TRIANGLES_BOTTOM");
 
-    public static final BannerPatternShape TRIANGLES_TOP = DummyObjectProvider.createFor(BannerPatternShape.class, "TRIANGLES_TOP");
+    public static final Supplier<BannerPatternShape> TRIANGLES_TOP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "TRIANGLES_TOP");
 
-    public static final BannerPatternShape TRIANGLE_BOTTOM = DummyObjectProvider.createFor(BannerPatternShape.class, "TRIANGLE_BOTTOM");
+    public static final Supplier<BannerPatternShape> TRIANGLE_BOTTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "TRIANGLE_BOTTOM");
 
-    public static final BannerPatternShape TRIANGLE_TOP = DummyObjectProvider.createFor(BannerPatternShape.class, "TRIANGLE_TOP");
+    public static final Supplier<BannerPatternShape> TRIANGLE_TOP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "TRIANGLE_TOP");
 
     // SORTFIELDS:OFF
 

@@ -24,30 +24,30 @@
  */
 package org.spongepowered.api.world.gamerule;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.block.entity.CommandBlock;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Bat;
 import org.spongepowered.api.entity.living.animal.Rabbit;
 import org.spongepowered.api.entity.living.animal.Sheep;
-import org.spongepowered.api.entity.living.animal.Rabbit;
-import org.spongepowered.api.entity.living.animal.Sheep;
-import org.spongepowered.api.entity.living.monster.boss.dragon.EnderDragon;
 import org.spongepowered.api.entity.living.golem.SnowGolem;
 import org.spongepowered.api.entity.living.monster.Creeper;
 import org.spongepowered.api.entity.living.monster.Enderman;
 import org.spongepowered.api.entity.living.monster.Ghast;
 import org.spongepowered.api.entity.living.monster.Silverfish;
 import org.spongepowered.api.entity.living.monster.boss.Wither;
+import org.spongepowered.api.entity.living.monster.boss.dragon.EnderDragon;
+import org.spongepowered.api.entity.living.monster.skeleton.Skeleton;
 import org.spongepowered.api.entity.living.monster.zombie.Zombie;
 import org.spongepowered.api.entity.living.monster.zombie.ZombiePigman;
-import org.spongepowered.api.entity.living.monster.skeleton.Skeleton;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.entity.living.trader.Villager;
 import org.spongepowered.api.entity.vehicle.Boat;
 import org.spongepowered.api.entity.vehicle.minecart.MinecartEntity;
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
+import java.util.function.Supplier;
 
 /**
  * An enumeration of all the possible game rules in vanilla minecraft.
@@ -62,7 +62,7 @@ public final class GameRules {
      *
      * <p>This is a boolean game rule, with a default value of {@code true}.</p>
      */
-    public static final GameRule<Boolean> ANNOUNCE_ADVANCEMENTS = DummyObjectProvider.createFor(GameRule.class, "ANNOUNCE_ADVANCEMENTS");
+    public static final Supplier<GameRule<Boolean>> ANNOUNCE_ADVANCEMENTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "ANNOUNCE_ADVANCEMENTS");
 
     /**
      * Whether {@link CommandBlock}s should notify admins when
@@ -70,7 +70,7 @@ public final class GameRules {
      *
      * <p>This is a boolean game rule, with a default value of {@code true}.</p>
      */
-    public static final GameRule<Boolean> COMMAND_BLOCK_OUTPUT = DummyObjectProvider.createFor(GameRule.class, "COMMAND_BLOCK_OUTPUT");
+    public static final Supplier<GameRule<Boolean>> COMMAND_BLOCK_OUTPUT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "COMMAND_BLOCK_OUTPUT");
 
     /**
      * Whether the server should skip checking player speed when
@@ -79,7 +79,7 @@ public final class GameRules {
      * <p>This is a boolean game rule, with a default value of
      * {@code false}.</p>
      */
-    public static final GameRule<Boolean> DISABLE_ELYTRA_MOVEMENT_CHECK = DummyObjectProvider.createFor(GameRule.class, "DISABLE_ELYTRA_MOVEMENT_CHECK");
+    public static final Supplier<GameRule<Boolean>> DISABLE_ELYTRA_MOVEMENT_CHECK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "DISABLE_ELYTRA_MOVEMENT_CHECK");
 
     /**
      * Whether the day-night cycle and moon phases progress.
@@ -87,7 +87,7 @@ public final class GameRules {
      * <p>This is a boolean game rule, with a default value of
      * {@code true}.</p>
      */
-    public static final GameRule<Boolean> DO_DAYLIGHT_CYCLE = DummyObjectProvider.createFor(GameRule.class, "DO_DAYLIGHT_CYCLE");
+    public static final Supplier<GameRule<Boolean>> DO_DAYLIGHT_CYCLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "DO_DAYLIGHT_CYCLE");
 
     /**
      * Whether entities that are not mobs should have drops.
@@ -95,7 +95,7 @@ public final class GameRules {
      * <p>This is a boolean game rule, with a default value of
      * {@code true}.</p>
      */
-    public static final GameRule<Boolean> DO_ENTITY_DROPS = DummyObjectProvider.createFor(GameRule.class, "DO_ENTITY_DROPS");
+    public static final Supplier<GameRule<Boolean>> DO_ENTITY_DROPS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "DO_ENTITY_DROPS");
 
     /**
      * Whether fire should spread and naturally extinguish.
@@ -103,7 +103,7 @@ public final class GameRules {
      * <p>This is a boolean game rule, with a default value of
      * {@code true}.</p>
      */
-    public static final GameRule<Boolean> DO_FIRE_TICK = DummyObjectProvider.createFor(GameRule.class, "DO_FIRE_TICK");
+    public static final Supplier<GameRule<Boolean>> DO_FIRE_TICK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "DO_FIRE_TICK");
 
     /**
      * Whether {@link Player}s can only craft recipes they have unlocked.
@@ -111,35 +111,35 @@ public final class GameRules {
      * <p>This is a boolean game rule, with a default value of
      * {@code false}.</p>
      */
-    public static final GameRule<Boolean> DO_LIMITED_CRAFTING = DummyObjectProvider.createFor(GameRule.class, "DO_LIMITED_CRAFTING");
+    public static final Supplier<GameRule<Boolean>> DO_LIMITED_CRAFTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "DO_LIMITED_CRAFTING");
 
     /**
      * Whether {@link Agent}s should drop items.
      *
      * <p>This is a boolean game rule, with a default value of {@code true}.</p>
      */
-    public static final GameRule<Boolean> DO_MOB_LOOT = DummyObjectProvider.createFor(GameRule.class, "DO_MOB_LOOT");
+    public static final Supplier<GameRule<Boolean>> DO_MOB_LOOT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "DO_MOB_LOOT");
 
     /**
      * Whether {@link Agent}s should naturally spawn.
      *
      * <p>This is a boolean game rule, with a default value of {@code true}.</p>
      */
-    public static final GameRule<Boolean> DO_MOB_SPAWNING = DummyObjectProvider.createFor(GameRule.class, "DO_MOB_SPAWNING");
+    public static final Supplier<GameRule<Boolean>> DO_MOB_SPAWNING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "DO_MOB_SPAWNING");
 
     /**
      * Whether blocks should have drops.
      *
      * <p>This is a boolean game rule, with a default value of {@code true}.</p>
      */
-    public static final GameRule<Boolean> DO_TILE_DROPS = DummyObjectProvider.createFor(GameRule.class, "DO_TILE_DROPS");
+    public static final Supplier<GameRule<Boolean>> DO_TILE_DROPS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "DO_TILE_DROPS");
 
     /**
      * Whether the weather will change.
      *
      * <p>This is a boolean game rule, with a default value of {@code true}.</p>
      */
-    public static final GameRule<Boolean> DO_WEATHER_CYCLE = DummyObjectProvider.createFor(GameRule.class, "DO_WEATHER_CYCLE");
+    public static final Supplier<GameRule<Boolean>> DO_WEATHER_CYCLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "DO_WEATHER_CYCLE");
 
     /**
      * Whether {@link Player}s should keep items in their inventory
@@ -148,7 +148,7 @@ public final class GameRules {
      * <p>This is a boolean game rule, with a default value of
      * {@code false}.</p>
      */
-    public static final GameRule<Boolean> KEEP_INVENTORY = DummyObjectProvider.createFor(GameRule.class, "KEEP_INVENTORY");
+    public static final Supplier<GameRule<Boolean>> KEEP_INVENTORY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "KEEP_INVENTORY");
 
     /**
      * Whether to log admin commands to server log.
@@ -156,7 +156,7 @@ public final class GameRules {
      * <p>This is a boolean game rule, with a default value of
      * {@code true}.</p>
      */
-    public static final GameRule<Boolean> LOG_ADMIN_COMMANDS = DummyObjectProvider.createFor(GameRule.class, "LOG_ADMIN_COMMANDS");
+    public static final Supplier<GameRule<Boolean>> LOG_ADMIN_COMMANDS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "LOG_ADMIN_COMMANDS");
 
     /**
      * The total number of {@link BlockTypes#CHAIN_COMMAND_BLOCK chain command
@@ -165,7 +165,7 @@ public final class GameRules {
      * <p>This is a numerical game rule, with a default value
      * of {@code 65536}.</p>
      */
-    public static final GameRule<Integer> MAX_COMMAND_CHAIN_LENGTH = DummyObjectProvider.createFor(GameRule.class, "MAX_COMMAND_CHAIN_LENGTH");
+    public static final Supplier<GameRule<Integer>> MAX_COMMAND_CHAIN_LENGTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "MAX_COMMAND_CHAIN_LENGTH");
 
     /**
      * The maximum number of other pushable entities a mob or player can push,
@@ -181,7 +181,7 @@ public final class GameRules {
      *
      * <p>This is a numerical game rule, with a default value of {@code 24}.</p>
      */
-    public static final GameRule<Integer> MAX_ENTITY_CRAMMING = DummyObjectProvider.createFor(GameRule.class, "MAX_ENTITY_CRAMMING");
+    public static final Supplier<GameRule<Integer>> MAX_ENTITY_CRAMMING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "MAX_ENTITY_CRAMMING");
 
     /**
      * Whether {@link Agent}s should be able to change blocks, and whether
@@ -214,7 +214,7 @@ public final class GameRules {
      *
      * <p>This is a boolean game rule, with a default value of {@code true}.</p>
      */
-    public static final GameRule<Boolean> MOB_GRIEFING = DummyObjectProvider.createFor(GameRule.class, "MOB_GRIEFING");
+    public static final Supplier<GameRule<Boolean>> MOB_GRIEFING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "MOB_GRIEFING");
 
     /**
      * Whether {@link Player}s can regenerate health naturally if their
@@ -223,7 +223,7 @@ public final class GameRules {
      *
      * <p>This is a boolean game rule, with a default value of {@code true}.</p>
      */
-    public static final GameRule<Boolean> NATURAL_REGENERATION = DummyObjectProvider.createFor(GameRule.class, "NATURAL_REGENERATION");
+    public static final Supplier<GameRule<Boolean>> NATURAL_REGENERATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "NATURAL_REGENERATION");
 
     /**
      * How often a random block tick occurs (such as plant growth,
@@ -234,7 +234,7 @@ public final class GameRules {
      *
      * <p>This is a numerical game rule, with a default value of {@code 3}.</p>
      */
-    public static final GameRule<Integer> RANDOM_TICK_SPEED = DummyObjectProvider.createFor(GameRule.class, "RANDOM_TICK_SPEED");
+    public static final Supplier<GameRule<Integer>> RANDOM_TICK_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "RANDOM_TICK_SPEED");
 
     /**
      * Whether the debug screen shows all or reduced information.
@@ -242,7 +242,7 @@ public final class GameRules {
      * <p>This is a boolean game rule, with a default value of
      * {@code false}.</p>
      */
-    public static final GameRule<Boolean> REDUCED_DEBUG_INFO = DummyObjectProvider.createFor(GameRule.class, "REDUCED_DEBUG_INFO");
+    public static final Supplier<GameRule<Boolean>> REDUCED_DEBUG_INFO = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "REDUCED_DEBUG_INFO");
 
     /**
      * Whether the feedback from commands executed by a {@link Player}
@@ -253,14 +253,14 @@ public final class GameRules {
      *
      * <p>This is a boolean game rule, with a default value of {@code true}.</p>
      */
-    public static final GameRule<Boolean> SEND_COMMAND_FEEDBACK = DummyObjectProvider.createFor(GameRule.class, "SEND_COMMAND_FEEDBACK");
+    public static final Supplier<GameRule<Boolean>> SEND_COMMAND_FEEDBACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "SEND_COMMAND_FEEDBACK");
 
     /**
      * Whether a message appears in chat when a {@link Player} dies.
      *
      * <p>This is a boolean game rule, with a default value of {@code true}.</p>
      */
-    public static final GameRule<Boolean> SHOW_DEATH_MESSAGES = DummyObjectProvider.createFor(GameRule.class, "SHOW_DEATH_MESSAGES");
+    public static final Supplier<GameRule<Boolean>> SHOW_DEATH_MESSAGES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "SHOW_DEATH_MESSAGES");
 
     /**
      * The number of blocks outward from the world spawn coordinates
@@ -269,7 +269,7 @@ public final class GameRules {
      *
      * <p>This is a numerical game rule, with a default value of {@code 10}.</p>
      */
-    public static final GameRule<Integer> SPAWN_RADIUS = DummyObjectProvider.createFor(GameRule.class, "SPAWN_RADIUS");
+    public static final Supplier<GameRule<Integer>> SPAWN_RADIUS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "SPAWN_RADIUS");
 
     /**
      * Whether players in {@link GameModes#SPECTATOR spectator mode} can
@@ -277,7 +277,7 @@ public final class GameRules {
      *
      * <p>This is a boolean game rule, with a default value of {@code true}.</p>
      */
-    public static final GameRule<Boolean> SPECTATORS_GENERATE_CHUNKS = DummyObjectProvider.createFor(GameRule.class, "SPECTATORS_GENERATE_CHUNKS");
+    public static final Supplier<GameRule<Boolean>> SPECTATORS_GENERATE_CHUNKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "SPECTATORS_GENERATE_CHUNKS");
 
     // SORTFIELDS:OFF
 

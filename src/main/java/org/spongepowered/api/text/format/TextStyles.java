@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.text.format;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 /**
  * Represents a list of the text styles provided by Vanilla Minecraft.
@@ -34,18 +36,18 @@ public final class TextStyles {
     /**
      * Represents an empty {@link TextStyle}.
      */
-    public static final TextStyle NONE = DummyObjectProvider.createFor(TextStyle.class, "NONE");
+    public static final Supplier<TextStyle> NONE = Sponge.getRegistry().getFactoryRegistry().provideFactory(TextStyle.Factory.class).empty();
 
-    public static final TextStyle.Base OBFUSCATED = DummyObjectProvider.createFor(TextStyle.Base.class, "OBFUSCATED");
-    public static final TextStyle.Base BOLD = DummyObjectProvider.createFor(TextStyle.Base.class,"BOLD");
-    public static final TextStyle.Base STRIKETHROUGH = DummyObjectProvider.createFor(TextStyle.Base.class,"STRIKETHROUGH");
-    public static final TextStyle.Base UNDERLINE = DummyObjectProvider.createFor(TextStyle.Base.class,"UNDERLINE");
-    public static final TextStyle.Base ITALIC = DummyObjectProvider.createFor(TextStyle.Base.class,"ITALIC");
+    public static final Supplier<TextStyle.Base> OBFUSCATED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TextStyle.Base.class, "OBFUSCATED");
+    public static final Supplier<TextStyle.Base> BOLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TextStyle.Base.class,"BOLD");
+    public static final Supplier<TextStyle.Base> STRIKETHROUGH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TextStyle.Base.class,"STRIKETHROUGH");
+    public static final Supplier<TextStyle.Base> UNDERLINE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TextStyle.Base.class,"UNDERLINE");
+    public static final Supplier<TextStyle.Base> ITALIC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TextStyle.Base.class,"ITALIC");
 
     /**
      * Represents a {@link TextStyle} with all bases set to {@code false}.
      */
-    public static final TextStyle.Base RESET = DummyObjectProvider.createFor(TextStyle.Base.class,"RESET");
+    public static final Supplier<TextStyle.Base> RESET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TextStyle.Base.class,"RESET");
 
     /**
      * Returns an empty {@link TextStyle}.
@@ -53,7 +55,7 @@ public final class TextStyles {
      * @return An empty text style
      */
     public static TextStyle of() {
-        return NONE;
+        return NONE.get();
     }
 
     /**
@@ -65,7 +67,7 @@ public final class TextStyles {
      * @return A composite text style from the specified styles
      */
     public static TextStyle of(TextStyle... styles) {
-        return NONE.and(styles);
+        return NONE.get().and(styles);
     }
     
     private TextStyles() {

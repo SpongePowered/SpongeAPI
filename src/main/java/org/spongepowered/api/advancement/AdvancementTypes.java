@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.advancement;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 /**
  * An enumeration of all the available {@link AdvancementType}s in Minecraft.
@@ -40,7 +42,7 @@ public final class AdvancementTypes {
      * @see <a href="https://minecraft.gamepedia.com/File:ChallengeComplete.png">
      *     the Minecraft Wiki for an example of this advancement type</a>
      */
-    public static final AdvancementType CHALLENGE = DummyObjectProvider.createFor(AdvancementType.class, "CHALLENGE");
+    public static final Supplier<AdvancementType> CHALLENGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AdvancementType.class, "CHALLENGE");
 
     /**
      * Represents the goal reached advancement type.
@@ -48,7 +50,7 @@ public final class AdvancementTypes {
      * @see <a href="https://minecraft.gamepedia.com/File:GoalReached.png">
      *     the Minecraft Wiki for an example of this advancement type</a>
      */
-    public static final AdvancementType GOAL = DummyObjectProvider.createFor(AdvancementType.class, "GOAL");
+    public static final Supplier<AdvancementType> GOAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AdvancementType.class, "GOAL");
 
     /**
      * Represents the advancement made advancement type.
@@ -56,7 +58,7 @@ public final class AdvancementTypes {
      * @see <a href="https://minecraft.gamepedia.com/File:AdvancementMade.png">
      *     the Minecraft Wiki for an example of this advancement type</a>
      */
-    public static final AdvancementType TASK = DummyObjectProvider.createFor(AdvancementType.class, "TASK");
+    public static final Supplier<AdvancementType> TASK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AdvancementType.class, "TASK");
 
     // SORTFIELDS:OFF
 

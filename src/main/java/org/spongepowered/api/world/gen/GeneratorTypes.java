@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.world.gen;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 /**
  * An enumeration of default {@link GeneratorType}s.
@@ -33,21 +35,21 @@ public final class GeneratorTypes {
 
     // SORTFIELDS:ON
 
-    public static final GeneratorType AMPLIFIED = DummyObjectProvider.createFor(GeneratorType.class, "AMPLIFIED");
+    public static final Supplier<GeneratorType> AMPLIFIED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorType.class, "AMPLIFIED");
 
-    public static final GeneratorType DEBUG = DummyObjectProvider.createFor(GeneratorType.class, "DEBUG");
+    public static final Supplier<GeneratorType> DEBUG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorType.class, "DEBUG");
 
-    public static final GeneratorType DEFAULT = DummyObjectProvider.createFor(GeneratorType.class, "DEFAULT");
+    public static final Supplier<GeneratorType> DEFAULT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorType.class, "DEFAULT");
 
-    public static final GeneratorType FLAT = DummyObjectProvider.createFor(GeneratorType.class, "FLAT");
+    public static final Supplier<GeneratorType> FLAT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorType.class, "FLAT");
 
-    public static final GeneratorType LARGE_BIOMES = DummyObjectProvider.createFor(GeneratorType.class, "LARGE_BIOMES");
+    public static final Supplier<GeneratorType> LARGE_BIOMES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorType.class, "LARGE_BIOMES");
 
-    public static final GeneratorType NETHER = DummyObjectProvider.createFor(GeneratorType.class, "NETHER");
+    public static final Supplier<GeneratorType> NETHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorType.class, "NETHER");
 
-    public static final GeneratorType OVERWORLD = DummyObjectProvider.createFor(GeneratorType.class, "OVERWORLD");
+    public static final Supplier<GeneratorType> OVERWORLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorType.class, "OVERWORLD");
 
-    public static final GeneratorType THE_END = DummyObjectProvider.createFor(GeneratorType.class, "THE_END");
+    public static final Supplier<GeneratorType> THE_END = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorType.class, "THE_END");
 
     // SORTFIELDS:OFF
 

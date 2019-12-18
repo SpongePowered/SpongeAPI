@@ -24,17 +24,19 @@
  */
 package org.spongepowered.api.event.cause.entity.dismount;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 public final class DismountTypes {
 
     // SORTFIELDS:ON
 
-    public static final DismountType DEATH = DummyObjectProvider.createFor(DismountType.class, "DEATH");
+    public static final Supplier<DismountType> DEATH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DismountType.class, "DEATH");
 
-    public static final DismountType DERAIL = DummyObjectProvider.createFor(DismountType.class, "DERAIL");
+    public static final Supplier<DismountType> DERAIL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DismountType.class, "DERAIL");
 
-    public static final DismountType PLAYER = DummyObjectProvider.createFor(DismountType.class, "PLAYER");
+    public static final Supplier<DismountType> PLAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DismountType.class, "PLAYER");
 
     // SORTFIELDS:OFF
 

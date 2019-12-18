@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.cause;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.type.HandType;
@@ -31,7 +32,6 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
-import org.spongepowered.api.projectile.source.ProjectileSource;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
@@ -41,9 +41,9 @@ import org.spongepowered.api.event.cause.entity.teleport.TeleportType;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.profile.GameProfile;
+import org.spongepowered.api.projectile.source.ProjectileSource;
 import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.world.LocatableBlock;
@@ -51,6 +51,8 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.math.vector.Vector3d;
+
+import java.util.function.Supplier;
 
 /**
  * Standard keys for use within {@link EventContext}s.
@@ -68,7 +70,7 @@ public final class EventContextKeys {
      * Note: This occurs at the end of a world tick after
      *  {@link #BLOCK_EVENT_QUEUE}.
      */
-    public static final EventContextKey<LocatableBlock> BLOCK_EVENT_PROCESS = createFor("BLOCK_EVENT_PROCESS");
+    public static final Supplier<EventContextKey<LocatableBlock>> BLOCK_EVENT_PROCESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "BLOCK_EVENT_PROCESS");
 
     /**
      * Used to queue a block event to be processed in a {@link World}.
@@ -78,45 +80,45 @@ public final class EventContextKeys {
      * 
      * Note: This represents vanilla's block event.
      */
-    public static final EventContextKey<LocatableBlock> BLOCK_EVENT_QUEUE = createFor("BLOCK_EVENT_QUEUE");
+    public static final Supplier<EventContextKey<LocatableBlock>> BLOCK_EVENT_QUEUE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "BLOCK_EVENT_QUEUE");
 
     /**
      * Used when an {@link Entity} interacts with a block.
      */
-    public static final EventContextKey<BlockSnapshot> BLOCK_HIT = createFor("BLOCK_HIT");
+    public static final Supplier<EventContextKey<BlockSnapshot>> BLOCK_HIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "BLOCK_HIT");
 
     /**
      * Used during command execution, indicates the {@link BlockSnapshot} that
      * is the target of the invocation.
      */
-    public static final EventContextKey<BlockSnapshot> BLOCK_TARGET = createFor("BLOCK_TARGET");
+    public static final Supplier<EventContextKey<BlockSnapshot>> BLOCK_TARGET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "BLOCK_TARGET");
 
     /**
      * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
      * the block event without relying on existing in the {@link Cause} stack.
      */
-    public static final EventContextKey<ChangeBlockEvent.Break> BREAK_EVENT = createFor("BREAK_EVENT");
+    public static final EventContextKey<ChangeBlockEvent.Break> BREAK_EVENT = DummyObjectProvider.createFor(EventContextKey.class, "BREAK_EVENT");
 
     /**
      * Represents the creator of an {@link Entity}.
      */
-    public static final EventContextKey<User> CREATOR = createFor("CREATOR");
+    public static final Supplier<EventContextKey<User>> CREATOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "CREATOR");
 
     /**
      * Represents the {@link DamageType} to an entity.
      */
-    public static final EventContextKey<DamageType> DAMAGE_TYPE = createFor("DAMAGE_TYPE");
+    public static final Supplier<EventContextKey<DamageType>> DAMAGE_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "DAMAGE_TYPE");
 
     /**
      * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
      * the block event without relying on existing in the {@link Cause} stack.
      */
-    public static final EventContextKey<ChangeBlockEvent.Decay> DECAY_EVENT = createFor("DECAY_EVENT");
+    public static final EventContextKey<ChangeBlockEvent.Decay> DECAY_EVENT = DummyObjectProvider.createFor(EventContextKey.class, "DECAY_EVENT");
 
     /**
      * Used when a {@link Player} dismounts from an {@link Entity}.
      */
-    public static final EventContextKey<DismountType> DISMOUNT_TYPE = createFor("DISMOUNT_TYPE");
+    public static final Supplier<EventContextKey<DismountType>> DISMOUNT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "DISMOUNT_TYPE");
 
     /**
      * Represents the target {@link Entity}.
@@ -124,188 +126,183 @@ public final class EventContextKeys {
      * Used when an entity, such as a Player, targets an entity via an
      * interaction.
      */
-    public static final EventContextKey<Entity> ENTITY_HIT = createFor("ENTITY_HIT");
+    public static final Supplier<EventContextKey<Entity>> ENTITY_HIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "ENTITY_HIT");
 
     /**
      * Represents a fake player responsible for an action.
      * 
      * Note: This is normally only used with mods.
      */
-    public static final EventContextKey<Player> FAKE_PLAYER = createFor("FAKE_PLAYER");
+    public static final Supplier<EventContextKey<Player>> FAKE_PLAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "FAKE_PLAYER");
 
     /**
      * Used when fire spreads to other blocks.
      */
-    public static final EventContextKey<World> FIRE_SPREAD = createFor("FIRE_SPREAD");
+    public static final Supplier<EventContextKey<World>> FIRE_SPREAD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "FIRE_SPREAD");
 
     /**
      * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Grow} to provide
      * the origin {@link BlockSnapshot} that is doing the "growing".
      */
-    public static final EventContextKey<BlockSnapshot> GROWTH_ORIGIN = createFor("GROWTH_ORIGIN");
+    public static final Supplier<EventContextKey<BlockSnapshot>> GROWTH_ORIGIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "GROWTH_ORIGIN");
 
     /**
      * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
      * the block event without relying on existing in the {@link Cause} stack.
      */
-    public static final EventContextKey<ChangeBlockEvent.Grow> GROW_EVENT = createFor("GROW_EVENT");
+    public static final EventContextKey<ChangeBlockEvent.Grow> GROW_EVENT = DummyObjectProvider.createFor(EventContextKey.class, "GROW_EVENT");
 
     /**
      * Used when an {@link Entity} ignites causing an {@link Explosion}.
      */
-    public static final EventContextKey<Living> IGNITER = createFor("IGNITER");
+    public static final Supplier<EventContextKey<Living>> IGNITER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "IGNITER");
 
     /**
      * Represents the last {@link DamageSource} to an {@link Entity}.
      */
-    public static final EventContextKey<DamageSource> LAST_DAMAGE_SOURCE = createFor("LAST_DAMAGE_SOURCE");
+    public static final Supplier<EventContextKey<DamageSource>> LAST_DAMAGE_SOURCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "LAST_DAMAGE_SOURCE");
 
     /**
      * Used when leaves decay.
      */
-    public static final EventContextKey<World> LEAVES_DECAY = createFor("LEAVES_DECAY");
+    public static final Supplier<EventContextKey<World>> LEAVES_DECAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "LEAVES_DECAY");
 
     /**
      * Used when flowing liquid causing another block to break.
      */
-    public static final EventContextKey<World> LIQUID_BREAK = createFor("LIQUID_BREAK");
+    public static final Supplier<EventContextKey<World>> LIQUID_BREAK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "LIQUID_BREAK");
 
     /**
      * Used when flowing liquid moves to another location.
      */
-    public static final EventContextKey<World> LIQUID_FLOW = createFor("LIQUID_FLOW");
+    public static final Supplier<EventContextKey<World>> LIQUID_FLOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "LIQUID_FLOW");
 
     /**
      * Used when liquid changes state.
      */
-    public static final EventContextKey<World> LIQUID_MIX = createFor("LIQUID_MIX");
+    public static final Supplier<EventContextKey<World>> LIQUID_MIX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "LIQUID_MIX");
 
     /**
      * Used during command execution, indicates the {@link Location} that the
      * command is centered around.
      */
-    public static final EventContextKey<Location> LOCATION = createFor("LOCATION");
+    public static final Supplier<EventContextKey<Location>> LOCATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "LOCATION");
 
     /**
      * Used during command execution, indicates the {@link MessageReceiver} to
      * send any messages to.
      */
-    public static final EventContextKey<MessageReceiver> MESSAGE_TARGET = createFor("MESSAGE_TARGET");
+    public static final Supplier<EventContextKey<MessageReceiver>> MESSAGE_TARGET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "MESSAGE_TARGET");
 
     /**
      * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
      * the block event without relying on existing in the {@link Cause} stack.
      */
-    public static final EventContextKey<ChangeBlockEvent.Modify> MODIFY_EVENT = createFor("MODIFY_EVENT");
+    public static final EventContextKey<ChangeBlockEvent.Modify> MODIFY_EVENT = DummyObjectProvider.createFor(EventContextKey.class, "MODIFY_EVENT");
 
     /**
      * Represents the source {@link BlockSnapshot} of a block notification.
      */
-    public static final EventContextKey<BlockSnapshot> NEIGHBOR_NOTIFY_SOURCE = createFor("NEIGHBOR_NOTIFY_SOURCE");
+    public static final Supplier<EventContextKey<BlockSnapshot>> NEIGHBOR_NOTIFY_SOURCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "NEIGHBOR_NOTIFY_SOURCE");
 
     /**
      * Represents the {@link User} that notified a block.
      */
-    public static final EventContextKey<User> NOTIFIER = createFor("NOTIFIER");
+    public static final Supplier<EventContextKey<User>> NOTIFIER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "NOTIFIER");
 
     /**
      * Represents the {@link User} that owns a block.
      */
-    public static final EventContextKey<User> OWNER = createFor("OWNER");
+    public static final Supplier<EventContextKey<User>> OWNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "OWNER");
 
     /**
      * Used when a {@link BlockTypes#PISTON_HEAD} extends.
      */
-    public static final EventContextKey<World> PISTON_EXTEND = createFor("PISTON_EXTEND");
+    public static final Supplier<EventContextKey<World>> PISTON_EXTEND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "PISTON_EXTEND");
 
     /**
      * Used when a {@link BlockTypes#PISTON_HEAD} retracts.
      */
-    public static final EventContextKey<World> PISTON_RETRACT = createFor("PISTON_RETRACT");
+    public static final Supplier<EventContextKey<World>> PISTON_RETRACT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "PISTON_RETRACT");
 
     /**
      * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
      * the block event without relying on existing in the {@link Cause} stack.
      */
-    public static final EventContextKey<ChangeBlockEvent.Place> PLACE_EVENT = createFor("PLACE_EVENT");
+    public static final EventContextKey<ChangeBlockEvent.Place> PLACE_EVENT = DummyObjectProvider.createFor(EventContextKey.class, "PLACE_EVENT");
 
     /**
      * Represents a {@link Player}.
      */
-    public static final EventContextKey<Player> PLAYER = createFor("PLAYER");
+    public static final Supplier<EventContextKey<Player>> PLAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "PLAYER");
 
     /**
      * Used when a {@link Player} breaks a block.
      */
-    public static final EventContextKey<World> PLAYER_BREAK = createFor("PLAYER_BREAK");
+    public static final Supplier<EventContextKey<World>> PLAYER_BREAK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "PLAYER_BREAK");
 
     /**
      * Used when a {@link Player} places a block.
      */
-    public static final EventContextKey<World> PLAYER_PLACE = createFor("PLAYER_PLACE");
+    public static final Supplier<EventContextKey<World>> PLAYER_PLACE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "PLAYER_PLACE");
 
     /**
      * Represents a simulated {@link Player}.
      */
-    public static final EventContextKey<GameProfile> PLAYER_SIMULATED = createFor("PLAYER_SIMULATED");
+    public static final Supplier<EventContextKey<GameProfile>> PLAYER_SIMULATED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "PLAYER_SIMULATED");
 
     /**
      * Represents a {@link PluginContainer}.
      */
-    public static final EventContextKey<PluginContainer> PLUGIN = createFor("PLUGIN");
+    public static final Supplier<EventContextKey<PluginContainer>> PLUGIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "PLUGIN");
 
     /**
      * Represents a {@link ProjectileSource}.
      */
-    public static final EventContextKey<ProjectileSource> PROJECTILE_SOURCE = createFor("PROJECTILE_SOURCE");
+    public static final Supplier<EventContextKey<ProjectileSource>> PROJECTILE_SOURCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "PROJECTILE_SOURCE");
 
     /**
      * Represents a rotation as a {@link Vector3d}, for use with commands.
      */
-    public static final EventContextKey<Vector3d> ROTATION = createFor("ROTATION");
+    public static final Supplier<EventContextKey<Vector3d>> ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "ROTATION");
 
     /**
      * Represents the {@link ServiceManager}.
      */
-    public static final EventContextKey<ServiceManager> SERVICE_MANAGER = createFor("SERVICE_MANAGER");
+    public static final Supplier<EventContextKey<ServiceManager>> SERVICE_MANAGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "SERVICE_MANAGER");
 
     /**
      * Represents the {@link SpawnType} of an entity spawn.
      */
-    public static final EventContextKey<SpawnType> SPAWN_TYPE = createFor("SPAWN_TYPE");
+    public static final Supplier<EventContextKey<SpawnType>> SPAWN_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "SPAWN_TYPE");
 
     /**
      * Used during command invocation, indicates the {@link Subject} that
      * permission checks should be performed against.
      */
-    public static final EventContextKey<Subject> SUBJECT = createFor("SUBJECT");
+    public static final Supplier<EventContextKey<Subject>> SUBJECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "SUBJECT");
 
     /**
      * Represents the {@link TeleportType} when an entity teleports.
      */
-    public static final EventContextKey<TeleportType> TELEPORT_TYPE = createFor("TELEPORT_TYPE");
+    public static final Supplier<EventContextKey<TeleportType>> TELEPORT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "TELEPORT_TYPE");
 
     /**
      * Represents a {@link HandType}.
      */
-    public static final EventContextKey<HandType> USED_HAND = createFor("USED_HAND");
+    public static final Supplier<EventContextKey<HandType>> USED_HAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "USED_HAND");
 
     /**
      * Represents an {@link ItemStackSnapshot} of used item.
      */
-    public static final EventContextKey<ItemStackSnapshot> USED_ITEM = createFor("USED_ITEM");
+    public static final Supplier<EventContextKey<ItemStackSnapshot>> USED_ITEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "USED_ITEM");
 
     /**
      * Represents an {@link ItemStackSnapshot} of a weapon.
      */
-    public static final EventContextKey<ItemStackSnapshot> WEAPON = createFor("WEAPON");
+    public static final Supplier<EventContextKey<ItemStackSnapshot>> WEAPON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "WEAPON");
 
     // SORTFIELDS:OFF
-
-    @SuppressWarnings("unchecked")
-    private static <T> EventContextKey<T> createFor(String id) {
-        return DummyObjectProvider.createFor(EventContextKey.class, id);
-    }
 
     // Suppress default constructor to ensure non-instantiability.
     private EventContextKeys() {

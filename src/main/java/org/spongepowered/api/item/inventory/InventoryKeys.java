@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.item.inventory;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.value.BoundedValue;
@@ -36,6 +37,7 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.math.vector.Vector2i;
 
 import java.util.UUID;
+import java.util.function.Supplier;
 
 /**
  * Properties specific to {@link Inventory} objects that are not
@@ -49,44 +51,44 @@ public final class InventoryKeys {
     /**
      * Represents the plugin that created this inventory.
      */
-    public static final Key<Value<PluginContainer>> PLUGIN = DummyObjectProvider.createFor(Key.class, "PLUGIN");
+    public static final Supplier<Key<Value<PluginContainer>>> PLUGIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PLUGIN");
 
     /**
      * Represents the maximum stack size of slots in an inventory.
      */
-    public static final Key<BoundedValue<Integer>> MAX_STACK_SIZE = DummyObjectProvider.createFor(Key.class, "MAX_STACK_SIZE");
+    public static final Supplier<Key<BoundedValue<Integer>>> MAX_STACK_SIZE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_STACK_SIZE");
 
     /**
      * Represents the {@link EquipmentType} that the target inventory supports.
      */
-    public static final Key<Value<EquipmentType>> EQUIPMENT_TYPE = DummyObjectProvider.createFor(Key.class, "EQUIPMENT_TYPE");
+    public static final Supplier<Key<Value<EquipmentType>>> EQUIPMENT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EQUIPMENT_TYPE");
 
     /**
      * Represents the index of a slot.
      */
-    public static final Key<BoundedValue<Integer>> SLOT_INDEX = DummyObjectProvider.createFor(Key.class, "SLOT_INDEX");
+    public static final Supplier<Key<BoundedValue<Integer>>> SLOT_INDEX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SLOT_INDEX");
 
     /**
      * A property which represents the position of a slot within a grid. Bear in mind
      * that this property should be retrieved from the relevant parent, since a
      * slot may have multiple parent inventories.
      */
-    public static final Key<Value<Vector2i>> SLOT_POSITION = DummyObjectProvider.createFor(Key.class, "SLOT_POSITION");
+    public static final Supplier<Key<Value<Vector2i>>> SLOT_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SLOT_POSITION");
 
     /**
      * A property which represents a "side" for a particular slot, for use in querying "sided inventories".
      */
-    public static final Key<Value<Direction>> SLOT_SIDE = DummyObjectProvider.createFor(Key.class, "SLOT_SIDE");
+    public static final Supplier<Key<Value<Direction>>> SLOT_SIDE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SLOT_SIDE");
 
     /**
      * Represents the {@link UUID} of a inventory.
      */
-    public static final Key<Value<UUID>> UNIQUE_ID = DummyObjectProvider.createFor(Key.class, "UNIQUE_ID");
+    public static final Supplier<Key<Value<UUID>>> UNIQUE_ID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "UNIQUE_ID");
 
     /**
      * Represents the title of a inventory, is viewable by players looking at the inventory. Not all inventories have a title.
      */
-    public static final Key<Value<Text>> TITLE = DummyObjectProvider.createFor(Key.class, "TITLE");
+    public static final Supplier<Key<Value<Text>>> TITLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TITLE");
 
     // SORTFIELDS:OFF
 

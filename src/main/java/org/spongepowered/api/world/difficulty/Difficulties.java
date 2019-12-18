@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.world.difficulty;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 /**
  * A list of difficulties that Minecraft provides in vanilla.
@@ -33,13 +35,13 @@ public final class Difficulties {
 
     // SORTFIELDS:ON
 
-    public static final Difficulty EASY = DummyObjectProvider.createFor(Difficulty.class, "EASY");
+    public static final Supplier<Difficulty> EASY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Difficulty.class, "EASY");
 
-    public static final Difficulty HARD = DummyObjectProvider.createFor(Difficulty.class, "HARD");
+    public static final Supplier<Difficulty> HARD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Difficulty.class, "HARD");
 
-    public static final Difficulty NORMAL = DummyObjectProvider.createFor(Difficulty.class, "NORMAL");
+    public static final Supplier<Difficulty> NORMAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Difficulty.class, "NORMAL");
 
-    public static final Difficulty PEACEFUL = DummyObjectProvider.createFor(Difficulty.class, "PEACEFUL");
+    public static final Supplier<Difficulty> PEACEFUL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Difficulty.class, "PEACEFUL");
 
     // SORTFIELDS:OFF
 

@@ -30,15 +30,15 @@ public final class SpellTypes {
 
     // SORTFIELDS:ON
 
-    public static final SpellType SUMMON_VEX = DummyObjectProvider.createFor(SpellType.class, "SUMMON_VEX");
+    public static final Supplier<SpellType> SUMMON_VEX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpellType.class, "SUMMON_VEX");
 
-    public static final SpellType FANGS = DummyObjectProvider.createFor(SpellType.class, "FANGS");
+    public static final Supplier<SpellType> FANGS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpellType.class, "FANGS");
 
-    public static final SpellType WOLOLO = DummyObjectProvider.createFor(SpellType.class, "WOLOLO");
+    public static final Supplier<SpellType> WOLOLO = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpellType.class, "WOLOLO");
 
-    public static final SpellType DISAPPEAR = DummyObjectProvider.createFor(SpellType.class, "DISAPPEAR");
+    public static final Supplier<SpellType> DISAPPEAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpellType.class, "DISAPPEAR");
 
-    public static final SpellType BLINDNESS = DummyObjectProvider.createFor(SpellType.class, "BLINDNESS");
+    public static final Supplier<SpellType> BLINDNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpellType.class, "BLINDNESS");
 
     // SORTFIELDS:OFF
 

@@ -37,12 +37,12 @@ public final class HandTypes {
      * The hand used for main interactions such as using tools, and placing
      * blocks.
      */
-    public static final HandType MAIN_HAND = DummyObjectProvider.createFor(HandType.class, "MAIN_HAND");
+    public static final Supplier<HandType> MAIN_HAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HandType.class, "MAIN_HAND");
 
     /**
      * The hand used for secondary actions, such as a shield.
      */
-    public static final HandType OFF_HAND = DummyObjectProvider.createFor(HandType.class, "OFF_HAND");
+    public static final Supplier<HandType> OFF_HAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HandType.class, "OFF_HAND");
 
     // SORTFIELDS:OFF
 

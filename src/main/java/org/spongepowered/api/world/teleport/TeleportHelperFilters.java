@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.world.teleport;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 public final class TeleportHelperFilters {
 
@@ -34,7 +36,7 @@ public final class TeleportHelperFilters {
      * Designed to be combined with other filters, this filter determines if a
      * block is in the config blacklist and returns the appropriate result.
      */
-    public static final TeleportHelperFilter CONFIG = DummyObjectProvider.createFor(TeleportHelperFilter.class, "CONFIG");
+    public static final Supplier<TeleportHelperFilter> CONFIG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TeleportHelperFilter.class, "CONFIG");
 
     /**
      * The default behavior for safe teleportation.
@@ -51,7 +53,7 @@ public final class TeleportHelperFilters {
      *     floor or body (see {@link #CONFIG}).</li>
      * </ul>
      */
-    public static final TeleportHelperFilter DEFAULT = DummyObjectProvider.createFor(TeleportHelperFilter.class, "DEFAULT");
+    public static final Supplier<TeleportHelperFilter> DEFAULT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TeleportHelperFilter.class, "DEFAULT");
 
     /**
      * The flying safe teleportation behavior.
@@ -65,19 +67,19 @@ public final class TeleportHelperFilters {
      *     <li>That floor blocks are not cacti (and thus, hurt).</li>
      * </ul>
      */
-    public static final TeleportHelperFilter FLYING = DummyObjectProvider.createFor(TeleportHelperFilter.class, "FLYING");
+    public static final Supplier<TeleportHelperFilter> FLYING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TeleportHelperFilter.class, "FLYING");
 
     /**
      * This filter is the same as the {@link #DEFAULT} kernel, except that
      * portals are not valid targets.
      */
-    public static final TeleportHelperFilter NO_PORTAL = DummyObjectProvider.createFor(TeleportHelperFilter.class, "NO_PORTAL");
+    public static final Supplier<TeleportHelperFilter> NO_PORTAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TeleportHelperFilter.class, "NO_PORTAL");
 
     /**
      * This filter is the same as the {@link #DEFAULT} kernel, except that
      * only targets that can see the sky are considered.
      */
-    public static final TeleportHelperFilter SURFACE_ONLY = DummyObjectProvider.createFor(TeleportHelperFilter.class, "SURFACE_ONLY");
+    public static final Supplier<TeleportHelperFilter> SURFACE_ONLY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TeleportHelperFilter.class, "SURFACE_ONLY");
 
     // SORTFIELDS:OFF
 

@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.item;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 /**
  * A class containing known {@link FireworkShape}s.
@@ -33,15 +35,15 @@ public final class FireworkShapes {
 
     // SORTFIELDS:ON
 
-    public static final FireworkShape BALL = DummyObjectProvider.createFor(FireworkShape.class, "BALL");
+    public static final Supplier<FireworkShape> BALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "BALL");
 
-    public static final FireworkShape BURST = DummyObjectProvider.createFor(FireworkShape.class, "BURST");
+    public static final Supplier<FireworkShape> BURST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "BURST");
 
-    public static final FireworkShape CREEPER = DummyObjectProvider.createFor(FireworkShape.class, "CREEPER");
+    public static final Supplier<FireworkShape> CREEPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "CREEPER");
 
-    public static final FireworkShape LARGE_BALL = DummyObjectProvider.createFor(FireworkShape.class, "LARGE_BALL");
+    public static final Supplier<FireworkShape> LARGE_BALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "LARGE_BALL");
 
-    public static final FireworkShape STAR = DummyObjectProvider.createFor(FireworkShape.class, "STAR");
+    public static final Supplier<FireworkShape> STAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "STAR");
 
     // SORTFIELDS:OFF
 

@@ -24,9 +24,11 @@
  */
 package org.spongepowered.api.service.economy.transaction;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.service.economy.Currency;
 import org.spongepowered.api.service.economy.account.Account;
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
+import java.util.function.Supplier;
 
 public final class TransactionTypes {
     // SORTFIELDS:ON
@@ -34,17 +36,17 @@ public final class TransactionTypes {
     /**
      * Represents a transaction where an {@link Account} received some amount of a {@link Currency}.
      */
-    public static final TransactionType DEPOSIT = DummyObjectProvider.createFor(TransactionType.class, "DEPOSIT");
+    public static final Supplier<TransactionType> DEPOSIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TransactionType.class, "DEPOSIT");
 
     /**
      * Represents a transaction where an {@link Account} transferred some amount of a currency to another {@link Account}.
      */
-    public static final TransactionType TRANSFER = DummyObjectProvider.createFor(TransactionType.class, "TRANSFER");
+    public static final Supplier<TransactionType> TRANSFER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TransactionType.class, "TRANSFER");
 
     /**
      * Represents a transaction where an {@link Account} lost some amount of a {@link Currency}.
      */
-    public static final TransactionType WITHDRAW = DummyObjectProvider.createFor(TransactionType.class, "WITHDRAW");
+    public static final Supplier<TransactionType> WITHDRAW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TransactionType.class, "WITHDRAW");
 
     // SORTFIELDS:OFF
 

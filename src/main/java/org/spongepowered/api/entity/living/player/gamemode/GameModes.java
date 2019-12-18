@@ -33,15 +33,15 @@ public final class GameModes {
 
     // SORTFIELDS:ON
 
-    public static final GameMode ADVENTURE = DummyObjectProvider.createFor(GameMode.class, "ADVENTURE");
+    public static final Supplier<GameMode> ADVENTURE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameMode.class, "ADVENTURE");
 
-    public static final GameMode CREATIVE = DummyObjectProvider.createFor(GameMode.class, "CREATIVE");
+    public static final Supplier<GameMode> CREATIVE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameMode.class, "CREATIVE");
 
-    public static final GameMode NOT_SET = DummyObjectProvider.createFor(GameMode.class, "NOT_SET");
+    public static final Supplier<GameMode> NOT_SET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameMode.class, "NOT_SET");
 
-    public static final GameMode SPECTATOR = DummyObjectProvider.createFor(GameMode.class, "SPECTATOR");
+    public static final Supplier<GameMode> SPECTATOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameMode.class, "SPECTATOR");
 
-    public static final GameMode SURVIVAL = DummyObjectProvider.createFor(GameMode.class, "SURVIVAL");
+    public static final Supplier<GameMode> SURVIVAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameMode.class, "SURVIVAL");
 
     // SORTFIELDS:OFF
 

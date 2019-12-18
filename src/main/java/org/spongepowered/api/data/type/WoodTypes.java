@@ -33,17 +33,17 @@ public final class WoodTypes {
 
     // SORTFIELDS:ON
 
-    public static final WoodType ACACIA = DummyObjectProvider.createFor(WoodType.class, "ACACIA");
+    public static final Supplier<WoodType> ACACIA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WoodType.class, "ACACIA");
 
-    public static final WoodType BIRCH = DummyObjectProvider.createFor(WoodType.class, "BIRCH");
+    public static final Supplier<WoodType> BIRCH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WoodType.class, "BIRCH");
 
-    public static final WoodType DARK_OAK = DummyObjectProvider.createFor(WoodType.class, "DARK_OAK");
+    public static final Supplier<WoodType> DARK_OAK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WoodType.class, "DARK_OAK");
 
-    public static final WoodType JUNGLE = DummyObjectProvider.createFor(WoodType.class, "JUNGLE");
+    public static final Supplier<WoodType> JUNGLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WoodType.class, "JUNGLE");
 
-    public static final WoodType OAK = DummyObjectProvider.createFor(WoodType.class, "OAK");
+    public static final Supplier<WoodType> OAK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WoodType.class, "OAK");
 
-    public static final WoodType SPRUCE = DummyObjectProvider.createFor(WoodType.class, "SPRUCE");
+    public static final Supplier<WoodType> SPRUCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WoodType.class, "SPRUCE");
 
     // SORTFIELDS:OFF
 

@@ -94,6 +94,13 @@ public final class Context implements Map.Entry<String, String> {
         return this.wrapped.getValue();
     }
 
+    /**
+     * @deprecated Context does not support changing the values
+     * @param value The value
+     * @return Nothing
+     * @throws UnsupportedOperationException Contexts are immutable
+     */
+    @Deprecated
     @Override
     public String setValue(String value) {
         throw new UnsupportedOperationException("Contexts are immutable");

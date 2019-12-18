@@ -33,11 +33,11 @@ public final class PickupRules {
 
     // SORTFIELDS:ON
 
-    public static final PickupRule ALLOWED = DummyObjectProvider.createFor(PickupRule.class, "ALLOWED");
+    public static final Supplier<PickupRule> ALLOWED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PickupRule.class, "ALLOWED");
 
-    public static final PickupRule CREATIVE_ONLY = DummyObjectProvider.createFor(PickupRule.class, "CREATIVE_ONLY");
+    public static final Supplier<PickupRule> CREATIVE_ONLY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PickupRule.class, "CREATIVE_ONLY");
 
-    public static final PickupRule DISALLOWED = DummyObjectProvider.createFor(PickupRule.class, "DISALLOWED");
+    public static final Supplier<PickupRule> DISALLOWED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PickupRule.class, "DISALLOWED");
 
     // SORTFIELDS:OFF
 

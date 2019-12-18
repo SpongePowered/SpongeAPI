@@ -33,19 +33,19 @@ public final class PandaGenes {
 
     // SORTFIELDS:ON
 
-    public static final PandaGene AGGRESSIVE = DummyObjectProvider.createFor(PandaGene.class, "AGGRESSIVE");
+    public static final Supplier<PandaGene> AGGRESSIVE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PandaGene.class, "AGGRESSIVE");
 
-    public static final PandaGene BROWN = DummyObjectProvider.createFor(PandaGene.class, "BROWN");
+    public static final Supplier<PandaGene> BROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PandaGene.class, "BROWN");
 
-    public static final PandaGene LAZY = DummyObjectProvider.createFor(PandaGene.class, "LAZY");
+    public static final Supplier<PandaGene> LAZY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PandaGene.class, "LAZY");
 
-    public static final PandaGene NORMAL = DummyObjectProvider.createFor(PandaGene.class, "NORMAL");
+    public static final Supplier<PandaGene> NORMAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PandaGene.class, "NORMAL");
 
-    public static final PandaGene PLAYFUL = DummyObjectProvider.createFor(PandaGene.class, "PLAYFUL");
+    public static final Supplier<PandaGene> PLAYFUL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PandaGene.class, "PLAYFUL");
 
-    public static final PandaGene WEAK = DummyObjectProvider.createFor(PandaGene.class, "WEAK");
+    public static final Supplier<PandaGene> WEAK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PandaGene.class, "WEAK");
 
-    public static final PandaGene WORRIED = DummyObjectProvider.createFor(PandaGene.class, "WORRIED");
+    public static final Supplier<PandaGene> WORRIED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PandaGene.class, "WORRIED");
 
     // SORTFIELDS:OFF
 

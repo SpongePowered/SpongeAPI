@@ -24,9 +24,11 @@
  */
 package org.spongepowered.api.effect.particle;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
+import java.util.function.Supplier;
 
 /**
  * An enumeration of all possible {@link ParticleType}s in vanilla minecraft.
@@ -35,13 +37,13 @@ public final class ParticleTypes {
 
     // SORTFIELDS:ON
 
-    public static final ParticleType AMBIENT_ENTITY_EFFECT = DummyObjectProvider.createFor(ParticleType.class, "AMBIENT_ENTITY_EFFECT");
+    public static final Supplier<ParticleType> AMBIENT_ENTITY_EFFECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "AMBIENT_ENTITY_EFFECT");
 
-    public static final ParticleType ANGRY_VILLAGER = DummyObjectProvider.createFor(ParticleType.class, "ANGRY_VILLAGER");
+    public static final Supplier<ParticleType> ANGRY_VILLAGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "ANGRY_VILLAGER");
 
-    public static final ParticleType BARRIER = DummyObjectProvider.createFor(ParticleType.class, "BARRIER");
+    public static final Supplier<ParticleType> BARRIER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "BARRIER");
 
-    public static final ParticleType BLOCK = DummyObjectProvider.createFor(ParticleType.class, "BLOCK");
+    public static final Supplier<ParticleType> BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "BLOCK");
 
     /**
      * This particle type will play the effect of a block that
@@ -51,63 +53,63 @@ public final class ParticleTypes {
      * {@link ParticleOptions#BLOCK_STATE} and
      * {@link ParticleOptions#ITEM_STACK_SNAPSHOT} are supported.</p>
      */
-    public static final ParticleType BREAK_BLOCK = DummyObjectProvider.createFor(ParticleType.class, "BREAK_BLOCK");
+    public static final Supplier<ParticleType> BREAK_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "BREAK_BLOCK");
 
-    public static final ParticleType BREAK_EYE_OF_ENDER = DummyObjectProvider.createFor(ParticleType.class, "BREAK_EYE_OF_ENDER");
+    public static final Supplier<ParticleType> BREAK_EYE_OF_ENDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "BREAK_EYE_OF_ENDER");
 
-    public static final ParticleType BREAK_SPLASH_POTION = DummyObjectProvider.createFor(ParticleType.class, "BREAK_SPLASH_POTION");
+    public static final Supplier<ParticleType> BREAK_SPLASH_POTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "BREAK_SPLASH_POTION");
 
-    public static final ParticleType BUBBLE = DummyObjectProvider.createFor(ParticleType.class, "BUBBLE");
+    public static final Supplier<ParticleType> BUBBLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "BUBBLE");
 
-    public static final ParticleType BUBBLE_COLUMN_UP = DummyObjectProvider.createFor(ParticleType.class, "BUBBLE_COLUMN_UP");
+    public static final Supplier<ParticleType> BUBBLE_COLUMN_UP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "BUBBLE_COLUMN_UP");
 
-    public static final ParticleType BUBBLE_POP = DummyObjectProvider.createFor(ParticleType.class, "SQUID_INK");
+    public static final Supplier<ParticleType> BUBBLE_POP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "SQUID_INK");
 
-    public static final ParticleType CLOUD = DummyObjectProvider.createFor(ParticleType.class, "CLOUD");
+    public static final Supplier<ParticleType> CLOUD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "CLOUD");
 
-    public static final ParticleType CRITICAL_HIT = DummyObjectProvider.createFor(ParticleType.class, "CRITICAL_HIT");
+    public static final Supplier<ParticleType> CRITICAL_HIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "CRITICAL_HIT");
 
-    public static final ParticleType CURRENT_DOWN = DummyObjectProvider.createFor(ParticleType.class, "CURRENT_DOWN");
+    public static final Supplier<ParticleType> CURRENT_DOWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "CURRENT_DOWN");
 
-    public static final ParticleType DAMAGE_INDICATOR = DummyObjectProvider.createFor(ParticleType.class, "DAMAGE_INDICATOR");
+    public static final Supplier<ParticleType> DAMAGE_INDICATOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "DAMAGE_INDICATOR");
 
-    public static final ParticleType DOLPHIN_SPEED = DummyObjectProvider.createFor(ParticleType.class, "DOLPHIN_SPEED");
+    public static final Supplier<ParticleType> DOLPHIN_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "DOLPHIN_SPEED");
 
-    public static final ParticleType DRAGON_BREATH = DummyObjectProvider.createFor(ParticleType.class, "DRAGON_BREATH");
+    public static final Supplier<ParticleType> DRAGON_BREATH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "DRAGON_BREATH");
 
-    public static final ParticleType DRAGON_BREATH_ATTACK = DummyObjectProvider.createFor(ParticleType.class, "DRAGON_BREATH_ATTACK");
+    public static final Supplier<ParticleType> DRAGON_BREATH_ATTACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "DRAGON_BREATH_ATTACK");
 
-    public static final ParticleType DRIPPING_LAVA = DummyObjectProvider.createFor(ParticleType.class, "DRIPPING_LAVA");
+    public static final Supplier<ParticleType> DRIPPING_LAVA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "DRIPPING_LAVA");
 
-    public static final ParticleType DRIPPING_WATER = DummyObjectProvider.createFor(ParticleType.class, "DRIPPING_WATER");
+    public static final Supplier<ParticleType> DRIPPING_WATER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "DRIPPING_WATER");
 
     /**
      * While this particle type the option {@link ParticleOptions#SCALE} supports, the maximum value
      * that is supported is {@code 4.0} and higher values will be limited to this maximum.
      */
-    public static final ParticleType DUST = DummyObjectProvider.createFor(ParticleType.class, "DUST");
+    public static final Supplier<ParticleType> DUST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "DUST");
 
     /**
      * While this particle type the option {@link ParticleOptions#VELOCITY} supports, this
      * will only affect the velocity in the y direction.
      */
-    public static final ParticleType EFFECT = DummyObjectProvider.createFor(ParticleType.class, "EFFECT");
+    public static final Supplier<ParticleType> EFFECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "EFFECT");
 
-    public static final ParticleType ELDER_GUARDIAN = DummyObjectProvider.createFor(ParticleType.class, "ELDER_GUARDIAN");
+    public static final Supplier<ParticleType> ELDER_GUARDIAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "ELDER_GUARDIAN");
 
-    public static final ParticleType ENCHANTED_HIT = DummyObjectProvider.createFor(ParticleType.class, "ENCHANTED_HIT");
+    public static final Supplier<ParticleType> ENCHANTED_HIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "ENCHANTED_HIT");
 
-    public static final ParticleType ENCHANTING_GLYPHS = DummyObjectProvider.createFor(ParticleType.class, "ENCHANTING_GLYPHS");
+    public static final Supplier<ParticleType> ENCHANTING_GLYPHS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "ENCHANTING_GLYPHS");
 
-    public static final ParticleType END_ROD = DummyObjectProvider.createFor(ParticleType.class, "END_ROD");
+    public static final Supplier<ParticleType> END_ROD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "END_ROD");
 
-    public static final ParticleType ENTITY_EFFECT = DummyObjectProvider.createFor(ParticleType.class, "ENTITY_EFFECT");
+    public static final Supplier<ParticleType> ENTITY_EFFECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "ENTITY_EFFECT");
 
-    public static final ParticleType EXPLOSION = DummyObjectProvider.createFor(ParticleType.class, "EXPLOSION");
+    public static final Supplier<ParticleType> EXPLOSION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "EXPLOSION");
 
-    public static final ParticleType EXPLOSION_EMITTER = DummyObjectProvider.createFor(ParticleType.class, "EXPLOSION_EMITTER");
+    public static final Supplier<ParticleType> EXPLOSION_EMITTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "EXPLOSION_EMITTER");
 
-    public static final ParticleType FALLING_DUST = DummyObjectProvider.createFor(ParticleType.class, "FALLING_DUST");
+    public static final Supplier<ParticleType> FALLING_DUST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "FALLING_DUST");
 
     /**
      * This particle type will play the effect that will occur when
@@ -119,7 +121,7 @@ public final class ParticleTypes {
      * <p>This type can no longer be spawned on air blocks. It will only
      * show up if spawned at the location of solid blocks.</p>
      */
-    public static final ParticleType FERTILIZER = DummyObjectProvider.createFor(ParticleType.class, "FERTILIZER");
+    public static final Supplier<ParticleType> FERTILIZER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "FERTILIZER");
 
     /**
      * This particle type will play a fireworks effect.
@@ -127,74 +129,74 @@ public final class ParticleTypes {
      * <p>This type has limited {@link ParticleOption}s, only
      * {@link ParticleOptions#FIREWORK_EFFECTS} is supported.</p>
      */
-    public static final ParticleType FIREWORKS = DummyObjectProvider.createFor(ParticleType.class, "FIREWORKS");
+    public static final Supplier<ParticleType> FIREWORKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "FIREWORKS");
 
-    public static final ParticleType FIREWORKS_SPARK = DummyObjectProvider.createFor(ParticleType.class, "FIREWORKS_SPARK");
+    public static final Supplier<ParticleType> FIREWORKS_SPARK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "FIREWORKS_SPARK");
 
     /**
      * This particle type will play the smoke particles of a fire.
      * <p>This type has limited {@link ParticleOption}s, only
      * {@link ParticleOptions#DIRECTION} is supported.</p>
      */
-    public static final ParticleType FIRE_SMOKE = DummyObjectProvider.createFor(ParticleType.class, "FIRE_SMOKE");
+    public static final Supplier<ParticleType> FIRE_SMOKE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "FIRE_SMOKE");
 
-    public static final ParticleType FISHING = DummyObjectProvider.createFor(ParticleType.class, "FISHING");
+    public static final Supplier<ParticleType> FISHING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "FISHING");
 
-    public static final ParticleType FLAME = DummyObjectProvider.createFor(ParticleType.class, "FLAME");
+    public static final Supplier<ParticleType> FLAME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "FLAME");
 
-    public static final ParticleType HAPPY_VILLAGER = DummyObjectProvider.createFor(ParticleType.class, "HAPPY_VILLAGER");
+    public static final Supplier<ParticleType> HAPPY_VILLAGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "HAPPY_VILLAGER");
 
-    public static final ParticleType HEART = DummyObjectProvider.createFor(ParticleType.class, "HEART");
-
-    /**
-     * While this particle type the option {@link ParticleOptions#VELOCITY}
-     * supports, this will only affect the velocity in the y direction.
-     */
-    public static final ParticleType INSTANT_EFFECT = DummyObjectProvider.createFor(ParticleType.class, "INSTANT_EFFECT");
-
-    public static final ParticleType ITEM = DummyObjectProvider.createFor(ParticleType.class, "ITEM");
-
-    public static final ParticleType ITEM_SLIME = DummyObjectProvider.createFor(ParticleType.class, "ITEM_SLIME");
-
-    public static final ParticleType ITEM_SNOWBALL = DummyObjectProvider.createFor(ParticleType.class, "ITEM_SNOWBALL");
-
-    public static final ParticleType LARGE_SMOKE = DummyObjectProvider.createFor(ParticleType.class, "LARGE_SMOKE");
-
-    public static final ParticleType LAVA = DummyObjectProvider.createFor(ParticleType.class, "LAVA");
-
-    public static final ParticleType MOBSPAWNER_FLAMES = DummyObjectProvider.createFor(ParticleType.class, "MOBSPAWNER_FLAMES");
-
-    public static final ParticleType MYCELIUM = DummyObjectProvider.createFor(ParticleType.class, "MYCELIUM");
-
-    public static final ParticleType NAUTILUS = DummyObjectProvider.createFor(ParticleType.class, "NAUTILUS");
-
-    public static final ParticleType NOTE = DummyObjectProvider.createFor(ParticleType.class, "NOTE");
-
-    public static final ParticleType PORTAL = DummyObjectProvider.createFor(ParticleType.class, "PORTAL");
-
-    public static final ParticleType RAIN_SPLASH = DummyObjectProvider.createFor(ParticleType.class, "RAIN_SPLASH");
-
-    public static final ParticleType SMOKE = DummyObjectProvider.createFor(ParticleType.class, "SMOKE");
-
-    public static final ParticleType SNOWBALL_POOF = DummyObjectProvider.createFor(ParticleType.class, "SNOWBALL_POOF");
-
-    public static final ParticleType SPIT = DummyObjectProvider.createFor(ParticleType.class, "SPIT");
-
-    public static final ParticleType SQUID_INK = DummyObjectProvider.createFor(ParticleType.class, "SQUID_INK");
-
-    public static final ParticleType SWEEP_ATTACK = DummyObjectProvider.createFor(ParticleType.class, "SWEEP_ATTACK");
-
-    public static final ParticleType TOTEM_OF_UNDYING = DummyObjectProvider.createFor(ParticleType.class, "TOTEM_OF_UNDYING");
-
-    public static final ParticleType UNDERWATER = DummyObjectProvider.createFor(ParticleType.class, "UNDERWATER");
-
-    public static final ParticleType WATER_SPLASH = DummyObjectProvider.createFor(ParticleType.class, "WATER_SPLASH");
+    public static final Supplier<ParticleType> HEART = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "HEART");
 
     /**
      * While this particle type the option {@link ParticleOptions#VELOCITY}
      * supports, this will only affect the velocity in the y direction.
      */
-    public static final ParticleType WITCH_MAGIC = DummyObjectProvider.createFor(ParticleType.class, "WITCH_MAGIC");
+    public static final Supplier<ParticleType> INSTANT_EFFECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "INSTANT_EFFECT");
+
+    public static final Supplier<ParticleType> ITEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "ITEM");
+
+    public static final Supplier<ParticleType> ITEM_SLIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "ITEM_SLIME");
+
+    public static final Supplier<ParticleType> ITEM_SNOWBALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "ITEM_SNOWBALL");
+
+    public static final Supplier<ParticleType> LARGE_SMOKE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "LARGE_SMOKE");
+
+    public static final Supplier<ParticleType> LAVA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "LAVA");
+
+    public static final Supplier<ParticleType> MOBSPAWNER_FLAMES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "MOBSPAWNER_FLAMES");
+
+    public static final Supplier<ParticleType> MYCELIUM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "MYCELIUM");
+
+    public static final Supplier<ParticleType> NAUTILUS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "NAUTILUS");
+
+    public static final Supplier<ParticleType> NOTE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "NOTE");
+
+    public static final Supplier<ParticleType> PORTAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "PORTAL");
+
+    public static final Supplier<ParticleType> RAIN_SPLASH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "RAIN_SPLASH");
+
+    public static final Supplier<ParticleType> SMOKE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "SMOKE");
+
+    public static final Supplier<ParticleType> SNOWBALL_POOF = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "SNOWBALL_POOF");
+
+    public static final Supplier<ParticleType> SPIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "SPIT");
+
+    public static final Supplier<ParticleType> SQUID_INK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "SQUID_INK");
+
+    public static final Supplier<ParticleType> SWEEP_ATTACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "SWEEP_ATTACK");
+
+    public static final Supplier<ParticleType> TOTEM_OF_UNDYING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "TOTEM_OF_UNDYING");
+
+    public static final Supplier<ParticleType> UNDERWATER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "UNDERWATER");
+
+    public static final Supplier<ParticleType> WATER_SPLASH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "WATER_SPLASH");
+
+    /**
+     * While this particle type the option {@link ParticleOptions#VELOCITY}
+     * supports, this will only affect the velocity in the y direction.
+     */
+    public static final Supplier<ParticleType> WITCH_MAGIC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "WITCH_MAGIC");
 
     // SORTFIELDS:OFF
 

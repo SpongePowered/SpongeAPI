@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.statistic;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 /**
  * An enumeration of all available {@link Statistic}s from the vanilla game.
@@ -33,103 +35,103 @@ public final class Statistics {
 
     // SORTFIELDS:ON
 
-    public static final Statistic ANIMALS_BRED = DummyObjectProvider.createFor(Statistic.class, "ANIMALS_BRED");
+    public static final Supplier<Statistic> ANIMALS_BRED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "ANIMALS_BRED");
 
-    public static final Statistic ARMOR_CLEANED = DummyObjectProvider.createFor(Statistic.class, "ARMOR_CLEANED");
+    public static final Supplier<Statistic> ARMOR_CLEANED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "ARMOR_CLEANED");
 
-    public static final Statistic AVIATE_ONE_CM = DummyObjectProvider.createFor(Statistic.class, "AVIATE_ONE_CM");
+    public static final Supplier<Statistic> AVIATE_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "AVIATE_ONE_CM");
 
-    public static final Statistic BANNER_CLEANED = DummyObjectProvider.createFor(Statistic.class, "BANNER_CLEANED");
+    public static final Supplier<Statistic> BANNER_CLEANED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "BANNER_CLEANED");
 
-    public static final Statistic BEACON_INTERACTION = DummyObjectProvider.createFor(Statistic.class, "BEACON_INTERACTION");
+    public static final Supplier<Statistic> BEACON_INTERACTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "BEACON_INTERACTION");
 
-    public static final Statistic BOAT_ONE_CM = DummyObjectProvider.createFor(Statistic.class, "BOAT_ONE_CM");
+    public static final Supplier<Statistic> BOAT_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "BOAT_ONE_CM");
 
-    public static final Statistic BREWINGSTAND_INTERACTION = DummyObjectProvider.createFor(Statistic.class, "BREWINGSTAND_INTERACTION");
+    public static final Supplier<Statistic> BREWINGSTAND_INTERACTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "BREWINGSTAND_INTERACTION");
 
-    public static final Statistic CAKE_SLICES_EATEN = DummyObjectProvider.createFor(Statistic.class, "CAKE_SLICES_EATEN");
+    public static final Supplier<Statistic> CAKE_SLICES_EATEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "CAKE_SLICES_EATEN");
 
-    public static final Statistic CAULDRON_FILLED = DummyObjectProvider.createFor(Statistic.class, "CAULDRON_FILLED");
+    public static final Supplier<Statistic> CAULDRON_FILLED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "CAULDRON_FILLED");
 
-    public static final Statistic CAULDRON_USED = DummyObjectProvider.createFor(Statistic.class, "CAULDRON_USED");
+    public static final Supplier<Statistic> CAULDRON_USED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "CAULDRON_USED");
 
-    public static final Statistic CHEST_OPENED = DummyObjectProvider.createFor(Statistic.class, "CHEST_OPENED");
+    public static final Supplier<Statistic> CHEST_OPENED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "CHEST_OPENED");
 
-    public static final Statistic CLIMB_ONE_CM = DummyObjectProvider.createFor(Statistic.class, "CLIMB_ONE_CM");
+    public static final Supplier<Statistic> CLIMB_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "CLIMB_ONE_CM");
 
-    public static final Statistic CRAFTING_TABLE_INTERACTION = DummyObjectProvider.createFor(Statistic.class, "CRAFTING_TABLE_INTERACTION");
+    public static final Supplier<Statistic> CRAFTING_TABLE_INTERACTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "CRAFTING_TABLE_INTERACTION");
 
-    public static final Statistic CROUCH_ONE_CM = DummyObjectProvider.createFor(Statistic.class, "CROUCH_ONE_CM");
+    public static final Supplier<Statistic> CROUCH_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "CROUCH_ONE_CM");
 
-    public static final Statistic DAMAGE_DEALT = DummyObjectProvider.createFor(Statistic.class, "DAMAGE_DEALT");
+    public static final Supplier<Statistic> DAMAGE_DEALT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "DAMAGE_DEALT");
 
-    public static final Statistic DAMAGE_TAKEN = DummyObjectProvider.createFor(Statistic.class, "DAMAGE_TAKEN");
+    public static final Supplier<Statistic> DAMAGE_TAKEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "DAMAGE_TAKEN");
 
-    public static final Statistic DEATHS = DummyObjectProvider.createFor(Statistic.class, "DEATHS");
+    public static final Supplier<Statistic> DEATHS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "DEATHS");
 
-    public static final Statistic DISPENSER_INSPECTED = DummyObjectProvider.createFor(Statistic.class, "DISPENSER_INSPECTED");
+    public static final Supplier<Statistic> DISPENSER_INSPECTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "DISPENSER_INSPECTED");
 
-    public static final Statistic DIVE_ONE_CM = DummyObjectProvider.createFor(Statistic.class, "DIVE_ONE_CM");
+    public static final Supplier<Statistic> DIVE_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "DIVE_ONE_CM");
 
-    public static final Statistic DROP = DummyObjectProvider.createFor(Statistic.class, "DROP");
+    public static final Supplier<Statistic> DROP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "DROP");
 
-    public static final Statistic DROPPER_INSPECTED = DummyObjectProvider.createFor(Statistic.class, "DROPPER_INSPECTED");
+    public static final Supplier<Statistic> DROPPER_INSPECTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "DROPPER_INSPECTED");
 
-    public static final Statistic ENDERCHEST_OPENED = DummyObjectProvider.createFor(Statistic.class, "ENDERCHEST_OPENED");
+    public static final Supplier<Statistic> ENDERCHEST_OPENED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "ENDERCHEST_OPENED");
 
-    public static final Statistic FALL_ONE_CM = DummyObjectProvider.createFor(Statistic.class, "FALL_ONE_CM");
+    public static final Supplier<Statistic> FALL_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "FALL_ONE_CM");
 
-    public static final Statistic FISH_CAUGHT = DummyObjectProvider.createFor(Statistic.class, "FISH_CAUGHT");
+    public static final Supplier<Statistic> FISH_CAUGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "FISH_CAUGHT");
 
-    public static final Statistic FLOWER_POTTED = DummyObjectProvider.createFor(Statistic.class, "FLOWER_POTTED");
+    public static final Supplier<Statistic> FLOWER_POTTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "FLOWER_POTTED");
 
-    public static final Statistic FURNACE_INTERACTION = DummyObjectProvider.createFor(Statistic.class, "FURNACE_INTERACTION");
+    public static final Supplier<Statistic> FURNACE_INTERACTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "FURNACE_INTERACTION");
 
-    public static final Statistic HOPPER_INSPECTED = DummyObjectProvider.createFor(Statistic.class, "HOPPER_INSPECTED");
+    public static final Supplier<Statistic> HOPPER_INSPECTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "HOPPER_INSPECTED");
 
-    public static final Statistic HORSE_ONE_CM = DummyObjectProvider.createFor(Statistic.class, "HORSE_ONE_CM");
+    public static final Supplier<Statistic> HORSE_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "HORSE_ONE_CM");
 
-    public static final Statistic ITEM_ENCHANTED = DummyObjectProvider.createFor(Statistic.class, "ITEM_ENCHANTED");
+    public static final Supplier<Statistic> ITEM_ENCHANTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "ITEM_ENCHANTED");
 
-    public static final Statistic JUMP = DummyObjectProvider.createFor(Statistic.class, "JUMP");
+    public static final Supplier<Statistic> JUMP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "JUMP");
 
-    public static final Statistic LEAVE_GAME = DummyObjectProvider.createFor(Statistic.class, "LEAVE_GAME");
+    public static final Supplier<Statistic> LEAVE_GAME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "LEAVE_GAME");
 
-    public static final Statistic MINECART_ONE_CM = DummyObjectProvider.createFor(Statistic.class, "MINECART_ONE_CM");
+    public static final Supplier<Statistic> MINECART_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "MINECART_ONE_CM");
 
-    public static final Statistic MOB_KILLS = DummyObjectProvider.createFor(Statistic.class, "MOB_KILLS");
+    public static final Supplier<Statistic> MOB_KILLS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "MOB_KILLS");
 
-    public static final Statistic NOTEBLOCK_PLAYED = DummyObjectProvider.createFor(Statistic.class, "NOTEBLOCK_PLAYED");
+    public static final Supplier<Statistic> NOTEBLOCK_PLAYED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "NOTEBLOCK_PLAYED");
 
-    public static final Statistic NOTEBLOCK_TUNED = DummyObjectProvider.createFor(Statistic.class, "NOTEBLOCK_TUNED");
+    public static final Supplier<Statistic> NOTEBLOCK_TUNED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "NOTEBLOCK_TUNED");
 
-    public static final Statistic OPEN_SHULKER_BOX = DummyObjectProvider.createFor(Statistic.class, "OPEN_SHULKER_BOX");
+    public static final Supplier<Statistic> OPEN_SHULKER_BOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "OPEN_SHULKER_BOX");
 
-    public static final Statistic PIG_ONE_CM = DummyObjectProvider.createFor(Statistic.class, "PIG_ONE_CM");
+    public static final Supplier<Statistic> PIG_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "PIG_ONE_CM");
 
-    public static final Statistic PLAYER_KILLS = DummyObjectProvider.createFor(Statistic.class, "PLAYER_KILLS");
+    public static final Supplier<Statistic> PLAYER_KILLS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "PLAYER_KILLS");
 
-    public static final Statistic RECORD_PLAYED = DummyObjectProvider.createFor(Statistic.class, "RECORD_PLAYED");
+    public static final Supplier<Statistic> RECORD_PLAYED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "RECORD_PLAYED");
 
-    public static final Statistic SLEEP_IN_BED = DummyObjectProvider.createFor(Statistic.class, "SLEEP_IN_BED");
+    public static final Supplier<Statistic> SLEEP_IN_BED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "SLEEP_IN_BED");
 
-    public static final Statistic SNEAK_TIME = DummyObjectProvider.createFor(Statistic.class, "SNEAK_TIME");
+    public static final Supplier<Statistic> SNEAK_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "SNEAK_TIME");
 
-    public static final Statistic SPRINT_ONE_CM = DummyObjectProvider.createFor(Statistic.class, "SPRINT_ONE_CM");
+    public static final Supplier<Statistic> SPRINT_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "SPRINT_ONE_CM");
 
-    public static final Statistic SWIM_ONE_CM = DummyObjectProvider.createFor(Statistic.class, "SWIM_ONE_CM");
+    public static final Supplier<Statistic> SWIM_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "SWIM_ONE_CM");
 
-    public static final Statistic TALKED_TO_VILLAGER = DummyObjectProvider.createFor(Statistic.class, "TALKED_TO_VILLAGER");
+    public static final Supplier<Statistic> TALKED_TO_VILLAGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "TALKED_TO_VILLAGER");
 
-    public static final Statistic TIME_PLAYED = DummyObjectProvider.createFor(Statistic.class, "TIME_PLAYED");
+    public static final Supplier<Statistic> TIME_PLAYED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "TIME_PLAYED");
 
-    public static final Statistic TIME_SINCE_DEATH = DummyObjectProvider.createFor(Statistic.class, "TIME_SINCE_DEATH");
+    public static final Supplier<Statistic> TIME_SINCE_DEATH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "TIME_SINCE_DEATH");
 
-    public static final Statistic TRADED_WITH_VILLAGER = DummyObjectProvider.createFor(Statistic.class, "TRADED_WITH_VILLAGER");
+    public static final Supplier<Statistic> TRADED_WITH_VILLAGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "TRADED_WITH_VILLAGER");
 
-    public static final Statistic TRAPPED_CHEST_TRIGGERED = DummyObjectProvider.createFor(Statistic.class, "TRAPPED_CHEST_TRIGGERED");
+    public static final Supplier<Statistic> TRAPPED_CHEST_TRIGGERED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "TRAPPED_CHEST_TRIGGERED");
 
-    public static final Statistic WALK_ONE_CM = DummyObjectProvider.createFor(Statistic.class, "WALK_ONE_CM");
+    public static final Supplier<Statistic> WALK_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "WALK_ONE_CM");
 
     // SORTFIELDS:OFF
 

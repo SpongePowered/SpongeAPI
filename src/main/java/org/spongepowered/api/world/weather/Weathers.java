@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.world.weather;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 /**
  * All possible {@link Weather}s in vanilla minecraft.
@@ -33,11 +35,11 @@ public final class Weathers {
 
     // SORTFIELDS:ON
 
-    public static final Weather CLEAR = DummyObjectProvider.createFor(Weather.class, "CLEAR");
+    public static final Supplier<Weather> CLEAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Weather.class, "CLEAR");
 
-    public static final Weather RAIN = DummyObjectProvider.createFor(Weather.class, "RAIN");
+    public static final Supplier<Weather> RAIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Weather.class, "RAIN");
 
-    public static final Weather THUNDER_STORM = DummyObjectProvider.createFor(Weather.class, "THUNDER_STORM");
+    public static final Supplier<Weather> THUNDER_STORM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Weather.class, "THUNDER_STORM");
 
     // SORTFIELDS:OFF
 

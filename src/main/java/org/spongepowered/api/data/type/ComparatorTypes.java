@@ -33,9 +33,9 @@ public final class ComparatorTypes {
 
     // SORTFIELDS:ON
 
-    public static final ComparatorType COMPARE = DummyObjectProvider.createFor(ComparatorType.class, "COMPARE");
+    public static final Supplier<ComparatorType> COMPARE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ComparatorType.class, "COMPARE");
 
-    public static final ComparatorType SUBTRACT = DummyObjectProvider.createFor(ComparatorType.class, "SUBTRACT");
+    public static final Supplier<ComparatorType> SUBTRACT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ComparatorType.class, "SUBTRACT");
 
     // SORTFIELDS:OFF
 

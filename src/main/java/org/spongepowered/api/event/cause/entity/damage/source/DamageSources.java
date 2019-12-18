@@ -24,10 +24,13 @@
  */
 package org.spongepowered.api.event.cause.entity.damage.source;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.event.cause.entity.damage.DamageTypes;
 import org.spongepowered.api.world.Location;
+
+import java.util.function.Supplier;
 
 /**
  * A static collection of various {@link DamageSource}s that remain static, or
@@ -45,32 +48,23 @@ public final class DamageSources {
 
     // SORTFIELDS:ON
 
-    /**
-     * Generally used to describe the damage taken when by the dragon breath attack.
-     */
-    public static final DamageSource DRAGON_BREATH = DummyObjectProvider.createFor(DamageSource.class, "DRAGON_BREATH");
+    public static final Supplier<DamageSource> DROWNING = () -> DamageSource.builder().bypassesArmor().type(DamageTypes.DROWN.get()).build();
 
-    public static final DamageSource DROWNING = DummyObjectProvider.createFor(DamageSource.class, "DROWNING");
+    public static final Supplier<DamageSource> DRYOUT = () -> DamageSource.builder().type(DamageTypes.DRYOUT.get()).build();
 
-    public static final DamageSource DRYOUT = DummyObjectProvider.createFor(DamageSource.class, "DRYOUT");
+    public static final Supplier<DamageSource> FALLING = () -> DamageSource.builder().type(DamageTypes.FALL.get()).build();
 
-    public static final DamageSource FALLING = DummyObjectProvider.createFor(DamageSource.class, "FALLING");
+    public static final Supplier<DamageSource> FIRE_TICK = () -> DamageSource.builder().bypassesArmor().type(DamageTypes.FIRE.get()).fire().build();
 
-    public static final DamageSource FIRE_TICK = DummyObjectProvider.createFor(DamageSource.class, "FIRE_TICK");
+    public static final Supplier<DamageSource> GENERIC = () -> DamageSource.builder().bypassesArmor().type(DamageTypes.GENERIC.get()).build();
 
-    public static final DamageSource GENERIC = DummyObjectProvider.createFor(DamageSource.class, "GENERIC");
+    public static final Supplier<DamageSource> MAGIC = () -> DamageSource.builder().bypassesArmor().magical().type(DamageTypes.MAGIC.get()).build();
 
-    public static final DamageSource MAGIC = DummyObjectProvider.createFor(DamageSource.class, "MAGIC");
+    public static final Supplier<DamageSource> STARVATION = () -> DamageSource.builder().bypassesArmor().absolute().type(DamageTypes.HUNGER.get()).build();
 
-    public static final DamageSource MELTING = DummyObjectProvider.createFor(DamageSource.class, "MELTING");
+    public static final Supplier<DamageSource> VOID = () -> DamageSource.builder().bypassesArmor().creative().type(DamageTypes.VOID.get()).build();
 
-    public static final DamageSource POISON = DummyObjectProvider.createFor(DamageSource.class, "POISON");
-
-    public static final DamageSource STARVATION = DummyObjectProvider.createFor(DamageSource.class, "STARVATION");
-
-    public static final DamageSource VOID = DummyObjectProvider.createFor(DamageSource.class, "VOID");
-
-    public static final DamageSource WITHER = DummyObjectProvider.createFor(DamageSource.class, "WITHER");
+    public static final Supplier<DamageSource> WITHER = () -> DamageSource.builder().bypassesArmor().type(DamageTypes.MAGIC.get()).build();
 
     // SORTFIELDS:OFF
 

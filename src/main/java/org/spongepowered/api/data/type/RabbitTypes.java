@@ -33,19 +33,19 @@ public final class RabbitTypes {
 
     // SORTFIELDS:ON
 
-    public static final RabbitType BLACK = DummyObjectProvider.createFor(RabbitType.class, "BLACK");
+    public static final Supplier<RabbitType> BLACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RabbitType.class, "BLACK");
 
-    public static final RabbitType BLACK_AND_WHITE = DummyObjectProvider.createFor(RabbitType.class, "BLACK_AND_WHITE");
+    public static final Supplier<RabbitType> BLACK_AND_WHITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RabbitType.class, "BLACK_AND_WHITE");
 
-    public static final RabbitType BROWN = DummyObjectProvider.createFor(RabbitType.class, "BROWN");
+    public static final Supplier<RabbitType> BROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RabbitType.class, "BROWN");
 
-    public static final RabbitType GOLD = DummyObjectProvider.createFor(RabbitType.class, "GOLD");
+    public static final Supplier<RabbitType> GOLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RabbitType.class, "GOLD");
 
-    public static final RabbitType KILLER = DummyObjectProvider.createFor(RabbitType.class, "KILLER");
+    public static final Supplier<RabbitType> KILLER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RabbitType.class, "KILLER");
 
-    public static final RabbitType SALT_AND_PEPPER = DummyObjectProvider.createFor(RabbitType.class, "SALT_AND_PEPPER");
+    public static final Supplier<RabbitType> SALT_AND_PEPPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RabbitType.class, "SALT_AND_PEPPER");
 
-    public static final RabbitType WHITE = DummyObjectProvider.createFor(RabbitType.class, "WHITE");
+    public static final Supplier<RabbitType> WHITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RabbitType.class, "WHITE");
 
     // SORTFIELDS:OFF
 

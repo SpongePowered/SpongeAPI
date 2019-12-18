@@ -32,6 +32,7 @@ import org.spongepowered.api.util.OptBool;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Optional;
+import java.util.function.Supplier;
 
 /**
  * Represents an immutable text style of a {@link Text}. It is a utility that is
@@ -217,5 +218,11 @@ public interface TextStyle extends TextElement {
             // By definition, base TextStyles are not composites
             return false;
         }
+    }
+
+    public interface Factory {
+
+        Supplier<TextStyle> empty();
+
     }
 }

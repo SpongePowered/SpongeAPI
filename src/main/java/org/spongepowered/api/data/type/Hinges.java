@@ -33,9 +33,9 @@ public final class Hinges {
 
     // SORTFIELDS:ON
 
-    public static final Hinge LEFT = DummyObjectProvider.createFor(Hinge.class, "LEFT");
+    public static final Supplier<Hinge> LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Hinge.class, "LEFT");
 
-    public static final Hinge RIGHT = DummyObjectProvider.createFor(Hinge.class, "RIGHT");
+    public static final Supplier<Hinge> RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Hinge.class, "RIGHT");
 
     // SORTFIELDS:OFF
 

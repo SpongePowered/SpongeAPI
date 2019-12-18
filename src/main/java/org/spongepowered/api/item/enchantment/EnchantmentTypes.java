@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.item.enchantment;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 /**
  * An enumeration of known {@link EnchantmentType}s.
@@ -40,7 +42,7 @@ public final class EnchantmentTypes {
      *
      * <p>In vanilla the maximum level is 1.</p>
      */
-    public static final EnchantmentType AQUA_AFFINITY = DummyObjectProvider.createFor(EnchantmentType.class, "AQUA_AFFINITY");
+    public static final Supplier<EnchantmentType> AQUA_AFFINITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "AQUA_AFFINITY");
 
     /**
      * Increases damages and causes slowness for a variable amount of time
@@ -49,126 +51,126 @@ public final class EnchantmentTypes {
      *
      * <p>In vanilla the maximum level is 5.</p>
      */
-    public static final EnchantmentType BANE_OF_ARTHROPODS = DummyObjectProvider.createFor(EnchantmentType.class, "BANE_OF_ARTHROPODS");
+    public static final Supplier<EnchantmentType> BANE_OF_ARTHROPODS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "BANE_OF_ARTHROPODS");
 
     /**
      * Prevents removal of the cursed items that reside in the armor slots.
      *
      * <p>In vanilla the maximum level is 1.</p>
      */
-    public static final EnchantmentType BINDING_CURSE = DummyObjectProvider.createFor(EnchantmentType.class, "BINDING_CURSE");
+    public static final Supplier<EnchantmentType> BINDING_CURSE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "BINDING_CURSE");
 
     /**
      * Reduces explosion damage.
      *
      * <p>In vanilla the maximum level is 4.</p>
      */
-    public static final EnchantmentType BLAST_PROTECTION = DummyObjectProvider.createFor(EnchantmentType.class, "BLAST_PROTECTION");
+    public static final Supplier<EnchantmentType> BLAST_PROTECTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "BLAST_PROTECTION");
 
     /**
      * Increases underwater movement speed.
      *
      * <p>In vanilla the maximum level is 3.</p>
      */
-    public static final EnchantmentType DEPTH_STRIDER = DummyObjectProvider.createFor(EnchantmentType.class, "DEPTH_STRIDER");
+    public static final Supplier<EnchantmentType> DEPTH_STRIDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "DEPTH_STRIDER");
 
     /**
      * Increases mining speed.
      *
      * <p>In vanilla the maximum level is 5.</p>
      */
-    public static final EnchantmentType EFFICIENCY = DummyObjectProvider.createFor(EnchantmentType.class, "EFFICIENCY");
+    public static final Supplier<EnchantmentType> EFFICIENCY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "EFFICIENCY");
 
     /**
      * Reduces fall damage.
      *
      * <p>In vanilla the maximum level is 4.</p>
      */
-    public static final EnchantmentType FEATHER_FALLING = DummyObjectProvider.createFor(EnchantmentType.class, "FEATHER_FALLING");
+    public static final Supplier<EnchantmentType> FEATHER_FALLING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "FEATHER_FALLING");
 
     /**
      * Sets the target on fire.
      *
      * <p>In vanilla the maximum level is 2.</p>
      */
-    public static final EnchantmentType FIRE_ASPECT = DummyObjectProvider.createFor(EnchantmentType.class, "FIRE_ASPECT");
+    public static final Supplier<EnchantmentType> FIRE_ASPECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "FIRE_ASPECT");
 
     /**
      * Reduces fire damage.
      *
      * <p>In vanilla the maximum level is 4.</p>
      */
-    public static final EnchantmentType FIRE_PROTECTION = DummyObjectProvider.createFor(EnchantmentType.class, "FIRE_PROTECTION");
+    public static final Supplier<EnchantmentType> FIRE_PROTECTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "FIRE_PROTECTION");
 
     /**
      * Sets your shot arrows on fire.
      *
      * <p>In vanilla the maximum level is 1.</p>
      */
-    public static final EnchantmentType FLAME = DummyObjectProvider.createFor(EnchantmentType.class, "FLAME");
+    public static final Supplier<EnchantmentType> FLAME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "FLAME");
 
     /**
      * Increases block drops.
      *
      * <p>In vanilla the maximum level is 3.</p>
      */
-    public static final EnchantmentType FORTUNE = DummyObjectProvider.createFor(EnchantmentType.class, "FORTUNE");
+    public static final Supplier<EnchantmentType> FORTUNE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "FORTUNE");
 
     /**
      * Creates frosted ice blocks when walking over water.
      *
      * <p>In vanilla the maximum level is 2.</p>
      */
-    public static final EnchantmentType FROST_WALKER = DummyObjectProvider.createFor(EnchantmentType.class, "FROST_WALKER");
+    public static final Supplier<EnchantmentType> FROST_WALKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "FROST_WALKER");
 
     /**
      * Causing shooting arrows to not consume regular arrows.
      *
      * <p>In vanilla the maximum level is 1.</p>
      */
-    public static final EnchantmentType INFINITY = DummyObjectProvider.createFor(EnchantmentType.class, "INFINITY");
+    public static final Supplier<EnchantmentType> INFINITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "INFINITY");
 
     /**
      * Increases attack knockback.
      *
      * <p>In vanilla the maximum level is 2.</p>
      */
-    public static final EnchantmentType KNOCKBACK = DummyObjectProvider.createFor(EnchantmentType.class, "KNOCKBACK");
+    public static final Supplier<EnchantmentType> KNOCKBACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "KNOCKBACK");
 
     /**
      * Causes mobs drop more loot.
      *
      * <p>In vanilla the maximum level is 3.</p>
      */
-    public static final EnchantmentType LOOTING = DummyObjectProvider.createFor(EnchantmentType.class, "LOOTING");
+    public static final Supplier<EnchantmentType> LOOTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "LOOTING");
 
     /**
      * Increases luck while fishing.
      *
      * <p>In vanilla the maximum level is 3.</p>
      */
-    public static final EnchantmentType LUCK_OF_THE_SEA = DummyObjectProvider.createFor(EnchantmentType.class, "LUCK_OF_THE_SEA");
+    public static final Supplier<EnchantmentType> LUCK_OF_THE_SEA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "LUCK_OF_THE_SEA");
 
     /**
      * Increases rate of fish biting your hook while fishing.
      *
      * <p>In vanilla the maximum level is 3.</p>
      */
-    public static final EnchantmentType LURE = DummyObjectProvider.createFor(EnchantmentType.class, "LURE");
+    public static final Supplier<EnchantmentType> LURE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "LURE");
 
     /**
      * Repair item durability with experience.
      *
      * <p>In vanilla the maximum level is 1.</p>
      */
-    public static final EnchantmentType MENDING = DummyObjectProvider.createFor(EnchantmentType.class, "MENDING");
+    public static final Supplier<EnchantmentType> MENDING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "MENDING");
 
     /**
      * Increases shot arrow damage.
      *
      * <p>In vanilla the maximum level is 5.</p>
      */
-    public static final EnchantmentType POWER = DummyObjectProvider.createFor(EnchantmentType.class, "POWER");
+    public static final Supplier<EnchantmentType> POWER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "POWER");
 
     /**
      * Reduces projectile damage you take, for example from arrows, ghasts,
@@ -176,7 +178,7 @@ public final class EnchantmentTypes {
      *
      * <p>In vanilla the maximum level is 4.</p>
      */
-    public static final EnchantmentType PROJECTILE_PROTECTION = DummyObjectProvider.createFor(EnchantmentType.class, "PROJECTILE_PROTECTION");
+    public static final Supplier<EnchantmentType> PROJECTILE_PROTECTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "PROJECTILE_PROTECTION");
 
     /**
      * Reduces all damage, outside of a few sources that bypass armor, such as
@@ -184,28 +186,28 @@ public final class EnchantmentTypes {
      *
      * <p>In vanilla the maximum level is 4.</p>
      */
-    public static final EnchantmentType PROTECTION = DummyObjectProvider.createFor(EnchantmentType.class, "PROTECTION");
+    public static final Supplier<EnchantmentType> PROTECTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "PROTECTION");
 
     /**
      * Increases knockback by shot arrows.
      *
      * <p>In vanilla the maximum level is 2.</p>
      */
-    public static final EnchantmentType PUNCH = DummyObjectProvider.createFor(EnchantmentType.class, "PUNCH");
+    public static final Supplier<EnchantmentType> PUNCH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "PUNCH");
 
     /**
      * Extends underwater breathing time.
      *
      * <p>In vanilla the maximum level is 3.</p>
      */
-    public static final EnchantmentType RESPIRATION = DummyObjectProvider.createFor(EnchantmentType.class, "RESPIRATION");
+    public static final Supplier<EnchantmentType> RESPIRATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "RESPIRATION");
 
     /**
      * Increases melee damage.
      *
      * <p>In vanilla the maximum level is 5.</p>
      */
-    public static final EnchantmentType SHARPNESS = DummyObjectProvider.createFor(EnchantmentType.class, "SHARPNESS");
+    public static final Supplier<EnchantmentType> SHARPNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "SHARPNESS");
 
     /**
      * Allows collection of blocks that are normally unobtainable, such as
@@ -213,7 +215,7 @@ public final class EnchantmentTypes {
      *
      * <p>In vanilla the maximum level is 1.</p>
      */
-    public static final EnchantmentType SILK_TOUCH = DummyObjectProvider.createFor(EnchantmentType.class, "SILK_TOUCH");
+    public static final Supplier<EnchantmentType> SILK_TOUCH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "SILK_TOUCH");
 
     /**
      * Increases damage to "undead" mobs. In vanilla this includes skeletons,
@@ -222,35 +224,35 @@ public final class EnchantmentTypes {
      *
      * <p>In vanilla the maximum level is 5.</p>
      */
-    public static final EnchantmentType SMITE = DummyObjectProvider.createFor(EnchantmentType.class, "SMITE");
+    public static final Supplier<EnchantmentType> SMITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "SMITE");
 
     /**
      * Increases the damage of the sweeping attack.
      *
      * <p>In vanilla the maximum level is 3.</p>
      */
-    public static final EnchantmentType SWEEPING = DummyObjectProvider.createFor(EnchantmentType.class, "SWEEPING");
+    public static final Supplier<EnchantmentType> SWEEPING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "SWEEPING");
 
     /**
      * Attackers are damaged when they deal damage to the wearer.
      *
      * <p>In vanilla the maximum level is 3.</p>
      */
-    public static final EnchantmentType THORNS = DummyObjectProvider.createFor(EnchantmentType.class, "THORNS");
+    public static final Supplier<EnchantmentType> THORNS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "THORNS");
 
     /**
      * Increases effective durability.
      *
      * <p>In vanilla the maximum level is 3.</p>
      */
-    public static final EnchantmentType UNBREAKING = DummyObjectProvider.createFor(EnchantmentType.class, "UNBREAKING");
+    public static final Supplier<EnchantmentType> UNBREAKING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "UNBREAKING");
 
     /**
      * Causes the item to disappear on death.
      *
      * <p>In vanilla the maximum level is 1.</p>
      */
-    public static final EnchantmentType VANISHING_CURSE = DummyObjectProvider.createFor(EnchantmentType.class, "VANISHING_CURSE");
+    public static final Supplier<EnchantmentType> VANISHING_CURSE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "VANISHING_CURSE");
 
     // SORTFIELDS:OFF
 

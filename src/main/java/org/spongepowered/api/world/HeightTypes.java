@@ -24,19 +24,21 @@
  */
 package org.spongepowered.api.world;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 public final class HeightTypes {
 
     // SORTFIELDS:ON
 
-    public static final HeightType WORLD_SURFACE_WG = DummyObjectProvider.createFor(HeightType.class, "WORLD_SURFACE_WG");
-    public static final HeightType OCEAN_FLOOR_WG = DummyObjectProvider.createFor(HeightType.class, "OCEAN_FLOOR_WG");
-    public static final HeightType LIGHT_BLOCKING = DummyObjectProvider.createFor(HeightType.class, "LIGHT_BLOCKING");
-    public static final HeightType MOTION_BLOCKING = DummyObjectProvider.createFor(HeightType.class, "MOTION_BLOCKING");
-    public static final HeightType MOTION_BLOCKING_NO_LEAVES = DummyObjectProvider.createFor(HeightType.class, "MOTION_BLOCKING_NO_LEAVES");
-    public static final HeightType OCEAN_FLOOR = DummyObjectProvider.createFor(HeightType.class, "OCEAN_FLOOR");
-    public static final HeightType WORLD_SURFACE = DummyObjectProvider.createFor(HeightType.class, "WORLD_SURFACE");
+    public static final Supplier<HeightType> WORLD_SURFACE_WG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HeightType.class, "WORLD_SURFACE_WG");
+    public static final Supplier<HeightType> OCEAN_FLOOR_WG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HeightType.class, "OCEAN_FLOOR_WG");
+    public static final Supplier<HeightType> LIGHT_BLOCKING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HeightType.class, "LIGHT_BLOCKING");
+    public static final Supplier<HeightType> MOTION_BLOCKING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HeightType.class, "MOTION_BLOCKING");
+    public static final Supplier<HeightType> MOTION_BLOCKING_NO_LEAVES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HeightType.class, "MOTION_BLOCKING_NO_LEAVES");
+    public static final Supplier<HeightType> OCEAN_FLOOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HeightType.class, "OCEAN_FLOOR");
+    public static final Supplier<HeightType> WORLD_SURFACE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HeightType.class, "WORLD_SURFACE");
 
     // SORTFIELDS:OFF
 

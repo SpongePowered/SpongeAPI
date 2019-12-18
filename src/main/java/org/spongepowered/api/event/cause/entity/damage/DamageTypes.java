@@ -24,43 +24,46 @@
  */
 package org.spongepowered.api.event.cause.entity.damage;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
+import java.util.function.Supplier;
 
 public final class DamageTypes {
 
     // SORTFIELDS:ON
 
-    public static final DamageType ATTACK = DummyObjectProvider.createFor(DamageType.class, "ATTACK");
+    public static final Supplier<DamageType> ATTACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "ATTACK");
 
-    public static final DamageType CONTACT = DummyObjectProvider.createFor(DamageType.class, "CONTACT");
+    public static final Supplier<DamageType> CONTACT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "CONTACT");
 
-    public static final DamageType CUSTOM = DummyObjectProvider.createFor(DamageType.class, "CUSTOM");
+    public static final Supplier<DamageType> CUSTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "CUSTOM");
 
-    public static final DamageType DROWN = DummyObjectProvider.createFor(DamageType.class, "DROWN");
+    public static final Supplier<DamageType> DROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "DROWN");
 
-    public static final DamageType DRYOUT = DummyObjectProvider.createFor(DamageType.class, "DRYOUT");
+    public static final Supplier<DamageType> DRYOUT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "DRYOUT");
 
-    public static final DamageType EXPLOSIVE = DummyObjectProvider.createFor(DamageType.class, "EXPLOSIVE");
+    public static final Supplier<DamageType> EXPLOSIVE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "EXPLOSIVE");
 
-    public static final DamageType FALL = DummyObjectProvider.createFor(DamageType.class, "FALL");
+    public static final Supplier<DamageType> FALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "FALL");
 
-    public static final DamageType FIRE = DummyObjectProvider.createFor(DamageType.class, "FIRE");
+    public static final Supplier<DamageType> FIRE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "FIRE");
 
-    public static final DamageType GENERIC = DummyObjectProvider.createFor(DamageType.class, "GENERIC");
+    public static final Supplier<DamageType> GENERIC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "GENERIC");
 
-    public static final DamageType HUNGER = DummyObjectProvider.createFor(DamageType.class, "HUNGER");
+    public static final Supplier<DamageType> HUNGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "HUNGER");
 
-    public static final DamageType MAGIC = DummyObjectProvider.createFor(DamageType.class, "MAGIC");
+    public static final Supplier<DamageType> MAGIC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "MAGIC");
 
-    public static final DamageType MAGMA = DummyObjectProvider.createFor(DamageType.class, "MAGMA");
+    public static final Supplier<DamageType> MAGMA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "MAGMA");
 
-    public static final DamageType PROJECTILE = DummyObjectProvider.createFor(DamageType.class, "PROJECTILE");
+    public static final Supplier<DamageType> PROJECTILE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "PROJECTILE");
 
-    public static final DamageType SUFFOCATE = DummyObjectProvider.createFor(DamageType.class, "SUFFOCATE");
+    public static final Supplier<DamageType> SUFFOCATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "SUFFOCATE");
 
-    public static final DamageType SWEEPING_ATTACK = DummyObjectProvider.createFor(DamageType.class, "SWEEPING_ATTACK");
+    public static final Supplier<DamageType> SWEEPING_ATTACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "SWEEPING_ATTACK");
 
-    public static final DamageType VOID = DummyObjectProvider.createFor(DamageType.class, "VOID");
+    public static final Supplier<DamageType> VOID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "VOID");
 
     // SORTFIELDS:OFF
 

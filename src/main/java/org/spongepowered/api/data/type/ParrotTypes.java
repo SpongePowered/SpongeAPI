@@ -33,15 +33,15 @@ public final class ParrotTypes {
 
     // SORTFIELDS:ON
 
-    public static final ParrotType BLUE = DummyObjectProvider.createFor(ParrotType.class, "BLUE");
+    public static final Supplier<ParrotType> BLUE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParrotType.class, "BLUE");
 
-    public static final ParrotType CYAN = DummyObjectProvider.createFor(ParrotType.class, "CYAN");
+    public static final Supplier<ParrotType> CYAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParrotType.class, "CYAN");
 
-    public static final ParrotType GRAY = DummyObjectProvider.createFor(ParrotType.class, "GRAY");
+    public static final Supplier<ParrotType> GRAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParrotType.class, "GRAY");
 
-    public static final ParrotType GREEN = DummyObjectProvider.createFor(ParrotType.class, "GREEN");
+    public static final Supplier<ParrotType> GREEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParrotType.class, "GREEN");
 
-    public static final ParrotType RED = DummyObjectProvider.createFor(ParrotType.class, "RED");
+    public static final Supplier<ParrotType> RED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParrotType.class, "RED");
 
     // SORTFIELDS:OFF
 

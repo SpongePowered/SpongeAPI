@@ -33,11 +33,11 @@ public final class Surfaces {
 
     // SORTFIELDS:ON
 
-    public static final Surface CEILING = DummyObjectProvider.createFor(Surface.class, "CEILING");
+    public static final Supplier<Surface> CEILING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Surface.class, "CEILING");
 
-    public static final Surface FLOOR = DummyObjectProvider.createFor(Surface.class, "FLOOR");
+    public static final Supplier<Surface> FLOOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Surface.class, "FLOOR");
 
-    public static final Surface WALL = DummyObjectProvider.createFor(Surface.class, "WALL");
+    public static final Supplier<Surface> WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Surface.class, "WALL");
 
     // SORTFIELDS:OFF
 

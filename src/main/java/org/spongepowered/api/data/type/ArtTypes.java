@@ -33,57 +33,57 @@ public final class ArtTypes {
 
     // SORTFIELDS:ON
 
-    public static final ArtType ALBAN = DummyObjectProvider.createFor(ArtType.class, "ALBAN");
+    public static final Supplier<ArtType> ALBAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "ALBAN");
 
-    public static final ArtType AZTEC = DummyObjectProvider.createFor(ArtType.class, "AZTEC");
+    public static final Supplier<ArtType> AZTEC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "AZTEC");
 
-    public static final ArtType AZTEC_2 = DummyObjectProvider.createFor(ArtType.class, "AZTEC_2");
+    public static final Supplier<ArtType> AZTEC_2 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "AZTEC_2");
 
-    public static final ArtType BOMB = DummyObjectProvider.createFor(ArtType.class, "BOMB");
+    public static final Supplier<ArtType> BOMB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "BOMB");
 
-    public static final ArtType BURNING_SKULL = DummyObjectProvider.createFor(ArtType.class, "BURNING_SKULL");
+    public static final Supplier<ArtType> BURNING_SKULL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "BURNING_SKULL");
 
-    public static final ArtType BUST = DummyObjectProvider.createFor(ArtType.class, "BUST");
+    public static final Supplier<ArtType> BUST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "BUST");
 
-    public static final ArtType COURBET = DummyObjectProvider.createFor(ArtType.class, "COURBET");
+    public static final Supplier<ArtType> COURBET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "COURBET");
 
-    public static final ArtType CREEBET = DummyObjectProvider.createFor(ArtType.class, "CREEBET");
+    public static final Supplier<ArtType> CREEBET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "CREEBET");
 
-    public static final ArtType DONKEY_KONG = DummyObjectProvider.createFor(ArtType.class, "DONKEY_KONG");
+    public static final Supplier<ArtType> DONKEY_KONG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "DONKEY_KONG");
 
-    public static final ArtType FIGHTERS = DummyObjectProvider.createFor(ArtType.class, "FIGHTERS");
+    public static final Supplier<ArtType> FIGHTERS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "FIGHTERS");
 
-    public static final ArtType GRAHAM = DummyObjectProvider.createFor(ArtType.class, "GRAHAM");
+    public static final Supplier<ArtType> GRAHAM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "GRAHAM");
 
-    public static final ArtType KEBAB = DummyObjectProvider.createFor(ArtType.class, "KEBAB");
+    public static final Supplier<ArtType> KEBAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "KEBAB");
 
-    public static final ArtType MATCH = DummyObjectProvider.createFor(ArtType.class, "MATCH");
+    public static final Supplier<ArtType> MATCH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "MATCH");
 
-    public static final ArtType PIGSCENE = DummyObjectProvider.createFor(ArtType.class, "PIGSCENE");
+    public static final Supplier<ArtType> PIGSCENE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "PIGSCENE");
 
-    public static final ArtType PLANT = DummyObjectProvider.createFor(ArtType.class, "PLANT");
+    public static final Supplier<ArtType> PLANT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "PLANT");
 
-    public static final ArtType POINTER = DummyObjectProvider.createFor(ArtType.class, "POINTER");
+    public static final Supplier<ArtType> POINTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "POINTER");
 
-    public static final ArtType POOL = DummyObjectProvider.createFor(ArtType.class, "POOL");
+    public static final Supplier<ArtType> POOL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "POOL");
 
-    public static final ArtType SEA = DummyObjectProvider.createFor(ArtType.class, "SEA");
+    public static final Supplier<ArtType> SEA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "SEA");
 
-    public static final ArtType SKELETON = DummyObjectProvider.createFor(ArtType.class, "SKELETON");
+    public static final Supplier<ArtType> SKELETON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "SKELETON");
 
-    public static final ArtType SKULL_AND_ROSES = DummyObjectProvider.createFor(ArtType.class, "SKULL_AND_ROSES");
+    public static final Supplier<ArtType> SKULL_AND_ROSES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "SKULL_AND_ROSES");
 
-    public static final ArtType STAGE = DummyObjectProvider.createFor(ArtType.class, "STAGE");
+    public static final Supplier<ArtType> STAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "STAGE");
 
-    public static final ArtType SUNSET = DummyObjectProvider.createFor(ArtType.class, "SUNSET");
+    public static final Supplier<ArtType> SUNSET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "SUNSET");
 
-    public static final ArtType VOID = DummyObjectProvider.createFor(ArtType.class, "VOID");
+    public static final Supplier<ArtType> VOID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "VOID");
 
-    public static final ArtType WANDERER = DummyObjectProvider.createFor(ArtType.class, "WANDERER");
+    public static final Supplier<ArtType> WANDERER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "WANDERER");
 
-    public static final ArtType WASTELAND = DummyObjectProvider.createFor(ArtType.class, "WASTELAND");
+    public static final Supplier<ArtType> WASTELAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "WASTELAND");
 
-    public static final ArtType WITHER = DummyObjectProvider.createFor(ArtType.class, "WITHER");
+    public static final Supplier<ArtType> WITHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "WITHER");
 
     // SORTFIELDS:OFF
 

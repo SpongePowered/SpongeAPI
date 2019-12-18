@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.text.selector;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 /**
  * SelectorTypes is a list of the default selector types that are available in
@@ -37,31 +39,31 @@ public final class SelectorTypes {
     /**
      * The all entities selector type.
      */
-    public static final SelectorType ALL_ENTITIES = DummyObjectProvider.createFor(SelectorType.class, "ALL_ENTITIES");
+    public static final Supplier<SelectorType> ALL_ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorType.class, "ALL_ENTITIES");
 
     /**
      * The all players selector type.
      */
-    public static final SelectorType ALL_PLAYERS = DummyObjectProvider.createFor(SelectorType.class, "ALL_PLAYERS");
+    public static final Supplier<SelectorType> ALL_PLAYERS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorType.class, "ALL_PLAYERS");
 
     /**
      * The nearest player selector type.
      */
-    public static final SelectorType NEAREST_PLAYER = DummyObjectProvider.createFor(SelectorType.class, "NEAREST_PLAYER");
+    public static final Supplier<SelectorType> NEAREST_PLAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorType.class, "NEAREST_PLAYER");
 
     /**
      * The random selector type. This targets only players by default, but may
      * be used with entities if {@link ArgumentTypes#ENTITY_TYPE} is present in
      * a selector.
      */
-    public static final SelectorType RANDOM = DummyObjectProvider.createFor(SelectorType.class, "RANDOM");
+    public static final Supplier<SelectorType> RANDOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorType.class, "RANDOM");
 
     
     /**
      * The self selector type. This only targets players, if the command sender
      * is a command block or the console, this selector will return nothing.
      */
-    public static final SelectorType SOURCE = DummyObjectProvider.createFor(SelectorType.class, "SOURCE");
+    public static final Supplier<SelectorType> SOURCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorType.class, "SOURCE");
 
     // SORTFIELDS:OFF
 

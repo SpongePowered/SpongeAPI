@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.scoreboard;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 /**
  * Visibility names which cause nametags or death messages to be displayed
@@ -39,26 +41,26 @@ public final class Visibilities {
      *
      * <p>This is the default value.</p>
      */
-    public static final Visibility ALWAYS = DummyObjectProvider.createFor(Visibility.class, "ALWAYS");
+    public static final Supplier<Visibility> ALWAYS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Visibility.class, "ALWAYS");
 
     /**
      * Death messages or nametags for members of other teams will not be
      * visible, but death messages or nametags for members of the same team
      * will be visible.
      */
-    public static final Visibility HIDE_FOR_OTHER_TEAMS = DummyObjectProvider.createFor(Visibility.class, "HIDE_FOR_OTHER_TEAMS");
+    public static final Supplier<Visibility> HIDE_FOR_OTHER_TEAMS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Visibility.class, "HIDE_FOR_OTHER_TEAMS");
 
     /**
      * Death messages or nametags for members of other teams will be
      * visible, but death messages or nametags for members of the same team
      * will not be visible.
      */
-    public static final Visibility HIDE_FOR_OWN_TEAM = DummyObjectProvider.createFor(Visibility.class, "HIDE_FOR_OWN_TEAM");
+    public static final Supplier<Visibility> HIDE_FOR_OWN_TEAM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Visibility.class, "HIDE_FOR_OWN_TEAM");
 
     /**
      * Death messages or nametags are never visible.
      */
-    public static final Visibility NEVER = DummyObjectProvider.createFor(Visibility.class, "NEVER");
+    public static final Supplier<Visibility> NEVER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Visibility.class, "NEVER");
 
     // SORTFIELDS:OFF
 

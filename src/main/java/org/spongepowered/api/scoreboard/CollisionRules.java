@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.scoreboard;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 /**
  * An enumeration of vanilla {@link CollisionRule}s.
@@ -62,22 +64,22 @@ public final class CollisionRules {
      *
      * <p>This is the default value.</p>
      */
-    public static final CollisionRule ALWAYS = DummyObjectProvider.createFor(CollisionRule.class, "ALWAYS");
+    public static final Supplier<CollisionRule> ALWAYS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(CollisionRule.class, "ALWAYS");
 
     /**
      * Members will never collide.
      */
-    public static final CollisionRule NEVER = DummyObjectProvider.createFor(CollisionRule.class, "NEVER");
+    public static final Supplier<CollisionRule> NEVER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(CollisionRule.class, "NEVER");
 
     /**
      * Members will only push members on opposing teams.
      */
-    public static final CollisionRule PUSH_OTHER_TEAMS = DummyObjectProvider.createFor(CollisionRule.class, "PUSH_OTHER_TEAMS");
+    public static final Supplier<CollisionRule> PUSH_OTHER_TEAMS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(CollisionRule.class, "PUSH_OTHER_TEAMS");
 
     /**
      * Members will only push other members on their team and mobs.
      */
-    public static final CollisionRule PUSH_OWN_TEAM = DummyObjectProvider.createFor(CollisionRule.class, "PUSH_OWN_TEAM");
+    public static final Supplier<CollisionRule> PUSH_OWN_TEAM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(CollisionRule.class, "PUSH_OWN_TEAM");
 
     // SORTFIELDS:OFF
 

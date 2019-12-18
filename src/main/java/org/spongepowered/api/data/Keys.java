@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
@@ -200,6 +201,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
+import java.util.function.Supplier;
 
 /**
  * An enumeration of known {@link Key}s used throughout the API.
@@ -213,12 +215,12 @@ public final class Keys {
      * Represents the {@link Key} for the absorption amount of any
      * {@link Living} entity.
      */
-    public static final Key<BoundedValue<Double>> ABSORPTION = DummyObjectProvider.createExtendedFor(Key.class, "ABSORPTION");
+    public static final Supplier<Key<BoundedValue<Double>>> ABSORPTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ABSORPTION");
 
     /**
      * Represents the {@link Key} for the acceleration of a {@link FireballEntity}.
      */
-    public static final Key<Value<Vector3d>> ACCELERATION = DummyObjectProvider.createExtendedFor(Key.class, "ACCELERATION");
+    public static final Supplier<Key<Value<Vector3d>>> ACCELERATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ACCELERATION");
 
     /**
      * Represents the {@link Key} for the item a {@link Living} is using.
@@ -227,7 +229,7 @@ public final class Keys {
      * <p>If there is no item, the snapshot will be empty. You can check this
      * with {@link ItemStackSnapshot#isEmpty()}.</p>
      */
-    public static final Key<Value<ItemStackSnapshot>> ACTIVE_ITEM = DummyObjectProvider.createExtendedFor(Key.class, "ACTIVE_ITEM");
+    public static final Supplier<Key<Value<ItemStackSnapshot>>> ACTIVE_ITEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ACTIVE_ITEM");
 
     /**
      * Represents the {@link Key} for the "affecting spawning" state of
@@ -238,13 +240,13 @@ public final class Keys {
      * activated by his presence and mobs around him may naturally despawn
      * if there is no other Player around who affects spawning.</p>
      */
-    public static final Key<Value<Boolean>> AFFECTS_SPAWNING = DummyObjectProvider.createExtendedFor(Key.class, "AFFECTS_SPAWNING");
+    public static final Supplier<Key<Value<Boolean>>> AFFECTS_SPAWNING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AFFECTS_SPAWNING");
 
     /**
      * Represents the {@link Key} for the age of any {@link Ageable entity}
      * in ticks.
      */
-    public static final Key<BoundedValue<Integer>> AGEABLE_AGE = DummyObjectProvider.createExtendedFor(Key.class, "AGE");
+    public static final Supplier<Key<BoundedValue<Integer>>> AGEABLE_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AGE");
 
     /**
      * Represents the {@link Key} for how angry a {@link ZombiePigman} is.
@@ -253,32 +255,32 @@ public final class Keys {
      * fade over time and the entity will become peaceful again once its anger
      * reaches its minimum.</p>
      */
-    public static final Key<BoundedValue<Integer>> ANGER_LEVEL = DummyObjectProvider.createExtendedFor(Key.class, "ANGER");
+    public static final Supplier<Key<BoundedValue<Integer>>> ANGER_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ANGER");
 
     /**
      * Represents the {@link Key} for the age (in ticks) of an
      * {@link AreaEffectCloud} created by a lingering potion.
      */
-    public static final Key<BoundedValue<Integer>> AREA_EFFECT_CLOUD_AGE = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_AGE");
+    public static final Supplier<Key<BoundedValue<Integer>>> AREA_EFFECT_CLOUD_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_AGE");
 
     /**
      * Represents the {@link Key} for the color of an {@link AreaEffectCloud}
      * created by a lingering potion.
      */
-    public static final Key<Value<Color>> AREA_EFFECT_CLOUD_COLOR = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_COLOR");
+    public static final Supplier<Key<Value<Color>>> AREA_EFFECT_CLOUD_COLOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_COLOR");
 
     /**
      * Represents the {@link Key} for the maximum age (in ticks) of an
      * {@link AreaEffectCloud} created by a lingering potion.
      */
-    public static final Key<BoundedValue<Integer>> AREA_EFFECT_CLOUD_DURATION = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_DURATION");
+    public static final Supplier<Key<BoundedValue<Integer>>> AREA_EFFECT_CLOUD_DURATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_DURATION");
 
     /**
      * Represents the {@link Key} for the amount of ticks the duration of an
      * {@link AreaEffectCloud} is increased or reduced when it applies its
      * effect.
      */
-    public static final Key<BoundedValue<Integer>> AREA_EFFECT_CLOUD_DURATION_ON_USE = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_DURATION_ON_USE");
+    public static final Supplier<Key<BoundedValue<Integer>>> AREA_EFFECT_CLOUD_DURATION_ON_USE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_DURATION_ON_USE");
 
     /**
      * Represents the {@link Key} for the particle type of an
@@ -288,55 +290,55 @@ public final class Keys {
      * effect for specific {@link ParticleType}s and not every
      * {@link ParticleType} will be applicable.</p>
      */
-    public static final Key<Value<ParticleEffect>> AREA_EFFECT_CLOUD_PARTICLE_EFFECT = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_PARTICLE_EFFECT");
+    public static final Supplier<Key<Value<ParticleEffect>>> AREA_EFFECT_CLOUD_PARTICLE_EFFECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_PARTICLE_EFFECT");
 
     /**
      * Represents the {@link Key} for the radius of an {@link AreaEffectCloud}.
      */
-    public static final Key<BoundedValue<Double>> AREA_EFFECT_CLOUD_RADIUS = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_RADIUS");
+    public static final Supplier<Key<BoundedValue<Double>>> AREA_EFFECT_CLOUD_RADIUS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_RADIUS");
 
     /**
      * Represents the {@link Key} for the amount the radius of an
      * {@link AreaEffectCloud} grows or shrinks each time it applies its
      * effect.
      */
-    public static final Key<BoundedValue<Double>> AREA_EFFECT_CLOUD_RADIUS_ON_USE = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_RADIUS_ON_USE");
+    public static final Supplier<Key<BoundedValue<Double>>> AREA_EFFECT_CLOUD_RADIUS_ON_USE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_RADIUS_ON_USE");
 
     /**
      * Represents the {@link Key} for the amount the radius of an
      * {@link AreaEffectCloud} grows or shrinks per tick.
      */
-    public static final Key<BoundedValue<Double>> AREA_EFFECT_CLOUD_RADIUS_PER_TICK = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_RADIUS_PER_TICK");
+    public static final Supplier<Key<BoundedValue<Double>>> AREA_EFFECT_CLOUD_RADIUS_PER_TICK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_RADIUS_PER_TICK");
 
     /**
      * Represents the {@link Key} for the delay (in ticks) after which an
      * {@link AreaEffectCloud} will reapply its effect on a previously
      * affected {@link Entity}.
      */
-    public static final Key<BoundedValue<Integer>> AREA_EFFECT_CLOUD_REAPPLICATION_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_REAPPLICATION_DELAY");
+    public static final Supplier<Key<BoundedValue<Integer>>> AREA_EFFECT_CLOUD_REAPPLICATION_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_REAPPLICATION_DELAY");
 
     /**
      * Represents the {@link Key} for the duration in ticks after which an
      * {@link AreaEffectCloud} will begin to apply its effect to entities.
      */
-    public static final Key<BoundedValue<Integer>> AREA_EFFECT_CLOUD_WAIT_TIME = DummyObjectProvider.createExtendedFor(Key.class, "AREA_EFFECT_CLOUD_WAIT_TIME");
+    public static final Supplier<Key<BoundedValue<Integer>>> AREA_EFFECT_CLOUD_WAIT_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_WAIT_TIME");
 
     /**
      * Represents the {@link Key} for whether an {@link ArmorStand}'s arms are
      * visible.
      */
-    public static final Key<Value<Boolean>> ARMOR_STAND_HAS_ARMS = DummyObjectProvider.createExtendedFor(Key.class, "ARMOR_STAND_HAS_ARMS");
+    public static final Supplier<Key<Value<Boolean>>> ARMOR_STAND_HAS_ARMS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ARMOR_STAND_HAS_ARMS");
 
     /**
      * Represents the {@link Key} for whether an {@link ArmorStand} has a
      * visible base plate.
      */
-    public static final Key<Value<Boolean>> ARMOR_STAND_HAS_BASE_PLATE = DummyObjectProvider.createExtendedFor(Key.class, "ARMOR_STAND_HAS_BASE_PLATE");
+    public static final Supplier<Key<Value<Boolean>>> ARMOR_STAND_HAS_BASE_PLATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ARMOR_STAND_HAS_BASE_PLATE");
 
     /**
      * Represents the {@link Key} for whether an {@link ArmorStand} is small.
      */
-    public static final Key<Value<Boolean>> ARMOR_STAND_IS_SMALL = DummyObjectProvider.createExtendedFor(Key.class, "ARMOR_STAND_IS_SMALL");
+    public static final Supplier<Key<Value<Boolean>>> ARMOR_STAND_IS_SMALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ARMOR_STAND_IS_SMALL");
 
     /**
      * Represents the {@link Key} for if an {@link ArmorStand} is a "marker" stand.
@@ -345,69 +347,69 @@ public final class Keys {
      * impossible to see, and the armor stand can no longer be
      * interacted with.</p>
      */
-    public static final Key<Value<Boolean>> ARMOR_STAND_HAS_MARKER = DummyObjectProvider.createExtendedFor(Key.class, "ARMOR_STAND_HAS_MARKER");
+    public static final Supplier<Key<Value<Boolean>>> ARMOR_STAND_HAS_MARKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ARMOR_STAND_HAS_MARKER");
 
     /**
      * Represents the {@link Key} for whether players are prevented from taking
      * items from an equipment slot on an {@link ArmorStand}
      */
-    public static final Key<SetValue<EquipmentType>> ARMOR_STAND_PLACING_DISABLED = DummyObjectProvider.createExtendedFor(Key.class, "ARMOR_STAND_PLACING_DISABLED");
+    public static final Supplier<Key<SetValue<EquipmentType>>> ARMOR_STAND_PLACING_DISABLED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ARMOR_STAND_PLACING_DISABLED");
 
     /**
      * Represents the {@link Key} for whether players are prevented from taking
      * items from an equipment slot on an {@link ArmorStand}
      */
-    public static final Key<SetValue<EquipmentType>> ARMOR_STAND_TAKING_DISABLED = DummyObjectProvider.createExtendedFor(Key.class, "ARMOR_STAND_TAKING_DISABLED");
+    public static final Supplier<Key<SetValue<EquipmentType>>> ARMOR_STAND_TAKING_DISABLED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ARMOR_STAND_TAKING_DISABLED");
 
     /**
      * Represents the {@link Key} for the type of {@link ArtType} shown by
      * (usually) a {@link Painting}.
      */
-    public static final Key<Value<ArtType>> ART = DummyObjectProvider.createExtendedFor(Key.class, "ART");
+    public static final Supplier<Key<Value<ArtType>>> ART = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ART");
 
     /**
      * Represents the {@link Key} for representing whether a {@link BlockState}
      * is "attached" to another block.
      */
-    public static final Key<Value<Boolean>> ATTACHED = DummyObjectProvider.createExtendedFor(Key.class, "ATTACHED");
+    public static final Supplier<Key<Value<Boolean>>> ATTACHED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ATTACHED");
 
     /**
      * Represents the {@link Key} for the attachment {@link Surface}
      * of a button or lever.
      */
-    public static final Key<Value<Surface>> ATTACHMENT_SURFACE = DummyObjectProvider.createExtendedFor(Key.class, "ATTACHMENT_SURFACE");
+    public static final Supplier<Key<Value<Surface>>> ATTACHMENT_SURFACE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ATTACHMENT_SURFACE");
 
     /**
      * Represents the {@link Key} for the damage dealt by a
      * {@link DamagingProjectile}, e.g. an {@link ArrowEntity}.
      */
-    public static final Key<BoundedValue<Double>> ATTACK_DAMAGE = DummyObjectProvider.createExtendedFor(Key.class, "ATTACK_DAMAGE");
+    public static final Supplier<Key<BoundedValue<Double>>> ATTACK_DAMAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ATTACK_DAMAGE");
 
     /**
      * Represents the {@link Key} for the time of a {@link Ravager} is considered attacking.
      */
-    public static final Key<Value<Integer>> ATTACK_TIME = DummyObjectProvider.createExtendedFor(Key.class, "ATTACK_TIME");
+    public static final Supplier<Key<Value<Integer>>> ATTACK_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ATTACK_TIME");
 
     /**
      * Represents the {@link Key} for representing the {@link ArmorType} of a {@link ItemType}.
      */
-    public static final Key<Value<ArmorType>> ARMOR_TYPE = DummyObjectProvider.createExtendedFor(Key.class, "ARMOR_TYPE");
+    public static final Supplier<Key<Value<ArmorType>>> ARMOR_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ARMOR_TYPE");
 
     /**
      * Represents the {@link Key} for representing the {@link Axis} direction
      * of a {@link BlockState}.
      */
-    public static final Key<Value<Axis>> AXIS = DummyObjectProvider.createExtendedFor(Key.class, "AXIS");
+    public static final Supplier<Key<Value<Axis>>> AXIS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AXIS");
 
     /**
      * Represents the {@link Key} for a {@link Banner}'s base {@link DyeColor}.
      */
-    public static final Key<Value<DyeColor>> BANNER_BASE_COLOR = DummyObjectProvider.createExtendedFor(Key.class, "BANNER_BASE_COLOR");
+    public static final Supplier<Key<Value<DyeColor>>> BANNER_BASE_COLOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BANNER_BASE_COLOR");
 
     /**
      * Represents the {@link Key} for a {@link Banner}'s patterns.
      */
-    public static final Key<ListValue<PatternLayer>> BANNER_PATTERNS = DummyObjectProvider.createExtendedFor(Key.class, "BANNER_PATTERNS");
+    public static final Supplier<Key<ListValue<PatternLayer>>> BANNER_PATTERNS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BANNER_PATTERNS");
 
     /**
      * Represents the {@link Key} for the width of the physical form of an
@@ -416,7 +418,7 @@ public final class Keys {
      * <p>Together with {@link #HEIGHT} this defines the size of an
      * {@link Entity}.</p>
      */
-    public static final Key<BoundedValue<Double>> BASE_SIZE = DummyObjectProvider.createExtendedFor(Key.class, "BASE_SIZE");
+    public static final Supplier<Key<BoundedValue<Double>>> BASE_SIZE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BASE_SIZE");
 
     /**
      * Represents the {@link Key} for the base vehicle a passenger is riding
@@ -424,102 +426,102 @@ public final class Keys {
      * vehicle an {@link Entity} is riding may itself be the passenger of
      * another vehicle.
      */
-    public static final Key<Value<Entity>> BASE_VEHICLE = DummyObjectProvider.createExtendedFor(Key.class, "BASE_VEHICLE");
+    public static final Supplier<Key<Value<Entity>>> BASE_VEHICLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BASE_VEHICLE");
 
     /**
      * Represents the {@link Key} for a {@link Beacon}'s primary effect.
      */
-    public static final Key<Value<PotionEffectType>> BEACON_PRIMARY_EFFECT = DummyObjectProvider.createExtendedFor(Key.class, "BEACON_PRIMARY_EFFECT");
+    public static final Supplier<Key<Value<PotionEffectType>>> BEACON_PRIMARY_EFFECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BEACON_PRIMARY_EFFECT");
 
     /**
      * Represents the {@link Key} for a {@link Beacon}'s secondary effect.
      */
-    public static final Key<Value<PotionEffectType>> BEACON_SECONDARY_EFFECT = DummyObjectProvider.createExtendedFor(Key.class, "BEACON_SECONDARY_EFFECT");
+    public static final Supplier<Key<Value<PotionEffectType>>> BEACON_SECONDARY_EFFECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BEACON_SECONDARY_EFFECT");
 
     /**
      * Represents the {@link Key} for the {@link Living} who is being targeted by a
      * {@link Guardian}.
      */
-    public static final Key<Value<Living>> BEAM_TARGET_ENTITY = DummyObjectProvider.createExtendedFor(Key.class, "BEAM_TARGET_ENTITY");
+    public static final Supplier<Key<Value<Living>>> BEAM_TARGET_ENTITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BEAM_TARGET_ENTITY");
 
     /**
      * Represents the {@link Key} for a {@link EnderCrystal}'s beam target.
      */
-    public static final Key<Value<Vector3i>> BEAM_TARGET_POSITION = DummyObjectProvider.createExtendedFor(Key.class, "BEAM_TARGET_POSITION");
+    public static final Supplier<Key<Value<Vector3i>>> BEAM_TARGET_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BEAM_TARGET_POSITION");
 
     /**
      * Represents the {@link Key} for the pore sides
      * of a {@link BlockTypes#BROWN_MUSHROOM_BLOCK} or
      * {@link BlockTypes#RED_MUSHROOM_BLOCK} {@link BlockState}.
      */
-    public static final Key<SetValue<Direction>> BIG_MUSHROOM_PORES = DummyObjectProvider.createExtendedFor(Key.class, "BIG_MUSHROOM_PORES");
+    public static final Supplier<Key<SetValue<Direction>>> BIG_MUSHROOM_PORES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BIG_MUSHROOM_PORES");
 
     /**
      * Represents the {@link Key} for the {@link Direction#DOWN}
      * pores side of a {@link BlockTypes#BROWN_MUSHROOM_BLOCK} or
      * {@link BlockTypes#RED_MUSHROOM_BLOCK} {@link BlockState}.
      */
-    public static final Key<Value<Boolean>> BIG_MUSHROOM_PORES_DOWN = DummyObjectProvider.createExtendedFor(Key.class, "BIG_MUSHROOM_PORES_DOWN");
+    public static final Supplier<Key<Value<Boolean>>> BIG_MUSHROOM_PORES_DOWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BIG_MUSHROOM_PORES_DOWN");
 
     /**
      * Represents the {@link Key} for the {@link Direction#EAST}
      * pores side of a {@link BlockTypes#BROWN_MUSHROOM_BLOCK} or
      * {@link BlockTypes#RED_MUSHROOM_BLOCK} {@link BlockState}.
      */
-    public static final Key<Value<Boolean>> BIG_MUSHROOM_PORES_EAST = DummyObjectProvider.createExtendedFor(Key.class, "BIG_MUSHROOM_PORES_EAST");
+    public static final Supplier<Key<Value<Boolean>>> BIG_MUSHROOM_PORES_EAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BIG_MUSHROOM_PORES_EAST");
 
     /**
      * Represents the {@link Key} for the {@link Direction#NORTH}
      * pores side of a {@link BlockTypes#BROWN_MUSHROOM_BLOCK} or
      * {@link BlockTypes#RED_MUSHROOM_BLOCK} {@link BlockState}.
      */
-    public static final Key<Value<Boolean>> BIG_MUSHROOM_PORES_NORTH = DummyObjectProvider.createExtendedFor(Key.class, "BIG_MUSHROOM_PORES_NORTH");
+    public static final Supplier<Key<Value<Boolean>>> BIG_MUSHROOM_PORES_NORTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BIG_MUSHROOM_PORES_NORTH");
 
     /**
      * Represents the {@link Key} for the {@link Direction#SOUTH}
      * pores side of a {@link BlockTypes#BROWN_MUSHROOM_BLOCK} or
      * {@link BlockTypes#RED_MUSHROOM_BLOCK} {@link BlockState}.
      */
-    public static final Key<Value<Boolean>> BIG_MUSHROOM_PORES_SOUTH = DummyObjectProvider.createExtendedFor(Key.class, "BIG_MUSHROOM_PORES_SOUTH");
+    public static final Supplier<Key<Value<Boolean>>> BIG_MUSHROOM_PORES_SOUTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BIG_MUSHROOM_PORES_SOUTH");
 
     /**
      * Represents the {@link Key} for the {@link Direction#UP}
      * pores side of a {@link BlockTypes#BROWN_MUSHROOM_BLOCK} or
      * {@link BlockTypes#RED_MUSHROOM_BLOCK} {@link BlockState}.
      */
-    public static final Key<Value<Boolean>> BIG_MUSHROOM_PORES_UP = DummyObjectProvider.createExtendedFor(Key.class, "BIG_MUSHROOM_PORES_UP");
+    public static final Supplier<Key<Value<Boolean>>> BIG_MUSHROOM_PORES_UP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BIG_MUSHROOM_PORES_UP");
 
     /**
      * Represents the {@link Key} for the {@link Direction#WEST}
      * pores side of a {@link BlockTypes#BROWN_MUSHROOM_BLOCK} or
      * {@link BlockTypes#RED_MUSHROOM_BLOCK} {@link BlockState}.
      */
-    public static final Key<Value<Boolean>> BIG_MUSHROOM_PORES_WEST = DummyObjectProvider.createExtendedFor(Key.class, "BIG_MUSHROOM_PORES_WEST");
+    public static final Supplier<Key<Value<Boolean>>> BIG_MUSHROOM_PORES_WEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BIG_MUSHROOM_PORES_WEST");
 
     /**
      * Represents the {@link Key} for the {@link BlockState} of a {@link BlockOccupiedMinecart} or {@link FallingBlock}.
      */
-    public static final Key<Value<BlockState>> BLOCK_STATE = DummyObjectProvider.createExtendedFor(Key.class, "BLOCK_STATE");
+    public static final Supplier<Key<Value<BlockState>>> BLOCK_STATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BLOCK_STATE");
 
     /**
      * Represents the {@link Key} for if a {@link Boat} can move on land.
      */
-    public static final Key<Value<Boolean>> BOAT_CAN_MOVE_ON_LAND = DummyObjectProvider.createExtendedFor(Key.class, "BOAT_CAN_MOVE_ON_LAND");
+    public static final Supplier<Key<Value<Boolean>>> BOAT_CAN_MOVE_ON_LAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BOAT_CAN_MOVE_ON_LAND");
 
     /**
      * Represents the {@link Key} for the max speed of a {@link Boat}. In vanilla, this is 0.4
      */
-    public static final Key<BoundedValue<Double>> BOAT_MAX_SPEED = DummyObjectProvider.createExtendedFor(Key.class, "BOAT_MAX_SPEED");
+    public static final Supplier<Key<BoundedValue<Double>>> BOAT_MAX_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BOAT_MAX_SPEED");
 
     /**
      * Represents the {@link Key} for the deceleration a {@link Boat} while it has {@link Keys#PASSENGERS}.
      */
-    public static final Key<BoundedValue<Double>> BOAT_OCCUPIED_DECELERATION = DummyObjectProvider.createExtendedFor(Key.class, "BOAT_OCCUPIED_DECELERATION");
+    public static final Supplier<Key<BoundedValue<Double>>> BOAT_OCCUPIED_DECELERATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BOAT_OCCUPIED_DECELERATION");
 
     /**
      * Represents the {@link Key} for the deceleration a {@link Boat} while it does not have {@link Keys#PASSENGERS}.
      */
-    public static final Key<BoundedValue<Double>> BOAT_UNOCCUPIED_DECELERATION = DummyObjectProvider.createExtendedFor(Key.class, "BOAT_UNOCCUPIED_DECELERATION");
+    public static final Supplier<Key<BoundedValue<Double>>> BOAT_UNOCCUPIED_DECELERATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BOAT_UNOCCUPIED_DECELERATION");
 
     /**
      * Represents the {@link Key} for the rotation of specific body parts.
@@ -535,7 +537,7 @@ public final class Keys {
      * Represents the {@link Key} for the author of a
      * {@link ItemTypes#WRITTEN_BOOK}.
      */
-    public static final Key<Value<Text>> BOOK_AUTHOR = DummyObjectProvider.createExtendedFor(Key.class, "BOOK_AUTHOR");
+    public static final Supplier<Key<Value<Text>>> BOOK_AUTHOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BOOK_AUTHOR");
 
     /**
      * Represents the {@link Key} for the content of a
@@ -544,29 +546,29 @@ public final class Keys {
      * <p>Use {@link Keys#PLAIN_BOOK_PAGES} if you wish to inspect the contents
      * of a {@link ItemTypes#WRITABLE_BOOK}.</p>
      */
-    public static final Key<ListValue<Text>> BOOK_PAGES = DummyObjectProvider.createExtendedFor(Key.class, "BOOK_PAGES");
+    public static final Supplier<Key<ListValue<Text>>> BOOK_PAGES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BOOK_PAGES");
 
     /**
      * Represents the {@link Key} for the {@link BlockType}s able to be broken
      * by an item.
      */
-    public static final Key<SetValue<BlockType>> BREAKABLE_BLOCK_TYPES = DummyObjectProvider.createExtendedFor(Key.class, "BREAKABLE_BLOCK_TYPES");
+    public static final Supplier<Key<SetValue<BlockType>>> BREAKABLE_BLOCK_TYPES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BREAKABLE_BLOCK_TYPES");
 
     /**
      * Represents the {@link Key} for the current breeder of an {@link Animal}, usually a {@link Player}.
      */
-    public static final Key<Value<UUID>> BREEDER = DummyObjectProvider.createExtendedFor(Key.class, "BREEDER");
+    public static final Supplier<Key<Value<UUID>>> BREEDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BREEDER");
 
     /**
      * Represents the {@link Key} for the breed time of an {@link Animal}.
      */
-    public static final Key<Value<Integer>> BREED_TIME = DummyObjectProvider.createExtendedFor(Key.class, "BREED_TIME");
+    public static final Supplier<Key<Value<Integer>>> BREED_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BREED_TIME");
 
     /**
      * Represents the {@link Key} for whether a {@link FallingBlock} can drop
      * as an item.
      */
-    public static final Key<Value<Boolean>> CAN_DROP_AS_ITEM = DummyObjectProvider.createExtendedFor(Key.class, "CAN_DROP_AS_ITEM");
+    public static final Supplier<Key<Value<Boolean>>> CAN_DROP_AS_ITEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CAN_DROP_AS_ITEM");
 
     /**
      * Represents the {@link Key} for whether a {@link Humanoid} can fly.
@@ -574,129 +576,129 @@ public final class Keys {
      * <p>For a {@link Player} this means he is able to toggle flight mode by
      * double-tapping his jump button.</p>
      */
-    public static final Key<Value<Boolean>> CAN_FLY = DummyObjectProvider.createExtendedFor(Key.class, "CAN_FLY");
+    public static final Supplier<Key<Value<Boolean>>> CAN_FLY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CAN_FLY");
 
     /**
      * Represents the {@link Key} for whether a {@link Living} entity may
      * change blocks. This mostly applies to {@link Enderman} or
      * {@link Creeper}s, but also to some projectiles like {@link FireballEntity}s.
      */
-    public static final Key<Value<Boolean>> CAN_GRIEF = DummyObjectProvider.createExtendedFor(Key.class, "CAN_GRIEF");
+    public static final Supplier<Key<Value<Boolean>>> CAN_GRIEF = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CAN_GRIEF");
 
     /**
      * Represents the {@link Key} for whether a {@link FallingBlock} will
      * damage an {@link Entity} it lands on.
      */
-    public static final Key<Value<Boolean>> CAN_HURT_ENTITIES = DummyObjectProvider.createExtendedFor(Key.class, "CAN_HURT_ENTITIES");
+    public static final Supplier<Key<Value<Boolean>>> CAN_HURT_ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CAN_HURT_ENTITIES");
 
     /**
      * Represents the {@link Key} for if a {@link Raider} can join a raid.
      */
-    public static final Key<Value<Boolean>> CAN_JOIN_RAID = DummyObjectProvider.createExtendedFor(Key.class, "CAN_JOIN_RAID");
+    public static final Supplier<Key<Value<Boolean>>> CAN_JOIN_RAID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CAN_JOIN_RAID");
 
     /**
      * Represents the {@link Key} for whether a {@link FallingBlock} will place
      * itself upon landing.
      */
-    public static final Key<Value<Boolean>> CAN_PLACE_AS_BLOCK = DummyObjectProvider.createExtendedFor(Key.class, "CAN_PLACE_AS_BLOCK");
+    public static final Supplier<Key<Value<Boolean>>> CAN_PLACE_AS_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CAN_PLACE_AS_BLOCK");
 
     /**
      * Represents the {@link Key} for the current casting time of a {@link Spellcaster}.
      */
-    public static final Key<Value<Integer>> CASTING_TIME = DummyObjectProvider.createExtendedFor(Key.class, "CASTING_TIME");
+    public static final Supplier<Key<Value<Integer>>> CASTING_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CASTING_TIME");
 
     /**
      * Represents the {@link Key} for the type of a {@link Cat}.
      */
-    public static final Key<Value<CatType>> CAT_TYPE = DummyObjectProvider.createExtendedFor(Key.class, "CAT_TYPE");
+    public static final Supplier<Key<Value<CatType>>> CAT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CAT_TYPE");
 
     /**
      * Represents the {@link Key} for the attachment of a {@link BlockTypes#CHEST}
      * or {@link BlockTypes#TRAPPED_CHEST}.
      */
-    public static final Key<Value<ChestAttachmentType>> CHEST_ATTACHMENT = DummyObjectProvider.createExtendedFor(Key.class, "CHEST_ATTACHMENT");
+    public static final Supplier<Key<Value<ChestAttachmentType>>> CHEST_ATTACHMENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CHEST_ATTACHMENT");
 
     /**
      * Represents the {@link Key} for the rotation of the
      * {@link BodyParts#CHEST}.
      */
-    public static final Key<Value<Vector3d>> CHEST_ROTATION = DummyObjectProvider.createExtendedFor(Key.class, "CHEST_ROTATION");
+    public static final Supplier<Key<Value<Vector3d>>> CHEST_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CHEST_ROTATION");
 
     /**
      * Represents the {@link Key} for the {@link Color} of an
      * {@link ItemStack}.
      */
-    public static final Key<Value<Color>> COLOR = DummyObjectProvider.createExtendedFor(Key.class, "COLOR");
+    public static final Supplier<Key<Value<Color>>> COLOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "COLOR");
 
     /**
      * Represents a key for the stored command, mostly related to
      * {@link CommandBlock}s and {@link CommandBlockMinecart}s.
      */
-    public static final Key<Value<String>> COMMAND = DummyObjectProvider.createExtendedFor(Key.class, "COMMAND");
+    public static final Supplier<Key<Value<String>>> COMMAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "COMMAND");
 
     /**
      * Represents the {@link Key} for representing the {@link ComparatorType}
      * of a {@link BlockState}.
      */
-    public static final Key<Value<ComparatorType>> COMPARATOR_TYPE = DummyObjectProvider.createExtendedFor(Key.class, "COMPARATOR_TYPE");
+    public static final Supplier<Key<Value<ComparatorType>>> COMPARATOR_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "COMPARATOR_TYPE");
 
     /**
      * Represents the {@link Key} for representing the connected directions
      * of a {@link BlockState}.
      */
-    public static final Key<SetValue<Direction>> CONNECTED_DIRECTIONS = DummyObjectProvider.createExtendedFor(Key.class, "CONNECTED_DIRECTIONS");
+    public static final Supplier<Key<SetValue<Direction>>> CONNECTED_DIRECTIONS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CONNECTED_DIRECTIONS");
 
     /**
      * Represents the {@link Key} for representing the "connected to the east"
      * of a {@link BlockState}.
      */
-    public static final Key<Value<Boolean>> CONNECTED_EAST = DummyObjectProvider.createExtendedFor(Key.class, "CONNECTED_EAST");
+    public static final Supplier<Key<Value<Boolean>>> CONNECTED_EAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CONNECTED_EAST");
 
     /**
      * Represents the {@link Key} for representing the "connected to the north"
      * state of a {@link BlockState}.
      */
-    public static final Key<Value<Boolean>> CONNECTED_NORTH = DummyObjectProvider.createExtendedFor(Key.class, "CONNECTED_NORTH");
+    public static final Supplier<Key<Value<Boolean>>> CONNECTED_NORTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CONNECTED_NORTH");
 
     /**
      * Represents the {@link Key} for representing the "connected to the south"
      * state of a {@link BlockState}.
      */
-    public static final Key<Value<Boolean>> CONNECTED_SOUTH = DummyObjectProvider.createExtendedFor(Key.class, "CONNECTED_SOUTH");
+    public static final Supplier<Key<Value<Boolean>>> CONNECTED_SOUTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CONNECTED_SOUTH");
 
     /**
      * Represents the {@link Key} for representing the "connected to the west"
      * state of a {@link BlockState}.
      */
-    public static final Key<Value<Boolean>> CONNECTED_WEST = DummyObjectProvider.createExtendedFor(Key.class, "CONNECTED_WEST");
+    public static final Supplier<Key<Value<Boolean>>> CONNECTED_WEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CONNECTED_WEST");
 
     /**
      * Represents the {@link Key} for representing the "connected to up"
      * state of a {@link BlockState}.
      */
-    public static final Key<Value<Boolean>> CONNECTED_UP = DummyObjectProvider.createExtendedFor(Key.class, "CONNECTED_UP");
+    public static final Supplier<Key<Value<Boolean>>> CONNECTED_UP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CONNECTED_UP");
 
     /**
      * Represents the {@link Key} for the amount of ticks a {@link Hopper} has
      * to cool down before transferring the next item.
      */
-    public static final Key<BoundedValue<Integer>> COOLDOWN = DummyObjectProvider.createExtendedFor(Key.class, "COOLDOWN");
+    public static final Supplier<Key<BoundedValue<Integer>>> COOLDOWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "COOLDOWN");
 
     /**
      * Represents the {@link Key} for the creator, usually of an {@link Entity}. It is up to the implementation to define.
      */
-    public static final Key<Value<UUID>> CREATOR = DummyObjectProvider.createExtendedFor(Key.class, "CREATOR");
+    public static final Supplier<Key<Value<UUID>>> CREATOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CREATOR");
 
     /**
      * Represents the {@link Key} for whether the next attack of an
      * {@link Entity} will be a critical hit.
      */
-    public static final Key<Value<Boolean>> CRITICAL_HIT = DummyObjectProvider.createExtendedFor(Key.class, "CRITICAL_HIT");
+    public static final Supplier<Key<Value<Boolean>>> CRITICAL_HIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CRITICAL_HIT");
 
     /**
      * Represents the {@link Key} of the current {@link SpellType} a {@link Spellcaster} is casting.
      */
-    public static final Key<Value<SpellType>> CURRENT_SPELL = DummyObjectProvider.createExtendedFor(Key.class, "CURRENT_SPELL");
+    public static final Supplier<Key<Value<SpellType>>> CURRENT_SPELL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CURRENT_SPELL");
 
     /**
      * Represents the {@link Key} for the damage dealt towards entities of a
@@ -715,7 +717,7 @@ public final class Keys {
      * Represents the {@link Key} for whether a custom name is visible on an
      * {@link Entity}.
      */
-    public static final Key<Value<Boolean>> CUSTOM_NAME_VISIBLE = DummyObjectProvider.createExtendedFor(Key.class, "CUSTOM_NAME_VISIBLE");
+    public static final Supplier<Key<Value<Boolean>>> CUSTOM_NAME_VISIBLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CUSTOM_NAME_VISIBLE");
 
     /**
      * Represents the {@link Key} for how much damage a {@link FallingBlock}
@@ -723,46 +725,46 @@ public final class Keys {
      *
      * <p>This damage is capped by {@link #MAX_FALL_DAMAGE}.</p>
      */
-    public static final Key<BoundedValue<Double>> DAMAGE_PER_BLOCK = DummyObjectProvider.createExtendedFor(Key.class, "DAMAGE_PER_BLOCK");
+    public static final Supplier<Key<BoundedValue<Double>>> DAMAGE_PER_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DAMAGE_PER_BLOCK");
 
     /**
      * Represents the {@link Key} for representing at which distance a {@link BlockState}
      * will decay. This usually applies to leaves, for example {@link BlockTypes#OAK_LEAVES}.
      */
-    public static final Key<BoundedValue<Integer>> DECAY_DISTANCE = DummyObjectProvider.createExtendedFor(Key.class, "DECAY_DISTANCE");
+    public static final Supplier<Key<BoundedValue<Integer>>> DECAY_DISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DECAY_DISTANCE");
 
     /**
      * Represents the {@link Key} for the delay on a redstone repeater.
      */
-    public static final Key<BoundedValue<Integer>> DELAY = DummyObjectProvider.createExtendedFor(Key.class, "DELAY");
+    public static final Supplier<Key<BoundedValue<Integer>>> DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DELAY");
 
     /**
      * Represents the {@link Key} for representing the despawn delay of a {@link Item} or {@link TraderLlama}.
      */
-    public static final Key<BoundedValue<Integer>> DESPAWN_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "DESPAWN_DELAY");
+    public static final Supplier<Key<BoundedValue<Integer>>> DESPAWN_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DESPAWN_DELAY");
 
     /**
      * Represents the {@link Key} for the detonator of a {@link PrimedTNT}.
      */
-    public static final Key<Value<Living>> DETONATOR = DummyObjectProvider.createExtendedFor(Key.class, "DETONATOR");
+    public static final Supplier<Key<Value<Living>>> DETONATOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DETONATOR");
 
     /**
      * Represents the {@link Key} for representing the {@link Direction} a {@link BlockState}, {@link Hanging}, or {@link Shulker} is facing or the
      * heading of a {@link ShulkerBullet}.
      */
-    public static final Key<Value<Direction>> DIRECTION = DummyObjectProvider.createExtendedFor(Key.class, "DIRECTION");
+    public static final Supplier<Key<Value<Direction>>> DIRECTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DIRECTION");
 
     /**
      * Represents the {@link Key} for representing the "disarmed" state
      * of a {@link BlockState}. This usually applies to
      * {@link BlockTypes#TRIPWIRE}s and {@link BlockTypes#TRIPWIRE_HOOK}s.
      */
-    public static final Key<Value<Boolean>> DISARMED = DummyObjectProvider.createExtendedFor(Key.class, "DISARMED");
+    public static final Supplier<Key<Value<Boolean>>> DISARMED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DISARMED");
 
     /**
      * Represents the {@link Key} for displaying the chest of a {@link PackHorse}.
      */
-    public static final Key<Value<Boolean>> DISPLAY_CHEST = DummyObjectProvider.createExtendedFor(Key.class, "DISPLAY_CHEST");
+    public static final Supplier<Key<Value<Boolean>>> DISPLAY_CHEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DISPLAY_CHEST");
 
     /**
      * Represents the {@link Key} for the display name of an {@link Entity},
@@ -771,7 +773,7 @@ public final class Keys {
      * <p>On a {@link ItemTypes#WRITTEN_BOOK} item this will also set the title
      * of the book.</p>
      */
-    public static final Key<Value<Text>> DISPLAY_NAME = DummyObjectProvider.createExtendedFor(Key.class, "DISPLAY_NAME");
+    public static final Supplier<Key<Value<Text>>> DISPLAY_NAME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DISPLAY_NAME");
 
     /**
      * Represents the {@link Key} for representing the "got fish" state of a {@link Dolphin}.
@@ -781,7 +783,7 @@ public final class Keys {
      *     if they have been given a fish.
      * </p>
      */
-    public static final Key<Value<Boolean>> DOLPHIN_DOES_GOT_FISH = DummyObjectProvider.createExtendedFor(Key.class, "DOLPHIN_DOES_GOT_FISH");
+    public static final Supplier<Key<Value<Boolean>>> DOLPHIN_DOES_GOT_FISH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DOLPHIN_DOES_GOT_FISH");
 
     /**
      * Represents the {@link Key} for representing the "moisture" state of a {@link Dolphin}.
@@ -794,7 +796,7 @@ public final class Keys {
      *     until death.
      * </p>
      */
-    public static final Key<Value<Integer>> DOLPHIN_SKIN_MOISTURE = DummyObjectProvider.createExtendedFor(Key.class, "DOLPHIN_SKIN_MOISTURE");
+    public static final Supplier<Key<Value<Integer>>> DOLPHIN_SKIN_MOISTURE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DOLPHIN_SKIN_MOISTURE");
 
     /**
      * Represents the {@link Key} for representing the dominant {@link HandPreference}
@@ -803,18 +805,18 @@ public final class Keys {
      * <p><em>NOTE:</em> For {@link Player}s is this key read-only, the
      * {@link HandPreference} of a player can not be changed server-side.</p>
      */
-    public static final Key<Value<HandPreference>> DOMINANT_HAND = DummyObjectProvider.createExtendedFor(Key.class, "DOMINANT_HAND");
+    public static final Supplier<Key<Value<HandPreference>>> DOMINANT_HAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DOMINANT_HAND");
 
     /**
      * Represents the {@link Key} for the color of a dyeable block, item or
      * entity.
      */
-    public static final Key<Value<DyeColor>> DYE_COLOR = DummyObjectProvider.createExtendedFor(Key.class, "DYE_COLOR");
+    public static final Supplier<Key<Value<DyeColor>>> DYE_COLOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DYE_COLOR");
 
     /**
      * Represents the {@link Key} for the time a {@link Panda} has been eating (in ticks)
      */
-    public static final Key<Value<Integer>> EATING_TIME = DummyObjectProvider.createExtendedFor(Key.class, "EATING_TIME");
+    public static final Supplier<Key<Value<Integer>>> EATING_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EATING_TIME");
 
     /**
      * Represents the {@link Key} for the time until a {@link Chicken} lays an {@link ItemTypes#EGG}.
@@ -826,25 +828,25 @@ public final class Keys {
      *     calculation is ran again.
      * </p>
      */
-    public static final Key<Value<Integer>> EGG_TIME = DummyObjectProvider.createExtendedFor(Key.class, "EGG_TIME");
+    public static final Supplier<Key<Value<Integer>>> EGG_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EGG_TIME");
 
     /**
      * Represents the {@link Key} for representing the age of
      * an {@link EndGateway}.
      */
-    public static final Key<Value<Long>> END_GATEWAY_AGE = DummyObjectProvider.createExtendedFor(Key.class, "END_GATEWAY_AGE");
+    public static final Supplier<Key<Value<Long>>> END_GATEWAY_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "END_GATEWAY_AGE");
 
     /**
      * Represents the {@link Key} for representing the teleport cooldown of
      * an {@link EndGateway}.
      */
-    public static final Key<Value<Integer>> END_GATEWAY_TELEPORT_COOLDOWN = DummyObjectProvider.createExtendedFor(Key.class, "END_GATEWAY_TELEPORT_COOLDOWN");
+    public static final Supplier<Key<Value<Integer>>> END_GATEWAY_TELEPORT_COOLDOWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "END_GATEWAY_TELEPORT_COOLDOWN");
 
     /**
      * Represents the {@link Key} for representing if the exact teleport location
      * should be used with a {@link EndGateway}.
      */
-    public static final Key<Value<Boolean>> EXACT_TELEPORT = DummyObjectProvider.createExtendedFor(Key.class, "EXACT_TELEPORT");
+    public static final Supplier<Key<Value<Boolean>>> EXACT_TELEPORT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXACT_TELEPORT");
 
     /**
      * Represents the {@link Key} for the current level of exhaustion of a
@@ -855,40 +857,40 @@ public final class Keys {
      * maximum. This type of effect occurs over time and can be modified by
      * movements and actions performed by the {@link Humanoid}.</p>
      */
-    public static final Key<BoundedValue<Double>> EXHAUSTION = DummyObjectProvider.createExtendedFor(Key.class, "EXHAUSTION");
+    public static final Supplier<Key<BoundedValue<Double>>> EXHAUSTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXHAUSTION");
 
     /**
      * Represents the {@link Key} for representing the exit
      * portal {@link Vector3i location} of an {@link EndGateway}.
      */
-    public static final Key<Value<Vector3i>> EXIT_POSITION = DummyObjectProvider.createExtendedFor(Key.class, "EXIT_PORTAL");
+    public static final Supplier<Key<Value<Vector3i>>> EXIT_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXIT_PORTAL");
 
     /**
      * Represents the {@link Key} for the amount of experience a {@link Player} has or an {@link ExperienceOrb} contains
      */
-    public static final Key<BoundedValue<Integer>> EXPERIENCE = DummyObjectProvider.createExtendedFor(Key.class, "EXPERIENCE");
+    public static final Supplier<Key<BoundedValue<Integer>>> EXPERIENCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXPERIENCE");
 
     /**
      * Represents the {@link Key} for the total experience a {@link Player}
      * requires to advance from his current level to the next one.
      */
-    public static final Key<BoundedValue<Integer>> EXPERIENCE_FROM_START_OF_LEVEL = DummyObjectProvider.createExtendedFor(Key.class, "EXPERIENCE_FROM_START_OF_LEVEL");
+    public static final Supplier<Key<BoundedValue<Integer>>> EXPERIENCE_FROM_START_OF_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXPERIENCE_FROM_START_OF_LEVEL");
 
     /**
      * Represents the {@link Key} for the current level a {@link Player} has.
      */
-    public static final Key<BoundedValue<Integer>> EXPERIENCE_LEVEL = DummyObjectProvider.createExtendedFor(Key.class, "EXPERIENCE_LEVEL");
+    public static final Supplier<Key<BoundedValue<Integer>>> EXPERIENCE_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXPERIENCE_LEVEL");
 
     /**
      * Represents the {@link Key} for the amount of experience a {@link Player}
      * has collected towards the next level.
      */
-    public static final Key<BoundedValue<Integer>> EXPERIENCE_SINCE_LEVEL = DummyObjectProvider.createExtendedFor(Key.class, "EXPERIENCE_SINCE_LEVEL");
+    public static final Supplier<Key<BoundedValue<Integer>>> EXPERIENCE_SINCE_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXPERIENCE_SINCE_LEVEL");
 
     /**
      * Represents the {@link Key} for how long an {@link Endermite}, {@link Item}, or {@link Weather} will last before expiring.
      */
-    public static final Key<Value<Duration>> EXPIRATION_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "EXPIRATION_DELAY");
+    public static final Supplier<Key<Value<Duration>>> EXPIRATION_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXPIRATION_DELAY");
 
     /**
      * Represents the {@link Key} for the radius of the {@link Explosion} to
@@ -898,24 +900,24 @@ public final class Keys {
      * determined randomly at the time of the explosion or computed from the
      * context in which the {@link Explosive} explodes.</p>
      */
-    public static final Key<Value<Integer>> EXPLOSION_RADIUS = DummyObjectProvider.createExtendedFor(Key.class, "EXPLOSION_RADIUS");
+    public static final Supplier<Key<Value<Integer>>> EXPLOSION_RADIUS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXPLOSION_RADIUS");
 
     /**
      * Represents the {@link Key} for representing whether a {@link Piston} is
      * currently extended.
      */
-    public static final Key<Value<Boolean>> EXTENDED = DummyObjectProvider.createExtendedFor(Key.class, "EXTENDED");
+    public static final Supplier<Key<Value<Boolean>>> EXTENDED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXTENDED");
 
     /**
      * Represents the {@link Key} for the distance an entity has
      * fallen.
      */
-    public static final Key<BoundedValue<Double>> FALL_DISTANCE = DummyObjectProvider.createExtendedFor(Key.class, "FALL_DISTANCE");
+    public static final Supplier<Key<BoundedValue<Double>>> FALL_DISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FALL_DISTANCE");
 
     /**
      * Represents the {@link Key} for the amount of ticks a {@link FallingBlock} has been falling for.
      */
-    public static final Key<Value<Integer>> FALL_TIME = DummyObjectProvider.createExtendedFor(Key.class, "FALL_TIME");
+    public static final Supplier<Key<Value<Integer>>> FALL_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FALL_TIME");
 
     /**
      * Represents the {@link Key} for representing the "filled" state
@@ -923,14 +925,14 @@ public final class Keys {
      *
      * <p>Usually applies to {@link BlockTypes#END_PORTAL_FRAME}s.</p>
      */
-    public static final Key<Value<Boolean>> FILLED = DummyObjectProvider.createExtendedFor(Key.class, "FILLED");
+    public static final Supplier<Key<Value<Boolean>>> FILLED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FILLED");
 
     /**
      * Represents the {@link Key} for the {@link FireworkEffect}s of a
      * {@link ItemTypes#FIREWORK_STAR}, {@link ItemTypes#FIREWORK_ROCKET} or a
      * {@link FireworkRocket}.
      */
-    public static final Key<ListValue<FireworkEffect>> FIREWORK_EFFECTS = DummyObjectProvider.createExtendedFor(Key.class, "FIREWORK_EFFECTS");
+    public static final Supplier<Key<ListValue<FireworkEffect>>> FIREWORK_EFFECTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FIREWORK_EFFECTS");
 
     /**
      * Represents the {@link Key} for the flight duration of a firework.
@@ -939,43 +941,43 @@ public final class Keys {
      * fly for roughly {@code modifier * 10 + (random number from 0 to 13)}
      * ticks in Vanilla Minecraft.</p>
      */
-    public static final Key<BoundedValue<Integer>> FIREWORK_FLIGHT_MODIFIER = DummyObjectProvider.createExtendedFor(Key.class, "FIREWORK_FLIGHT_MODIFIER");
+    public static final Supplier<Key<BoundedValue<Integer>>> FIREWORK_FLIGHT_MODIFIER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FIREWORK_FLIGHT_MODIFIER");
 
     /**
      * Represents the {@link Key} for the delay in ticks until the
      * {@link Entity} will be damaged by the fire.
      */
-    public static final Key<BoundedValue<Integer>> FIRE_DAMAGE_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "FIRE_DAMAGE_DELAY");
+    public static final Supplier<Key<BoundedValue<Integer>>> FIRE_DAMAGE_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FIRE_DAMAGE_DELAY");
 
     /**
      * Represents the {@link Key} for the amount of ticks an
      * {@link Entity} is still burning.
      */
-    public static final Key<BoundedValue<Integer>> FIRE_TICKS = DummyObjectProvider.createExtendedFor(Key.class, "FIRE_TICKS");
+    public static final Supplier<Key<BoundedValue<Integer>>> FIRE_TICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FIRE_TICKS");
 
     /**
      * Represents the {@link Key} for the time a {@link Player} first played
      * on the Server.
      */
-    public static final Key<Value<Instant>> FIRST_DATE_PLAYED = DummyObjectProvider.createExtendedFor(Key.class, "FIRST_DATE_PLAYED");
+    public static final Supplier<Key<Value<Instant>>> FIRST_DATE_PLAYED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FIRST_DATE_PLAYED");
 
     /**
      * Represents the {@link Key} for a {@link Fox fox's} first trusted {@link UUID}, usually a {@link Player}.
      */
-    public static final Key<Value<UUID>> FIRST_TRUSTED = DummyObjectProvider.createExtendedFor(Key.class, "FIRST_TRUSTED");
+    public static final Supplier<Key<Value<UUID>>> FIRST_TRUSTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FIRST_TRUSTED");
 
     /**
      * Represents the {@link Key} for representing the
      * {@link FluidStackSnapshot} contained within an item container. Item
      * containers may include buckets and other mod added items.
      */
-    public static final Key<Value<FluidStackSnapshot>> FLUID_ITEM_STACK = DummyObjectProvider.createExtendedFor(Key.class, "FLUID_ITEM_STACK");
+    public static final Supplier<Key<Value<FluidStackSnapshot>>> FLUID_ITEM_STACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FLUID_ITEM_STACK");
 
     /**
      * Represents the {@link Key} for representing the "fluid level" state
      * of a {@link BlockState}.
      */
-    public static final Key<BoundedValue<Integer>> FLUID_LEVEL = DummyObjectProvider.createExtendedFor(Key.class, "FLUID_LEVEL");
+    public static final Supplier<Key<BoundedValue<Integer>>> FLUID_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FLUID_LEVEL");
 
     /**
      * Represents the {@link Key} for representing the directional tank
@@ -986,7 +988,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for the speed at which an entity flies.
      */
-    public static final Key<Value<Double>> FLYING_SPEED = DummyObjectProvider.createExtendedFor(Key.class, "FLYING_SPEED");
+    public static final Supplier<Key<Value<Double>>> FLYING_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FLYING_SPEED");
 
     /**
      * Represents the {@link Key} for the food level of a {@link Humanoid}.
@@ -995,54 +997,54 @@ public final class Keys {
      * hunger levels. If the food level is high enough, the humanoid may heal. If the food level is at 0,
      * the humanoid may starve.</p>
      */
-    public static final Key<BoundedValue<Integer>> FOOD_LEVEL = DummyObjectProvider.createExtendedFor(Key.class, "FOOD_LEVEL");
+    public static final Supplier<Key<BoundedValue<Integer>>> FOOD_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FOOD_LEVEL");
 
     /**
      * Represents the {@link Key} for the type of a {@link Fox}.
      */
-    public static final Key<Value<FoxType>> FOX_TYPE = DummyObjectProvider.createExtendedFor(Key.class, "FOX_TYPE");
+    public static final Supplier<Key<Value<FoxType>>> FOX_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FOX_TYPE");
 
     /**
      * Represents the {@link Key} for the modifier to {@link Keys#VELOCITY} of a {@link Minecart} while airborne.
      */
-    public static final Key<Value<Duration>> FURNACE_MINECART_FUEL_DURATION = DummyObjectProvider.createExtendedFor(Key.class, "MINECART_FUEL_DURATION");
+    public static final Supplier<Key<Value<Duration>>> FURNACE_MINECART_FUEL_DURATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MINECART_FUEL_DURATION");
 
     /**
      * Represents the {@link Key} for the time a {@link FusedExplosive}'s fuse
      * will burn before the explosion.
      */
-    public static final Key<Value<Integer>> FUSE_DURATION = DummyObjectProvider.createExtendedFor(Key.class, "FUSE_DURATION");
+    public static final Supplier<Key<Value<Integer>>> FUSE_DURATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FUSE_DURATION");
 
     /**
      * Represents the {@link Key} for the {@link GameMode} a {@link Humanoid}
      * has.
      */
-    public static final Key<Value<GameMode>> GAME_MODE = DummyObjectProvider.createExtendedFor(Key.class, "GAME_MODE");
+    public static final Supplier<Key<Value<GameMode>>> GAME_MODE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "GAME_MODE");
 
     /**
      * Represents the {@link Key} for the generation of a
      * {@link ItemTypes#WRITTEN_BOOK}. Depending on the book's generation
      * it may be impossible to copy it.
      */
-    public static final Key<BoundedValue<Integer>> GENERATION = DummyObjectProvider.createExtendedFor(Key.class, "GENERATION");
+    public static final Supplier<Key<BoundedValue<Integer>>> GENERATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "GENERATION");
 
     /**
      * Represents the {@link Key} for representing whether an entity has a
      * glowing outline.
      */
-    public static final Key<Value<Boolean>> GLOWING = DummyObjectProvider.createExtendedFor(Key.class, "GLOWING");
+    public static final Supplier<Key<Value<Boolean>>> GLOWING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "GLOWING");
 
     /**
      * Represents the {@link Key} for representing the "growth stage" state
      * of a {@link BlockState}.
      */
-    public static final Key<BoundedValue<Integer>> GROWTH_STAGE = DummyObjectProvider.createExtendedFor(Key.class, "GROWTH_STAGE");
+    public static final Supplier<Key<BoundedValue<Integer>>> GROWTH_STAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "GROWTH_STAGE");
 
     /**
      * Represents the {@link Key} for whether an {@link Entity} is affected by
      * gravity.
      */
-    public static final Key<Value<Boolean>> HAS_GRAVITY = DummyObjectProvider.createExtendedFor(Key.class, "HAS_GRAVITY");
+    public static final Supplier<Key<Value<Boolean>>> HAS_GRAVITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HAS_GRAVITY");
 
     /**
      * Represents the {@link Key} for the rotation of a {@link Living Living's} head.
@@ -1056,12 +1058,12 @@ public final class Keys {
      * {@link Entity#getRotation()} and Minecraft does not currently support
      * head roll so the z value will always be zero.</p>
      */
-    public static final Key<Value<Vector3d>> HEAD_ROTATION = DummyObjectProvider.createExtendedFor(Key.class, "HEAD_ROTATION");
+    public static final Supplier<Key<Value<Vector3d>>> HEAD_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HEAD_ROTATION");
 
     /**
      * Represents the {@link Key} for the {@link EnderCrystal} currently healing an {@link EnderDragon}.
      */
-    public static final Key<Value<EnderCrystal>> HEALING_CRYSTAL = DummyObjectProvider.createExtendedFor(Key.class, "HEALING_CRYSTAL");
+    public static final Supplier<Key<Value<EnderCrystal>>> HEALING_CRYSTAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HEALING_CRYSTAL");
 
     /**
      * Represents the {@link Key} for a {@link Living}'s current health.
@@ -1073,13 +1075,13 @@ public final class Keys {
      * <p>Convention dictates that health does not follow below 0 but this
      * convention may be broken.</p>
      */
-    public static final Key<BoundedValue<Double>> HEALTH = DummyObjectProvider.createExtendedFor(Key.class, "HEALTH");
+    public static final Supplier<Key<BoundedValue<Double>>> HEALTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HEALTH");
 
     /**
      * Represents the {@link Key} for how much health a half-heart on a
      * {@link Player}'s GUI will stand for.
      */
-    public static final Key<BoundedValue<Double>> HEALTH_SCALE = DummyObjectProvider.createExtendedFor(Key.class, "HEALTH_SCALE");
+    public static final Supplier<Key<BoundedValue<Double>>> HEALTH_SCALE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HEALTH_SCALE");
 
     /**
      * Represents the {@link Key} for the height of the physical form of an
@@ -1088,88 +1090,88 @@ public final class Keys {
      * <p>Together with {@link #BASE_SIZE} this defines the size of an
      * {@link Entity}.</p>
      */
-    public static final Key<BoundedValue<Double>> HEIGHT = DummyObjectProvider.createExtendedFor(Key.class, "HEIGHT");
+    public static final Supplier<Key<BoundedValue<Double>>> HEIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HEIGHT");
 
     /**
      * Represents the {@link Key} for the hidden {@link PandaGene gene} of a {@link Panda}.
      */
-    public static final Key<Value<PandaGene>> HIDDEN_GENE = DummyObjectProvider.createExtendedFor(Key.class, "HIDDEN_GENE");
+    public static final Supplier<Key<Value<PandaGene>>> HIDDEN_GENE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HIDDEN_GENE");
 
     /**
      * Represents the {@link Key} for representing the "attributes hidden"
      * state of an {@link ItemStack}.
      */
-    public static final Key<Value<Boolean>> HIDE_ATTRIBUTES = DummyObjectProvider.createExtendedFor(Key.class, "HIDE_ATTRIBUTES");
+    public static final Supplier<Key<Value<Boolean>>> HIDE_ATTRIBUTES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HIDE_ATTRIBUTES");
 
     /**
      * Represents the {@link Key} for representing the "can destroy hidden"
      * state of an {@link ItemStack}.
      */
-    public static final Key<Value<Boolean>> HIDE_CAN_DESTROY = DummyObjectProvider.createExtendedFor(Key.class, "HIDE_CAN_DESTROY");
+    public static final Supplier<Key<Value<Boolean>>> HIDE_CAN_DESTROY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HIDE_CAN_DESTROY");
 
     /**
      * Represents the {@link Key} for representing the "can place hidden"
      * state of an {@link ItemStack}.
      */
-    public static final Key<Value<Boolean>> HIDE_CAN_PLACE = DummyObjectProvider.createExtendedFor(Key.class, "HIDE_CAN_PLACE");
+    public static final Supplier<Key<Value<Boolean>>> HIDE_CAN_PLACE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HIDE_CAN_PLACE");
 
     /**
      * Represents the {@link Key} for representing the "enchantments hidden"
      * state of an {@link ItemStack}.
      */
-    public static final Key<Value<Boolean>> HIDE_ENCHANTMENTS = DummyObjectProvider.createExtendedFor(Key.class, "HIDE_ENCHANTMENTS");
+    public static final Supplier<Key<Value<Boolean>>> HIDE_ENCHANTMENTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HIDE_ENCHANTMENTS");
 
     /**
      * Represents the {@link Key} for representing the "miscellaneous hidden"
      * state of an {@link ItemStack}.
      */
-    public static final Key<Value<Boolean>> HIDE_MISCELLANEOUS = DummyObjectProvider.createExtendedFor(Key.class, "HIDE_MISCELLANEOUS");
+    public static final Supplier<Key<Value<Boolean>>> HIDE_MISCELLANEOUS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HIDE_MISCELLANEOUS");
 
     /**
      * Represents the {@link Key} for representing the "unbreakable hidden"
      * state of an {@link ItemStack}.
      */
-    public static final Key<Value<Boolean>> HIDE_UNBREAKABLE = DummyObjectProvider.createExtendedFor(Key.class, "HIDE_UNBREAKABLE");
+    public static final Supplier<Key<Value<Boolean>>> HIDE_UNBREAKABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HIDE_UNBREAKABLE");
 
     /**
      * Represents the {@link Key} for representing the {@link Hinge}
      * of a {@link BlockState}.
      */
-    public static final Key<Value<Hinge>> HINGE_POSITION = DummyObjectProvider.createExtendedFor(Key.class, "HINGE_POSITION");
+    public static final Supplier<Key<Value<Hinge>>> HINGE_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HINGE_POSITION");
 
     /**
      * Represents the {@link Key} for the color of a {@link Horse}.
      */
-    public static final Key<Value<HorseColor>> HORSE_COLOR = DummyObjectProvider.createExtendedFor(Key.class, "HORSE_COLOR");
+    public static final Supplier<Key<Value<HorseColor>>> HORSE_COLOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HORSE_COLOR");
 
     /**
      * Represents the {@link Key} for the style of a {@link Horse}.
      */
-    public static final Key<Value<HorseStyle>> HORSE_STYLE = DummyObjectProvider.createExtendedFor(Key.class, "HORSE_STYLE");
+    public static final Supplier<Key<Value<HorseStyle>>> HORSE_STYLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HORSE_STYLE");
 
     /**
      * Represents the {@link Key} for whether an {@link Item} will not despawn
      * for an infinite time.
      */
-    public static final Key<Value<Boolean>> INFINITE_DESPAWN_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "INFINITE_DESPAWN_DELAY");
+    public static final Supplier<Key<Value<Boolean>>> INFINITE_DESPAWN_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "INFINITE_DESPAWN_DELAY");
 
     /**
      * Represents the {@link Key} for representing the "is infinite" state
      * of the pickup delay of an {@link Item}.
      */
-    public static final Key<Value<Boolean>> INFINITE_PICKUP_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "INFINITE_PICKUP_DELAY");
+    public static final Supplier<Key<Value<Boolean>>> INFINITE_PICKUP_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "INFINITE_PICKUP_DELAY");
 
     /**
      * Represents the {@link Key} for the {@link InstrumentType}
      * of a {@link BlockTypes#NOTE_BLOCK}.
      */
-    public static final Key<Value<InstrumentType>> INSTRUMENT = DummyObjectProvider.createExtendedFor(Key.class, "INSTRUMENT");
+    public static final Supplier<Key<Value<InstrumentType>>> INSTRUMENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "INSTRUMENT");
 
     /**
      * Represents the {@link Key} for the "inverted" state of
      * an {@link BlockTypes#DAYLIGHT_DETECTOR}.
      */
-    public static final Key<Value<Boolean>> INVERTED = DummyObjectProvider.createExtendedFor(Key.class, "INVERTED");
+    public static final Supplier<Key<Value<Boolean>>> INVERTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "INVERTED");
 
     /**
      * Represents the {@link Key} for representing the "vanish" state
@@ -1177,13 +1179,13 @@ public final class Keys {
      * vanish, but not prevent any entity updates being sent to clients.
      * To fully "vanish" an {@link Entity}, use {@link #VANISH}.
      */
-    public static final Key<Value<Boolean>> INVISIBLE = DummyObjectProvider.createExtendedFor(Key.class, "INVISIBLE");
+    public static final Supplier<Key<Value<Boolean>>> INVISIBLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "INVISIBLE");
 
     /**
      * Represents the {@link Key} for the amount of ticks an {@link Entity}
      * will remain invulnerable for.
      */
-    public static final Key<BoundedValue<Integer>> INVULNERABILITY_TICKS = DummyObjectProvider.createExtendedFor(Key.class, "INVULNERABILITY_TICKS");
+    public static final Supplier<Key<BoundedValue<Integer>>> INVULNERABILITY_TICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "INVULNERABILITY_TICKS");
 
     /**
      * Represents the {@link Key} for representing if an {@link Entity}
@@ -1192,19 +1194,19 @@ public final class Keys {
      * <p>This does not protect from the void, players in creative mode,
      * and manual killing like the /kill command.</p>
      */
-    public static final Key<Value<Boolean>> INVULNERABLE = DummyObjectProvider.createExtendedFor(Key.class, "INVULNERABLE");
+    public static final Supplier<Key<Value<Boolean>>> INVULNERABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "INVULNERABLE");
 
     /**
      * Represents the {@link Key} for representing the "in-wall" state of
      * fences, for example {@link BlockTypes#OAK_FENCE}.
      */
-    public static final Key<Value<Boolean>> IN_WALL = DummyObjectProvider.createExtendedFor(Key.class, "IN_WALL");
+    public static final Supplier<Key<Value<Boolean>>> IN_WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IN_WALL");
 
     /**
      * Represents the {@link Key} for the state whether a {@link Ageable}
      * entity is considered an "adult" and may affect breeding capabilities.
      */
-    public static final Key<Value<Boolean>> IS_ADULT = DummyObjectProvider.createExtendedFor(Key.class, "IS_ADULT");
+    public static final Supplier<Key<Value<Boolean>>> IS_ADULT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_ADULT");
 
     /**
      * Represents the {@link Key} for whether a {@link Blaze} is currently
@@ -1213,59 +1215,59 @@ public final class Keys {
      * <p>Unlike {@link Keys#MAX_BURN_TIME}, the burning effect will not damage
      * the burning entity.</p>
      */
-    public static final Key<Value<Boolean>> IS_AFLAME = DummyObjectProvider.createExtendedFor(Key.class, "IS_AFLAME");
+    public static final Supplier<Key<Value<Boolean>>> IS_AFLAME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_AFLAME");
 
     /**
      * Represents the {@link Key} for whether an {@link Agent}s AI is enabled.
      */
-    public static final Key<Value<Boolean>> IS_AI_ENABLED = DummyObjectProvider.createExtendedFor(Key.class, "IS_AI_ENABLED");
+    public static final Supplier<Key<Value<Boolean>>> IS_AI_ENABLED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_AI_ENABLED");
 
     /**
      * Represents the {@link Key} for whether an {@link Entity} is currently
      * aggressive. This mostly applies to wolves.
      */
-    public static final Key<Value<Boolean>> IS_ANGRY = DummyObjectProvider.createExtendedFor(Key.class, "IS_ANGRY");
+    public static final Supplier<Key<Value<Boolean>>> IS_ANGRY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_ANGRY");
 
     /**
      * Represents the {@link Key} for if {@link Raider}s are currently celebrating.
      */
-    public static final Key<Value<Boolean>> IS_CELEBRATING = DummyObjectProvider.createExtendedFor(Key.class, "IS_CELEBRATING");
+    public static final Supplier<Key<Value<Boolean>>> IS_CELEBRATING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_CELEBRATING");
 
     /**
      * Represents the {@link Key} for whether a {@link Creeper} is charged.
      */
-    public static final Key<Value<Boolean>> IS_CHARGED = DummyObjectProvider.createExtendedFor(Key.class, "CREEPER_CHARGED");
+    public static final Supplier<Key<Value<Boolean>>> IS_CHARGED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CREEPER_CHARGED");
 
     /**
      * Represents the {@link Key} for if a {@link Pillager} is charging it's crossbow.
      */
-    public static final Key<Value<Boolean>> IS_CHARGING_CROSSBOW = DummyObjectProvider.createExtendedFor(Key.class, "CHARGING_CROSSBOW");
+    public static final Supplier<Key<Value<Boolean>>> IS_CHARGING_CROSSBOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CHARGING_CROSSBOW");
 
     /**
      * Represents the {@link Key} for if a {@link Spider} is currently climbing.
      */
-    public static final Key<Value<Boolean>> IS_CLIMBING = DummyObjectProvider.createExtendedFor(Key.class, "IS_CLIMBING");
+    public static final Supplier<Key<Value<Boolean>>> IS_CLIMBING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_CLIMBING");
 
     /**
      * Represents the {@link Key} for if a {@link Fox} is currently crouching.
      */
-    public static final Key<Value<Boolean>> IS_CROUCHING = DummyObjectProvider.createExtendedFor(Key.class, "IS_CROUCHING");
+    public static final Supplier<Key<Value<Boolean>>> IS_CROUCHING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_CROUCHING");
 
     /**
      * Represents the {@link Key} for if a {@link Fox} is currently defending.
      */
-    public static final Key<Value<Boolean>> IS_DEFENDING = DummyObjectProvider.createExtendedFor(Key.class, "IS_DEFENDING");
+    public static final Supplier<Key<Value<Boolean>>> IS_DEFENDING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_DEFENDING");
 
     /**
      * Represents the {@link Key} for whether a {@link Player} is flying with an
      * {@link ItemTypes#ELYTRA}.
      */
-    public static final Key<Value<Boolean>> IS_ELYTRA_FLYING = DummyObjectProvider.createExtendedFor(Key.class, "IS_ELYTRA_FLYING");
+    public static final Supplier<Key<Value<Boolean>>> IS_ELYTRA_FLYING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_ELYTRA_FLYING");
 
     /**
      * Represents the {@link Key} for if a {@link Fox} is currently faceplanted.
      */
-    public static final Key<Value<Boolean>> IS_FACEPLANTED = DummyObjectProvider.createExtendedFor(Key.class, "IS_FACEPLANTED");
+    public static final Supplier<Key<Value<Boolean>>> IS_FACEPLANTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_FACEPLANTED");
 
     /**
      * Represents the {@link Key} for whether an {@link Entity} is flying.
@@ -1275,7 +1277,7 @@ public final class Keys {
      * freely between flying and walking. To check whether a player may switch
      * his flying state, check {@link #CAN_FLY}.</p>
      */
-    public static final Key<Value<Boolean>> IS_FLYING = DummyObjectProvider.createExtendedFor(Key.class, "IS_FLYING");
+    public static final Supplier<Key<Value<Boolean>>> IS_FLYING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_FLYING");
 
     /**
      * Represents the {@link Key} for if a {@link WeatherEffect} is harmful to other {@link Entity entities}.
@@ -1284,17 +1286,17 @@ public final class Keys {
      *     For example, {@link LightningBolt bolts} of lighting will strike entities and damage them
      * </p>
      */
-    public static final Key<Value<Boolean>> IS_HARMFUL = DummyObjectProvider.createExtendedFor(Key.class, "IS_WEATHER_EFFECT");
+    public static final Supplier<Key<Value<Boolean>>> IS_HARMFUL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_WEATHER_EFFECT");
 
     /**
      * Represents the {@link Key} for if a {@link Fox} is currently interested in something.
      */
-    public static final Key<Value<Boolean>> IS_INTERESTED = DummyObjectProvider.createExtendedFor(Key.class, "IS_INTERESTED");
+    public static final Supplier<Key<Value<Boolean>>> IS_INTERESTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_INTERESTED");
 
     /**
      * Represents the {@link Key} for if a {@link Boat} is currently in {@link BlockTypes#WATER}.
      */
-    public static final Key<Value<Boolean>> IS_IN_WATER = DummyObjectProvider.createExtendedFor(Key.class, "IS_IN_WATER");
+    public static final Supplier<Key<Value<Boolean>>> IS_IN_WATER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_IN_WATER");
 
     /**
      * Represents the {@link Key} for whether a {@link Vindicator} is exhibiting
@@ -1303,27 +1305,27 @@ public final class Keys {
      * @see <a href="https://minecraft.gamepedia.com/Vindicator#Behavior">
      * The Minecraft Wiki for more information about "johnny" behavior</a>
      */
-    public static final Key<Value<Boolean>> IS_JOHNNY = DummyObjectProvider.createExtendedFor(Key.class, "IS_JOHNNY");
+    public static final Supplier<Key<Value<Boolean>>> IS_JOHNNY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_JOHNNY");
 
     /**
      * Represents the {@link Key} for if a {@link Cat} is lying down.
      */
-    public static final Key<Value<Boolean>> IS_LYING_DOWN = DummyObjectProvider.createExtendedFor(Key.class, "IS_LYING_DOWN");
+    public static final Supplier<Key<Value<Boolean>>> IS_LYING_DOWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_LYING_DOWN");
 
     /**
      * Represents the {@link Key} for if a {@link Panda} is lying on it's back.
      */
-    public static final Key<Value<Boolean>> IS_LYING_ON_BACK = DummyObjectProvider.createExtendedFor(Key.class, "IS_LYING_ON_BACK");
+    public static final Supplier<Key<Value<Boolean>>> IS_LYING_ON_BACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_LYING_ON_BACK");
 
     /**
      * Represents the {@link Key} for if an {@link Entity} is currently considered to be on the ground or not.
      */
-    public static final Key<Value<Boolean>> ON_GROUND = DummyObjectProvider.createExtendedFor(Key.class, "ON_GROUND");
+    public static final Supplier<Key<Value<Boolean>>> ON_GROUND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ON_GROUND");
 
     /**
      * Represents the {@link Key} for if a {@link IronGolem} has been created by a {@link Player}.
      */
-    public static final Key<Value<Boolean>> IS_PLAYER_CREATED = DummyObjectProvider.createExtendedFor(Key.class, "IS_PLAYER_CREATED");
+    public static final Supplier<Key<Value<Boolean>>> IS_PLAYER_CREATED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_PLAYER_CREATED");
 
     /**
      * Represents the {@link Key} for whether a {@link Villager} is playing.
@@ -1331,44 +1333,44 @@ public final class Keys {
      * <p>In Vanilla, this only applies to villagers that are considered
      * "babies" according to {@link #AGEABLE_AGE}.</p>
      */
-    public static final Key<Value<Boolean>> IS_PLAYING = DummyObjectProvider.createExtendedFor(Key.class, "IS_PLAYING");
+    public static final Supplier<Key<Value<Boolean>>> IS_PLAYING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_PLAYING");
 
     /**
      * Represents the {@link Key} for if a {@link Fox} is currently pouncing.
      */
-    public static final Key<Value<Boolean>> IS_POUNCING = DummyObjectProvider.createExtendedFor(Key.class, "IS_POUNCING");
+    public static final Supplier<Key<Value<Boolean>>> IS_POUNCING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_POUNCING");
 
     /**
      * Represents the {@link Key} for if a {@link Cat} is relaxed.
      */
-    public static final Key<Value<Boolean>> IS_RELAXED = DummyObjectProvider.createExtendedFor(Key.class, "RELAXED");
+    public static final Supplier<Key<Value<Boolean>>> IS_RELAXED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "RELAXED");
 
     /**
      * Represents the {@link Key} for if a {@link Panda} is rolling around.
      */
-    public static final Key<Value<Boolean>> IS_ROLLING_AROUND = DummyObjectProvider.createExtendedFor(Key.class, "IS_ROLLING_AROUND");
+    public static final Supplier<Key<Value<Boolean>>> IS_ROLLING_AROUND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_ROLLING_AROUND");
 
     /**
      * Represents the {@link Key} for whether an {@link Enderman} is screaming.
      */
-    public static final Key<Value<Boolean>> IS_SCREAMING = DummyObjectProvider.createExtendedFor(Key.class, "IS_SCREAMING");
+    public static final Supplier<Key<Value<Boolean>>> IS_SCREAMING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_SCREAMING");
 
     /**
      * Represents the {@link Key} for whether a {@link Sheep} is sheared.
      */
-    public static final Key<Value<Boolean>> IS_SHEARED = DummyObjectProvider.createExtendedFor(Key.class, "IS_SHEARED");
+    public static final Supplier<Key<Value<Boolean>>> IS_SHEARED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_SHEARED");
 
     /**
      * Represents the {@link Key} for whether an {@link Entity} is silent.
      *
      * <p>A silent entity will not emit sounds or make noises.</p>
      */
-    public static final Key<Value<Boolean>> IS_SILENT = DummyObjectProvider.createExtendedFor(Key.class, "IS_SILENT");
+    public static final Supplier<Key<Value<Boolean>>> IS_SILENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_SILENT");
 
     /**
      * Represents the {@link Key} for whether a {@link Wolf}, {@link Cat}, {@link Panda}, or {@link Fox} is sitting.
      */
-    public static final Key<Value<Boolean>> IS_SITTING = DummyObjectProvider.createExtendedFor(Key.class, "IS_SITTING");
+    public static final Supplier<Key<Value<Boolean>>> IS_SITTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_SITTING");
 
     /**
      * Represents the {@link Key} for whether a {@link Bat}, {@link Fox} or {@link Player}
@@ -1378,14 +1380,14 @@ public final class Keys {
      * not need to be in bed in order for the other players to be able to
      * advance through the night by going to bed.</p>
      */
-    public static final Key<Value<Boolean>> IS_SLEEPING = DummyObjectProvider.createExtendedFor(Key.class, "IS_SLEEPING");
+    public static final Supplier<Key<Value<Boolean>>> IS_SLEEPING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_SLEEPING");
 
     /**
      * Represents the {@link Key} for if a {@link Player Player's} sleeping status is ignored when checking whether to
      * skip the night due to players sleeping. The time in a world will be
      * advanced to day if all players in it either are sleeping or are set to ignore.
      */
-    public static final Key<Value<Boolean>> IS_SLEEPING_IGNORED = DummyObjectProvider.createExtendedFor(Key.class, "IS_SLEEPING_IGNORED");
+    public static final Supplier<Key<Value<Boolean>>> IS_SLEEPING_IGNORED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_SLEEPING_IGNORED");
 
     /**
      * Represents the {@link Key} for whether an {@link Entity} is sneaking.
@@ -1393,49 +1395,49 @@ public final class Keys {
      * <p>Sneaking entities generally move slower and do not make walking
      * sounds.</p>
      */
-    public static final Key<Value<Boolean>> IS_SNEAKING = DummyObjectProvider.createExtendedFor(Key.class, "IS_SNEAKING");
+    public static final Supplier<Key<Value<Boolean>>> IS_SNEAKING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_SNEAKING");
 
     /**
      * Represents the {@link Key} for if a {@link Panda} is sneezing.
      */
-    public static final Key<Value<Boolean>> IS_SNEEZING = DummyObjectProvider.createExtendedFor(Key.class, "IS_SNEEZING");
+    public static final Supplier<Key<Value<Boolean>>> IS_SNEEZING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_SNEEZING");
 
     /**
      * Represents the {@link Key} for whether an {@link Entity} is sprinting.
      */
-    public static final Key<Value<Boolean>> IS_SPRINTING = DummyObjectProvider.createExtendedFor(Key.class, "IS_SPRINTING");
+    public static final Supplier<Key<Value<Boolean>>> IS_SPRINTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_SPRINTING");
 
     /**
      * Represents the {@link Key} for if a {@link PolarBear} is currently standing.
      */
-    public static final Key<Value<Boolean>> IS_STANDING = DummyObjectProvider.createExtendedFor(Key.class, "IS_STANDING");
+    public static final Supplier<Key<Value<Boolean>>> IS_STANDING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_STANDING");
 
     /**
      * Represents the {@link Key} for if a {@link TameableAnimal} is currently tamed
      */
-    public static final Key<Value<Boolean>> IS_TAMED = DummyObjectProvider.createExtendedFor(Key.class, "IS_TAMED");
+    public static final Supplier<Key<Value<Boolean>>> IS_TAMED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_TAMED");
 
     /**
      * Represents the {@link Key} for if a {@link Trader} is currently trading with a {@link Player}.
      */
-    public static final Key<Value<Boolean>> IS_TRADING = DummyObjectProvider.createExtendedFor(Key.class, "IS_TRADING");
+    public static final Supplier<Key<Value<Boolean>>> IS_TRADING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_TRADING");
 
     /**
      * Represents the {@link Key} for if an {@link Ocelot} is currently trusting of {@link Player}s.
      */
-    public static final Key<Value<Boolean>> IS_TRUSTING = DummyObjectProvider.createExtendedFor(Key.class, "IS_TRUSTING");
+    public static final Supplier<Key<Value<Boolean>>> IS_TRUSTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_TRUSTING");
 
     /**
      * Represents the {@link Key} for whether a {@link Wolf}, a
      * {@link BlockState} of {@link BlockTypes#SPONGE} or an {@link ItemStack}
      * of {@link ItemTypes#SPONGE} is wet.
      */
-    public static final Key<Value<Boolean>> IS_WET = DummyObjectProvider.createExtendedFor(Key.class, "IS_WET");
+    public static final Supplier<Key<Value<Boolean>>> IS_WET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_WET");
 
     /**
      * Represents the {@link Key} for the durability of an {@link ItemStack}.
      */
-    public static final Key<BoundedValue<Integer>> ITEM_DURABILITY = DummyObjectProvider.createExtendedFor(Key.class, "ITEM_DURABILITY");
+    public static final Supplier<Key<BoundedValue<Integer>>> ITEM_DURABILITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ITEM_DURABILITY");
 
     /**
      * Represents the {@link Key} for the enchantments applied to an
@@ -1447,7 +1449,7 @@ public final class Keys {
      * {@link ItemTypes#ENCHANTED_BOOK}s) use the {@link #STORED_ENCHANTMENTS}
      * key instead.)</p>
      */
-    public static final Key<ListValue<Enchantment>> ITEM_ENCHANTMENTS = DummyObjectProvider.createExtendedFor(Key.class, "ITEM_ENCHANTMENTS");
+    public static final Supplier<Key<ListValue<Enchantment>>> ITEM_ENCHANTMENTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ITEM_ENCHANTMENTS");
 
     /**
      * Represents the {@link Key} for the displayed description ("lore") text
@@ -1457,12 +1459,12 @@ public final class Keys {
      * over the stack. For the contents of a book see {@link #BOOK_PAGES}
      * instead.</p>
      */
-    public static final Key<ListValue<Text>> ITEM_LORE = DummyObjectProvider.createExtendedFor(Key.class, "ITEM_LORE");
+    public static final Supplier<Key<ListValue<Text>>> ITEM_LORE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ITEM_LORE");
 
     /**
      * Represents the {@link Key} for the {@link ItemStackSnapshot item} in an {@link Item}, {@link ItemFrame}, or {@link Potion}.
      */
-    public static final Key<Value<ItemStackSnapshot>> ITEM_STACK_SNAPSHOT = DummyObjectProvider.createExtendedFor(Key.class, "ITEM_STACK_SNAPSHOT");
+    public static final Supplier<Key<Value<ItemStackSnapshot>>> ITEM_STACK_SNAPSHOT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ITEM_STACK_SNAPSHOT");
 
     /**
      * Represents the {@link Key} for the knockback strength applied by an
@@ -1471,40 +1473,40 @@ public final class Keys {
      * <p>For the knockback provided by hits with a weapon according to the
      * enchantment of the same name, see {@link #ITEM_ENCHANTMENTS}.</p>
      */
-    public static final Key<BoundedValue<Integer>> KNOCKBACK_STRENGTH = DummyObjectProvider.createExtendedFor(Key.class, "KNOCKBACK_STRENGTH");
+    public static final Supplier<Key<BoundedValue<Integer>>> KNOCKBACK_STRENGTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "KNOCKBACK_STRENGTH");
 
     /**
      * Represents the {@link Key} for the known {@link PandaGene gene} of a {@link Panda}.
      */
-    public static final Key<Value<PandaGene>> KNOWN_GENE = DummyObjectProvider.createExtendedFor(Key.class, "KNOWN_GENE");
+    public static final Supplier<Key<Value<PandaGene>>> KNOWN_GENE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "KNOWN_GENE");
 
     /**
      * Represents the {@link Key} for the last attacking {@link Entity} of a {@link Living}.
      */
-    public static final Key<Value<Entity>> LAST_ATTACKER = DummyObjectProvider.createExtendedFor(Key.class, "LAST_ATTACKER");
+    public static final Supplier<Key<Value<Entity>>> LAST_ATTACKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LAST_ATTACKER");
 
     /**
      * Represents the {@link Key} for the output yielded by the last command of
      * a {@link CommandBlock}.
      */
-    public static final Key<Value<Text>> LAST_COMMAND_OUTPUT = DummyObjectProvider.createExtendedFor(Key.class, "LAST_COMMAND_OUTPUT");
+    public static final Supplier<Key<Value<Text>>> LAST_COMMAND_OUTPUT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LAST_COMMAND_OUTPUT");
 
     /**
      * Represents the {@link Key} for the last time a {@link User} has been
      * playing on the server.
      */
-    public static final Key<Value<Instant>> LAST_DATE_PLAYED = DummyObjectProvider.createExtendedFor(Key.class, "LAST_DATE_PLAYED");
+    public static final Supplier<Key<Value<Instant>>> LAST_DATE_PLAYED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LAST_DATE_PLAYED");
 
     /**
      * Represents the {@link Key} for representing the "layer" value of
      * {@link BlockTypes#SNOW} and other possible layered blocks.
      */
-    public static final Key<BoundedValue<Integer>> LAYER = DummyObjectProvider.createExtendedFor(Key.class, "LAYER");
+    public static final Supplier<Key<BoundedValue<Integer>>> LAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LAYER");
 
     /**
      * Represents the {@link Key} for if a {@link Patroller} is the leader.
      */
-    public static final Key<Value<Boolean>> LEADER = DummyObjectProvider.createExtendedFor(Key.class, "LEADER");
+    public static final Supplier<Key<Value<Boolean>>> LEADER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LEADER");
 
     /**
      * Represents the {@link Key} for the leashed {@link Entity} of a {@link LeashKnot}.
@@ -1513,48 +1515,48 @@ public final class Keys {
      * a leashed {@link Entity} attached. If the leash is broken, the leash
      * hitch is removed.</p>
      */
-    public static final Key<Value<Entity>> LEASHED_ENTITY = DummyObjectProvider.createExtendedFor(Key.class, "LEASHED_ENTITY");
+    public static final Supplier<Key<Value<Entity>>> LEASHED_ENTITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LEASHED_ENTITY");
 
     /**
      * Represents the {@link Key} for the rotation of an {@link Entity}'s left
      * arm.
      */
-    public static final Key<Value<Vector3d>> LEFT_ARM_ROTATION = DummyObjectProvider.createExtendedFor(Key.class, "LEFT_ARM_ROTATION");
+    public static final Supplier<Key<Value<Vector3d>>> LEFT_ARM_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LEFT_ARM_ROTATION");
 
     /**
      * Represents the {@link Key} for the rotation of an {@link Entity}'s left
      * leg.
      */
-    public static final Key<Value<Vector3d>> LEFT_LEG_ROTATION = DummyObjectProvider.createExtendedFor(Key.class, "LEFT_LEG_ROTATION");
+    public static final Supplier<Key<Value<Vector3d>>> LEFT_LEG_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LEFT_LEG_ROTATION");
 
     /**
      * Represents the {@link Key} of the amount of light that emitted by a light source,
      * usually blocks.
      */
-    public static final Key<Value<Integer>> LIGHT_EMISSION = DummyObjectProvider.createExtendedFor(Key.class, "LIGHT_EMISSION");
+    public static final Supplier<Key<Value<Integer>>> LIGHT_EMISSION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LIGHT_EMISSION");
 
     /**
      * Represents the {@link Key} for the state that something is "lit",
      * for example a {@link BlockTypes#FURNACE} or {@link BlockTypes#REDSTONE_TORCH}.
      */
-    public static final Key<Value<Boolean>> LIT = DummyObjectProvider.createExtendedFor(Key.class, "LIT");
+    public static final Supplier<Key<Value<Boolean>>> LIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LIT");
 
     /**
      * Represents the {@link Key} for a {@link Llama}s carrying strength. The higher the strength,
      * the more items it can carry (effectively the size of inventory).
      */
-    public static final Key<BoundedValue<Integer>> LLAMA_STRENGTH = DummyObjectProvider.createExtendedFor(Key.class, "LLAMA_STRENGTH");
+    public static final Supplier<Key<BoundedValue<Integer>>> LLAMA_STRENGTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LLAMA_STRENGTH");
 
     /**
      * Represents the {@link Key} for a {@link Llama}'s {@link LlamaType}.
      */
-    public static final Key<Value<LlamaType>> LLAMA_TYPE = DummyObjectProvider.createExtendedFor(Key.class, "LLAMA_TYPE");
+    public static final Supplier<Key<Value<LlamaType>>> LLAMA_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LLAMA_TYPE");
 
     /**
      * Represents the {@link Key} for the token used to lock a
      * {@link CarrierBlockEntity}.
      */
-    public static final Key<Value<String>> LOCK_TOKEN = DummyObjectProvider.createExtendedFor(Key.class, "LOCK_TOKEN");
+    public static final Supplier<Key<Value<String>>> LOCK_TOKEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LOCK_TOKEN");
 
     /**
      * Represents the {@link Key} for the maximum air supply a {@link Living}
@@ -1562,25 +1564,25 @@ public final class Keys {
      *
      * <p>For the current amount of air, check {@link #REMAINING_AIR}.</p>
      */
-    public static final Key<BoundedValue<Integer>> MAX_AIR = DummyObjectProvider.createExtendedFor(Key.class, "MAX_AIR");
+    public static final Supplier<Key<BoundedValue<Integer>>> MAX_AIR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_AIR");
 
     /**
      * Represents the {@link Key} for the maximum amount of ticks a
      * {@link FurnaceBlockEntity} can burn with the currently used fuel item.
      */
-    public static final Key<BoundedValue<Integer>> MAX_BURN_TIME = DummyObjectProvider.createExtendedFor(Key.class, "MAX_BURN_TIME");
+    public static final Supplier<Key<BoundedValue<Integer>>> MAX_BURN_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_BURN_TIME");
 
     /**
      * Represents the {@link Key} for the total time the current
      * {@link ItemStack} in a {@link FurnaceBlockEntity} has to be cooked.
      */
-    public static final Key<BoundedValue<Integer>> MAX_COOK_TIME = DummyObjectProvider.createExtendedFor(Key.class, "MAX_COOK_TIME");
+    public static final Supplier<Key<BoundedValue<Integer>>> MAX_COOK_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_COOK_TIME");
 
     /**
      * Represents the {@link Key} for the maximum damage a {@link FallingBlock}
      * can deal.
      */
-    public static final Key<BoundedValue<Double>> MAX_FALL_DAMAGE = DummyObjectProvider.createExtendedFor(Key.class, "MAX_FALL_DAMAGE");
+    public static final Supplier<Key<BoundedValue<Double>>> MAX_FALL_DAMAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_FALL_DAMAGE");
 
     /**
      * Represents the {@link Key} for the maximum health of a {@link Living}.
@@ -1589,80 +1591,80 @@ public final class Keys {
      * health points. The base health should be minded that it may be lower
      * than the total maximum health of the entity.</p>
      */
-    public static final Key<BoundedValue<Double>> MAX_HEALTH = DummyObjectProvider.createExtendedFor(Key.class, "MAX_HEALTH");
+    public static final Supplier<Key<BoundedValue<Double>>> MAX_HEALTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_HEALTH");
 
     /**
      * Represents the {@link Key} for the modifier to {@link Keys#VELOCITY} of a {@link Minecart} while airborne.
      */
-    public static final Key<Value<Vector3d>> MINECART_AIRBORNE_VELOCITY_MODIFIER = DummyObjectProvider.createExtendedFor(Key.class, "MINECART_AIRBORNE_VELOCITY_MODIFIER");
+    public static final Supplier<Key<Value<Vector3d>>> MINECART_AIRBORNE_VELOCITY_MODIFIER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MINECART_AIRBORNE_VELOCITY_MODIFIER");
 
     /**
      * Represents the {@link Key} for the modifier to {@link Keys#VELOCITY} of a {@link Minecart} while derailed.
      */
-    public static final Key<Value<Vector3d>> MINECART_DERAILED_VELOCITY_MODIFIER = DummyObjectProvider.createExtendedFor(Key.class, "MINECART_DERAILED_VELOCITY_MODIFIER");
+    public static final Supplier<Key<Value<Vector3d>>> MINECART_DERAILED_VELOCITY_MODIFIER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MINECART_DERAILED_VELOCITY_MODIFIER");
 
     /**
      * Represents the {@link Key} for if a {@link Minecart} is on it's rail
      */
-    public static final Key<Value<Boolean>> MINECART_IS_ON_RAIL = DummyObjectProvider.createExtendedFor(Key.class, "MINECART_IS_ON_RAIL");
+    public static final Supplier<Key<Value<Boolean>>> MINECART_IS_ON_RAIL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MINECART_IS_ON_RAIL");
 
     /**
      * Represents the {@link Key} for the potential max speed of a {@link Minecart}.
      */
-    public static final Key<BoundedValue<Double>> MINECART_POTENTIAL_MAX_SPEED = DummyObjectProvider.createExtendedFor(Key.class, "MINECART_POTENTIAL_MAX_SPEED");
+    public static final Supplier<Key<BoundedValue<Double>>> MINECART_POTENTIAL_MAX_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MINECART_POTENTIAL_MAX_SPEED");
 
     /**
      * Represents the {@link Key} for if a {@link Minecart} slows down when it has now {@link Keys#PASSENGERS}.
      */
-    public static final Key<Value<Boolean>> MINECART_SLOWS_UNOCCUPIED = DummyObjectProvider.createExtendedFor(Key.class, "MINECART_SLOW_WHEN_EMPTY");
+    public static final Supplier<Key<Value<Boolean>>> MINECART_SLOWS_UNOCCUPIED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MINECART_SLOW_WHEN_EMPTY");
 
     /**
      * Represents the {@link Key} for the swiftness of a {@link Minecart}.
      */
-    public static final Key<BoundedValue<Double>> MINECART_SWIFTNESS = DummyObjectProvider.createExtendedFor(Key.class, "MINECART_SWIFTNESS");
+    public static final Supplier<Key<BoundedValue<Double>>> MINECART_SWIFTNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MINECART_SWIFTNESS");
 
     /**
      * Represents the {@link Key} for representing the "moisture" state of {@link BlockTypes#FARMLAND}.
      */
-    public static final Key<BoundedValue<Integer>> MOISTURE = DummyObjectProvider.createExtendedFor(Key.class, "MOISTURE");
+    public static final Supplier<Key<BoundedValue<Integer>>> MOISTURE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MOISTURE");
 
     /**
      * Represents the {@link Key} for the type of a {@link Mooshroom}.
      */
-    public static final Key<Value<MooshroomType>> MOOSHROOM_TYPE = DummyObjectProvider.createExtendedFor(Key.class, "MOOSHROOM_TYPE");
+    public static final Supplier<Key<Value<MooshroomType>>> MOOSHROOM_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MOOSHROOM_TYPE");
 
     /**
      * Represents the {@link Key} for the pitch of a {@link BlockTypes#NOTE_BLOCK}.
      */
-    public static final Key<Value<NotePitch>> NOTE_PITCH = DummyObjectProvider.createExtendedFor(Key.class, "NOTE_PITCH");
+    public static final Supplier<Key<Value<NotePitch>>> NOTE_PITCH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "NOTE_PITCH");
 
     /**
      * Represents the {@link Key} for the notifier, usually of an {@link Entity}. It is up to the implementation to define.
      */
-    public static final Key<Value<UUID>> NOTIFIER = DummyObjectProvider.createExtendedFor(Key.class, "NOTIFIER");
+    public static final Supplier<Key<Value<UUID>>> NOTIFIER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "NOTIFIER");
 
     /**
      * Represents the {@link Key} for representing the "occupied" state of
      * beds, for example {@link BlockTypes#WHITE_BED}.
      */
-    public static final Key<Value<Boolean>> OCCUPIED = DummyObjectProvider.createExtendedFor(Key.class, "OCCUPIED");
+    public static final Supplier<Key<Value<Boolean>>> OCCUPIED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "OCCUPIED");
 
     /**
      * Represents the {@link Key} for representing a block's offset when inside
      * a {@link MinecartEntity}.
      */
-    public static final Key<Value<Integer>> OFFSET = DummyObjectProvider.createExtendedFor(Key.class, "OFFSET");
+    public static final Supplier<Key<Value<Integer>>> OFFSET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "OFFSET");
 
     /**
      * Represents the {@link Key} for representing the "open" state of
      * various door typed blocks.
      */
-    public static final Key<Value<Boolean>> OPEN = DummyObjectProvider.createExtendedFor(Key.class, "OPEN");
+    public static final Supplier<Key<Value<Boolean>>> OPEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "OPEN");
 
     /**
      * Represents the {@link ParrotType type} of a {@link Parrot}.
      */
-    public static final Key<Value<ParrotType>> PARROT_TYPE = DummyObjectProvider.createExtendedFor(Key.class, "PARROT_TYPE");
+    public static final Supplier<Key<Value<ParrotType>>> PARROT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PARROT_TYPE");
 
     /**
      * Represents the {@link Key} for the amount of ticks a {@link FurnaceBlockEntity} has
@@ -1671,7 +1673,7 @@ public final class Keys {
      * <p>Once this value reaches the one of {@link #MAX_BURN_TIME}, the
      * furnace will require more fuel in order to keep burning.</p>
      */
-    public static final Key<BoundedValue<Integer>> PASSED_BURN_TIME = DummyObjectProvider.createExtendedFor(Key.class, "PASSED_BURN_TIME");
+    public static final Supplier<Key<BoundedValue<Integer>>> PASSED_BURN_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PASSED_BURN_TIME");
 
     /**
      * Represents the {@link Key} for the amount of ticks a {@link FurnaceBlockEntity} has
@@ -1680,7 +1682,7 @@ public final class Keys {
      * <p>Once this value reaches the one of {@link #MAX_COOK_TIME}, the
      * item will be finished cooking.</p>
      */
-    public static final Key<BoundedValue<Integer>> PASSED_COOK_TIME = DummyObjectProvider.createExtendedFor(Key.class, "PASSED_COOK_TIME");
+    public static final Supplier<Key<BoundedValue<Integer>>> PASSED_COOK_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PASSED_COOK_TIME");
 
     /**
      * Represents the {@link Key} for the entities that act as passengers for
@@ -1689,12 +1691,12 @@ public final class Keys {
      * <p>For example, a {@link Player} riding on a {@link Horse} or a
      * {@link Pig} would be considered its passenger.</p>
      */
-    public static final Key<ListValue<Entity>> PASSENGERS = DummyObjectProvider.createExtendedFor(Key.class, "PASSENGERS");
+    public static final Supplier<Key<ListValue<Entity>>> PASSENGERS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PASSENGERS");
 
     /**
      * Represents the {@link Key} for if a {@link Patroller} is currently patrolling.
      */
-    public static final Key<Value<Boolean>> PATROLLING = DummyObjectProvider.createExtendedFor(Key.class, "PATROLLING");
+    public static final Supplier<Key<Value<Boolean>>> PATROLLING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PATROLLING");
 
     /**
      * Represents the {@link Key} for whether an {@link Entity} or
@@ -1704,7 +1706,7 @@ public final class Keys {
      * them. A persisting entity will not be removed due to no players being
      * near it.</p>
      */
-    public static final Key<Value<Boolean>> PERSISTENT = DummyObjectProvider.createExtendedFor(Key.class, "PERSISTENT");
+    public static final Supplier<Key<Value<Boolean>>> PERSISTENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PERSISTENT");
 
     /**
      * Represents the {@link Key} of the size of a {@link Phantom}. In vanilla, this ranges between 0 and 64.
@@ -1715,23 +1717,23 @@ public final class Keys {
      * Represents the {@link Key} for representing the pickup delay
      * of an {@link Item}.
      */
-    public static final Key<BoundedValue<Integer>> PICKUP_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "PICKUP_DELAY");
+    public static final Supplier<Key<BoundedValue<Integer>>> PICKUP_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PICKUP_DELAY");
 
     /**
      * Represents the {@link Key} for the "pickup rule" of an {@link ArrowEntity}.
      */
-    public static final Key<Value<PickupRule>> PICKUP_RULE = DummyObjectProvider.createExtendedFor(Key.class, "PICKUP_RULE");
+    public static final Supplier<Key<Value<PickupRule>>> PICKUP_RULE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PICKUP_RULE");
 
     /**
      * Represents the {@link Key} for whether a {@link Entity} is saddled.
      */
-    public static final Key<Value<Boolean>> IS_SADDLED = DummyObjectProvider.createExtendedFor(Key.class, "IS_SADDLED");
+    public static final Supplier<Key<Value<Boolean>>> IS_SADDLED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_SADDLED");
 
     /**
      * Represents the {@link Key} for which block types an {@link ItemStack}
      * may be placed on.
      */
-    public static final Key<SetValue<BlockType>> PLACEABLE_BLOCKS = DummyObjectProvider.createExtendedFor(Key.class, "PLACEABLE_BLOCKS");
+    public static final Supplier<Key<SetValue<BlockType>>> PLACEABLE_BLOCKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PLACEABLE_BLOCKS");
 
     /**
      * Represents the {@link Key} for the content of a
@@ -1740,29 +1742,29 @@ public final class Keys {
      * <p>Use {@link Keys#BOOK_PAGES} if you wish to get the contents of a
      * {@link ItemTypes#WRITTEN_BOOK}</p>
      */
-    public static final Key<ListValue<String>> PLAIN_BOOK_PAGES = DummyObjectProvider.createExtendedFor(Key.class, "PLAIN_BOOK_PAGES");
+    public static final Supplier<Key<ListValue<String>>> PLAIN_BOOK_PAGES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PLAIN_BOOK_PAGES");
 
     /**
      * Represents the {@link Key} for representing the {@link PortionType}
      * of a {@link BlockState}.
      */
-    public static final Key<Value<PortionType>> PORTION_TYPE = DummyObjectProvider.createExtendedFor(Key.class, "PORTION_TYPE");
+    public static final Supplier<Key<Value<PortionType>>> PORTION_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PORTION_TYPE");
 
     /**
      * Represents the {@link Key} for the color of an {@link ItemStack} potion.
      */
-    public static final Key<Value<Color>> POTION_COLOR = DummyObjectProvider.createExtendedFor(Key.class, "POTION_COLOR");
+    public static final Supplier<Key<Value<Color>>> POTION_COLOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "POTION_COLOR");
 
     /**
      * Represents the {@link Key} for which potion effects are present on an
      * {@link Entity} or stored on an {@link ItemStack}.
      */
-    public static final Key<ListValue<PotionEffect>> POTION_EFFECTS = DummyObjectProvider.createExtendedFor(Key.class, "POTION_EFFECTS");
+    public static final Supplier<Key<ListValue<PotionEffect>>> POTION_EFFECTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "POTION_EFFECTS");
 
     /**
      * Represents the {@link Key} for representing the potion type of an {@link ItemStack}.
      */
-    public static final Key<Value<PotionType>> POTION_TYPE = DummyObjectProvider.createExtendedFor(Key.class, "POTION_TYPE");
+    public static final Supplier<Key<Value<PotionType>>> POTION_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "POTION_TYPE");
 
     /**
      * Represents the {@link Key} for representing the "power" state
@@ -1773,7 +1775,7 @@ public final class Keys {
      * {@link BlockTypes#DAYLIGHT_DETECTOR},
      * {@link BlockTypes#LIGHT_WEIGHTED_PRESSURE_PLATE} etc.</p>
      */
-    public static final Key<BoundedValue<Integer>> POWER = DummyObjectProvider.createExtendedFor(Key.class, "POWER");
+    public static final Supplier<Key<BoundedValue<Integer>>> POWER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "POWER");
 
     /**
      * Represents the {@link Key} for representing the "powered" state
@@ -1785,38 +1787,38 @@ public final class Keys {
      * {@link BlockTypes#OAK_PRESSURE_PLATE}, and their stone
      * counterparts.</p>
      */
-    public static final Key<Value<Boolean>> POWERED = DummyObjectProvider.createExtendedFor(Key.class, "POWERED");
+    public static final Supplier<Key<Value<Boolean>>> POWERED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "POWERED");
 
     /**
      * Represents the {@link Key} for if a {@link FusedExplosive} is currently primed.
      */
-    public static final Key<Value<Boolean>> PRIMED = DummyObjectProvider.createExtendedFor(Key.class, "PRIMED");
+    public static final Supplier<Key<Value<Boolean>>> PRIMED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PRIMED");
 
     /**
      * Represents the {@link Key} for the {@link Villager} or {@link ZombieVillager}'s {@link Profession}.
      */
-    public static final Key<Value<Profession>> PROFESSION = DummyObjectProvider.createExtendedFor(Key.class, "PROFESSION");
+    public static final Supplier<Key<Value<Profession>>> PROFESSION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PROFESSION");
 
     /**
      * Represents the {@link Key} for the type of a {@link Rabbit}.
      */
-    public static final Key<Value<RabbitType>> RABBIT_TYPE = DummyObjectProvider.createExtendedFor(Key.class, "RABBIT_TYPE");
+    public static final Supplier<Key<Value<RabbitType>>> RABBIT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "RABBIT_TYPE");
 
     /**
      * Represents the {@link Key} for the wave number of a raid.
      */
-    public static final Key<Value<Integer>> RAID_WAVE = DummyObjectProvider.createExtendedFor(Key.class, "RAID_WAVE");
+    public static final Supplier<Key<Value<Integer>>> RAID_WAVE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "RAID_WAVE");
 
     /**
      * Represents the {@link Key} for representing the {@link RailDirection}
      * of a {@link BlockState}.
      */
-    public static final Key<Value<RailDirection>> RAIL_DIRECTION = DummyObjectProvider.createExtendedFor(Key.class, "RAIL_DIRECTION");
+    public static final Supplier<Key<Value<RailDirection>>> RAIL_DIRECTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "RAIL_DIRECTION");
 
     /**
      * Represents the {@link Key} for how much air a {@link Living} has left.
      */
-    public static final Key<BoundedValue<Integer>> REMAINING_AIR = DummyObjectProvider.createExtendedFor(Key.class, "REMAINING_AIR");
+    public static final Supplier<Key<BoundedValue<Integer>>> REMAINING_AIR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REMAINING_AIR");
 
     /**
      * Represents the {@link Key} for how many more ticks the current brewing
@@ -1824,14 +1826,14 @@ public final class Keys {
      *
      * <p>If nothing is being brewed, the remaining brew time will be 0.</p>
      */
-    public static final Key<BoundedValue<Integer>> REMAINING_BREW_TIME = DummyObjectProvider.createExtendedFor(Key.class, "REMAINING_BREW_TIME");
+    public static final Supplier<Key<BoundedValue<Integer>>> REMAINING_BREW_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REMAINING_BREW_TIME");
 
     /**
      * Represents the {@link Key} for the player represented by a
      * {@link BlockTypes#PLAYER_HEAD} (and {@link BlockTypes#PLAYER_WALL_HEAD})
      * block or a {@link ItemTypes#PLAYER_HEAD} item stack.
      */
-    public static final Key<Value<GameProfile>> REPRESENTED_PLAYER = DummyObjectProvider.createExtendedFor(Key.class, "REPRESENTED_PLAYER");
+    public static final Supplier<Key<Value<GameProfile>>> REPRESENTED_PLAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REPRESENTED_PLAYER");
 
     /**
      * Represents the {@link Key} for the spawn locations a {@link Player}
@@ -1843,24 +1845,24 @@ public final class Keys {
      * Represents the {@link Key} for the rotation of an {@link Entity}'s right
      * arm.
      */
-    public static final Key<Value<Vector3d>> RIGHT_ARM_ROTATION = DummyObjectProvider.createExtendedFor(Key.class, "RIGHT_ARM_ROTATION");
+    public static final Supplier<Key<Value<Vector3d>>> RIGHT_ARM_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "RIGHT_ARM_ROTATION");
 
     /**
      * Represents the {@link Key} for the rotation of an {@link Entity}'s right
      * leg.
      */
-    public static final Key<Value<Vector3d>> RIGHT_LEG_ROTATION = DummyObjectProvider.createExtendedFor(Key.class, "RIGHT_LEG_ROTATION");
+    public static final Supplier<Key<Value<Vector3d>>> RIGHT_LEG_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "RIGHT_LEG_ROTATION");
 
     /**
      * Represents the {@link Key} for the time a {@link Ravager} is roaring.
      */
-    public static final Key<Value<Integer>> ROARING_TIME = DummyObjectProvider.createExtendedFor(Key.class, "ATTACK_TIME");
+    public static final Supplier<Key<Value<Integer>>> ROARING_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ATTACK_TIME");
 
     /**
      * Represents the {@link Key} for the {@link Rotation} of a block or an
      * {@link ItemFrame}.
      */
-    public static final Key<Value<Rotation>> ROTATION = DummyObjectProvider.createExtendedFor(Key.class, "ROTATION");
+    public static final Supplier<Key<Value<Rotation>>> ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ROTATION");
 
     /**
      * Represents the {@link Key} for the current saturation of a {@link Living}.
@@ -1871,34 +1873,34 @@ public final class Keys {
      * over time and can be modified by movements and actions performed by the
      * {@link Humanoid}.</p>
      */
-    public static final Key<BoundedValue<Double>> SATURATION = DummyObjectProvider.createExtendedFor(Key.class, "SATURATION");
+    public static final Supplier<Key<BoundedValue<Double>>> SATURATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SATURATION");
 
     /**
      * Represents the {@link Key} for the "scale" for the size of an
      * {@link Entity}.
      */
-    public static final Key<BoundedValue<Double>> SCALE = DummyObjectProvider.createExtendedFor(Key.class, "SCALE");
+    public static final Supplier<Key<BoundedValue<Double>>> SCALE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SCALE");
 
     /**
      * Represents the {@link Key} for a {@link Fox fox's} second trusted {@link UUID}, usually a {@link Player}.
      */
-    public static final Key<Value<UUID>> SECOND_TRUSTED = DummyObjectProvider.createExtendedFor(Key.class, "SECOND_TRUSTED");
+    public static final Supplier<Key<Value<UUID>>> SECOND_TRUSTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SECOND_TRUSTED");
 
     /**
      * Represents the {@link Key} for representing the "should drop" state
      * of a {@link BlockState}.
      */
-    public static final Key<Value<Boolean>> SHOULD_DROP = DummyObjectProvider.createExtendedFor(Key.class, "SHOULD_DROP");
+    public static final Supplier<Key<Value<Boolean>>> SHOULD_DROP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SHOULD_DROP");
 
     /**
      * Represents the {@link Key} for if a {@link EnderCrystal} should show it's bottom bedrock platform.
      */
-    public static final Key<Value<Boolean>> SHOW_BOTTOM = DummyObjectProvider.createExtendedFor(Key.class, "SHOW_BOTTOM");
+    public static final Supplier<Key<Value<Boolean>>> SHOW_BOTTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SHOW_BOTTOM");
 
     /**
      * Represents the {@link Key} for the lines displayed on a {@link Sign}.
      */
-    public static final Key<ListValue<Text>> SIGN_LINES = DummyObjectProvider.createExtendedFor(Key.class, "SIGN_LINES");
+    public static final Supplier<Key<ListValue<Text>>> SIGN_LINES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SIGN_LINES");
 
     /**
      * Represents the {@link Key} for the skin of a {@link Humanoid}.
@@ -1907,54 +1909,54 @@ public final class Keys {
      * having that skin. The binary skin data is signed by Mojang so fully
      * customized skins are not possible.</p>
      */
-    public static final Key<Value<ProfileProperty>> SKIN = DummyObjectProvider.createExtendedFor(Key.class, "SKIN");
+    public static final Supplier<Key<Value<ProfileProperty>>> SKIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SKIN");
 
     /**
      * Represents the {@link Key} for representing the {@link SlabPortion}
      * of a {@link BlockState}.
      */
-    public static final Key<Value<SlabPortion>> SLAB_PORTION = DummyObjectProvider.createExtendedFor(Key.class, "SLAB_PORTION");
+    public static final Supplier<Key<Value<SlabPortion>>> SLAB_PORTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SLAB_PORTION");
 
     /**
      * Represents the {@link Key} for the size of a {@link Slime}.
      */
-    public static final Key<BoundedValue<Integer>> SLIME_SIZE = DummyObjectProvider.createExtendedFor(Key.class, "SLIME_SIZE");
+    public static final Supplier<Key<BoundedValue<Integer>>> SLIME_SIZE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SLIME_SIZE");
 
     /**
      * Represents the {@link Key} for the time a {@link Panda} has been sneezing (in ticks)
      */
-    public static final Key<Value<Integer>> SNEEZING_TIME = DummyObjectProvider.createExtendedFor(Key.class, "SNEEZING_TIME");
+    public static final Supplier<Key<Value<Integer>>> SNEEZING_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SNEEZING_TIME");
 
     /**
      * Represents the {@link Key} for representing the "snowed" state
      * of a {@link BlockState}.
      */
-    public static final Key<Value<Boolean>> SNOWED = DummyObjectProvider.createExtendedFor(Key.class, "SNOWED");
+    public static final Supplier<Key<Value<Boolean>>> SNOWED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SNOWED");
 
     /**
      * Represents the {@link Key} for the list of {@link EntityArchetype}s able
      * to be spawned by a {@link MobSpawner}.
      */
-    public static final Key<WeightedCollectionValue<EntityArchetype>> SPAWNER_ENTITIES = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_ENTITIES");
+    public static final Supplier<Key<WeightedCollectionValue<EntityArchetype>>> SPAWNER_ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWNER_ENTITIES");
 
     /**
      * Represents the {@link Key} for the maximum amount of ticks between two
      * batches of entities spawned by a {@link MobSpawner}.
      */
-    public static final Key<BoundedValue<Integer>> SPAWNER_MAXIMUM_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_MAXIMUM_DELAY");
+    public static final Supplier<Key<BoundedValue<Integer>>> SPAWNER_MAXIMUM_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWNER_MAXIMUM_DELAY");
 
     /**
      * Represents the {@link Key} for the maximum number of entities around a
      * {@link MobSpawner}. A spawner will not spawn entities if there are more
      * entities around than this value permits.
      */
-    public static final Key<BoundedValue<Integer>> SPAWNER_MAXIMUM_NEARBY_ENTITIES = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_MAXIMUM_NEARBY_ENTITIES");
+    public static final Supplier<Key<BoundedValue<Integer>>> SPAWNER_MAXIMUM_NEARBY_ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWNER_MAXIMUM_NEARBY_ENTITIES");
 
     /**
      * Represents the {@link Key} for the minimum amount of ticks between two
      * batches of entities spawned by a {@link MobSpawner}.
      */
-    public static final Key<BoundedValue<Integer>> SPAWNER_MINIMUM_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_MINIMUM_DELAY");
+    public static final Supplier<Key<BoundedValue<Integer>>> SPAWNER_MINIMUM_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWNER_MINIMUM_DELAY");
 
     /**
      * Represents the {@link Key} for the next entity that will be spawned
@@ -1964,43 +1966,43 @@ public final class Keys {
      * applied to the {@link #SPAWNER_ENTITIES} weighted collection. If this
      * value exists, it will override the random spawn with a definite one.</p>
      */
-    public static final Key<Value<WeightedSerializableObject<EntityArchetype>>> SPAWNER_NEXT_ENTITY_TO_SPAWN = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_NEXT_ENTITY_TO_SPAWN");
+    public static final Supplier<Key<Value<WeightedSerializableObject<EntityArchetype>>>> SPAWNER_NEXT_ENTITY_TO_SPAWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWNER_NEXT_ENTITY_TO_SPAWN");
 
     /**
      * Represents the {@link Key} for the remaining number of ticks to pass
      * before another attempt to spawn entities is made by a {@link MobSpawner}.
      */
-    public static final Key<BoundedValue<Integer>> SPAWNER_REMAINING_DELAY = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_REMAINING_DELAY");
+    public static final Supplier<Key<BoundedValue<Integer>>> SPAWNER_REMAINING_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWNER_REMAINING_DELAY");
 
     /**
      * Represents the {@link Key} for how close a {@link Player} has to be
      * around the {@link MobSpawner} in order for it to attempt to
      * spawn entities.
      */
-    public static final Key<BoundedValue<Integer>> SPAWNER_REQUIRED_PLAYER_RANGE = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_REQUIRED_PLAYER_RANGE");
+    public static final Supplier<Key<BoundedValue<Integer>>> SPAWNER_REQUIRED_PLAYER_RANGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWNER_REQUIRED_PLAYER_RANGE");
 
     /**
      * Represents the {@link Key} for how many entities a {@link MobSpawner} has
      * spawned so far.
      */
-    public static final Key<BoundedValue<Integer>> SPAWNER_SPAWN_COUNT = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_SPAWN_COUNT");
+    public static final Supplier<Key<BoundedValue<Integer>>> SPAWNER_SPAWN_COUNT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWNER_SPAWN_COUNT");
 
     /**
      * Represents the {@link Key} for how far away from the
      * {@link MobSpawner} the entities spawned by it may appear.
      */
-    public static final Key<BoundedValue<Integer>> SPAWNER_SPAWN_RANGE = DummyObjectProvider.createExtendedFor(Key.class, "SPAWNER_SPAWN_RANGE");
+    public static final Supplier<Key<BoundedValue<Integer>>> SPAWNER_SPAWN_RANGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWNER_SPAWN_RANGE");
 
     /**
      * Represents the {@link Key} for the {@link Entity target} of the spectator camera of a {@link Player}.
      */
-    public static final Key<Value<Entity>> SPECTATOR_TARGET = DummyObjectProvider.createExtendedFor(Key.class, "SPECTATOR_TARGET");
+    public static final Supplier<Key<Value<Entity>>> SPECTATOR_TARGET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPECTATOR_TARGET");
 
     /**
      * Represents the {@link Key} for representing the {@link StairShape}
      * of a {@link BlockState}.
      */
-    public static final Key<Value<StairShape>> STAIR_SHAPE = DummyObjectProvider.createExtendedFor(Key.class, "STAIR_SHAPE");
+    public static final Supplier<Key<Value<StairShape>>> STAIR_SHAPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STAIR_SHAPE");
 
     /**
      * Represents the {@link Key} for the {@link Statistic}s of a {@link Player}.
@@ -2016,80 +2018,80 @@ public final class Keys {
      * affecting the item stack are retrieved via {@link #ITEM_ENCHANTMENTS}
      * instead.</p>
      */
-    public static final Key<ListValue<Enchantment>> STORED_ENCHANTMENTS = DummyObjectProvider.createExtendedFor(Key.class, "STORED_ENCHANTMENTS");
+    public static final Supplier<Key<ListValue<Enchantment>>> STORED_ENCHANTMENTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STORED_ENCHANTMENTS");
 
     /**
      * Represents the {@link Key} for representing the mode of a {@link StructureBlock}.
      */
-    public static final Key<Value<String>> STRUCTURE_AUTHOR = DummyObjectProvider.createExtendedFor(Key.class, "STRUCTURE_AUTHOR");
+    public static final Supplier<Key<Value<String>>> STRUCTURE_AUTHOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STRUCTURE_AUTHOR");
 
     /**
      * Represents the {@link Key} for representing the mode of a {@link StructureBlock}.
      */
-    public static final Key<Value<Boolean>> STRUCTURE_IGNORE_ENTITIES = DummyObjectProvider.createExtendedFor(Key.class, "STRUCTURE_IGNORE_ENTITIES");
+    public static final Supplier<Key<Value<Boolean>>> STRUCTURE_IGNORE_ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STRUCTURE_IGNORE_ENTITIES");
 
     /**
      * Represents the {@link Key} for representing the mode of a {@link StructureBlock}.
      */
-    public static final Key<Value<Double>> STRUCTURE_INTEGRITY = DummyObjectProvider.createExtendedFor(Key.class, "STRUCTURE_INTEGRITY");
+    public static final Supplier<Key<Value<Double>>> STRUCTURE_INTEGRITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STRUCTURE_INTEGRITY");
 
     /**
      * Represents the {@link Key} for representing the mode of a {@link StructureBlock}.
      */
-    public static final Key<Value<StructureMode>> STRUCTURE_MODE = DummyObjectProvider.createExtendedFor(Key.class, "STRUCTURE_MODE");
+    public static final Supplier<Key<Value<StructureMode>>> STRUCTURE_MODE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STRUCTURE_MODE");
 
     /**
      * Represents the {@link Key} for representing the position of a {@link StructureBlock}.
      */
-    public static final Key<Value<Vector3i>> STRUCTURE_POSITION = DummyObjectProvider.createExtendedFor(Key.class, "STRUCTURE_POSITION");
+    public static final Supplier<Key<Value<Vector3i>>> STRUCTURE_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STRUCTURE_POSITION");
 
     /**
      * Represents the {@link Key} for representing the mode of a {@link StructureBlock}.
      */
-    public static final Key<Value<Boolean>> STRUCTURE_POWERED = DummyObjectProvider.createExtendedFor(Key.class, "STRUCTURE_POWERED");
+    public static final Supplier<Key<Value<Boolean>>> STRUCTURE_POWERED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STRUCTURE_POWERED");
 
     /**
      * Represents the {@link Key} for representing the mode of a {@link StructureBlock}.
      */
-    public static final Key<Value<Long>> STRUCTURE_SEED = DummyObjectProvider.createExtendedFor(Key.class, "STRUCTURE_SEED");
+    public static final Supplier<Key<Value<Long>>> STRUCTURE_SEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STRUCTURE_SEED");
 
     /**
      * Represents the {@link Key} for representing the mode of a {@link StructureBlock}.
      */
-    public static final Key<Value<Boolean>> STRUCTURE_SHOW_AIR = DummyObjectProvider.createExtendedFor(Key.class, "STRUCTURE_SHOW_AIR");
+    public static final Supplier<Key<Value<Boolean>>> STRUCTURE_SHOW_AIR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STRUCTURE_SHOW_AIR");
 
     /**
      * Represents the {@link Key} for representing the mode of a {@link StructureBlock}.
      */
-    public static final Key<Value<Boolean>> STRUCTURE_SHOW_BOUNDING_BOX = DummyObjectProvider.createExtendedFor(Key.class, "STRUCTURE_SHOW_BOUNDING_BOX");
+    public static final Supplier<Key<Value<Boolean>>> STRUCTURE_SHOW_BOUNDING_BOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STRUCTURE_SHOW_BOUNDING_BOX");
 
     /**
      * Represents the {@link Key} for representing the size of a {@link StructureBlock}.
      */
-    public static final Key<Value<Vector3i>> STRUCTURE_SIZE = DummyObjectProvider.createExtendedFor(Key.class, "STRUCTURE_SIZE");
+    public static final Supplier<Key<Value<Vector3i>>> STRUCTURE_SIZE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STRUCTURE_SIZE");
 
     /**
      * Represents the {@link Key} for representing the amount of "stuck arrows"
      * in {@link Living} entities.
      */
-    public static final Key<BoundedValue<Integer>> STUCK_ARROWS = DummyObjectProvider.createExtendedFor(Key.class, "STUCK_ARROWS");
+    public static final Supplier<Key<BoundedValue<Integer>>> STUCK_ARROWS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STUCK_ARROWS");
 
     /**
      * Represents the {@link Key} for the time a {@link Ravager} is stunned.
      */
-    public static final Key<Value<Integer>> STUNNED_TIME = DummyObjectProvider.createExtendedFor(Key.class, "STUNNED_TIME");
+    public static final Supplier<Key<Value<Integer>>> STUNNED_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STUNNED_TIME");
 
     /**
      * Represents a key for the amount of successful executions of a command
      * stored in a {@link CommandBlock} or {@link CommandBlockMinecart}.
      */
-    public static final Key<BoundedValue<Integer>> SUCCESS_COUNT = DummyObjectProvider.createExtendedFor(Key.class, "SUCCESS_COUNT");
+    public static final Supplier<Key<BoundedValue<Integer>>> SUCCESS_COUNT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SUCCESS_COUNT");
 
     /**
      * Represents the {@link Key} for representing the "suspended" state
      * of a {@link BlockState}.
      */
-    public static final Key<Value<Boolean>> SUSPENDED = DummyObjectProvider.createExtendedFor(Key.class, "SUSPENDED");
+    public static final Supplier<Key<Value<Boolean>>> SUSPENDED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SUSPENDED");
 
     /**
      * Represents the {@link Key} for representing the scoreboard tags applied
@@ -2098,41 +2100,41 @@ public final class Keys {
      * @see <a href="https://minecraft.gamepedia.com/Scoreboard#Tags">
      * https://minecraft.gamepedia.com/Scoreboard#Tags</a>
      */
-    public static final Key<SetValue<String>> TAGS = DummyObjectProvider.createExtendedFor(Key.class, "TAGS");
+    public static final Supplier<Key<SetValue<String>>> TAGS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TAGS");
 
     /**
      * Represents the {@link Key} for the tamer of a {@link TameableAnimal} or {@link HorseEntity}.
      */
-    public static final Key<Value<UUID>> TAMER = DummyObjectProvider.createExtendedFor(Key.class, "TAMER");
+    public static final Supplier<Key<Value<UUID>>> TAMER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TAMER");
 
     /**
      * Represents the {@link Key} for a {@link Wither}'s targets.
      */
-    public static final Key<ListValue<Living>> TARGET_ENTITIES = DummyObjectProvider.createExtendedFor(Key.class, "TARGET_ENTITIES");
+    public static final Supplier<Key<ListValue<Living>>> TARGET_ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TARGET_ENTITIES");
 
     /**
      * Represents the {@link Key} for a targeted entity either by an {@link Agent} and it's
      * {@link GoalExecutorTypes#TARGET} selector or by a {@link FishingBobber} or {@link ShulkerBullet}.
      */
-    public static final Key<Value<Entity>> TARGET_ENTITY = DummyObjectProvider.createExtendedFor(Key.class, "TARGET_ENTITY");
+    public static final Supplier<Key<Value<Entity>>> TARGET_ENTITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TARGET_ENTITY");
 
     /**
      * Represents the {@link Key} for the location targeted by an
      * {@link EyeOfEnder} or a {@link Player}'s compass.
      */
-    public static final Key<Value<Vector3d>> TARGET_LOCATION = DummyObjectProvider.createExtendedFor(Key.class, "TARGET_LOCATION");
+    public static final Supplier<Key<Value<Vector3d>>> TARGET_LOCATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TARGET_LOCATION");
 
     /**
      * Represents the {@link Key} for a {@link Vector3i} that is currently a target. Example usage is a {@link Patroller}'s patrol target.
      */
-    public static final Key<Value<Vector3i>> TARGET_POSITION = DummyObjectProvider.createExtendedFor(Key.class, "TARGET_POSITION");
+    public static final Supplier<Key<Value<Vector3i>>> TARGET_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TARGET_POSITION");
 
     /**
      * Represents the {@link Key} for the remaining fuse time in ticks of a
      * {@link FusedExplosive}. This value may be set to an arbitrary value
      * if the explosive is not primed.
      */
-    public static final Key<Value<Integer>> TICKS_REMAINING = DummyObjectProvider.createExtendedFor(Key.class, "TICKS_REMAINING");
+    public static final Supplier<Key<Value<Integer>>> TICKS_REMAINING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TICKS_REMAINING");
 
     /**
      * Represents the {@link Key} for whether a {@link CommandBlock} does track
@@ -2141,43 +2143,43 @@ public final class Keys {
      * <p>If this is set, the output of the most recent execution can be
      * retrieved using {@link #LAST_COMMAND_OUTPUT}.</p>
      */
-    public static final Key<Value<Boolean>> TRACKS_OUTPUT = DummyObjectProvider.createExtendedFor(Key.class, "TRACKS_OUTPUT");
+    public static final Supplier<Key<Value<Boolean>>> TRACKS_OUTPUT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TRACKS_OUTPUT");
 
     /**
      * Represents the {@link Key} for the {@link TradeOffer}s offered by a
      * {@link Trader}.
      */
-    public static final Key<ListValue<TradeOffer>> TRADE_OFFERS = DummyObjectProvider.createExtendedFor(Key.class, "TRADE_OFFERS");
+    public static final Supplier<Key<ListValue<TradeOffer>>> TRADE_OFFERS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TRADE_OFFERS");
 
     /**
      * Represents the {@link Key} for if a {@link Turtle} currently has an egg.
      */
-    public static final Key<Value<Boolean>> TURTLE_DOES_HAVE_EGG = DummyObjectProvider.createExtendedFor(Key.class, "TURTLE_DOES_HAS_EGG");
+    public static final Supplier<Key<Value<Boolean>>> TURTLE_DOES_HAVE_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TURTLE_DOES_HAS_EGG");
 
     /**
      * Represents the {@link Key} for the {@link Vector3i position} where a {@link Turtle} lays {@link BlockTypes#TURTLE_EGG eggs}.
      */
-    public static final Key<Value<Vector3i>> TURTLE_HOME_POSITION = DummyObjectProvider.createExtendedFor(Key.class, "TURTLE_HOME_POSITION");
+    public static final Supplier<Key<Value<Vector3i>>> TURTLE_HOME_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TURTLE_HOME_POSITION");
 
     /**
      * Represents the {@link Key} for the if a {@link Turtle} is proceeding to it's {@link Vector3i home position}.
      */
-    public static final Key<Value<Boolean>> TURTLE_IS_GOING_HOME = DummyObjectProvider.createExtendedFor(Key.class, "TURTLE_IS_GOING_HOME");
+    public static final Supplier<Key<Value<Boolean>>> TURTLE_IS_GOING_HOME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TURTLE_IS_GOING_HOME");
 
     /**
      * Represents the {@link Key} for if a {@link Turtle} is currently laying an egg.
      */
-    public static final Key<Value<Boolean>> TURTLE_IS_LAYING_EGG = DummyObjectProvider.createExtendedFor(Key.class, "TURTLE_IS_LAYING_EGG");
+    public static final Supplier<Key<Value<Boolean>>> TURTLE_IS_LAYING_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TURTLE_IS_LAYING_EGG");
 
     /**
      * Represents the {@link Key} for if a {@link Turtle} is currently traveling.
      */
-    public static final Key<Value<Boolean>> TURTLE_IS_TRAVELING = DummyObjectProvider.createExtendedFor(Key.class, "TURTLE_IS_TRAVELING");
+    public static final Supplier<Key<Value<Boolean>>> TURTLE_IS_TRAVELING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TURTLE_IS_TRAVELING");
 
     /**
      * Represents the {@link Key} for the {@link Vector3i position} where a {@link Turtle} travels to when it is not currently laying an egg.
      */
-    public static final Key<Value<Vector3i>> TURTLE_TRAVELING_POSITION = DummyObjectProvider.createExtendedFor(Key.class, "TURTLE_TRAVELING_POSITION");
+    public static final Supplier<Key<Value<Vector3i>>> TURTLE_TRAVELING_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TURTLE_TRAVELING_POSITION");
 
     /**
      * Represents the {@link Key} for whether an {@link ItemStack} is unbreakable.
@@ -2185,23 +2187,23 @@ public final class Keys {
      * <p>Setting this to {@code  true} will prevent the item stack's
      * {@link #ITEM_DURABILITY} from changing.</p>
      */
-    public static final Key<Value<Boolean>> IS_UNBREAKABLE = DummyObjectProvider.createExtendedFor(Key.class, "IS_UNBREAKABLE");
+    public static final Supplier<Key<Value<Boolean>>> IS_UNBREAKABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_UNBREAKABLE");
 
     /**
      * Represents the {@link Key} for whether a TNT block is unstable.
      */
-    public static final Key<Value<Boolean>> UNSTABLE = DummyObjectProvider.createExtendedFor(Key.class, "UNSTABLE");
+    public static final Supplier<Key<Value<Boolean>>> UNSTABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "UNSTABLE");
 
     /**
      * Represents the {@link Key} for the time a {@link Panda} has been unhappy (in ticks)
      */
-    public static final Key<Value<Integer>> UNHAPPY_TIME = DummyObjectProvider.createExtendedFor(Key.class, "UNHAPPY_TIME");
+    public static final Supplier<Key<Value<Integer>>> UNHAPPY_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "UNHAPPY_TIME");
 
     /**
      * Represents the {@link Key} for whether or not changes to {@link Keys#SKIN} should
      * be reflected in an entitie's {@link GameProfile}.
      */
-    public static final Key<Value<Boolean>> UPDATE_GAME_PROFILE = DummyObjectProvider.createExtendedFor(Key.class, "UPDATE_GAME_PROFILE");
+    public static final Supplier<Key<Value<Boolean>>> UPDATE_GAME_PROFILE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "UPDATE_GAME_PROFILE");
 
     /**
      * Gets the {@link Key} for the "vanish" state of an {@link Entity}.
@@ -2216,7 +2218,7 @@ public final class Keys {
      * <p>
      * #VANISH
      */
-    public static final Key<Value<Boolean>> VANISH = DummyObjectProvider.createExtendedFor(Key.class, "VANISH");
+    public static final Supplier<Key<Value<Boolean>>> VANISH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "VANISH");
 
     /**
      * Represents the {@link Key} for whether an {@link Entity} ignores collision
@@ -2225,7 +2227,7 @@ public final class Keys {
      * <p>This state will be ignored if the {@link Entity} is not also
      * vanished as per {@link #VANISH}.</p>
      */
-    public static final Key<Value<Boolean>> VANISH_IGNORES_COLLISION = DummyObjectProvider.createExtendedFor(Key.class, "VANISH_IGNORES_COLLISION");
+    public static final Supplier<Key<Value<Boolean>>> VANISH_IGNORES_COLLISION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "VANISH_IGNORES_COLLISION");
 
     /**
      * Represents the {@link Key} for
@@ -2237,7 +2239,7 @@ public final class Keys {
      * <p>This state will be ignored if the {@link Entity} is not also
      * vanished as per {@link #VANISH}.}.</p>
      */
-    public static final Key<Value<Boolean>> VANISH_PREVENTS_TARGETING = DummyObjectProvider.createExtendedFor(Key.class, "VANISH_PREVENTS_TARGETING");
+    public static final Supplier<Key<Value<Boolean>>> VANISH_PREVENTS_TARGETING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "VANISH_PREVENTS_TARGETING");
 
     /**
      * Represents the {@link Key} for the vehicle an {@link Entity} is riding.
@@ -2245,28 +2247,28 @@ public final class Keys {
      * <p>Vehicles may be nested as a vehicle might itself ride another entity.
      * To get the vehicle on bottom, use {@link Keys#BASE_VEHICLE}.</p>
      */
-    public static final Key<Value<Entity>> VEHICLE = DummyObjectProvider.createExtendedFor(Key.class, "VEHICLE");
+    public static final Supplier<Key<Value<Entity>>> VEHICLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "VEHICLE");
 
     /**
      * Represents the {@link Key} for the velocity of an {@link Entity}.
      */
-    public static final Key<Value<Vector3d>> VELOCITY = DummyObjectProvider.createExtendedFor(Key.class, "VELOCITY");
+    public static final Supplier<Key<Value<Vector3d>>> VELOCITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "VELOCITY");
 
     /**
      * Represents the {@link Key} for the type of a {@link Villager} or {@link ZombieVillager}.
      */
-    public static final Key<Value<VillagerType>> VILLAGER_TYPE = DummyObjectProvider.createExtendedFor(Key.class, "VILLAGER_TYPE");
+    public static final Supplier<Key<Value<VillagerType>>> VILLAGER_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "VILLAGER_TYPE");
 
     /**
      * Represents the {@link Key} for the speed at which an entity walks.
      */
-    public static final Key<Value<Double>> WALKING_SPEED = DummyObjectProvider.createExtendedFor(Key.class, "WALKING_SPEED");
+    public static final Supplier<Key<Value<Double>>> WALKING_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "WALKING_SPEED");
 
     /**
      * Represents the {@link Key} for whether a thrown {@link EyeOfEnder} will
      * shatter.
      */
-    public static final Key<Value<Boolean>> WILL_SHATTER = DummyObjectProvider.createExtendedFor(Key.class, "WILL_SHATTER");
+    public static final Supplier<Key<Value<Boolean>>> WILL_SHATTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "WILL_SHATTER");
 
     /**
      * Represents the {@link Key} for how a {@link BlockTypes#REDSTONE_WIRE} is
@@ -2278,46 +2280,46 @@ public final class Keys {
      * Represents the {@link Key} for how a {@link BlockTypes#REDSTONE_WIRE} is
      * connected to its neighboring block to the {@link Direction#EAST}.
      */
-    public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_EAST = DummyObjectProvider.createExtendedFor(Key.class, "WIRE_ATTACHMENT_EAST");
+    public static final Supplier<Key<Value<WireAttachmentType>>> WIRE_ATTACHMENT_EAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "WIRE_ATTACHMENT_EAST");
 
     /**
      * Represents the {@link Key} for how a {@link BlockTypes#REDSTONE_WIRE} is
      * connected to its neighboring block to the {@link Direction#NORTH}.
      */
-    public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_NORTH = DummyObjectProvider.createExtendedFor(Key.class, "WIRE_ATTACHMENT_NORTH");
+    public static final Supplier<Key<Value<WireAttachmentType>>> WIRE_ATTACHMENT_NORTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "WIRE_ATTACHMENT_NORTH");
 
     /**
      * Represents the {@link Key} for how a {@link BlockTypes#REDSTONE_WIRE} is
      * connected to its neighboring block to the {@link Direction#SOUTH}.
      */
-    public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_SOUTH = DummyObjectProvider.createExtendedFor(Key.class, "WIRE_ATTACHMENT_SOUTH");
+    public static final Supplier<Key<Value<WireAttachmentType>>> WIRE_ATTACHMENT_SOUTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "WIRE_ATTACHMENT_SOUTH");
 
     /**
      * Represents the {@link Key} for how a {@link BlockTypes#REDSTONE_WIRE} is
      * connected to its neighboring block to the {@link Direction#WEST}.
      */
-    public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_WEST = DummyObjectProvider.createExtendedFor(Key.class, "WIRE_ATTACHMENT_WEST");
+    public static final Supplier<Key<Value<WireAttachmentType>>> WIRE_ATTACHMENT_WEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "WIRE_ATTACHMENT_WEST");
 
     /**
      * Represents the {@link Key} for the {@link Sheep} who is being targeted by the {@link SpellTypes#WOLOLO}
      * spell being casted by an {@link Evoker}
      */
-    public static final Key<Value<Sheep>> WOLOLO_TARGET = DummyObjectProvider.createExtendedFor(Key.class, "WOLOLO_TARGET");
+    public static final Supplier<Key<Value<Sheep>>> WOLOLO_TARGET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "WOLOLO_TARGET");
 
     /**
      * Represents the {@link Key} for the {@link WoodType} of a {@link Boat}.
      */
-    public static final Key<Value<WoodType>> WOOD_TYPE = DummyObjectProvider.createExtendedFor(Key.class, "WOOD_TYPE");
+    public static final Supplier<Key<Value<WoodType>>> WOOD_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "WOOD_TYPE");
 
     /**
      * Represents the {@link Key} for the temperature of a biome at a block location.
      */
-    public static final Key<Value<Double>> BIOME_TEMPERATURE = DummyObjectProvider.createExtendedFor(Key.class, "BIOME_TEMPERATURE");
+    public static final Supplier<Key<Value<Double>>> BIOME_TEMPERATURE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BIOME_TEMPERATURE");
 
     /**
      * Represents the {@link Key} for the blast resistance of a block.
      */
-    public static final Key<Value<Double>> BLAST_RESISTANCE = DummyObjectProvider.createExtendedFor(Key.class, "BLAST_RESISTANCE");
+    public static final Supplier<Key<Value<Double>>> BLAST_RESISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BLAST_RESISTANCE");
 
     /**
      * Represents the {@link Key} for the amount of light that is emitted by the
@@ -2325,12 +2327,12 @@ public final class Keys {
      *
      * <p>In vanilla minecraft is this value in steps of 1/15 from 0 to 1.</p>
      */
-    public static final Key<Value<Double>> BLOCK_LUMINANCE = DummyObjectProvider.createExtendedFor(Key.class, "BLOCK_LUMINANCE");
+    public static final Supplier<Key<Value<Double>>> BLOCK_LUMINANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BLOCK_LUMINANCE");
 
     /**
      * Represents the {@link Key} for the hardness of something, usually a block.
      */
-    public static final Key<BoundedValue<Double>> HARDNESS = DummyObjectProvider.createExtendedFor(Key.class, "HARDNESS");
+    public static final Supplier<Key<BoundedValue<Double>>> HARDNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HARDNESS");
 
     // SORTFIELDS:OFF
 

@@ -24,15 +24,17 @@
  */
 package org.spongepowered.api.world;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 public final class LightTypes {
 
     // SORTFIELDS:ON
 
-    public static final LightType SKY = DummyObjectProvider.createFor(LightType.class, "SKY");
+    public static final Supplier<LightType> SKY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(LightType.class, "SKY");
 
-    public static final LightType BLOCK = DummyObjectProvider.createFor(LightType.class, "BLOCK");
+    public static final Supplier<LightType> BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(LightType.class, "BLOCK");
 
     // SORTFIELDS:OFF
 

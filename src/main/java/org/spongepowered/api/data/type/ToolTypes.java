@@ -33,15 +33,15 @@ public final class ToolTypes {
 
     // SORTFIELDS:ON
 
-    public static final ToolType DIAMOND = DummyObjectProvider.createFor(ToolType.class, "DIAMOND");
+    public static final Supplier<ToolType> DIAMOND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ToolType.class, "DIAMOND");
 
-    public static final ToolType GOLD = DummyObjectProvider.createFor(ToolType.class, "GOLD");
+    public static final Supplier<ToolType> GOLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ToolType.class, "GOLD");
 
-    public static final ToolType IRON = DummyObjectProvider.createFor(ToolType.class, "IRON");
+    public static final Supplier<ToolType> IRON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ToolType.class, "IRON");
 
-    public static final ToolType STONE = DummyObjectProvider.createFor(ToolType.class, "STONE");
+    public static final Supplier<ToolType> STONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ToolType.class, "STONE");
 
-    public static final ToolType WOOD = DummyObjectProvider.createFor(ToolType.class, "WOOD");
+    public static final Supplier<ToolType> WOOD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ToolType.class, "WOOD");
 
     // SORTFIELDS:OFF
 

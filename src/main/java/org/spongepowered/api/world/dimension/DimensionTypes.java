@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.world.dimension;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 /**
  * Holds all possible {@link DimensionType}s.
@@ -33,11 +35,11 @@ public final class DimensionTypes {
 
     // SORTFIELDS:ON
 
-    public static final DimensionType OVERWORLD = DummyObjectProvider.createFor(DimensionType.class, "OVERWORLD");
+    public static final Supplier<DimensionType> OVERWORLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DimensionType.class, "OVERWORLD");
 
-    public static final DimensionType THE_END = DummyObjectProvider.createFor(DimensionType.class, "THE_END");
+    public static final Supplier<DimensionType> THE_END = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DimensionType.class, "THE_END");
 
-    public static final DimensionType THE_NETHER = DummyObjectProvider.createFor(DimensionType.class, "THE_NETHER");
+    public static final Supplier<DimensionType> THE_NETHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DimensionType.class, "THE_NETHER");
 
     // SORTFIELDS:OFF
 

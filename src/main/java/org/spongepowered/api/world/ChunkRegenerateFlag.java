@@ -104,4 +104,8 @@ public interface ChunkRegenerateFlag {
      */
     ChunkRegenerateFlag andNotFlag(ChunkRegenerateFlag flag);
 
+    public interface Factory {
+
+        ChunkRegenerateFlag empty();
+    }
 }

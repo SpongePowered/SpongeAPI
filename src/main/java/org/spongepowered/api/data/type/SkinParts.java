@@ -33,19 +33,19 @@ public final class SkinParts {
 
     // SORTFIELDS:ON
 
-    public static final SkinPart CAPE = DummyObjectProvider.createFor(SkinPart.class, "CAPE");
+    public static final Supplier<SkinPart> CAPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SkinPart.class, "CAPE");
 
-    public static final SkinPart HAT = DummyObjectProvider.createFor(SkinPart.class, "HAT");
+    public static final Supplier<SkinPart> HAT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SkinPart.class, "HAT");
 
-    public static final SkinPart JACKET = DummyObjectProvider.createFor(SkinPart.class, "JACKET");
+    public static final Supplier<SkinPart> JACKET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SkinPart.class, "JACKET");
 
-    public static final SkinPart LEFT_PANTS_LEG = DummyObjectProvider.createFor(SkinPart.class, "LEFT_PANTS_LEG");
+    public static final Supplier<SkinPart> LEFT_PANTS_LEG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SkinPart.class, "LEFT_PANTS_LEG");
 
-    public static final SkinPart LEFT_SLEEVE = DummyObjectProvider.createFor(SkinPart.class, "LEFT_SLEEVE");
+    public static final Supplier<SkinPart> LEFT_SLEEVE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SkinPart.class, "LEFT_SLEEVE");
 
-    public static final SkinPart RIGHT_PANTS_LEG = DummyObjectProvider.createFor(SkinPart.class, "RIGHT_PANTS_LEG");
+    public static final Supplier<SkinPart> RIGHT_PANTS_LEG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SkinPart.class, "RIGHT_PANTS_LEG");
 
-    public static final SkinPart RIGHT_SLEEVE = DummyObjectProvider.createFor(SkinPart.class, "RIGHT_SLEEVE");
+    public static final Supplier<SkinPart> RIGHT_SLEEVE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SkinPart.class, "RIGHT_SLEEVE");
 
     // SORTFIELDS:OFF
 

@@ -30,19 +30,19 @@ public final class VillagerTypes {
 
     // SORTFIELDS:ON
 
-    public static final VillagerType DESERT = DummyObjectProvider.createFor(VillagerType.class, "DESERT");
+    public static final Supplier<VillagerType> DESERT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "DESERT");
 
-    public static final VillagerType JUNGLE = DummyObjectProvider.createFor(VillagerType.class, "JUNGLE");
+    public static final Supplier<VillagerType> JUNGLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "JUNGLE");
 
-    public static final VillagerType PLAINS = DummyObjectProvider.createFor(VillagerType.class, "PLAINS");
+    public static final Supplier<VillagerType> PLAINS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "PLAINS");
 
-    public static final VillagerType SAVANA = DummyObjectProvider.createFor(VillagerType.class, "SAVANA");
+    public static final Supplier<VillagerType> SAVANA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "SAVANA");
 
-    public static final VillagerType SNOW = DummyObjectProvider.createFor(VillagerType.class, "SNOW");
+    public static final Supplier<VillagerType> SNOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "SNOW");
 
-    public static final VillagerType SWAMP = DummyObjectProvider.createFor(VillagerType.class, "SWAMP");
+    public static final Supplier<VillagerType> SWAMP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "SWAMP");
 
-    public static final VillagerType TAIGA = DummyObjectProvider.createFor(VillagerType.class, "TAIGA");
+    public static final Supplier<VillagerType> TAIGA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "TAIGA");
 
     // SORTFIELDS:OFF
 

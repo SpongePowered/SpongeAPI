@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.boss;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 /**
  * An enumeration of {@link BossBarColor}s.
@@ -33,19 +35,19 @@ public final class BossBarColors {
 
     // SORTFIELDS:ON
 
-    public static final BossBarColor BLUE = DummyObjectProvider.createFor(BossBarColor.class, "BLUE");
+    public static final Supplier<BossBarColor> BLUE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BossBarColor.class, "BLUE");
 
-    public static final BossBarColor GREEN = DummyObjectProvider.createFor(BossBarColor.class, "GREEN");
+    public static final Supplier<BossBarColor> GREEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BossBarColor.class, "GREEN");
 
-    public static final BossBarColor PINK = DummyObjectProvider.createFor(BossBarColor.class, "PINK");
+    public static final Supplier<BossBarColor> PINK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BossBarColor.class, "PINK");
 
-    public static final BossBarColor PURPLE = DummyObjectProvider.createFor(BossBarColor.class, "PURPLE");
+    public static final Supplier<BossBarColor> PURPLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BossBarColor.class, "PURPLE");
 
-    public static final BossBarColor RED = DummyObjectProvider.createFor(BossBarColor.class, "RED");
+    public static final Supplier<BossBarColor> RED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BossBarColor.class, "RED");
 
-    public static final BossBarColor WHITE = DummyObjectProvider.createFor(BossBarColor.class, "WHITE");
+    public static final Supplier<BossBarColor> WHITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BossBarColor.class, "WHITE");
 
-    public static final BossBarColor YELLOW = DummyObjectProvider.createFor(BossBarColor.class, "YELLOW");
+    public static final Supplier<BossBarColor> YELLOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BossBarColor.class, "YELLOW");
 
     // SORTFIELDS:OFF
 

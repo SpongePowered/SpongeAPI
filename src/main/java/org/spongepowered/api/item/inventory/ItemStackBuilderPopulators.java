@@ -344,6 +344,23 @@ public final class ItemStackBuilderPopulators {
         };
     }
 
+    public static <E> BiConsumer<ItemStack.Builder, Random> listValueSuppliers(Supplier<? extends Key<? extends ListValue<E>>> key,
+                                                                               WeightedTable<Function<Random, E>> weightedTable) {
+        checkNotNull(key, "Key cannot be null!");
+        checkNotNull(weightedTable, "WeightedTable cannot be null!");
+        return (builder, random) -> {
+            final ItemStack itemStack = builder.build();
+            final List<Function<Random, E>> suppliers = weightedTable.get(random);
+            final List<E> suppliedElements = suppliers.stream()
+                    .map(randomEFunction -> randomEFunction.apply(random))
+                    .collect(Collectors.toList());
+            final DataTransactionResult result = itemStack.offer(key.get(), suppliedElements);
+            if (result.isSuccessful()) {
+                builder.from(itemStack);
+            }
+        };
+    }
+
     /**
      * Creates a new {@link BiConsumer} where the {@link Key} is responsible
      * for a {@link Set} based {@link org.spongepowered.api.data.value.Value.Mutable}. Given the {@link Set} of element

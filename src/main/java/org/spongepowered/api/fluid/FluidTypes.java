@@ -24,13 +24,18 @@
  */
 package org.spongepowered.api.fluid;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
+import java.util.function.Supplier;
 
 public final class FluidTypes {
 
-    public static final FluidType WATER = DummyObjectProvider.createFor(FluidType.class, "WATER");
+    // SORTFIELDS:ON
+    public static final Supplier<FluidType> WATER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FluidType.class, "WATER");
 
-    public static final FluidType LAVA = DummyObjectProvider.createFor(FluidType.class, "LAVA");
+    public static final Supplier<FluidType> LAVA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FluidType.class, "LAVA");
+    // SORTFIELDS:OFF
 
     // Suppress default constructor to ensure non-instantiability.
     private FluidTypes() {

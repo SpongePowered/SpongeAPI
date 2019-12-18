@@ -33,69 +33,69 @@ public final class BlockEntityTypes {
 
     // SORTFIELDS:ON
 
-    public static final BlockEntityType BANNER = DummyObjectProvider.createFor(BlockEntityType.class, "BANNER");
+    public static final Supplier<BlockEntityType> BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "BANNER");
 
-    public static final BlockEntityType BARREL = DummyObjectProvider.createFor(BlockEntityType.class, "BARREL");
+    public static final Supplier<BlockEntityType> BARREL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "BARREL");
 
-    public static final BlockEntityType BEACON = DummyObjectProvider.createFor(BlockEntityType.class, "BEACON");
+    public static final Supplier<BlockEntityType> BEACON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "BEACON");
 
-    public static final BlockEntityType BED = DummyObjectProvider.createFor(BlockEntityType.class, "BED");
+    public static final Supplier<BlockEntityType> BED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "BED");
 
-    public static final BlockEntityType BELL = DummyObjectProvider.createFor(BlockEntityType.class, "BELL");
+    public static final Supplier<BlockEntityType> BELL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "BELL");
 
-    public static final BlockEntityType BLAST_FURNACE = DummyObjectProvider.createFor(BlockEntityType.class, "BLAST_FURNACE");
+    public static final Supplier<BlockEntityType> BLAST_FURNACE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "BLAST_FURNACE");
 
-    public static final BlockEntityType BREWING_STAND = DummyObjectProvider.createFor(BlockEntityType.class, "BREWING_STAND");
+    public static final Supplier<BlockEntityType> BREWING_STAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "BREWING_STAND");
 
-    public static final BlockEntityType CAMPFIRE = DummyObjectProvider.createFor(BlockEntityType.class, "CAMPFIRE");
+    public static final Supplier<BlockEntityType> CAMPFIRE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "CAMPFIRE");
 
-    public static final BlockEntityType CHEST = DummyObjectProvider.createFor(BlockEntityType.class, "CHEST");
+    public static final Supplier<BlockEntityType> CHEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "CHEST");
 
-    public static final BlockEntityType COMMAND_BLOCK = DummyObjectProvider.createFor(BlockEntityType.class, "COMMAND_BLOCK");
+    public static final Supplier<BlockEntityType> COMMAND_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "COMMAND_BLOCK");
 
-    public static final BlockEntityType COMPARATOR = DummyObjectProvider.createFor(BlockEntityType.class, "COMPARATOR");
+    public static final Supplier<BlockEntityType> COMPARATOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "COMPARATOR");
 
-    public static final BlockEntityType CONDUIT = DummyObjectProvider.createFor(BlockEntityType.class, "CONDUIT");
+    public static final Supplier<BlockEntityType> CONDUIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "CONDUIT");
 
-    public static final BlockEntityType DAYLIGHT_DETECTOR = DummyObjectProvider.createFor(BlockEntityType.class, "DAYLIGHT_DETECTOR");
+    public static final Supplier<BlockEntityType> DAYLIGHT_DETECTOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "DAYLIGHT_DETECTOR");
 
-    public static final BlockEntityType DISPENSER = DummyObjectProvider.createFor(BlockEntityType.class, "DISPENSER");
+    public static final Supplier<BlockEntityType> DISPENSER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "DISPENSER");
 
-    public static final BlockEntityType DROPPER = DummyObjectProvider.createFor(BlockEntityType.class, "DROPPER");
+    public static final Supplier<BlockEntityType> DROPPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "DROPPER");
 
-    public static final BlockEntityType ENCHANTMENT_TABLE = DummyObjectProvider.createFor(BlockEntityType.class, "ENCHANTMENT_TABLE");
+    public static final Supplier<BlockEntityType> ENCHANTMENT_TABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "ENCHANTMENT_TABLE");
 
-    public static final BlockEntityType ENDER_CHEST = DummyObjectProvider.createFor(BlockEntityType.class, "ENDER_CHEST");
+    public static final Supplier<BlockEntityType> ENDER_CHEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "ENDER_CHEST");
 
-    public static final BlockEntityType END_GATEWAY = DummyObjectProvider.createFor(BlockEntityType.class, "END_GATEWAY");
+    public static final Supplier<BlockEntityType> END_GATEWAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "END_GATEWAY");
 
-    public static final BlockEntityType END_PORTAL = DummyObjectProvider.createFor(BlockEntityType.class, "END_PORTAL");
+    public static final Supplier<BlockEntityType> END_PORTAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "END_PORTAL");
 
-    public static final BlockEntityType FURNACE = DummyObjectProvider.createFor(BlockEntityType.class, "FURNACE");
+    public static final Supplier<BlockEntityType> FURNACE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "FURNACE");
 
-    public static final BlockEntityType HOPPER = DummyObjectProvider.createFor(BlockEntityType.class, "HOPPER");
+    public static final Supplier<BlockEntityType> HOPPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "HOPPER");
 
-    public static final BlockEntityType JIGSAW = DummyObjectProvider.createFor(BlockEntityType.class, "JIGSAW");
+    public static final Supplier<BlockEntityType> JIGSAW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "JIGSAW");
 
-    public static final BlockEntityType JUKEBOX = DummyObjectProvider.createFor(BlockEntityType.class, "JUKEBOX");
+    public static final Supplier<BlockEntityType> JUKEBOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "JUKEBOX");
 
-    public static final BlockEntityType LECTERN = DummyObjectProvider.createFor(BlockEntityType.class, "LECTERN");
+    public static final Supplier<BlockEntityType> LECTERN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "LECTERN");
 
-    public static final BlockEntityType MOB_SPAWNER = DummyObjectProvider.createFor(BlockEntityType.class, "MOB_SPAWNER");
+    public static final Supplier<BlockEntityType> MOB_SPAWNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "MOB_SPAWNER");
 
-    public static final BlockEntityType PISTON = DummyObjectProvider.createFor(BlockEntityType.class, "PISTON");
+    public static final Supplier<BlockEntityType> PISTON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "PISTON");
 
-    public static final BlockEntityType PLAYER_HEAD = DummyObjectProvider.createFor(BlockEntityType.class, "PLAYER_HEAD");
+    public static final Supplier<BlockEntityType> PLAYER_HEAD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "PLAYER_HEAD");
 
-    public static final BlockEntityType SHULKER_BOX = DummyObjectProvider.createFor(BlockEntityType.class, "SHULKER_BOX");
+    public static final Supplier<BlockEntityType> SHULKER_BOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "SHULKER_BOX");
 
-    public static final BlockEntityType SIGN = DummyObjectProvider.createFor(BlockEntityType.class, "SIGN");
+    public static final Supplier<BlockEntityType> SIGN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "SIGN");
 
-    public static final BlockEntityType SMOKER = DummyObjectProvider.createFor(BlockEntityType.class, "SMOKER");
+    public static final Supplier<BlockEntityType> SMOKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "SMOKER");
 
-    public static final BlockEntityType STRUCTURE = DummyObjectProvider.createFor(BlockEntityType.class, "STRUCTURE");
+    public static final Supplier<BlockEntityType> STRUCTURE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "STRUCTURE");
 
-    public static final BlockEntityType TRAPPED_CHEST = DummyObjectProvider.createFor(BlockEntityType.class, "TRAPPED_CHEST");
+    public static final Supplier<BlockEntityType> TRAPPED_CHEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "TRAPPED_CHEST");
 
     // SORTFIELDS:OFF
 

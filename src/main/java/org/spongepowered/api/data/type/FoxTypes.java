@@ -33,9 +33,9 @@ public final class FoxTypes {
 
     // SORTFIELDS:ON
 
-    public static final FoxType RED = DummyObjectProvider.createFor(FoxType.class, "RED");
+    public static final Supplier<FoxType> RED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FoxType.class, "RED");
 
-    public static final FoxType WHITE = DummyObjectProvider.createFor(FoxType.class, "WHITE");
+    public static final Supplier<FoxType> WHITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FoxType.class, "WHITE");
 
     // SORTFIELDS:OFF
 

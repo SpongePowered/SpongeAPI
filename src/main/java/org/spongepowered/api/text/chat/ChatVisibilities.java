@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.text.chat;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 /**
  * An enumeration of the vanilla chat visibility modes for a client.
@@ -39,17 +41,17 @@ public final class ChatVisibilities {
     /**
      * All chat is visible.
      */
-    public static final ChatVisibility FULL = DummyObjectProvider.createFor(ChatVisibility.class, "FULL");
+    public static final Supplier<ChatVisibility> FULL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChatVisibility.class, "FULL");
 
     /**
      * No chat is visible.
      */
-    public static final ChatVisibility HIDDEN = DummyObjectProvider.createFor(ChatVisibility.class, "HIDDEN");
+    public static final Supplier<ChatVisibility> HIDDEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChatVisibility.class, "HIDDEN");
 
     /**
      * Only {@link ChatTypes#SYSTEM} is visible.
      */
-    public static final ChatVisibility SYSTEM = DummyObjectProvider.createFor(ChatVisibility.class, "SYSTEM");
+    public static final Supplier<ChatVisibility> SYSTEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChatVisibility.class, "SYSTEM");
 
     // SORTFIELDS:OFF
 }

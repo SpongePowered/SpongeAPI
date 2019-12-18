@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.effect.potion;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 /**
  * An enumeration of all possible {@link PotionEffectType}s in vanilla Minecraft.
@@ -33,69 +35,69 @@ public final class PotionEffectTypes {
 
     // SORTFIELDS:ON
 
-    public static final PotionEffectType ABSORPTION = DummyObjectProvider.createFor(PotionEffectType.class, "ABSORPTION");
+    public static final Supplier<PotionEffectType> ABSORPTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "ABSORPTION");
 
-    public static final PotionEffectType BAD_OMEN = DummyObjectProvider.createFor(PotionEffectType.class, "BAD_OMEN");
+    public static final Supplier<PotionEffectType> BAD_OMEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "BAD_OMEN");
 
-    public static final PotionEffectType BLINDNESS = DummyObjectProvider.createFor(PotionEffectType.class, "BLINDNESS");
+    public static final Supplier<PotionEffectType> BLINDNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "BLINDNESS");
 
-    public static final PotionEffectType CONDUIT_POWER = DummyObjectProvider.createFor(PotionEffectType.class, "CONDUIT_POWER");
+    public static final Supplier<PotionEffectType> CONDUIT_POWER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "CONDUIT_POWER");
 
-    public static final PotionEffectType DOLPHINS_GRACE = DummyObjectProvider.createFor(PotionEffectType.class, "DOLPHINS_GRACE");
+    public static final Supplier<PotionEffectType> DOLPHINS_GRACE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "DOLPHINS_GRACE");
 
-    public static final PotionEffectType FIRE_RESISTANCE = DummyObjectProvider.createFor(PotionEffectType.class, "FIRE_RESISTANCE");
+    public static final Supplier<PotionEffectType> FIRE_RESISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "FIRE_RESISTANCE");
 
-    public static final PotionEffectType GLOWING = DummyObjectProvider.createFor(PotionEffectType.class, "GLOWING");
+    public static final Supplier<PotionEffectType> GLOWING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "GLOWING");
 
-    public static final PotionEffectType HASTE = DummyObjectProvider.createFor(PotionEffectType.class, "HASTE");
+    public static final Supplier<PotionEffectType> HASTE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "HASTE");
 
-    public static final PotionEffectType HEALTH_BOOST = DummyObjectProvider.createFor(PotionEffectType.class, "HEALTH_BOOST");
+    public static final Supplier<PotionEffectType> HEALTH_BOOST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "HEALTH_BOOST");
 
-    public static final PotionEffectType HERO_OF_THE_VILLAGE = DummyObjectProvider.createFor(PotionEffectType.class, "HERO_OF_THE_VILLAGE");
+    public static final Supplier<PotionEffectType> HERO_OF_THE_VILLAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "HERO_OF_THE_VILLAGE");
 
-    public static final PotionEffectType HUNGER = DummyObjectProvider.createFor(PotionEffectType.class, "HUNGER");
+    public static final Supplier<PotionEffectType> HUNGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "HUNGER");
 
-    public static final PotionEffectType INSTANT_DAMAGE = DummyObjectProvider.createFor(PotionEffectType.class, "INSTANT_DAMAGE");
+    public static final Supplier<PotionEffectType> INSTANT_DAMAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "INSTANT_DAMAGE");
 
-    public static final PotionEffectType INSTANT_HEALTH = DummyObjectProvider.createFor(PotionEffectType.class, "INSTANT_HEALTH");
+    public static final Supplier<PotionEffectType> INSTANT_HEALTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "INSTANT_HEALTH");
 
-    public static final PotionEffectType INVISIBILITY = DummyObjectProvider.createFor(PotionEffectType.class, "INVISIBILITY");
+    public static final Supplier<PotionEffectType> INVISIBILITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "INVISIBILITY");
 
-    public static final PotionEffectType JUMP_BOOST = DummyObjectProvider.createFor(PotionEffectType.class, "JUMP_BOOST");
+    public static final Supplier<PotionEffectType> JUMP_BOOST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "JUMP_BOOST");
 
-    public static final PotionEffectType LEVITATION = DummyObjectProvider.createFor(PotionEffectType.class, "LEVITATION");
+    public static final Supplier<PotionEffectType> LEVITATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "LEVITATION");
 
-    public static final PotionEffectType LUCK = DummyObjectProvider.createFor(PotionEffectType.class, "LUCK");
+    public static final Supplier<PotionEffectType> LUCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "LUCK");
 
-    public static final PotionEffectType MINING_FATIGUE = DummyObjectProvider.createFor(PotionEffectType.class, "MINING_FATIGUE");
+    public static final Supplier<PotionEffectType> MINING_FATIGUE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "MINING_FATIGUE");
 
-    public static final PotionEffectType NAUSEA = DummyObjectProvider.createFor(PotionEffectType.class, "NAUSEA");
+    public static final Supplier<PotionEffectType> NAUSEA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "NAUSEA");
 
-    public static final PotionEffectType NIGHT_VISION = DummyObjectProvider.createFor(PotionEffectType.class, "NIGHT_VISION");
+    public static final Supplier<PotionEffectType> NIGHT_VISION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "NIGHT_VISION");
 
-    public static final PotionEffectType POISON = DummyObjectProvider.createFor(PotionEffectType.class, "POISON");
+    public static final Supplier<PotionEffectType> POISON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "POISON");
 
-    public static final PotionEffectType REGENERATION = DummyObjectProvider.createFor(PotionEffectType.class, "REGENERATION");
+    public static final Supplier<PotionEffectType> REGENERATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "REGENERATION");
 
-    public static final PotionEffectType RESISTANCE = DummyObjectProvider.createFor(PotionEffectType.class, "RESISTANCE");
+    public static final Supplier<PotionEffectType> RESISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "RESISTANCE");
 
-    public static final PotionEffectType SATURATION = DummyObjectProvider.createFor(PotionEffectType.class, "SATURATION");
+    public static final Supplier<PotionEffectType> SATURATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "SATURATION");
 
-    public static final PotionEffectType SLOWNESS = DummyObjectProvider.createFor(PotionEffectType.class, "SLOWNESS");
+    public static final Supplier<PotionEffectType> SLOWNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "SLOWNESS");
 
-    public static final PotionEffectType SLOW_FALLING = DummyObjectProvider.createFor(PotionEffectType.class, "SLOW_FALLING");
+    public static final Supplier<PotionEffectType> SLOW_FALLING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "SLOW_FALLING");
 
-    public static final PotionEffectType SPEED = DummyObjectProvider.createFor(PotionEffectType.class, "SPEED");
+    public static final Supplier<PotionEffectType> SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "SPEED");
 
-    public static final PotionEffectType STRENGTH = DummyObjectProvider.createFor(PotionEffectType.class, "STRENGTH");
+    public static final Supplier<PotionEffectType> STRENGTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "STRENGTH");
 
-    public static final PotionEffectType UNLUCK = DummyObjectProvider.createFor(PotionEffectType.class, "UNLUCK");
+    public static final Supplier<PotionEffectType> UNLUCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "UNLUCK");
 
-    public static final PotionEffectType WATER_BREATHING = DummyObjectProvider.createFor(PotionEffectType.class, "WATER_BREATHING");
+    public static final Supplier<PotionEffectType> WATER_BREATHING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "WATER_BREATHING");
 
-    public static final PotionEffectType WEAKNESS = DummyObjectProvider.createFor(PotionEffectType.class, "WEAKNESS");
+    public static final Supplier<PotionEffectType> WEAKNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "WEAKNESS");
 
-    public static final PotionEffectType WITHER = DummyObjectProvider.createFor(PotionEffectType.class, "WITHER");
+    public static final Supplier<PotionEffectType> WITHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "WITHER");
 
     // SORTFIELDS:OFF
 

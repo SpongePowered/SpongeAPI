@@ -24,12 +24,14 @@
  */
 package org.spongepowered.api.world.teleport;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 public final class PortalAgentTypes {
 
     // The default agent used to handle traveling to nether and the end
-    public static final PortalAgentType DEFAULT = DummyObjectProvider.createFor(PortalAgentType.class, "DEFAULT");
+    public static final Supplier<PortalAgentType> DEFAULT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PortalAgentType.class, "DEFAULT");
 
     // Suppress default constructor to ensure non-instantiability.
     private PortalAgentTypes() {

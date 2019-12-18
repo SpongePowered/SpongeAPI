@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.item.potion;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 /**
  * An enumeration of all possible {@link PotionType}s in vanilla Minecraft.
@@ -33,91 +35,91 @@ public final class PotionTypes {
 
     // SORTFIELDS:ON
 
-    public static final PotionType AWKWARD = DummyObjectProvider.createFor(PotionType.class, "AWKWARD");
+    public static final Supplier<PotionType> AWKWARD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "AWKWARD");
 
-    public static final PotionType EMPTY = DummyObjectProvider.createFor(PotionType.class, "EMPTY");
+    public static final Supplier<PotionType> EMPTY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "EMPTY");
 
-    public static final PotionType FIRE_RESISTANCE = DummyObjectProvider.createFor(PotionType.class, "FIRE_RESISTANCE");
+    public static final Supplier<PotionType> FIRE_RESISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "FIRE_RESISTANCE");
 
-    public static final PotionType HARMING = DummyObjectProvider.createFor(PotionType.class, "HARMING");
+    public static final Supplier<PotionType> HARMING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "HARMING");
 
-    public static final PotionType HEALING = DummyObjectProvider.createFor(PotionType.class, "HEALING");
+    public static final Supplier<PotionType> HEALING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "HEALING");
 
-    public static final PotionType INVISIBILITY = DummyObjectProvider.createFor(PotionType.class, "INVISIBILITY");
+    public static final Supplier<PotionType> INVISIBILITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "INVISIBILITY");
 
-    public static final PotionType LEAPING = DummyObjectProvider.createFor(PotionType.class, "LEAPING");
+    public static final Supplier<PotionType> LEAPING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "LEAPING");
 
-    public static final PotionType LONG_FIRE_RESISTANCE = DummyObjectProvider.createFor(PotionType.class, "LONG_FIRE_RESISTANCE");
+    public static final Supplier<PotionType> LONG_FIRE_RESISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "LONG_FIRE_RESISTANCE");
 
-    public static final PotionType LONG_INVISIBILITY = DummyObjectProvider.createFor(PotionType.class, "LONG_INVISIBILITY");
+    public static final Supplier<PotionType> LONG_INVISIBILITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "LONG_INVISIBILITY");
 
-    public static final PotionType LONG_LEAPING = DummyObjectProvider.createFor(PotionType.class, "LONG_LEAPING");
+    public static final Supplier<PotionType> LONG_LEAPING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "LONG_LEAPING");
 
-    public static final PotionType LONG_NIGHT_VISION = DummyObjectProvider.createFor(PotionType.class, "LONG_NIGHT_VISION");
+    public static final Supplier<PotionType> LONG_NIGHT_VISION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "LONG_NIGHT_VISION");
 
-    public static final PotionType LONG_POISON = DummyObjectProvider.createFor(PotionType.class, "LONG_POISON");
+    public static final Supplier<PotionType> LONG_POISON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "LONG_POISON");
 
-    public static final PotionType LONG_REGENERATION = DummyObjectProvider.createFor(PotionType.class, "LONG_REGENERATION");
+    public static final Supplier<PotionType> LONG_REGENERATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "LONG_REGENERATION");
 
-    public static final PotionType LONG_SLOWNESS = DummyObjectProvider.createFor(PotionType.class, "LONG_SLOWNESS");
+    public static final Supplier<PotionType> LONG_SLOWNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "LONG_SLOWNESS");
 
-    public static final PotionType LONG_SLOW_FALLING = DummyObjectProvider.createFor(PotionType.class, "LONG_SLOW_FALLING");
+    public static final Supplier<PotionType> LONG_SLOW_FALLING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "LONG_SLOW_FALLING");
 
-    public static final PotionType LONG_STRENGTH = DummyObjectProvider.createFor(PotionType.class, "LONG_STRENGTH");
+    public static final Supplier<PotionType> LONG_STRENGTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "LONG_STRENGTH");
 
-    public static final PotionType LONG_SWIFTNESS = DummyObjectProvider.createFor(PotionType.class, "LONG_SWIFTNESS");
+    public static final Supplier<PotionType> LONG_SWIFTNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "LONG_SWIFTNESS");
 
-    public static final PotionType LONG_TURTLE_MASTER = DummyObjectProvider.createFor(PotionType.class, "LONG_TURTLE_MASTER");
+    public static final Supplier<PotionType> LONG_TURTLE_MASTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "LONG_TURTLE_MASTER");
 
-    public static final PotionType LONG_WATER_BREATHING = DummyObjectProvider.createFor(PotionType.class, "LONG_WATER_BREATHING");
+    public static final Supplier<PotionType> LONG_WATER_BREATHING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "LONG_WATER_BREATHING");
 
-    public static final PotionType LONG_WEAKNESS = DummyObjectProvider.createFor(PotionType.class, "LONG_WEAKNESS");
+    public static final Supplier<PotionType> LONG_WEAKNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "LONG_WEAKNESS");
 
-    public static final PotionType LUCK = DummyObjectProvider.createFor(PotionType.class, "LUCK");
+    public static final Supplier<PotionType> LUCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "LUCK");
 
-    public static final PotionType MUNDANE = DummyObjectProvider.createFor(PotionType.class, "MUNDANE");
+    public static final Supplier<PotionType> MUNDANE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "MUNDANE");
 
-    public static final PotionType NIGHT_VISION = DummyObjectProvider.createFor(PotionType.class, "NIGHT_VISION");
+    public static final Supplier<PotionType> NIGHT_VISION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "NIGHT_VISION");
 
-    public static final PotionType POISON = DummyObjectProvider.createFor(PotionType.class, "POISON");
+    public static final Supplier<PotionType> POISON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "POISON");
 
-    public static final PotionType REGENERATION = DummyObjectProvider.createFor(PotionType.class, "REGENERATION");
+    public static final Supplier<PotionType> REGENERATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "REGENERATION");
 
-    public static final PotionType SLOWNESS = DummyObjectProvider.createFor(PotionType.class, "SLOWNESS");
+    public static final Supplier<PotionType> SLOWNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "SLOWNESS");
 
-    public static final PotionType SLOW_FALLING = DummyObjectProvider.createFor(PotionType.class, "SLOW_FALLING");
+    public static final Supplier<PotionType> SLOW_FALLING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "SLOW_FALLING");
 
-    public static final PotionType STRENGTH = DummyObjectProvider.createFor(PotionType.class, "STRENGTH");
+    public static final Supplier<PotionType> STRENGTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "STRENGTH");
 
-    public static final PotionType STRONG_HARMING = DummyObjectProvider.createFor(PotionType.class, "STRONG_HARMING");
+    public static final Supplier<PotionType> STRONG_HARMING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "STRONG_HARMING");
 
-    public static final PotionType STRONG_HEALING = DummyObjectProvider.createFor(PotionType.class, "STRONG_HEALING");
+    public static final Supplier<PotionType> STRONG_HEALING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "STRONG_HEALING");
 
-    public static final PotionType STRONG_LEAPING = DummyObjectProvider.createFor(PotionType.class, "STRONG_LEAPING");
+    public static final Supplier<PotionType> STRONG_LEAPING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "STRONG_LEAPING");
 
-    public static final PotionType STRONG_POISON = DummyObjectProvider.createFor(PotionType.class, "STRONG_POISON");
+    public static final Supplier<PotionType> STRONG_POISON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "STRONG_POISON");
 
-    public static final PotionType STRONG_REGENERATION = DummyObjectProvider.createFor(PotionType.class, "STRONG_REGENERATION");
+    public static final Supplier<PotionType> STRONG_REGENERATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "STRONG_REGENERATION");
 
-    public static final PotionType STRONG_SLOWNESS = DummyObjectProvider.createFor(PotionType.class, "STRONG_SLOWNESS");
+    public static final Supplier<PotionType> STRONG_SLOWNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "STRONG_SLOWNESS");
 
-    public static final PotionType STRONG_STRENGTH = DummyObjectProvider.createFor(PotionType.class, "STRONG_STRENGTH");
+    public static final Supplier<PotionType> STRONG_STRENGTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "STRONG_STRENGTH");
 
-    public static final PotionType STRONG_SWIFTNESS = DummyObjectProvider.createFor(PotionType.class, "STRONG_SWIFTNESS");
+    public static final Supplier<PotionType> STRONG_SWIFTNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "STRONG_SWIFTNESS");
 
-    public static final PotionType STRONG_TURTLE_MASTER = DummyObjectProvider.createFor(PotionType.class, "STRONG_TURTLE_MASTER");
+    public static final Supplier<PotionType> STRONG_TURTLE_MASTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "STRONG_TURTLE_MASTER");
 
-    public static final PotionType SWIFTNESS = DummyObjectProvider.createFor(PotionType.class, "SWIFTNESS");
+    public static final Supplier<PotionType> SWIFTNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "SWIFTNESS");
 
-    public static final PotionType THICK = DummyObjectProvider.createFor(PotionType.class, "THICK");
+    public static final Supplier<PotionType> THICK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "THICK");
 
-    public static final PotionType TURTLE_MASTER = DummyObjectProvider.createFor(PotionType.class, "TURTLE_MASTER");
+    public static final Supplier<PotionType> TURTLE_MASTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "TURTLE_MASTER");
 
-    public static final PotionType WATER = DummyObjectProvider.createFor(PotionType.class, "WATER");
+    public static final Supplier<PotionType> WATER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "WATER");
 
-    public static final PotionType WATER_BREATHING = DummyObjectProvider.createFor(PotionType.class, "WATER_BREATHING");
+    public static final Supplier<PotionType> WATER_BREATHING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "WATER_BREATHING");
 
-    public static final PotionType WEAKNESS = DummyObjectProvider.createFor(PotionType.class, "WEAKNESS");
+    public static final Supplier<PotionType> WEAKNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "WEAKNESS");
 
     // SORTFIELDS:OFF
 

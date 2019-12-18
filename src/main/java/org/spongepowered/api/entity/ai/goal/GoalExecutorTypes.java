@@ -24,8 +24,10 @@
  */
 package org.spongepowered.api.entity.ai.goal;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.Agent;
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
+import java.util.function.Supplier;
 
 public final class GoalExecutorTypes {
 
@@ -34,7 +36,7 @@ public final class GoalExecutorTypes {
     /**
      * {@link GoalExecutor} that is the default set of goals for most {@link Agent}s.
      */
-    public static final GoalExecutorType NORMAL = DummyObjectProvider.createFor(GoalExecutorType.class, "NORMAL");
+    public static final Supplier<GoalExecutorType> NORMAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GoalExecutorType.class, "NORMAL");
 
     /**
      * {@link GoalExecutor} that is the "target" set of goals.
@@ -44,7 +46,7 @@ public final class GoalExecutorTypes {
      * and skeleton attack enemies: they seek out a target and if any of their non-target
      * goals see that they have a target, they act accordingly.</p>
      */
-    public static final GoalExecutorType TARGET = DummyObjectProvider.createFor(GoalExecutorType.class, "TARGET");
+    public static final Supplier<GoalExecutorType> TARGET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GoalExecutorType.class, "TARGET");
 
     // SORTFIELDS:OFF
 

@@ -109,6 +109,17 @@ public interface DamageSource {
     boolean doesAffectCreative();
 
     /**
+     * Gets whether this {@link DamageSource} is considered to be "fire" based,
+     * can be from flames or blocks that are flaming, or the entity being on fire.
+     * Usually is possible to bypass or ignore this damage if the owning entity has
+     * {@link org.spongepowered.api.effect.potion.PotionEffectTypes#FIRE_RESISTANCE}
+     * active.
+     *
+     * @return If this damage is considered fire
+     */
+    boolean isFire();
+
+    /**
      * Gets the amount of exhaustion this {@link DamageSource} will
      * add to the entity, generally only to players.
      *
@@ -123,6 +134,13 @@ public interface DamageSource {
     interface Builder extends DamageSourceBuilder<DamageSource, Builder> { }
 
     interface DamageSourceBuilder<T extends DamageSource, B extends DamageSourceBuilder<T, B>> extends CopyableBuilder<T, B> {
+
+        /**
+         * Sets this {@link DamageSource}'s damage to be considered "fire" damage.
+         *
+         * @return This builder
+         */
+        B fire();
 
         /**
          * Sets this {@link DamageSource}'s damage to be scaled

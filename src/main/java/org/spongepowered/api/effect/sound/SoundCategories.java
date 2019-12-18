@@ -24,31 +24,34 @@
  */
 package org.spongepowered.api.effect.sound;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
+import java.util.function.Supplier;
 
 public final class SoundCategories {
 
     // SORTFIELDS:ON
 
-    public static final SoundCategory AMBIENT = DummyObjectProvider.createFor(SoundCategory.class, "AMBIENT");
+    public static final Supplier<SoundCategory> AMBIENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundCategory.class, "AMBIENT");
 
-    public static final SoundCategory BLOCK = DummyObjectProvider.createFor(SoundCategory.class, "BLOCK");
+    public static final Supplier<SoundCategory> BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundCategory.class, "BLOCK");
 
-    public static final SoundCategory HOSTILE = DummyObjectProvider.createFor(SoundCategory.class, "HOSTILE");
+    public static final Supplier<SoundCategory> HOSTILE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundCategory.class, "HOSTILE");
 
-    public static final SoundCategory MASTER = DummyObjectProvider.createFor(SoundCategory.class, "MASTER");
+    public static final Supplier<SoundCategory> MASTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundCategory.class, "MASTER");
 
-    public static final SoundCategory MUSIC = DummyObjectProvider.createFor(SoundCategory.class, "MUSIC");
+    public static final Supplier<SoundCategory> MUSIC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundCategory.class, "MUSIC");
 
-    public static final SoundCategory NEUTRAL = DummyObjectProvider.createFor(SoundCategory.class, "NEUTRAL");
+    public static final Supplier<SoundCategory> NEUTRAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundCategory.class, "NEUTRAL");
 
-    public static final SoundCategory PLAYER = DummyObjectProvider.createFor(SoundCategory.class, "PLAYER");
+    public static final Supplier<SoundCategory> PLAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundCategory.class, "PLAYER");
 
-    public static final SoundCategory RECORD = DummyObjectProvider.createFor(SoundCategory.class, "RECORD");
+    public static final Supplier<SoundCategory> RECORD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundCategory.class, "RECORD");
 
-    public static final SoundCategory VOICE = DummyObjectProvider.createFor(SoundCategory.class, "VOICE");
+    public static final Supplier<SoundCategory> VOICE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundCategory.class, "VOICE");
 
-    public static final SoundCategory WEATHER = DummyObjectProvider.createFor(SoundCategory.class, "WEATHER");
+    public static final Supplier<SoundCategory> WEATHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundCategory.class, "WEATHER");
 
     // SORTFIELDS:OFF
 

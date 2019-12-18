@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.state;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 /**
  * Represents all possible {@link IntegerStateProperty}s that are known to exist in
@@ -34,153 +36,153 @@ public final class IntegerStateProperties {
 
     // SORTFIELDS:ON
 
-    public static final IntegerStateProperty ACACIA_LEAVES_DISTANCE = DummyObjectProvider.createFor(IntegerStateProperty.class, "ACACIA_LEAVES_DISTANCE");
+    public static final Supplier<IntegerStateProperty> ACACIA_LEAVES_DISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "ACACIA_LEAVES_DISTANCE");
 
-    public static final IntegerStateProperty ACACIA_SAPLING_STAGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "ACACIA_SAPLING_STAGE");
+    public static final Supplier<IntegerStateProperty> ACACIA_SAPLING_STAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "ACACIA_SAPLING_STAGE");
 
-    public static final IntegerStateProperty ACACIA_SIGN_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "ACACIA_SIGN_ROTATION");
+    public static final Supplier<IntegerStateProperty> ACACIA_SIGN_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "ACACIA_SIGN_ROTATION");
 
-    public static final IntegerStateProperty BAMBOO_AGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "BAMBOO_AGE");
+    public static final Supplier<IntegerStateProperty> BAMBOO_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "BAMBOO_AGE");
 
-    public static final IntegerStateProperty BAMBOO_STAGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "BAMBOO_STAGE");
+    public static final Supplier<IntegerStateProperty> BAMBOO_STAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "BAMBOO_STAGE");
 
-    public static final IntegerStateProperty BEETROOTS_AGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "BEETROOTS_AGE");
+    public static final Supplier<IntegerStateProperty> BEETROOTS_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "BEETROOTS_AGE");
 
-    public static final IntegerStateProperty BIRCH_LEAVES_DISTANCE = DummyObjectProvider.createFor(IntegerStateProperty.class, "BIRCH_LEAVES_DISTANCE");
+    public static final Supplier<IntegerStateProperty> BIRCH_LEAVES_DISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "BIRCH_LEAVES_DISTANCE");
 
-    public static final IntegerStateProperty BIRCH_SAPLING_STAGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "BIRCH_SAPLING_STAGE");
+    public static final Supplier<IntegerStateProperty> BIRCH_SAPLING_STAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "BIRCH_SAPLING_STAGE");
 
-    public static final IntegerStateProperty BIRCH_SIGN_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "BIRCH_SIGN_ROTATION");
+    public static final Supplier<IntegerStateProperty> BIRCH_SIGN_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "BIRCH_SIGN_ROTATION");
 
-    public static final IntegerStateProperty BLACK_BANNER_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "BLACK_BANNER_ROTATION");
+    public static final Supplier<IntegerStateProperty> BLACK_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "BLACK_BANNER_ROTATION");
 
-    public static final IntegerStateProperty BLUE_BANNER_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "BLUE_BANNER_ROTATION");
+    public static final Supplier<IntegerStateProperty> BLUE_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "BLUE_BANNER_ROTATION");
 
-    public static final IntegerStateProperty BROWN_BANNER_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "BROWN_BANNER_ROTATION");
+    public static final Supplier<IntegerStateProperty> BROWN_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "BROWN_BANNER_ROTATION");
 
-    public static final IntegerStateProperty CACTUS_AGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "CACTUS_AGE");
+    public static final Supplier<IntegerStateProperty> CACTUS_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "CACTUS_AGE");
 
-    public static final IntegerStateProperty CAKE_BITES = DummyObjectProvider.createFor(IntegerStateProperty.class, "CAKE_BITES");
+    public static final Supplier<IntegerStateProperty> CAKE_BITES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "CAKE_BITES");
 
-    public static final IntegerStateProperty CARROTS_AGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "CARROTS_AGE");
+    public static final Supplier<IntegerStateProperty> CARROTS_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "CARROTS_AGE");
 
-    public static final IntegerStateProperty CAULDRON_LEVEL = DummyObjectProvider.createFor(IntegerStateProperty.class, "CAULDRON_LEVEL");
+    public static final Supplier<IntegerStateProperty> CAULDRON_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "CAULDRON_LEVEL");
 
-    public static final IntegerStateProperty CHORUS_FLOWER_AGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "CHORUS_FLOWER_AGE");
+    public static final Supplier<IntegerStateProperty> CHORUS_FLOWER_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "CHORUS_FLOWER_AGE");
 
-    public static final IntegerStateProperty COCOA_AGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "COCOA_AGE");
+    public static final Supplier<IntegerStateProperty> COCOA_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "COCOA_AGE");
 
-    public static final IntegerStateProperty COMPOSTER_LEVEL = DummyObjectProvider.createFor(IntegerStateProperty.class, "COMPOSTER_LEVEL");
+    public static final Supplier<IntegerStateProperty> COMPOSTER_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "COMPOSTER_LEVEL");
 
-    public static final IntegerStateProperty CREEPER_HEAD_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "CREEPER_HEAD_ROTATION");
+    public static final Supplier<IntegerStateProperty> CREEPER_HEAD_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "CREEPER_HEAD_ROTATION");
 
-    public static final IntegerStateProperty CYAN_BANNER_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "CYAN_BANNER_ROTATION");
+    public static final Supplier<IntegerStateProperty> CYAN_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "CYAN_BANNER_ROTATION");
 
-    public static final IntegerStateProperty DARK_OAK_LEAVES_DISTANCE = DummyObjectProvider.createFor(IntegerStateProperty.class, "DARK_OAK_LEAVES_DISTANCE");
+    public static final Supplier<IntegerStateProperty> DARK_OAK_LEAVES_DISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "DARK_OAK_LEAVES_DISTANCE");
 
-    public static final IntegerStateProperty DARK_OAK_SAPLING_STAGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "DARK_OAK_SAPLING_STAGE");
+    public static final Supplier<IntegerStateProperty> DARK_OAK_SAPLING_STAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "DARK_OAK_SAPLING_STAGE");
 
-    public static final IntegerStateProperty DARK_OAK_SIGN_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "DARK_OAK_SIGN_ROTATION");
+    public static final Supplier<IntegerStateProperty> DARK_OAK_SIGN_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "DARK_OAK_SIGN_ROTATION");
 
-    public static final IntegerStateProperty DAYLIGHT_DETECTOR_POWER = DummyObjectProvider.createFor(IntegerStateProperty.class, "DAYLIGHT_DETECTOR_POWER");
+    public static final Supplier<IntegerStateProperty> DAYLIGHT_DETECTOR_POWER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "DAYLIGHT_DETECTOR_POWER");
 
-    public static final IntegerStateProperty DRAGON_HEAD_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "DRAGON_HEAD_ROTATION");
+    public static final Supplier<IntegerStateProperty> DRAGON_HEAD_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "DRAGON_HEAD_ROTATION");
 
-    public static final IntegerStateProperty FARMLAND_MOISTURE = DummyObjectProvider.createFor(IntegerStateProperty.class, "FARMLAND_MOISTURE");
+    public static final Supplier<IntegerStateProperty> FARMLAND_MOISTURE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "FARMLAND_MOISTURE");
 
-    public static final IntegerStateProperty FIRE_AGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "FIRE_AGE");
+    public static final Supplier<IntegerStateProperty> FIRE_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "FIRE_AGE");
 
-    public static final IntegerStateProperty FROSTED_ICE_AGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "FROSTED_ICE_AGE");
+    public static final Supplier<IntegerStateProperty> FROSTED_ICE_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "FROSTED_ICE_AGE");
 
-    public static final IntegerStateProperty GRAY_BANNER_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "GRAY_BANNER_ROTATION");
+    public static final Supplier<IntegerStateProperty> GRAY_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "GRAY_BANNER_ROTATION");
 
-    public static final IntegerStateProperty GREEN_BANNER_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "GREEN_BANNER_ROTATION");
+    public static final Supplier<IntegerStateProperty> GREEN_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "GREEN_BANNER_ROTATION");
 
-    public static final IntegerStateProperty HEAVY_WEIGHTED_PRESSURE_PLATE_POWER = DummyObjectProvider.createFor(IntegerStateProperty.class, "HEAVY_WEIGHTED_PRESSURE_PLATE_POWER");
+    public static final Supplier<IntegerStateProperty> HEAVY_WEIGHTED_PRESSURE_PLATE_POWER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "HEAVY_WEIGHTED_PRESSURE_PLATE_POWER");
 
-    public static final IntegerStateProperty JUNGLE_LEAVES_DISTANCE = DummyObjectProvider.createFor(IntegerStateProperty.class, "JUNGLE_LEAVES_DISTANCE");
+    public static final Supplier<IntegerStateProperty> JUNGLE_LEAVES_DISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "JUNGLE_LEAVES_DISTANCE");
 
-    public static final IntegerStateProperty JUNGLE_SAPLING_STAGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "JUNGLE_SAPLING_STAGE");
+    public static final Supplier<IntegerStateProperty> JUNGLE_SAPLING_STAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "JUNGLE_SAPLING_STAGE");
 
-    public static final IntegerStateProperty JUNGLE_SIGN_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "JUNGLE_SIGN_ROTATION");
+    public static final Supplier<IntegerStateProperty> JUNGLE_SIGN_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "JUNGLE_SIGN_ROTATION");
 
-    public static final IntegerStateProperty KELP_AGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "KELP_AGE");
+    public static final Supplier<IntegerStateProperty> KELP_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "KELP_AGE");
 
-    public static final IntegerStateProperty LAVA_LEVEL = DummyObjectProvider.createFor(IntegerStateProperty.class, "LAVA_LEVEL");
+    public static final Supplier<IntegerStateProperty> LAVA_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "LAVA_LEVEL");
 
-    public static final IntegerStateProperty LIGHT_BLUE_BANNER_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "LIGHT_BLUE_BANNER_ROTATION");
+    public static final Supplier<IntegerStateProperty> LIGHT_BLUE_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "LIGHT_BLUE_BANNER_ROTATION");
 
-    public static final IntegerStateProperty LIGHT_GRAY_BANNER_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "LIGHT_GRAY_BANNER_ROTATION");
+    public static final Supplier<IntegerStateProperty> LIGHT_GRAY_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "LIGHT_GRAY_BANNER_ROTATION");
 
-    public static final IntegerStateProperty LIGHT_WEIGHTED_PRESSURE_PLATE_POWER = DummyObjectProvider.createFor(IntegerStateProperty.class, "LIGHT_WEIGHTED_PRESSURE_PLATE_POWER");
+    public static final Supplier<IntegerStateProperty> LIGHT_WEIGHTED_PRESSURE_PLATE_POWER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "LIGHT_WEIGHTED_PRESSURE_PLATE_POWER");
 
-    public static final IntegerStateProperty LIME_BANNER_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "LIME_BANNER_ROTATION");
+    public static final Supplier<IntegerStateProperty> LIME_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "LIME_BANNER_ROTATION");
 
-    public static final IntegerStateProperty MAGENTA_BANNER_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "MAGENTA_BANNER_ROTATION");
+    public static final Supplier<IntegerStateProperty> MAGENTA_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "MAGENTA_BANNER_ROTATION");
 
-    public static final IntegerStateProperty MELON_STEM_AGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "MELON_STEM_AGE");
+    public static final Supplier<IntegerStateProperty> MELON_STEM_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "MELON_STEM_AGE");
 
-    public static final IntegerStateProperty NETHER_WART_AGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "NETHER_WART_AGE");
+    public static final Supplier<IntegerStateProperty> NETHER_WART_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "NETHER_WART_AGE");
 
-    public static final IntegerStateProperty NOTE_BLOCK_NOTE = DummyObjectProvider.createFor(IntegerStateProperty.class, "NOTE_BLOCK_NOTE");
+    public static final Supplier<IntegerStateProperty> NOTE_BLOCK_NOTE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "NOTE_BLOCK_NOTE");
 
-    public static final IntegerStateProperty OAK_LEAVES_DISTANCE = DummyObjectProvider.createFor(IntegerStateProperty.class, "OAK_LEAVES_DISTANCE");
+    public static final Supplier<IntegerStateProperty> OAK_LEAVES_DISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "OAK_LEAVES_DISTANCE");
 
-    public static final IntegerStateProperty OAK_SAPLING_STAGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "OAK_SAPLING_STAGE");
+    public static final Supplier<IntegerStateProperty> OAK_SAPLING_STAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "OAK_SAPLING_STAGE");
 
-    public static final IntegerStateProperty OAK_SIGN_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "OAK_SIGN_ROTATION");
+    public static final Supplier<IntegerStateProperty> OAK_SIGN_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "OAK_SIGN_ROTATION");
 
-    public static final IntegerStateProperty ORANGE_BANNER_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "ORANGE_BANNER_ROTATION");
+    public static final Supplier<IntegerStateProperty> ORANGE_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "ORANGE_BANNER_ROTATION");
 
-    public static final IntegerStateProperty PINK_BANNER_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "PINK_BANNER_ROTATION");
+    public static final Supplier<IntegerStateProperty> PINK_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "PINK_BANNER_ROTATION");
 
-    public static final IntegerStateProperty PLAYER_HEAD_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "PLAYER_HEAD_ROTATION");
+    public static final Supplier<IntegerStateProperty> PLAYER_HEAD_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "PLAYER_HEAD_ROTATION");
 
-    public static final IntegerStateProperty POTATOES_AGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "POTATOES_AGE");
+    public static final Supplier<IntegerStateProperty> POTATOES_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "POTATOES_AGE");
 
-    public static final IntegerStateProperty PUMPKIN_STEM_AGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "PUMPKIN_STEM_AGE");
+    public static final Supplier<IntegerStateProperty> PUMPKIN_STEM_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "PUMPKIN_STEM_AGE");
 
-    public static final IntegerStateProperty PURPLE_BANNER_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "PURPLE_BANNER_ROTATION");
+    public static final Supplier<IntegerStateProperty> PURPLE_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "PURPLE_BANNER_ROTATION");
 
-    public static final IntegerStateProperty REDSTONE_WIRE_POWER = DummyObjectProvider.createFor(IntegerStateProperty.class, "REDSTONE_WIRE_POWER");
+    public static final Supplier<IntegerStateProperty> REDSTONE_WIRE_POWER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "REDSTONE_WIRE_POWER");
 
-    public static final IntegerStateProperty RED_BANNER_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "RED_BANNER_ROTATION");
+    public static final Supplier<IntegerStateProperty> RED_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "RED_BANNER_ROTATION");
 
-    public static final IntegerStateProperty REPEATER_DELAY = DummyObjectProvider.createFor(IntegerStateProperty.class, "REPEATER_DELAY");
+    public static final Supplier<IntegerStateProperty> REPEATER_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "REPEATER_DELAY");
 
-    public static final IntegerStateProperty SCAFFOLDING_DISTANCE = DummyObjectProvider.createFor(IntegerStateProperty.class, "SCAFFOLDING_DISTANCE");
+    public static final Supplier<IntegerStateProperty> SCAFFOLDING_DISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "SCAFFOLDING_DISTANCE");
 
-    public static final IntegerStateProperty SEA_PICKLE_PICKLES = DummyObjectProvider.createFor(IntegerStateProperty.class, "SEA_PICKLE_PICKLES");
+    public static final Supplier<IntegerStateProperty> SEA_PICKLE_PICKLES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "SEA_PICKLE_PICKLES");
 
-    public static final IntegerStateProperty SKELETON_SKULL_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "SKELETON_SKULL_ROTATION");
+    public static final Supplier<IntegerStateProperty> SKELETON_SKULL_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "SKELETON_SKULL_ROTATION");
 
-    public static final IntegerStateProperty SNOW_LAYERS = DummyObjectProvider.createFor(IntegerStateProperty.class, "SNOW_LAYERS");
+    public static final Supplier<IntegerStateProperty> SNOW_LAYERS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "SNOW_LAYERS");
 
-    public static final IntegerStateProperty SPRUCE_LEAVES_DISTANCE = DummyObjectProvider.createFor(IntegerStateProperty.class, "SPRUCE_LEAVES_DISTANCE");
+    public static final Supplier<IntegerStateProperty> SPRUCE_LEAVES_DISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "SPRUCE_LEAVES_DISTANCE");
 
-    public static final IntegerStateProperty SPRUCE_SAPLING_STAGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "SPRUCE_SAPLING_STAGE");
+    public static final Supplier<IntegerStateProperty> SPRUCE_SAPLING_STAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "SPRUCE_SAPLING_STAGE");
 
-    public static final IntegerStateProperty SPRUCE_SIGN_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "SPRUCE_SIGN_ROTATION");
+    public static final Supplier<IntegerStateProperty> SPRUCE_SIGN_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "SPRUCE_SIGN_ROTATION");
 
-    public static final IntegerStateProperty SUGAR_CANE_AGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "SUGAR_CANE_AGE");
+    public static final Supplier<IntegerStateProperty> SUGAR_CANE_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "SUGAR_CANE_AGE");
 
-    public static final IntegerStateProperty SWEET_BERRY_BUSH_AGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "SWEET_BERRY_BUSH_AGE");
+    public static final Supplier<IntegerStateProperty> SWEET_BERRY_BUSH_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "SWEET_BERRY_BUSH_AGE");
 
-    public static final IntegerStateProperty TURTLE_EGG_EGGS = DummyObjectProvider.createFor(IntegerStateProperty.class, "TURTLE_EGG_EGGS");
+    public static final Supplier<IntegerStateProperty> TURTLE_EGG_EGGS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "TURTLE_EGG_EGGS");
 
-    public static final IntegerStateProperty TURTLE_EGG_HATCH = DummyObjectProvider.createFor(IntegerStateProperty.class, "TURTLE_EGG_HATCH");
+    public static final Supplier<IntegerStateProperty> TURTLE_EGG_HATCH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "TURTLE_EGG_HATCH");
 
-    public static final IntegerStateProperty WATER_LEVEL = DummyObjectProvider.createFor(IntegerStateProperty.class, "WATER_LEVEL");
+    public static final Supplier<IntegerStateProperty> WATER_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "WATER_LEVEL");
 
-    public static final IntegerStateProperty WHEAT_AGE = DummyObjectProvider.createFor(IntegerStateProperty.class, "WHEAT_AGE");
+    public static final Supplier<IntegerStateProperty> WHEAT_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "WHEAT_AGE");
 
-    public static final IntegerStateProperty WHITE_BANNER_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "WHITE_BANNER_ROTATION");
+    public static final Supplier<IntegerStateProperty> WHITE_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "WHITE_BANNER_ROTATION");
 
-    public static final IntegerStateProperty WITHER_SKELETON_SKULL_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "WITHER_SKELETON_SKULL_ROTATION");
+    public static final Supplier<IntegerStateProperty> WITHER_SKELETON_SKULL_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "WITHER_SKELETON_SKULL_ROTATION");
 
-    public static final IntegerStateProperty YELLOW_BANNER_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "YELLOW_BANNER_ROTATION");
+    public static final Supplier<IntegerStateProperty> YELLOW_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "YELLOW_BANNER_ROTATION");
 
-    public static final IntegerStateProperty ZOMBIE_HEAD_ROTATION = DummyObjectProvider.createFor(IntegerStateProperty.class, "ZOMBIE_HEAD_ROTATION");
+    public static final Supplier<IntegerStateProperty> ZOMBIE_HEAD_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "ZOMBIE_HEAD_ROTATION");
 
     // SORTFIELDS:OFF
 

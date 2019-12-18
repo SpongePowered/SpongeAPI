@@ -33,35 +33,35 @@ public final class Professions {
 
     // SORTFIELDS:ON
 
-    public static final Profession ARMORER = DummyObjectProvider.createFor(Profession.class, "ARMORER");
+    public static final Supplier<Profession> ARMORER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Profession.class, "ARMORER");
 
-    public static final Profession BUTCHER = DummyObjectProvider.createFor(Profession.class, "BUTCHER");
+    public static final Supplier<Profession> BUTCHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Profession.class, "BUTCHER");
 
-    public static final Profession CARTOGRAPHER = DummyObjectProvider.createFor(Profession.class, "CARTOGRAPHER");
+    public static final Supplier<Profession> CARTOGRAPHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Profession.class, "CARTOGRAPHER");
 
-    public static final Profession CLERIC = DummyObjectProvider.createFor(Profession.class, "CLERIC");
+    public static final Supplier<Profession> CLERIC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Profession.class, "CLERIC");
 
-    public static final Profession FARMER = DummyObjectProvider.createFor(Profession.class, "FARMER");
+    public static final Supplier<Profession> FARMER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Profession.class, "FARMER");
 
-    public static final Profession FISHERMAN = DummyObjectProvider.createFor(Profession.class, "FISHERMAN");
+    public static final Supplier<Profession> FISHERMAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Profession.class, "FISHERMAN");
 
-    public static final Profession FLETCHER = DummyObjectProvider.createFor(Profession.class, "FLETCHER");
+    public static final Supplier<Profession> FLETCHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Profession.class, "FLETCHER");
 
-    public static final Profession LEATHERWORKER = DummyObjectProvider.createFor(Profession.class, "LEATHERWORKER");
+    public static final Supplier<Profession> LEATHERWORKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Profession.class, "LEATHERWORKER");
 
-    public static final Profession LIBRARIAN = DummyObjectProvider.createFor(Profession.class, "LIBRARIAN");
+    public static final Supplier<Profession> LIBRARIAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Profession.class, "LIBRARIAN");
 
-    public static final Profession MASON = DummyObjectProvider.createFor(Profession.class, "MASON");
+    public static final Supplier<Profession> MASON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Profession.class, "MASON");
 
-    public static final Profession NITWIT = DummyObjectProvider.createFor(Profession.class, "NITWIT");
+    public static final Supplier<Profession> NITWIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Profession.class, "NITWIT");
 
-    public static final Profession NONE = DummyObjectProvider.createFor(Profession.class, "NONE");
+    public static final Supplier<Profession> NONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Profession.class, "NONE");
 
-    public static final Profession SHEPHERD = DummyObjectProvider.createFor(Profession.class, "SHEPHERD");
+    public static final Supplier<Profession> SHEPHERD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Profession.class, "SHEPHERD");
 
-    public static final Profession TOOLSMITH = DummyObjectProvider.createFor(Profession.class, "TOOLSMITH");
+    public static final Supplier<Profession> TOOLSMITH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Profession.class, "TOOLSMITH");
 
-    public static final Profession WEAPONSMITH = DummyObjectProvider.createFor(Profession.class, "WEAPONSMITH");
+    public static final Supplier<Profession> WEAPONSMITH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Profession.class, "WEAPONSMITH");
 
     // SORTFIELDS:OFF
 

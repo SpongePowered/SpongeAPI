@@ -24,21 +24,23 @@
  */
 package org.spongepowered.api.event.cause.entity.teleport;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 public final class TeleportTypes {
 
     // SORTFIELDS:ON
 
-    public static final TeleportType COMMAND = DummyObjectProvider.createFor(TeleportType.class, "COMMAND");
+    public static final Supplier<TeleportType> COMMAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TeleportType.class, "COMMAND");
 
-    public static final TeleportType ENTITY_TELEPORT = DummyObjectProvider.createFor(TeleportType.class, "ENTITY_TELEPORT");
+    public static final Supplier<TeleportType> ENTITY_TELEPORT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TeleportType.class, "ENTITY_TELEPORT");
 
-    public static final TeleportType PLUGIN = DummyObjectProvider.createFor(TeleportType.class, "PLUGIN");
+    public static final Supplier<TeleportType> PLUGIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TeleportType.class, "PLUGIN");
 
-    public static final TeleportType PORTAL = DummyObjectProvider.createFor(TeleportType.class, "PORTAL");
+    public static final Supplier<TeleportType> PORTAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TeleportType.class, "PORTAL");
 
-    public static final TeleportType UNKNOWN = DummyObjectProvider.createFor(TeleportType.class, "UNKNOWN");
+    public static final Supplier<TeleportType> UNKNOWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TeleportType.class, "UNKNOWN");
 
     // SORTFIELDS:OFF
 

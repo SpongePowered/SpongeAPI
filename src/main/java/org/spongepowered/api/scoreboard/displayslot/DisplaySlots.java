@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.scoreboard.displayslot;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 /**
  * Display slot names which display an objective in a particular place in-game.
@@ -37,18 +39,18 @@ public final class DisplaySlots {
      * Displays a player's score for the objective underneath their nametag
      * in-game, when a player is closer than 10 blocks.
      */
-    public static final DisplaySlot BELOW_NAME = DummyObjectProvider.createFor(DisplaySlot.class, "BELOW_NAME");
+    public static final Supplier<DisplaySlot> BELOW_NAME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "BELOW_NAME");
 
     /**
      * Displays scores for the objective next to players' names in the
      * player list (accessed by holding TAB).
      */
-    public static final DisplaySlot LIST = DummyObjectProvider.createFor(DisplaySlot.class, "LIST");
+    public static final Supplier<DisplaySlot> LIST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "LIST");
 
     /**
      * Displays scores for the objective on the side of the screen in-game.
      */
-    public static final DisplaySlot SIDEBAR = DummyObjectProvider.createFor(DisplaySlot.class, "SIDEBAR");
+    public static final Supplier<DisplaySlot> SIDEBAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "SIDEBAR");
 
     // SORTFIELDS:OFF
 

@@ -24,9 +24,11 @@
  */
 package org.spongepowered.api.scoreboard.objective.displaymode;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlots;
 import org.spongepowered.api.scoreboard.objective.Objective;
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
+import java.util.function.Supplier;
 
 /**
  * {@link ObjectiveDisplayMode}s which cause scores for an
@@ -44,13 +46,13 @@ public final class ObjectiveDisplayModes {
      * <p>This only has an effect for an {@link Objective}
      * with the display slot {@link DisplaySlots#LIST}.</p>
      */
-    public static final ObjectiveDisplayMode HEARTS = DummyObjectProvider.createFor(ObjectiveDisplayMode.class, "HEARTS");
+    public static final Supplier<ObjectiveDisplayMode> HEARTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ObjectiveDisplayMode.class, "HEARTS");
 
     /**
      * Causes the scores for an {@link Objective}
      * to be displayed as integers.
      */
-    public static final ObjectiveDisplayMode INTEGER = DummyObjectProvider.createFor(ObjectiveDisplayMode.class, "INTEGER");
+    public static final Supplier<ObjectiveDisplayMode> INTEGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ObjectiveDisplayMode.class, "INTEGER");
 
     // SORTFIELDS:OFF
 

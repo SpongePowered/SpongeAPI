@@ -24,14 +24,16 @@
  */
 package org.spongepowered.api.world.gen.carver;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 public final class CarvingLayers {
 
     // SORTFIELDS:ON
 
-    public static final CarvingLayer AIR = DummyObjectProvider.createFor(CarvingLayer.class, "AIR");
-    public static final CarvingLayer LIQUID = DummyObjectProvider.createFor(CarvingLayer.class, "AIR");
+    public static final Supplier<CarvingLayer> AIR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(CarvingLayer.class, "AIR");
+    public static final Supplier<CarvingLayer> LIQUID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(CarvingLayer.class, "AIR");
 
     // SORTFIELDS:OFF
 

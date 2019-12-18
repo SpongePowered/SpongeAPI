@@ -33,9 +33,9 @@ public final class MooshroomTypes {
 
     // SORTFIELDS:ON
 
-    public static final MooshroomType BROWN = DummyObjectProvider.createFor(MooshroomType.class, "BROWN");
+    public static final Supplier<MooshroomType> BROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MooshroomType.class, "BROWN");
 
-    public static final MooshroomType RED = DummyObjectProvider.createFor(MooshroomType.class, "RED");
+    public static final Supplier<MooshroomType> RED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MooshroomType.class, "RED");
 
     // SORTFIELDS:OFF
 

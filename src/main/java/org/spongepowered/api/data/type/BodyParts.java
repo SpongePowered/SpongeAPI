@@ -33,17 +33,17 @@ public final class BodyParts {
 
     // SORTFIELDS:ON
 
-    public static final BodyPart CHEST = DummyObjectProvider.createFor(BodyPart.class, "CHEST");
+    public static final Supplier<BodyPart> CHEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BodyPart.class, "CHEST");
 
-    public static final BodyPart HEAD = DummyObjectProvider.createFor(BodyPart.class, "HEAD");
+    public static final Supplier<BodyPart> HEAD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BodyPart.class, "HEAD");
 
-    public static final BodyPart LEFT_ARM = DummyObjectProvider.createFor(BodyPart.class, "LEFT_ARM");
+    public static final Supplier<BodyPart> LEFT_ARM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BodyPart.class, "LEFT_ARM");
 
-    public static final BodyPart LEFT_LEG = DummyObjectProvider.createFor(BodyPart.class, "LEFT_LEG");
+    public static final Supplier<BodyPart> LEFT_LEG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BodyPart.class, "LEFT_LEG");
 
-    public static final BodyPart RIGHT_ARM = DummyObjectProvider.createFor(BodyPart.class, "RIGHT_ARM");
+    public static final Supplier<BodyPart> RIGHT_ARM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BodyPart.class, "RIGHT_ARM");
 
-    public static final BodyPart RIGHT_LEG = DummyObjectProvider.createFor(BodyPart.class, "RIGHT_LEG");
+    public static final Supplier<BodyPart> RIGHT_LEG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BodyPart.class, "RIGHT_LEG");
 
     // SORTFIELDS:OFF
 

@@ -33,11 +33,11 @@ public final class ChestAttachmentTypes {
 
     // SORTFIELDS:ON
 
-    public static final ChestAttachmentType LEFT = DummyObjectProvider.createFor(ChestAttachmentType.class, "LEFT");
+    public static final Supplier<ChestAttachmentType> LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChestAttachmentType.class, "LEFT");
 
-    public static final ChestAttachmentType NONE = DummyObjectProvider.createFor(ChestAttachmentType.class, "NONE");
+    public static final Supplier<ChestAttachmentType> NONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChestAttachmentType.class, "NONE");
 
-    public static final ChestAttachmentType RIGHT = DummyObjectProvider.createFor(ChestAttachmentType.class, "RIGHT");
+    public static final Supplier<ChestAttachmentType> RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChestAttachmentType.class, "RIGHT");
 
     // SORTFIELDS:OFF
 

@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.util.ban;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 public class BanTypes {
 
@@ -33,12 +35,12 @@ public class BanTypes {
     /**
      * Represents a {@link Ban.Ip}.
      */
-    public static final BanType IP = DummyObjectProvider.createFor(BanType.class, "IP");
+    public static final Supplier<BanType> IP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BanType.class, "IP");
 
     /**
      * Represents a {@link Ban.Profile}.
      */
-    public static final BanType PROFILE = DummyObjectProvider.createFor(BanType.class, "PROFILE");
+    public static final Supplier<BanType> PROFILE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BanType.class, "PROFILE");
 
     // SORTFIELDS:OFF
 

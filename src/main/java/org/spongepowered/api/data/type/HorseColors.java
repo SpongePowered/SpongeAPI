@@ -33,19 +33,19 @@ public final class HorseColors {
 
     // SORTFIELDS:ON
 
-    public static final HorseColor BLACK = DummyObjectProvider.createFor(HorseColor.class, "BLACK");
+    public static final Supplier<HorseColor> BLACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "BLACK");
 
-    public static final HorseColor BROWN = DummyObjectProvider.createFor(HorseColor.class, "BROWN");
+    public static final Supplier<HorseColor> BROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "BROWN");
 
-    public static final HorseColor CHESTNUT = DummyObjectProvider.createFor(HorseColor.class, "CHESTNUT");
+    public static final Supplier<HorseColor> CHESTNUT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "CHESTNUT");
 
-    public static final HorseColor CREAMY = DummyObjectProvider.createFor(HorseColor.class, "CREAMY");
+    public static final Supplier<HorseColor> CREAMY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "CREAMY");
 
-    public static final HorseColor DARK_BROWN = DummyObjectProvider.createFor(HorseColor.class, "DARK_BROWN");
+    public static final Supplier<HorseColor> DARK_BROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "DARK_BROWN");
 
-    public static final HorseColor GRAY = DummyObjectProvider.createFor(HorseColor.class, "GRAY");
+    public static final Supplier<HorseColor> GRAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "GRAY");
 
-    public static final HorseColor WHITE = DummyObjectProvider.createFor(HorseColor.class, "WHITE");
+    public static final Supplier<HorseColor> WHITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "WHITE");
 
     // SORTFIELDS:OFF
 

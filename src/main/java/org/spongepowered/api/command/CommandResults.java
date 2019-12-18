@@ -35,7 +35,7 @@ public final class CommandResults {
     public final static CommandResult SUCCESS = CommandResult.builder().setResult(1).build();
 
     /**
-     * Indicates that the command executed but was unable to carry out its task.
+     * Indicates that the command executed but regiwas unable to carry out its task.
      */
     public final static CommandResult EMPTY = CommandResult.builder().build();
 

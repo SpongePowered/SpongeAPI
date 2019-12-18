@@ -33,9 +33,9 @@ public final class HandPreferences {
 
     // SORTFIELDS: ON
 
-    public static final HandPreference LEFT = DummyObjectProvider.createFor(HandPreference.class, "LEFT");
+    public static final Supplier<HandPreference> LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HandPreference.class, "LEFT");
 
-    public static final HandPreference RIGHT = DummyObjectProvider.createFor(HandPreference.class, "RIGHT");
+    public static final Supplier<HandPreference> RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HandPreference.class, "RIGHT");
 
     // SORTFIELDS: OFF
 

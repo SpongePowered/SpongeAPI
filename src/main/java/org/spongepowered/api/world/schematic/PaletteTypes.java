@@ -24,18 +24,20 @@
  */
 package org.spongepowered.api.world.schematic;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.world.biome.BiomeType;
+
+import java.util.function.Supplier;
 
 public final class PaletteTypes {
 
     // SORTFIELDS:ON
 
-    public static final PaletteType<BlockState> GLOBAL_BLOCKS = DummyObjectProvider.createExtendedFor(PaletteType.class, "GLOBAL_BLOCKS");
-    public static final PaletteType<BlockState> LOCAL_BLOCKS = DummyObjectProvider.createExtendedFor(PaletteType.class, "LOCAL_BLOCKS");
-    public static final PaletteType<BiomeType> LOCAL_BIOMES = DummyObjectProvider.createExtendedFor(PaletteType.class, "LOCAL_BIOMNES");
-    public static final PaletteType<BiomeType> GLOBAL_BIOMES = DummyObjectProvider.createExtendedFor(PaletteType.class, "GLOBAL_BIOMES");
+    public static final Supplier<PaletteType<BlockState>> GLOBAL_BLOCKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PaletteType.class, "GLOBAL_BLOCKS");
+    public static final Supplier<PaletteType<BlockState>> LOCAL_BLOCKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PaletteType.class, "LOCAL_BLOCKS");
+    public static final Supplier<PaletteType<BiomeType>> LOCAL_BIOMES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PaletteType.class, "LOCAL_BIOMNES");
+    public static final Supplier<PaletteType<BiomeType>> GLOBAL_BIOMES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PaletteType.class, "GLOBAL_BIOMES");
 
     // SORTFIELDS:OFF
 

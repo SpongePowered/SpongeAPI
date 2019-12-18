@@ -24,9 +24,11 @@
  */
 package org.spongepowered.api.item.inventory;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.animal.horse.Horse;
 import org.spongepowered.api.entity.living.trader.Villager;
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
+import java.util.function.Supplier;
 
 /**
  * An enumeration of all possible {@link ContainerType}s in vanilla minecraft.
@@ -42,54 +44,54 @@ public final class ContainerTypes {
 
     // SORTFIELDS:ON
 
-    public static final ContainerType BLAST_FURNACE = DummyObjectProvider.createFor(ContainerType.class, "blast_furnace");
+    public static final Supplier<ContainerType> BLAST_FURNACE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "blast_furnace");
 
     /**
      * Size 5.
      */
-    public static final ContainerType BREWING_STAND = DummyObjectProvider.createFor(ContainerType.class, "brewing_stand");
+    public static final Supplier<ContainerType> BREWING_STAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "brewing_stand");
 
     /**
      * Size 3.
      */
-    public static final ContainerType FURNACE = DummyObjectProvider.createFor(ContainerType.class, "furnace");
+    public static final Supplier<ContainerType> FURNACE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "furnace");
 
     /**
      * Size 9 (3x3 grid). (Dispenser)
      */
-    public static final ContainerType GENERIC_3x3 = DummyObjectProvider.createFor(ContainerType.class, "generic_3x3");
+    public static final Supplier<ContainerType> GENERIC_3x3 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "generic_3x3");
 
-    public static final ContainerType GENERIC_9x1 = DummyObjectProvider.createFor(ContainerType.class, "generic_9x1");
+    public static final Supplier<ContainerType> GENERIC_9x1 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "generic_9x1");
 
-    public static final ContainerType GENERIC_9x2 = DummyObjectProvider.createFor(ContainerType.class, "generic_9x2");
+    public static final Supplier<ContainerType> GENERIC_9x2 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "generic_9x2");
 
     /**
      * Size 27 (3x9 grid)
      */
-    public static final ContainerType GENERIC_9x3 = DummyObjectProvider.createFor(ContainerType.class, "generic_9x3");
+    public static final Supplier<ContainerType> GENERIC_9x3 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "generic_9x3");
 
-    public static final ContainerType GENERIC_9x4 = DummyObjectProvider.createFor(ContainerType.class, "generic_9x4");
+    public static final Supplier<ContainerType> GENERIC_9x4 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "generic_9x4");
 
-    public static final ContainerType GENERIC_9x5 = DummyObjectProvider.createFor(ContainerType.class, "generic_9x5");
+    public static final Supplier<ContainerType> GENERIC_9x5 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "generic_9x5");
 
     /**
      * Size 54 (6x9 grid)
      */
-    public static final ContainerType GENERIC_9x6 = DummyObjectProvider.createFor(ContainerType.class, "generic_9x6");
+    public static final Supplier<ContainerType> GENERIC_9x6 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "generic_9x6");
 
     /**
      * Size 5 (1x5 grid).
      */
-    public static final ContainerType HOPPER = DummyObjectProvider.createFor(ContainerType.class, "hopper");
+    public static final Supplier<ContainerType> HOPPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "hopper");
 
-    public static final ContainerType LECTERN = DummyObjectProvider.createFor(ContainerType.class, "lectern");
+    public static final Supplier<ContainerType> LECTERN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "lectern");
 
     /**
      * Size 27 (3x9 grid). Shulker boxes are not allowed in shulker boxes.
      */
-    public static final ContainerType SHULKER_BOX = DummyObjectProvider.createFor(ContainerType.class, "shulker_box");
+    public static final Supplier<ContainerType> SHULKER_BOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "shulker_box");
 
-    public static final ContainerType SMOKER = DummyObjectProvider.createFor(ContainerType.class, "smoker");
+    public static final Supplier<ContainerType> SMOKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "smoker");
 
     // SORTFIELDS:OFF
 
@@ -100,30 +102,30 @@ public final class ContainerTypes {
     /**
      * Size 0. All slots present in the container only: 3.
      */
-    public static final ContainerType ANVIL = DummyObjectProvider.createFor(ContainerType.class, "anvil");
+    public static final Supplier<ContainerType> ANVIL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "anvil");
 
     /**
      * Size 0. All slots present in the container only: 1.
      */
-    public static final ContainerType BEACON = DummyObjectProvider.createFor(ContainerType.class, "beacon");
+    public static final Supplier<ContainerType> BEACON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "beacon");
 
-    public static final ContainerType CARTOGRAPHY = DummyObjectProvider.createFor(ContainerType.class, "cartography");
+    public static final Supplier<ContainerType> CARTOGRAPHY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "cartography");
 
     /**
      * Size 0. All slots present in the container only: 10 (3x3+1).
      */
-    public static final ContainerType CRAFTING = DummyObjectProvider.createFor(ContainerType.class, "crafting");
+    public static final Supplier<ContainerType> CRAFTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "crafting");
 
     /**
      * Size 0. All slots present in the container only 2.
      */
-    public static final ContainerType ENCHANTMENT = DummyObjectProvider.createFor(ContainerType.class, "enchantment");
+    public static final Supplier<ContainerType> ENCHANTMENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "enchantment");
 
-    public static final ContainerType GRINDSTONE = DummyObjectProvider.createFor(ContainerType.class, "grindstone");
+    public static final Supplier<ContainerType> GRINDSTONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "grindstone");
 
-    public static final ContainerType LOOM = DummyObjectProvider.createFor(ContainerType.class, "loom");
+    public static final Supplier<ContainerType> LOOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "loom");
 
-    public static final ContainerType STONECUTTER = DummyObjectProvider.createFor(ContainerType.class, "stonecutter");
+    public static final Supplier<ContainerType> STONECUTTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "stonecutter");
 
     // SORTFIELDS:OFF
 
@@ -134,12 +136,12 @@ public final class ContainerTypes {
     /**
      * Create a subtype of a {@link Horse} Entity instead of using this ContainerType.
      */
-    public static final ContainerType HORSE = DummyObjectProvider.createFor(ContainerType.class, "horse");
+    public static final Supplier<ContainerType> HORSE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "horse");
 
     /**
      * Create a {@link Villager} Entity instead of using this ContainerType.
      */
-    public static final ContainerType MERCHANT = DummyObjectProvider.createFor(ContainerType.class, "merchant");
+    public static final Supplier<ContainerType> MERCHANT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "merchant");
 
     // SORTFIELDS:OFF
 

@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.world;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 public final class WorldArchetypes {
 
@@ -33,22 +35,22 @@ public final class WorldArchetypes {
     /**
      * Represents a typical default {@link World}.
      */
-    public static final WorldArchetype OVERWORLD = DummyObjectProvider.createFor(WorldArchetype.class, "overworld");
+    public static final Supplier<WorldArchetype> OVERWORLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WorldArchetype.class, "overworld");
 
     /**
      * Represents a typical nether-style {@link World}.
      */
-    public static final WorldArchetype THE_NETHER = DummyObjectProvider.createFor(WorldArchetype.class, "the_nether");
+    public static final Supplier<WorldArchetype> THE_NETHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WorldArchetype.class, "the_nether");
 
     /**
      * Represents a typical the end-style {@link World}.
      */
-    public static final WorldArchetype THE_END = DummyObjectProvider.createFor(WorldArchetype.class, "the_end");
+    public static final Supplier<WorldArchetype> THE_END = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WorldArchetype.class, "the_end");
 
     /**
      * Represents a typical Sponge void-style {@link World}.
      */
-    public static final WorldArchetype THE_VOID = DummyObjectProvider.createFor(WorldArchetype.class, "the_void");
+    public static final Supplier<WorldArchetype> THE_VOID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WorldArchetype.class, "the_void");
 
     // SORTFIELDS:OFF
 

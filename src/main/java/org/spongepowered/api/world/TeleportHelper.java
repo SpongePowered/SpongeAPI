@@ -70,7 +70,7 @@ public interface TeleportHelper {
      *         {@link Optional#empty()} will be returned.
      */
     default Optional<Location> getSafeLocation(Location location) {
-        return getSafeLocation(location, DEFAULT_HEIGHT, DEFAULT_WIDTH, DEFAULT_FLOOR_CHECK_DISTANCE, TeleportHelperFilters.DEFAULT);
+        return getSafeLocation(location, DEFAULT_HEIGHT, DEFAULT_WIDTH, DEFAULT_FLOOR_CHECK_DISTANCE, TeleportHelperFilters.DEFAULT.get());
     }
 
     /**
@@ -96,7 +96,7 @@ public interface TeleportHelper {
      *         {@link Optional#empty()} will be returned
      */
     default Optional<Location> getSafeLocation(Location location, int height, int width) {
-        return getSafeLocation(location, height, width, DEFAULT_FLOOR_CHECK_DISTANCE, TeleportHelperFilters.DEFAULT);
+        return getSafeLocation(location, height, width, DEFAULT_FLOOR_CHECK_DISTANCE, TeleportHelperFilters.DEFAULT.get());
     }
 
     /**
@@ -125,7 +125,7 @@ public interface TeleportHelper {
      *         {@link Optional#empty()} will be returned
      */
     default Optional<Location> getSafeLocation(Location location, int height, int width, int floorDistance) {
-        return getSafeLocation(location, height, width, floorDistance, TeleportHelperFilters.DEFAULT, TeleportHelperFilters.CONFIG);
+        return getSafeLocation(location, height, width, floorDistance, TeleportHelperFilters.DEFAULT.get(), TeleportHelperFilters.CONFIG.get());
     }
 
     /**
@@ -188,7 +188,7 @@ public interface TeleportHelper {
      */
     default Optional<Location> getSafeLocationWithBlacklist(Location location, int height, int width, int floorDistance,
             TeleportHelperFilter... filters) {
-        return getSafeLocation(location, height, width, floorDistance, TeleportHelperFilters.CONFIG, filters);
+        return getSafeLocation(location, height, width, floorDistance, TeleportHelperFilters.CONFIG.get(), filters);
     }
 
 }

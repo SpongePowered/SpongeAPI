@@ -33,37 +33,37 @@ public final class DyeColors {
 
     // SORTFIELDS:ON
 
-    public static final DyeColor BLACK = DummyObjectProvider.createFor(DyeColor.class, "BLACK");
+    public static final Supplier<DyeColor> BLACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "BLACK");
 
-    public static final DyeColor BLUE = DummyObjectProvider.createFor(DyeColor.class, "BLUE");
+    public static final Supplier<DyeColor> BLUE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "BLUE");
 
-    public static final DyeColor BROWN = DummyObjectProvider.createFor(DyeColor.class, "BROWN");
+    public static final Supplier<DyeColor> BROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "BROWN");
 
-    public static final DyeColor CYAN = DummyObjectProvider.createFor(DyeColor.class, "CYAN");
+    public static final Supplier<DyeColor> CYAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "CYAN");
 
-    public static final DyeColor GRAY = DummyObjectProvider.createFor(DyeColor.class, "GRAY");
+    public static final Supplier<DyeColor> GRAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "GRAY");
 
-    public static final DyeColor GREEN = DummyObjectProvider.createFor(DyeColor.class, "GREEN");
+    public static final Supplier<DyeColor> GREEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "GREEN");
 
-    public static final DyeColor LIGHT_BLUE = DummyObjectProvider.createFor(DyeColor.class, "LIGHT_BLUE");
+    public static final Supplier<DyeColor> LIGHT_BLUE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "LIGHT_BLUE");
 
-    public static final DyeColor LIGHT_GRAY = DummyObjectProvider.createFor(DyeColor.class, "LIGHT_GRAY");
+    public static final Supplier<DyeColor> LIGHT_GRAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "LIGHT_GRAY");
 
-    public static final DyeColor LIME = DummyObjectProvider.createFor(DyeColor.class, "LIME");
+    public static final Supplier<DyeColor> LIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "LIME");
 
-    public static final DyeColor MAGENTA = DummyObjectProvider.createFor(DyeColor.class, "MAGENTA");
+    public static final Supplier<DyeColor> MAGENTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "MAGENTA");
 
-    public static final DyeColor ORANGE = DummyObjectProvider.createFor(DyeColor.class, "ORANGE");
+    public static final Supplier<DyeColor> ORANGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "ORANGE");
 
-    public static final DyeColor PINK = DummyObjectProvider.createFor(DyeColor.class, "PINK");
+    public static final Supplier<DyeColor> PINK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "PINK");
 
-    public static final DyeColor PURPLE = DummyObjectProvider.createFor(DyeColor.class, "PURPLE");
+    public static final Supplier<DyeColor> PURPLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "PURPLE");
 
-    public static final DyeColor RED = DummyObjectProvider.createFor(DyeColor.class, "RED");
+    public static final Supplier<DyeColor> RED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "RED");
 
-    public static final DyeColor WHITE = DummyObjectProvider.createFor(DyeColor.class, "WHITE");
+    public static final Supplier<DyeColor> WHITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "WHITE");
 
-    public static final DyeColor YELLOW = DummyObjectProvider.createFor(DyeColor.class, "YELLOW");
+    public static final Supplier<DyeColor> YELLOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "YELLOW");
 
     // SORTFIELDS:OFF
 

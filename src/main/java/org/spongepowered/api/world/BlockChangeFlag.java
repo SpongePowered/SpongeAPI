@@ -143,4 +143,10 @@ public interface BlockChangeFlag {
      */
     BlockChangeFlag andNotFlag(BlockChangeFlag flag);
 
+    public interface Factory {
+
+        BlockChangeFlag empty();
+
+    }
+
 }

@@ -33,15 +33,15 @@ public final class HorseStyles {
 
     // SORTFIELDS:ON
 
-    public static final HorseStyle BLACK_DOTS = DummyObjectProvider.createFor(HorseStyle.class, "BLACK_DOTS");
+    public static final Supplier<HorseStyle> BLACK_DOTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseStyle.class, "BLACK_DOTS");
 
-    public static final HorseStyle NONE = DummyObjectProvider.createFor(HorseStyle.class, "NONE");
+    public static final Supplier<HorseStyle> NONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseStyle.class, "NONE");
 
-    public static final HorseStyle WHITE = DummyObjectProvider.createFor(HorseStyle.class, "WHITE");
+    public static final Supplier<HorseStyle> WHITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseStyle.class, "WHITE");
 
-    public static final HorseStyle WHITEFIELD = DummyObjectProvider.createFor(HorseStyle.class, "WHITEFIELD");
+    public static final Supplier<HorseStyle> WHITEFIELD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseStyle.class, "WHITEFIELD");
 
-    public static final HorseStyle WHITE_DOTS = DummyObjectProvider.createFor(HorseStyle.class, "WHITE_DOTS");
+    public static final Supplier<HorseStyle> WHITE_DOTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseStyle.class, "WHITE_DOTS");
 
     // SORTFIELDS:OFF
 

@@ -33,25 +33,25 @@ public final class RailDirections {
 
     // SORTFIELDS:ON
 
-    public static final RailDirection ASCENDING_EAST = DummyObjectProvider.createFor(RailDirection.class, "ASCENDING_EAST");
+    public static final Supplier<RailDirection> ASCENDING_EAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RailDirection.class, "ASCENDING_EAST");
 
-    public static final RailDirection ASCENDING_NORTH = DummyObjectProvider.createFor(RailDirection.class, "ASCENDING_NORTH");
+    public static final Supplier<RailDirection> ASCENDING_NORTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RailDirection.class, "ASCENDING_NORTH");
 
-    public static final RailDirection ASCENDING_SOUTH = DummyObjectProvider.createFor(RailDirection.class, "ASCENDING_SOUTH");
+    public static final Supplier<RailDirection> ASCENDING_SOUTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RailDirection.class, "ASCENDING_SOUTH");
 
-    public static final RailDirection ASCENDING_WEST = DummyObjectProvider.createFor(RailDirection.class, "ASCENDING_WEST");
+    public static final Supplier<RailDirection> ASCENDING_WEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RailDirection.class, "ASCENDING_WEST");
 
-    public static final RailDirection EAST_WEST = DummyObjectProvider.createFor(RailDirection.class, "EAST_WEST");
+    public static final Supplier<RailDirection> EAST_WEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RailDirection.class, "EAST_WEST");
 
-    public static final RailDirection NORTH_EAST = DummyObjectProvider.createFor(RailDirection.class, "NORTH_EAST");
+    public static final Supplier<RailDirection> NORTH_EAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RailDirection.class, "NORTH_EAST");
 
-    public static final RailDirection NORTH_SOUTH = DummyObjectProvider.createFor(RailDirection.class, "NORTH_SOUTH");
+    public static final Supplier<RailDirection> NORTH_SOUTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RailDirection.class, "NORTH_SOUTH");
 
-    public static final RailDirection NORTH_WEST = DummyObjectProvider.createFor(RailDirection.class, "NORTH_WEST");
+    public static final Supplier<RailDirection> NORTH_WEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RailDirection.class, "NORTH_WEST");
 
-    public static final RailDirection SOUTH_EAST = DummyObjectProvider.createFor(RailDirection.class, "SOUTH_EAST");
+    public static final Supplier<RailDirection> SOUTH_EAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RailDirection.class, "SOUTH_EAST");
 
-    public static final RailDirection SOUTH_WEST = DummyObjectProvider.createFor(RailDirection.class, "SOUTH_WEST");
+    public static final Supplier<RailDirection> SOUTH_WEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RailDirection.class, "SOUTH_WEST");
 
     // SORTFIELDS:OFF
 
