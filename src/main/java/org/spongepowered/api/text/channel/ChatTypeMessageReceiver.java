@@ -33,6 +33,7 @@ import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.chat.ChatTypes;
 
 import java.util.Map;
+import java.util.function.Supplier;
 
 /**
  * Represents a {@link MessageReceiver} that can receive messages with a
@@ -66,6 +67,19 @@ public interface ChatTypeMessageReceiver extends MessageReceiver {
     void sendMessage(ChatType type, Text message);
 
     /**
+     * Sends a message with the specified {@link ChatType} to this receiver.
+     *
+     * <p>If text formatting is not supported in the implementation
+     * for this target, it will be displayed as plain text.</p>
+     *
+     * @param type The chat type to send the messages to
+     * @param message The message to send
+     */
+    default void sendMessage(Supplier<? extends ChatType> type, Text message) {
+        sendMessage(type.get(), message);
+    }
+
+    /**
      * Sends a message constructed from the {@link TextTemplate} with the
      * specified {@link ChatType} to this receiver.
      *
@@ -76,6 +90,20 @@ public interface ChatTypeMessageReceiver extends MessageReceiver {
      * @param template The text template
      */
     default void sendMessage(ChatType type, TextTemplate template) {
+        this.sendMessage(type, checkNotNull(template, "template").apply().build());
+    }
+
+    /**
+     * Sends a message constructed from the {@link TextTemplate} with the
+     * specified {@link ChatType} to this receiver.
+     *
+     * <p>If text formatting is not supported in the implementation
+     * for this target, it will be displayed as plain text.</p>
+     *
+     * @param type The chat type to send the messages to
+     * @param template The text template
+     */
+    default void sendMessage(Supplier<? extends ChatType> type, TextTemplate template) {
         this.sendMessage(type, checkNotNull(template, "template").apply().build());
     }
 
@@ -91,6 +119,21 @@ public interface ChatTypeMessageReceiver extends MessageReceiver {
      * @param parameters The parameters to apply to the template
      */
     default void sendMessage(ChatType type, TextTemplate template, Map<String, TextElement> parameters) {
+        sendMessage(type, checkNotNull(template, "template").apply(parameters).build());
+    }
+
+    /**
+     * Sends a message constructed from the {@link TextTemplate} and
+     * {@code parameters} with the specified {@link ChatType} to this receiver.
+     *
+     * <p>If text formatting is not supported in the implementation
+     * for this target, it will be displayed as plain text.</p>
+     *
+     * @param type The chat type to send the messages to
+     * @param template The text template
+     * @param parameters The parameters to apply to the template
+     */
+    default void sendMessage(Supplier<? extends ChatType> type, TextTemplate template, Map<String, TextElement> parameters) {
         sendMessage(type, checkNotNull(template, "template").apply(parameters).build());
     }
 
@@ -120,7 +163,41 @@ public interface ChatTypeMessageReceiver extends MessageReceiver {
      * @param type The chat type to send the messages to
      * @param messages The message(s) to send
      */
+    default void sendMessages(Supplier<? extends ChatType> type, Text... messages) {
+        checkNotNull(type, "type");
+
+        for (Text message : checkNotNull(messages, "messages")) {
+            sendMessage(type, message);
+        }
+    }
+
+    /**
+     * Sends the message(s) with the specified {@link ChatType} to this receiver.
+     *
+     * <p>If text formatting is not supported in the implementation
+     * for this target, it will be displayed as plain text.</p>
+     *
+     * @param type The chat type to send the messages to
+     * @param messages The message(s) to send
+     */
     default void sendMessages(ChatType type, Iterable<Text> messages) {
+        checkNotNull(type, "type");
+
+        for (Text message : checkNotNull(messages, "messages")) {
+            sendMessage(type, message);
+        }
+    }
+
+    /**
+     * Sends the message(s) with the specified {@link ChatType} to this receiver.
+     *
+     * <p>If text formatting is not supported in the implementation
+     * for this target, it will be displayed as plain text.</p>
+     *
+     * @param type The chat type to send the messages to
+     * @param messages The message(s) to send
+     */
+    default void sendMessages(Supplier<? extends ChatType> type, Iterable<Text> messages) {
         checkNotNull(type, "type");
 
         for (Text message : checkNotNull(messages, "messages")) {

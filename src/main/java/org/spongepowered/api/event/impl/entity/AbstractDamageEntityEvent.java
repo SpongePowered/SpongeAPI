@@ -46,9 +46,9 @@ import java.util.function.DoubleUnaryOperator;
 
 public abstract class AbstractDamageEntityEvent extends AbstractModifierEvent<DamageFunction, DamageModifier> implements DamageEntityEvent {
 
-    @UseField private double originalDamage;
-    @UseField private List<DamageFunction> originalFunctions;
-    @UseField private double baseDamage;
+    @UseField protected double originalDamage;
+    @UseField protected List<DamageFunction> originalFunctions;
+    @UseField protected double baseDamage;
 
     @Override
     protected final void init() {
@@ -193,7 +193,7 @@ public abstract class AbstractDamageEntityEvent extends AbstractModifierEvent<Da
 
     @Override
     public boolean willCauseDeath() {
-        Optional<Double> health = getEntity().get(Keys.HEALTH);
+        Optional<Double> health = getEntity().get(Keys.HEALTH.get());
         return health.isPresent() && health.get() - getFinalDamage() <= 0;
     }
 

@@ -209,7 +209,7 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
      * @return The built compact text object
      */
     static Text ofCompact(Object... objects) {
-        return Sponge.getRegistry().requireFactory(Factory.class).ofCompact(objects);
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).ofCompact(objects);
     }
 
     /**

@@ -41,7 +41,7 @@ public interface ArrowEntity extends DamagingProjectile {
      * @see org.spongepowered.api.data.type.PickupRules
      */
     default Value.Mutable<PickupRule> pickupRule() {
-        return this.getValue(Keys.PICKUP_RULE).get().asMutable();
+        return this.getValue(Keys.PICKUP_RULE.get()).get().asMutable();
     }
 
     /**
@@ -49,6 +49,6 @@ public interface ArrowEntity extends DamagingProjectile {
      * @return The knockback strength
      */
     default BoundedValue.Mutable<Integer> knockbackStrength() {
-        return this.getValue(Keys.KNOCKBACK_STRENGTH).get().asMutable();
+        return this.getValue(Keys.KNOCKBACK_STRENGTH.get()).get().asMutable();
     }
 }

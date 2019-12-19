@@ -39,7 +39,7 @@ public interface Spellcaster extends Illager {
      * @see org.spongepowered.api.data.type.SpellTypes
      */
     default Optional<Value.Mutable<SpellType>> currentSpell() {
-        return this.getValue(Keys.CURRENT_SPELL).map(Value::asMutable);
+        return this.getValue(Keys.CURRENT_SPELL.get()).map(Value::asMutable);
     }
 
     /**
@@ -47,7 +47,7 @@ public interface Spellcaster extends Illager {
      * @return The time to cast
      */
     default Value.Mutable<Integer> castingTime() {
-        return this.getValue(Keys.CASTING_TIME).get().asMutable();
+        return this.getValue(Keys.CASTING_TIME.get()).get().asMutable();
     }
 
     /**

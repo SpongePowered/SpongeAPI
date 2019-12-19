@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 public final class VillagerTypes {
 

@@ -86,29 +86,29 @@ public interface World<W extends World<W>> extends ProtoWorld<W>,
     @Override
     Collection<? extends Player> getPlayers();
 
-    default Optional<Player> getClosestPlayer(Vector3i position, double distance) {
+    default Optional<? extends Player> getClosestPlayer(Vector3i position, double distance) {
         return getClosestPlayer(position.getX(), position.getY(), position.getZ(), distance, player -> true);
     }
 
-    default Optional<Player> getClosestPlayer(Vector3i position, double distance, Predicate<? super Player> predicate) {
+    default Optional<? extends Player> getClosestPlayer(Vector3i position, double distance, Predicate<? super Player> predicate) {
         return getClosestPlayer(position.getX(), position.getY(), position.getZ(), distance, predicate);
     }
 
-    default Optional<Player> getClosestPlayer(Entity entity, double distance) {
+    default Optional<? extends Player> getClosestPlayer(Entity entity, double distance) {
         final Vector3d position = entity.getLocation().getPosition();
         return getClosestPlayer(position.getFloorX(), position.getFloorY(), position.getFloorZ(), distance, player -> true);
     }
 
-    default Optional<Player> getClosestPlayer(Entity entity, double distance, Predicate<? super Player> predicate) {
+    default Optional<? extends Player> getClosestPlayer(Entity entity, double distance, Predicate<? super Player> predicate) {
         final Vector3d position = entity.getLocation().getPosition();
         return getClosestPlayer(position.getFloorX(), position.getFloorY(), position.getFloorZ(), distance, predicate);
     }
 
-    default Optional<Player> getClosestPlayer(int x, int y, int z, double distance) {
+    default Optional<? extends Player> getClosestPlayer(int x, int y, int z, double distance) {
         return getClosestPlayer(x, y, z, distance, player -> true);
     }
 
-    Optional<Player> getClosestPlayer(int x, int y, int z, double distance, Predicate<? super Player> predicate);
+    Optional<? extends Player> getClosestPlayer(int x, int y, int z, double distance, Predicate<? super Player> predicate);
 
     /**
      * Gets a snapshot of this block at the current point in time.

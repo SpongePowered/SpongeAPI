@@ -39,6 +39,6 @@ public interface Ocelot extends Animal {
      * @return Whether this ocelot is trusting people
      */
     default Value.Mutable<Boolean> trusting() {
-        return this.getValue(Keys.IS_TRUSTING).get().asMutable();
+        return this.getValue(Keys.IS_TRUSTING.get()).get().asMutable();
     }
 }

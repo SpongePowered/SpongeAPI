@@ -42,6 +42,6 @@ public interface Guardian extends Aquatic, Monster {
      * @return The targeted entity, if available
      */
     default Optional<Value.Mutable<Living>> beamTarget() {
-        return this.getValue(Keys.BEAM_TARGET_ENTITY).map(Value::asMutable);
+        return this.getValue(Keys.BEAM_TARGET_ENTITY.get()).map(Value::asMutable);
     }
 }

@@ -42,7 +42,7 @@ public interface Fox extends Animal {
      * @see org.spongepowered.api.data.type.FoxTypes
      */
     default Value.Mutable<FoxType> type() {
-        return this.getValue(Keys.FOX_TYPE).get().asMutable();
+        return this.getValue(Keys.FOX_TYPE.get()).get().asMutable();
     }
 
     /**
@@ -50,7 +50,7 @@ public interface Fox extends Animal {
      * @return The first trusted unique id
      */
     default Optional<Value.Mutable<UUID>> firstTrusted() {
-        return this.getValue(Keys.FIRST_TRUSTED).map(Value::asMutable);
+        return this.getValue(Keys.FIRST_TRUSTED.get()).map(Value::asMutable);
     }
 
     /**
@@ -58,7 +58,7 @@ public interface Fox extends Animal {
      * @return The second trusted uuid
      */
     default Optional<Value.Mutable<UUID>> secondTrusted() {
-        return this.getValue(Keys.SECOND_TRUSTED).map(Value::asMutable);
+        return this.getValue(Keys.SECOND_TRUSTED.get()).map(Value::asMutable);
     }
 
     /**
@@ -66,7 +66,7 @@ public interface Fox extends Animal {
      * @return Whether this fox is sitting
      */
     default Value.Mutable<Boolean> sitting() {
-        return this.getValue(Keys.IS_SITTING).get().asMutable();
+        return this.getValue(Keys.IS_SITTING.get()).get().asMutable();
     }
 
     /**
@@ -74,7 +74,7 @@ public interface Fox extends Animal {
      * @return Whether this fox has faceplanted
      */
     default Value.Mutable<Boolean> faceplanted() {
-        return this.getValue(Keys.IS_FACEPLANTED).get().asMutable();
+        return this.getValue(Keys.IS_FACEPLANTED.get()).get().asMutable();
     }
 
     /**
@@ -82,7 +82,7 @@ public interface Fox extends Animal {
      * @return Whether this fox is defending
      */
     default Value.Mutable<Boolean> defending() {
-        return this.getValue(Keys.IS_DEFENDING).get().asMutable();
+        return this.getValue(Keys.IS_DEFENDING.get()).get().asMutable();
     }
 
     /**
@@ -90,7 +90,7 @@ public interface Fox extends Animal {
      * @return Whether this fox is sleeping
      */
     default Value.Mutable<Boolean> sleeping() {
-        return this.getValue(Keys.IS_SLEEPING).get().asMutable();
+        return this.getValue(Keys.IS_SLEEPING.get()).get().asMutable();
     }
 
     /**
@@ -98,7 +98,7 @@ public interface Fox extends Animal {
      * @return Whether this fox is pouncing
      */
     default Value.Mutable<Boolean> pouncing() {
-        return this.getValue(Keys.IS_POUNCING).get().asMutable();
+        return this.getValue(Keys.IS_POUNCING.get()).get().asMutable();
     }
 
     /**
@@ -106,7 +106,7 @@ public interface Fox extends Animal {
      * @return Whether this fox is crouching
      */
     default Value.Mutable<Boolean> crouching() {
-        return this.getValue(Keys.IS_CROUCHING).get().asMutable();
+        return this.getValue(Keys.IS_CROUCHING.get()).get().asMutable();
     }
 
     /**
@@ -114,7 +114,7 @@ public interface Fox extends Animal {
      * @return Whether this fox is interested in something
      */
     default Value.Mutable<Boolean> interested() {
-        return this.getValue(Keys.IS_INTERESTED).get().asMutable();
+        return this.getValue(Keys.IS_INTERESTED.get()).get().asMutable();
     }
 
     /**

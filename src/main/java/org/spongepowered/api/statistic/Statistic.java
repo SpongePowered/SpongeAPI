@@ -59,7 +59,7 @@ public interface Statistic extends CatalogType, Translatable {
      * @return Statistic type
      */
     default StatisticCategory getType() {
-        return StatisticCategories.CUSTOM;
+        return StatisticCategories.CUSTOM.get();
     }
 
     /**

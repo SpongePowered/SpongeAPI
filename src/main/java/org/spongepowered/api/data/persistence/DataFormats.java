@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.data.persistence;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 /**
  * A pseudo-enum of supported {@link DataFormat}s.

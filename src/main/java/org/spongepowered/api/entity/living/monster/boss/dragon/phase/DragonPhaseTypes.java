@@ -24,10 +24,12 @@
  */
 package org.spongepowered.api.entity.living.monster.boss.dragon.phase;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.monster.boss.dragon.EnderDragon;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.projectile.explosive.fireball.DragonFireball;
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
+import java.util.function.Supplier;
 
 /**
  * An enumeration of {@link DragonPhaseType}s.

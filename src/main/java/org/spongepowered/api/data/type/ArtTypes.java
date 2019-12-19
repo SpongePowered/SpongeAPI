@@ -24,6 +24,10 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
+
 /**
  * An enumeration of vanilla {@link ArtType}s.
  */

@@ -334,7 +334,7 @@ public interface Inventory extends DataHolder.Mutable {
      * @return The query result
      */
     default Inventory query(KeyValueMatcher<?> matcher) {
-        return this.query(QueryTypes.KEY_VALUE.of(matcher));
+        return this.query(QueryTypes.KEY_VALUE.get().of(matcher));
     }
 
     /**

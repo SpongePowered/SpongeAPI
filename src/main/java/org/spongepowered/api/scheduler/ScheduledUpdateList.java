@@ -31,6 +31,7 @@ import org.spongepowered.math.vector.Vector3i;
 import java.time.Duration;
 import java.time.temporal.TemporalUnit;
 import java.util.Collection;
+import java.util.function.Supplier;
 
 /**
  * A tick based priority scheduled list targeting speicifc types of
@@ -109,11 +110,36 @@ public interface ScheduledUpdateList<T> {
      * @param pos The position
      * @param target The target
      * @param delay The delay
+     * @param temporalUnit The unit of time
+     * @param priority The priority of the scheduled update
+     * @return The scheduled update
+     */
+    default ScheduledUpdate<T> schedule(Vector3i pos, T target, int delay, TemporalUnit temporalUnit, Supplier<? extends TaskPriority> priority) {
+        return schedule(pos.getX(), pos.getY(), pos.getZ(), target, Duration.of(delay, temporalUnit), priority.get());
+    }
+
+    /**
+     *
+     * @param pos The position
+     * @param target The target
+     * @param delay The delay
      * @param priority The priority of the scheduled update
      * @return The scheduled update
      */
     default ScheduledUpdate<T> schedule(Vector3i pos, T target, Duration delay, TaskPriority priority) {
         return schedule(pos.getX(), pos.getY(), pos.getZ(), target, delay, priority);
+    }
+
+    /**
+     *
+     * @param pos The position
+     * @param target The target
+     * @param delay The delay
+     * @param priority The priority of the scheduled update
+     * @return The scheduled update
+     */
+    default ScheduledUpdate<T> schedule(Vector3i pos, T target, Duration delay, Supplier<? extends TaskPriority> priority) {
+        return schedule(pos.getX(), pos.getY(), pos.getZ(), target, delay, priority.get());
     }
 
     /**
@@ -138,10 +164,39 @@ public interface ScheduledUpdateList<T> {
      * @param z The z coordinate
      * @param target The target
      * @param delay The delay
+     * @param temporalUnit The unit of time
+     * @param priority The priority of the scheduled update
+     * @return The scheduled update
+     */
+    default ScheduledUpdate<T> schedule(int x, int y, int z, T target, int delay, TemporalUnit temporalUnit, Supplier<? extends TaskPriority> priority) {
+        return schedule(x, y, z, target, Duration.of(delay, temporalUnit), priority.get());
+    }
+
+    /**
+     *
+     * @param x The x coordinate
+     * @param y The y coordinate
+     * @param z The z coordinate
+     * @param target The target
+     * @param delay The delay
      * @param priority The priority of the scheduled update
      * @return The scheduled update
      */
     ScheduledUpdate<T> schedule(int x, int y, int z, T target, Duration delay, TaskPriority priority);
+
+    /**
+     *
+     * @param x The x coordinate
+     * @param y The y coordinate
+     * @param z The z coordinate
+     * @param target The target
+     * @param delay The delay
+     * @param priority The priority of the scheduled update
+     * @return The scheduled update
+     */
+    default ScheduledUpdate<T> schedule(int x, int y, int z, T target, Duration delay, Supplier<? extends TaskPriority> priority) {
+        return schedule(x, y, z, target, delay, priority.get());
+    }
 
     /**
      * Gets whether there's a scheduled update at the desired position with the provided target.

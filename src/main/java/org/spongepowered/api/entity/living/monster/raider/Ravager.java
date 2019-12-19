@@ -37,7 +37,7 @@ public interface Ravager extends Raider {
      * @return The time this ravager is attacking
      */
     default Value.Mutable<Integer> attackTime() {
-        return this.getValue(Keys.ATTACK_TIME).get().asMutable();
+        return this.getValue(Keys.ATTACK_TIME.get()).get().asMutable();
     }
 
     /**
@@ -45,7 +45,7 @@ public interface Ravager extends Raider {
      * @return The time this ravager is roaring
      */
     default Value.Mutable<Integer> roaringTime() {
-        return this.getValue(Keys.ROARING_TIME).get().asMutable();
+        return this.getValue(Keys.ROARING_TIME.get()).get().asMutable();
     }
 
     /**
@@ -53,7 +53,7 @@ public interface Ravager extends Raider {
      * @return The time this ravager is being stunned for
      */
     default Value.Mutable<Integer> stunnedTime() {
-        return this.getValue(Keys.STUNNED_TIME).get().asMutable();
+        return this.getValue(Keys.STUNNED_TIME.get()).get().asMutable();
     }
 
     /**

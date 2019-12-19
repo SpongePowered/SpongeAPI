@@ -40,6 +40,6 @@ public interface Painting extends Hanging {
      * @see ArtTypes
      */
     default Value.Mutable<ArtType> art() {
-        return this.getValue(Keys.ART).get().asMutable();
+        return this.getValue(Keys.ART.get()).get().asMutable();
     }
 }

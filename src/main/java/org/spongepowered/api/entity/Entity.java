@@ -357,7 +357,7 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
      * @return The display name of this entity
      */
     default Value.Mutable<Text> displayName() {
-        return this.getValue(Keys.DISPLAY_NAME).get().asMutable();
+        return this.getValue(Keys.DISPLAY_NAME.get()).get().asMutable();
     }
 
     /**
@@ -365,7 +365,7 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
      * @return The list of passengers that may be riding this entity
      */
     default ListValue.Mutable<Entity> passengers() {
-        return this.getValue(Keys.PASSENGERS).get().asMutable();
+        return this.getValue(Keys.PASSENGERS.get()).get().asMutable();
     }
 
     /**
@@ -373,7 +373,7 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
      * @return The vehicle this entity may be riding
      */
     default Optional<Value.Mutable<Entity>> vehicle() {
-        return this.getValue(Keys.VEHICLE).map(Value::asMutable);
+        return this.getValue(Keys.VEHICLE.get()).map(Value::asMutable);
     }
 
     /**
@@ -381,7 +381,7 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
      * @return The "base vehicle" of the entity vehicle riding chain
      */
     default Optional<Value.Mutable<Entity>> baseVehicle() {
-        return this.getValue(Keys.BASE_VEHICLE).map(Value::asMutable);
+        return this.getValue(Keys.BASE_VEHICLE.get()).map(Value::asMutable);
     }
 
     /**
@@ -389,7 +389,7 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
      * @return Whether this entity is on the ground
      */
     default Value.Mutable<Boolean> onGround() {
-        return this.getValue(Keys.ON_GROUND).get().asMutable();
+        return this.getValue(Keys.ON_GROUND.get()).get().asMutable();
     }
 
     /**
@@ -397,7 +397,7 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
      * @return The velocity of this entity
      */
     default Value.Mutable<Vector3d> velocity() {
-        return this.getValue(Keys.VELOCITY).get().asMutable();
+        return this.getValue(Keys.VELOCITY.get()).get().asMutable();
     }
 
     /**
@@ -405,7 +405,7 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
      * @return Whether this entity is affected by gravity
      */
     default Value.Mutable<Boolean> gravity() {
-        return this.getValue(Keys.HAS_GRAVITY).get().asMutable();
+        return this.getValue(Keys.HAS_GRAVITY.get()).get().asMutable();
     }
 
     /**
@@ -413,7 +413,7 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
      * @return The unique id of the creator of this entity
      */
     default Optional<Value.Mutable<UUID>> creator() {
-        return this.getValue(Keys.CREATOR).map(Value::asMutable);
+        return this.getValue(Keys.CREATOR.get()).map(Value::asMutable);
     }
 
     /**
@@ -421,6 +421,6 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
      * @return The unique id of the notifier of this entity
      */
     default Optional<Value.Mutable<UUID>> notifier() {
-        return this.getValue(Keys.NOTIFIER).map(Value::asMutable);
+        return this.getValue(Keys.NOTIFIER.get()).map(Value::asMutable);
     }
 }

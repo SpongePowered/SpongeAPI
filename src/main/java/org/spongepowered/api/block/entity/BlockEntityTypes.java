@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.block.entity;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 /**
  * An enumeration of all {@link BlockEntityType}s in vanilla Minecraft.

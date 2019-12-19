@@ -44,7 +44,7 @@ public interface Animal extends Ageable {
      * @return The breeder's unique id
      */
     default Optional<Value.Mutable<UUID>> breeder() {
-        return this.getValue(Keys.BREEDER).map(Value::asMutable);
+        return this.getValue(Keys.BREEDER.get()).map(Value::asMutable);
     }
 
     /**
@@ -52,7 +52,7 @@ public interface Animal extends Ageable {
      * @return The current breeding time
      */
     default Value.Mutable<Integer> breedTime() {
-        return this.getValue(Keys.BREED_TIME).get().asMutable();
+        return this.getValue(Keys.BREED_TIME.get()).get().asMutable();
     }
 
     /**

@@ -36,6 +36,7 @@ import org.spongepowered.api.item.inventory.equipment.EquipmentTypes;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.Optional;
+import java.util.function.Supplier;
 
 /**
  * Represents a matcher for {@link Key} values.
@@ -112,6 +113,19 @@ public interface KeyValueMatcher<V> extends DataSerializable {
     }
 
     /**
+     * Creates a {@link KeyValueMatcher} from the given key and value. The
+     * default operator {@link Operator#EQUAL} will be used.
+     *
+     * @param key The key of which the value should be matched
+     * @param value The matcher value that key values will be matched against
+     * @param <V> The value type
+     * @return The key value matcher
+     */
+    static <V> KeyValueMatcher<V> of(Supplier<? extends Key<? extends Value<V>>> key, V value) {
+        return of(key, value, Operator.EQUAL);
+    }
+
+    /**
      * Creates a {@link KeyValueMatcher} from the
      * given key, value and operator.
      *
@@ -122,6 +136,20 @@ public interface KeyValueMatcher<V> extends DataSerializable {
      * @return The key value matcher
      */
     static <V> KeyValueMatcher<V> of(Key<? extends Value<V>> key, V value, Operator operator) {
+        return builder().key(key).value(value).operator(operator).build();
+    }
+
+    /**
+     * Creates a {@link KeyValueMatcher} from the
+     * given key, value and operator.
+     *
+     * @param key The key of which the value should be matched
+     * @param value The matcher value that key values will be matched against
+     * @param operator The operator how the value should be matched
+     * @param <V> The value type
+     * @return The key value matcher
+     */
+    static <V> KeyValueMatcher<V> of(Supplier<? extends Key<? extends Value<V>>> key, V value, Operator operator) {
         return builder().key(key).value(value).operator(operator).build();
     }
 
@@ -191,6 +219,17 @@ public interface KeyValueMatcher<V> extends DataSerializable {
          * @return This builder, for chaining
          */
         <NV> Builder<NV> key(Key<? extends Value<NV>> key);
+
+        /**
+         * Sets the {@link Key}.
+         *
+         * @param key The key
+         * @param <NV> The key value type
+         * @return This builder, for chaining
+         */
+        default <NV> Builder<NV> key(Supplier<? extends Key<? extends Value<NV>>> key) {
+            return key(key.get());
+        }
 
         /**
          * Sets the {@link Operator}.

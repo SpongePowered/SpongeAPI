@@ -36,7 +36,7 @@ public interface BlockOccupiedMinecart extends MinecartEntity {
      * @return The block state in this minecart
      */
     default Value.Immutable<BlockState> block() {
-        return this.getValue(Keys.BLOCK_STATE).get().asImmutable();
+        return this.getValue(Keys.BLOCK_STATE.get()).get().asImmutable();
     }
 
     /**

@@ -38,6 +38,8 @@ import org.spongepowered.api.world.World;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
+import java.util.function.Supplier;
+
 /**
  * A Viewer is something that sees effects.
  * The Viewer class contains methods for spawning particles and playing sound
@@ -79,6 +81,19 @@ public interface Viewer {
      * @param volume The volume to play the sound at, usually between 0 and 2
      */
     default void playSound(SoundType sound, Vector3d position, double volume) {
+        this.playSound(sound, SoundCategories.MASTER.get(), position, volume, 1, 0);
+    }
+
+    /**
+     * Plays the given {@link SoundType} at the given position, with the
+     * category {@link SoundCategories#MASTER}. All players within range
+     * will hear the sound with the given volume.
+     *
+     * @param sound The sound to play
+     * @param position The position to play the sound
+     * @param volume The volume to play the sound at, usually between 0 and 2
+     */
+    default void playSound(Supplier<? extends SoundType> sound, Vector3d position, double volume) {
         this.playSound(sound, SoundCategories.MASTER, position, volume, 1, 0);
     }
 
@@ -96,6 +111,19 @@ public interface Viewer {
     }
 
     /**
+     * Plays the given {@link SoundType} at the given position. All
+     * players within range will hear the sound with the given volume.
+     *
+     * @param sound The sound to play
+     * @param category The category to play the sound with
+     * @param position The position to play the sound
+     * @param volume The volume to play the sound at, usually between 0 and 2
+     */
+    default void playSound(Supplier<? extends SoundType> sound, Supplier<? extends SoundCategory> category, Vector3d position, double volume) {
+        this.playSound(sound, category, position, volume, 1, 0);
+    }
+
+    /**
      * Plays the given {@link SoundType} at the given position, with the
      * category {@link SoundCategories#MASTER}. All players within range
      * will hear the sound with the given volume.
@@ -107,6 +135,21 @@ public interface Viewer {
      *        and 2
      */
     default void playSound(SoundType sound, Vector3d position, double volume, double pitch) {
+        this.playSound(sound, SoundCategories.MASTER.get(), position, volume, pitch, 0);
+    }
+
+    /**
+     * Plays the given {@link SoundType} at the given position, with the
+     * category {@link SoundCategories#MASTER}. All players within range
+     * will hear the sound with the given volume.
+     *
+     * @param sound The sound to play
+     * @param position The position to play the sound
+     * @param volume The volume to play the sound at, usually between 0 and 2
+     * @param pitch The modulation of the sound to play at, usually between 0
+     *        and 2
+     */
+    default void playSound(Supplier<? extends SoundType> sound, Vector3d position, double volume, double pitch) {
         this.playSound(sound, SoundCategories.MASTER, position, volume, pitch, 0);
     }
 
@@ -125,6 +168,21 @@ public interface Viewer {
     default void playSound(SoundType sound, SoundCategory category, Vector3d position, double volume, double pitch) {
         this.playSound(sound, category, position, volume, pitch, 0);
     }
+    /**
+     * Plays the given {@link SoundType} at the given position, with the
+     * category {@link SoundCategories#MASTER}. All players within range
+     * will hear the sound with the given volume.
+     *
+     * @param sound The sound to play
+     * @param category The category to play the sound with
+     * @param position The position to play the sound
+     * @param volume The volume to play the sound at, usually between 0 and 2
+     * @param pitch The modulation of the sound to play at, usually between 0
+     *        and 2
+     */
+    default void playSound(Supplier<? extends SoundType> sound, Supplier<? extends SoundCategory> category, Vector3d position, double volume, double pitch) {
+        this.playSound(sound, category, position, volume, pitch, 0);
+    }
 
     /**
      * Plays the given {@link SoundType} at the given position, with the
@@ -140,6 +198,23 @@ public interface Viewer {
      *        0 and 2
      */
     default void playSound(SoundType sound, Vector3d position, double volume, double pitch, double minVolume) {
+        this.playSound(sound, SoundCategories.MASTER.get(), position, volume, pitch, minVolume);
+    }
+
+    /**
+     * Plays the given {@link SoundType} at the given position, with the
+     * category {@link SoundCategories#MASTER}. All players within range
+     * will hear the sound with the given volume.
+     *
+     * @param sound The sound to play
+     * @param position The position to play the sound
+     * @param volume The volume to play the sound at, usually between 0 and 2
+     * @param pitch The modulation of the sound to play at, usually between 0
+     *        and 2
+     * @param minVolume The minimum volume to play the sound at, usually between
+     *        0 and 2
+     */
+    default void playSound(Supplier<? extends SoundType> sound, Vector3d position, double volume, double pitch, double minVolume) {
         this.playSound(sound, SoundCategories.MASTER, position, volume, pitch, minVolume);
     }
 
@@ -159,6 +234,23 @@ public interface Viewer {
     void playSound(SoundType sound, SoundCategory category, Vector3d position, double volume, double pitch, double minVolume);
 
     /**
+     * Plays the given {@link SoundType} at the given position. All
+     * players within range will hear the sound with the given volume.
+     *
+     * @param sound The sound to play
+     * @param category The category to play the sound with
+     * @param position The position to play the sound
+     * @param volume The volume to play the sound at, usually between 0 and 2
+     * @param pitch The modulation of the sound to play at, usually between 0
+     *        and 2
+     * @param minVolume The minimum volume to play the sound at, usually between
+     *        0 and 2
+     */
+    default void playSound(Supplier<? extends SoundType> sound, Supplier<? extends SoundCategory> category, Vector3d position, double volume, double pitch, double minVolume) {
+        playSound(sound.get(), category.get(), position, volume, pitch, minVolume);
+    }
+
+    /**
      * Stops all the sounds.
      */
     void stopSounds();
@@ -171,12 +263,27 @@ public interface Viewer {
     void stopSounds(SoundType sound);
 
     /**
+     * Stops all the sounds of the given {@link SoundType}.
+     *
+     * @param sound The sound type
+     */
+    void stopSoundTypes(Supplier<? extends SoundType> sound);
+
+    /**
      * Stops all the sounds that are played in the
      * given {@link SoundCategory}.
      *
      * @param category The sound category
      */
     void stopSounds(SoundCategory category);
+
+    /**
+     * Stops all the sounds that are played in the
+     * given {@link SoundCategory}.
+     *
+     * @param category The sound category
+     */
+    void stopSoundCategoriess(Supplier<? extends SoundCategory> category);
 
     /**
      * Stops all the sounds of the given {@link SoundType} that
@@ -188,6 +295,15 @@ public interface Viewer {
     void stopSounds(SoundType sound, SoundCategory category);
 
     /**
+     * Stops all the sounds of the given {@link SoundType} that
+     * are played in the given {@link SoundCategory}.
+     *
+     * @param sound The sound type
+     * @param category The sound category
+     */
+    void stopSounds(Supplier<? extends SoundType> sound, Supplier<? extends SoundCategory> category);
+
+    /**
      * Plays the given {@link MusicDisc} at the given position. The benefit of playing
      * {@link MusicDisc} instead of a {@link SoundType} allows you to stop them through
      * the {@link #stopMusicDisc(Vector3i)}. Playing a new {@link MusicDisc} at the same
@@ -197,6 +313,17 @@ public interface Viewer {
      * @param musicDiscType The music disc
      */
     void playMusicDisc(Vector3i position, MusicDisc musicDiscType);
+
+    /**
+     * Plays the given {@link MusicDisc} at the given position. The benefit of playing
+     * {@link MusicDisc} instead of a {@link SoundType} allows you to stop them through
+     * the {@link #stopMusicDisc(Vector3i)}. Playing a new {@link MusicDisc} at the same
+     * position will cancel the currently playing one.
+     *
+     * @param position The position
+     * @param musicDiscType The music disc
+     */
+    void playMusicDisc(Vector3i position, Supplier<? extends MusicDisc> musicDiscType);
 
     /**
      * Stops the {@link MusicDisc} that is playing at the given position.

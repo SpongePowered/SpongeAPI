@@ -189,7 +189,6 @@ import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.RespawnLocation;
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 import org.spongepowered.api.world.explosion.Explosion;
@@ -531,7 +530,7 @@ public final class Keys {
      * {@link #RIGHT_ARM_ROTATION}, {@link #LEFT_ARM_ROTATION},
      * {@link #RIGHT_LEG_ROTATION}, and {@link #LEFT_LEG_ROTATION}.</p>
      */
-    public static final Key<MapValue<BodyPart, Vector3d>> BODY_ROTATIONS = DummyObjectProvider.createExtendedFor(Key.class, "BODY_ROTATIONS");
+    public static final Supplier<Key<MapValue<BodyPart, Vector3d>>> BODY_ROTATIONS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BODY_ROTATIONS");
 
     /**
      * Represents the {@link Key} for the author of a
@@ -711,7 +710,7 @@ public final class Keys {
      * <p>Types not present in this mapping will be
      * dealt damage to according to {@link #ATTACK_DAMAGE}.</p>
      */
-    public static final Key<MapValue<EntityType<?>, Double>> CUSTOM_ATTACK_DAMAGE = DummyObjectProvider.createExtendedFor(Key.class, "CUSTOM_ATTACK_DAMAGE_MAPPING");
+    public static final Supplier<Key<MapValue<EntityType<?>, Double>>> CUSTOM_ATTACK_DAMAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CUSTOM_ATTACK_DAMAGE_MAPPING");
 
     /**
      * Represents the {@link Key} for whether a custom name is visible on an
@@ -983,7 +982,7 @@ public final class Keys {
      * Represents the {@link Key} for representing the directional tank
      * information.
      */
-    public static final Key<MapValue<Direction, List<FluidStackSnapshot>>> FLUID_TANK_CONTENTS = DummyObjectProvider.createExtendedFor(Key.class, "FLUID_TANK_CONTENTS");
+    public static final Supplier<Key<MapValue<Direction, List<FluidStackSnapshot>>>> FLUID_TANK_CONTENTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FLUID_TANK_CONTENTS");
 
     /**
      * Represents the {@link Key} for the speed at which an entity flies.
@@ -1711,7 +1710,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} of the size of a {@link Phantom}. In vanilla, this ranges between 0 and 64.
      */
-    public static final Key<BoundedValue<Integer>> PHANTOM_SIZE = DummyObjectProvider.createExtendedFor(Key.class, "");
+    public static final Supplier<Key<BoundedValue<Integer>>> PHANTOM_SIZE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class,"PHANTOM_SIZE");
 
     /**
      * Represents the {@link Key} for representing the pickup delay
@@ -1839,7 +1838,7 @@ public final class Keys {
      * Represents the {@link Key} for the spawn locations a {@link Player}
      * may have for various worlds based on {@link UUID} of the world.
      */
-    public static final Key<MapValue<UUID, RespawnLocation>> RESPAWN_LOCATIONS = DummyObjectProvider.createExtendedFor(Key.class, "RESPAWN_LOCATIONS");
+    public static final Supplier<Key<MapValue<UUID, RespawnLocation>>> RESPAWN_LOCATIONS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "RESPAWN_LOCATIONS");
 
     /**
      * Represents the {@link Key} for the rotation of an {@link Entity}'s right
@@ -2007,7 +2006,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for the {@link Statistic}s of a {@link Player}.
      */
-    public static final Key<MapValue<Statistic, Long>> STATISTICS = DummyObjectProvider.createExtendedFor(Key.class, "STATISTICS");
+    public static final Supplier<Key<MapValue<Statistic, Long>>> STATISTICS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STATISTICS");
 
     /**
      * Represents the {@link Key} for the enchantments stored on an
@@ -2274,7 +2273,7 @@ public final class Keys {
      * Represents the {@link Key} for how a {@link BlockTypes#REDSTONE_WIRE} is
      * connected to its neighboring blocks.
      */
-    public static final Key<MapValue<Direction, WireAttachmentType>> WIRE_ATTACHMENTS = DummyObjectProvider.createExtendedFor(Key.class, "WIRE_ATTACHMENTS");
+    public static final Supplier<Key<MapValue<Direction, WireAttachmentType>>> WIRE_ATTACHMENTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "WIRE_ATTACHMENTS");
 
     /**
      * Represents the {@link Key} for how a {@link BlockTypes#REDSTONE_WIRE} is

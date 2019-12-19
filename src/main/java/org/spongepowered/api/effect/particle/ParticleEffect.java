@@ -32,6 +32,7 @@ import org.spongepowered.math.vector.Vector3d;
 
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 /**
  * Represents a particle effect that can be send to the Minecraft client.
@@ -98,6 +99,14 @@ public interface ParticleEffect extends DataSerializable {
         Builder type(ParticleType particleType);
 
         /**
+         * Sets the particle type for the particle effect.
+         *
+         * @param particleType The particle type
+         * @return This builder for chaining
+         */
+        Builder type(Supplier<? extends ParticleType> particleType);
+
+        /**
          * Sets the value of the specified {@link ParticleOption}.
          *
          * @param option The option
@@ -107,6 +116,19 @@ public interface ParticleEffect extends DataSerializable {
          * @throws IllegalArgumentException If the specified value isn't valid
          */
         <V> Builder option(ParticleOption<V> option, V value) throws IllegalArgumentException;
+
+        /**
+         * Sets the value of the specified {@link ParticleOption}.
+         *
+         * @param option The option
+         * @param value The value
+         * @param <V> The type of option value
+         * @return This builder for chaining
+         * @throws IllegalArgumentException If the specified value isn't valid
+         */
+        default <V> Builder option(Supplier<? extends ParticleOption<V>> option, V value) throws IllegalArgumentException {
+            return option(option.get(), value);
+        }
 
         /**
          * Sets the velocity of the particle effect.

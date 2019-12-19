@@ -38,7 +38,7 @@ public interface Ageable extends Agent {
      * @return The age
      */
     default BoundedValue.Mutable<Integer> age() {
-        return this.getValue(Keys.AGEABLE_AGE).get().asMutable();
+        return this.getValue(Keys.AGEABLE_AGE.get()).get().asMutable();
     }
 
     /**
@@ -46,7 +46,7 @@ public interface Ageable extends Agent {
      * @return Whether this entity is an adult or not
      */
     default Value.Mutable<Boolean> adult() {
-        return this.getValue(Keys.IS_ADULT).get().asMutable();
+        return this.getValue(Keys.IS_ADULT.get()).get().asMutable();
     }
 
 }

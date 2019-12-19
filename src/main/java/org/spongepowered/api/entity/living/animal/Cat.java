@@ -41,7 +41,7 @@ public interface Cat extends TameableAnimal {
      * @see org.spongepowered.api.data.type.CatTypes
      */
     default Value.Mutable<CatType> type() {
-        return this.getValue(Keys.CAT_TYPE).get().asMutable();
+        return this.getValue(Keys.CAT_TYPE.get()).get().asMutable();
     }
 
     /**
@@ -49,7 +49,7 @@ public interface Cat extends TameableAnimal {
      * @return Whether this cat is lying down
      */
     default Value.Mutable<Boolean> lyingDown() {
-        return this.getValue(Keys.IS_LYING_DOWN).get().asMutable();
+        return this.getValue(Keys.IS_LYING_DOWN.get()).get().asMutable();
     }
 
     /**
@@ -57,7 +57,7 @@ public interface Cat extends TameableAnimal {
      * @return Whether this cat is a cool cat or a scaredey cat
      */
     default Value.Mutable<Boolean> relaxed() {
-        return this.getValue(Keys.IS_RELAXED).get().asMutable();
+        return this.getValue(Keys.IS_RELAXED.get()).get().asMutable();
     }
 
     /**
@@ -65,7 +65,7 @@ public interface Cat extends TameableAnimal {
      * @return The collar color
      */
     default Value.Mutable<DyeColor> collarColor() {
-        return this.getValue(Keys.DYE_COLOR).get().asMutable();
+        return this.getValue(Keys.DYE_COLOR.get()).get().asMutable();
     }
 
     /**

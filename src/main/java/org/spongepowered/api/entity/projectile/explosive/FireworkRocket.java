@@ -41,7 +41,7 @@ public interface FireworkRocket extends Projectile, FusedExplosive {
      * @return The firework effects
      */
     default ListValue.Mutable<FireworkEffect> effects() {
-        return this.getValue(Keys.FIREWORK_EFFECTS).get().asMutable();
+        return this.getValue(Keys.FIREWORK_EFFECTS.get()).get().asMutable();
     }
 
 }

@@ -28,6 +28,8 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextElement;
 
+import java.util.function.Supplier;
+
 /**
  * Represents a pair of {@link TextStyle} and {@link TextColor}.
  */
@@ -49,7 +51,7 @@ public interface TextFormat extends TextElement {
      * @return The new text format
      */
     static TextFormat of(TextStyle style) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).format(TextColors.NONE, style);
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).format(TextColors.NONE, () -> style);
     }
 
     /**
@@ -59,7 +61,7 @@ public interface TextFormat extends TextElement {
      * @return The new text format
      */
     static TextFormat of(TextColor color) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).format(color, TextStyles.NONE);
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).format(() -> color, TextStyles.NONE);
     }
 
     /**
@@ -69,7 +71,7 @@ public interface TextFormat extends TextElement {
      * @param style The style
      * @return The new text format
      */
-    static TextFormat of(TextColor color, TextStyle style) {
+    static TextFormat of(Supplier<? extends TextColor> color, Supplier<? extends TextStyle> style) {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).format(color, style);
     }
 
@@ -134,5 +136,7 @@ public interface TextFormat extends TextElement {
         TextFormat emptyFormat();
 
         TextFormat format(TextColor none, TextStyle style);
+
+        TextFormat format(Supplier<? extends TextColor> none, Supplier<? extends TextStyle> style);
     }
 }

@@ -39,7 +39,7 @@ public abstract class AbstractAffectEntityEvent extends AbstractEvent implements
     @UseField
     protected List<Entity> entities;
 
-    @UseField(overrideToString = true) private List<EntitySnapshot> entitySnapshots;
+    @UseField(overrideToString = true) protected List<EntitySnapshot> entitySnapshots;
 
     @Override
     public List<EntitySnapshot> getEntitySnapshots() {

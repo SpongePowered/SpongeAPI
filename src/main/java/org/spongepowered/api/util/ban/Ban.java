@@ -34,6 +34,7 @@ import org.spongepowered.api.util.CopyableBuilder;
 import java.net.InetAddress;
 import java.time.Instant;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 /**
  * Represents a ban made on an object.
@@ -179,6 +180,14 @@ public interface Ban {
          * @return This builder
          */
         Builder type(BanType type);
+
+        /**
+         * Sets the type of the ban.
+         *
+         * @param type The type to be set
+         * @return This builder
+         */
+        Builder type(Supplier<? extends BanType> type);
 
         /**
          * Sets the reason for the ban.

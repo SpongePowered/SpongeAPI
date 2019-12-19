@@ -46,6 +46,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 /**
  * Represents a stack of a specific {@link ItemType}. Supports serialization and
@@ -176,6 +177,16 @@ public interface ItemStack extends SerializableDataHolder.Mutable, Translatable 
          */
         Builder itemType(ItemType itemType);
 
+        /**
+         * Sets the {@link ItemType} of the item stack.
+         *
+         * @param itemType The type of item
+         * @return This builder, for chaining
+         */
+        default Builder itemType(Supplier<? extends ItemType> itemType) {
+            return itemType(itemType.get());
+        }
+
         ItemType getCurrentItem();
 
         /**
@@ -209,6 +220,22 @@ public interface ItemStack extends SerializableDataHolder.Mutable, Translatable 
             checkArgument(blockType.getItem().isPresent(), "Missing valid ItemType for BlockType: " + blockType.getKey().toString());
             itemType(blockType.getItem().get());
             blockState.getValues().forEach(this::add);
+            return this;
+        }
+
+        /**
+         * Sets the data to recreate a {@link BlockState} in a held {@link ItemStack}
+         * state.
+         *
+         * @param blockState The block state to use
+         * @return This builder, for chaining
+         */
+        default Builder fromBlockState(Supplier<? extends BlockState> blockState) {
+            checkNotNull(blockState);
+            final BlockType blockType = blockState.get().getType();
+            checkArgument(blockType.getItem().isPresent(), "Missing valid ItemType for BlockType: " + blockType.getKey().toString());
+            itemType(blockType.getItem().get());
+            blockState.get().getValues().forEach(this::add);
             return this;
         }
 

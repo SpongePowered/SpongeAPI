@@ -27,6 +27,8 @@ package org.spongepowered.api.data;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.util.CopyableBuilder;
 
+import java.util.function.Supplier;
+
 public interface DataHolderBuilder<H extends DataHolder, B extends DataHolderBuilder<H, B>> extends CopyableBuilder<H, B> {
 
     /**
@@ -37,7 +39,7 @@ public interface DataHolderBuilder<H extends DataHolder, B extends DataHolderBui
      * @param value The value to add
      * @return This builder, for chaining
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "rawtypes"})
     default B add(Value<?> value) {
         return (B) this.add((Key) value.getKey(), value.get());
     }
@@ -89,6 +91,18 @@ public interface DataHolderBuilder<H extends DataHolder, B extends DataHolderBui
      * @return This builder, for chaining
      */
     <V> B add(Key<? extends Value<V>> key, V value);
+
+    /**
+     * Adds the given {@link Key} with the given value.
+     *
+     * @param key The key to assign the value with
+     * @param value The value to assign with the key
+     * @param <V> The type of the value
+     * @return This builder, for chaining
+     */
+    default <V> B add(Supplier<? extends Key<? extends Value<V>>> key, V value) {
+        return add(key.get(), value);
+    }
 
     /**
      * Copies all known {@link DataManipulator}s from the given

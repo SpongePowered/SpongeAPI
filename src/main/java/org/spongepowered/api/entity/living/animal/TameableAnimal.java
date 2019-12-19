@@ -37,7 +37,7 @@ public interface TameableAnimal extends Animal {
      * @return The unique id of the tamer
      */
     default Optional<Value.Mutable<UUID>> tamer() {
-        return this.getValue(Keys.TAMER).map(Value::asMutable);
+        return this.getValue(Keys.TAMER.get()).map(Value::asMutable);
     }
 
     /**

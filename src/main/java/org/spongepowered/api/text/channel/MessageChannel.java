@@ -37,6 +37,7 @@ import org.spongepowered.api.text.chat.ChatTypes;
 
 import java.util.Collection;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 /**
  * Represents a channel that takes a message and transforms it for distribution
@@ -205,6 +206,26 @@ public interface MessageChannel {
     }
 
     /**
+     * Send a message to this channel, transforming and sending it to the
+     * members.
+     *
+     * @param sender The sender of the message
+     * @param original The original message to send
+     * @param type The type of message
+     */
+    default void send(@Nullable Object sender, Text original, Supplier<? extends ChatType> type) {
+        checkNotNull(original, "original text");
+        checkNotNull(type, "type");
+        for (MessageReceiver member : this.getMembers()) {
+            if (member instanceof ChatTypeMessageReceiver) {
+                this.transformMessage(sender, member, original, type.get()).ifPresent(text -> ((ChatTypeMessageReceiver) member).sendMessage(type, text));
+            } else {
+                this.transformMessage(sender, member, original, type.get()).ifPresent(member::sendMessage);
+            }
+        }
+    }
+
+    /**
      * Handle transforming the input message appropriately.
      *
      * @param sender The sender of the message
@@ -214,6 +235,19 @@ public interface MessageChannel {
      * @return The message to send, if present, otherwise {@link Optional#empty()}
      */
     default Optional<Text> transformMessage(@Nullable Object sender, MessageReceiver recipient, Text original, ChatType type) {
+        return Optional.of(original);
+    }
+
+    /**
+     * Handle transforming the input message appropriately.
+     *
+     * @param sender The sender of the message
+     * @param recipient The recipient of the message
+     * @param original The original message, to optionally transform
+     * @param type The type of message
+     * @return The message to send, if present, otherwise {@link Optional#empty()}
+     */
+    default Optional<Text> transformMessage(@Nullable Object sender, MessageReceiver recipient, Text original, Supplier<? extends ChatType> type) {
         return Optional.of(original);
     }
 

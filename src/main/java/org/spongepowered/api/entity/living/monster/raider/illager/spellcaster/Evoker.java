@@ -40,6 +40,6 @@ public interface Evoker extends Spellcaster {
      * @return The targeted sheep being herded
      */
     default Optional<Value.Mutable<Sheep>> wololoTarget() {
-        return this.getValue(Keys.WOLOLO_TARGET).map(Value::asMutable);
+        return this.getValue(Keys.WOLOLO_TARGET.get()).map(Value::asMutable);
     }
 }

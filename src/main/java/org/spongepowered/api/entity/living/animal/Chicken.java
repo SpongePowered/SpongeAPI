@@ -37,6 +37,6 @@ public interface Chicken extends Animal {
      * @return The time remaining for the next egg drop
      */
     default Value.Mutable<Integer> eggTime() {
-        return this.getValue(Keys.EGG_TIME).get().asMutable();
+        return this.getValue(Keys.EGG_TIME.get()).get().asMutable();
     }
 }

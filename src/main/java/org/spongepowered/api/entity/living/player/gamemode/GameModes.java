@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.entity.living.player.gamemode;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 /**
  * A list of the game modes that Minecraft provides in vanilla.
