@@ -162,7 +162,7 @@ val catalogClasses = listOf(
         "org.spongepowered.api.effect.sound.SoundTypes",
         "org.spongepowered.api.effect.sound.music.MusicDiscs",
         "org.spongepowered.api.entity.EntityTypes",
-        "org.spongepowered.api.entity.ai.GoalExecutorTypes",
+        "org.spongepowered.api.entity.ai.goal.GoalExecutorTypes",
         "org.spongepowered.api.entity.ai.goal.GoalTypes",
         "org.spongepowered.api.entity.living.monster.boss.dragon.phase.DragonPhaseTypes",
         "org.spongepowered.api.entity.living.player.gamemode.GameModes",
