@@ -26,6 +26,7 @@ package org.spongepowered.api.entity.hanging;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.ArtType;
+import org.spongepowered.api.data.type.ArtTypes;
 import org.spongepowered.api.data.value.Value;
 
 /**
@@ -36,7 +37,7 @@ public interface Painting extends Hanging {
     /**
      * {@link Keys#ART}
      * @return The paiting's art type
-     * @see org.spongepowered.api.data.type.ArtTypes
+     * @see ArtTypes
      */
     default Value.Mutable<ArtType> art() {
         return this.getValue(Keys.ART).get().asMutable();
