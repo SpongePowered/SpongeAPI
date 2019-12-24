@@ -25,13 +25,14 @@
 package org.spongepowered.api.event.sound;
 
 import org.spongepowered.api.block.entity.Jukebox;
+import org.spongepowered.api.data.type.InstrumentType;
+import org.spongepowered.api.data.type.NotePitch;
 import org.spongepowered.api.effect.sound.SoundCategory;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.effect.sound.music.MusicDisc;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.WorldLocation;
 
 import java.util.Optional;
@@ -112,6 +113,17 @@ public interface PlaySoundEvent extends Event, Cancellable {
     interface AtEntity extends PlaySoundEvent {
 
         Optional<Player> getPlayer();
+
+    }
+
+    /**
+     * Fired when a noteblock is triggered
+     */
+    interface NoteBlock extends PlaySoundEvent {
+
+        InstrumentType getInstrument();
+
+        NotePitch getNotePitch();
 
     }
 
