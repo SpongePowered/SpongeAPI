@@ -143,6 +143,17 @@ public interface CatalogKey extends Comparable<CatalogKey> {
      */
     String getValue();
 
+    /**
+     * Gets this key as a formatted value.
+     *
+     * <p>
+     *     It is up to the implementation to determine the formatting. In vanilla Minecraft,
+     *     keys are formatted as "namespace:value". For example, "minecraft:carrot".
+     * </p>
+     * @return The key, formatted
+     */
+    String getFormatted();
+
     @Override
     int compareTo(CatalogKey o);
 
