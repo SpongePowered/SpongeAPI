@@ -40,6 +40,13 @@ public interface Phantom extends Aerial, Creature {
     PhantomPhase getPhase();
 
     /**
+     * Sets the current {@link PhantomPhase phase} of this phantom.
+     *
+     * @param phase The phase
+     */
+    void setPhase(PhantomPhase phase);
+
+    /**
      * {@link Keys#PHANTOM_SIZE}
      * @return The size of this phantom
      */
