@@ -38,14 +38,14 @@ public final class WorldArchetypes {
     public static final Supplier<WorldArchetype> OVERWORLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WorldArchetype.class, "overworld");
 
     /**
-     * Represents a typical nether-style {@link World}.
-     */
-    public static final Supplier<WorldArchetype> THE_NETHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WorldArchetype.class, "the_nether");
-
-    /**
      * Represents a typical the end-style {@link World}.
      */
     public static final Supplier<WorldArchetype> THE_END = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WorldArchetype.class, "the_end");
+
+    /**
+     * Represents a typical nether-style {@link World}.
+     */
+    public static final Supplier<WorldArchetype> THE_NETHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WorldArchetype.class, "the_nether");
 
     /**
      * Represents a typical Sponge void-style {@link World}.

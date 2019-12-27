@@ -29,7 +29,7 @@ import java.util.Locale;
 /**
  * A translation providing a fixed value.
  */
-public class FixedTranslation implements Translation {
+public final class FixedTranslation implements Translation {
 
     private final String value;
 
@@ -50,10 +50,5 @@ public class FixedTranslation implements Translation {
     @Override
     public String get(Locale locale) {
         return this.value;
-    }
-
-    @Override
-    public String get(Locale locale, Object... args) {
-        return String.format(locale, this.value, args);
     }
 }

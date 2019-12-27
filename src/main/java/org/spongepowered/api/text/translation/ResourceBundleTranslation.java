@@ -81,9 +81,4 @@ public class ResourceBundleTranslation implements Translation {
             return this.key;
         }
     }
-
-    @Override
-    public String get(Locale locale, Object... args) {
-        return String.format(locale, get(locale), args);
-    }
 }

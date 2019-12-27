@@ -30,7 +30,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents the style of a {@link Horse}.
- * <p>The style of a horse is applied on top of the {@link HorseColor} of the
+ * <p>The style of a horse is applied on top of the {@link HorseType} of the
  * horse. The style can be inherited to new born child horses.</p>
  */
 @CatalogedBy(HorseStyles.class)

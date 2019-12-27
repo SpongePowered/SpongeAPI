@@ -25,6 +25,7 @@
 package org.spongepowered.api.block.entity;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -34,11 +35,16 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 public interface BlockEntityType extends CatalogType {
 
     /**
-     * Returns the block entity class for this type.
+     * Determines if the provided block is considered valid by the {@link BlockEntity}.
      *
-     * @return The block entity class for this type
+     * <p>
+     *     It is up to the implementation to determine validity and what such a state is used for. In vanilla Minecraft,
+     *     block entities will not tick if their block is not valid.
+     * </p>
+     *
+     * @param block The block to test
+     * @return True if valid, false if not
      */
-    Class<? extends BlockEntity> getBlockEntityType();
-
+    boolean isValidBlock(BlockType block);
 }
 

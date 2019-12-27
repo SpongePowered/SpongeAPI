@@ -35,13 +35,13 @@ public final class LlamaTypes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<LlamaType> CREAMY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(LlamaType.class, "CREAMY");
-
-    public static final Supplier<LlamaType> WHITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(LlamaType.class, "WHITE");
-
     public static final Supplier<LlamaType> BROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(LlamaType.class, "BROWN");
 
+    public static final Supplier<LlamaType> CREAMY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(LlamaType.class, "CREAMY");
+
     public static final Supplier<LlamaType> GRAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(LlamaType.class, "GRAY");
+
+    public static final Supplier<LlamaType> WHITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(LlamaType.class, "WHITE");
 
     // SORTFIELDS:OFF
 

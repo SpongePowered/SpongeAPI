@@ -46,30 +46,20 @@ public final class ChunkStates {
     // SORTFIELDS:ON
 
     /**
-     * Identifies a {@link ProtoChunk} that is considered empty. The method
-     * {@link ProtoChunk#isEmpty()} would return {@code true}. Identifies the
-     * chunk has nothing contained within it, but can be used as a dummy chunk
-     * in some regards for world generation.
-     */
-    public static final Supplier<ChunkState> EMPTY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkState.class, "EMPTY");
-    /**
      * A {@link ProtoChunk} that is at this state means that it is being generated
      * with a "base" layer of terrain, usually by a {@link Surface}(s).
      * The chunk should not have any {@link Entity} instances or {@link BlockEntity}
      * instances and may have a valid {@link ProtoWorld} used for world generation.
      */
     public static final Supplier<ChunkState> BASE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkState.class, "EMPTY");
+
     /**
      * A {@link ProtoChunk} that is being "carved out" for general terrain features
      * that require things like "caves" or "canyons". Refer to {@link FeaturePlacer}
      * and {@link FeaturePlacer#place(ProtoWorld, TerrainGenerator, Random, Vector3i, PlacementConfig, Feature, FeatureConfig)}
      */
     public static final Supplier<ChunkState> CARVED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkState.class, "EMPTY");
-    /**
-     * A {@link ProtoChunk} state that is being "carved" with liquid cave
-     * features, such as underwater ravines, underwater caves, etc.
-     */
-    public static final Supplier<ChunkState> LIQUID_CARVED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkState.class, "EMPTY");
+
     /**
      * A {@link ProtoChunk} state that is being populated by {@link Feature}s,
      * usually provided by {@link BiomeType}s and other aspects of a
@@ -79,13 +69,15 @@ public final class ChunkStates {
      * the origin of said Feature.
      */
     public static final Supplier<ChunkState> DECORATED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkState.class, "EMPTY");
+
     /**
-     * A {@link ProtoChunk} state that has yet been processed with lighting in
-     * respects to the {@link ProtoWorld} that contains it. This is the second
-     * to last step in the world generation pipeline for a chunk to be marked
-     * as ready for being added to a {@link World}.
+     * Identifies a {@link ProtoChunk} that is considered empty. The method
+     * {@link ProtoChunk#isEmpty()} would return {@code true}. Identifies the
+     * chunk has nothing contained within it, but can be used as a dummy chunk
+     * in some regards for world generation.
      */
-    public static final Supplier<ChunkState> LIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkState.class, "EMPTY");
+    public static final Supplier<ChunkState> EMPTY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkState.class, "EMPTY");
+
     /**
      * A {@link ProtoChunk} state that is being used for entity spawning,
      * usually by a {@link Feature} that specializes in entity placement.
@@ -93,12 +85,14 @@ public final class ChunkStates {
      * and requires that this chunk has proper lighting, for mob placement logic.
      */
     public static final Supplier<ChunkState> ENTITIES_SPAWNED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkState.class, "EMPTY");
+
     /**
      * A {@link ProtoChunk} state that is "cleaning" up remnant objects of a
      * chunk in process of world generation. Generally, height maps are being
      * calculated at this point as entity spawning can affect block placement.
      */
     public static final Supplier<ChunkState> FINALIZED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkState.class, "EMPTY");
+
     /**
      * A {@link ProtoChunk} that has completed world generation tasks and can be
      * added to a level ready {@link World}. Likewise can be utilized during
@@ -106,6 +100,21 @@ public final class ChunkStates {
      * {@link World} instance.
      */
     public static final Supplier<ChunkState> GENERATED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkState.class, "EMPTY");
+
+    /**
+     * A {@link ProtoChunk} state that is being "carved" with liquid cave
+     * features, such as underwater ravines, underwater caves, etc.
+     */
+    public static final Supplier<ChunkState> LIQUID_CARVED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkState.class, "EMPTY");
+
+    /**
+     * A {@link ProtoChunk} state that has yet been processed with lighting in
+     * respects to the {@link ProtoWorld} that contains it. This is the second
+     * to last step in the world generation pipeline for a chunk to be marked
+     * as ready for being added to a {@link World}.
+     */
+    public static final Supplier<ChunkState> LIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkState.class, "EMPTY");
+
     /**
      * State for a {@link ProtoChunk} marking it being used by a world, and not
      * in the process of either world generation, or deserialization from storage.

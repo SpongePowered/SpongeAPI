@@ -343,8 +343,6 @@ public final class EntityTypes {
 
     public static final Supplier<EntityType<Human>> HUMAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "HUMAN");
 
-    public static final EntityType<?> UNKNOWN = DummyObjectProvider.createFor(EntityType.class, "UNKNOWN");
-
     // Suppress default constructor to ensure non-instantiability.
     private EntityTypes() {
         throw new AssertionError("You should not be attempting to instantiate this class.");

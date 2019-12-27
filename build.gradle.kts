@@ -96,7 +96,7 @@ tasks {
     }
 
     sortClassFields {
-        catalogClasses.forEach {
+        sortClasses.forEach {
             add(sourceSets.main.name, it)
         }
     }
@@ -107,7 +107,7 @@ tasks {
 }
 
 // TODO - repopulate
-val catalogClasses = listOf(
+val sortClasses = listOf(
         "org.spongepowered.api.CatalogTypes",
         "org.spongepowered.api.advancement.AdvancementTypes",
         "org.spongepowered.api.advancement.criteria.trigger.Triggers",
@@ -119,7 +119,6 @@ val catalogClasses = listOf(
         "org.spongepowered.api.data.Keys",
         "org.spongepowered.api.data.persistence.DataFormats",
         "org.spongepowered.api.data.persistence.DataTranslators",
-        "org.spongepowered.api.data.type.ArmorTypes",
         "org.spongepowered.api.data.type.ArtTypes",
         "org.spongepowered.api.data.type.BannerPatternShapes",
         "org.spongepowered.api.data.type.BodyParts",
@@ -130,7 +129,7 @@ val catalogClasses = listOf(
         "org.spongepowered.api.data.type.FoxTypes",
         "org.spongepowered.api.data.type.HandTypes",
         "org.spongepowered.api.data.type.Hinges",
-        "org.spongepowered.api.data.type.HorseColors",
+        "org.spongepowered.api.data.type.HorseTypes",
         "org.spongepowered.api.data.type.HorseStyles",
         "org.spongepowered.api.data.type.InstrumentTypes",
         "org.spongepowered.api.data.type.LlamaTypes",

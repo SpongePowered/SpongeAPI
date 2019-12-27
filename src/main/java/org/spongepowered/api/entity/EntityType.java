@@ -33,12 +33,4 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  */
 @CatalogedBy(EntityTypes.class)
 public interface EntityType<A extends Entity> extends CatalogType, Translatable {
-
-    /**
-     * Returns the entity class for this type.
-     *
-     * @return The entity class for this type
-     */
-    Class<A> getEntityClass();
-
 }

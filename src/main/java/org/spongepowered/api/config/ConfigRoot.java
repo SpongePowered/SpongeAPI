@@ -83,5 +83,4 @@ public interface ConfigRoot {
      * @return A directory
      */
     Path getDirectory();
-
 }

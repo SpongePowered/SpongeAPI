@@ -71,7 +71,18 @@ public interface TextFormat extends TextElement {
      * @param style The style
      * @return The new text format
      */
-    static TextFormat of(Supplier<? extends TextColor> color, Supplier<? extends TextStyle> style) {
+    static TextFormat of(TextColor color, TextStyle style) {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).format(color, style);
+    }
+
+    /**
+     * Constructs a new {@link TextFormat} with the specific color and style.
+     *
+     * @param color The color
+     * @param style The style
+     * @return The new text format
+     */
+    static TextFormat of(Supplier<TextColor> color, Supplier<TextStyle> style) {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).format(color, style);
     }
 
@@ -135,8 +146,8 @@ public interface TextFormat extends TextElement {
 
         TextFormat emptyFormat();
 
-        TextFormat format(TextColor none, TextStyle style);
+        TextFormat format(TextColor color, TextStyle style);
 
-        TextFormat format(Supplier<? extends TextColor> none, Supplier<? extends TextStyle> style);
+        TextFormat format(Supplier<TextColor> color, Supplier<TextStyle> style);
     }
 }

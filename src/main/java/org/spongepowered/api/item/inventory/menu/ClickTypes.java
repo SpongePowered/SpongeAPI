@@ -43,68 +43,83 @@ public class ClickTypes {
      * Left click on a slot.
      */
     public static final Supplier<ClickType<SlotClickHandler>> CLICK_LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClickType.class, "click_left");
+
     /**
      * Left click outside of inventory.
      */
     public static final Supplier<ClickType<ClickHandler>> CLICK_LEFT_OUTSIDE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClickType.class, "click_left_outside");
+
+    /**
+     * Used to clone the clicked item onto the cursor in creative.
+     */
+    public static final Supplier<ClickType<SlotClickHandler>> CLICK_MIDDLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClickType.class, "click_middle");
+
     /**
      * Right click on a slot.
      */
     public static final Supplier<ClickType<SlotClickHandler>> CLICK_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClickType.class, "click_right");
+
     /**
      * Right click outside of inventory.
      */
     public static final Supplier<ClickType<ClickHandler>> CLICK_RIGHT_OUTSIDE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClickType.class, "click_right_outside");
+
     /**
-     * Shift-Left click on a slot.
+     * Collects as much items of the same type as possible to the cursor.
      */
-    public static final Supplier<ClickType<SlotClickHandler>> SHIFT_CLICK_LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClickType.class, "shift_click_left");
+    public static final Supplier<ClickType<SlotClickHandler>> DOUBLE_CLICK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClickType.class, "double_click");
+
     /**
-     * Shift-Right click on a slot.
+     * Stopping drag motion. This distributes items on the cursor in all previously added slots.
      */
-    public static final Supplier<ClickType<SlotClickHandler>> SHIFT_CLICK_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClickType.class, "shift_click_right");
+    public static final Supplier<ClickType<ClickHandler>> DRAG_END = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClickType.class, "drag_end");
+
+    /**
+     * Left-click drag motion.
+     */
+    public static final Supplier<ClickType<SlotClickHandler>> DRAG_LEFT_ADD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClickType.class, "drag_left_add");
+
+    /**
+     * Middle-click drag motion.
+     */
+    public static final Supplier<ClickType<SlotClickHandler>> DRAG_MIDDLE_ADD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClickType.class, "drag_middle_add");
+
+    /**
+     * Right-click drag motion.
+     */
+    public static final Supplier<ClickType<SlotClickHandler>> DRAG_RIGHT_ADD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClickType.class, "drag_right_add");
+
+    /**
+     * Starting drag motion.
+     */
+    public static final Supplier<ClickType<ClickHandler>> DRAG_START = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClickType.class, "drag_start");
+
     /**
      * This click-type is used when using a number key-press to swap the corresponding hotbar slot with the slot hovered over.
      * <p>The primary slot is the hovered slot.</p>
      * <p>The secondary slot is the hotbar slot.</p>
      */
     public static final Supplier<ClickType<KeySwapHandler>> KEY_SWAP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClickType.class, "key_swap");
-    /**
-     * Used to clone the clicked item onto the cursor in creative.
-     */
-    public static final Supplier<ClickType<SlotClickHandler>> CLICK_MIDDLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClickType.class, "click_middle");
-    /**
-     * Throwing one item in the hovered slot using the throw item key.
-     */
-    public static final Supplier<ClickType<SlotClickHandler>> KEY_THROW_ONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClickType.class, "key_throw_one");
+
     /**
      * Throwing all items in the hovered slot using the throw item key.
      */
     public static final Supplier<ClickType<SlotClickHandler>> KEY_THROW_ALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClickType.class, "key_throw_all");
+
     /**
-     * Starting drag motion.
+     * Throwing one item in the hovered slot using the throw item key.
      */
-    public static final Supplier<ClickType<ClickHandler>> DRAG_START = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClickType.class, "drag_start");
+    public static final Supplier<ClickType<SlotClickHandler>> KEY_THROW_ONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClickType.class, "key_throw_one");
+
     /**
-     * Left-click drag motion.
+     * Shift-Left click on a slot.
      */
-    public static final Supplier<ClickType<SlotClickHandler>> DRAG_LEFT_ADD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClickType.class, "drag_left_add");
+    public static final Supplier<ClickType<SlotClickHandler>> SHIFT_CLICK_LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClickType.class, "shift_click_left");
+
     /**
-     * Right-click drag motion.
+     * Shift-Right click on a slot.
      */
-    public static final Supplier<ClickType<SlotClickHandler>> DRAG_RIGHT_ADD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClickType.class, "drag_right_add");
-    /**
-     * Middle-click drag motion.
-     */
-    public static final Supplier<ClickType<SlotClickHandler>> DRAG_MIDDLE_ADD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClickType.class, "drag_middle_add");
-    /**
-     * Stopping drag motion. This distributes items on the cursor in all previously added slots.
-     */
-    public static final Supplier<ClickType<ClickHandler>> DRAG_END = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClickType.class, "drag_end");
-    /**
-     * Collects as much items of the same type as possible to the cursor.
-     */
-    public static final Supplier<ClickType<SlotClickHandler>> DOUBLE_CLICK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClickType.class, "double_click");
+    public static final Supplier<ClickType<SlotClickHandler>> SHIFT_CLICK_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClickType.class, "shift_click_right");
 
     // SORTFIELDS:OFF
 }

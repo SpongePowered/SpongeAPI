@@ -63,6 +63,7 @@ import java.util.function.Supplier;
  *
  * @param <V> The type of {@link Value}
  */
+@SuppressWarnings("UnstableApiUsage")
 @CatalogedBy(Keys.class)
 public interface Key<V extends Value<?>> extends CatalogType {
 
@@ -75,7 +76,7 @@ public interface Key<V extends Value<?>> extends CatalogType {
      * persisted, a {@link DataRegistration} is required.
      *
      * <p>Registration of a custom created {@link Key} is required through
-     * {@link org.spongepowered.api.event.game.GameRegistryEvent.Register},
+     * {@link org.spongepowered.api.event.registry.RegistryEvent.Catalog},
      * though the creation is not restricted to any particular event. The
      * registration of a {@link DataRegistration} is done separately.
      * </p>

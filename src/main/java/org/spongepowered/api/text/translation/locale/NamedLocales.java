@@ -29,6 +29,7 @@ import java.util.Locale;
 /**
  * The list of the names of available locales in Vanilla Minecraft.
  */
+@SuppressWarnings("unused")
 public final class NamedLocales {
 
     /**
@@ -116,5 +117,4 @@ public final class NamedLocales {
     private NamedLocales() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }
-
 }

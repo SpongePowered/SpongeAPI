@@ -52,7 +52,7 @@ import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.type.FoxType;
 import org.spongepowered.api.data.type.HandPreference;
 import org.spongepowered.api.data.type.Hinge;
-import org.spongepowered.api.data.type.HorseColor;
+import org.spongepowered.api.data.type.HorseType;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.type.InstrumentType;
 import org.spongepowered.api.data.type.LlamaType;
@@ -172,7 +172,6 @@ import org.spongepowered.api.entity.weather.WeatherEffect;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSources;
 import org.spongepowered.api.fluid.FluidStackSnapshot;
 import org.spongepowered.api.item.FireworkEffect;
-import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -334,11 +333,6 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> ARMOR_STAND_HAS_BASE_PLATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ARMOR_STAND_HAS_BASE_PLATE");
 
     /**
-     * Represents the {@link Key} for whether an {@link ArmorStand} is small.
-     */
-    public static final Supplier<Key<Value<Boolean>>> ARMOR_STAND_IS_SMALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ARMOR_STAND_IS_SMALL");
-
-    /**
      * Represents the {@link Key} for if an {@link ArmorStand} is a "marker" stand.
      *
      * <p>If {@code true}, the armor stand's bounding box is near
@@ -346,6 +340,11 @@ public final class Keys {
      * interacted with.</p>
      */
     public static final Supplier<Key<Value<Boolean>>> ARMOR_STAND_HAS_MARKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ARMOR_STAND_HAS_MARKER");
+
+    /**
+     * Represents the {@link Key} for whether an {@link ArmorStand} is small.
+     */
+    public static final Supplier<Key<Value<Boolean>>> ARMOR_STAND_IS_SMALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ARMOR_STAND_IS_SMALL");
 
     /**
      * Represents the {@link Key} for whether players are prevented from taking
@@ -387,11 +386,6 @@ public final class Keys {
      * Represents the {@link Key} for the time of a {@link Ravager} is considered attacking.
      */
     public static final Supplier<Key<Value<Integer>>> ATTACK_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ATTACK_TIME");
-
-    /**
-     * Represents the {@link Key} for representing the {@link ArmorType} of a {@link ItemType}.
-     */
-    public static final Supplier<Key<Value<ArmorType>>> ARMOR_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ARMOR_TYPE");
 
     /**
      * Represents the {@link Key} for representing the {@link Axis} direction
@@ -495,6 +489,24 @@ public final class Keys {
      * {@link BlockTypes#RED_MUSHROOM_BLOCK} {@link BlockState}.
      */
     public static final Supplier<Key<Value<Boolean>>> BIG_MUSHROOM_PORES_WEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BIG_MUSHROOM_PORES_WEST");
+
+    /**
+     * Represents the {@link Key} for the temperature of a biome at a block location.
+     */
+    public static final Supplier<Key<Value<Double>>> BIOME_TEMPERATURE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BIOME_TEMPERATURE");
+
+    /**
+     * Represents the {@link Key} for the blast resistance of a block.
+     */
+    public static final Supplier<Key<Value<Double>>> BLAST_RESISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BLAST_RESISTANCE");
+
+    /**
+     * Represents the {@link Key} for the amount of light that is emitted by the
+     * surrounding blocks at a block location. The value scales normally from 0 to 1.
+     *
+     * <p>In vanilla minecraft is this value in steps of 1/15 from 0 to 1.</p>
+     */
+    public static final Supplier<Key<Value<Double>>> BLOCK_LUMINANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BLOCK_LUMINANCE");
 
     /**
      * Represents the {@link Key} for the {@link BlockState} of a {@link BlockOccupiedMinecart} or {@link FallingBlock}.
@@ -665,16 +677,16 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> CONNECTED_SOUTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CONNECTED_SOUTH");
 
     /**
-     * Represents the {@link Key} for representing the "connected to the west"
-     * state of a {@link BlockState}.
-     */
-    public static final Supplier<Key<Value<Boolean>>> CONNECTED_WEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CONNECTED_WEST");
-
-    /**
      * Represents the {@link Key} for representing the "connected to up"
      * state of a {@link BlockState}.
      */
     public static final Supplier<Key<Value<Boolean>>> CONNECTED_UP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CONNECTED_UP");
+
+    /**
+     * Represents the {@link Key} for representing the "connected to the west"
+     * state of a {@link BlockState}.
+     */
+    public static final Supplier<Key<Value<Boolean>>> CONNECTED_WEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CONNECTED_WEST");
 
     /**
      * Represents the {@link Key} for the amount of ticks a {@link Hopper} has
@@ -1039,6 +1051,11 @@ public final class Keys {
     public static final Supplier<Key<BoundedValue<Integer>>> GROWTH_STAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "GROWTH_STAGE");
 
     /**
+     * Represents the {@link Key} for the hardness of something, usually a block.
+     */
+    public static final Supplier<Key<BoundedValue<Double>>> HARDNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HARDNESS");
+
+    /**
      * Represents the {@link Key} for whether an {@link Entity} is affected by
      * gravity.
      */
@@ -1138,14 +1155,14 @@ public final class Keys {
     public static final Supplier<Key<Value<Hinge>>> HINGE_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HINGE_POSITION");
 
     /**
-     * Represents the {@link Key} for the color of a {@link Horse}.
-     */
-    public static final Supplier<Key<Value<HorseColor>>> HORSE_COLOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HORSE_COLOR");
-
-    /**
      * Represents the {@link Key} for the style of a {@link Horse}.
      */
     public static final Supplier<Key<Value<HorseStyle>>> HORSE_STYLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HORSE_STYLE");
+
+    /**
+     * Represents the {@link Key} for the type of a {@link Horse}.
+     */
+    public static final Supplier<Key<Value<HorseType>>> HORSE_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HORSE_TYPE");
 
     /**
      * Represents the {@link Key} for whether an {@link Item} will not despawn
@@ -1316,11 +1333,6 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> IS_LYING_ON_BACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_LYING_ON_BACK");
 
     /**
-     * Represents the {@link Key} for if an {@link Entity} is currently considered to be on the ground or not.
-     */
-    public static final Supplier<Key<Value<Boolean>>> ON_GROUND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ON_GROUND");
-
-    /**
      * Represents the {@link Key} for if a {@link IronGolem} has been created by a {@link Player}.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_PLAYER_CREATED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_PLAYER_CREATED");
@@ -1347,6 +1359,11 @@ public final class Keys {
      * Represents the {@link Key} for if a {@link Panda} is rolling around.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_ROLLING_AROUND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_ROLLING_AROUND");
+
+    /**
+     * Represents the {@link Key} for whether a {@link Entity} is saddled.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_SADDLED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_SADDLED");
 
     /**
      * Represents the {@link Key} for whether an {@link Enderman} is screaming.
@@ -1424,6 +1441,14 @@ public final class Keys {
      * Represents the {@link Key} for if an {@link Ocelot} is currently trusting of {@link Player}s.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_TRUSTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_TRUSTING");
+
+    /**
+     * Represents the {@link Key} for whether an {@link ItemStack} is unbreakable.
+     *
+     * <p>Setting this to {@code  true} will prevent the item stack's
+     * {@link #ITEM_DURABILITY} from changing.</p>
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_UNBREAKABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_UNBREAKABLE");
 
     /**
      * Represents the {@link Key} for whether a {@link Wolf}, a
@@ -1654,6 +1679,11 @@ public final class Keys {
     public static final Supplier<Key<Value<Integer>>> OFFSET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "OFFSET");
 
     /**
+     * Represents the {@link Key} for if an {@link Entity} is currently considered to be on the ground or not.
+     */
+    public static final Supplier<Key<Value<Boolean>>> ON_GROUND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ON_GROUND");
+
+    /**
      * Represents the {@link Key} for representing the "open" state of
      * various door typed blocks.
      */
@@ -1721,11 +1751,6 @@ public final class Keys {
      * Represents the {@link Key} for the "pickup rule" of an {@link ArrowEntity}.
      */
     public static final Supplier<Key<Value<PickupRule>>> PICKUP_RULE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PICKUP_RULE");
-
-    /**
-     * Represents the {@link Key} for whether a {@link Entity} is saddled.
-     */
-    public static final Supplier<Key<Value<Boolean>>> IS_SADDLED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_SADDLED");
 
     /**
      * Represents the {@link Key} for which block types an {@link ItemStack}
@@ -2180,22 +2205,14 @@ public final class Keys {
     public static final Supplier<Key<Value<Vector3i>>> TURTLE_TRAVELING_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TURTLE_TRAVELING_POSITION");
 
     /**
-     * Represents the {@link Key} for whether an {@link ItemStack} is unbreakable.
-     *
-     * <p>Setting this to {@code  true} will prevent the item stack's
-     * {@link #ITEM_DURABILITY} from changing.</p>
+     * Represents the {@link Key} for the time a {@link Panda} has been unhappy (in ticks)
      */
-    public static final Supplier<Key<Value<Boolean>>> IS_UNBREAKABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_UNBREAKABLE");
+    public static final Supplier<Key<Value<Integer>>> UNHAPPY_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "UNHAPPY_TIME");
 
     /**
      * Represents the {@link Key} for whether a TNT block is unstable.
      */
     public static final Supplier<Key<Value<Boolean>>> UNSTABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "UNSTABLE");
-
-    /**
-     * Represents the {@link Key} for the time a {@link Panda} has been unhappy (in ticks)
-     */
-    public static final Supplier<Key<Value<Integer>>> UNHAPPY_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "UNHAPPY_TIME");
 
     /**
      * Represents the {@link Key} for whether or not changes to {@link Keys#SKIN} should
@@ -2308,29 +2325,6 @@ public final class Keys {
      * Represents the {@link Key} for the {@link WoodType} of a {@link Boat}.
      */
     public static final Supplier<Key<Value<WoodType>>> WOOD_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "WOOD_TYPE");
-
-    /**
-     * Represents the {@link Key} for the temperature of a biome at a block location.
-     */
-    public static final Supplier<Key<Value<Double>>> BIOME_TEMPERATURE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BIOME_TEMPERATURE");
-
-    /**
-     * Represents the {@link Key} for the blast resistance of a block.
-     */
-    public static final Supplier<Key<Value<Double>>> BLAST_RESISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BLAST_RESISTANCE");
-
-    /**
-     * Represents the {@link Key} for the amount of light that is emitted by the
-     * surrounding blocks at a block location. The value scales normally from 0 to 1.
-     *
-     * <p>In vanilla minecraft is this value in steps of 1/15 from 0 to 1.</p>
-     */
-    public static final Supplier<Key<Value<Double>>> BLOCK_LUMINANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BLOCK_LUMINANCE");
-
-    /**
-     * Represents the {@link Key} for the hardness of something, usually a block.
-     */
-    public static final Supplier<Key<BoundedValue<Double>>> HARDNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HARDNESS");
 
     // SORTFIELDS:OFF
 

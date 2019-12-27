@@ -33,8 +33,7 @@ import org.spongepowered.api.plugin.PluginContainer;
  *
  * <ul>
  *     <li>A shared configuration folder, which is preferred for plugins with
- *     little configuration. These plugins can simply use
- *     {@code plugin_id.conf}.</li>
+ *     little configuration. These plugins can simply use {@code plugin_id.conf}.</li>
  *     <li>A configuration folder specific for the plugin, which is preferred
  *     for plugins with a lot of configuration data.</li>
  * </ul>
@@ -68,7 +67,7 @@ public interface ConfigManager {
     /**
      * Gets the configuration root for a plugin that utilizes a configuration
      * folder specific to the plugin, which <em>may</em> also be a
-     * su-directory of the shared configuration folder.
+     * sub-directory of the shared configuration folder.
      *
      * <p>The provided plugin is used to determine the folder name.</p>
      *
@@ -76,5 +75,4 @@ public interface ConfigManager {
      * @return A plugin-specific configuration root
      */
     ConfigRoot getPluginConfig(PluginContainer plugin);
-
 }

@@ -49,9 +49,9 @@ public final class InventoryKeys {
     // SORTFIELDS:ON
 
     /**
-     * Represents the plugin that created this inventory.
+     * Represents the {@link EquipmentType} that the target inventory supports.
      */
-    public static final Supplier<Key<Value<PluginContainer>>> PLUGIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PLUGIN");
+    public static final Supplier<Key<Value<EquipmentType>>> EQUIPMENT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EQUIPMENT_TYPE");
 
     /**
      * Represents the maximum stack size of slots in an inventory.
@@ -59,9 +59,9 @@ public final class InventoryKeys {
     public static final Supplier<Key<BoundedValue<Integer>>> MAX_STACK_SIZE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_STACK_SIZE");
 
     /**
-     * Represents the {@link EquipmentType} that the target inventory supports.
+     * Represents the plugin that created this inventory.
      */
-    public static final Supplier<Key<Value<EquipmentType>>> EQUIPMENT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EQUIPMENT_TYPE");
+    public static final Supplier<Key<Value<PluginContainer>>> PLUGIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PLUGIN");
 
     /**
      * Represents the index of a slot.
@@ -81,14 +81,14 @@ public final class InventoryKeys {
     public static final Supplier<Key<Value<Direction>>> SLOT_SIDE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SLOT_SIDE");
 
     /**
-     * Represents the {@link UUID} of a inventory.
-     */
-    public static final Supplier<Key<Value<UUID>>> UNIQUE_ID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "UNIQUE_ID");
-
-    /**
      * Represents the title of a inventory, is viewable by players looking at the inventory. Not all inventories have a title.
      */
     public static final Supplier<Key<Value<Text>>> TITLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TITLE");
+
+    /**
+     * Represents the {@link UUID} of a inventory.
+     */
+    public static final Supplier<Key<Value<UUID>>> UNIQUE_ID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "UNIQUE_ID");
 
     // SORTFIELDS:OFF
 

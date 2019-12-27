@@ -109,10 +109,6 @@ public final class CatalogTypes {
 
     public static final Class<AdvancementType> ADVANCEMENT_TYPE = AdvancementType.class;
 
-    public static final Class<GoalType> GOAL_TYPE = GoalType.class;
-
-    public static final Class<ArmorType> ARMOR_TYPE = ArmorType.class;
-
     public static final Class<ArtType> ART_TYPE = ArtType.class;
 
     public static final Class<BannerPatternShape> BANNER_PATTERN_SHAPE = BannerPatternShape.class;
@@ -187,6 +183,8 @@ public final class CatalogTypes {
 
     public static final Class<GoalExecutorType> GOAL_EXECUTOR_TYPE = GoalExecutorType.class;
 
+    public static final Class<GoalType> GOAL_TYPE = GoalType.class;
+
     public static final Class<HandPreference> HAND_PREFERENCE = HandPreference.class;
 
     public static final Class<HandType> HAND_TYPE = HandType.class;
@@ -195,7 +193,7 @@ public final class CatalogTypes {
 
     public static final Class<Hinge> HINGE = Hinge.class;
 
-    public static final Class<HorseColor> HORSE_COLOR = HorseColor.class;
+    public static final Class<HorseType> HORSE_TYPE = HorseType.class;
 
     public static final Class<HorseStyle> HORSE_STYLE = HorseStyle.class;
 

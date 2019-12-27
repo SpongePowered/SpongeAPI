@@ -64,16 +64,14 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link BigDecimal}.</p>
      */
-    public static final CatalogedValueParameter<BigDecimal> BIG_DECIMAL =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "BIG_DECIMAL");
+    public static final CatalogedValueParameter<BigDecimal> BIG_DECIMAL = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "BIG_DECIMAL");
 
     /**
      * Require an argument to be a {@link BigInteger}.
      *
      * <p>Returns a {@link BigInteger}.</p>
      */
-    public static final CatalogedValueParameter<BigInteger> BIG_INTEGER =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "BIG_INTEGER");
+    public static final CatalogedValueParameter<BigInteger> BIG_INTEGER = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "BIG_INTEGER");
 
     /**
      * Require an argument to be a boolean.
@@ -100,8 +98,7 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link Boolean}.</p>
      */
-    public static final CatalogedValueParameter<Boolean> BOOLEAN =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "BOOLEAN");
+    public static final CatalogedValueParameter<Boolean> BOOLEAN = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "BOOLEAN");
 
     /**
      * Require an argument to be a {@link Color}
@@ -118,8 +115,7 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link Color}</p>
      */
-    public static final CatalogedValueParameter<Color> COLOR =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "COLOR");
+    public static final CatalogedValueParameter<Color> COLOR = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "COLOR");
 
     /**
      * Requires an argument to be a HOCON or JSON representation of a {@link DataContainer}.
@@ -129,8 +125,7 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link DataContainer}</p>
      */
-    public static final CatalogedValueParameter<DataContainer> DATA_CONTAINER =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "DATA_CONTAINER");
+    public static final CatalogedValueParameter<DataContainer> DATA_CONTAINER = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "DATA_CONTAINER");
 
     /**
      * Expect an argument to be a date-time, in the form of a
@@ -141,24 +136,21 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link LocalDateTime}</p>
      */
-    public static final CatalogedValueParameter<LocalDateTime> DATE_TIME =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "DATE_TIME");
+    public static final CatalogedValueParameter<LocalDateTime> DATE_TIME = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "DATE_TIME");
 
     /**
      * Expect an argument to represent a dimension.
      *
      * <p>Returns a {@link Dimension}</p>
      */
-    public static final CatalogedValueParameter<Dimension> DIMENSION =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "DIMENSION");
+    public static final CatalogedValueParameter<Dimension> DIMENSION = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "DIMENSION");
 
     /**
      * Require an argument to be an double-precision floating point number.
      *
      * <p>Returns a {@link Double}.</p>
      */
-    public static final CatalogedValueParameter<Double> DOUBLE =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "DOUBLE");
+    public static final CatalogedValueParameter<Double> DOUBLE = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "DOUBLE");
 
     /**
      * Require an argument to be a duration.
@@ -176,8 +168,7 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link Duration}.</p>
      */
-    public static final CatalogedValueParameter<Duration> DURATION =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "DURATION");
+    public static final CatalogedValueParameter<Duration> DURATION = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "DURATION");
 
     /**
      * Require an argument to select one or more {@link Entity} objects.
@@ -186,8 +177,7 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns an {@link Entity}.</p>
      */
-    public static final CatalogedValueParameter<Entity> ENTITY =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "ENTITY");
+    public static final CatalogedValueParameter<Entity> ENTITY = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "ENTITY");
 
     /**
      * Expect an argument to represent a {@link GameProfile} of a user.
@@ -196,24 +186,21 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link GameProfile}.</p>
      */
-    public static final CatalogedValueParameter<GameProfile> GAME_PROFILE =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "GAME_PROFILE");
+    public static final CatalogedValueParameter<GameProfile> GAME_PROFILE = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "GAME_PROFILE");
 
     /**
      * Require an argument to be an integer (base 10) number.
      *
      * <p>Returns an {@link Integer}.</p>
      */
-    public static final CatalogedValueParameter<Integer> INTEGER =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "INTEGER");
+    public static final CatalogedValueParameter<Integer> INTEGER = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "INTEGER");
 
     /**
      * Require an argument to be an IP address.
      *
      * <p>Returns an {@link InetAddress}</p>
      */
-    public static final CatalogedValueParameter<InetAddress> IP =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "IP");
+    public static final CatalogedValueParameter<InetAddress> IP = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "IP");
 
     /**
      * Expect an argument to represent a {@link Location}.
@@ -227,24 +214,21 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link Location}.</p>
      */
-    public static final CatalogedValueParameter<Location> LOCATION =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "LOCATION");
+    public static final CatalogedValueParameter<Location> LOCATION = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "LOCATION");
 
     /**
      * Require an argument to be a long (base 10).
      *
      * <p>Returns a {@link Long}.</p>
      */
-    public static final CatalogedValueParameter<Long> LONG =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "LONG");
+    public static final CatalogedValueParameter<Long> LONG = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "LONG");
 
     /**
      * Does not parse any arguments, returning nothing.
      *
      * <p>Returns nothing - no entry will be placed into any provided key.</p>
      */
-    public static final CatalogedValueParameter<Void> NONE =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "NONE");
+    public static final CatalogedValueParameter<Void> NONE = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "NONE");
 
     /**
      * Expect an argument to represent an online player.
@@ -253,16 +237,14 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link Player}.</p>
      */
-    public static final CatalogedValueParameter<Player> PLAYER =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "PLAYER");
+    public static final CatalogedValueParameter<Player> PLAYER = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "PLAYER");
 
     /**
      * Expect an argument to represent a {@link PluginContainer}'s id.
      *
      * <p>Returns a {@link PluginContainer}</p>
      */
-    public static final CatalogedValueParameter<PluginContainer> PLUGIN =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "PLUGIN");
+    public static final CatalogedValueParameter<PluginContainer> PLUGIN = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "PLUGIN");
 
     /**
      * Require one or more strings, without any processing, which are combined
@@ -270,8 +252,7 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link String}.</p>
      */
-    public static final CatalogedValueParameter<String> REMAINING_JOINED_STRINGS =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "REMAINING_JOINED_STRINGS");
+    public static final CatalogedValueParameter<String> REMAINING_JOINED_STRINGS = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "REMAINING_JOINED_STRINGS");
 
     /**
      * Require one or more strings, which are combined into a single,
@@ -279,16 +260,14 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link String}.</p>
      */
-    public static final CatalogedValueParameter<String> REMAINING_RAW_JOINED_STRINGS =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "REMAINING_RAW_JOINED_STRINGS");
+    public static final CatalogedValueParameter<String> REMAINING_RAW_JOINED_STRINGS = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "REMAINING_RAW_JOINED_STRINGS");
 
     /**
      * Require an argument to be a string.
      *
      * <p>Returns a {@link String}.</p>
      */
-    public static final CatalogedValueParameter<String> STRING =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "STRING");
+    public static final CatalogedValueParameter<String> STRING = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "STRING");
 
     /**
      * Does not parse any arguments, but instead returns a
@@ -300,8 +279,7 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link org.spongepowered.api.block.BlockSnapshot}.</p>
      */
-    public static final CatalogedValueParameter<BlockSnapshot> TARGET_BLOCK =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "TARGET_BLOCK");
+    public static final CatalogedValueParameter<BlockSnapshot> TARGET_BLOCK = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "TARGET_BLOCK");
 
     /**
      * Does not parse any arguments, but instead returns a
@@ -313,8 +291,7 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link org.spongepowered.api.entity.Entity}.</p>
      */
-    public static final CatalogedValueParameter<Entity> TARGET_ENTITY =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "TARGET_ENTITY");
+    public static final CatalogedValueParameter<Entity> TARGET_ENTITY = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "TARGET_ENTITY");
 
     /**
      * Does not parse any arguments, but instead returns a {@link Player} if the
@@ -325,8 +302,7 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link Player}.</p>
      */
-    public static final CatalogedValueParameter<Player> TARGET_PLAYER =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "TARGET_PLAYER");
+    public static final CatalogedValueParameter<Player> TARGET_PLAYER = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "TARGET_PLAYER");
 
     /**
      * Expects an argument to represent some {@link Text} serialised using formatting codes.
@@ -335,8 +311,7 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link Text}</p>
      */
-    public static final CatalogedValueParameter<Text> TEXT_FORMATTING_CODE =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "TEXT_FORMATTING_CODE");
+    public static final CatalogedValueParameter<Text> TEXT_FORMATTING_CODE = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "TEXT_FORMATTING_CODE");
 
     /**
      * Expects an argument to represent some {@link Text} serialised using formatting codes.
@@ -345,8 +320,7 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link Text}</p>
      */
-    public static final CatalogedValueParameter<Text> TEXT_FORMATTING_CODE_ALL =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "TEXT_FORMATTING_CODE_ALL");
+    public static final CatalogedValueParameter<Text> TEXT_FORMATTING_CODE_ALL = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "TEXT_FORMATTING_CODE_ALL");
 
     /**
      * Expects an argument to represent some {@link Text} serialised using Json.
@@ -355,8 +329,7 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link Text}</p>
      */
-    public static final CatalogedValueParameter<Text> TEXT_JSON =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "TEXT_JSON");
+    public static final CatalogedValueParameter<Text> TEXT_JSON = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "TEXT_JSON");
 
     /**
      * Expects an argument to represent some {@link Text} serialised using Json.
@@ -365,16 +338,14 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link Text}</p>
      */
-    public static final CatalogedValueParameter<Text> TEXT_JSON_ALL =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "TEXT_JSON_ALL");
+    public static final CatalogedValueParameter<Text> TEXT_JSON_ALL = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "TEXT_JSON_ALL");
 
     /**
      * Require an argument to be a URL.
      *
      * <p>Returns a {@link URL}</p>
      */
-    public static final CatalogedValueParameter<URL> URL =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "URL");
+    public static final CatalogedValueParameter<URL> URL = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "URL");
 
     /**
      * Expect an argument to represent a player who has been online at some
@@ -384,16 +355,14 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link User}.</p>
      */
-    public static final CatalogedValueParameter<User> USER =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "USER");
+    public static final CatalogedValueParameter<User> USER = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "USER");
 
     /**
      * Expect an argument to represent a {@link UUID}
      *
      * <p>Returns a {@link UUID}.</p>
      */
-    public static final CatalogedValueParameter<UUID> UUID =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "UUID");
+    public static final CatalogedValueParameter<UUID> UUID = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "UUID");
 
     /**
      * Expect an argument to represent a {@link Vector3d}.
@@ -407,8 +376,7 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link Vector3d}.</p>
      */
-    public static final CatalogedValueParameter<Vector3d> VECTOR3D =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "VECTOR3D");
+    public static final CatalogedValueParameter<Vector3d> VECTOR3D = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "VECTOR3D");
 
     /**
      * Expect an argument to represent a world.
@@ -424,8 +392,7 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link WorldProperties}.</p>
      */
-    public static final CatalogedValueParameter<WorldProperties> WORLD_PROPERTIES =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "WORLD_PROPERTIES");
+    public static final CatalogedValueParameter<WorldProperties> WORLD_PROPERTIES = DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "WORLD_PROPERTIES");
 
     // SORTFIELDS:OFF
 

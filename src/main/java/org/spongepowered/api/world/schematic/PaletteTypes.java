@@ -34,10 +34,13 @@ public final class PaletteTypes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<PaletteType<BlockState>> GLOBAL_BLOCKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PaletteType.class, "GLOBAL_BLOCKS");
-    public static final Supplier<PaletteType<BlockState>> LOCAL_BLOCKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PaletteType.class, "LOCAL_BLOCKS");
-    public static final Supplier<PaletteType<BiomeType>> LOCAL_BIOMES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PaletteType.class, "LOCAL_BIOMNES");
     public static final Supplier<PaletteType<BiomeType>> GLOBAL_BIOMES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PaletteType.class, "GLOBAL_BIOMES");
+
+    public static final Supplier<PaletteType<BlockState>> GLOBAL_BLOCKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PaletteType.class, "GLOBAL_BLOCKS");
+
+    public static final Supplier<PaletteType<BiomeType>> LOCAL_BIOMES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PaletteType.class, "LOCAL_BIOMNES");
+
+    public static final Supplier<PaletteType<BlockState>> LOCAL_BLOCKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PaletteType.class, "LOCAL_BLOCKS");
 
     // SORTFIELDS:OFF
 

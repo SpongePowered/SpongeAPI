@@ -94,15 +94,13 @@ public final class DamageModifierTypes {
      * a {@link PotionEffect} including the amplifier and duration, signifying
      * that the {@link PotionEffectType} is modifying the incoming damage.</p>
      */
-    public static final DamageModifierType DEFENSIVE_POTION_EFFECT = DummyObjectProvider
-            .createFor(DamageModifierType.class, "DEFENSIVE_POTION_EFFECT");
+    public static final DamageModifierType DEFENSIVE_POTION_EFFECT = DummyObjectProvider.createFor(DamageModifierType.class, "DEFENSIVE_POTION_EFFECT");
 
     /**
      * Represents a {@link DamageModifier} that enhances damage based on the
      * current {@link Difficulty} of the {@link World}.
      */
-    public static final DamageModifierType DIFFICULTY = DummyObjectProvider
-            .createFor(DamageModifierType.class, "DIFFICULTY");
+    public static final DamageModifierType DIFFICULTY = DummyObjectProvider.createFor(DamageModifierType.class, "DIFFICULTY");
 
     /**
      * Represents the {@link DamageModifier} that will modify damage from
@@ -135,8 +133,7 @@ public final class DamageModifierTypes {
      * Represents the {@link DamageModifier} that will increase damage from
      * a {@link PotionEffect} affecting the attacker.
      */
-    public static final DamageModifierType OFFENSIVE_POTION_EFFECT = DummyObjectProvider
-            .createFor(DamageModifierType.class, "OFFENSIVE_POTION_EFFECT");
+    public static final DamageModifierType OFFENSIVE_POTION_EFFECT = DummyObjectProvider.createFor(DamageModifierType.class, "OFFENSIVE_POTION_EFFECT");
 
     /**
      * Represents a {@link DamageModifier} that will reduce damage due to
