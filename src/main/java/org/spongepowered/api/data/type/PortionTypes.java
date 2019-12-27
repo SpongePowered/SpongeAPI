@@ -24,15 +24,17 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 public final class PortionTypes {
 
     // SORTFIELDS:ON
 
-    public static final PortionType BOTTOM = DummyObjectProvider.createFor(PortionType.class, "BOTTOM");
+    public static final Supplier<PortionType> BOTTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PortionType.class, "BOTTOM");
 
-    public static final PortionType TOP = DummyObjectProvider.createFor(PortionType.class, "TOP");
+    public static final Supplier<PortionType> TOP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PortionType.class, "TOP");
 
     // SORTFIELDS:OFF
 

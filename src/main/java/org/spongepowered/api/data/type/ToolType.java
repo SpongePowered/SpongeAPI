@@ -31,5 +31,10 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 @CatalogedBy(ToolTypes.class)
 public interface ToolType extends CatalogType {
 
+    /**
+     * Gets the {@link Ingredient} needed to repair this tool.
+     *
+     * @return The ingredient
+     */
     Ingredient getRepairIngredient();
 }
