@@ -56,6 +56,7 @@ import org.spongepowered.api.data.type.HorseType;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.type.InstrumentType;
 import org.spongepowered.api.data.type.LlamaType;
+import org.spongepowered.api.data.type.MatterState;
 import org.spongepowered.api.data.type.MooshroomType;
 import org.spongepowered.api.data.type.NotePitch;
 import org.spongepowered.api.data.type.PandaGene;
@@ -1580,6 +1581,12 @@ public final class Keys {
      * {@link CarrierBlockEntity}.
      */
     public static final Supplier<Key<Value<String>>> LOCK_TOKEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LOCK_TOKEN");
+
+    /**
+     * Represents the {@link Key} for the matter
+     * state. Usually of a block.
+     */
+    public static final Supplier<Key<Value<MatterState>>> MATTER_STATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MATTER_STATE");
 
     /**
      * Represents the {@link Key} for the maximum air supply a {@link Living}

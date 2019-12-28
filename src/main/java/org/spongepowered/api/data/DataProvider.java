@@ -25,13 +25,24 @@
 package org.spongepowered.api.data;
 
 import org.spongepowered.api.Server;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
 
 import java.util.Optional;
 
+@SuppressWarnings("unchecked")
 public interface DataProvider<V extends Value<E>, E> {
+
+    /**
+     * Constructs a new {@link DataProviderBuilder}.
+     *
+     * @return The builder
+     */
+    static DataProviderBuilder.BaseBuilder<?, ?> builder() {
+        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(DataProviderBuilder.BaseBuilder.class);
+    }
 
     /**
      * Gets the {@link Key} this provider supports.

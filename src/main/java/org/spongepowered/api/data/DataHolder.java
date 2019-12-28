@@ -86,13 +86,7 @@ public interface DataHolder extends ValueContainer {
          * @return The end resulting value
          */
         default <E> DataTransactionResult transform(Supplier<? extends Key<? extends Value<E>>> key, Function<E, E> function) {
-            if (this.supports(key)) {
-                return this.get(key)
-                        .map(function)
-                        .map(value -> this.offer(key, value))
-                        .orElseGet(DataTransactionResult::failNoData);
-            }
-            return DataTransactionResult.failNoData();
+            return this.transform(key.get(), function);
         }
 
         /**
@@ -140,14 +134,21 @@ public interface DataHolder extends ValueContainer {
 
         <E> DataTransactionResult offerSingle(Key<? extends CollectionValue<E, ?>> key, E element);
 
-        <E> DataTransactionResult offerSingle(Supplier<? extends Key<? extends CollectionValue<E, ?>>> key, E element);
+        default <E> DataTransactionResult offerSingle(Supplier<? extends Key<? extends CollectionValue<E, ?>>> key, E element) {
+            return this.offerSingle(key.get(), element);
+        }
 
         <K, V> DataTransactionResult offerSingle(Key<? extends MapValue<K, V>> key, K valueKey, V value);
-        <K, V> DataTransactionResult offerSingle(Supplier<? extends Key<? extends MapValue<K, V>>> key, K valueKey, V value);
+
+        default <K, V> DataTransactionResult offerSingle(Supplier<? extends Key<? extends MapValue<K, V>>> key, K valueKey, V value) {
+            return this.offerSingle(key.get(), valueKey, value);
+        }
 
         <K, V> DataTransactionResult offerAll(Key<? extends MapValue<K, V>> key, Map<? extends K, ? extends V> map);
 
-        <K, V> DataTransactionResult offerAll(Supplier<? extends Key<? extends MapValue<K, V>>> key, Map<? extends K, ? extends V> map);
+        default <K, V> DataTransactionResult offerAll(Supplier<? extends Key<? extends MapValue<K, V>>> key, Map<? extends K, ? extends V> map) {
+            return this.offerAll(key.get(), map);
+        }
 
         DataTransactionResult offerAll(MapValue<?, ?> value);
 
@@ -155,27 +156,37 @@ public interface DataHolder extends ValueContainer {
 
         <E> DataTransactionResult offerAll(Key<? extends CollectionValue<E, ?>> key, Collection<? extends E> elements);
 
-        <E> DataTransactionResult offerAll(Supplier<? extends Key<? extends CollectionValue<E, ?>>> key, Collection<? extends E> elements);
+        default <E> DataTransactionResult offerAll(Supplier<? extends Key<? extends CollectionValue<E, ?>>> key, Collection<? extends E> elements) {
+            return this.offerAll(key.get(), elements);
+        }
 
         <E> DataTransactionResult removeSingle(Key<? extends CollectionValue<E, ?>> key, E element);
 
-        <E> DataTransactionResult removeSingle(Supplier<? extends Key<? extends CollectionValue<E, ?>>> key, E element);
+        default <E> DataTransactionResult removeSingle(Supplier<? extends Key<? extends CollectionValue<E, ?>>> key, E element) {
+            return this.removeSingle(key.get(), element);
+        }
 
         <K> DataTransactionResult removeKey(Key<? extends MapValue<K, ?>> key, K mapKey);
 
-        <K> DataTransactionResult removeKey(Supplier<? extends Key<? extends MapValue<K, ?>>> key, K mapKey);
+        default <K> DataTransactionResult removeKey(Supplier<? extends Key<? extends MapValue<K, ?>>> key, K mapKey) {
+            return this.removeKey(key.get(), mapKey);
+        }
 
-         DataTransactionResult removeAll(CollectionValue<?, ?> value);
+        DataTransactionResult removeAll(CollectionValue<?, ?> value);
 
         <E> DataTransactionResult removeAll(Key<? extends CollectionValue<E, ?>> key, Collection<? extends E> elements);
 
-        <E> DataTransactionResult removeAll(Supplier<? extends Key<? extends CollectionValue<E, ?>>> key, Collection<? extends E> elements);
+        default <E> DataTransactionResult removeAll(Supplier<? extends Key<? extends CollectionValue<E, ?>>> key, Collection<? extends E> elements) {
+            return this.removeAll(key.get(), elements);
+        }
 
         DataTransactionResult removeAll(MapValue<?, ?> value);
 
         <K, V> DataTransactionResult removeAll(Key<? extends MapValue<K, V>> key, Map<? extends K, ? extends V> map);
 
-        <K, V> DataTransactionResult removeAll(Supplier<? extends Key<? extends MapValue<K, V>>> key, Map<? extends K, ? extends V> map);
+        default <K, V> DataTransactionResult removeAll(Supplier<? extends Key<? extends MapValue<K, V>>> key, Map<? extends K, ? extends V> map) {
+            return this.removeAll(key.get(), map);
+        }
 
         /**
          * Offers the given {@code value} as defined by the provided {@link Key}
@@ -208,7 +219,7 @@ public interface DataHolder extends ValueContainer {
          *     incompatibility
          */
         default <E> DataTransactionResult tryOffer(Supplier<? extends Key<? extends Value<E>>> key, E value) {
-            return tryOffer(key.get(), value);
+            return this.tryOffer(key.get(), value);
         }
 
         /**
@@ -269,7 +280,7 @@ public interface DataHolder extends ValueContainer {
          * @return The transaction result
          */
         default DataTransactionResult remove(Supplier<? extends Key<?>> key) {
-            return remove(key.get());
+            return this.remove(key.get());
         }
 
         /**
@@ -339,7 +350,7 @@ public interface DataHolder extends ValueContainer {
          * @return The newly created immutable value store
          */
         default <E> Optional<I> transform(Supplier<? extends Key<? extends Value<E>>> key, Function<E, E> function) {
-            return transform(key.get(), function);
+            return this.transform(key.get(), function);
         }
 
         /**
@@ -365,7 +376,7 @@ public interface DataHolder extends ValueContainer {
          * @return The new immutable value store
          */
         default <E> Optional<I> with(Supplier<? extends Key<? extends Value<E>>> key, E value) {
-            return with(key.get(), value);
+            return this.with(key.get(), value);
         }
 
         /**
@@ -409,7 +420,7 @@ public interface DataHolder extends ValueContainer {
          * @return The new immutable value store
          */
         default Optional<I> without(Supplier<? extends Key<?>> key) {
-            return without(key.get());
+            return this.without(key.get());
         }
 
         /**

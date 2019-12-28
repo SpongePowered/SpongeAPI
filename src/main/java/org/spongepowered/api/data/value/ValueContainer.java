@@ -80,7 +80,7 @@ public interface ValueContainer {
      * @return The value, if available
      */
     default <E> Optional<E> get(Supplier<? extends Key<? extends Value<E>>> key) {
-        return get(key.get());
+        return this.get(key.get());
     }
 
     /**
@@ -197,9 +197,7 @@ public interface ValueContainer {
      * @throws NoSuchElementException If the value is not supported or present
      */
     default <E> E require(Supplier<? extends Key<? extends Value<E>>> key) {
-        return this.get(key).orElseThrow(() -> new NoSuchElementException(String.format(
-                "Could not retrieve value for key '%s'", key.get().toString()
-        )));
+        return this.require(key.get());
     }
 
     /**
@@ -232,14 +230,7 @@ public interface ValueContainer {
      * @return The value, or null if not set
      */
     default <E> @Nullable E getOrNull(Supplier<? extends Key<? extends Value<E>>> key) {
-        final Optional<E> value = this.get(key);
-        if (value.isPresent()) {
-            return value.get();
-        }
-        if (!this.supports(key)) {
-            throw new UnsupportedOperationException("Key not supported. Key: " + key);
-        }
-        return null;
+        return this.getOrNull(key.get());
     }
 
     /**
@@ -267,7 +258,7 @@ public interface ValueContainer {
      * @return The value, or default if not set
      */
     default <E> E getOrElse(Supplier<? extends Key<? extends Value<E>>> key, E defaultValue) {
-        return this.get(key).orElse(checkNotNull(defaultValue, "defaultValue"));
+        return this.getOrElse(key.get(), defaultValue);
     }
 
     /**
@@ -289,7 +280,7 @@ public interface ValueContainer {
      * @return The value, if available
      */
     default <E, V extends Value<E>> Optional<V> getValue(Supplier<? extends Key<V>> key) {
-        return getValue(key.get());
+        return this.getValue(key.get());
     }
 
     /**
@@ -309,7 +300,7 @@ public interface ValueContainer {
      * @return True if the key and value backed by the key is supported
      */
     default boolean supports(Supplier<? extends Key<?>> key) {
-        return supports(key.get());
+        return this.supports(key.get());
     }
 
     /**

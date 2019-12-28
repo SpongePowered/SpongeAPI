@@ -101,7 +101,7 @@ public interface DataHolderBuilder<H extends DataHolder, B extends DataHolderBui
      * @return This builder, for chaining
      */
     default <V> B add(Supplier<? extends Key<? extends Value<V>>> key, V value) {
-        return add(key.get(), value);
+        return this.add(key.get(), value);
     }
 
     /**

@@ -73,8 +73,8 @@ public interface ParticleEffect extends DataSerializable {
      * @return The option value if present, otherwise {@link Optional#empty()}
      */
     default <V> Optional<V> getOptionOrDefault(ParticleOption<V> option) {
-        final Optional<V> value = getOption(option);
-        return value.isPresent() ? value : getType().getDefaultOption(option);
+        final Optional<V> value = this.getOption(option);
+        return value.isPresent() ? value : this.getType().getDefaultOption(option);
     }
 
     /**
@@ -104,7 +104,9 @@ public interface ParticleEffect extends DataSerializable {
          * @param particleType The particle type
          * @return This builder for chaining
          */
-        Builder type(Supplier<? extends ParticleType> particleType);
+        default Builder type(Supplier<? extends ParticleType> particleType) {
+            return this.type(particleType.get());
+        }
 
         /**
          * Sets the value of the specified {@link ParticleOption}.
@@ -127,7 +129,7 @@ public interface ParticleEffect extends DataSerializable {
          * @throws IllegalArgumentException If the specified value isn't valid
          */
         default <V> Builder option(Supplier<? extends ParticleOption<V>> option, V value) throws IllegalArgumentException {
-            return option(option.get(), value);
+            return this.option(option.get(), value);
         }
 
         /**
@@ -139,7 +141,7 @@ public interface ParticleEffect extends DataSerializable {
          * @return This builder for chaining
          */
         default Builder velocity(Vector3d velocity) {
-            return option(ParticleOptions.VELOCITY, velocity);
+            return this.option(ParticleOptions.VELOCITY, velocity);
         }
 
         /**
@@ -151,7 +153,7 @@ public interface ParticleEffect extends DataSerializable {
          * @return This builder for chaining
          */
         default Builder offset(Vector3d offset) {
-            return option(ParticleOptions.OFFSET, offset);
+            return this.option(ParticleOptions.OFFSET, offset);
         }
 
         /**
@@ -164,7 +166,7 @@ public interface ParticleEffect extends DataSerializable {
          * @throws IllegalArgumentException If the quantity is less than one
          */
         default Builder quantity(int quantity) throws IllegalArgumentException {
-            return option(ParticleOptions.QUANTITY, quantity);
+            return this.option(ParticleOptions.QUANTITY, quantity);
         }
 
         /**
