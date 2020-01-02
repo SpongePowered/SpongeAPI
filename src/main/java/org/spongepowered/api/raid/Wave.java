@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.raid;
 
+import org.spongepowered.api.effect.potion.PotionEffectTypes;
 import org.spongepowered.api.entity.living.monster.raider.Raider;
+import org.spongepowered.api.world.difficulty.Difficulty;
 
 import java.util.Optional;
 
@@ -40,12 +42,20 @@ public interface Wave {
     /**
      * Determines if this wave was a bonus of the {@link Raid}.
      *
+     * <p>Bonus waves are always spawned after the final wave.
+     *
+     * <p>Bonus waves exist because {@link PotionEffectTypes#BAD_OMEN} had a level greater than 1.
+     *
      * @return True if bonus, false if not
      */
     boolean isBonus();
 
     /**
      * Determines if this wave was the final wave of the {@link Raid}.
+     *
+     * <p>Whether a wave is final depends on the {@link Difficulty} of the world.
+     *
+     * <p>If this wave is final, there may be bonus waves after the wave finishes.
      *
      * @return True if the final wave, false if not
      */
