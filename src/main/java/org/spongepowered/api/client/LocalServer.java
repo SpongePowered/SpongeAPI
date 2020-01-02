@@ -27,6 +27,9 @@ package org.spongepowered.api.client;
 import org.spongepowered.api.Client;
 import org.spongepowered.api.Server;
 
+/**
+ * Represents a {@link Server} which is used in a SinglePlayer game instance.
+ */
 public interface LocalServer extends Server {
 
     @Override

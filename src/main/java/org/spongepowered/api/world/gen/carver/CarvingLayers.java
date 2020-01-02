@@ -33,7 +33,7 @@ public final class CarvingLayers {
     // SORTFIELDS:ON
 
     public static final Supplier<CarvingLayer> AIR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(CarvingLayer.class, "AIR");
-    public static final Supplier<CarvingLayer> LIQUID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(CarvingLayer.class, "AIR");
+    public static final Supplier<CarvingLayer> LIQUID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(CarvingLayer.class, "LIQUID");
 
     // SORTFIELDS:OFF
 

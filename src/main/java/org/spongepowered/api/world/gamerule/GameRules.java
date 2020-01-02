@@ -27,6 +27,7 @@ package org.spongepowered.api.world.gamerule;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.block.entity.CommandBlock;
+import org.spongepowered.api.effect.potion.PotionEffectTypes;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Bat;
 import org.spongepowered.api.entity.living.animal.Rabbit;
@@ -38,6 +39,7 @@ import org.spongepowered.api.entity.living.monster.Ghast;
 import org.spongepowered.api.entity.living.monster.Silverfish;
 import org.spongepowered.api.entity.living.monster.boss.Wither;
 import org.spongepowered.api.entity.living.monster.boss.dragon.EnderDragon;
+import org.spongepowered.api.entity.living.monster.raider.Raider;
 import org.spongepowered.api.entity.living.monster.skeleton.Skeleton;
 import org.spongepowered.api.entity.living.monster.zombie.Zombie;
 import org.spongepowered.api.entity.living.monster.zombie.ZombiePigman;
@@ -46,6 +48,7 @@ import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.entity.living.trader.Villager;
 import org.spongepowered.api.entity.vehicle.Boat;
 import org.spongepowered.api.entity.vehicle.minecart.MinecartEntity;
+import org.spongepowered.api.raid.Raid;
 
 import java.util.function.Supplier;
 
@@ -80,6 +83,16 @@ public final class GameRules {
      * {@code false}.</p>
      */
     public static final Supplier<GameRule<Boolean>> DISABLE_ELYTRA_MOVEMENT_CHECK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "DISABLE_ELYTRA_MOVEMENT_CHECK");
+
+    /**
+     * Whether {@link Raid}s are disabled.
+     *
+     * <p>If the value of this game rule is {@code true}, all {@link Raid}s will stop.
+     *
+     * <p>This is a boolean game rule, with a default value of
+     * {@code false}.</p>
+     */
+    public static final Supplier<GameRule<Boolean>> DISABLE_RAIDS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "DISABLE_RAIDS");
 
     /**
      * Whether the day-night cycle and moon phases progress.
