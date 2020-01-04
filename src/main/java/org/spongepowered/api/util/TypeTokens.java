@@ -45,6 +45,7 @@ import org.spongepowered.api.data.type.LlamaType;
 import org.spongepowered.api.data.type.NotePitch;
 import org.spongepowered.api.data.type.ParrotType;
 import org.spongepowered.api.data.type.PickupRule;
+import org.spongepowered.api.data.type.PistonType;
 import org.spongepowered.api.data.type.PortionType;
 import org.spongepowered.api.data.type.Profession;
 import org.spongepowered.api.data.type.RabbitType;
@@ -287,6 +288,8 @@ public final class TypeTokens {
     public static final TypeToken<PickupRule> PICKUP_TOKEN = new TypeToken<PickupRule>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<PickupRule>> PICKUP_VALUE_TOKEN = new TypeToken<Value<PickupRule>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<PistonType> PISTON_TYPE_TOKEN = new TypeToken<PistonType>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<PortionType> PORTION_TOKEN = new TypeToken<PortionType>() {private static final long serialVersionUID = -1;};
 

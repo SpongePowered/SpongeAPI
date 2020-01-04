@@ -221,6 +221,8 @@ public final class CatalogTypes {
 
     public static final Class<PickupRule> PICKUP_RULE = PickupRule.class;
 
+    public static final Class<PistonType> PISTON_TYPE = PistonType.class;
+
     public static final Class<PortalAgentType> PORTAL_AGENT_TYPE = PortalAgentType.class;
 
     public static final Class<PortionType> PORTION_TYPE = PortionType.class;
