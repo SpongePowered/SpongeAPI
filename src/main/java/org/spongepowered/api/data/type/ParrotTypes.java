@@ -37,13 +37,13 @@ public final class ParrotTypes {
 
     public static final Supplier<ParrotType> BLUE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParrotType.class, "BLUE");
 
-    public static final Supplier<ParrotType> CYAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParrotType.class, "CYAN");
+    public static final Supplier<ParrotType> YELLOW_AND_BLUE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParrotType.class, "YELLOW_AND_BLUE");
 
     public static final Supplier<ParrotType> GRAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParrotType.class, "GRAY");
 
     public static final Supplier<ParrotType> GREEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParrotType.class, "GREEN");
 
-    public static final Supplier<ParrotType> RED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParrotType.class, "RED");
+    public static final Supplier<ParrotType> RED_AND_BLUE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParrotType.class, "RED");
 
     // SORTFIELDS:OFF
 
