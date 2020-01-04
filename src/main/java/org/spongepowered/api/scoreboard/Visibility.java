@@ -25,6 +25,7 @@
 package org.spongepowered.api.scoreboard;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -33,6 +34,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * <p>Usages include nametags and death messages.</p>
  */
 @CatalogedBy(Visibilities.class)
-public interface Visibility extends CatalogType {
+public interface Visibility extends CatalogType, Translatable {
 
 }

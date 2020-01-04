@@ -25,6 +25,7 @@
 package org.spongepowered.api.boss;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -33,4 +34,10 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 @CatalogedBy(BossBarColors.class)
 public interface BossBarColor extends CatalogType {
 
+    /**
+     * Gets the {@link TextColor} that this boss bar color represents.
+     *
+     * @return The text color
+     */
+    TextColor getColor();
 }

@@ -36,7 +36,7 @@ import java.util.function.Supplier;
 
 /**
  * Represents an immutable text style of a {@link Text}. It is a utility that is
- * not normally present in Minecraft. It can be either empty, a {@link Base}
+ * not normally present in Minecraft. It can be either empty, a {@link Type}
  * with an additional legacy formatting code or a composite.
  *
  * <p>Combined styles can be created using {@link TextStyles#of(TextStyle...)}
@@ -120,14 +120,14 @@ public interface TextStyle extends TextElement {
      *
      * @return The value for the bold property, or {@link Optional#empty()}
      */
-    Optional<Boolean> isBold();
+    Optional<Boolean> hasBold();
 
     /**
      * Checks for whether text where this style is applied is italicized.
      *
      * @return The value for the italic property, or {@link Optional#empty()}
      */
-    Optional<Boolean> isItalic();
+    Optional<Boolean> hasItalic();
 
     /**
      * Checks for whether text where this style is applied has an underline.
@@ -150,7 +150,7 @@ public interface TextStyle extends TextElement {
      * @return The value for the obfuscated property, or
      *         {@link Optional#empty()}
      */
-    Optional<Boolean> isObfuscated();
+    Optional<Boolean> hasObfuscated();
 
     /**
      * Returns whether the given {@link TextStyle} is contained in this
@@ -209,9 +209,9 @@ public interface TextStyle extends TextElement {
      * name.
      *
      * @see TextStyle
-     * @see Base
+     * @see Type
      */
-    interface Base extends CatalogType, TextStyle {
+    interface Type extends CatalogType, TextStyle {
 
         @Override
         default boolean isComposite() {
@@ -220,9 +220,8 @@ public interface TextStyle extends TextElement {
         }
     }
 
-    public interface Factory {
+    interface Factory {
 
         Supplier<TextStyle> empty();
-
     }
 }

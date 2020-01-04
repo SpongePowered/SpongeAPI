@@ -25,6 +25,7 @@
 package org.spongepowered.api.scoreboard;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -34,6 +35,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * a {@link Team} collide with other entities.</p>
  */
 @CatalogedBy(CollisionRules.class)
-public interface CollisionRule extends CatalogType {
+public interface CollisionRule extends CatalogType, Translatable {
 
 }

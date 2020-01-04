@@ -26,13 +26,12 @@ package org.spongepowered.api.statistic;
 
 import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Collection;
 
 @CatalogedBy(StatisticCategories.class)
-public interface StatisticCategory extends CatalogType, Translatable {
+public interface StatisticCategory extends CatalogType {
 
     /**
      * Gets all the {@link Statistic}s that are listed
@@ -49,24 +48,24 @@ public interface StatisticCategory extends CatalogType, Translatable {
      *
      * @param <T> The catalog type
      */
-    interface ForCatalogType<T extends CatalogType> extends StatisticCategory {
+    interface ForCatalog<T extends CatalogType> extends StatisticCategory {
 
         @Override
-        Collection<Statistic.ForCatalog<T>> getStatistics();
+        Collection<Statistic.TypeInstance<T>> getStatistics();
 
         /**
          * Gets the {@link CatalogType} type.
          *
          * @return The catalog type
          */
-        TypeToken<T> getCatalogType();
+        TypeToken<T> getType();
 
         /**
-         * Gets the {@link Statistic.ForCatalog} for the given {@link CatalogType}.
+         * Gets the {@link Statistic.TypeInstance} for the given {@link CatalogType}.
          *
          * @param catalogType The catalog type
          * @return The catalog statistic
          */
-        Statistic.ForCatalog<T> getStatistic(T catalogType);
+        Statistic.TypeInstance<T> getStatistic(T catalogType);
     }
 }

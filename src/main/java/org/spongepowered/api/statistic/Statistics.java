@@ -35,103 +35,103 @@ public final class Statistics {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<Statistic> ANIMALS_BRED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "ANIMALS_BRED");
+    public static final Supplier<Statistic.Type> ANIMALS_BRED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "ANIMALS_BRED");
 
-    public static final Supplier<Statistic> ARMOR_CLEANED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "ARMOR_CLEANED");
+    public static final Supplier<Statistic.Type> ARMOR_CLEANED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "ARMOR_CLEANED");
 
-    public static final Supplier<Statistic> AVIATE_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "AVIATE_ONE_CM");
+    public static final Supplier<Statistic.Type> AVIATE_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "AVIATE_ONE_CM");
 
-    public static final Supplier<Statistic> BANNER_CLEANED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "BANNER_CLEANED");
+    public static final Supplier<Statistic.Type> BANNER_CLEANED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "BANNER_CLEANED");
 
-    public static final Supplier<Statistic> BEACON_INTERACTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "BEACON_INTERACTION");
+    public static final Supplier<Statistic.Type> BEACON_INTERACTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "BEACON_INTERACTION");
 
-    public static final Supplier<Statistic> BOAT_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "BOAT_ONE_CM");
+    public static final Supplier<Statistic.Type> BOAT_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "BOAT_ONE_CM");
 
-    public static final Supplier<Statistic> BREWINGSTAND_INTERACTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "BREWINGSTAND_INTERACTION");
+    public static final Supplier<Statistic.Type> BREWINGSTAND_INTERACTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "BREWINGSTAND_INTERACTION");
 
-    public static final Supplier<Statistic> CAKE_SLICES_EATEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "CAKE_SLICES_EATEN");
+    public static final Supplier<Statistic.Type> CAKE_SLICES_EATEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "CAKE_SLICES_EATEN");
 
-    public static final Supplier<Statistic> CAULDRON_FILLED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "CAULDRON_FILLED");
+    public static final Supplier<Statistic.Type> CAULDRON_FILLED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "CAULDRON_FILLED");
 
-    public static final Supplier<Statistic> CAULDRON_USED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "CAULDRON_USED");
+    public static final Supplier<Statistic.Type> CAULDRON_USED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "CAULDRON_USED");
 
-    public static final Supplier<Statistic> CHEST_OPENED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "CHEST_OPENED");
+    public static final Supplier<Statistic.Type> CHEST_OPENED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "CHEST_OPENED");
 
-    public static final Supplier<Statistic> CLIMB_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "CLIMB_ONE_CM");
+    public static final Supplier<Statistic.Type> CLIMB_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "CLIMB_ONE_CM");
 
-    public static final Supplier<Statistic> CRAFTING_TABLE_INTERACTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "CRAFTING_TABLE_INTERACTION");
+    public static final Supplier<Statistic.Type> CRAFTING_TABLE_INTERACTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "CRAFTING_TABLE_INTERACTION");
 
-    public static final Supplier<Statistic> CROUCH_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "CROUCH_ONE_CM");
+    public static final Supplier<Statistic.Type> CROUCH_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "CROUCH_ONE_CM");
 
-    public static final Supplier<Statistic> DAMAGE_DEALT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "DAMAGE_DEALT");
+    public static final Supplier<Statistic.Type> DAMAGE_DEALT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "DAMAGE_DEALT");
 
-    public static final Supplier<Statistic> DAMAGE_TAKEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "DAMAGE_TAKEN");
+    public static final Supplier<Statistic.Type> DAMAGE_TAKEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "DAMAGE_TAKEN");
 
-    public static final Supplier<Statistic> DEATHS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "DEATHS");
+    public static final Supplier<Statistic.Type> DEATHS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "DEATHS");
 
-    public static final Supplier<Statistic> DISPENSER_INSPECTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "DISPENSER_INSPECTED");
+    public static final Supplier<Statistic.Type> DISPENSER_INSPECTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "DISPENSER_INSPECTED");
 
-    public static final Supplier<Statistic> DIVE_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "DIVE_ONE_CM");
+    public static final Supplier<Statistic.Type> DIVE_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "DIVE_ONE_CM");
 
-    public static final Supplier<Statistic> DROP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "DROP");
+    public static final Supplier<Statistic.Type> DROP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "DROP");
 
-    public static final Supplier<Statistic> DROPPER_INSPECTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "DROPPER_INSPECTED");
+    public static final Supplier<Statistic.Type> DROPPER_INSPECTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "DROPPER_INSPECTED");
 
-    public static final Supplier<Statistic> ENDERCHEST_OPENED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "ENDERCHEST_OPENED");
+    public static final Supplier<Statistic.Type> ENDERCHEST_OPENED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "ENDERCHEST_OPENED");
 
-    public static final Supplier<Statistic> FALL_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "FALL_ONE_CM");
+    public static final Supplier<Statistic.Type> FALL_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "FALL_ONE_CM");
 
-    public static final Supplier<Statistic> FISH_CAUGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "FISH_CAUGHT");
+    public static final Supplier<Statistic.Type> FISH_CAUGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "FISH_CAUGHT");
 
-    public static final Supplier<Statistic> FLOWER_POTTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "FLOWER_POTTED");
+    public static final Supplier<Statistic.Type> FLOWER_POTTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "FLOWER_POTTED");
 
-    public static final Supplier<Statistic> FURNACE_INTERACTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "FURNACE_INTERACTION");
+    public static final Supplier<Statistic.Type> FURNACE_INTERACTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "FURNACE_INTERACTION");
 
-    public static final Supplier<Statistic> HOPPER_INSPECTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "HOPPER_INSPECTED");
+    public static final Supplier<Statistic.Type> HOPPER_INSPECTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "HOPPER_INSPECTED");
 
-    public static final Supplier<Statistic> HORSE_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "HORSE_ONE_CM");
+    public static final Supplier<Statistic.Type> HORSE_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "HORSE_ONE_CM");
 
-    public static final Supplier<Statistic> ITEM_ENCHANTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "ITEM_ENCHANTED");
+    public static final Supplier<Statistic.Type> ITEM_ENCHANTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "ITEM_ENCHANTED");
 
-    public static final Supplier<Statistic> JUMP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "JUMP");
+    public static final Supplier<Statistic.Type> JUMP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "JUMP");
 
-    public static final Supplier<Statistic> LEAVE_GAME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "LEAVE_GAME");
+    public static final Supplier<Statistic.Type> LEAVE_GAME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "LEAVE_GAME");
 
-    public static final Supplier<Statistic> MINECART_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "MINECART_ONE_CM");
+    public static final Supplier<Statistic.Type> MINECART_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "MINECART_ONE_CM");
 
-    public static final Supplier<Statistic> MOB_KILLS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "MOB_KILLS");
+    public static final Supplier<Statistic.Type> MOB_KILLS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "MOB_KILLS");
 
-    public static final Supplier<Statistic> NOTEBLOCK_PLAYED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "NOTEBLOCK_PLAYED");
+    public static final Supplier<Statistic.Type> NOTEBLOCK_PLAYED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "NOTEBLOCK_PLAYED");
 
-    public static final Supplier<Statistic> NOTEBLOCK_TUNED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "NOTEBLOCK_TUNED");
+    public static final Supplier<Statistic.Type> NOTEBLOCK_TUNED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "NOTEBLOCK_TUNED");
 
-    public static final Supplier<Statistic> OPEN_SHULKER_BOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "OPEN_SHULKER_BOX");
+    public static final Supplier<Statistic.Type> OPEN_SHULKER_BOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "OPEN_SHULKER_BOX");
 
-    public static final Supplier<Statistic> PIG_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "PIG_ONE_CM");
+    public static final Supplier<Statistic.Type> PIG_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "PIG_ONE_CM");
 
-    public static final Supplier<Statistic> PLAYER_KILLS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "PLAYER_KILLS");
+    public static final Supplier<Statistic.Type> PLAYER_KILLS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "PLAYER_KILLS");
 
-    public static final Supplier<Statistic> RECORD_PLAYED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "RECORD_PLAYED");
+    public static final Supplier<Statistic.Type> RECORD_PLAYED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "RECORD_PLAYED");
 
-    public static final Supplier<Statistic> SLEEP_IN_BED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "SLEEP_IN_BED");
+    public static final Supplier<Statistic.Type> SLEEP_IN_BED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "SLEEP_IN_BED");
 
-    public static final Supplier<Statistic> SNEAK_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "SNEAK_TIME");
+    public static final Supplier<Statistic.Type> SNEAK_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "SNEAK_TIME");
 
-    public static final Supplier<Statistic> SPRINT_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "SPRINT_ONE_CM");
+    public static final Supplier<Statistic.Type> SPRINT_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "SPRINT_ONE_CM");
 
-    public static final Supplier<Statistic> SWIM_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "SWIM_ONE_CM");
+    public static final Supplier<Statistic.Type> SWIM_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "SWIM_ONE_CM");
 
-    public static final Supplier<Statistic> TALKED_TO_VILLAGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "TALKED_TO_VILLAGER");
+    public static final Supplier<Statistic.Type> TALKED_TO_VILLAGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "TALKED_TO_VILLAGER");
 
-    public static final Supplier<Statistic> TIME_PLAYED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "TIME_PLAYED");
+    public static final Supplier<Statistic.Type> TIME_PLAYED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "TIME_PLAYED");
 
-    public static final Supplier<Statistic> TIME_SINCE_DEATH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "TIME_SINCE_DEATH");
+    public static final Supplier<Statistic.Type> TIME_SINCE_DEATH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "TIME_SINCE_DEATH");
 
-    public static final Supplier<Statistic> TRADED_WITH_VILLAGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "TRADED_WITH_VILLAGER");
+    public static final Supplier<Statistic.Type> TRADED_WITH_VILLAGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "TRADED_WITH_VILLAGER");
 
-    public static final Supplier<Statistic> TRAPPED_CHEST_TRIGGERED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "TRAPPED_CHEST_TRIGGERED");
+    public static final Supplier<Statistic.Type> TRAPPED_CHEST_TRIGGERED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "TRAPPED_CHEST_TRIGGERED");
 
-    public static final Supplier<Statistic> WALK_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "WALK_ONE_CM");
+    public static final Supplier<Statistic.Type> WALK_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.Type.class, "WALK_ONE_CM");
 
     // SORTFIELDS:OFF
 

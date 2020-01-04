@@ -36,18 +36,17 @@ public final class TextStyles {
     /**
      * Represents an empty {@link TextStyle}.
      */
-    public static final Supplier<TextStyle> NONE = Sponge.getRegistry().getFactoryRegistry().provideFactory(TextStyle.Factory.class).empty();
-
-    public static final Supplier<TextStyle.Base> OBFUSCATED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TextStyle.Base.class, "OBFUSCATED");
-    public static final Supplier<TextStyle.Base> BOLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TextStyle.Base.class,"BOLD");
-    public static final Supplier<TextStyle.Base> STRIKETHROUGH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TextStyle.Base.class,"STRIKETHROUGH");
-    public static final Supplier<TextStyle.Base> UNDERLINE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TextStyle.Base.class,"UNDERLINE");
-    public static final Supplier<TextStyle.Base> ITALIC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TextStyle.Base.class,"ITALIC");
+    public static final Supplier<TextStyle.Type> NONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TextStyle.Type.class, "NONE");
+    public static final Supplier<TextStyle.Type> OBFUSCATED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TextStyle.Type.class, "OBFUSCATED");
+    public static final Supplier<TextStyle.Type> BOLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TextStyle.Type.class,"BOLD");
+    public static final Supplier<TextStyle.Type> STRIKETHROUGH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TextStyle.Type.class,"STRIKETHROUGH");
+    public static final Supplier<TextStyle.Type> UNDERLINE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TextStyle.Type.class,"UNDERLINE");
+    public static final Supplier<TextStyle.Type> ITALIC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TextStyle.Type.class,"ITALIC");
 
     /**
      * Represents a {@link TextStyle} with all bases set to {@code false}.
      */
-    public static final Supplier<TextStyle.Base> RESET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TextStyle.Base.class,"RESET");
+    public static final Supplier<TextStyle.Type> RESET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TextStyle.Type.class,"RESET");
 
     /**
      * Returns an empty {@link TextStyle}.

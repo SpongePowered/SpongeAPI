@@ -31,28 +31,27 @@ import org.spongepowered.api.item.ItemType;
 
 import java.util.function.Supplier;
 
-@SuppressWarnings("unchecked")
 public final class StatisticCategories {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<StatisticCategory.ForCatalogType<BlockType>> BLOCKS_BROKEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StatisticCategory.class, "BLOCKS_BROKEN");
+    public static final Supplier<StatisticCategory.ForCatalog<BlockType>> BLOCKS_BROKEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StatisticCategory.class, "BLOCKS_BROKEN");
 
     public static final Supplier<StatisticCategory> CUSTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StatisticCategory.class, "CUSTOM");
 
-    public static final Supplier<StatisticCategory.ForCatalogType<EntityType<?>>> ENTITIES_KILLED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StatisticCategory.class, "ENTITIES_KILLED");
+    public static final Supplier<StatisticCategory.ForCatalog<EntityType<?>>> ENTITIES_KILLED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StatisticCategory.class, "ENTITIES_KILLED");
 
-    public static final Supplier<StatisticCategory.ForCatalogType<ItemType>> ITEMS_BROKEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StatisticCategory.class, "ITEMS_BROKEN");
+    public static final Supplier<StatisticCategory.ForCatalog<ItemType>> ITEMS_BROKEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StatisticCategory.class, "ITEMS_BROKEN");
 
-    public static final Supplier<StatisticCategory.ForCatalogType<ItemType>> ITEMS_CRAFTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StatisticCategory.class, "ITEMS_CRAFTED");
+    public static final Supplier<StatisticCategory.ForCatalog<ItemType>> ITEMS_CRAFTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StatisticCategory.class, "ITEMS_CRAFTED");
 
-    public static final Supplier<StatisticCategory.ForCatalogType<ItemType>> ITEMS_DROPPED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StatisticCategory.class, "ITEMS_DROPPED");
+    public static final Supplier<StatisticCategory.ForCatalog<ItemType>> ITEMS_DROPPED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StatisticCategory.class, "ITEMS_DROPPED");
 
-    public static final Supplier<StatisticCategory.ForCatalogType<ItemType>> ITEMS_PICKED_UP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StatisticCategory.class, "ITEMS_PICKED_UP");
+    public static final Supplier<StatisticCategory.ForCatalog<ItemType>> ITEMS_PICKED_UP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StatisticCategory.class, "ITEMS_PICKED_UP");
 
-    public static final Supplier<StatisticCategory.ForCatalogType<ItemType>> ITEMS_USED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StatisticCategory.class, "ITEMS_USED");
+    public static final Supplier<StatisticCategory.ForCatalog<ItemType>> ITEMS_USED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StatisticCategory.class, "ITEMS_USED");
 
-    public static final Supplier<StatisticCategory.ForCatalogType<EntityType<?>>> KILLED_BY_ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StatisticCategory.class, "KILLED_BY_ENTITIES");
+    public static final Supplier<StatisticCategory.ForCatalog<EntityType<?>>> KILLED_BY_ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StatisticCategory.class, "KILLED_BY_ENTITIES");
 
     // SORTFIELDS:OFF
 

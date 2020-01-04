@@ -31,7 +31,7 @@ import java.util.function.Supplier;
 /**
  * An enumeration of all the available {@link AdvancementType}s in Minecraft.
  */
-@SuppressWarnings({"unused", "WeakerAccess"})
+@SuppressWarnings("unused")
 public final class AdvancementTypes {
 
     // SORTFIELDS:ON

@@ -26,7 +26,6 @@ package org.spongepowered.api.statistic;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.scoreboard.criteria.Criterion;
-import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.text.NumberFormat;
@@ -36,7 +35,7 @@ import java.util.Optional;
  * Represents some statistic in minecraft.
  */
 @CatalogedBy(Statistics.class)
-public interface Statistic extends CatalogType, Translatable {
+public interface Statistic extends CatalogType {
 
     /**
      * Returns the objective {@link Criterion} for this statistic.
@@ -54,31 +53,19 @@ public interface Statistic extends CatalogType, Translatable {
     NumberFormat getFormat();
 
     /**
-     * Returns this statistic's {@link StatisticCategory}.
-     *
-     * @return Statistic type
-     */
-    default StatisticCategory getType() {
-        return StatisticCategories.CUSTOM.get();
-    }
-
-    /**
      * Represents a {@link Statistic} within a
-     * {@link org.spongepowered.api.statistic.StatisticCategory.ForCatalogType}
+     * {@link StatisticCategory.ForCatalog}
      * for a specific {@link CatalogType}.
      *
      * @param <T> The catalog type
      */
-    interface ForCatalog<T extends CatalogType> extends Statistic {
+    interface TypeInstance<T extends CatalogType> extends Statistic {
 
         /**
          * Gets the {@link CatalogType}.
          *
          * @return The catalog type
          */
-        T getCatalogType();
-
-        @Override
-        StatisticCategory.ForCatalogType<T> getType();
+        T getType();
     }
 }
