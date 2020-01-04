@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 /**
  * An enumeration of vanilla known {@link PistonType}s.
@@ -33,9 +35,9 @@ public final class PistonTypes {
 
     // SORTFIELDS:ON
 
-    public static final PistonType NORMAL = DummyObjectProvider.createFor(PistonType.class, "NORMAL");
+    public static final Supplier<PistonType> NORMAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PistonType.class, "NORMAL");
 
-    public static final PistonType STICKY = DummyObjectProvider.createFor(PistonType.class, "STICKY");
+    public static final Supplier<PistonType> STICKY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PistonType.class, "STICKY");
 
     // SORTFIELDS:OFF
 
