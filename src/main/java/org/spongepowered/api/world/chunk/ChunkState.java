@@ -51,6 +51,7 @@
 package org.spongepowered.api.world.chunk;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.World;
 
 /**
@@ -61,6 +62,7 @@ import org.spongepowered.api.world.World;
  * <li>{@link Chunk}s already existing and loaded in a {@link World}</li>
  * </ul>
  */
+@CatalogedBy(ChunkStates.class)
 public interface ChunkState extends CatalogType {
 
     /**
