@@ -24,8 +24,11 @@
  */
 package org.spongepowered.api.text.format;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextElement;
 import org.spongepowered.api.util.OptBool;
@@ -55,8 +58,27 @@ import java.util.function.Supplier;
  *
  * @see TextStyles
  */
-@CatalogedBy(TextStyles.class)
 public interface TextStyle extends TextElement {
+
+    /**
+     * Represents a {@link TextStyle} with all bases set to {@code false}.
+     */
+    static TextStyle of() {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).empty();
+    }
+
+    /**
+     * Constructs a composite text style from the specified styles. This will
+     * result in the same as calling {@link TextStyle#and(TextStyle...)} on all
+     * of the text styles.
+     *
+     * @param styles The styles to combine
+     * @return A composite text style from the specified styles
+     */
+    static TextStyle of(TextStyle... styles) {
+        checkNotNull(styles);
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).empty().and(styles);
+    }
 
     /**
      * Returns whether this {@link TextStyle} is a composite of multiple text
@@ -211,6 +233,7 @@ public interface TextStyle extends TextElement {
      * @see TextStyle
      * @see Type
      */
+    @CatalogedBy(TextStyles.class)
     interface Type extends CatalogType, TextStyle {
 
         @Override
@@ -222,6 +245,6 @@ public interface TextStyle extends TextElement {
 
     interface Factory {
 
-        Supplier<TextStyle> empty();
+        TextStyle empty();
     }
 }

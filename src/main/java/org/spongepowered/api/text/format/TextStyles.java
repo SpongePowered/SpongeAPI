@@ -33,42 +33,18 @@ import java.util.function.Supplier;
  */
 public final class TextStyles {
 
-    /**
-     * Represents an empty {@link TextStyle}.
-     */
-    public static final Supplier<TextStyle.Type> NONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TextStyle.Type.class, "NONE");
+    // SORTFIELDS:ON
+
     public static final Supplier<TextStyle.Type> OBFUSCATED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TextStyle.Type.class, "OBFUSCATED");
     public static final Supplier<TextStyle.Type> BOLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TextStyle.Type.class,"BOLD");
     public static final Supplier<TextStyle.Type> STRIKETHROUGH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TextStyle.Type.class,"STRIKETHROUGH");
     public static final Supplier<TextStyle.Type> UNDERLINE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TextStyle.Type.class,"UNDERLINE");
     public static final Supplier<TextStyle.Type> ITALIC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TextStyle.Type.class,"ITALIC");
-
-    /**
-     * Represents a {@link TextStyle} with all bases set to {@code false}.
-     */
     public static final Supplier<TextStyle.Type> RESET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TextStyle.Type.class,"RESET");
 
-    /**
-     * Returns an empty {@link TextStyle}.
-     *
-     * @return An empty text style
-     */
-    public static TextStyle of() {
-        return NONE.get();
-    }
+    // SORTFIELDS:OFF
 
-    /**
-     * Constructs a composite text style from the specified styles. This will
-     * result in the same as calling {@link TextStyle#and(TextStyle...)} on all
-     * of the text styles.
-     *
-     * @param styles The styles to combine
-     * @return A composite text style from the specified styles
-     */
-    public static TextStyle of(TextStyle... styles) {
-        return NONE.get().and(styles);
-    }
-    
     private TextStyles() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 }
