@@ -39,7 +39,7 @@ import org.spongepowered.api.data.type.ComparatorType;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.type.HandPreference;
 import org.spongepowered.api.data.type.Hinge;
-import org.spongepowered.api.data.type.HorseType;
+import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.type.LlamaType;
 import org.spongepowered.api.data.type.NotePitch;
@@ -197,13 +197,13 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<Hinge>> HINGE_VALUE_TOKEN = new TypeToken<Value<Hinge>>() {private static final long serialVersionUID = -1;};
 
+    public static final TypeToken<HorseColor> HORSE_COLOR_TOKEN = new TypeToken<HorseColor>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Value<HorseColor>> HORSE_COLOR_VALUE_TOKEN = new TypeToken<Value<HorseColor>>() {private static final long serialVersionUID = -1;};
+
     public static final TypeToken<HorseStyle> HORSE_STYLE_TOKEN = new TypeToken<HorseStyle>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<HorseStyle>> HORSE_STYLE_VALUE_TOKEN = new TypeToken<Value<HorseStyle>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<HorseType> HORSE_TYPE_TOKEN = new TypeToken<HorseType>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Value<HorseType>> HORSE_TYPE_VALUE_TOKEN = new TypeToken<Value<HorseType>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Instant> INSTANT_TOKEN = new TypeToken<Instant>() {private static final long serialVersionUID = -1;};
 

@@ -29,10 +29,10 @@ import org.spongepowered.api.entity.living.animal.horse.Horse;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents the type of a {@link Horse}.
- * <p>The type of a horse is a genetic trait that can be inherited to a new born horse.</p>
+ * Represents the color of a {@link Horse}.
+ * <p>The color of a horse is a genetic trait that can be inherited to a new born horse.</p>
  */
-@CatalogedBy(HorseTypes.class)
-public interface HorseType extends CatalogType {
+@CatalogedBy(HorseColors.class)
+public interface HorseColor extends CatalogType {
 
 }

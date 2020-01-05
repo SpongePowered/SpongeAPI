@@ -29,29 +29,29 @@ import org.spongepowered.api.Sponge;
 import java.util.function.Supplier;
 
 /**
- * An enumeration of vanilla {@link HorseType}s.
+ * An enumeration of vanilla {@link HorseColor}s.
  */
-public final class HorseTypes {
+public final class HorseColors {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<HorseType> BLACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseType.class, "BLACK");
+    public static final Supplier<HorseColor> BLACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "BLACK");
 
-    public static final Supplier<HorseType> BROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseType.class, "BROWN");
+    public static final Supplier<HorseColor> BROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "BROWN");
 
-    public static final Supplier<HorseType> CHESTNUT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseType.class, "CHESTNUT");
+    public static final Supplier<HorseColor> CHESTNUT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "CHESTNUT");
 
-    public static final Supplier<HorseType> CREAMY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseType.class, "CREAMY");
+    public static final Supplier<HorseColor> CREAMY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "CREAMY");
 
-    public static final Supplier<HorseType> DARK_BROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseType.class, "DARK_BROWN");
+    public static final Supplier<HorseColor> DARK_BROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "DARK_BROWN");
 
-    public static final Supplier<HorseType> GRAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseType.class, "GRAY");
+    public static final Supplier<HorseColor> GRAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "GRAY");
 
-    public static final Supplier<HorseType> WHITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseType.class, "WHITE");
+    public static final Supplier<HorseColor> WHITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "WHITE");
 
     // SORTFIELDS:OFF
 
-    private HorseTypes() {
+    private HorseColors() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 }

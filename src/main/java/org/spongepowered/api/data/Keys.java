@@ -52,7 +52,7 @@ import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.type.FoxType;
 import org.spongepowered.api.data.type.HandPreference;
 import org.spongepowered.api.data.type.Hinge;
-import org.spongepowered.api.data.type.HorseType;
+import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.type.InstrumentType;
 import org.spongepowered.api.data.type.LlamaType;
@@ -1161,9 +1161,9 @@ public final class Keys {
     public static final Supplier<Key<Value<HorseStyle>>> HORSE_STYLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HORSE_STYLE");
 
     /**
-     * Represents the {@link Key} for the type of a {@link Horse}.
+     * Represents the {@link Key} for the color of a {@link Horse}.
      */
-    public static final Supplier<Key<Value<HorseType>>> HORSE_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HORSE_TYPE");
+    public static final Supplier<Key<Value<HorseColor>>> HORSE_COLOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HORSE_COLOR");
 
     /**
      * Represents the {@link Key} for whether an {@link Item} will not despawn

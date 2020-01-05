@@ -25,7 +25,7 @@
 package org.spongepowered.api.entity.living.animal.horse;
 
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.type.HorseType;
+import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.value.Value;
 
@@ -35,11 +35,11 @@ import org.spongepowered.api.data.value.Value;
 public interface Horse extends TameableHorse {
 
     /**
-     * {@link Keys#HORSE_TYPE}
-     * @return The horse's type
+     * {@link Keys#HORSE_COLOR}
+     * @return The horse's color
      */
-    default Value.Mutable<HorseType> type() {
-        return this.getValue(Keys.HORSE_TYPE.get()).get().asMutable();
+    default Value.Mutable<HorseColor> color() {
+        return this.getValue(Keys.HORSE_COLOR.get()).get().asMutable();
     }
 
     /**
