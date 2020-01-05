@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.scoreboard.displayslot;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.scoreboard.Team;
 import org.spongepowered.api.text.format.TextColor;
-import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Optional;
@@ -39,29 +39,16 @@ import java.util.Optional;
 public interface DisplaySlot extends CatalogType {
 
     /**
-     * Gets the {@link Team} color that this objective will display for, if set.
+     * Sets the {@link Team} color that this objective will display.
      *
-     * @return The {@link Team} color that this objective will display for, if set
+     * @param color The color
+     */
+    void setTeamColor(@Nullable TextColor color);
+
+    /**
+     * Gets the {@link Team} color that this objective will display.
+     *
+     * @return The team color or {@link Optional#empty()} if not set
      */
     Optional<TextColor> getTeamColor();
-
-    interface Builder extends CopyableBuilder<DisplaySlot, Builder> {
-
-        /**
-         * Sets the {@link TextColor} of the display slot.
-         *
-         * @param color The color to set
-         * @return This builder
-         */
-        Builder sidebarTeamColor(TextColor color);
-
-        /**
-         * Builds an instance of a {@link DisplaySlot}.
-         *
-         * @return A new instance of an {@link DisplaySlot}
-         * @throws IllegalStateException if the {@link DisplaySlot} is not completed
-         */
-        DisplaySlot build() throws IllegalStateException;
-
-    }
 }
