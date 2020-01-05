@@ -29,11 +29,4 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(GoalExecutorTypes.class)
 public interface GoalExecutorType extends CatalogType {
-
-    /**
-     * Gets the {@link GoalExecutor} class that this type represents.
-     *
-     * @return The goal class
-     */
-    Class<? extends GoalExecutor<?>> getGoalExecutorClass();
 }
