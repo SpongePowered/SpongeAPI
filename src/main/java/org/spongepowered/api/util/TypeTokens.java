@@ -53,6 +53,7 @@ import org.spongepowered.api.data.type.RailDirection;
 import org.spongepowered.api.data.type.SlabPortion;
 import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StructureMode;
+import org.spongepowered.api.data.type.TropicalFishShape;
 import org.spongepowered.api.data.type.WireAttachmentType;
 import org.spongepowered.api.data.type.WoodType;
 import org.spongepowered.api.data.value.BoundedValue;
@@ -360,6 +361,10 @@ public final class TypeTokens {
     public static final TypeToken<Text> TEXT_TOKEN = new TypeToken<Text>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<Text>> TEXT_VALUE_TOKEN = new TypeToken<Value<Text>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<TropicalFishShape> TROPICAL_FISH_SHAPE_TOKEN = new TypeToken<TropicalFishShape>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Value<TropicalFishShape>> TROPICAL_FISH_SHAPE_VALUE_TOKEN = new TypeToken<Value<TropicalFishShape>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<User> USER_TOKEN = new TypeToken<User>() {private static final long serialVersionUID = -1;};
 

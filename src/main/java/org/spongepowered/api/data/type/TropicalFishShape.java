@@ -22,36 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.aquatic.fish.school;
+package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.type.DyeColor;
-import org.spongepowered.api.data.type.TropicalFishShape;
-import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.entity.living.aquatic.fish.school.TropicalFish;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-public interface TropicalFish extends SchoolingFish {
-
-    /**
-     * {@link Keys#TROPICAL_FISH_BASE_COLOR}
-     * @return The base color of this tropical fish.
-     */
-    default Value.Mutable<DyeColor> baseColor() {
-        return this.getValue(Keys.TROPICAL_FISH_BASE_COLOR.get()).get().asMutable();
-    }
+/**
+ * Represents the shape of a {@link TropicalFish}.
+ *
+ * <p>A TropicalFishShape represents both a fish's appearance and size.</p>
+ */
+@CatalogedBy(TropicalFishShapes.class)
+public interface TropicalFishShape extends CatalogType {
 
     /**
-     * {@link Keys#TROPICAL_FISH_PATTERN_COLOR}
-     * @return The pattern color of this tropical fish.
+     * Whether this shape represents a large {@link TropicalFish}.
+     * @return True if this shape represents a large tropical fish.
      */
-    default Value.Mutable<DyeColor> patternColor() {
-        return this.getValue(Keys.TROPICAL_FISH_PATTERN_COLOR.get()).get().asMutable();
-    }
+    boolean isLarge();
 
-    /**
-     * {@link Keys#TROPICAL_FISH_SHAPE}
-     * @return The shape of this tropical fish.
-     */
-    default Value.Mutable<TropicalFishShape> shape() {
-        return this.getValue(Keys.TROPICAL_FISH_SHAPE.get()).get().asMutable();
-    }
 }
