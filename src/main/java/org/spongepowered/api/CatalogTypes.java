@@ -275,6 +275,8 @@ public final class CatalogTypes {
 
     public static final Class<Trigger> TRIGGER = Trigger.class;
 
+    public static final Class<TropicalFishShape> TROPICAL_FISH_SHAPE = TropicalFishShape.class;
+
     public static final Class<VirtualBiomeType> VIRTUAL_BIOME_TYPE = VirtualBiomeType.class;
 
     public static final Class<Visibility> VISIBILITY = Visibility.class;

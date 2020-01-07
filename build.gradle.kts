@@ -151,6 +151,7 @@ val sortClasses = listOf(
         "org.spongepowered.api.data.type.StructureModes",
         "org.spongepowered.api.data.type.Surfaces",
         "org.spongepowered.api.data.type.ToolTypes",
+        "org.spongepowered.api.data.type.TropicalFishShapes",
         "org.spongepowered.api.data.type.VillagerTypes",
         "org.spongepowered.api.data.type.WireAttachmentTypes",
         "org.spongepowered.api.data.type.WoodTypes",

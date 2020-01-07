@@ -72,6 +72,7 @@ import org.spongepowered.api.data.type.SpellTypes;
 import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StructureMode;
 import org.spongepowered.api.data.type.Surface;
+import org.spongepowered.api.data.type.TropicalFishShape;
 import org.spongepowered.api.data.type.VillagerType;
 import org.spongepowered.api.data.type.WireAttachmentType;
 import org.spongepowered.api.data.type.WoodType;
@@ -129,6 +130,7 @@ import org.spongepowered.api.entity.living.animal.horse.PackHorse;
 import org.spongepowered.api.entity.living.animal.horse.llama.Llama;
 import org.spongepowered.api.entity.living.animal.horse.llama.TraderLlama;
 import org.spongepowered.api.entity.living.aquatic.Dolphin;
+import org.spongepowered.api.entity.living.aquatic.fish.school.TropicalFish;
 import org.spongepowered.api.entity.living.golem.IronGolem;
 import org.spongepowered.api.entity.living.golem.Shulker;
 import org.spongepowered.api.entity.living.monster.Blaze;
@@ -2185,6 +2187,21 @@ public final class Keys {
      * {@link Trader}.
      */
     public static final Supplier<Key<ListValue<TradeOffer>>> TRADE_OFFERS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TRADE_OFFERS");
+
+    /**
+     * Represents the {@link Key} for a {@link TropicalFish}'s base color.
+     */
+    public static final Supplier<Key<Value<DyeColor>>> TROPICAL_FISH_BASE_COLOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TROPICAL_FISH_BASE_COLOR");
+
+    /**
+     * Represents the {@link Key} for a {@link TropicalFish}'s pattern color.
+     */
+    public static final Supplier<Key<Value<DyeColor>>> TROPICAL_FISH_PATTERN_COLOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TROPICAL_FISH_PATTERN_COLOR");
+
+    /**
+     * Represents the {@link Key} for a {@link TropicalFish}'s shape.
+     */
+    public static final Supplier<Key<Value<TropicalFishShape>>> TROPICAL_FISH_SHAPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TROPICAL_FISH_SHAPE");
 
     /**
      * Represents the {@link Key} for if a {@link Turtle} currently has an egg.
