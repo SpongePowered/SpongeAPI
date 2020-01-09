@@ -42,15 +42,6 @@ public interface RailDirection extends CatalogType, Cycleable<RailDirection> {
     Optional<Direction> getAscendingDirection();
 
     /**
-     * Checks if this rail direction is ascending.
-     *
-     * @return <b>true</b> if is ascending, else <b>false</b>
-     */
-    default boolean isAscending() {
-        return getAscendingDirection().isPresent();
-    }
-
-    /**
      * Returns the first direction of this rail direction.
      *
      * @return The first direction
