@@ -25,10 +25,19 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.Cycleable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
+
+import java.util.Optional;
 
 @CatalogedBy(LogAxes.class)
 public interface LogAxis extends CatalogType, Cycleable<LogAxis> {
 
+    /**
+     * Returns the {@link Axis} from this log axis, if it is not {@link LogAxes#NONE}.
+     * 
+     * @return The {@link Axis}, if possible
+     */
+    Optional<Axis> toAxis();
 }

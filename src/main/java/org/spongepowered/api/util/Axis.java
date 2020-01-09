@@ -25,6 +25,8 @@
 package org.spongepowered.api.util;
 
 import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.data.type.LogAxes;
+import org.spongepowered.api.data.type.LogAxis;
 
 /**
  * Represents a three dimensional cartesian axis.
@@ -130,6 +132,23 @@ public enum Axis implements Cycleable<Axis> {
      */
     public Vector3d toVector3dWithDirection(final AxisDirection axisDirection) {
         return this.direction.mul(axisDirection.getSignum());
+    }
+
+    /**
+     * Returns the {@link LogAxis} from this axis.
+     * 
+     * @return The {@link LogAxis}
+     */
+    public LogAxis toLogAxis() {
+        if (equals(Axis.X)) {
+            return LogAxes.X;
+        }
+        
+        if (equals(Axis.Y)) {
+            return LogAxes.Y;
+        }
+        
+        return LogAxes.Z;
     }
 
     @Override

@@ -26,9 +26,43 @@ package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.Cycleable;
+import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.annotation.CatalogedBy;
+
+import java.util.Optional;
 
 @CatalogedBy(RailDirections.class)
 public interface RailDirection extends CatalogType, Cycleable<RailDirection> {
 
+    /**
+     * Returns the ascending direction, if this rail direction is ascending.
+     *
+     * @return The ascending direction, if possible
+     */
+    Optional<Direction> getAscendingDirection();
+
+    /**
+     * Checks if this rail direction is ascending.
+     *
+     * @return <b>true</b> if is ascending, else <b>false</b>
+     */
+    default boolean isAscending() {
+        return getAscendingDirection().isPresent();
+    }
+
+    /**
+     * Returns the first direction of this rail direction.
+     *
+     * @return The first direction
+     * @see RailDirection#getSecondDirection()
+     */
+    Direction getFirstDirection();
+
+    /**
+     * Returns the second direction of this rail direction.
+     *
+     * @return The second direction
+     * @see RailDirection#getFirstDirection()
+     */
+    Direction getSecondDirection();
 }
