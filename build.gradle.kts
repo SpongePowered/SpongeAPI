@@ -129,7 +129,7 @@ val sortClasses = listOf(
         "org.spongepowered.api.data.type.FoxTypes",
         "org.spongepowered.api.data.type.HandTypes",
         "org.spongepowered.api.data.type.Hinges",
-        "org.spongepowered.api.data.type.HorseTypes",
+        "org.spongepowered.api.data.type.HorseColors",
         "org.spongepowered.api.data.type.HorseStyles",
         "org.spongepowered.api.data.type.InstrumentTypes",
         "org.spongepowered.api.data.type.LlamaTypes",

@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.persistence;
 
 import ninja.leaping.configurate.ConfigurationNode;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.world.schematic.Schematic;
 import org.spongepowered.math.imaginary.Complexd;
@@ -50,91 +51,66 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.util.UUID;
+import java.util.function.Supplier;
 
 public final class DataTranslators {
 
-    // sortfields:ON
-    public static final DataTranslator<Schematic> SCHEMATIC = DummyObjectProvider
-            .createExtendedFor(DataTranslator.class, "SCHEMATIC");
+    // SORTFIELDS:ON
 
-    public static final DataTranslator<Schematic> LEGACY_SCHEMATIC = DummyObjectProvider
-            .createExtendedFor(DataTranslator.class, "LEGACY_SCHEMATIC");
+    public static final Supplier<DataTranslator<Schematic>> SCHEMATIC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "SCHEMATIC");
 
-    public static final DataTranslator<Schematic> MOJANG_TEMPLATE = DummyObjectProvider
-            .createExtendedFor(DataTranslator.class, "MOJANG_TEMPLATE");
+    public static final Supplier<DataTranslator<Schematic>> LEGACY_SCHEMATIC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "LEGACY_SCHEMATIC");
 
-    public static final DataTranslator<ConfigurationNode> CONFIGURATION_NODE = DummyObjectProvider
-            .createExtendedFor(DataTranslator.class, "CONFIGURATION_NODE");
+    public static final Supplier<DataTranslator<Schematic>> MOJANG_TEMPLATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "MOJANG_TEMPLATE");
 
-    public static final DataTranslator<UUID> UUID = DummyObjectProvider
-            .createExtendedFor(DataTranslator.class, "UUID");
+    public static final Supplier<DataTranslator<ConfigurationNode>> CONFIGURATION_NODE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "CONFIGURATION_NODE");
 
-    public static final DataTranslator<Vector2d> VECTOR_2_D = DummyObjectProvider
-            .createExtendedFor(DataTranslator.class, "VECTOR_2_D");
+    public static final Supplier<DataTranslator<UUID>> UUID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "UUID");
 
-    public static final DataTranslator<Vector2f> VECTOR_2_F = DummyObjectProvider
-            .createExtendedFor(DataTranslator.class, "VECTOR_2_F");
+    public static final Supplier<DataTranslator<Vector2d>> VECTOR_2_D = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "VECTOR_2_D");
 
-    public static final DataTranslator<Vector2i> VECTOR_2_I = DummyObjectProvider
-            .createExtendedFor(DataTranslator.class, "VECTOR_2_I");
+    public static final Supplier<DataTranslator<Vector2f>> VECTOR_2_F = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "VECTOR_2_F");
 
-    public static final DataTranslator<Vector2l> VECTOR_2_L = DummyObjectProvider
-            .createExtendedFor(DataTranslator.class, "VECTOR_2_L");
+    public static final Supplier<DataTranslator<Vector2i>> VECTOR_2_I = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "VECTOR_2_I");
 
-    public static final DataTranslator<Vector3d> VECTOR_3_D = DummyObjectProvider
-            .createExtendedFor(DataTranslator.class, "VECTOR_3_D");
+    public static final Supplier<DataTranslator<Vector2l>> VECTOR_2_L = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "VECTOR_2_L");
 
-    public static final DataTranslator<Vector3f> VECTOR_3_F = DummyObjectProvider
-            .createExtendedFor(DataTranslator.class, "VECTOR_3_F");
+    public static final Supplier<DataTranslator<Vector3d>> VECTOR_3_D = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "VECTOR_3_D");
 
-    public static final DataTranslator<Vector3i> VECTOR_3_I = DummyObjectProvider
-            .createExtendedFor(DataTranslator.class, "VECTOR_3_I");
+    public static final Supplier<DataTranslator<Vector3f>> VECTOR_3_F = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "VECTOR_3_F");
 
-    public static final DataTranslator<Vector3l> VECTOR_3_L = DummyObjectProvider
-            .createExtendedFor(DataTranslator.class, "VECTOR_3_L");
+    public static final Supplier<DataTranslator<Vector3i>> VECTOR_3_I = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "VECTOR_3_I");
 
-    public static final DataTranslator<Vector4d> VECTOR_4_D = DummyObjectProvider
-            .createExtendedFor(DataTranslator.class, "VECTOR_4_D");
+    public static final Supplier<DataTranslator<Vector3l>> VECTOR_3_L = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "VECTOR_3_L");
 
-    public static final DataTranslator<Vector4f> VECTOR_4_F = DummyObjectProvider
-            .createExtendedFor(DataTranslator.class, "VECTOR_4_F");
+    public static final Supplier<DataTranslator<Vector4d>> VECTOR_4_D = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "VECTOR_4_D");
 
-    public static final DataTranslator<Vector4i> VECTOR_4_I = DummyObjectProvider
-            .createExtendedFor(DataTranslator.class, "VECTOR_4_I");
+    public static final Supplier<DataTranslator<Vector4f>> VECTOR_4_F = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "VECTOR_4_F");
 
-    public static final DataTranslator<Vector4l> VECTOR_4_L = DummyObjectProvider
-            .createExtendedFor(DataTranslator.class, "VECTOR_4_L");
+    public static final Supplier<DataTranslator<Vector4i>> VECTOR_4_I = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "VECTOR_4_I");
 
-    public static final DataTranslator<Complexd> COMPLEXD = DummyObjectProvider
-            .createExtendedFor(DataTranslator.class, "COMPLEXD");
+    public static final Supplier<DataTranslator<Vector4l>> VECTOR_4_L = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "VECTOR_4_L");
 
-    public static final DataTranslator<Complexf> COMPLEXF = DummyObjectProvider
-            .createExtendedFor(DataTranslator.class, "COMPLEXF");
+    public static final Supplier<DataTranslator<Complexd>> COMPLEXD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "COMPLEXD");
 
-    public static final DataTranslator<Quaterniond> QUATERNIOND = DummyObjectProvider
-            .createExtendedFor(DataTranslator.class, "QUATERNIOND");
+    public static final Supplier<DataTranslator<Complexf>> COMPLEXF = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "COMPLEXF");
 
-    public static final DataTranslator<Quaternionf> QUATERNIONF = DummyObjectProvider
-            .createExtendedFor(DataTranslator.class, "QUATERNIONF");
+    public static final Supplier<DataTranslator<Quaterniond>> QUATERNIOND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "QUATERNIOND");
 
-    public static final DataTranslator<LocalTime> LOCAL_TIME = DummyObjectProvider
-            .createExtendedFor(DataTranslator.class, "LOCAL_TIME");
+    public static final Supplier<DataTranslator<Quaternionf>> QUATERNIONF = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "QUATERNIONF");
 
-    public static final DataTranslator<LocalDate> LOCAL_DATE = DummyObjectProvider
-            .createExtendedFor(DataTranslator.class, "LOCAL_DATE");
+    public static final Supplier<DataTranslator<LocalTime>> LOCAL_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "LOCAL_TIME");
 
-    public static final DataTranslator<LocalDateTime> LOCAL_DATE_TIME = DummyObjectProvider
-            .createExtendedFor(DataTranslator.class, "LOCAL_DATE_TIME");
+    public static final Supplier<DataTranslator<LocalDate>> LOCAL_DATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "LOCAL_DATE");
 
-    public static final DataTranslator<Instant> INSTANT = DummyObjectProvider
-            .createExtendedFor(DataTranslator.class, "INSTANT");
+    public static final Supplier<DataTranslator<LocalDateTime>> LOCAL_DATE_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "LOCAL_DATE_TIME");
 
-    public static final DataTranslator<ZonedDateTime> ZONED_DATE_TIME = DummyObjectProvider
-            .createExtendedFor(DataTranslator.class, "ZONED_DATE_TIME");
+    public static final Supplier<DataTranslator<Instant>> INSTANT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "INSTANT");
 
-    // sortfields:OFF
+    public static final Supplier<DataTranslator<ZonedDateTime>> ZONED_DATE_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "ZONED_DATE_TIME");
+
+    // SORTFIELDS:OFF
 
     private DataTranslators() {
     }
-
 }
