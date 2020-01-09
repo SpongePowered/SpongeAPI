@@ -33,7 +33,7 @@ import org.spongepowered.api.entity.living.monster.Phantom;
 /**
  * Represents a Cat, meow.
  */
-public interface Cat extends TameableAnimal {
+public interface Cat extends TameableAnimal, Sittable {
 
     /**
      * {@link Keys#CAT_TYPE}

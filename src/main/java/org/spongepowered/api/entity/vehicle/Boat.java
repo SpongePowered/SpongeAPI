@@ -25,6 +25,7 @@
 package org.spongepowered.api.entity.vehicle;
 
 import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.type.WoodType;
 import org.spongepowered.api.data.value.Value;
 
 /**
@@ -70,5 +71,13 @@ public interface Boat extends Vehicle {
      */
     default Value.Mutable<Double> occupiedDeceleration() {
         return this.getValue(Keys.BOAT_OCCUPIED_DECELERATION.get()).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#WOOD_TYPE}
+     * @return The wood type of the boat
+     */
+    default Value.Mutable<WoodType> woodType() {
+        return this.getValue(Keys.WOOD_TYPE.get()).get().asMutable();
     }
 }

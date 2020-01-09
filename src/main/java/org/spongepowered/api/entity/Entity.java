@@ -409,6 +409,14 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
     }
 
     /**
+     * {@link Keys#IS_SILENT}
+     * @return Whether this entity is silent
+     */
+    default Value.Mutable<Boolean> silent() {
+        return this.getValue(Keys.IS_SILENT.get()).get().asMutable();
+    }
+
+    /**
      * {@link Keys#CREATOR}
      * @return The unique id of the creator of this entity
      */
@@ -422,5 +430,13 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
      */
     default Optional<Value.Mutable<UUID>> notifier() {
         return this.getValue(Keys.NOTIFIER.get()).map(Value::asMutable);
+    }
+
+    /**
+     * {@link Keys#FIRE_TICKS}
+     * @return The amount of time in ticks an Entity is will continue burn for.
+     */
+    default Optional<Value.Mutable<Integer>> fireTicks() {
+        return this.getValue(Keys.FIRE_TICKS).map(Value::asMutable);
     }
 }

@@ -22,24 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.animal;
-
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.type.ParrotType;
-import org.spongepowered.api.data.value.Value;
-
-/**
- * Represents a Parrot.
- */
-public interface Parrot extends TameableAnimal, Sittable {
-
-    /**
-     * {@link Keys#PARROT_TYPE}
-     * @return The type of parrot
-     * @see org.spongepowered.api.data.type.ParrotTypes
-     */
-    default Value.Mutable<ParrotType> type() {
-        return this.getValue(Keys.PARROT_TYPE.get()).get().asMutable();
-    }
-
-}
+@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
+package org.spongepowered.api.spawner;

@@ -31,7 +31,7 @@ import org.spongepowered.api.data.value.Value;
 /**
  * Represents a Wolf.
  */
-public interface Wolf extends TameableAnimal {
+public interface Wolf extends TameableAnimal, Sittable {
 
     /**
      * {@link Keys#IS_ANGRY}

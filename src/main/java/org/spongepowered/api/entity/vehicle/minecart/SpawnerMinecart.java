@@ -25,10 +25,11 @@
 package org.spongepowered.api.entity.vehicle.minecart;
 
 import org.spongepowered.api.block.entity.MobSpawner;
+import org.spongepowered.api.spawner.Spawner;
 
 /**
  * Represents a {@link Minecart} with a {@link MobSpawner} inside it.
  */
-public interface SpawnerMinecart extends BlockOccupiedMinecart {
+public interface SpawnerMinecart extends BlockOccupiedMinecart, Spawner {
 
 }
