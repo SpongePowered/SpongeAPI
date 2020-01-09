@@ -35,8 +35,8 @@ import java.util.function.Supplier;
 
 /**
  * Represents an effect of a {@link PotionEffectType} for a specified
- * {@link #getDuration()}, {@link #getAmplifier()}, and
- * {@link #getShowParticles()}. The {@link PotionEffect} itself is immutable
+ * {@link #getDuration()}, {@link #getAmplifier()}, {@link #showsParticles()}
+ * and {@link #showsIcon()}. The {@link PotionEffect} itself is immutable
  * once created and can be offered to {@link Entity} instances through
  * the {@link Keys#POTION_EFFECTS}.
  */
@@ -79,7 +79,6 @@ public interface PotionEffect extends DataSerializable {
         return builder().potionType(type).amplifier(amplifier).duration(duration).build();
     }
 
-
     /**
      * Gets the {@link PotionEffectType} of this potion.
      *
@@ -111,12 +110,20 @@ public interface PotionEffect extends DataSerializable {
     boolean isAmbient();
 
     /**
-     * Gets whether or not this potion effect should
-     * show particles.
+     * Gets whether or not this potion effect is
+     * showing particles.
      *
      * @return If particles should be shown.
      */
-    boolean getShowParticles();
+    boolean showsParticles();
+
+    /**
+     * Gets whether or not this potion effect is
+     * showing its icon.
+     *
+     * @return If the icon should be shown.
+     */
+    boolean showsIcon();
 
     /**
      * Represents a builder interface to create a {@link PotionEffect}.
@@ -163,18 +170,26 @@ public interface PotionEffect extends DataSerializable {
         /**
          * Sets the potion effect to be ambient or not.
          *
-         * @param ambience Whether the potion effect is ambient
+         * @param ambient Whether the potion effect is ambient
          * @return This builder, for chaining
          */
-        Builder ambience(boolean ambience);
+        Builder ambient(boolean ambient);
 
         /**
          * Sets the potion effect to show particles when applied or not.
          *
-         * @param showsParticles Whether the potion effect will show particles
+         * @param showParticles Whether the potion effect will show particles
          * @return This builder, for chaining
          */
-        Builder particles(boolean showsParticles);
+        Builder showParticles(boolean showParticles);
+
+        /**
+         * Sets the potion effect to show its icon when applied or not.
+         *
+         * @param showIcon Whether the potion effect will show its icon
+         * @return This builder, for chaining
+         */
+        Builder showIcon(boolean showIcon);
 
         /**
          * Builds an instance of a PotionEffect.

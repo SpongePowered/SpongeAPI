@@ -50,7 +50,39 @@ public final class DisplaySlots {
     /**
      * Displays scores for the objective on the side of the screen in-game.
      */
-    public static final Supplier<DisplaySlot> SIDEBAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "SIDEBAR");
+    public static final Supplier<DisplaySlot> SIDEBAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "SIDEBAR_TEAM");
+
+    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_AQUA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "SIDEBAR_TEAM_AQUA");
+
+    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_BLACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "SIDEBAR_TEAM_BLACK");
+
+    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_BLUE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "SIDEBAR_TEAM_BLUE");
+
+    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_DARK_AQUA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "SIDEBAR_TEAM_DARK_AQUA");
+
+    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_DARK_BLUE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "SIDEBAR_TEAM_DARK_BLUE");
+
+    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_DARK_GRAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "SIDEBAR_TEAM_DARK_GRAY");
+
+    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_DARK_GREEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "SIDEBAR_TEAM_DARK_GREEN");
+
+    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_DARK_PURPLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "SIDEBAR_TEAM_DARK_PURPLE");
+
+    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_DARK_RED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "SIDEBAR_TEAM_DARK_RED");
+
+    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_GOLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "SIDEBAR_TEAM_GOLD");
+
+    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_GRAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "SIDEBAR_TEAM_GRAY");
+
+    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_GREEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "SIDEBAR_TEAM_GREEN");
+
+    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_LIGHT_PURPLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "SIDEBAR_TEAM_LIGHT_PURPLE");
+
+    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_RED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "SIDEBAR_TEAM_RED");
+
+    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_WHITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "SIDEBAR_TEAM_WHITE");
+
+    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_YELLOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "SIDEBAR_TEAM_YELLOW");
 
     // SORTFIELDS:OFF
 

@@ -39,11 +39,13 @@ import java.util.Optional;
 public interface DisplaySlot extends CatalogType {
 
     /**
-     * Sets the {@link Team} color that this objective will display.
+     * Gets the display slot for the specified team color. Returns
+     * this if the color is the same or if colors aren't supported.
      *
-     * @param color The color
+     * @param color The team color
+     * @return The display slot with the given team color
      */
-    void setTeamColor(@Nullable TextColor color);
+    DisplaySlot withTeamColor(@Nullable TextColor color);
 
     /**
      * Gets the {@link Team} color that this objective will display.
