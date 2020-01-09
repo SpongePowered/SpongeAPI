@@ -35,7 +35,7 @@ import org.spongepowered.api.world.weather.Weathers;
 /**
  * Represents a Panda.
  */
-public interface Panda extends Animal {
+public interface Panda extends Animal, Sittable {
 
     /**
      * {@link Keys#KNOWN_GENE}
@@ -51,14 +51,6 @@ public interface Panda extends Animal {
      */
     default Value.Mutable<PandaGene> hiddenGene() {
         return this.getValue(Keys.HIDDEN_GENE.get()).get().asMutable();
-    }
-
-    /**
-     * {@link Keys#IS_SITTING}
-     * @return Whether this panda is sitting
-     */
-    default Value.Mutable<Boolean> sitting() {
-        return this.getValue(Keys.IS_SITTING.get()).get().asMutable();
     }
 
     /**

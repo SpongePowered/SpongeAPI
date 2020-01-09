@@ -25,21 +25,19 @@
 package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.type.ParrotType;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.entity.Entity;
 
 /**
- * Represents a Parrot.
+ * Represents an {@link Entity} which can sit.
  */
-public interface Parrot extends TameableAnimal, Sittable {
+public interface Sittable extends Entity {
 
     /**
-     * {@link Keys#PARROT_TYPE}
-     * @return The type of parrot
-     * @see org.spongepowered.api.data.type.ParrotTypes
+     * {@link Keys#IS_SITTING}
+     * @return Whether this entity is sitting
      */
-    default Value.Mutable<ParrotType> type() {
-        return this.getValue(Keys.PARROT_TYPE.get()).get().asMutable();
+    default Value.Mutable<Boolean> sitting() {
+        return this.getValue(Keys.IS_SITTING.get()).get().asMutable();
     }
-
 }
