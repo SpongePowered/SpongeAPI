@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.data.type;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.Cycleable;
@@ -35,8 +37,29 @@ import java.util.Optional;
 public interface LogAxis extends CatalogType, Cycleable<LogAxis> {
 
     /**
+     * Converts the given {@link Axis} to the {@link LogAxis} equivalent.
+     *
+     * @param axis The axis
+     * @return The {@link LogAxis}
+     */
+    static LogAxis fromAxis(Axis axis) {
+        checkNotNull(axis, "axis");
+
+        switch (axis) {
+            case X:
+                return LogAxes.X;
+            case Y:
+                return LogAxes.Y;
+            case Z:
+                return LogAxes.Z;
+            default:
+                throw new AssertionError();
+        }
+    }
+
+    /**
      * Returns the {@link Axis} from this log axis, if it is not {@link LogAxes#NONE}.
-     * 
+     *
      * @return The {@link Axis}, if possible
      */
     Optional<Axis> toAxis();

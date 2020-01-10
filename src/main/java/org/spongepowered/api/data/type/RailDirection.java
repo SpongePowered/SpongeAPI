@@ -24,7 +24,10 @@
  */
 package org.spongepowered.api.data.type;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.Cycleable;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -35,7 +38,61 @@ import java.util.Optional;
 public interface RailDirection extends CatalogType, Cycleable<RailDirection> {
 
     /**
-     * Returns the ascending direction, if this rail direction is ascending.
+     * Returns the {@link RailDirection} from the given facing directions.
+     *
+     * @param firstDirection The first direction
+     * @param secondDirection The second direction
+     * @return The {@link RailDirection}
+     * @throws IllegalArgumentException If the given directions don't differ
+     */
+    static RailDirection fromFaces(Direction firstDirection, Direction secondDirection) {
+        checkNotNull(firstDirection, "firstDirection");
+        checkNotNull(secondDirection, "secondDirection");
+
+        Direction cardinalFirstDirection = Direction.getClosest(firstDirection.asOffset(), Direction.Division.CARDINAL);
+        Direction cardinalSecondDirection = Direction.getClosest(secondDirection.asOffset(), Direction.Division.CARDINAL);
+
+        if (cardinalFirstDirection.equals(cardinalSecondDirection)) {
+            throw new IllegalArgumentException("The directions should be different!");
+        }
+
+        for (RailDirection currentRailDirection: Sponge.getRegistry().getAllForMinecraft(RailDirection.class)) {
+            if (currentRailDirection.isFacing(cardinalFirstDirection) && currentRailDirection.isFacing(cardinalSecondDirection)) {
+                return currentRailDirection;
+            }
+        }
+
+        throw new AssertionError();
+    }
+
+    /**
+     * Returns the {@link RailDirection} from the given ascending direction.
+     *
+     * @param ascendingDirection The ascending direction
+     * @return The {@link RailDirection}
+     */
+    static RailDirection fromAscendingDirection(Direction ascendingDirection) {
+        checkNotNull(ascendingDirection, "ascendingDirection");
+
+        Direction cardinalAscendingDirection = Direction.getClosest(ascendingDirection.asOffset(), Direction.Division.CARDINAL);
+
+        for (RailDirection currentRailDirection: Sponge.getRegistry().getAllForMinecraft(RailDirection.class)) {
+            Optional<Direction> currentAscendingDirectionBox = currentRailDirection.getAscendingDirection();
+
+            if (currentAscendingDirectionBox.isPresent()) {
+                Direction currentAscendingDirection = currentAscendingDirectionBox.get();
+
+                if (currentAscendingDirection.equals(cardinalAscendingDirection)) {
+                    return currentRailDirection;
+                }
+            }
+        }
+
+        throw new AssertionError();
+    }
+
+    /**
+     * Returns the direction it's ascending to, if this rail direction is ascending.
      *
      * @return The ascending direction, if possible
      */
@@ -56,4 +113,14 @@ public interface RailDirection extends CatalogType, Cycleable<RailDirection> {
      * @see RailDirection#getFirstDirection()
      */
     Direction getSecondDirection();
+
+    /**
+     * Checks if the rail direction is facing to the given direction.
+     *
+     * <p>Any {@link RailDirection} always has two facing directions.</p>
+     *
+     * @param direction The direction
+     * @return <b>true</b> if it's facing, else <b>false</b>
+     */
+    boolean isFacing(Direction direction);
 }
