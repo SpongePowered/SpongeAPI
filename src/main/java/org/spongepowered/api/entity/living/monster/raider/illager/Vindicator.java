@@ -37,7 +37,7 @@ public interface Vindicator extends Illager {
      * @return whether this is a johnny vindicator
      */
     default Value.Mutable<Boolean> johnny() {
-        return this.getValue(Keys.IS_JOHNNY).get().asMutable();
+        return this.requireValue(Keys.IS_JOHNNY).asMutable();
     }
 
 }

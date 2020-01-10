@@ -34,6 +34,6 @@ public interface TraderLlama extends LlamaEntity {
      * @return The delay before this llama will despawn
      */
     default Value.Mutable<Integer> despawnDelay() {
-        return this.getValue(Keys.DESPAWN_DELAY).get().asMutable();
+        return this.requireValue(Keys.DESPAWN_DELAY).asMutable();
     }
 }

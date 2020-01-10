@@ -38,7 +38,7 @@ public interface EyeOfEnder extends Projectile {
      * @return The targeted location, if available
      */
     default Value.Mutable<Vector3d> targetLocation() {
-        return this.getValue(Keys.TARGET_LOCATION).get().asMutable();
+        return this.requireValue(Keys.TARGET_LOCATION).asMutable();
     }
 
 }

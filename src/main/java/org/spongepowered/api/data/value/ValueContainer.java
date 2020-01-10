@@ -284,6 +284,39 @@ public interface ValueContainer {
     }
 
     /**
+     * Attempts to get the underlying value backed by a {@link Value}
+     * linked to the provided {@link Key}.
+     *
+     * <p>If the {@link Key} is not supported or
+     * available, {@link NoSuchElementException} will be thrown.</p>
+     *
+     * @param key The key
+     * @param <E> The type of value
+     * @return The value
+     * @throws NoSuchElementException If the value is not supported or present
+     */
+    default <E, V extends Value<E>> V requireValue(Supplier<? extends Key<V>> key) {
+        return this.requireValue(key.get());
+    }
+
+    /**
+     * Attempts to get the underlying value backed by a {@link Value}
+     * linked to the provided {@link Key}.
+     *
+     * <p>If the {@link Key} is not supported or
+     * available, {@link NoSuchElementException} will be thrown.</p>
+     *
+     * @param key The key
+     * @param <E> The type of value
+     * @return The value
+     * @throws NoSuchElementException If the value is not supported or present
+     */
+    default <E, V extends Value<E>> V requireValue(Key<V> key) {
+        return this.getValue(key).orElseThrow(() -> new NoSuchElementException(String.format(
+                "Could not retrieve value for key '%s'", key.toString())));
+    }
+
+    /**
      * Checks if the given {@link Key} is supported by this
      * {@link ValueContainer}.
      *

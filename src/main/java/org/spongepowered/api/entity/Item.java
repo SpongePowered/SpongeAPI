@@ -40,6 +40,6 @@ public interface Item extends Entity {
      * @return The item being represented by this entity
      */
     default Value.Mutable<ItemStackSnapshot> item() {
-        return this.getValue(Keys.ITEM_STACK_SNAPSHOT).get().asMutable();
+        return this.requireValue(Keys.ITEM_STACK_SNAPSHOT).asMutable();
     }
 }

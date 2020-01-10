@@ -53,7 +53,7 @@ public interface Agent extends Living {
      * @return Whether ai modules are enabled on this entity or it's a "dumb" entity
      */
     default Value.Mutable<Boolean> aiEnabled() {
-        return this.getValue(Keys.IS_AI_ENABLED).get().asMutable();
+        return this.requireValue(Keys.IS_AI_ENABLED).asMutable();
     }
 
     /**

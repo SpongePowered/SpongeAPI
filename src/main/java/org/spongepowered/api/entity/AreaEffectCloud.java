@@ -44,7 +44,7 @@ public interface AreaEffectCloud extends Entity {
      * @return The color of this cloud
      */
     default Value.Mutable<Color> color() {
-        return this.getValue(Keys.AREA_EFFECT_CLOUD_COLOR).get().asMutable();
+        return this.requireValue(Keys.AREA_EFFECT_CLOUD_COLOR).asMutable();
     }
 
     /**
@@ -52,7 +52,7 @@ public interface AreaEffectCloud extends Entity {
      * @return The initial radius of this cloud
      */
     default BoundedValue.Mutable<Double> radius() {
-        return this.getValue(Keys.AREA_EFFECT_CLOUD_RADIUS).get().asMutable();
+        return this.requireValue(Keys.AREA_EFFECT_CLOUD_RADIUS).asMutable();
     }
 
     /**
@@ -61,7 +61,7 @@ public interface AreaEffectCloud extends Entity {
      * @see org.spongepowered.api.effect.particle.ParticleTypes
      */
     default Value.Mutable<ParticleEffect> particleEffect() {
-        return this.getValue(Keys.AREA_EFFECT_CLOUD_PARTICLE_EFFECT).get().asMutable();
+        return this.requireValue(Keys.AREA_EFFECT_CLOUD_PARTICLE_EFFECT).asMutable();
     }
 
     /**
@@ -69,7 +69,7 @@ public interface AreaEffectCloud extends Entity {
      * @return The duration of which this cloud will linger
      */
     default BoundedValue.Mutable<Integer> duration() {
-        return this.getValue(Keys.AREA_EFFECT_CLOUD_DURATION).get().asMutable();
+        return this.requireValue(Keys.AREA_EFFECT_CLOUD_DURATION).asMutable();
     }
 
     /**
@@ -77,7 +77,7 @@ public interface AreaEffectCloud extends Entity {
      * @return The wait time before applying to an entity
      */
     default BoundedValue.Mutable<Integer> waitTime() {
-        return this.getValue(Keys.AREA_EFFECT_CLOUD_WAIT_TIME).get().asMutable();
+        return this.requireValue(Keys.AREA_EFFECT_CLOUD_WAIT_TIME).asMutable();
     }
 
     /**
@@ -85,7 +85,7 @@ public interface AreaEffectCloud extends Entity {
      * @return The radius decrease per use
      */
     default BoundedValue.Mutable<Double> radiusOnUse() {
-        return this.getValue(Keys.AREA_EFFECT_CLOUD_RADIUS_ON_USE).get().asMutable();
+        return this.requireValue(Keys.AREA_EFFECT_CLOUD_RADIUS_ON_USE).asMutable();
     }
 
     /**
@@ -93,7 +93,7 @@ public interface AreaEffectCloud extends Entity {
      * @return The radius decrease per tick
      */
     default BoundedValue.Mutable<Double> radiusPerTick() {
-        return this.getValue(Keys.AREA_EFFECT_CLOUD_RADIUS_PER_TICK).get().asMutable();
+        return this.requireValue(Keys.AREA_EFFECT_CLOUD_RADIUS_PER_TICK).asMutable();
     }
 
     /**
@@ -101,7 +101,7 @@ public interface AreaEffectCloud extends Entity {
      * @return The duration of the potion effects when an entity gets a potion applied
      */
     default BoundedValue.Mutable<Integer> durationOnUse() {
-        return this.getValue(Keys.AREA_EFFECT_CLOUD_DURATION_ON_USE).get().asMutable();
+        return this.requireValue(Keys.AREA_EFFECT_CLOUD_DURATION_ON_USE).asMutable();
     }
 
     /**
@@ -109,7 +109,7 @@ public interface AreaEffectCloud extends Entity {
      * @return The delay for an entity to have a potion effect applied while standing in this cloud
      */
     default BoundedValue.Mutable<Integer> applicationDelay() {
-        return this.getValue(Keys.AREA_EFFECT_CLOUD_REAPPLICATION_DELAY).get().asMutable();
+        return this.requireValue(Keys.AREA_EFFECT_CLOUD_REAPPLICATION_DELAY).asMutable();
     }
 
     /**
@@ -117,7 +117,7 @@ public interface AreaEffectCloud extends Entity {
      * @return The list of potion effects being applied
      */
     default ListValue.Mutable<PotionEffect> effects() {
-        return this.getValue(Keys.POTION_EFFECTS).get().asMutable();
+        return this.requireValue(Keys.POTION_EFFECTS).asMutable();
     }
 
     /**
@@ -125,7 +125,7 @@ public interface AreaEffectCloud extends Entity {
      * @return The age of this cloud
      */
     default BoundedValue.Mutable<Integer> age() {
-        return this.getValue(Keys.AREA_EFFECT_CLOUD_AGE).get().asMutable();
+        return this.requireValue(Keys.AREA_EFFECT_CLOUD_AGE).asMutable();
     }
 
 }

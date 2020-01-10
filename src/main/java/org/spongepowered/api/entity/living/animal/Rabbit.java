@@ -39,7 +39,7 @@ public interface Rabbit extends Animal {
      * @see org.spongepowered.api.data.type.RabbitTypes
      */
     default Value.Mutable<RabbitType> type() {
-        return this.getValue(Keys.RABBIT_TYPE).get().asMutable();
+        return this.requireValue(Keys.RABBIT_TYPE).asMutable();
     }
 
 }

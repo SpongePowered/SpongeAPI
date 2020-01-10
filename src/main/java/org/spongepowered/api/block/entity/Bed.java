@@ -37,6 +37,6 @@ public interface Bed extends BlockEntity {
      * @return The current value of dye color for bed
      */
     default Value.Mutable<DyeColor> color() {
-        return this.getValue(Keys.DYE_COLOR).get().asMutable();
+        return this.requireValue(Keys.DYE_COLOR).asMutable();
     }
 }

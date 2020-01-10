@@ -42,6 +42,6 @@ public interface ShulkerBox extends CarrierBlockEntity {
      * @return The current value of dye color for this shulker box
      */
     default Value.Mutable<DyeColor> color() {
-        return getValue(Keys.DYE_COLOR).get().asMutable();
+        return this.requireValue(Keys.DYE_COLOR).asMutable();
     }
 }

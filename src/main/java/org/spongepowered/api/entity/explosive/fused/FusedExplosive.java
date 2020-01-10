@@ -39,7 +39,7 @@ public interface FusedExplosive extends Explosive {
      * @return True if this explosive is primed
      */
     default Value.Mutable<Boolean> primed() {
-        return this.getValue(Keys.PRIMED).get().asMutable();
+        return this.requireValue(Keys.PRIMED).asMutable();
     }
 
     /**
@@ -47,6 +47,6 @@ public interface FusedExplosive extends Explosive {
      * @return The fuse duration, if this explosive is primed
      */
     default Value.Mutable<Integer> fuseDuration() {
-        return this.getValue(Keys.FUSE_DURATION).get().asMutable();
+        return this.requireValue(Keys.FUSE_DURATION).asMutable();
     }
 }

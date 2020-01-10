@@ -45,7 +45,7 @@ public interface Shulker extends Golem, Monster, Ranger {
      * @return The dye color of this shulker
      */
     default Value.Mutable<DyeColor> color() {
-        return this.getValue(Keys.DYE_COLOR).get().asMutable();
+        return this.requireValue(Keys.DYE_COLOR).asMutable();
     }
 
     /**
@@ -53,6 +53,6 @@ public interface Shulker extends Golem, Monster, Ranger {
      * @return The direction this shulker is "hanging" or "sitting" on
      */
     default Value.Mutable<Direction> direction() {
-        return this.getValue(Keys.DIRECTION).get().asMutable();
+        return this.requireValue(Keys.DIRECTION).asMutable();
     }
 }

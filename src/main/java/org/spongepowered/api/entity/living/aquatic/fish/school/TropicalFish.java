@@ -36,7 +36,7 @@ public interface TropicalFish extends SchoolingFish {
      * @return The base color of this tropical fish.
      */
     default Value.Mutable<DyeColor> baseColor() {
-        return this.getValue(Keys.TROPICAL_FISH_BASE_COLOR).get().asMutable();
+        return this.requireValue(Keys.TROPICAL_FISH_BASE_COLOR).asMutable();
     }
 
     /**
@@ -44,7 +44,7 @@ public interface TropicalFish extends SchoolingFish {
      * @return The pattern color of this tropical fish.
      */
     default Value.Mutable<DyeColor> patternColor() {
-        return this.getValue(Keys.TROPICAL_FISH_PATTERN_COLOR).get().asMutable();
+        return this.requireValue(Keys.TROPICAL_FISH_PATTERN_COLOR).asMutable();
     }
 
     /**
@@ -52,6 +52,6 @@ public interface TropicalFish extends SchoolingFish {
      * @return The shape of this tropical fish.
      */
     default Value.Mutable<TropicalFishShape> shape() {
-        return this.getValue(Keys.TROPICAL_FISH_SHAPE).get().asMutable();
+        return this.requireValue(Keys.TROPICAL_FISH_SHAPE).asMutable();
     }
 }

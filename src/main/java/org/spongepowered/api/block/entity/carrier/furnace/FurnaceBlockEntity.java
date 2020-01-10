@@ -47,7 +47,7 @@ public interface FurnaceBlockEntity extends CarrierBlockEntity {
      * @return The value for the already passed burn time
      */
     default BoundedValue.Mutable<Integer> passedBurnTime() {
-        return getValue(Keys.PASSED_BURN_TIME).get().asMutable();
+        return this.requireValue(Keys.PASSED_BURN_TIME).asMutable();
     }
 
     /**
@@ -58,7 +58,7 @@ public interface FurnaceBlockEntity extends CarrierBlockEntity {
      *         with the used fuel item
      */
     default BoundedValue.Mutable<Integer> maxBurnTime() {
-        return getValue(Keys.MAX_BURN_TIME).get().asMutable();
+        return this.requireValue(Keys.MAX_BURN_TIME).asMutable();
     }
 
     /**
@@ -68,7 +68,7 @@ public interface FurnaceBlockEntity extends CarrierBlockEntity {
      * @return The value for the already passed cook time
      */
     default BoundedValue.Mutable<Integer> passedCookTime() {
-        return getValue(Keys.PASSED_COOK_TIME).get().asMutable();
+        return this.requireValue(Keys.PASSED_COOK_TIME).asMutable();
     }
 
     /**
@@ -78,7 +78,7 @@ public interface FurnaceBlockEntity extends CarrierBlockEntity {
      * @return The value for the time the item has to cook
      */
     default BoundedValue.Mutable<Integer> maxCookTime() {
-        return getValue(Keys.MAX_COOK_TIME).get().asMutable();
+        return this.requireValue(Keys.MAX_COOK_TIME).asMutable();
     }
 
 }

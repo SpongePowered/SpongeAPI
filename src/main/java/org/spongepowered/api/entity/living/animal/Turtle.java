@@ -38,7 +38,7 @@ public interface Turtle extends Animal {
      * @return The position that is considered "home"
      */
     default Value.Mutable<Vector3i> homePosition() {
-        return this.getValue(Keys.TURTLE_HOME_POSITION.get()).get().asMutable();
+        return this.requireValue(Keys.TURTLE_HOME_POSITION).asMutable();
     }
 
     /**
@@ -46,7 +46,7 @@ public interface Turtle extends Animal {
      * @return Whether this turtle has an egg laid
      */
     default Value.Mutable<Boolean> hasEgg() {
-        return this.getValue(Keys.TURTLE_DOES_HAVE_EGG.get()).get().asMutable();
+        return this.requireValue(Keys.TURTLE_DOES_HAVE_EGG).asMutable();
     }
 
     /**
@@ -54,7 +54,7 @@ public interface Turtle extends Animal {
      * @return Whether this turtle is laying an egg
      */
     default Value.Mutable<Boolean> layingEgg() {
-        return this.getValue(Keys.TURTLE_IS_LAYING_EGG.get()).get().asMutable();
+        return this.requireValue(Keys.TURTLE_IS_LAYING_EGG).asMutable();
     }
 
     /**
@@ -62,7 +62,7 @@ public interface Turtle extends Animal {
      * @return The position that this turtle is traveling to
      */
     default Value.Mutable<Vector3i> travelingPosition() {
-        return this.getValue(Keys.TURTLE_TRAVELING_POSITION.get()).get().asMutable();
+        return this.requireValue(Keys.TURTLE_TRAVELING_POSITION).asMutable();
     }
 
     /**
@@ -70,7 +70,7 @@ public interface Turtle extends Animal {
      * @return Whether this turtle is heading home
      */
     default Value.Mutable<Boolean> goingHome() {
-        return this.getValue(Keys.TURTLE_IS_GOING_HOME.get()).get().asMutable();
+        return this.requireValue(Keys.TURTLE_IS_GOING_HOME).asMutable();
     }
 
     /**
@@ -78,6 +78,6 @@ public interface Turtle extends Animal {
      * @return Whether this turtle is traveling
      */
     default Value.Mutable<Boolean> traveling() {
-        return this.getValue(Keys.TURTLE_IS_TRAVELING.get()).get().asMutable();
+        return this.requireValue(Keys.TURTLE_IS_TRAVELING).asMutable();
     }
 }

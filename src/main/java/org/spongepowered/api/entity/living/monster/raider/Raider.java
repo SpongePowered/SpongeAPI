@@ -39,7 +39,7 @@ public interface Raider extends Patroller {
      * @return Whether this raider can join a raid
      */
     default Value.Mutable<Boolean> canJoinRaid() {
-        return this.getValue(Keys.CAN_JOIN_RAID).get().asMutable();
+        return this.requireValue(Keys.CAN_JOIN_RAID).asMutable();
     }
 
     /**
@@ -55,6 +55,6 @@ public interface Raider extends Patroller {
      * @return Whether this raider is celebrating
      */
     default Value.Mutable<Boolean> celebrating() {
-        return this.getValue(Keys.IS_CELEBRATING).get().asMutable();
+        return this.requireValue(Keys.IS_CELEBRATING).asMutable();
     }
 }

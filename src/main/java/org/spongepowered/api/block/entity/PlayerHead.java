@@ -39,7 +39,7 @@ public interface PlayerHead extends BlockEntity {
      * @return The current represented player value
      */
     default Value.Mutable<GameProfile> representedPlayer() {
-        return getValue(Keys.REPRESENTED_PLAYER).get().asMutable();
+        return this.requireValue(Keys.REPRESENTED_PLAYER).asMutable();
     }
 
 }

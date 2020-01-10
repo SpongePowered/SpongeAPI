@@ -39,7 +39,7 @@ public interface Potion extends Projectile {
      * @return The potion item represented by this potion
      */
     default Value.Mutable<ItemStackSnapshot> item() {
-        return this.getValue(Keys.ITEM_STACK_SNAPSHOT).get().asMutable();
+        return this.requireValue(Keys.ITEM_STACK_SNAPSHOT).asMutable();
     }
 
 }

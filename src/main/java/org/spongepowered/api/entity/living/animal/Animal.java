@@ -52,7 +52,7 @@ public interface Animal extends Ageable {
      * @return The current breeding time
      */
     default Value.Mutable<Integer> breedTime() {
-        return this.getValue(Keys.BREED_TIME).get().asMutable();
+        return this.requireValue(Keys.BREED_TIME).asMutable();
     }
 
     /**
@@ -60,7 +60,7 @@ public interface Animal extends Ageable {
      * @return If animal can breed
      */
     default Value.Mutable<Boolean> canBreed() {
-        return this.getValue(Keys.CAN_BREED).get().asMutable();
+        return this.requireValue(Keys.CAN_BREED).asMutable();
     }
 
     /**

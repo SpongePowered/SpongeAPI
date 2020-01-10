@@ -40,6 +40,6 @@ public interface Projectile extends Entity {
      * @return The shooter
      */
     default Value.Mutable<ProjectileSource> shooter() {
-        return this.getValue(Keys.SHOOTER).get().asMutable();
+        return this.requireValue(Keys.SHOOTER).asMutable();
     }
 }

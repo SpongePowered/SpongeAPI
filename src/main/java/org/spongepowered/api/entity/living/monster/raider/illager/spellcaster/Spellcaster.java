@@ -47,7 +47,7 @@ public interface Spellcaster extends Illager {
      * @return The time to cast
      */
     default Value.Mutable<Integer> castingTime() {
-        return this.getValue(Keys.CASTING_TIME).get().asMutable();
+        return this.requireValue(Keys.CASTING_TIME).asMutable();
     }
 
     /**

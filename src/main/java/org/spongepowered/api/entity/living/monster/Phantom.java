@@ -38,7 +38,7 @@ public interface Phantom extends Aerial, Creature {
      * @return The phantom phase
      */
     default Value.Mutable<PhantomPhase> phase() {
-        return this.getValue(Keys.PHANTOM_PHASE).get().asMutable();
+        return this.requireValue(Keys.PHANTOM_PHASE).asMutable();
     }
 
     /**
@@ -46,6 +46,6 @@ public interface Phantom extends Aerial, Creature {
      * @return The size of this phantom
      */
     default BoundedValue.Mutable<Integer> size() {
-        return this.getValue(Keys.PHANTOM_SIZE).get().asMutable();
+        return this.requireValue(Keys.PHANTOM_SIZE).asMutable();
     }
 }

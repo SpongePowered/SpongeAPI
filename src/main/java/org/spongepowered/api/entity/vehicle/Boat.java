@@ -38,7 +38,7 @@ public interface Boat extends Vehicle {
      * @return The wood type of the boat
      */
     default Value.Mutable<WoodType> woodType() {
-        return this.getValue(Keys.WOOD_TYPE).get().asMutable();
+        return this.requireValue(Keys.WOOD_TYPE).asMutable();
     }
 
     /**
@@ -46,7 +46,7 @@ public interface Boat extends Vehicle {
      * @return Whether this boat is in water
      */
     default Value.Mutable<Boolean> inWater() {
-        return this.getValue(Keys.IS_IN_WATER).get().asMutable();
+        return this.requireValue(Keys.IS_IN_WATER).asMutable();
     }
 
     /**
@@ -54,7 +54,7 @@ public interface Boat extends Vehicle {
      * @return Whether this boat can travel over land
      */
     default Value.Mutable<Boolean> moveOnLand() {
-        return this.getValue(Keys.BOAT_CAN_MOVE_ON_LAND).get().asMutable();
+        return this.requireValue(Keys.BOAT_CAN_MOVE_ON_LAND).asMutable();
     }
 
     /**
@@ -62,7 +62,7 @@ public interface Boat extends Vehicle {
      * @return The maximum speed a boat can go
      */
     default Value.Mutable<Double> maxSpeed() {
-        return this.getValue(Keys.BOAT_MAX_SPEED).get().asMutable();
+        return this.requireValue(Keys.BOAT_MAX_SPEED).asMutable();
     }
 
     /**
@@ -70,7 +70,7 @@ public interface Boat extends Vehicle {
      * @return The deceleration value when unoccupied
      */
     default Value.Mutable<Double> unoccupiedDeceleration() {
-        return this.getValue(Keys.BOAT_UNOCCUPIED_DECELERATION).get().asMutable();
+        return this.requireValue(Keys.BOAT_UNOCCUPIED_DECELERATION).asMutable();
     }
 
     /**
@@ -78,6 +78,6 @@ public interface Boat extends Vehicle {
      * @return The deceleration value when occupied
      */
     default Value.Mutable<Double> occupiedDeceleration() {
-        return this.getValue(Keys.BOAT_OCCUPIED_DECELERATION).get().asMutable();
+        return this.requireValue(Keys.BOAT_OCCUPIED_DECELERATION).asMutable();
     }
 }

@@ -42,7 +42,7 @@ public interface Panda extends Animal, Sittable {
      * @return Whether this panda has a known gene
      */
     default Value.Mutable<PandaGene> knownGene() {
-        return this.getValue(Keys.KNOWN_GENE).get().asMutable();
+        return this.requireValue(Keys.KNOWN_GENE).asMutable();
     }
 
     /**
@@ -50,7 +50,7 @@ public interface Panda extends Animal, Sittable {
      * @return Whether this panda has a hidden gene
      */
     default Value.Mutable<PandaGene> hiddenGene() {
-        return this.getValue(Keys.HIDDEN_GENE).get().asMutable();
+        return this.requireValue(Keys.HIDDEN_GENE).asMutable();
     }
 
     /**
@@ -58,7 +58,7 @@ public interface Panda extends Animal, Sittable {
      * @return The time remaining to lie on it's back
      */
     default Value.Mutable<Boolean> lyingOnBack() {
-        return this.getValue(Keys.IS_LYING_ON_BACK).get().asMutable();
+        return this.requireValue(Keys.IS_LYING_ON_BACK).asMutable();
     }
 
     /**
@@ -66,7 +66,7 @@ public interface Panda extends Animal, Sittable {
      * @return The time remaining to roll around
      */
     default Value.Mutable<Boolean> rollingAround() {
-        return this.getValue(Keys.IS_ROLLING_AROUND).get().asMutable();
+        return this.requireValue(Keys.IS_ROLLING_AROUND).asMutable();
     }
 
     /**
@@ -74,7 +74,7 @@ public interface Panda extends Animal, Sittable {
      * @return The time remaining to be unhappy
      */
     default Value.Mutable<Integer> unhappyTime() {
-        return this.getValue(Keys.UNHAPPY_TIME).get().asMutable();
+        return this.requireValue(Keys.UNHAPPY_TIME).asMutable();
     }
 
     /**
@@ -89,7 +89,7 @@ public interface Panda extends Animal, Sittable {
      * @return Whether the panda is unhappy
      */
     default Value.Mutable<Boolean> unhappy() {
-        return this.getValue(Keys.IS_UNHAPPY).get().asMutable();
+        return this.requireValue(Keys.IS_UNHAPPY).asMutable();
     }
 
     /**
@@ -97,7 +97,7 @@ public interface Panda extends Animal, Sittable {
      * @return The eating time
      */
     default Value.Mutable<Integer> eatingTime() {
-        return this.getValue(Keys.EATING_TIME).get().asMutable();
+        return this.requireValue(Keys.EATING_TIME).asMutable();
     }
 
     /**
@@ -106,7 +106,7 @@ public interface Panda extends Animal, Sittable {
      * @return Whether the panda is eating
      */
     default Value.Mutable<Boolean> eating() {
-        return this.getValue(Keys.IS_EATING).get().asMutable();
+        return this.requireValue(Keys.IS_EATING).asMutable();
     }
 
     /**
@@ -114,7 +114,7 @@ public interface Panda extends Animal, Sittable {
      * @return Whether this panda is sneezing
      */
     default Value.Mutable<Boolean> sneezing() {
-        return this.getValue(Keys.IS_SNEEZING).get().asMutable();
+        return this.requireValue(Keys.IS_SNEEZING).asMutable();
     }
 
     /**
@@ -122,7 +122,7 @@ public interface Panda extends Animal, Sittable {
      * @return The sneezing time
      */
     default Value.Mutable<Integer> sneezingTime() {
-        return this.getValue(Keys.SNEEZING_TIME).get().asMutable();
+        return this.requireValue(Keys.SNEEZING_TIME).asMutable();
     }
 
     /**
@@ -131,6 +131,6 @@ public interface Panda extends Animal, Sittable {
      * @return Whether this panda is frightened
      */
     default Value.Mutable<Boolean> frightened() {
-        return this.getValue(Keys.IS_FRIGHTENED).get().asMutable();
+        return this.requireValue(Keys.IS_FRIGHTENED).asMutable();
     }
 }

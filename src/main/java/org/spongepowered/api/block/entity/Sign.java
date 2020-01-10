@@ -42,7 +42,7 @@ public interface Sign extends BlockEntity, Nameable {
      * @return The list of text lines
      */
     default ListValue.Mutable<Text> lines() {
-        return getValue(Keys.SIGN_LINES).get().asMutable();
+        return this.requireValue(Keys.SIGN_LINES).asMutable();
     }
 
 }

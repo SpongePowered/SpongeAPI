@@ -37,6 +37,6 @@ public interface PolarBear extends Animal {
      * @return Whether this polar bear is standing
      */
     default Value.Mutable<Boolean> standing() {
-        return this.getValue(Keys.IS_STANDING).get().asMutable();
+        return this.requireValue(Keys.IS_STANDING).asMutable();
     }
 }

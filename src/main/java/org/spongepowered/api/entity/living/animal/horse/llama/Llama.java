@@ -44,7 +44,7 @@ public interface Llama extends LlamaEntity, TameableHorse, PackHorse {
      * @see org.spongepowered.api.data.type.LlamaTypes
      */
     default Value.Mutable<LlamaType> type() {
-        return this.getValue(Keys.LLAMA_TYPE).get().asMutable();
+        return this.requireValue(Keys.LLAMA_TYPE).asMutable();
     }
 
     /**
@@ -52,6 +52,6 @@ public interface Llama extends LlamaEntity, TameableHorse, PackHorse {
      * @return The strength of this llama, determines how big of an inventory they can carry
      */
     default BoundedValue.Mutable<Integer> strength() {
-        return this.getValue(Keys.LLAMA_STRENGTH).get().asMutable();
+        return this.requireValue(Keys.LLAMA_STRENGTH).asMutable();
     }
 }

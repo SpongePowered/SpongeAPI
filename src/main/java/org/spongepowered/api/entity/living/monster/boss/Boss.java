@@ -40,6 +40,6 @@ public interface Boss extends Hostile {
      * @return The boss bar
      */
     default Value.Mutable<ServerBossBar> bossBar() {
-        return this.getValue(Keys.BOSS_BAR).get().asMutable();
+        return this.requireValue(Keys.BOSS_BAR).asMutable();
     }
 }

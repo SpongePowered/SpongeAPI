@@ -48,6 +48,6 @@ public interface EnderCrystal extends Explosive {
      * @return The value whether this crystal is showing a bottom "pedestal"
      */
     default Value.Mutable<Boolean> showBottom() {
-        return this.getValue(Keys.SHOW_BOTTOM).get().asMutable();
+        return this.requireValue(Keys.SHOW_BOTTOM).asMutable();
     }
 }

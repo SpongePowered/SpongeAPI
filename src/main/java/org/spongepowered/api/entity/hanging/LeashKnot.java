@@ -38,7 +38,7 @@ public interface LeashKnot extends Hanging {
      * @return The leashed entity
      */
     default Value.Immutable<Entity> leashedEntity() {
-        return this.getValue(Keys.LEASHED_ENTITY).get().asImmutable();
+        return this.requireValue(Keys.LEASHED_ENTITY).asImmutable();
     }
 
 }

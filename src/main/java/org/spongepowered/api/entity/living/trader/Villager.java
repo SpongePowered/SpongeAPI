@@ -41,7 +41,7 @@ public interface Villager extends Trader, Ageable {
      * @see org.spongepowered.api.data.type.VillagerTypes
      */
     default Value.Mutable<VillagerType> type() {
-        return getValue(Keys.VILLAGER_TYPE).get().asMutable();
+        return this.requireValue(Keys.VILLAGER_TYPE).asMutable();
     }
 
     /**
@@ -50,7 +50,7 @@ public interface Villager extends Trader, Ageable {
      * @see org.spongepowered.api.data.type.Professions
      */
     default Value.Mutable<Profession> profession() {
-        return getValue(Keys.PROFESSION).get().asMutable();
+        return this.requireValue(Keys.PROFESSION).asMutable();
     }
 
     /**
@@ -58,6 +58,6 @@ public interface Villager extends Trader, Ageable {
      * @return The profession level of this villager
      */
     default Value.Mutable<Integer> professionLevel() {
-        return getValue(Keys.PROFESSION_LEVEL).get().asMutable();
+        return this.requireValue(Keys.PROFESSION_LEVEL).asMutable();
     }
 }

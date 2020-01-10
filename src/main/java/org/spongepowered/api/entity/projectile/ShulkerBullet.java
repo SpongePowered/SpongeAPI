@@ -39,6 +39,6 @@ public interface ShulkerBullet extends EntityTargetingProjectile, DamagingProjec
      * @return The direction of this bullet
      */
     default Value.Mutable<Direction> direction() {
-        return this.getValue(Keys.DIRECTION).get().asMutable();
+        return this.requireValue(Keys.DIRECTION).asMutable();
     }
 }

@@ -41,7 +41,7 @@ public interface Banner extends BlockEntity {
      * @return The value for the base color
      */
     default Value.Mutable<DyeColor> baseColor() {
-        return getValue(Keys.BANNER_BASE_COLOR).get().asMutable();
+        return this.requireValue(Keys.BANNER_BASE_COLOR).asMutable();
     }
 
     /**
@@ -51,6 +51,6 @@ public interface Banner extends BlockEntity {
      * @return The pattern list
      */
     default ListValue.Mutable<PatternLayer> patternsList() {
-        return getValue(Keys.BANNER_PATTERNS).get().asMutable();
+        return this.requireValue(Keys.BANNER_PATTERNS).asMutable();
     }
 }

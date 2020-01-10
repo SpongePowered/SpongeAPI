@@ -40,7 +40,7 @@ public interface ArmorStand extends Living, ArmorEquipable {
      * @return Whether this is a marker (non-visible) armor stand
      */
     default Value.Mutable<Boolean> marker() {
-        return this.getValue(Keys.ARMOR_STAND_HAS_MARKER).get().asMutable();
+        return this.requireValue(Keys.ARMOR_STAND_HAS_MARKER).asMutable();
     }
 
     /**
@@ -48,7 +48,7 @@ public interface ArmorStand extends Living, ArmorEquipable {
      * @return Whether this is a small or large armor stand
      */
     default Value.Mutable<Boolean> small() {
-        return this.getValue(Keys.ARMOR_STAND_IS_SMALL).get().asMutable();
+        return this.requireValue(Keys.ARMOR_STAND_IS_SMALL).asMutable();
     }
 
     /**
@@ -56,7 +56,7 @@ public interface ArmorStand extends Living, ArmorEquipable {
      * @return Whether this armorstand has a base plate or not
      */
     default Value.Mutable<Boolean> basePlate() {
-        return this.getValue(Keys.ARMOR_STAND_HAS_BASE_PLATE).get().asMutable();
+        return this.requireValue(Keys.ARMOR_STAND_HAS_BASE_PLATE).asMutable();
     }
 
     /**
@@ -64,7 +64,7 @@ public interface ArmorStand extends Living, ArmorEquipable {
      * @return Whether arms are visible or not
      */
     default Value.Mutable<Boolean> arms() {
-        return this.getValue(Keys.ARMOR_STAND_HAS_ARMS).get().asMutable();
+        return this.requireValue(Keys.ARMOR_STAND_HAS_ARMS).asMutable();
     }
 
     /**
@@ -72,7 +72,7 @@ public interface ArmorStand extends Living, ArmorEquipable {
      * @return The equipment types where placing armor is disabled
      */
     default SetValue.Mutable<EquipmentType> placingDisabled() {
-        return this.getValue(Keys.ARMOR_STAND_PLACING_DISABLED).get().asMutable();
+        return this.requireValue(Keys.ARMOR_STAND_PLACING_DISABLED).asMutable();
     }
 
     /**
@@ -80,6 +80,6 @@ public interface ArmorStand extends Living, ArmorEquipable {
      * @return The set of equipment types that are preventing "taking"
      */
     default SetValue.Mutable<EquipmentType> takingDisabled() {
-        return this.getValue(Keys.ARMOR_STAND_TAKING_DISABLED).get().asMutable();
+        return this.requireValue(Keys.ARMOR_STAND_TAKING_DISABLED).asMutable();
     }
 }

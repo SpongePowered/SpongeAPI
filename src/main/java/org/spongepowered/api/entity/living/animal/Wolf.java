@@ -38,7 +38,7 @@ public interface Wolf extends TameableAnimal, Sittable {
      * @return Whether this wolf is angry
      */
     default Value.Mutable<Boolean> angry() {
-        return this.getValue(Keys.IS_ANGRY.get()).get().asMutable();
+        return this.requireValue(Keys.IS_ANGRY).asMutable();
     }
 
     /**
@@ -46,7 +46,7 @@ public interface Wolf extends TameableAnimal, Sittable {
      * @return The collar color
      */
     default Value.Mutable<DyeColor> collarColor() {
-        return this.getValue(Keys.DYE_COLOR.get()).get().asMutable();
+        return this.requireValue(Keys.DYE_COLOR).asMutable();
     }
 
     /**
@@ -58,6 +58,6 @@ public interface Wolf extends TameableAnimal, Sittable {
      * @return Whether this wolf is begging for food
      */
     default Value.Mutable<Boolean> beggingForFood() {
-        return this.getValue(Keys.IS_BEGGING_FOR_FOOD.get()).get().asMutable();
+        return this.requireValue(Keys.IS_BEGGING_FOR_FOOD).asMutable();
     }
 }

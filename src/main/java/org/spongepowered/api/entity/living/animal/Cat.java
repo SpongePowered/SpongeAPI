@@ -43,7 +43,7 @@ public interface Cat extends TameableAnimal, Sittable {
      * @see org.spongepowered.api.data.type.CatTypes
      */
     default Value.Mutable<CatType> type() {
-        return this.getValue(Keys.CAT_TYPE).get().asMutable();
+        return this.requireValue(Keys.CAT_TYPE).asMutable();
     }
 
     /**
@@ -51,7 +51,7 @@ public interface Cat extends TameableAnimal, Sittable {
      * @return Whether this cat is lying down
      */
     default Value.Mutable<Boolean> lyingDown() {
-        return this.getValue(Keys.IS_LYING_DOWN).get().asMutable();
+        return this.requireValue(Keys.IS_LYING_DOWN).asMutable();
     }
 
     /**
@@ -62,7 +62,7 @@ public interface Cat extends TameableAnimal, Sittable {
      * @return Whether this cat is relaxed
      */
     default Value.Mutable<Boolean> relaxed() {
-        return this.getValue(Keys.IS_RELAXED).get().asMutable();
+        return this.requireValue(Keys.IS_RELAXED).asMutable();
     }
 
     /**
@@ -70,7 +70,7 @@ public interface Cat extends TameableAnimal, Sittable {
      * @return The collar color
      */
     default Value.Mutable<DyeColor> collarColor() {
-        return this.getValue(Keys.DYE_COLOR).get().asMutable();
+        return this.requireValue(Keys.DYE_COLOR).asMutable();
     }
 
     /**
@@ -82,7 +82,7 @@ public interface Cat extends TameableAnimal, Sittable {
      * @return Whether this cat is purring
      */
     default Value.Mutable<Boolean> purring() {
-        return this.getValue(Keys.IS_PURRING).get().asMutable();
+        return this.requireValue(Keys.IS_PURRING).asMutable();
     }
 
     /**
@@ -94,7 +94,7 @@ public interface Cat extends TameableAnimal, Sittable {
      * @return Whether this cat is purring
      */
     default Value.Mutable<Boolean> beggingForFood() {
-        return this.getValue(Keys.IS_BEGGING_FOR_FOOD).get().asMutable();
+        return this.requireValue(Keys.IS_BEGGING_FOR_FOOD).asMutable();
     }
 
     /**
@@ -105,6 +105,6 @@ public interface Cat extends TameableAnimal, Sittable {
      * @return Whether this cat is purring
      */
     default Value.Mutable<Boolean> hissing() {
-        return this.getValue(Keys.IS_HISSING).get().asMutable();
+        return this.requireValue(Keys.IS_HISSING).asMutable();
     }
 }

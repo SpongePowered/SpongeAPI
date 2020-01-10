@@ -40,7 +40,7 @@ public interface WeatherEffect extends Entity {
      * @return Whether this effect is harmful
      */
     default Value.Mutable<Boolean> harmful() {
-        return this.getValue(Keys.IS_HARMFUL).get().asMutable();
+        return this.requireValue(Keys.IS_HARMFUL).asMutable();
     }
 
     /**
@@ -48,7 +48,7 @@ public interface WeatherEffect extends Entity {
      * @return The delay before this effect is removed
      */
     default Value.Mutable<Duration> expirationDelay() {
-        return this.getValue(Keys.EXPIRATION_DELAY).get().asMutable();
+        return this.requireValue(Keys.EXPIRATION_DELAY).asMutable();
     }
 
 }

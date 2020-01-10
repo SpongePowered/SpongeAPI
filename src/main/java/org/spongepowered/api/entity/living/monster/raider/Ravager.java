@@ -37,7 +37,7 @@ public interface Ravager extends Raider {
      * @return The time this ravager is attacking
      */
     default Value.Mutable<Integer> attackTime() {
-        return this.getValue(Keys.ATTACK_TIME).get().asMutable();
+        return this.requireValue(Keys.ATTACK_TIME).asMutable();
     }
 
     /**
@@ -45,7 +45,7 @@ public interface Ravager extends Raider {
      * @return The time this ravager is roaring
      */
     default Value.Mutable<Integer> roaringTime() {
-        return this.getValue(Keys.ROARING_TIME).get().asMutable();
+        return this.requireValue(Keys.ROARING_TIME).asMutable();
     }
 
     /**
@@ -53,7 +53,7 @@ public interface Ravager extends Raider {
      * @return The time this ravager is being stunned for
      */
     default Value.Mutable<Integer> stunnedTime() {
-        return this.getValue(Keys.STUNNED_TIME).get().asMutable();
+        return this.requireValue(Keys.STUNNED_TIME).asMutable();
     }
 
     /**
@@ -67,7 +67,7 @@ public interface Ravager extends Raider {
      * @return Whether this ravager is immobilized
      */
     default Value.Mutable<Boolean> immobilized() {
-        return this.getValue(Keys.IS_IMMOBILIZED).get().asMutable();
+        return this.requireValue(Keys.IS_IMMOBILIZED).asMutable();
     }
 
     /**
@@ -81,7 +81,7 @@ public interface Ravager extends Raider {
      * @return Whether this ravager is roaring
      */
     default Value.Mutable<Boolean> roaring() {
-        return this.getValue(Keys.IS_ROARING).get().asMutable();
+        return this.requireValue(Keys.IS_ROARING).asMutable();
     }
 
     /**
@@ -95,6 +95,6 @@ public interface Ravager extends Raider {
      * @return Whether this ravager is stunned
      */
     default Value.Mutable<Boolean> stunned() {
-        return this.getValue(Keys.IS_STUNNED).get().asMutable();
+        return this.requireValue(Keys.IS_STUNNED).asMutable();
     }
 }

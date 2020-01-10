@@ -49,7 +49,7 @@ public interface CommandBlock extends BlockEntity, Subject, MessageReceiver, Nam
      * @return The command
      */
     default Value.Mutable<String> storedCommand() {
-        return this.getValue(Keys.COMMAND).get().asMutable();
+        return this.requireValue(Keys.COMMAND).asMutable();
     }
 
     /**
@@ -65,7 +65,7 @@ public interface CommandBlock extends BlockEntity, Subject, MessageReceiver, Nam
      * @return The last success count
      */
     default Value.Mutable<Integer> successCount() {
-        return this.getValue(Keys.SUCCESS_COUNT).get().asMutable();
+        return this.requireValue(Keys.SUCCESS_COUNT).asMutable();
     }
 
     /**
@@ -75,7 +75,7 @@ public interface CommandBlock extends BlockEntity, Subject, MessageReceiver, Nam
      * @return Whether the command output is tracked
      */
     default Value.Mutable<Boolean> doesTrackOutput() {
-        return this.getValue(Keys.TRACKS_OUTPUT).get().asMutable();
+        return this.requireValue(Keys.TRACKS_OUTPUT).asMutable();
     }
 
     /**

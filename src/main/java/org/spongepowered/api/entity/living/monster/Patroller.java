@@ -46,7 +46,7 @@ public interface Patroller extends Monster {
      * @return Whether this is the leader of a patrol
      */
     default Value.Mutable<Boolean> leader() {
-        return this.getValue(Keys.LEADER).get().asMutable();
+        return this.requireValue(Keys.LEADER).asMutable();
     }
 
     /**
@@ -54,7 +54,7 @@ public interface Patroller extends Monster {
      * @return Whether this patroller is patrolling
      */
     default Value.Mutable<Boolean> patrolling() {
-        return this.getValue(Keys.PATROLLING).get().asMutable();
+        return this.requireValue(Keys.PATROLLING).asMutable();
     }
 
     /**

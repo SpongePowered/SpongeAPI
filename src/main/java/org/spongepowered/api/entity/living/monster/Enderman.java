@@ -39,6 +39,6 @@ public interface Enderman extends Monster, Carrier {
      * @return Whether the enderman is screaming
      */
     default Value.Mutable<Boolean> screaming() {
-        return this.getValue(Keys.IS_SCREAMING).get().asMutable();
+        return this.requireValue(Keys.IS_SCREAMING).asMutable();
     }
 }
