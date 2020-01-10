@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * The abstract base interface for all of the "Value API". In short, a
@@ -75,6 +76,19 @@ public interface Value<E> {
     }
 
     /**
+     * Constructs a mutable {@link Value} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed mutable value
+     */
+    static <E> Value.Mutable<E> mutableOf(Supplier<? extends Key<? extends Value<E>>> key, E element) {
+        return mutableOf(key.get(), element);
+    }
+
+    /**
      * Constructs an immutable {@link Value} of the appropriate type based
      * on the given {@link Key} and the element.
      *
@@ -85,6 +99,19 @@ public interface Value<E> {
      */
     static <E> Value.Immutable<E> immutableOf(Key<? extends Value<E>> key, E element) {
         return genericImmutableOf(key, element).asImmutable();
+    }
+
+    /**
+     * Constructs an immutable {@link Value} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed immutable value
+     */
+    static <E> Value.Immutable<E> immutableOf(Supplier<? extends Key<? extends Value<E>>> key, E element) {
+        return immutableOf(key.get(), element);
     }
 
     /**
@@ -101,6 +128,19 @@ public interface Value<E> {
     }
 
     /**
+     * Constructs a mutable {@link Value} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed mutable value
+     */
+    static <E extends Comparable<E>> BoundedValue.Mutable<E> mutableOf(Supplier<? extends Key<? extends BoundedValue<E>>> key, E element) {
+        return mutableOf(key.get(), element);
+    }
+
+    /**
      * Constructs an immutable {@link Value} of the appropriate type based
      * on the given {@link Key} and the element.
      *
@@ -111,6 +151,19 @@ public interface Value<E> {
      */
     static <E extends Comparable<E>> BoundedValue.Immutable<E> immutableOf(Key<? extends BoundedValue<E>> key, E element) {
         return genericImmutableOf(key, element).asImmutable();
+    }
+
+    /**
+     * Constructs an immutable {@link Value} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed immutable value
+     */
+    static <E extends Comparable<E>> BoundedValue.Immutable<E> immutableOf(Supplier<? extends Key<? extends BoundedValue<E>>> key, E element) {
+        return immutableOf(key.get(), element);
     }
 
     /**
@@ -127,6 +180,19 @@ public interface Value<E> {
     }
 
     /**
+     * Constructs a mutable {@link ListValue} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed mutable value
+     */
+    static <E> ListValue.Mutable<E> mutableOf(Supplier<? extends Key<? extends ListValue<E>>> key, List<E> element) {
+        return mutableOf(key.get(), element);
+    }
+
+    /**
      * Constructs an immutable {@link ListValue} of the appropriate type based
      * on the given {@link Key} and the element.
      *
@@ -137,6 +203,19 @@ public interface Value<E> {
      */
     static <E> ListValue.Immutable<E> immutableOf(Key<? extends ListValue<E>> key, List<E> element) {
         return genericImmutableOf(key, element).asImmutable();
+    }
+
+    /**
+     * Constructs an immutable {@link ListValue} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed immutable value
+     */
+    static <E> ListValue.Immutable<E> immutableOf(Supplier<? extends Key<? extends ListValue<E>>> key, List<E> element) {
+        return immutableOf(key.get(), element);
     }
 
     /**
@@ -153,6 +232,19 @@ public interface Value<E> {
     }
 
     /**
+     * Constructs a mutable {@link SetValue} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed mutable value
+     */
+    static <E> SetValue.Mutable<E> mutableOf(Supplier<? extends Key<? extends SetValue<E>>> key, Set<E> element) {
+        return mutableOf(key.get(), element);
+    }
+
+    /**
      * Constructs an immutable {@link SetValue} of the appropriate type based
      * on the given {@link Key} and the element.
      *
@@ -163,6 +255,19 @@ public interface Value<E> {
      */
     static <E> SetValue.Immutable<E> immutableOf(Key<? extends SetValue<E>> key, Set<E> element) {
         return genericImmutableOf(key, element).asImmutable();
+    }
+
+    /**
+     * Constructs an immutable {@link SetValue} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed immutable value
+     */
+    static <E> SetValue.Immutable<E> immutableOf(Supplier<? extends Key<? extends SetValue<E>>> key, Set<E> element) {
+        return immutableOf(key.get(), element);
     }
 
     /**
@@ -180,6 +285,20 @@ public interface Value<E> {
     }
 
     /**
+     * Constructs a mutable {@link MapValue} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <K> The map key type
+     * @param <V> The map value type
+     * @return The constructed mutable value
+     */
+    static <K, V> MapValue.Mutable<K, V> mutableOf(Supplier<? extends Key<? extends MapValue<K, V>>> key, Map<K, V> element) {
+        return mutableOf(key.get(), element);
+    }
+
+    /**
      * Constructs an immutable {@link MapValue} of the appropriate type based
      * on the given {@link Key} and the element.
      *
@@ -191,6 +310,20 @@ public interface Value<E> {
      */
     static <K, V> MapValue.Immutable<K, V> immutableOf(Key<? extends MapValue<K, V>> key, Map<K, V> element) {
         return genericImmutableOf(key, element).asImmutable();
+    }
+
+    /**
+     * Constructs an immutable {@link MapValue} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <K> The map key type
+     * @param <V> The map value type
+     * @return The constructed immutable value
+     */
+    static <K, V> MapValue.Immutable<K, V> immutableOf(Supplier<? extends Key<? extends MapValue<K, V>>> key, Map<K, V> element) {
+        return immutableOf(key.get(), element);
     }
 
     /**
@@ -207,6 +340,20 @@ public interface Value<E> {
     }
 
     /**
+     * Constructs a mutable {@link WeightedCollectionValue} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed mutable value
+     */
+    static <E> WeightedCollectionValue.Mutable<E> mutableOf(
+            Supplier<? extends Key<? extends WeightedCollectionValue<E>>> key, WeightedTable<E> element) {
+        return mutableOf(key.get(), element);
+    }
+
+    /**
      * Constructs an immutable {@link WeightedCollectionValue} of the appropriate type based
      * on the given {@link Key} and the element.
      *
@@ -217,6 +364,20 @@ public interface Value<E> {
      */
     static <E> WeightedCollectionValue.Immutable<E> immutableOf(Key<? extends WeightedCollectionValue<E>> key, WeightedTable<E> element) {
         return genericImmutableOf(key, element).asImmutable();
+    }
+
+    /**
+     * Constructs an immutable {@link WeightedCollectionValue} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed immutable value
+     */
+    static <E> WeightedCollectionValue.Immutable<E> immutableOf(
+            Supplier<? extends Key<? extends WeightedCollectionValue<E>>> key, WeightedTable<E> element) {
+        return immutableOf(key.get(), element);
     }
 
     /**

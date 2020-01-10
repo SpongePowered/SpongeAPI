@@ -31,6 +31,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public interface MapValue<K, V> extends Value<Map<K, V>> {
 
@@ -49,6 +50,20 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
     }
 
     /**
+     * Constructs a mutable {@link MapValue} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <K> The map key type
+     * @param <V> The map value type
+     * @return The constructed mutable value
+     */
+    static <K, V> MapValue.Mutable<K, V> mutableOf(Supplier<? extends Key<? extends MapValue<K, V>>> key, Map<K, V> element) {
+        return mutableOf(key.get(), element);
+    }
+
+    /**
      * Constructs an immutable {@link MapValue} of the appropriate type based
      * on the given {@link Key} and the element.
      *
@@ -60,6 +75,20 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
      */
     static <K, V> MapValue.Immutable<K, V> immutableOf(Key<? extends MapValue<K, V>> key, Map<K, V> element) {
         return Value.immutableOf(key, element);
+    }
+
+    /**
+     * Constructs an immutable {@link MapValue} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <K> The map key type
+     * @param <V> The map value type
+     * @return The constructed immutable value
+     */
+    static <K, V> MapValue.Immutable<K, V> immutableOf(Supplier<? extends Key<? extends MapValue<K, V>>> key, Map<K, V> element) {
+        return immutableOf(key.get(), element);
     }
 
     @Override
@@ -192,7 +221,7 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
 
         @Override
         default MapValue.Mutable<K, V> asMutableCopy() {
-            return copy();
+            return this.copy();
         }
 
         @Override
@@ -271,7 +300,7 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
 
         @Override
         default MapValue.Mutable<K, V> asMutableCopy() {
-            return asMutable();
+            return this.asMutable();
         }
 
         @Override

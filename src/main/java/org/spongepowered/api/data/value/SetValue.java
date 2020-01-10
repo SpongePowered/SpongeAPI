@@ -27,6 +27,7 @@ package org.spongepowered.api.data.value;
 import org.spongepowered.api.data.Key;
 
 import java.util.Set;
+import java.util.function.Supplier;
 
 public interface SetValue<E> extends CollectionValue<E, Set<E>> {
 
@@ -44,6 +45,19 @@ public interface SetValue<E> extends CollectionValue<E, Set<E>> {
     }
 
     /**
+     * Constructs a mutable {@link SetValue} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed mutable value
+     */
+    static <E> SetValue.Mutable<E> mutableOf(Supplier<? extends Key<? extends SetValue<E>>> key, Set<E> element) {
+        return mutableOf(key.get(), element);
+    }
+
+    /**
      * Constructs an immutable {@link SetValue} of the appropriate type based
      * on the given {@link Key} and the element.
      *
@@ -54,6 +68,19 @@ public interface SetValue<E> extends CollectionValue<E, Set<E>> {
      */
     static <E> SetValue.Immutable<E> immutableOf(Key<? extends SetValue<E>> key, Set<E> element) {
         return Value.immutableOf(key, element);
+    }
+
+    /**
+     * Constructs an immutable {@link SetValue} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed immutable value
+     */
+    static <E> SetValue.Immutable<E> immutableOf(Supplier<? extends Key<? extends SetValue<E>>> key, Set<E> element) {
+        return immutableOf(key.get(), element);
     }
 
     @Override
@@ -84,7 +111,7 @@ public interface SetValue<E> extends CollectionValue<E, Set<E>> {
 
         @Override
         default SetValue.Mutable<E> asMutableCopy() {
-            return copy();
+            return this.copy();
         }
 
         @Override
@@ -105,7 +132,7 @@ public interface SetValue<E> extends CollectionValue<E, Set<E>> {
 
         @Override
         default SetValue.Mutable<E> asMutableCopy() {
-            return asMutable();
+            return this.asMutable();
         }
 
         @Override

@@ -27,6 +27,7 @@ package org.spongepowered.api.data.value;
 import org.spongepowered.api.data.Key;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 public interface ListValue<E> extends CollectionValue<E, List<E>> {
 
@@ -44,6 +45,19 @@ public interface ListValue<E> extends CollectionValue<E, List<E>> {
     }
 
     /**
+     * Constructs a mutable {@link ListValue} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed mutable value
+     */
+    static <E> ListValue.Mutable<E> mutableOf(Supplier<? extends Key<? extends ListValue<E>>> key, List<E> element) {
+        return mutableOf(key.get(), element);
+    }
+
+    /**
      * Constructs an immutable {@link ListValue} of the appropriate type based
      * on the given {@link Key} and the element.
      *
@@ -54,6 +68,19 @@ public interface ListValue<E> extends CollectionValue<E, List<E>> {
      */
     static <E> ListValue.Immutable<E> immutableOf(Key<? extends ListValue<E>> key, List<E> element) {
         return Value.immutableOf(key, element);
+    }
+
+    /**
+     * Constructs an immutable {@link ListValue} of the appropriate type based
+     * on the given {@link Key} and the element.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed immutable value
+     */
+    static <E> ListValue.Immutable<E> immutableOf(Supplier<? extends Key<? extends ListValue<E>>> key, List<E> element) {
+        return immutableOf(key.get(), element);
     }
 
     @Override

@@ -167,7 +167,7 @@ public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, I
 
         @Override
         default M asMutableCopy() {
-            return asMutable();
+            return this.asMutable();
         }
 
         @SuppressWarnings("unchecked")
@@ -245,7 +245,7 @@ public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, I
 
         @Override
         default V asMutableCopy() {
-            return copy();
+            return this.copy();
         }
 
         @SuppressWarnings("unchecked")

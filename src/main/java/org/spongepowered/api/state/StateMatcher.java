@@ -30,6 +30,7 @@ import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 /**
  * Can be used to match {@link State}s.
@@ -75,6 +76,17 @@ public interface StateMatcher extends DataSerializable, Predicate<State<?>> {
         Builder supportsStateProperty(StateProperty<?> stateProperty);
 
         /**
+         * Adds a {@link StateProperty} that needs to be present
+         * on a {@link State} to match.
+         *
+         * @param stateProperty The state property
+         * @return This builder, for chaining
+         */
+        default Builder supportsStateProperty(Supplier<? extends StateProperty<?>> stateProperty) {
+            return this.supportsStateProperty(stateProperty.get());
+        }
+
+        /**
          * Adds a {@link StateProperty} and value that needs to
          * match on a {@link State} to match.
          *
@@ -84,6 +96,19 @@ public interface StateMatcher extends DataSerializable, Predicate<State<?>> {
          * @return This builder, for chaining
          */
         <T extends Comparable<T>> Builder stateProperty(StateProperty<T> stateProperty, T value);
+
+        /**
+         * Adds a {@link StateProperty} and value that needs to
+         * match on a {@link State} to match.
+         *
+         * @param stateProperty The state property
+         * @param value The value to match
+         * @param <T> The value type
+         * @return This builder, for chaining
+         */
+        default <T extends Comparable<T>> Builder stateProperty(Supplier<? extends StateProperty<T>> stateProperty, T value) {
+            return this.stateProperty(stateProperty.get(), value);
+        }
 
         /**
          * Adds a {@link KeyValueMatcher} that the {@link State}

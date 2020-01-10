@@ -29,6 +29,7 @@ import org.spongepowered.api.data.Key;
 
 import java.util.Comparator;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * Represents a value that may itself be {@link Comparable} or can be
@@ -62,6 +63,24 @@ public interface BoundedValue<E> extends Value<E> {
     }
 
     /**
+     * Constructs a mutable {@link Value} of the appropriate
+     * type based on the given {@link Key} and the element.
+     * The returned {@link Value} is guaranteed {@link Mutable},
+     * this means that calling {@link #asMutable()} will return
+     * itself.
+     *
+     * @param key The key
+     * @param element The element
+     * @param minimum The minimum
+     * @param maximum The maximum
+     * @param <E> The element type
+     * @return The constructed mutable bounded value
+     */
+    static <E> BoundedValue.Mutable<E> mutableOf(Supplier<? extends Key<? extends BoundedValue<E>>> key, E element, E minimum, E maximum) {
+        return mutableOf(key.get(), element, minimum, maximum);
+    }
+
+    /**
      * Constructs an immutable {@link Value} of the appropriate
      * type based on the given {@link Key} and the element.
      * The returned {@link Value} is guaranteed {@link Immutable},
@@ -77,6 +96,24 @@ public interface BoundedValue<E> extends Value<E> {
      */
     static <E> BoundedValue.Immutable<E> immutableOf(Key<? extends BoundedValue<E>> key, E element, E minimum, E maximum) {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).immutableOf(key, element, minimum, maximum).asImmutable();
+    }
+
+    /**
+     * Constructs an immutable {@link Value} of the appropriate
+     * type based on the given {@link Key} and the element.
+     * The returned {@link Value} is guaranteed {@link Immutable},
+     * this means that calling {@link #asImmutable()} will return
+     * itself.
+     *
+     * @param key The key
+     * @param element The element
+     * @param minimum The minimum
+     * @param maximum The maximum
+     * @param <E> The element type
+     * @return The constructed immutable bounded value
+     */
+    static <E> BoundedValue.Immutable<E> immutableOf(Supplier<? extends Key<? extends BoundedValue<E>>> key, E element, E minimum, E maximum) {
+        return immutableOf(key.get(), element, minimum, maximum);
     }
 
     /**
@@ -96,6 +133,22 @@ public interface BoundedValue<E> extends Value<E> {
     }
 
     /**
+     * Constructs a mutable {@link Value} of the appropriate
+     * type based on the given {@link Key} and the element.
+     * The returned {@link Value} is guaranteed {@link Mutable},
+     * this means that calling {@link #asMutable()} will return
+     * itself.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed mutable bounded value
+     */
+    static <E> BoundedValue.Mutable<E> mutableOf(Supplier<? extends Key<? extends BoundedValue<E>>> key, E element) {
+        return mutableOf(key.get(), element);
+    }
+
+    /**
      * Constructs an immutable {@link Value} of the appropriate
      * type based on the given {@link Key} and the element.
      * The returned {@link Value} is guaranteed {@link Immutable},
@@ -109,6 +162,22 @@ public interface BoundedValue<E> extends Value<E> {
      */
     static <E> BoundedValue.Immutable<E> immutableOf(Key<? extends BoundedValue<E>> key, E element) {
         return Value.genericImmutableOf(key, element).asImmutable();
+    }
+
+    /**
+     * Constructs an immutable {@link Value} of the appropriate
+     * type based on the given {@link Key} and the element.
+     * The returned {@link Value} is guaranteed {@link Immutable},
+     * this means that calling {@link #asImmutable()} will return
+     * itself.
+     *
+     * @param key The key
+     * @param element The element
+     * @param <E> The element type
+     * @return The constructed immutable bounded value
+     */
+    static <E> BoundedValue.Immutable<E> immutableOf(Supplier<? extends Key<? extends BoundedValue<E>>> key, E element) {
+        return immutableOf(key.get(), element);
     }
 
     @Override
@@ -175,7 +244,7 @@ public interface BoundedValue<E> extends Value<E> {
 
         @Override
         default BoundedValue.Mutable<E> asMutableCopy() {
-            return copy();
+            return this.copy();
         }
 
         @Override
@@ -202,7 +271,7 @@ public interface BoundedValue<E> extends Value<E> {
 
         @Override
         default BoundedValue.Mutable<E> asMutableCopy() {
-            return asMutable();
+            return this.asMutable();
         }
 
         @Override
