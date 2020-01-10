@@ -1356,7 +1356,22 @@ public final class Keys {
     /**
      * Represents the {@link Key} for if a {@link Cat} is relaxed.
      */
-    public static final Supplier<Key<Value<Boolean>>> IS_RELAXED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "RELAXED");
+    public static final Supplier<Key<Value<Boolean>>> IS_RELAXED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_RELAXED");
+
+    /**
+     * Represents the {@link Key} for if a {@link Living} is begging for food. Usually cats or tamed wolves.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_BEGGING_FOR_FOOD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_BEGGING_FOR_FOOD");
+
+    /**
+     * Represents the {@link Key} for if a {@link Cat} is hissing.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_HISSING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_HISSING");
+
+    /**
+     * Represents the {@link Key} for if a {@link Cat} is purring.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_PURRING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_PURRING");
 
     /**
      * Represents the {@link Key} for if a {@link Panda} is rolling around.
@@ -2232,6 +2247,36 @@ public final class Keys {
      * Represents the {@link Key} for the {@link Vector3i position} where a {@link Turtle} travels to when it is not currently laying an egg.
      */
     public static final Supplier<Key<Value<Vector3i>>> TURTLE_TRAVELING_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TURTLE_TRAVELING_POSITION");
+
+    /**
+     * Represents the {@link Key} for whether a {@link Panda} is unhappy.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_UNHAPPY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_UNHAPPY");
+
+    /**
+     * Represents the {@link Key} for whether something is immobilized.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_IMMOBILIZED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_IMMOBILIZED");
+
+    /**
+     * Represents the {@link Key} for whether a living entity is roaring. Usually ravagers.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_ROARING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_ROARING");
+
+    /**
+     * Represents the {@link Key} for whether an entity is stunned.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_STUNNED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_STUNNED");
+
+    /**
+     * Represents the {@link Key} for whether a {@link Living} is eating.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_EATING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_EATING");
+
+    /**
+     * Represents the {@link Key} for whether a {@link Living} is frightened.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_FRIGHTENED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_FRIGHTENED");
 
     /**
      * Represents the {@link Key} for the time a {@link Panda} has been unhappy (in ticks)

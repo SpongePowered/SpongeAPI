@@ -38,7 +38,7 @@ public interface Spider extends Monster {
      * {@link Keys#IS_CLIMBING}
      * @return True if this spider is climbing
      */
-    default Value.Immutable<Boolean> isClimbing() {
+    default Value.Immutable<Boolean> climbing() {
         return this.getValue(Keys.IS_CLIMBING.get()).get().asImmutable();
     }
 }

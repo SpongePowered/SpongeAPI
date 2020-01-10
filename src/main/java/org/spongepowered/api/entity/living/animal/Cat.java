@@ -54,7 +54,11 @@ public interface Cat extends TameableAnimal, Sittable {
 
     /**
      * {@link Keys#IS_RELAXED}
-     * @return Whether this cat is a cool cat or a scaredey cat
+     *
+     * <p>In vanilla, a cat is relaxed if it's
+     * a cool cat or a scaredey cat.</p>
+     *
+     * @return Whether this cat is relaxed
      */
     default Value.Mutable<Boolean> relaxed() {
         return this.getValue(Keys.IS_RELAXED.get()).get().asMutable();
@@ -69,25 +73,37 @@ public interface Cat extends TameableAnimal, Sittable {
     }
 
     /**
-     * Determines if the {@link Cat} is purring. In vanilla, a cat purrs every so many ticks when lying down or relaxed.
-     * Otherwise it will also pur if it is currently breeding.
+     * {@link Keys#IS_PURRING}
      *
-     * @return True if purring, false if not
+     * <p>In vanilla, a cat purrs every so many ticks when lying down or relaxed.
+     * Otherwise it will also pur if it is currently breeding.</p>
+     *
+     * @return Whether this cat is purring
      */
-    boolean isPurring();
+    default Value.Mutable<Boolean> purring() {
+        return this.getValue(Keys.IS_PURRING.get()).get().asMutable();
+    }
 
     /**
-     * Determines if the {@link Cat} is begging for food. In vanilla, a cat begs for food every so many ticks
-     * if {@link TameableAnimal#isTamed()} returns false.
+     * {@link Keys#IS_BEGGING_FOR_FOOD}
      *
-     * @return True if begging for food, false if not
+     * <p>In vanilla, a cat begs for food every so many ticks
+     * if {@link TameableAnimal#isTamed()} returns false.</p>
+     *
+     * @return Whether this cat is purring
      */
-    boolean isBeggingForFood();
+    default Value.Mutable<Boolean> beggingForFood() {
+        return this.getValue(Keys.IS_BEGGING_FOR_FOOD.get()).get().asMutable();
+    }
 
     /**
-     * Determines if the {@link Cat} is hissing. In vanilla, a cat hisses when a {@link Phantom} is detected near it.
+     * {@link Keys#IS_HISSING}
      *
-     * @return True if hissing, false if not
+     * <p>In vanilla, a cat hisses when a {@link Phantom} is detected near it.</p>
+     *
+     * @return Whether this cat is purring
      */
-    boolean isHissing();
+    default Value.Mutable<Boolean> hissing() {
+        return this.getValue(Keys.IS_HISSING.get()).get().asMutable();
+    }
 }

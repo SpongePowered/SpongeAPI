@@ -49,4 +49,15 @@ public interface Wolf extends TameableAnimal, Sittable {
         return this.getValue(Keys.DYE_COLOR.get()).get().asMutable();
     }
 
+    /**
+     * {@link Keys#IS_BEGGING_FOR_FOOD}
+     *
+     * <p>In vanilla, a wolf begs when a player comes close
+     * with food. The head of the wolf will also tilt as a result.</p>
+     *
+     * @return Whether this wolf is begging for food
+     */
+    default Value.Mutable<Boolean> beggingForFood() {
+        return this.getValue(Keys.IS_BEGGING_FOR_FOOD.get()).get().asMutable();
+    }
 }

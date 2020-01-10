@@ -42,7 +42,7 @@ public interface Panda extends Animal, Sittable {
      * @return Whether this panda has a known gene
      */
     default Value.Mutable<PandaGene> knownGene() {
-        return this.getValue(Keys.KNOWN_GENE.get()).get().asMutable();
+        return this.getValue(Keys.KNOWN_GENE).get().asMutable();
     }
 
     /**
@@ -50,15 +50,7 @@ public interface Panda extends Animal, Sittable {
      * @return Whether this panda has a hidden gene
      */
     default Value.Mutable<PandaGene> hiddenGene() {
-        return this.getValue(Keys.HIDDEN_GENE.get()).get().asMutable();
-    }
-
-    /**
-     * {@link Keys#IS_SNEEZING}
-     * @return Whether this panda is sneezing
-     */
-    default Value.Mutable<Boolean> sneezing() {
-        return this.getValue(Keys.IS_SNEEZING.get()).get().asMutable();
+        return this.getValue(Keys.HIDDEN_GENE).get().asMutable();
     }
 
     /**
@@ -66,7 +58,7 @@ public interface Panda extends Animal, Sittable {
      * @return The time remaining to lie on it's back
      */
     default Value.Mutable<Boolean> lyingOnBack() {
-        return this.getValue(Keys.IS_LYING_ON_BACK.get()).get().asMutable();
+        return this.getValue(Keys.IS_LYING_ON_BACK).get().asMutable();
     }
 
     /**
@@ -74,7 +66,7 @@ public interface Panda extends Animal, Sittable {
      * @return The time remaining to roll around
      */
     default Value.Mutable<Boolean> rollingAround() {
-        return this.getValue(Keys.IS_ROLLING_AROUND.get()).get().asMutable();
+        return this.getValue(Keys.IS_ROLLING_AROUND).get().asMutable();
     }
 
     /**
@@ -82,7 +74,22 @@ public interface Panda extends Animal, Sittable {
      * @return The time remaining to be unhappy
      */
     default Value.Mutable<Integer> unhappyTime() {
-        return this.getValue(Keys.UNHAPPY_TIME.get()).get().asMutable();
+        return this.getValue(Keys.UNHAPPY_TIME).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#IS_UNHAPPY}
+     *
+     * <p>Being happy or unhappy affects the panda's ability to
+     * produce offspring or sit down.</p>
+     *
+     * <p>When offering the unhappy state in vanilla. If the value is false,
+     * the unhappy time will be set to 0. Otherwise 32.</p>
+     *
+     * @return Whether the panda is unhappy
+     */
+    default Value.Mutable<Boolean> unhappy() {
+        return this.getValue(Keys.IS_UNHAPPY).get().asMutable();
     }
 
     /**
@@ -90,7 +97,24 @@ public interface Panda extends Animal, Sittable {
      * @return The eating time
      */
     default Value.Mutable<Integer> eatingTime() {
-        return this.getValue(Keys.EATING_TIME.get()).get().asMutable();
+        return this.getValue(Keys.EATING_TIME).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#IS_EATING}
+     *
+     * @return Whether the panda is eating
+     */
+    default Value.Mutable<Boolean> eating() {
+        return this.getValue(Keys.IS_EATING).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#IS_SNEEZING}
+     * @return Whether this panda is sneezing
+     */
+    default Value.Mutable<Boolean> sneezing() {
+        return this.getValue(Keys.IS_SNEEZING).get().asMutable();
     }
 
     /**
@@ -98,62 +122,19 @@ public interface Panda extends Animal, Sittable {
      * @return The sneezing time
      */
     default Value.Mutable<Integer> sneezingTime() {
-        return this.getValue(Keys.SNEEZING_TIME.get()).get().asMutable();
+        return this.getValue(Keys.SNEEZING_TIME).get().asMutable();
     }
 
     /**
-     * Determines if the panda is currently eating. In vanilla, this is {@link Panda#unhappyTime()} &gt; 0. Affects their ability to produce
-     * offspring or sit down.
+     * {@link Keys#IS_FRIGHTENED}
      *
-     * {@link Panda#unhappyTime()}
-     *
-     * @return True if unhappy, false if not
-     */
-    boolean isUnhappy();
-
-    /**
-     * Instructs the panda to be unhappy or not. In vanilla, if false, this will set the {@link Panda#unhappyTime()} to 0. Otherwise 32.
-     * @param unhappy Whether this is an unhappy panda
-     */
-    void setUnhappy(boolean unhappy);
-
-    /**
-     * Determines if the panda is currently eating. In vanilla, this is {@link Panda#eatingTime()} &gt; 0.
-     *
-     * {@link Panda#eatingTime()}
-     *
-     * @return True if eating, false if not
-     */
-    boolean isEating();
-
-    /**
-     * Instructs the panda to eat or not. In vanilla, if true, this will set the {@link Panda#eatingTime()} to 1. Otherwise 0.
-     *
-     * {@link Panda#eatingTime()}
-     * @param eating Whether to be eating or not
-     */
-    void setEating(boolean eating);
-
-    /**
-     * Determines if the panda is currently sneezing. In vanilla, this is {@link Panda#sneezingTime()} &gt;= 0.
-     *
-     * @return True if sneezing, false if not
-     */
-    boolean isSneezing();
-
-    /**
-     * Instructs the panda to sneeze or not. In vanilla, if true, this will set {@link Panda#sneezing()} to true and {@link Panda#sneezingTime()}
-     * to 0. Otherwise if the panda was sneezing, the sneezingTime will be set to 20 and if not will be set to 0.
-     * @param sneeze Whether this panda is sneezing
-     */
-    void setSneezing(boolean sneeze);
-
-    /**
-     * Gets if the panda is currently frightened. In vanilla, pandas that have a {@link Panda#knownGene()}
+     * <p>In vanilla, pandas that have a {@link Panda#knownGene()}
      * of {@link PandaGenes#WORRIED} and are in a {@link World} whose {@link Weather} is currently a
-     * {@link Weathers#THUNDER_STORM} are considered "frightened".
+     * {@link Weathers#THUNDER_STORM} are considered "frightened".</p>
      *
-     * @return True if frightened, false if not
+     * @return Whether this panda is frightened
      */
-    boolean isFrightened();
+    default Value.Mutable<Boolean> frightened() {
+        return this.getValue(Keys.IS_FRIGHTENED).get().asMutable();
+    }
 }
