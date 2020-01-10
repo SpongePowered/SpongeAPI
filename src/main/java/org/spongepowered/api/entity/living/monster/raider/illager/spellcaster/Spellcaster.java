@@ -51,16 +51,10 @@ public interface Spellcaster extends Illager {
     }
 
     /**
-     * Determines if the caster is currently casting a spell. In vanilla, this is {@link Spellcaster#castingTime()} &gt; 0.
-     *
-     * @return True if casting a spell, false if not
+     * {@link Keys#CASTING}
+     * @return Whether a spell is being cast.
      */
-    boolean isCastingSpell();
-
-    /**
-     * Instructs this caster to cast it's {@link Spellcaster#currentSpell()} or not.
-     *
-     * @param castSpell Whether to cast spell or not
-     */
-    void setCastingSpell(boolean castSpell);
+    default Value.Mutable<Boolean> casting() {
+        return this.getValue(Keys.CASTING).get().asMutable();
+    }
 }

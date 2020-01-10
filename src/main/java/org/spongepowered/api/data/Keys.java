@@ -616,6 +616,12 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> CAN_PLACE_AS_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CAN_PLACE_AS_BLOCK");
 
     /**
+     * Represents the {@link Key} for the whether a {@link Spellcaster} is
+     * casting a spell.
+     */
+    public static final Supplier<Key<Value<Boolean>>> CASTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CASTING");
+
+    /**
      * Represents the {@link Key} for the current casting time of a {@link Spellcaster}.
      */
     public static final Supplier<Key<Value<Integer>>> CASTING_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CASTING_TIME");
