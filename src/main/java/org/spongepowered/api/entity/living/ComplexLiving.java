@@ -32,13 +32,12 @@ import java.util.Set;
  * Represents a complex living entity that requires multiple bounding
  * boxes, example: {@link EnderDragon}.
  */
-public interface ComplexLiving extends Living {
+public interface ComplexLiving<T extends ComplexLivingPart<T>> extends Living {
 
     /**
      * Gets the set of parts belonging to this complex entity.
      *
      * @return The parts belonging to this entity
      */
-    Set<? extends ComplexLivingPart> getParts();
-
+    Set<T> getParts();
 }

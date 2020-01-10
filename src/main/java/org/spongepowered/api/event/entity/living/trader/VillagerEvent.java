@@ -112,7 +112,8 @@ public interface VillagerEvent extends Event {
 	 * <p>This can occur because of a {@link Raid} or a {@link ZombieEntity}/{@link Raider}
 	 * or both a {@link Raid} and {@link Entity}.</p>
 	 *
-	 * <p>The {@link Villager}'s Panic task will always prioritize the last {@link Entity} which attacked before considering any nearby {@link Hostile} agents.</>
+	 * <p>The {@link Villager}'s Panic task will always prioritize the last {@link Entity} which attacked before considering any nearby
+	 * {@link Hostile} agents.</p>
 	 *
 	 */
 	@GenerateFactoryMethod

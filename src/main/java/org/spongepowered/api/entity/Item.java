@@ -40,16 +40,6 @@ public interface Item extends Entity {
      * @return The item being represented by this entity
      */
     default Value.Mutable<ItemStackSnapshot> item() {
-        return this.getValue(Keys.ITEM_STACK_SNAPSHOT.get()).get().asMutable();
+        return this.getValue(Keys.ITEM_STACK_SNAPSHOT).get().asMutable();
     }
-
-    /**
-     * Gets the {@link ItemType} represented by this {@link Item} entity.
-     *
-     * @return The item type
-     */
-    default ItemType getItemType() {
-        return this.item().get().getType();
-    }
-
 }

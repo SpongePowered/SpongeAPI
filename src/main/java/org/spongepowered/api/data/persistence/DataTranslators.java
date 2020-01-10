@@ -57,13 +57,29 @@ public final class DataTranslators {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<DataTranslator<Schematic>> SCHEMATIC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "SCHEMATIC");
+    public static final Supplier<DataTranslator<Complexd>> COMPLEXD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "COMPLEXD");
+
+    public static final Supplier<DataTranslator<Complexf>> COMPLEXF = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "COMPLEXF");
+
+    public static final Supplier<DataTranslator<ConfigurationNode>> CONFIGURATION_NODE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "CONFIGURATION_NODE");
+
+    public static final Supplier<DataTranslator<Instant>> INSTANT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "INSTANT");
 
     public static final Supplier<DataTranslator<Schematic>> LEGACY_SCHEMATIC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "LEGACY_SCHEMATIC");
 
+    public static final Supplier<DataTranslator<LocalDate>> LOCAL_DATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "LOCAL_DATE");
+
+    public static final Supplier<DataTranslator<LocalDateTime>> LOCAL_DATE_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "LOCAL_DATE_TIME");
+
+    public static final Supplier<DataTranslator<LocalTime>> LOCAL_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "LOCAL_TIME");
+
     public static final Supplier<DataTranslator<Schematic>> MOJANG_TEMPLATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "MOJANG_TEMPLATE");
 
-    public static final Supplier<DataTranslator<ConfigurationNode>> CONFIGURATION_NODE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "CONFIGURATION_NODE");
+    public static final Supplier<DataTranslator<Quaterniond>> QUATERNIOND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "QUATERNIOND");
+
+    public static final Supplier<DataTranslator<Quaternionf>> QUATERNIONF = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "QUATERNIONF");
+
+    public static final Supplier<DataTranslator<Schematic>> SCHEMATIC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "SCHEMATIC");
 
     public static final Supplier<DataTranslator<UUID>> UUID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "UUID");
 
@@ -90,22 +106,6 @@ public final class DataTranslators {
     public static final Supplier<DataTranslator<Vector4i>> VECTOR_4_I = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "VECTOR_4_I");
 
     public static final Supplier<DataTranslator<Vector4l>> VECTOR_4_L = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "VECTOR_4_L");
-
-    public static final Supplier<DataTranslator<Complexd>> COMPLEXD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "COMPLEXD");
-
-    public static final Supplier<DataTranslator<Complexf>> COMPLEXF = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "COMPLEXF");
-
-    public static final Supplier<DataTranslator<Quaterniond>> QUATERNIOND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "QUATERNIOND");
-
-    public static final Supplier<DataTranslator<Quaternionf>> QUATERNIONF = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "QUATERNIONF");
-
-    public static final Supplier<DataTranslator<LocalTime>> LOCAL_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "LOCAL_TIME");
-
-    public static final Supplier<DataTranslator<LocalDate>> LOCAL_DATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "LOCAL_DATE");
-
-    public static final Supplier<DataTranslator<LocalDateTime>> LOCAL_DATE_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "LOCAL_DATE_TIME");
-
-    public static final Supplier<DataTranslator<Instant>> INSTANT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "INSTANT");
 
     public static final Supplier<DataTranslator<ZonedDateTime>> ZONED_DATE_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "ZONED_DATE_TIME");
 

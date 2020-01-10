@@ -61,7 +61,7 @@ public interface TextFormat extends TextElement {
      * @return The new text format
      */
     static TextFormat of(TextColor color) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).format(() -> color, TextStyles.NONE);
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).format(() -> color, TextStyle::of);
     }
 
     /**

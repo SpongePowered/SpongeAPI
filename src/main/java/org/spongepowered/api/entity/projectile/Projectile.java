@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.entity.projectile;
 
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.projectile.source.ProjectileSource;
 
@@ -34,22 +36,10 @@ import org.spongepowered.api.projectile.source.ProjectileSource;
 public interface Projectile extends Entity {
 
     /**
-     * Gets the shooter of this projectile.
-     *
-     * <p>All projectiles have a {@link ProjectileSource} regardless of whether
-     * the projectile was launched via plugin or mod.</p>
-     *
-     * @return The projectile source that shot this projectile
+     * {@link Keys#SHOOTER}
+     * @return The shooter
      */
-    ProjectileSource getShooter();
-
-    /**
-     * Sets the shooter of this projectile.
-     *
-     * <p>All projectiles have a {@link ProjectileSource} regardless of whether
-     * the projectile was launched via plugin or mod.</p>
-     *
-     * @param shooter The projectile source that shot this projectile
-     */
-    void setShooter(ProjectileSource shooter);
+    default Value.Mutable<ProjectileSource> shooter() {
+        return this.getValue(Keys.SHOOTER).get().asMutable();
+    }
 }

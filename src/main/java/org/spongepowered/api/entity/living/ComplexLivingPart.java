@@ -31,13 +31,12 @@ import org.spongepowered.api.entity.Entity;
  * <p>Parts are usually created to have multiple bounding boxes associated
  * with a larger entity.</p>
  */
-public interface ComplexLivingPart extends Entity {
+public interface ComplexLivingPart<P extends ComplexLivingPart<P>> extends Entity {
 
     /**
      * Gets the associated parent of this part.
      *
      * @return The associated parent
      */
-    ComplexLiving getParent();
-
+    ComplexLiving<P> getParent();
 }

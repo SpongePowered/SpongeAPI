@@ -40,7 +40,7 @@ public interface EnderCrystal extends Explosive {
      * @return The target position of the beam
      */
     default Optional<Value.Mutable<Vector3i>> beamTarget() {
-        return this.getValue(Keys.BEAM_TARGET_POSITION.get()).map(Value::asMutable);
+        return this.getValue(Keys.BEAM_TARGET_POSITION).map(Value::asMutable);
     }
 
     /**
@@ -48,6 +48,6 @@ public interface EnderCrystal extends Explosive {
      * @return The value whether this crystal is showing a bottom "pedestal"
      */
     default Value.Mutable<Boolean> showBottom() {
-        return this.getValue(Keys.SHOW_BOTTOM.get()).get().asMutable();
+        return this.getValue(Keys.SHOW_BOTTOM).get().asMutable();
     }
 }

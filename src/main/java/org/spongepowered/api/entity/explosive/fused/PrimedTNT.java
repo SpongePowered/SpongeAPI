@@ -40,6 +40,6 @@ public interface PrimedTNT extends FusedExplosive {
      * @return The living entity that primed this tnt
      */
     default Optional<Value.Mutable<Living>> detonator() {
-        return this.getValue(Keys.DETONATOR.get()).map(Value::asMutable);
+        return this.getValue(Keys.DETONATOR).map(Value::asMutable);
     }
 }

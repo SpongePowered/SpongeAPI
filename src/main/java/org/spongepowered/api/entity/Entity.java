@@ -25,6 +25,7 @@
 package org.spongepowered.api.entity;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Keys;
@@ -183,6 +184,8 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
      *      couldn't be set as no safe location was found
      */
     default boolean setLocationAndRotationSafely(Location location, Vector3d rotation) {
+        checkNotNull(location);
+        checkNotNull(rotation);
         return Sponge.getTeleportHelper()
                 .getSafeLocation(location)
                 .map(safe -> this.setLocationAndRotation(safe, rotation))
@@ -206,6 +209,8 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
      *      couldn't be set as no safe location was found
      */
     default boolean setLocationAndRotationSafely(Location location, Vector3d rotation, EnumSet<RelativePositions> relativePositions) {
+        checkNotNull(location);
+        checkNotNull(rotation);
         return Sponge.getTeleportHelper()
                 .getSafeLocation(location)
                 .map(safe -> this.setLocationAndRotation(safe, rotation, relativePositions))
@@ -325,6 +330,7 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
      * @return The collection of nearby entities
      */
     default Collection<? extends Entity> getNearbyEntities(double distance) {
+        checkState(distance > 0, "Distance must be greater than 0!");
         return this.getWorld().getNearbyEntities(this.getLocation().getPosition(), distance);
     }
 
@@ -348,7 +354,8 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
      * @return {@code true} if this entity can see the provided entity
      */
     default boolean canSee(Entity entity) {
-        Optional<Boolean> optional = entity.get(Keys.VANISH);
+        checkNotNull(entity);
+        final Optional<Boolean> optional = entity.get(Keys.VANISH);
         return !optional.isPresent() || !optional.get();
     }
 

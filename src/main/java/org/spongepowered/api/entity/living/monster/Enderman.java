@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.entity.living.monster;
 
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Monster;
 import org.spongepowered.api.item.inventory.Carrier;
 
@@ -32,4 +34,11 @@ import org.spongepowered.api.item.inventory.Carrier;
  */
 public interface Enderman extends Monster, Carrier {
 
+    /**
+     * {@link Keys#IS_SCREAMING}.
+     * @return Whether the enderman is screaming
+     */
+    default Value.Mutable<Boolean> screaming() {
+        return this.getValue(Keys.IS_SCREAMING).get().asMutable();
+    }
 }

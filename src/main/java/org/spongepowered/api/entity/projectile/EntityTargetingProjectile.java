@@ -39,7 +39,7 @@ public interface EntityTargetingProjectile extends Projectile {
      * {@link Keys#TARGET_ENTITY}
      * @return The targeted entity, if available
      */
-    default Optional<Value<Entity>> targetEntity() {
-        return this.getValue(Keys.TARGET_ENTITY.get()).map(Value::asMutable);
+    default Optional<Value.Mutable<Entity>> targetEntity() {
+        return this.getValue(Keys.TARGET_ENTITY).map(Value::asMutable);
     }
 }

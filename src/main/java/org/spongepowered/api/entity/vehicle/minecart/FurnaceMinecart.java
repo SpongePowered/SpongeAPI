@@ -40,6 +40,6 @@ public interface FurnaceMinecart extends BlockOccupiedMinecart {
      * @return The duration of fuel remaining
      */
     default Value.Mutable<Duration> fuelDuration() {
-        return this.getValue(Keys.FURNACE_MINECART_FUEL_DURATION.get()).get().asMutable();
+        return this.getValue(Keys.FURNACE_MINECART_FUEL_DURATION).get().asMutable();
     }
 }

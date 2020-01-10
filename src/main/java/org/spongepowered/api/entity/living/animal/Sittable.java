@@ -38,6 +38,6 @@ public interface Sittable extends Entity {
      * @return Whether this entity is sitting
      */
     default Value.Mutable<Boolean> sitting() {
-        return this.getValue(Keys.IS_SITTING.get()).get().asMutable();
+        return this.getValue(Keys.IS_SITTING).get().asMutable();
     }
 }

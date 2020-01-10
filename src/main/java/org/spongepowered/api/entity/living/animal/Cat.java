@@ -30,6 +30,8 @@ import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.monster.Phantom;
 
+import java.util.Optional;
+
 /**
  * Represents a Cat, meow.
  */
@@ -41,7 +43,7 @@ public interface Cat extends TameableAnimal, Sittable {
      * @see org.spongepowered.api.data.type.CatTypes
      */
     default Value.Mutable<CatType> type() {
-        return this.getValue(Keys.CAT_TYPE.get()).get().asMutable();
+        return this.getValue(Keys.CAT_TYPE).get().asMutable();
     }
 
     /**
@@ -49,19 +51,18 @@ public interface Cat extends TameableAnimal, Sittable {
      * @return Whether this cat is lying down
      */
     default Value.Mutable<Boolean> lyingDown() {
-        return this.getValue(Keys.IS_LYING_DOWN.get()).get().asMutable();
+        return this.getValue(Keys.IS_LYING_DOWN).get().asMutable();
     }
 
     /**
      * {@link Keys#IS_RELAXED}
      *
-     * <p>In vanilla, a cat is relaxed if it's
-     * a cool cat or a scaredey cat.</p>
+     * <p>In vanilla, a cat is relaxed if it's a cool cat or a scaredey cat.</p>
      *
      * @return Whether this cat is relaxed
      */
     default Value.Mutable<Boolean> relaxed() {
-        return this.getValue(Keys.IS_RELAXED.get()).get().asMutable();
+        return this.getValue(Keys.IS_RELAXED).get().asMutable();
     }
 
     /**
@@ -69,7 +70,7 @@ public interface Cat extends TameableAnimal, Sittable {
      * @return The collar color
      */
     default Value.Mutable<DyeColor> collarColor() {
-        return this.getValue(Keys.DYE_COLOR.get()).get().asMutable();
+        return this.getValue(Keys.DYE_COLOR).get().asMutable();
     }
 
     /**
@@ -81,19 +82,19 @@ public interface Cat extends TameableAnimal, Sittable {
      * @return Whether this cat is purring
      */
     default Value.Mutable<Boolean> purring() {
-        return this.getValue(Keys.IS_PURRING.get()).get().asMutable();
+        return this.getValue(Keys.IS_PURRING).get().asMutable();
     }
 
     /**
      * {@link Keys#IS_BEGGING_FOR_FOOD}
      *
      * <p>In vanilla, a cat begs for food every so many ticks
-     * if {@link TameableAnimal#isTamed()} returns false.</p>
+     * if {@link TameableAnimal#tamer()} returns {@link Optional#isPresent()}.</p>
      *
      * @return Whether this cat is purring
      */
     default Value.Mutable<Boolean> beggingForFood() {
-        return this.getValue(Keys.IS_BEGGING_FOR_FOOD.get()).get().asMutable();
+        return this.getValue(Keys.IS_BEGGING_FOR_FOOD).get().asMutable();
     }
 
     /**
@@ -104,6 +105,6 @@ public interface Cat extends TameableAnimal, Sittable {
      * @return Whether this cat is purring
      */
     default Value.Mutable<Boolean> hissing() {
-        return this.getValue(Keys.IS_HISSING.get()).get().asMutable();
+        return this.getValue(Keys.IS_HISSING).get().asMutable();
     }
 }

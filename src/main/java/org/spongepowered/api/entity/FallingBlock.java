@@ -39,7 +39,7 @@ public interface FallingBlock extends Entity {
      * @return The blockstate
      */
     default Value.Mutable<BlockState> blockState() {
-        return getValue(Keys.BLOCK_STATE.get()).get().asMutable();
+        return getValue(Keys.BLOCK_STATE).get().asMutable();
     }
 
     /**
@@ -47,7 +47,7 @@ public interface FallingBlock extends Entity {
      * @return The rate of damage increase per block fallen
      */
     default Value.Mutable<Double> damagePerBlock() {
-        return getValue(Keys.DAMAGE_PER_BLOCK.get()).get().asMutable();
+        return getValue(Keys.DAMAGE_PER_BLOCK).get().asMutable();
     }
 
     /**
@@ -55,7 +55,7 @@ public interface FallingBlock extends Entity {
      * @return The maximum fall damage
      */
     default Value.Mutable<Double> maxFallDamage() {
-        return getValue(Keys.MAX_FALL_DAMAGE.get()).get().asMutable();
+        return getValue(Keys.MAX_FALL_DAMAGE).get().asMutable();
     }
 
     /**
@@ -63,7 +63,7 @@ public interface FallingBlock extends Entity {
      * @return Whether this can place a block on landing or not
      */
     default Value.Mutable<Boolean> placeAsBlock() {
-        return getValue(Keys.CAN_PLACE_AS_BLOCK.get()).get().asMutable();
+        return getValue(Keys.CAN_PLACE_AS_BLOCK).get().asMutable();
     }
 
     /**
@@ -71,7 +71,7 @@ public interface FallingBlock extends Entity {
      * @return Whether this will drop as an item or not
      */
     default Value.Mutable<Boolean> dropAsItem() {
-        return getValue(Keys.CAN_DROP_AS_ITEM.get()).get().asMutable();
+        return getValue(Keys.CAN_DROP_AS_ITEM).get().asMutable();
     }
 
     /**
@@ -79,7 +79,7 @@ public interface FallingBlock extends Entity {
      * @return The fall time
      */
     default Value.Mutable<Integer> fallTime() {
-        return getValue(Keys.FALL_TIME.get()).get().asMutable();
+        return getValue(Keys.FALL_TIME).get().asMutable();
     }
 
     /**
@@ -87,7 +87,7 @@ public interface FallingBlock extends Entity {
      * @return Whether this block will hurt entities on it's way down
      */
     default Value.Mutable<Boolean> hurtEntities() {
-        return getValue(Keys.CAN_HURT_ENTITIES.get()).get().asMutable();
+        return getValue(Keys.CAN_HURT_ENTITIES).get().asMutable();
     }
 
 }

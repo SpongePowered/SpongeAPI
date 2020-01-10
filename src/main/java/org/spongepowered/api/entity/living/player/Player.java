@@ -233,7 +233,7 @@ public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver,
      * @return The timestamp value when this player first played
      */
     default Value.Mutable<Instant> firstPlayed() {
-        return this.getValue(Keys.FIRST_DATE_PLAYED.get()).get().asMutable();
+        return this.getValue(Keys.FIRST_DATE_PLAYED).get().asMutable();
     }
 
     /**
@@ -241,7 +241,7 @@ public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver,
      * @return The last timestamp value when this player has played
      */
     default Value.Mutable<Instant> lastPlayed() {
-        return this.getValue(Keys.LAST_DATE_PLAYED.get()).get().asMutable();
+        return this.getValue(Keys.LAST_DATE_PLAYED).get().asMutable();
     }
 
     /**
@@ -259,7 +259,7 @@ public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver,
      * @return Whether this player is going to be ignored for sleeping to "reset" the day
      */
     default Value.Mutable<Boolean> sleepingIgnored() {
-        return this.getValue(Keys.IS_SLEEPING_IGNORED.get()).get().asMutable();
+        return this.getValue(Keys.IS_SLEEPING_IGNORED).get().asMutable();
     }
 
     /**
@@ -272,7 +272,7 @@ public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver,
     boolean respawnPlayer();
 
     default Optional<Value.Mutable<Entity>> spectatorTarget() {
-        return this.getValue(Keys.SPECTATOR_TARGET.get()).map(Value::asMutable);
+        return this.getValue(Keys.SPECTATOR_TARGET).map(Value::asMutable);
     }
 
     /**

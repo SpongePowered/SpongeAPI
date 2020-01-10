@@ -44,7 +44,7 @@ public interface Animal extends Ageable {
      * @return The breeder's unique id
      */
     default Optional<Value.Mutable<UUID>> breeder() {
-        return this.getValue(Keys.BREEDER.get()).map(Value::asMutable);
+        return this.getValue(Keys.BREEDER).map(Value::asMutable);
     }
 
     /**
@@ -52,7 +52,15 @@ public interface Animal extends Ageable {
      * @return The current breeding time
      */
     default Value.Mutable<Integer> breedTime() {
-        return this.getValue(Keys.BREED_TIME.get()).get().asMutable();
+        return this.getValue(Keys.BREED_TIME).get().asMutable();
+    }
+
+    /**
+     * {@link Keys#CAN_BREED}
+     * @return If animal can breed
+     */
+    default Value.Mutable<Boolean> canBreed() {
+        return this.getValue(Keys.CAN_BREED).get().asMutable();
     }
 
     /**
@@ -62,20 +70,6 @@ public interface Animal extends Ageable {
      * @return True if food, false if not
      */
     boolean isFood(ItemStack stack);
-
-    /**
-     * Determines if this animal can currently be bred. In vanilla, the {@link Animal#breedTime()} has to be &lt;= 0.
-     *
-     * @return True if can breed, false if not
-     */
-    boolean canBreed();
-
-    /**
-     * Determines if the animal is currently breeding. In vanilla, this is {@link Animal#breedTime()} &gt; 0.
-     *
-     * @return True if currently breeding, false if not
-     */
-    boolean isBreeding();
 
     /**
      * Determines if this animal can be bred with the provided animal. In vanilla, two animals can only be breed if they
@@ -91,9 +85,4 @@ public interface Animal extends Ageable {
      * @param animal The animal to breed with
      */
     void breedWith(Animal animal);
-
-    /**
-     * Instructs this animal to stop breeding.
-     */
-    void stopBreeding();
 }

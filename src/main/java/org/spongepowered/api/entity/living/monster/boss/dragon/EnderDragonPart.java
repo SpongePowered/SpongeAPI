@@ -29,7 +29,7 @@ import org.spongepowered.api.entity.living.ComplexLivingPart;
 /**
  * Represents a part of an {@link EnderDragon}.
  */
-public interface EnderDragonPart extends ComplexLivingPart {
+public interface EnderDragonPart extends ComplexLivingPart<EnderDragonPart> {
 
     @Override
     EnderDragon getParent();

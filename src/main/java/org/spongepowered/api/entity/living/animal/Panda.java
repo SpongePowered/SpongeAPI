@@ -128,10 +128,6 @@ public interface Panda extends Animal, Sittable {
     /**
      * {@link Keys#IS_FRIGHTENED}
      *
-     * <p>In vanilla, pandas that have a {@link Panda#knownGene()}
-     * of {@link PandaGenes#WORRIED} and are in a {@link World} whose {@link Weather} is currently a
-     * {@link Weathers#THUNDER_STORM} are considered "frightened".</p>
-     *
      * @return Whether this panda is frightened
      */
     default Value.Mutable<Boolean> frightened() {

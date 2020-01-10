@@ -39,7 +39,7 @@ public interface Sheep extends Animal {
      * @see org.spongepowered.api.data.type.DyeColors
      */
     default Value.Mutable<DyeColor> color() {
-        return this.getValue(Keys.DYE_COLOR.get()).get().asMutable();
+        return this.getValue(Keys.DYE_COLOR).get().asMutable();
     }
 
 }

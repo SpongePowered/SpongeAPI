@@ -42,7 +42,7 @@ import java.util.function.Supplier;
  * not normally present in Minecraft. It can be either empty, a {@link Type}
  * with an additional legacy formatting code or a composite.
  *
- * <p>Combined styles can be created using {@link TextStyles#of(TextStyle...)}
+ * <p>Combined styles can be created using {@link TextStyle#of(TextStyle...)}
  * or using one of the {@link #and(TextStyle...)}, {@link #andNot(TextStyle...)}
  * or {@link #negate()} method.</p>
  *

@@ -25,6 +25,8 @@
 package org.spongepowered.api.entity.living.monster.boss;
 
 import org.spongepowered.api.boss.ServerBossBar;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Hostile;
 
 /**
@@ -34,16 +36,10 @@ import org.spongepowered.api.entity.living.Hostile;
 public interface Boss extends Hostile {
 
     /**
-     * Gets the {@link ServerBossBar} this boss shows on the client.
-     *
+     * {@link Keys#BOSS_BAR}
      * @return The boss bar
      */
-    ServerBossBar getBossBar();
-
-    /**
-     * Sets the {@link ServerBossBar} this boss shows on the client.
-     *
-     * @param bossBar The boss bar
-     */
-    void setBossBar(ServerBossBar bossBar);
+    default Value.Mutable<ServerBossBar> bossBar() {
+        return this.getValue(Keys.BOSS_BAR).get().asMutable();
+    }
 }

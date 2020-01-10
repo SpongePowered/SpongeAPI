@@ -42,7 +42,7 @@ public interface Creeper extends Monster, FusedExplosive {
      * @return Whether this creeper is charged or not
      */
     default Value.Mutable<Boolean> charged() {
-        return this.getValue(Keys.IS_CHARGED.get()).get().asMutable();
+        return this.getValue(Keys.IS_CHARGED).get().asMutable();
     }
 
 }

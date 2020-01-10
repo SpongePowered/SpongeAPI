@@ -36,22 +36,18 @@ import org.spongepowered.api.entity.living.monster.boss.dragon.phase.DragonPhase
 import org.spongepowered.api.entity.living.monster.boss.dragon.phase.DragonPhaseManager;
 
 import java.util.Optional;
-import java.util.Set;
 
 /**
  * Represents an Ender Dragon.
  */
-public interface EnderDragon extends ComplexLiving, Boss, Monster, Aerial, Ranger {
-
-    @Override
-    Set<EnderDragonPart> getParts();
+public interface EnderDragon extends ComplexLiving<EnderDragonPart>, Boss, Monster, Aerial, Ranger {
 
     /**
      * {@link Keys#HEALING_CRYSTAL}
      * @return The current crystal healing this dragon
      */
     default Optional<Value.Mutable<EnderCrystal>> healingCrystal() {
-        return this.getValue(Keys.HEALING_CRYSTAL.get()).map(Value::asMutable);
+        return this.getValue(Keys.HEALING_CRYSTAL).map(Value::asMutable);
     }
 
     /**

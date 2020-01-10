@@ -28,6 +28,7 @@ import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.monster.Patroller;
 import org.spongepowered.api.raid.Raid;
+import org.spongepowered.api.raid.Wave;
 
 import java.util.Optional;
 
@@ -38,29 +39,22 @@ public interface Raider extends Patroller {
      * @return Whether this raider can join a raid
      */
     default Value.Mutable<Boolean> canJoinRaid() {
-        return this.getValue(Keys.CAN_JOIN_RAID.get()).get().asMutable();
+        return this.getValue(Keys.CAN_JOIN_RAID).get().asMutable();
     }
 
     /**
      * {@link Keys#RAID_WAVE}
-     * @return The raid wave number of this raider
+     * @return The raid wave of this raider
      */
-    default Optional<Value.Mutable<Integer>> raidWave() {
-        return this.getValue(Keys.RAID_WAVE.get()).map(Value::asMutable);
+    default Optional<Value.Immutable<Wave>> raidWave() {
+        return this.getValue(Keys.RAID_WAVE).map(Value::asImmutable);
     }
 
     /**
      * {@link Keys#IS_CELEBRATING}
      * @return Whether this raider is celebrating
      */
-    default Value.Mutable<Boolean> isCelebrating() {
-        return this.getValue(Keys.IS_CELEBRATING.get()).get().asMutable();
+    default Value.Mutable<Boolean> celebrating() {
+        return this.getValue(Keys.IS_CELEBRATING).get().asMutable();
     }
-
-    /**
-     * Gets the {@link Raid} this raider is taking part in.
-     *
-     * @return The raid or {@link Optional#empty()} if not
-     */
-    Optional<Raid> getRaid();
 }

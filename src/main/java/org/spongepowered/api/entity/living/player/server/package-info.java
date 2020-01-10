@@ -22,24 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.projectile;
-
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-
-/**
- * Represents a thrown potion.
- */
-public interface Potion extends Projectile {
-
-    /**
-     * {@link Keys#ITEM_STACK_SNAPSHOT}
-     * @return The potion item represented by this potion
-     */
-    default Value.Mutable<ItemStackSnapshot> item() {
-        return this.getValue(Keys.ITEM_STACK_SNAPSHOT).get().asMutable();
-    }
-
-}
+@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
+package org.spongepowered.api.entity.living.player.server;

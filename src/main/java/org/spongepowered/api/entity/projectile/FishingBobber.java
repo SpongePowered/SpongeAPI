@@ -41,6 +41,6 @@ public interface FishingBobber extends Projectile {
      * @return The targeted entity, if available
      */
     default Optional<Value.Mutable<Entity>> targetEntity() {
-        return this.getValue(Keys.TARGET_ENTITY.get()).map(Value::asMutable);
+        return this.getValue(Keys.TARGET_ENTITY).map(Value::asMutable);
     }
 }

@@ -25,6 +25,7 @@
 package org.spongepowered.api.data;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.advancement.Progressable;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
@@ -41,6 +42,7 @@ import org.spongepowered.api.block.entity.carrier.BrewingStand;
 import org.spongepowered.api.block.entity.carrier.CarrierBlockEntity;
 import org.spongepowered.api.block.entity.carrier.Hopper;
 import org.spongepowered.api.block.entity.carrier.furnace.FurnaceBlockEntity;
+import org.spongepowered.api.boss.ServerBossBar;
 import org.spongepowered.api.data.meta.PatternLayer;
 import org.spongepowered.api.data.type.ArtType;
 import org.spongepowered.api.data.type.BodyPart;
@@ -60,7 +62,9 @@ import org.spongepowered.api.data.type.MatterState;
 import org.spongepowered.api.data.type.MooshroomType;
 import org.spongepowered.api.data.type.NotePitch;
 import org.spongepowered.api.data.type.PandaGene;
+import org.spongepowered.api.data.type.PandaGenes;
 import org.spongepowered.api.data.type.ParrotType;
+import org.spongepowered.api.data.type.PhantomPhase;
 import org.spongepowered.api.data.type.PickupRule;
 import org.spongepowered.api.data.type.PortionType;
 import org.spongepowered.api.data.type.Profession;
@@ -139,6 +143,7 @@ import org.spongepowered.api.entity.living.monster.Enderman;
 import org.spongepowered.api.entity.living.monster.Endermite;
 import org.spongepowered.api.entity.living.monster.Patroller;
 import org.spongepowered.api.entity.living.monster.Phantom;
+import org.spongepowered.api.entity.living.monster.boss.Boss;
 import org.spongepowered.api.entity.living.monster.boss.Wither;
 import org.spongepowered.api.entity.living.monster.boss.dragon.EnderDragon;
 import org.spongepowered.api.entity.living.monster.guardian.Guardian;
@@ -161,6 +166,7 @@ import org.spongepowered.api.entity.projectile.DamagingProjectile;
 import org.spongepowered.api.entity.projectile.EyeOfEnder;
 import org.spongepowered.api.entity.projectile.FishingBobber;
 import org.spongepowered.api.entity.projectile.Potion;
+import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.entity.projectile.ShulkerBullet;
 import org.spongepowered.api.entity.projectile.arrow.ArrowEntity;
 import org.spongepowered.api.entity.projectile.explosive.FireworkRocket;
@@ -184,6 +190,8 @@ import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.item.potion.PotionType;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.profile.property.ProfileProperty;
+import org.spongepowered.api.projectile.source.ProjectileSource;
+import org.spongepowered.api.raid.Wave;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Axis;
@@ -192,8 +200,10 @@ import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.RespawnLocation;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
+import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.weather.Weather;
+import org.spongepowered.api.world.weather.Weathers;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
@@ -562,6 +572,11 @@ public final class Keys {
     public static final Supplier<Key<ListValue<Text>>> BOOK_PAGES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BOOK_PAGES");
 
     /**
+     * Represents the {@link Key} for the {@link ServerBossBar} displayed to the client by a {@link Boss}.
+     */
+    public static final Supplier<Key<Value<ServerBossBar>>> BOSS_BAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BOSS_BAR");
+
+    /**
      * Represents the {@link Key} for the {@link BlockType}s able to be broken
      * by an item.
      */
@@ -576,6 +591,12 @@ public final class Keys {
      * Represents the {@link Key} for the breed time of an {@link Animal}.
      */
     public static final Supplier<Key<Value<Integer>>> BREED_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BREED_TIME");
+
+    /**
+     * Represents the {@link Key} for if an {@link Animal} can breed. In Vanilla, animals can breed if their {@link Keys#BREED_TIME} is less than
+     * or equal to 0.
+     */
+    public static final Supplier<Key<Value<Boolean>>> CAN_BREED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CAN_BREED");
 
     /**
      * Represents the {@link Key} for whether a {@link FallingBlock} can drop
@@ -1158,14 +1179,14 @@ public final class Keys {
     public static final Supplier<Key<Value<Hinge>>> HINGE_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HINGE_POSITION");
 
     /**
-     * Represents the {@link Key} for the style of a {@link Horse}.
-     */
-    public static final Supplier<Key<Value<HorseStyle>>> HORSE_STYLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HORSE_STYLE");
-
-    /**
      * Represents the {@link Key} for the color of a {@link Horse}.
      */
     public static final Supplier<Key<Value<HorseColor>>> HORSE_COLOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HORSE_COLOR");
+
+    /**
+     * Represents the {@link Key} for the style of a {@link Horse}.
+     */
+    public static final Supplier<Key<Value<HorseStyle>>> HORSE_STYLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HORSE_STYLE");
 
     /**
      * Represents the {@link Key} for whether an {@link Item} will not despawn
@@ -1247,6 +1268,11 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> IS_ANGRY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_ANGRY");
 
     /**
+     * Represents the {@link Key} for if a {@link Living} is begging for food. Usually cats or tamed wolves.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_BEGGING_FOR_FOOD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_BEGGING_FOR_FOOD");
+
+    /**
      * Represents the {@link Key} for if {@link Raider}s are currently celebrating.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_CELEBRATING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_CELEBRATING");
@@ -1277,6 +1303,11 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> IS_DEFENDING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_DEFENDING");
 
     /**
+     * Represents the {@link Key} for whether a {@link Living} is eating.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_EATING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_EATING");
+
+    /**
      * Represents the {@link Key} for whether a {@link Player} is flying with an
      * {@link ItemTypes#ELYTRA}.
      */
@@ -1298,6 +1329,15 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> IS_FLYING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_FLYING");
 
     /**
+     * Represents the {@link Key} for whether a {@link Living} is frightened.
+     *
+     * <p>In vanilla, pandas that have a {@link Panda#knownGene()}
+     * of {@link PandaGenes#WORRIED} and are in a {@link World} whose {@link Weather} is currently a
+     * {@link Weathers#THUNDER_STORM} are considered "frightened".</p>
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_FRIGHTENED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_FRIGHTENED");
+
+    /**
      * Represents the {@link Key} for if a {@link WeatherEffect} is harmful to other {@link Entity entities}.
      *
      * <p>
@@ -1305,6 +1345,16 @@ public final class Keys {
      * </p>
      */
     public static final Supplier<Key<Value<Boolean>>> IS_HARMFUL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_WEATHER_EFFECT");
+
+    /**
+     * Represents the {@link Key} for if a {@link Cat} is hissing.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_HISSING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_HISSING");
+
+    /**
+     * Represents the {@link Key} for whether something is immobilized.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_IMMOBILIZED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_IMMOBILIZED");
 
     /**
      * Represents the {@link Key} for if a {@link Fox} is currently interested in something.
@@ -1354,24 +1404,19 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> IS_POUNCING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_POUNCING");
 
     /**
+     * Represents the {@link Key} for if a {@link Cat} is purring.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_PURRING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_PURRING");
+
+    /**
      * Represents the {@link Key} for if a {@link Cat} is relaxed.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_RELAXED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_RELAXED");
 
     /**
-     * Represents the {@link Key} for if a {@link Living} is begging for food. Usually cats or tamed wolves.
+     * Represents the {@link Key} for whether a living entity is roaring. Usually ravagers.
      */
-    public static final Supplier<Key<Value<Boolean>>> IS_BEGGING_FOR_FOOD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_BEGGING_FOR_FOOD");
-
-    /**
-     * Represents the {@link Key} for if a {@link Cat} is hissing.
-     */
-    public static final Supplier<Key<Value<Boolean>>> IS_HISSING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_HISSING");
-
-    /**
-     * Represents the {@link Key} for if a {@link Cat} is purring.
-     */
-    public static final Supplier<Key<Value<Boolean>>> IS_PURRING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_PURRING");
+    public static final Supplier<Key<Value<Boolean>>> IS_ROARING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_ROARING");
 
     /**
      * Represents the {@link Key} for if a {@link Panda} is rolling around.
@@ -1446,6 +1491,11 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> IS_STANDING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_STANDING");
 
     /**
+     * Represents the {@link Key} for whether an entity is stunned.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_STUNNED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_STUNNED");
+
+    /**
      * Represents the {@link Key} for if a {@link TameableAnimal} is currently tamed
      */
     public static final Supplier<Key<Value<Boolean>>> IS_TAMED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_TAMED");
@@ -1467,6 +1517,11 @@ public final class Keys {
      * {@link #ITEM_DURABILITY} from changing.</p>
      */
     public static final Supplier<Key<Value<Boolean>>> IS_UNBREAKABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_UNBREAKABLE");
+
+    /**
+     * Represents the {@link Key} for whether a {@link Panda} is unhappy.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_UNHAPPY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_UNHAPPY");
 
     /**
      * Represents the {@link Key} for whether a {@link Wolf}, a
@@ -1531,6 +1586,11 @@ public final class Keys {
      * a {@link CommandBlock}.
      */
     public static final Supplier<Key<Value<Text>>> LAST_COMMAND_OUTPUT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LAST_COMMAND_OUTPUT");
+
+    /**
+     * Represents the {@link Key} for the last damage received by a {@link Living}.
+     */
+    public static final Supplier<Key<Value<Double>>> LAST_DAMAGE_RECEIVED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LAST_DAMAGE_RECEIVED");
 
     /**
      * Represents the {@link Key} for the last time a {@link User} has been
@@ -1761,6 +1821,11 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> PERSISTENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PERSISTENT");
 
     /**
+     * Represents the {@link Key} for the {@link PhantomPhase phase} of a {@link Phantom}.
+     */
+    public static final Supplier<Key<Value<PhantomPhase>>> PHANTOM_PHASE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PHANTOM_PHASE");
+
+    /**
      * Represents the {@link Key} of the size of a {@link Phantom}. In vanilla, this ranges between 0 and 64.
      */
     public static final Supplier<Key<BoundedValue<Integer>>> PHANTOM_SIZE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class,"PHANTOM_SIZE");
@@ -1859,7 +1924,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for the wave number of a raid.
      */
-    public static final Supplier<Key<Value<Integer>>> RAID_WAVE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "RAID_WAVE");
+    public static final Supplier<Key<Value<Wave>>> RAID_WAVE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "RAID_WAVE");
 
     /**
      * Represents the {@link Key} for representing the {@link RailDirection}
@@ -1937,6 +2002,11 @@ public final class Keys {
      * Represents the {@link Key} for a {@link Fox fox's} second trusted {@link UUID}, usually a {@link Player}.
      */
     public static final Supplier<Key<Value<UUID>>> SECOND_TRUSTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SECOND_TRUSTED");
+
+    /**
+     * Represents the {@link Key} for the shooter of a {@link Projectile}.
+     */
+    public static final Supplier<Key<Value<ProjectileSource>>> SHOOTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SHOOTER");
 
     /**
      * Represents the {@link Key} for representing the "should drop" state
@@ -2247,36 +2317,6 @@ public final class Keys {
      * Represents the {@link Key} for the {@link Vector3i position} where a {@link Turtle} travels to when it is not currently laying an egg.
      */
     public static final Supplier<Key<Value<Vector3i>>> TURTLE_TRAVELING_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TURTLE_TRAVELING_POSITION");
-
-    /**
-     * Represents the {@link Key} for whether a {@link Panda} is unhappy.
-     */
-    public static final Supplier<Key<Value<Boolean>>> IS_UNHAPPY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_UNHAPPY");
-
-    /**
-     * Represents the {@link Key} for whether something is immobilized.
-     */
-    public static final Supplier<Key<Value<Boolean>>> IS_IMMOBILIZED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_IMMOBILIZED");
-
-    /**
-     * Represents the {@link Key} for whether a living entity is roaring. Usually ravagers.
-     */
-    public static final Supplier<Key<Value<Boolean>>> IS_ROARING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_ROARING");
-
-    /**
-     * Represents the {@link Key} for whether an entity is stunned.
-     */
-    public static final Supplier<Key<Value<Boolean>>> IS_STUNNED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_STUNNED");
-
-    /**
-     * Represents the {@link Key} for whether a {@link Living} is eating.
-     */
-    public static final Supplier<Key<Value<Boolean>>> IS_EATING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_EATING");
-
-    /**
-     * Represents the {@link Key} for whether a {@link Living} is frightened.
-     */
-    public static final Supplier<Key<Value<Boolean>>> IS_FRIGHTENED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_FRIGHTENED");
 
     /**
      * Represents the {@link Key} for the time a {@link Panda} has been unhappy (in ticks)

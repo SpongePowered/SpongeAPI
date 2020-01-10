@@ -37,7 +37,7 @@ public interface ZombiePigman extends ZombieEntity {
      * @return The anger level, decays over time
      */
     default BoundedValue.Mutable<Integer> angerLevel() {
-        return this.getValue(Keys.ANGER_LEVEL.get()).get().asMutable();
+        return this.getValue(Keys.ANGER_LEVEL).get().asMutable();
     }
 
 }
