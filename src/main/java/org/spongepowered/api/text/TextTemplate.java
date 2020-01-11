@@ -33,6 +33,7 @@ import org.spongepowered.api.util.CopyableBuilder;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 /**
  * Represents a re-usable template that produces a formatted
@@ -287,6 +288,17 @@ public interface TextTemplate extends Iterable<Object>, TextRepresentable {
             Builder format(TextFormat format);
 
             /**
+             * Sets the "base" format of the Arg. This acts as a default format
+             * when no formatting data is provided by the parameter.
+             *
+             * @param format Base format of Arg
+             * @return This builder
+             */
+            default Builder format(Supplier<? extends TextFormat> format) {
+                return format(format.get());
+            }
+
+            /**
              * Sets the "base" color of the Arg. This acts as a default color
              * when no color data is provided by the parameter.
              *
@@ -296,6 +308,17 @@ public interface TextTemplate extends Iterable<Object>, TextRepresentable {
             Builder color(TextColor color);
 
             /**
+             * Sets the "base" color of the Arg. This acts as a default color
+             * when no color data is provided by the parameter.
+             *
+             * @param color Base color of Arg
+             * @return This builder
+             */
+            default Builder color(Supplier<? extends TextColor> color) {
+                return color(color.get());
+            }
+
+            /**
              * Sets the "base" style of the Arg. This acts as a default style
              * when no style data is provided by the parameter.
              *
@@ -303,6 +326,17 @@ public interface TextTemplate extends Iterable<Object>, TextRepresentable {
              * @return This builder
              */
             Builder style(TextStyle style);
+
+            /**
+             * Sets the "base" style of the Arg. This acts as a default style
+             * when no style data is provided by the parameter.
+             *
+             * @param style Base style of Arg
+             * @return This builder
+             */
+            default Builder style(Supplier<? extends TextStyle> style) {
+                return style(style.get());
+            }
 
             /**
              * Builds a new {@link Arg}. Note that it is not necessary to call

@@ -97,7 +97,7 @@ public final class EventContextKeys {
      * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
      * the block event without relying on existing in the {@link Cause} stack.
      */
-    public static final EventContextKey<ChangeBlockEvent.Break> BREAK_EVENT = DummyObjectProvider.createFor(EventContextKey.class, "BREAK_EVENT");
+    public static final Supplier<EventContextKey<ChangeBlockEvent.Break>> BREAK_EVENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "BREAK_EVENT");
 
     /**
      * Represents the creator of an {@link Entity}.
@@ -113,7 +113,7 @@ public final class EventContextKeys {
      * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
      * the block event without relying on existing in the {@link Cause} stack.
      */
-    public static final EventContextKey<ChangeBlockEvent.Decay> DECAY_EVENT = DummyObjectProvider.createFor(EventContextKey.class, "DECAY_EVENT");
+    public static final Supplier<EventContextKey<ChangeBlockEvent.Decay>> DECAY_EVENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "DECAY_EVENT");
 
     /**
      * Used when a {@link Player} dismounts from an {@link Entity}.
@@ -150,7 +150,7 @@ public final class EventContextKeys {
      * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
      * the block event without relying on existing in the {@link Cause} stack.
      */
-    public static final EventContextKey<ChangeBlockEvent.Grow> GROW_EVENT = DummyObjectProvider.createFor(EventContextKey.class, "GROW_EVENT");
+    public static final Supplier<EventContextKey<ChangeBlockEvent.Grow>> GROW_EVENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "GROW_EVENT");
 
     /**
      * Used when an {@link Entity} ignites causing an {@link Explosion}.
@@ -198,7 +198,7 @@ public final class EventContextKeys {
      * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
      * the block event without relying on existing in the {@link Cause} stack.
      */
-    public static final EventContextKey<ChangeBlockEvent.Modify> MODIFY_EVENT = DummyObjectProvider.createFor(EventContextKey.class, "MODIFY_EVENT");
+    public static final Supplier<EventContextKey<ChangeBlockEvent.Modify>> MODIFY_EVENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "MODIFY_EVENT");
 
     /**
      * Represents the source {@link BlockSnapshot} of a block notification.
@@ -229,7 +229,7 @@ public final class EventContextKeys {
      * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
      * the block event without relying on existing in the {@link Cause} stack.
      */
-    public static final EventContextKey<ChangeBlockEvent.Place> PLACE_EVENT = DummyObjectProvider.createFor(EventContextKey.class, "PLACE_EVENT");
+    public static final Supplier<EventContextKey<ChangeBlockEvent.Place>> PLACE_EVENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "PLACE_EVENT");
 
     /**
      * Represents a {@link Player}.

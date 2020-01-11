@@ -46,6 +46,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Supplier;
 import java.util.regex.Pattern;
 
 /**
@@ -656,6 +657,17 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
         Builder format(TextFormat format);
 
         /**
+         * Sets the {@link TextFormat} of this text.
+         *
+         * @param format The new text format for this text
+         * @return The text builder
+         * @see Text#getFormat()
+         */
+        default Builder format(Supplier<? extends TextFormat> format) {
+            return format(format.get());
+        }
+
+        /**
          * Returns the current color of the {@link Text} in this builder.
          *
          * @return The current color
@@ -671,6 +683,18 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
          * @see Text#getColor()
          */
         Builder color(TextColor color);
+
+
+        /**
+         * Sets the {@link TextColor} of this text.
+         *
+         * @param color The new text color for this text
+         * @return This text builder
+         * @see Text#getColor()
+         */
+        default Builder color(Supplier<? extends TextColor> color) {
+            return color(color.get());
+        }
 
         /**
          * Returns the current style of the {@link Text} in this builder.
@@ -690,7 +714,25 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
          * @see Text#getStyle()
          */
         // TODO: Make sure this is the correct behaviour
-        Builder style(TextStyle... styles) ;
+        Builder style(TextStyle... styles);
+
+        /**
+         * Sets the text styles of this text. This will construct a composite
+         * {@link TextStyle} of the current style and the specified styles first
+         * and set it to the text.
+         *
+         * @param styles The text styles to apply
+         * @return This text builder
+         * @see Text#getStyle()
+         */
+        // TODO: Make sure this is the correct behaviour
+        default Builder style(Supplier<? extends TextStyle>... styles) {
+            Builder builder = this;
+            for (Supplier<? extends TextStyle> style : styles) {
+                builder = builder.style(style.get());
+            }
+            return builder;
+        }
 
         /**
          * Returns the current {@link ClickAction} of this builder.

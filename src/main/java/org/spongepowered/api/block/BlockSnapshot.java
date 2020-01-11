@@ -40,6 +40,7 @@ import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Optional;
 import java.util.UUID;
+import java.util.function.Supplier;
 
 /**
  * An immutable representation of a {@link BlockState} and any extra data that
@@ -51,7 +52,11 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
      * Represents a {@link BlockSnapshot} with the default state of
      * {@link BlockTypes#AIR} and a {@link Location} that cannot be determined.
      */
-    BlockSnapshot NONE = DummyObjectProvider.createFor(BlockSnapshot.class, "NONE");
+    Supplier<BlockSnapshot> NONE = BlockSnapshot::empty;
+
+    static BlockSnapshot empty() {
+        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class).empty();
+    }
 
     /**
      * Creates a {@link Builder} to get {@link BlockSnapshot}s.
@@ -197,5 +202,7 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
          * @return This builder, for chaining
          */
         Builder notifier(UUID uuid);
+
+        BlockSnapshot empty();
     }
 }

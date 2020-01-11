@@ -37,6 +37,7 @@ import org.spongepowered.api.text.translation.Translation;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.function.Supplier;
 
 /**
  * Represents a {@link Text} containing a {@link Translation} identifier that
@@ -119,10 +120,29 @@ public interface TranslatableText extends Text {
         Builder format(TextFormat format);
 
         @Override
+        default Builder format(Supplier<? extends TextFormat> format) {
+            return format(format.get());
+        }
+
+        @Override
         Builder color(TextColor color);
 
         @Override
+        default Builder color(Supplier<? extends TextColor> color) {
+            return color(color.get());
+        }
+
+        @Override
         Builder style(TextStyle... styles);
+
+        @Override
+        default Builder style(Supplier<? extends TextStyle>... styles) {
+            Builder builder = this;
+            for (Supplier<? extends TextStyle> style : styles) {
+                builder = builder.style(style.get());
+            }
+            return builder;
+        }
 
         @Override
         Builder onClick(@Nullable ClickAction<?> clickAction);

@@ -26,6 +26,7 @@ package co.aikar.timings;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
@@ -34,8 +35,6 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
  * Utility class for creating and configuring timings.
  */
 public final class Timings {
-
-    private static final TimingsFactory factory = DummyObjectProvider.createFor(TimingsFactory.class, "factory");
 
     private Timings() {
     }
@@ -48,7 +47,7 @@ public final class Timings {
      * @return A {@link Timing} instance
      */
     public static Timing of(PluginContainer plugin, String name) {
-        return factory.of(checkNotNull(plugin, "plugin"), checkNotNull(name, "name"), null);
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).of(checkNotNull(plugin, "plugin"), checkNotNull(name, "name"), null);
     }
 
     /**
@@ -65,7 +64,7 @@ public final class Timings {
      * @return A {@link Timing} instance
      */
     public static Timing of(PluginContainer plugin, String name, Timing groupHandler) {
-        return factory.of(checkNotNull(plugin, "plugin"), checkNotNull(name, "name"), checkNotNull(groupHandler, "groupHandler"));
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).of(checkNotNull(plugin, "plugin"), checkNotNull(name, "name"), checkNotNull(groupHandler, "groupHandler"));
     }
 
     /**
@@ -116,7 +115,7 @@ public final class Timings {
      * @return Enabled or not
      */
     public static boolean isTimingsEnabled() {
-        return factory.isTimingsEnabled();
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).isTimingsEnabled();
     }
 
     /**
@@ -126,7 +125,7 @@ public final class Timings {
      * @param enabled Should timings be reported
      */
     public static void setTimingsEnabled(boolean enabled) {
-        factory.setTimingsEnabled(enabled);
+        Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).setTimingsEnabled(enabled);
     }
 
     /**
@@ -136,7 +135,7 @@ public final class Timings {
      * @return Enabled or not
      */
     public static boolean isVerboseTimingsEnabled() {
-        return factory.isVerboseTimingsEnabled();
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).isVerboseTimingsEnabled();
     }
 
     /**
@@ -147,7 +146,7 @@ public final class Timings {
      * @param enabled Should high-frequency timings be reported
      */
     public static void setVerboseTimingsEnabled(boolean enabled) {
-        factory.setVerboseTimingsEnabled(enabled);
+        Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).setVerboseTimingsEnabled(enabled);
     }
 
     /**
@@ -156,7 +155,7 @@ public final class Timings {
      * @return Interval in ticks
      */
     public static int getHistoryInterval() {
-        return factory.getHistoryInterval();
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).getHistoryInterval();
     }
 
     /**
@@ -168,7 +167,7 @@ public final class Timings {
      * @param interval Interval in ticks
      */
     public static void setHistoryInterval(int interval) {
-        factory.setHistoryInterval(interval);
+        Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).setHistoryInterval(interval);
     }
 
     /**
@@ -177,7 +176,7 @@ public final class Timings {
      * @return Duration in ticks
      */
     public static int getHistoryLength() {
-        return factory.getHistoryLength();
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).getHistoryLength();
     }
 
     /**
@@ -192,14 +191,14 @@ public final class Timings {
      * @param length Duration in ticks
      */
     public static void setHistoryLength(int length) {
-        factory.setHistoryLength(length);
+        Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).setHistoryLength(length);
     }
 
     /**
      * Resets all timing data.
      */
     public static void reset() {
-        factory.reset();
+        Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).reset();
     }
 
     /**
@@ -209,7 +208,7 @@ public final class Timings {
      * @param channel The channel to send report to
      */
     public static void generateReport(MessageChannel channel) {
-        factory.generateReport(channel);
+        Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).generateReport(channel);
     }
 
 }

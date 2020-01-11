@@ -40,7 +40,7 @@ import org.spongepowered.api.world.Location;
  * {@link Location}.
  *
  * <p>Note: Any interaction that occurs within {@link BlockTypes#AIR} where the
- * {@link Location} is not known, will contain a {@link BlockSnapshot#NONE}.</p>
+ * {@link Location} is not known, will contain a {@link BlockSnapshot#empty()}.</p>
  */
 public interface InteractBlockEvent extends InteractEvent {
 
