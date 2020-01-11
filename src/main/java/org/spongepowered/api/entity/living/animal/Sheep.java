@@ -42,4 +42,12 @@ public interface Sheep extends Animal {
         return this.requireValue(Keys.DYE_COLOR).asMutable();
     }
 
+    /**
+     * {@link Keys#IS_SHEARED}
+     * @return Whether this sheep is sheared.
+     */
+    default Value.Mutable<Boolean> sheared() {
+        return this.requireValue(Keys.IS_SHEARED).asMutable();
+    }
+
 }

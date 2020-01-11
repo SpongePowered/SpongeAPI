@@ -143,6 +143,7 @@ import org.spongepowered.api.entity.living.monster.Enderman;
 import org.spongepowered.api.entity.living.monster.Endermite;
 import org.spongepowered.api.entity.living.monster.Patroller;
 import org.spongepowered.api.entity.living.monster.Phantom;
+import org.spongepowered.api.entity.living.monster.Vex;
 import org.spongepowered.api.entity.living.monster.boss.Boss;
 import org.spongepowered.api.entity.living.monster.boss.Wither;
 import org.spongepowered.api.entity.living.monster.boss.dragon.EnderDragon;
@@ -2382,6 +2383,18 @@ public final class Keys {
      * Represents the {@link Key} for the velocity of an {@link Entity}.
      */
     public static final Supplier<Key<Value<Vector3d>>> VELOCITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "VELOCITY");
+
+    /**
+     * Represents the {@link Key} for amount of ticks till a {@link Vex} starts
+     * taking damage due to living too long.
+     *
+     * <p>When this value hits 0 or lower, the Vex will receive damage and
+     * then the value will set back to 20 until the Vex dies.</p>
+     *
+     * <p>If the Vex was summoned by a player, this value will be pegged at 0
+     * and the Vex will not take any damage.</p>
+     */
+    public static final Supplier<Key<Value<Integer>>> VEX_LIFE_TICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "VEX_LIFE_TICKS");
 
     /**
      * Represents the {@link Key} for the type of a {@link Villager} or {@link ZombieVillager}.
