@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.block.entity.carrier.furnace;
 
-import org.spongepowered.api.block.entity.carrier.CarrierBlockEntity;
+import org.spongepowered.api.block.entity.carrier.NameableCarrierBlockEntity;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.item.recipe.Recipe;
@@ -32,7 +32,7 @@ import org.spongepowered.api.item.recipe.Recipe;
 /**
  * Represents the types of furnaces in Vanilla minecraft.
  */
-public interface FurnaceBlockEntity extends CarrierBlockEntity {
+public interface FurnaceBlockEntity extends NameableCarrierBlockEntity {
 
     /**
      * Attempts to process the {@link Recipe} for results.

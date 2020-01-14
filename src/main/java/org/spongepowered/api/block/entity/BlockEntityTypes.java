@@ -87,11 +87,11 @@ public final class BlockEntityTypes {
 
     public static final Supplier<BlockEntityType> PISTON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "PISTON");
 
-    public static final Supplier<BlockEntityType> PLAYER_HEAD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "PLAYER_HEAD");
-
     public static final Supplier<BlockEntityType> SHULKER_BOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "SHULKER_BOX");
 
     public static final Supplier<BlockEntityType> SIGN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "SIGN");
+
+    public static final Supplier<BlockEntityType> SKULL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "SKULL");
 
     public static final Supplier<BlockEntityType> SMOKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "SMOKER");
 

@@ -22,24 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.entity;
+package org.spongepowered.api.block.entity.carrier;
 
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.profile.GameProfile;
+import org.spongepowered.api.block.entity.NameableBlockEntity;
 
 /**
- * Represents a player head.
+ * Represents a {@link CarrierBlockEntity} which may have a display name.
  */
-public interface PlayerHead extends BlockEntity {
-
-    /**
-     * Gets the current represented player {@link GameProfile} for this {@link PlayerHead}.
-     *
-     * @return The current represented player value
-     */
-    default Value.Mutable<GameProfile> representedPlayer() {
-        return this.requireValue(Keys.REPRESENTED_PLAYER).asMutable();
-    }
-
+public interface NameableCarrierBlockEntity extends CarrierBlockEntity, NameableBlockEntity {
 }

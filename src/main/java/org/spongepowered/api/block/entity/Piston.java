@@ -24,6 +24,10 @@
  */
 package org.spongepowered.api.block.entity;
 
+import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
+
 /**
  * Represents a piston moving in the world.
  *
@@ -33,4 +37,19 @@ package org.spongepowered.api.block.entity;
  */
 public interface Piston extends BlockEntity {
 
+    /**
+     * {@link Keys#BLOCK_STATE}
+     * @return The BlockState representing the block being pushed.
+     */
+    default Value.Mutable<BlockState> blockState() {
+        return this.requireValue(Keys.BLOCK_STATE).asMutable();
+    }
+
+    /**
+     * {@link Keys#EXTENDED}
+     * @return Whether this piston is extending or retracting.
+     */
+    default Value.Mutable<Boolean> extending() {
+        return this.requireValue(Keys.EXTENDED).asMutable();
+    }
 }

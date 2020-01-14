@@ -25,7 +25,6 @@
 package org.spongepowered.api.data;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.advancement.Progressable;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
@@ -33,6 +32,8 @@ import org.spongepowered.api.block.entity.Banner;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.block.entity.CommandBlock;
 import org.spongepowered.api.block.entity.EndGateway;
+import org.spongepowered.api.block.entity.Jukebox;
+import org.spongepowered.api.block.entity.Lectern;
 import org.spongepowered.api.block.entity.MobSpawner;
 import org.spongepowered.api.block.entity.Piston;
 import org.spongepowered.api.block.entity.Sign;
@@ -49,7 +50,7 @@ import org.spongepowered.api.data.type.BodyPart;
 import org.spongepowered.api.data.type.BodyParts;
 import org.spongepowered.api.data.type.CatType;
 import org.spongepowered.api.data.type.ChestAttachmentType;
-import org.spongepowered.api.data.type.ComparatorType;
+import org.spongepowered.api.data.type.ComparatorMode;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.type.FoxType;
 import org.spongepowered.api.data.type.HandPreference;
@@ -66,6 +67,7 @@ import org.spongepowered.api.data.type.PandaGenes;
 import org.spongepowered.api.data.type.ParrotType;
 import org.spongepowered.api.data.type.PhantomPhase;
 import org.spongepowered.api.data.type.PickupRule;
+import org.spongepowered.api.data.type.PistonType;
 import org.spongepowered.api.data.type.PortionType;
 import org.spongepowered.api.data.type.Profession;
 import org.spongepowered.api.data.type.RabbitType;
@@ -594,6 +596,18 @@ public final class Keys {
     public static final Supplier<Key<Value<Integer>>> BREED_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BREED_TIME");
 
     /**
+     * Represents the {@link Key} for the amount of fuel left in a
+     * {@link BrewingStand}.
+     *
+     * <p>One {@link ItemTypes#BLAZE_POWDER} adds 20 fuel to the brewing
+     * stand.</p>
+     *
+     * <p>The fuel value corresponds with the number of batches of potions that
+     * can be brewed.</p>
+     */
+    public static final Supplier<Key<BoundedValue<Integer>>> BREWING_STAND_FUEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BREWING_STAND_FUEL");
+
+    /**
      * Represents the {@link Key} for if an {@link Animal} can breed. In Vanilla, animals can breed if their {@link Keys#BREED_TIME} is less than
      * or equal to 0.
      */
@@ -608,8 +622,8 @@ public final class Keys {
     /**
      * Represents the {@link Key} for whether a {@link Humanoid} can fly.
      *
-     * <p>For a {@link Player} this means he is able to toggle flight mode by
-     * double-tapping his jump button.</p>
+     * <p>For a {@link Player} this means they are able to toggle flight mode
+     * by double-tapping the jump button.</p>
      */
     public static final Supplier<Key<Value<Boolean>>> CAN_FLY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CAN_FLY");
 
@@ -672,10 +686,10 @@ public final class Keys {
     public static final Supplier<Key<Value<String>>> COMMAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "COMMAND");
 
     /**
-     * Represents the {@link Key} for representing the {@link ComparatorType}
+     * Represents the {@link Key} for representing the {@link ComparatorMode}
      * of a {@link BlockState}.
      */
-    public static final Supplier<Key<Value<ComparatorType>>> COMPARATOR_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "COMPARATOR_TYPE");
+    public static final Supplier<Key<Value<ComparatorMode>>> COMPARATOR_MODE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "COMPARATOR_MODE");
 
     /**
      * Represents the {@link Key} for representing the connected directions
@@ -1055,6 +1069,13 @@ public final class Keys {
      * has.
      */
     public static final Supplier<Key<Value<GameMode>>> GAME_MODE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "GAME_MODE");
+
+    /**
+     * Represents the {@link Key} for the player represented by a
+     * {@link BlockTypes#PLAYER_HEAD} (and {@link BlockTypes#PLAYER_WALL_HEAD})
+     * block or a {@link ItemTypes#PLAYER_HEAD} item stack.
+     */
+    public static final Supplier<Key<Value<GameProfile>>> GAME_PROFILE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "GAME_PROFILE");
 
     /**
      * Represents the {@link Key} for the generation of a
@@ -1559,7 +1580,9 @@ public final class Keys {
     public static final Supplier<Key<ListValue<Text>>> ITEM_LORE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ITEM_LORE");
 
     /**
-     * Represents the {@link Key} for the {@link ItemStackSnapshot item} in an {@link Item}, {@link ItemFrame}, or {@link Potion}.
+     * Represents the {@link Key} for the {@link ItemStackSnapshot item} in an
+     * {@link Item}, {@link ItemFrame}, {@link Jukebox}, {@link Lectern} or
+     * {@link Potion}.
      */
     public static final Supplier<Key<Value<ItemStackSnapshot>>> ITEM_STACK_SNAPSHOT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ITEM_STACK_SNAPSHOT");
 
@@ -1639,7 +1662,8 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the state that something is "lit",
-     * for example a {@link BlockTypes#FURNACE} or {@link BlockTypes#REDSTONE_TORCH}.
+     * for example a {@link BlockTypes#FURNACE}, {@link BlockTypes#CAMPFIRE}
+     * or {@link BlockTypes#REDSTONE_TORCH}.
      */
     public static final Supplier<Key<Value<Boolean>>> LIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LIT");
 
@@ -1843,6 +1867,11 @@ public final class Keys {
     public static final Supplier<Key<Value<PickupRule>>> PICKUP_RULE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PICKUP_RULE");
 
     /**
+     * Represents the {@link Key} for the piston type of an {@link Piston}.
+     */
+    public static final Supplier<Key<Value<PistonType>>> PISTON_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PISTON_TYPE");
+
+    /**
      * Represents the {@link Key} for which block types an {@link ItemStack}
      * may be placed on.
      */
@@ -1945,13 +1974,6 @@ public final class Keys {
      * <p>If nothing is being brewed, the remaining brew time will be 0.</p>
      */
     public static final Supplier<Key<BoundedValue<Integer>>> REMAINING_BREW_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REMAINING_BREW_TIME");
-
-    /**
-     * Represents the {@link Key} for the player represented by a
-     * {@link BlockTypes#PLAYER_HEAD} (and {@link BlockTypes#PLAYER_WALL_HEAD})
-     * block or a {@link ItemTypes#PLAYER_HEAD} item stack.
-     */
-    public static final Supplier<Key<Value<GameProfile>>> REPRESENTED_PLAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REPRESENTED_PLAYER");
 
     /**
      * Represents the {@link Key} for the spawn locations a {@link Player}
@@ -2144,17 +2166,19 @@ public final class Keys {
     public static final Supplier<Key<ListValue<Enchantment>>> STORED_ENCHANTMENTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STORED_ENCHANTMENTS");
 
     /**
-     * Represents the {@link Key} for representing the mode of a {@link StructureBlock}.
+     * Represents the {@link Key} for representing the author of a structure
+     * from a {@link StructureBlock}.
      */
     public static final Supplier<Key<Value<String>>> STRUCTURE_AUTHOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STRUCTURE_AUTHOR");
 
     /**
-     * Represents the {@link Key} for representing the mode of a {@link StructureBlock}.
+     * Represents the {@link Key} for whether a {@link StructureBlock} should
+     * ignore entities when saving a structure.
      */
     public static final Supplier<Key<Value<Boolean>>> STRUCTURE_IGNORE_ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STRUCTURE_IGNORE_ENTITIES");
 
     /**
-     * Represents the {@link Key} for representing the mode of a {@link StructureBlock}.
+     * Represents the {@link Key} for representing the integrity of a {@link StructureBlock}.
      */
     public static final Supplier<Key<Value<Double>>> STRUCTURE_INTEGRITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STRUCTURE_INTEGRITY");
 
@@ -2169,7 +2193,8 @@ public final class Keys {
     public static final Supplier<Key<Value<Vector3i>>> STRUCTURE_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STRUCTURE_POSITION");
 
     /**
-     * Represents the {@link Key} for representing the mode of a {@link StructureBlock}.
+     * Represents the {@link Key} for representing the powered state of a
+     * {@link StructureBlock}.
      */
     public static final Supplier<Key<Value<Boolean>>> STRUCTURE_POWERED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STRUCTURE_POWERED");
 
@@ -2179,7 +2204,9 @@ public final class Keys {
     public static final Supplier<Key<Value<Long>>> STRUCTURE_SEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STRUCTURE_SEED");
 
     /**
-     * Represents the {@link Key} for representing the mode of a {@link StructureBlock}.
+     * Represents the {@link Key} for representing whether a
+     * {@link StructureBlock} should make all {@link BlockTypes#AIR},
+     * {@link BlockTypes#CAVE_AIR}, {@link BlockTypes#STRUCTURE_VOID} visible.
      */
     public static final Supplier<Key<Value<Boolean>>> STRUCTURE_SHOW_AIR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STRUCTURE_SHOW_AIR");
 

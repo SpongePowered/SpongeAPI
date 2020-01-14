@@ -22,12 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.block.entity;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.profile.GameProfile;
 
-@CatalogedBy(ComparatorTypes.class)
-public interface ComparatorType extends CatalogType {
+import java.util.Optional;
+
+/**
+ * Represents a head/skull from an entity.
+ */
+public interface Skull extends BlockEntity {
+
+    /**
+     * {@link Keys#GAME_PROFILE}
+     *
+     * <p>Gets the current represented player's {@link GameProfile} for this
+     * {@link Skull}.</p>
+     *
+     * <p>This value is only present when the Skull block entity on a
+     * {@link BlockTypes#PLAYER_HEAD} or
+     * {@link BlockTypes#PLAYER_WALL_HEAD}.</p>
+     *
+     * @return The current represented player value
+     */
+    default Optional<Value.Mutable<GameProfile>> gameProfile() {
+        return this.getValue(Keys.GAME_PROFILE).map(Value::asMutable);
+    }
 
 }

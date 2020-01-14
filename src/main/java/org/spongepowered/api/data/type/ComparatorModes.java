@@ -29,19 +29,19 @@ import org.spongepowered.api.Sponge;
 import java.util.function.Supplier;
 
 /**
- * An enumeration of vanilla {@link ComparatorType}s.
+ * An enumeration of vanilla {@link ComparatorMode}s.
  */
-public final class ComparatorTypes {
+public final class ComparatorModes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<ComparatorType> COMPARE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ComparatorType.class, "COMPARE");
+    public static final Supplier<ComparatorMode> COMPARE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ComparatorMode.class, "COMPARE");
 
-    public static final Supplier<ComparatorType> SUBTRACT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ComparatorType.class, "SUBTRACT");
+    public static final Supplier<ComparatorMode> SUBTRACT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ComparatorMode.class, "SUBTRACT");
 
     // SORTFIELDS:OFF
 
-    private ComparatorTypes() {
+    private ComparatorModes() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 }

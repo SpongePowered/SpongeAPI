@@ -22,31 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.entity.carrier;
+package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-/**
- * Represents a Hopper.
- */
-public interface Hopper extends NameableCarrierBlockEntity {
+@CatalogedBy(ComparatorModes.class)
+public interface ComparatorMode extends CatalogType {
 
-    /**
-     * {@link Keys#COOLDOWN}
-     * @return The amount of time in ticks till the hopper can transfer another
-     * item.
-     */
-    default BoundedValue.Mutable<Integer> cooldown() {
-        return this.requireValue(Keys.COOLDOWN).asMutable();
-    }
-
-    /**
-     * Requests this {@link Hopper} to transfer an item to the next carrier.
-     *
-     * <p>Since {@link Hopper}s normally send items to other
-     * {@link CarrierBlockEntity}s adjacent to themselves, if there is no
-     * available carrier to send an item to, this will perform nothing.</p>
-     */
-    void transferItem();
 }

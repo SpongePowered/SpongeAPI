@@ -22,31 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.entity.carrier;
+package org.spongepowered.api.block.entity;
 
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.text.Text;
 
 /**
- * Represents a Hopper.
+ * Represents a {@link BlockEntity} which may have a display name.
+ * @see Keys#DISPLAY_NAME
  */
-public interface Hopper extends NameableCarrierBlockEntity {
+public interface NameableBlockEntity extends BlockEntity {
 
     /**
-     * {@link Keys#COOLDOWN}
-     * @return The amount of time in ticks till the hopper can transfer another
-     * item.
+     * {@link Keys#DISPLAY_NAME}
+     * @return The display name of this {@link BlockEntity}.
      */
-    default BoundedValue.Mutable<Integer> cooldown() {
-        return this.requireValue(Keys.COOLDOWN).asMutable();
+    default Value.Mutable<Text> displayName() {
+        return this.requireValue(Keys.DISPLAY_NAME).asMutable();
     }
-
-    /**
-     * Requests this {@link Hopper} to transfer an item to the next carrier.
-     *
-     * <p>Since {@link Hopper}s normally send items to other
-     * {@link CarrierBlockEntity}s adjacent to themselves, if there is no
-     * available carrier to send an item to, this will perform nothing.</p>
-     */
-    void transferItem();
 }

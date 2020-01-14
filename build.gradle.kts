@@ -125,7 +125,7 @@ val sortClasses = listOf(
         "org.spongepowered.api.data.type.CatTypes",
         "org.spongepowered.api.data.type.ChestAttachmentTypes",
         "org.spongepowered.api.data.type.DyeColors",
-        "org.spongepowered.api.data.type.ComparatorTypes",
+        "org.spongepowered.api.data.type.ComparatorModes",
         "org.spongepowered.api.data.type.FoxTypes",
         "org.spongepowered.api.data.type.HandTypes",
         "org.spongepowered.api.data.type.Hinges",

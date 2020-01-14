@@ -35,7 +35,7 @@ import org.spongepowered.api.data.meta.PatternLayer;
 import org.spongepowered.api.data.type.ArtType;
 import org.spongepowered.api.data.type.BodyPart;
 import org.spongepowered.api.data.type.CatType;
-import org.spongepowered.api.data.type.ComparatorType;
+import org.spongepowered.api.data.type.ComparatorMode;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.type.HandPreference;
 import org.spongepowered.api.data.type.Hinge;
@@ -138,9 +138,9 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<Color>> COLOR_VALUE_TOKEN = new TypeToken<Value<Color>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<ComparatorType> COMPARATOR_TYPE_TOKEN = new TypeToken<ComparatorType>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<ComparatorMode> COMPARATOR_MODE_TOKEN = new TypeToken<ComparatorMode>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<Value<ComparatorType>> COMPARATOR_TYPE_VALUE_TOKEN = new TypeToken<Value<ComparatorType>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<Value<ComparatorMode>> COMPARATOR_MODE_VALUE_TOKEN = new TypeToken<Value<ComparatorMode>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Direction> DIRECTION_TOKEN = new TypeToken<Direction>() {private static final long serialVersionUID = -1;};
 
@@ -291,6 +291,8 @@ public final class TypeTokens {
     public static final TypeToken<Value<PickupRule>> PICKUP_VALUE_TOKEN = new TypeToken<Value<PickupRule>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<PistonType> PISTON_TYPE_TOKEN = new TypeToken<PistonType>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Value<PistonType>> PISTON_TYPE_VALUE_TOKEN = new TypeToken<Value<PistonType>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<PortionType> PORTION_TOKEN = new TypeToken<PortionType>() {private static final long serialVersionUID = -1;};
 

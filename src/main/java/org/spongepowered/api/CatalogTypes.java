@@ -135,7 +135,7 @@ public final class CatalogTypes {
 
     public static final Class<CollisionRule> COLLISION_RULE = CollisionRule.class;
 
-    public static final Class<ComparatorType> COMPARISON_TYPE = ComparatorType.class;
+    public static final Class<ComparatorMode> COMPARISON_MODE = ComparatorMode.class;
 
     public static final Class<ContainerType> CONTAINER_TYPE = ContainerType.class;
 

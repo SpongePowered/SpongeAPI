@@ -24,7 +24,10 @@
  */
 package org.spongepowered.api.block.entity.carrier.chest;
 
-import org.spongepowered.api.block.entity.carrier.CarrierBlockEntity;
+import org.spongepowered.api.block.entity.carrier.NameableCarrierBlockEntity;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.type.ChestAttachmentType;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.inventory.Inventory;
 
 import java.util.Optional;
@@ -33,7 +36,7 @@ import java.util.Set;
 /**
  * Represents a Chest.
  */
-public interface Chest extends CarrierBlockEntity {
+public interface Chest extends NameableCarrierBlockEntity {
 
     /**
      * Returns the inventory representing the combination of this chest
@@ -52,5 +55,13 @@ public interface Chest extends CarrierBlockEntity {
      * @return The connected Chests, if available
      */
     Set<Chest> getConnectedChests();
+
+    /**
+     * {@link Keys#CHEST_ATTACHMENT}
+     * @return The attachment type of this chest.
+     */
+    default Value.Mutable<ChestAttachmentType> attachmentType() {
+        return this.requireValue(Keys.CHEST_ATTACHMENT).asMutable();
+    }
 
 }
