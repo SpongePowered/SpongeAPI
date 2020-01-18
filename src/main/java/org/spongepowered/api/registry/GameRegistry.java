@@ -28,8 +28,7 @@ import org.spongepowered.api.Game;
 import org.spongepowered.api.data.type.Profession;
 import org.spongepowered.api.item.merchant.TradeOfferGenerator;
 import org.spongepowered.api.item.merchant.VillagerRegistry;
-import org.spongepowered.api.item.recipe.crafting.CraftingRecipeRegistry;
-import org.spongepowered.api.item.recipe.smelting.SmeltingRecipeRegistry;
+import org.spongepowered.api.item.recipe.RecipeRegistry;
 
 /**
  * Provides an easy way to query various registries composed in a {@link Game}.
@@ -58,18 +57,11 @@ public interface GameRegistry {
     FactoryRegistry getFactoryRegistry();
 
     /**
-     * Retrieves the {@link CraftingRecipeRegistry}.
+     * Retrieves the {@link RecipeRegistry}.
      *
-     * @return The crafting recipe registry
+     * @return The recipe registry
      */
-    CraftingRecipeRegistry getCraftingRecipeRegistry();
-
-    /**
-     * Retrieves the {@link SmeltingRecipeRegistry}.
-     *
-     * @return The smelting recipe registry
-     */
-    SmeltingRecipeRegistry getSmeltingRecipeRegistry();
+    RecipeRegistry getRecipeRegistry();
 
     /**
      * Gets the {@link VillagerRegistry} for the register mappings of

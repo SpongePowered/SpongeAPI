@@ -31,8 +31,7 @@ import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.text.translation.Translation;
-import org.spongepowered.api.util.NamedCatalogBuilder;
+import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Map;
@@ -204,8 +203,15 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
 
         }
 
-        // TODO Builder.CustomStep custom();
-        // interface CustomStep extends Builder, ResultStep { }
+        /**
+         * Copies the ingredients and shape from given recipe.
+         * <p>Registering this recipe will override the original recipe</p>TODO does it?
+         *
+         * @param recipe the original recipe
+         *
+         * @return This builder
+         */
+        ResultStep shapedLike(ShapedCraftingRecipe recipe);
 
         /**
          * In this Step set the result of the recipe.
@@ -237,7 +243,7 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
         /**
          * In this Step set the group of the Recipe and/or build it.
          */
-        interface EndStep extends Builder, NamedCatalogBuilder<ShapedCraftingRecipe, Builder> {
+        interface EndStep extends Builder, CatalogBuilder<ShapedCraftingRecipe, Builder> {
 
             /**
              * Sets the group of the recipe.
@@ -249,12 +255,6 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
 
             @Override
             EndStep key(CatalogKey key);
-
-            @Override
-            EndStep name(String name);
-
-            @Override
-            EndStep name(Translation name);
 
             /**
              * Builds the {@link ShapedCraftingRecipe}.

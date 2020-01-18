@@ -29,14 +29,11 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.text.translation.Translation;
-import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.util.NamedCatalogBuilder;
+import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.ResettableBuilder;
-
-import java.util.List;
 
 /**
  * A ShapelessCraftingRecipe is a CraftingRecipe that does not have shape and
@@ -54,25 +51,18 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
     }
 
     /**
-     * Gets the ingredient predicates for this ShapelessCraftingRecipe.
-     *
-     * @return An unmodifiable list of the ingredient predicates
-     */
-    List<Ingredient> getIngredientPredicates();
-
-    /**
      * Builder for {@link ShapelessCraftingRecipe}s.
      */
     interface Builder extends ResettableBuilder<ShapelessCraftingRecipe, Builder> {
 
         /**
-         * Adds an ingredient predicate to the requirements of this
-         * {@link ShapelessCraftingRecipe}.
+         * Adds ingredients for this recipe.
          *
-         * @param ingredient The ingredient predicate
+         * @param ingredients The ingredients to add
+         *
          * @return This builder, for chaining
          */
-        ResultStep addIngredient(Ingredient ingredient);
+        ResultStep addIngredients(ItemType... ingredients);
 
         /**
          * In this Step set the result of the Recipe.
@@ -98,14 +88,14 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
             default EndStep result(ItemStack result) {
                 checkNotNull(result, "result");
 
-                return result(result.createSnapshot());
+                return this.result(result.createSnapshot());
             }
         }
 
         /**
          * In this Step set the group of the Recipe and/or build it.
          */
-        interface EndStep extends Builder, NamedCatalogBuilder<ShapelessCraftingRecipe, Builder>, CopyableBuilder<ShapelessCraftingRecipe, Builder> {
+        interface EndStep extends Builder, CatalogBuilder<ShapelessCraftingRecipe, Builder> {
 
             /**
              * Sets the group of the recipe.
@@ -117,12 +107,6 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
 
             @Override
             EndStep key(CatalogKey key);
-
-            @Override
-            EndStep name(String name);
-
-            @Override
-            EndStep name(Translation name);
 
             /**
              * Builds the {@link ShapelessCraftingRecipe}.

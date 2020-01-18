@@ -24,8 +24,148 @@
  */
 package org.spongepowered.api.item.recipe;
 
+import org.spongepowered.api.CatalogKey;
+import org.spongepowered.api.event.registry.RegistryEvent;
+import org.spongepowered.api.item.inventory.Inventory;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.item.recipe.crafting.RecipeResult;
+import org.spongepowered.api.item.recipe.smelting.SmeltingRecipe;
+import org.spongepowered.api.world.World;
+
+import java.util.Collection;
+import java.util.Optional;
+import java.util.function.Supplier;
+
 /**
  * A registry holds all registered recipes for a given game.
+ * Register new Recipes during {@link RegistryEvent.Catalog<Recipe>}.
+ * To disable a recipe override it with an empty result.
  */
-public interface RecipeRegistry<T extends Recipe> {
+public interface RecipeRegistry {
+
+    /**
+     * Gets a recipe by its id
+     *
+     * @param id the recipe id
+     *
+     * @return The recipe if available
+     */
+    Optional<Recipe> getById(CatalogKey id);
+
+    /**
+     * Gets all registered recipes.
+     *
+     * @return All registered recipes.
+     */
+    Collection<Recipe> getAll();
+
+    /**
+     * Returns all registered recipes of given type
+     * @param type The recipe type
+     *
+     * @return All recipes of given type
+     */
+    <T extends Recipe> Collection<T> getAllOfType(RecipeType<T> type);
+
+    /**
+     * Returns all registered recipes of given type
+     * @param supplier The recipe type
+     *
+     * @return All recipes of given type
+     */
+    default <T extends Recipe> Collection<T> getAllOfType(Supplier<? extends RecipeType<T>> supplier) {
+        return this.getAllOfType(supplier.get());
+    }
+
+    /**
+     * Returns all registered recipes of given type and with given item as a result.
+     *
+     * @param type The recipe type
+     * @param result The recipe result to match
+     *
+     * @return The recipes resulting in given item.
+     */
+    <T extends Recipe> Collection<T> findByResult(RecipeType<T> type, ItemStackSnapshot result);
+
+    /**
+     * Gets all recipes with given item as a result.
+     *
+     * @param result the recipe result to match
+     *
+     * @return All recipes resulting in given item.
+     */
+    default <T extends Recipe> Collection<T> findByResult(Supplier<? extends RecipeType<T>> supplier, ItemStackSnapshot result) {
+        return this.findByResult(supplier.get(), result);
+    }
+
+    /**
+     * Finds a matching recipe for given inventory and world.
+     *
+     * @param inventory The input inventory
+     * @param world The world
+     *
+     * @return The found {@link Recipe}, or {@link Optional#empty()}
+     *         if no recipe was found for this configuration
+     */
+    Optional<Recipe> findMatchingRecipe(Inventory inventory, World world);
+
+    /**
+     * Finds a matching recipe for given type, inventory and world
+     *
+     * @param type The recipe type
+     * @param inventory The input inventory
+     * @param world The world
+     *
+     * @return The matching recipes.
+     */
+    <T extends Recipe> Optional<T> findMatchingRecipe(RecipeType<T> type, Inventory inventory, World world);
+
+    /**
+     * Finds a matching recipe for given type, inventory and world
+     *
+     * @param supplier The recipe type
+     * @param inventory The input inventory
+     * @param world The world
+     *
+     * @return The matching recipes.
+     */
+    default <T extends Recipe> Optional<T> findMatchingRecipe(Supplier<? extends RecipeType<T>> supplier, Inventory inventory, World world) {
+        return this.findMatchingRecipe(supplier.get(), inventory, world);
+    }
+
+    /**
+     * Finds a matching smelting recipe for given type and ingredient
+     *
+     * @param type The recipe type
+     * @param ingredient The ingredient
+     *
+     * @return The matching recipe.
+     */
+    <T extends SmeltingRecipe> Optional<T> findSmeltingRecipe(RecipeType<T> type, ItemStackSnapshot ingredient);
+
+    /**
+     * Finds a matching smelting recipe for given type and ingredient
+     *
+     * @param supplier The recipe type
+     * @param ingredient The ingredient
+     *
+     * @return The matching recipe.
+     */
+    default <T extends SmeltingRecipe> Optional<T> findSmeltingRecipe(Supplier<? extends RecipeType<T>> supplier, ItemStackSnapshot ingredient) {
+        return this.findSmeltingRecipe(supplier.get(), ingredient);
+    }
+
+    /**
+     * Finds the matching recipe and creates the {@link RecipeResult},
+     * which is then returned.
+     *
+     * @param inventory The crafting grid
+     * @param world The world
+     * @return The {@link RecipeResult} if a recipe was found, or
+     *         {@link Optional#empty()} if not
+     */
+    default Optional<RecipeResult> getResult(Inventory inventory, World world) {
+        return this.findMatchingRecipe(inventory, world)
+                .flatMap(recipe -> recipe.getResult(inventory, world));
+    }
 }

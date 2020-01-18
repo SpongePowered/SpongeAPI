@@ -25,14 +25,10 @@
 package org.spongepowered.api.item.recipe.crafting;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.crafting.CraftingGridInventory;
 import org.spongepowered.api.item.recipe.Recipe;
-import org.spongepowered.api.world.World;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -51,89 +47,38 @@ import java.util.Optional;
 public interface CraftingRecipe extends Recipe {
 
     /**
-     * Checks if the given {@link CraftingGridInventory} fits the required
-     * constraints to craft this {@link CraftingGridInventory}.
-     *
-     * @param grid The {@link CraftingGridInventory} to check for validity
-     * @param world The world this recipe would be used in
-     * @return True if the given input matches this recipe's requirements
-     */
-    boolean isValid(CraftingGridInventory grid, World world);
-
-    /**
-     * This method should only be called if
-     * {@link #isValid(CraftingGridInventory, World)} returns {@code true}.
-     *
-     * <p>This method is preferred over the
-     * {@link CraftingRecipe#getExemplaryResult()} method, as it customizes
-     * the result further depending on the context.</p>
-     *
-     * <p>Implementing classes are advised to use the output of
-     * {@link CraftingRecipe#getExemplaryResult()}, modify it accordingly,
-     * and {@code return} it.</p>
-     *
-     * @param grid The crafting input, typically 3x3 or 2x2
-     * @return An {@link ItemStackSnapshot}
-     */
-    ItemStackSnapshot getResult(CraftingGridInventory grid);
-
-    /**
-     * Returns the {@link CraftingResult} for the current crafting grid
-     * configuration and the {@link World} the player is in.
-     *
-     * <p>Returns
-     * {@link Optional#empty()} if the arguments do not satisfy
-     * {@link #isValid(CraftingGridInventory, World)}.</p>
-     *
-     * @param grid The crafting input, typically 3x3 or 2x2
-     * @param world The world this recipe would be used in
-     * @return A {@link CraftingResult} if the arguments satisfy
-     *     {@link #isValid(CraftingGridInventory, World)}, or
-     *     {@link Optional#empty()} if not
-     */
-    default Optional<CraftingResult> getResult(CraftingGridInventory grid, World world) {
-        return isValid(grid, world) ? Optional.of(new CraftingResult(getResult(grid), getRemainingItems(grid))) : Optional.empty();
-    }
-
-    /**
-     * This method should only be called if
-     * {@link #isValid(CraftingGridInventory, World)} returns {@code true}.
-     *
-     * <p>A list of items to be added to the inventory of the player when they
-     * craft the result. For example, if a player crafts a
-     * {@link ItemTypes#CAKE}, the empty buckets are returned to their
-     * inventory.</p>
-     *
-     * @param grid The crafting input, typically 3x3 or 2x2
-     * @return The list of items to be added to the inventory of the player
-     *         when the recipe has been fulfilled (possibly empty)
-     */
-    List<ItemStackSnapshot> getRemainingItems(CraftingGridInventory grid);
-
-    /**
-     * The group this CraftingRecipe belongs to or {@link Optional#empty()}
-     * if not defined.
+     * The group this CraftingRecipe belongs to or {@link Optional#empty()} if not defined.
+     * <p>This value is used to group recipes in the recipe book.</p>
      *
      * @return The group this Recipe belongs to.
      */
     Optional<String> getGroup();
 
     /**
-     * Provides a Builder for a {@link ShapedCraftingRecipe}.
+     * Provides a builder for a {@link ShapedCraftingRecipe}.
      *
-     * @return The Builder.
+     * @return The builder.
      */
     static ShapedCraftingRecipe.Builder shapedBuilder() {
         return Sponge.getRegistry().getBuilderRegistry().provideBuilder(ShapedCraftingRecipe.Builder.class);
     }
 
     /**
-     * Provides a Builder for a {@link ShapelessCraftingRecipe}.
+     * Provides a builder for a {@link ShapelessCraftingRecipe}.
      *
-     * @return The Builder.
+     * @return The builder.
      */
     static ShapelessCraftingRecipe.Builder shapelessBuilder() {
         return Sponge.getRegistry().getBuilderRegistry().provideBuilder(ShapelessCraftingRecipe.Builder.class);
+    }
+
+    /**
+     * Provides a builder for a {@link SpecialCraftingRecipe}
+     *
+     * @return The builder.
+     */
+    static SpecialCraftingRecipe.Builder specialBuilder() {
+        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(SpecialCraftingRecipe.Builder.class);
     }
 
 }
