@@ -25,11 +25,12 @@
 package org.spongepowered.api.item.recipe.crafting;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
+import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.util.CopyableBuilder;
+import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 import java.util.List;
@@ -41,6 +42,9 @@ import java.util.function.Predicate;
  * <p>Crafting recipes can only be crafted when all of the ingredients match
  * the items in the input grid.</p>
  */
+// TODO Ingredients for normal (recipe book supporting) crafting recipes MUST be a stream of mc Ingredient.IItemList
+// which is either based on ItemStacks/IItemProvider actually serialized to ItemType only (Ingredient.SingleItemList)
+// or one Tag<Item> (Ingredient.TagList) see ItemTags
 public interface Ingredient extends Predicate<ItemStack> {
 
     /**
@@ -69,32 +73,6 @@ public interface Ingredient extends Predicate<ItemStack> {
     }
 
     /**
-     * Creates a new {@link Ingredient} for the provided {@link ItemStackSnapshot}s.
-     *
-     * @param snapshots The snapshots
-     * @return The new ingredient
-     */
-    static Ingredient of(@Nullable ItemStackSnapshot... snapshots) {
-        if (snapshots == null || snapshots.length == 0) {
-            return NONE;
-        }
-        return builder().with(snapshots).build();
-    }
-
-    /**
-     * Creates a new {@link Ingredient} for the provided {@link ItemStack}s.
-     *
-     * @param itemStacks The itemStacks
-     * @return The new ingredient
-     */
-    static Ingredient of(@Nullable ItemStack... itemStacks) {
-        if (itemStacks == null || itemStacks.length == 0) {
-            return NONE;
-        }
-        return builder().with(itemStacks).build();
-    }
-
-    /**
      * Creates a new {@link Ingredient} for the provided {@link ItemType}s.
      *
      * @param itemTypes The items
@@ -108,28 +86,23 @@ public interface Ingredient extends Predicate<ItemStack> {
     }
 
     /**
+     * Creates a new {@link Ingredient} for the provided item tag.
+     *
+     * @param itemTag The item tag
+     *
+     * @return The new ingredient
+     */
+    static Ingredient of(CatalogKey itemTag) {
+        return builder().with(itemTag).build();
+    }
+
+    /**
      * Builder for {@link Ingredient}s.
      */
-    interface Builder extends CopyableBuilder<Ingredient, Builder> {
+    interface Builder extends ResettableBuilder<Ingredient, Builder> {
 
         /**
-         * Adds a predicate for matching the ingredient.
-         *
-         * <p>Also clears all previously set {@link #withDisplay} items.</p>
-         *
-         * <p>All predicates and items are ORed together.</p>
-         *
-         * <p>Use {@link #from} to create an ingredient from another one.</p>
-         *
-         * @param predicate The predicate.
-         * @return This Builder, for chaining
-         */
-        Builder with(Predicate<ItemStack> predicate);
-
-        /**
-         * Adds one or more ItemTypes for matching the ingredient.
-         * The ItemTypes are also used as display items.
-         * All predicates and items are ORed together.
+         * Sets one or more ItemTypes for matching the ingredient.
          *
          * @param types The items
          * @return This Builder, for chaining
@@ -137,51 +110,12 @@ public interface Ingredient extends Predicate<ItemStack> {
         Builder with(ItemType... types);
 
         /**
-         * Adds one or more ItemStacks for matching the ingredient.
-         * The ItemStacks are also used as display items.
-         * All predicates and items are ORed together.
+         * Sets the item tag for matching the ingredient.
          *
-         * @param items The items
+         * @param itemTag The item tag
          * @return This Builder, for chaining
          */
-        Builder with(ItemStack... items);
-
-        /**
-         * Adds one or more ItemStackSnapshots for matching the ingredient.
-         * The Snapshots are also used as display items.
-         * All predicates and items are ORed together.
-         *
-         * @param items The items
-         * @return This Builder, for chaining
-         */
-        Builder with(ItemStackSnapshot... items);
-
-        /**
-         * Adds ItemTypes used to display this Ingredient in a recipe.
-         * These are not used for matching the recipe.
-         *
-         * @param types The list of itemTypes.
-         * @return This Builder, for chaining
-         */
-        Builder withDisplay(ItemType... types);
-
-        /**
-         * Adds ItemStacks used to display this Ingredient in a recipe.
-         * These are not used for matching the recipe.
-         *
-         * @param items The list of items.
-         * @return This Builder, for chaining
-         */
-        Builder withDisplay(ItemStack... items);
-
-        /**
-         * Adds ItemStackSnasphots used to display this Ingredient in a recipe.
-         * These are not used for matching the recipe.
-         *
-         * @param items The list of snapshots.
-         * @return This Builder, for chaining
-         */
-        Builder withDisplay(ItemStackSnapshot... items);
+        Builder with(CatalogKey itemTag);
 
         /**
          * Builds the {@link Ingredient} with the specified items and or predicates.

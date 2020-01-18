@@ -30,17 +30,16 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.Recipe;
-import org.spongepowered.api.text.translation.Translation;
-import org.spongepowered.api.util.NamedCatalogBuilder;
+import org.spongepowered.api.item.recipe.RecipeType;
+import org.spongepowered.api.item.recipe.crafting.Ingredient;
+import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Optional;
 import java.util.function.Predicate;
 
 /**
- * A general interface for furnace recipes. You can implement it manually to
- * suit your creative needs, or you can simply use the
- * {@link SmeltingRecipe.Builder}.
+ * A general interface for furnace-type recipes.
  */
 public interface SmeltingRecipe extends Recipe {
 
@@ -55,12 +54,11 @@ public interface SmeltingRecipe extends Recipe {
     }
 
     /**
-     * An exemplary {@link ItemStackSnapshot}, which will always make
-     * {@link #isValid(ItemStackSnapshot)} return {@code true}.
+     * Returns the {@link Ingredient} for this {@link SmeltingRecipe}.
      *
-     * @return The {@link ItemStackSnapshot} as explained above
+     * @return The {@link Ingredient} for this {@link SmeltingRecipe}.
      */
-    ItemStackSnapshot getExemplaryIngredient();
+    Ingredient getIngredient();
 
     /**
      * Checks if the given {@link ItemStackSnapshot} fits the required
@@ -75,18 +73,26 @@ public interface SmeltingRecipe extends Recipe {
      * <p>Returns the {@link SmeltingResult} containing the resulting
      * {@link ItemStackSnapshot} and the amount of experience released.</p>
      *
-     * <p>This method should be used instead of the {@link #getExemplaryResult()}
-     * method, as it customizes the result further depending on the specified
-     * ingredient {@link ItemStackSnapshot}. It is advised to use
-     * the output of {@link #getExemplaryResult()}, modify it accordingly,
-     * and {@code return} it.</p>
-     *
      * @param ingredient The {@link ItemStackSnapshot} currently being smelted
      * @return The {@link SmeltingResult}, or {@link Optional#empty()}
      *         if the recipe is not valid according to
      *         {@link #isValid(ItemStackSnapshot)}.
      */
     Optional<SmeltingResult> getResult(ItemStackSnapshot ingredient);
+
+    /**
+     * Returns the smelting time in ticks.
+     *
+     * @return The smelting time in ticks.
+     */
+    int getSmeltTime();
+
+    /**
+     * Returns the experience of this recipe.
+     *
+     * @return The experience of this recipe.
+     */
+    float getExperience();
 
     /**
      * Builds a simple furnace recipe.
@@ -165,7 +171,7 @@ public interface SmeltingRecipe extends Recipe {
 
         }
 
-        interface EndStep extends Builder, NamedCatalogBuilder<SmeltingRecipe, Builder> {
+        interface EndStep extends Builder, CatalogBuilder<SmeltingRecipe, Builder> {
 
             /**
              * Changes the experience and returns this builder. It is the
@@ -178,14 +184,15 @@ public interface SmeltingRecipe extends Recipe {
              */
             EndStep experience(double experience);
 
+            // in ticks
+            EndStep cookTime(double time);
+
+            // TODO required
+            EndStep type(RecipeType<SmeltingRecipe> type);
+
             @Override
             EndStep key(CatalogKey key);
 
-            @Override
-            EndStep name(String name);
-
-            @Override
-            EndStep name(Translation name);
 
             /**
              * Builds the {@link SmeltingRecipe}.

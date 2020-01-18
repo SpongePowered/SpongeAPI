@@ -37,13 +37,13 @@ import java.util.List;
 /**
  * The result of fulfilling a {@link CraftingRecipe}.
  */
-public final class CraftingResult {
+public final class RecipeResult {
 
     private final ItemStackSnapshot result;
     private final List<ItemStackSnapshot> remainingItems;
 
     /**
-     * Creates a new {@link CraftingResult}.
+     * Creates a new {@link RecipeResult}.
      *
      * <p>Note that this may be replaced with a static of method in the
      * future.</p>
@@ -53,7 +53,7 @@ public final class CraftingResult {
      *     crafting window
      */
     @SuppressWarnings("ConstantConditions")
-    public CraftingResult(ItemStackSnapshot result, List<ItemStackSnapshot> remainingItems) {
+    public RecipeResult(ItemStackSnapshot result, List<ItemStackSnapshot> remainingItems) {
         checkNotNull(result, "result");
         checkArgument(!result.isEmpty(), "The result must not be empty.");
         checkNotNull(remainingItems, "remainingItems");
@@ -101,7 +101,7 @@ public final class CraftingResult {
             return false;
         }
 
-        CraftingResult that = (CraftingResult) o;
+        RecipeResult that = (RecipeResult) o;
 
         return this.result.equals(that.result) && this.remainingItems.equals(that.remainingItems);
     }
