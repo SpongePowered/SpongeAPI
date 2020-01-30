@@ -33,7 +33,7 @@ import org.spongepowered.api.data.value.Value;
 /**
  * Represents a Banner {@link BlockEntity}.
  */
-public interface Banner extends BlockEntity {
+public interface Banner extends NameableBlockEntity {
 
     /**
      * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the base {@link DyeColor}.

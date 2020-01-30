@@ -25,8 +25,12 @@
 package org.spongepowered.api.block.entity.carrier;
 
 import org.spongepowered.api.block.entity.BlockEntity;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.inventory.BlockCarrier;
 import org.spongepowered.api.item.inventory.type.BlockEntityInventory;
+
+import java.util.Optional;
 
 /**
  * Represents a {@link BlockEntity} that is a carrier of
@@ -39,4 +43,15 @@ public interface CarrierBlockEntity extends BlockEntity, BlockCarrier {
 
     @Override
     BlockEntityInventory<CarrierBlockEntity> getInventory();
+
+    /**
+     * {@link Keys#LOCK_TOKEN}
+     *
+     * <p>The absence of the value signifies this BlockEntity has no lock.</p>
+     *
+     * @return The lock token used for opening this {@link BlockEntity}.
+     */
+    default Optional<Value.Mutable<String>> lockToken() {
+        return this.getValue(Keys.LOCK_TOKEN).map(Value::asMutable);
+    }
 }

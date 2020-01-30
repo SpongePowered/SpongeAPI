@@ -29,5 +29,5 @@ import org.spongepowered.api.item.enchantment.Enchantment;
 /**
  * Represents an {@link Enchantment} table.
  */
-public interface EnchantmentTable extends BlockEntity {
+public interface EnchantmentTable extends NameableBlockEntity {
 }

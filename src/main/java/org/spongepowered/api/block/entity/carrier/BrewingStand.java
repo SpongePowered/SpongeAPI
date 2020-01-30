@@ -24,10 +24,34 @@
  */
 package org.spongepowered.api.block.entity.carrier;
 
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.item.ItemTypes;
+
 /**
  * Represents a Brewing Stand.
  */
-public interface BrewingStand extends CarrierBlockEntity {
+public interface BrewingStand extends NameableCarrierBlockEntity {
+
+    /**
+     * {@link Keys#BREWING_STAND_FUEL}
+     *
+     * <p>Note 1 {@link ItemTypes#BLAZE_POWDER} supplies 20 fuel</p>
+     *
+     * @return The amount of fuel left in the brewing stand.
+     */
+    default BoundedValue.Mutable<Integer> fuel() {
+        return this.requireValue(Keys.BREWING_STAND_FUEL).asMutable();
+    }
+
+    /**
+     * {@link Keys#REMAINING_BREW_TIME}
+     * @return The remaining brewing time in ticks.
+     */
+    default BoundedValue.Mutable<Integer> remainingBrewTime() {
+        return this.requireValue(Keys.REMAINING_BREW_TIME).asMutable();
+    }
 
     /**
      * Attempts to brew the current potions if possible.

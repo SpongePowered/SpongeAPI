@@ -29,5 +29,5 @@ import org.spongepowered.api.projectile.source.BlockProjectileSource;
 /**
  * Represents a Dispenser.
  */
-public interface Dispenser extends CarrierBlockEntity, BlockProjectileSource {
+public interface Dispenser extends NameableCarrierBlockEntity, BlockProjectileSource {
 }

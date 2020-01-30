@@ -24,6 +24,26 @@
  */
 package org.spongepowered.api.block.entity;
 
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.item.ItemTypes;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+
+/**
+ * Represents a Lectern.
+ */
 public interface Lectern extends BlockEntity {
 
+    /**
+     * {@link Keys#ITEM_STACK_SNAPSHOT}
+     *
+     * <p>Note that offering an item other than a
+     * {@link ItemTypes#WRITABLE_BOOK} or a {@link ItemTypes#WRITTEN_BOOK}
+     * will result in the lectern not opening when interacted with.</p>
+     *
+     * @return A snapshot of the book in the lectern.
+     */
+    default Value.Mutable<ItemStackSnapshot> item() {
+        return this.requireValue(Keys.ITEM_STACK_SNAPSHOT).asMutable();
+    }
 }

@@ -28,20 +28,22 @@ import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.value.Value;
 
+import java.util.Optional;
+
 /**
  * Represents a ShulkerBox. ShulkerBoxes are specific in that when they are
  * mined, they drop themselves with the contents added in themselves, so placing
  * them back as items will result in a restored inventory.
  */
-public interface ShulkerBox extends CarrierBlockEntity {
+public interface ShulkerBox extends NameableCarrierBlockEntity {
 
     /**
      * Gets the current {@link Value} of {@link DyeColor} for this
      * {@link ShulkerBox}.
      *
-     * @return The current value of dye color for this shulker box
+     * @return The current color of this shulker box.
      */
-    default Value.Mutable<DyeColor> color() {
-        return this.requireValue(Keys.DYE_COLOR).asMutable();
+    default Optional<Value.Mutable<DyeColor>> color() {
+        return this.getValue(Keys.DYE_COLOR).map(Value::asMutable);
     }
 }

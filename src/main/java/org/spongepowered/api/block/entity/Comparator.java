@@ -24,9 +24,20 @@
  */
 package org.spongepowered.api.block.entity;
 
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.type.ComparatorMode;
+import org.spongepowered.api.data.value.Value;
+
 /**
  * Represents a Redstone Comparator.
  */
 public interface Comparator extends BlockEntity {
 
+    /**
+     * {@link Keys#COMPARATOR_MODE}
+     * @return The mode of the Comparator.
+     */
+    default Value.Mutable<ComparatorMode> mode() {
+        return this.requireValue(Keys.COMPARATOR_MODE).asMutable();
+    }
 }

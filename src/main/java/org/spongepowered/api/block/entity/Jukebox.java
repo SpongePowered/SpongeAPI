@@ -25,12 +25,22 @@
 package org.spongepowered.api.block.entity;
 
 import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
 /**
- * Represents a jukebox, also know as a music disc player.
+ * Represents a jukebox, also known as a music disc player.
  */
 public interface Jukebox extends BlockEntity {
+
+    /**
+     * {@link Keys#ITEM_STACK_SNAPSHOT}
+     * @return A snapshot of the disc in the jukebox.
+     */
+    default Value.Mutable<ItemStackSnapshot> item() {
+        return this.requireValue(Keys.ITEM_STACK_SNAPSHOT).asMutable();
+    }
 
     /**
      * Attempts to play the currently stored music disc according to the

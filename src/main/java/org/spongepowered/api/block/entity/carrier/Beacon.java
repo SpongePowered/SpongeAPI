@@ -37,7 +37,7 @@ import java.util.Optional;
  * Depending on the completed levels of the beacon, the effects may be applied
  * at a further range or shorter range.</p>
  */
-public interface Beacon extends CarrierBlockEntity {
+public interface Beacon extends NameableCarrierBlockEntity {
 
     /**
      * Gets the number of completed levels of valid beacon structure blocks
