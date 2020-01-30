@@ -51,6 +51,14 @@ public interface ItemType extends CatalogType, Translatable, GameDictionary.Entr
     Optional<BlockType> getBlock();
 
     /**
+     * Gets the container item of this item if one exists.
+     * <p>e.g. {@link ItemTypes#BUCKET} for {@link ItemTypes#WATER_BUCKET}</p>
+     *
+     * @return The container item.
+     */
+    Optional<ItemType> getContainer();
+
+    /**
      * Gets the id of this item.
      *
      * <p>Ex. Minecraft registers a golden carrot as
