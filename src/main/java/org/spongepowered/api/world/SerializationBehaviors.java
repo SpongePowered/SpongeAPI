@@ -41,6 +41,11 @@ public class SerializationBehaviors {
     public static final SerializationBehavior MANUAL = DummyObjectProvider.createFor(SerializationBehavior.class, "manual");
 
     /**
+     * A {@link SerializationBehavior} where metadata is saved, but chunks are not saved.
+     */
+    public static final SerializationBehavior METADATA_ONLY = DummyObjectProvider.createFor(SerializationBehavior.class, "metadata_only");
+
+    /**
      * A {@link SerializationBehavior} where data is not saved to disk.
      */
     public static final SerializationBehavior NONE = DummyObjectProvider.createFor(SerializationBehavior.class, "none");
