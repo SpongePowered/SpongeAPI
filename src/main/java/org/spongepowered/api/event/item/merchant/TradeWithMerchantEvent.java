@@ -35,25 +35,25 @@ import org.spongepowered.api.item.merchant.TradeOffer;
  */
 public interface TradeWithMerchantEvent extends Event, Cancellable {
 
-	/**
-	 * Gets the {@link Merchant} which is trading.
-	 *
-	 * @return The trading merchant.
-	 */
-	Merchant getMerchant();
+    /**
+     * Gets the {@link Merchant} which is trading.
+     *
+     * @return The trading merchant
+     */
+    Merchant getMerchant();
 
-	/**
-	 * The TradeOffer being traded.
-	 *
-	 * @return The trade offer.
-	 */
-	TradeOffer getTradeOffer();
+    /**
+     * The {@link TradeOffer} being traded.
+     *
+     * @return The trade offer
+     */
+    TradeOffer getTradeOffer();
 
-	/**
-	 * Gets the {@link Humanoid} who is the customer of this transaction.
-	 *
-	 * @return The customer.
-	 */
-	Humanoid getCustomer();
+    /**
+     * Gets the {@link Humanoid} who is the customer of this transaction.
+     *
+     * @return The customer
+     */
+    Humanoid getCustomer();
 
 }
