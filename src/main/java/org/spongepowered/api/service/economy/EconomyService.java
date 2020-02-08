@@ -26,6 +26,7 @@ package org.spongepowered.api.service.economy;
 
 import org.spongepowered.api.service.context.ContextualService;
 import org.spongepowered.api.service.economy.account.Account;
+import org.spongepowered.api.service.economy.account.AccountType;
 
 import java.util.Optional;
 import java.util.Set;
@@ -50,6 +51,14 @@ public interface EconomyService extends ContextualService<Account> {
      * @see Currency
      */
     Currency getDefaultCurrency();
+
+    /**
+     * Retrieves the default {@link AccountType} used by
+     * the {@link EconomyService}.
+     *
+     * @return The default account type for the economy service
+     */
+    AccountType getDefaultAccountType();
 
     /**
      * Returns the {@link Set} of supported {@link Currency currencies} that are

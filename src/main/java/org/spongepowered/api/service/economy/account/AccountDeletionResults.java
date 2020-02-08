@@ -48,7 +48,6 @@ public final class AccountDeletionResults {
      */
     public static final Supplier<AccountDeletionResult> UNSUPPORTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AccountDeletionResult.class, "UNSUPPORTED");
 
-
     // SORTFIELDS:OFF
 
     private AccountDeletionResults() {

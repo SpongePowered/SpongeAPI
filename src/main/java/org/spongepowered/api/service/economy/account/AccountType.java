@@ -3,6 +3,7 @@ package org.spongepowered.api.service.economy.account;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.service.context.Context;
 import org.spongepowered.api.service.economy.Currency;
+import org.spongepowered.api.service.economy.EconomyService;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.math.BigDecimal;
@@ -11,8 +12,16 @@ import java.util.Optional;
 /**
  * A type of economy account with some default settings as well as related
  * functionality.
+ *
+ * <p>Unlike many other {@link CatalogType}s, account type has no predefined
+ * values. General plugins as well as the economy service implementor may
+ * introduce new types, but if you do not have access specific type or one in
+ * mind, then {@link EconomyService#getDefaultAccountType()} can be used.</p>
+ *
+ * <p>If a type was previously registered but can no longer be found,
+ * economy service implementors should general fall back to the default
+ * account type.</p>
  */
-@CatalogedBy(AccountTypes.class)
 public interface AccountType extends CatalogType {
 
     /**
