@@ -72,6 +72,8 @@ public interface VillagerEvent extends Event {
 
 		/**
 		 * Sets the {@link Villager}'s next {@link Profession}.
+         *
+         * @param profession The desired next profession of the villager
 		 */
 		void setProfession(Profession profession);
 	}

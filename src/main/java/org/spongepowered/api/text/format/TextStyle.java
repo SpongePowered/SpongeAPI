@@ -62,6 +62,8 @@ public interface TextStyle extends TextElement {
 
     /**
      * Represents a {@link TextStyle} with all bases set to {@code false}.
+     *
+     * @return A base text style with lacking all styles
      */
     static TextStyle of() {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).empty();

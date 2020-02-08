@@ -809,6 +809,9 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
 
 		/**
 		 * Sets if this builder should compact when appending text.
+         *
+         * @param compact If the builder should compact text while appending
+         * @return This text builder
 		 */
 		Builder setCompact(boolean compact);
 
