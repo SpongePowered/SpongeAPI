@@ -38,7 +38,8 @@ import java.math.BigDecimal;
  * provided by an economy plugin, {@link EconomyService#getDefaultCurrency()}
  * should usually be used.</p>
  *
- * <p>Depending on the provider of the {@link EconomyService}, more currencies may be available.</p>
+ * <p>Depending on the provider of the {@link EconomyService}, more currencies
+ * may be available.</p>
  */
 public interface Currency extends CatalogType {
 
@@ -48,7 +49,7 @@ public interface Currency extends CatalogType {
      * <p>This should be preferred over {@link CatalogType#getKey()}
      * for display purposes.</p>
      *
-     * @return displayName of the currency singular
+     * @return The singular display name of the currency
      */
     Text getDisplayName();
 
@@ -58,7 +59,7 @@ public interface Currency extends CatalogType {
      * <p>Not all currencies will have a plural name that differs from the
      * display name.</p>
      *
-     * @return displayName of the currency plural
+     * @return The plural display name of the currency
      */
     Text getPluralDisplayName();
 
@@ -87,8 +88,8 @@ public interface Currency extends CatalogType {
      * <p>Should include the symbol if it is present</p>
      *
      * @param amount The amount to format
-     * @param numFractionDigits The numer of fractional digits to use
-     * @return String formatted amount.
+     * @param numFractionDigits The number of fractional digits to use
+     * @return The formatted amount as text
      */
     Text format(BigDecimal amount, int numFractionDigits);
 
@@ -96,7 +97,7 @@ public interface Currency extends CatalogType {
      * This is the default number of fractional digits that is utilized for
      * formatting purposes.
      *
-     * @return defaultFractionDigits utilized.
+     * @return The default amount of fractional digits utilized
      */
     int getDefaultFractionDigits();
 
@@ -104,7 +105,7 @@ public interface Currency extends CatalogType {
      * Returns true if this currency is the default currency for the economy,
      * otherwise false.
      *
-     * @return true if this is the default currency
+     * @return If this is the default currency
      */
     boolean isDefault();
 }

@@ -32,8 +32,8 @@ import org.spongepowered.api.service.context.Context;
 import org.spongepowered.api.service.context.Contextual;
 import org.spongepowered.api.service.economy.Currency;
 import org.spongepowered.api.service.economy.EconomyService;
-import org.spongepowered.api.service.economy.transaction.TransactionResult;
-import org.spongepowered.api.service.economy.transaction.TransferResult;
+import org.spongepowered.api.service.economy.transaction.EconomyTransactionResult;
+import org.spongepowered.api.service.economy.transaction.EconomyTransferResult;
 import org.spongepowered.api.text.Text;
 
 import java.math.BigDecimal;
@@ -72,19 +72,26 @@ public interface Account extends Contextual {
      */
     Text getDisplayName();
 
+    AccountType getType();
+
     /**
      * Gets the default balance of this account for the specified
      * {@link Currency}.
      *
      * <p>The default balance is used when the balance is retrieved for the
-     * first time for a given {@link Currency} on this account, or if no
+     * first time for a given {@link Currency} on this account, if no
      * balance is available for the {@link Context}s used when retrieving
-     * a balance.</p>
+     * a balance, or if the account's balance is reset.</p>
+     *
+     * <p>If not specified for the specific account, simply uses the
+     * default balance from their account type.</p>
      *
      * @param currency the currency to get the default balance for.
      * @return The default balance for the specified {@link Currency}.
      */
-    BigDecimal getDefaultBalance(Currency currency);
+    default BigDecimal getDefaultBalance(Currency currency) {
+        return getType().getDefaultBalance(currency);
+    }
 
     /**
      * Returns whether this account has a set balance for the specified
@@ -208,7 +215,7 @@ public interface Account extends Contextual {
      *     specified {@link Currency}
      * @return The result of the transaction
      */
-    TransactionResult setBalance(Currency currency, BigDecimal amount, Cause cause, Set<Context> contexts);
+    EconomyTransactionResult setBalance(Currency currency, BigDecimal amount, Cause cause, Set<Context> contexts);
 
     /**
      * Sets the balance for this account to the specified amount for the
@@ -222,7 +229,7 @@ public interface Account extends Contextual {
      * @param cause The {@link Cause} for the transaction
      * @return The result of the transaction
      */
-    default TransactionResult setBalance(Currency currency, BigDecimal amount, Cause cause) {
+    default EconomyTransactionResult setBalance(Currency currency, BigDecimal amount, Cause cause) {
         return this.setBalance(currency, amount, cause, this.getActiveContexts());
     }
 
@@ -233,10 +240,10 @@ public interface Account extends Contextual {
      *
      * @param cause The {@link Cause} for the transaction
      * @param contexts the {@link Context}s to use when resetting the balances.
-     * @return A map of {@link Currency} to {@link TransactionResult}. Each
+     * @return A map of {@link Currency} to {@link EconomyTransactionResult}. Each
      *     entry represents the result of resetting a particular currency.
      */
-    Map<Currency, TransactionResult> resetBalances(Cause cause, Set<Context> contexts);
+    Map<Currency, EconomyTransactionResult> resetBalances(Cause cause, Set<Context> contexts);
 
     /**
      * Resets the balances for all {@link Currency}s used on this account to
@@ -245,10 +252,10 @@ public interface Account extends Contextual {
      *
      * @param cause The {@link Cause} for the transaction
      *
-     * @return A map of {@link Currency} to {@link TransactionResult}. Each
+     * @return A map of {@link Currency} to {@link EconomyTransactionResult}. Each
      *     entry represents the result of resetting a particular currency
      */
-    default Map<Currency, TransactionResult> resetBalances(Cause cause) {
+    default Map<Currency, EconomyTransactionResult> resetBalances(Cause cause) {
         return this.resetBalances(cause, this.getActiveContexts());
     }
 
@@ -263,7 +270,7 @@ public interface Account extends Contextual {
      *
      * @return The result of the transaction
      */
-    TransactionResult resetBalance(Currency currency, Cause cause, Set<Context> contexts);
+    EconomyTransactionResult resetBalance(Currency currency, Cause cause, Set<Context> contexts);
 
     /**
      * Resets the balance for the specified {@link Currency} to its default
@@ -274,7 +281,7 @@ public interface Account extends Contextual {
      * @param cause The {@link Cause} for the transaction
      * @return The result of the transaction
      */
-    default TransactionResult resetBalance(Currency currency, Cause cause) {
+    default EconomyTransactionResult resetBalance(Currency currency, Cause cause) {
         return this.resetBalance(currency, cause, this.getActiveContexts());
     }
 
@@ -289,7 +296,7 @@ public interface Account extends Contextual {
      *     specified {@link Currency}
      * @return The result of the transaction
      */
-    TransactionResult deposit(Currency currency, BigDecimal amount, Cause cause, Set<Context> contexts);
+    EconomyTransactionResult deposit(Currency currency, BigDecimal amount, Cause cause, Set<Context> contexts);
 
     /**
      * Deposits the given amount of the specified {@link Currency} to
@@ -300,7 +307,7 @@ public interface Account extends Contextual {
      * @param cause The {@link Cause} for the transaction
      * @return The result of the transaction
      */
-    default TransactionResult deposit(Currency currency, BigDecimal amount, Cause cause) {
+    default EconomyTransactionResult deposit(Currency currency, BigDecimal amount, Cause cause) {
         return this.deposit(currency, amount, cause, this.getActiveContexts());
     }
 
@@ -315,7 +322,7 @@ public interface Account extends Contextual {
      *     specified {@link Currency}
      * @return The result of the transaction
      */
-    TransactionResult withdraw(Currency currency, BigDecimal amount, Cause cause, Set<Context> contexts);
+    EconomyTransactionResult withdraw(Currency currency, BigDecimal amount, Cause cause, Set<Context> contexts);
 
     /**
      * Withdraws the specified amount of the specified {@link Currency} from
@@ -326,7 +333,7 @@ public interface Account extends Contextual {
      * @param cause The {@link Cause} for the transaction
      * @return The result of the transaction
      */
-    default TransactionResult withdraw(Currency currency, BigDecimal amount, Cause cause) {
+    default EconomyTransactionResult withdraw(Currency currency, BigDecimal amount, Cause cause) {
         return this.withdraw(currency, amount, cause, this.getActiveContexts());
     }
 
@@ -345,10 +352,10 @@ public interface Account extends Contextual {
      * @param cause The {@link Cause} for the transaction
      * @param contexts The {@link Context}s to use with the
      *     specified {@link Currency} and account
-     * @return A {@link TransferResult} representative of the effects of
+     * @return A {@link EconomyTransferResult} representative of the effects of
      *     the operation
      */
-    TransferResult transfer(Account to, Currency currency, BigDecimal amount, Cause cause, Set<Context> contexts);
+    EconomyTransferResult transfer(Account to, Currency currency, BigDecimal amount, Cause cause, Set<Context> contexts);
 
     /**
      * Transfers the specified amount of the specified {@link Currency}
@@ -363,10 +370,10 @@ public interface Account extends Contextual {
      * @param currency The {@link Currency} to transfer the specified amount for
      * @param amount The amount to transfer for the specified {@link Currency}
      * @param cause The {@link Cause} for the transaction
-     * @return A {@link TransferResult} representative of the effects of the
+     * @return A {@link EconomyTransferResult} representative of the effects of the
      *     operation
      */
-    default TransferResult transfer(Account to, Currency currency, BigDecimal amount, Cause cause) {
+    default EconomyTransferResult transfer(Account to, Currency currency, BigDecimal amount, Cause cause) {
         return this.transfer(to, currency, amount, cause, this.getActiveContexts());
     }
 }

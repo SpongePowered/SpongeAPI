@@ -26,12 +26,11 @@ package org.spongepowered.api.service.economy;
 
 import org.spongepowered.api.service.context.ContextualService;
 import org.spongepowered.api.service.economy.account.Account;
-import org.spongepowered.api.service.economy.account.UniqueAccount;
-import org.spongepowered.api.service.economy.account.VirtualAccount;
 
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
+import java.util.function.Predicate;
 
 /**
  * Represents a service for managing a server economy.
@@ -47,14 +46,13 @@ public interface EconomyService extends ContextualService<Account> {
     /**
      * Retrieves the default {@link Currency} used by the {@link EconomyService}.
      *
-     * @return {@link Currency} default for the EconomyService
-     *
+     * @return The default currency for the economy service
      * @see Currency
      */
     Currency getDefaultCurrency();
 
     /**
-     * Returns the {@link Set} of supported {@link Currency} objects that are
+     * Returns the {@link Set} of supported {@link Currency currencies} that are
      * implemented by this EconomyService.
      *
      * <p>The economy service provider may only support one currency, in which
@@ -63,7 +61,7 @@ public interface EconomyService extends ContextualService<Account> {
      * <p>The set returned is a read-only a view of all currencies available in
      * the EconomyService.</p>
      *
-     * @return The {@link Set} of all {@link Currency}s
+     * @return The set of all currencies supported by the service
      */
     Set<Currency> getCurrencies();
 
@@ -115,4 +113,10 @@ public interface EconomyService extends ContextualService<Account> {
      * @return The {@link Account}, if available.
      */
     Optional<Account> getOrCreateAccount(String identifier);
+
+    Set<Account> getOwnedAccounts(UUID uniqueId);
+
+    Set<Account> getAccounts(Predicate<Account> include);
+
+    Set<Account> getAllAccounts();
 }

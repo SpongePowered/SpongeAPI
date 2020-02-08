@@ -26,7 +26,7 @@ package org.spongepowered.api.event.economy;
 
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.service.economy.EconomyService;
-import org.spongepowered.api.service.economy.transaction.TransactionResult;
+import org.spongepowered.api.service.economy.transaction.EconomyTransactionResult;
 
 /**
  * Fired when the {@link EconomyService} has processed a transaction.
@@ -34,10 +34,10 @@ import org.spongepowered.api.service.economy.transaction.TransactionResult;
 public interface EconomyTransactionEvent extends Event {
 
     /**
-     * Gets the {@link TransactionResult} for the transaction that occurred.
+     * Gets the {@link EconomyTransactionResult} for the transaction that occurred.
      *
-     * @return The {@link TransactionResult}
+     * @return The {@link EconomyTransactionResult}
      */
-    TransactionResult getTransactionResult();
+    EconomyTransactionResult getTransactionResult();
 
 }

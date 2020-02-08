@@ -35,26 +35,26 @@ import java.util.Set;
  * Represents the result of a particular transaction, such as a deposit
  * or withdrawal.
  */
-public interface TransactionResult {
+public interface EconomyTransactionResult {
 
     /**
      * Gets the {@link Account} involved in the transaction.
      *
-     * @return The {@link Account}
+     * @return The involved account
      */
     Account getAccount();
 
     /**
      * Gets the {@link Currency} involved in the transaction.
      *
-     * @return The {@link Currency}
+     * @return The currency being used
      */
     Currency getCurrency();
 
     /**
      * Gets the amount of the {@link Currency} involved in the transaction.
      *
-     * @return The amount
+     * @return The amount of currency in the transaction
      */
     BigDecimal getAmount();
 
@@ -62,21 +62,21 @@ public interface TransactionResult {
      * Returns the set of {@link Context}s used to perform the
      * transaction.
      *
-     * @return optional set of contexts
+     * @return An optional set of involved contexts
      */
     Set<Context> getContexts();
 
     /**
-     * Gets the {@link ResultType} of this transaction.
+     * Gets the {@link EconomyTransactionResultType} of this transaction.
      *
-     * @return resultType
+     * @return The result type of this transaction
      */
-    ResultType getResult();
+    EconomyTransactionResultType getResultType();
 
     /**
-     * Returns the {@link TransactionType} of this result.
+     * Returns the {@link EconomyTransactionType} of this result.
      *
-     * @return type of Transaction
+     * @return The type of transaction
      */
-    TransactionType getType();
+    EconomyTransactionType getType();
 }

@@ -69,7 +69,10 @@ import org.spongepowered.api.scoreboard.criteria.Criterion;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMode;
 import org.spongepowered.api.service.economy.Currency;
-import org.spongepowered.api.service.economy.transaction.TransactionType;
+import org.spongepowered.api.service.economy.account.AccountDeletionResult;
+import org.spongepowered.api.service.economy.account.AccountType;
+import org.spongepowered.api.service.economy.transaction.EconomyTransactionResultType;
+import org.spongepowered.api.service.economy.transaction.EconomyTransactionType;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.StatisticCategory;
 import org.spongepowered.api.text.chat.ChatType;
@@ -102,6 +105,10 @@ import org.spongepowered.api.world.weather.Weather;
 public final class CatalogTypes {
 
     // SORTFIELDS:ON
+
+    public static final Class<AccountDeletionResult> ACCOUNT_DELETION_RESULT = AccountDeletionResult.class;
+
+    public static final Class<AccountType> ACCOUNT_TYPE = AccountType.class;
 
     public static final Class<Advancement> ADVANCEMENT = Advancement.class;
 
@@ -162,6 +169,10 @@ public final class CatalogTypes {
     public static final Class<DisplaySlot> DISPLAY_SLOT = DisplaySlot.class;
 
     public static final Class<DyeColor> DYE_COLOR = DyeColor.class;
+
+    public static final Class<EconomyTransactionResultType> ECONOMY_TRANSACTION_RESULT_TYPE = EconomyTransactionResultType.class;
+
+    public static final Class<EconomyTransactionType> ECONOMY_TRANSACTION_TYPE = EconomyTransactionType.class;
 
     public static final Class<EnchantmentType> ENCHANTMENT_TYPE = EnchantmentType.class;
 
@@ -270,8 +281,6 @@ public final class CatalogTypes {
     public static final Class<TextStyle> TEXT_STYLE = TextStyle.class;
 
     public static final Class<ToolType> TOOL_TYPE = ToolType.class;
-
-    public static final Class<TransactionType> TRANSACTION_TYPE = TransactionType.class;
 
     public static final Class<Trigger> TRIGGER = Trigger.class;
 

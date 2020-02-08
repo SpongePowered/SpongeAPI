@@ -22,20 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.economy.account;
+package org.spongepowered.api.service.economy.transaction;
 
-import org.spongepowered.api.entity.living.player.User;
-import org.spongepowered.api.profile.GameProfile;
-import org.spongepowered.api.util.Identifiable;
-
-import java.util.UUID;
+import org.spongepowered.api.service.economy.Currency;
+import org.spongepowered.api.service.economy.account.Account;
 
 /**
- * Represents an {@link Account} identified by a {@link UUID}.
- *
- * <p>This is usually linked to a particular {@link User}'s {@link GameProfile},
- * through {@link #getUniqueId()}.</p>.
+ * Represents a {@link EconomyTransactionResult} specific to a transaction
+ * of type {@link EconomyTransactionTypes#TRANSFER}.
  */
-public interface UniqueAccount extends Account, Identifiable {
+public interface EconomyTransferResult extends EconomyTransactionResult {
+
+    /**
+     * Gets the {@link Account} that an amount of a {@link Currency}
+     * is being transferred to.
+     *
+     * <p>{@link #getAccount()} can be used to get the {@link Account}
+     * that the currency is being transferred from.</p>
+     *
+     * @return The {@link Account}
+     */
+    Account getAccountTo();
 
 }

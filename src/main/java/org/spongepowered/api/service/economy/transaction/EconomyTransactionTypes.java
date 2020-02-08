@@ -24,36 +24,39 @@
  */
 package org.spongepowered.api.service.economy.transaction;
 
-import org.spongepowered.api.service.context.Context;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.service.economy.Currency;
+import org.spongepowered.api.service.economy.account.Account;
 
-/**
- * Represents the success or failure state of a {@link TransactionResult}.
- */
-public enum ResultType {
+import java.util.function.Supplier;
 
-    /**
-     * Transaction finished with no errors.
-     */
-    SUCCESS,
+public final class EconomyTransactionTypes {
+
+    // SORTFIELDS:ON
 
     /**
-     * The transaction attempt resulted in a difference in {@link Context}s.
+     * Represents a transaction where an {@link Account} received
+     * some amount of a {@link Currency}.
      */
-    CONTEXT_MISMATCH,
+    public static final Supplier<EconomyTransactionType> DEPOSIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EconomyTransactionType.class, "DEPOSIT");
 
     /**
-     * The transaction failed for an unspecific reason.
+     * Represents a transaction where an {@link Account} transferred
+     * some amount of a currency to another {@link Account}.
      */
-    FAILED,
+    public static final Supplier<EconomyTransactionType> TRANSFER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EconomyTransactionType.class, "TRANSFER");
 
     /**
-     * The account did not have enough funds requested.
+     * Represents a transaction where an {@link Account} lost
+     * some amount of a {@link Currency}.
      */
-    ACCOUNT_NO_FUNDS,
+    public static final Supplier<EconomyTransactionType> WITHDRAW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EconomyTransactionType.class, "WITHDRAW");
 
-    /**
-     * The account would be put past it's maximum capacity, so the transaction
-     * failed.
-     */
-    ACCOUNT_NO_SPACE
+    // SORTFIELDS:OFF
+
+    // Suppress default constructor to ensure non-instantiability.
+    private EconomyTransactionTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
 }
