@@ -32,15 +32,16 @@ import org.spongepowered.api.event.entity.AffectEntityEvent;
 /**
  * An event when a {@link Bell} is rung.
  *
- * <p>Entities which are affected by this event will be given a {@link PotionEffectTypes#GLOWING} effect.</p>
+ * <p>Entities which are affected by this event will be
+ * given a {@link PotionEffectTypes#GLOWING} effect.</p>
  */
 public interface RingBellEvent extends AffectEntityEvent, Cancellable {
 
-	/**
-	 * The {@link Bell} which was rung.
-	 *
-	 * @return The bell which was rung.
-	 */
-	Bell getBell();
+    /**
+    * The {@link Bell} which was rung.
+    *
+    * @return The bell which was rung
+    */
+    Bell getBell();
 
 }

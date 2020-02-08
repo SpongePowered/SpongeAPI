@@ -41,96 +41,102 @@ import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
  */
 public interface VillagerEvent extends Event {
 
-	/**
-	 * Gets the {@link Villager} involved with this event.
-	 *
-	 * @return The villager.
-	 */
-	Villager getVillager();
+    /**
+     * Gets the {@link Villager} involved with this event.
+     *
+     * @return The villager involved
+     */
+    Villager getVillager();
 
-	/**
-	 * Fired when a {@link Villager}'s profession changes.
-	 *
-	 * <p>This can include both gaining or losing a {@link Profession}.</p>
-	 */
-	@GenerateFactoryMethod
-	interface ChangeProfession extends VillagerEvent, Cancellable {
+    /**
+     * Fired when a {@link Villager}'s profession changes.
+     *
+     * <p>This can include both gaining or losing a {@link Profession}.</p>
+     */
+    @GenerateFactoryMethod
+    interface ChangeProfession extends VillagerEvent, Cancellable {
 
-		/**
-		 * Gets the villager's original {@link Profession}.
-		 *
-		 * @return The {@link Profession} the {@link Villager}'s will take.
-		 */
-		Profession getOriginalProfession();
+        /**
+         * Gets the villager's original {@link Profession}.
+         *
+         * @return The original profession the villager will take
+         */
+        Profession getOriginalProfession();
 
-		/**
-		 * Gets the {@link Profession} the villager will change to.
-		 *
-		 * @return The {@link Villager}'s next {@link Profession}.
-		 */
-		Profession getProfession();
+        /**
+         * Gets the {@link Profession} the villager will change to.
+         *
+         * @return The villager's next profession
+         */
+        Profession getProfession();
 
-		/**
-		 * Sets the {@link Villager}'s next {@link Profession}.
-		 */
-		void setProfession(Profession profession);
-	}
+        /**
+         * Sets the {@link Villager}'s next {@link Profession}.
+         *
+         * @param profession The desired new profession of the villager
+         */
+        void setProfession(Profession profession);
+    }
 
-	/**
-	 * Fired when a {@link Villager} levels up it's {@link Profession}.
-	 */
-	@GenerateFactoryMethod
-	interface LevelUpProfession extends VillagerEvent, Cancellable {
+    /**
+     * Fired when a {@link Villager} levels up it's {@link Profession}.
+     */
+    @GenerateFactoryMethod
+    interface LevelUpProfession extends VillagerEvent, Cancellable {
 
-		/**
-		 * Gets the {@link Villager}'s original {@link Profession} level.
-		 *
-		 * @return The {@link Profession} level.
-		 */
-		int getOriginalProfessionLevel();
+        /**
+         * Gets the {@link Villager}'s original {@link Profession} level.
+         *
+         * @return The original profession level
+         */
+        int getOriginalProfessionLevel();
 
-		/**
-		 * Gets the {@link Profession} level this {@link Villager}'s will level up to.
-		 *
-		 * @return The {@link Profession} level.
-		 */
-		int getProfessionLevel();
+        /**
+         * Gets the {@link Profession} level this {@link Villager}'s
+         * will level up to.
+         *
+         * @return The current set {@link Profession} level
+         */
+        int getProfessionLevel();
 
-		/**
-		 * Sets the profession level of this {@link Villager} will reach.
-		 *
-		 * @param level The level to set the {@link Villager}'s {@link Profession} to.
-		 *
-		 * <p>Please note that any level above 5 usually does not define TradeOfferGenerators and is therefore ignored.</p>
-		 */
-		void setProfessionLevel(int level);
-	}
+        /**
+         * Sets the profession level of this {@link Villager} will reach.
+         *
+         * <p>Please note that any level above 5 usually does not define any
+         * {@link org.spongepowered.api.item.merchant.TradeOfferGenerator}s
+         * and is therefore ignored.</p>
+         *
+         * @param level The level to set the villager's profession to
+         */
+        void setProfessionLevel(int level);
+    }
 
-	/**
-	 * Fired when a {@link Villager} starts panicking.
-	 *
-	 * <p>This can occur because of a {@link Raid} or a {@link ZombieEntity}/{@link Raider}
-	 * or both a {@link Raid} and {@link Entity}.</p>
-	 *
-	 * <p>The {@link Villager}'s Panic task will always prioritize the last {@link Entity} which attacked before considering any nearby
-	 * {@link Hostile} agents.</p>
-	 *
-	 */
-	@GenerateFactoryMethod
-	interface Panic extends VillagerEvent, Cancellable {
+    /**
+     * Fired when a {@link Villager} starts panicking.
+     *
+     * <p>This can occur because of a {@link Raid} or a
+     * {@link ZombieEntity}/{@link Raider} or both a {@link Raid}
+     * and {@link Entity}.</p>
+     *
+     * <p>The {@link Villager}'s Panic task will always prioritize the last
+     * {@link Entity} which attacked before considering any nearby
+     * {@link Hostile} agents.</p>
+     */
+    @GenerateFactoryMethod
+    interface Panic extends VillagerEvent, Cancellable {
 
-		/**
-		 * Checks if an {@link IronGolem} will be summoned.
-		 *
-		 * @return True if an {@link IronGolem} will be summoned.
-		 */
-		boolean willSpawnGolem();
+        /**
+         * Checks if an {@link IronGolem} will be summoned.
+         *
+         * @return If the panic will spawn an iron golem
+         */
+        boolean willSpawnGolem();
 
-		/**
-		 * Sets if the {@link Villager} should summon an {@link IronGolem}.
-		 *
-		 * @param spawnGolem If the {@link Villager} should summon an {@link IronGolem}.
-		 */
-		void setShouldSpawnGolem(boolean spawnGolem);
-	}
+        /**
+         * Sets if the {@link Villager} should summon an {@link IronGolem}.
+         *
+         * @param spawnGolem If the villager should spawn an iron golem
+         */
+        void setShouldSpawnGolem(boolean spawnGolem);
+    }
 }

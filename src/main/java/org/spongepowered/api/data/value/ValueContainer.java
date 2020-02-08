@@ -291,7 +291,8 @@ public interface ValueContainer {
      * available, {@link NoSuchElementException} will be thrown.</p>
      *
      * @param key The key
-     * @param <E> The type of value
+     * @param <E> The type of element wrapped by the value
+     * @param <V> The type of value
      * @return The value
      * @throws NoSuchElementException If the value is not supported or present
      */
@@ -307,7 +308,8 @@ public interface ValueContainer {
      * available, {@link NoSuchElementException} will be thrown.</p>
      *
      * @param key The key
-     * @param <E> The type of value
+     * @param <E> The type of element wrapped by the value
+     * @param <V> The type of value
      * @return The value
      * @throws NoSuchElementException If the value is not supported or present
      */

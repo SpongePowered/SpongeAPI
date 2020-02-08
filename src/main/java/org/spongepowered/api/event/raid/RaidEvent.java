@@ -37,42 +37,44 @@ import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
  */
 public interface RaidEvent extends Event {
 
-	/**
-	 * Gets the {@link Raid} involved with this event.
-	 *
-	 * @return The raid.
-	 */
-	Raid getRaid();
+    /**
+     * Gets the {@link Raid} involved with this event.
+     *
+     * @return The raid
+     */
+    Raid getRaid();
 
-	/**
-	 * An event where the {@link Raid} is started.
-	 *
-	 * <p>This is fired before any {@link Wave}s have started.</p>
-	 */
-	@GenerateFactoryMethod
-	interface Start extends RaidEvent, Cancellable {}
+    /**
+     * An event where the {@link Raid} is started.
+     *
+     * <p>This is fired before any {@link Wave}s have started.</p>
+     */
+    @GenerateFactoryMethod
+    interface Start extends RaidEvent, Cancellable {
+    }
 
-	/**
-	 * An event where a {@link Wave} in a {@link Raid} has started.
-	 */
-	@GenerateFactoryMethod
-	interface StartWave extends RaidEvent, Cancellable {
+    /**
+     * An event where a {@link Wave} in a {@link Raid} has started.
+     */
+    @GenerateFactoryMethod
+    interface StartWave extends RaidEvent, Cancellable {
 
-		/**
-		 * The {@link Wave} which is starting.
-		 *
-		 * @return The current wave.
-		 */
-		Wave getWave();
+        /**
+         * The {@link Wave} which is starting.
+         *
+         * @return The current wave
+         */
+        Wave getWave();
 
-	}
+    }
 
-	/**
-	 * An event for when a {@link Raid} has ended.
-	 *
-	 * <p>The raid's state could be either a {@link RaidStatuses#VICTORY}
-	 * or {@link RaidStatuses#LOSS}</p>
-	 */
-	@GenerateFactoryMethod
-	interface End extends RaidEvent {}
+    /**
+     * An event for when a {@link Raid} has ended.
+     *
+     * <p>The raid's state could be either a {@link RaidStatuses#VICTORY}
+     * or {@link RaidStatuses#LOSS}</p>
+     */
+    @GenerateFactoryMethod
+    interface End extends RaidEvent {
+    }
 }

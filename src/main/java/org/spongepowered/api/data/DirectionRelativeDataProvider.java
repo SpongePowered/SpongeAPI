@@ -57,6 +57,7 @@ public interface DirectionRelativeDataProvider<V extends Value<E>, E> extends Da
      * for even immutable types, since the provider is providing the data.
      *
      * @param dataHolder The data holder
+     * @param direction The related relative direction to the data provider
      * @return The value, if it's supported and exists
      */
     Optional<E> get(DataHolder dataHolder, Direction direction);
@@ -72,6 +73,7 @@ public interface DirectionRelativeDataProvider<V extends Value<E>, E> extends Da
      * provider is providing the data.
      *
      * @param dataHolder The data holder to get the constructed value from
+     * @param direction The related relative direction to the data provider
      * @return The value
      */
     default Optional<V> getValue(DataHolder dataHolder, Direction direction) {
@@ -82,6 +84,7 @@ public interface DirectionRelativeDataProvider<V extends Value<E>, E> extends Da
      * Gets whether this value provider is supported by the given {@link ValueContainer}.
      *
      * @param dataHolder The data holder
+     * @param direction The related relative direction to the data provider
      * @return Whether it's supported
      */
     boolean isSupported(DataHolder dataHolder, Direction direction);
