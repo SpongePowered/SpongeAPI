@@ -24,14 +24,19 @@
  */
 package org.spongepowered.api.service.economy;
 
+import com.google.common.collect.ImmutableSet;
+import org.spongepowered.api.entity.living.player.User;
+import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.context.ContextualService;
 import org.spongepowered.api.service.economy.account.Account;
 import org.spongepowered.api.service.economy.account.AccountType;
 
+import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * Represents a service for managing a server economy.
@@ -62,7 +67,7 @@ public interface EconomyService extends ContextualService<Account> {
 
     /**
      * Returns the {@link Set} of supported {@link Currency currencies} that are
-     * implemented by this EconomyService.
+     * implemented by this {@link EconomyService}.
      *
      * <p>The economy service provider may only support one currency, in which
      * case {@link #getDefaultCurrency()} will be the only member of the set.</p>
@@ -75,57 +80,63 @@ public interface EconomyService extends ContextualService<Account> {
     Set<Currency> getCurrencies();
 
     /**
-     * Returns whether a {@link UniqueAccount} exists with the specified {@link UUID}.
+     * Gets the account with the specified {@link UUID}, if it exists.
      *
-     * @param uuid The {@link UUID} of the account to check for
-     * @return Whether a {@link UniqueAccount} exists with the specified {@link UUID}
+     * @param uniqueId The UUID of the account to get
+     * @return The account with the specified UUID, if present
      */
-    boolean hasAccount(UUID uuid);
+    Optional<Account> getAccount(UUID uniqueId);
 
     /**
-     * Returns whether an {@link Account} with the specified identifier exists.
+     * Gets the existing default account or creates one for the specified
+     * {@link UUID} owner of the default {@link AccountType}.
      *
-     * <p>Depending on the implementation, the {@link Account} may be a
-     * {@link UniqueAccount} or a {@link VirtualAccount}.
+     * <p>This is the account players will most likely generally use, but
+     * this doesn't need to only be used for owners that are users.</p>
      *
-     * @param identifier The identifier of the account to check for
-     * @return Whether an {@link Account} with the specified identifier exists
+     * @param owner Who should be set as the owner of the account
+     * @return The account if it was found or made successfully
      */
-    boolean hasAccount(String identifier);
+    Optional<Account> getOrCreateDefaultAccount(UUID owner);
 
     /**
-     * Gets the {@link UniqueAccount} for the user with the specified {@link UUID}.
+     * Attempts to create a new account of the specified {@link AccountType}.
      *
-     * <p>If an account does not already exists with the specified {@link UUID},
-     * it will be created.</p>
-     *
-     * <p>Creation might fail if the provided {@link UUID} does not correspond to
-     * an actual player, or for an implementation-defined reason.</p>
-     *
-     * @param uuid The {@link UUID} of the account to get.
-     * @return The {@link UniqueAccount}, if available.
+     * @param accountType The account type to create the account with
+     * @return The account if it was made successfully
      */
-    Optional<UniqueAccount> getOrCreateAccount(UUID uuid);
+    Optional<Account> createAccount(AccountType accountType);
 
     /**
-     * Gets the {@link VirtualAccount} with the specified identifier.
+     * Gets all accounts the specified {@link UUID} has access to as an owner
+     * as a read-only collection.
      *
-     * <p>Depending on the implementation, the {@link Account} may be a
-     * {@link UniqueAccount} or a {@link VirtualAccount}.</p>
+     * <p>An implementation can choose to internally use a list to provide
+     * priority to the accounts.</p>
      *
-     * <p>If an account does not already exists with the specified identifier,
-     * it will be created.</p>
-     *
-     * <p>Creation may fail for an implementation-defined reason.</p>
-     *
-     * @param identifier The identifier of the account to get.
-     * @return The {@link Account}, if available.
+     * @param owner The owner of the accounts
+     * @return Read only collection of all accounts owned by the specified owner
      */
-    Optional<Account> getOrCreateAccount(String identifier);
+    Collection<Account> getOwnedAccounts(UUID owner);
 
-    Set<Account> getOwnedAccounts(UUID uniqueId);
+    /**
+     * Gets all accounts which match the specified predicate
+     * as a read-only set.
+     *
+     * @param check The predicate to check the accounts with
+     * @return The read only set of all accounts which match
+     */
+    default Set<Account> getAccounts(Predicate<Account> check) {
+        return getAllAccounts().stream()
+                .filter(check)
+                .collect(ImmutableSet.toImmutableSet());
+    }
 
-    Set<Account> getAccounts(Predicate<Account> include);
-
+    /**
+     * Gets a read-only set of all accounts present within the
+     * {@link EconomyService}.
+     *
+     * @return Read only set of all economy accounts
+     */
     Set<Account> getAllAccounts();
 }

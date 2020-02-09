@@ -48,11 +48,11 @@ import java.util.Optional;
 public interface AccountType extends CatalogType {
 
     /**
-     * Gets whether this account type is meant for a single individual.
+     * Gets whether this account type is meant for more than one owner.
      *
-     * @return If the account type is meant for a sole user
+     * @return If the account type is meant for multiple owners
      */
-    boolean isIndividual();
+    boolean isShared();
 
     /**
      * Gets the default balance of this account type for the specified

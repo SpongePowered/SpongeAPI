@@ -37,6 +37,7 @@ import org.spongepowered.api.service.economy.transaction.EconomyTransferResult;
 import org.spongepowered.api.text.Text;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
@@ -61,18 +62,51 @@ public interface Account extends Contextual {
      * Gets the display name for this account.
      *
      * <p>This should be used by plugins to get a human-readable name for an
-     * account, regardless of the specific type ({@link UniqueAccount} or
-     * {@link VirtualAccount}).</p>
+     * account.</p>
      *
      * <p>Its contents are dependent on the provider of {@link EconomyService}.
      * For example, an economy plugin could allow players to configure the
-     * display name of their account</p>.
+     * display name of their account.</p>
      *
      * @return The display name for this account
      */
     Text getDisplayName();
 
+    /**
+     * Gets the {@link AccountType} of this account.
+     *
+     * @return The account type
+     */
     AccountType getType();
+
+    /**
+     * Gets all owners of this account, specified with {@link UUID}s as an
+     * unmodifiable collection.
+     *
+     * <p>These are often the UUIDs of players, but could also be the UUID's
+     * of other accounts, factions, or similar.</p>
+     *
+     * <p>There is no guarantee of order of these entries, but some
+     * implementations may return an ordered collection with higher priority
+     * owners listed first.</p>
+     *
+     * @return An unmodifiable collection of all owners of the account
+     */
+    Collection<UUID> getOwners();
+
+    /**
+     * Removes the specified {@link UUID} as an owner of the account.
+     *
+     * @param owner The owner to remove from the account
+     */
+    void removeOwner(UUID owner);
+
+    /**
+     * Adds the specified {@link UUID} as an owner of the account.
+     *
+     * @param owner The owner to add to the account
+     */
+    void addOwner(UUID owner);
 
     /**
      * Gets the default balance of this account for the specified
@@ -115,7 +149,7 @@ public interface Account extends Contextual {
      *
      * <p>If this method returns <code>false</code>, then
      * {@link #getDefaultBalance(Currency)} will be used when retrieving
-     * a balance for the specifid {@link Currency} with
+     * a balance for the specific {@link Currency} with
      * the current active contexts</p>.
      *
      * @param currency The {@link Currency} to determine if a balance is set for.
