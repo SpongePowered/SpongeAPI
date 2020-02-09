@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.economy;
 
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.service.context.Context;
 import org.spongepowered.api.service.economy.Currency;
@@ -39,7 +40,7 @@ import java.util.Set;
 /**
  * Fired when the {@link EconomyService} is processing a transaction.
  */
-public interface EconomyTransactionEvent extends Event {
+public interface EconomyTransactionEvent extends Event, Cancellable {
 
     /**
      * Gets the {@link Account} involved in the transaction.
