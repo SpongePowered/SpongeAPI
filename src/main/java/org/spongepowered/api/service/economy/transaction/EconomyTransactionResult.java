@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.service.economy.transaction;
 
+import org.spongepowered.api.event.economy.EconomyTransactionEvent;
 import org.spongepowered.api.service.context.Context;
 import org.spongepowered.api.service.economy.Currency;
 import org.spongepowered.api.service.economy.account.Account;
@@ -79,4 +80,20 @@ public interface EconomyTransactionResult {
      * @return The type of transaction
      */
     EconomyTransactionType getType();
+
+    /**
+     * Reverses the transaction, in a sense creating a new transaction in
+     * the opposite direction.
+     *
+     * <p>Should be a no-op operation if the original transaction was
+     * not successful.</p>
+     *
+     * <p>Be careful undoing transactions, as undoing the transaction
+     * throws a new {@link EconomyTransactionEvent}</p> and returns a new
+     * {@link EconomyTransactionResult}, and can therefore be undone again.
+     *
+     * @return The transaction result of the reversal
+     */
+    EconomyTransactionResult undoTransaction();
+
 }

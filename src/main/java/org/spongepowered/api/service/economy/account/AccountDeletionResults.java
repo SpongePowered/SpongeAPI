@@ -25,7 +25,7 @@
 package org.spongepowered.api.service.economy.account;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.event.economy.DeleteAccountEvent;
+import org.spongepowered.api.event.economy.DeleteEconomyAccountEvent;
 
 import java.util.function.Supplier;
 
@@ -49,7 +49,7 @@ public final class AccountDeletionResults {
 
     /**
      * Specifies that the deletion was cancelled, likely by a plugin
-     * cancelling the {@link DeleteAccountEvent}.
+     * cancelling the {@link DeleteEconomyAccountEvent}.
      */
     public static final Supplier<AccountDeletionResult> CANCELLED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AccountDeletionResult.class, "CANCELLED");
 

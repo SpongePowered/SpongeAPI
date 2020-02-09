@@ -43,18 +43,10 @@ import java.util.Set;
 import java.util.UUID;
 
 /**
- * Represents an account, which stores amounts of various {@link Currency currencies}.
+ * Represents an account, which stores amounts of
+ * various {@link Currency currencies}.
  *
- * <p>Accounts come in two varieties: {@link UniqueAccount user accounts}
- * and {@link VirtualAccount} virtual accounts.
- *
- * Unique accounts are bound to a {@link UUID}, usually of a particular
- * {@link User}'s {@link GameProfile}.
- *
- * Virtual accounts are identified by a String identifier, which may have any
- * value. They are not tied to any {@link Entity}, player or otherwise. Virtual
- * accounts may be used for purposes such as bank accounts, non-player
- * {@link Entity} accounts, or other things.</p>
+ * The account has a type and can have one or accessors.
  */
 public interface Account extends Contextual {
 
@@ -78,6 +70,14 @@ public interface Account extends Contextual {
      * @return The account type
      */
     AccountType getType();
+
+    /**
+     * Gets if the {@link Account} is frozen and cannot
+     * process any transactions.
+     *
+     * @return If the account is frozen
+     */
+    boolean isFrozen();
 
     /**
      * Gets all owners of this account, specified with {@link UUID}s as an

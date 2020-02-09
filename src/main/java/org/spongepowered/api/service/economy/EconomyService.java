@@ -117,7 +117,7 @@ public interface EconomyService extends ContextualService<Account> {
      * @param owner The owner of the accounts
      * @return Read only collection of all accounts owned by the specified owner
      */
-    Collection<Account> getOwnedAccounts(UUID owner);
+    Collection<Account> getAccessibleAccounts(UUID owner);
 
     /**
      * Gets all accounts which match the specified predicate

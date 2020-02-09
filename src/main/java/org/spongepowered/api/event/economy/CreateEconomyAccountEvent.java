@@ -39,12 +39,12 @@ import java.util.UUID;
  * Represents the creation of a new economy account
  * by the {@link EconomyService}.
  */
-public interface CreateAccountEvent extends Event {
+public interface CreateEconomyAccountEvent extends Event {
 
     /**
      * Fires before the new {@link Account} is created.
      */
-    interface Pre extends CreateAccountEvent, Cancellable {
+    interface Pre extends CreateEconomyAccountEvent, Cancellable {
 
         /**
          * Gets the {@link UUID} that will be used by the account.
@@ -114,7 +114,7 @@ public interface CreateAccountEvent extends Event {
     /**
      * Fires after the new {@link Account} is created.
      */
-    interface Post extends CreateAccountEvent {
+    interface Post extends CreateEconomyAccountEvent {
 
         /**
          * The {@link Account} created by the {@link EconomyService}.

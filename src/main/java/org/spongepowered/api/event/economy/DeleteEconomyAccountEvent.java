@@ -32,7 +32,7 @@ import org.spongepowered.api.service.economy.account.Account;
  * Represents when an economy account is being deleted through the
  * {@link org.spongepowered.api.service.economy.EconomyService}.
  */
-public interface DeleteAccountEvent extends Event, Cancellable {
+public interface DeleteEconomyAccountEvent extends Event, Cancellable {
 
     /**
      * The account that is set to be deleted.

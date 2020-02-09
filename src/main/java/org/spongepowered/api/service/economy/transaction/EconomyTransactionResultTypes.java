@@ -43,6 +43,12 @@ public final class EconomyTransactionResultTypes {
     // SORTFIELDS:ON
 
     /**
+     * Represents when the transaction is unsuccessful due to one or more
+     * of the involved accounts being frozen.
+     */
+    public static final Supplier<EconomyTransactionResultType> ACCOUNT_FROZEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EconomyTransactionResultType.class, "ACCOUNT_FROZEN");
+
+    /**
      * Represents when the transaction is unsuccessful due to the target
      * account having already reached their maximum fund amount.
      */
@@ -67,7 +73,7 @@ public final class EconomyTransactionResultTypes {
 
     /**
      * Represents when the transaction is unsuccessful due to the account
-     * have insufficient funds.
+     * which is being removed from having insufficient funds.
      */
     public static final Supplier<EconomyTransactionResultType> INSUFFICIENT_FUNDS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EconomyTransactionResultType.class, "INSUFFICIENT_FUNDS");
 
