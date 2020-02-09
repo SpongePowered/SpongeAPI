@@ -64,18 +64,19 @@ public final class AccountDeletionResults {
     public static final Supplier<AccountDeletionResult> SUCCESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AccountDeletionResult.class, "SUCCESS");
 
     /**
-     * Specifies that account is indelible, possibly due to being
+     * Specifies that account cannot be deleted, possibly due to being
      * a server account or necessary for plugin functionality.
      */
     public static final Supplier<AccountDeletionResult> UNDELETABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AccountDeletionResult.class, "UNDELETABLE");
 
     /**
-     * If deletion is not supported by the economy service in general
-     * or for this specific account.
+     * Specifies that the account deletion is not supported by
+     * the economy service.
      *
-     * <p>This is better used only if your economy service does not support
-     * deleting any type of economy accounts. More specific result types
-     * would fit other cases better.</p>
+     * <p>Specifies that account deletion is not supported. Plugins
+     * should not use this result unless deletion is not supported
+     * in general, favouring {@link #UNDELETABLE} if a specific
+     * account cannot be removed.</p>
      */
     public static final Supplier<AccountDeletionResult> UNSUPPORTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AccountDeletionResult.class, "UNSUPPORTED");
 

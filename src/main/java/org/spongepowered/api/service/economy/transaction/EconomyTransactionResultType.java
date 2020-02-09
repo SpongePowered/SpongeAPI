@@ -49,8 +49,6 @@ public interface EconomyTransactionResultType extends CatalogType {
      *
      * @return A default message tied to the result type
      */
-    default Optional<Text> getMessage() {
-        return Optional.empty();
-    }
+    Optional<Text> getMessage();
 
 }

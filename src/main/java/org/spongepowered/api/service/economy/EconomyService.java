@@ -34,6 +34,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 /**
  * Represents a service for managing a server economy.
@@ -108,27 +109,10 @@ public interface EconomyService extends ContextualService<Account> {
      * Gets all accounts the specified {@link UUID} has access to as an owner
      * as a read-only collection.
      *
-     * <p>An implementation can choose to internally use a list to provide
-     * priority to the accounts.</p>
-     *
      * @param owner The owner of the accounts
      * @return Read only collection of all accounts owned by the specified owner
      */
     Collection<Account> getAccessibleAccounts(UUID owner);
-
-    /**
-     * Gets all accounts which match the specified predicate
-     * as a read-only set.
-     *
-     * @param check The predicate to check the accounts with
-     * @return The read only set of all accounts which match
-     */
-    default Set<Account> getAccounts(Predicate<Account> check) {
-        //noinspection UnstableApiUsage
-        return getAllAccounts().stream()
-                .filter(check)
-                .collect(ImmutableSet.toImmutableSet());
-    }
 
     /**
      * Gets a read-only set of all accounts present within the
@@ -136,5 +120,5 @@ public interface EconomyService extends ContextualService<Account> {
      *
      * @return Read only set of all economy accounts
      */
-    Set<Account> getAllAccounts();
+    Stream<Account> getAllAccounts();
 }

@@ -43,7 +43,7 @@ import java.util.UUID;
  * Represents an account, which stores amounts of
  * various {@link Currency currencies}.
  *
- * The account has a type and can have one or accessors.
+ * The account has a type and can have one or more owners.
  */
 public interface Account extends Contextual {
 
@@ -82,10 +82,6 @@ public interface Account extends Contextual {
      *
      * <p>These are often the UUIDs of players, but could also be the UUID's
      * of other accounts, factions, or similar.</p>
-     *
-     * <p>There is no guarantee of order of these entries, but some
-     * implementations may return an ordered collection with higher priority
-     * owners listed first.</p>
      *
      * @return An unmodifiable collection of all owners of the account
      */
@@ -280,7 +276,7 @@ public interface Account extends Contextual {
      * their default values ({@link #getDefaultBalance(Currency)}), using
      * the current active {@link Context}.
      *
-     * @param cause The cause for the transaction
+     * @param cause The cause of the transaction
      * @return A map of currencies to transaction results. Each
      *     entry represents the result of resetting a particular currency
      */

@@ -94,6 +94,6 @@ public interface EconomyTransactionResult {
      *
      * @return The transaction result of the reversal
      */
-    EconomyTransactionResult undoTransaction();
+    EconomyTransactionResult reverseTransaction();
 
 }
