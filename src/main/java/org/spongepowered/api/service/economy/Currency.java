@@ -73,7 +73,7 @@ public interface Currency extends CatalogType {
     /**
      * Formats the given amount using the default number of fractional digits.
      *
-     * <p>Should include the symbol if it is present</p>
+     * <p>Should include the symbol if it is present.</p>
      *
      * @param amount The amount to format
      * @return String formatted amount
@@ -85,7 +85,7 @@ public interface Currency extends CatalogType {
     /**
      * Formats the given amount using the specified number of fractional digits.
      *
-     * <p>Should include the symbol if it is present</p>
+     * <p>Should include the symbol if it is present.</p>
      *
      * @param amount The amount to format
      * @param numFractionDigits The number of fractional digits to use

@@ -88,9 +88,9 @@ public interface EconomyTransactionResult {
      * <p>Should be a no-op operation if the original transaction was
      * not successful.</p>
      *
-     * <p>Be careful undoing transactions, as undoing the transaction
+     * <p>Be careful undoing transactions, as reversing the transaction
      * throws a new {@link EconomyTransactionEvent}</p> and returns a new
-     * {@link EconomyTransactionResult}, and can therefore be undone again.
+     * {@link EconomyTransactionResult}, and can therefore be reversed again.
      *
      * @return The transaction result of the reversal
      */

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.service.economy;
 
-import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.service.context.ContextualService;
 import org.spongepowered.api.service.economy.account.Account;
 import org.spongepowered.api.service.economy.account.AccountType;
@@ -33,7 +32,6 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
-import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 /**

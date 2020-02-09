@@ -39,7 +39,7 @@ public interface EconomyTransactionResultType extends CatalogType {
     /**
      * Gets whether the economy transaction was successfully completed.
      *
-     * @return If the economy transaction was successful.
+     * @return If the economy transaction was successful
      */
     boolean isSuccessful();
 

@@ -42,7 +42,7 @@ import java.util.Optional;
  * mind, then {@link EconomyService#getDefaultAccountType()} can be used.</p>
  *
  * <p>If a type was previously registered but can no longer be found,
- * economy service implementors should general fall back to the default
+ * economy service implementors should fall back to the default
  * account type.</p>
  */
 public interface AccountType extends CatalogType {

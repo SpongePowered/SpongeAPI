@@ -34,7 +34,7 @@ import java.util.function.Supplier;
  * could occur when deleting an {@link Account}.
  *
  * <p>The following must be registered by Sponge implementations, but
- * economy service implementors can implement their own as well.</p>
+ * economy service implementors may implement their own as well.</p>
  *
  * @see AccountDeletionResult
  */
