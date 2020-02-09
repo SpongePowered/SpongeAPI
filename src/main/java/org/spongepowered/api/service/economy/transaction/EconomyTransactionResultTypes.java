@@ -25,21 +25,55 @@
 package org.spongepowered.api.service.economy.transaction;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.event.economy.EconomyTransactionEvent;
+import org.spongepowered.api.service.context.Context;
+import org.spongepowered.api.service.economy.EconomyService;
 
 import java.util.function.Supplier;
 
+/**
+ * A catalog of various results of economy transactions. These results
+ * are implemented directly by Sponge but the {@link EconomyService}
+ * implementor can add and implement novel result types.
+ *
+ * @see EconomyTransactionResultType
+ */
 public final class EconomyTransactionResultTypes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<EconomyTransactionResultType> ACCOUNT_NO_FUNDS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EconomyTransactionResultType.class, "ACCOUNT_NO_FUNDS");
+    /**
+     * Represents when the transaction is unsuccessful due to the target
+     * account having already reached their maximum fund amount.
+     */
+    public static final Supplier<EconomyTransactionResultType> ACCOUNT_FULL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EconomyTransactionResultType.class, "ACCOUNT_FULL");
 
-    public static final Supplier<EconomyTransactionResultType> ACCOUNT_NO_SPACE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EconomyTransactionResultType.class, "ACCOUNT_NO_SPACE");
+    /**
+     * Represents when the transaction is unsuccessful, likely due to being
+     * cancelled by a plugin through {@link EconomyTransactionEvent}.
+     */
+    public static final Supplier<EconomyTransactionResultType> CANCELLED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EconomyTransactionResultType.class, "CANCELLED");
 
+    /**
+     * Represents when the transaction attempt resulted in a difference
+     * in {@link Context contexts}.
+     */
     public static final Supplier<EconomyTransactionResultType> CONTEXT_MISMATCH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EconomyTransactionResultType.class, "CONTEXT_MISMATCH");
 
+    /**
+     * Represents when the transaction failed for an unspecific reason.
+     */
     public static final Supplier<EconomyTransactionResultType> FAILED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EconomyTransactionResultType.class, "FAILED");
 
+    /**
+     * Represents when the transaction is unsuccessful due to the account
+     * have insufficient funds.
+     */
+    public static final Supplier<EconomyTransactionResultType> INSUFFICIENT_FUNDS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EconomyTransactionResultType.class, "INSUFFICIENT_FUNDS");
+
+    /**
+     * Represents a successfully completed transaction.
+     */
     public static final Supplier<EconomyTransactionResultType> SUCCESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EconomyTransactionResultType.class, "SUCCESS");
 
     // SORTFIELDS:OFF

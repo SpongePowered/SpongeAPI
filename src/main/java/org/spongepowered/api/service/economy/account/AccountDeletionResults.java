@@ -25,6 +25,7 @@
 package org.spongepowered.api.service.economy.account;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.event.economy.DeleteAccountEvent;
 
 import java.util.function.Supplier;
 
@@ -45,6 +46,12 @@ public final class AccountDeletionResults {
      * Specifies that the account did not exist when attempting deletion.
      */
     public static final Supplier<AccountDeletionResult> ABSENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AccountDeletionResult.class, "ABSENT");
+
+    /**
+     * Specifies that the deletion was cancelled, likely by a plugin
+     * cancelling the {@link DeleteAccountEvent}.
+     */
+    public static final Supplier<AccountDeletionResult> CANCELLED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AccountDeletionResult.class, "CANCELLED");
 
     /**
      * Specifies that the account could not be deleted.

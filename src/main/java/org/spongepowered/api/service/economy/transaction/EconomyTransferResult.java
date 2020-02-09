@@ -42,6 +42,6 @@ public interface EconomyTransferResult extends EconomyTransactionResult {
      *
      * @return The {@link Account}
      */
-    Account getAccountTo();
+    Account getTargetAccount();
 
 }

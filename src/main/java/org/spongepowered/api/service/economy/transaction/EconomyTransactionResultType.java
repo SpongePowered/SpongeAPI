@@ -30,6 +30,9 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Optional;
 
+/**
+ * A catalog type which signifies the result of an economy transaction.
+ */
 @CatalogedBy(EconomyTransactionResultTypes.class)
 public interface EconomyTransactionResultType extends CatalogType {
 
