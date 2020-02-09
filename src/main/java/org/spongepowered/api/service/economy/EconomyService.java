@@ -25,8 +25,6 @@
 package org.spongepowered.api.service.economy;
 
 import com.google.common.collect.ImmutableSet;
-import org.spongepowered.api.entity.living.player.User;
-import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.context.ContextualService;
 import org.spongepowered.api.service.economy.account.Account;
 import org.spongepowered.api.service.economy.account.AccountType;
@@ -36,7 +34,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 /**
  * Represents a service for managing a server economy.
@@ -127,6 +124,7 @@ public interface EconomyService extends ContextualService<Account> {
      * @return The read only set of all accounts which match
      */
     default Set<Account> getAccounts(Predicate<Account> check) {
+        //noinspection UnstableApiUsage
         return getAllAccounts().stream()
                 .filter(check)
                 .collect(ImmutableSet.toImmutableSet());

@@ -24,10 +24,7 @@
  */
 package org.spongepowered.api.service.economy.account;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.context.Context;
 import org.spongepowered.api.service.context.Contextual;
 import org.spongepowered.api.service.economy.Currency;
