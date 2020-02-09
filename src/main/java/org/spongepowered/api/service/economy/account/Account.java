@@ -69,14 +69,6 @@ public interface Account extends Contextual {
     AccountType getType();
 
     /**
-     * Gets if the {@link Account} is frozen and cannot
-     * process any transactions.
-     *
-     * @return If the account is frozen
-     */
-    boolean isFrozen();
-
-    /**
      * Gets all owners of this account, specified with {@link UUID}s as an
      * unmodifiable collection.
      *

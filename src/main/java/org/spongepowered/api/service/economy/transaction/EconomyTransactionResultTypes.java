@@ -44,7 +44,8 @@ public final class EconomyTransactionResultTypes {
 
     /**
      * Represents when the transaction is unsuccessful due to one or more
-     * of the involved accounts being frozen.
+     * of the involved accounts being frozen and suspended from making
+     * economy transactions.
      */
     public static final Supplier<EconomyTransactionResultType> ACCOUNT_FROZEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EconomyTransactionResultType.class, "ACCOUNT_FROZEN");
 
