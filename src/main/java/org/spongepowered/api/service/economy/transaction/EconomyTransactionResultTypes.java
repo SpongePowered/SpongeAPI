@@ -56,6 +56,12 @@ public final class EconomyTransactionResultTypes {
     public static final Supplier<EconomyTransactionResultType> ACCOUNT_FULL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EconomyTransactionResultType.class, "ACCOUNT_FULL");
 
     /**
+     * Represents when the transaction has already been processed, likely due
+     * to an event listener reversing a transaction before your attempt.
+     */
+    public static final Supplier<EconomyTransactionResultType> ALREADY_PROCESSED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EconomyTransactionResultType.class, "ALREADY_PROCESSED");
+
+    /**
      * Represents when the transaction is unsuccessful, likely due to being
      * cancelled by a plugin through {@link EconomyTransactionEvent}.
      */
@@ -82,6 +88,11 @@ public final class EconomyTransactionResultTypes {
      * Represents a successfully completed transaction.
      */
     public static final Supplier<EconomyTransactionResultType> SUCCESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EconomyTransactionResultType.class, "SUCCESS");
+
+    /**
+     * Represents a transaction that failed due to being unsupported.
+     */
+    public static final Supplier<EconomyTransactionResultType> UNSUPPORTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EconomyTransactionResultType.class, "UNSUPPORTED");
 
     // SORTFIELDS:OFF
 

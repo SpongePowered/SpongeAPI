@@ -85,8 +85,11 @@ public interface EconomyTransactionResult {
      * Reverses the transaction, in a sense creating a new transaction in
      * the opposite direction.
      *
-     * <p>Should be a no-op operation if the original transaction was
-     * not successful.</p>
+     * <p>Should be a no-op operation if the original transaction was not
+     * successful with a result type of
+     * {@link EconomyTransactionResultTypes#UNSUPPORTED} or if it was already
+     * reversed it will then have a result type of
+     * {@link EconomyTransactionResultTypes#ALREADY_PROCESSED}.</p>
      *
      * <p>Be careful undoing transactions, as reversing the transaction
      * throws a new {@link EconomyTransactionEvent}</p> and returns a new
