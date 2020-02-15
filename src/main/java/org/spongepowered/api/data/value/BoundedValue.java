@@ -210,7 +210,7 @@ public interface BoundedValue<E> extends Value<E> {
      *
      * @return The comparator used for this value
      */
-    Comparator<E> getComparator();
+    Comparator<? super E> getComparator();
 
     @Override
     BoundedValue.Mutable<E> asMutable();

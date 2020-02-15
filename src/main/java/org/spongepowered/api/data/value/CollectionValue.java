@@ -111,10 +111,10 @@ public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, I
          * Creates a new {@link org.spongepowered.api.data.value.CollectionValue.Immutable} with the given values
          * along with any pre-existing values within this value.
          *
-         * @param elements The values to add
+         * @param element The element to add
          * @return The new value
          */
-        I withElement(E elements);
+        I withElement(E element);
 
         /**
          * Creates a new {@link org.spongepowered.api.data.value.CollectionValue.Immutable} with the given elements
@@ -151,7 +151,7 @@ public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, I
          * the element and {@code true} is returned, the element will remain in the
          * new {@link org.spongepowered.api.data.value.CollectionValue.Immutable}.
          *
-         * @param predicate The predicte to apply
+         * @param predicate The predicate to apply
          * @return The new value
          */
         I withoutAll(Predicate<E> predicate);
@@ -183,10 +183,10 @@ public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, I
      *
      * @param <E> The type of element
      * @param <C> The type of collection, for chaining
-     * @param <V> The type of {@linkplain CollectionValue.Mutable}
+     * @param <M> The type of {@linkplain org.spongepowered.api.data.value.CollectionValue.Mutable}
      * @param <I> The type of {@link org.spongepowered.api.data.value.CollectionValue.Immutable}
      */
-    interface Mutable<E, C extends Collection<E>, V extends Mutable<E, C, V, I>, I extends Immutable<E, C, I, V>>
+    interface Mutable<E, C extends Collection<E>, M extends Mutable<E, C, M, I>, I extends Immutable<E, C, I, M>>
             extends Value.Mutable<C>, CollectionValue<E, C>, Iterable<E> {
 
         /**
@@ -195,7 +195,7 @@ public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, I
          * @param element The element to add
          * @return This value, for chaining
          */
-        V add(E element);
+        M add(E element);
 
         /**
          * Adds all the given {@link Iterable} {@code elements} to the underlying
@@ -206,7 +206,7 @@ public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, I
          * @param elements The elements to add
          * @return This value, for chaining
          */
-        V addAll(Iterable<E> elements);
+        M addAll(Iterable<E> elements);
 
         /**
          * Removes the given {@code element} from the backed {@link Collection}.
@@ -214,7 +214,7 @@ public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, I
          * @param element The element to remove
          * @return This value, for chaining
          */
-        V remove(E element);
+        M remove(E element);
 
         /**
          * Removes all elements from the {@link Iterable} from the backed
@@ -223,7 +223,7 @@ public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, I
          * @param elements The elements to remove
          * @return This value, for chaining
          */
-        V removeAll(Iterable<E> elements);
+        M removeAll(Iterable<E> elements);
 
         /**
          * Iterates over all existing elements and removes any elements that
@@ -232,26 +232,26 @@ public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, I
          * @param predicate The predicate to remove elements
          * @return This value, for chaining
          */
-        V removeAll(Predicate<E> predicate);
+        M removeAll(Predicate<E> predicate);
 
         @Override
-        V set(C value);
+        M set(C value);
 
         @Override
-        V transform(Function<C, C> function);
+        M transform(Function<C, C> function);
 
         @Override
-        V copy();
+        M copy();
 
         @Override
-        default V asMutableCopy() {
+        default M asMutableCopy() {
             return this.copy();
         }
 
         @SuppressWarnings("unchecked")
         @Override
-        default V asMutable() {
-            return (V) this;
+        default M asMutable() {
+            return (M) this;
         }
 
         @Override
