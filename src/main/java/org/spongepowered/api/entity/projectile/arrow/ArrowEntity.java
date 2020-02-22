@@ -48,7 +48,7 @@ public interface ArrowEntity extends DamagingProjectile {
      * {@link Keys#KNOCKBACK_STRENGTH}
      * @return The knockback strength
      */
-    default BoundedValue.Mutable<Integer> knockbackStrength() {
+    default BoundedValue.Mutable<Double> knockbackStrength() {
         return this.requireValue(Keys.KNOCKBACK_STRENGTH).asMutable();
     }
 }

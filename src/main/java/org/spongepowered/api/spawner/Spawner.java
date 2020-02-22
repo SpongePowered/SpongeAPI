@@ -107,7 +107,7 @@ public interface Spawner extends SerializableDataHolder.Mutable {
      *
      * @return The value of the required player range to spawn entities
      */
-    default BoundedValue.Mutable<Integer> requiredPlayerRange() {
+    default BoundedValue.Mutable<Double> requiredPlayerRange() {
         return this.requireValue(Keys.SPAWNER_REQUIRED_PLAYER_RANGE).asMutable();
     }
 
@@ -118,7 +118,7 @@ public interface Spawner extends SerializableDataHolder.Mutable {
      * @return The immutable value of the maximum spawn range an entity can be
      *     spawned
      */
-    default BoundedValue.Mutable<Integer> spawnRange() {
+    default BoundedValue.Mutable<Double> spawnRange() {
         return this.requireValue(Keys.SPAWNER_SPAWN_RANGE).asMutable();
     }
 
