@@ -25,7 +25,7 @@
 package org.spongepowered.api.block.entity;
 
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.meta.PatternLayer;
+import org.spongepowered.api.data.meta.BannerPatternLayer;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.Value;
@@ -50,7 +50,7 @@ public interface Banner extends NameableBlockEntity {
      *
      * @return The pattern list
      */
-    default ListValue.Mutable<PatternLayer> patternsList() {
-        return this.requireValue(Keys.BANNER_PATTERNS).asMutable();
+    default ListValue.Mutable<BannerPatternLayer> patternLayers() {
+        return this.requireValue(Keys.BANNER_PATTERN_LAYERS).asMutable();
     }
 }

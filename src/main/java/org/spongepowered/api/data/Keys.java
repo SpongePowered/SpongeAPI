@@ -44,7 +44,7 @@ import org.spongepowered.api.block.entity.carrier.CarrierBlockEntity;
 import org.spongepowered.api.block.entity.carrier.Hopper;
 import org.spongepowered.api.block.entity.carrier.furnace.FurnaceBlockEntity;
 import org.spongepowered.api.boss.ServerBossBar;
-import org.spongepowered.api.data.meta.PatternLayer;
+import org.spongepowered.api.data.meta.BannerPatternLayer;
 import org.spongepowered.api.data.type.ArtType;
 import org.spongepowered.api.data.type.BodyPart;
 import org.spongepowered.api.data.type.BodyParts;
@@ -423,7 +423,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for a {@link Banner}'s patterns.
      */
-    public static final Supplier<Key<ListValue<PatternLayer>>> BANNER_PATTERNS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BANNER_PATTERNS");
+    public static final Supplier<Key<ListValue<BannerPatternLayer>>> BANNER_PATTERN_LAYERS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BANNER_PATTERN_LAYERS");
 
     /**
      * Represents the {@link Key} for the width of the physical form of an

@@ -30,6 +30,7 @@ import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 /**
  * Represents a firework explosion.
@@ -185,6 +186,16 @@ public interface FireworkEffect extends DataSerializable {
          * @return This builder, for chaining
          */
         Builder shape(FireworkShape shape);
+
+        /**
+         * Sets the shape of the {@link FireworkEffect} explosion.
+         *
+         * @param shape The shape of the explosion
+         * @return This builder, for chaining
+         */
+        default Builder shape(Supplier<? extends FireworkShape> shape) {
+            return this.shape(shape.get());
+        }
 
         /**
          * Builds a {@link FireworkEffect} based on the current state of this

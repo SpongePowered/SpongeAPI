@@ -75,8 +75,30 @@ public interface ItemStack extends SerializableDataHolder.Mutable, Translatable 
      * @param quantity The quantity
      * @return The new item stack
      */
+    static ItemStack of(Supplier<? extends ItemType> itemType, int quantity) {
+        return of(itemType.get(), quantity);
+    }
+
+    /**
+     * Creates a new {@link ItemStack} of the provided {@link ItemType}
+     * and quantity.
+     *
+     * @param itemType The item type
+     * @param quantity The quantity
+     * @return The new item stack
+     */
     static ItemStack of(ItemType itemType, int quantity) {
         return builder().itemType(itemType).quantity(quantity).build();
+    }
+
+    /**
+     * Creates a new {@link ItemStack} of the provided {@link ItemType} and quantity of 1
+     *
+     * @param itemType The item type
+     * @return The new item stack
+     */
+    static ItemStack of(Supplier<? extends ItemType> itemType) {
+        return of(itemType.get());
     }
 
     /**

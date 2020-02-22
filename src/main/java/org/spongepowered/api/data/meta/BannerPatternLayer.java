@@ -32,25 +32,62 @@ import org.spongepowered.api.data.type.BannerPatternShape;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.util.CopyableBuilder;
 
+import java.util.function.Supplier;
+
 /**
  * A representation on a single layer of a {@link Banner}'s pattern.
  */
-public interface PatternLayer extends DataSerializable {
+public interface BannerPatternLayer extends DataSerializable {
 
     /**
-     * Creates a {@link PatternLayer} with the desired
+     * Creates a {@link BannerPatternLayer} with the desired
      * {@link BannerPatternShape} and {@link DyeColor}.
      *
      * @param shape The shape
      * @param color The color
      * @return The new pattern layer
      */
-    static PatternLayer of(BannerPatternShape shape, DyeColor color) {
-        return Sponge.getRegistry()
-            .getBuilderRegistry().provideBuilder(Builder.class)
-            .pattern(shape)
-            .color(color)
-            .build();
+    static BannerPatternLayer of(Supplier<? extends BannerPatternShape> shape, Supplier<? extends DyeColor> color) {
+        return of(shape.get(), color.get());
+    }
+
+    /**
+     * Creates a {@link BannerPatternLayer} with the desired
+     * {@link BannerPatternShape} and {@link DyeColor}.
+     *
+     * @param shape The shape
+     * @param color The color
+     * @return The new pattern layer
+     */
+    static BannerPatternLayer of(Supplier<? extends BannerPatternShape> shape, DyeColor color) {
+        return of(shape.get(), color);
+    }
+
+    /**
+     * Creates a {@link BannerPatternLayer} with the desired
+     * {@link BannerPatternShape} and {@link DyeColor}.
+     *
+     * @param shape The shape
+     * @param color The color
+     * @return The new pattern layer
+     */
+    static BannerPatternLayer of(BannerPatternShape shape, Supplier<? extends DyeColor> color) {
+        return of(shape, color.get());
+    }
+
+    /**
+     * Creates a {@link BannerPatternLayer} with the desired
+     * {@link BannerPatternShape} and {@link DyeColor}.
+     *
+     * @param shape The shape
+     * @param color The color
+     * @return The new pattern layer
+     */
+    static BannerPatternLayer of(BannerPatternShape shape, DyeColor color) {
+        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class)
+                .pattern(shape)
+                .color(color)
+                .build();
     }
 
     /**
@@ -67,7 +104,7 @@ public interface PatternLayer extends DataSerializable {
      */
     DyeColor getColor();
 
-    interface Builder extends CopyableBuilder<PatternLayer, Builder>, DataBuilder<PatternLayer> {
+    interface Builder extends CopyableBuilder<BannerPatternLayer, Builder>, DataBuilder<BannerPatternLayer> {
 
         /**
          * Sets the {@link BannerPatternShape} to be used.
@@ -78,6 +115,16 @@ public interface PatternLayer extends DataSerializable {
         Builder pattern(BannerPatternShape shape);
 
         /**
+         * Sets the {@link BannerPatternShape} to be used.
+         *
+         * @param shape The shape
+         * @return This builder, for chaining
+         */
+        default Builder pattern(Supplier<? extends BannerPatternShape> shape) {
+            return this.pattern(shape.get());
+        }
+
+        /**
          * Sets the {@link DyeColor} to be used.
          *
          * @param color The color
@@ -86,12 +133,22 @@ public interface PatternLayer extends DataSerializable {
         Builder color(DyeColor color);
 
         /**
-         * Builds a {@link PatternLayer} provided that the
+         * Sets the {@link DyeColor} to be used.
+         *
+         * @param color The color
+         * @return This builder, for chaining
+         */
+        default Builder color(Supplier<? extends DyeColor> color) {
+            return this.color(color.get());
+        }
+
+        /**
+         * Builds a {@link BannerPatternLayer} provided that the
          * color and pattern are set.
          *
          * @return The new pattern layer
          */
-        PatternLayer build();
+        BannerPatternLayer build();
 
         @Override
         Builder reset();

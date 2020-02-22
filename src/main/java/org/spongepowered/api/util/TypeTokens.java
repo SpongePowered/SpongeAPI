@@ -31,7 +31,7 @@ import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.block.entity.BlockEntityArchetype;
 import org.spongepowered.api.data.persistence.DataSerializable;
-import org.spongepowered.api.data.meta.PatternLayer;
+import org.spongepowered.api.data.meta.BannerPatternLayer;
 import org.spongepowered.api.data.type.ArtType;
 import org.spongepowered.api.data.type.BodyPart;
 import org.spongepowered.api.data.type.CatType;
@@ -222,6 +222,10 @@ public final class TypeTokens {
 
     public static final TypeToken<ItemStack> ITEM_STACK_TOKEN = new TypeToken<ItemStack>() {private static final long serialVersionUID = -1;};
 
+    public static final TypeToken<List<BannerPatternLayer>> LIST_BANNER_PATTERN_LAYER_TOKEN = new TypeToken<List<BannerPatternLayer>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<ListValue<BannerPatternLayer>> LIST_BANNER_PATTERN_LAYER_VALUE_TOKEN = new TypeToken<ListValue<BannerPatternLayer>>() {private static final long serialVersionUID = -1;};
+
     public static final TypeToken<List<? extends DataSerializable>> LIST_DATA_SERIALIZEABLE_TOKEN = new TypeToken<List<? extends DataSerializable>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<List<DyeColor>> LIST_DYE_COLOR_TOKEN = new TypeToken<List<DyeColor>>() {private static final long serialVersionUID = -1;};
@@ -233,10 +237,6 @@ public final class TypeTokens {
     public static final TypeToken<ListValue<Enchantment>> LIST_ENCHANTMENT_VALUE_TOKEN = new TypeToken<ListValue<Enchantment>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<List<FireworkEffect>> LIST_FIREWORK_TOKEN = new TypeToken<List<FireworkEffect>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<List<PatternLayer>> LIST_PATTERN_TOKEN = new TypeToken<List<PatternLayer>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<ListValue<PatternLayer>> LIST_PATTERN_VALUE_TOKEN = new TypeToken<ListValue<PatternLayer>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<List<PotionEffect>> LIST_POTION_TOKEN = new TypeToken<List<PotionEffect>>() {private static final long serialVersionUID = -1;};
 

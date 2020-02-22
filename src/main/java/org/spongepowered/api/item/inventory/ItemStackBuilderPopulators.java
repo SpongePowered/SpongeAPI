@@ -120,7 +120,7 @@ public final class ItemStackBuilderPopulators {
      * @param supplier The supplier of the item type
      * @return The new biconsumer to apply to an itemstack builder
      */
-    public static BiConsumer<ItemStack.Builder, Random> item(Supplier<ItemType> supplier) {
+    public static BiConsumer<ItemStack.Builder, Random> item(Supplier<? extends ItemType> supplier) {
         checkNotNull(supplier, "Supplier cannot be null!");
         return (builder, random) -> builder.itemType(checkNotNull(supplier.get(), "Supplier returned a null ItemType"));
     }
