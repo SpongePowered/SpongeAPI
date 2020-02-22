@@ -53,9 +53,9 @@ public final class OptBool {
      * The absent value.
      *
      * <p>Also a shorthand for constructing instances
-     * with {@code Optional.&lt;Boolean&gt;absent()}.</p>
+     * with {@code Optional.&lt;Boolean&gt;empty()}.</p>
      */
-    public static final Optional<Boolean> ABSENT = Optional.empty();
+    public static final Optional<Boolean> EMPTY = Optional.empty();
 
     /**
      * Constructs a new {@code Optional&lt;Boolean&gt;} from the given boolean.
@@ -77,7 +77,7 @@ public final class OptBool {
         if (bool != null) {
             return of(bool.booleanValue());
         }
-        return ABSENT;
+        return EMPTY;
     }
 
     /**
@@ -91,7 +91,7 @@ public final class OptBool {
         if (bool.isPresent()) {
             return of(bool.get().booleanValue());
         }
-        return ABSENT;
+        return EMPTY;
     }
 
 }

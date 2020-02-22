@@ -46,10 +46,10 @@ public interface Piston extends BlockEntity {
     }
 
     /**
-     * {@link Keys#EXTENDED}
+     * {@link Keys#IS_EXTENDED}
      * @return Whether this piston is extending or retracting.
      */
     default Value.Mutable<Boolean> extending() {
-        return this.requireValue(Keys.EXTENDED).asMutable();
+        return this.requireValue(Keys.IS_EXTENDED).asMutable();
     }
 }

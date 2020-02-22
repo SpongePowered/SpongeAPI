@@ -50,11 +50,11 @@ public interface Patroller extends Monster {
     }
 
     /**
-     * {@link Keys#PATROLLING}
+     * {@link Keys#IS_PATROLLING}
      * @return Whether this patroller is patrolling
      */
     default Value.Mutable<Boolean> patrolling() {
-        return this.requireValue(Keys.PATROLLING).asMutable();
+        return this.requireValue(Keys.IS_PATROLLING).asMutable();
     }
 
     /**

@@ -611,7 +611,7 @@ public final class ItemStackBuilderPopulators {
             suppliers.add(random ->
                 Enchantment.builder().type(enchantment.getFirst()).level(enchantment.getSecond().getFlooredAmount(random)).build(), 1);
         }
-        return listValueSuppliers(Keys.ITEM_ENCHANTMENTS, suppliers);
+        return listValueSuppliers(Keys.APPLIED_ENCHANTMENTS, suppliers);
     }
 
     // Suppress default constructor to ensure non-instantiability.

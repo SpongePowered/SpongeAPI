@@ -35,11 +35,11 @@ import org.spongepowered.api.entity.explosive.Explosive;
 public interface FusedExplosive extends Explosive {
 
     /**
-     * {@link Keys#PRIMED}
+     * {@link Keys#IS_PRIMED}
      * @return True if this explosive is primed
      */
     default Value.Mutable<Boolean> primed() {
-        return this.requireValue(Keys.PRIMED).asMutable();
+        return this.requireValue(Keys.IS_PRIMED).asMutable();
     }
 
     /**

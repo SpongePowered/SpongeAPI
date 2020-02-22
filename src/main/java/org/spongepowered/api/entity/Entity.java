@@ -408,11 +408,11 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
     }
 
     /**
-     * {@link Keys#HAS_GRAVITY}
+     * {@link Keys#IS_GRAVITY_AFFECTED}
      * @return Whether this entity is affected by gravity
      */
-    default Value.Mutable<Boolean> gravity() {
-        return this.requireValue(Keys.HAS_GRAVITY).asMutable();
+    default Value.Mutable<Boolean> gravityAffected() {
+        return this.requireValue(Keys.IS_GRAVITY_AFFECTED).asMutable();
     }
 
     /**

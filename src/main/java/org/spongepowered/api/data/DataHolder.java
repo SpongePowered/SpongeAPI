@@ -102,7 +102,6 @@ public interface DataHolder extends ValueContainer {
          */
         <E> DataTransactionResult offer(Key<? extends Value<E>> key, E value);
 
-
         /**
          * Offers the given {@code value} as defined by the provided {@link Key}
          * such that a {@link DataTransactionResult} is returned for any
@@ -125,12 +124,9 @@ public interface DataHolder extends ValueContainer {
          * {@link Mutable}.
          *
          * @param value The value to set
-         * @param <E> The type of the element wrapped by the value
          * @return The transaction result
          */
-        default <E> DataTransactionResult offer(Value<E> value) {
-            return this.offer(value.getKey(), value.get());
-        }
+        DataTransactionResult offer(Value<?> value);
 
         <E> DataTransactionResult offerSingle(Key<? extends CollectionValue<E, ?>> key, E element);
 
