@@ -32,6 +32,7 @@ import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Supplier;
 
 /**
  * A team on a scoreboard that has a common display theme and other
@@ -299,6 +300,20 @@ public interface Team {
          * @param color The color to set
          * @return This builder
          */
+        default Builder color(Supplier<? extends TextColor> color) {
+            return this.color(color.get());
+        }
+
+        /**
+         * Sets the color of the {@link Team}.
+         *
+         * <p>The team's color is a distinct concept from its prefix or suffix.
+         * It is only used for colored sidebar display slots, and certain
+         * statistic criteria.</p>
+         *
+         * @param color The color to set
+         * @return This builder
+         */
         Builder color(TextColor color);
 
         /**
@@ -368,6 +383,18 @@ public interface Team {
          *     nametags
          * @return This builder
          */
+        default Builder nameTagVisibility(Supplier<? extends Visibility> visibility) {
+            return this.nameTagVisibility(visibility.get());
+        }
+
+        /**
+         * Sets the {@link Visibility} which controls to who nametags
+         * of players on the {@link Team} are visible to.
+         *
+         * @param visibility The {@link Visibility} for the {@link Team}'s
+         *     nametags
+         * @return This builder
+         */
         Builder nameTagVisibility(Visibility visibility);
 
         /**
@@ -378,7 +405,29 @@ public interface Team {
          *     death Texts
          * @return This builder
          */
+        default Builder deathTextVisibility(Supplier<? extends Visibility> visibility) {
+            return this.deathTextVisibility(visibility.get());
+        }
+
+        /**
+         * Sets the {@link Visibility} which controls who death Texts
+         * of players on the {@link Team} are visible to.
+         *
+         * @param visibility The {@link Visibility} for the {@link Team}'s
+         *     death Texts
+         * @return This builder
+         */
         Builder deathTextVisibility(Visibility visibility);
+
+        /**
+         * Sets the {@link CollisionRule} for this team's members.
+         *
+         * @param rule The {@link CollisionRule} for the {@link Team}'s members
+         * @return This builder
+         */
+        default Builder collisionRule(Supplier<? extends CollisionRule> rule) {
+            return this.collisionRule(rule);
+        }
 
         /**
          * Sets the {@link CollisionRule} for this team's members.

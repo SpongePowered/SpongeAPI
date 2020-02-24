@@ -40,6 +40,7 @@ import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.Optional;
 import java.util.function.DoubleUnaryOperator;
+import java.util.function.Supplier;
 
 /**
  * Represents a modifier that will apply a function on a damage value to deal
@@ -99,6 +100,17 @@ public interface DamageModifier {
         Builder() {
         }
 
+
+        /**
+         * Sets the {@link DamageModifierType} for the {@link DamageModifier} to
+         * build.
+         *
+         * @param damageModifierType The damage modifier type
+         * @return This builder, for chaining
+         */
+        public Builder type(Supplier<? extends DamageModifierType> damageModifierType) {
+            return this.type(damageModifierType.get());
+        }
 
         /**
          * Sets the {@link DamageModifierType} for the {@link DamageModifier} to

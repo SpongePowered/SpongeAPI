@@ -27,6 +27,8 @@ package org.spongepowered.api.boss;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Identifiable;
 
+import java.util.function.Supplier;
+
 /**
  * Represents a boss bar.
  */
@@ -77,6 +79,16 @@ public interface BossBar extends Identifiable {
      * @param color The color of the boss bar
      * @return This boss bar
      */
+    default BossBar setColor(Supplier<? extends BossBarColor> color) {
+        return this.setColor(color.get());
+    }
+
+    /**
+     * Sets the color.
+     *
+     * @param color The color of the boss bar
+     * @return This boss bar
+     */
     BossBar setColor(BossBarColor color);
 
     /**
@@ -85,6 +97,16 @@ public interface BossBar extends Identifiable {
      * @return The overlay
      */
     BossBarOverlay getOverlay();
+
+    /**
+     * Sets the overlay.
+     *
+     * @param overlay The overlay
+     * @return This boss bar
+     */
+    default BossBar setOverlay(Supplier<? extends BossBarOverlay> overlay) {
+        return this.setOverlay(overlay.get());
+    }
 
     /**
      * Sets the overlay.

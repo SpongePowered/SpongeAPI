@@ -96,7 +96,7 @@ public interface StateProperty<T extends Comparable<T>> extends NamedCatalogType
      * Gets the {@link Predicate} used to determine valid values for this.
      * {@link StateProperty}. Any "value" that returns <code>true</code> when
      * {@link Predicate#test(Object)} is called is valid. The
-     * {@link Predicate} is specific to this trait.
+     * {@link Predicate} is specific to this property.
      * 
      * @return The predicate
      */

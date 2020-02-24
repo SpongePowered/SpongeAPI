@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  */
 /**
- * A fallback API for handling traits of
+ * A fallback API for handling properties of
  * {@link org.spongepowered.api.block.BlockState}s such that the values that
  * are not directly supported by the API can still be represented with a
  * {@link org.spongepowered.api.state.StateProperty}. Common cases where

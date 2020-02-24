@@ -28,6 +28,8 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.api.data.SerializableDataHolderBuilder;
 
+import java.util.function.Supplier;
+
 public interface FluidStackSnapshot extends SerializableDataHolder.Immutable<FluidStackSnapshot> {
 
     /**
@@ -65,6 +67,10 @@ public interface FluidStackSnapshot extends SerializableDataHolder.Immutable<Flu
     FluidStack createStack();
 
     interface Builder extends SerializableDataHolderBuilder.Immutable<FluidStackSnapshot, Builder> {
+
+        default Builder fluid(Supplier<? extends FluidType> fluidType) {
+            return this.fluid(fluidType.get());
+        }
 
         Builder fluid(FluidType fluidType);
 

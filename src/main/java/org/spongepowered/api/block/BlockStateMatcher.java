@@ -32,14 +32,15 @@ import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 /**
  * A {@link BlockState} matcher that will match various block states
  * according to a pre-built list of {@link StateProperty}s and their
  * values, such that not all {@link StateProperty}s contained in a
  * {@link BlockState} must be matched. (Such as if a block state
- * that contains 4 traits, and only 2 are wanting to be matched,
- * then the other two traits may be variable).
+ * that contains 4 properties, and only 2 are wanting to be matched,
+ * then the other two properties may be variable).
  */
 public interface BlockStateMatcher extends Predicate<BlockState>, DataSerializable {
 
@@ -85,7 +86,19 @@ public interface BlockStateMatcher extends Predicate<BlockState>, DataSerializab
         /**
          * Sets the root {@link BlockType} for the {@link BlockStateMatcher}.
          * <p>Note that the {@link BlockType type} <b>must be set prior</b>
-         * to setting various {@link StateProperty traits} and their values.</p>
+         * to setting various {@link StateProperty properties} and their values.</p>
+         *
+         * @param type The block type to use
+         * @return This builder, for chaining
+         */
+        default Builder type(Supplier<? extends BlockType> type) {
+            return this.type(type.get());
+        }
+
+        /**
+         * Sets the root {@link BlockType} for the {@link BlockStateMatcher}.
+         * <p>Note that the {@link BlockType type} <b>must be set prior</b>
+         * to setting various {@link StateProperty propeties} and their values.</p>
          *
          * @param type The block type to use
          * @return This builder, for chaining
@@ -97,18 +110,38 @@ public interface BlockStateMatcher extends Predicate<BlockState>, DataSerializab
          * builder, if the desired {@link StateProperty} does not belong to the
          * original {@link BlockType} as provided by {@link #type(BlockType)},
          * an exception is thrown. Likewise, if a {@code value} is not within
-         * the possible values for the desired trait of the desired type, an
+         * the possible values for the desired property of the desired type, an
          * exception is thrown.
          *
-         * @param trait The desired block trait
+         * @param property The desired block property
          * @param value the desired value
          * @param <T> The type of comparable
          * @return This builder
-         * @throws IllegalArgumentException If the block trait does not match
-         *     the block type, or if the value does not belong to the trait
+         * @throws IllegalArgumentException If the block property does not match
+         *     the block type, or if the value does not belong to the property
          *     with the desired block type
          */
-        <T extends Comparable<T>> Builder trait(StateProperty<T> trait, T value) throws IllegalArgumentException;
+        default <T extends Comparable<T>> Builder property(Supplier<? extends StateProperty<T>> property, T value) throws IllegalArgumentException {
+            return this.property(property.get(), value);
+        }
+
+        /**
+         * Adds the desired {@link StateProperty} and {code value} to this
+         * builder, if the desired {@link StateProperty} does not belong to the
+         * original {@link BlockType} as provided by {@link #type(BlockType)},
+         * an exception is thrown. Likewise, if a {@code value} is not within
+         * the possible values for the desired property of the desired type, an
+         * exception is thrown.
+         *
+         * @param property The desired block property
+         * @param value the desired value
+         * @param <T> The type of comparable
+         * @return This builder
+         * @throws IllegalArgumentException If the block property does not match
+         *     the block type, or if the value does not belong to the property
+         *     with the desired block type
+         */
+        <T extends Comparable<T>> Builder property(StateProperty<T> property, T value) throws IllegalArgumentException;
 
         /**
          * Creates a new {@link BlockStateMatcher}.

@@ -32,6 +32,7 @@ import java.util.Collection;
 import java.util.Random;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * A simple generator that takes a {@link Random} and generates
@@ -70,6 +71,17 @@ public interface ItemStackGenerator extends Function<Random, ItemStack> {
          * @return This builder, for chaining
          */
         Builder addAll(Collection<BiConsumer<ItemStack.Builder, Random>> collection);
+
+        /**
+         * Sets the base {@link ItemType} for the {@link ItemStackGenerator}. A
+         * base type must be set to avoid issues.
+         *
+         * @param itemType The base item type
+         * @return This builder, for chaining
+         */
+        default Builder baseItem(Supplier<? extends ItemType> itemType) {
+            return this.baseItem(itemType.get());
+        }
 
         /**
          * Sets the base {@link ItemType} for the {@link ItemStackGenerator}. A

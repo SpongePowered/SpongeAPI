@@ -43,6 +43,8 @@ import org.spongepowered.api.world.server.WorldRegistration;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.teleport.PortalAgentType;
 
+import java.util.function.Supplier;
+
 /**
  * A representation of the settings which define a {@link WorldProperties} for creation.
  */
@@ -251,7 +253,29 @@ public interface WorldArchetype extends CatalogType {
          * @param gameMode The gamemode
          * @return The builder, for chaining
          */
+        default Builder gameMode(Supplier<? extends GameMode> gameMode) {
+            return this.gameMode(gameMode.get());
+        }
+
+        /**
+         * Sets the default {@link GameMode}. If not specified this
+         * will default to {@link GameModes#SURVIVAL}.
+         *
+         * @param gameMode The gamemode
+         * @return The builder, for chaining
+         */
         Builder gameMode(GameMode gameMode);
+
+        /**
+         * Sets the {@link DimensionType}. If not specified this will default
+         * to {@link DimensionTypes#OVERWORLD}
+         *
+         * @param type The type
+         * @return The builder, for chaining
+         */
+        default Builder dimensionType(Supplier<? extends DimensionType> type) {
+            return this.dimensionType(type.get());
+        }
 
         /**
          * Sets the {@link DimensionType}. If not specified this will default
@@ -269,7 +293,28 @@ public interface WorldArchetype extends CatalogType {
          * @param type The type
          * @return The builder, for chaining
          */
+        default Builder generatorType(Supplier<? extends GeneratorType> type) {
+            return this.generatorType(type.get());
+        }
+
+        /**
+         * Sets the generator type. If not specified this will default
+         * to {@link GeneratorTypes#DEFAULT}
+         *
+         * @param type The type
+         * @return The builder, for chaining
+         */
         Builder generatorType(GeneratorType type);
+
+        /**
+         * Sets the difficulty.
+         *
+         * @param difficulty The difficulty
+         * @return The builder, for chaining
+         */
+        default Builder difficulty(Supplier<? extends Difficulty> difficulty) {
+            return this.difficulty(difficulty.get());
+        }
 
         /**
          * Sets the difficulty.
@@ -304,6 +349,16 @@ public interface WorldArchetype extends CatalogType {
          * @param type The type
          * @return This builder, for chaining
          */
+        default Builder portalAgent(Supplier<? extends PortalAgentType> type) {
+            return this.portalAgent(type.get());
+        }
+
+        /**
+         * Sets the desired {@link PortalAgentType} for the world.
+         *
+         * @param type The type
+         * @return This builder, for chaining
+         */
         Builder portalAgent(PortalAgentType type);
 
         /**
@@ -330,6 +385,16 @@ public interface WorldArchetype extends CatalogType {
          * @return This builder, for chaining
          */
         Builder generateBonusChest(boolean state);
+
+        /**
+         * Sets the {@link SerializationBehavior} that will be used when saving.
+         *
+         * @param behavior The serialization behavior
+         * @return This builder, for chaining
+         */
+        default Builder serializationBehavior(Supplier<? extends SerializationBehavior> behavior) {
+            return this.serializationBehavior(behavior.get());
+        }
 
         /**
          * Sets the {@link SerializationBehavior} that will be used when saving.

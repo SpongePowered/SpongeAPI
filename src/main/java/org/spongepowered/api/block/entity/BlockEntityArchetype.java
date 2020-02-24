@@ -37,6 +37,8 @@ import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.world.Archetype;
 import org.spongepowered.api.world.Location;
 
+import java.util.function.Supplier;
+
 /**
  * Represents the data of a {@link BlockEntity} which does not exist in the world
  * and may be used to create new {@link BlockEntity}s with the same data.
@@ -127,6 +129,10 @@ public interface BlockEntityArchetype extends Archetype<BlockSnapshot, BlockEnti
          * @return This builder, for chaining
          */
         Builder state(BlockState state);
+
+        default Builder blockEntity(Supplier<? extends BlockEntityType> type) {
+            return this.blockEntity(type.get());
+        }
 
         Builder blockEntity(BlockEntityType type);
 

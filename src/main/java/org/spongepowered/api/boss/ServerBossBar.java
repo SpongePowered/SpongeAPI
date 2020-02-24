@@ -34,6 +34,7 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.Collection;
+import java.util.function.Supplier;
 
 /**
  * Represents a boss bar controlled by a {@link Server}.
@@ -56,7 +57,17 @@ public interface ServerBossBar extends BossBar {
     ServerBossBar setPercent(float percent);
 
     @Override
+    default ServerBossBar setColor(Supplier<? extends BossBarColor> color) {
+        return this.setColor(color.get());
+    }
+
+    @Override
     ServerBossBar setColor(BossBarColor color);
+
+    @Override
+    default ServerBossBar setOverlay(Supplier<? extends BossBarOverlay> overlay) {
+        return this.setOverlay(overlay.get());
+    }
 
     @Override
     ServerBossBar setOverlay(BossBarOverlay overlay);
@@ -164,7 +175,27 @@ public interface ServerBossBar extends BossBar {
          * @param color The color
          * @return This builder
          */
+        default Builder color(Supplier<? extends BossBarColor> color) {
+            return this.color(color.get());
+        }
+
+        /**
+         * Sets the color.
+         *
+         * @param color The color
+         * @return This builder
+         */
         Builder color(BossBarColor color);
+
+        /**
+         * Sets the overlay.
+         *
+         * @param overlay The overlay
+         * @return This builder
+         */
+        default Builder overlay(Supplier<? extends BossBarOverlay> overlay) {
+            return this.overlay(overlay.get());
+        }
 
         /**
          * Sets the overlay.

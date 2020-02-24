@@ -34,6 +34,8 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.schematic.Schematic;
 
+import java.util.function.Supplier;
+
 /**
  * Represents a particular "state" that can exist at a {@link Location} with
  * a particular {@link BlockType} and various {@link org.spongepowered.api.data.value.Value.Immutable}s defining
@@ -88,10 +90,15 @@ public interface FluidState extends State<FluidState> {
         /**
          * Sets the {@link FluidType} for the {@link FluidState} to build.
          *
-         * <p>The {@link FluidType} is used for some pre-validation on addition of
-         * {@link DataManipulator}s through {@link #add(DataManipulator)}. It is
-         * important to understand that not all manipulators are compatible with
-         * all {@link FluidType}s.</p>
+         * @param fluidType The fluid type
+         * @return This builder, for chaining
+         */
+        default Builder fluid(Supplier<? extends FluidType> fluidType) {
+            return this.fluid(fluidType.get());
+        }
+
+        /**
+         * Sets the {@link FluidType} for the {@link FluidState} to build.
          *
          * @param fluidType The fluid type
          * @return This builder, for chaining

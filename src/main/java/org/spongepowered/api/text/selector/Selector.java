@@ -34,6 +34,7 @@ import org.spongepowered.api.world.Location;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Supplier;
 
 /**
  * Represents an immutable selector of targets, as used in commands.
@@ -193,6 +194,16 @@ public interface Selector {
     Builder toBuilder();
 
     interface Builder extends CopyableBuilder<Selector, Builder> {
+
+        /**
+         * Sets the type of this selector.
+         *
+         * @param type The type to set
+         * @return This selector builder
+         */
+        default Builder type(Supplier<? extends SelectorType> type) {
+            return this.type(type.get());
+        }
 
         /**
          * Sets the type of this selector.

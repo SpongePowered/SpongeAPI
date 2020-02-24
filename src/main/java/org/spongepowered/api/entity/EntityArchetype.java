@@ -33,6 +33,8 @@ import org.spongepowered.api.data.persistence.Queries;
 import org.spongepowered.api.world.Archetype;
 import org.spongepowered.api.world.schematic.Schematic;
 
+import java.util.function.Supplier;
+
 public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
 
     /**
@@ -42,6 +44,15 @@ public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
      */
     static Builder builder() {
         return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+    }
+
+    /**
+     * Creates a new {@link EntityArchetype} with the specified {@link EntityType}.
+     * @param type Type of the entity
+     * @return An archetype of the given entity type
+     */
+    static EntityArchetype of(Supplier<? extends EntityType<?>> type) {
+        return builder().type(type).build();
     }
 
     /**
@@ -91,6 +102,16 @@ public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
          * @return This builder, for chaining
          */
         Builder from(Entity entity);
+
+        /**
+         * Sets the desired {@link EntityType} of the produced {@link EntityArchetype}.
+         *
+         * @param type The type of entity type
+         * @return This builder, for chaining
+         */
+        default Builder type(Supplier<? extends EntityType<?>> type) {
+            return this.type(type.get());
+        }
 
         /**
          * Sets the desired {@link EntityType} of the produced {@link EntityArchetype}.
