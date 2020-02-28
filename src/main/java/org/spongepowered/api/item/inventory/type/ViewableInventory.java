@@ -69,13 +69,6 @@ public interface ViewableInventory extends Inventory {
     boolean canInteractWith(Player player);
 
     /**
-     * Returns the {@link ContainerType} of this viewable inventory.
-     *
-     * @return the ContainerType of this viewable inventory.
-     */
-    ContainerType getType();
-
-    /**
      * Create a new {@link InventoryMenu} based on this ViewableInventory which allows for lightweight callbacks on inventory clicks and changes.
      * To receive callbacks the inventory must be opened from {@link InventoryMenu#open(Player)}
      *
@@ -105,17 +98,6 @@ public interface ViewableInventory extends Inventory {
          * @return The building step.
          */
         BuildingStep type(ContainerType type);
-
-        /**
-         * Specifies the type of inventory you want to build based on an existing Inventory
-         *
-         * @param inventory the viewable inventory
-         *
-         * @return The building step
-         */
-        default BuildingStep typeFrom(ViewableInventory inventory) {
-            return this.type(inventory.getType());
-        }
 
         /**
          * The building step. Define all slots needed for the chosen {@link ContainerType}.

@@ -90,4 +90,11 @@ public interface Container extends Inventory {
      */
     boolean isOpen();
 
+    /**
+     * Returns the {@link ContainerType} of this container.
+     *
+     * @return the ContainerType of this container.
+     */
+    ContainerType getType();
+
 }

@@ -26,7 +26,6 @@ package org.spongepowered.api.item.inventory.menu;
 
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.item.inventory.Container;
-import org.spongepowered.api.item.inventory.ContainerType;
 import org.spongepowered.api.item.inventory.menu.handler.ClickHandler;
 import org.spongepowered.api.item.inventory.menu.handler.CloseHandler;
 import org.spongepowered.api.item.inventory.menu.handler.InventoryCallbackHandler;
@@ -62,13 +61,6 @@ public interface InventoryMenu {
      * @return the current inventory
      */
     ViewableInventory getInventory();
-
-    /**
-     * Returns the container type of the current inventory.
-     *
-     * @return current container type.
-     */
-    ContainerType getType();
 
     /**
      * Sets a new inventory. If the ContainerType does not change the inventory will be swapped out silently.
