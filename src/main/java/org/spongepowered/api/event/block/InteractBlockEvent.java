@@ -29,7 +29,6 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.action.InteractEvent;
-import org.spongepowered.api.event.entity.living.HandInteractEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.Tristate;
@@ -66,18 +65,7 @@ public interface InteractBlockEvent extends InteractEvent {
      *
      * <p>This is usually left-click.</p>
      */
-    interface Primary extends InteractBlockEvent, HandInteractEvent {
-
-        /**
-         * A {@link Primary} event where the interaction is from the client's main hand.
-         */
-        interface MainHand extends Primary {}
-
-        /**
-         * A {@link Primary} event where the interaction is from the client's off hand.
-         */
-        interface OffHand extends Primary {}
-    }
+    interface Primary extends InteractBlockEvent {}
 
     /**
      * An event where the targeted block is being interacted with the client's
@@ -85,7 +73,7 @@ public interface InteractBlockEvent extends InteractEvent {
      *
      * <p>This is usually right-click.</p>
      */
-    interface Secondary extends InteractBlockEvent, HandInteractEvent {
+    interface Secondary extends InteractBlockEvent {
 
         Tristate getOriginalUseItemResult();
 
@@ -158,15 +146,5 @@ public interface InteractBlockEvent extends InteractEvent {
          *     used
          */
         void setUseBlockResult(Tristate result);
-
-        /**
-         * A {@link Secondary} event where the interaction is from the client's main hand.
-         */
-        interface MainHand extends Secondary {}
-
-        /**
-         * A {@link Secondary} event where the interaction is from the client's off hand.
-         */
-        interface OffHand extends Secondary {}
     }
 }
