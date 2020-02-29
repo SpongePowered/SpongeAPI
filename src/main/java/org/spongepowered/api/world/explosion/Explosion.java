@@ -25,6 +25,7 @@
 package org.spongepowered.api.world.explosion;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.explosive.Explosive;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.Locatable;
@@ -92,30 +93,38 @@ public interface Explosion extends Locatable {
     boolean shouldDamageEntities();
 
     /**
-     * Gets the number of rays cast per length of each side of the explosion bounding box.
+     * Gets a value that indicates the relative strength of an explosion.
      *
-     * @return The number of rays cast per length of each side of the explosion bounding box
+     * @return The resolution of the explosion.
      */
     default int getResolution() {
         return 16;
     }
 
     /**
-     * <pre>
-     * A numerical representation of variation in blast strength per ray.
-     * The blast strength of a ray is calculated as {@code (1 * [variation]) * [radius]}
-     * 0.0 = No Variation.
-     * 1.0 = +/-0.3 Variation (Vanilla Behaviour).
-     * </pre>
+     * Gets an indication of the randomness of the form of the explosion.
      *
-     * @return A numerical representation of variation in blast strength per ray
+     * <p>This value indicates how close to being symmetrical the explosion is.
+     * A value of zero indicates a completely symmetrical blast (in all three
+     * dimensions). A larger value indicates a lower likelihood of symmetry. A
+     * value of one indicates the platform default.</p>
+     *
+     * <p>Note, this is a hint to the implementation. Implementations may not
+     * provide the means to produce semi-random form explosions.</p>
+     *
+     * @return The potential randomness of the form of the explosion.
      */
     default float getRandomness() {
         return 1;
     }
 
     /**
-     * Knockback multiplier for entities effected by the explosion.
+     * Gets the relative strength of the knockback applied to nearby
+     * objects that can be knocked back.
+     *
+     * <p>Note that the default behavior and strength is not defined here. A
+     * return value of 1 simply indicates the default behavior which is
+     * implementation dependent.</p>
      *
      * @return The multiple by which the knockback of entities will be changed
      */
@@ -185,11 +194,7 @@ public interface Explosion extends Locatable {
         Builder shouldBreakBlocks(boolean destroy);
 
         /**
-         * <pre>
-         * <b>WARNING: It is recommended that this variable be set no higher than the default of 16!</b>
-         * The number of rays cast per length of each side of the explosion bounding box.
-         * The total number of rays that will be cast can be calculated using {@code [resolution] * 12}
-         * </pre>
+         * Sets the resolution of the explosion.
          *
          * @param resolution The desired resolution of the explosion
          * @return The builder, for chaining
@@ -199,25 +204,32 @@ public interface Explosion extends Locatable {
         }
 
         /**
-         * <pre>
-         * A numerical representation of variation in blast strength per ray.
-         * The blast strength of a ray is calculated as {@code (1 * [variation]) * [radius]}
-         * 0 = No Variation.
-         * 1 = +/-0.3 Variation (Vanilla Behaviour).
-         * </pre>
+         * Indicates the desired randomness of the form of the explosion.
          *
-         * @param randomness The desired variation in blast strength per ray for this explosion as a numerical representation
-         * @return The builder, for chaining
+         * <p>This value indicates how close to being symmetrical the explosion is.
+         * A value of zero indicates a completely symmetrical blast (in all three
+         * dimensions). A larger value indicates a lower likelihood of symmetry. A
+         * value of one indicates the platform default.</p>
+         *
+         * <p>Note, this is a hint to the implementation. Implementations may not
+         * provide the means to produce semi-random form explosions.</p>
+         *
+         * @return This builder, for chaining
          */
         default Builder randomness(float randomness) {
             return this;
         }
 
         /**
-         * Knockback multiplier for entities effected by the explosion.
+         * Sets the relative strength of the knockback applied to nearby
+         * objects that can be knocked back.
          *
-         * @param knockback The multiple by which to change the knockback of entities
-         * @return The builder, for chaining
+         * <p>Note that the default behavior and strength is not defined here. A
+         * return value of 1 simply indicates the default behavior which is
+         * implementation dependent.</p>
+         *
+         * @param knockback The knockback multiple
+         * @return This builder, for chaining
          */
         default Builder knockback(double knockback) {
             return this;

@@ -31,6 +31,7 @@ import org.spongepowered.api.data.type.NotePitch;
 import org.spongepowered.api.effect.sound.SoundCategory;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.effect.sound.record.RecordType;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
@@ -39,6 +40,10 @@ import org.spongepowered.api.world.World;
 
 import java.util.Optional;
 
+/**
+ * An umbrella event that fires when in-game sounds, such as
+ * records in jukeboxes or sounds when boss entities die.
+ */
 public interface PlaySoundEvent extends Event, Cancellable {
 
     /**
@@ -104,14 +109,29 @@ public interface PlaySoundEvent extends Event, Cancellable {
          */
         RecordType getRecordType();
 
+        /**
+         * Fired when a record starts playing.
+         */
         interface Start extends Record {}
 
+        /**
+         * Fired when a record stops playing.
+         */
         interface Stop extends Record {}
 
     }
 
+    /**
+     * Fired when a sound is played at a specific {@link Entity}
+     */
     interface AtEntity extends PlaySoundEvent {
 
+        /**
+         * Gets the {@link Player} that this sound was played at, if the sound
+         * was played at a {@link Player}.
+         *
+         * @return The {@link Player}, if applicable.
+         */
         Optional<Player> getPlayer();
 
     }
@@ -121,10 +141,25 @@ public interface PlaySoundEvent extends Event, Cancellable {
      */
     interface NoteBlock extends PlaySoundEvent {
 
+        /**
+         * The {@link Note} that was played.
+         *
+         * @return The {@link Note}
+         */
         Note getNote();
 
+        /**
+         * The type of instrument that played the {@link Note}.
+         *
+         * @return The {@link InstrumentType}
+         */
         InstrumentType getInstrument();
 
+        /**
+         * The pitch of the played {@link Note}.
+         *
+         * @return The {@link NotePitch}
+         */
         NotePitch getNotePitch();
 
     }
