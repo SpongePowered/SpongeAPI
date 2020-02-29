@@ -876,6 +876,10 @@ public final class GenericArguments {
 
         @Override
         public Text getUsage(CommandSource src) {
+            final Text containingUsage = this.element.getUsage(src);
+            if (containingUsage.isEmpty()) {
+                return Text.EMPTY;
+            }
             return Text.of("[", this.element.getUsage(src), "]");
         }
     }
@@ -1822,38 +1826,67 @@ public final class GenericArguments {
      * Checks a permission for a given command argument to be used.
      *
      * <p>If the element attempts to parse an argument and the user does not
-     * have the permission, a {@link ArgumentParseException} will be thrown.</p>
+     * have the permission, an {@link ArgumentParseException} will be thrown.</p>
      *
      * @param element The element to wrap
      * @param permission The permission to check
      * @return the element
      */
     public static CommandElement requiringPermission(CommandElement element, String permission) {
-        return new PermissionCommandElement(element, permission);
+        return new PermissionCommandElement(element, permission, false);
+    }
+
+    /**
+     * Checks a permission for a given command argument to be used.
+     *
+     * <p>If the element attempts to parse an argument and the user does not
+     * have the permission, the element will be skipped over.</p>
+     *
+     * <p>If the invoking {@link CommandSource} has permission to use the
+     * element, but the wrapped element fails to parse, an exception will
+     * be reported in the normal way. If you require this element to be
+     * truly optional, wrap this element in either
+     * {@link #optional(CommandElement)} or
+     * {@link #optionalWeak(CommandElement)}, as required.</p>
+     *
+     * @param element The element to wrap
+     * @param permission The permission to check
+     * @return the element
+     */
+    public static CommandElement requiringPermissionWeak(CommandElement element, String permission) {
+        return new PermissionCommandElement(element, permission, true);
     }
 
     private static class PermissionCommandElement extends CommandElement {
         private final CommandElement element;
         private final String permission;
+        private final boolean isOptional;
 
-        protected PermissionCommandElement(CommandElement element, String permission) {
+        protected PermissionCommandElement(CommandElement element, String permission, boolean isOptional) {
             super(element.getKey());
             this.element = element;
             this.permission = permission;
+            this.isOptional = isOptional;
         }
 
         @Nullable
         @Override
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
-            checkPermission(source, args);
-            return this.element.parseValue(source, args);
+            if (checkPermission(source, args)) {
+                return this.element.parseValue(source, args);
+            }
+
+            return null;
         }
 
-        private void checkPermission(CommandSource source, CommandArgs args) throws ArgumentParseException {
-            if (!source.hasPermission(this.permission)) {
+        private boolean checkPermission(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            boolean hasPermission = source.hasPermission(this.permission);
+            if (!hasPermission && !this.isOptional) {
                 Text key = getKey();
                 throw args.createError(t("You do not have permission to use the %s argument", key != null ? key : t("unknown")));
             }
+
+            return hasPermission;
         }
 
         @Override
@@ -1866,12 +1899,16 @@ public final class GenericArguments {
 
         @Override
         public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
-            checkPermission(source, args);
-            this.element.parse(source, args, context);
+            if (checkPermission(source, args)) {
+                this.element.parse(source, args, context);
+            }
         }
 
         @Override
         public Text getUsage(CommandSource src) {
+            if (this.isOptional && !src.hasPermission(this.permission)) {
+                return Text.EMPTY;
+            }
             return this.element.getUsage(src);
         }
     }
