@@ -51,10 +51,13 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandException;
+import org.spongepowered.api.command.CommandPermissionException;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.args.parsing.InputTokenizer;
@@ -77,8 +80,17 @@ import java.util.stream.Collectors;
  */
 public class GenericArgumentsTest {
 
-    private static final CommandSource MOCK_SOURCE = Mockito.mock(CommandSource.class);
+    private static final CommandSource MOCK_SOURCE;
+    private static final String TEST_PERM = "testperm";
     static final CommandExecutor NULL_EXECUTOR = (src, args) -> CommandResult.empty();
+
+    static {
+        MOCK_SOURCE = Mockito.mock(CommandSource.class);
+        Mockito.when(MOCK_SOURCE.hasPermission(Mockito.anyString())).thenAnswer((Answer<Boolean>) invocation -> {
+            String element = invocation.getArgument(0);
+            return element.equalsIgnoreCase(TEST_PERM);
+        });
+    }
 
     @Before
     public void initialize() throws Exception {
@@ -323,6 +335,63 @@ public class GenericArgumentsTest {
         assertTrue(context.hasAny("test3"));
         assertFalse(context.hasAny("test"));
         assertFalse(context.hasAny("test1"));
+    }
+
+    @Test(expected = ArgumentParseException.class)
+    public void testPermissionElementThrows() throws ArgumentParseException {
+        CommandArgs args = new CommandArgs("test test",
+                InputTokenizer.spaceSplitString().tokenize("test test", true));
+        CommandContext context = new CommandContext();
+        CommandElement sut = GenericArguments.seq(
+                GenericArguments.requiringPermission(GenericArguments.literal(Text.of("test"), "test"), "failperm"),
+                GenericArguments.literal(Text.of("test2"), "test")
+        );
+
+        sut.parse(MOCK_SOURCE, args, context);
+    }
+
+    @Test
+    public void testWeakPermissionElementIgnores() throws ArgumentParseException {
+        CommandArgs args = new CommandArgs("test",
+                InputTokenizer.spaceSplitString().tokenize("test", true));
+        CommandContext context = new CommandContext();
+        CommandElement sut = GenericArguments.seq(
+                GenericArguments.requiringPermissionWeak(GenericArguments.literal(Text.of("test"), "test"), "failperm"),
+                GenericArguments.literal(Text.of("test2"), "test"));
+
+        sut.parse(MOCK_SOURCE, args, context);
+        assertTrue(context.hasAny("test2"));
+        assertFalse(context.hasAny("test"));
+    }
+
+    @Test
+    public void testPermissionElementSucceedsWithCorrectPermission() throws ArgumentParseException {
+        CommandArgs args = new CommandArgs("test test",
+                InputTokenizer.spaceSplitString().tokenize("test test", true));
+        CommandContext context = new CommandContext();
+        CommandElement sut = GenericArguments.seq(
+                GenericArguments.requiringPermission(GenericArguments.literal(Text.of("test"), "test"), TEST_PERM),
+                GenericArguments.literal(Text.of("test2"), "test")
+        );
+
+        sut.parse(MOCK_SOURCE, args, context);
+        assertTrue(context.hasAny("test2"));
+        assertTrue(context.hasAny("test"));
+    }
+
+    @Test
+    public void testWeakPermissionElementSucceedsWithCorrectPermission() throws ArgumentParseException {
+        CommandArgs args = new CommandArgs("test test",
+                InputTokenizer.spaceSplitString().tokenize("test test", true));
+        CommandContext context = new CommandContext();
+        CommandElement sut = GenericArguments.seq(
+                GenericArguments.requiringPermissionWeak(GenericArguments.literal(Text.of("test"), "test"), TEST_PERM),
+                GenericArguments.literal(Text.of("test2"), "test")
+        );
+
+        sut.parse(MOCK_SOURCE, args, context);
+        assertTrue(context.hasAny("test2"));
+        assertTrue(context.hasAny("test"));
     }
 
 }
