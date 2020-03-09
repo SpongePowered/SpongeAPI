@@ -775,7 +775,7 @@ public final class Location<E extends Extent> implements DataHolder {
 
     @Override
     public int getContentVersion() {
-        return 1;
+        return 2;
     }
 
     @Override
@@ -783,16 +783,14 @@ public final class Location<E extends Extent> implements DataHolder {
         final DataContainer container = DataContainer.createNew();
         container.set(Queries.CONTENT_VERSION, getContentVersion());
         if (getExtent() instanceof World) {
-            container.set(Queries.WORLD_NAME, ((World) getExtent()).getName());
             container.set(Queries.WORLD_ID, getExtent().getUniqueId().toString());
         } else if (getExtent() instanceof Chunk) {
             container.set(Queries.CHUNK_X, ((Chunk) getExtent()).getPosition().getX())
                 .set(Queries.CHUNK_Y, ((Chunk) getExtent()).getPosition().getY())
                 .set(Queries.CHUNK_Z, ((Chunk) getExtent()).getPosition().getZ())
-                .set(Queries.WORLD_NAME, ((Chunk) getExtent()).getWorld().getName())
                 .set(Queries.WORLD_ID, ((Chunk) getExtent()).getWorld().getUniqueId().toString());
         }
-        container.set(Queries.BLOCK_TYPE, this.getExtent().getBlockType(getBlockPosition()).getId())
+        container
             .set(Queries.POSITION_X, this.getX())
             .set(Queries.POSITION_Y, this.getY())
             .set(Queries.POSITION_Z, this.getZ());
