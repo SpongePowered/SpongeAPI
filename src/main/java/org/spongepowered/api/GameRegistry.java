@@ -418,7 +418,7 @@ public interface GameRegistry {
     /**
      * Gets a locale for the specified locale code, e.g. {@code en_US}.
      *
-     * @param locale The locale to lookup (e.g. {@code en_US}.
+     * @param locale The locale to lookup (e.g. {@code en_US}).
      * @return The locale
      */
     Locale getLocale(String locale);

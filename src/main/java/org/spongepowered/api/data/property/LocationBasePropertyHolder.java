@@ -38,10 +38,11 @@ public interface LocationBasePropertyHolder {
      * specific location. If the property is not applicable,
      * {@link Optional#empty()} is returned.
      *
-     * <p>{@link Property}s can define various immutable information about a
-     * {@link PropertyHolder} that is dependent on the instance of the holder.
-     * As {@link Property}s cannot be changed, the {@link PropertyHolder} can
-     * not change the information about it's own properties either.</p>
+     * <p>{@link Property properties} can define various immutable information
+     * about a {@link PropertyHolder} that is dependent on the instance of the
+     * holder. As {@link Property properties} cannot be changed, the
+     * {@link PropertyHolder} can not change the information about its own
+     * properties either.</p>
      *
      * @param coords The coordinates
      * @param propertyClass The property class
@@ -57,10 +58,11 @@ public interface LocationBasePropertyHolder {
      * {@link PropertyHolder}. If the property is not applicable,
      * {@link Optional#empty()} is returned.
      *
-     * <p>{@link Property}s can define various immutable information about a
-     * {@link PropertyHolder} that is dependent on the instance of the holder.
-     * As {@link Property}s cannot be changed, the {@link PropertyHolder} can
-     * not change the information about it's own properties either.</p>
+     * <p>{@link Property properties} can define various immutable information
+     * about a {@link PropertyHolder} that is dependent on the instance of the
+     * holder. As {@link Property properties} cannot be changed, the
+     * {@link PropertyHolder} can not change the information about it's own
+     * properties either.</p>
      *
      * @param x The x coordinate
      * @param y The y coordinate
@@ -76,10 +78,11 @@ public interface LocationBasePropertyHolder {
      * specific location on the given block face. If the property is not
      * applicable, {@link Optional#empty()} is returned.
      *
-     * <p>{@link Property}s can define various immutable information about a
-     * {@link PropertyHolder} that is dependent on the instance of the holder.
-     * As {@link Property}s cannot be changed, the {@link PropertyHolder} can
-     * not change the information about it's own properties either.</p>
+     * <p>{@link Property properties} can define various immutable information
+     * about a {@link PropertyHolder} that is dependent on the instance of the
+     * holder. As {@link Property properties} cannot be changed, the
+     * {@link PropertyHolder} can not change the information about it's own
+     * properties either.</p>
      *
      * @param coords The coordinates
      * @param direction The face of the block
@@ -96,10 +99,11 @@ public interface LocationBasePropertyHolder {
      * specific location on the given block face. If the property is not
      * applicable, {@link Optional#empty()} is returned.
      *
-     * <p>{@link Property}s can define various immutable information about a
-     * {@link PropertyHolder} that is dependent on the instance of the holder.
-     * As {@link Property}s cannot be changed, the {@link PropertyHolder} can
-     * not change the information about it's own properties either.</p>
+     * <p>{@link Property properties} can define various immutable information
+     * about a {@link PropertyHolder} that is dependent on the instance of the
+     * holder. As {@link Property properties} cannot be changed, the
+     * {@link PropertyHolder} can not change the information about it's own
+     * properties either.</p>
      *
      * @param x The x coordinate
      * @param y The y coordinate
@@ -115,11 +119,11 @@ public interface LocationBasePropertyHolder {
      * Gets an immutable collection of all known {@link Property}s pertaining to
      * this {@link PropertyHolder}.
      *
-     * <p>{@link Property}s can not be changed such that the property is
-     * attached to the instance of the residing {@link PropertyHolder}.</p>
+     * <p>{@link Property properties} can not be changed such that the property
+     * is attached to the instance of the residing {@link PropertyHolder}.</p>
      *
      * @param coords The coordinates
-     * @return An immutable collection of all known {@link Property}s
+     * @return An immutable collection of all known {@link Property properties}
      */
     default Collection<Property<?, ?>> getProperties(Vector3i coords) {
         return getProperties(coords.getX(), coords.getY(), coords.getZ());
@@ -129,8 +133,8 @@ public interface LocationBasePropertyHolder {
      * Gets an immutable collection of all known {@link Property}s pertaining to
      * this {@link PropertyHolder}.
      *
-     * <p>{@link Property}s can not be changed such that the property is
-     * attached to the instance of the residing {@link PropertyHolder}.</p>
+     * <p>{@link Property properties} can not be changed such that the property
+     * is attached to the instance of the residing {@link PropertyHolder}.</p>
      *
      * @param x The x coordinate
      * @param y The y coordinate

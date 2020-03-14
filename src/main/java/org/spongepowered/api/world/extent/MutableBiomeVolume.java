@@ -88,7 +88,7 @@ public interface MutableBiomeVolume extends BiomeVolume {
 
     /**
      * Returns a new volume that is translated so that
-     * {@link BiomeVolume#getBiomeMin()} returns {@link Vector2i#ZERO}. This does
+     * {@link BiomeVolume#getBiomeMin()} returns {@link Vector3i#ZERO}. This does
      * not copy the biomes, it only provides a new view of the storage.
      *
      * @return The new volume with its minimum at zero

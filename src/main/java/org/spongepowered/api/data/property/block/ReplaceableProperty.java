@@ -29,7 +29,7 @@ import org.spongepowered.api.data.property.BooleanProperty;
 /**
  * Gets if a block type can be replaced by other block types when other
  * blocks are being placed. In short, the case where the value is
- * <code>true</code>,
+ * <code>true</code>, it can be replaced.
  */
 public class ReplaceableProperty extends BooleanProperty {
 
@@ -46,8 +46,8 @@ public class ReplaceableProperty extends BooleanProperty {
     /**
      * Creates a new {@link ReplaceableProperty} with the provided
      * {@code value} and
-     * {@link org.spongepowered.api.data.Property.Operator operator} for
-     * comparisons.
+     * {@link org.spongepowered.api.data.Property.Operator operator}
+     * for comparisons.
      *
      * @param value The value
      * @param operator The operator

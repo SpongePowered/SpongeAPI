@@ -36,10 +36,11 @@ public interface PropertyHolder {
      * {@link PropertyHolder}. If the property is not applicable,
      * {@link Optional#empty()} is returned.
      *
-     * <p>{@link Property}s can define various immutable information about a
-     * {@link PropertyHolder} that is dependent on the instance of the holder.
-     * As {@link Property}s cannot be changed, the {@link PropertyHolder} can
-     * not change the information about it's own properties either.</p>
+     * <p>{@link Property properties} can define various immutable information
+     * about a {@link PropertyHolder} that is dependent on the instance of the
+     * holder. As {@link Property properties} cannot be changed, the
+     * {@link PropertyHolder} can not change the information about its own
+     * properties either.</p>
      *
      * @param propertyClass The property class
      * @param <T> The type of property
@@ -51,10 +52,10 @@ public interface PropertyHolder {
      * Gets an immutable collection of all known {@link Property}s pertaining
      * to this {@link PropertyHolder}.
      *
-     * <p>{@link Property}s can not be changed such that the property is
-     * attached to the instance of the residing {@link PropertyHolder}.</p>
+     * <p>{@link Property properties} can not be changed such that the property
+     * is attached to the instance of the residing {@link PropertyHolder}.</p>
      *
-     * @return An immutable collection of all known {@link Property}s
+     * @return An immutable collection of all known {@link Property properties}
      */
     Collection<Property<?, ?>> getApplicableProperties();
 

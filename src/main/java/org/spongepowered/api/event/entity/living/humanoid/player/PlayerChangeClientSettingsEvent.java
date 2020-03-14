@@ -32,7 +32,7 @@ import java.util.Locale;
 import java.util.Set;
 
 /**
- * Fired when A {@link Player} changes one or more of the following settings.
+ * Fired when a {@link Player} changes one or more of the following settings.
  *
  * <ul>
  *   <li>Locale</li>

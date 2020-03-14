@@ -2239,7 +2239,7 @@ public final class Keys {
      * entities or collide with other entities.</p>
      *
      * <p>Vanishing an {@link Entity} ridden by other entities (see
-     * {@link #PASSENGERS} will cause problems.</p>
+     * {@link #PASSENGERS}) will cause problems.</p>
      *
      * @see Keys#VANISH
      */

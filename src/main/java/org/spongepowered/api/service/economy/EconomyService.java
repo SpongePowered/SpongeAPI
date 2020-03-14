@@ -96,7 +96,7 @@ public interface EconomyService extends ContextualService<Account> {
      * Gets the {@link UniqueAccount} for the user with the specified
      * {@link UUID}.
      *
-     * <p>If an account does not already exists with the specified {@link UUID},
+     * <p>If an account does not already exist with the specified {@link UUID},
      * it will be created.</p>
      *
      * <p>Creation might fail if the provided {@link UUID} does not correspond
@@ -113,7 +113,7 @@ public interface EconomyService extends ContextualService<Account> {
      * <p>Depending on the implementation, the {@link Account} may be a
      * {@link UniqueAccount} or a {@link VirtualAccount}.</p>
      *
-     * <p>If an account does not already exists with the specified identifier,
+     * <p>If an account does not already exist with the specified identifier,
      * it will be created.</p>
      *
      * <p>Creation may fail for an implementation-defined reason.</p>

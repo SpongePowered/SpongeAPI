@@ -44,7 +44,7 @@ public interface BoundedValue<E> extends BaseValue<E> {
     /**
      * Gets the required "minimum" value such that the value is only valid if
      * the following is true:
-     * <pre>{@code if (getComparator().compare(getValue(), getMinValue()) <= 0)
+     * <pre>{@code if (getComparator().compare(getValue(), getMinValue()) >= 0)
      * }</pre>.
      *
      * @return The supposed minimum value
@@ -54,7 +54,7 @@ public interface BoundedValue<E> extends BaseValue<E> {
     /**
      * Gets the required "maximum" value such that the value is only valid if
      * the following is true:
-     * <pre>{@code if (getComparator().compare(getValue(), getMaxValue()) >= 0)
+     * <pre>{@code if (getComparator().compare(getValue(), getMaxValue()) <= 0)
      * }</pre>.
      *
      * @return The supposed maximum value

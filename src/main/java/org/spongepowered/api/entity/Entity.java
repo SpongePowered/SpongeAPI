@@ -381,7 +381,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
     boolean hasPassenger(Entity entity);
 
     /**
-     * Sets the passenger entity(the entity that rides this one).
+     * Sets the passenger entity (the entity that rides this one).
      *
      * @param entity The entity passenger, or null to eject
      * @return If adding the passenger succeeded
@@ -408,7 +408,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
     Optional<Entity> getVehicle();
 
     /**
-     * Sets the vehicle entity(the entity that is ridden by this one).
+     * Sets the vehicle entity (the entity that is ridden by this one).
      *
      * @param entity The entity vehicle, or null to dismount
      * @return True if the set was successful

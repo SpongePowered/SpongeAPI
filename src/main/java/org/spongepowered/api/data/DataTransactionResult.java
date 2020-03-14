@@ -497,7 +497,7 @@ public final class DataTransactionResult {
 
         /**
          * Adds the provided {@link ImmutableValue} to the {@link List} of
-         * "successful" {@link ImmutableValue}s. The rejected values are always
+         * "successful" {@link ImmutableValue}s. The successful values are always
          * copied for every {@link DataTransactionResult} for referencing. It is
          * also possible to retrieve these successful {@link ImmutableValue}s to
          * {@link DataHolder#undo(DataTransactionResult)} at a later point in

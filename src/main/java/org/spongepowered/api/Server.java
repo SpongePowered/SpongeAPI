@@ -273,7 +273,7 @@ public interface Server {
      * Gets the 'server' scoreboard. In Vanilla, this is the scoreboard of
      * dimension 0 (the overworld).
      *
-     * <p>The sever scoreboard is used with the Vanilla /scoreboard command,
+     * <p>The server scoreboard is used with the Vanilla /scoreboard command,
      * automatic score updating through criteria, and other things.</p>
      *
      * <p>The server scoreboard may not be available if dimension 0
@@ -356,8 +356,8 @@ public interface Server {
     Text getMotd();
 
     /**
-     * Shuts down the server, and kicks all players with the default kic
-     * k message.
+     * Shuts down the server, and kicks all players with the default kick
+     * message.
      *
      * <p>For the Sponge implementation on the client, this will trigger the
      * Integrated Server to shutdown a tick later.</p>

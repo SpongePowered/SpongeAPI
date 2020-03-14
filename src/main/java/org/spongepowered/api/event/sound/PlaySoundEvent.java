@@ -54,26 +54,31 @@ public interface PlaySoundEvent extends Event, Cancellable {
     Location<World> getLocation();
 
     /**
-     * Gets the {@link SoundCategory} for the sound being played
-     * @return
+     * Gets the {@link SoundCategory} for the sound being played.
+     *
+     *  @return The {@link SoundCategory}
      */
     SoundCategory getSoundCategory();
 
     /**
-     * Gets the {@link SoundType} for the sound being played
-     * @return
+     * Gets the {@link SoundType} for the sound being played.
+     *
+     * @return {@link SoundType}
      */
     SoundType getSoundType();
 
     /**
-     * Gets the volume of the sound being played
-     * @return
+     * Gets the volume of the sound being played.
+     *
+     * @return A float that represents the relative volume. This value may be
+     *         positive value.
      */
     float getVolume();
 
     /**
      * Gets the pitch of the sound being played
-     * @return
+     *
+     * @return A float that represents the pitch.
      */
     float getPitch();
 
