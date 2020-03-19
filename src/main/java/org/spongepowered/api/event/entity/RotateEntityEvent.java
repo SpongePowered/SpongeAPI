@@ -26,6 +26,7 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 import org.spongepowered.math.vector.Vector3d;
 
@@ -34,7 +35,7 @@ import org.spongepowered.math.vector.Vector3d;
  * applicable, head without moving their position.
  */
 @GenerateFactoryMethod
-public interface RotateEntityEvent extends Cancellable {
+public interface RotateEntityEvent extends Event, Cancellable {
 
     /**
      * Gets the {@link Entity}.
