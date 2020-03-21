@@ -43,31 +43,47 @@ import javax.annotation.Nullable;
  */
 public abstract class PatternMatchingCommandElement extends CommandElement {
     private static final Text nullKeyArg = t("argument");
+    final boolean useRegex;
+
+    /**
+     * @param yesIWantRegex Specify if you want to allow regex for users of
+     * the command element. Note that this will open up for DoS attacks.
+     */
+    protected PatternMatchingCommandElement(@Nullable Text key, boolean yesIWantRegex) {
+        super(key);
+        this.useRegex = yesIWantRegex;
+    }
 
     protected PatternMatchingCommandElement(@Nullable Text key) {
-        super(key);
+        this(key, false);
     }
 
     @Nullable
     @Override
     protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
-        final String unformattedPattern = args.next();
         Iterable<String> choices = getChoices(source);
+        Iterable<Object> ret;
+        String arg = args.next();
 
-        // Check for an exact match before we create the regex.
-        // We do this because anything with ^[abc] would not match [abc]
-        Optional<Object> exactMatch = getExactMatch(choices, unformattedPattern);
-        if (exactMatch.isPresent()) {
-            // Return this as a collection as this can get transformed by the subclass.
-            return Collections.singleton(exactMatch.get());
+        if (useRegex) {
+            // Check for an exact match before we create the regex.
+            // We do this because anything with ^[abc] would not match [abc]
+            Optional<Object> exactMatch = getExactMatch(choices, arg);
+            if (exactMatch.isPresent()) {
+                // Return this as a collection as this can get transformed by the subclass.
+                return Collections.singleton(exactMatch.get());
+            }
+
+            Pattern pattern = getFormattedPattern(arg);
+            ret = Iterables.transform(Iterables.filter(choices, element -> pattern.matcher(element).find()), this::getValue);
+        } else {
+            Iterable<String> startsWith = Iterables.filter(choices, element -> element.regionMatches(true, 0, arg, 0, arg.length()));
+            ret = Iterables.transform(startsWith, this::getValue);
         }
 
-        Pattern pattern = getFormattedPattern(unformattedPattern);
-        Iterable<Object> ret = Iterables.transform(Iterables.filter(choices, element -> pattern.matcher(element).find()), this::getValue);
-
         if (!ret.iterator().hasNext()) {
-            throw args.createError(t("No values matching pattern '%s' present for %s!", unformattedPattern, getKey() == null
-                        ? nullKeyArg : getKey()));
+            throw args.createError(t("No values matching pattern '%s' present for %s!", arg, getKey() == null
+                    ? nullKeyArg : getKey()));
         }
         return ret;
     }
@@ -77,7 +93,12 @@ public abstract class PatternMatchingCommandElement extends CommandElement {
         Iterable<String> choices = getChoices(src);
         final Optional<String> nextArg = args.nextIfPresent();
         if (nextArg.isPresent()) {
-            choices = Iterables.filter(choices, input -> getFormattedPattern(nextArg.get()).matcher(input).find());
+            if (useRegex) {
+                choices = Iterables.filter(choices, input -> getFormattedPattern(nextArg.get()).matcher(input).find());
+            } else {
+                String arg = nextArg.get();
+                choices = Iterables.filter(choices, input -> input.regionMatches(true, 0, arg, 0, arg.length()));
+            }
         }
         return ImmutableList.copyOf(choices);
     }

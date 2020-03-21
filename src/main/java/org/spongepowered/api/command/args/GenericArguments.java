@@ -1542,7 +1542,12 @@ public final class GenericArguments {
             Iterable<String> choices = getCompletionChoices(src);
             final Optional<String> nextArg = args.nextIfPresent();
             if (nextArg.isPresent()) {
-                choices = Iterables.filter(choices, input -> getFormattedPattern(nextArg.get()).matcher(input).find());
+                if (useRegex) {
+                    choices = Iterables.filter(choices, input -> getFormattedPattern(nextArg.get()).matcher(input).find());
+                } else {
+                    String arg = nextArg.get();
+                    choices = Iterables.filter(choices, input -> input.regionMatches(true, 0, arg, 0, arg.length()));
+                }
             }
             return ImmutableList.copyOf(choices);
         }
