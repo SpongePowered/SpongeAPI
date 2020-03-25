@@ -190,8 +190,7 @@ public interface Ban {
          * @return This builder
          */
         default Builder type(Supplier<? extends BanType> type) {
-            checkNotNull(type);
-            return this.type(type.get());
+            return this.type(checkNotNull(type.get()));
         }
 
         /**
