@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.util.ban;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.profile.GameProfile;
@@ -187,7 +189,10 @@ public interface Ban {
          * @param type The type to be set
          * @return This builder
          */
-        Builder type(Supplier<? extends BanType> type);
+        default Builder type(Supplier<? extends BanType> type) {
+            checkNotNull(type);
+            return this.type(type.get());
+        }
 
         /**
          * Sets the reason for the ban.
