@@ -122,11 +122,42 @@ public interface TradeOffer extends DataSerializable {
     boolean hasExpired();
 
     /**
-     * Gets whether this trade offer will grant experience upon usage or not.
+     * Gets whether this trade offer will grant experience to the customer upon
+     * usage or not.
      *
-     * @return True if using this trade offer will grant experience
+     * @return True if using this trade offer will grant experience to the customer
      */
     boolean doesGrantExperience();
+
+    /**
+     * Gets the amount of experience granted to the merchant when this trade
+     * offer is used.
+     *
+     * @return The experience to be granted to the merchant
+     */
+    int getExperienceGrantedToMerchant();
+
+    /**
+     * Gets the rate at which this trade offer's price will grow when demand for
+     * an item increases. Every time a villager trades, this value is multiplied
+     * by the current price of the offer and the demand bonus.
+     *
+     * <p>If this value is 0, demand will have no effect on this offer's
+     * price.</p>
+     *
+     * @return the price growth multiplier
+     * @see <a href="https://minecraft.gamepedia.com/Trading#Economics">the
+     * Minecraft Wiki for more detail on how the price growth multiplier applies
+     * to trade offers</a>
+     */
+    double getPriceGrowthMultiplier();
+
+    /**
+     * Gets the demand bonus for this trade offer.
+     *
+     * @return the demand bonus
+     */
+    int getDemandBonus();
 
     /**
      * Represents a builder to generate immutable {@link TradeOffer}s.
@@ -179,12 +210,47 @@ public interface TradeOffer extends DataSerializable {
         Builder maxUses(int maxUses);
 
         /**
-         * Sets the trade offer to be generated to grant experience upon use.
+         * Sets the trade offer to be generated to grant experience to
+         * the customer upon use.
          *
          * @param experience Whether the offer will grant experience
          * @return This builder
          */
         Builder canGrantExperience(boolean experience);
+
+        /**
+         * Sets how much experience the trade offer will grant to the merchant
+         * upon use.
+         *
+         * @param experience The amount of experience.
+         * @return This builder
+         */
+        Builder merchantExperienceGranted(int experience);
+
+        /**
+         * Sets the rate at which the generated trade offer's price will grow
+         * when demand for an item increases. Every time a villager trades, this
+         * value is multiplied by the current price of the offer and the demand
+         * bonus.
+         *
+         * <p>If this value is 0, trade demand will have no effect on this
+         * offer's price.</p>
+         *
+         * @param priceGrowthMultiplier The offer's rate of price growth
+         * @return This builder
+         * @see <a href="https://minecraft.gamepedia.com/Trading#Economics">the
+         * Minecraft Wiki for more detail on how the price growth multiplier
+         * applies to trade offers</a>
+         */
+        Builder priceGrowthMultiplier(double priceGrowthMultiplier);
+
+        /**
+         * Sets the demand bonus for this trade offer.
+         *
+         * @param bonus The offer's demand bonus
+         * @return This builder
+         */
+        Builder demandBonus(int bonus);
 
         /**
          * Creates a new TradeOffer instance with the current state of the
