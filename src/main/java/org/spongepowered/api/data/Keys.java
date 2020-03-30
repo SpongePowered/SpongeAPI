@@ -173,6 +173,7 @@ import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.entity.projectile.ShulkerBullet;
 import org.spongepowered.api.entity.projectile.arrow.ArrowEntity;
 import org.spongepowered.api.entity.projectile.explosive.FireworkRocket;
+import org.spongepowered.api.entity.projectile.explosive.WitherSkull;
 import org.spongepowered.api.entity.projectile.explosive.fireball.FireballEntity;
 import org.spongepowered.api.entity.vehicle.Boat;
 import org.spongepowered.api.entity.vehicle.minecart.BlockOccupiedMinecart;
@@ -225,13 +226,12 @@ public final class Keys {
     // SORTFIELDS:ON
 
     /**
-     * Represents the {@link Key} for the absorption amount of any
-     * {@link Living} entity.
+     * Represents the {@link Key} for the absorption amount of any {@link Living} entity.
      */
     public static final Supplier<Key<BoundedValue<Double>>> ABSORPTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ABSORPTION");
 
     /**
-     * Represents the {@link Key} for the acceleration of a {@link FireballEntity}.
+     * Represents the {@link Key} for the acceleration of a {@link DamagingProjectile}.
      */
     public static final Supplier<Key<Value<Vector3d>>> ACCELERATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ACCELERATION");
 
@@ -587,7 +587,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the {@link BlockType}s able to be broken
-     * by an item.
+     * by an {@link ItemStack}.
      */
     public static final Supplier<Key<SetValue<BlockType>>> BREAKABLE_BLOCK_TYPES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BREAKABLE_BLOCK_TYPES");
 
@@ -636,7 +636,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for whether a {@link Living} entity may
      * change blocks. This mostly applies to {@link Enderman} or
-     * {@link Creeper}s, but also to some projectiles like {@link FireballEntity}s.
+     * {@link Creeper}s, but also to some projectiles like {@link FireballEntity}s or {@link WitherSkull}.
      */
     public static final Supplier<Key<Value<Boolean>>> CAN_GRIEF = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CAN_GRIEF");
 
@@ -680,8 +680,10 @@ public final class Keys {
     public static final Supplier<Key<Value<Vector3d>>> CHEST_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CHEST_ROTATION");
 
     /**
-     * Represents the {@link Key} for the {@link Color} of an
-     * {@link ItemStack}.
+     * Represents the {@link Key} for the {@link Color} of an {@link ItemStack}.
+     * <p>
+     *     e.g. {@link ItemTypes#LEATHER_CHESTPLATE} or {@link ItemTypes#POTION}
+     * </p>
      */
     public static final Supplier<Key<Value<Color>>> COLOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "COLOR");
 
@@ -700,6 +702,9 @@ public final class Keys {
     /**
      * Represents the {@link Key} for representing the connected directions
      * of a {@link BlockState}.
+     * <p>
+     *     e.g. {@link BlockTypes#GLASS_PANE}, {@link BlockTypes#IRON_BARS}, {@link BlockTypes#CHEST},
+     * </p>
      */
     public static final Supplier<Key<SetValue<Direction>>> CONNECTED_DIRECTIONS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CONNECTED_DIRECTIONS");
 
@@ -1472,14 +1477,6 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> IS_PLAYER_CREATED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_PLAYER_CREATED");
 
     /**
-     * Represents the {@link Key} for whether a {@link Villager} is playing.
-     *
-     * <p>In Vanilla, this only applies to villagers that are considered
-     * "babies" according to {@link #AGEABLE_AGE}.</p>
-     */
-    public static final Supplier<Key<Value<Boolean>>> IS_PLAYING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_PLAYING");
-
-    /**
      * Represents the {@link Key} for if a {@link Fox} is currently pouncing.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_POUNCING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_POUNCING");
@@ -1609,7 +1606,7 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> IS_TRUSTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_TRUSTING");
 
     /**
-     * Represents the {@link Key} for whether an {@link ItemStack} is unbreakable.
+     * Represents the {@link Key} for whether an {@link ItemStack} or {@link BlockState} is unbreakable.
      *
      * <p>Setting this to {@code  true} will prevent the item stack's
      * {@link #ITEM_DURABILITY} from changing.</p>
@@ -1688,7 +1685,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for representing the "layer" value of
-     * {@link BlockTypes#SNOW} and other possible layered blocks.
+     * {@link BlockTypes#SNOW}, {@link BlockTypes#CAKE} and other possible layered blocks.
      */
     public static final Supplier<Key<BoundedValue<Integer>>> LAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LAYER");
 
