@@ -39,7 +39,6 @@ import org.spongepowered.api.world.dimension.DimensionTypes;
 import org.spongepowered.api.world.gen.GeneratorType;
 import org.spongepowered.api.world.gen.GeneratorTypes;
 import org.spongepowered.api.world.server.WorldManager;
-import org.spongepowered.api.world.server.WorldRegistration;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.teleport.PortalAgentType;
 

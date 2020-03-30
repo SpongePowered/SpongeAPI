@@ -100,11 +100,11 @@ public interface WorldManager {
     Optional<WorldProperties> getDefaultProperties();
 
     /**
-     * Submits a new {@link WorldRegistration} to be known to this {@link WorldManager} and an {@link WorldArchetype}
+     * Submits a registration, by directory name, for a world to be known to this {@link WorldManager} and an {@link WorldArchetype}
      * that will be used to load it.
      *
      * <p>
-     *     {@link WorldManager#createProperties(WorldRegistration, WorldArchetype)} will do this on the plugin developer's behalf but
+     *     {@link WorldManager#createProperties(String, WorldArchetype)} will do this on the plugin developer's behalf but
      *     if the desire is present for the server to handle the loading in a more natural way, assuming the implementation behaves in
      *     that manner, then this is recommended to be used in the appropriate {@link GameState state}.
      * </p>
@@ -113,11 +113,17 @@ public interface WorldManager {
      *     Other uses is for "reserving" directory names and notifying other plugins of your world registrations. In the vanilla
      *     implementation of this API, worlds that are loaded will have their registrations restored on subsequent server loads.
      * </p>
+     *
+     * <p>
+     *     The result of this method is left up to the implementation to define. In the vanilla implementation of this API, a false
+     *     result means the registration already existed.
+     * </p>
      * 
-     * @param registration The registration
+     * @param directoryName The directory name
      * @param archetype The archetype
+     * @return True if successful, false otherwise
      */
-    void submitRegistration(WorldRegistration registration, WorldArchetype archetype);
+    boolean submitRegistration(String directoryName, WorldArchetype archetype);
 
     /**
      * Creates a new {@link WorldProperties} from the given
@@ -131,13 +137,13 @@ public interface WorldManager {
      *
      * <ul> <li>{@link #loadWorld(String)}</li> <li>{@link #loadWorld(WorldProperties)}</li> </ul>
      *
-     * @param registration The world registration
+     * @param directoryName The directory name
      * @param archetype The archetype for creation
      * @return The new or existing world properties, if creation was successful
      * @throws IOException If there are any io issues creating the properties
      *      file
      */
-    Optional<WorldProperties> createProperties(WorldRegistration registration, WorldArchetype archetype) throws IOException;
+    Optional<WorldProperties> createProperties(String directoryName, WorldArchetype archetype) throws IOException;
 
     /**
      * Loads a {@link ServerWorld} from the default storage container. If a world with
@@ -159,16 +165,16 @@ public interface WorldManager {
     Optional<ServerWorld> loadWorld(WorldProperties properties);
 
     /**
-     * Registers a {@link WorldRegistration}, creates the {@link WorldProperties} (if it doesn't exist), and loads the {@link ServerWorld}
+     * Registers a world by directory name, creates the {@link WorldProperties} (if it doesn't exist), and loads the {@link ServerWorld}
      * in one step.
      *
-     * @param registration The registration
+     * @param directoryName The directory name
      * @param archetype The archetype
      * @return The {@link ServerWorld} or {@link Optional#empty()} if it was not loaded
      * @throws IOException If the {@link WorldProperties} failed to create due to a filesystem error
      */
-    default Optional<ServerWorld> loadWorld(WorldRegistration registration, WorldArchetype archetype) throws IOException {
-        return this.createProperties(registration, archetype).flatMap(this::loadWorld);
+    default Optional<ServerWorld> loadWorld(String directoryName, WorldArchetype archetype) throws IOException {
+        return this.createProperties(directoryName, archetype).flatMap(this::loadWorld);
     }
 
     /**
