@@ -68,20 +68,6 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
     String getDirectoryName();
 
     /**
-     * Gets the name.
-     *
-     * @return The world name
-     */
-    String getName();
-
-    /**
-     * Sets the name.
-     *
-     * @param name The name
-     */
-    void setName(String name);
-
-    /**
      * Gets whether this is enabled.
      *
      * @return Is enabled
