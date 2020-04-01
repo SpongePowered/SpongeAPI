@@ -28,6 +28,7 @@ import org.spongepowered.api.item.inventory.equipment.EquipmentInventory;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 
 import java.util.Optional;
+import java.util.function.Supplier;
 
 /**
  * Represents a {@link Carrier} that has an {@link EquipmentInventory}.
@@ -44,6 +45,10 @@ public interface Equipable extends Carrier {
      */
     boolean canEquip(EquipmentType type);
 
+    default boolean canEquip(final Supplier<? extends EquipmentType> type) {
+        return canEquip(type.get());
+    }
+
     /**
      * Gets whether this {@link Equipable} can equip the supplied equipment in its slot of
      * the specified type (eg. whether calling {@link #equip} with the specified
@@ -55,6 +60,11 @@ public interface Equipable extends Carrier {
      */
     boolean canEquip(EquipmentType type, ItemStack equipment);
 
+    default boolean canEquip(final Supplier<? extends EquipmentType> type, final ItemStack equipment) {
+        return canEquip(type.get(), equipment);
+    }
+
+
     /**
      * Gets the item currently equipped by this {@link Equipable} in the specified slot.
      *
@@ -63,6 +73,10 @@ public interface Equipable extends Carrier {
      */
     Optional<ItemStack> getEquipped(EquipmentType type);
 
+    default Optional<ItemStack> getEquipped(final Supplier<? extends EquipmentType> type) {
+        return getEquipped(type.get());
+    }
+
     /**
      * Sets the item currently equipped by the {@link Equipable} in the specified slot, if
      * the equipable has such a slot.
@@ -70,9 +84,13 @@ public interface Equipable extends Carrier {
      * @param type The type of equipment slot to set
      * @param equipment The equipment to set the any equipped item
      * @return true if the item was successfully equipped, false if the item
-     *      could not be equipped because the equipable doesn't support the
-     *      specified equipment type or because the item was incompatible with
-     *      the specified slot.
+     *     could not be equipped because the equipable doesn't support the
+     *     specified equipment type or because the item was incompatible with
+     *     the specified slot.
      */
     boolean equip(EquipmentType type, ItemStack equipment);
+
+    default boolean equip(final Supplier<? extends EquipmentType> type, final ItemStack equipment) {
+        return equip(type.get(), equipment);
+    }
 }

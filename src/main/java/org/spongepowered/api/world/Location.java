@@ -104,7 +104,7 @@ public interface Location extends DataHolder.Mutable, DirectionRelativeDataHolde
      * @return The underlying world
      * @see #getWorldIfAvailable()
      */
-    World getWorld();
+    ServerWorld getWorld();
 
     /**
      * Gets the underlying {@link World} if it's available. A {@link World}
@@ -113,7 +113,7 @@ public interface Location extends DataHolder.Mutable, DirectionRelativeDataHolde
      * @return The underlying world, if available
      * @see #isAvailable()
      */
-    Optional<World> getWorldIfAvailable();
+    Optional<ServerWorld> getWorldIfAvailable();
 
     /**
      * Gets the {@link UUID} of the world.

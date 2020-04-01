@@ -33,6 +33,7 @@ import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResu
 import org.spongepowered.api.item.inventory.type.CarriedInventory;
 
 import java.util.Optional;
+import java.util.function.Supplier;
 
 /**
  * Equipment inventory for {@link Carrier}s
@@ -50,6 +51,10 @@ public interface EquipmentInventory extends Inventory, CarriedInventory<Equipabl
      */
      InventoryTransactionResult.Poll poll(EquipmentType equipmentType);
 
+     default InventoryTransactionResult.Poll poll(final Supplier<? extends EquipmentType> equipmentType) {
+         return poll(equipmentType.get());
+     }
+
     /**
      * Gets and remove the items from the stack for the specified equipment type
      * in this Inventory.
@@ -61,6 +66,10 @@ public interface EquipmentInventory extends Inventory, CarriedInventory<Equipabl
      */
     InventoryTransactionResult.Poll poll(EquipmentType equipmentType, int limit);
 
+    default InventoryTransactionResult.Poll poll(final Supplier<? extends EquipmentType> equipmentType, final int limit) {
+        return poll(equipmentType.get(), limit);
+    }
+
     /**
      * Gets without removing the stack for the specified equipment type in this
      * Inventory.
@@ -70,6 +79,10 @@ public interface EquipmentInventory extends Inventory, CarriedInventory<Equipabl
      * @return removed ItemStack, per the semantics of {@link Inventory#peek()}
      */
     Optional<ItemStack> peek(EquipmentType equipmentType);
+
+    default Optional<ItemStack> peek(final Supplier<? extends EquipmentType> equipmentType) {
+        return peek(equipmentType.get());
+    }
 
     /**
      * Sets the item for the specified equipment type.
@@ -81,6 +94,10 @@ public interface EquipmentInventory extends Inventory, CarriedInventory<Equipabl
      */
     InventoryTransactionResult set(EquipmentType equipmentType, ItemStack stack);
 
+    default InventoryTransactionResult set(final Supplier<? extends EquipmentType> equipmentType, final ItemStack stack) {
+        return set(equipmentType.get(), stack);
+    }
+
     /**
      * Gets the {@link Slot} for the specified equipment type.
      *
@@ -88,5 +105,9 @@ public interface EquipmentInventory extends Inventory, CarriedInventory<Equipabl
      * @return matching slot or {@link Optional#empty()} if no matching slot
      */
     Optional<Slot> getSlot(EquipmentType equipmentType);
+
+    default Optional<Slot> getSlot(final Supplier<? extends EquipmentType> equipmentType) {
+        return getSlot(equipmentType.get());
+    }
 
 }
