@@ -25,7 +25,7 @@
 package org.spongepowered.api.item.inventory.slot;
 
 import org.spongepowered.api.data.KeyValueMatcher;
-import org.spongepowered.api.item.inventory.InventoryKeys;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.math.vector.Vector2i;
 
@@ -44,7 +44,7 @@ public final class SlotMatchers {
      * @return The property query
      */
     public static KeyValueMatcher<Integer> index(int index) {
-        return KeyValueMatcher.of(InventoryKeys.SLOT_INDEX, index);
+        return KeyValueMatcher.of(Keys.SLOT_INDEX, index);
     }
 
     /**
@@ -55,7 +55,7 @@ public final class SlotMatchers {
      * @return The property query
      */
     public static KeyValueMatcher<Integer> index(int index, KeyValueMatcher.Operator operator) {
-        return KeyValueMatcher.of(InventoryKeys.SLOT_INDEX, index, operator);
+        return KeyValueMatcher.of(Keys.SLOT_INDEX, index, operator);
     }
 
     /**
@@ -67,7 +67,7 @@ public final class SlotMatchers {
      * @return The property query
      */
     public static KeyValueMatcher<Vector2i> position(Vector2i pos) {
-        return KeyValueMatcher.of(InventoryKeys.SLOT_POSITION, pos);
+        return KeyValueMatcher.of(Keys.SLOT_POSITION, pos);
     }
 
     /**
@@ -92,7 +92,7 @@ public final class SlotMatchers {
      * @return The property query
      */
     public static KeyValueMatcher<Vector2i> position(Vector2i pos, KeyValueMatcher.Operator operator) {
-        return KeyValueMatcher.of(InventoryKeys.SLOT_POSITION, pos, operator);
+        return KeyValueMatcher.of(Keys.SLOT_POSITION, pos, operator);
     }
 
     /**

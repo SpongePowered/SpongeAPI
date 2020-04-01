@@ -25,10 +25,11 @@
 package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.KeyValueMatcher;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.query.Query;
@@ -44,7 +45,7 @@ import java.util.UUID;
 /**
  * Base interface for queryable inventories.
  */
-public interface Inventory extends DataHolder.Mutable {
+public interface Inventory extends ValueContainer {
 
     /**
      * Creates a new {@link Inventory.Builder} to build a basic {@link Inventory}.
@@ -469,7 +470,7 @@ public interface Inventory extends DataHolder.Mutable {
         interface EndStep {
 
             /**
-             * Sets a unique identifier. Can be retrieved later using. {@link Inventory#get(Key)} with {@link InventoryKeys#UNIQUE_ID}
+             * Sets a unique identifier. Can be retrieved later using. {@link Inventory#get(Key)} with {@link Keys#UNIQUE_ID}
              *
              * @param uuid the UUID.
              *

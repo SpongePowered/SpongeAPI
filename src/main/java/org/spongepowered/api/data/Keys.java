@@ -192,6 +192,7 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.item.potion.PotionType;
+import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.projectile.source.ProjectileSource;
@@ -208,6 +209,7 @@ import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.weather.Weather;
 import org.spongepowered.api.world.weather.Weathers;
+import org.spongepowered.math.vector.Vector2i;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
@@ -888,6 +890,11 @@ public final class Keys {
      * an {@link EndGateway}.
      */
     public static final Supplier<Key<Value<Integer>>> END_GATEWAY_TELEPORT_COOLDOWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "END_GATEWAY_TELEPORT_COOLDOWN");
+
+    /**
+     * Represents the {@link EquipmentType} that the target inventory supports.
+     */
+    public static final Supplier<Key<Value<EquipmentType>>> EQUIPMENT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EQUIPMENT_TYPE");
 
     /**
      * Represents the {@link Key} for the current level of exhaustion of a
@@ -1787,6 +1794,11 @@ public final class Keys {
     public static final Supplier<Key<BoundedValue<Double>>> MAX_HEALTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_HEALTH");
 
     /**
+     * Represents the maximum stack size of slots in an inventory.
+     */
+    public static final Supplier<Key<BoundedValue<Integer>>> MAX_STACK_SIZE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_STACK_SIZE");
+
+    /**
      * Represents the {@link Key} for the modifier to {@link Keys#VELOCITY} of a {@link Minecart} while airborne.
      */
     public static final Supplier<Key<Value<Vector3d>>> MINECART_AIRBORNE_VELOCITY_MODIFIER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MINECART_AIRBORNE_VELOCITY_MODIFIER");
@@ -1919,6 +1931,11 @@ public final class Keys {
      * {@link ItemTypes#WRITTEN_BOOK}</p>
      */
     public static final Supplier<Key<ListValue<String>>> PLAIN_BOOK_PAGES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PLAIN_BOOK_PAGES");
+
+    /**
+     * Represents the plugin that created this inventory.
+     */
+    public static final Supplier<Key<Value<PluginContainer>>> PLUGIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PLUGIN");
 
     /**
      * Represents the {@link Key} for representing the {@link PortionType}
@@ -2085,6 +2102,23 @@ public final class Keys {
      * Represents the {@link Key} for the size of a {@link Slime}.
      */
     public static final Supplier<Key<BoundedValue<Integer>>> SLIME_SIZE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SLIME_SIZE");
+
+    /**
+     * Represents the index of a slot.
+     */
+    public static final Supplier<Key<BoundedValue<Integer>>> SLOT_INDEX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SLOT_INDEX");
+
+    /**
+     * A property which represents the position of a slot within a grid. Bear in mind
+     * that this property should be retrieved from the relevant parent, since a
+     * slot may have multiple parent inventories.
+     */
+    public static final Supplier<Key<Value<Vector2i>>> SLOT_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SLOT_POSITION");
+
+    /**
+     * A property which represents a "side" for a particular slot, for use in querying "sided inventories".
+     */
+    public static final Supplier<Key<Value<Direction>>> SLOT_SIDE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SLOT_SIDE");
 
     /**
      * Represents the {@link Key} for the time a {@link Panda} has been sneezing (in ticks)
@@ -2369,6 +2403,11 @@ public final class Keys {
      * Represents the {@link Key} for the time a {@link Panda} has been unhappy (in ticks)
      */
     public static final Supplier<Key<Value<Integer>>> UNHAPPY_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "UNHAPPY_TIME");
+
+    /**
+     * Represents the {@link UUID} of a custom inventory.
+     */
+    public static final Supplier<Key<Value<UUID>>> UNIQUE_ID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "UNIQUE_ID");
 
     /**
      * Represents the {@link Key} for whether a TNT block is unstable.
