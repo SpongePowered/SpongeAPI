@@ -27,6 +27,8 @@ package org.spongepowered.api.world.biome;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.CatalogBuilder;
 
+import java.util.function.Supplier;
+
 /**
  * A virtual biome is one which exists purely for generation and therefore
  * requires no modifications to clients in order to use it. After generation for
@@ -80,6 +82,17 @@ public interface VirtualBiomeType extends BiomeType {
          * @return This builder, for chaining
          */
         Builder persistedType(BiomeType biome);
+
+        /**
+         * Sets the {@link BiomeType} that this virtual biome is persisted as
+         * after generation is complete.
+         *
+         * @param biome The persisted biome type
+         * @return This builder, for chaining
+         */
+        default Builder persistedType(Supplier<? extends BiomeType> biome) {
+            return this.persistedType(biome.get());
+        }
 
     }
 
