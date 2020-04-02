@@ -60,7 +60,7 @@ import java.util.Set;
  * of a {@link NodeTree} is recommended.</p>
  *
  * <p>Plugins may opt to implement "dynamic" permissions such as {@code
- * example.region.define.&lt;region&gt;} where {@code region} would depend on
+ * example.region.define.[region]} where {@code region} would depend on
  * the context of the check. Attention should be made towards the handling of
  * periods / full stops in such cases.</p>
  *
@@ -121,7 +121,7 @@ public interface Subject extends Contextual {
      * <p>For subjects which are not persisted, the same store will be returned
      * by {@link #getTransientSubjectData()}.</p>
      *
-     * @return The the primary data backing for this Subject
+     * @return The primary data backing for this Subject
      */
     SubjectData getSubjectData();
 

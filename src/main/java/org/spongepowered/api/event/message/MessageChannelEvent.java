@@ -58,8 +58,8 @@ public interface MessageChannelEvent extends MessageEvent {
     /**
      * Sets the channel for this message to go to.
      *
-     * <p>Note that an {@link Optional#empty()} channel is different from a
-     * {@link MessageChannel#toNone()} channel.</p>
+     * <p>Note that setting this to {@code null}, or no channel, is different
+     * from a {@link MessageChannel#toNone()} channel.</p>
      *
      * @param channel The channel to set
      */

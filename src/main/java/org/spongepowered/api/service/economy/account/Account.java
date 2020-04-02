@@ -174,7 +174,7 @@ public interface Account extends Contextual {
 
     /**
      * Returns a {@link Map} of all currently set balances the account holds
-     * within the current active {@link Context}s.2
+     * within the current active {@link Context}.
      *
      * <p>Amounts may differ depending on the {@link Context}s specified and
      * the implementation. The set of {@link Context}s may be empty.</p>

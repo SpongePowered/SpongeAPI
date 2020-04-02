@@ -30,6 +30,7 @@ import org.spongepowered.api.data.type.NotePitch;
 import org.spongepowered.api.effect.sound.SoundCategory;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.effect.sound.music.MusicDisc;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
@@ -37,6 +38,10 @@ import org.spongepowered.api.world.WorldLocation;
 
 import java.util.Optional;
 
+/**
+ * An umbrella event that fires when in-game sounds, such as
+ * records in jukeboxes or sounds when boss entities die.
+ */
 public interface PlaySoundEvent extends Event, Cancellable {
 
     /**
@@ -47,28 +52,31 @@ public interface PlaySoundEvent extends Event, Cancellable {
     WorldLocation<?> getLocation();
 
     /**
-     * Gets the {@link SoundCategory} for the sound being played
-     * @return The category
-     * @see org.spongepowered.api.effect.sound.SoundCategories
+     * Gets the {@link SoundCategory} for the sound being played.
+     *
+     *  @return The {@link SoundCategory}
      */
     SoundCategory getSoundCategory();
 
     /**
-     * Gets the {@link SoundType} for the sound being played
-     * @return The sound type
-     * @see org.spongepowered.api.effect.sound.SoundTypes
+     * Gets the {@link SoundType} for the sound being played.
+     *
+     * @return {@link SoundType}
      */
     SoundType getSoundType();
 
     /**
-     * Gets the volume of the sound being played
-     * @return The volume being played
+     * Gets the volume of the sound being played.
+     *
+     * @return A float that represents the relative volume. This value may be
+     *         positive value.
      */
     float getVolume();
 
     /**
      * Gets the pitch of the sound being played
-     * @return The pitch of the sound being played
+     *
+     * @return A float that represents the pitch.
      */
     float getPitch();
 
@@ -104,14 +112,29 @@ public interface PlaySoundEvent extends Event, Cancellable {
          */
         MusicDisc getRecordType();
 
+        /**
+         * Fired when a record starts playing.
+         */
         interface Start extends Record {}
 
+        /**
+         * Fired when a record stops playing.
+         */
         interface Stop extends Record {}
 
     }
 
+    /**
+     * Fired when a sound is played at a specific {@link Entity}
+     */
     interface AtEntity extends PlaySoundEvent {
 
+        /**
+         * Gets the {@link Player} that this sound was played at, if the sound
+         * was played at a {@link Player}.
+         *
+         * @return The {@link Player}, if applicable.
+         */
         Optional<Player> getPlayer();
 
     }
@@ -121,8 +144,20 @@ public interface PlaySoundEvent extends Event, Cancellable {
      */
     interface NoteBlock extends PlaySoundEvent {
 
+        /**
+         * The type of instrument that played the
+         * {@link org.spongepowered.api.block.BlockTypes#NOTE_BLOCK Note block}.
+         *
+         * @return The {@link InstrumentType}
+         */
         InstrumentType getInstrument();
 
+        /**
+         * The pitch of the played
+         * {@link org.spongepowered.api.block.BlockTypes#NOTE_BLOCK Note block}.
+         *
+         * @return The {@link NotePitch}
+         */
         NotePitch getNotePitch();
 
     }

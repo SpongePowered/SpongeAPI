@@ -26,6 +26,8 @@ package org.spongepowered.api.service.economy;
 
 import org.spongepowered.api.service.context.ContextualService;
 import org.spongepowered.api.service.economy.account.Account;
+import org.spongepowered.api.service.economy.account.AccountDeletionResultType;
+import org.spongepowered.api.service.economy.account.AccountDeletionResultTypes;
 import org.spongepowered.api.service.economy.account.UniqueAccount;
 import org.spongepowered.api.service.economy.account.VirtualAccount;
 
@@ -45,7 +47,8 @@ import java.util.UUID;
 public interface EconomyService extends ContextualService<Account> {
 
     /**
-     * Retrieves the default {@link Currency} used by the {@link EconomyService}.
+     * Retrieves the default {@link Currency} used by the
+     * {@link EconomyService}.
      *
      * @return {@link Currency} default for the EconomyService
      *
@@ -58,7 +61,8 @@ public interface EconomyService extends ContextualService<Account> {
      * implemented by this EconomyService.
      *
      * <p>The economy service provider may only support one currency, in which
-     * case {@link #getDefaultCurrency()} will be the only member of the set.</p>
+     * case {@link #getDefaultCurrency()} will be the only member of the set.
+     * </p>
      *
      * <p>The set returned is a read-only a view of all currencies available in
      * the EconomyService.</p>
@@ -68,10 +72,12 @@ public interface EconomyService extends ContextualService<Account> {
     Set<Currency> getCurrencies();
 
     /**
-     * Returns whether a {@link UniqueAccount} exists with the specified {@link UUID}.
+     * Returns whether a {@link UniqueAccount} exists with the specified
+     * {@link UUID}.
      *
      * @param uuid The {@link UUID} of the account to check for
-     * @return Whether a {@link UniqueAccount} exists with the specified {@link UUID}
+     * @return Whether a {@link UniqueAccount} exists with the specified
+     *         {@link UUID}
      */
     boolean hasAccount(UUID uuid);
 
@@ -87,13 +93,14 @@ public interface EconomyService extends ContextualService<Account> {
     boolean hasAccount(String identifier);
 
     /**
-     * Gets the {@link UniqueAccount} for the user with the specified {@link UUID}.
+     * Gets the {@link UniqueAccount} for the user with the specified
+     * {@link UUID}.
      *
-     * <p>If an account does not already exists with the specified {@link UUID},
+     * <p>If an account does not already exist with the specified {@link UUID},
      * it will be created.</p>
      *
-     * <p>Creation might fail if the provided {@link UUID} does not correspond to
-     * an actual player, or for an implementation-defined reason.</p>
+     * <p>Creation might fail if the provided {@link UUID} does not correspond
+     * to an actual player, or for an implementation-defined reason.</p>
      *
      * @param uuid The {@link UUID} of the account to get.
      * @return The {@link UniqueAccount}, if available.
@@ -106,7 +113,7 @@ public interface EconomyService extends ContextualService<Account> {
      * <p>Depending on the implementation, the {@link Account} may be a
      * {@link UniqueAccount} or a {@link VirtualAccount}.</p>
      *
-     * <p>If an account does not already exists with the specified identifier,
+     * <p>If an account does not already exist with the specified identifier,
      * it will be created.</p>
      *
      * <p>Creation may fail for an implementation-defined reason.</p>
@@ -115,4 +122,32 @@ public interface EconomyService extends ContextualService<Account> {
      * @return The {@link Account}, if available.
      */
     Optional<Account> getOrCreateAccount(String identifier);
+
+    /**
+     * Deletes the account for the user with the specified {@link UUID}.
+     *
+     * <p>Deletion might fail if the provided {@link UUID} does not correspond
+     * to an actual player, or for some other implementation-defined reason.</p>
+     *
+     * @param uuid The {@link UUID} of the account to delete.
+     * @return The result of the deletion.
+     */
+    default AccountDeletionResultType deleteAccount(UUID uuid) {
+        return AccountDeletionResultTypes.UNSUPPORTED;
+    }
+
+    /**
+     * Deletes the account with the specified identifier.
+     *
+     * <p>If an account exists with the specified identifier,
+     * it will be deleted.</p>
+     *
+     * <p>Deletion may fail for an implementation-defined reason.</p>
+     *
+     * @param identifier The identifier of the account to delete.
+     * @return The result of the deletion.
+     */
+    default AccountDeletionResultType deleteAccount(String identifier) {
+        return AccountDeletionResultTypes.UNSUPPORTED;
+    }
 }

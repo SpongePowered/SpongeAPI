@@ -47,6 +47,14 @@ public interface ItemType extends CatalogType, Translatable, DataHolder.Immutabl
     Optional<BlockType> getBlock();
 
     /**
+     * Gets the container item of this item if one exists.
+     * <p>e.g. {@link ItemTypes#BUCKET} for {@link ItemTypes#WATER_BUCKET}</p>
+     *
+     * @return The container item.
+     */
+    Optional<ItemType> getContainer();
+
+    /**
      * Gets the default maximum quantity for
      * {@link ItemStack}s of this item.
      *

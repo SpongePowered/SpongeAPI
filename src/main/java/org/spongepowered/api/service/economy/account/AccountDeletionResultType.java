@@ -22,21 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world;
+package org.spongepowered.api.service.economy.account;
 
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Base event for when a {@link World} is unloaded.
+ * Indicates whether the deletion of an {@link Account} succeeded.
  */
-public interface UnloadWorldEvent extends Event, Cancellable {
+@CatalogedBy(AccountDeletionResultTypes.class)
+public interface AccountDeletionResultType extends CatalogType {
 
     /**
-     * Gets the {@link World}.
+     * Returns whether this result type represents a successful deletion.
      *
-     * @return The world
+     * @return Whether the result represents a successful deletion.
      */
-    World getWorld();
+    boolean isSuccess();
 }

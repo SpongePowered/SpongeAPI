@@ -502,7 +502,7 @@ public final class DataTransactionResult {
 
         /**
          * Adds the provided {@link org.spongepowered.api.data.value.Value.Immutable} to the {@link List} of
-         * "successful" {@link org.spongepowered.api.data.value.Value.Immutable}s. The rejected values are always
+         * "successful" {@link org.spongepowered.api.data.value.Value.Immutable}s. The successful values are always
          * copied for every {@link DataTransactionResult} for referencing.
          *
          * @param value The value that was successfully provided
