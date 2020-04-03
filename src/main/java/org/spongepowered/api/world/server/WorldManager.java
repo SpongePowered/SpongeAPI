@@ -104,9 +104,9 @@ public interface WorldManager {
      * that will be used to load it.
      *
      * <p>
-     *     {@link WorldManager#createProperties(String, WorldArchetype)} will do this on the plugin developer's behalf but
-     *     if the desire is present for the server to handle the loading in a more natural way, assuming the implementation behaves in
-     *     that manner, then this is recommended to be used in the appropriate {@link GameState state}.
+     *     Creating a {@link WorldProperties} or loading a {@link ServerWorld} will do this on the plugin developer's behalf but
+     *     if the desire is present for the server to handle the loading in a more natural way during a server lifecycle, assuming the implementation
+     *     behaves in that manner, then this is recommended to be used in the appropriate {@link GameState state}.
      * </p>
      *
      * <p>
@@ -129,21 +129,17 @@ public interface WorldManager {
      * Creates a new {@link WorldProperties} from the given
      * {@link WorldArchetype}. For the creation of the {@link WorldArchetype} please see {@link WorldArchetype.Builder}.
      *
-     * <p>If the {@link ServerWorld} exists at the directory name given, the properties
-     * representing that directory name are returned instead.</p>
+     * <p>The returned properties should be considered "virtual" as it will not exist on the disk nor will the manager consider it "offline data".
      *
-     * <p>Although the world is created it is not loaded at this time. Please
-     * see one of the following methods for loading the world.</p>
-     *
-     * <ul> <li>{@link #loadWorld(String)}</li> <li>{@link #loadWorld(WorldProperties)}</li> </ul>
+     * To write it to the default storage container, use one of the following methods:
+     * <ul> <li>{@link #loadWorld(WorldProperties)}</li> <li>{@link #saveProperties(WorldProperties)}</li> </ul>
+     * </p>
      *
      * @param directoryName The directory name
      * @param archetype The archetype for creation
      * @return The new or existing world properties, if creation was successful
-     * @throws IOException If there are any io issues creating the properties
-     *      file
      */
-    Optional<WorldProperties> createProperties(String directoryName, WorldArchetype archetype) throws IOException;
+    Optional<WorldProperties> createProperties(String directoryName, WorldArchetype archetype);
 
     /**
      * Loads a {@link ServerWorld} from the default storage container. If a world with
@@ -155,14 +151,18 @@ public interface WorldManager {
     Optional<ServerWorld> loadWorld(String directoryName);
 
     /**
-     * Loads a {@link ServerWorld} from the default storage container. If the world
-     * associated with the given properties is already loaded then it is
-     * returned instead.
+     * Loads a {@link ServerWorld} from the default storage container.
      *
+     * <p>If the world associated with the given properties is already loaded then it is returned instead.</p>
+     *
+     * <p>If the given properties already has data within the default storage container it will be loaded instead.</p>
+     *
+     * <p>If none of the above, the properties will be wrote to the default storage container as a result of the load</p>
+     * 
      * @param properties The properties of the world to load
      * @return The world, if found
      */
-    Optional<ServerWorld> loadWorld(WorldProperties properties);
+    Optional<ServerWorld> loadWorld(WorldProperties properties) throws IOException;
 
     /**
      * Registers a world by directory name, creates the {@link WorldProperties} (if it doesn't exist), and loads the {@link ServerWorld}
@@ -182,9 +182,6 @@ public interface WorldManager {
      *
      * <p>The conditions for how and when a world may be unloaded are left up to the
      * implementation to define.</p>
-     *
-     * <p>Should the {@link WorldProperties} of the unloaded world return {@link WorldProperties#isEnabled()}
-     * 'true' then this server will attempt to load the world during the next startup phase.</p>
      *
      * @param world The world to unload
      * @return Whether the operation was successful
@@ -224,7 +221,7 @@ public interface WorldManager {
     Collection<WorldProperties> getUnloadedProperties();
 
     /**
-     * Gets the properties of all worlds.
+     * Gets the properties of all worlds, online and offline.
      *
      * <p>It is left up to the implementation to determine it's offline worlds and no contract is enforced
      * that states that they must returns all unloaded worlds that actually exist.</p>
@@ -240,7 +237,7 @@ public interface WorldManager {
      * @param properties The world properties to save
      * @return True if the save was successful
      */
-    boolean saveProperties(WorldProperties properties);
+    boolean saveProperties(WorldProperties properties) throws IOException;
 
     /**
      * Creates a world copy asynchronously using the new name given and returns
