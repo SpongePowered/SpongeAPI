@@ -137,9 +137,9 @@ public interface WorldManager {
      *
      * @param directoryName The directory name
      * @param archetype The archetype for creation
-     * @return The new or existing world properties, if creation was successful
+     * @return The new world properties
      */
-    Optional<WorldProperties> createProperties(String directoryName, WorldArchetype archetype);
+    WorldProperties createProperties(String directoryName, WorldArchetype archetype);
 
     /**
      * Loads a {@link ServerWorld} from the default storage container. If a world with
@@ -158,24 +158,26 @@ public interface WorldManager {
      * <p>If the given properties already has data within the default storage container it will be loaded instead.</p>
      *
      * <p>If none of the above, the properties will be wrote to the default storage container as a result of the load</p>
-     * 
+     *
      * @param properties The properties of the world to load
      * @return The world, if found
      */
     Optional<ServerWorld> loadWorld(WorldProperties properties) throws IOException;
 
     /**
-     * Registers a world by directory name, creates the {@link WorldProperties} (if it doesn't exist), and loads the {@link ServerWorld}
-     * in one step.
+     * Utility method that combines multiple steps in one: Create world data and load the world.
+     *
+     * <p>If the directory name given is already loaded, the loaded world will be returned instead.</p>
+     *
+     * <p>If the directory name given is not loaded but exists in the default storage container, that data will be
+     * loaded instead.</p>
      *
      * @param directoryName The directory name
      * @param archetype The archetype
      * @return The {@link ServerWorld} or {@link Optional#empty()} if it was not loaded
      * @throws IOException If the {@link WorldProperties} failed to create due to a filesystem error
      */
-    default Optional<ServerWorld> loadWorld(String directoryName, WorldArchetype archetype) throws IOException {
-        return this.createProperties(directoryName, archetype).flatMap(this::loadWorld);
-    }
+    Optional<ServerWorld> loadWorld(String directoryName, WorldArchetype archetype) throws IOException;
 
     /**
      * Unloads a {@link ServerWorld}.
@@ -190,9 +192,9 @@ public interface WorldManager {
 
     /**
      * Gets the {@link WorldProperties} of a world. If a world with the given
-     * name is loaded then this is equivalent to calling
-     * {@link World#getProperties()}. However, if no loaded world is found then
-     * an attempt will be made to match to a known unloaded world.
+     * name is loaded then this is equivalent to calling {@link World#getProperties()}.
+     *
+     * However, if no loaded world is found then an attempt will be made to match to a known unloaded world.
      *
      * @param directoryName The name to lookup
      * @return The world properties, if found
