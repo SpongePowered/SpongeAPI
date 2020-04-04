@@ -111,5 +111,4 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
 
     @Override
     boolean removeBlock(int x, int y, int z);
-
 }

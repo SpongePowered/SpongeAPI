@@ -394,7 +394,7 @@ public interface AttackEntityEvent extends Event, Cancellable {
      *
      * @return The knock back modifier
      */
-    int getKnockbackModifier();
+    float getKnockbackModifier();
 
     /**
      * Sets the knock back modifier. The modifier itself will apply to the
@@ -402,6 +402,5 @@ public interface AttackEntityEvent extends Event, Cancellable {
      *
      * @param modifier The knock back modifier to set
      */
-    void setKnockbackModifier(int modifier);
-
+    void setKnockbackModifier(float modifier);
 }

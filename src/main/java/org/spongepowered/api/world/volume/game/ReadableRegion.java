@@ -48,23 +48,23 @@ public interface ReadableRegion<R extends ReadableRegion<R>> extends
     HeightAwareVolume,
     RandomProvider {
 
+    Dimension getDimension();
+
     WorldBorder getBorder();
 
     boolean isInBorder(Entity entity);
 
-    Dimension getDimension();
-
     default boolean canSeeSky(Vector3i pos) {
-        return canSeeSky(pos.getX(), pos.getY(), pos.getZ());
+        return this.canSeeSky(pos.getX(), pos.getY(), pos.getZ());
     }
 
     boolean canSeeSky(int x, int y, int z);
 
-    default boolean hasWater(Vector3i pos) {
-        return hasWater(pos.getX(), pos.getY(), pos.getZ());
+    default boolean hasLiquid(Vector3i pos) {
+        return this.hasLiquid(pos.getX(), pos.getY(), pos.getZ());
     }
 
-    boolean hasWater(int x, int y, int z);
+    boolean hasLiquid(int x, int y, int z);
 
     boolean containsAnyLiquids(AABB aabb);
 
