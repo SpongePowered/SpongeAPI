@@ -110,11 +110,6 @@ public interface WorldManager {
      * </p>
      *
      * <p>
-     *     Other uses is for "reserving" directory names and notifying other plugins of your world registrations. In the vanilla
-     *     implementation of this API, worlds that are loaded will have their registrations restored on subsequent server loads.
-     * </p>
-     *
-     * <p>
      *     The result of this method is left up to the implementation to define. In the vanilla implementation of this API, a false
      *     result means the registration already existed.
      * </p>
@@ -129,6 +124,9 @@ public interface WorldManager {
      * Creates a new {@link WorldProperties} from the given
      * {@link WorldArchetype}. For the creation of the {@link WorldArchetype} please see {@link WorldArchetype.Builder}.
      *
+     * <p>It is up to the implementation to define an {@link Optional#empty()} result. In vanilla Minecraft, this would happen if the directory
+     * already exists in the default world container or an IO error occurred when loading.</p>
+     *
      * <p>The returned properties should be considered "virtual" as it will not exist on the disk nor will the manager consider it "offline data".
      *
      * To write it to the default storage container, use one of the following methods:
@@ -139,7 +137,7 @@ public interface WorldManager {
      * @param archetype The archetype for creation
      * @return The new world properties
      */
-    WorldProperties createProperties(String directoryName, WorldArchetype archetype);
+    Optional<WorldProperties> createProperties(String directoryName, WorldArchetype archetype);
 
     /**
      * Loads a {@link ServerWorld} from the default storage container. If a world with
@@ -163,21 +161,6 @@ public interface WorldManager {
      * @return The world, if found
      */
     Optional<ServerWorld> loadWorld(WorldProperties properties) throws IOException;
-
-    /**
-     * Utility method that combines multiple steps in one: Create world data and load the world.
-     *
-     * <p>If the directory name given is already loaded, the loaded world will be returned instead.</p>
-     *
-     * <p>If the directory name given is not loaded but exists in the default storage container, that data will be
-     * loaded instead.</p>
-     *
-     * @param directoryName The directory name
-     * @param archetype The archetype
-     * @return The {@link ServerWorld} or {@link Optional#empty()} if it was not loaded
-     * @throws IOException If the {@link WorldProperties} failed to create due to a filesystem error
-     */
-    Optional<ServerWorld> loadWorld(String directoryName, WorldArchetype archetype) throws IOException;
 
     /**
      * Unloads a {@link ServerWorld}.
