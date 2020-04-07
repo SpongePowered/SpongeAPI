@@ -31,7 +31,6 @@ import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.inventory.Inventory;
 
 import java.util.Optional;
-import java.util.Set;
 
 /**
  * Represents a Chest.
@@ -50,11 +49,14 @@ public interface Chest extends NameableCarrierBlockEntity {
     Optional<Inventory> getDoubleChestInventory();
 
     /**
-     * Returns the connected {@link Chest}s, if available.
+     * Returns the connected {@link Chest}, if available.
      *
-     * @return The connected Chests, if available
+     * <p>If this chest is not part of a double chest, then this method
+     * will return {@link Optional#empty()}.</p>
+     *
+     * @return The connected {@link Chest}, if available
      */
-    Set<Chest> getConnectedChests();
+    Optional<Chest> getConnectedChest();
 
     /**
      * {@link Keys#CHEST_ATTACHMENT}
