@@ -25,6 +25,7 @@
 package org.spongepowered.api;
 
 import org.spongepowered.api.scheduler.Scheduler;
+import org.spongepowered.api.util.temporal.Duration;
 
 /**
  * Shared functionality between {@link Client} and {@link Server} engines.
@@ -37,6 +38,41 @@ public interface Engine {
      * @return The sync scheduler
      */
     Scheduler getScheduler();
+
+    /**
+     * Gets the estimated time for the given {@link Duration} based
+     * on the performance of this engine.
+     *
+     * @param duration The duration
+     * @return The estimated ticks
+     */
+    Duration.Ticks getEstimatedTicks(Duration duration);
+
+    /**
+     * Gets the estimated ticks for the given {@link Duration} based
+     * on the performance of this engine.
+     *
+     * @param duration The duration
+     * @return The estimated ticks
+     */
+    Duration.Time getEstimatedTime(Duration duration);
+
+    /**
+     * Gets the {@link Duration} of a tick when the engine
+     * would be performing optimally.
+     *
+     * <p>For a vanilla server, this will be 50 milliseconds.</p>
+     *
+     * @return The optimal tick duration
+     */
+    Duration.Time getOptimalTickDuration();
+
+    /**
+     * Gets the actual {@link Duration} of a tick.
+     *
+     * @return The actual tick duration
+     */
+    Duration.Time getTickDuration();
 
     /**
      * Checks if the {@link Thread#currentThread() current thread} is the main thread of the engine.
