@@ -27,7 +27,9 @@ package org.spongepowered.api.util.temporal;
 import org.spongepowered.api.Engine;
 import org.spongepowered.api.Sponge;
 
+import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
 import java.time.temporal.TemporalAmount;
 import java.time.temporal.TemporalUnit;
 
@@ -97,6 +99,16 @@ public interface Duration extends TemporalAmount {
     }
 
     /**
+     * Creates a time based duration for the given {@code nanos}.
+     *
+     * @param nanos The nanos
+     * @return The time based duration
+     */
+    static Duration.Time ofNanos(double nanos) {
+        return of(nanos, ChronoUnit.NANOS);
+    }
+
+    /**
      * Creates a time based duration for the given {@code value} and {@code unit}.
      *
      * @param value The amount of time
@@ -106,6 +118,68 @@ public interface Duration extends TemporalAmount {
     static Duration.Time of(double value, TemporalUnit unit) {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).of(value, unit);
     }
+
+    /**
+     * Creates a duration for the given {@link TemporalAmount}.
+     *
+     * @return The duration
+     */
+    static Duration of(TemporalAmount amount) {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).of(amount);
+    }
+
+    /**
+     * Gets the {@link Duration} between the two {@link Temporal} objects.
+     *
+     * @param startInclusive The start time, inclusive
+     * @param endExclusive The end time, exclusive
+     * @return The duration
+     */
+    static Duration between(Temporal startInclusive, Temporal endExclusive) {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class)
+                .between(startInclusive, endExclusive);
+    }
+
+    /**
+     * Parses a {@link Duration} from a string such as
+     * {@code PnDTnHnMn.nS} for time or {@code nT} for ticks.
+     *
+     * <p>The parsing behavior is mostly the same as {@link java.time.Duration#parse(CharSequence)},
+     * but with the addition to support tick based durations. The following list are examples for
+     * tick based durations.
+     * </p>
+     *
+     * <p>
+     * Tick based examples:
+     * <pre>
+     *    "100T"    -- parses as "100 ticks"
+     *    "+100T"   -- parses as "100 ticks"
+     *    "-100T"   -- parses as "-100 ticks"
+     * </pre>
+     * </p>
+     *
+     * @param text The text to parse
+     * @return The parsed duration
+     * @throws DateTimeParseException If the text cannot be parsed to a duration
+     * @see java.time.Duration#parse(CharSequence)
+     */
+    static Duration parse(CharSequence text) {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).parse(text);
+    }
+
+    /**
+     * Gets whether the duration is zero.
+     *
+     * @return Is zero
+     */
+    boolean isZero();
+
+    /**
+     * Gets whether the duration is negative.
+     *
+     * @return Is negative
+     */
+    boolean isNegative();
 
     /**
      * Converts this duration to tick based duration.
@@ -136,6 +210,45 @@ public interface Duration extends TemporalAmount {
      * @return The time
      */
     Time toTime();
+
+    /**
+     * Gets a new duration which is negated.
+     *
+     * @return The new negated duration
+     */
+    Duration negated();
+
+    /**
+     * Gets a new duration which is absolute.
+     *
+     * @return The new absolute duration
+     */
+    Duration abs();
+
+    /**
+     * Multiplies this duration by the given value.
+     *
+     * @param value The value to multiply the duration by
+     * @return The new duration
+     */
+    Duration multipliedBy(long value);
+
+    /**
+     * Divides this duration by the given value.
+     *
+     * @param value The value to divide the duration by
+     * @return The new duration
+     */
+    Duration dividedBy(long value);
+
+    /**
+     * This converts the duration to a string representation. Which
+     * can be parsed by {@link #parse(CharSequence)}.
+     *
+     * @return The string representation
+     */
+    @Override
+    String toString();
 
     /**
      * Represents a duration that is directly related to time and a clock.
@@ -188,6 +301,15 @@ public interface Duration extends TemporalAmount {
         }
 
         /**
+         * Converts this duration to nanoseconds.
+         *
+         * @return The nanoseconds
+         */
+        default double toNanos() {
+            return this.to(ChronoUnit.NANOS);
+        }
+
+        /**
          * Converts this duration to the given {@link TemporalUnit}.
          *
          * @return The duration
@@ -195,20 +317,186 @@ public interface Duration extends TemporalAmount {
         double to(TemporalUnit unit);
 
         /**
-         * Adds the two durations and returns the new duration.
+         * Adds the days and returns the new duration.
+         *
+         * @param days The days to add
+         * @return The new duration
+         */
+        default Time plusDays(double days) {
+            return this.plus(days, ChronoUnit.DAYS);
+        }
+
+        /**
+         * Adds the hours and returns the new duration.
+         *
+         * @param hours The hours to add
+         * @return The new duration
+         */
+        default Time plusHours(double hours) {
+            return this.plus(hours, ChronoUnit.HOURS);
+        }
+
+        /**
+         * Adds the minutes and returns the new duration.
+         *
+         * @param minutes The minutes to add
+         * @return The new duration
+         */
+        default Time plusMinutes(double minutes) {
+            return this.plus(minutes, ChronoUnit.MINUTES);
+        }
+
+        /**
+         * Adds the seconds and returns the new duration.
+         *
+         * @param seconds The seconds to add
+         * @return The new duration
+         */
+        default Time plusSeconds(double seconds) {
+            return this.plus(seconds, ChronoUnit.SECONDS);
+        }
+
+        /**
+         * Adds the millis and returns the new duration.
+         *
+         * @param millis The millis to add
+         * @return The new duration
+         */
+        default Time plusMillis(double millis) {
+            return this.plus(millis, ChronoUnit.MILLIS);
+        }
+
+        /**
+         * Adds the nanos and returns the new duration.
+         *
+         * @param nanos The nanos to add
+         * @return The new duration
+         */
+        default Time plusNanos(double nanos) {
+            return this.plus(nanos, ChronoUnit.NANOS);
+        }
+
+        /**
+         * Adds the other duration and returns the new duration.
+         *
+         * @param value The duration to add
+         * @param unit The unit of the duration
+         * @return The new duration
+         */
+        Time plus(double value, TemporalUnit unit);
+
+        /**
+         * Adds the other duration and returns the new duration.
          *
          * @param other The other duration to add
-         * @return The duration
+         * @return The new duration
          */
         Time plus(Time other);
 
         /**
-         * Subtracts the two durations and returns the new duration.
+         * Subtracts the other duration from this one and returns the new duration.
          *
-         * @param other The other duration to add
-         * @return The duration
+         * @param days The days to subtract
+         * @return The new duration
+         */
+        default Time minusDays(double days) {
+            return this.minus(days, ChronoUnit.DAYS);
+        }
+
+        /**
+         * Subtracts the other duration from this one and returns the new duration.
+         *
+         * @param hours The hours to subtract
+         * @return The new duration
+         */
+        default Time minusHours(double hours) {
+            return this.minus(hours, ChronoUnit.HOURS);
+        }
+
+        /**
+         * Subtracts the other duration from this one and returns the new duration.
+         *
+         * @param minutes The minutes to subtract
+         * @return The new duration
+         */
+        default Time minusMinutes(double minutes) {
+            return this.minus(minutes, ChronoUnit.MINUTES);
+        }
+
+        /**
+         * Subtracts the other duration from this one and returns the new duration.
+         *
+         * @param seconds The seconds to subtract
+         * @return The new duration
+         */
+        default Time minusSeconds(double seconds) {
+            return this.minus(seconds, ChronoUnit.SECONDS);
+        }
+
+        /**
+         * Subtracts the other duration from this one and returns the new duration.
+         *
+         * @param millis The millis to subtract
+         * @return The new duration
+         */
+        default Time minusMillis(double millis) {
+            return this.minus(millis, ChronoUnit.MILLIS);
+        }
+
+        /**
+         * Subtracts the other duration from this one and returns the new duration.
+         *
+         * @param nanos The nanos to subtract
+         * @return The new duration
+         */
+        default Time minusNanos(double nanos) {
+            return this.minus(nanos, ChronoUnit.NANOS);
+        }
+
+        /**
+         * Subtracts the other duration from this one and returns the new duration.
+         *
+         * @param value The duration to subtract
+         * @param unit The unit of the duration
+         * @return The new duration
+         */
+        Time minus(double value, TemporalUnit unit);
+
+        /**
+         * Subtracts the other duration from this one and returns the new duration.
+         *
+         * @param other The other duration to subtract
+         * @return The new duration
          */
         Time minus(Time other);
+
+        @Override
+        Time abs();
+
+        @Override
+        Time negated();
+
+        /**
+         * Multiplies this duration by the given value.
+         *
+         * @param value The value to multiply the duration by
+         * @return The new duration
+         */
+        Time multipliedBy(double value);
+
+        @Override
+        Time multipliedBy(long value);
+
+        /**
+         * Divides this duration by the given value.
+         *
+         * @param value The value to divide the duration by
+         * @return The new duration
+         */
+        Time dividedBy(double value);
+
+        @Override
+        Time dividedBy(long value);
 
         @Override
         default Time toTime() {
@@ -239,20 +527,48 @@ public interface Duration extends TemporalAmount {
         long getTicks();
 
         /**
-         * Adds the two durations and returns the new duration.
+         * Adds the ticks and returns the new duration.
+         *
+         * @param ticks The ticks to add
+         * @return The duration
+         */
+        Ticks plusTicks(long ticks);
+
+        /**
+         * Adds the other duration and returns the new duration.
          *
          * @param other The other duration to add
-         * @return The duration
+         * @return The new duration
          */
         Ticks plus(Ticks other);
 
         /**
-         * Subtracts the two durations and returns the new duration.
+         * Subtracts the other ticks from this one and returns the new duration.
          *
-         * @param other The other duration to subtract
+         * @param ticks The ticks to subtract
          * @return The duration
          */
+        Ticks minusTicks(long ticks);
+
+        /**
+         * Subtracts the other duration from this one and returns the new duration.
+         *
+         * @param other The other duration to subtract
+         * @return The new duration
+         */
         Ticks minus(Ticks other);
+
+        @Override
+        Ticks abs();
+
+        @Override
+        Ticks negated();
+
+        @Override
+        Ticks multipliedBy(long value);
+
+        @Override
+        Ticks dividedBy(long value);
 
         @Override
         default Ticks toTicks() {
@@ -261,6 +577,12 @@ public interface Duration extends TemporalAmount {
     }
 
     interface Factory {
+
+        Duration between(Temporal startInclusive, Temporal endExclusive);
+
+        Duration parse(CharSequence text);
+
+        Duration of(TemporalAmount amount);
 
         Duration.Time of(double value, TemporalUnit unit);
 
