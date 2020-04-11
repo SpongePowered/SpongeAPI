@@ -36,7 +36,7 @@ import java.time.temporal.TemporalUnit;
 /**
  * Represents a duration.
  */
-public interface Duration extends TemporalAmount {
+public interface Duration {
 
     /**
      * Creates a tick based duration based on the given {@code ticks}.
@@ -124,7 +124,7 @@ public interface Duration extends TemporalAmount {
      *
      * @return The duration
      */
-    static Duration of(TemporalAmount amount) {
+    static Duration.Time of(TemporalAmount amount) {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).of(amount);
     }
 
@@ -135,7 +135,7 @@ public interface Duration extends TemporalAmount {
      * @param endExclusive The end time, exclusive
      * @return The duration
      */
-    static Duration between(Temporal startInclusive, Temporal endExclusive) {
+    static Duration.Time between(Temporal startInclusive, Temporal endExclusive) {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class)
                 .between(startInclusive, endExclusive);
     }
@@ -253,7 +253,7 @@ public interface Duration extends TemporalAmount {
     /**
      * Represents a duration that is directly related to time and a clock.
      */
-    interface Time extends Duration {
+    interface Time extends Duration, Comparable<Time> {
 
         /**
          * Converts this duration to days.
@@ -502,6 +502,14 @@ public interface Duration extends TemporalAmount {
         default Time toTime() {
             return this;
         }
+
+        /**
+         * Converts this duration to the java
+         * {@link java.time.Duration}.
+         *
+         * @return The java duration
+         */
+        java.time.Duration toJavaDuration();
     }
 
     /**
@@ -509,7 +517,7 @@ public interface Duration extends TemporalAmount {
      * to time, but this is less strict because it's affected by the
      * performance of the engine.
      */
-    interface Ticks extends Duration {
+    interface Ticks extends Duration, Comparable<Ticks> {
 
         /**
          * Converts this duration to ticks.
@@ -578,13 +586,13 @@ public interface Duration extends TemporalAmount {
 
     interface Factory {
 
-        Duration between(Temporal startInclusive, Temporal endExclusive);
-
         Duration parse(CharSequence text);
 
-        Duration of(TemporalAmount amount);
+        Duration.Time of(TemporalAmount amount);
 
         Duration.Time of(double value, TemporalUnit unit);
+
+        Duration.Time between(Temporal startInclusive, Temporal endExclusive);
 
         Duration.Ticks ofTicks(long ticks);
     }
