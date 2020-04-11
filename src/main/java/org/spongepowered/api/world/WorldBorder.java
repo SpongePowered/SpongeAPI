@@ -26,9 +26,9 @@ package org.spongepowered.api.world;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.CopyableBuilder;
+import org.spongepowered.api.util.temporal.Duration;
 import org.spongepowered.math.vector.Vector3d;
 
-import java.time.Duration;
 import java.time.temporal.TemporalUnit;
 
 /**

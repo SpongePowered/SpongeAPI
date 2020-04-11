@@ -30,10 +30,9 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.util.temporal.Duration;
 import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
 import org.spongepowered.math.vector.Vector3i;
-
-import java.time.Duration;
 
 public interface InteractableVolume extends ReadableBlockVolume {
 

@@ -27,8 +27,7 @@ package org.spongepowered.api.entity.vehicle.minecart;
 import org.spongepowered.api.block.entity.carrier.furnace.Furnace;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
-
-import java.time.Duration;
+import org.spongepowered.api.util.temporal.Duration;
 
 /**
  * Represents a {@link Minecart} with a {@link Furnace} inside it.

@@ -27,8 +27,7 @@ package org.spongepowered.api.entity.weather;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
-
-import java.time.Duration;
+import org.spongepowered.api.util.temporal.Duration;
 
 /**
  * Represents weather, such as {@link LightningBolt}.

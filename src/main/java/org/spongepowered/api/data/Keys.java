@@ -204,6 +204,7 @@ import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.RespawnLocation;
 import org.spongepowered.api.util.rotation.Rotation;
+import org.spongepowered.api.util.temporal.Duration;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
@@ -213,7 +214,6 @@ import org.spongepowered.math.vector.Vector2i;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
-import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
 import java.util.UUID;

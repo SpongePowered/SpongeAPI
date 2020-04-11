@@ -44,13 +44,13 @@ import org.spongepowered.api.fluid.FluidType;
 import org.spongepowered.api.scheduler.ScheduledUpdate;
 import org.spongepowered.api.scheduler.TaskPriority;
 import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.util.temporal.Duration;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.volume.entity.MutableEntityVolume;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
-import java.time.Duration;
 import java.time.temporal.TemporalUnit;
 import java.util.Collection;
 import java.util.Optional;

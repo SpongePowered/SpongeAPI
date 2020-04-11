@@ -30,6 +30,7 @@ import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.trader.WanderingTrader;
 import org.spongepowered.api.util.Identifiable;
+import org.spongepowered.api.util.temporal.Duration;
 import org.spongepowered.api.world.dimension.DimensionType;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.World;
@@ -41,7 +42,6 @@ import org.spongepowered.api.world.teleport.PortalAgentType;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 import org.spongepowered.math.vector.Vector3i;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -177,16 +177,24 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
     Duration getGameTime();
 
     /**
-     * Gets the time of day, in ticks. The amount of time that a minecraft day
-     * takes can be determined with the unit {@link TemporalUnits#MINECRAFT_DAYS}.
+     * Gets the duration of days in this world.
+     *
+     * <p>In vanilla, the length of a day is
+     * 24000 ticks, which is 20 minutes.</p>
+     *
+     * @return The day duration
+     */
+    Duration getDayDuration();
+
+    /**
+     * Gets the time of day, in ticks.
      *
      * @return The time of day
      */
     Duration getDayTime();
 
     /**
-     * Sets the time of day. The amount of time that a minecraft day
-     * takes can be determined with the unit {@link TemporalUnits#MINECRAFT_DAYS}.
+     * Sets the time of day.
      *
      * @param time The time of day
      */

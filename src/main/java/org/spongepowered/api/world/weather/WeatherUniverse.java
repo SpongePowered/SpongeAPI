@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.world.weather;
 
-import java.time.Duration;
+import org.spongepowered.api.util.temporal.Duration;
 
 /**
  * A universe affected by {@link Weather}.

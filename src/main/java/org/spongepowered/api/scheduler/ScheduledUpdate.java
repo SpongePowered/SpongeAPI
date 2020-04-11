@@ -24,9 +24,8 @@
  */
 package org.spongepowered.api.scheduler;
 
+import org.spongepowered.api.util.temporal.Duration;
 import org.spongepowered.api.world.Locatable;
-
-import java.time.Duration;
 
 /**
  * Represents a scheduled block update. SBUs with higher priorities are
