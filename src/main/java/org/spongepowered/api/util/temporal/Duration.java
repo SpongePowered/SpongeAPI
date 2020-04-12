@@ -152,9 +152,11 @@ public interface Duration {
      * <p>
      * Tick based examples:
      * <pre>
-     *    "100T"    -- parses as "100 ticks"
-     *    "+100T"   -- parses as "100 ticks"
-     *    "-100T"   -- parses as "-100 ticks"
+     *    "P100T"    -- parses as "100 ticks"
+     *    "P+100T"   -- parses as "100 ticks"
+     *    "P-100T"   -- parses as "-100 ticks"
+     *    "-P100T"   -- parses as "-100 ticks"
+     *    "-P-100T"  -- parses as "100 ticks"
      * </pre>
      * </p>
      *
