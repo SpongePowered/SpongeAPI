@@ -37,9 +37,11 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.AABB;
 import org.spongepowered.api.util.Identifiable;
+import org.spongepowered.api.util.PerformanceDependent;
 import org.spongepowered.api.util.RandomProvider;
 import org.spongepowered.api.util.RelativePositions;
 import org.spongepowered.api.util.Transform;
+import org.spongepowered.api.util.temporal.Duration;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.TeleportHelper;
@@ -440,10 +442,10 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
     }
 
     /**
-     * {@link Keys#FIRE_TICKS}
-     * @return The amount of time in ticks an Entity is will continue burn for.
+     * {@link Keys#REMAINING_TIME_ON_FIRE}
+     * @return The amount of time an Entity is will continue burn for.
      */
-    default Optional<Value.Mutable<Integer>> fireTicks() {
-        return this.getValue(Keys.FIRE_TICKS).map(Value::asMutable);
+    default Optional<Value.Mutable<@PerformanceDependent Duration>> remainingTimeOnFire() {
+        return this.getValue(Keys.REMAINING_TIME_ON_FIRE).map(Value::asMutable);
     }
 }

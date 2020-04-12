@@ -28,6 +28,8 @@ import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.PandaGene;
 import org.spongepowered.api.data.type.PandaGenes;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.util.PerformanceDependent;
+import org.spongepowered.api.util.temporal.Duration;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.weather.Weather;
 import org.spongepowered.api.world.weather.Weathers;
@@ -73,7 +75,7 @@ public interface Panda extends Animal, Sittable {
      * {@link Keys#UNHAPPY_TIME}
      * @return The time remaining to be unhappy
      */
-    default Value.Mutable<Integer> unhappyTime() {
+    default Value.Mutable<@PerformanceDependent Duration> unhappyTime() {
         return this.requireValue(Keys.UNHAPPY_TIME).asMutable();
     }
 
@@ -96,7 +98,7 @@ public interface Panda extends Animal, Sittable {
      * {@link Keys#EATING_TIME}
      * @return The eating time
      */
-    default Value.Mutable<Integer> eatingTime() {
+    default Value.Mutable<@PerformanceDependent Duration> eatingTime() {
         return this.requireValue(Keys.EATING_TIME).asMutable();
     }
 
@@ -121,7 +123,7 @@ public interface Panda extends Animal, Sittable {
      * {@link Keys#SNEEZING_TIME}
      * @return The sneezing time
      */
-    default Value.Mutable<Integer> sneezingTime() {
+    default Value.Mutable<@PerformanceDependent Duration> sneezingTime() {
         return this.requireValue(Keys.SNEEZING_TIME).asMutable();
     }
 

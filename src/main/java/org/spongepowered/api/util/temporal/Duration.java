@@ -332,6 +332,15 @@ public interface Duration {
          *
          * @return The milliseconds
          */
+        default int toIntMillis() {
+            return this.toInt(ChronoUnit.MILLIS);
+        }
+
+        /**
+         * Converts this duration to milliseconds.
+         *
+         * @return The milliseconds
+         */
         default long toLongMillis() {
             return this.toLong(ChronoUnit.MILLIS);
         }
@@ -343,6 +352,15 @@ public interface Duration {
          */
         default double toNanos() {
             return this.to(ChronoUnit.NANOS);
+        }
+
+        /**
+         * Converts this duration to nanoseconds.
+         *
+         * @return The nanoseconds
+         */
+        default int toIntNanos() {
+            return this.toInt(ChronoUnit.NANOS);
         }
 
         /**
@@ -367,6 +385,13 @@ public interface Duration {
          * @return The duration
          */
         long toLong(TemporalUnit unit);
+
+        /**
+         * Converts this duration to the given {@link TemporalUnit} as an int value.
+         *
+         * @return The duration
+         */
+        int toInt(TemporalUnit unit);
 
         /**
          * Adds the days and returns the new duration.
@@ -585,6 +610,14 @@ public interface Duration {
          * @return The ticks
          */
         long get();
+
+        /**
+         * Converts this duration to ticks.
+         *
+         * @return The ticks
+         * @see #get()
+         */
+        int getAsInt();
 
         /**
          * Adds the ticks and returns the new duration.

@@ -28,6 +28,8 @@ import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.SpellType;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.monster.raider.illager.Illager;
+import org.spongepowered.api.util.PerformanceDependent;
+import org.spongepowered.api.util.temporal.Duration;
 
 import java.util.Optional;
 
@@ -46,7 +48,7 @@ public interface Spellcaster extends Illager {
      * {@link Keys#CASTING_TIME}
      * @return The time to cast
      */
-    default Value.Mutable<Integer> castingTime() {
+    default Value.Mutable<@PerformanceDependent Duration> castingTime() {
         return this.requireValue(Keys.CASTING_TIME).asMutable();
     }
 

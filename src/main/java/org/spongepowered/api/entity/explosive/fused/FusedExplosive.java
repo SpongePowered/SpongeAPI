@@ -27,6 +27,8 @@ package org.spongepowered.api.entity.explosive.fused;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.explosive.Explosive;
+import org.spongepowered.api.util.PerformanceDependent;
+import org.spongepowered.api.util.temporal.Duration;
 
 /**
  * Represents an explosive that detonates after its fuse has expired.
@@ -43,10 +45,10 @@ public interface FusedExplosive extends Explosive {
     }
 
     /**
-     * {@link Keys#FUSE_DURATION}
+     * {@link Keys#REMAINING_FUSE_TIME}
      * @return The fuse duration, if this explosive is primed
      */
-    default Value.Mutable<Integer> fuseDuration() {
-        return this.requireValue(Keys.FUSE_DURATION).asMutable();
+    default Value.Mutable<@PerformanceDependent Duration> remainingFuseTime() {
+        return this.requireValue(Keys.REMAINING_FUSE_TIME).asMutable();
     }
 }

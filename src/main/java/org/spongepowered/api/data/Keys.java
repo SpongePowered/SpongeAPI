@@ -202,6 +202,7 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.util.PerformanceDependent;
 import org.spongepowered.api.util.RespawnLocation;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.util.temporal.Duration;
@@ -258,10 +259,9 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> AFFECTS_SPAWNING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AFFECTS_SPAWNING");
 
     /**
-     * Represents the {@link Key} for the age of any {@link Ageable entity}
-     * in ticks.
+     * Represents the {@link Key} for the age of any {@link Ageable entity}.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> AGEABLE_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AGE");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> AGEABLE_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AGEABLE_AGE");
 
     /**
      * Represents the {@link Key} for how angry a {@link ZombiePigman} is.
@@ -285,10 +285,10 @@ public final class Keys {
     public static final Supplier<Key<ListValue<Enchantment>>> APPLIED_ENCHANTMENTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ITEM_ENCHANTMENTS");
 
     /**
-     * Represents the {@link Key} for the age (in ticks) of an
+     * Represents the {@link Key} for the age of an
      * {@link AreaEffectCloud} created by a lingering potion.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> AREA_EFFECT_CLOUD_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_AGE");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> AREA_EFFECT_CLOUD_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_AGE");
 
     /**
      * Represents the {@link Key} for the color of an {@link AreaEffectCloud}
@@ -297,17 +297,18 @@ public final class Keys {
     public static final Supplier<Key<Value<Color>>> AREA_EFFECT_CLOUD_COLOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_COLOR");
 
     /**
-     * Represents the {@link Key} for the maximum age (in ticks) of an
+     * Represents the {@link Key} for the maximum age of an
      * {@link AreaEffectCloud} created by a lingering potion.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> AREA_EFFECT_CLOUD_DURATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_DURATION");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> AREA_EFFECT_CLOUD_MAX_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_MAX_AGE");
 
     /**
-     * Represents the {@link Key} for the amount of ticks the duration of an
+     * Represents the {@link Key} for the amount the duration of an
      * {@link AreaEffectCloud} is increased or reduced when it applies its
      * effect.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> AREA_EFFECT_CLOUD_DURATION_ON_USE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_DURATION_ON_USE");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>>
+            AREA_EFFECT_CLOUD_MAX_AGE_MODIFIER_ON_USE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_AGE_MODIFIER_ON_USE");
 
     /**
      * Represents the {@link Key} for the particle type of an
@@ -329,7 +330,7 @@ public final class Keys {
      * {@link AreaEffectCloud} grows or shrinks each time it applies its
      * effect.
      */
-    public static final Supplier<Key<BoundedValue<Double>>> AREA_EFFECT_CLOUD_RADIUS_ON_USE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_RADIUS_ON_USE");
+    public static final Supplier<Key<BoundedValue<Double>>> AREA_EFFECT_CLOUD_RADIUS_MODIFIER_ON_USE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_RADIUS_MODIFIER_ON_USE");
 
     /**
      * Represents the {@link Key} for the amount the radius of an
@@ -338,17 +339,17 @@ public final class Keys {
     public static final Supplier<Key<BoundedValue<Double>>> AREA_EFFECT_CLOUD_RADIUS_PER_TICK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_RADIUS_PER_TICK");
 
     /**
-     * Represents the {@link Key} for the delay (in ticks) after which an
+     * Represents the {@link Key} for the delay after which an
      * {@link AreaEffectCloud} will reapply its effect on a previously
      * affected {@link Entity}.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> AREA_EFFECT_CLOUD_REAPPLICATION_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_REAPPLICATION_DELAY");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> AREA_EFFECT_CLOUD_REAPPLY_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_REAPPLY_DELAY");
 
     /**
-     * Represents the {@link Key} for the duration in ticks after which an
+     * Represents the {@link Key} for the duration after which an
      * {@link AreaEffectCloud} will begin to apply its effect to entities.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> AREA_EFFECT_CLOUD_WAIT_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_WAIT_TIME");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> AREA_EFFECT_CLOUD_APPLY_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_APPLY_DELAY");
 
     /**
      * Represents the {@link Key} for whether an {@link ArmorStand}'s arms are
@@ -409,7 +410,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for the time of a {@link Ravager} is considered attacking.
      */
-    public static final Supplier<Key<Value<Integer>>> ATTACK_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ATTACK_TIME");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> ATTACK_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ATTACK_TIME");
 
     /**
      * Represents the {@link Key} for representing the {@link Axis} direction
@@ -601,7 +602,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for the breed time of an {@link Animal}.
      */
-    public static final Supplier<Key<Value<Integer>>> BREED_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BREED_TIME");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> BREED_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BREED_TIME");
 
     /**
      * Represents the {@link Key} for the amount of fuel left in a
@@ -662,7 +663,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for the current casting time of a {@link Spellcaster}.
      */
-    public static final Supplier<Key<Value<Integer>>> CASTING_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CASTING_TIME");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> CASTING_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CASTING_TIME");
 
     /**
      * Represents the {@link Key} for the type of a {@link Cat}.
@@ -741,10 +742,10 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> CONNECTED_WEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CONNECTED_WEST");
 
     /**
-     * Represents the {@link Key} for the amount of ticks a {@link Hopper} has
+     * Represents the {@link Key} for the amount of time a {@link Hopper} has
      * to cool down before transferring the next item.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> COOLDOWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "COOLDOWN");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> COOLDOWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "COOLDOWN");
 
     /**
      * Represents the {@link Key} for the creator, usually of an {@link Entity}. It is up to the implementation to define.
@@ -786,12 +787,13 @@ public final class Keys {
     /**
      * Represents the {@link Key} for the delay on a redstone repeater.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DELAY");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DELAY");
 
     /**
-     * Represents the {@link Key} for representing the despawn delay of a {@link Item} or {@link TraderLlama}.
+     * Represents the {@link Key} for representing the despawn delay of a {@link Item} or {@link TraderLlama}. For
+     * items it's also supported to have infinite durations, in case that the item will never despawn.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> DESPAWN_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DESPAWN_DELAY");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> DESPAWN_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DESPAWN_DELAY");
 
     /**
      * Represents the {@link Key} for the detonator of a {@link PrimedTNT}.
@@ -863,9 +865,9 @@ public final class Keys {
     public static final Supplier<Key<Value<DyeColor>>> DYE_COLOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DYE_COLOR");
 
     /**
-     * Represents the {@link Key} for the time a {@link Panda} has been eating (in ticks)
+     * Represents the {@link Key} for the time a {@link Panda} has been eating.
      */
-    public static final Supplier<Key<Value<Integer>>> EATING_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EATING_TIME");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> EATING_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EATING_TIME");
 
     /**
      * Represents the {@link Key} for the time until a {@link Chicken} lays an {@link ItemTypes#EGG}.
@@ -877,19 +879,19 @@ public final class Keys {
      *     calculation is ran again.
      * </p>
      */
-    public static final Supplier<Key<Value<Integer>>> EGG_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EGG_TIME");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> EGG_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EGG_TIME");
 
     /**
      * Represents the {@link Key} for representing the age of
      * an {@link EndGateway}.
      */
-    public static final Supplier<Key<Value<Long>>> END_GATEWAY_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "END_GATEWAY_AGE");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> END_GATEWAY_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "END_GATEWAY_AGE");
 
     /**
      * Represents the {@link Key} for representing the teleport cooldown of
      * an {@link EndGateway}.
      */
-    public static final Supplier<Key<Value<Integer>>> END_GATEWAY_TELEPORT_COOLDOWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "END_GATEWAY_TELEPORT_COOLDOWN");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> END_GATEWAY_TELEPORT_COOLDOWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "END_GATEWAY_TELEPORT_COOLDOWN");
 
     /**
      * Represents the {@link EquipmentType} that the target inventory supports.
@@ -938,7 +940,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for how long an {@link Endermite}, {@link Item}, or {@link Weather} will last before expiring.
      */
-    public static final Supplier<Key<Value<Duration>>> EXPIRATION_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXPIRATION_DELAY");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> EXPIRATION_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXPIRATION_DELAY");
 
     /**
      * Represents the {@link Key} for the radius of the {@link Explosion} to
@@ -967,9 +969,9 @@ public final class Keys {
     public static final Supplier<Key<BoundedValue<Double>>> FALL_DISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FALL_DISTANCE");
 
     /**
-     * Represents the {@link Key} for the amount of ticks a {@link FallingBlock} has been falling for.
+     * Represents the {@link Key} for the amount of time a {@link FallingBlock} has been falling for.
      */
-    public static final Supplier<Key<Value<Integer>>> FALL_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FALL_TIME");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> FALL_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FALL_TIME");
 
     /**
      * Represents the {@link Key} for the {@link FireworkEffect}s of a
@@ -988,16 +990,16 @@ public final class Keys {
     public static final Supplier<Key<BoundedValue<Integer>>> FIREWORK_FLIGHT_MODIFIER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FIREWORK_FLIGHT_MODIFIER");
 
     /**
-     * Represents the {@link Key} for the delay in ticks until the
+     * Represents the {@link Key} for the delay until the
      * {@link Entity} will be damaged by the fire.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> FIRE_DAMAGE_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FIRE_DAMAGE_DELAY");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> FIRE_DAMAGE_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BURN_DAMAGE_DELAY");
 
     /**
-     * Represents the {@link Key} for the amount of ticks an
+     * Represents the {@link Key} for the amount of time an
      * {@link Entity} is still burning.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> FIRE_TICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FIRE_TICKS");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> REMAINING_TIME_ON_FIRE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REMAINING_BURN_TIME");
 
     /**
      * Represents the {@link Key} for the time a {@link Player} first played
@@ -1049,15 +1051,9 @@ public final class Keys {
     public static final Supplier<Key<Value<FoxType>>> FOX_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FOX_TYPE");
 
     /**
-     * Represents the {@link Key} for the modifier to {@link Keys#VELOCITY} of a {@link Minecart} while airborne.
+     * Represents the {@link Key} for the time a {@link FusedExplosive}'s fuse will burn before the explosion.
      */
-    public static final Supplier<Key<Value<Duration>>> FURNACE_MINECART_FUEL_DURATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MINECART_FUEL_DURATION");
-
-    /**
-     * Represents the {@link Key} for the time a {@link FusedExplosive}'s fuse
-     * will burn before the explosion.
-     */
-    public static final Supplier<Key<Value<Integer>>> FUSE_DURATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FUSE_DURATION");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> REMAINING_FUSE_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REMAINING_FUSE_TIME");
 
     /**
      * Represents the {@link Key} for the {@link GameMode} a {@link Humanoid}
@@ -1194,18 +1190,6 @@ public final class Keys {
     public static final Supplier<Key<Value<HorseStyle>>> HORSE_STYLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HORSE_STYLE");
 
     /**
-     * Represents the {@link Key} for whether an {@link Item} will not despawn
-     * for an infinite time.
-     */
-    public static final Supplier<Key<Value<Boolean>>> INFINITE_DESPAWN_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "INFINITE_DESPAWN_DELAY");
-
-    /**
-     * Represents the {@link Key} for representing the "is infinite" state
-     * of the pickup delay of an {@link Item}.
-     */
-    public static final Supplier<Key<Value<Boolean>>> INFINITE_PICKUP_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "INFINITE_PICKUP_DELAY");
-
-    /**
      * Represents the {@link Key} for the {@link InstrumentType}
      * of a {@link BlockTypes#NOTE_BLOCK}.
      */
@@ -1215,13 +1199,12 @@ public final class Keys {
      * Represents the {@link Key} for the "inverted" state of
      * an {@link BlockTypes#DAYLIGHT_DETECTOR}.
      */
-    public static final Supplier<Key<Value<Boolean>>> INVERTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "INVERTED");
+    public static final Supplier<Key<Value<Boolean>>> IS_INVERTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_INVERTED");
 
     /**
-     * Represents the {@link Key} for the amount of ticks an {@link Entity}
-     * will remain invulnerable for.
+     * Represents the {@link Key} for the duration an {@link Entity} will remain invulnerable for.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> INVULNERABILITY_TICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "INVULNERABILITY_TICKS");
+    public static final Supplier<Key<BoundedValue<@PerformanceDependent Duration>>> INVULNERABILITY_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "INVULNERABILITY_TIME");
 
     /**
      * Represents the {@link Key} for representing if an {@link Entity}
@@ -1230,7 +1213,7 @@ public final class Keys {
      * <p>This does not protect from the void, players in creative mode,
      * and manual killing like the /kill command.</p>
      */
-    public static final Supplier<Key<Value<Boolean>>> INVULNERABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "INVULNERABLE");
+    public static final Supplier<Key<Value<Boolean>>> IS_INVULNERABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_INVULNERABLE");
 
     /**
      * Represents the {@link Key} for representing the "in-wall" state of
@@ -1248,7 +1231,7 @@ public final class Keys {
      * Represents the {@link Key} for whether a {@link Blaze} is currently
      * burning.
      *
-     * <p>Unlike {@link Keys#MAX_BURN_TIME}, the burning effect will not damage
+     * <p>Unlike {@link Keys#MAX_FUEL_TIME}, the burning effect will not damage
      * the burning entity.</p>
      */
     public static final Supplier<Key<Value<Boolean>>> IS_AFLAME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_AFLAME");
@@ -1770,13 +1753,13 @@ public final class Keys {
      * Represents the {@link Key} for the maximum amount of ticks a
      * {@link FurnaceBlockEntity} can burn with the currently used fuel item.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> MAX_BURN_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_BURN_TIME");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> MAX_FUEL_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_FUEL_TIME");
 
     /**
      * Represents the {@link Key} for the total time the current
      * {@link ItemStack} in a {@link FurnaceBlockEntity} has to be cooked.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> MAX_COOK_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_COOK_TIME");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> MAX_COOK_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_COOK_TIME");
 
     /**
      * Represents the {@link Key} for the maximum damage a {@link FallingBlock}
@@ -1865,22 +1848,27 @@ public final class Keys {
     public static final Supplier<Key<Value<ParrotType>>> PARROT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PARROT_TYPE");
 
     /**
-     * Represents the {@link Key} for the amount of ticks a {@link FurnaceBlockEntity} has
+     * Represents the {@link Key} for the amount of time a {@link FurnaceBlockEntity} has
      * already been burning with the current fuel item.
      *
-     * <p>Once this value reaches the one of {@link #MAX_BURN_TIME}, the
+     * <p>Once this value reaches the one of {@link #MAX_FUEL_TIME}, the
      * furnace will require more fuel in order to keep burning.</p>
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> PASSED_BURN_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PASSED_BURN_TIME");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> PASSED_FUEL_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PASSED_BURN_TIME");
 
     /**
-     * Represents the {@link Key} for the amount of ticks a {@link FurnaceBlockEntity} has
+     * Represents the {@link Key} for the remaining amount of time a furnace will keep on burning for.
+     */
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> REMAINING_FUEL_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REMAINING_FUEL_TIME");
+
+    /**
+     * Represents the {@link Key} for the amount of time a {@link FurnaceBlockEntity} has
      * been cooking the current item for.
      *
      * <p>Once this value reaches the one of {@link #MAX_COOK_TIME}, the
      * item will be finished cooking.</p>
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> PASSED_COOK_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PASSED_COOK_TIME");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> PASSED_COOK_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PASSED_COOK_TIME");
 
     /**
      * Represents the {@link Key} for the entities that act as passengers for
@@ -1902,10 +1890,10 @@ public final class Keys {
     public static final Supplier<Key<BoundedValue<Integer>>> PHANTOM_SIZE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class,"PHANTOM_SIZE");
 
     /**
-     * Represents the {@link Key} for representing the pickup delay
-     * of an {@link Item}.
+     * Represents the {@link Key} for representing the pickup delay of an {@link Item}. It's also supported
+     * to have infinite durations, in case that the item will never despawn.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> PICKUP_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PICKUP_DELAY");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> PICKUP_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PICKUP_DELAY");
 
     /**
      * Represents the {@link Key} for the "pickup rule" of an {@link ArrowEntity}.
@@ -1997,12 +1985,12 @@ public final class Keys {
     public static final Supplier<Key<BoundedValue<Integer>>> REMAINING_AIR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REMAINING_AIR");
 
     /**
-     * Represents the {@link Key} for how many more ticks the current brewing
+     * Represents the {@link Key} for how long the current brewing
      * process of a {@link BrewingStand} will take.
      *
      * <p>If nothing is being brewed, the remaining brew time will be 0.</p>
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> REMAINING_BREW_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REMAINING_BREW_TIME");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> REMAINING_BREW_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REMAINING_BREW_TIME");
 
     /**
      * Represents the {@link Key} for the {@link InstrumentType}
@@ -2032,7 +2020,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for the time a {@link Ravager} is roaring.
      */
-    public static final Supplier<Key<Value<Integer>>> ROARING_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ATTACK_TIME");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> ROARING_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ATTACK_TIME");
 
     /**
      * Represents the {@link Key} for the {@link Rotation} of a block or an
@@ -2121,9 +2109,9 @@ public final class Keys {
     public static final Supplier<Key<Value<Direction>>> SLOT_SIDE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SLOT_SIDE");
 
     /**
-     * Represents the {@link Key} for the time a {@link Panda} has been sneezing (in ticks)
+     * Represents the {@link Key} for the time a {@link Panda} has been sneezing.
      */
-    public static final Supplier<Key<Value<Integer>>> SNEEZING_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SNEEZING_TIME");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> SNEEZING_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SNEEZING_TIME");
 
     /**
      * Represents the {@link Key} for representing the "snowed" state
@@ -2138,10 +2126,10 @@ public final class Keys {
     public static final Supplier<Key<WeightedCollectionValue<EntityArchetype>>> SPAWNER_ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWNER_ENTITIES");
 
     /**
-     * Represents the {@link Key} for the maximum amount of ticks between two
+     * Represents the {@link Key} for the maximum amount of time between two
      * batches of entities spawned by a {@link MobSpawner}.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> SPAWNER_MAXIMUM_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWNER_MAXIMUM_DELAY");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> SPAWNER_MAXIMUM_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWNER_MAXIMUM_DELAY");
 
     /**
      * Represents the {@link Key} for the maximum number of entities around a
@@ -2151,10 +2139,10 @@ public final class Keys {
     public static final Supplier<Key<BoundedValue<Integer>>> SPAWNER_MAXIMUM_NEARBY_ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWNER_MAXIMUM_NEARBY_ENTITIES");
 
     /**
-     * Represents the {@link Key} for the minimum amount of ticks between two
+     * Represents the {@link Key} for the minimum amount of time between two
      * batches of entities spawned by a {@link MobSpawner}.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> SPAWNER_MINIMUM_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWNER_MINIMUM_DELAY");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> SPAWNER_MINIMUM_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWNER_MINIMUM_DELAY");
 
     /**
      * Represents the {@link Key} for the next entity that will be spawned
@@ -2167,10 +2155,10 @@ public final class Keys {
     public static final Supplier<Key<Value<WeightedSerializableObject<EntityArchetype>>>> SPAWNER_NEXT_ENTITY_TO_SPAWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWNER_NEXT_ENTITY_TO_SPAWN");
 
     /**
-     * Represents the {@link Key} for the remaining number of ticks to pass
+     * Represents the {@link Key} for the remaining time to pass
      * before another attempt to spawn entities is made by a {@link MobSpawner}.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> SPAWNER_REMAINING_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWNER_REMAINING_DELAY");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> SPAWNER_REMAINING_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWNER_REMAINING_DELAY");
 
     /**
      * Represents the {@link Key} for how close a {@link Player} has to be
@@ -2282,7 +2270,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for the time a {@link Ravager} is stunned.
      */
-    public static final Supplier<Key<Value<Integer>>> STUNNED_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STUNNED_TIME");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> STUNNED_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STUNNED_TIME");
 
     /**
      * Represents a key for the amount of successful executions of a command
@@ -2331,13 +2319,6 @@ public final class Keys {
      * Represents the {@link Key} for a {@link Vector3i} that is currently a target. Example usage is a {@link Patroller}'s patrol target.
      */
     public static final Supplier<Key<Value<Vector3i>>> TARGET_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TARGET_POSITION");
-
-    /**
-     * Represents the {@link Key} for the remaining fuse time in ticks of a
-     * {@link FusedExplosive}. This value may be set to an arbitrary value
-     * if the explosive is not primed.
-     */
-    public static final Supplier<Key<Value<Integer>>> TICKS_REMAINING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TICKS_REMAINING");
 
     /**
      * Represents the {@link Key} for whether a {@link CommandBlock} does track
@@ -2400,9 +2381,9 @@ public final class Keys {
     public static final Supplier<Key<Value<Vector3i>>> TURTLE_TRAVELING_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TURTLE_TRAVELING_POSITION");
 
     /**
-     * Represents the {@link Key} for the time a {@link Panda} has been unhappy (in ticks)
+     * Represents the {@link Key} for the time a {@link Panda} has been unhappy.
      */
-    public static final Supplier<Key<Value<Integer>>> UNHAPPY_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "UNHAPPY_TIME");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> UNHAPPY_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "UNHAPPY_TIME");
 
     /**
      * Represents the {@link UUID} of a custom inventory.
@@ -2470,7 +2451,7 @@ public final class Keys {
     public static final Supplier<Key<Value<Vector3d>>> VELOCITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "VELOCITY");
 
     /**
-     * Represents the {@link Key} for amount of ticks till a {@link Vex} starts
+     * Represents the {@link Key} for amount of time till a {@link Vex} starts
      * taking damage due to living too long.
      *
      * <p>When this value hits 0 or lower, the Vex will receive damage and
@@ -2479,7 +2460,7 @@ public final class Keys {
      * <p>If the Vex was summoned by a player, this value will be pegged at 0
      * and the Vex will not take any damage.</p>
      */
-    public static final Supplier<Key<Value<Integer>>> VEX_LIFE_TICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "VEX_LIFE_TICKS");
+    public static final Supplier<Key<Value<@PerformanceDependent Duration>>> VEX_LIFE_DAMAGE_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "VEX_LIFE_DAMAGE_DELAY");
 
     /**
      * Represents the {@link Key} for the type of a {@link Villager} or {@link ZombieVillager}.

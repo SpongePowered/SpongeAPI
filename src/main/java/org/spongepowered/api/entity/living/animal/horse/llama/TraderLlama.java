@@ -26,6 +26,8 @@ package org.spongepowered.api.entity.living.animal.horse.llama;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.util.PerformanceDependent;
+import org.spongepowered.api.util.temporal.Duration;
 
 public interface TraderLlama extends LlamaEntity {
 
@@ -33,7 +35,7 @@ public interface TraderLlama extends LlamaEntity {
      * {@link Keys#DESPAWN_DELAY}
      * @return The delay before this llama will despawn
      */
-    default Value.Mutable<Integer> despawnDelay() {
+    default Value.Mutable<@PerformanceDependent Duration> despawnDelay() {
         return this.requireValue(Keys.DESPAWN_DELAY).asMutable();
     }
 }

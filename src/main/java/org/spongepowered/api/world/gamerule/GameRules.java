@@ -27,7 +27,6 @@ package org.spongepowered.api.world.gamerule;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.block.entity.CommandBlock;
-import org.spongepowered.api.effect.potion.PotionEffectTypes;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Bat;
 import org.spongepowered.api.entity.living.animal.Rabbit;
@@ -39,7 +38,6 @@ import org.spongepowered.api.entity.living.monster.Ghast;
 import org.spongepowered.api.entity.living.monster.Silverfish;
 import org.spongepowered.api.entity.living.monster.boss.Wither;
 import org.spongepowered.api.entity.living.monster.boss.dragon.EnderDragon;
-import org.spongepowered.api.entity.living.monster.raider.Raider;
 import org.spongepowered.api.entity.living.monster.skeleton.Skeleton;
 import org.spongepowered.api.entity.living.monster.zombie.Zombie;
 import org.spongepowered.api.entity.living.monster.zombie.ZombiePigman;
@@ -55,7 +53,6 @@ import java.util.function.Supplier;
 /**
  * An enumeration of all the possible game rules in vanilla minecraft.
  */
-@SuppressWarnings("unchecked")
 public final class GameRules {
 
     // SORTFIELDS:ON
@@ -116,7 +113,7 @@ public final class GameRules {
      * <p>This is a boolean game rule, with a default value of
      * {@code true}.</p>
      */
-    public static final Supplier<GameRule<Boolean>> DO_FIRE_TICK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "DO_FIRE_TICK");
+    public static final Supplier<GameRule<Boolean>> DO_FIRE_UPDATES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "DO_FIRE_UPDATES");
 
     /**
      * Whether {@link Player}s can only craft recipes they have unlocked.

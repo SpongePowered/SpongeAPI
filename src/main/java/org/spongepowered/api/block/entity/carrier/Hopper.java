@@ -26,6 +26,9 @@ package org.spongepowered.api.block.entity.carrier;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.util.PerformanceDependent;
+import org.spongepowered.api.util.temporal.Duration;
 
 /**
  * Represents a Hopper.
@@ -37,7 +40,7 @@ public interface Hopper extends NameableCarrierBlockEntity {
      * @return The amount of time in ticks till the hopper can transfer another
      * item.
      */
-    default BoundedValue.Mutable<Integer> cooldown() {
+    default Value.Mutable<@PerformanceDependent Duration> cooldown() {
         return this.requireValue(Keys.COOLDOWN).asMutable();
     }
 

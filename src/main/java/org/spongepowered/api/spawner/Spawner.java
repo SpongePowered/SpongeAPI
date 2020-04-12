@@ -34,6 +34,8 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.vehicle.minecart.SpawnerMinecart;
+import org.spongepowered.api.util.PerformanceDependent;
+import org.spongepowered.api.util.temporal.Duration;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 
 import java.util.Random;
@@ -51,7 +53,7 @@ public interface Spawner extends SerializableDataHolder.Mutable {
      *
      * @return The immutable bounded value for the remaining delay
      */
-    default BoundedValue.Mutable<Integer> remainingDelay() {
+    default Value.Mutable<@PerformanceDependent Duration> remainingDelay() {
         return this.requireValue(Keys.SPAWNER_REMAINING_DELAY).asMutable();
     }
 
@@ -61,7 +63,7 @@ public interface Spawner extends SerializableDataHolder.Mutable {
      *
      * @return The bounded value of the minimum spawn delay
      */
-    default BoundedValue.Mutable<Integer> minimumSpawnDelay() {
+    default Value.Mutable<@PerformanceDependent Duration> minimumSpawnDelay() {
         return this.requireValue(Keys.SPAWNER_MINIMUM_DELAY).asMutable();
     }
 
@@ -71,7 +73,7 @@ public interface Spawner extends SerializableDataHolder.Mutable {
      *
      * @return The bounded value of the maximum spawn delay
      */
-    default BoundedValue.Mutable<Integer> maximumSpawnDelay() {
+    default Value.Mutable<@PerformanceDependent Duration> maximumSpawnDelay() {
         return this.requireValue(Keys.SPAWNER_MAXIMUM_DELAY).asMutable();
     }
 

@@ -27,14 +27,16 @@ package org.spongepowered.api.entity.living.monster;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Monster;
+import org.spongepowered.api.util.PerformanceDependent;
+import org.spongepowered.api.util.temporal.Duration;
 
 public interface Vex extends Monster {
 
     /**
-     * {@link Keys#VEX_LIFE_TICKS}
-     * @return The amount of ticks till this Vex starts dying.
+     * {@link Keys#VEX_LIFE_DAMAGE_DELAY}
+     * @return The amount of time till this Vex receives damage from living too long
      */
-    default Value.Mutable<Integer> lifeTicks() {
-        return this.requireValue(Keys.VEX_LIFE_TICKS).asMutable();
+    default Value.Mutable<@PerformanceDependent Duration> lifeDamageDelay() {
+        return this.requireValue(Keys.VEX_LIFE_DAMAGE_DELAY).asMutable();
     }
 }

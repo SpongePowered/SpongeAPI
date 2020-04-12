@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.scheduler;
 
+import org.spongepowered.api.util.PerformanceDependent;
 import org.spongepowered.api.util.temporal.Duration;
 import org.spongepowered.api.world.Locatable;
 
@@ -46,7 +47,7 @@ public interface ScheduledUpdate<T> extends Locatable {
      *
      * @return The delay until this SBU should cause the block to update
      */
-    Duration getDelay();
+    @PerformanceDependent Duration getDelay();
 
     /**
      * Gets the priority of this scheduled block update.

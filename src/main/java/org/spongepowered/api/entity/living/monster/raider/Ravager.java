@@ -26,6 +26,8 @@ package org.spongepowered.api.entity.living.monster.raider;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.util.PerformanceDependent;
+import org.spongepowered.api.util.temporal.Duration;
 
 /**
  * Represents a Ravager.
@@ -36,7 +38,7 @@ public interface Ravager extends Raider {
      * {@link Keys#ATTACK_TIME}
      * @return The time this ravager is attacking
      */
-    default Value.Mutable<Integer> attackTime() {
+    default Value.Mutable<@PerformanceDependent Duration> attackTime() {
         return this.requireValue(Keys.ATTACK_TIME).asMutable();
     }
 
@@ -44,7 +46,7 @@ public interface Ravager extends Raider {
      * {@link Keys#ROARING_TIME}
      * @return The time this ravager is roaring
      */
-    default Value.Mutable<Integer> roaringTime() {
+    default Value.Mutable<@PerformanceDependent Duration> roaringTime() {
         return this.requireValue(Keys.ROARING_TIME).asMutable();
     }
 
@@ -52,7 +54,7 @@ public interface Ravager extends Raider {
      * {@link Keys#STUNNED_TIME}
      * @return The time this ravager is being stunned for
      */
-    default Value.Mutable<Integer> stunnedTime() {
+    default Value.Mutable<@PerformanceDependent Duration> stunnedTime() {
         return this.requireValue(Keys.STUNNED_TIME).asMutable();
     }
 

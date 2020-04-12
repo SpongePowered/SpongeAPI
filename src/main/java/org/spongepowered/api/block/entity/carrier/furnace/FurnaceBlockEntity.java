@@ -26,8 +26,10 @@ package org.spongepowered.api.block.entity.carrier.furnace;
 
 import org.spongepowered.api.block.entity.carrier.NameableCarrierBlockEntity;
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.recipe.Recipe;
+import org.spongepowered.api.util.PerformanceDependent;
+import org.spongepowered.api.util.temporal.Duration;
 
 /**
  * Represents the types of furnaces in Vanilla minecraft.
@@ -42,12 +44,21 @@ public interface FurnaceBlockEntity extends NameableCarrierBlockEntity {
     boolean process();
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.BoundedValue.Mutable} for the already passed burn time.
+     * Gets the {@link org.spongepowered.api.data.value.BoundedValue.Mutable} for the already passed fuel time.
      *
-     * @return The value for the already passed burn time
+     * @return The value for the already passed fuel time
      */
-    default BoundedValue.Mutable<Integer> passedBurnTime() {
-        return this.requireValue(Keys.PASSED_BURN_TIME).asMutable();
+    default Value.Mutable<@PerformanceDependent Duration> passedFuelTime() {
+        return this.requireValue(Keys.PASSED_FUEL_TIME).asMutable();
+    }
+
+    /**
+     * Gets the {@link org.spongepowered.api.data.value.BoundedValue.Mutable} for the remaining fuel time.
+     *
+     * @return The value for the remaining fuel time
+     */
+    default Value.Mutable<@PerformanceDependent Duration> remainingFuelTime() {
+        return this.requireValue(Keys.REMAINING_FUEL_TIME).asMutable();
     }
 
     /**
@@ -57,8 +68,8 @@ public interface FurnaceBlockEntity extends NameableCarrierBlockEntity {
      * @return The value for the maximum amount of fuel that can be supplied
      *         with the used fuel item
      */
-    default BoundedValue.Mutable<Integer> maxBurnTime() {
-        return this.requireValue(Keys.MAX_BURN_TIME).asMutable();
+    default Value.Mutable<@PerformanceDependent Duration> maxFuelTime() {
+        return this.requireValue(Keys.MAX_FUEL_TIME).asMutable();
     }
 
     /**
@@ -67,7 +78,7 @@ public interface FurnaceBlockEntity extends NameableCarrierBlockEntity {
      *
      * @return The value for the already passed cook time
      */
-    default BoundedValue.Mutable<Integer> passedCookTime() {
+    default Value.Mutable<@PerformanceDependent Duration> passedCookTime() {
         return this.requireValue(Keys.PASSED_COOK_TIME).asMutable();
     }
 
@@ -77,8 +88,7 @@ public interface FurnaceBlockEntity extends NameableCarrierBlockEntity {
      *
      * @return The value for the time the item has to cook
      */
-    default BoundedValue.Mutable<Integer> maxCookTime() {
+    default Value.Mutable<@PerformanceDependent Duration> maxCookTime() {
         return this.requireValue(Keys.MAX_COOK_TIME).asMutable();
     }
-
 }

@@ -30,6 +30,8 @@ import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.Ageable;
 import org.spongepowered.api.entity.living.animal.cow.Cow;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.util.PerformanceDependent;
+import org.spongepowered.api.util.temporal.Duration;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -51,7 +53,7 @@ public interface Animal extends Ageable {
      * {@link Keys#BREED_TIME}
      * @return The current breeding time
      */
-    default Value.Mutable<Integer> breedTime() {
+    default Value.Mutable<@PerformanceDependent Duration> breedTime() {
         return this.requireValue(Keys.BREED_TIME).asMutable();
     }
 

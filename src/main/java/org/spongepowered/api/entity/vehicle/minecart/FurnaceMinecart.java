@@ -27,6 +27,7 @@ package org.spongepowered.api.entity.vehicle.minecart;
 import org.spongepowered.api.block.entity.carrier.furnace.Furnace;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.util.PerformanceDependent;
 import org.spongepowered.api.util.temporal.Duration;
 
 /**
@@ -35,10 +36,10 @@ import org.spongepowered.api.util.temporal.Duration;
 public interface FurnaceMinecart extends BlockOccupiedMinecart {
 
     /**
-     * {@link Keys#FURNACE_MINECART_FUEL_DURATION}
+     * {@link Keys#REMAINING_MINECART_FURNACE_BURN_TIME}
      * @return The duration of fuel remaining
      */
-    default Value.Mutable<Duration> fuelDuration() {
-        return this.requireValue(Keys.FURNACE_MINECART_FUEL_DURATION).asMutable();
+    default Value.Mutable<@PerformanceDependent Duration> remainingFuelTime() {
+        return this.requireValue(Keys.REMAINING_FUEL_TIME).asMutable();
     }
 }

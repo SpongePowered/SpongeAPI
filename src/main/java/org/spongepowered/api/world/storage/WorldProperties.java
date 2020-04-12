@@ -30,6 +30,7 @@ import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.trader.WanderingTrader;
 import org.spongepowered.api.util.Identifiable;
+import org.spongepowered.api.util.PerformanceDependent;
 import org.spongepowered.api.util.temporal.Duration;
 import org.spongepowered.api.world.dimension.DimensionType;
 import org.spongepowered.api.world.SerializationBehavior;
@@ -174,7 +175,7 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
      *
      * @return The total time
      */
-    Duration getGameTime();
+    @PerformanceDependent Duration getGameTime();
 
     /**
      * Gets the duration of days in this world.
@@ -191,14 +192,14 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
      *
      * @return The time of day
      */
-    Duration getDayTime();
+    @PerformanceDependent Duration getDayTime();
 
     /**
      * Sets the time of day.
      *
      * @param time The time of day
      */
-    void setDayTime(Duration time);
+    void setDayTime(@PerformanceDependent Duration time);
 
     /**
      * Gets the {@link DimensionType}.

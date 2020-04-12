@@ -26,6 +26,8 @@ package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.util.PerformanceDependent;
+import org.spongepowered.api.util.temporal.Duration;
 
 /**
  * Represents a Chicken.
@@ -36,7 +38,7 @@ public interface Chicken extends Animal {
      * {@link Keys#EGG_TIME}
      * @return The time remaining for the next egg drop
      */
-    default Value.Mutable<Integer> eggTime() {
+    default Value.Mutable<@PerformanceDependent Duration> eggTime() {
         return this.requireValue(Keys.EGG_TIME).asMutable();
     }
 }

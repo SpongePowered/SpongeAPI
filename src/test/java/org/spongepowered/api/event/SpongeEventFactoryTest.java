@@ -55,6 +55,7 @@ import org.spongepowered.api.util.PEBKACException;
 import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3d;
 
 import java.lang.reflect.Array;
@@ -251,7 +252,7 @@ public class SpongeEventFactoryTest {
         } else if (Enum.class.isAssignableFrom(paramType)) {
             return paramType.getEnumConstants()[0];
         } else if (Location.class.isAssignableFrom(paramType)) {
-            World world = (World) mockParam(World.class);
+            ServerWorld world = (ServerWorld) mockParam(ServerWorld.class);
             // Make sure we keep a reference to the World,
             // as Location stores a weak reference
             worlds.add(world);

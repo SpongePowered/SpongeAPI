@@ -25,8 +25,9 @@
 package org.spongepowered.api.entity.living;
 
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.util.PerformanceDependent;
+import org.spongepowered.api.util.temporal.Duration;
 
 /**
  * Represents an {@link Agent} that produces offspring and grows into an adult
@@ -37,7 +38,7 @@ public interface Ageable extends Agent {
      * {@link Keys#AGEABLE_AGE}
      * @return The age
      */
-    default BoundedValue.Mutable<Integer> age() {
+    default Value.Mutable<@PerformanceDependent Duration> age() {
         return this.requireValue(Keys.AGEABLE_AGE).asMutable();
     }
 

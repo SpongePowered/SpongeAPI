@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world.weather;
 
+import org.spongepowered.api.util.PerformanceDependent;
 import org.spongepowered.api.util.temporal.Duration;
 
 /**
@@ -44,7 +45,7 @@ public interface WeatherUniverse {
      *
      * @return The remaining weather duration
      */
-    Duration getRemainingWeatherDuration();
+    @PerformanceDependent Duration getRemainingWeatherDuration();
 
     /**
      * Gets the {@link Duration} the current {@link Weather}
@@ -52,7 +53,7 @@ public interface WeatherUniverse {
      *
      * @return The running weather duration
      */
-    Duration getRunningWeatherDuration();
+    @PerformanceDependent Duration getRunningWeatherDuration();
 
     /**
      * Sets the {@link Weather} of the volume with a random duration.
@@ -67,5 +68,5 @@ public interface WeatherUniverse {
      * @param weather The weather that should be switched to
      * @param duration The specified duration
      */
-    void setWeather(Weather weather, Duration duration);
+    void setWeather(Weather weather, @PerformanceDependent Duration duration);
 }

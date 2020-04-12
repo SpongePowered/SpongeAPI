@@ -28,6 +28,8 @@ import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.ItemTypes;
+import org.spongepowered.api.util.PerformanceDependent;
+import org.spongepowered.api.util.temporal.Duration;
 
 /**
  * Represents a Brewing Stand.
@@ -47,9 +49,9 @@ public interface BrewingStand extends NameableCarrierBlockEntity {
 
     /**
      * {@link Keys#REMAINING_BREW_TIME}
-     * @return The remaining brewing time in ticks.
+     * @return The remaining brewing time
      */
-    default BoundedValue.Mutable<Integer> remainingBrewTime() {
+    default Value.Mutable<@PerformanceDependent Duration> remainingBrewTime() {
         return this.requireValue(Keys.REMAINING_BREW_TIME).asMutable();
     }
 

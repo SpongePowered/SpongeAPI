@@ -27,6 +27,8 @@ package org.spongepowered.api.entity;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.util.PerformanceDependent;
+import org.spongepowered.api.util.temporal.Duration;
 
 /**
  * Represents a falling block. A falling block may harm entities where it lands,
@@ -78,7 +80,7 @@ public interface FallingBlock extends Entity {
      * {@link Keys#FALL_TIME}
      * @return The fall time
      */
-    default Value.Mutable<Integer> fallTime() {
+    default Value.Mutable<@PerformanceDependent Duration> fallTime() {
         return this.requireValue(Keys.FALL_TIME).asMutable();
     }
 
