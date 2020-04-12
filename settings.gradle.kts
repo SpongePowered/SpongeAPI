@@ -1,4 +1,5 @@
 rootProject.name = "SpongeAPI"
+
 pluginManagement {
     repositories {
         mavenLocal()
@@ -14,3 +15,4 @@ pluginManagement {
             }
         }
     }
+}
