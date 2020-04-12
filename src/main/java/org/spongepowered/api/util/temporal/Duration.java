@@ -39,6 +39,24 @@ import java.time.temporal.TemporalUnit;
 public interface Duration {
 
     /**
+     * Gets a duration that's zero.
+     *
+     * @return The zero duration
+     */
+    static Duration zero() {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).zero();
+    }
+
+    /**
+     * Gets a duration that's infinite.
+     *
+     * @return The infinite duration
+     */
+    static Duration infinite() {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).infinite();
+    }
+
+    /**
      * Creates a tick based duration based on the given {@code ticks}.
      *
      * @param ticks The amount of ticks
@@ -184,6 +202,13 @@ public interface Duration {
     boolean isNegative();
 
     /**
+     * Gets whether the duration is infinite.
+     *
+     * @return Is infinite
+     */
+    boolean isInfinite();
+
+    /**
      * Converts this duration to tick based duration.
      *
      * <p>This is the optimal conversion to ticks, unrelated to
@@ -303,6 +328,15 @@ public interface Duration {
         }
 
         /**
+         * Converts this duration to milliseconds.
+         *
+         * @return The milliseconds
+         */
+        default long toLongMillis() {
+            return this.toLong(ChronoUnit.MILLIS);
+        }
+
+        /**
          * Converts this duration to nanoseconds.
          *
          * @return The nanoseconds
@@ -312,11 +346,27 @@ public interface Duration {
         }
 
         /**
+         * Converts this duration to nanoseconds.
+         *
+         * @return The nanoseconds
+         */
+        default long toLongNanos() {
+            return this.toLong(ChronoUnit.NANOS);
+        }
+
+        /**
          * Converts this duration to the given {@link TemporalUnit}.
          *
          * @return The duration
          */
         double to(TemporalUnit unit);
+
+        /**
+         * Converts this duration to the given {@link TemporalUnit} as a long value.
+         *
+         * @return The duration
+         */
+        long toLong(TemporalUnit unit);
 
         /**
          * Adds the days and returns the new duration.
@@ -534,7 +584,7 @@ public interface Duration {
          *
          * @return The ticks
          */
-        long getTicks();
+        long get();
 
         /**
          * Adds the ticks and returns the new duration.
@@ -542,7 +592,7 @@ public interface Duration {
          * @param ticks The ticks to add
          * @return The duration
          */
-        Ticks plusTicks(long ticks);
+        Ticks plus(long ticks);
 
         /**
          * Adds the other duration and returns the new duration.
@@ -558,7 +608,7 @@ public interface Duration {
          * @param ticks The ticks to subtract
          * @return The duration
          */
-        Ticks minusTicks(long ticks);
+        Ticks minus(long ticks);
 
         /**
          * Subtracts the other duration from this one and returns the new duration.
@@ -589,6 +639,10 @@ public interface Duration {
     interface Factory {
 
         Duration parse(CharSequence text);
+
+        Duration zero();
+
+        Duration infinite();
 
         Duration.Time of(TemporalAmount amount);
 
