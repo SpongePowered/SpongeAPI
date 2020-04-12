@@ -31,7 +31,9 @@ import org.spongepowered.api.item.recipe.Recipe;
 import org.spongepowered.api.item.recipe.RecipeType;
 import org.spongepowered.api.item.recipe.crafting.Ingredient;
 import org.spongepowered.api.util.CatalogBuilder;
+import org.spongepowered.api.util.PerformanceDependent;
 import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.temporal.Duration;
 
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -79,18 +81,18 @@ public interface SmeltingRecipe extends Recipe {
     Optional<SmeltingResult> getResult(ItemStackSnapshot ingredient);
 
     /**
-     * Returns the smelting time in ticks.
+     * Returns the smelting time.
      *
-     * @return The smelting time in ticks.
+     * @return The smelting time
      */
-    int getSmeltTime();
+    @PerformanceDependent Duration getSmeltTime();
 
     /**
      * Returns the experience of this recipe.
      *
      * @return The experience of this recipe.
      */
-    float getExperience();
+    double getExperience();
 
     /**
      * Builds a simple furnace recipe.
@@ -180,13 +182,12 @@ public interface SmeltingRecipe extends Recipe {
             EndStep experience(double experience);
 
             /**
-             * Sets the smeltTime for this recipe in ticks.
+             * Sets the smelt time for this recipe.
              *
-             * @param ticks the smeltTime
-             *
+             * @param time The smelt time
              * @return This builder, for chaining
              */
-            EndStep smeltTime(int ticks);
+            EndStep smeltTime(@PerformanceDependent Duration time);
 
             // TODO possible?  EndStep group(String group);
         }

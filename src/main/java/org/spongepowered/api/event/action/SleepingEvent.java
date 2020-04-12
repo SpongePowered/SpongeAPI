@@ -57,7 +57,7 @@ public interface SleepingEvent extends Event {
 
     interface Pre extends SleepingEvent, Cancellable {}
 
-    interface Tick extends SleepingEvent, Cancellable {}
+    interface Update extends SleepingEvent, Cancellable {}
 
     /**
      * Called when the {@link Humanoid} was sleeping but failed.

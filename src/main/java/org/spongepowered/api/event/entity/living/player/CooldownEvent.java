@@ -29,8 +29,10 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.util.PerformanceDependent;
+import org.spongepowered.api.util.temporal.Duration;
 
-import java.util.OptionalInt;
+import java.util.Optional;
 
 /**
  * An event which handles items in a {@link Player}'s {@link CooldownTracker}
@@ -64,28 +66,28 @@ public interface CooldownEvent extends Event {
          *
          * @return The cooldown of the item type beforehand
          */
-        OptionalInt getStartingCooldown();
+        Optional<@PerformanceDependent Duration> getStartingCooldown();
 
         /**
          * Gets the original new set cooldown at the beginning of the event.
          *
          * @return The originally set cooldown
          */
-        int getOriginalNewCooldown();
+        @PerformanceDependent Duration getOriginalNewCooldown();
 
         /**
          * Gets the new cooldown the item type has for the player.
          *
          * @return The new cooldown of the item type
          */
-        int getNewCooldown();
+        @PerformanceDependent Duration getNewCooldown();
 
         /**
          * Sets the new cooldown for the item type for the player.
          *
-         * @param ticks The amount of ticks the cooldown should last for
+         * @param time The time the cooldown should last for
          */
-        void setNewCooldown(int ticks);
+        void setNewCooldown(@PerformanceDependent Duration time);
 
     }
 

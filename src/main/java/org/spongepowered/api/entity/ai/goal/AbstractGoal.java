@@ -50,7 +50,7 @@ import java.util.Optional;
  * is invoked. If {@link #shouldUpdate()} is {@code true}, the {@link Goal} is
  * marked as "in use", and {@link #start()} is invoked. After {@link #start()}
  * is called, {@link #update()} will be invoked to be used for the first time
- * in this "AI tick".</p>
+ * in this "AI cycle".</p>
  *
  * <p>Regardless whether the {@link Goal} was "in use" or not, if the {@link Goal}
  * is now "in use", {@link #continueUpdating()} is called to verify the validity of the
@@ -117,7 +117,7 @@ public abstract class AbstractGoal<O extends Agent> implements Goal<O> {
      * in this tick. If this returns {@code false}, this goal is removed from use
      * and {@link #reset()} is called.
      *
-     * @return Whether this task should update this "tick" or not
+     * @return Whether this task should update this cycle or not
      */
     public abstract boolean continueUpdating();
 

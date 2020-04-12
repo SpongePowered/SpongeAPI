@@ -31,9 +31,9 @@ import org.spongepowered.api.event.Event;
 import org.spongepowered.api.world.Location;
 
 /**
- * Called when a {@link BlockState} receives a tick.
+ * Called when a {@link BlockState} receives an update.
  */
-public interface TickBlockEvent extends Event, Cancellable {
+public interface UpdateBlockEvent extends Event, Cancellable {
 
     /**
      * Gets the {@link BlockSnapshot}.
@@ -43,12 +43,12 @@ public interface TickBlockEvent extends Event, Cancellable {
     BlockSnapshot getBlock();
 
     /**
-     * An event when a block at a {@link Location} is scheduled to tick.
+     * An event when a block at a {@link Location} is scheduled to update.
      */
-    interface Scheduled extends TickBlockEvent { }
+    interface Scheduled extends UpdateBlockEvent { }
 
     /**
-     * An event when a block is told to "randomly" tick.
+     * An event when a block is told to "randomly" update.
      */
-    interface Random extends TickBlockEvent { }
+    interface Random extends UpdateBlockEvent { }
 }

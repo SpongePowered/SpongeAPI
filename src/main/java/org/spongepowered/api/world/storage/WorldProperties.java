@@ -342,25 +342,25 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
     void setSerializationBehavior(SerializationBehavior behavior);
 
     /**
-     * Gets the delay before a {@link WanderingTrader} will be spawned, in ticks.
+     * Gets the delay before a {@link WanderingTrader} will be spawned.
      *
      * <p>
-     *     In vanilla minecraft, 24,000 ticks is the default delay.
+     *     In vanilla minecraft, 24000 ticks is the default delay.
      * </p>
      *
-     * @return The delay, in ticks
+     * @return The delay
      */
-    int getWanderingTraderSpawnDelay();
+    @PerformanceDependent Duration getWanderingTraderSpawnDelay();
 
     /**
      * Sets the delay before a {@link WanderingTrader} will be spawned.
      *
-     * @param delay The delay, in ticks
+     * @param delay The delay
      */
-    void setWanderingTraderSpawnDelay(int delay);
+    void setWanderingTraderSpawnDelay(@PerformanceDependent Duration delay);
 
     /**
-     * Gets the chance that a {@link WanderingTrader} will be spawned, as a percentage
+     * Gets the chance that a {@link WanderingTrader} will be spawned, as a percentage.
      *
      * <p>
      *     In vanilla Minecraft, 25% is the default chance
@@ -368,14 +368,14 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
      *
      * @return The delay, as a percentage
      */
-    int getWanderingTraderSpawnChance();
+    double getWanderingTraderSpawnChance();
 
     /**
      * Sets the chance that a {@link WanderingTrader} will be spawned.
      *
      * @param chance The chance, as a percentage
      */
-    void setWanderingTraderSpawnChance(int chance);
+    void setWanderingTraderSpawnChance(double chance);
 
     /**
      * Gets the {@link UUID unique id} of the {@link WanderingTrader} that has been spawned.

@@ -40,6 +40,19 @@ public interface Engine {
     Scheduler getScheduler();
 
     /**
+     * Gets the current ticks per second. A tick represents one cycle of the
+     * game loop.
+     *
+     * <p>Note: The engine aims to limit itself at 20 ticks per second. Lower
+     * ticks per second may elude to the engine taking more time to process
+     * information per tick. Examples of overburdening the engine per tick
+     * include spawning 10,000 cows in a small area.</p>
+     *
+     * @return The current ticks per second
+     */
+    double getTicksPerSecond();
+
+    /**
      * Gets the estimated time for the given {@link Duration} based
      * on the performance of this engine.
      *

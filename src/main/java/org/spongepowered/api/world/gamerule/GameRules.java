@@ -47,6 +47,7 @@ import org.spongepowered.api.entity.living.trader.Villager;
 import org.spongepowered.api.entity.vehicle.Boat;
 import org.spongepowered.api.entity.vehicle.minecart.MinecartEntity;
 import org.spongepowered.api.raid.Raid;
+import org.spongepowered.api.util.temporal.Duration;
 
 import java.util.function.Supplier;
 
@@ -170,7 +171,7 @@ public final class GameRules {
 
     /**
      * The total number of {@link BlockTypes#CHAIN_COMMAND_BLOCK chain command
-     * blocks} that can run during a single tick.
+     * blocks} that can run during a single update cycle.
      *
      * <p>This is a numerical game rule, with a default value
      * of {@code 65536}.</p>
@@ -236,15 +237,15 @@ public final class GameRules {
     public static final Supplier<GameRule<Boolean>> NATURAL_REGENERATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "NATURAL_REGENERATION");
 
     /**
-     * How often a random block tick occurs (such as plant growth,
-     * leaf decay, etc.) per chunk section per game tick.
+     * How often a random block update occurs (such as plant growth,
+     * leaf decay, etc.) per chunk section per game update.
      *
-     * <p>0 will disable random ticks, higher numbers will increase random
-     * ticks</p>
+     * <p>0 will disable random updates, higher numbers will increase random
+     * updates.</p>
      *
      * <p>This is a numerical game rule, with a default value of {@code 3}.</p>
      */
-    public static final Supplier<GameRule<Integer>> RANDOM_TICK_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "RANDOM_TICK_SPEED");
+    public static final Supplier<GameRule<Duration>> RANDOM_BLOCK_UPDATE_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "RANDOM_BLOCK_UPDATE_SPEED");
 
     /**
      * Whether the debug screen shows all or reduced information.

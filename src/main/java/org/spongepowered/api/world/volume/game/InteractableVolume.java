@@ -30,6 +30,7 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.util.PerformanceDependent;
 import org.spongepowered.api.util.temporal.Duration;
 import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
 import org.spongepowered.math.vector.Vector3i;
@@ -204,8 +205,8 @@ public interface InteractableVolume extends ReadableBlockVolume {
      * @param profile The game profile of the player this is imitating
      * @return The duration it takes to dig the block
      */
-    default Duration getBlockDigTimeWith(Vector3i position, ItemStack itemStack, GameProfile profile) {
-        return getBlockDigTimeWith(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), itemStack, profile);
+    default @PerformanceDependent Duration getBlockDigTimeWith(Vector3i position, ItemStack itemStack, GameProfile profile) {
+        return this.getBlockDigTimeWith(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), itemStack, profile);
     }
 
     /**
@@ -218,5 +219,5 @@ public interface InteractableVolume extends ReadableBlockVolume {
      * @param profile The game profile of the player this is imitating
      * @return The duration it takes to dig the block
      */
-    Duration getBlockDigTimeWith(int x, int y, int z, ItemStack itemStack, GameProfile profile);
+    @PerformanceDependent Duration getBlockDigTimeWith(int x, int y, int z, ItemStack itemStack, GameProfile profile);
 }
