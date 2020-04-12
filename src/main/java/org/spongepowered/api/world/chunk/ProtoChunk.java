@@ -27,6 +27,8 @@ package org.spongepowered.api.world.chunk;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.util.PerformanceDependent;
+import org.spongepowered.api.util.temporal.Duration;
 import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.volume.game.HeightAwareVolume;
@@ -136,8 +138,24 @@ public interface ProtoChunk<P extends ProtoChunk<P>> extends
      */
     double getRegionalDifficultyPercentage();
 
-    void setInhabitedTime(long newInhabitedTime);
+    /**
+     * Sets the time players have been present in this chunk, used
+     * for calculation of the regional difficulty factor. In vanilla, it is
+     * increased by the number of players in the chunk every tick, and is capped
+     * at 3,600,000 ticks (50 hours).
+     *
+     * @param newInhabitedTime The new inhabited time
+     */
+    void setInhabitedTime(@PerformanceDependent Duration newInhabitedTime);
 
-    long getInhabitedTime();
+    /**
+     * Gets the time players have been present in this chunk, used
+     * for calculation of the regional difficulty factor. In vanilla, it is
+     * increased by the number of players in the chunk every tick, and is capped
+     * at 3,600,000 ticks (50 hours).
+     *
+     * @return The time
+     */
+    @PerformanceDependent Duration getInhabitedTime();
 
 }

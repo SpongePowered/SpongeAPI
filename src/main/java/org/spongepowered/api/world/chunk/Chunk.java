@@ -64,17 +64,6 @@ public interface Chunk extends ProtoChunk<Chunk> {
     boolean unloadChunk();
 
     /**
-     * Gets the number of ticks players have been present in this chunk, used
-     * for calculation of the regional difficulty factor. In vanilla, it is
-     * increased by the number of players in the chunk every tick, and is capped
-     * at 3,600,000 ticks (50 hours).
-     *
-     * @return The number of ticks
-     */
-    long getInhabitedTime();
-
-
-    /**
      * Gets the chunk in the given direction from this chunk, if it exists.
      *
      * @param direction The cardinal or ordinal direction to get the chunk from
