@@ -29,7 +29,6 @@ import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.effect.particle.ParticleEffect;
-import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.util.Color;
 
@@ -40,76 +39,76 @@ import org.spongepowered.api.util.Color;
 public interface AreaEffectCloud extends Entity {
 
     /**
-     * {@link Keys#AREA_EFFECT_CLOUD_COLOR}
+     * {@link Keys#COLOR}
      * @return The color of this cloud
      */
     default Value.Mutable<Color> color() {
-        return this.requireValue(Keys.AREA_EFFECT_CLOUD_COLOR).asMutable();
+        return this.requireValue(Keys.COLOR).asMutable();
     }
 
     /**
-     * {@link Keys#AREA_EFFECT_CLOUD_RADIUS}
+     * {@link Keys#RADIUS}
      * @return The initial radius of this cloud
      */
     default BoundedValue.Mutable<Double> radius() {
-        return this.requireValue(Keys.AREA_EFFECT_CLOUD_RADIUS).asMutable();
+        return this.requireValue(Keys.RADIUS).asMutable();
     }
 
     /**
-     * {@link Keys#AREA_EFFECT_CLOUD_PARTICLE_EFFECT}
+     * {@link Keys#PARTICLE_EFFECT}
      * @return The particle type
      * @see org.spongepowered.api.effect.particle.ParticleTypes
      */
     default Value.Mutable<ParticleEffect> particleEffect() {
-        return this.requireValue(Keys.AREA_EFFECT_CLOUD_PARTICLE_EFFECT).asMutable();
+        return this.requireValue(Keys.PARTICLE_EFFECT).asMutable();
     }
 
     /**
-     * {@link Keys#AREA_EFFECT_CLOUD_DURATION}
+     * {@link Keys#DURATION}
      * @return The duration of which this cloud will linger
      */
     default BoundedValue.Mutable<Integer> duration() {
-        return this.requireValue(Keys.AREA_EFFECT_CLOUD_DURATION).asMutable();
+        return this.requireValue(Keys.DURATION).asMutable();
     }
 
     /**
-     * {@link Keys#AREA_EFFECT_CLOUD_WAIT_TIME}
+     * {@link Keys#WAIT_TIME}
      * @return The wait time before applying to an entity
      */
     default BoundedValue.Mutable<Integer> waitTime() {
-        return this.requireValue(Keys.AREA_EFFECT_CLOUD_WAIT_TIME).asMutable();
+        return this.requireValue(Keys.WAIT_TIME).asMutable();
     }
 
     /**
-     * {@link Keys#AREA_EFFECT_CLOUD_RADIUS_ON_USE}
+     * {@link Keys#RADIUS_ON_USE}
      * @return The radius decrease per use
      */
     default BoundedValue.Mutable<Double> radiusOnUse() {
-        return this.requireValue(Keys.AREA_EFFECT_CLOUD_RADIUS_ON_USE).asMutable();
+        return this.requireValue(Keys.RADIUS_ON_USE).asMutable();
     }
 
     /**
-     * {@link Keys#AREA_EFFECT_CLOUD_RADIUS_PER_TICK}
+     * {@link Keys#RADIUS_PER_TICK}
      * @return The radius decrease per tick
      */
     default BoundedValue.Mutable<Double> radiusPerTick() {
-        return this.requireValue(Keys.AREA_EFFECT_CLOUD_RADIUS_PER_TICK).asMutable();
+        return this.requireValue(Keys.RADIUS_PER_TICK).asMutable();
     }
 
     /**
-     * {@link Keys#AREA_EFFECT_CLOUD_DURATION_ON_USE}
+     * {@link Keys#DURATION_ON_USE}
      * @return The duration of the potion effects when an entity gets a potion applied
      */
     default BoundedValue.Mutable<Integer> durationOnUse() {
-        return this.requireValue(Keys.AREA_EFFECT_CLOUD_DURATION_ON_USE).asMutable();
+        return this.requireValue(Keys.DURATION_ON_USE).asMutable();
     }
 
     /**
-     * {@link Keys#AREA_EFFECT_CLOUD_REAPPLICATION_DELAY}
+     * {@link Keys#REAPPLICATION_DELAY}
      * @return The delay for an entity to have a potion effect applied while standing in this cloud
      */
     default BoundedValue.Mutable<Integer> applicationDelay() {
-        return this.requireValue(Keys.AREA_EFFECT_CLOUD_REAPPLICATION_DELAY).asMutable();
+        return this.requireValue(Keys.REAPPLICATION_DELAY).asMutable();
     }
 
     /**
@@ -121,11 +120,11 @@ public interface AreaEffectCloud extends Entity {
     }
 
     /**
-     * {@link Keys#AREA_EFFECT_CLOUD_AGE}
+     * {@link Keys#AGE}
      * @return The age of this cloud
      */
     default BoundedValue.Mutable<Integer> age() {
-        return this.requireValue(Keys.AREA_EFFECT_CLOUD_AGE).asMutable();
+        return this.requireValue(Keys.AGE).asMutable();
     }
 
 }

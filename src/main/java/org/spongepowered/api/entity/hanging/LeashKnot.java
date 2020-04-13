@@ -24,21 +24,9 @@
  */
 package org.spongepowered.api.entity.hanging;
 
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.Entity;
-
 /**
  * Represents a tied end of a leash on a block, like a fence post.
  */
 public interface LeashKnot extends Hanging {
-
-    /**
-     * {@link Keys#LEASHED_ENTITY}
-     * @return The leashed entity
-     */
-    default Value.Immutable<Entity> leashedEntity() {
-        return this.requireValue(Keys.LEASHED_ENTITY).asImmutable();
-    }
 
 }

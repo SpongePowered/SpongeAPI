@@ -39,7 +39,7 @@ public interface Explosive extends Entity {
      * {@link Keys#EXPLOSION_RADIUS}
      * @return The explosion radius
      */
-    default Optional<Value.Mutable<Double>> explosionRadius() {
+    default Optional<Value.Mutable<Integer>> explosionRadius() {
         return this.getValue(Keys.EXPLOSION_RADIUS).map(Value::asMutable);
     }
 

@@ -48,10 +48,10 @@ public interface Llama extends LlamaEntity, TameableHorse, PackHorse {
     }
 
     /**
-     * {@link Keys#LLAMA_STRENGTH}
+     * {@link Keys#STRENGTH}
      * @return The strength of this llama, determines how big of an inventory they can carry
      */
     default BoundedValue.Mutable<Integer> strength() {
-        return this.requireValue(Keys.LLAMA_STRENGTH).asMutable();
+        return this.requireValue(Keys.STRENGTH).asMutable();
     }
 }

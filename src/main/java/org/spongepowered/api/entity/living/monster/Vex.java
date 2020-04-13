@@ -31,10 +31,10 @@ import org.spongepowered.api.entity.living.Monster;
 public interface Vex extends Monster {
 
     /**
-     * {@link Keys#VEX_LIFE_TICKS}
+     * {@link Keys#LIFE_TICKS}
      * @return The amount of ticks till this Vex starts dying.
      */
     default Value.Mutable<Integer> lifeTicks() {
-        return this.requireValue(Keys.VEX_LIFE_TICKS).asMutable();
+        return this.requireValue(Keys.LIFE_TICKS).asMutable();
     }
 }

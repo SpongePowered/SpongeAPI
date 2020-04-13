@@ -36,11 +36,11 @@ import java.util.Optional;
 public interface EnderCrystal extends Explosive {
 
     /**
-     * {@link Keys#BEAM_TARGET_POSITION}
+     * {@link Keys#TARGET_POSITION}
      * @return The target position of the beam
      */
     default Optional<Value.Mutable<Vector3i>> beamTarget() {
-        return this.getValue(Keys.BEAM_TARGET_POSITION).map(Value::asMutable);
+        return this.getValue(Keys.TARGET_POSITION).map(Value::asMutable);
     }
 
     /**

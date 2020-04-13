@@ -42,12 +42,12 @@ public interface FurnaceBlockEntity extends NameableCarrierBlockEntity {
     boolean process();
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.BoundedValue.Mutable} for the already passed burn time.
+     * Gets the {@link org.spongepowered.api.data.value.BoundedValue.Mutable} for the remaining fuel.
      *
-     * @return The value for the already passed burn time
+     * @return The value for the remaining fuel
      */
-    default BoundedValue.Mutable<Integer> passedBurnTime() {
-        return this.requireValue(Keys.PASSED_BURN_TIME).asMutable();
+    default BoundedValue.Mutable<Integer> remainingFuel() {
+        return this.requireValue(Keys.FUEL).asMutable();
     }
 
     /**

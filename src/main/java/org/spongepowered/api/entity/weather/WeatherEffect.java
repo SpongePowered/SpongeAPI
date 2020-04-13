@@ -36,19 +36,19 @@ import java.time.Duration;
 public interface WeatherEffect extends Entity {
 
     /**
-     * {@link Keys#IS_HARMFUL}
+     * {@link Keys#IS_EFFECT_ONLY}
      * @return Whether this effect is harmful
      */
-    default Value.Mutable<Boolean> harmful() {
-        return this.requireValue(Keys.IS_HARMFUL).asMutable();
+    default Value.Mutable<Boolean> isEffectOnly() {
+        return this.requireValue(Keys.IS_EFFECT_ONLY).asMutable();
     }
 
     /**
-     * {@link Keys#EXPIRATION_DELAY}
+     * {@link Keys#DESPAWN_DELAY}
      * @return The delay before this effect is removed
      */
-    default Value.Mutable<Duration> expirationDelay() {
-        return this.requireValue(Keys.EXPIRATION_DELAY).asMutable();
+    default Value.Mutable<Integer> expirationDelay() {
+        return this.requireValue(Keys.DESPAWN_DELAY).asMutable();
     }
 
 }

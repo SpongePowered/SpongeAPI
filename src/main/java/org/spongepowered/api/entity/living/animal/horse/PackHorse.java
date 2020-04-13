@@ -30,10 +30,10 @@ import org.spongepowered.api.data.value.Value;
 public interface PackHorse extends HorseEntity {
 
     /**
-     * {@link Keys#DISPLAY_CHEST}
-     * @return Whether the horse is displaying a chest or not
+     * {@link Keys#HAS_CHEST}
+     * @return Whether the horse is has a chest or not
      */
-    default Value.Mutable<Boolean> displayChest() {
-        return this.requireValue(Keys.DISPLAY_CHEST).asMutable();
+    default Value.Mutable<Boolean> hasChest() {
+        return this.requireValue(Keys.HAS_CHEST).asMutable();
     }
 }

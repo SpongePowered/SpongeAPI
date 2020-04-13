@@ -42,11 +42,11 @@ public interface Patroller extends Monster {
     }
 
     /**
-     * {@link Keys#LEADER}
+     * {@link Keys#IS_LEADER}
      * @return Whether this is the leader of a patrol
      */
     default Value.Mutable<Boolean> leader() {
-        return this.requireValue(Keys.LEADER).asMutable();
+        return this.requireValue(Keys.IS_LEADER).asMutable();
     }
 
     /**

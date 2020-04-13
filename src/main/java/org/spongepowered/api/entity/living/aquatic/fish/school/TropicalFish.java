@@ -32,19 +32,19 @@ import org.spongepowered.api.data.value.Value;
 public interface TropicalFish extends SchoolingFish {
 
     /**
-     * {@link Keys#TROPICAL_FISH_BASE_COLOR}
+     * {@link Keys#DYE_COLOR}
      * @return The base color of this tropical fish.
      */
     default Value.Mutable<DyeColor> baseColor() {
-        return this.requireValue(Keys.TROPICAL_FISH_BASE_COLOR).asMutable();
+        return this.requireValue(Keys.DYE_COLOR).asMutable();
     }
 
     /**
-     * {@link Keys#TROPICAL_FISH_PATTERN_COLOR}
+     * {@link Keys#PATTERN_COLOR}
      * @return The pattern color of this tropical fish.
      */
     default Value.Mutable<DyeColor> patternColor() {
-        return this.requireValue(Keys.TROPICAL_FISH_PATTERN_COLOR).asMutable();
+        return this.requireValue(Keys.PATTERN_COLOR).asMutable();
     }
 
     /**

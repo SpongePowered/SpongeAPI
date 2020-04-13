@@ -35,23 +35,23 @@ import org.spongepowered.math.vector.Vector3d;
 public interface MinecartEntity extends Entity {
 
     /**
-     * {@link Keys#MINECART_IS_ON_RAIL}
+     * {@link Keys#IS_ON_RAIL}
      * @return Whether this minecart is on a rail or not
      */
     default Value.Mutable<Boolean> onRail() {
-        return this.requireValue(Keys.MINECART_IS_ON_RAIL).asMutable();
+        return this.requireValue(Keys.IS_ON_RAIL).asMutable();
     }
 
     /**
-     * {@link Keys#MINECART_SWIFTNESS}
+     * {@link Keys#SWIFTNESS}
      * @return The current swiftness of the minecart
      */
     default Value.Mutable<Double> swiftness() {
-        return this.requireValue(Keys.MINECART_SWIFTNESS).asMutable();
+        return this.requireValue(Keys.SWIFTNESS).asMutable();
     }
 
     /**
-     * {@link Keys#MINECART_POTENTIAL_MAX_SPEED}
+     * {@link Keys#POTENTIAL_MAX_SPEED}
      *
      * <p>This differs from {@link Minecart#swiftness()} in that its value is
      * affected by the block/rail beneath the cart. However, it is still
@@ -59,30 +59,30 @@ public interface MinecartEntity extends Entity {
      * @return The potential maximum speed
      */
     default Value.Mutable<Double> potentialMaxSpeed() {
-        return this.requireValue(Keys.MINECART_POTENTIAL_MAX_SPEED).asMutable();
+        return this.requireValue(Keys.POTENTIAL_MAX_SPEED).asMutable();
     }
 
     /**
-     * {@link Keys#MINECART_SLOWS_UNOCCUPIED}
+     * {@link Keys#SLOWS_UNOCCUPIED}
      * @return Whether this minecart will slow when unoccupied
      */
     default Value.Mutable<Boolean> slowsUnoccupied() {
-        return this.requireValue(Keys.MINECART_SLOWS_UNOCCUPIED).asMutable();
+        return this.requireValue(Keys.SLOWS_UNOCCUPIED).asMutable();
     }
 
     /**
-     * {@link Keys#MINECART_AIRBORNE_VELOCITY_MODIFIER}
+     * {@link Keys#AIRBORNE_VELOCITY_MODIFIER}
      * @return The airborne velocity modifier
      */
     default Value.Mutable<Vector3d> airborneVelocityModifier() {
-        return this.requireValue(Keys.MINECART_AIRBORNE_VELOCITY_MODIFIER).asMutable();
+        return this.requireValue(Keys.AIRBORNE_VELOCITY_MODIFIER).asMutable();
     }
 
     /**
-     * {@link Keys#MINECART_DERAILED_VELOCITY_MODIFIER}
+     * {@link Keys#DERAILED_VELOCITY_MODIFIER}
      * @return The derailed velocity modifier
      */
     default Value.Mutable<Vector3d> derailedVelocityModifier() {
-        return this.requireValue(Keys.MINECART_DERAILED_VELOCITY_MODIFIER).asMutable();
+        return this.requireValue(Keys.DERAILED_VELOCITY_MODIFIER).asMutable();
     }
 }

@@ -54,7 +54,7 @@ public interface FallingBlock extends Entity {
      * {@link Keys#MAX_FALL_DAMAGE}
      * @return The maximum fall damage
      */
-    default Value.Mutable<Double> maxFallDamage() {
+    default Value.Mutable<Integer> maxFallDamage() {
         return this.requireValue(Keys.MAX_FALL_DAMAGE).asMutable();
     }
 

@@ -34,19 +34,19 @@ import org.spongepowered.api.data.value.Value;
 public interface Ageable extends Agent {
 
     /**
-     * {@link Keys#AGEABLE_AGE}
-     * @return The age
-     */
-    default BoundedValue.Mutable<Integer> age() {
-        return this.requireValue(Keys.AGEABLE_AGE).asMutable();
-    }
-
-    /**
      * {@link Keys#IS_ADULT}
      * @return Whether this entity is an adult or not
      */
     default Value.Mutable<Boolean> adult() {
         return this.requireValue(Keys.IS_ADULT).asMutable();
+    }
+
+    /**
+     * {@link Keys#BABY_TICKS}
+     * @return The ticks until this entity turns into an adult
+     */
+    default Value.Mutable<Integer> babyTicks() {
+        return this.requireValue(Keys.BABY_TICKS).asMutable();
     }
 
 }

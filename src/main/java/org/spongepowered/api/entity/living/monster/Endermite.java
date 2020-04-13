@@ -36,10 +36,10 @@ import java.time.Duration;
 public interface Endermite extends Monster {
 
     /**
-     * {@link Keys#EXPIRATION_DELAY}
-     * @return The expiration delay
+     * {@link Keys#DESPAWN_DELAY}
+     * @return The despawn delay
      */
-    default Value.Mutable<Duration> expirationDelay() {
-        return this.requireValue(Keys.EXPIRATION_DELAY).asMutable();
+    default Value.Mutable<Integer> expirationDelay() {
+        return this.requireValue(Keys.DESPAWN_DELAY).asMutable();
     }
 }
