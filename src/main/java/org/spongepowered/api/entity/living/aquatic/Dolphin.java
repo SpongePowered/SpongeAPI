@@ -33,18 +33,18 @@ import org.spongepowered.api.data.value.Value;
 public interface Dolphin extends Aquatic {
 
     /**
-     * {@link Keys#DOLPHIN_SKIN_MOISTURE}
+     * {@link Keys#SKIN_MOISTURE}
      * @return The skin moisture value, before they are parched
      */
     default Value.Mutable<Integer> skinMoisture() {
-        return this.requireValue(Keys.DOLPHIN_SKIN_MOISTURE).asMutable();
+        return this.requireValue(Keys.SKIN_MOISTURE).asMutable();
     }
 
     /**
-     * {@link Keys#DOLPHIN_DOES_GOT_FISH}
+     * {@link Keys#HAS_FISH}
      * @return Whether this dolphin has a fish, but not a towel
      */
     default Value.Mutable<Boolean> gotFish() {
-        return this.requireValue(Keys.DOLPHIN_DOES_GOT_FISH).asMutable();
+        return this.requireValue(Keys.HAS_FISH).asMutable();
     }
 }

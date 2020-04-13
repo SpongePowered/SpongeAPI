@@ -26,6 +26,7 @@ package org.spongepowered.api.entity.living.monster.guardian;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.aquatic.Aquatic;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.Monster;

@@ -48,11 +48,11 @@ public interface Animal extends Ageable {
     }
 
     /**
-     * {@link Keys#BREED_TIME}
-     * @return The current breeding time
+     * {@link Keys#BREEDING_COOLDOWN}
+     * @return The current breeding cooldown
      */
-    default Value.Mutable<Integer> breedTime() {
-        return this.requireValue(Keys.BREED_TIME).asMutable();
+    default Value.Mutable<Integer> breedingCooldown() {
+        return this.requireValue(Keys.BREEDING_COOLDOWN).asMutable();
     }
 
     /**

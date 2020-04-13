@@ -34,11 +34,11 @@ import org.spongepowered.api.entity.living.Monster;
 public interface Slime extends Monster {
 
     /**
-     * {@link Keys#SLIME_SIZE}
+     * {@link Keys#SIZE}
      * @return The size of slime
      */
     default BoundedValue.Mutable<Integer> size() {
-        return this.requireValue(Keys.SLIME_SIZE).asMutable();
+        return this.requireValue(Keys.SIZE).asMutable();
     }
 
 }

@@ -50,34 +50,34 @@ public interface Boat extends Vehicle {
     }
 
     /**
-     * {@link Keys#BOAT_CAN_MOVE_ON_LAND}
+     * {@link Keys#CAN_MOVE_ON_LAND}
      * @return Whether this boat can travel over land
      */
     default Value.Mutable<Boolean> moveOnLand() {
-        return this.requireValue(Keys.BOAT_CAN_MOVE_ON_LAND).asMutable();
+        return this.requireValue(Keys.CAN_MOVE_ON_LAND).asMutable();
     }
 
     /**
-     * {@link Keys#BOAT_MAX_SPEED}
+     * {@link Keys#MAX_SPEED}
      * @return The maximum speed a boat can go
      */
     default Value.Mutable<Double> maxSpeed() {
-        return this.requireValue(Keys.BOAT_MAX_SPEED).asMutable();
+        return this.requireValue(Keys.MAX_SPEED).asMutable();
     }
 
     /**
-     * {@link Keys#BOAT_UNOCCUPIED_DECELERATION}
+     * {@link Keys#UNOCCUPIED_DECELERATION}
      * @return The deceleration value when unoccupied
      */
     default Value.Mutable<Double> unoccupiedDeceleration() {
-        return this.requireValue(Keys.BOAT_UNOCCUPIED_DECELERATION).asMutable();
+        return this.requireValue(Keys.UNOCCUPIED_DECELERATION).asMutable();
     }
 
     /**
-     * {@link Keys#BOAT_OCCUPIED_DECELERATION}
+     * {@link Keys#OCCUPIED_DECELERATION}
      * @return The deceleration value when occupied
      */
     default Value.Mutable<Double> occupiedDeceleration() {
-        return this.requireValue(Keys.BOAT_OCCUPIED_DECELERATION).asMutable();
+        return this.requireValue(Keys.OCCUPIED_DECELERATION).asMutable();
     }
 }

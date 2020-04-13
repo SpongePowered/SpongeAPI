@@ -52,7 +52,7 @@ public interface Spawner extends SerializableDataHolder.Mutable {
      * @return The immutable bounded value for the remaining delay
      */
     default BoundedValue.Mutable<Integer> remainingDelay() {
-        return this.requireValue(Keys.SPAWNER_REMAINING_DELAY).asMutable();
+        return this.requireValue(Keys.REMAINING_SPAWN_DELAY).asMutable();
     }
 
     /**
@@ -62,7 +62,7 @@ public interface Spawner extends SerializableDataHolder.Mutable {
      * @return The bounded value of the minimum spawn delay
      */
     default BoundedValue.Mutable<Integer> minimumSpawnDelay() {
-        return this.requireValue(Keys.SPAWNER_MINIMUM_DELAY).asMutable();
+        return this.requireValue(Keys.MIN_SPAWN_DELAY).asMutable();
     }
 
     /**
@@ -72,7 +72,7 @@ public interface Spawner extends SerializableDataHolder.Mutable {
      * @return The bounded value of the maximum spawn delay
      */
     default BoundedValue.Mutable<Integer> maximumSpawnDelay() {
-        return this.requireValue(Keys.SPAWNER_MAXIMUM_DELAY).asMutable();
+        return this.requireValue(Keys.MAX_SPAWN_DELAY).asMutable();
     }
 
     /**
@@ -84,7 +84,7 @@ public interface Spawner extends SerializableDataHolder.Mutable {
      * @return The immutable bounded value
      */
     default BoundedValue.Mutable<Integer> spawnCount() {
-        return this.requireValue(Keys.SPAWNER_SPAWN_COUNT).asMutable();
+        return this.requireValue(Keys.SPAWN_COUNT).asMutable();
     }
 
     /**
@@ -96,7 +96,7 @@ public interface Spawner extends SerializableDataHolder.Mutable {
      * @return The bounded value of the maximum supported nearby entities
      */
     default BoundedValue.Mutable<Integer> maximumNearbyEntities() {
-        return this.requireValue(Keys.SPAWNER_MAXIMUM_NEARBY_ENTITIES).asMutable();
+        return this.requireValue(Keys.MAX_NEARBY_ENTITIES).asMutable();
     }
 
     /**
@@ -108,7 +108,7 @@ public interface Spawner extends SerializableDataHolder.Mutable {
      * @return The value of the required player range to spawn entities
      */
     default BoundedValue.Mutable<Double> requiredPlayerRange() {
-        return this.requireValue(Keys.SPAWNER_REQUIRED_PLAYER_RANGE).asMutable();
+        return this.requireValue(Keys.REQUIRED_PLAYER_RANGE).asMutable();
     }
 
     /**
@@ -119,7 +119,7 @@ public interface Spawner extends SerializableDataHolder.Mutable {
      *     spawned
      */
     default BoundedValue.Mutable<Double> spawnRange() {
-        return this.requireValue(Keys.SPAWNER_SPAWN_RANGE).asMutable();
+        return this.requireValue(Keys.SPAWN_RANGE).asMutable();
     }
 
     /**
@@ -132,7 +132,7 @@ public interface Spawner extends SerializableDataHolder.Mutable {
      * @return The next possible entity to spawn
      */
     default Value.Mutable<WeightedSerializableObject<EntityArchetype>> nextEntityToSpawn() {
-        return this.requireValue(Keys.SPAWNER_NEXT_ENTITY_TO_SPAWN).asMutable();
+        return this.requireValue(Keys.NEXT_ENTITY_TO_SPAWN).asMutable();
     }
 
     /**
@@ -146,6 +146,6 @@ public interface Spawner extends SerializableDataHolder.Mutable {
      * @return The immutable weighted entity collection value of entities
      */
     default WeightedCollectionValue.Mutable<EntityArchetype> possibleEntitiesToSpawn() {
-        return this.requireValue(Keys.SPAWNER_ENTITIES).asMutable();
+        return this.requireValue(Keys.SPAWNABLE_ENTITIES).asMutable();
     }
 }

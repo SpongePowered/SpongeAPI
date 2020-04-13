@@ -33,7 +33,7 @@ import java.util.Optional;
 /**
  * Represents a Beacon.
  *
- * <p>Beacons apply prescribed effects according to the {@link Keys#BEACON_PRIMARY_EFFECT}.
+ * <p>Beacons apply prescribed effects according to the {@link Keys#PRIMARY_EFFECT}.
  * Depending on the completed levels of the beacon, the effects may be applied
  * at a further range or shorter range.</p>
  */
@@ -54,7 +54,7 @@ public interface Beacon extends NameableCarrierBlockEntity {
      * @return The optional value for the primary potion effect
      */
     default Optional<Value.Mutable<PotionEffectType>> primaryEffect() {
-        return this.getValue(Keys.BEACON_PRIMARY_EFFECT).map(Value::asMutable);
+        return this.getValue(Keys.PRIMARY_EFFECT).map(Value::asMutable);
     }
 
     /**
@@ -64,7 +64,7 @@ public interface Beacon extends NameableCarrierBlockEntity {
      * @return The optional value for the secondary potion effect
      */
     default Optional<Value.Mutable<PotionEffectType>> secondaryEffect() {
-        return this.getValue(Keys.BEACON_SECONDARY_EFFECT).map(Value::asMutable);
+        return this.getValue(Keys.SECONDARY_EFFECT).map(Value::asMutable);
     }
 
 }

@@ -36,10 +36,10 @@ import java.time.Duration;
 public interface FurnaceMinecart extends BlockOccupiedMinecart {
 
     /**
-     * {@link Keys#FURNACE_MINECART_FUEL_DURATION}
-     * @return The duration of fuel remaining
+     * {@link Keys#FUEL}
+     * @return The duration of fuel remaining in ticks
      */
-    default Value.Mutable<Duration> fuelDuration() {
-        return this.requireValue(Keys.FURNACE_MINECART_FUEL_DURATION).asMutable();
+    default Value.Mutable<Integer> fuelDuration() {
+        return this.requireValue(Keys.FUEL).asMutable();
     }
 }

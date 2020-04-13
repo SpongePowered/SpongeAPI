@@ -41,7 +41,7 @@ public interface Banner extends NameableBlockEntity {
      * @return The value for the base color
      */
     default Value.Mutable<DyeColor> baseColor() {
-        return this.requireValue(Keys.BANNER_BASE_COLOR).asMutable();
+        return this.requireValue(Keys.DYE_COLOR).asMutable();
     }
 
     /**

@@ -78,6 +78,7 @@ import org.spongepowered.api.data.type.SpellTypes;
 import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StructureMode;
 import org.spongepowered.api.data.type.Surface;
+import org.spongepowered.api.data.type.ToolType;
 import org.spongepowered.api.data.type.TropicalFishShape;
 import org.spongepowered.api.data.type.VillagerType;
 import org.spongepowered.api.data.type.WireAttachmentType;
@@ -93,6 +94,8 @@ import org.spongepowered.api.effect.particle.ParticleOption;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.effect.potion.PotionEffectType;
+import org.spongepowered.api.effect.potion.PotionEffectTypes;
+import org.spongepowered.api.effect.sound.music.MusicDisc;
 import org.spongepowered.api.entity.AreaEffectCloud;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityArchetype;
@@ -171,6 +174,7 @@ import org.spongepowered.api.entity.projectile.FishingBobber;
 import org.spongepowered.api.entity.projectile.Potion;
 import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.entity.projectile.ShulkerBullet;
+import org.spongepowered.api.entity.projectile.arrow.Arrow;
 import org.spongepowered.api.entity.projectile.arrow.ArrowEntity;
 import org.spongepowered.api.entity.projectile.explosive.FireworkRocket;
 import org.spongepowered.api.entity.projectile.explosive.WitherSkull;
@@ -178,6 +182,7 @@ import org.spongepowered.api.entity.projectile.explosive.fireball.FireballEntity
 import org.spongepowered.api.entity.vehicle.Boat;
 import org.spongepowered.api.entity.vehicle.minecart.BlockOccupiedMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.CommandBlockMinecart;
+import org.spongepowered.api.entity.vehicle.minecart.FurnaceMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.Minecart;
 import org.spongepowered.api.entity.vehicle.minecart.MinecartEntity;
 import org.spongepowered.api.entity.weather.LightningBolt;
@@ -185,11 +190,16 @@ import org.spongepowered.api.entity.weather.WeatherEffect;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSources;
 import org.spongepowered.api.fluid.FluidStackSnapshot;
 import org.spongepowered.api.item.FireworkEffect;
+import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.enchantment.Enchantment;
+import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
+import org.spongepowered.api.item.inventory.slot.EquipmentSlot;
+import org.spongepowered.api.item.inventory.type.GridInventory;
 import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.item.potion.PotionType;
 import org.spongepowered.api.plugin.PluginContainer;
@@ -205,6 +215,7 @@ import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.RespawnLocation;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
+import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.weather.Weather;
@@ -213,9 +224,9 @@ import org.spongepowered.math.vector.Vector2i;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
-import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 import java.util.function.Supplier;
 
@@ -228,17 +239,17 @@ public final class Keys {
     // SORTFIELDS:ON
 
     /**
-     * Represents the {@link Key} for the absorption amount of any {@link Living} entity.
+     * The {@link PotionEffectTypes#ABSORPTION} amount of a {@link Living} entity.
      */
     public static final Supplier<Key<BoundedValue<Double>>> ABSORPTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ABSORPTION");
 
     /**
-     * Represents the {@link Key} for the acceleration of a {@link DamagingProjectile}.
+     * The acceleration of a {@link DamagingProjectile}.
      */
     public static final Supplier<Key<Value<Vector3d>>> ACCELERATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ACCELERATION");
 
     /**
-     * Represents the {@link Key} for the item a {@link Living} is using.
+     * The item a {@link Living} entity is currently using.
      * For example a player eating a food or blocking with a shield.
      *
      * <p>If there is no item, the snapshot will be empty. You can check this
@@ -247,8 +258,7 @@ public final class Keys {
     public static final Supplier<Key<Value<ItemStackSnapshot>>> ACTIVE_ITEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ACTIVE_ITEM");
 
     /**
-     * Represents the {@link Key} for the "affecting spawning" state of
-     * {@link Player}s.
+     * Whether a {@link Player}s affects spawning.
      *
      * <p>A {@link Player} who does not affect spawning will be treated as a
      * spectator in regards to spawning. A {@link MobSpawner} will not be
@@ -258,13 +268,19 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> AFFECTS_SPAWNING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AFFECTS_SPAWNING");
 
     /**
-     * Represents the {@link Key} for the age of any {@link Ageable entity}
-     * in ticks.
+     * The age (in ticks) of an entity.
+     * e.g. The age of an {@link AreaEffectCloud}.
+     * <p>Note that in vanilla this value is not persisted for most entities.</p>
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> AGEABLE_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AGE");
+    public static final Supplier<Key<BoundedValue<Integer>>> AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AGE");
 
     /**
-     * Represents the {@link Key} for how angry a {@link ZombiePigman} is.
+     * The modifier to {@link Keys#VELOCITY} of a {@link Minecart} while airborne.
+     */
+    public static final Supplier<Key<Value<Vector3d>>> AIRBORNE_VELOCITY_MODIFIER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AIRBORNE_VELOCITY_MODIFIER");
+
+    /**
+     * The anger level of a {@link ZombiePigman}.
      *
      * <p>Unlike {@link Keys#IS_ANGRY}, the aggressiveness represented by this key may
      * fade over time and the entity will become peaceful again once its anger
@@ -273,8 +289,13 @@ public final class Keys {
     public static final Supplier<Key<BoundedValue<Integer>>> ANGER_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ANGER");
 
     /**
-     * Represents the {@link Key} for the enchantments applied to an
-     * {@link ItemStack}.
+     * The set of {@link PotionEffect}s applied on use of an {@link ItemStack}.
+     * Readonly
+     */
+    public static final Supplier<Key<Value<Set<PotionEffect>>>> APPLICABLE_POTION_EFFECTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "APPLICABLE_POTION_EFFECTS");
+
+    /**
+     * The enchantments applied to an {@link ItemStack}.
      *
      * <p>This data is usually applicable to all types of armor, weapons and
      * tools. Enchantments that are only stored on an item stack in order to
@@ -285,280 +306,104 @@ public final class Keys {
     public static final Supplier<Key<ListValue<Enchantment>>> APPLIED_ENCHANTMENTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ITEM_ENCHANTMENTS");
 
     /**
-     * Represents the {@link Key} for the age (in ticks) of an
-     * {@link AreaEffectCloud} created by a lingering potion.
-     */
-    public static final Supplier<Key<BoundedValue<Integer>>> AREA_EFFECT_CLOUD_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_AGE");
-
-    /**
-     * Represents the {@link Key} for the color of an {@link AreaEffectCloud}
-     * created by a lingering potion.
-     */
-    public static final Supplier<Key<Value<Color>>> AREA_EFFECT_CLOUD_COLOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_COLOR");
-
-    /**
-     * Represents the {@link Key} for the maximum age (in ticks) of an
-     * {@link AreaEffectCloud} created by a lingering potion.
-     */
-    public static final Supplier<Key<BoundedValue<Integer>>> AREA_EFFECT_CLOUD_DURATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_DURATION");
-
-    /**
-     * Represents the {@link Key} for the amount of ticks the duration of an
-     * {@link AreaEffectCloud} is increased or reduced when it applies its
-     * effect.
-     */
-    public static final Supplier<Key<BoundedValue<Integer>>> AREA_EFFECT_CLOUD_DURATION_ON_USE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_DURATION_ON_USE");
-
-    /**
-     * Represents the {@link Key} for the particle type of an
-     * {@link AreaEffectCloud} created by a lingering potion.
-     *
-     * <p>Only a few {@link ParticleOption}s will be usable for this
-     * effect for specific {@link ParticleType}s and not every
-     * {@link ParticleType} will be applicable.</p>
-     */
-    public static final Supplier<Key<Value<ParticleEffect>>> AREA_EFFECT_CLOUD_PARTICLE_EFFECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_PARTICLE_EFFECT");
-
-    /**
-     * Represents the {@link Key} for the radius of an {@link AreaEffectCloud}.
-     */
-    public static final Supplier<Key<BoundedValue<Double>>> AREA_EFFECT_CLOUD_RADIUS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_RADIUS");
-
-    /**
-     * Represents the {@link Key} for the amount the radius of an
-     * {@link AreaEffectCloud} grows or shrinks each time it applies its
-     * effect.
-     */
-    public static final Supplier<Key<BoundedValue<Double>>> AREA_EFFECT_CLOUD_RADIUS_ON_USE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_RADIUS_ON_USE");
-
-    /**
-     * Represents the {@link Key} for the amount the radius of an
-     * {@link AreaEffectCloud} grows or shrinks per tick.
-     */
-    public static final Supplier<Key<BoundedValue<Double>>> AREA_EFFECT_CLOUD_RADIUS_PER_TICK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_RADIUS_PER_TICK");
-
-    /**
-     * Represents the {@link Key} for the delay (in ticks) after which an
-     * {@link AreaEffectCloud} will reapply its effect on a previously
-     * affected {@link Entity}.
-     */
-    public static final Supplier<Key<BoundedValue<Integer>>> AREA_EFFECT_CLOUD_REAPPLICATION_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_REAPPLICATION_DELAY");
-
-    /**
-     * Represents the {@link Key} for the duration in ticks after which an
-     * {@link AreaEffectCloud} will begin to apply its effect to entities.
-     */
-    public static final Supplier<Key<BoundedValue<Integer>>> AREA_EFFECT_CLOUD_WAIT_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AREA_EFFECT_CLOUD_WAIT_TIME");
-
-    /**
-     * Represents the {@link Key} for whether an {@link ArmorStand}'s arms are
-     * visible.
-     */
-    public static final Supplier<Key<Value<Boolean>>> ARMOR_STAND_HAS_ARMS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ARMOR_STAND_HAS_ARMS");
-
-    /**
-     * Represents the {@link Key} for whether an {@link ArmorStand} has a
-     * visible base plate.
-     */
-    public static final Supplier<Key<Value<Boolean>>> ARMOR_STAND_HAS_BASE_PLATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ARMOR_STAND_HAS_BASE_PLATE");
-
-    /**
-     * Represents the {@link Key} for if an {@link ArmorStand} is a "marker" stand.
-     *
-     * <p>If {@code true}, the armor stand's bounding box is near
-     * impossible to see, and the armor stand can no longer be
-     * interacted with.</p>
-     */
-    public static final Supplier<Key<Value<Boolean>>> ARMOR_STAND_HAS_MARKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ARMOR_STAND_HAS_MARKER");
-
-    /**
-     * Represents the {@link Key} for whether an {@link ArmorStand} is small.
-     */
-    public static final Supplier<Key<Value<Boolean>>> ARMOR_STAND_IS_SMALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ARMOR_STAND_IS_SMALL");
-
-    /**
-     * Represents the {@link Key} for whether players are prevented from taking
-     * items from an equipment slot on an {@link ArmorStand}
-     */
-    public static final Supplier<Key<SetValue<EquipmentType>>> ARMOR_STAND_PLACING_DISABLED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ARMOR_STAND_PLACING_DISABLED");
-
-    /**
-     * Represents the {@link Key} for whether players are prevented from taking
-     * items from an equipment slot on an {@link ArmorStand}
-     */
-    public static final Supplier<Key<SetValue<EquipmentType>>> ARMOR_STAND_TAKING_DISABLED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ARMOR_STAND_TAKING_DISABLED");
-
-    /**
-     * Represents the {@link Key} for the type of {@link ArtType} shown by
-     * (usually) a {@link Painting}.
+     * The type of {@link ArtType} shown by {@link Painting}s.
      */
     public static final Supplier<Key<Value<ArtType>>> ART = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ART");
 
     /**
-     * Represents the {@link Key} for the attachment {@link Surface}
-     * of a button or lever.
+     * The attachment {@link Surface} of a button or lever {@link BlockState}
      */
     public static final Supplier<Key<Value<Surface>>> ATTACHMENT_SURFACE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ATTACHMENT_SURFACE");
 
     /**
-     * Represents the {@link Key} for the damage dealt by a
-     * {@link DamagingProjectile}, e.g. an {@link ArrowEntity}.
+     * The damage dealt by an {@link ArrowEntity} on impact.
      */
     public static final Supplier<Key<BoundedValue<Double>>> ATTACK_DAMAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ATTACK_DAMAGE");
 
     /**
-     * Represents the {@link Key} for the time of a {@link Ravager} is considered attacking.
+     * The time of a {@link Ravager} is considered attacking.
      */
     public static final Supplier<Key<Value<Integer>>> ATTACK_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ATTACK_TIME");
 
     /**
-     * Represents the {@link Key} for representing the {@link Axis} direction
-     * of a {@link BlockState}.
+     * The author of a {@link ItemTypes#WRITTEN_BOOK} {@link ItemStack}.
+     */
+    public static final Supplier<Key<Value<Text>>> AUTHOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AUTHOR");
+
+    /**
+     * The {@link Axis} direction of a {@link BlockState}.
      */
     public static final Supplier<Key<Value<Axis>>> AXIS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AXIS");
 
     /**
-     * Represents the {@link Key} for a {@link Banner}'s base {@link DyeColor}.
+     * The ticks until a {@link Ageable} turns into an adult.
      */
-    public static final Supplier<Key<Value<DyeColor>>> BANNER_BASE_COLOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BANNER_BASE_COLOR");
+    public static final Supplier<Key<BoundedValue<Integer>>> BABY_TICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BABY_TICKS");
 
     /**
-     * Represents the {@link Key} for a {@link Banner}'s patterns.
+     * The {@link BannerPatternLayer}s of a {@link Banner}.
      */
     public static final Supplier<Key<ListValue<BannerPatternLayer>>> BANNER_PATTERN_LAYERS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BANNER_PATTERN_LAYERS");
 
     /**
-     * Represents the {@link Key} for the width of the physical form of an
-     * {@link Entity}.
+     * The width of the physical form of an {@link Entity}.
      *
-     * <p>Together with {@link #HEIGHT} this defines the size of an
-     * {@link Entity}.</p>
+     * <p>Together with {@link #HEIGHT} and {@link #SCALE} this defines
+     * the size of an {@link Entity}.</p>
+     * Readonly
      */
     public static final Supplier<Key<BoundedValue<Double>>> BASE_SIZE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BASE_SIZE");
 
     /**
-     * Represents the {@link Key} for the base vehicle a passenger is riding
-     * at the moment. This may be different from {@link Keys#VEHICLE} as the
+     * The base vehicle a passenger is riding at the moment.
+     * This may be different from {@link Keys#VEHICLE} as the
      * vehicle an {@link Entity} is riding may itself be the passenger of
      * another vehicle.
+     * Readonly
      */
     public static final Supplier<Key<Value<Entity>>> BASE_VEHICLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BASE_VEHICLE");
 
     /**
-     * Represents the {@link Key} for a {@link Beacon}'s primary effect.
-     */
-    public static final Supplier<Key<Value<PotionEffectType>>> BEACON_PRIMARY_EFFECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BEACON_PRIMARY_EFFECT");
-
-    /**
-     * Represents the {@link Key} for a {@link Beacon}'s secondary effect.
-     */
-    public static final Supplier<Key<Value<PotionEffectType>>> BEACON_SECONDARY_EFFECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BEACON_SECONDARY_EFFECT");
-
-    /**
-     * Represents the {@link Key} for the {@link Living} who is being targeted by a
-     * {@link Guardian}.
+     * The target entity of a {@link Guardian} beam.
      */
     public static final Supplier<Key<Value<Living>>> BEAM_TARGET_ENTITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BEAM_TARGET_ENTITY");
 
     /**
-     * Represents the {@link Key} for a {@link EnderCrystal}'s beam target.
-     */
-    public static final Supplier<Key<Value<Vector3i>>> BEAM_TARGET_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BEAM_TARGET_POSITION");
-
-    /**
-     * Represents the {@link Key} for the pore sides
-     * of a {@link BlockTypes#BROWN_MUSHROOM_BLOCK} or
-     * {@link BlockTypes#RED_MUSHROOM_BLOCK} {@link BlockState}.
-     */
-    public static final Supplier<Key<SetValue<Direction>>> BIG_MUSHROOM_PORES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BIG_MUSHROOM_PORES");
-
-    /**
-     * Represents the {@link Key} for the {@link Direction#DOWN}
-     * pores side of a {@link BlockTypes#BROWN_MUSHROOM_BLOCK} or
-     * {@link BlockTypes#RED_MUSHROOM_BLOCK} {@link BlockState}.
-     */
-    public static final Supplier<Key<Value<Boolean>>> BIG_MUSHROOM_PORES_DOWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BIG_MUSHROOM_PORES_DOWN");
-
-    /**
-     * Represents the {@link Key} for the {@link Direction#EAST}
-     * pores side of a {@link BlockTypes#BROWN_MUSHROOM_BLOCK} or
-     * {@link BlockTypes#RED_MUSHROOM_BLOCK} {@link BlockState}.
-     */
-    public static final Supplier<Key<Value<Boolean>>> BIG_MUSHROOM_PORES_EAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BIG_MUSHROOM_PORES_EAST");
-
-    /**
-     * Represents the {@link Key} for the {@link Direction#NORTH}
-     * pores side of a {@link BlockTypes#BROWN_MUSHROOM_BLOCK} or
-     * {@link BlockTypes#RED_MUSHROOM_BLOCK} {@link BlockState}.
-     */
-    public static final Supplier<Key<Value<Boolean>>> BIG_MUSHROOM_PORES_NORTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BIG_MUSHROOM_PORES_NORTH");
-
-    /**
-     * Represents the {@link Key} for the {@link Direction#SOUTH}
-     * pores side of a {@link BlockTypes#BROWN_MUSHROOM_BLOCK} or
-     * {@link BlockTypes#RED_MUSHROOM_BLOCK} {@link BlockState}.
-     */
-    public static final Supplier<Key<Value<Boolean>>> BIG_MUSHROOM_PORES_SOUTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BIG_MUSHROOM_PORES_SOUTH");
-
-    /**
-     * Represents the {@link Key} for the {@link Direction#UP}
-     * pores side of a {@link BlockTypes#BROWN_MUSHROOM_BLOCK} or
-     * {@link BlockTypes#RED_MUSHROOM_BLOCK} {@link BlockState}.
-     */
-    public static final Supplier<Key<Value<Boolean>>> BIG_MUSHROOM_PORES_UP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BIG_MUSHROOM_PORES_UP");
-
-    /**
-     * Represents the {@link Key} for the {@link Direction#WEST}
-     * pores side of a {@link BlockTypes#BROWN_MUSHROOM_BLOCK} or
-     * {@link BlockTypes#RED_MUSHROOM_BLOCK} {@link BlockState}.
-     */
-    public static final Supplier<Key<Value<Boolean>>> BIG_MUSHROOM_PORES_WEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BIG_MUSHROOM_PORES_WEST");
-
-    /**
-     * Represents the {@link Key} for the temperature of a biome at a block location.
+     * The default temperature of a biome at a specific {@link Location}.
+     * For the exact block temperature see {@link #BLOCK_TEMPERATURE}.
+     * Readonly
      */
     public static final Supplier<Key<Value<Double>>> BIOME_TEMPERATURE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BIOME_TEMPERATURE");
 
     /**
-     * Represents the {@link Key} for the blast resistance of a block.
+     * The blast resistance of a {@link BlockState}.
+     * Readonly
      */
     public static final Supplier<Key<Value<Double>>> BLAST_RESISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BLAST_RESISTANCE");
 
     /**
-     * Represents the {@link Key} for the amount of light that is emitted by the
-     * surrounding blocks at a block location. The value scales normally from 0 to 1.
-     *
+     * The amount of light that is emitted by the surrounding blocks at a block {@link Location}.
+     * The value scales normally from 0 to 1.
      * <p>In vanilla minecraft is this value in steps of 1/15 from 0 to 1.</p>
+     * <p>For the skylight see {@link #SKY_LIGHT}.</p>
+     * Readonly
      */
-    public static final Supplier<Key<Value<Double>>> BLOCK_LUMINANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BLOCK_LUMINANCE");
+    public static final Supplier<Key<Value<Integer>>> BLOCK_LIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BLOCK_LIGHT");
 
     /**
-     * Represents the {@link Key} for the {@link BlockState} of a {@link BlockOccupiedMinecart} or {@link FallingBlock}.
+     * The {@link BlockState} of a {@link BlockOccupiedMinecart} or {@link FallingBlock}.
      */
     public static final Supplier<Key<Value<BlockState>>> BLOCK_STATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BLOCK_STATE");
 
     /**
-     * Represents the {@link Key} for if a {@link Boat} can move on land.
+     * The temperature at a specific {@link Location}.
+     * For the default biome temperature see {@link #BIOME_TEMPERATURE}.
+     * Readonly
      */
-    public static final Supplier<Key<Value<Boolean>>> BOAT_CAN_MOVE_ON_LAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BOAT_CAN_MOVE_ON_LAND");
+    public static final Supplier<Key<Value<Double>>> BLOCK_TEMPERATURE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BLOCK_TEMPERATURE");
 
     /**
-     * Represents the {@link Key} for the max speed of a {@link Boat}. In vanilla, this is 0.4
-     */
-    public static final Supplier<Key<BoundedValue<Double>>> BOAT_MAX_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BOAT_MAX_SPEED");
-
-    /**
-     * Represents the {@link Key} for the deceleration a {@link Boat} while it has {@link Keys#PASSENGERS}.
-     */
-    public static final Supplier<Key<BoundedValue<Double>>> BOAT_OCCUPIED_DECELERATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BOAT_OCCUPIED_DECELERATION");
-
-    /**
-     * Represents the {@link Key} for the deceleration a {@link Boat} while it does not have {@link Keys#PASSENGERS}.
-     */
-    public static final Supplier<Key<BoundedValue<Double>>> BOAT_UNOCCUPIED_DECELERATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BOAT_UNOCCUPIED_DECELERATION");
-
-    /**
-     * Represents the {@link Key} for the rotation of specific body parts.
+     * The rotation of specific body parts of a {@link ArmorStand} or {@link Living}.
      *
      * <p>This value provides a mapping, effectively combining the data
      * referenced by {@link #HEAD_ROTATION}, {@link #CHEST_ROTATION},
@@ -568,67 +413,46 @@ public final class Keys {
     public static final Supplier<Key<MapValue<BodyPart, Vector3d>>> BODY_ROTATIONS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BODY_ROTATIONS");
 
     /**
-     * Represents the {@link Key} for the author of a
-     * {@link ItemTypes#WRITTEN_BOOK}.
-     */
-    public static final Supplier<Key<Value<Text>>> BOOK_AUTHOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BOOK_AUTHOR");
-
-    /**
-     * Represents the {@link Key} for the content of a
-     * {@link ItemTypes#WRITTEN_BOOK}.
-     *
-     * <p>Use {@link Keys#PLAIN_BOOK_PAGES} if you wish to inspect the contents
-     * of a {@link ItemTypes#WRITABLE_BOOK}.</p>
-     */
-    public static final Supplier<Key<ListValue<Text>>> BOOK_PAGES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BOOK_PAGES");
-
-    /**
-     * Represents the {@link Key} for the {@link ServerBossBar} displayed to the client by a {@link Boss}.
+     * The {@link ServerBossBar} displayed to the client by a {@link Boss}.
+     * Readonly but mutable?
      */
     public static final Supplier<Key<Value<ServerBossBar>>> BOSS_BAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BOSS_BAR");
 
     /**
-     * Represents the {@link Key} for the {@link BlockType}s able to be broken
-     * by an {@link ItemStack}.
+     * The {@link BlockType}s able to be broken by an {@link ItemStack}.
      */
     public static final Supplier<Key<SetValue<BlockType>>> BREAKABLE_BLOCK_TYPES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BREAKABLE_BLOCK_TYPES");
 
     /**
-     * Represents the {@link Key} for the current breeder of an {@link Animal}, usually a {@link Player}.
+     * The current breeder of an {@link Animal}, usually a {@link Player}s UUID.
      */
     public static final Supplier<Key<Value<UUID>>> BREEDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BREEDER");
 
     /**
-     * Represents the {@link Key} for the breed time of an {@link Animal}.
+     * The ticks until an {@link Animal} can breed again. Also see {@link #CAN_BREED}.
      */
-    public static final Supplier<Key<Value<Integer>>> BREED_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BREED_TIME");
+    public static final Supplier<Key<Value<Integer>>> BREEDING_COOLDOWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BREEDING_COOLDOWN");
 
     /**
-     * Represents the {@link Key} for the amount of fuel left in a
-     * {@link BrewingStand}.
-     *
-     * <p>One {@link ItemTypes#BLAZE_POWDER} adds 20 fuel to the brewing
-     * stand.</p>
-     *
-     * <p>The fuel value corresponds with the number of batches of potions that
-     * can be brewed.</p>
+     * The burntime of an {@link ItemStack} fuel in a furnace.
+     * See {@link #FUEL} for the time
+     * Readonly
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> BREWING_STAND_FUEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BREWING_STAND_FUEL");
+    public static final Supplier<Key<Value<Integer>>> BURN_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BURN_TIME");
 
     /**
-     * Represents the {@link Key} for if an {@link Animal} can breed. In Vanilla, animals can breed if their {@link Keys#BREED_TIME} is less than
-     * or equal to 0.
+     * Whether an {@link Animal} can breed.
+     * In Vanilla, animals can breed if their {@link Keys#BREEDING_COOLDOWN} is equal to 0.
      */
     public static final Supplier<Key<Value<Boolean>>> CAN_BREED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CAN_BREED");
 
     /**
-     * Represents the {@link Key} for whether a {@link FallingBlock} can drop
-     * as an item.
+     * Whether a {@link FallingBlock} can drop as an item.
      */
     public static final Supplier<Key<Value<Boolean>>> CAN_DROP_AS_ITEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CAN_DROP_AS_ITEM");
 
     /**
-     * Represents the {@link Key} for whether a {@link Humanoid} can fly.
+     * Whether a {@link Humanoid} can fly.
      *
      * <p>For a {@link Player} this means they are able to toggle flight mode
      * by double-tapping the jump button.</p>
@@ -636,74 +460,79 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> CAN_FLY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CAN_FLY");
 
     /**
-     * Represents the {@link Key} for whether a {@link Living} entity may
-     * change blocks. This mostly applies to {@link Enderman} or
+     * Whether a {@link Living} entity may change blocks.
+     * This mostly applies to {@link Enderman} or
      * {@link Creeper}s, but also to some projectiles like {@link FireballEntity}s or {@link WitherSkull}.
      */
     public static final Supplier<Key<Value<Boolean>>> CAN_GRIEF = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CAN_GRIEF");
 
     /**
-     * Represents the {@link Key} for whether a {@link FallingBlock} will
-     * damage an {@link Entity} it lands on.
+     * The set of harvestable {@link BlockType}s with an {@link ItemStack}. {@link #EFFICIENCY}
+     * Readonly
+     */
+    public static final Supplier<Key<Value<Set<BlockType>>>> CAN_HARVEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CAN_HARVEST");
+
+    /**
+     * Whether a {@link FallingBlock} will damage an {@link Entity} it lands on.
      */
     public static final Supplier<Key<Value<Boolean>>> CAN_HURT_ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CAN_HURT_ENTITIES");
 
     /**
-     * Represents the {@link Key} for if a {@link Raider} can join a raid.
+     * Whether a {@link Raider} can join a raid.
      */
     public static final Supplier<Key<Value<Boolean>>> CAN_JOIN_RAID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CAN_JOIN_RAID");
 
     /**
-     * Represents the {@link Key} for whether a {@link FallingBlock} will place
-     * itself upon landing.
+     * Whether a {@link Boat} can move on land.
+     */
+    public static final Supplier<Key<Value<Boolean>>> CAN_MOVE_ON_LAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CAN_MOVE_ON_LAND");
+
+    /**
+     * Whether a {@link FallingBlock} will place itself upon landing.
      */
     public static final Supplier<Key<Value<Boolean>>> CAN_PLACE_AS_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CAN_PLACE_AS_BLOCK");
 
     /**
-     * Represents the {@link Key} for the current casting time of a {@link Spellcaster}.
+     * The current casting time of a {@link Spellcaster}.
      */
     public static final Supplier<Key<Value<Integer>>> CASTING_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CASTING_TIME");
 
     /**
-     * Represents the {@link Key} for the type of a {@link Cat}.
+     * The type of a {@link Cat}.
      */
     public static final Supplier<Key<Value<CatType>>> CAT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CAT_TYPE");
 
     /**
-     * Represents the {@link Key} for the attachment of a {@link BlockTypes#CHEST}
-     * or {@link BlockTypes#TRAPPED_CHEST}.
+     * The attachment of a {@link BlockTypes#CHEST} or {@link BlockTypes#TRAPPED_CHEST} {@link BlockState}.
      */
     public static final Supplier<Key<Value<ChestAttachmentType>>> CHEST_ATTACHMENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CHEST_ATTACHMENT");
 
     /**
-     * Represents the {@link Key} for the rotation of the
-     * {@link BodyParts#CHEST}.
+     * The rotation of the {@link BodyParts#CHEST}.
      */
     public static final Supplier<Key<Value<Vector3d>>> CHEST_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CHEST_ROTATION");
 
     /**
-     * Represents the {@link Key} for the {@link Color} of an {@link ItemStack}.
+     * The {@link Color} of an {@link ItemStack}
      * <p>
-     *     e.g. {@link ItemTypes#LEATHER_CHESTPLATE} or {@link ItemTypes#POTION}
+     *     e.g. {@link ItemTypes#LEATHER_CHESTPLATE} or {@link ItemTypes#POTION} custom color
      * </p>
+     * or an {@link AreaEffectCloud}.
      */
     public static final Supplier<Key<Value<Color>>> COLOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "COLOR");
 
     /**
-     * Represents a key for the stored command, mostly related to
-     * {@link CommandBlock}s and {@link CommandBlockMinecart}s.
+     * A command stored in a {@link CommandBlock} or {@link CommandBlockMinecart}.
      */
     public static final Supplier<Key<Value<String>>> COMMAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "COMMAND");
 
     /**
-     * Represents the {@link Key} for representing the {@link ComparatorMode}
-     * of a {@link BlockState}.
+     * The {@link ComparatorMode} of a {@link BlockTypes#COMPARATOR} {@link BlockState}.
      */
     public static final Supplier<Key<Value<ComparatorMode>>> COMPARATOR_MODE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "COMPARATOR_MODE");
 
     /**
-     * Represents the {@link Key} for representing the connected directions
-     * of a {@link BlockState}.
+     * The connected directions of a {@link BlockState}.
      * <p>
      *     e.g. {@link BlockTypes#GLASS_PANE}, {@link BlockTypes#IRON_BARS}, {@link BlockTypes#CHEST},
      * </p>
@@ -711,54 +540,31 @@ public final class Keys {
     public static final Supplier<Key<SetValue<Direction>>> CONNECTED_DIRECTIONS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CONNECTED_DIRECTIONS");
 
     /**
-     * Represents the {@link Key} for representing the "connected to the east"
-     * of a {@link BlockState}.
+     * The container {@link ItemType} of an {@link ItemStack}.
+     * e.g. {@link ItemTypes#BUCKET} for a {@link ItemTypes#WATER_BUCKET} stack.
+     * Readonly
      */
-    public static final Supplier<Key<Value<Boolean>>> CONNECTED_EAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CONNECTED_EAST");
+    public static final Supplier<Key<Value<ItemType>>> CONTAINER_ITEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CONTAINER_ITEM");
 
     /**
-     * Represents the {@link Key} for representing the "connected to the north"
-     * state of a {@link BlockState}.
-     */
-    public static final Supplier<Key<Value<Boolean>>> CONNECTED_NORTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CONNECTED_NORTH");
-
-    /**
-     * Represents the {@link Key} for representing the "connected to the south"
-     * state of a {@link BlockState}.
-     */
-    public static final Supplier<Key<Value<Boolean>>> CONNECTED_SOUTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CONNECTED_SOUTH");
-
-    /**
-     * Represents the {@link Key} for representing the "connected to up"
-     * state of a {@link BlockState}.
-     */
-    public static final Supplier<Key<Value<Boolean>>> CONNECTED_UP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CONNECTED_UP");
-
-    /**
-     * Represents the {@link Key} for representing the "connected to the west"
-     * state of a {@link BlockState}.
-     */
-    public static final Supplier<Key<Value<Boolean>>> CONNECTED_WEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CONNECTED_WEST");
-
-    /**
-     * Represents the {@link Key} for the amount of ticks a {@link Hopper} has
-     * to cool down before transferring the next item.
+     * The amount of ticks a {@link Hopper} has to wait before transferring the next item. (in Vanilla this is 8 ticks)
+     * or
+     * The amount of ticks a {@link EndGateway} has to wait for the next teleportation.
      */
     public static final Supplier<Key<BoundedValue<Integer>>> COOLDOWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "COOLDOWN");
 
     /**
-     * Represents the {@link Key} for the creator, usually of an {@link Entity}. It is up to the implementation to define.
+     * The creator, usually of an {@link Entity}. It is up to the implementation to define.
      */
     public static final Supplier<Key<Value<UUID>>> CREATOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CREATOR");
 
     /**
-     * Represents the {@link Key} of the current {@link SpellType} a {@link Spellcaster} is casting.
+     * The current {@link SpellType} a {@link Spellcaster} is casting.
      */
     public static final Supplier<Key<Value<SpellType>>> CURRENT_SPELL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CURRENT_SPELL");
 
     /**
-     * Represents the {@link Key} for the damage dealt towards entities of a
-     * specific {@link EntityType}.
+     * The damage dealt towards entities of a specific {@link EntityType} by a {@link DamagingProjectile}.
      *
      * <p>Note that in events, the damage defined for the provided
      * {@link EntityType} will take priority over the "default" damage as
@@ -770,48 +576,48 @@ public final class Keys {
     public static final Supplier<Key<MapValue<EntityType<?>, Double>>> CUSTOM_ATTACK_DAMAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CUSTOM_ATTACK_DAMAGE_MAPPING");
 
     /**
-     * Represents the {@link Key} for how much damage a {@link FallingBlock}
-     * deals to {@link Living} entities it hits.
+     * The damage absorbed by an armor {@link ItemStack}.
+     * Readonly
+     */
+    public static final Supplier<Key<Value<Integer>>> DAMAGE_ABSORPTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DAMAGE_ABSORPTION");
+
+    /**
+     * How much damage a {@link FallingBlock} deals to {@link Living} entities
+     * it hits per block fallen.
      *
      * <p>This damage is capped by {@link #MAX_FALL_DAMAGE}.</p>
      */
     public static final Supplier<Key<BoundedValue<Double>>> DAMAGE_PER_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DAMAGE_PER_BLOCK");
 
     /**
-     * Represents the {@link Key} for representing at which distance a {@link BlockState}
-     * will decay. This usually applies to leaves, for example {@link BlockTypes#OAK_LEAVES}.
+     * The distance at which a {@link BlockState} will decay.
+     * This usually applies to leaves, for example {@link BlockTypes#OAK_LEAVES}.
      */
     public static final Supplier<Key<BoundedValue<Integer>>> DECAY_DISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DECAY_DISTANCE");
 
     /**
-     * Represents the {@link Key} for the delay on a redstone repeater.
+     * The modifier to {@link Keys#VELOCITY} of a {@link Minecart} while derailed.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DELAY");
+    public static final Supplier<Key<Value<Vector3d>>> DERAILED_VELOCITY_MODIFIER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DERAILED_VELOCITY_MODIFIER");
 
     /**
-     * Represents the {@link Key} for representing the despawn delay of a {@link Item} or {@link TraderLlama}.
+     * The despawn delay (in ticks) of a {@link Item}, {@link Endermite}, {@link Weather} {@link TraderLlama} or.
      */
     public static final Supplier<Key<BoundedValue<Integer>>> DESPAWN_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DESPAWN_DELAY");
 
     /**
-     * Represents the {@link Key} for the detonator of a {@link PrimedTNT}.
+     * The detonator of a {@link PrimedTNT}.
      */
     public static final Supplier<Key<Value<Living>>> DETONATOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DETONATOR");
 
     /**
-     * Represents the {@link Key} for representing the {@link Direction} a {@link BlockState}, {@link Hanging}, or {@link Shulker} is facing or the
+     * The {@link Direction} a {@link BlockState}, {@link Hanging}, or {@link Shulker} is facing or the
      * heading of a {@link ShulkerBullet}.
      */
     public static final Supplier<Key<Value<Direction>>> DIRECTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DIRECTION");
 
     /**
-     * Represents the {@link Key} for displaying the chest of a {@link PackHorse}.
-     */
-    public static final Supplier<Key<Value<Boolean>>> DISPLAY_CHEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DISPLAY_CHEST");
-
-    /**
-     * Represents the {@link Key} for the display name of an {@link Entity},
-     * {@link ItemStack} or {@link BlockEntity}.
+     * The display name of an {@link Entity}, {@link ItemStack} or {@link BlockEntity}.
      *
      * <p>On a {@link ItemTypes#WRITTEN_BOOK} item this will also set the title
      * of the book.</p>
@@ -819,31 +625,7 @@ public final class Keys {
     public static final Supplier<Key<Value<Text>>> DISPLAY_NAME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DISPLAY_NAME");
 
     /**
-     * Represents the {@link Key} for representing the "got fish" state of a {@link Dolphin}.
-     *
-     * <p>
-     *     Dolphins will navigate to a treasure (if a structure that provides one is nearby)
-     *     if they have been given a fish.
-     * </p>
-     */
-    public static final Supplier<Key<Value<Boolean>>> DOLPHIN_DOES_GOT_FISH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DOLPHIN_DOES_GOT_FISH");
-
-    /**
-     * Represents the {@link Key} for representing the "moisture" state of a {@link Dolphin}.
-     *
-     * <p>
-     *     Vanilla sets the dolphin's skin moisture to 2400 so long as the entity
-     *     is in water, being rained on, or in a bubble column. If not, the dolphin
-     *     will loose 1 moisture per tick. Once this value is 0 or below, the dolphin
-     *     will be damaged via {@link DamageSources#DRYOUT} with a value of 1 per tick
-     *     until death.
-     * </p>
-     */
-    public static final Supplier<Key<Value<Integer>>> DOLPHIN_SKIN_MOISTURE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DOLPHIN_SKIN_MOISTURE");
-
-    /**
-     * Represents the {@link Key} for representing the dominant {@link HandPreference}
-     * of a {@link Living} entity.
+     * The dominant {@link HandPreference} of an {@link Agent} entity.
      *
      * <p><em>NOTE:</em> For {@link Player}s is this key read-only, the
      * {@link HandPreference} of a player can not be changed server-side.</p>
@@ -851,24 +633,41 @@ public final class Keys {
     public static final Supplier<Key<Value<HandPreference>>> DOMINANT_HAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DOMINANT_HAND");
 
     /**
-     * Represents the {@link Key} for representing if the exact teleport location
-     * should be used with a {@link EndGateway}.
+     * Whether exact teleport location should be used with a {@link EndGateway}.
      */
     public static final Supplier<Key<Value<Boolean>>> DO_EXACT_TELEPORT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DO_EXACT_TELEPORT");
 
     /**
-     * Represents the {@link Key} for the color of a dyeable block, item or
-     * entity.
+     * The remaining duration (in ticks) of an {@link AreaEffectCloud}.
+     */
+    public static final Supplier<Key<BoundedValue<Integer>>> DURATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DURATION");
+
+    /**
+     * The amount of ticks the duration of an {@link AreaEffectCloud}
+     * is increased or reduced when it applies its effect.
+     */
+    public static final Supplier<Key<BoundedValue<Integer>>> DURATION_ON_USE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DURATION_ON_USE");
+
+    /**
+     * The color of a dyeable {@link BlockState}, {@link ItemStack} or entity like {@link Cat}s.
+     * or
+     * The base {@link DyeColor} of a {@link Banner} or {@link TropicalFish}.
      */
     public static final Supplier<Key<Value<DyeColor>>> DYE_COLOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DYE_COLOR");
 
     /**
-     * Represents the {@link Key} for the time a {@link Panda} has been eating (in ticks)
+     * The time a {@link Panda} has been eating (in ticks)
      */
     public static final Supplier<Key<Value<Integer>>> EATING_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EATING_TIME");
 
     /**
-     * Represents the {@link Key} for the time until a {@link Chicken} lays an {@link ItemTypes#EGG}.
+     * The efficiency of an {@link ItemStack} tool. Affects mining speed of supported materials. {@link #CAN_HARVEST}
+     * Readonly
+     */
+    public static final Supplier<Key<Value<Double>>> EFFICIENCY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EFFICIENCY");
+
+    /**
+     * The time (in ticks) until a {@link Chicken} lays an {@link ItemTypes#EGG}.
      *
      * <p>
      *     Vanilla will calculate the egg timer by taking a random value between
@@ -880,25 +679,20 @@ public final class Keys {
     public static final Supplier<Key<Value<Integer>>> EGG_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EGG_TIME");
 
     /**
-     * Represents the {@link Key} for representing the age of
-     * an {@link EndGateway}.
+     * The age (in ticks) of an {@link EndGateway}
      */
     public static final Supplier<Key<Value<Long>>> END_GATEWAY_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "END_GATEWAY_AGE");
 
     /**
-     * Represents the {@link Key} for representing the teleport cooldown of
-     * an {@link EndGateway}.
-     */
-    public static final Supplier<Key<Value<Integer>>> END_GATEWAY_TELEPORT_COOLDOWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "END_GATEWAY_TELEPORT_COOLDOWN");
-
-    /**
-     * Represents the {@link EquipmentType} that the target inventory supports.
+     * The {@link EquipmentType} that the target inventory supports. This usually applies to {@link EquipmentSlot}s.
+     * or
+     * The {@link EquipmentType} of an {@link ItemStack}
+     * Readonly
      */
     public static final Supplier<Key<Value<EquipmentType>>> EQUIPMENT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EQUIPMENT_TYPE");
 
     /**
-     * Represents the {@link Key} for the current level of exhaustion of a
-     * {@link Humanoid}.
+     * The current level of exhaustion of a {@link Humanoid}.
      *
      * <p>When the exhaustion level reaches 0, saturation is usually diminished
      * such that saturation is decreased and then exhaustion is reset to the
@@ -908,78 +702,66 @@ public final class Keys {
     public static final Supplier<Key<BoundedValue<Double>>> EXHAUSTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXHAUSTION");
 
     /**
-     * Represents the {@link Key} for representing the exit
-     * portal {@link Vector3i location} of an {@link EndGateway}.
-     */
-    public static final Supplier<Key<Value<Vector3d>>> EXIT_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXIT_POSITION");
-
-    /**
-     * Represents the {@link Key} for the amount of experience a {@link Player} has or an {@link ExperienceOrb} contains.
+     * The amount of experience a {@link Player} has or an {@link ExperienceOrb} contains.
      */
     public static final Supplier<Key<BoundedValue<Integer>>> EXPERIENCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXPERIENCE");
 
     /**
-     * Represents the {@link Key} for the total experience a {@link Player}
-     * requires to advance from his current level to the next one.
+     * The total experience a {@link Player} requires to advance from his current level to the next one.
+     * Readonly
      */
     public static final Supplier<Key<BoundedValue<Integer>>> EXPERIENCE_FROM_START_OF_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXPERIENCE_FROM_START_OF_LEVEL");
 
     /**
-     * Represents the {@link Key} for the current level a {@link Player} has.
+     * The current level a {@link Player} has.
      */
     public static final Supplier<Key<BoundedValue<Integer>>> EXPERIENCE_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXPERIENCE_LEVEL");
 
     /**
-     * Represents the {@link Key} for the amount of experience a {@link Player}
-     * has collected towards the next level.
+     * The amount of experience a {@link Player} has collected towards the next level.
      */
     public static final Supplier<Key<BoundedValue<Integer>>> EXPERIENCE_SINCE_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXPERIENCE_SINCE_LEVEL");
 
     /**
-     * Represents the {@link Key} for how long an {@link Endermite}, {@link Item}, or {@link Weather} will last before expiring.
-     */
-    public static final Supplier<Key<Value<Duration>>> EXPIRATION_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXPIRATION_DELAY");
-
-    /**
-     * Represents the {@link Key} for the radius of the {@link Explosion} to
-     * be created by detonating an {@link Explosive}.
+     * The radius of the {@link Explosion} to be created by detonating an {@link Explosive}.
      *
      * <p>May be absent if the explosion radius is unknown because it is either
      * determined randomly at the time of the explosion or computed from the
      * context in which the {@link Explosive} explodes.</p>
      */
-    public static final Supplier<Key<BoundedValue<Double>>> EXPLOSION_RADIUS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXPLOSION_RADIUS");
+    public static final Supplier<Key<BoundedValue<Integer>>> EXPLOSION_RADIUS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXPLOSION_RADIUS");
 
     /**
-     * Represents the {@link Key} for the eye height of a entity.
+     * The eye height of an {@link Entity}.
+     * Readonly
      */
     public static final Supplier<Key<Value<Double>>> EYE_HEIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EYE_HEIGHT");
 
     /**
-     * Represents the {@link Key} for the eye position of a entity.
+     * The eye position of an {@link Entity}.
+     * Readonly
      */
     public static final Supplier<Key<Value<Vector3d>>> EYE_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EYE_POSITION");
 
     /**
-     * Represents the {@link Key} for the distance an entity has
-     * fallen.
+     * The distance an {@link Living} has fallen.
      */
     public static final Supplier<Key<BoundedValue<Double>>> FALL_DISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FALL_DISTANCE");
 
     /**
-     * Represents the {@link Key} for the amount of ticks a {@link FallingBlock} has been falling for.
+     * The amount of ticks a {@link FallingBlock} has been falling for.
      */
     public static final Supplier<Key<Value<Integer>>> FALL_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FALL_TIME");
 
     /**
-     * Represents the {@link Key} for the {@link FireworkEffect}s of a
-     * {@link ItemTypes#FIREWORK_STAR}, {@link ItemTypes#FIREWORK_ROCKET} or a
+     * The {@link FireworkEffect}s of a
+     * {@link ItemTypes#FIREWORK_STAR}, {@link ItemTypes#FIREWORK_ROCKET} {@link ItemStack} or a
      * {@link FireworkRocket}.
      */
     public static final Supplier<Key<ListValue<FireworkEffect>>> FIREWORK_EFFECTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FIREWORK_EFFECTS");
 
     /**
-     * Represents the {@link Key} for the flight duration of a firework.
+     * The flight duration of a {@link FireworkRocket}
      *
      * <p>The duration is tiered and will stay partially random. A rocket will
      * fly for roughly {@code modifier * 10 + (random number from 0 to 13)}
@@ -988,54 +770,50 @@ public final class Keys {
     public static final Supplier<Key<BoundedValue<Integer>>> FIREWORK_FLIGHT_MODIFIER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FIREWORK_FLIGHT_MODIFIER");
 
     /**
-     * Represents the {@link Key} for the delay in ticks until the
-     * {@link Entity} will be damaged by the fire.
+     * The delay in ticks until the {@link Entity} will be damaged by the fire.
      */
     public static final Supplier<Key<BoundedValue<Integer>>> FIRE_DAMAGE_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FIRE_DAMAGE_DELAY");
 
     /**
-     * Represents the {@link Key} for the amount of ticks an
-     * {@link Entity} is still burning.
+     * The amount of ticks an {@link Entity} is still burning.
      */
     public static final Supplier<Key<BoundedValue<Integer>>> FIRE_TICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FIRE_TICKS");
 
     /**
-     * Represents the {@link Key} for the time a {@link Player} first played
-     * on the Server.
+     * The time a {@link Player} first played on the Server.
      */
     public static final Supplier<Key<Value<Instant>>> FIRST_DATE_PLAYED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FIRST_DATE_PLAYED");
 
     /**
-     * Represents the {@link Key} for a {@link Fox fox's} first trusted {@link UUID}, usually a {@link Player}.
+     * A {@link Fox fox's} first trusted {@link UUID}, usually a {@link Player}.
      */
     public static final Supplier<Key<Value<UUID>>> FIRST_TRUSTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FIRST_TRUSTED");
 
     /**
-     * Represents the {@link Key} for representing the
-     * {@link FluidStackSnapshot} contained within an item container. Item
-     * containers may include buckets and other mod added items.
+     * The {@link FluidStackSnapshot} contained within an item container.
+     * Item containers may include buckets and other mod added items.
+     * See {@link #CONTAINER_ITEM}
      */
     public static final Supplier<Key<Value<FluidStackSnapshot>>> FLUID_ITEM_STACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FLUID_ITEM_STACK");
 
     /**
-     * Represents the {@link Key} for representing the "fluid level" state
-     * of a {@link BlockState}.
+     * The fluid level of a liquid {@link BlockState}.
      */
     public static final Supplier<Key<BoundedValue<Integer>>> FLUID_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FLUID_LEVEL");
 
     /**
-     * Represents the {@link Key} for representing the directional tank
-     * information.
+     * The directional tank information.
+     * TODO dataholder? cauldron blockstate? modded?
      */
     public static final Supplier<Key<MapValue<Direction, List<FluidStackSnapshot>>>> FLUID_TANK_CONTENTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FLUID_TANK_CONTENTS");
 
     /**
-     * Represents the {@link Key} for the speed at which an entity flies.
+     * The speed at which an {@link Player} flies.
      */
     public static final Supplier<Key<Value<Double>>> FLYING_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FLYING_SPEED");
 
     /**
-     * Represents the {@link Key} for the food level of a {@link Humanoid}.
+     * The food level of a {@link Humanoid}.
      *
      * <p>For a {@link Humanoid}, food level has health effects, depending on game difficulty and
      * hunger levels. If the food level is high enough, the humanoid may heal. If the food level is at 0,
@@ -1044,54 +822,125 @@ public final class Keys {
     public static final Supplier<Key<BoundedValue<Integer>>> FOOD_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FOOD_LEVEL");
 
     /**
-     * Represents the {@link Key} for the type of a {@link Fox}.
+     * The type of a {@link Fox}.
      */
     public static final Supplier<Key<Value<FoxType>>> FOX_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FOX_TYPE");
 
     /**
-     * Represents the {@link Key} for the modifier to {@link Keys#VELOCITY} of a {@link Minecart} while airborne.
+     * Represents the {@link Key} for the amount of fuel left in a {@link BrewingStand} or {@link FurnaceBlockEntity} or {@link FurnaceMinecart}
+     *
+     * <p>One {@link ItemTypes#BLAZE_POWDER} adds 20 fuel to the brewing stand.</p>
+     * <p>The fuel value corresponds with the number of batches of potions that can be brewed.</p>
+     *
+     * <p>See {@link #BURN_TIME} for the burn time added by a fuel {@link ItemStack} to a furnace</p>
      */
-    public static final Supplier<Key<Value<Duration>>> FURNACE_MINECART_FUEL_DURATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MINECART_FUEL_DURATION");
+    public static final Supplier<Key<BoundedValue<Integer>>> FUEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FUEL");
 
     /**
-     * Represents the {@link Key} for the time a {@link FusedExplosive}'s fuse
-     * will burn before the explosion.
+     * The time (in ticks) a {@link FusedExplosive}'s fuse will burn before the explosion.
      */
     public static final Supplier<Key<Value<Integer>>> FUSE_DURATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FUSE_DURATION");
 
     /**
-     * Represents the {@link Key} for the {@link GameMode} a {@link Humanoid}
-     * has.
+     * The {@link GameMode} a {@link Humanoid} has.
      */
     public static final Supplier<Key<Value<GameMode>>> GAME_MODE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "GAME_MODE");
 
     /**
-     * Represents the {@link Key} for the player represented by a
-     * {@link BlockTypes#PLAYER_HEAD} (and {@link BlockTypes#PLAYER_WALL_HEAD})
-     * block or a {@link ItemTypes#PLAYER_HEAD} item stack.
+     * The player represented by a
+     * {@link BlockTypes#PLAYER_HEAD} (and {@link BlockTypes#PLAYER_WALL_HEAD}) {@link BlockState}
+     * or a {@link ItemTypes#PLAYER_HEAD} {@link ItemStack}.
      */
     public static final Supplier<Key<Value<GameProfile>>> GAME_PROFILE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "GAME_PROFILE");
 
     /**
-     * Represents the {@link Key} for the generation of a
-     * {@link ItemTypes#WRITTEN_BOOK}. Depending on the book's generation
-     * it may be impossible to copy it.
+     * The generation of a {@link ItemTypes#WRITTEN_BOOK} {@link ItemStack}.
+     * Depending on the book's generation it may be impossible to copy it.
      */
     public static final Supplier<Key<BoundedValue<Integer>>> GENERATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "GENERATION");
 
     /**
-     * Represents the {@link Key} for representing the "growth stage" state
-     * of a {@link BlockState}.
+     * The "growth stage" state of a {@link BlockState}.
+     * e.g. {@link BlockTypes#CACTUS} or {@link BlockTypes#WHEAT} etc.
      */
     public static final Supplier<Key<BoundedValue<Integer>>> GROWTH_STAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "GROWTH_STAGE");
 
     /**
-     * Represents the {@link Key} for the hardness of something, usually a block.
+     * The hardness of a {@link BlockState}s {@link BlockType}.
+     * Readonly
      */
     public static final Supplier<Key<BoundedValue<Double>>> HARDNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HARDNESS");
 
     /**
-     * Represents the {@link Key} for the rotation of a {@link Living Living's} head.
+     * Whether an {@link ArmorStand}'s arms are visible.
+     */
+    public static final Supplier<Key<Value<Boolean>>> HAS_ARMS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HAS_ARMS");
+
+    /**
+     * Whether an {@link ArmorStand} has a visible base plate.
+     */
+    public static final Supplier<Key<Value<Boolean>>> HAS_BASE_PLATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HAS_BASE_PLATE");
+
+    /**
+     * Whether a {@link PackHorse} has a chest.
+     */
+    public static final Supplier<Key<Value<Boolean>>> HAS_CHEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HAS_CHEST");
+
+    /**
+     *Whether a {@link Turtle} currently has an egg.
+     */
+    public static final Supplier<Key<Value<Boolean>>> HAS_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HAS_EGG");
+
+    /**
+     * Whether a {@link Dolphin} has a fish.
+     * <p>
+     *     Dolphins will navigate to a treasure (if a structure that provides one is nearby)
+     *     if they have been given a fish.
+     * </p>
+     */
+    public static final Supplier<Key<Value<Boolean>>> HAS_FISH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HAS_FISH");
+
+    /**
+     * Whether an {@link ArmorStand} is a "marker" stand.
+     *
+     * <p>If {@code true}, the armor stand's bounding box is near
+     * impossible to see, and the armor stand can no longer be
+     * interacted with.</p>
+     */
+    public static final Supplier<Key<Value<Boolean>>> HAS_MARKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HAS_MARKER");
+
+    /**
+     * Whether a giant mushroom {@link BlockState} has pores on the {@link Direction#DOWN} direction. See {@link #PORES}.
+     */
+    public static final Supplier<Key<Value<Boolean>>> HAS_PORES_DOWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HAS_PORES_DOWN");
+
+    /**
+     * Whether a giant mushroom {@link BlockState} has pores on the {@link Direction#EAST} direction. See {@link #PORES}.
+     */
+    public static final Supplier<Key<Value<Boolean>>> HAS_PORES_EAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HAS_PORES_EAST");
+
+    /**
+     * Whether a giant mushroom {@link BlockState} has pores on the {@link Direction#NORTH} direction. See {@link #PORES}.
+     */
+    public static final Supplier<Key<Value<Boolean>>> HAS_PORES_NORTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HAS_PORES_NORTH");
+
+    /**
+     * Whether a giant mushroom {@link BlockState} has pores on the {@link Direction#SOUTH} direction. See {@link #PORES}.
+     */
+    public static final Supplier<Key<Value<Boolean>>> HAS_PORES_SOUTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HAS_PORES_SOUTH");
+
+    /**
+     * Whether a giant mushroom {@link BlockState} has pores on the {@link Direction#UP} direction. See {@link #PORES}.
+     */
+    public static final Supplier<Key<Value<Boolean>>> HAS_PORES_UP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HAS_PORES_UP");
+
+    /**
+     * Whether a giant mushroom {@link BlockState} has pores on the {@link Direction#WEST} direction. See {@link #PORES}.
+     */
+    public static final Supplier<Key<Value<Boolean>>> HAS_PORES_WEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HAS_PORES_WEST");
+
+    /**
+     * The rotation of a {@link Living}'s or {@link ArmorStand}'s head.
      *
      * <p>The format of the rotation is represented by:</p>
      *
@@ -1105,127 +954,126 @@ public final class Keys {
     public static final Supplier<Key<Value<Vector3d>>> HEAD_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HEAD_ROTATION");
 
     /**
-     * Represents the {@link Key} for the {@link EnderCrystal} currently healing an {@link EnderDragon}.
+     * The {@link EnderCrystal} currently healing an {@link EnderDragon}.
      */
     public static final Supplier<Key<Value<EnderCrystal>>> HEALING_CRYSTAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HEALING_CRYSTAL");
 
     /**
-     * Represents the {@link Key} for a {@link Living}'s current health.
+     * A {@link Living}'s or {@link EnderCrystal}'s current health.
      *
      * <p>The range of the health depends on the object on which this
      * method is defined. For {@link Player Players} in Minecraft, the nominal range is
      * between 0 and 20, inclusive, but the range can be adjusted.</p>
      *
-     * <p>Convention dictates that health does not follow below 0 but this
+     * <p>Convention dictates that health does not fall below 0 but this
      * convention may be broken.</p>
      */
     public static final Supplier<Key<BoundedValue<Double>>> HEALTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HEALTH");
 
     /**
-     * Represents the {@link Key} for how much health a half-heart on a
-     * {@link Player}'s GUI will stand for.
+     * How much health a half-heart on a {@link Player}'s GUI will stand for.
+     * TODO wrong javadocs @gabizou?
      */
     public static final Supplier<Key<BoundedValue<Double>>> HEALTH_SCALE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HEALTH_SCALE");
 
     /**
-     * Represents the {@link Key} for the height of the physical form of an
-     * {@link Entity}.
+     * The height of the physical form of an {@link Entity}.
      *
-     * <p>Together with {@link #BASE_SIZE} this defines the size of an
+     * <p>Together with {@link #BASE_SIZE} and {@link #SCALE} this defines the size of an
      * {@link Entity}.</p>
+     * Readonly
      */
     public static final Supplier<Key<BoundedValue<Double>>> HEIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HEIGHT");
 
     /**
-     * Represents the {@link Key} for the hidden {@link PandaGene gene} of a {@link Panda}.
+     * The {@link ItemType} a {@link BlockState} represents.
+     * Readonly
+     */
+    public static final Supplier<Key<Value<ItemType>>> HELD_ITEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HELD_ITEM");
+
+    /**
+     * The hidden {@link PandaGene gene} of a {@link Panda}.
      */
     public static final Supplier<Key<Value<PandaGene>>> HIDDEN_GENE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HIDDEN_GENE");
 
     /**
-     * Represents the {@link Key} for representing the "attributes hidden"
-     * state of an {@link ItemStack}.
+     * Whether the attributes of an {@link ItemStack} are hidden.
      */
     public static final Supplier<Key<Value<Boolean>>> HIDE_ATTRIBUTES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HIDE_ATTRIBUTES");
 
     /**
-     * Represents the {@link Key} for representing the "can destroy hidden"
-     * state of an {@link ItemStack}.
+     * Whether the {@link #BREAKABLE_BLOCK_TYPES} of an {@link ItemStack} are hidden.
      */
     public static final Supplier<Key<Value<Boolean>>> HIDE_CAN_DESTROY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HIDE_CAN_DESTROY");
 
     /**
-     * Represents the {@link Key} for representing the "can place hidden"
-     * state of an {@link ItemStack}.
+     * Whether the {@link #PLACEABLE_BLOCK_TYPES} of an {@link ItemStack} are hidden.
      */
     public static final Supplier<Key<Value<Boolean>>> HIDE_CAN_PLACE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HIDE_CAN_PLACE");
 
     /**
-     * Represents the {@link Key} for representing the "enchantments hidden"
-     * state of an {@link ItemStack}.
+     * Whether the {@link #APPLIED_ENCHANTMENTS} of an {@link ItemStack} are hidden.
      */
     public static final Supplier<Key<Value<Boolean>>> HIDE_ENCHANTMENTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HIDE_ENCHANTMENTS");
 
     /**
-     * Represents the {@link Key} for representing the "miscellaneous hidden"
-     * state of an {@link ItemStack}.
+     * Whether miscellaneous values of an {@link ItemStack} are hidden.
+     * e.g. potion effects or shield pattern info
      */
     public static final Supplier<Key<Value<Boolean>>> HIDE_MISCELLANEOUS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HIDE_MISCELLANEOUS");
 
     /**
-     * Represents the {@link Key} for representing the "unbreakable hidden"
-     * state of an {@link ItemStack}.
+     * Whether {@link #IS_UNBREAKABLE} state of an {@link ItemStack} is hidden.
      */
     public static final Supplier<Key<Value<Boolean>>> HIDE_UNBREAKABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HIDE_UNBREAKABLE");
 
     /**
-     * Represents the {@link Key} for representing the {@link Hinge}
-     * of a {@link BlockState}.
+     * The {@link Hinge} of a door {@link BlockState}.
      */
     public static final Supplier<Key<Value<Hinge>>> HINGE_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HINGE_POSITION");
 
     /**
-     * Represents the {@link Key} for the color of a {@link Horse}.
+     * The {@link Vector3i position} where a {@link Turtle} lays {@link BlockTypes#TURTLE_EGG eggs}.
+     */
+    public static final Supplier<Key<Value<Vector3i>>> HOME_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HOME_POSITION");
+
+    /**
+     * The {@link HorseColor} of a {@link Horse}.
      */
     public static final Supplier<Key<Value<HorseColor>>> HORSE_COLOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HORSE_COLOR");
 
     /**
-     * Represents the {@link Key} for the style of a {@link Horse}.
+     * The {@link HorseStyle} of a {@link Horse}.
      */
     public static final Supplier<Key<Value<HorseStyle>>> HORSE_STYLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HORSE_STYLE");
 
     /**
-     * Represents the {@link Key} for whether an {@link Item} will not despawn
-     * for an infinite time.
+     * Whether an {@link Item} will not despawn for an infinite time.
      */
     public static final Supplier<Key<Value<Boolean>>> INFINITE_DESPAWN_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "INFINITE_DESPAWN_DELAY");
 
     /**
-     * Represents the {@link Key} for representing the "is infinite" state
-     * of the pickup delay of an {@link Item}.
+     * Whether an {@link Item} has an infinite pickup delay.
      */
     public static final Supplier<Key<Value<Boolean>>> INFINITE_PICKUP_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "INFINITE_PICKUP_DELAY");
 
     /**
-     * Represents the {@link Key} for the {@link InstrumentType}
-     * of a {@link BlockTypes#NOTE_BLOCK}.
+     * The {@link InstrumentType} of a {@link BlockTypes#NOTE_BLOCK} {@link BlockState}.
      */
     public static final Supplier<Key<Value<InstrumentType>>> INSTRUMENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "INSTRUMENT");
 
     /**
-     * Represents the {@link Key} for the "inverted" state of
-     * an {@link BlockTypes#DAYLIGHT_DETECTOR}.
+     * Whether a {@link BlockTypes#DAYLIGHT_DETECTOR} {@link BlockState} is inverted.
      */
     public static final Supplier<Key<Value<Boolean>>> INVERTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "INVERTED");
 
     /**
-     * Represents the {@link Key} for the amount of ticks an {@link Entity}
-     * will remain invulnerable for.
+     * The amount of ticks an {@link Entity} will remain invulnerable for.
      */
     public static final Supplier<Key<BoundedValue<Integer>>> INVULNERABILITY_TICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "INVULNERABILITY_TICKS");
 
     /**
-     * Represents the {@link Key} for representing if an {@link Entity}
-     * is invulnerable or not.
+     * Whether an {@link Entity} is invulnerable.
      *
      * <p>This does not protect from the void, players in creative mode,
      * and manual killing like the /kill command.</p>
@@ -1233,134 +1081,163 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> INVULNERABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "INVULNERABLE");
 
     /**
-     * Represents the {@link Key} for representing the "in-wall" state of
-     * fences, for example {@link BlockTypes#OAK_FENCE}.
+     * Whether a fence gate {@link BlockState} is in a wall.
      */
     public static final Supplier<Key<Value<Boolean>>> IN_WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IN_WALL");
 
     /**
-     * Represents the {@link Key} for the state whether a {@link Ageable}
-     * entity is considered an "adult" and may affect breeding capabilities.
+     * Whether an {@link Ageable} is considered an adult.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_ADULT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_ADULT");
 
     /**
-     * Represents the {@link Key} for whether a {@link Blaze} is currently
-     * burning.
+     * Whether a {@link Blaze} is currently burning.
      *
-     * <p>Unlike {@link Keys#MAX_BURN_TIME}, the burning effect will not damage
+     * <p>Unlike {@link Keys#FIRE_TICKS}, the burning effect will not damage
      * the burning entity.</p>
      */
     public static final Supplier<Key<Value<Boolean>>> IS_AFLAME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_AFLAME");
 
     /**
-     * Represents the {@link Key} for whether an {@link Agent}s AI is enabled.
+     * Whether an {@link Agent}s AI is enabled.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_AI_ENABLED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_AI_ENABLED");
 
     /**
-     * Represents the {@link Key} for whether an {@link Entity} is currently
-     * aggressive. This mostly applies to wolves.
+     * Whether an entity is currently aggressive.
+     * e.g. {@link Wolf wolves} or {@link ZombiePigman}
      */
     public static final Supplier<Key<Value<Boolean>>> IS_ANGRY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_ANGRY");
 
     /**
-     * Represents the {@link Key} for representing whether a {@link BlockState}
-     * is "attached" to another block.
+     * Whether a {@link BlockState} is "attached" to another block.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_ATTACHED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ATTACHED");
 
     /**
-     * Represents the {@link Key} for if a {@link Living} is begging for food. Usually cats or tamed wolves.
+     * Whether an entity is begging for food.
+     * e.g. {@link Cat cats} or tamed {@link Wolf wolves}
      */
     public static final Supplier<Key<Value<Boolean>>> IS_BEGGING_FOR_FOOD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_BEGGING_FOR_FOOD");
 
     /**
-     * Represents the {@link Key} for if {@link Raider}s are currently celebrating.
+     * Whether {@link Raider}s are currently celebrating.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_CELEBRATING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_CELEBRATING");
 
     /**
-     * Represents the {@link Key} for whether a {@link Creeper} is charged.
+     * Whether a {@link Creeper} is charged.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_CHARGED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CREEPER_CHARGED");
 
     /**
-     * Represents the {@link Key} for if a {@link Pillager} is charging it's crossbow.
+     * Whether a {@link Pillager} is charging it's crossbow.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_CHARGING_CROSSBOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CHARGING_CROSSBOW");
 
     /**
-     * Represents the {@link Key} for if a {@link Spider} is currently climbing.
+     * Whether a {@link Spider} is currently climbing.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_CLIMBING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_CLIMBING");
 
     /**
-     * Represents the {@link Key} for whether the next attack of an
-     * {@link Entity} will be a critical hit.
+     * Whether a {@link BlockState} is connected to the {@link Direction#EAST}.
+     * Also see {@link #CONNECTED_DIRECTIONS}.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_CONNECTED_EAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_CONNECTED_EAST");
+
+    /**
+     * Whether a {@link BlockState} is connected to the {@link Direction#NORTH}.
+     * Also see {@link #CONNECTED_DIRECTIONS}.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_CONNECTED_NORTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_CONNECTED_NORTH");
+
+    /**
+     * Whether a {@link BlockState} is connected to the {@link Direction#SOUTH}.
+     * Also see {@link #CONNECTED_DIRECTIONS}.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_CONNECTED_SOUTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_CONNECTED_SOUTH");
+
+    /**
+     * Whether a {@link BlockState} is connected to the {@link Direction#UP}.
+     * Also see {@link #CONNECTED_DIRECTIONS}.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_CONNECTED_UP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_CONNECTED_UP");
+
+    /**
+     * Whether a {@link BlockState} is connected to the {@link Direction#WEST}.
+     * Also see {@link #CONNECTED_DIRECTIONS}.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_CONNECTED_WEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_CONNECTED_WEST");
+
+    /**
+     * Whether an {@link Arrow} will cause a critical hit.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_CRITICAL_HIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_CRITICAL_HIT");
 
     /**
-     * Represents the {@link Key} for if a {@link Fox} is currently crouching.
+     * Whether a {@link Fox} is currently crouching.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_CROUCHING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_CROUCHING");
 
     /**
-     * Represents the {@link Key} for whether a custom name is visible on an
-     * {@link Entity}.
+     * Whether a custom name is visible on an {@link Entity}.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_CUSTOM_NAME_VISIBLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_CUSTOM_NAME_VISIBLE");
 
     /**
-     * Represents the {@link Key} for if a {@link Fox} is currently defending.
+     * Whether a {@link Fox} is currently defending.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_DEFENDING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_DEFENDING");
 
     /**
-     * Represents the {@link Key} for representing the "disarmed" state
-     * of a {@link BlockState}. This usually applies to
-     * {@link BlockTypes#TRIPWIRE}s and {@link BlockTypes#TRIPWIRE_HOOK}s.
+     * Whether a {@link BlockState} is disarmed.
+     * e.g. {@link BlockTypes#TRIPWIRE}s and {@link BlockTypes#TRIPWIRE_HOOK}s.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_DISARMED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_DISARMED");
 
     /**
-     * Represents the {@link Key} for whether a {@link Living} is eating.
+     * Whether an entity is eating.
+     * e.g. {@link Panda}
      */
     public static final Supplier<Key<Value<Boolean>>> IS_EATING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_EATING");
 
     /**
-     * Represents the {@link Key} for whether a {@link Player} is flying with an
-     * {@link ItemTypes#ELYTRA}.
+     * Whether a {@link WeatherEffect} like {@link LightningBolt} is harmful to other {@link Entity entities}.
+     * Readonly
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_EFFECT_ONLY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_EFFECT_ONLY");
+
+    /**
+     * Whether a {@link Player} is flying with an {@link ItemTypes#ELYTRA}.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_ELYTRA_FLYING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_ELYTRA_FLYING");
 
     /**
-     * Represents the {@link Key} for representing whether a {@link Piston} is
-     * currently extended.
+     * Whether a piston {@link BlockState} is currently extended.
+     * TODO {@link Piston}?
      */
     public static final Supplier<Key<Value<Boolean>>> IS_EXTENDED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_EXTENDED");
 
     /**
-     * Represents the {@link Key} for if a {@link Fox} is currently faceplanted.
+     * Whether a {@link Fox} is currently faceplanted.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_FACEPLANTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_FACEPLANTED");
 
     /**
-     * Represents the {@link Key} for representing the "filled" state
-     * of a {@link BlockState}.
-     *
-     * <p>Usually applies to {@link BlockTypes#END_PORTAL_FRAME}s.</p>
+     * Whether a {@link BlockState} is filled.
+     * <p>e.g. {@link BlockTypes#END_PORTAL_FRAME}s.</p>
      */
     public static final Supplier<Key<Value<Boolean>>> IS_FILLED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_FILLED");
 
     /**
-     * Represents the {@link Key} for whether something is flammable.
+     * Whether a {@link BlockState} is flammable.
+     * Readonly
      */
     public static final Supplier<Key<Value<Boolean>>> IS_FLAMMABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_FLAMMABLE");
 
     /**
-     * Represents the {@link Key} for whether an {@link Entity} is flying.
+     * Whether an {@link Entity} is flying. TODO only player?
      *
      * <p>This key only tells whether an entity is flying at the moment. On a
      * {@link Player} it does not necessarily mean that the player may toggle
@@ -1370,66 +1247,74 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> IS_FLYING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_FLYING");
 
     /**
-     * Represents the {@link Key} for whether a {@link Living} is frightened.
+     * Whether an entity is frightened.
      *
-     * <p>In vanilla, pandas that have a {@link Panda#knownGene()}
+     * <p>In vanilla, {@link Panda}s that have a {@link Panda#knownGene()}
      * of {@link PandaGenes#WORRIED} and are in a {@link World} whose {@link Weather} is currently a
      * {@link Weathers#THUNDER_STORM} are considered "frightened".</p>
      */
     public static final Supplier<Key<Value<Boolean>>> IS_FRIGHTENED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_FRIGHTENED");
 
     /**
-     * Represents the {@link Key} for representing whether an entity has a
-     * glowing outline.
+     * Whether the block at the {@link Location} is a full block.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_FULL_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_FULL_BLOCK");
+
+    /**
+     * Whether an {@link Entity} has a glowing outline.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_GLOWING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_GLOWING");
 
     /**
-     * Represents the {@link Key} for whether something is affected by
-     * gravity. Usually {@link Entity}s and falling blocks.
+     * Whether {@link Turtle} is proceeding to it's {@link Vector3i home position}.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_GOING_HOME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_GOING_HOME");
+
+    /**
+     * Whether something is affected by gravity.
+     * e.g. {@link Entity}s and {@link BlockState}s
+     * Readonly(BlockState.class)
      */
     public static final Supplier<Key<Value<Boolean>>> IS_GRAVITY_AFFECTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_GRAVITY_AFFECTED");
 
     /**
-     * Represents the {@link Key} for if a {@link WeatherEffect} is harmful to other {@link Entity entities}.
-     *
-     * <p>
-     *     For example, {@link LightningBolt bolts} of lighting will strike entities and damage them
-     * </p>
-     */
-    public static final Supplier<Key<Value<Boolean>>> IS_HARMFUL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_WEATHER_EFFECT");
-
-    /**
-     * Represents the {@link Key} for if a {@link Cat} is hissing.
+     * Whether a {@link Cat} is hissing.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_HISSING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_HISSING");
 
     /**
-     * Represents the {@link Key} for whether something is immobilized.
+     * Whether a {@link Ravager} is immobilized.
+     * Readonly
      */
     public static final Supplier<Key<Value<Boolean>>> IS_IMMOBILIZED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_IMMOBILIZED");
 
     /**
-     * Represents the {@link Key} for if a {@link Fox} is currently interested in something.
+     * Whether a {@link Location} is indirectly powered.
+     * Readonly
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_INDIRECTLY_POWERED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_INDIRECTLY_POWERED");
+
+    /**
+     * Whether a {@link Fox} is currently interested in something.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_INTERESTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_INTERESTED");
 
     /**
-     * Represents the {@link Key} for representing the "vanish" state
-     * of an {@link Entity}. This will only simply render the entity as
-     * vanish, but not prevent any entity updates being sent to clients.
+     * Whether an {@link Entity} is currently invisible.
+     * This will only simply render the entity as vanished,
+     * but not prevent any entity updates being sent to clients.
      * To fully "vanish" an {@link Entity}, use {@link #VANISH}.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_INVISIBLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_INVISIBLE");
 
     /**
-     * Represents the {@link Key} for if a {@link Boat} is currently in {@link BlockTypes#WATER}.
+     * Whether a {@link Boat} is currently in {@link BlockTypes#WATER}.
+     * Readonly
      */
     public static final Supplier<Key<Value<Boolean>>> IS_IN_WATER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_IN_WATER");
 
     /**
-     * Represents the {@link Key} for whether a {@link Vindicator} is exhibiting
-     * "johnny" behavior.
+     * Whether a {@link Vindicator} is exhibiting "johnny" behavior.
      *
      * @see <a href="https://minecraft.gamepedia.com/Vindicator#Behavior">
      * The Minecraft Wiki for more information about "johnny" behavior</a>
@@ -1437,40 +1322,63 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> IS_JOHNNY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_JOHNNY");
 
     /**
-     * Represents the {@link Key} for if a {@link Cat} is lying down.
+     * Whether a {@link Turtle} is currently digging to lay an egg.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_LAYING_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_LAYING_EGG");
+
+    /**
+     * Whether a {@link Patroller} is the leader.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_LEADER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_LEADER");
+
+    /**
+     * Whether a {@link BlockState} is lit.
+     * e.g. {@link BlockTypes#FURNACE}, {@link BlockTypes#CAMPFIRE}
+     * or {@link BlockTypes#REDSTONE_TORCH}.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_LIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_LIT");
+
+    /**
+     *Whether a {@link Cat} is lying down.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_LYING_DOWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_LYING_DOWN");
 
     /**
-     * Represents the {@link Key} for if a {@link Panda} is lying on it's back.
+     * Whether a {@link Panda} is lying on it's back.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_LYING_ON_BACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_LYING_ON_BACK");
 
     /**
-     * Represents the {@link Key} for representing the "occupied" state of
-     * beds, for example {@link BlockTypes#WHITE_BED}.
+     * Whether a bed {@link BlockState} is occupied.
+     * e.g. {@link BlockTypes#WHITE_BED}.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_OCCUPIED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_OCCUPIED");
 
     /**
-     * Represents the {@link Key} for representing the "open" state of
-     * various door typed blocks.
+     * Whether a {@link Minecart} is on it's rail
+     * Readonly
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_ON_RAIL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_ON_RAIL");
+
+    /**
+     * Whether a door/fencegate/trapdoor {@link BlockState} is open.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_OPEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_OPEN");
 
     /**
-     * Represents the {@link Key} whether something is passable (can be walked through).
+     * Whether a {@link BlockState} is passable (can be walked through).
+     * Readonly
      */
     public static final Supplier<Key<Value<Boolean>>> IS_PASSABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_PASSABLE");
 
     /**
-     * Represents the {@link Key} for if a {@link Patroller} is currently patrolling.
+     * Whether a {@link Patroller} is currently patrolling.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_PATROLLING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_PATROLLING");
 
     /**
-     * Represents the {@link Key} for whether an {@link Entity} or
-     * {@link BlockState} will be prevented from despawning/decaying.
+     * Whether an {@link Entity} or leaves {@link BlockState} will
+     * be prevented from despawning/decaying.
      *
      * <p>In Vanilla, entities may despawn if the player moves too far from
      * them. A persisting entity will not be removed due to no players being
@@ -1479,18 +1387,23 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> IS_PERSISTENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_PERSISTENT");
 
     /**
-     * Represents the {@link Key} for if a {@link IronGolem} has been created by a {@link Player}.
+     * Whether players are prevented from placing
+     * items from an equipment slot on an {@link ArmorStand}
+     */
+    public static final Supplier<Key<SetValue<EquipmentType>>> IS_PLACING_DISABLED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_PLACING_DISABLED");
+
+    /**
+     * Whether a {@link IronGolem} has been created by a {@link Player}.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_PLAYER_CREATED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_PLAYER_CREATED");
 
     /**
-     * Represents the {@link Key} for if a {@link Fox} is currently pouncing.
+     * Whether a {@link Fox} is currently pouncing.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_POUNCING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_POUNCING");
 
     /**
-     * Represents the {@link Key} for representing the "powered" state
-     * of a {@link BlockState}.
+     * Whether a {@link BlockState} is powered.
      *
      * <p>Applies to blocks that may be powered in order to emit a
      * Redstone signal of consistently maximum strength, such as
@@ -1501,76 +1414,90 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> IS_POWERED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_POWERED");
 
     /**
-     * Represents the {@link Key} for if a {@link FusedExplosive} is currently primed.
+     * Whether a {@link FusedExplosive} is currently primed.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_PRIMED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_PRIMED");
 
     /**
-     * Represents the {@link Key} for if a {@link Cat} is purring.
+     * Whether a {@link Cat} is purring.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_PURRING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_PURRING");
 
     /**
-     * Represents the {@link Key} for if a {@link Cat} is relaxed.
+     * Whether a {@link Cat} is relaxed.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_RELAXED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_RELAXED");
 
     /**
-     * Represents the {@link Key} for whether a living entity is roaring. Usually ravagers.
+     * Whether a {@link BlockState} can be replaced by a player without breaking it first.
+     * e.g. {@link BlockTypes#WATER}
+     * Readonly
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_REPLACEABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_REPLACEABLE");
+
+    /**
+     * Whether a {@link Ravager} is roaring.
+     * Readonly
      */
     public static final Supplier<Key<Value<Boolean>>> IS_ROARING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_ROARING");
 
     /**
-     * Represents the {@link Key} for if a {@link Panda} is rolling around.
+     * Whether a {@link Panda} is rolling around.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_ROLLING_AROUND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_ROLLING_AROUND");
 
     /**
-     * Represents the {@link Key} for whether a {@link Entity} is saddled.
+     * Whether an entity is saddled.
+     * e.g. {@link Horse}s and {@link Pig}s
      */
     public static final Supplier<Key<Value<Boolean>>> IS_SADDLED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_SADDLED");
 
     /**
-     * Represents the {@link Key} for whether an {@link Enderman} is screaming.
+     * Whether an {@link Enderman} is screaming.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_SCREAMING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_SCREAMING");
 
     /**
-     * Represents the {@link Key} for whether a {@link Sheep} is sheared.
+     * Whether a {@link Sheep} is sheared.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_SHEARED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_SHEARED");
 
     /**
-     * Represents the {@link Key} for whether an {@link Entity} is silent.
+     * Whether an {@link Entity} is silent.
      *
      * <p>A silent entity will not emit sounds or make noises.</p>
      */
     public static final Supplier<Key<Value<Boolean>>> IS_SILENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_SILENT");
 
     /**
-     * Represents the {@link Key} for whether a {@link Wolf}, {@link Cat}, {@link Panda}, or {@link Fox} is sitting.
+     * Whether a {@link Wolf}, {@link Cat}, {@link Panda}, or {@link Fox} is sitting.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_SITTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_SITTING");
 
     /**
-     * Represents the {@link Key} for whether a {@link Bat}, {@link Fox} or {@link Player}
-     * is sleeping.
+     * Whether a {@link Bat}, {@link Fox} or {@link Player} is sleeping.
      *
-     * <p>If a player is considered sleeping as per this data value, he does
+     * <p>If a player is considered sleeping as per this data value, the player does
      * not need to be in bed in order for the other players to be able to
      * advance through the night by going to bed.</p>
+     * Readonly(Player.class)
      */
     public static final Supplier<Key<Value<Boolean>>> IS_SLEEPING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_SLEEPING");
 
     /**
-     * Represents the {@link Key} for if a {@link Player Player's} sleeping status is ignored when checking whether to
+     * Whether a {@link Player Player's} sleeping status is ignored when checking whether to
      * skip the night due to players sleeping. The time in a world will be
      * advanced to day if all players in it either are sleeping or are set to ignore.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_SLEEPING_IGNORED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_SLEEPING_IGNORED");
 
     /**
-     * Represents the {@link Key} for whether an {@link Entity} is sneaking.
+     * Whether an {@link ArmorStand} is small.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_SMALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_SMALL");
+
+    /**
+     * Whether an {@link Entity} is sneaking.
      *
      * <p>Sneaking entities generally move slower and do not make walking
      * sounds.</p>
@@ -1578,85 +1505,112 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> IS_SNEAKING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_SNEAKING");
 
     /**
-     * Represents the {@link Key} for if a {@link Panda} is sneezing.
+     * Whether a {@link Panda} is sneezing.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_SNEEZING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_SNEEZING");
 
     /**
-     * Represents the {@link Key} for whether an {@link Entity} is sprinting.
+     * Whether a {@link BlockTypes#DIRT} {@link BlockState} is snowy.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_SNOWY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_SNOWY");
+
+    /**
+     * Whether a {@link BlockState} is solid.
+     * Readonly
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_SOLID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_SOLID");
+
+    /**
+     * Whether an {@link Entity} is sprinting.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_SPRINTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_SPRINTING");
 
     /**
-     * Represents the {@link Key} for if a {@link PolarBear} is currently standing.
+     * Whether a {@link PolarBear} is currently standing.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_STANDING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_STANDING");
 
     /**
-     * Represents the {@link Key} for whether an entity is stunned.
+     * Whether a {@link Ravager} is stunned.
+     * Readonly
      */
     public static final Supplier<Key<Value<Boolean>>> IS_STUNNED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_STUNNED");
 
     /**
-     * Represents the {@link Key} for if a {@link TameableAnimal} is currently tamed
+     * Whether a {@link BlockState} is a surrogate block for a block that was provided in an environment
+     * (almost always modded), that the block type provider no longer exists.
+     * If true this may indicate that the surrogate block functions differently than the original block.
+     * Readonly
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_SURROGATE_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_SURROGATE_BLOCK");
+
+    /**
+     * Whether players are prevented from taking
+     * items from an equipment slot on an {@link ArmorStand}
+     */
+    public static final Supplier<Key<SetValue<EquipmentType>>> IS_TAKING_DISABLED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TAKING_DISABLED");
+
+    /**
+     * Whether a {@link TameableAnimal} is currently tamed
      */
     public static final Supplier<Key<Value<Boolean>>> IS_TAMED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_TAMED");
 
     /**
-     * Represents the {@link Key} for if a {@link Trader} is currently trading with a {@link Player}.
+     * Whether a {@link Trader} is currently trading with a {@link Player}.
+     * Readonly
      */
     public static final Supplier<Key<Value<Boolean>>> IS_TRADING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_TRADING");
 
     /**
-     * Represents the {@link Key} for if an {@link Ocelot} is currently trusting of {@link Player}s.
+     * Whether a {@link Turtle} is currently traveling.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_TRAVELING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_TRAVELING");
+
+    /**
+     * Whether an {@link Ocelot} is currently trusting of {@link Player}s.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_TRUSTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_TRUSTING");
 
     /**
-     * Represents the {@link Key} for whether an {@link ItemStack} or {@link BlockState} is unbreakable.
+     * Whether an {@link ItemStack} or {@link BlockState} is unbreakable.
      *
-     * <p>Setting this to {@code  true} will prevent the item stack's
+     * <p>Setting this to {@code true} will prevent the item stack's
      * {@link #ITEM_DURABILITY} from changing.</p>
+     * Readonly(BlockState.class)
      */
     public static final Supplier<Key<Value<Boolean>>> IS_UNBREAKABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_UNBREAKABLE");
 
     /**
-     * Represents the {@link Key} for whether a {@link Panda} is unhappy.
+     * Whether a {@link Panda} is unhappy.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_UNHAPPY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_UNHAPPY");
 
     /**
-     * Represents the {@link Key} for whether a {@link Wolf}, a
-     * {@link BlockState} of {@link BlockTypes#SPONGE} or an {@link ItemStack}
-     * of {@link ItemTypes#SPONGE} is wet.
+     * Whehter a {@link BlockState} is waterlogged.
+     */
+    public static final Supplier<Key<Value<Boolean>>> IS_WATERLOGGED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_WATERLOGGED");
+
+    /**
+     * Whether an {@link Entity} like {@link Wolf} or a
+     * {@link BlockState} of {@link BlockTypes#SPONGE} is wet.
+     * Readonly(Entity.class) except Wolf
      */
     public static final Supplier<Key<Value<Boolean>>> IS_WET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_WET");
 
     /**
-     * Represents the {@link Key} for the durability of an {@link ItemStack}.
+     * The durability of an {@link ItemStack}. {@link #MAX_DURABILITY}
      */
     public static final Supplier<Key<BoundedValue<Integer>>> ITEM_DURABILITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ITEM_DURABILITY");
 
     /**
-     * Represents the {@link Key} for the displayed description ("lore") text
-     * of an {@link ItemStack}.
-     *
-     * <p>The lore text is usually displayed when the player hovers his cursor
-     * over the stack. For the contents of a book see {@link #BOOK_PAGES}
-     * instead.</p>
-     */
-    public static final Supplier<Key<ListValue<Text>>> ITEM_LORE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ITEM_LORE");
-
-    /**
-     * Represents the {@link Key} for the {@link ItemStackSnapshot item} in an
+     * The {@link ItemStackSnapshot item} in an
      * {@link Item}, {@link ItemFrame}, {@link Jukebox}, {@link Lectern} or
      * {@link Potion}.
      */
     public static final Supplier<Key<Value<ItemStackSnapshot>>> ITEM_STACK_SNAPSHOT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ITEM_STACK_SNAPSHOT");
 
     /**
-     * Represents the {@link Key} for the knockback strength applied by an
-     * {@link ArrowEntity}.
+     * The knockback strength applied by an {@link ArrowEntity}.
      *
      * <p>For the knockback provided by hits with a weapon according to the
      * enchantment of the same name, see {@link #APPLIED_ENCHANTMENTS}.</p>
@@ -1664,128 +1618,130 @@ public final class Keys {
     public static final Supplier<Key<BoundedValue<Double>>> KNOCKBACK_STRENGTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "KNOCKBACK_STRENGTH");
 
     /**
-     * Represents the {@link Key} for the known {@link PandaGene gene} of a {@link Panda}.
+     * The known {@link PandaGene gene} of a {@link Panda}.
      */
     public static final Supplier<Key<Value<PandaGene>>> KNOWN_GENE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "KNOWN_GENE");
 
     /**
-     * Represents the {@link Key} for the last attacking {@link Entity} of a {@link Living}.
+     * The last attacking {@link Entity} of a {@link Living}.
      */
     public static final Supplier<Key<Value<Entity>>> LAST_ATTACKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LAST_ATTACKER");
 
     /**
-     * Represents the {@link Key} for the output yielded by the last command of
-     * a {@link CommandBlock}.
+     * The output yielded by the last command of a {@link CommandBlock} or {@link CommandBlockMinecart}.
      */
     public static final Supplier<Key<Value<Text>>> LAST_COMMAND_OUTPUT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LAST_COMMAND_OUTPUT");
 
     /**
-     * Represents the {@link Key} for the last damage received by a {@link Living}.
+     * The last damage a {@link Living} received.
      */
     public static final Supplier<Key<Value<Double>>> LAST_DAMAGE_RECEIVED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LAST_DAMAGE_RECEIVED");
 
     /**
-     * Represents the {@link Key} for the last time a {@link User} has been
-     * playing on the server.
+     * The last time a {@link User} has been playing on the server.
      */
     public static final Supplier<Key<Value<Instant>>> LAST_DATE_PLAYED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LAST_DATE_PLAYED");
 
     /**
-     * Represents the {@link Key} for representing the "layer" value of
-     * {@link BlockTypes#SNOW}, {@link BlockTypes#CAKE} and other possible layered blocks.
+     * The amount of layers a {@link BlockState} has.
+     * e.g. {@link BlockTypes#SNOW}, {@link BlockTypes#CAKE}
      */
     public static final Supplier<Key<BoundedValue<Integer>>> LAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LAYER");
 
     /**
-     * Represents the {@link Key} for if a {@link Patroller} is the leader.
-     */
-    public static final Supplier<Key<Value<Boolean>>> LEADER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LEADER");
-
-    /**
-     * Represents the {@link Key} for the leashed {@link Entity} of a {@link LeashKnot}.
-     *
+     * The holder of a leashed {@link Agent}
+     * e.g. a {@link Player} or {@link LeashKnot}.
      * <p>Usually, a {@link LeashKnot} will always exist so long as there is
      * a leashed {@link Entity} attached. If the leash is broken, the leash
      * hitch is removed.</p>
      */
-    public static final Supplier<Key<Value<Entity>>> LEASHED_ENTITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LEASHED_ENTITY");
+    public static final Supplier<Key<Value<Entity>>> LEASH_HOLDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LEASHED_ENTITY");
 
     /**
-     * Represents the {@link Key} for the rotation of an {@link Entity}'s left
-     * arm.
+     * The rotation of an {@link ArmorStand}'s left arm.
      */
     public static final Supplier<Key<Value<Vector3d>>> LEFT_ARM_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LEFT_ARM_ROTATION");
 
     /**
-     * Represents the {@link Key} for the rotation of an {@link Entity}'s left
-     * leg.
+     * The rotation of an {@link ArmorStand}'s left leg.
      */
     public static final Supplier<Key<Value<Vector3d>>> LEFT_LEG_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LEFT_LEG_ROTATION");
 
     /**
-     * Represents the {@link Key} of the amount of light that emitted by a light source,
-     * usually blocks.
+     * The amount of ticks till a {@link Vex} starts
+     * taking damage due to living too long.
+     *
+     * <p>When this value hits 0 or lower, the Vex will receive damage and
+     * then the value will set back to 20 until the Vex dies.</p>
+     *
+     * <p>If the Vex was summoned by a player, this value will be pegged at 0
+     * and the Vex will not take any damage.</p>
+     */
+    public static final Supplier<Key<Value<Integer>>> LIFE_TICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LIFE_TICKS");
+
+    /**
+     * The amount of light that emitted by a {@link BlockState}.
+     * Readonly
      */
     public static final Supplier<Key<Value<Integer>>> LIGHT_EMISSION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LIGHT_EMISSION");
 
     /**
-     * Represents the {@link Key} for the state that something is "lit",
-     * for example a {@link BlockTypes#FURNACE}, {@link BlockTypes#CAMPFIRE}
-     * or {@link BlockTypes#REDSTONE_TORCH}.
-     */
-    public static final Supplier<Key<Value<Boolean>>> LIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LIT");
-
-    /**
-     * Represents the {@link Key} for a {@link Llama}s carrying strength. The higher the strength,
-     * the more items it can carry (effectively the size of inventory).
-     */
-    public static final Supplier<Key<BoundedValue<Integer>>> LLAMA_STRENGTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LLAMA_STRENGTH");
-
-    /**
-     * Represents the {@link Key} for a {@link Llama}'s {@link LlamaType}.
+     * A {@link Llama}'s {@link LlamaType}.
      */
     public static final Supplier<Key<Value<LlamaType>>> LLAMA_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LLAMA_TYPE");
 
     /**
-     * Represents the {@link Key} for the token used to lock a
-     * {@link CarrierBlockEntity}.
+     * The token used to lock a {@link CarrierBlockEntity}. Or the token on an {@link ItemStack} to unlock it.
      */
     public static final Supplier<Key<Value<String>>> LOCK_TOKEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LOCK_TOKEN");
 
     /**
-     * Represents the {@link Key} for the matter
-     * state. Usually of a block.
+     * The displayed description ("lore") text of an {@link ItemStack}.
+     *
+     * <p>The lore text is usually displayed when the player hovers his cursor
+     * over the stack. For the contents of a book see {@link #PAGES}
+     * instead.</p>
+     */
+    public static final Supplier<Key<ListValue<Text>>> LORE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LORE");
+
+    /**
+     * The matter state of a {@link BlockState}
+     * Readonly
      */
     public static final Supplier<Key<Value<MatterState>>> MATTER_STATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MATTER_STATE");
 
     /**
-     * Represents the {@link Key} for the maximum air supply a {@link Living}
-     * may have.
+     * The maximum air supply a {@link Living} may have.
      *
      * <p>For the current amount of air, check {@link #REMAINING_AIR}.</p>
      */
     public static final Supplier<Key<BoundedValue<Integer>>> MAX_AIR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_AIR");
 
     /**
-     * Represents the {@link Key} for the maximum amount of ticks a
-     * {@link FurnaceBlockEntity} can burn with the currently used fuel item.
+     * The maximum amount of ticks a {@link FurnaceBlockEntity}
+     * can burn with the currently used fuel item.
      */
     public static final Supplier<Key<BoundedValue<Integer>>> MAX_BURN_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_BURN_TIME");
 
     /**
-     * Represents the {@link Key} for the total time the current
-     * {@link ItemStack} in a {@link FurnaceBlockEntity} has to be cooked.
+     * The total time the current {@link ItemStack} in a
+     * {@link FurnaceBlockEntity} has to be cooked.
      */
     public static final Supplier<Key<BoundedValue<Integer>>> MAX_COOK_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_COOK_TIME");
 
     /**
-     * Represents the {@link Key} for the maximum damage a {@link FallingBlock}
-     * can deal.
+     * The maximum durability of an {@link ItemStack}. {@link #ITEM_DURABILITY}
+     * Readonly
      */
-    public static final Supplier<Key<BoundedValue<Double>>> MAX_FALL_DAMAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_FALL_DAMAGE");
+    public static final Supplier<Key<Value<Integer>>> MAX_DURABILITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_DURABILITY");
 
     /**
-     * Represents the {@link Key} for the maximum health of a {@link Living}.
+     * The maximum damage a {@link FallingBlock} can deal.
+     */
+    public static final Supplier<Key<BoundedValue<Integer>>> MAX_FALL_DAMAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_FALL_DAMAGE");
+
+    /**
+     * The maximum health of a {@link Living}.
      *
      * <p>The maximum health set here may affect the attribute increasing
      * health points. The base health should be minded that it may be lower
@@ -1794,97 +1750,119 @@ public final class Keys {
     public static final Supplier<Key<BoundedValue<Double>>> MAX_HEALTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_HEALTH");
 
     /**
-     * Represents the maximum stack size of slots in an inventory.
+     * The maximum number of entities around a {@link MobSpawner}.
+     * A spawner will not spawn entities if there are more
+     * entities around than this value permits.
+     */
+    public static final Supplier<Key<BoundedValue<Integer>>> MAX_NEARBY_ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_NEARBY_ENTITIES");
+
+    /**
+     * The maximum amount of ticks between two
+     * batches of entities spawned by a {@link MobSpawner}.
+     */
+    public static final Supplier<Key<BoundedValue<Integer>>> MAX_SPAWN_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_SPAWN_DELAY");
+
+    /**
+     * The max speed of a {@link Boat}. In vanilla, this is 0.4
+     */
+    public static final Supplier<Key<BoundedValue<Double>>> MAX_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_SPEED");
+
+    /**
+     * The maximum stack size of slots in an inventory. For most vanilla inventories this is 64.
+     * Readonly
      */
     public static final Supplier<Key<BoundedValue<Integer>>> MAX_STACK_SIZE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_STACK_SIZE");
 
     /**
-     * Represents the {@link Key} for the modifier to {@link Keys#VELOCITY} of a {@link Minecart} while airborne.
-     */
-    public static final Supplier<Key<Value<Vector3d>>> MINECART_AIRBORNE_VELOCITY_MODIFIER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MINECART_AIRBORNE_VELOCITY_MODIFIER");
-
-    /**
-     * Represents the {@link Key} for representing a block's offset when inside
-     * a {@link MinecartEntity}.
+     * The represented block's offset of a {@link MinecartEntity}.
      */
     public static final Supplier<Key<Value<Integer>>> MINECART_BLOCK_OFFSET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MINECART_BLOCK_OFFSET");
 
     /**
-     * Represents the {@link Key} for the modifier to {@link Keys#VELOCITY} of a {@link Minecart} while derailed.
+     * The minimum amount of ticks between two
+     * batches of entities spawned by a {@link MobSpawner}.
      */
-    public static final Supplier<Key<Value<Vector3d>>> MINECART_DERAILED_VELOCITY_MODIFIER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MINECART_DERAILED_VELOCITY_MODIFIER");
+    public static final Supplier<Key<BoundedValue<Integer>>> MIN_SPAWN_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MINIMUM_DELAY");
 
     /**
-     * Represents the {@link Key} for if a {@link Minecart} is on it's rail
-     */
-    public static final Supplier<Key<Value<Boolean>>> MINECART_IS_ON_RAIL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MINECART_IS_ON_RAIL");
-
-    /**
-     * Represents the {@link Key} for the potential max speed of a {@link Minecart}.
-     */
-    public static final Supplier<Key<BoundedValue<Double>>> MINECART_POTENTIAL_MAX_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MINECART_POTENTIAL_MAX_SPEED");
-
-    /**
-     * Represents the {@link Key} for if a {@link Minecart} slows down when it has now {@link Keys#PASSENGERS}.
-     */
-    public static final Supplier<Key<Value<Boolean>>> MINECART_SLOWS_UNOCCUPIED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MINECART_SLOW_WHEN_EMPTY");
-
-    /**
-     * Represents the {@link Key} for the swiftness of a {@link Minecart}.
-     */
-    public static final Supplier<Key<BoundedValue<Double>>> MINECART_SWIFTNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MINECART_SWIFTNESS");
-
-    /**
-     * Represents the {@link Key} for representing the "moisture" state of {@link BlockTypes#FARMLAND}.
+     * The moisture value of a {@link BlockTypes#FARMLAND} {@link BlockState}.
      */
     public static final Supplier<Key<BoundedValue<Integer>>> MOISTURE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MOISTURE");
 
     /**
-     * Represents the {@link Key} for the type of a {@link Mooshroom}.
+     * The type of a {@link Mooshroom}.
      */
     public static final Supplier<Key<Value<MooshroomType>>> MOOSHROOM_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MOOSHROOM_TYPE");
 
     /**
-     * Represents the {@link Key} for the pitch of a {@link BlockTypes#NOTE_BLOCK}.
+     * The type of {@link MusicDisc} an {@link ItemStack} holds.
+     * Readonly
+     */
+    public static final Supplier<Key<Value<MusicDisc>>> MUSIC_DISK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MUSIC_DISK");
+
+    /**
+     * The next entity that will be spawned by a {@link MobSpawner}.
+     *
+     * <p>Normally the entities to be spawned are determined by a random value
+     * applied to the {@link #SPAWNABLE_ENTITIES} weighted collection. If this
+     * value exists, it will override the random spawn with a definite one.</p>
+     */
+    public static final Supplier<Key<Value<WeightedSerializableObject<EntityArchetype>>>> NEXT_ENTITY_TO_SPAWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "NEXT_ENTITY_TO_SPAWN");
+
+    /**
+     * The pitch of a {@link BlockTypes#NOTE_BLOCK} {@link BlockState}.
      */
     public static final Supplier<Key<Value<NotePitch>>> NOTE_PITCH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "NOTE_PITCH");
 
     /**
-     * Represents the {@link Key} for the notifier, usually of an {@link Entity}. It is up to the implementation to define.
+     * The notifier, usually of an {@link Entity}. It is up to the implementation to define.
      */
     public static final Supplier<Key<Value<UUID>>> NOTIFIER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "NOTIFIER");
 
     /**
-     * Represents the {@link Key} for if an {@link Entity} is currently considered to be on the ground or not.
+     * The deceleration a {@link Boat} while it has {@link Keys#PASSENGERS}.
+     */
+    public static final Supplier<Key<BoundedValue<Double>>> OCCUPIED_DECELERATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "OCCUPIED_DECELERATION");
+
+    /**
+     * Whether an {@link Entity} is currently considered to be on the ground.
+     * Readonly
      */
     public static final Supplier<Key<Value<Boolean>>> ON_GROUND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ON_GROUND");
 
     /**
-     * Represents the {@link ParrotType type} of a {@link Parrot}.
+     * The content of a {@link ItemTypes#WRITTEN_BOOK} {@link ItemStack}.
+     *
+     * <p>Use {@link Keys#PLAIN_PAGES} if you wish to inspect the contents
+     * of a {@link ItemTypes#WRITABLE_BOOK}.</p>
+     */
+    public static final Supplier<Key<ListValue<Text>>> PAGES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PAGES");
+
+    /**
+     * The {@link ParrotType type} of a {@link Parrot}.
      */
     public static final Supplier<Key<Value<ParrotType>>> PARROT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PARROT_TYPE");
 
     /**
-     * Represents the {@link Key} for the amount of ticks a {@link FurnaceBlockEntity} has
-     * already been burning with the current fuel item.
+     * The particle type of an {@link AreaEffectCloud}.
      *
-     * <p>Once this value reaches the one of {@link #MAX_BURN_TIME}, the
-     * furnace will require more fuel in order to keep burning.</p>
+     * <p>Only a few {@link ParticleOption}s will be usable for this
+     * effect for specific {@link ParticleType}s and not every
+     * {@link ParticleType} will be applicable.</p>
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> PASSED_BURN_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PASSED_BURN_TIME");
+    public static final Supplier<Key<Value<ParticleEffect>>> PARTICLE_EFFECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PARTICLE_EFFECT");
 
     /**
-     * Represents the {@link Key} for the amount of ticks a {@link FurnaceBlockEntity} has
+     * The amount of ticks a {@link FurnaceBlockEntity} has
      * been cooking the current item for.
      *
-     * <p>Once this value reaches the one of {@link #MAX_COOK_TIME}, the
+     * <p>Once this value reaches the {@link #MAX_COOK_TIME}, the
      * item will be finished cooking.</p>
      */
     public static final Supplier<Key<BoundedValue<Integer>>> PASSED_COOK_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PASSED_COOK_TIME");
 
     /**
-     * Represents the {@link Key} for the entities that act as passengers for
-     * an {@link Entity}.
+     * The entities that act as passengers for an {@link Entity}.
      *
      * <p>For example, a {@link Player} riding on a {@link Horse} or a
      * {@link Pig} would be considered its passenger.</p>
@@ -1892,71 +1870,81 @@ public final class Keys {
     public static final Supplier<Key<ListValue<Entity>>> PASSENGERS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PASSENGERS");
 
     /**
-     * Represents the {@link Key} for the {@link PhantomPhase phase} of a {@link Phantom}.
+     * A {@link TropicalFish}'s pattern color.
+     */
+    public static final Supplier<Key<Value<DyeColor>>> PATTERN_COLOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PATTERN_COLOR");
+
+    /**
+     * The {@link PhantomPhase phase} of a {@link Phantom}.
      */
     public static final Supplier<Key<Value<PhantomPhase>>> PHANTOM_PHASE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PHANTOM_PHASE");
 
     /**
-     * Represents the {@link Key} of the size of a {@link Phantom}. In vanilla, this ranges between 0 and 64.
-     */
-    public static final Supplier<Key<BoundedValue<Integer>>> PHANTOM_SIZE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class,"PHANTOM_SIZE");
-
-    /**
-     * Represents the {@link Key} for representing the pickup delay
-     * of an {@link Item}.
+     * The pickup delay (in ticks) of an {@link Item}.
      */
     public static final Supplier<Key<BoundedValue<Integer>>> PICKUP_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PICKUP_DELAY");
 
     /**
-     * Represents the {@link Key} for the "pickup rule" of an {@link ArrowEntity}.
+     * The {@link PickupRule} of an {@link ArrowEntity}.
      */
     public static final Supplier<Key<Value<PickupRule>>> PICKUP_RULE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PICKUP_RULE");
 
     /**
-     * Represents the {@link Key} for the piston type of an {@link Piston}.
+     * The piston type of a piston {@link BlockState} TODO dataholder {@link Piston}.
      */
     public static final Supplier<Key<Value<PistonType>>> PISTON_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PISTON_TYPE");
 
     /**
-     * Represents the {@link Key} for which block types an {@link ItemStack}
-     * may be placed on.
+     * The block types an {@link ItemStack} may be placed on.
      */
     public static final Supplier<Key<SetValue<BlockType>>> PLACEABLE_BLOCK_TYPES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PLACEABLE_BLOCK_TYPES");
 
     /**
-     * Represents the {@link Key} for the content of a
-     * {@link ItemTypes#WRITABLE_BOOK}.
+     * The content of a {@link ItemTypes#WRITABLE_BOOK} {@link ItemStack}.
      *
-     * <p>Use {@link Keys#BOOK_PAGES} if you wish to get the contents of a
+     * <p>Use {@link Keys#PAGES} if you wish to get the contents of a
      * {@link ItemTypes#WRITTEN_BOOK}</p>
      */
-    public static final Supplier<Key<ListValue<String>>> PLAIN_BOOK_PAGES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PLAIN_BOOK_PAGES");
+    public static final Supplier<Key<ListValue<String>>> PLAIN_PAGES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PLAIN_PAGES");
 
     /**
-     * Represents the plugin that created this inventory.
+     * The plugin that created an {@link Inventory}
      */
     public static final Supplier<Key<Value<PluginContainer>>> PLUGIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PLUGIN");
 
     /**
-     * Represents the {@link Key} for representing the {@link PortionType}
-     * of a {@link BlockState}.
+     * The pore sides of a {@link BlockTypes#BROWN_MUSHROOM_BLOCK} or
+     * {@link BlockTypes#RED_MUSHROOM_BLOCK} {@link BlockState}.
+     * See {@link #HAS_PORES_UP}, {@link #HAS_PORES_DOWN}, {@link #HAS_PORES_NORTH}, {@link #HAS_PORES_EAST}, {@link #HAS_PORES_SOUTH}, {@link #HAS_PORES_WEST}.
+     */
+    public static final Supplier<Key<SetValue<Direction>>> PORES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PORES");
+
+    /**
+     * The {@link PortionType} of a {@link BlockState}.
+     * e.g. {@link BlockTypes#OAK_DOOR}, {@link BlockTypes#ROSE_BUSH} or {@link BlockTypes#WHITE_BED}
+     * For slabs use {@link #SLAB_PORTION} instead
      */
     public static final Supplier<Key<Value<PortionType>>> PORTION_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PORTION_TYPE");
 
     /**
-     * Represents the {@link Key} for which potion effects are present on an
-     * {@link Entity} or stored on an {@link ItemStack}.
+     * The potential max speed of a {@link Minecart}.
+     */
+    public static final Supplier<Key<BoundedValue<Double>>> POTENTIAL_MAX_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "POTENTIAL_MAX_SPEED");
+
+    /**
+     * The potion effects that are present on an {@link Entity}
+     * <p>or applied by an {@link AreaEffectCloud} or {@link ArrowEntity}</p>
+     * <p>or stored on an {@link ItemStack}.</p>
      */
     public static final Supplier<Key<ListValue<PotionEffect>>> POTION_EFFECTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "POTION_EFFECTS");
 
     /**
-     * Represents the {@link Key} for representing the potion type of an {@link ItemStack}.
+     * The potion type of an {@link ItemStack}.
      */
     public static final Supplier<Key<Value<PotionType>>> POTION_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "POTION_TYPE");
 
     /**
-     * Represents the {@link Key} for representing the "power" state
-     * of a {@link BlockState}.
+     * The signal power of a {@link BlockState}.
      *
      * <p>Applies to blocks that may emit a Redstone signal of variable
      * strength, such as {@link BlockTypes#REDSTONE_WIRE},
@@ -1966,38 +1954,73 @@ public final class Keys {
     public static final Supplier<Key<BoundedValue<Integer>>> POWER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "POWER");
 
     /**
-     * Represents the {@link Key} for the {@link Villager} or {@link ZombieVillager}'s {@link Profession}.
+     * A {@link Beacon}'s primary effect.
+     */
+    public static final Supplier<Key<Value<PotionEffectType>>> PRIMARY_EFFECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PRIMARY_EFFECT");
+
+    /**
+     * The {@link Villager} or {@link ZombieVillager}'s {@link Profession}.
      */
     public static final Supplier<Key<Value<Profession>>> PROFESSION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PROFESSION");
 
     /**
-     * Represents the {@link Key} for the {@link Villager}'s {@link Profession} level.
+     * The {@link Villager} or {@link ZombieVillager}'s {@link Profession} level.
      */
     public static final Supplier<Key<Value<Integer>>> PROFESSION_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PROFESSION_LEVEL");
 
     /**
-     * Represents the {@link Key} for the type of a {@link Rabbit}.
+     * The type of a {@link Rabbit}.
      */
     public static final Supplier<Key<Value<RabbitType>>> RABBIT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "RABBIT_TYPE");
 
     /**
-     * Represents the {@link Key} for the wave number of a raid.
+     * The radius of an {@link AreaEffectCloud}.
+     */
+    public static final Supplier<Key<BoundedValue<Double>>> RADIUS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "RADIUS");
+
+    /**
+     * The amount the radius of an
+     * {@link AreaEffectCloud} grows or shrinks each time it applies its
+     * effect.
+     */
+    public static final Supplier<Key<BoundedValue<Double>>> RADIUS_ON_USE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "RADIUS_ON_USE");
+
+    /**
+     * The amount the radius of an
+     * {@link AreaEffectCloud} grows or shrinks per tick.
+     */
+    public static final Supplier<Key<BoundedValue<Double>>> RADIUS_PER_TICK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "RADIUS_PER_TICK");
+
+    /**
+     * The wave number of a raid a {@link Raider} is in.
+     * Readonly but mutable
      */
     public static final Supplier<Key<Value<Wave>>> RAID_WAVE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "RAID_WAVE");
 
     /**
-     * Represents the {@link Key} for representing the {@link RailDirection}
-     * of a {@link BlockState}.
+     * The {@link RailDirection} of a {@link BlockState}.
      */
     public static final Supplier<Key<Value<RailDirection>>> RAIL_DIRECTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "RAIL_DIRECTION");
 
     /**
-     * Represents the {@link Key} for how much air a {@link Living} has left.
+     * The delay (in ticks) after which an
+     * {@link AreaEffectCloud} will reapply its effect on a previously
+     * affected {@link Entity}.
+     */
+    public static final Supplier<Key<BoundedValue<Integer>>> REAPPLICATION_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REAPPLICATION_DELAY");
+
+    /**
+     * The redstone delay on a {@link BlockTypes#REPEATER} {@link BlockState}.
+     */
+    public static final Supplier<Key<BoundedValue<Integer>>> REDSTONE_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REDSTONE_DELAY");
+
+    /**
+     * The amount of air a {@link Living} has left.
      */
     public static final Supplier<Key<BoundedValue<Integer>>> REMAINING_AIR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REMAINING_AIR");
 
     /**
-     * Represents the {@link Key} for how many more ticks the current brewing
+     * The remaining amount of ticks the current brewing
      * process of a {@link BrewingStand} will take.
      *
      * <p>If nothing is being brewed, the remaining brew time will be 0.</p>
@@ -2005,300 +2028,301 @@ public final class Keys {
     public static final Supplier<Key<BoundedValue<Integer>>> REMAINING_BREW_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REMAINING_BREW_TIME");
 
     /**
-     * Represents the {@link Key} for the {@link InstrumentType}
-     * of that is represented by a specific {@link BlockType}. Specifically
-     * blocks placed under the {@link BlockTypes#NOTE_BLOCK}.
+     * Represents the {@link Key} for the remaining number of ticks to pass
+     * before another attempt to spawn entities is made by a {@link MobSpawner}.
+     */
+    public static final Supplier<Key<BoundedValue<Integer>>> REMAINING_SPAWN_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REMAINING_SPAWN_DELAY");
+
+    /**
+     * The amount of food a food {@link ItemStack} restores when eaten.
+     * Readonly
+     */
+    public static final Supplier<Key<Value<Integer>>> REPLENISHED_FOOD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REPLENISHED_FOOD");
+
+    /**
+     * The amount of saturation a food {@link ItemStack} provides when eaten.
+     * Readonly
+     */
+    public static final Supplier<Key<Value<Double>>> REPLENISHED_SATURATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REPLENISHED_SATURATION");
+
+    /**
+     * The {@link InstrumentType} of a {@link BlockState} when placed under a {@link BlockTypes#NOTE_BLOCK}.
+     * Readonly
      */
     public static final Supplier<Key<Value<InstrumentType>>> REPRESENTED_INSTRUMENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REPRESENTED_INSTRUMENT");
 
     /**
-     * Represents the {@link Key} for the spawn locations a {@link Player}
+     * How close a {@link Player} has to be around the {@link MobSpawner}
+     * in order for it to attempt to spawn entities.
+     */
+    public static final Supplier<Key<BoundedValue<Double>>> REQUIRED_PLAYER_RANGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REQUIRED_PLAYER_RANGE");
+
+    /**
+     * The spawn locations a {@link Player}
      * may have for various worlds based on {@link UUID} of the world.
      */
     public static final Supplier<Key<MapValue<UUID, RespawnLocation>>> RESPAWN_LOCATIONS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "RESPAWN_LOCATIONS");
 
     /**
-     * Represents the {@link Key} for the rotation of an {@link Entity}'s right
-     * arm.
+     * The rotation of an {@link ArmorStand}'s right arm.
      */
     public static final Supplier<Key<Value<Vector3d>>> RIGHT_ARM_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "RIGHT_ARM_ROTATION");
 
     /**
-     * Represents the {@link Key} for the rotation of an {@link Entity}'s right
-     * leg.
+     * The rotation of an {@link ArmorStand}'s right leg.
      */
     public static final Supplier<Key<Value<Vector3d>>> RIGHT_LEG_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "RIGHT_LEG_ROTATION");
 
     /**
-     * Represents the {@link Key} for the time a {@link Ravager} is roaring.
+     * The time a {@link Ravager} is roaring.
      */
     public static final Supplier<Key<Value<Integer>>> ROARING_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ATTACK_TIME");
 
     /**
-     * Represents the {@link Key} for the {@link Rotation} of a block or an
-     * {@link ItemFrame}.
+     * The {@link Rotation} of an {@link ItemFrame}.
      */
     public static final Supplier<Key<Value<Rotation>>> ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ROTATION");
 
     /**
-     * Represents the {@link Key} for the current saturation of a {@link Living}.
+     * The current saturation of a {@link Player}.
      *
      * <p>When the saturation level reaches 0, the food level is usually
      * diminished such that the food level is decreased by 1, then
      * saturation is reset to the maximum value. This type of effect occurs
      * over time and can be modified by movements and actions performed by the
-     * {@link Humanoid}.</p>
+     * {@link Player}.</p>
      */
     public static final Supplier<Key<BoundedValue<Double>>> SATURATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SATURATION");
 
     /**
-     * Represents the {@link Key} for the "scale" for the size of an
-     * {@link Entity}.
+     * The "scale" for the size of an {@link Entity}.
+     *
+     * <p>Together with {@link #BASE_SIZE} and {@link #HEIGHT} this defines the size of an {@link Entity}.</p>
      */
     public static final Supplier<Key<BoundedValue<Double>>> SCALE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SCALE");
 
     /**
-     * Represents the {@link Key} for a {@link Fox fox's} second trusted {@link UUID}, usually a {@link Player}.
+     * A {@link Beacon}'s secondary effect.
+     */
+    public static final Supplier<Key<Value<PotionEffectType>>> SECONDARY_EFFECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SECONDARY_EFFECT");
+
+    /**
+     * A {@link Fox fox's} second trusted {@link UUID}, usually a {@link Player}.
      */
     public static final Supplier<Key<Value<UUID>>> SECOND_TRUSTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SECOND_TRUSTED");
 
     /**
-     * Represents the {@link Key} for the shooter of a {@link Projectile}.
+     * The shooter of a {@link Projectile}.
      */
     public static final Supplier<Key<Value<ProjectileSource>>> SHOOTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SHOOTER");
 
     /**
-     * Represents the {@link Key} for representing the "should drop" state
-     * of a {@link BlockState}.
-     */
-    public static final Supplier<Key<Value<Boolean>>> SHOULD_DROP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SHOULD_DROP");
-
-    /**
-     * Represents the {@link Key} for if a {@link EnderCrystal} should show it's bottom bedrock platform.
+     * Whether a {@link EnderCrystal} should show it's bottom bedrock platform.
      */
     public static final Supplier<Key<Value<Boolean>>> SHOW_BOTTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SHOW_BOTTOM");
 
     /**
-     * Represents the {@link Key} for the lines displayed on a {@link Sign}.
+     * The lines displayed on a {@link Sign}.
      */
     public static final Supplier<Key<ListValue<Text>>> SIGN_LINES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SIGN_LINES");
 
     /**
-     * Represents the {@link Key} for the skin of a {@link Humanoid}.
+     * The size of a {@link Slime}.
+     * or
+     * The size of a {@link Phantom}. In vanilla, this ranges between 0 and 64.
+     */
+    public static final Supplier<Key<BoundedValue<Integer>>> SIZE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SIZE");
+
+    /**
+     * The skin of a {@link Humanoid}.
      *
      * <p>Skins can only be manipulated by supplying the UUID of a player
      * having that skin. The binary skin data is signed by Mojang so fully
      * customized skins are not possible.</p>
+     * Readonly(Player.class)
      */
     public static final Supplier<Key<Value<ProfileProperty>>> SKIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SKIN");
 
     /**
-     * Represents the {@link Key} for representing the {@link SlabPortion}
-     * of a {@link BlockState}.
+     * The "moisture" state of a {@link Dolphin}.
+     *
+     * <p>
+     *     Vanilla sets the dolphin's skin moisture to 2400 so long as the entity
+     *     is in water, being rained on, or in a bubble column. If not, the dolphin
+     *     will loose 1 moisture per tick. Once this value is 0 or below, the dolphin
+     *     will be damaged via {@link DamageSources#DRYOUT} with a value of 1 per tick
+     *     until death.
+     * </p>
+     */
+    public static final Supplier<Key<Value<Integer>>> SKIN_MOISTURE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SKIN_MOISTURE");
+
+    /**
+     * The skylight value at a {@link Location}.
+     * For the blocklight see {@link #BLOCK_LIGHT}.
+     * Readonly
+     */
+    public static final Supplier<Key<Value<Integer>>> SKY_LIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SKY_LIGHT");
+
+    /**
+     * The {@link SlabPortion} of a {@link BlockState}.
      */
     public static final Supplier<Key<Value<SlabPortion>>> SLAB_PORTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SLAB_PORTION");
 
     /**
-     * Represents the {@link Key} for the size of a {@link Slime}.
-     */
-    public static final Supplier<Key<BoundedValue<Integer>>> SLIME_SIZE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SLIME_SIZE");
-
-    /**
-     * Represents the index of a slot.
+     * The index of a {@link Slot} in an {@link Inventory}
+     * Readonly
      */
     public static final Supplier<Key<BoundedValue<Integer>>> SLOT_INDEX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SLOT_INDEX");
 
     /**
-     * A property which represents the position of a slot within a grid. Bear in mind
-     * that this property should be retrieved from the relevant parent, since a
-     * slot may have multiple parent inventories.
+     * The position of a {@link Slot} within a {@link GridInventory}.
+     * Readonly
      */
     public static final Supplier<Key<Value<Vector2i>>> SLOT_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SLOT_POSITION");
 
     /**
-     * A property which represents a "side" for a particular slot, for use in querying "sided inventories".
+     * The side of a particular {@link Slot}, for use in querying "sided inventories".
+     * Readonly
      */
     public static final Supplier<Key<Value<Direction>>> SLOT_SIDE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SLOT_SIDE");
 
     /**
-     * Represents the {@link Key} for the time a {@link Panda} has been sneezing (in ticks)
+     * Whether a {@link Minecart} slows down when it has no {@link Keys#PASSENGERS}.
+     */
+    public static final Supplier<Key<Value<Boolean>>> SLOWS_UNOCCUPIED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SLOWS_UNOCCUPIED");
+
+    /**
+     * The time a {@link Panda} has been sneezing (in ticks)
      */
     public static final Supplier<Key<Value<Integer>>> SNEEZING_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SNEEZING_TIME");
 
     /**
-     * Represents the {@link Key} for representing the "snowed" state
-     * of a {@link BlockState}.
+     * The list of {@link EntityArchetype}s able to be spawned by a {@link MobSpawner}.
      */
-    public static final Supplier<Key<Value<Boolean>>> SNOWED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SNOWED");
+    public static final Supplier<Key<WeightedCollectionValue<EntityArchetype>>> SPAWNABLE_ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWNABLE_ENTITIES");
 
     /**
-     * Represents the {@link Key} for the list of {@link EntityArchetype}s able
-     * to be spawned by a {@link MobSpawner}.
+     * How many entities a {@link MobSpawner} has spawned so far.
      */
-    public static final Supplier<Key<WeightedCollectionValue<EntityArchetype>>> SPAWNER_ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWNER_ENTITIES");
+    public static final Supplier<Key<BoundedValue<Integer>>> SPAWN_COUNT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWN_COUNT");
 
     /**
-     * Represents the {@link Key} for the maximum amount of ticks between two
-     * batches of entities spawned by a {@link MobSpawner}.
+     * How far away from the {@link MobSpawner} the entities spawned by it may appear.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> SPAWNER_MAXIMUM_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWNER_MAXIMUM_DELAY");
+    public static final Supplier<Key<BoundedValue<Double>>> SPAWN_RANGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWN_RANGE");
 
     /**
-     * Represents the {@link Key} for the maximum number of entities around a
-     * {@link MobSpawner}. A spawner will not spawn entities if there are more
-     * entities around than this value permits.
-     */
-    public static final Supplier<Key<BoundedValue<Integer>>> SPAWNER_MAXIMUM_NEARBY_ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWNER_MAXIMUM_NEARBY_ENTITIES");
-
-    /**
-     * Represents the {@link Key} for the minimum amount of ticks between two
-     * batches of entities spawned by a {@link MobSpawner}.
-     */
-    public static final Supplier<Key<BoundedValue<Integer>>> SPAWNER_MINIMUM_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWNER_MINIMUM_DELAY");
-
-    /**
-     * Represents the {@link Key} for the next entity that will be spawned
-     * by a {@link MobSpawner}.
-     *
-     * <p>Normally the entities to be spawned are determined by a random value
-     * applied to the {@link #SPAWNER_ENTITIES} weighted collection. If this
-     * value exists, it will override the random spawn with a definite one.</p>
-     */
-    public static final Supplier<Key<Value<WeightedSerializableObject<EntityArchetype>>>> SPAWNER_NEXT_ENTITY_TO_SPAWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWNER_NEXT_ENTITY_TO_SPAWN");
-
-    /**
-     * Represents the {@link Key} for the remaining number of ticks to pass
-     * before another attempt to spawn entities is made by a {@link MobSpawner}.
-     */
-    public static final Supplier<Key<BoundedValue<Integer>>> SPAWNER_REMAINING_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWNER_REMAINING_DELAY");
-
-    /**
-     * Represents the {@link Key} for how close a {@link Player} has to be
-     * around the {@link MobSpawner} in order for it to attempt to
-     * spawn entities.
-     */
-    public static final Supplier<Key<BoundedValue<Double>>> SPAWNER_REQUIRED_PLAYER_RANGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWNER_REQUIRED_PLAYER_RANGE");
-
-    /**
-     * Represents the {@link Key} for how many entities a {@link MobSpawner} has
-     * spawned so far.
-     */
-    public static final Supplier<Key<BoundedValue<Integer>>> SPAWNER_SPAWN_COUNT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWNER_SPAWN_COUNT");
-
-    /**
-     * Represents the {@link Key} for how far away from the
-     * {@link MobSpawner} the entities spawned by it may appear.
-     */
-    public static final Supplier<Key<BoundedValue<Double>>> SPAWNER_SPAWN_RANGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWNER_SPAWN_RANGE");
-
-    /**
-     * Represents the {@link Key} for the {@link Entity target} of the spectator camera of a {@link Player}.
+     * The {@link Entity target} of the spectator camera of a {@link Player}.
      */
     public static final Supplier<Key<Value<Entity>>> SPECTATOR_TARGET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPECTATOR_TARGET");
 
     /**
-     * Represents the {@link Key} for representing the {@link StairShape}
-     * of a {@link BlockState}.
+     * The {@link StairShape} of a {@link BlockState}.
      */
     public static final Supplier<Key<Value<StairShape>>> STAIR_SHAPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STAIR_SHAPE");
 
     /**
-     * Represents the {@link Key} for the {@link Statistic}s of a {@link Player}.
+     * The {@link Statistic}s of a {@link Player}.
      */
     public static final Supplier<Key<MapValue<Statistic, Long>>> STATISTICS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STATISTICS");
 
     /**
-     * Represents the {@link Key} for the enchantments stored on an
-     * {@link ItemStack}.
+     * The enchantments stored on an {@link ItemStack}.
      *
      * <p>Stored enchantments are meant to be transferred. Usually this key
-     * applies to {@link ItemTypes#ENCHANTED_BOOK} stacks. Enchantments
+     * applies to {@link ItemTypes#ENCHANTED_BOOK} {@link ItemStack}s. Enchantments
      * affecting the item stack are retrieved via {@link #APPLIED_ENCHANTMENTS}
      * instead.</p>
      */
     public static final Supplier<Key<ListValue<Enchantment>>> STORED_ENCHANTMENTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STORED_ENCHANTMENTS");
 
     /**
-     * Represents the {@link Key} for representing the author of a structure
-     * from a {@link StructureBlock}.
+     * A {@link Llama}s carrying strength. The higher the strength,
+     * the more items it can carry (effectively the size of inventory).
+     */
+    public static final Supplier<Key<BoundedValue<Integer>>> STRENGTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STRENGTH");
+
+    /**
+     * The author of a structure from a {@link StructureBlock}.
      */
     public static final Supplier<Key<Value<String>>> STRUCTURE_AUTHOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STRUCTURE_AUTHOR");
 
     /**
-     * Represents the {@link Key} for whether a {@link StructureBlock} should
+     * Whether a {@link StructureBlock} should
      * ignore entities when saving a structure.
      */
     public static final Supplier<Key<Value<Boolean>>> STRUCTURE_IGNORE_ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STRUCTURE_IGNORE_ENTITIES");
 
     /**
-     * Represents the {@link Key} for representing the integrity of a {@link StructureBlock}.
+     * The integrity of a {@link StructureBlock}.
      */
     public static final Supplier<Key<Value<Double>>> STRUCTURE_INTEGRITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STRUCTURE_INTEGRITY");
 
     /**
-     * Represents the {@link Key} for representing the mode of a {@link StructureBlock}.
+     * The mode of a {@link StructureBlock}.
      */
     public static final Supplier<Key<Value<StructureMode>>> STRUCTURE_MODE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STRUCTURE_MODE");
 
     /**
-     * Represents the {@link Key} for representing the position of a {@link StructureBlock}.
+     * The position of a {@link StructureBlock}.
      */
     public static final Supplier<Key<Value<Vector3i>>> STRUCTURE_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STRUCTURE_POSITION");
 
     /**
-     * Represents the {@link Key} for representing the powered state of a
-     * {@link StructureBlock}.
+     * Whether a {@link StructureBlock} is powered.
      */
     public static final Supplier<Key<Value<Boolean>>> STRUCTURE_POWERED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STRUCTURE_POWERED");
 
     /**
-     * Represents the {@link Key} for representing the mode of a {@link StructureBlock}.
+     * The seed of a {@link StructureBlock}
      */
     public static final Supplier<Key<Value<Long>>> STRUCTURE_SEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STRUCTURE_SEED");
 
     /**
-     * Represents the {@link Key} for representing whether a
+     * Whether a
      * {@link StructureBlock} should make all {@link BlockTypes#AIR},
      * {@link BlockTypes#CAVE_AIR}, {@link BlockTypes#STRUCTURE_VOID} visible.
      */
     public static final Supplier<Key<Value<Boolean>>> STRUCTURE_SHOW_AIR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STRUCTURE_SHOW_AIR");
 
     /**
-     * Represents the {@link Key} for representing the mode of a {@link StructureBlock}.
+     * Whether a {@link StructureBlock} shows the bounding box.
      */
     public static final Supplier<Key<Value<Boolean>>> STRUCTURE_SHOW_BOUNDING_BOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STRUCTURE_SHOW_BOUNDING_BOX");
 
     /**
-     * Represents the {@link Key} for representing the size of a {@link StructureBlock}.
+     * The size of a {@link StructureBlock}s structure.
      */
     public static final Supplier<Key<Value<Vector3i>>> STRUCTURE_SIZE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STRUCTURE_SIZE");
 
     /**
-     * Represents the {@link Key} for representing the amount of "stuck arrows"
-     * in {@link Living} entities.
+     * The amount of "stuck arrows" in a {@link Living}.
      */
     public static final Supplier<Key<BoundedValue<Integer>>> STUCK_ARROWS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STUCK_ARROWS");
 
     /**
-     * Represents the {@link Key} for the time a {@link Ravager} is stunned.
+     * The time (in ticks) a {@link Ravager} is stunned.
      */
     public static final Supplier<Key<Value<Integer>>> STUNNED_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STUNNED_TIME");
 
     /**
-     * Represents a key for the amount of successful executions of a command
+     * The amount of successful executions of a command
      * stored in a {@link CommandBlock} or {@link CommandBlockMinecart}.
      */
     public static final Supplier<Key<BoundedValue<Integer>>> SUCCESS_COUNT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SUCCESS_COUNT");
 
     /**
-     * Represents the {@link Key} for representing the "suspended" state
-     * of a {@link BlockState}.
+     * Whether a {@link BlockState} is suspended.
      */
     public static final Supplier<Key<Value<Boolean>>> SUSPENDED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SUSPENDED");
 
     /**
-     * Represents the {@link Key} for representing the scoreboard tags applied
-     * to an {@link Entity}.
+     * The swiftness of a {@link Minecart}.
+     */
+    public static final Supplier<Key<BoundedValue<Double>>> SWIFTNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SWIFTNESS");
+
+    /**
+     * The scoreboard tags applied to an {@link Entity}.
      *
      * @see <a href="https://minecraft.gamepedia.com/Scoreboard#Tags">
      * https://minecraft.gamepedia.com/Scoreboard#Tags</a>
@@ -2306,42 +2330,51 @@ public final class Keys {
     public static final Supplier<Key<SetValue<String>>> TAGS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TAGS");
 
     /**
-     * Represents the {@link Key} for the tamer of a {@link TameableAnimal} or {@link HorseEntity}.
+     * The tamer of a {@link TameableAnimal} or {@link HorseEntity}.
      */
     public static final Supplier<Key<Value<UUID>>> TAMER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TAMER");
 
     /**
-     * Represents the {@link Key} for a {@link Wither}'s targets.
+     * The entities targeted by the three {@link Wither} heads. In vanilla the wither only targets {@link Living}. {@code null} for no target entity.
      */
-    public static final Supplier<Key<ListValue<Living>>> TARGET_ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TARGET_ENTITIES");
+    public static final Supplier<Key<ListValue<Entity>>> TARGET_ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TARGET_ENTITIES");
 
     /**
-     * Represents the {@link Key} for a targeted entity either by an {@link Agent} and it's
+     * The targeted entity either by an {@link Agent} and it's
      * {@link GoalExecutorTypes#TARGET} selector or by a {@link FishingBobber} or {@link ShulkerBullet}.
      */
     public static final Supplier<Key<Value<Entity>>> TARGET_ENTITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TARGET_ENTITY");
 
     /**
-     * Represents the {@link Key} for the location targeted by an
-     * {@link EyeOfEnder} or a {@link Player}'s compass.
+     * A target location.
+     * e.g. An {@link EyeOfEnder} target or a {@link Player}'s compass.
      */
     public static final Supplier<Key<Value<Vector3d>>> TARGET_LOCATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TARGET_LOCATION");
 
     /**
-     * Represents the {@link Key} for a {@link Vector3i} that is currently a target. Example usage is a {@link Patroller}'s patrol target.
+     * A target block position.
+     * e.g. A {@link Patroller}'s patrol target,
+     * the travel position of a {@link Turtle},
+     * the exit portal position of a {@link EndGateway} or
+     * an {@link EnderCrystal}'s beam target.
      */
     public static final Supplier<Key<Value<Vector3i>>> TARGET_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TARGET_POSITION");
 
     /**
-     * Represents the {@link Key} for the remaining fuse time in ticks of a
-     * {@link FusedExplosive}. This value may be set to an arbitrary value
+     * The remaining fuse time in ticks of a {@link FusedExplosive}.
+     * This value may be set to an arbitrary value
      * if the explosive is not primed.
      */
     public static final Supplier<Key<Value<Integer>>> TICKS_REMAINING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TICKS_REMAINING");
 
     /**
-     * Represents the {@link Key} for whether a {@link CommandBlock} does track
-     * its output.
+     * The {@link ToolType} of an {@link ItemStack} tool.
+     * Readonly
+     */
+    public static final Supplier<Key<Value<ToolType>>> TOOL_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TOOL_TYPE");
+
+    /**
+     * Whether a {@link CommandBlock} does track its output.
      *
      * <p>If this is set, the output of the most recent execution can be
      * retrieved using {@link #LAST_COMMAND_OUTPUT}.</p>
@@ -2349,79 +2382,43 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> TRACKS_OUTPUT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TRACKS_OUTPUT");
 
     /**
-     * Represents the {@link Key} for the {@link TradeOffer}s offered by a
-     * {@link Trader}.
+     * Tge {@link TradeOffer}s offered by a {@link Trader}.
      */
     public static final Supplier<Key<ListValue<TradeOffer>>> TRADE_OFFERS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TRADE_OFFERS");
 
     /**
-     * Represents the {@link Key} for a {@link TropicalFish}'s base color.
-     */
-    public static final Supplier<Key<Value<DyeColor>>> TROPICAL_FISH_BASE_COLOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TROPICAL_FISH_BASE_COLOR");
-
-    /**
-     * Represents the {@link Key} for a {@link TropicalFish}'s pattern color.
-     */
-    public static final Supplier<Key<Value<DyeColor>>> TROPICAL_FISH_PATTERN_COLOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TROPICAL_FISH_PATTERN_COLOR");
-
-    /**
-     * Represents the {@link Key} for a {@link TropicalFish}'s shape.
+     * A {@link TropicalFish}'s shape.
      */
     public static final Supplier<Key<Value<TropicalFishShape>>> TROPICAL_FISH_SHAPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TROPICAL_FISH_SHAPE");
 
     /**
-     * Represents the {@link Key} for if a {@link Turtle} currently has an egg.
-     */
-    public static final Supplier<Key<Value<Boolean>>> TURTLE_DOES_HAVE_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TURTLE_DOES_HAS_EGG");
-
-    /**
-     * Represents the {@link Key} for the {@link Vector3i position} where a {@link Turtle} lays {@link BlockTypes#TURTLE_EGG eggs}.
-     */
-    public static final Supplier<Key<Value<Vector3i>>> TURTLE_HOME_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TURTLE_HOME_POSITION");
-
-    /**
-     * Represents the {@link Key} for the if a {@link Turtle} is proceeding to it's {@link Vector3i home position}.
-     */
-    public static final Supplier<Key<Value<Boolean>>> TURTLE_IS_GOING_HOME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TURTLE_IS_GOING_HOME");
-
-    /**
-     * Represents the {@link Key} for if a {@link Turtle} is currently laying an egg.
-     */
-    public static final Supplier<Key<Value<Boolean>>> TURTLE_IS_LAYING_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TURTLE_IS_LAYING_EGG");
-
-    /**
-     * Represents the {@link Key} for if a {@link Turtle} is currently traveling.
-     */
-    public static final Supplier<Key<Value<Boolean>>> TURTLE_IS_TRAVELING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TURTLE_IS_TRAVELING");
-
-    /**
-     * Represents the {@link Key} for the {@link Vector3i position} where a {@link Turtle} travels to when it is not currently laying an egg.
-     */
-    public static final Supplier<Key<Value<Vector3i>>> TURTLE_TRAVELING_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TURTLE_TRAVELING_POSITION");
-
-    /**
-     * Represents the {@link Key} for the time a {@link Panda} has been unhappy (in ticks)
+     * The time a {@link Panda} has been unhappy (in ticks)
      */
     public static final Supplier<Key<Value<Integer>>> UNHAPPY_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "UNHAPPY_TIME");
 
     /**
-     * Represents the {@link UUID} of a custom inventory.
+     * The {@link UUID} of a custom inventory.
      */
     public static final Supplier<Key<Value<UUID>>> UNIQUE_ID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "UNIQUE_ID");
 
     /**
-     * Represents the {@link Key} for whether a TNT block is unstable.
+     * The deceleration a {@link Boat} while it does not have {@link Keys#PASSENGERS}.
+     */
+    public static final Supplier<Key<BoundedValue<Double>>> UNOCCUPIED_DECELERATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "UNOCCUPIED_DECELERATION");
+
+    /**
+     * Whether a {@link BlockTypes#TNT} {@link BlockState} is unstable.
      */
     public static final Supplier<Key<Value<Boolean>>> UNSTABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "UNSTABLE");
 
     /**
-     * Represents the {@link Key} for whether or not changes to {@link Keys#SKIN} should
+     * Whether changes to {@link Keys#SKIN} should
      * be reflected in an entitie's {@link GameProfile}.
      */
     public static final Supplier<Key<Value<Boolean>>> UPDATE_GAME_PROFILE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "UPDATE_GAME_PROFILE");
 
     /**
-     * Gets the {@link Key} for the "vanish" state of an {@link Entity}.
+     * Whether an {@link Entity} is vanished.
      *
      * <p>The presence of a vanished entity will not be made known to a client;
      * no packets pertaining to this entity are sent. Client-side, this entity
@@ -2431,13 +2428,11 @@ public final class Keys {
      * <p>Vanishing an {@link Entity} ridden by other entities (see
      * {@link #PASSENGERS} will cause problems.</p>
      * <p>
-     * #VANISH
      */
     public static final Supplier<Key<Value<Boolean>>> VANISH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "VANISH");
 
     /**
-     * Represents the {@link Key} for whether an {@link Entity} ignores collision
-     * with other entities.
+     * Whether an {@link Entity} ignores collision with other entities.
      *
      * <p>This state will be ignored if the {@link Entity} is not also
      * vanished as per {@link #VANISH}.</p>
@@ -2445,11 +2440,9 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> VANISH_IGNORES_COLLISION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "VANISH_IGNORES_COLLISION");
 
     /**
-     * Represents the {@link Key} for
-     * Gets the {@link Value} for whether an {@link Entity} can be targeted for
-     * attack by another entity. This prevents neither {@link Player}s from
-     * attacking the entity nor will it be protected from untargeted damage
-     * like fire or explosions.
+     * Whether an {@link Entity} can be targeted for attack by another entity.
+     * This prevents neither {@link Player}s from attacking the entity nor
+     * will it be protected from untargeted damage like fire or explosions.
      *
      * <p>This state will be ignored if the {@link Entity} is not also
      * vanished as per {@link #VANISH}.}.</p>
@@ -2457,7 +2450,7 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> VANISH_PREVENTS_TARGETING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "VANISH_PREVENTS_TARGETING");
 
     /**
-     * Represents the {@link Key} for the vehicle an {@link Entity} is riding.
+     * The vehicle an {@link Entity} is riding.
      *
      * <p>Vehicles may be nested as a vehicle might itself ride another entity.
      * To get the vehicle on bottom, use {@link Keys#BASE_VEHICLE}.</p>
@@ -2465,82 +2458,73 @@ public final class Keys {
     public static final Supplier<Key<Value<Entity>>> VEHICLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "VEHICLE");
 
     /**
-     * Represents the {@link Key} for the velocity of an {@link Entity}.
+     * The velocity of an {@link Entity}.
      */
     public static final Supplier<Key<Value<Vector3d>>> VELOCITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "VELOCITY");
 
     /**
-     * Represents the {@link Key} for amount of ticks till a {@link Vex} starts
-     * taking damage due to living too long.
-     *
-     * <p>When this value hits 0 or lower, the Vex will receive damage and
-     * then the value will set back to 20 until the Vex dies.</p>
-     *
-     * <p>If the Vex was summoned by a player, this value will be pegged at 0
-     * and the Vex will not take any damage.</p>
-     */
-    public static final Supplier<Key<Value<Integer>>> VEX_LIFE_TICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "VEX_LIFE_TICKS");
-
-    /**
-     * Represents the {@link Key} for the type of a {@link Villager} or {@link ZombieVillager}.
+     * The type of a {@link Villager} or {@link ZombieVillager}.
      */
     public static final Supplier<Key<Value<VillagerType>>> VILLAGER_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "VILLAGER_TYPE");
 
     /**
-     * Represents the {@link Key} for the speed at which an entity walks.
+     * The duration in ticks after which an
+     * {@link AreaEffectCloud} will begin to apply its effect to entities.
+     */
+    public static final Supplier<Key<BoundedValue<Integer>>> WAIT_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "WAIT_TIME");
+
+    /**
+     * The base speed at which a {@link Player} or {@link Living} walks.
      */
     public static final Supplier<Key<Value<Double>>> WALKING_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "WALKING_SPEED");
 
     /**
-     * Represents the {@link Key} for whether a thrown {@link EyeOfEnder} will
-     * shatter.
+     * Whether a thrown {@link EyeOfEnder} will shatter.
      */
     public static final Supplier<Key<Value<Boolean>>> WILL_SHATTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "WILL_SHATTER");
 
     /**
-     * Represents the {@link Key} for how a {@link BlockTypes#REDSTONE_WIRE} is
-     * connected to its neighboring blocks.
+     * The {@link WireAttachmentType}s of a {@link BlockTypes#REDSTONE_WIRE} {@link BlockState} for its neighboring blocks.
      */
     public static final Supplier<Key<MapValue<Direction, WireAttachmentType>>> WIRE_ATTACHMENTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "WIRE_ATTACHMENTS");
 
     /**
-     * Represents the {@link Key} for how a {@link BlockTypes#REDSTONE_WIRE} is
-     * connected to its neighboring block to the {@link Direction#EAST}.
+     * The {@link WireAttachmentType} of a {@link BlockTypes#REDSTONE_WIRE} {@link BlockState}
+     * for its neighboring block to the {@link Direction#EAST}.
      */
     public static final Supplier<Key<Value<WireAttachmentType>>> WIRE_ATTACHMENT_EAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "WIRE_ATTACHMENT_EAST");
 
     /**
-     * Represents the {@link Key} for how a {@link BlockTypes#REDSTONE_WIRE} is
-     * connected to its neighboring block to the {@link Direction#NORTH}.
+     * The {@link WireAttachmentType} of a {@link BlockTypes#REDSTONE_WIRE} {@link BlockState}
+     * for its neighboring block to the {@link Direction#NORTH}.
      */
     public static final Supplier<Key<Value<WireAttachmentType>>> WIRE_ATTACHMENT_NORTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "WIRE_ATTACHMENT_NORTH");
 
     /**
-     * Represents the {@link Key} for how a {@link BlockTypes#REDSTONE_WIRE} is
-     * connected to its neighboring block to the {@link Direction#SOUTH}.
+     * The {@link WireAttachmentType} of a {@link BlockTypes#REDSTONE_WIRE} {@link BlockState}
+     * for its neighboring block to the {@link Direction#SOUTH}.
      */
     public static final Supplier<Key<Value<WireAttachmentType>>> WIRE_ATTACHMENT_SOUTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "WIRE_ATTACHMENT_SOUTH");
 
     /**
-     * Represents the {@link Key} for how a {@link BlockTypes#REDSTONE_WIRE} is
-     * connected to its neighboring block to the {@link Direction#WEST}.
+     * The {@link WireAttachmentType} of a {@link BlockTypes#REDSTONE_WIRE} {@link BlockState}
+     * for its neighboring block to the {@link Direction#WEST}.
      */
     public static final Supplier<Key<Value<WireAttachmentType>>> WIRE_ATTACHMENT_WEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "WIRE_ATTACHMENT_WEST");
 
     /**
-     * Represents the {@link Key} for the {@link Sheep} who is being targeted by the {@link SpellTypes#WOLOLO}
+     * The {@link Sheep} who is being targeted by the {@link SpellTypes#WOLOLO}
      * spell being casted by an {@link Evoker}
      */
     public static final Supplier<Key<Value<Sheep>>> WOLOLO_TARGET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "WOLOLO_TARGET");
 
     /**
-     * Represents the {@link Key} for the {@link WoodType} of a {@link Boat}.
+     * The {@link WoodType} of a {@link Boat}.
+     * TODO BlockState dataholders?
      */
     public static final Supplier<Key<Value<WoodType>>> WOOD_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "WOOD_TYPE");
 
     // SORTFIELDS:OFF
-
-    // TODO: Convert missing properties to keys.
 
     private Keys() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
