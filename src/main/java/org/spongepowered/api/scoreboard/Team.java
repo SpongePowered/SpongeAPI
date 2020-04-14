@@ -111,6 +111,19 @@ public interface Team {
      *
      * @param color The team color
      */
+    default void setColor(Supplier<? extends TextColor> color) {
+        this.setColor(color.get());
+    }
+
+    /**
+     * Sets the color of this team.
+     *
+     * <p>The team's color is a distinct concept from its prefix or suffix.
+     * It is only used for colored sidebar display slots, and certain statistic
+     * criteria.</p>
+     *
+     * @param color The team color
+     */
     void setColor(TextColor color);
 
     /**
@@ -191,6 +204,16 @@ public interface Team {
      *
      * @param visibility The {@link Visibility} for this team's nametags
      */
+    default void setNameTagVisibility(Supplier<? extends Visibility> visibility) {
+        this.setNameTagVisibility(visibility.get());
+    }
+
+    /**
+     * Sets the {@link Visibility} which controls to who nametags
+     * of players on this team are visible to.
+     *
+     * @param visibility The {@link Visibility} for this team's nametags
+     */
     void setNameTagVisibility(Visibility visibility);
 
     /**
@@ -207,6 +230,16 @@ public interface Team {
      *
      * @param visibility The {@link Visibility} for this team's death Texts
      */
+    default void setDeathMessageVisibility(Supplier<? extends Visibility> visibility) {
+        this.setDeathMessageVisibility(visibility.get());
+    }
+
+    /**
+     * Sets the {@link Visibility} which controls who death Texts
+     * of players on this team are visible to.
+     *
+     * @param visibility The {@link Visibility} for this team's death Texts
+     */
     void setDeathMessageVisibility(Visibility visibility);
 
     /**
@@ -215,6 +248,15 @@ public interface Team {
      * @return The {@link CollisionRule} for entities on this team
      */
     CollisionRule getCollisionRule();
+
+    /**
+     * Sets the {@link CollisionRule} for entities on this team.
+     *
+     * @param rule The {@link CollisionRule} for entities on this team
+     */
+    default void setCollisionRule(Supplier<? extends CollisionRule> rule) {
+        this.setCollisionRule(rule.get());
+    }
 
     /**
      * Sets the {@link CollisionRule} for entities on this team.
@@ -426,7 +468,7 @@ public interface Team {
          * @return This builder
          */
         default Builder collisionRule(Supplier<? extends CollisionRule> rule) {
-            return this.collisionRule(rule);
+            return this.collisionRule(rule.get());
         }
 
         /**

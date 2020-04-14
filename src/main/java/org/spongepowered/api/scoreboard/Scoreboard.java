@@ -36,6 +36,7 @@ import org.spongepowered.api.util.CopyableBuilder;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Supplier;
 
 /**
  * Represents a scoreboard, which contains {@link Team}s and {@link Objective}s.
@@ -70,6 +71,17 @@ public interface Scoreboard {
      * @param slot The {@link DisplaySlot}
      * @return the {@link Objective} currently displayed, if present
      */
+    default Optional<Objective> getObjective(Supplier<? extends DisplaySlot> slot) {
+        return this.getObjective(slot.get());
+    }
+
+    /**
+     * Gets the {@link Objective} currently displayed in a {@link DisplaySlot} on this
+     * scoreboard, if one is present.
+     *
+     * @param slot The {@link DisplaySlot}
+     * @return the {@link Objective} currently displayed, if present
+     */
     Optional<Objective> getObjective(DisplaySlot slot);
 
     /**
@@ -93,7 +105,31 @@ public interface Scoreboard {
      * @throws IllegalStateException if the specified {@link Objective} does not exist
      *                               on this scoreboard
      */
+    default void updateDisplaySlot(@Nullable Objective objective, Supplier<? extends DisplaySlot> displaySlot) throws IllegalStateException {
+        this.updateDisplaySlot(objective, displaySlot.get());
+    }
+
+    /**
+     * Sets the specified {@link Objective} in the specified {@link DisplaySlot}.
+     *
+     * <p>If the {@link Objective} is <code>null</code>, then the specified
+     * {@link DisplaySlot} will be cleared.</p>
+     *
+     * @param objective The {@link Objective} to set
+     * @param displaySlot The {@link DisplaySlot} to the specified {@link Objective} in
+     * @throws IllegalStateException if the specified {@link Objective} does not exist
+     *                               on this scoreboard
+     */
     void updateDisplaySlot(@Nullable Objective objective, DisplaySlot displaySlot) throws IllegalStateException;
+
+    /**
+     * Clears any {@link Objective} in the specified slot.
+     *
+     * @param slot The {@link DisplaySlot} to remove any {@link Objective} for
+     */
+    default void clearSlot(Supplier<? extends DisplaySlot> slot) {
+        this.clearSlot(slot.get());
+    }
 
     /**
      * Clears any {@link Objective} in the specified slot.
@@ -107,10 +143,20 @@ public interface Scoreboard {
     /**
      * Gets all {@link Objective}s of a Criteria on this scoreboard.
      *
-     * @param criteria {@link Criterion} to search by
-     * @return A set of {@link Objective}s using the specified Criteria
+     * @param criterion {@link Criterion} to search by
+     * @return A set of {@link Objective}s using the specified criterion
      */
-    Set<Objective> getObjectivesByCriteria(Criterion criteria);
+    default Set<Objective> getObjectivesByCriterion(Supplier<? extends Criterion> criterion) {
+        return this.getObjectivesByCriterion(criterion.get());
+    }
+
+    /**
+     * Gets all {@link Objective}s of a Criteria on this scoreboard.
+     *
+     * @param criterion {@link Criterion} to search by
+     * @return A set of {@link Objective}s using the specified criterion
+     */
+    Set<Objective> getObjectivesByCriterion(Criterion criterion);
 
     /**
      * Gets all {@link Objective}s on this scoreboard.
