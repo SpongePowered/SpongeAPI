@@ -65,15 +65,14 @@ public abstract class PatternMatchingCommandElement extends CommandElement {
         Iterable<Object> ret;
         String arg = args.next();
 
-        if (useRegex) {
-            // Check for an exact match before we create the regex.
-            // We do this because anything with ^[abc] would not match [abc]
-            Optional<Object> exactMatch = getExactMatch(choices, arg);
-            if (exactMatch.isPresent()) {
-                // Return this as a collection as this can get transformed by the subclass.
-                return Collections.singleton(exactMatch.get());
-            }
+        // Check to see if we have an exact match first
+        Optional<Object> exactMatch = getExactMatch(choices, arg);
+        if (exactMatch.isPresent()) {
+            // Return this as a collection as this can get transformed by the subclass.
+            return Collections.singleton(exactMatch.get());
+        }
 
+        if (this.useRegex) {
             Pattern pattern = getFormattedPattern(arg);
             ret = Iterables.transform(Iterables.filter(choices, element -> pattern.matcher(element).find()), this::getValue);
         } else {
