@@ -29,6 +29,7 @@ import org.spongepowered.api.Server;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.volume.entity.ReadableEntityVolume;
 import org.spongepowered.api.world.volume.game.HeightAwareVolume;
 import org.spongepowered.api.world.volume.game.UpdatableVolume;
 import org.spongepowered.api.world.volume.biome.MutableBiomeVolume;
@@ -46,7 +47,12 @@ import org.spongepowered.math.vector.Vector3i;
  * {@link World} instance.</p>
  */
 public interface ProtoChunk<P extends ProtoChunk<P>> extends
-        MutableBlockVolume<P>, MutableBlockEntityVolume<P>, MutableBiomeVolume<P>, UpdatableVolume, HeightAwareVolume {
+        MutableBlockVolume<P>,
+        MutableBlockEntityVolume<P>,
+        MutableBiomeVolume<P>,
+        ReadableEntityVolume,
+        UpdatableVolume,
+        HeightAwareVolume {
 
     /**
      * Adds the {@link Entity} to this {@link ProtoChunk chunk}. It is not
