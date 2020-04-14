@@ -40,8 +40,15 @@ public abstract class AbstractDamageSourceBuilder<T extends DamageSource, B exte
     protected boolean absolute = false;
     protected boolean magical = false;
     protected boolean creative = false;
+    protected boolean fire = false;
     @Nullable protected Double exhaustion = null;
     protected DamageType damageType = null;
+
+    @Override
+    public B fire() {
+        this.fire = true;
+        return (B) this;
+    }
 
     @Override
     public B scalesWithDifficulty() {
@@ -80,19 +87,19 @@ public abstract class AbstractDamageSourceBuilder<T extends DamageSource, B exte
     }
 
     @Override
-    public B exhaustion(double exhaustion) {
+    public B exhaustion(final double exhaustion) {
         this.exhaustion = exhaustion;
         return (B) this;
     }
 
     @Override
-    public B type(DamageType damageType) {
+    public B type(final DamageType damageType) {
         this.damageType = checkNotNull(damageType, "DamageType cannot be null!");
         return (B) this;
     }
 
     @Override
-    public B from(T value) {
+    public B from(final T value) {
         reset();
         this.scales = value.isScaledByDifficulty();
         this.absolute = value.isAbsolute();
