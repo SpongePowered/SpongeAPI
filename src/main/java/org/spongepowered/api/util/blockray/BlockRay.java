@@ -847,7 +847,8 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
     /**
      * A filter that returns {@code true} for any input.
      *
-     * <p>This is the default filter applied to:</p>
+     * <p>In the absence of any other filter, this is the default filter applied
+     * to:</p>
      *
      * <ul>
      *     <li>{@link BlockRayBuilder#continueWhen(Predicate)}</li>
@@ -855,7 +856,10 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
      * </ul>
      *
      * <p><strong>Be careful:</strong> if no other constraints are placed on
-     * a {@link BlockRayBuilder}, such a ray will continue endlessly.</p>
+     * {@link BlockRayBuilder#continueWhen(Predicate)} and
+     * {@link BlockRayBuilder#selectWhen(Predicate)} is given a {@link Predicate}
+     * that has a narrower focus, a ray may never find a match and therefore
+     * continue endlessly.</p>
      *
      * @param <E> The extent to be applied in
      * @return A filter that accepts all blocks
