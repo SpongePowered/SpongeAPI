@@ -83,9 +83,11 @@ import java.util.function.Predicate;
  * at based on some metric, like transparency, block model, or even distance.
  * The standard Bukkit-like behavior for finding the target block can be
  * achieved with using {@link BlockRay#ONLY_AIR_FILTER} as the
- * {@code stopFilter}, combined with
+ * continue filter, combined with
  * {@link #continueAfterFilter(Predicate, int)} with a second argument of 1, to
- * obtain the block just after the last air.</p>
+ * enable the ray to iterate such that it can select the block just after the
+ * last air. A {@link #notAirFilter()} can then be used as the select filter
+ * to select the non-air block.</p>
  *
  * <p>To get a block ray for an entities' line of sight, use
  * <pre>{@code BlockRay.from(entity);}</pre></p>
