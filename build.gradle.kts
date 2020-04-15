@@ -16,6 +16,11 @@ val ap by sourceSets.registering {
     compileClasspath += sourceSets.main.get().compileClasspath + sourceSets.main.get().output
 }
 
+spongeDev {
+    api(project)
+    licenseProject.set("SpongeAPI")
+}
+
 // Project dependencies
 dependencies {
     api("org.slf4j:slf4j-api:1.7.25")
