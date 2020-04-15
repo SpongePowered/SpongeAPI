@@ -626,12 +626,6 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
          * being returned by virtue of this predicate may be continued by
          * calling {@link #next()} on the associated {@link BlockRay}.
          *
-         * <p>This filters provided in this method are always the last
-         * to be checked. A {@code true} returned here will
-         * <strong>always</strong> stop a {@link BlockRay} trace and return this
-         * {@link BlockRayHit} to the consumer, while a false will ensure that
-         * the trace will continue, ignoring this result.</p>
-         *
          * <p>In the case that there are multiple filters,
          * <strong>all</strong> provided filters must succeed in order for
          * a ray to complete.</p>
