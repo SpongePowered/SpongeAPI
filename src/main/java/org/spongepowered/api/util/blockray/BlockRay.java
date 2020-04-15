@@ -56,16 +56,23 @@ import java.util.function.Predicate;
  * that block is never returned because it is never entered (the ray is already
  * inside).
  *
- * <p>This class implements the
- * {@link Iterator} interface with the exception of {@link Iterator#remove()}.
- * </p>
+ * <p>This class implements the {@link Iterator} interface with the exception
+ * of {@link Iterator#remove()}.</p>
  *
  * <p>Filters determine what blocks the {@link BlockRay} should accept. First
- * the stop filter is called. If it returns false then the iterator ends there.
- * Otherwise the skip filter is called. If it returns false then the iterator
- * proceeds to the next block and it is never returned. Otherwise the block is
- * returned. If the distance limit is enabled then it is applied before both
- * filters and acts like the stop filter.</p>
+ * the continuation filter(s) (provided by
+ * {@link BlockRayBuilder#continueWhen(Predicate)}) are checked. If any of the
+ * provided filters return {@code false} then the iterator ends there - no more
+ * matches may be made by this ray.</p>
+ *
+ * <p>If this ray has not been stopped, the selection filter(s) (provided by
+ * {@link BlockRayBuilder#selectWhen(Predicate)}) are called. If any of the
+ * provided filters returns {@code false} then the iterator proceeds to the
+ * next block and it is never returned as a {@link BlockRayHit}. Otherwise
+ * the block is returned and the iterator is paused, awaiting a {@link #next()}
+ * call to resume tracing. If the distance limit is enabled then it is applied
+ * before both continuation and select checks and acts like the a {@code false}
+ * result has been returned by a continuation filter.</p>
  *
  * <p>Any one instance of a {@link Predicate} should only be run on one path.
  * It is not specified that {@link Predicate}s have to be stateless, pure
