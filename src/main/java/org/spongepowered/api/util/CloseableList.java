@@ -22,42 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api;
+package org.spongepowered.api.util;
 
-import org.spongepowered.api.resource.ResourceManager;
-import org.spongepowered.api.resource.pack.PackList;
-import org.spongepowered.api.scheduler.Scheduler;
+import java.io.Closeable;
+import java.util.List;
 
 /**
- * Shared functionality between {@link Client} and {@link Server} engines.
+ * A list, containing closeable elements. All elements can be closed by calling
+ * {@link #close()}.
+ *
+ * @param <E> The closeable type
  */
-public interface Engine {
+public interface CloseableList<E extends Closeable> extends List<E>, Closeable {
 
     /**
-     * Gets the {@link PackList} instance of this engine.
-     *
-     * @return
+     * Quietly closes all elements in this list.
      */
-    PackList getPackList();
-
-    /**
-     * Gets the {@link ResourceManager} for this engine.
-     *
-     * @return The resource manager
-     */
-    ResourceManager getResourceManager();
-
-    /**
-     * Gets the {@link Scheduler} used to schedule sync tasks on this {@link Engine}.
-     *
-     * @return The sync scheduler
-     */
-    Scheduler getScheduler();
-
-    /**
-     * Checks if the {@link Thread#currentThread() current thread} is the main thread of the engine.
-     *
-     * @return {@code true} if main thread, {@code false} if not
-     */
-    boolean onMainThread();
+    @Override
+    void close();
 }

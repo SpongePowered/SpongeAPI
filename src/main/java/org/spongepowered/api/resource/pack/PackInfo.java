@@ -22,42 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api;
+package org.spongepowered.api.resource.pack;
 
-import org.spongepowered.api.resource.ResourceManager;
-import org.spongepowered.api.resource.pack.PackList;
-import org.spongepowered.api.scheduler.Scheduler;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.Nameable;
 
-/**
- * Shared functionality between {@link Client} and {@link Server} engines.
- */
-public interface Engine {
+public interface PackInfo extends Nameable {
 
-    /**
-     * Gets the {@link PackList} instance of this engine.
-     *
-     * @return
-     */
-    PackList getPackList();
+    Text getDisplayName(boolean enabled);
 
-    /**
-     * Gets the {@link ResourceManager} for this engine.
-     *
-     * @return The resource manager
-     */
-    ResourceManager getResourceManager();
+    PackVersion getVersion();
 
-    /**
-     * Gets the {@link Scheduler} used to schedule sync tasks on this {@link Engine}.
-     *
-     * @return The sync scheduler
-     */
-    Scheduler getScheduler();
+    Pack getPack();
 
-    /**
-     * Checks if the {@link Thread#currentThread() current thread} is the main thread of the engine.
-     *
-     * @return {@code true} if main thread, {@code false} if not
-     */
-    boolean onMainThread();
+    boolean isForced();
+
+    boolean isLocked();
+
+    Priority getPriority();
+
+    enum Priority {
+        FIRST, LAST
+    }
 }

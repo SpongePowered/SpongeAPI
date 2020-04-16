@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api;
 
-import org.spongepowered.api.asset.AssetManager;
 import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.data.persistence.DataBuilder;
@@ -32,7 +31,6 @@ import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.network.ChannelRegistrar;
-import org.spongepowered.api.packs.ResourceManager;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.registry.GameRegistry;
 import org.spongepowered.api.scheduler.Scheduler;
@@ -167,25 +165,6 @@ public interface Game {
      */
     default EventManager getEventManager() {
         return Sponge.getEventManager();
-    }
-
-    /**
-     * Gets the {@link AssetManager}.
-     *
-     * @return The asset manager
-     */
-    @Deprecated
-    default AssetManager getAssetManager() {
-        return Sponge.getAssetManager();
-    }
-
-    /**
-     * Gets the {@link ResourceManager}.
-     *
-     * @return The resource manager
-     */
-    default ResourceManager getResourceManager() {
-        return Sponge.getResourceManager();
     }
 
     /**

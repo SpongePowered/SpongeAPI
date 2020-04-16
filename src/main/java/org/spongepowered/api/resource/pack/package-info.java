@@ -22,42 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api;
-
-import org.spongepowered.api.resource.ResourceManager;
-import org.spongepowered.api.resource.pack.PackList;
-import org.spongepowered.api.scheduler.Scheduler;
-
-/**
- * Shared functionality between {@link Client} and {@link Server} engines.
- */
-public interface Engine {
-
-    /**
-     * Gets the {@link PackList} instance of this engine.
-     *
-     * @return
-     */
-    PackList getPackList();
-
-    /**
-     * Gets the {@link ResourceManager} for this engine.
-     *
-     * @return The resource manager
-     */
-    ResourceManager getResourceManager();
-
-    /**
-     * Gets the {@link Scheduler} used to schedule sync tasks on this {@link Engine}.
-     *
-     * @return The sync scheduler
-     */
-    Scheduler getScheduler();
-
-    /**
-     * Checks if the {@link Thread#currentThread() current thread} is the main thread of the engine.
-     *
-     * @return {@code true} if main thread, {@code false} if not
-     */
-    boolean onMainThread();
-}
+@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
+package org.spongepowered.api.resource.pack;

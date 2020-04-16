@@ -22,5 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
-package org.spongepowered.api.asset;
+package org.spongepowered.api.resource.pack;
+
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.Supplier;
+
+public interface PackDiscoverer {
+
+    void populate(Map<String, PackInfo> packInfos, PackInfoFactory factory);
+
+    @FunctionalInterface
+    interface PackInfoFactory {
+        /**
+         * Creates a new {@link PackInfo} from the given arguments. If the pack
+         * does not have valid metadata, an empty optional is returned.
+         *
+         * @param name     The name of the pack.
+         * @param forced   Whether the pack should always be loaded
+         * @param pack     The supplier for the pack
+         * @param priority The priority, first or last
+         * @return The new pack info definition
+         */
+        Optional<PackInfo> createPackInfo(String name, boolean forced, Supplier<Pack> pack, PackInfo.Priority priority);
+    }
+
+}

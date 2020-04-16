@@ -22,42 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api;
+package org.spongepowered.api.resource.pack;
 
-import org.spongepowered.api.resource.ResourceManager;
-import org.spongepowered.api.resource.pack.PackList;
-import org.spongepowered.api.scheduler.Scheduler;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.util.ResettableBuilder;
 
-/**
- * Shared functionality between {@link Client} and {@link Server} engines.
- */
-public interface Engine {
+public interface PackVersion {
 
-    /**
-     * Gets the {@link PackList} instance of this engine.
-     *
-     * @return
-     */
-    PackList getPackList();
+    boolean isCompatible();
 
-    /**
-     * Gets the {@link ResourceManager} for this engine.
-     *
-     * @return The resource manager
-     */
-    ResourceManager getResourceManager();
+    static PackVersion of(int version) {
+        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class).version(version).build();
+    }
 
-    /**
-     * Gets the {@link Scheduler} used to schedule sync tasks on this {@link Engine}.
-     *
-     * @return The sync scheduler
-     */
-    Scheduler getScheduler();
+    interface Builder extends ResettableBuilder<PackVersion, Builder> {
+        Builder version(int version);
 
-    /**
-     * Checks if the {@link Thread#currentThread() current thread} is the main thread of the engine.
-     *
-     * @return {@code true} if main thread, {@code false} if not
-     */
-    boolean onMainThread();
+        PackVersion build();
+    }
 }

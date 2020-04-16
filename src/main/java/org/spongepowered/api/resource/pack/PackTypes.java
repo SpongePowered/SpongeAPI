@@ -22,42 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api;
+package org.spongepowered.api.resource.pack;
 
-import org.spongepowered.api.resource.ResourceManager;
-import org.spongepowered.api.resource.pack.PackList;
-import org.spongepowered.api.scheduler.Scheduler;
+import org.spongepowered.api.Sponge;
 
-/**
- * Shared functionality between {@link Client} and {@link Server} engines.
- */
-public interface Engine {
+import java.util.function.Supplier;
 
-    /**
-     * Gets the {@link PackList} instance of this engine.
-     *
-     * @return
-     */
-    PackList getPackList();
+public final class PackTypes {
 
-    /**
-     * Gets the {@link ResourceManager} for this engine.
-     *
-     * @return The resource manager
-     */
-    ResourceManager getResourceManager();
+    // SORTFIELDS:ON
 
-    /**
-     * Gets the {@link Scheduler} used to schedule sync tasks on this {@link Engine}.
-     *
-     * @return The sync scheduler
-     */
-    Scheduler getScheduler();
+    public static final Supplier<PackType> CLIENT_RESOURCES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PackType.class, "CLIENT_RESOURCES");
 
-    /**
-     * Checks if the {@link Thread#currentThread() current thread} is the main thread of the engine.
-     *
-     * @return {@code true} if main thread, {@code false} if not
-     */
-    boolean onMainThread();
+    public static final Supplier<PackType> SERVER_DATA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PackType.class, "SERVER_DATA");
+
+    // SORTFIELDS:OFF
+
+    private PackTypes() {
+    }
+
 }
