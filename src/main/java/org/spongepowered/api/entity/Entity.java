@@ -52,6 +52,7 @@ import java.util.EnumSet;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 /**
  * An entity is a Minecraft entity.
@@ -312,6 +313,17 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
      * within one game tick.
      */
     void remove();
+
+    /**
+     * Damages this {@link Entity} with the given {@link DamageSource}.
+     *
+     * @param damage The damage to deal
+     * @param damageSource The cause of the damage
+     * @return True if damaging the entity was successful
+     */
+    default boolean damage(double damage, Supplier<? extends DamageSource> damageSource) {
+        return this.damage(damage, damageSource.get());
+    }
 
     /**
      * Damages this {@link Entity} with the given {@link DamageSource}.
