@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.util;
 
+import com.flowpowered.math.vector.Vector2d;
+import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.reflect.TypeToken;
@@ -104,6 +106,8 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 import org.spongepowered.api.util.weighted.WeightedTable;
+import org.spongepowered.api.world.DimensionType;
+import org.spongepowered.api.world.World;
 
 import java.time.Instant;
 import java.util.List;
@@ -142,6 +146,8 @@ public final class TypeTokens {
     public static final TypeToken<BrickType> BRICK_TOKEN = new TypeToken<BrickType>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<BrickType>> BRICK_VALUE_TOKEN = new TypeToken<Value<BrickType>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Value<Byte>> BYTE_VALUE_TOKEN = new TypeToken<Value<Byte>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Career> CAREER_TOKEN = new TypeToken<Career>() {private static final long serialVersionUID = -1;};
 
@@ -465,6 +471,8 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<UUID>> UUID_VALUE_TOKEN = new TypeToken<Value<UUID>>() {private static final long serialVersionUID = -1;};
 
+    public static final TypeToken<Value<Vector2i>> VECTOR_2I_TOKEN = new TypeToken<Value<Vector2i>>() {private static final long serialVersionUID = -1;};
+
     public static final TypeToken<Vector3d> VECTOR_3D_TOKEN = new TypeToken<Vector3d>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<Vector3d>> VECTOR_3D_VALUE_TOKEN = new TypeToken<Value<Vector3d>>() {private static final long serialVersionUID = -1;};
@@ -492,6 +500,8 @@ public final class TypeTokens {
     public static final TypeToken<WireAttachmentType> WIRE_ATTACHMENT_TYPE_TOKEN = new TypeToken<WireAttachmentType>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<WireAttachmentType>> WIRE_ATTACHMENT_TYPE_VALUE_TOKEN = new TypeToken<Value<WireAttachmentType>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Value<World>> WORLD_VALUE_TOKEN = new TypeToken<Value<World>>() {private static final long serialVersionUID = -1;};
 
     // SORTFIELDS:OFF
 

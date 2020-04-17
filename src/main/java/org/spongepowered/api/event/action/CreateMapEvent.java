@@ -22,48 +22,57 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable.item;
+package org.spongepowered.api.event.action;
 
-import com.flowpowered.math.vector.Vector2i;
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.item.ImmutableMapItemData;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.item.ItemTypes;
-import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.data.Transaction;
+import org.spongepowered.api.data.manipulator.mutable.item.MapItemData;
+import org.spongepowered.api.data.type.HandType;
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.world.World;
 
-/**
- * Represents an {@link DataManipulator} hosting the specific map
- * information of an {@link ItemStack} of the type {@link ItemTypes#FILLED_MAP}.
- */
-public interface MapItemData extends DataManipulator<MapItemData, ImmutableMapItemData> {
+public interface CreateMapEvent extends Event, Cancellable {
     /**
-     * Gets the x centre of where the map refers to
-     * @return Vector2d centre
+     * Get the player creating this map
+     *
+     * @return Player who right clicked on a blank map
      */
-    Value<Vector2i> location();
+    Player getCreator();
 
     /**
-     * Gets the Dimension that this map refers to
-     * @return DimensionType
+     * Gets the map data for this map
+     * @return MapItemData Map data
      */
-    Value<World> world();
+    MapItemData getMapData();
 
     /**
-     * Gets whether this map tracks player position
-     * @return boolean If this map tracks players
+     * Gets the hand used
+     *
+     * @return HandType hand used
      */
-    Value<Boolean> trackPosition();
+    HandType getUsedHand();
 
     /**
-     * Gets whether this map tracks players from unlimited distance away
-     * @return boolean If the map has unlimited tracking
+     * Gets the world that this action took place in
+     *
+     * @return World world where the action happened
      */
-    Value<Boolean> unlimitedTracking();
+    World getWorld();
 
     /**
-     * Gets the scale of this map
-     * @return byte The scale of this map
+     * Gets the before and after {@link ItemStackSnapshot} for this action
+     *
+     * @return Transaction of ItemStackSnaphots, before and after
      */
-    Value<Byte> scale();
+    Transaction<ItemStackSnapshot> getItemTransaction();
+
+    /**
+     * Get the id assigned to the map about to be created
+     * (This id will not exist if the event is cancelled)
+     *
+     * @return int id assigned to the new map
+     */
+    int getNewId();
 }

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.key;
 
+import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockState;
@@ -83,12 +84,12 @@ import org.spongepowered.api.util.RespawnLocation;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
+import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.weather.Weather;
 
 import java.time.Instant;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -1457,6 +1458,44 @@ public final class Keys {
      * @see LogAxisData
      */
     public static final Key<Value<LogAxis>> LOG_AXIS = DummyObjectProvider.createExtendedFor(Key.class,"LOG_AXIS");
+
+    /**
+     * Represents the {@link Key} for the world for a
+     * {@link ItemTypes#FILLED_MAP}
+     *
+     * @see MapItemData#world()
+     */
+    public static final Key<Value<World>> MAP_WORLD = DummyObjectProvider.createExtendedFor(Key.class, "DIMENSION");
+
+    /**
+     * Represents the {@link Key} for the centre x and z of where a
+     * {@link ItemTypes#FILLED_MAP} represents
+     *
+     * @see MapItemData#location()
+     */
+    public static final Key<Value<Vector2i>> MAP_LOCATION = DummyObjectProvider.createExtendedFor(Key.class, "MAP_LOCATION");
+
+    /**
+     * Represents the {@link Key} for whether a map tracks player
+     *
+     * @see MapItemData#trackPosition()
+     */
+    public static final Key<Value<Boolean>> MAP_TRACKS_PLAYERS = DummyObjectProvider.createExtendedFor(Key.class, "MAP_TRACKS_PLAYERS");
+
+    /**
+     * Represents the {@link Key} for whether a map can track
+     * a player from anywhere in the world
+     *
+     * @see MapItemData#unlimitedTracking()
+     */
+    public static final Key<Value<Boolean>> MAP_UNLIMITED_TRACKING = DummyObjectProvider.createExtendedFor(Key.class, "MAP_UNLIMITED_TRACKING");
+
+    /**
+     * Represents the {@link Key} for the scale of a map
+     *
+     * @see MapItemData#scale()
+     */
+    public static final Key<Value<Byte>> MAP_SCALE = DummyObjectProvider.createExtendedFor(Key.class, "MAP_SCALE");
 
     /**
      * Represents the {@link Key} for the maximum air supply a {@link Living}

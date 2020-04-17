@@ -40,6 +40,7 @@ import org.spongepowered.api.world.extent.worker.MutableBiomeVolumeWorker;
 import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
 import org.spongepowered.api.world.gamerule.DefaultGameRules;
 import org.spongepowered.api.world.gen.WorldGenerator;
+import org.spongepowered.api.world.map.MapStorage;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.storage.WorldStorage;
 import org.spongepowered.api.world.weather.WeatherUniverse;
@@ -455,6 +456,12 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
      * @return The associated world storage
      */
     WorldStorage getWorldStorage();
+
+    /**
+     * Gets the map storage for this world.
+     * @return Optional<MapStorage>
+     */
+    Optional<MapStorage> getMapStorage();
 
     /**
      * Causes an {@link Explosion} in a world.

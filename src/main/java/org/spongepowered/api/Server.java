@@ -34,6 +34,7 @@ import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.world.ChunkTicketManager;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldArchetype;
+import org.spongepowered.api.world.map.MapStorage;
 import org.spongepowered.api.world.storage.ChunkLayout;
 import org.spongepowered.api.world.storage.WorldProperties;
 
@@ -439,4 +440,10 @@ public interface Server {
      * @return True if main thread, false if not
      */
     boolean isMainThread();
+
+    /**
+     * Gets the map storage for this server
+     * @return MapStorage map storage
+     */
+    Optional<MapStorage> getMapStorage();
 }
