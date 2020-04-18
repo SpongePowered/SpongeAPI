@@ -25,7 +25,6 @@
 package org.spongepowered.api.effect.sound;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 import java.util.function.Supplier;
 

@@ -30,7 +30,6 @@ import org.spongepowered.api.block.entity.BlockEntityArchetype;
 import org.spongepowered.api.data.SerializableDataHolderBuilder;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.persistence.DataView;
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.LocatableSnapshot;
 import org.spongepowered.api.world.Location;

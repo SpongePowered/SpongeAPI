@@ -28,7 +28,6 @@ import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.plugin.PluginManager;
 
-import java.util.Collection;
 import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.Stream;

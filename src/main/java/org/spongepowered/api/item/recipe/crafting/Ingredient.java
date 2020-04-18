@@ -31,7 +31,6 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.ResettableBuilder;
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -50,7 +49,9 @@ public interface Ingredient extends Predicate<ItemStack> {
     /**
      * An empty ingredient.
      */
-    Ingredient NONE = DummyObjectProvider.createFor(Ingredient.class, "NONE");
+    static Ingredient empty() {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).empty();
+    }
 
     @Override
     boolean test(ItemStack itemStack);
@@ -80,7 +81,7 @@ public interface Ingredient extends Predicate<ItemStack> {
      */
     static Ingredient of(@Nullable ItemType... itemTypes) {
         if (itemTypes == null || itemTypes.length == 0) {
-            return NONE;
+            return empty();
         }
         return builder().with(itemTypes).build();
     }
@@ -123,5 +124,10 @@ public interface Ingredient extends Predicate<ItemStack> {
          * @return The new Ingredient
          */
         Ingredient build();
+    }
+
+    interface Factory {
+
+        Ingredient empty();
     }
 }

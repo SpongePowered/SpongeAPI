@@ -45,7 +45,6 @@ import org.spongepowered.api.projectile.source.ProjectileSource;
 import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.text.channel.MessageReceiver;
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.world.LocatableBlock;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;

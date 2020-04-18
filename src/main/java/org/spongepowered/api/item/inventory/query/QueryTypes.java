@@ -38,7 +38,6 @@ import org.spongepowered.api.item.inventory.query.QueryType.OneParam;
 import org.spongepowered.api.item.inventory.query.QueryType.TwoParam;
 import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.Nameable;
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.math.vector.Vector2i;
 
 import java.util.function.Predicate;
@@ -61,7 +60,7 @@ public final class QueryTypes {
     /**
      * Tests based on the class of the inventory.
      */
-    public static final OneParam<Class<? extends Inventory>> INVENTORY_TYPE = DummyObjectProvider.createExtendedFor(OneParam.class, "INVENTORY_TYPE");
+    public static final Supplier<OneParam<Class<? extends Inventory>>> INVENTORY_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(OneParam.class, "INVENTORY_TYPE");
 
     /**
      * Allows a custom condition for the items contained within an item stack.
@@ -117,7 +116,7 @@ public final class QueryTypes {
     /**
      * A grid query. Only works on grids. The first value is the offset the second value is the grid size.
      */
-    public static final TwoParam<Vector2i, Vector2i> GRID = DummyObjectProvider.createExtendedFor(TwoParam.class, "GRID");
+    public static final Supplier<TwoParam<Vector2i, Vector2i>> GRID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TwoParam.class, "GRID");
 
     // SORTFIELDS:OFF
 

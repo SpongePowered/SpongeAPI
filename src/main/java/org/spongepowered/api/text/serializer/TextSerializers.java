@@ -28,7 +28,6 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.action.ClickAction;
 import org.spongepowered.api.text.action.HoverAction;
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 import java.util.function.Supplier;
 
@@ -58,8 +57,7 @@ public final class TextSerializers {
      * @deprecated Legacy formatting codes are being phased out of Minecraft
      */
     @Deprecated
-    public static final FormattingCodeTextSerializer LEGACY_FORMATTING_CODE = DummyObjectProvider
-            .createFor(FormattingCodeTextSerializer.class, "LEGACY_FORMATTING_CODE");
+    public static final Supplier<FormattingCodeTextSerializer> LEGACY_FORMATTING_CODE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FormattingCodeTextSerializer.class, "LEGACY_FORMATTING_CODE");
 
     /**
      * A {@link FormattingCodeTextSerializer} for a simple {@link Text}
@@ -78,8 +76,7 @@ public final class TextSerializers {
      *
      * @see FormattingCodeTextSerializer
      */
-    public static final FormattingCodeTextSerializer FORMATTING_CODE = DummyObjectProvider
-            .createFor(FormattingCodeTextSerializer.class, "FORMATTING_CODE");
+    public static final Supplier<FormattingCodeTextSerializer> FORMATTING_CODE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FormattingCodeTextSerializer.class, "FORMATTING_CODE");
 
     /**
      * The {@link TextSerializer} for Mojang's JSON (<i>Mojangson</i>)
@@ -91,16 +88,14 @@ public final class TextSerializers {
      * Returns a representation that accepts and outputs formatting codes, using
      * the provided formatting character.
      *
-     * @param formattingChar The formatting character to parse and serialize
-     *        with
+     * @param formattingChar The formatting character to parse and serialize with
      * @return The appropriate legacy representation handler
      */
-    @SuppressWarnings("deprecation")
     public static FormattingCodeTextSerializer formattingCode(char formattingChar) {
-        if (formattingChar == LEGACY_FORMATTING_CODE.getCharacter()) {
-            return LEGACY_FORMATTING_CODE;
-        } else if (formattingChar == FORMATTING_CODE.getCharacter()) {
-            return FORMATTING_CODE;
+        if (formattingChar == LEGACY_FORMATTING_CODE.get().getCharacter()) {
+            return LEGACY_FORMATTING_CODE.get();
+        } else if (formattingChar == FORMATTING_CODE.get().getCharacter()) {
+            return FORMATTING_CODE.get();
         } else {
             return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createFormattingCodeSerializer(formattingChar);
         }

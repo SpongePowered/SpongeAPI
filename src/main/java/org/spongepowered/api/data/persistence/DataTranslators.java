@@ -26,7 +26,6 @@ package org.spongepowered.api.data.persistence;
 
 import ninja.leaping.configurate.ConfigurationNode;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.world.schematic.Schematic;
 import org.spongepowered.math.imaginary.Complexd;
 import org.spongepowered.math.imaginary.Complexf;

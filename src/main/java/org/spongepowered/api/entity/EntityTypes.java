@@ -124,7 +124,6 @@ import org.spongepowered.api.entity.vehicle.minecart.TNTMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.carrier.ChestMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.carrier.HopperMinecart;
 import org.spongepowered.api.entity.weather.LightningBolt;
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 import java.util.function.Supplier;
 

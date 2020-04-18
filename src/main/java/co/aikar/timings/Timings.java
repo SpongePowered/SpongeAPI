@@ -29,7 +29,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.text.channel.MessageChannel;
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
  * Utility class for creating and configuring timings.
