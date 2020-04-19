@@ -161,7 +161,7 @@ public interface Selector {
      * @return The matched entities
      */
     default Set<Entity> resolve(Locatable locatable) {
-        return resolve(locatable.getLocation());
+        return this.resolve(locatable.getLocation());
     }
 
     /**
@@ -228,6 +228,19 @@ public interface Selector {
          * @return This selector builder
          */
         Builder add(Iterable<Argument<?>> arguments);
+
+        /**
+         * Adds a new {@link Argument} with the specified {@link ArgumentType} and
+         * value to this selector.
+         *
+         * @param type The type of the argument
+         * @param value The value of the argument
+         * @param <T> The type of the argument value
+         * @return This selector builder
+         */
+        default <T> Builder add(Supplier<? extends ArgumentType<T>> type, T value) {
+            return this.add(type.get(), value);
+        }
 
         /**
          * Adds a new {@link Argument} with the specified {@link ArgumentType} and

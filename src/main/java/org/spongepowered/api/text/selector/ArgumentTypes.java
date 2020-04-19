@@ -199,7 +199,7 @@ public final class ArgumentTypes {
 
     interface Factory {
 
-        <H> Supplier<H> provideHolderSupplier(String name);
+        <H extends ArgumentHolder<?>> Supplier<H> provideHolderSupplier(String name);
 
         ArgumentHolder.Limit<ArgumentType<Integer>> createLimitHolder(String name);
 

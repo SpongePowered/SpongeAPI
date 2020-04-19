@@ -32,7 +32,6 @@ import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.Direction;
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.math.vector.Vector3d;
 
 import java.util.List;
@@ -41,7 +40,6 @@ import java.util.function.Supplier;
 /**
  * An enumeration of all possible {@link ParticleOption}s in vanilla minecraft.
  */
-@SuppressWarnings("unchecked")
 public final class ParticleOptions {
 
     // SORTFIELDS:ON
@@ -84,7 +82,7 @@ public final class ParticleOptions {
      * <p>The {@link List} may never be empty. Or a {@link IllegalArgumentException}
      * will be thrown when applying.</p>
      */
-    public static final ParticleOption<List<FireworkEffect>> FIREWORK_EFFECTS = DummyObjectProvider.createFor(ParticleOption.class, "FIREWORK_EFFECTS");
+    public static final Supplier<ParticleOption<List<FireworkEffect>>> FIREWORK_EFFECTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "FIREWORK_EFFECTS");
 
     /**
      * This option will affect the appearance of a particle. The only vanilla
@@ -97,7 +95,7 @@ public final class ParticleOptions {
      *   <li>{@link ParticleTypes#ITEM}</li>
      * </ul>
      */
-    public static final ParticleOption<ItemStackSnapshot> ITEM_STACK_SNAPSHOT = DummyObjectProvider.createFor(ParticleOption.class, "ITEM_STACK_SNAPSHOT");
+    public static final Supplier<ParticleOption<ItemStackSnapshot>> ITEM_STACK_SNAPSHOT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "ITEM_STACK_SNAPSHOT");
 
     /**
      * This option will affect the appearance of a particle. The only vanilla
@@ -116,7 +114,7 @@ public final class ParticleOptions {
      * {@link ParticleType}s this option is applicable to is
      * {@link ParticleTypes#BREAK_SPLASH_POTION}.
      */
-    public static final ParticleOption<PotionEffectType> POTION_EFFECT_TYPE = DummyObjectProvider.createFor(ParticleOption.class, "POTION_EFFECT_TYPE");
+    public static final Supplier<ParticleOption<PotionEffectType>> POTION_EFFECT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "POTION_EFFECT_TYPE");
 
     /**
      * This option will affect the amount of particles that are spawned. The
@@ -166,7 +164,7 @@ public final class ParticleOptions {
      * <p>These particle types don't have a configurable velocity (through
      * {@link #VELOCITY}) in the horizontal plane.</p>
      */
-    public static final ParticleOption<Boolean> SLOW_HORIZONTAL_VELOCITY = DummyObjectProvider.createFor(ParticleOption.class, "SLOW_HORIZONTAL_VELOCITY");
+    public static final Supplier<ParticleOption<Boolean>> SLOW_HORIZONTAL_VELOCITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "SLOW_HORIZONTAL_VELOCITY");
 
     /**
      * This option will affect how all the particles are moving.

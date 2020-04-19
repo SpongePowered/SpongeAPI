@@ -27,6 +27,7 @@ package org.spongepowered.api.text.selector;
 import org.spongepowered.api.Sponge;
 
 import java.util.Set;
+import java.util.function.Supplier;
 
 /**
  * Represents the argument of a {@link Selector selector}. An Argument is one or
@@ -48,8 +49,23 @@ public interface Argument<T> {
      * @param <T> The type of the argument value
      * @return The created argument
      */
-    static <T> Argument<T> create(ArgumentType<T> type, T value) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createArgument(type, value);
+    static <T> Argument<T> of(Supplier<? extends ArgumentType<T>> type, T value) {
+        return of(type.get(), value);
+    }
+
+    /**
+     * Creates a new {@link Argument} using the specified type and value.
+     *
+     * <p>If the type is invertible, the {@link Argument} will not be
+     * inverted.</p>
+     *
+     * @param type The type of the argument
+     * @param value The value of the argument
+     * @param <T> The type of the argument value
+     * @return The created argument
+     */
+    static <T> Argument<T> of(ArgumentType<T> type, T value) {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).of(type, value);
     }
 
     /**
@@ -63,8 +79,23 @@ public interface Argument<T> {
      * @param <T> The type of the argument value
      * @return The created invertible argument
      */
-    static <T> Argument.Invertible<T> create(ArgumentType.Invertible<T> type, T value, boolean inverted) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createArgument(type, value, inverted);
+    static <T> Argument.Invertible<T> of(Supplier<? extends ArgumentType.Invertible<T>> type, T value, boolean inverted) {
+        return of(type.get(), value, inverted);
+    }
+
+    /**
+     * Creates a new {@link Argument.Invertible} using the specified type and
+     * value. The created {@link Argument} will be inverted based on the given
+     * parameter.
+     *
+     * @param type The type of the invertible argument
+     * @param value The value of the invertible argument
+     * @param inverted {@code true} if the argument should be inverted
+     * @param <T> The type of the argument value
+     * @return The created invertible argument
+     */
+    static <T> Argument.Invertible<T> of(ArgumentType.Invertible<T> type, T value, boolean inverted) {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).of(type, value, inverted);
     }
 
     /**
@@ -77,8 +108,22 @@ public interface Argument<T> {
      * @param <V> The type of the arguments' sub-values
      * @return The created argument
      */
-    static <T, V> Set<Argument<T>> createSet(ArgumentHolder<? extends ArgumentType<T>> type, V value) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createArguments(type, value);
+    static <T, V> Set<Argument<T>> setOf(Supplier<? extends ArgumentHolder<? extends ArgumentType<T>>> type, V value) {
+        return setOf(type.get(), value);
+    }
+
+    /**
+     * Creates a new set of {@link Argument}s using the specified type and
+     * value.
+     *
+     * @param type The type of the arguments
+     * @param value The value of the arguments
+     * @param <T> The type of the arguments' joined value
+     * @param <V> The type of the arguments' sub-values
+     * @return The created argument
+     */
+    static <T, V> Set<Argument<T>> setOf(ArgumentHolder<? extends ArgumentType<T>> type, V value) {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).setOf(type, value);
     }
 
     /**
@@ -92,7 +137,7 @@ public interface Argument<T> {
      *         due to invalid format)
      */
     static Argument<?> parse(String argument) throws IllegalArgumentException {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).parseArgument(argument);
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).parse(argument);
     }
 
     /**
@@ -146,12 +191,12 @@ public interface Argument<T> {
 
     interface Factory {
 
-        <T> Argument<T> createArgument(ArgumentType<T> type, T value);
+        <T> Argument<T> of(ArgumentType<T> type, T value);
 
-        <T> Invertible<T> createArgument(ArgumentType.Invertible<T> type, T value, boolean inverted);
+        <T> Invertible<T> of(ArgumentType.Invertible<T> type, T value, boolean inverted);
 
-        <T, V> Set<Argument<T>> createArguments(ArgumentHolder<? extends ArgumentType<T>> type, V value);
+        <T, V> Set<Argument<T>> setOf(ArgumentHolder<? extends ArgumentType<T>> type, V value);
 
-        Argument<?> parseArgument(String argument);
+        Argument<?> parse(String argument);
     }
 }
