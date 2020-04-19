@@ -22,25 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.projectile.explosive;
+package org.spongepowered.api.effect.firework;
 
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.ListValue;
-import org.spongepowered.api.entity.explosive.fused.FusedExplosive;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.effect.firework.FireworkEffect;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 /**
- * Represents a Firework.
+ * A class containing known {@link FireworkShape}s.
  */
-public interface FireworkRocket extends Projectile, FusedExplosive {
+public final class FireworkShapes {
 
-    /**
-     * {@link Keys#FIREWORK_EFFECTS}
-     * @return The firework effects
-     */
-    default ListValue.Mutable<FireworkEffect> effects() {
-        return this.requireValue(Keys.FIREWORK_EFFECTS).asMutable();
+    // SORTFIELDS:ON
+
+    public static final Supplier<FireworkShape> BALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "BALL");
+
+    public static final Supplier<FireworkShape> BURST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "BURST");
+
+    public static final Supplier<FireworkShape> CREEPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "CREEPER");
+
+    public static final Supplier<FireworkShape> LARGE_BALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "LARGE_BALL");
+
+    public static final Supplier<FireworkShape> STAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "STAR");
+
+    // SORTFIELDS:OFF
+
+    // Suppress default constructor to ensure non-instantiability.
+    private FireworkShapes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
 }

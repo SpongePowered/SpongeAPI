@@ -22,25 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.projectile.explosive;
-
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.ListValue;
-import org.spongepowered.api.entity.explosive.fused.FusedExplosive;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.effect.firework.FireworkEffect;
-
-/**
- * Represents a Firework.
- */
-public interface FireworkRocket extends Projectile, FusedExplosive {
-
-    /**
-     * {@link Keys#FIREWORK_EFFECTS}
-     * @return The firework effects
-     */
-    default ListValue.Mutable<FireworkEffect> effects() {
-        return this.requireValue(Keys.FIREWORK_EFFECTS).asMutable();
-    }
-
-}
+@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
+package org.spongepowered.api.effect.firework;

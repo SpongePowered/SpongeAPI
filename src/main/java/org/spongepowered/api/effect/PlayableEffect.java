@@ -22,34 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item;
+package org.spongepowered.api.effect;
 
-import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.math.vector.Vector3d;
 
 /**
- * A class containing known {@link FireworkShape}s.
+ * Represents an effect that can be played to a {@link Viewer}
+ * through {@link Viewer#play(PlayableEffect, Vector3d)}.
  */
-public final class FireworkShapes {
-
-    // SORTFIELDS:ON
-
-    public static final Supplier<FireworkShape> BALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "BALL");
-
-    public static final Supplier<FireworkShape> BURST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "BURST");
-
-    public static final Supplier<FireworkShape> CREEPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "CREEPER");
-
-    public static final Supplier<FireworkShape> LARGE_BALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "LARGE_BALL");
-
-    public static final Supplier<FireworkShape> STAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "STAR");
-
-    // SORTFIELDS:OFF
-
-    // Suppress default constructor to ensure non-instantiability.
-    private FireworkShapes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
-    }
+public interface PlayableEffect {
 
 }

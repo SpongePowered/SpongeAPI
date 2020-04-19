@@ -27,6 +27,7 @@ package org.spongepowered.api.effect.particle;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.DataBuilder;
+import org.spongepowered.api.effect.PlayableEffect;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.math.vector.Vector3d;
 
@@ -37,7 +38,7 @@ import java.util.function.Supplier;
 /**
  * Represents a particle effect that can be send to the Minecraft client.
  */
-public interface ParticleEffect extends DataSerializable {
+public interface ParticleEffect extends PlayableEffect, DataSerializable {
 
     /**
      * Creates a new {@link Builder} to build a {@link ParticleEffect}.

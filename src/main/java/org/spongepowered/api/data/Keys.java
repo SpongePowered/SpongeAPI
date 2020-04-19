@@ -184,7 +184,7 @@ import org.spongepowered.api.entity.weather.LightningBolt;
 import org.spongepowered.api.entity.weather.WeatherEffect;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSources;
 import org.spongepowered.api.fluid.FluidStackSnapshot;
-import org.spongepowered.api.item.FireworkEffect;
+import org.spongepowered.api.effect.firework.FireworkEffect;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.inventory.ItemStack;

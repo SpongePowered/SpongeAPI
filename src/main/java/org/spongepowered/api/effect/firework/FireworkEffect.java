@@ -22,10 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item;
+package org.spongepowered.api.effect.firework;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataSerializable;
+import org.spongepowered.api.effect.PlayableEffect;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.CopyableBuilder;
 
@@ -38,7 +39,7 @@ import java.util.function.Supplier;
  * <p>{@link FireworkEffect}s are immutable once created. To change one
  * or create one, use {@link Builder}.</p>
  */
-public interface FireworkEffect extends DataSerializable {
+public interface FireworkEffect extends PlayableEffect, DataSerializable {
 
     /**
      * Creates a new {@link Builder} to build a {@link FireworkEffect}.
@@ -48,7 +49,6 @@ public interface FireworkEffect extends DataSerializable {
     static Builder builder() {
         return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
     }
-
 
     /**
      * Gets whether this {@link FireworkEffect} will flicker when
