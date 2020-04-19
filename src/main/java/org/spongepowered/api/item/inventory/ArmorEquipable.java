@@ -26,6 +26,8 @@ package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.data.type.HandType;
 
+import java.util.function.Supplier;
+
 /**
  * <p>Represents something that can be equipped with armor, main hand and off hand items.
  * Each method here is a shorthand for the appropriate {@link #getEquipped}
@@ -99,13 +101,33 @@ public interface ArmorEquipable extends Equipable {
      * @param handType The hand type to retrieve from
      * @return The item in hand, if available
      */
+    default ItemStack getItemInHand(Supplier<? extends HandType> handType) {
+        return this.getItemInHand(handType.get());
+    }
+
+    /**
+     * Gets the equipped item in hand.
+     *
+     * @param handType The hand type to retrieve from
+     * @return The item in hand, if available
+     */
     ItemStack getItemInHand(HandType handType);
 
     /**
-     * Sets the item in hand.
+     * Sets the equipped item in hand.
      *
-     * @param hand The hand type to set to
+     * @param handType The hand type to set to
      * @param itemInHand The item in hand
      */
-    void setItemInHand(HandType hand, ItemStack itemInHand);
+    default void setItemInHand(Supplier<? extends HandType> handType, ItemStack itemInHand) {
+        this.setItemInHand(handType.get(), itemInHand);
+    }
+
+    /**
+     * Sets the equipped item in hand.
+     *
+     * @param handType The hand type to set to
+     * @param itemInHand The item in hand
+     */
+    void setItemInHand(HandType handType, ItemStack itemInHand);
 }

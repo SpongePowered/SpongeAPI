@@ -136,8 +136,21 @@ public interface CauseStackManager {
      * @return The cause stack manager, for chaining
      * @see EventContextKeys
      */
+    default <T> CauseStackManager addContext(EventContextKey<T> key, Supplier<? extends T> value) {
+        return this.addContext(key, value.get());
+    }
+
+    /**
+     * Adds the given object to the current context under the given key.
+     *
+     * @param key The context key
+     * @param value The object
+     * @param <T> The type of the value stored with the event context key
+     * @return The cause stack manager, for chaining
+     * @see EventContextKeys
+     */
     default <T> CauseStackManager addContext(Supplier<? extends EventContextKey<T>> key, T value) {
-        return addContext(key.get(), value);
+        return this.addContext(key.get(), value);
     }
 
     /**
@@ -150,7 +163,7 @@ public interface CauseStackManager {
      * @see EventContextKeys
      */
     default <T> CauseStackManager addContext(Supplier<? extends EventContextKey<T>> key, Supplier<? extends T> value) {
-        return addContext(key.get(), value.get());
+        return this.addContext(key.get(), value.get());
     }
 
     /**
@@ -162,7 +175,6 @@ public interface CauseStackManager {
      */
     <T> Optional<T> getContext(EventContextKey<T> key);
 
-
     /**
      * Gets the context value with the given key.
      *
@@ -171,7 +183,7 @@ public interface CauseStackManager {
      * @return The context object, if present
      */
     default <T> Optional<T> getContext(Supplier<? extends EventContextKey<T>> key) {
-        return getContext(key.get());
+        return this.getContext(key.get());
     }
 
     /**
@@ -185,7 +197,7 @@ public interface CauseStackManager {
      * @return The context object, if present
      */
     default <T> T requireContext(EventContextKey<T> key) {
-        final Optional<T> optional = getContext(key);
+        final Optional<T> optional = this.getContext(key);
         if (optional.isPresent()) {
             return optional.get();
         }
@@ -204,7 +216,7 @@ public interface CauseStackManager {
      * @return The context object, if present
      */
     default <T> T requireContext(Supplier<? extends EventContextKey<T>> key) {
-        final Optional<T> optional = getContext(key.get());
+        final Optional<T> optional = this.getContext(key.get());
         if (optional.isPresent()) {
             return optional.get();
         }
@@ -230,7 +242,7 @@ public interface CauseStackManager {
      * @see EventContextKeys
      */
     default <T> Optional<T> removeContext(Supplier<? extends EventContextKey<T>> key) {
-        return removeContext(key.get());
+        return this.removeContext(key.get());
     }
 
     interface StackFrame extends AutoCloseable {
@@ -294,8 +306,22 @@ public interface CauseStackManager {
          * @see EventContextKeys
          * @see CauseStackManager#addContext(EventContextKey, Object)
          */
+        default <T> StackFrame addContext(EventContextKey<T> key, Supplier<? extends T> value) {
+            return this.addContext(key, value.get());
+        }
+
+        /**
+         * Adds the given object to the current context under the given key.
+         *
+         * @param key The context key
+         * @param value The object
+         * @param <T> The type of value key
+         * @return The stack frame, for chaining
+         * @see EventContextKeys
+         * @see CauseStackManager#addContext(EventContextKey, Object)
+         */
         default <T> StackFrame addContext(Supplier<? extends EventContextKey<T>> key, T value) {
-            return addContext(key.get(), value);
+            return this.addContext(key.get(), value);
         }
 
         /**
@@ -309,7 +335,7 @@ public interface CauseStackManager {
          * @see CauseStackManager#addContext(EventContextKey, Object)
          */
         default <T> StackFrame addContext(Supplier<? extends EventContextKey<T>> key, Supplier<? extends T> value) {
-            return addContext(key.get(), value.get());
+            return this.addContext(key.get(), value.get());
         }
 
         /**
@@ -333,7 +359,7 @@ public interface CauseStackManager {
          * @see CauseStackManager#removeContext(EventContextKey)
          */
         default <T> Optional<T> removeContext(Supplier<? extends EventContextKey<T>> key) {
-            return removeContext(key.get());
+            return this.removeContext(key.get());
         }
 
         @Override
