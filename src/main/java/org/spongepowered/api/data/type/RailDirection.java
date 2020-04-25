@@ -45,7 +45,7 @@ public interface RailDirection extends CatalogType, Cycleable<RailDirection> {
      * @return The {@link RailDirection}
      * @throws IllegalArgumentException If the given directions don't differ
      */
-    static RailDirection fromFaces(Direction firstDirection, Direction secondDirection) {
+    static RailDirection fromFaces(final Direction firstDirection, final Direction secondDirection) {
         checkNotNull(firstDirection, "firstDirection");
         checkNotNull(secondDirection, "secondDirection");
 
@@ -71,7 +71,7 @@ public interface RailDirection extends CatalogType, Cycleable<RailDirection> {
      * @param ascendingDirection The ascending direction
      * @return The {@link RailDirection}
      */
-    static RailDirection fromAscendingDirection(Direction ascendingDirection) {
+    static RailDirection fromAscendingDirection(final Direction ascendingDirection) {
         checkNotNull(ascendingDirection, "ascendingDirection");
 
         Direction cardinalAscendingDirection = Direction.getClosest(ascendingDirection.asOffset(), Direction.Division.CARDINAL);
