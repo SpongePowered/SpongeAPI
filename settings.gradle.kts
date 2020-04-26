@@ -10,7 +10,7 @@ pluginManagement {
     resolutionStrategy {
         eachPlugin {
             if (requested.id.id.startsWith("org.spongepowered.gradle.")) {
-                val version = requested.version ?: "0.11.3-SNAPSHOT"
+                val version = requested.version ?: "0.11.3"
                 useModule("org.spongepowered:SpongeGradle:$version")
             }
         }
