@@ -198,6 +198,7 @@ sortClassFields {
     add 'main', 'org.spongepowered.api.text.chat.ChatVisibilities'
     add 'main', 'org.spongepowered.api.text.format.TextColors'
     add 'main', 'org.spongepowered.api.text.format.TextStyles'
+    add 'main', 'org.spongepowered.api.text.placeholder.PlaceholderParsers'
     add 'main', 'org.spongepowered.api.text.selector.SelectorTypes'
     add 'main', 'org.spongepowered.api.util.TypeTokens'
     add 'main', 'org.spongepowered.api.util.ban.BanTypes'
