@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.registry;
 
-import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.GenericEvent;
@@ -71,10 +70,7 @@ public interface RegistryEvent extends Event {
         <T extends CatalogType> void register(Class<T> catalogClass, Supplier<Set<T>> defaultsSupplier) throws DuplicateRegistrationException;
     }
 
-    interface Catalog<T extends CatalogType> extends RegistryEvent, GenericEvent {
-
-        @Override
-        TypeToken<? extends Catalog<T>> getGenericType();
+    interface Catalog<T extends CatalogType> extends RegistryEvent, GenericEvent<T> {
 
         /**
          * Registers a new {@link CatalogType catalog type}.

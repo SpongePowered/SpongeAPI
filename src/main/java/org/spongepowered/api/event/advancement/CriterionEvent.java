@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.advancement;
 
-import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
 import org.spongepowered.api.advancement.criteria.ScoreAdvancementCriterion;
 import org.spongepowered.api.advancement.criteria.trigger.FilteredTrigger;
@@ -120,10 +119,7 @@ public interface CriterionEvent extends AdvancementEvent {
      * Is called when a {@link FilteredTrigger} is
      * being processed for a specific {@link Criterion}.
      */
-    interface Trigger<C extends FilteredTriggerConfiguration> extends CriterionEvent, GenericEvent {
-
-        @Override
-        TypeToken<? extends Trigger<C>> getGenericType();
+    interface Trigger<C extends FilteredTriggerConfiguration> extends CriterionEvent, GenericEvent<C> {
 
         /**
          * Gets the {@link FilteredTrigger}
