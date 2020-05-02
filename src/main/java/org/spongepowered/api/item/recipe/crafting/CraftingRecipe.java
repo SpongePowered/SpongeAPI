@@ -28,6 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.crafting.CraftingGridInventory;
 import org.spongepowered.api.item.recipe.Recipe;
+import org.spongepowered.api.item.recipe.RecipeType;
 
 import java.util.Optional;
 
@@ -45,6 +46,9 @@ import java.util.Optional;
  * eventually return a boolean given an crafting grid.</p>
  */
 public interface CraftingRecipe extends Recipe {
+
+    @Override
+    RecipeType<? extends CraftingRecipe> getType();
 
     /**
      * The group this CraftingRecipe belongs to or {@link Optional#empty()} if not defined.

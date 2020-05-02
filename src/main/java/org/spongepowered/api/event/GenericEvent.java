@@ -27,18 +27,15 @@ package org.spongepowered.api.event;
 import com.google.common.reflect.TypeToken;
 
 /**
- * All {@link Event}s that want to one generic
- * type should implement this interface.
- *
- * @param <T> The generic type
+ * An event that can be targeted using generic type parameters. Extending
+ * events should have at least one.
  */
-public interface GenericEvent<T> extends Event {
+public interface GenericEvent extends Event {
 
     /**
-     * Gets the generic {@link TypeToken} used
-     * by this {@link Event}.
+     * Gets the generic {@link TypeToken} used by this {@link Event}.
      *
      * @return The type token
      */
-    TypeToken<T> getGenericType();
+    TypeToken<? extends GenericEvent> getGenericType();
 }

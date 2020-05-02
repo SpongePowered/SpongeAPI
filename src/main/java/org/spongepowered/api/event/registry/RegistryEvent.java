@@ -24,16 +24,19 @@
  */
 package org.spongepowered.api.event.registry;
 
+import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.event.Event;
+import org.spongepowered.api.event.GenericEvent;
 import org.spongepowered.api.registry.DuplicateRegistrationException;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Set;
 import java.util.function.Supplier;
 
-public interface RegistryEvent {
+public interface RegistryEvent extends Event {
 
-    interface Builder {
+    interface Builder extends RegistryEvent {
 
         /**
          * Registers a new {@link ResettableBuilder builder}.
@@ -68,7 +71,10 @@ public interface RegistryEvent {
         <T extends CatalogType> void register(Class<T> catalogClass, Supplier<Set<T>> defaultsSupplier) throws DuplicateRegistrationException;
     }
 
-    interface Catalog<T extends CatalogType> extends RegistryEvent {
+    interface Catalog<T extends CatalogType> extends RegistryEvent, GenericEvent {
+
+        @Override
+        TypeToken<? extends Catalog<T>> getGenericType();
 
         /**
          * Registers a new {@link CatalogType catalog type}.
@@ -79,15 +85,16 @@ public interface RegistryEvent {
         void register(T catalogType) throws DuplicateRegistrationException;
     }
 
-    interface Factory {
+    interface Factory extends RegistryEvent {
 
         /**
          * Registers an object meant to be used to churn object references
          *
          * @param factoryClass The factory type
+         * @param factory The factory instance
          * @param <T> The type
          * @throws DuplicateRegistrationException If the type is already registered
          */
-        <T> void register(Class<T> factoryClass) throws DuplicateRegistrationException;
+        <T> void register(Class<T> factoryClass, T factory) throws DuplicateRegistrationException;
     }
 }

@@ -29,12 +29,26 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 /**
  * Represents a particle that can be sent on a Minecraft client.
  */
 @CatalogedBy(ParticleTypes.class)
 public interface ParticleType extends CatalogType {
+
+    /**
+     * Gets the default value for the specified {@link ParticleOption}, it may
+     * return {@link Optional#empty()} if the particle option isn't supported
+     * by this particle type.
+     *
+     * @param option The particle option
+     * @param <V> The value type
+     * @return The option value if present, otherwise {@link Optional#empty()}
+     */
+    default <V> Optional<V> getDefaultOption(Supplier<? extends ParticleOption<V>> option) {
+        return this.getDefaultOption(option.get());
+    }
 
     /**
      * Gets the default value for the specified {@link ParticleOption}, it may

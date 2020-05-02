@@ -30,6 +30,7 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.Recipe;
+import org.spongepowered.api.item.recipe.RecipeType;
 import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.ResettableBuilder;
 
@@ -43,6 +44,9 @@ public interface StoneCutterRecipe extends Recipe {
     static StoneCutterRecipe.Builder builder() {
         return Sponge.getRegistry().getBuilderRegistry().provideBuilder(StoneCutterRecipe.Builder.class);
     }
+
+    @Override
+    RecipeType<? extends StoneCutterRecipe> getType();
 
     /**
      * Builds a simple furnace recipe.

@@ -25,6 +25,7 @@
 package org.spongepowered.api.world.gamerule;
 
 import java.util.Map;
+import java.util.function.Supplier;
 
 /**
  * Represents something that can hold {@link GameRule}s.
@@ -38,7 +39,29 @@ public interface GameRuleHolder {
      * @param <V> The value type
      * @return The value
      */
+    default <V> V getGameRule(Supplier<? extends GameRule<V>> gameRule) {
+        return this.getGameRule(gameRule.get());
+    }
+
+    /**
+     * Gets the value for the specified {@link GameRule}.
+     *
+     * @param gameRule The game rule
+     * @param <V> The value type
+     * @return The value
+     */
     <V> V getGameRule(GameRule<V> gameRule);
+
+    /**
+     * Sets the value for the specified {@link GameRule}.
+     *
+     * @param gameRule The game rule
+     * @param value The value
+     * @param <V> The value type
+     */
+    default <V> void setGameRule(Supplier<? extends GameRule<V>> gameRule, V value) {
+        this.setGameRule(gameRule.get(), value);
+    }
 
     /**
      * Sets the value for the specified {@link GameRule}.

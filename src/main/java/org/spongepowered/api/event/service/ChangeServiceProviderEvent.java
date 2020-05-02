@@ -24,7 +24,8 @@
  */
 package org.spongepowered.api.event.service;
 
-import org.spongepowered.api.event.Event;
+import com.google.common.reflect.TypeToken;
+import org.spongepowered.api.event.GenericEvent;
 import org.spongepowered.api.service.ProviderRegistration;
 import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
@@ -41,7 +42,10 @@ import java.util.Optional;
  * <p>This can occur when a provider is registered for a service for the first
  * time, or when the provider for a service is replaced.</p>
  */
-public interface ChangeServiceProviderEvent extends Event {
+public interface ChangeServiceProviderEvent<T> extends GenericEvent {
+
+    @Override
+    TypeToken<? extends ChangeServiceProviderEvent<T>> getGenericType();
 
     /**
      * Gets the previous provider registration for the service, if available.
@@ -54,14 +58,14 @@ public interface ChangeServiceProviderEvent extends Event {
      *
      * @return The previous provider registration, if available
      */
-    Optional<ProviderRegistration<?>> getPreviousProviderRegistration();
+    Optional<ProviderRegistration<? extends T>> getPreviousProviderRegistration();
 
     /**
      * Gets the new provider registration for the service.
      *
      * @return The new provider registration
      */
-    ProviderRegistration<?> getNewProviderRegistration();
+    ProviderRegistration<? extends T> getNewProviderRegistration();
 
     /**
      * Gets whether a previous provider existed, which was replaced by the new
@@ -80,7 +84,7 @@ public interface ChangeServiceProviderEvent extends Event {
      * @return The service
      */
     @PropertySettings(requiredParameter = false, generateMethods = false)
-    default Class<?> getService() {
+    default Class<? extends T> getService() {
         return this.getNewProviderRegistration().getService();
     }
 

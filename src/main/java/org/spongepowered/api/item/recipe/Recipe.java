@@ -148,6 +148,6 @@ public interface Recipe extends CatalogType {
      *
      * @return The recipe type.
      */
-    RecipeType getType();
+    RecipeType<? extends Recipe> getType();
 
 }

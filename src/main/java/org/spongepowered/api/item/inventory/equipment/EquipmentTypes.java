@@ -49,9 +49,9 @@ public final class EquipmentTypes {
      */
     public static final Supplier<HeldEquipmentType> HELD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HeldEquipmentType.class, "HELD");
 
-    public static final Supplier<HeldEquipmentType> MAIN_HAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HeldEquipmentType.class, "MAINHAND");
+    public static final Supplier<HeldEquipmentType> MAIN_HAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HeldEquipmentType.class, "MAIN_HAND");
 
-    public static final Supplier<HeldEquipmentType> OFF_HAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HeldEquipmentType.class, "OFFHAND");
+    public static final Supplier<HeldEquipmentType> OFF_HAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HeldEquipmentType.class, "OFF_HAND");
 
     /**
      * Any worn types like HEADWEAR, CHESTPLATE, LEGGINGS and BOOTS.

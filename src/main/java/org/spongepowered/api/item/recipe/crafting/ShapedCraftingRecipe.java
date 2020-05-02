@@ -114,7 +114,7 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
          * <p>Use {@link AisleStep#where} to assign ingredients to characters
          * of the aisles.</p>
          *
-         * <p>The space character will be defaulted to {@link Ingredient#NONE}
+         * <p>The space character will be defaulted to {@link Ingredient#empty()}
          * if not specified.</p>
          *
          * <p>Any other not assigned characters will cause an Exception
@@ -139,7 +139,7 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
             /**
              * Sets an ingredient based on the aisle pattern.
              *
-             * <p>Sets the ingredient to {@link Ingredient#NONE} if
+             * <p>Sets the ingredient to {@link Ingredient#empty()} if
              * {@code null} is specified.</p>
              *
              * @param symbol The ingredient symbol
@@ -193,7 +193,7 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
 
             /**
              * Adds a row of ingredients filling the skipped
-             * columns with {@link Ingredient#NONE}.
+             * columns with {@link Ingredient#empty()}.
              *
              * @param skip The amount of columns to skip.
              * @param ingredients The row of ingredients.
