@@ -39,6 +39,7 @@ import org.spongepowered.api.data.manipulator.mutable.item.*;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.*;
 import org.spongepowered.api.data.property.entity.DominantHandProperty;
 import org.spongepowered.api.data.type.*;
+import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
 import org.spongepowered.api.data.value.mutable.*;
 import org.spongepowered.api.effect.particle.ParticleType;
@@ -74,6 +75,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.item.merchant.TradeOffer;
+import org.spongepowered.api.map.MapCanvas;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.text.Text;
@@ -1460,6 +1462,13 @@ public final class Keys {
     public static final Key<Value<LogAxis>> LOG_AXIS = DummyObjectProvider.createExtendedFor(Key.class,"LOG_AXIS");
 
     /**
+     * Represents the {@link Key} for the {@link MapCanvas} of a map
+     * This contains the colors displayed on a map
+     *
+     * @see MapItemData#canvas()
+     */
+    public static final Key<Value<MapCanvas>> MAP_CANVAS = DummyObjectProvider.createExtendedFor(Key.class, "MAP_CANVAS");
+    /**
      * Represents the {@link Key} for the world for a
      * {@link ItemTypes#FILLED_MAP}
      *
@@ -1495,7 +1504,17 @@ public final class Keys {
      *
      * @see MapItemData#scale()
      */
-    public static final Key<Value<Byte>> MAP_SCALE = DummyObjectProvider.createExtendedFor(Key.class, "MAP_SCALE");
+    public static final Key<MutableBoundedValue<Integer>> MAP_SCALE = DummyObjectProvider.createExtendedFor(Key.class, "MAP_SCALE");
+
+    /**
+     * Represents the {@link Key} for whether a map updates from players
+     * By default this is true.
+     * Can be used in combination with {@link Keys#MAP_CANVAS} to create
+     * static map.
+     *
+     * @see MapItemData#autoUpdate()
+     */
+    public static final Key<Value<Boolean>> MAP_AUTO_UPDATE = DummyObjectProvider.createExtendedFor(Key.class, "MAP_AUTO_UPDATE");
 
     /**
      * Represents the {@link Key} for the maximum air supply a {@link Living}

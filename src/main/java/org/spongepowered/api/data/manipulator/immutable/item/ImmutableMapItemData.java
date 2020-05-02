@@ -27,14 +27,18 @@ package org.spongepowered.api.data.manipulator.immutable.item;
 import com.flowpowered.math.vector.Vector2i;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.item.MapItemData;
+import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.map.MapCanvas;
 import org.spongepowered.api.world.World;
 
 /**
  * Represents an {@link ImmutableDataManipulator} hosting the specific map
  * information of an {@link ItemStack} of the type {@link ItemTypes#FILLED_MAP}.
+ * Warning: This will affect all maps with this id (damage value).
  */
 public interface ImmutableMapItemData extends ImmutableDataManipulator<ImmutableMapItemData, MapItemData> {
     /**
@@ -63,7 +67,20 @@ public interface ImmutableMapItemData extends ImmutableDataManipulator<Immutable
 
     /**
      * Gets the scale of this map
-     * @return byte The scale of this map
+     * @return Integer The scale of this map
      */
-    ImmutableValue<Byte> scale();
+    ImmutableBoundedValue<Integer> scale();
+
+    /**
+     * Gets the canvas
+     * This contains the colors
+     * @return MapCanvas canvas
+     */
+    ImmutableValue<MapCanvas> canvas();
+
+    /**
+     * Gets whether this map auto updates (from players)
+     * @return Boolean if it auto updates from players
+     */
+    ImmutableValue<Boolean> autoUpdate();
 }

@@ -27,14 +27,18 @@ package org.spongepowered.api.data.manipulator.mutable.item;
 import com.flowpowered.math.vector.Vector2i;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.item.ImmutableMapItemData;
+import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.map.MapCanvas;
 import org.spongepowered.api.world.World;
 
 /**
  * Represents an {@link DataManipulator} hosting the specific map
  * information of an {@link ItemStack} of the type {@link ItemTypes#FILLED_MAP}.
+ * Warning: This will affect all maps with this id (damage value).
  */
 public interface MapItemData extends DataManipulator<MapItemData, ImmutableMapItemData> {
     /**
@@ -44,8 +48,8 @@ public interface MapItemData extends DataManipulator<MapItemData, ImmutableMapIt
     Value<Vector2i> location();
 
     /**
-     * Gets the Dimension that this map refers to
-     * @return DimensionType
+     * Gets the World that this map refers to
+     * @return World
      */
     Value<World> world();
 
@@ -65,5 +69,18 @@ public interface MapItemData extends DataManipulator<MapItemData, ImmutableMapIt
      * Gets the scale of this map
      * @return byte The scale of this map
      */
-    Value<Byte> scale();
+    Value<Integer> scale();
+
+    /**
+     * Gets the canvas from this map
+     * This contains the colors in the map
+     * @return MapCanvas canvas for this map
+     */
+    Value<MapCanvas> canvas();
+
+    /**
+     * Gets whether this map auto updates (from players)
+     * @return Boolean if it auto updates from players
+     */
+    Value<Boolean> autoUpdate();
 }

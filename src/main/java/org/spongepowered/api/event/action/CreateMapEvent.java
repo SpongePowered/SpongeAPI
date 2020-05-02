@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.action;
 
 import org.spongepowered.api.data.Transaction;
+import org.spongepowered.api.data.manipulator.immutable.item.ImmutableMapItemData;
 import org.spongepowered.api.data.manipulator.mutable.item.MapItemData;
 import org.spongepowered.api.data.type.HandType;
 import org.spongepowered.api.entity.living.player.Player;
@@ -46,6 +47,12 @@ public interface CreateMapEvent extends Event, Cancellable {
      * @return MapItemData Map data
      */
     MapItemData getMapData();
+
+    /**
+     * Gets the map data before any plugins have changed it.
+     * @return ImmutableMapItemData Original Map Data
+     */
+    ImmutableMapItemData getOriginalMapData();
 
     /**
      * Gets the hand used

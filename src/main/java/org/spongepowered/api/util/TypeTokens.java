@@ -100,6 +100,7 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.item.potion.PotionType;
+import org.spongepowered.api.map.MapCanvas;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.text.Text;
@@ -502,6 +503,8 @@ public final class TypeTokens {
     public static final TypeToken<Value<WireAttachmentType>> WIRE_ATTACHMENT_TYPE_VALUE_TOKEN = new TypeToken<Value<WireAttachmentType>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<World>> WORLD_VALUE_TOKEN = new TypeToken<Value<World>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Value<MapCanvas>> MAP_CANVAS_VALUE_TOKEN = new TypeToken<Value<MapCanvas>>() {private static final long serialVersionUID = -1;};
 
     // SORTFIELDS:OFF
 
