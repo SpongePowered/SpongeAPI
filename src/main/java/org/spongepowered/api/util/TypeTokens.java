@@ -148,8 +148,6 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<BrickType>> BRICK_VALUE_TOKEN = new TypeToken<Value<BrickType>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<Value<Byte>> BYTE_VALUE_TOKEN = new TypeToken<Value<Byte>>() {private static final long serialVersionUID = -1;};
-
     public static final TypeToken<Career> CAREER_TOKEN = new TypeToken<Career>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<Career>> CAREER_VALUE_TOKEN = new TypeToken<Value<Career>>() {private static final long serialVersionUID = -1;};
