@@ -135,9 +135,9 @@ public interface WorldManager {
      *
      * @param directoryName The directory name
      * @param archetype The archetype for creation
-     * @return The new world properties
+     * @return The new world properties, if the creation was successful
      */
-    Optional<WorldProperties> createProperties(String directoryName, WorldArchetype archetype);
+    CompletableFuture<Optional<WorldProperties>> createProperties(String directoryName, WorldArchetype archetype);
 
     /**
      * Loads a {@link ServerWorld} from the default storage container. If a world with
@@ -146,7 +146,7 @@ public interface WorldManager {
      * @param directoryName The name to lookup
      * @return The world, if found
      */
-    Optional<ServerWorld> loadWorld(String directoryName);
+    CompletableFuture<Optional<ServerWorld>> loadWorld(String directoryName);
 
     /**
      * Loads a {@link ServerWorld} from the default storage container.
@@ -160,7 +160,7 @@ public interface WorldManager {
      * @param properties The properties of the world to load
      * @return The world, if found
      */
-    Optional<ServerWorld> loadWorld(WorldProperties properties) throws IOException;
+    CompletableFuture<Optional<ServerWorld>> loadWorld(WorldProperties properties) throws IOException;
 
     /**
      * Unloads a {@link ServerWorld}.
@@ -171,7 +171,7 @@ public interface WorldManager {
      * @param world The world to unload
      * @return Whether the operation was successful
      */
-    boolean unloadWorld(ServerWorld world);
+    CompletableFuture<Boolean> unloadWorld(ServerWorld world);
 
     /**
      * Gets the {@link WorldProperties} of a world. If a world with the given
@@ -220,9 +220,9 @@ public interface WorldManager {
      * updating any modified values.
      *
      * @param properties The world properties to save
-     * @return True if the save was successful
+     * @return True if the save was successful, can fail exceptionally
      */
-    boolean saveProperties(WorldProperties properties) throws IOException;
+    CompletableFuture<Boolean> saveProperties(WorldProperties properties);
 
     /**
      * Creates a world copy asynchronously using the new name given and returns
@@ -256,7 +256,7 @@ public interface WorldManager {
      * @return An {@link Optional} containing the new {@link WorldProperties}
      *         if the rename was successful
      */
-    Optional<WorldProperties> renameWorld(String oldDirectoryName, String newDirectoryName);
+    CompletableFuture<Optional<WorldProperties>> renameWorld(String oldDirectoryName, String newDirectoryName);
 
     /**
      * Deletes the provided world's files asynchronously from the disk.

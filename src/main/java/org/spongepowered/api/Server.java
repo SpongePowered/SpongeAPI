@@ -34,7 +34,6 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.world.server.WorldManager;
-import org.spongepowered.api.world.chunk.ChunkTicketManager;
 import org.spongepowered.api.world.storage.ChunkLayout;
 
 import java.net.InetSocketAddress;
@@ -190,14 +189,6 @@ public interface Server extends Engine, MessageReceiver {
      * @param kickMessage The message to kick players with
      */
     void shutdown(Text kickMessage);
-
-    /**
-     * Gets the ChunkTicketManager used for requesting tickets to force load
-     * chunks.
-     *
-     * @return This server's chunk load service
-     */
-    ChunkTicketManager getChunkTicketManager();
 
     /**
      * Gets the {@link GameProfileManager} for resolving game profiles.

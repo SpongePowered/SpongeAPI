@@ -45,11 +45,11 @@ public final class GeneratorTypes {
 
     public static final Supplier<GeneratorType> LARGE_BIOMES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorType.class, "LARGE_BIOMES");
 
-    public static final Supplier<GeneratorType> NETHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorType.class, "NETHER");
-
     public static final Supplier<GeneratorType> OVERWORLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorType.class, "OVERWORLD");
 
     public static final Supplier<GeneratorType> THE_END = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorType.class, "THE_END");
+
+    public static final Supplier<GeneratorType> THE_NETHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorType.class, "THE_NETHER");
 
     // SORTFIELDS:OFF
 

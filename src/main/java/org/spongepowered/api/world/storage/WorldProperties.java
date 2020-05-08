@@ -27,16 +27,15 @@ package org.spongepowered.api.world.storage;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.boss.BossBar;
 import org.spongepowered.api.data.persistence.DataContainer;
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.trader.WanderingTrader;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.TemporalUnits;
-import org.spongepowered.api.world.dimension.DimensionType;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldBorder;
 import org.spongepowered.api.world.difficulty.Difficulty;
+import org.spongepowered.api.world.dimension.DimensionType;
 import org.spongepowered.api.world.gamerule.GameRuleHolder;
 import org.spongepowered.api.world.gen.GeneratorType;
 import org.spongepowered.api.world.teleport.PortalAgentType;
@@ -47,6 +46,7 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.function.Supplier;
 
 /**
  * Represents the properties of a {@link World} which are persisted across runtime instances.
@@ -152,6 +152,15 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
      *
      * @param type The generator type
      */
+    default void setGeneratorType(Supplier<? extends GeneratorType> type) {
+        this.setGeneratorType(type.get());
+    }
+
+    /**
+     * Sets the {@link GeneratorType}.
+     *
+     * @param type The generator type
+     */
     void setGeneratorType(GeneratorType type);
 
     /**
@@ -232,9 +241,18 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
     /**
      * Sets the default {@link GameMode}.
      *
-     * @param gamemode The game mode
+     * @param gameMode The game mode
      */
-    void setGameMode(GameMode gamemode);
+    default void setGameMode(Supplier<? extends GameMode> gameMode) {
+        this.setGameMode(gameMode.get());
+    }
+
+    /**
+     * Sets the default {@link GameMode}.
+     *
+     * @param gameMode The game mode
+     */
+    void setGameMode(GameMode gameMode);
 
     /**
      * Gets whether this will generate structures such as villages and
@@ -318,6 +336,15 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
      *
      * @param difficulty The difficulty
      */
+    default void setDifficulty(Supplier<? extends Difficulty> difficulty) {
+        this.setDifficulty(difficulty.get());
+    }
+
+    /**
+     * Sets the {@link Difficulty}.
+     *
+     * @param difficulty The difficulty
+     */
     void setDifficulty(Difficulty difficulty);
 
     /**
@@ -326,6 +353,15 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
      * @return The serialization behavior
      */
     SerializationBehavior getSerializationBehavior();
+
+    /**
+     * Sets the {@link SerializationBehavior}.
+     *
+     * @param behavior The serialization behavior
+     */
+    default void setSerializationBehavior(Supplier<? extends SerializationBehavior> behavior) {
+        this.setSerializationBehavior(behavior.get());
+    }
 
     /**
      * Sets the {@link SerializationBehavior}.
