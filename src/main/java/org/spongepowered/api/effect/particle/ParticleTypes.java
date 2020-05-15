@@ -169,6 +169,8 @@ public final class ParticleTypes {
 
     public static final ParticleType TOWN_AURA = DummyObjectProvider.createFor(ParticleType.class, "TOWN_AURA");
 
+    public static final ParticleType TOTEM = DummyObjectProvider.createFor(ParticleType.class, "TOTEM");
+
     public static final ParticleType WATER_BUBBLE = DummyObjectProvider.createFor(ParticleType.class, "WATER_BUBBLE");
 
     public static final ParticleType WATER_DROP = DummyObjectProvider.createFor(ParticleType.class, "WATER_DROP");
