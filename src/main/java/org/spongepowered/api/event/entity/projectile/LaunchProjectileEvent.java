@@ -26,10 +26,14 @@ package org.spongepowered.api.event.entity.projectile;
 
 import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.entity.SpawnEntityEvent;
 
 /**
  * Called when a {@link Projectile} is launched.
+ *
+ * @deprecated This is equivalent to {@link SpawnEntityEvent} where {@link SpawnEntityEvent#getEntities()} are {@link Projectile}s
  */
+@Deprecated
 public interface LaunchProjectileEvent extends TargetProjectileEvent, Cancellable {
 
 }
