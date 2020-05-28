@@ -43,7 +43,7 @@ dependencies {
     compile 'com.google.code.findbugs:jsr305:3.0.1'
 
     // Dependency injection
-    compile 'com.google.inject:guice:4.1.0'
+    compile 'com.google.inject:guice:4.2.3'
 
     // Java 8 high performance cache (+ wrapper for Guava)
     compile 'com.github.ben-manes.caffeine:caffeine:2.5.4'
