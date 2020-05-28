@@ -55,7 +55,6 @@ public interface World<W extends World<W>> extends ProtoWorld<W>,
     PhysicsAwareMutableBlockVolume<BoundedWorldView<W>>,
     WeatherUniverse,
     ContextSource,
-    ChatTypeMessageReceiver,
     TrackedVolume,
     Viewer,
     ArchetypeVolumeCreator
