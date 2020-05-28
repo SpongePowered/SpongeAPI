@@ -884,7 +884,7 @@ public final class Location<E extends Extent> implements DataHolder {
 
     @Override
     public Location<E> copy() {
-        return new Location<>(getExtent(), getPosition());
+        return new Location<>(getExtent(), getPosition().clone());
     }
 
     @Override
