@@ -936,8 +936,9 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
      */
     public static <E extends Extent> Predicate<BlockRayHit<E>> blockTypeFilter(final BlockType... types) {
         return lastHit -> {
-            for (BlockType type : types) {
-                if (lastHit.getExtent().getBlockType(lastHit.getBlockX(), lastHit.getBlockY(), lastHit.getBlockZ()).equals(type)) {
+            final BlockType targetBlockType = lastHit.getExtent().getBlockType(lastHit.getBlockX(), lastHit.getBlockY(), lastHit.getBlockZ());
+            for (final BlockType type : types) {
+                if (targetBlockType.equals(type)) {
                     return true;
                 }
             }
