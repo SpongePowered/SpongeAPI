@@ -22,20 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.action;
+package org.spongepowered.api.data.manipulator.immutable.item;
 
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.Event;
+import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.manipulator.mutable.item.MapInfoItemData;
+import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.item.ItemTypes;
+import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.map.MapInfo;
 
 /**
- * Called when a new map is registered.
- * Can be caused by players or a plugin.
+ * A {@link ImmutableDataManipulator} representing the {@link org.spongepowered.api.map.MapInfo}
+ * of a {@link ItemStack} of type {@link ItemTypes#FILLED_MAP}
  */
-public interface CreateMapEvent extends Event, Cancellable {
+public interface ImmutableMapInfoItemData extends ImmutableDataManipulator<ImmutableMapInfoItemData, MapInfoItemData> {
     /**
-     * Gets the {@link org.spongepowered.api.map.MapInfo} for this map
-     * @return MapInfoData Map data
+     * Gets the MapInfo that relates to this map
+     *
+     * @return {@link MapInfo} that correlates to this map
      */
-    MapInfo getMapInfo();
+    ImmutableValue<MapInfo> mapInfo();
 }

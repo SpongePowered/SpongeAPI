@@ -22,27 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable.item;
+package org.spongepowered.api.data.manipulator.mutable;
 
 import com.flowpowered.math.vector.Vector2i;
 import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.item.ImmutableMapItemData;
-import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableMapInfoData;
+import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.data.value.mutable.SetValue;
 import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.item.ItemTypes;
-import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.map.MapCanvas;
+import org.spongepowered.api.map.decoration.MapDecoration;
 import org.spongepowered.api.world.World;
 
 /**
  * Represents an {@link DataManipulator} hosting the specific map
- * information of an {@link ItemStack} of the type {@link ItemTypes#FILLED_MAP}.
- * Warning: This will affect all maps with this id (damage value).
+ * information of an {@link org.spongepowered.api.map.MapInfo}
  */
-public interface MapItemData extends DataManipulator<MapItemData, ImmutableMapItemData> {
+public interface MapInfoData extends DataManipulator<MapInfoData, ImmutableMapInfoData> {
     /**
-     * Gets the x centre of where the map refers to
+     * Gets the center of where the map refers to
      * @return Vector2d centre
      */
     Value<Vector2i> location();
@@ -67,9 +66,10 @@ public interface MapItemData extends DataManipulator<MapItemData, ImmutableMapIt
 
     /**
      * Gets the scale of this map
-     * @return byte The scale of this map
+     * @see <a href="https://minecraft.gamepedia.com/Map#Zoom_details">Minecraft Wiki - Zoom Details</a>
+     * @return Integer The scale of this map
      */
-    Value<Integer> scale();
+    MutableBoundedValue<Integer> scale();
 
     /**
      * Gets the canvas from this map
@@ -79,8 +79,17 @@ public interface MapItemData extends DataManipulator<MapItemData, ImmutableMapIt
     Value<MapCanvas> canvas();
 
     /**
-     * Gets whether this map auto updates (from players)
-     * @return Boolean if it auto updates from players
+     * Gets the MapDecorations from this map
+     * This is a list of MapDecorations
+     * @return List of MapDecorations
      */
-    Value<Boolean> autoUpdate();
+    SetValue<MapDecoration> decorations();
+
+    /**
+     * Gets whether this map is locked
+     * Brought forward version of <a href="https://minecraft.gamepedia.com/Map#Locking">Minecraft Wiki - Map Locking</a>
+     * (Plugins can still modify the map)
+     * @return Boolean if it is locked
+     */
+    Value<Boolean> locked();
 }

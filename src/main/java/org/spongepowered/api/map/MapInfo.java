@@ -22,20 +22,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.action;
+package org.spongepowered.api.map;
 
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.map.MapInfo;
+import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.manipulator.mutable.MapInfoData;
+import org.spongepowered.api.item.ItemTypes;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.map.decoration.MapDecoration;
+
+import java.util.Map;
 
 /**
- * Called when a new map is registered.
- * Can be caused by players or a plugin.
+ * Represents data of any number of linked {@link ItemStack} of type {@link ItemTypes#FILLED_MAP}
+ * @see MapInfoData
  */
-public interface CreateMapEvent extends Event, Cancellable {
+public interface MapInfo extends DataHolder {
     /**
-     * Gets the {@link org.spongepowered.api.map.MapInfo} for this map
-     * @return MapInfoData Map data
+     * Checks if a different MapInfo refers the the
+     * same map
+     * @param other MapInfo
+     * @return true if they refer to the same map
      */
-    MapInfo getMapInfo();
+    boolean isLinked(MapInfo other);
+
+    /**
+     * If this MapInfo relates to this Map
+     * Always returns false for {@link ItemStack}s
+     * not of type {@link ItemTypes#FILLED_MAP}
+     * @param itemStack ItemStack of type
+     * @return true if changing this MapInfo will change this ItemStack
+     */
+    boolean isLinked(ItemStack itemStack);
 }

@@ -22,20 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.action;
+package org.spongepowered.api.map.color;
 
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.map.MapInfo;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.Color;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Called when a new map is registered.
- * Can be caused by players or a plugin.
+ * A type of color used to create a {@link MapColor}
  */
-public interface CreateMapEvent extends Event, Cancellable {
+@CatalogedBy(MapColorTypes.class)
+public interface MapColorType extends CatalogType {
     /**
-     * Gets the {@link org.spongepowered.api.map.MapInfo} for this map
-     * @return MapInfoData Map data
+     * Gets the base color of this MapColorType (No shading)
+     * @return Color base color of this type
      */
-    MapInfo getMapInfo();
+    Color getColor();
 }

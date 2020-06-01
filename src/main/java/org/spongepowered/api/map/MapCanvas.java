@@ -30,8 +30,10 @@ import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.InvalidDataException;
+import org.spongepowered.api.map.color.MapColor;
+import org.spongepowered.api.map.color.MapColorTypes;
 
-import java.awt.*;
+import java.awt.Image;
 import java.util.Optional;
 
 /**

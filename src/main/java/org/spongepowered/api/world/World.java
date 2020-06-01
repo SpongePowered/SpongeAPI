@@ -458,12 +458,6 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
     WorldStorage getWorldStorage();
 
     /**
-     * Gets the map storage for this world.
-     * @return Optional<MapStorage>
-     */
-    Optional<MapStorage> getMapStorage();
-
-    /**
      * Causes an {@link Explosion} in a world.
      *
      * @param explosion The explosion to cause

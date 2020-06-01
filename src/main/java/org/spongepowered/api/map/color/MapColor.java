@@ -22,15 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.map;
+package org.spongepowered.api.map.color;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.persistence.DataBuilder;
+import org.spongepowered.api.map.MapCanvas;
 import org.spongepowered.api.util.Color;
-import org.spongepowered.api.util.annotation.CatalogedBy;
 
-@CatalogedBy(MapColorTypes.class)
+/**
+ * A MapColor that represents a color that can be used to
+ * paint on a {@link MapCanvas}
+ */
 public interface MapColor extends DataSerializable {
 
     /**

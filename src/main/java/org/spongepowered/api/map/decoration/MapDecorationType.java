@@ -22,20 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.action;
+package org.spongepowered.api.map.decoration;
 
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.map.MapInfo;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-/**
- * Called when a new map is registered.
- * Can be caused by players or a plugin.
- */
-public interface CreateMapEvent extends Event, Cancellable {
-    /**
-     * Gets the {@link org.spongepowered.api.map.MapInfo} for this map
-     * @return MapInfoData Map data
-     */
-    MapInfo getMapInfo();
+@CatalogedBy(MapDecorationTypes.class)
+public interface MapDecorationType extends CatalogType {
+
 }

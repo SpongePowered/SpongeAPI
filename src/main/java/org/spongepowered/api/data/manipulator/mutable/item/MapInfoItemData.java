@@ -22,11 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.map;
+package org.spongepowered.api.data.manipulator.mutable.item;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.util.Color;
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.item.ImmutableMapInfoItemData;
+import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.map.MapInfo;
 
-public interface MapColorType extends CatalogType {
-    Color getColor();
+/**
+ * A {@link DataManipulator}
+ */
+public interface MapInfoItemData extends DataManipulator<MapInfoItemData, ImmutableMapInfoItemData> {
+    /**
+     * Gets the MapInfo that relates to this map
+     * @return {@link MapInfo} that correlates to this map
+     */
+    Value<MapInfo> mapInfo();
 }

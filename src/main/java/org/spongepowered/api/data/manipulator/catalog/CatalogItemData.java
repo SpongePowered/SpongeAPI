@@ -46,7 +46,7 @@ import org.spongepowered.api.data.manipulator.mutable.item.GenerationData;
 import org.spongepowered.api.data.manipulator.mutable.item.GoldenAppleData;
 import org.spongepowered.api.data.manipulator.mutable.item.InventoryItemData;
 import org.spongepowered.api.data.manipulator.mutable.item.LoreData;
-import org.spongepowered.api.data.manipulator.mutable.item.MapItemData;
+import org.spongepowered.api.data.manipulator.mutable.MapInfoData;
 import org.spongepowered.api.data.manipulator.mutable.item.PagedData;
 import org.spongepowered.api.data.manipulator.mutable.item.PlaceableData;
 import org.spongepowered.api.data.manipulator.mutable.item.SpawnableData;
@@ -147,10 +147,6 @@ public final class CatalogItemData {
      * tag information on hover.
      */
     public static final Class<LoreData> LORE_DATA = LoreData.class;
-    /**
-     * Represents the various information of a {@link ItemTypes#MAP}.
-     */
-    public static final Class<MapItemData> MAP_ITEM_DATA = MapItemData.class;
     /**
      * Signifies that an item has "pages" of {@link Text}. Usually applicable
      * to {@link ItemTypes#BOOK}s.

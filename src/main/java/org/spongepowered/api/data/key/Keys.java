@@ -39,7 +39,6 @@ import org.spongepowered.api.data.manipulator.mutable.item.*;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.*;
 import org.spongepowered.api.data.property.entity.DominantHandProperty;
 import org.spongepowered.api.data.type.*;
-import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
 import org.spongepowered.api.data.value.mutable.*;
 import org.spongepowered.api.effect.particle.ParticleType;
@@ -76,6 +75,8 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.map.MapCanvas;
+import org.spongepowered.api.map.MapInfo;
+import org.spongepowered.api.map.decoration.MapDecoration;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.text.Text;
@@ -1463,58 +1464,77 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the {@link MapCanvas} of a map
+     * for a {@link MapInfo}
      * This contains the colors displayed on a map
      *
-     * @see MapItemData#canvas()
+     * @see MapInfoData#canvas()
      */
     public static final Key<Value<MapCanvas>> MAP_CANVAS = DummyObjectProvider.createExtendedFor(Key.class, "MAP_CANVAS");
+
+    /**
+     * Represents the {@link Key} for the Set of {@link MapDecoration}s
+     * for a {@link MapInfo}
+     *
+     * @see MapInfoData#decorations()
+     */
+    public static final Key<SetValue<MapDecoration>> MAP_DECORATIONS = DummyObjectProvider.createExtendedFor(Key.class, "MAP_DECORATIONS");
+
     /**
      * Represents the {@link Key} for the world for a
      * {@link ItemTypes#FILLED_MAP}
      *
-     * @see MapItemData#world()
+     * @see MapInfoData#world()
      */
     public static final Key<Value<World>> MAP_WORLD = DummyObjectProvider.createExtendedFor(Key.class, "DIMENSION");
 
     /**
      * Represents the {@link Key} for the centre x and z of where a
-     * {@link ItemTypes#FILLED_MAP} represents
-     *
-     * @see MapItemData#location()
+     * {@link MapInfo} represents
+     * This will be automatically centralised correctly
+     * @see MapInfoData#location()
      */
     public static final Key<Value<Vector2i>> MAP_LOCATION = DummyObjectProvider.createExtendedFor(Key.class, "MAP_LOCATION");
 
     /**
-     * Represents the {@link Key} for whether a map tracks player
+     * Represents the {@link Key} for whether a map updates from players
+     * By default this is false.
+     * Can be used in combination with {@link Keys#MAP_CANVAS} to create
+     * custom static map.
+     * Just a brought forward version of <a href="https://minecraft.gamepedia.com/Map#Locking">Minecraft Wiki - Map Locking</a>
      *
-     * @see MapItemData#trackPosition()
+     * @see MapInfoData#locked()
+     */
+    public static final Key<Value<Boolean>> MAP_LOCKED = DummyObjectProvider.createExtendedFor(Key.class, "MAP_LOCKED");
+
+    /**
+     * Represents the {@link Key} for whether a {@link MapInfo}
+     * tracks player position
+     *
+     * @see MapInfoData#trackPosition()
      */
     public static final Key<Value<Boolean>> MAP_TRACKS_PLAYERS = DummyObjectProvider.createExtendedFor(Key.class, "MAP_TRACKS_PLAYERS");
 
     /**
-     * Represents the {@link Key} for whether a map can track
+     * Represents the {@link Key} for whether a {@link MapInfo} can track
      * a player from anywhere in the world
      *
-     * @see MapItemData#unlimitedTracking()
+     * @see MapInfoData#unlimitedTracking()
      */
     public static final Key<Value<Boolean>> MAP_UNLIMITED_TRACKING = DummyObjectProvider.createExtendedFor(Key.class, "MAP_UNLIMITED_TRACKING");
 
     /**
      * Represents the {@link Key} for the scale of a map
-     *
-     * @see MapItemData#scale()
+     * @see <a href="https://minecraft.gamepedia.com/Map#Zoom_details">Minecraft Wiki - Zoom Details</a>
+     * @see MapInfoData#scale()
      */
     public static final Key<MutableBoundedValue<Integer>> MAP_SCALE = DummyObjectProvider.createExtendedFor(Key.class, "MAP_SCALE");
 
     /**
-     * Represents the {@link Key} for whether a map updates from players
-     * By default this is true.
-     * Can be used in combination with {@link Keys#MAP_CANVAS} to create
-     * static map.
-     *
-     * @see MapItemData#autoUpdate()
+     * Represents the {@link Key} for the {@link MapInfo}
+     * of an {@link ItemStack} of type {@link ItemTypes#FILLED_MAP}
+     * @see MapInfoItemData#mapInfo()
      */
-    public static final Key<Value<Boolean>> MAP_AUTO_UPDATE = DummyObjectProvider.createExtendedFor(Key.class, "MAP_AUTO_UPDATE");
+    public static final Key<Value<MapInfo>> MAP_INFO = DummyObjectProvider.createExtendedFor(Key.class, "MAP_INFO");
 
     /**
      * Represents the {@link Key} for the maximum air supply a {@link Living}

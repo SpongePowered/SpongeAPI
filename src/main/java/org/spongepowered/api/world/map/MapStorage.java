@@ -24,22 +24,25 @@
  */
 package org.spongepowered.api.world.map;
 
-import org.spongepowered.api.data.manipulator.mutable.item.MapItemData;
+import org.spongepowered.api.data.DataTransactionResult;
+import org.spongepowered.api.item.ItemTypes;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.map.MapInfo;
 
-import java.util.Optional;
+import java.util.Set;
 
 public interface MapStorage {
-    /**
-     * Gets the highest known map id if there are any
-     * May be inaccurate if maps overflow
-     * @return int Highest known map
-     */
-    Optional<Integer> getHighestMapId();
 
     /**
-     * Gets {@link MapItemData}
-     * @param id int Map id
-     * @return MapItemData of that map id.
+     * Get all {@link MapInfo}s that exist
+     * on this server.
+     * @return Set of MapInfos
      */
-    Optional<MapItemData> getMapData(int id);
+    Set<MapInfo> getAllMapInfos();
+
+    /**
+     * Creates a new, MapInfo
+     * @return {@link MapInfo} the new MapInfo
+     */
+    MapInfo createNewMapInfo();
 }
