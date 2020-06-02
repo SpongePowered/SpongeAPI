@@ -976,15 +976,27 @@ public final class GenericArguments {
 
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            while (args.hasNext()) {
-                CommandArgs.Snapshot startState = args.getSnapshot();
-                try {
+            CommandArgs.Snapshot startState = null;
+            try {
+                while (args.hasNext()) {
+                    startState = args.getSnapshot();
                     this.element.parse(src, args, context);
-                } catch (ArgumentParseException e) {
-                    args.applySnapshot(startState);
-                    return this.element.complete(src, args, context);
                 }
+            } catch (ArgumentParseException e) {
+                // ignored
             }
+
+            // The final element, if an exception was not thrown, might have more completions available to it.
+            // Therefore, we reapply the last snapshot and complete from it.
+            if (startState != null) {
+                args.applySnapshot(startState);
+            }
+
+            if (args.canComplete()) {
+                return this.element.complete(src, args, context);
+            }
+
+            // If we have more elements, do not complete.
             return Collections.emptyList();
         }
 

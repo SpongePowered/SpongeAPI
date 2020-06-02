@@ -66,6 +66,22 @@ public final class CommandArgs {
     }
 
     /**
+     * Returns true if:
+     *
+     * <ul>
+     *     <li>The next element returned by {@link #next()} is the last</li>
+     *     <li>{@link #hasNext()} is false</li>
+     * </ul>
+     *
+     * Else returns false.
+     *
+     * @return True if a completion can occur
+     */
+    boolean canComplete() {
+        return this.index + 2 >= this.args.size();
+    }
+
+    /**
      * Try to read the next argument without advancing the current index.
      *
      * @return The next argument
