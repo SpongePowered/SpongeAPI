@@ -195,9 +195,9 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
                 } else {
                     if (args.hasNext()) {
                         args.next();
+                        context.putArg(getUntranslatedKey() + "_args", args.getRaw().substring(args.getRawPosition()));
                     }
 
-                    context.putArg(getUntranslatedKey() + "_args", args.getRaw().substring(args.getRawPosition()));
                     while (args.hasNext()) {
                         args.next();
                     }
