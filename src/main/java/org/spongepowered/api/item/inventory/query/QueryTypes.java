@@ -29,15 +29,12 @@ import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.KeyValueMatcher;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.Inventory;
-import org.spongepowered.api.item.inventory.InventoryKeys;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.entity.Hotbar;
 import org.spongepowered.api.item.inventory.entity.PrimaryPlayerInventory;
 import org.spongepowered.api.item.inventory.query.QueryType.NoParam;
 import org.spongepowered.api.item.inventory.query.QueryType.OneParam;
 import org.spongepowered.api.item.inventory.query.QueryType.TwoParam;
-import org.spongepowered.api.text.translation.Translation;
-import org.spongepowered.api.util.Nameable;
 import org.spongepowered.math.vector.Vector2i;
 
 import java.util.function.Predicate;
@@ -47,15 +44,6 @@ import java.util.function.Supplier;
 public final class QueryTypes {
 
     // SORTFIELDS:ON
-
-    /**
-     * TODO property instead?
-     * Tests based on the title of the inventory.
-     *
-     * @see InventoryKeys#TITLE
-     * @see Nameable.Translatable#getNameTranslation()
-     */
-    public static final Supplier<OneParam<Translation>> INVENTORY_TRANSLATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(OneParam.class, "INVENTORY_TRANSLATION");
 
     /**
      * Tests based on the class of the inventory.
