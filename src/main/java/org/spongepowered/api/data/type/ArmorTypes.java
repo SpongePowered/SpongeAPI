@@ -24,23 +24,25 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 public final class ArmorTypes {
 
     // SORTFIELDS:ON
 
-    public static final ArmorType CHAINMAIL = DummyObjectProvider.createFor(ArmorType.class, "CHAINMAIL");
+    public static final Supplier<ArmorType> CHAINMAIL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorType.class, "CHAINMAIL");
 
-    public static final ArmorType DIAMOND = DummyObjectProvider.createFor(ArmorType.class, "DIAMOND");
+    public static final Supplier<ArmorType> DIAMOND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorType.class, "DIAMOND");
 
-    public static final ArmorType GOLD = DummyObjectProvider.createFor(ArmorType.class, "GOLD");
+    public static final Supplier<ArmorType> GOLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorType.class, "GOLD");
 
-    public static final ArmorType IRON = DummyObjectProvider.createFor(ArmorType.class, "IRON");
+    public static final Supplier<ArmorType> IRON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorType.class, "IRON");
 
-    public static final ArmorType LEATHER = DummyObjectProvider.createFor(ArmorType.class, "LEATHER");
+    public static final Supplier<ArmorType> LEATHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorType.class, "LEATHER");
 
-    public static final ArmorType TURTLE = DummyObjectProvider.createFor(ArmorType.class, "TURTLE");
+    public static final Supplier<ArmorType> TURTLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorType.class, "TURTLE");
 
     // SORTFIELDS:OFF
 
