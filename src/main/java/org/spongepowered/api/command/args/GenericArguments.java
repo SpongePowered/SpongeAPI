@@ -1623,7 +1623,8 @@ public final class GenericArguments {
             } else if (xStr.equals("#target") && source instanceof Entity) {
                 Optional<BlockRayHit<World>> hit = BlockRay
                         .from(((Entity) source))
-                        .stopFilter(BlockRay.continueAfterFilter(BlockRay.onlyAirFilter(), 1))
+                        .select(BlockRay.notAirFilter())
+                        .whilst(BlockRay.continueAfterFilter(BlockRay.onlyAirFilter(), 1))
                         .build()
                         .end();
                 if (!hit.isPresent()) {
