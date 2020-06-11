@@ -24,27 +24,31 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.ItemTypes;
-import org.spongepowered.api.item.recipe.crafting.Ingredient;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.Sponge;
 
-import java.util.Optional;
+import java.util.function.Supplier;
 
-/**
- * Represents a type of "armor", usually applicable to any
- * {@link ItemTypes#DIAMOND_CHESTPLATE}.
- */
-@CatalogedBy(ArmorTypes.class)
-public interface ArmorType extends CatalogType {
+public final class ArmorMaterials {
 
-    /**
-     * Gets the {@link ItemType} that can be used to
-     * "repair" the armor type.
-     *
-     * @return The item type considered to be used for repairing
-     */
-    Optional<Ingredient> getRepairIngredient();
+    // SORTFIELDS:ON
+
+    public static final Supplier<ArmorMaterial> CHAINMAIL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorMaterial.class, "CHAINMAIL");
+
+    public static final Supplier<ArmorMaterial> DIAMOND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorMaterial.class, "DIAMOND");
+
+    public static final Supplier<ArmorMaterial> GOLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorMaterial.class, "GOLD");
+
+    public static final Supplier<ArmorMaterial> IRON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorMaterial.class, "IRON");
+
+    public static final Supplier<ArmorMaterial> LEATHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorMaterial.class, "LEATHER");
+
+    public static final Supplier<ArmorMaterial> TURTLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorMaterial.class, "TURTLE");
+
+    // SORTFIELDS:OFF
+
+    // Suppress default constructor to ensure non-instantiability.
+    private ArmorMaterials() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 
 }

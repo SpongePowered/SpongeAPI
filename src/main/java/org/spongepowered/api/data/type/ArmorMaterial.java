@@ -24,31 +24,27 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.Sponge;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.ItemTypes;
+import org.spongepowered.api.item.recipe.crafting.Ingredient;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-import java.util.function.Supplier;
+import java.util.Optional;
 
-public final class ArmorTypes {
+/**
+ * Represents a type of "armor", usually applicable to any
+ * {@link ItemTypes#DIAMOND_CHESTPLATE}.
+ */
+@CatalogedBy(ArmorMaterials.class)
+public interface ArmorMaterial extends CatalogType {
 
-    // SORTFIELDS:ON
-
-    public static final Supplier<ArmorType> CHAINMAIL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorType.class, "CHAINMAIL");
-
-    public static final Supplier<ArmorType> DIAMOND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorType.class, "DIAMOND");
-
-    public static final Supplier<ArmorType> GOLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorType.class, "GOLD");
-
-    public static final Supplier<ArmorType> IRON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorType.class, "IRON");
-
-    public static final Supplier<ArmorType> LEATHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorType.class, "LEATHER");
-
-    public static final Supplier<ArmorType> TURTLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorType.class, "TURTLE");
-
-    // SORTFIELDS:OFF
-
-    // Suppress default constructor to ensure non-instantiability.
-    private ArmorTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
-    }
+    /**
+     * Gets the {@link ItemType} that can be used to
+     * "repair" the armor type.
+     *
+     * @return The item type considered to be used for repairing
+     */
+    Optional<Ingredient> getRepairIngredient();
 
 }

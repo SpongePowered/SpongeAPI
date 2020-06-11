@@ -45,7 +45,7 @@ import org.spongepowered.api.block.entity.carrier.Hopper;
 import org.spongepowered.api.block.entity.carrier.furnace.FurnaceBlockEntity;
 import org.spongepowered.api.boss.ServerBossBar;
 import org.spongepowered.api.data.meta.BannerPatternLayer;
-import org.spongepowered.api.data.type.ArmorType;
+import org.spongepowered.api.data.type.ArmorMaterial;
 import org.spongepowered.api.data.type.ArtType;
 import org.spongepowered.api.data.type.BodyPart;
 import org.spongepowered.api.data.type.BodyParts;
@@ -307,10 +307,10 @@ public final class Keys {
     public static final Supplier<Key<ListValue<Enchantment>>> APPLIED_ENCHANTMENTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ITEM_ENCHANTMENTS");
 
     /**
-     * The {@link ArmorType} of an armor {@link ItemStack}.
+     * The {@link ArmorMaterial} of an armor {@link ItemStack}.
      * Readonly
      */
-    public static final Supplier<Key<Value<ArmorType>>> ARMOR_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ARMOR");
+    public static final Supplier<Key<Value<ArmorMaterial>>> ARMOR_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ARMOR");
 
     /**
      * The type of {@link ArtType} shown by {@link Painting}s.
