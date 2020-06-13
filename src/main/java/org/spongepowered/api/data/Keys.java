@@ -310,7 +310,7 @@ public final class Keys {
      * The {@link ArmorMaterial} of an armor {@link ItemStack}.
      * Readonly
      */
-    public static final Supplier<Key<Value<ArmorMaterial>>> ARMOR_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ARMOR");
+    public static final Supplier<Key<Value<ArmorMaterial>>> ARMOR_MATERIAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ARMOR");
 
     /**
      * The type of {@link ArtType} shown by {@link Painting}s.
