@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.world;
 
+import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
@@ -89,4 +90,39 @@ public interface ExplosionEvent extends Event {
      * updated and/or changed.
      */
     interface Post extends ExplosionEvent, ChangeBlockEvent.Post {}
+
+    /**
+     * An event that is fired when the Explosion fetches the explosion resistance of a block.
+     * Provides the world, block position, block state, and current explosion resistance.
+     */
+    interface FetchBlockExplosionResistance extends ExplosionEvent, TargetWorldEvent {
+
+        /**
+         * Gets the explosion resistance of the block which may have already been altered.
+         *
+         * @return The current explosion resistance of the block
+         */
+        float getResistance();
+
+        /**
+         * Sets the explosion resistance of the block.
+         *
+         * @param resistance The new explosion resistance of the block
+         */
+        void setResistance(float resistance);
+
+        /**
+         * Gets the location of the block being affected.
+         *
+         * @return The location of the block
+         */
+        Location<World> getLocation();
+
+        /**
+         * Gets the BlockState of the block being affected.
+         *
+         * @return The BlockState of the block
+         */
+        BlockState getBlockState();
+    }
 }
