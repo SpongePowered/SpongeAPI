@@ -124,7 +124,7 @@ val sortClasses = listOf(
         "org.spongepowered.api.data.Keys",
         "org.spongepowered.api.data.persistence.DataFormats",
         "org.spongepowered.api.data.persistence.DataTranslators",
-        "org.spongepowered.api.data.type.ArmorTypes",
+        "org.spongepowered.api.data.type.ArmorMaterials",
         "org.spongepowered.api.data.type.ArtTypes",
         "org.spongepowered.api.data.type.BannerPatternShapes",
         "org.spongepowered.api.data.type.BodyParts",
