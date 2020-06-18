@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.event.world;
 
+import com.flowpowered.math.vector.Vector3i;
+import javafx.util.Pair;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
@@ -33,6 +35,7 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -93,36 +96,16 @@ public interface ExplosionEvent extends Event {
 
     /**
      * An event that is fired when the Explosion fetches the explosion resistance of a block.
-     * Provides the world, block position, block state, and current explosion resistance.
+     * Provides the world, block position, block state, and default and current explosion resistance.
      */
-    interface FetchBlockExplosionResistance extends ExplosionEvent, TargetWorldEvent {
+    interface BlockResistance extends ExplosionEvent, TargetWorldEvent {
 
         /**
-         * Gets the explosion resistance of the block which may have already been altered.
+         * Gets the block positions that will potentially be effected as Vector3i mapped to a Pair containing the BlockState and
+         * explosion resistance of the block located at that position.
          *
-         * @return The current explosion resistance of the block
+         * @return The blocks that the explosion may effect
          */
-        float getResistance();
-
-        /**
-         * Sets the explosion resistance of the block.
-         *
-         * @param resistance The new explosion resistance of the block
-         */
-        void setResistance(float resistance);
-
-        /**
-         * Gets the location of the block being affected.
-         *
-         * @return The location of the block
-         */
-        Location<World> getLocation();
-
-        /**
-         * Gets the BlockState of the block being affected.
-         *
-         * @return The BlockState of the block
-         */
-        BlockState getBlockState();
+        HashMap<Vector3i, Pair<BlockState, Float>> getBlocks();
     }
 }
