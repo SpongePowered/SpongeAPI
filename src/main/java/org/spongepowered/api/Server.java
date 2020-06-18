@@ -52,11 +52,11 @@ public interface Server extends Engine, MessageReceiver {
     WorldManager getWorldManager();
 
     /**
-     * Gets the {@link Player}s currently online.
+     * Gets the {@link ServerPlayer}s currently online.
      *
      * @return A {@link Collection} of online players
      */
-    Collection<Player> getOnlinePlayers();
+    Collection<ServerPlayer> getOnlinePlayers();
 
     /**
      * Gets the max players allowed on this server.
@@ -66,15 +66,15 @@ public interface Server extends Engine, MessageReceiver {
     int getMaxPlayers();
 
     /**
-     * Gets a {@link Player} by their UUID.
+     * Gets a {@link ServerPlayer} by their UUID.
      *
      * @param uniqueId The UUID to get the player from
-     * @return The {@link Player} or empty if not found
+     * @return The {@link ServerPlayer} or empty if not found
      */
-    Optional<? extends Player> getPlayer(UUID uniqueId);
+    Optional<ServerPlayer> getPlayer(UUID uniqueId);
 
     /**
-     * Gets a {@link Player} by their name.
+     * Gets a {@link ServerPlayer} by their name.
      *
      * <p>This only works for online players.</p>
      *
@@ -82,9 +82,9 @@ public interface Server extends Engine, MessageReceiver {
      * Notch of today may not be the Notch of yesterday.</b></p>
      *
      * @param name The name to get the player from
-     * @return The {@link Player} or empty if not found
+     * @return The {@link ServerPlayer} or empty if not found
      */
-    Optional<? extends Player> getPlayer(String name);
+    Optional<ServerPlayer> getPlayer(String name);
 
     /**
      * Gets the 'server' scoreboard. In Vanilla, this is the scoreboard of
