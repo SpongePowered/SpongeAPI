@@ -1,12 +1,18 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
-
 plugins {
     id("org.spongepowered.gradle.sponge.dev")
     id("org.spongepowered.gradle.sponge.deploy")
     id("org.spongepowered.gradle.sort")
 
     id("org.spongepowered.event-impl-gen") version "5.7.0"
+}
+
+repositories {
+    maven {
+        name = "sponge v2"
+        setUrl("https://repo-new.spongepowered.org/repository/maven-public/")
+    }
 }
 
 base {
@@ -37,9 +43,6 @@ dependencies {
     api("com.google.code.gson:gson:2.8.0")
     api("org.apache.commons:commons-lang3:3.5")
 
-    // checkers
-    api("org.checkerframework:checker-qual:2.8.1")
-
     // Dependency injection
     api("com.google.inject:guice:4.1.0") {
         exclude(group = "javax.inject", module = "javax.inject")
@@ -48,13 +51,15 @@ dependencies {
     }
 
     // High performance cache + guava - shaded guava
-    api("com.github.ben-manes.caffeine:caffeine:2.5.4")
-    implementation("com.github.ben-manes.caffeine:guava:2.5.4") {
+    api("com.github.ben-manes.caffeine:caffeine:2.8.4")
+    implementation("com.github.ben-manes.caffeine:guava:2.8.4") {
         exclude(group = "com.google.guava", module = "guava")
     }
+    implementation("com.github.ben-manes.caffeine:jcache:2.8.4")
 
     // Plugin meta
-    api("org.spongepowered:plugin-meta:0.4.1")
+    api("org.spongepowered:plugin-meta:0.6.0-SNAPSHOT")
+    api("org.spongepowered:plugin-spi:0.1.1-SNAPSHOT")
 
     // Configurate
     api("org.spongepowered:configurate-core:3.6.1") {
@@ -76,7 +81,8 @@ dependencies {
     // Asm for dummy object generation
     implementation("org.ow2.asm:asm:6.2")
 }
-
+val spongeSnapshotRepo: String? by project
+val spongeReleaseRepo: String? by project
 tasks {
     genEventImpl {
         outputFactory = "org.spongepowered.api.event.SpongeEventFactory"
@@ -109,6 +115,46 @@ tasks {
     artifacts {
         archives(shadowJar)
     }
+
+//    withType<PublishToMavenRepository>().configureEach {
+//        onlyIf {
+//            (repository == publishing.repositories["GitHubPackages"] &&
+//                    !publication.version.endsWith("-SNAPSHOT")) ||
+//                    (!spongeSnapshotRepo.isNullOrBlank()
+//                            && !spongeReleaseRepo.isNullOrBlank()
+//                            && repository == publishing.repositories["spongeRepo"]
+//                            && publication == publishing.publications["sponge"])
+//
+//        }
+//    }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            this.setUrl(uri("https://maven.pkg.github.com/spongepowered/plugin-meta"))
+            credentials {
+                username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_USERNAME")
+                password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
+        // Set by the build server
+        maven {
+            name = "spongeRepo"
+            val repoUrl = if ((version as String).endsWith("-SNAPSHOT")) spongeSnapshotRepo else spongeReleaseRepo
+            repoUrl?.apply {
+                setUrl(uri(this))
+            }
+            val spongeUsername: String? by project
+            val spongePassword: String? by project
+            credentials {
+                username = spongeUsername ?: System.getenv("ORG_GRADLE_PROJECT_spongeUsername")
+                password = spongePassword ?: System.getenv("ORG_GRADLE_PROJECT_spongePassword")
+            }
+        }
+    }
+
 }
 
 // TODO - repopulate
