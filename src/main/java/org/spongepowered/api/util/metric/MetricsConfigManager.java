@@ -58,7 +58,7 @@ public interface MetricsConfigManager {
      * {@link Tristate#FALSE} Disallows data collection, this has been explicitly set
      * {@link Tristate#UNDEFINED} Inherit from {@link MetricsConfigManager#getGlobalCollectionState()}, this is set by default
      *
-     * @param container The {@link org.spongepowered.api.plugin.PluginContainer}
+     * @param container The {@link PluginContainer}
      * @return The current collection state
      */
     Tristate getCollectionState(final PluginContainer container);
