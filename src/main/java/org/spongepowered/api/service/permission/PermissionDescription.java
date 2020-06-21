@@ -25,8 +25,8 @@
 package org.spongepowered.api.service.permission;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.plugin.PluginContainer;
 
 import java.util.Map;
 import java.util.Optional;

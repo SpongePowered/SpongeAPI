@@ -27,8 +27,8 @@ package co.aikar.timings;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.text.channel.MessageChannel;
+import org.spongepowered.plugin.PluginContainer;
 
 /**
  * Utility class for creating and configuring timings.

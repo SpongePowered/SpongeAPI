@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.service;
 
-import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.plugin.PluginContainer;
 
 /**
  * Represents the registration information for the provider of a service.

@@ -45,7 +45,6 @@ import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.network.PlayerConnection;
-import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.service.permission.Subject;
@@ -55,6 +54,7 @@ import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.chat.ChatVisibility;
 import org.spongepowered.api.world.WorldBorder;
+import org.spongepowered.plugin.PluginContainer;
 
 import java.time.Instant;
 import java.util.Collection;

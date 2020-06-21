@@ -43,7 +43,6 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.network.RemoteConnection;
-import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Color;
@@ -52,6 +51,7 @@ import org.spongepowered.api.world.dimension.Dimension;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.math.vector.Vector3d;
+import org.spongepowered.plugin.PluginContainer;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

@@ -26,7 +26,7 @@ package org.spongepowered.api.util;
 
 import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.plugin.PluginContainer;
 
 /**
  * A base builder to construct {@link CatalogType}s.

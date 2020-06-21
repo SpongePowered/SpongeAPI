@@ -24,14 +24,14 @@
  */
 package org.spongepowered.api;
 
-import org.spongepowered.api.plugin.Plugin;
+import org.spongepowered.plugin.PluginContainer;
 
 /**
  * Top to bottom order of the lifecycle.
  */
 public enum GameState {
     /**
-     * During this state, each {@link Plugin} instance
+     * During this state, each {@link PluginContainer plugin} instance
      * has been created.
      */
     CONSTRUCTION,

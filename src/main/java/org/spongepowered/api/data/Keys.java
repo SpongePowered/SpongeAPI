@@ -203,7 +203,6 @@ import org.spongepowered.api.item.inventory.slot.EquipmentSlot;
 import org.spongepowered.api.item.inventory.type.GridInventory;
 import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.item.potion.PotionType;
-import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.projectile.source.ProjectileSource;
@@ -224,6 +223,7 @@ import org.spongepowered.api.world.weather.Weathers;
 import org.spongepowered.math.vector.Vector2i;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
+import org.spongepowered.plugin.PluginContainer;
 
 import java.time.Instant;
 import java.util.List;

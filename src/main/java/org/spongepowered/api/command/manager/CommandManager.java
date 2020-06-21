@@ -27,10 +27,10 @@ package org.spongepowered.api.command.manager;
 import org.spongepowered.api.command.Command;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.exception.CommandException;
-import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.text.channel.MessageReceiver;
+import org.spongepowered.plugin.PluginContainer;
 
 import java.util.Collection;
 import java.util.List;

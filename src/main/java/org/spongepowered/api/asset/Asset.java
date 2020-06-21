@@ -27,8 +27,7 @@ package org.spongepowered.api.asset;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.io.Resources;
-import org.spongepowered.api.plugin.Plugin;
-import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.plugin.PluginContainer;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -50,7 +49,7 @@ public interface Asset {
     Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
     /**
-     * Returns the original {@link Plugin} owner of this Asset.
+     * Returns the original {@link PluginContainer plugin} owner of this Asset.
      *
      * @return Original owner of asset
      */

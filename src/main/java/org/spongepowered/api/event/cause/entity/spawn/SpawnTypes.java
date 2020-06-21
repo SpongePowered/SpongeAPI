@@ -34,7 +34,6 @@ import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.living.animal.Animal;
 import org.spongepowered.api.entity.living.trader.Trader;
 import org.spongepowered.api.entity.vehicle.minecart.SpawnerMinecart;
-import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.gen.feature.Feature;

@@ -31,12 +31,12 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.EventContext;
 import org.spongepowered.api.event.cause.EventContextKeys;
-import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.math.vector.Vector3d;
+import org.spongepowered.plugin.PluginContainer;
 
 import java.util.Optional;
 

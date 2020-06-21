@@ -26,7 +26,7 @@ package org.spongepowered.api.command.manager;
 
 import org.spongepowered.api.command.Command;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.plugin.PluginContainer;
 
 import java.util.Optional;
 import java.util.Set;

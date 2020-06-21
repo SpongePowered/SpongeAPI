@@ -30,8 +30,8 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataStore;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
-import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.CatalogBuilder;
+import org.spongepowered.plugin.PluginContainer;
 
 import java.util.Optional;
 

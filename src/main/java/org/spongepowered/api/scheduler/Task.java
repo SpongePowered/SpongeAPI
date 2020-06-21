@@ -26,9 +26,9 @@ package org.spongepowered.api.scheduler;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.CauseStackManager;
-import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.TemporalUnits;
+import org.spongepowered.plugin.PluginContainer;
 
 import java.time.Duration;
 import java.time.temporal.TemporalUnit;

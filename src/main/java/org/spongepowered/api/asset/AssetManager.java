@@ -24,21 +24,20 @@
  */
 package org.spongepowered.api.asset;
 
-import org.spongepowered.api.plugin.Plugin;
-import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.plugin.PluginContainer;
 
 import java.util.Optional;
 
 /**
  * The AssetManager offers a convenient way to easily retrieve resources from
- * Sponge {@link Plugin}s. The asset manager will attempt to find the
+ * Sponge {@link PluginContainer plugins}. The asset manager will attempt to find the
  * asset of the specified name at: <code>assets/&lt;plugin_id&gt;</code>
  */
 public interface AssetManager {
 
     /**
      * Returns the {@link Asset} of the specified name for the specified
-     * {@link Plugin} instance.
+     * {@link PluginContainer plugin} instance.
      *
      * @param plugin Plugin instance
      * @param name Name of resource to retrieve

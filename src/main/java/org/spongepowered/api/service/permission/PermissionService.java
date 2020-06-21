@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.service.permission;
 
-import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.service.context.ContextualService;
+import org.spongepowered.plugin.PluginContainer;
 
 import java.util.Collection;
 import java.util.Map;
@@ -35,7 +35,6 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
-
 
 /**
  * Represents a provider of permissions data.

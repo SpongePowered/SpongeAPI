@@ -26,7 +26,7 @@ package org.spongepowered.api.network;
 
 import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.Platform;
-import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.plugin.PluginContainer;
 
 import java.util.Optional;
 import java.util.Set;

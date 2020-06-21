@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.scheduler;
 
-import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.Identifiable;
+import org.spongepowered.plugin.PluginContainer;
 
 /**
  * Represents a {@link Task} that was scheduled through a

@@ -28,9 +28,9 @@ import ninja.leaping.configurate.ConfigurationNode;
 import org.spongepowered.api.data.DataRegistration;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.DataTranslator;
-import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.registry.GameRegistry;
 import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.plugin.PluginContainer;
 
 /**
  * An object representation of a location or pointer to a {@link CatalogType}

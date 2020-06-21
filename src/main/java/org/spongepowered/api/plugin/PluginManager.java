@@ -24,15 +24,13 @@
  */
 package org.spongepowered.api.plugin;
 
-import org.slf4j.Logger;
+import org.spongepowered.plugin.PluginContainer;
 
 import java.util.Collection;
 import java.util.Optional;
 
 /**
- * The manager that manages plugins. This manager can retrieve
- * {@link PluginContainer}s from {@link Plugin} instances, getting
- * {@link Logger}s, etc.
+ * The manager that manages {@link PluginContainer plugins}.
  */
 public interface PluginManager {
 
@@ -66,7 +64,7 @@ public interface PluginManager {
      * Checks if a plugin is loaded based on its ID.
      * This may contain plugins/mods from other systems in some implementations.
      *
-     * @param id the id of the {@link Plugin}
+     * @param id the id of the {@link PluginContainer}
      * @return {@code true} if loaded {@code false} if not loaded.
      */
     boolean isLoaded(String id);

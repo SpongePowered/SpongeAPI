@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.config;
 
-import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.plugin.PluginContainer;
 
 /**
  * Provides configuration for plugins.

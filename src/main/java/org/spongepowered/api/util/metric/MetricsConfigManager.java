@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.util.metric;
 
-import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.Tristate;
+import org.spongepowered.plugin.PluginContainer;
 
 /**
  * Provides information about whether a server has granted permission for
@@ -34,7 +34,6 @@ import org.spongepowered.api.util.Tristate;
  * <p>This manager is {@code @Inject}able into plugin classes.</p>
  */
 public interface MetricsConfigManager {
-
 
     /**
      * Gets the current <em>global</em> state of collection. The collection state determines

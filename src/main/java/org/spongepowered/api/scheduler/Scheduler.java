@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.scheduler;
 
-import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.plugin.PluginContainer;
 
 import java.util.Optional;
 import java.util.Set;

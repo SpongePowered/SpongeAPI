@@ -25,7 +25,7 @@
 package org.spongepowered.api.event;
 
 import com.google.common.reflect.TypeToken;
-import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.plugin.PluginContainer;
 
 /**
  * Manages the registration of event listeners and the dispatching of events.
