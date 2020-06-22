@@ -25,7 +25,7 @@
 package org.spongepowered.api.event.world;
 
 import com.flowpowered.math.vector.Vector3i;
-import javafx.util.Pair;
+import org.apache.commons.lang3.tuple.Pair;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
