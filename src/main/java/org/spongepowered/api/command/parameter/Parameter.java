@@ -130,6 +130,18 @@ public interface Parameter {
     }
 
     /**
+     * Gets a builder that builds a {@link Parameter.Value}.
+     *
+     * @param <T> The type of parameter
+     * @param parameter The value parameter
+     * @param valueClass The type of value class
+     * @return The {@link Value.Builder}
+     */
+    static <T, V extends ValueParameter<T>> Value.Builder<T> builder(Class<T> valueClass, Supplier<V> parameter) {
+        return builder(valueClass, parameter.get());
+    }
+
+    /**
      * Gets a {@link Parameter} that represents a subcommand.
      *
      * <p>If a {@link Subcommand} alias in a parameter chain
@@ -892,11 +904,25 @@ public interface Parameter {
             Builder<T> parser(ValueParser<? extends T> parser);
 
             /**
+             * The {@link ValueParser} that will extract the value(s) from the
+             * parameters. If this is a {@link ValueParameter}, the object's
+             * complete and usage methods will be used for completion and usage
+             * unless this builder's {@link #setSuggestions(ValueCompleter)}} and
+             * {@link #setUsage(ValueUsage)} methods are specified.
+             *
+             * @param parser The {@link ValueParameter} to use
+             * @return This builder, for chaining
+             */
+            default <V extends ValueParser<? extends T>> Builder<T> parser(Supplier<V> parser) {
+                return this.parser(parser.get());
+            }
+
+            /**
              * Provides a function that provides tab completions
              *
              * <p>Optional. If this is <code>null</code> (or never set),
              * completions will either be done via the supplied
-             * {@link #parser(ValueParser)} or will just return an empty
+             * {@link Builder#parser(ValueParser)} or will just return an empty
              * list. If this is supplied, no modifiers will run on completion.</p>
              *
              * @param completer The {@link ValueCompleter}
