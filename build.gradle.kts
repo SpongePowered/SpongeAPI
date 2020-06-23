@@ -167,7 +167,7 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            this.setUrl(uri("https://maven.pkg.github.com/spongepowered/plugin-meta"))
+            this.setUrl(uri("https://maven.pkg.github.com/spongepowered/SpongeAPI"))
             credentials {
                 username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_USERNAME")
                 password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
