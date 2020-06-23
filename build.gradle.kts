@@ -1,17 +1,19 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
 plugins {
-    id("org.spongepowered.gradle.sponge.dev")
-    id("org.spongepowered.gradle.sponge.deploy")
-    id("org.spongepowered.gradle.sort")
-
+    `java-library`
+    `maven-publish`
     id("org.spongepowered.event-impl-gen") version "5.7.0"
+    idea
+    eclipse
 }
 
 repositories {
     maven {
-        name = "sponge v2"
+        name = "New Sponge Maven Repo"
         setUrl("https://repo-new.spongepowered.org/repository/maven-public/")
+    }
+    maven {
+        name = "Old Sponge Maven Repo"
+        setUrl("https://repo.spongepowered.org/maven")
     }
 }
 
@@ -20,11 +22,6 @@ base {
 }
 val ap by sourceSets.registering {
     compileClasspath += sourceSets.main.get().compileClasspath + sourceSets.main.get().output
-}
-
-spongeDev {
-    api(project)
-    licenseProject.set("SpongeAPI")
 }
 
 // Project dependencies
@@ -57,8 +54,7 @@ dependencies {
     }
     implementation("com.github.ben-manes.caffeine:jcache:2.8.4")
 
-    // Plugin meta
-    api("org.spongepowered:plugin-meta:0.6.0-SNAPSHOT")
+    // Plugin spi, includes plugin-meta
     api("org.spongepowered:plugin-spi:0.1.1-SNAPSHOT")
 
     // Configurate
@@ -80,6 +76,9 @@ dependencies {
 
     // Asm for dummy object generation
     implementation("org.ow2.asm:asm:6.2")
+    testImplementation("junit:junit:4.12")
+    testImplementation("org.hamcrest:hamcrest-library:1.3")
+    testImplementation("org.mockito:mockito-core:2.8.47")
 }
 val spongeSnapshotRepo: String? by project
 val spongeReleaseRepo: String? by project
@@ -100,21 +99,56 @@ tasks {
         }
     }
 
-    val shadowJar by registering(ShadowJar::class) {
-        archiveClassifier.set("shaded")
-        from(ap.get().output)
-
-    }
-
-    sortClassFields {
-        sortClasses.forEach {
-            add(sourceSets.main.name, it)
+    compileJava {
+        options.apply {
+            compilerArgs.addAll(listOf("-Xlint:all", "-Xlint:-path", "-parameters"))
+            isDeprecation = false
+            encoding = "UTF-8"
         }
     }
 
-    artifacts {
-        archives(shadowJar)
+    javadoc {
+        options {
+            encoding = "UTF-8"
+            charset("UTF-8")
+            isFailOnError = false
+            (this as? StandardJavadocDocletOptions)?.apply {
+                links?.addAll(
+                        mutableListOf(
+                                "http://www.slf4j.org/apidocs/",
+                                "https://google.github.io/guava/releases/21.0/api/docs/",
+                                "https://google.github.io/guice/api-docs/4.1/javadoc/",
+                                "https://zml2008.github.io/configurate/configurate-core/apidocs/",
+                                "https://zml2008.github.io/configurate/configurate-hocon/apidocs/",
+                                "http://asm.ow2.org/asm50/javadoc/user/",
+                                "https://docs.oracle.com/javase/8/docs/api/"
+                        )
+                )
+                addStringOption("-Xdoclint:none", "-quiet")
+            }
+        }
     }
+
+    val javadocJar by registering(Jar::class) {
+        group = "build"
+        from(javadoc)
+    }
+//
+//    val shadowJar by registering(ShadowJar::class) {
+//        archiveClassifier.set("shaded")
+//        from(ap.get().output)
+//
+//    }
+
+//    sortClassFields {
+//        sortClasses.forEach {
+//            add(sourceSets.main.name, it)
+//        }
+//    }
+
+//    artifacts {
+//        archives(shadowJar)
+//    }
 
 //    withType<PublishToMavenRepository>().configureEach {
 //        onlyIf {
