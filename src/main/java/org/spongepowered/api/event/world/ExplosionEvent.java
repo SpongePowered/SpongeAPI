@@ -25,12 +25,12 @@
 package org.spongepowered.api.event.world;
 
 import com.flowpowered.math.vector.Vector3i;
-import org.apache.commons.lang3.tuple.Pair;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.entity.AffectEntityEvent;
+import org.spongepowered.api.util.Tuple;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
@@ -106,6 +106,6 @@ public interface ExplosionEvent extends Event {
          *
          * @return The blocks that the explosion may effect
          */
-        HashMap<Vector3i, Pair<BlockState, Float>> getBlocks();
+        HashMap<Vector3i, Tuple<BlockState, Float>> getBlocks();
     }
 }
