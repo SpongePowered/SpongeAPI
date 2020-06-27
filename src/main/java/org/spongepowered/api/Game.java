@@ -35,7 +35,6 @@ import org.spongepowered.api.network.ChannelRegistrar;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.registry.GameRegistry;
 import org.spongepowered.api.scheduler.Scheduler;
-import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.TeleportHelper;
 
@@ -178,18 +177,6 @@ public interface Game {
      */
     default ConfigManager getConfigManager() {
         return Sponge.getConfigManager();
-    }
-
-    /**
-     * Gets the game's instance of the service manager, which is the gateway
-     * to various services provided by Sponge (command registration and so on).
-     *
-     * <p>Services registered by other plugins may be available too.</p>
-     *
-     * @return The service manager
-     */
-    default ServiceManager getServiceManager() {
-        return Sponge.getServiceManager();
     }
 
     /**

@@ -25,7 +25,6 @@
 package org.spongepowered.api.service.context;
 
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.event.service.ChangeServiceProviderEvent;
 import org.spongepowered.api.service.permission.PermissionService;
 
 import java.util.HashSet;
@@ -65,11 +64,6 @@ import java.util.function.Function;
  * (e.g. {@link Player}) are delegated to the active {@link PermissionService}.
  * Plugins wishing to provide contexts for these instances should register
  * calculators here.</p>
- *
- * <p>When the provider of a {@link ContextualService} changes, calculators must
- * be registered again. Plugins should listen to the
- * {@link ChangeServiceProviderEvent} to ensure their calculators are registered
- * with any replacement providers.</p>
  */
 public interface ContextCalculator<T extends Contextual> {
 

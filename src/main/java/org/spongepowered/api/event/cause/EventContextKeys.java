@@ -41,7 +41,6 @@ import org.spongepowered.api.event.cause.entity.teleport.TeleportType;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.projectile.source.ProjectileSource;
-import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.text.channel.MessageReceiver;
@@ -271,11 +270,6 @@ public final class EventContextKeys {
      * Represents a rotation as a {@link Vector3d}, for use with commands.
      */
     public static final Supplier<EventContextKey<Vector3d>> ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "ROTATION");
-
-    /**
-     * Represents the {@link ServiceManager}.
-     */
-    public static final Supplier<EventContextKey<ServiceManager>> SERVICE_MANAGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "SERVICE_MANAGER");
 
     /**
      * Represents the {@link SpawnType} of an entity spawn.
