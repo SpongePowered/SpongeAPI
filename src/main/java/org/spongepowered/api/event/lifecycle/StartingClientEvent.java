@@ -22,21 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.game;
+package org.spongepowered.api.event.lifecycle;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.event.Event;
+import org.spongepowered.api.Client;
 
-/**
- * Fired when the {@link Game} triggers a reload.
- *
- * <p>
- *     The definition of a reload is purely left up to the implementation.
- *     For the default implementation from Sponge, this is fired when
- *     executing the plugins' reload command and acts as a simple callback for
- *     plugin use.
- * </p>
- */
-public interface GameReloadEvent extends Event {
+public interface StartingClientEvent extends LifecycleEvent {
 
+    Client getClient();
 }

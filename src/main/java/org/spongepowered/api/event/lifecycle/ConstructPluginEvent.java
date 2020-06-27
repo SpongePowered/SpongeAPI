@@ -22,20 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.game.state;
+package org.spongepowered.api.event.lifecycle;
 
-import org.spongepowered.api.GameState;
-import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
+import org.spongepowered.plugin.PluginContainer;
 
-/**
- * Represents a {@link GameState#SERVER_STOPPED} event.
- */
-public interface GameStoppedServerEvent extends GameStateEvent {
+public interface ConstructPluginEvent extends LifecycleEvent {
 
-    @Override
-    @PropertySettings(requiredParameter = false, generateMethods = false)
-    default GameState getState() {
-        return GameState.SERVER_STOPPED;
-    }
-
+    PluginContainer getPlugin();
 }

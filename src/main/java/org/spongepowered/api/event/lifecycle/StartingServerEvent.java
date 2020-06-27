@@ -22,21 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.game.state;
+package org.spongepowered.api.event.lifecycle;
 
-import org.spongepowered.api.GameState;
-import org.spongepowered.api.event.Event;
+import org.spongepowered.api.Server;
 
-/**
- * Represents all {@link GameState} events.
- */
-public interface GameStateEvent extends Event {
+public interface StartingServerEvent extends LifecycleEvent {
 
-    /**
-     * Gets the {@link GameState} that this event represents.
-     *
-     * @return The game state
-     */
-    GameState getState();
-
+    Server getServer();
 }

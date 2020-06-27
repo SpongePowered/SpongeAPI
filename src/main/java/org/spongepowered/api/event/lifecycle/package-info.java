@@ -22,24 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.game.state;
-
-import org.spongepowered.api.GameState;
-import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
-
-/**
- * Represents a {@link GameState#GAME_STOPPED} event. Plugins shouldn't expect
- * to receive this event as all files and connections should be terminated.
- *
- * <p>Note: In the case that the JVM is terminated, this state may never
- * be reached.</p>
- */
-public interface GameStoppedEvent extends GameStateEvent {
-
-    @Override
-    @PropertySettings(requiredParameter = false, generateMethods = false)
-    default GameState getState() {
-        return GameState.GAME_STOPPED;
-    }
-
-}
+@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
+package org.spongepowered.api.event.lifecycle;

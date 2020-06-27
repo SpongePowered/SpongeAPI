@@ -22,20 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.game.state;
+package org.spongepowered.api.event.lifecycle;
 
-import org.spongepowered.api.GameState;
-import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
+import org.spongepowered.api.Game;
+import org.spongepowered.api.event.Event;
 
-/**
- * Represents a {@link GameState#SERVER_STARTING} event.
- */
-public interface GameStartingServerEvent extends GameStateEvent {
+public interface LifecycleEvent extends Event {
 
-    @Override
-    @PropertySettings(requiredParameter = false, generateMethods = false)
-    default GameState getState() {
-        return GameState.SERVER_STARTING;
-    }
-
+    Game getGame();
 }

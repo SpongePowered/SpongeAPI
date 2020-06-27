@@ -22,20 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.game.state;
+package org.spongepowered.api.event.lifecycle;
 
-import org.spongepowered.api.GameState;
-import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
+import org.spongepowered.api.Game;
+import org.spongepowered.api.event.Event;
 
 /**
- * Represents a {@link GameState#SERVER_ABOUT_TO_START} event.
+ * Fired when the {@link Game} triggers a reload.
+ *
+ * <p>
+ *     The definition of a reload is purely left up to the implementation.
+ *     For the default implementation from Sponge, this is fired when
+ *     executing the plugins' reload command and acts as a simple callback for
+ *     plugin use.
+ * </p>
  */
-public interface GameAboutToStartServerEvent extends GameStateEvent {
-
-    @Override
-    @PropertySettings(requiredParameter = false, generateMethods = false)
-    default GameState getState() {
-        return GameState.SERVER_ABOUT_TO_START;
-    }
+public interface ReloadGameEvent extends LifecycleEvent {
 
 }
