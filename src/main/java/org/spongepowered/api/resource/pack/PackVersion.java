@@ -25,19 +25,20 @@
 package org.spongepowered.api.resource.pack;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.ResettableBuilder;
 
 public interface PackVersion {
 
-    boolean isCompatible();
+    boolean isOlder();
+
+    boolean isCurrent();
+
+    boolean isNewer();
 
     static PackVersion of(int version) {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class).version(version).build();
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).getCompatibility(version);
     }
 
-    interface Builder extends ResettableBuilder<PackVersion, Builder> {
-        Builder version(int version);
-
-        PackVersion build();
+    interface Factory {
+        PackVersion getCompatibility(int version);
     }
 }

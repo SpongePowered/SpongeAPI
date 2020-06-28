@@ -37,5 +37,4 @@ public interface PackList {
 
     Optional<PackInfo> get(String name);
 
-    void addPackDiscoverer(PackDiscoverer discoverer);
 }

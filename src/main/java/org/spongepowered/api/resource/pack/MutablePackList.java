@@ -22,50 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.resource;
+package org.spongepowered.api.resource.pack;
 
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.resource.pack.MutablePackList;
-import org.spongepowered.api.resource.pack.Pack;
-import org.spongepowered.api.resource.pack.PackDiscoverer;
-import org.spongepowered.api.resource.pack.PackList;
+public interface MutablePackList extends PackList {
 
-/**
- * Base {@link Pack} event.
- */
-public interface PackEvent extends Event {
-
-    /**
-     * Gets the relevant {@link PackList} for this event.
-     *
-     * @return The pack list
-     */
-    PackList getPackList();
-
-    /**
-     * Event for registering {@link PackDiscoverer}s. It is fired sometime during init.
-     */
-    interface RegisterPackDiscoverer extends PackEvent {
-
-        /**
-         * {@inheritDoc}
-         * <p>Returns a {@link MutablePackList} to expose methods for adding listeners.</p>
-         * @return The pack list
-         */
-        @Override
-        MutablePackList getPackList();
-
-        /**
-         * Register event for client resources.
-         */
-        interface Client extends RegisterPackDiscoverer {
-        }
-
-        /**
-         * Register event for server data.
-         */
-        interface Server extends RegisterPackDiscoverer {
-        }
-    }
-
+    void addPackDiscoverer(PackDiscoverer discoverer);
 }

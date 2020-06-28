@@ -25,47 +25,50 @@
 package org.spongepowered.api.event.resource;
 
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.resource.pack.MutablePackList;
-import org.spongepowered.api.resource.pack.Pack;
-import org.spongepowered.api.resource.pack.PackDiscoverer;
-import org.spongepowered.api.resource.pack.PackList;
+import org.spongepowered.api.resource.ReloadableResourceManager;
+import org.spongepowered.api.resource.ResourceReloadListener;
+import org.spongepowered.api.resource.Resource;
+import org.spongepowered.api.resource.ResourceManager;
 
 /**
- * Base {@link Pack} event.
+ * Base event for {@link Resource}s.
  */
-public interface PackEvent extends Event {
+public interface ResourceEvent extends Event {
 
     /**
-     * Gets the relevant {@link PackList} for this event.
+     * Gets the relevant {@link ResourceManager} for this event.
      *
-     * @return The pack list
+     * @return The resource manager
      */
-    PackList getPackList();
+    ResourceManager getResourceManager();
 
     /**
-     * Event for registering {@link PackDiscoverer}s. It is fired sometime during init.
+     * Event for registering {@link ResourceReloadListener reload listeners} to the
+     * {@link ResourceManager}. It is fired sometime during init.
      */
-    interface RegisterPackDiscoverer extends PackEvent {
+    interface RegisterReloadListener extends ResourceEvent {
 
         /**
          * {@inheritDoc}
-         * <p>Returns a {@link MutablePackList} to expose methods for adding listeners.</p>
-         * @return The pack list
+         *
+         * <p>The type is a {@link ReloadableResourceManager} to expose methods
+         * to add reload listeners</p>
+         *
+         * @return The reloadable resource manager
          */
         @Override
-        MutablePackList getPackList();
+        ReloadableResourceManager getResourceManager();
 
         /**
          * Register event for client resources.
          */
-        interface Client extends RegisterPackDiscoverer {
+        interface Client extends RegisterReloadListener {
         }
 
         /**
          * Register event for server data.
          */
-        interface Server extends RegisterPackDiscoverer {
+        interface Server extends RegisterReloadListener {
         }
     }
-
 }

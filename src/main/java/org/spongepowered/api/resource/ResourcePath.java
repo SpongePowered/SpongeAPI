@@ -69,31 +69,106 @@ public interface ResourcePath extends Comparable<ResourcePath> {
     }
 
     /**
-     * Resolves a catalog key from a string.
+     * Parses a path from a string.
      *
      * <p>If no namespace is found in {@code string} then
-     * {@link org.spongepowered.api.CatalogKey#MINECRAFT_NAMESPACE} will be the namespace.</p>
+     * {@code minecraft} will be the namespace.</p>
      *
      * @param value The value
      * @return A new catalog key
      */
-    static ResourcePath resolve(final String value) {
+    static ResourcePath parse(final String value) {
         return builder().path(value).build();
     }
 
+    /**
+     * Gets the namespace portion of this resource path.
+     *
+     * @return The namespace
+     */
     String getNamespace();
 
+    /**
+     * Gets the path portion of this resource path.
+     *
+     * @return The path
+     */
     String getPath();
 
+    // resolution methods
+
+    /**
+     * Resolves this resource path's parent.
+     *
+     * @return The parent path
+     * @throws ResourcePathException If the parent normalizes to null
+     */
+    ResourcePath getParent() throws ResourcePathException;
+
+    /**
+     * Resolves a single file as a child of this path.
+     *
+     * @param child The child path's name
+     * @return The resolved path
+     * @throws ResourcePathException If the path is invalid or could not be normalized
+     * @see #resolve(String...)
+     */
+    default ResourcePath resolve(String child) throws ResourcePathException {
+        return resolve(new String[]{child});
+    }
+
+    /**
+     * Resolves a path from the current location using the specified children.
+     *
+     * @param children The children paths
+     * @return The resolved path
+     * @throws ResourcePathException If the path is invalid or could not be normalized
+     */
+    ResourcePath resolve(String... children) throws ResourcePathException;
+
+    /**
+     * @param sibling The sibling's name
+     * @return The sibling resource path
+     * @throws ResourcePathException If the path is invalid or could not be normalized
+     */
+    ResourcePath resolveSibling(String sibling) throws ResourcePathException;
+
+    // path utility methods
+
+    /**
+     * Gets all the parts of this path. i.e. the full path split by {@link #SEPARATOR}.
+     *
+     * @return The path parts
+     */
     List<String> getPathParts();
 
-    ResourcePath getParent();
+    /**
+     * Gets the parent of this path or root if it is root.
+     *
+     * @return The parent path
+     */
+    String getParentPath();
 
-    ResourcePath resolve(String... children);
+    /**
+     * Gets the name of the file without any parent elements.
+     *
+     * @return The file name
+     */
+    String getName();
 
-    default Builder copy() {
-        return builder().namespace(this.getNamespace()).path(this.getPath());
-    }
+    /**
+     * Gets the base name of the file without any parent elements or extensions.
+     *
+     * @return The base file name
+     */
+    String getBaseName();
+
+    /**
+     * Gets the extension of the file if any. If the file has no extension, an empty string is returned.
+     *
+     * @return The file extension
+     */
+    String getExtension();
 
     interface Builder extends ResettableBuilder<ResourcePath, Builder> {
 
@@ -107,6 +182,6 @@ public interface ResourcePath extends Comparable<ResourcePath> {
 
         Builder paths(Collection<String> paths);
 
-        ResourcePath build();
+        ResourcePath build() throws ResourcePathException;
     }
 }

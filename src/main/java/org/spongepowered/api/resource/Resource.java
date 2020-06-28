@@ -27,6 +27,8 @@ package org.spongepowered.api.resource;
 import org.spongepowered.api.data.persistence.DataFormat;
 import org.spongepowered.api.data.persistence.DataFormats;
 import org.spongepowered.api.data.persistence.DataView;
+import org.spongepowered.api.resource.meta.MetaSection;
+import org.spongepowered.api.resource.meta.MetaSections;
 import org.spongepowered.api.resource.pack.PackInfo;
 import org.spongepowered.api.resource.pack.PackList;
 
@@ -72,11 +74,19 @@ public interface Resource extends Closeable {
     InputStream getInputStream();
 
     /**
+     * Checks whether this resource has metadata or not.
+     *
+     * @return True if this resource has metadata, false otherwise
+     */
+    boolean hasMetadata();
+
+    /**
      * Gets the metadata for this resource.
      *
      * @return The metadata or {@link Optional#empty() empty} if it doesn't exist.
+     * @see MetaSections
      */
-    Optional<DataView> getMetadata(String name) throws IOException;
+    <T> Optional<T> getMetadata(MetaSection<T> name);
 
     /**
      * Creates a new {@link BufferedReader} from this resource's InputStream.

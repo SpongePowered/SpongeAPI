@@ -33,12 +33,36 @@ public interface PackInfo extends Nameable {
 
     PackVersion getVersion();
 
+    /**
+     * Gets the pack associated with this pack info.
+     *
+     * <p>The returned pack may be a new instance or cached, depending on the
+     * implementation.</p>
+     *
+     * @return The pack
+     */
     Pack getPack();
 
+    /**
+     * Gets whether this pack is forced to be enabled at all times.
+     *
+     * @return True if forced enabled, false if disable-able
+     */
     boolean isForced();
 
+    /**
+     * Gets whether this pack is order locked on top or bottom.
+     *
+     * @return True if order locked, false if order-able
+     * @see #getPriority()
+     */
     boolean isLocked();
 
+    /**
+     * Gets the priority of this pack, first or last.
+     *
+     * @return The priority
+     */
     Priority getPriority();
 
     enum Priority {

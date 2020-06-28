@@ -22,50 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.resource;
+package org.spongepowered.api.resource.meta;
 
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.resource.pack.MutablePackList;
-import org.spongepowered.api.resource.pack.Pack;
-import org.spongepowered.api.resource.pack.PackDiscoverer;
-import org.spongepowered.api.resource.pack.PackList;
+import org.spongepowered.api.Sponge;
 
-/**
- * Base {@link Pack} event.
- */
-public interface PackEvent extends Event {
+import java.util.function.Supplier;
 
-    /**
-     * Gets the relevant {@link PackList} for this event.
-     *
-     * @return The pack list
-     */
-    PackList getPackList();
+public class MetaSections {
 
-    /**
-     * Event for registering {@link PackDiscoverer}s. It is fired sometime during init.
-     */
-    interface RegisterPackDiscoverer extends PackEvent {
+    // SORTFIELDS:ON
 
-        /**
-         * {@inheritDoc}
-         * <p>Returns a {@link MutablePackList} to expose methods for adding listeners.</p>
-         * @return The pack list
-         */
-        @Override
-        MutablePackList getPackList();
+    private static final Supplier<MetaSection<PackMeta>> PACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MetaSection.class, "pack/pack");
 
-        /**
-         * Register event for client resources.
-         */
-        interface Client extends RegisterPackDiscoverer {
-        }
+    // SORTFIELDS:OFF
 
-        /**
-         * Register event for server data.
-         */
-        interface Server extends RegisterPackDiscoverer {
-        }
-    }
-
+    private MetaSections() {}
 }

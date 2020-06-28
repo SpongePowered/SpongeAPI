@@ -33,16 +33,15 @@ import java.util.Collection;
 import java.util.function.Predicate;
 
 /**
- * The resource manager is in charge of loading {@link Resource Resources} and
- * {@link Pack Data Packs}. On the client, there can also be resource packs.
- * <p>
- * Packs are stacked on top of each other, so they will override and replace
- * resources in packs which are a lower priority.
+ * The resource manager is in charge of loading {@link Resource Resources}.
+ *
+ * <p>Packs are stacked on top of each other, so they will override and replace
+ * resources in packs which are a lower priority.</p>
  */
 public interface ResourceManager {
 
     /**
-     * Gets a loaded {@link Resource resource} at the given path, or throws an
+     * Loads the {@link Resource resource} at the given path, or throws an
      * exception if it doesn't exist.
      *
      * <p>Resource implements {@link Closeable}, so remember to close it. Example:</p>
@@ -61,8 +60,8 @@ public interface ResourceManager {
     Resource load(ResourcePath path) throws IOException;
 
     /**
-     * Gets all loaded {@link Resource resources} at the given path from all
-     * loaded {@link Pack packs}.
+     * Loads all the {@link Resource resources} at the given path from all
+     * active {@link Pack packs}.
      *
      * <p>
      * All the resources in the list need to be closed. To assist in this, you

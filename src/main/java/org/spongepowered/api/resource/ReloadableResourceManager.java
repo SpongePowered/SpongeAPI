@@ -22,50 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.resource;
+package org.spongepowered.api.resource;
 
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.resource.pack.MutablePackList;
-import org.spongepowered.api.resource.pack.Pack;
-import org.spongepowered.api.resource.pack.PackDiscoverer;
-import org.spongepowered.api.resource.pack.PackList;
+import org.spongepowered.api.event.resource.ResourceEvent;
 
 /**
- * Base {@link Pack} event.
+ * A {@link ResourceManager} that supports being reloaded. Listeners can be
+ * added to load assets asynchronously when this happens.
+ *
+ * <p>To register listeners, add them during the
+ * {@link ResourceEvent.RegisterReloadListener} event.</p>
  */
-public interface PackEvent extends Event {
+public interface ReloadableResourceManager extends ResourceManager {
 
     /**
-     * Gets the relevant {@link PackList} for this event.
+     * Adds a reload listener to the resource manager.
      *
-     * @return The pack list
+     * @param listener The listener
+     * @see ResourceReloadListener
      */
-    PackList getPackList();
-
-    /**
-     * Event for registering {@link PackDiscoverer}s. It is fired sometime during init.
-     */
-    interface RegisterPackDiscoverer extends PackEvent {
-
-        /**
-         * {@inheritDoc}
-         * <p>Returns a {@link MutablePackList} to expose methods for adding listeners.</p>
-         * @return The pack list
-         */
-        @Override
-        MutablePackList getPackList();
-
-        /**
-         * Register event for client resources.
-         */
-        interface Client extends RegisterPackDiscoverer {
-        }
-
-        /**
-         * Register event for server data.
-         */
-        interface Server extends RegisterPackDiscoverer {
-        }
-    }
+    void addReloadListener(ResourceReloadListener listener);
 
 }

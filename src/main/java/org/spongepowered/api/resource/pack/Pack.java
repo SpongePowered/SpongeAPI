@@ -25,10 +25,11 @@
 package org.spongepowered.api.resource.pack;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.resource.Resource;
 import org.spongepowered.api.resource.ResourcePath;
+import org.spongepowered.api.resource.meta.MetaParseException;
+import org.spongepowered.api.resource.meta.MetaSection;
 import org.spongepowered.api.util.Nameable;
 
 import java.io.Closeable;
@@ -116,14 +117,15 @@ public interface Pack extends Nameable, Closeable {
     Set<String> getNamespaces(PackType type);
 
     /**
-     * Gets the metadata of this pack. The {@link DataView} represented is of
-     * the pack.json file in the pack root. If the pack does not contain a
-     * pack.json, {@link Optional#empty()} is returned.
+     * Gets the metadata of this pack. The {@link MetaSection} deserializes a
+     * section of the pack.mcmeta file in the pack root. If the pack.mcmeta
+     * does not contain the query defined in the section, {@link Optional#empty()} is returned.
      *
-     * @param name The name of the metadata section
+     * @param section The name metadata section type
      * @return The metadata if it exists
+     * @throws MetaParseException If the metadata could not be parsed
      */
-    Optional<DataView> getMetadata(String name) throws IOException;
+    <T> Optional<T> getMetadata(MetaSection<T> section) throws MetaParseException;
 
     interface Factory {
 
