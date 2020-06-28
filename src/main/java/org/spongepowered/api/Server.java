@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api;
 
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.profile.GameProfileManager;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
@@ -144,12 +144,14 @@ public interface Server extends Engine, MessageReceiver {
 
     /**
      * Tests if the server has a whitelist enabled.
+     *
      * @return True if enabled, false if not
      */
     boolean hasWhitelist();
 
     /**
      * Sets whether the server is utilizing a whitelist.
+     *
      * @param enabled True to enable the whitelist, false to disable
      */
     void setHasWhitelist(boolean enabled);
