@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api;
 
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.profile.GameProfileManager;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
@@ -52,11 +52,11 @@ public interface Server extends Engine, MessageReceiver {
     WorldManager getWorldManager();
 
     /**
-     * Gets the {@link Player}s currently online.
+     * Gets the {@link ServerPlayer}s currently online.
      *
      * @return A {@link Collection} of online players
      */
-    Collection<Player> getOnlinePlayers();
+    Collection<ServerPlayer> getOnlinePlayers();
 
     /**
      * Gets the max players allowed on this server.
@@ -66,15 +66,15 @@ public interface Server extends Engine, MessageReceiver {
     int getMaxPlayers();
 
     /**
-     * Gets a {@link Player} by their UUID.
+     * Gets a {@link ServerPlayer} by their UUID.
      *
      * @param uniqueId The UUID to get the player from
-     * @return The {@link Player} or empty if not found
+     * @return The {@link ServerPlayer} or empty if not found
      */
-    Optional<? extends Player> getPlayer(UUID uniqueId);
+    Optional<ServerPlayer> getPlayer(UUID uniqueId);
 
     /**
-     * Gets a {@link Player} by their name.
+     * Gets a {@link ServerPlayer} by their name.
      *
      * <p>This only works for online players.</p>
      *
@@ -82,9 +82,9 @@ public interface Server extends Engine, MessageReceiver {
      * Notch of today may not be the Notch of yesterday.</b></p>
      *
      * @param name The name to get the player from
-     * @return The {@link Player} or empty if not found
+     * @return The {@link ServerPlayer} or empty if not found
      */
-    Optional<? extends Player> getPlayer(String name);
+    Optional<ServerPlayer> getPlayer(String name);
 
     /**
      * Gets the 'server' scoreboard. In Vanilla, this is the scoreboard of
@@ -144,12 +144,14 @@ public interface Server extends Engine, MessageReceiver {
 
     /**
      * Tests if the server has a whitelist enabled.
+     *
      * @return True if enabled, false if not
      */
     boolean hasWhitelist();
 
     /**
      * Sets whether the server is utilizing a whitelist.
+     *
      * @param enabled True to enable the whitelist, false to disable
      */
     void setHasWhitelist(boolean enabled);

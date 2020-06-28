@@ -28,6 +28,7 @@ import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.plugin.PluginManager;
 
+import java.util.Collection;
 import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
@@ -78,7 +79,21 @@ public interface CatalogRegistry {
      * @param <T> The type of {@link CatalogType}
      * @return A collection of all known types of the requested catalog type
      */
-    <T extends CatalogType> Stream<T> getAllOf(Class<T> typeClass);
+    <T extends CatalogType> Collection<T> getAllOf(Class<T> typeClass);
+
+    /**
+     * Gets a {@link Stream} of all available found specific types of
+     * {@link CatalogType} requested.
+     *
+     * <p>The presented {@link CatalogType}s may not exist in default catalogs
+     * due to various reasons including but not restricted to: mods, plugins,
+     * game changes.</p>
+     *
+     * @param typeClass The class of {@link CatalogType}
+     * @param <T> The type of {@link CatalogType}
+     * @return A stream of all known types of the requested catalog type
+     */
+    <T extends CatalogType> Stream<T> streamAllOf(Class<T> typeClass);
 
     /**
      * Gets a collection of all available found specific types of
@@ -89,10 +104,21 @@ public interface CatalogRegistry {
      * @param <T> The type of {@link CatalogType}
      * @return A collection of all known types of the requested catalog type
      */
-    <T extends CatalogType> Stream<T> getAllFor(Class<T> typeClass, String namespace);
+    <T extends CatalogType> Collection<T> getAllFor(Class<T> typeClass, String namespace);
 
     /**
-     * Gets all {@link CatalogType} for Minecraft as a base mod. Note that
+     * Gets a {@link Stream} of all available found specific types of
+     * {@link CatalogType} requested.
+     *
+     * @param typeClass The class of {@link CatalogType}
+     * @param namespace The namespace to check for types
+     * @param <T> The type of {@link CatalogType}
+     * @return A stream of all known types of the requested catalog type
+     */
+    <T extends CatalogType> Stream<T> streamAllFor(Class<T> typeClass, String namespace);
+
+    /**
+     * Gets all {@link CatalogType types} as a collection for Minecraft as a base mod. Note that
      * some {@link CatalogType}s are not originally from the game itself, and
      * may be provided by Sponge.
      *
@@ -100,20 +126,42 @@ public interface CatalogRegistry {
      * @param <T> The type of catalog type
      * @return The collection of all known types of the requested catalog type
      */
-    default <T extends CatalogType> Stream<T> getAllForMinecraft(Class<T> typeClass) {
+    default <T extends CatalogType> Collection<T> getAllForMinecraft(Class<T> typeClass) {
         return this.getAllFor(typeClass, PluginManager.MINECRAFT_PLUGIN_ID);
     }
 
     /**
-     * Gets all {@link CatalogType} for Sponge as a base mod. Note that
+     * Gets all {@link CatalogType types} as a {@link Stream} for Minecraft as a base mod. Note that
      * some {@link CatalogType}s are not originally from the game itself, and
      * may be provided by Sponge.
      *
      * @param typeClass The type of catalog type
      * @param <T> The type of catalog type
+     * @return The stream of all known types of the requested catalog type
+     */
+    default <T extends CatalogType> Stream<T> streamAllForMinecraft(Class<T> typeClass) {
+        return this.streamAllFor(typeClass, PluginManager.MINECRAFT_PLUGIN_ID);
+    }
+
+    /**
+     * Gets all {@link CatalogType types} as a {@link Stream} for Sponge as a base mod.
+     *
+     * @param typeClass The type of catalog type
+     * @param <T> The type of catalog type
      * @return The collection of all known types of the requested catalog type
      */
-    default <T extends CatalogType> Stream<T> getAllForSponge(Class<T> typeClass) {
+    default <T extends CatalogType> Collection<T> getAllForSponge(Class<T> typeClass) {
         return this.getAllFor(typeClass, PluginManager.SPONGE_PLUGIN_ID);
+    }
+
+    /**
+     * Gets all {@link CatalogType types} as a collection for Sponge as a base mod.
+     *
+     * @param typeClass The type of catalog type
+     * @param <T> The type of catalog type
+     * @return The stream of all known types of the requested catalog type
+     */
+    default <T extends CatalogType> Stream<T> streamAllForSponge(Class<T> typeClass) {
+        return this.streamAllFor(typeClass, PluginManager.SPONGE_PLUGIN_ID);
     }
 }

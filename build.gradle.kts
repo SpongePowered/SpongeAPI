@@ -125,25 +125,13 @@ tasks {
                                 "https://docs.oracle.com/javase/8/docs/api/"
                         )
                 )
-                addStringOption("-Xdoclint:none", "-quiet")
+                addStringOption("-quiet")
             }
         }
     }
 
-    val javadocJar by registering(Jar::class) {
-        group = "build"
-        from(javadoc)
-    }
 
-    val sourceJar by registering(Jar::class) {
-        group = "build"
-        from(sourceSets["main"].allJava)
-    }
 
-    artifacts {
-        archives(sourceJar)
-        archives(javadocJar)
-    }
 //
 //    val shadowJar by registering(ShadowJar::class) {
 //        archiveClassifier.set("shaded")
@@ -161,19 +149,32 @@ tasks {
 //        archives(shadowJar)
 //    }
 
-//    withType<PublishToMavenRepository>().configureEach {
-//        onlyIf {
-//            (repository == publishing.repositories["GitHubPackages"] &&
-//                    !publication.version.endsWith("-SNAPSHOT")) ||
-//                    (!spongeSnapshotRepo.isNullOrBlank()
-//                            && !spongeReleaseRepo.isNullOrBlank()
-//                            && repository == publishing.repositories["spongeRepo"]
-//                            && publication == publishing.publications["sponge"])
-//
-//        }
-//    }
+    withType<PublishToMavenRepository>().configureEach {
+        onlyIf {
+            (repository == publishing.repositories["GitHubPackages"] &&
+                    !publication.version.endsWith("-SNAPSHOT")) ||
+                    (!spongeSnapshotRepo.isNullOrBlank()
+                            && !spongeReleaseRepo.isNullOrBlank()
+                            && repository == publishing.repositories["spongeRepo"]
+                            && publication == publishing.publications["sponge"])
+
+        }
+    }
+}
+val javadocJar by tasks.registering(Jar::class) {
+    group = "build"
+    archiveClassifier.set("javadoc")
+    from(tasks.javadoc)
 }
 
+val sourceJar by tasks.registering(Jar::class) {
+    group = "build"
+    archiveClassifier.set("sources")
+    from(sourceSets["main"].allJava)
+}
+base {
+    archivesBaseName = "spongeapi"
+}
 val organization: String by project
 val projectUrl: String by project
 val projectDescription: String by project
@@ -217,8 +218,12 @@ publishing {
     publications {
         register("sponge", MavenPublication::class) {
             from(components["java"])
+
+            artifact(javadocJar.get())
+            artifact(sourceJar.get())
             pom {
-                this.name.set(project.name.toLowerCase())
+                artifactId = project.name.toLowerCase()
+                this.name.set(project.name)
                 this.description.set(projectDescription)
                 this.url.set(projectUrl)
 
