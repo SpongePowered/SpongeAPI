@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.network;
 
-import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.event.Cancellable;
@@ -37,7 +36,8 @@ import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.ban.BanService;
 import org.spongepowered.api.service.whitelist.WhitelistService;
 import org.spongepowered.api.text.TextRepresentable;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.util.Transform;
+import org.spongepowered.api.world.server.ServerWorld;
 
 import java.net.InetAddress;
 
@@ -126,11 +126,11 @@ public interface ClientConnectionEvent extends Event {
         GameProfile getProfile();
 
         /**
-         * Gets the previous {@link World} the {@link User} will login to.
+         * Gets the previous {@link ServerWorld} the {@link User} will login to.
          *
          * @return The world
          */
-        World getFromWorld();
+        ServerWorld getFromWorld();
 
         /**
          * Gets the {@link Transform} the {@link User} will have at login.
@@ -140,11 +140,11 @@ public interface ClientConnectionEvent extends Event {
         Transform getFromTransform();
 
         /**
-         * Gets the {@link World} the {@link User} will login to.
+         * Gets the {@link ServerWorld} the {@link User} will login to.
          *
          * @return The world
          */
-        World getToWorld();
+        ServerWorld getToWorld();
 
         /**
          * Gets the {@link Transform} the {@link User} will have at login.
@@ -154,17 +154,17 @@ public interface ClientConnectionEvent extends Event {
         Transform getToTransform();
 
         /**
-         * Sets the {@link World} and {@link Transform} the {@link User} will have
+         * Sets the {@link ServerWorld} and {@link Transform} the {@link User} will have
          * at login.
          *
          * @param world The world
          * @param transform The transform
          */
-        void setLoginPosition(World world, Transform transform);
+        void setLoginPosition(ServerWorld world, Transform transform);
     }
 
     /**
-     * Called when a {@link Player} joins the game {@link World} for the first
+     * Called when a {@link Player} joins the game {@link ServerWorld} for the first
      * time after initial connection.
      *
      * <p>The {@link SpawnEntityEvent} for the {@link Player} is fired after the

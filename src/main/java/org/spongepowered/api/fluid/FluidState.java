@@ -30,14 +30,14 @@ import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.SerializableDataHolderBuilder;
 import org.spongepowered.api.state.State;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.schematic.Schematic;
 
 import java.util.function.Supplier;
 
 /**
- * Represents a particular "state" that can exist at a {@link Location} with
+ * Represents a particular "state" that can exist at a {@link ServerLocation} with
  * a particular {@link BlockType} and various {@link org.spongepowered.api.data.value.Value.Immutable}s defining
  * the information for the "block". Note that normally, there may exist only
  * a single instance of a particular {@link FluidState} as they are immutable,

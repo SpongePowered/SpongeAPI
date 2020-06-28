@@ -32,8 +32,8 @@ import java.util.UUID;
 
 /**
  * A type of {@link org.spongepowered.api.data.DataHolder.Immutable} that may be linked to a particular
- * {@link Location}. Being that a {@link LocatableSnapshot} may be built
- * by an {@link org.spongepowered.api.data.DataHolderBuilder.Immutable}, the {@link Location} may be
+ * {@link ServerLocation}. Being that a {@link LocatableSnapshot} may be built
+ * by an {@link org.spongepowered.api.data.DataHolderBuilder.Immutable}, the {@link ServerLocation} may be
  * <code>null</code> such that {@link #getLocation()} returns
  * {@link Optional#empty()}.
  *
@@ -56,21 +56,21 @@ public interface LocatableSnapshot<T extends LocatableSnapshot<T>> extends Seria
     Vector3i getPosition();
 
     /**
-     * Gets the {@link Location} of the snapshot at which it may have been
-     * taken from. The {@link Location} being immutable signifies that the
+     * Gets the {@link ServerLocation} of the snapshot at which it may have been
+     * taken from. The {@link ServerLocation} being immutable signifies that the
      * {@link LocatableSnapshot} can be re-created at the desired
-     * {@link Location}.
+     * {@link ServerLocation}.
      *
      * @return The location of where the snapshot was taken, if available
      */
-    Optional<Location> getLocation();
+    Optional<ServerLocation> getLocation();
 
     /**
      * Creates a copy of the snapshot with the provided
-     * {@link Location}.
+     * {@link ServerLocation}.
      *
      * @param location The location
      * @return The new snapshot
      */
-    T withLocation(Location location);
+    T withLocation(ServerLocation location);
 }

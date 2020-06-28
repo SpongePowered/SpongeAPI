@@ -30,7 +30,7 @@ import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.LocatableBlock;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.schematic.Schematic;
 
 /**
@@ -38,8 +38,8 @@ import org.spongepowered.api.world.schematic.Schematic;
  * continuously updated while residing in a world. It can perform specific
  * functions based on the data that it contains.
  *
- * <p>A {@link BlockEntity} is contained within a {@link Location} and will
- * continue to exists so long as the {@link Location} is of the correct
+ * <p>A {@link BlockEntity} is contained within a {@link ServerLocation} and will
+ * continue to exists so long as the {@link ServerLocation} is of the correct
  * block type.</p>
  *
  * <p>Since a {@link BlockEntity} is performing various actions, all methods

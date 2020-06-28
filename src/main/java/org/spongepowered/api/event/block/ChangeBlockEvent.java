@@ -36,13 +36,13 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.EventContextKeys;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.ServerLocation;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * Base event for when {@link BlockState}s at {@link Location}s are being
+ * Base event for when {@link BlockState}s at {@link ServerLocation}s are being
  * changed.
  */
 public interface ChangeBlockEvent extends Event, Cancellable {
@@ -63,13 +63,13 @@ public interface ChangeBlockEvent extends Event, Cancellable {
      * on the location of the {@link Transaction}, the {@link Transaction} is
      * marked as "invalid" and will not apply post event.
      *
-     * <p>{@link Transaction#getOriginal()} is used to get the {@link Location}</p>
+     * <p>{@link Transaction#getOriginal()} is used to get the {@link ServerLocation}</p>
      *
      * @param predicate The predicate to use for filtering
      * @return The transactions for which the predicate returned
      *     <code>false</code>
      */
-    default List<Transaction<BlockSnapshot>> filter(Predicate<Location> predicate) {
+    default List<Transaction<BlockSnapshot>> filter(Predicate<ServerLocation> predicate) {
         List<Transaction<BlockSnapshot>> invalidatedTransactions = Lists.newArrayList();
         for (Transaction<BlockSnapshot> transaction: this.getTransactions()) {
             if (!predicate.test(transaction.getOriginal().getLocation().get())) {
@@ -92,12 +92,12 @@ public interface ChangeBlockEvent extends Event, Cancellable {
 
     /**
      * Called before running specific block logic at one or more 
-     * {@link Location}'s such as {@link BlockTypes#WATER}.
+     * {@link ServerLocation}'s such as {@link BlockTypes#WATER}.
      */
     interface Pre extends Event, Cancellable {
 
         /**
-         * Represents a list of one or more {@link Location}'s where
+         * Represents a list of one or more {@link ServerLocation}'s where
          * {@link BlockState} changes can occur.
          *
          * <p>Canceling this event will prevent block logic from running
@@ -109,7 +109,7 @@ public interface ChangeBlockEvent extends Event, Cancellable {
          *
          * @return The immutable list of one or more locations that can change
          */
-        List<Location> getLocations();
+        List<ServerLocation> getLocations();
     }
 
     /**
@@ -128,7 +128,7 @@ public interface ChangeBlockEvent extends Event, Cancellable {
     interface Grow extends ChangeBlockEvent {}
 
     /**
-     * Called when {@link BlockState}s at {@link Location}s are
+     * Called when {@link BlockState}s at {@link ServerLocation}s are
      * being broke. This usually occurs, whenever a {@link BlockState} changes
      * to {@link BlockTypes#AIR}
      *

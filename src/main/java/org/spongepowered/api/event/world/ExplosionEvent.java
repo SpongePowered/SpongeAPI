@@ -28,9 +28,10 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.entity.AffectEntityEvent;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
+import org.spongepowered.api.world.server.ServerWorld;
 
 import java.util.List;
 
@@ -56,7 +57,7 @@ public interface ExplosionEvent extends Event {
          *
          * @return The world
          */
-        World getWorld();
+        ServerWorld getWorld();
 
         /**
          * Sets the {@link Explosion} involved for this event. This will
@@ -83,7 +84,7 @@ public interface ExplosionEvent extends Event {
          *
          * @return The world
          */
-        World getWorld();
+        ServerWorld getWorld();
 
         /**
          * Gets the list of calculated affected locations for blocks that will
@@ -92,7 +93,7 @@ public interface ExplosionEvent extends Event {
          *
          * @return The list of blocks that will be affected by the explosion
          */
-        List<Location> getAffectedLocations();
+        List<ServerLocation> getAffectedLocations();
     }
 
     /**

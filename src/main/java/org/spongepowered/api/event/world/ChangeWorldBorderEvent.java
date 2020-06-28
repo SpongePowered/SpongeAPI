@@ -30,6 +30,7 @@ import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldBorder;
+import org.spongepowered.api.world.server.ServerWorld;
 
 import java.util.Optional;
 
@@ -67,7 +68,7 @@ public interface ChangeWorldBorderEvent extends Event, Cancellable {
          *
          * @return The world
          */
-        World getWorld();
+        ServerWorld getWorld();
 
     }
 

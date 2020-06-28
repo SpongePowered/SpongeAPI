@@ -43,6 +43,7 @@ import org.spongepowered.api.item.recipe.crafting.SpecialCraftingRecipe;
 import org.spongepowered.api.item.recipe.single.StoneCutterRecipe;
 import org.spongepowered.api.item.recipe.smelting.SmeltingRecipe;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.server.ServerWorld;
 
 import java.util.List;
 import java.util.Optional;
@@ -66,7 +67,7 @@ public interface Recipe extends CatalogType {
      *
      * @return True if the given input matches this recipe's requirements
      */
-    boolean isValid(Inventory inventory, World world);
+    boolean isValid(Inventory inventory, ServerWorld world);
 
     /**
      * This method should only be called if {@link #isValid(Inventory, World)} returns {@code true}.
@@ -121,7 +122,7 @@ public interface Recipe extends CatalogType {
      *     {@link #isValid(Inventory, World)}, or
      *     {@link Optional#empty()} if not
      */
-    default Optional<RecipeResult> getResult(Inventory inventory, World world) {
+    default Optional<RecipeResult> getResult(Inventory inventory, ServerWorld world) {
         if (this.isValid(inventory, world)) {
             return Optional.of(new RecipeResult(this.getResult(inventory), this.getRemainingItems(inventory)));
         }

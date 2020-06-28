@@ -32,7 +32,7 @@ import org.spongepowered.api.event.Order;
 import org.spongepowered.api.event.impl.entity.AbstractAffectEntityEvent;
 import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
 import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.explosion.Explosion;
 
 import java.util.ArrayList;
@@ -76,7 +76,7 @@ public interface AffectEntityEvent extends Event, Cancellable {
     List<Entity> getEntities();
 
     /**
-     * Filters out {@link Location}'s from
+     * Filters out {@link ServerLocation}'s from
      * {@link AffectEntityEvent#getEntities()} to be affected by this event.
      *
      * <p>Locations for which the predicate returns <code>false</code> will
@@ -85,13 +85,13 @@ public interface AffectEntityEvent extends Event, Cancellable {
      * @param predicate The predicate to use for filtering
      * @return The entities removed from {@link #getEntities()}
      */
-    default List<Entity> filterEntityLocations(Predicate<Location> predicate) {
+    default List<Entity> filterEntityLocations(Predicate<ServerLocation> predicate) {
         List<Entity> removedEntities = new ArrayList<>();
 
         Iterator<Entity> i = this.getEntities().iterator();
         while (i.hasNext()) {
             Entity entity = i.next();
-            if (!predicate.test(entity.getLocation())) {
+            if (!entity.getServerLocation().map(predicate::test).orElse(false)) {
                 i.remove();
                 removedEntities.add(entity);
             }

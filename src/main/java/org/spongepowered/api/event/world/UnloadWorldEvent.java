@@ -27,6 +27,7 @@ package org.spongepowered.api.event.world;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.server.ServerWorld;
 
 /**
  * Base event for when a {@link World} is unloaded.
@@ -38,5 +39,5 @@ public interface UnloadWorldEvent extends Event, Cancellable {
      *
      * @return The world
      */
-    World getWorld();
+    ServerWorld getWorld();
 }

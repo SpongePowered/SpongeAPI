@@ -29,7 +29,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolderBuilder;
 import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.world.LocatableSnapshot;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.schematic.Schematic;
 import org.spongepowered.api.world.storage.WorldProperties;
@@ -74,10 +74,10 @@ public interface EntitySnapshot extends LocatableSnapshot<EntitySnapshot> {
     Optional<UUID> getUniqueId();
 
     /**
-     * Gets the {@link Transform} as an {@link Optional} as the {@link Location}
+     * Gets the {@link Transform} as an {@link Optional} as the {@link ServerLocation}
      * may be undefined if this {@link EntitySnapshot} was built without a
      * location. This method is linked to {@link #getLocation()} such that if
-     * there is a {@link Location}, there is usually a {@link Transform}.
+     * there is a {@link ServerLocation}, there is usually a {@link Transform}.
      *
      * @return The transform, if available
      */
@@ -91,8 +91,8 @@ public interface EntitySnapshot extends LocatableSnapshot<EntitySnapshot> {
     EntityType<?> getType();
 
     /**
-     * Restores the {@link EntitySnapshot} to the {@link Location} stored within
-     * the snapshot. If the {@link Location} is not available, the snapshot will
+     * Restores the {@link EntitySnapshot} to the {@link ServerLocation} stored within
+     * the snapshot. If the {@link ServerLocation} is not available, the snapshot will
      * not be restored.
      *
      * @return the restored entity if successful

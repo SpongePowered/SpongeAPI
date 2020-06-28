@@ -26,7 +26,7 @@ package org.spongepowered.api.item.inventory.crafting;
 
 import org.spongepowered.api.item.inventory.type.GridInventory;
 import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.server.ServerWorld;
 
 import java.util.Optional;
 
@@ -41,5 +41,5 @@ public interface CraftingGridInventory extends GridInventory {
      * @param world The world where the item would be crafted in
      * @return The recipe or {@link Optional#empty()} if no recipe is formed
      */
-    Optional<CraftingRecipe> getRecipe(World world);
+    Optional<CraftingRecipe> getRecipe(ServerWorld world);
 }

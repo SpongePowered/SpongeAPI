@@ -26,11 +26,12 @@ package org.spongepowered.api.event.entity.living.player;
 
 import org.spongepowered.api.block.entity.Bed;
 import org.spongepowered.api.block.entity.EndPortal;
-import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.world.dimension.DimensionTypes;
+import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.dimension.DimensionTypes;
+import org.spongepowered.api.world.server.ServerWorld;
 
 /**
  * Called when a {@link Player} is undergoing a respawn.
@@ -65,7 +66,7 @@ public interface RespawnPlayerEvent extends Event {
      *
      * @return The world
      */
-    World getFromWorld();
+    ServerWorld getFromWorld();
 
     /**
      * Gets the previous {@link Transform} the {@link Player} will have at respawn.
@@ -79,7 +80,7 @@ public interface RespawnPlayerEvent extends Event {
      *
      * @return The world
      */
-    World getToWorld();
+    ServerWorld getToWorld();
 
     /**
      * Gets the {@link Transform} the {@link Player} will have at respawn.
@@ -89,13 +90,13 @@ public interface RespawnPlayerEvent extends Event {
     Transform getToTransform();
 
     /**
-     * Sets the {@link World} and {@link Transform} the {@link Player} will have
+     * Sets the {@link ServerWorld} and {@link Transform} the {@link Player} will have
      * at respawn.
      *
      * @param world The world
      * @param transform The transform
      */
-    void setSpawnPosition(World world, Transform transform);
+    void setSpawnPosition(ServerWorld world, Transform transform);
 
     /**
      * Gets whether the position of spawn was set by a {@link Bed}.

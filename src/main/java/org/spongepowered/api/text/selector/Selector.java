@@ -24,12 +24,13 @@
  */
 package org.spongepowered.api.text.selector;
 
+import com.google.common.base.Preconditions;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.world.Locatable;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.ServerLocation;
 
 import java.util.List;
 import java.util.Optional;
@@ -161,12 +162,13 @@ public interface Selector {
      * @return The matched entities
      */
     default Set<Entity> resolve(Locatable locatable) {
-        return this.resolve(locatable.getLocation());
+        Preconditions.checkArgument(locatable.getServerLocation().isPresent(), "Cannot use selectors on client side entities yet");
+        return this.resolve(locatable.getServerLocation().get());
     }
 
     /**
      * Resolves this {@link Selector} to a list of entities around the given
-     * {@link Location}.
+     * {@link ServerLocation}.
      *
      * <p>The returned set may be ordered based on distance from the origin
      * (with the nearest first).</p>
@@ -174,7 +176,7 @@ public interface Selector {
      * @param location The location to resolve the selector around
      * @return The matched entities
      */
-    Set<Entity> resolve(Location location);
+    Set<Entity> resolve(ServerLocation location);
 
     /**
      * Converts this {@link Selector} to a valid selector string.

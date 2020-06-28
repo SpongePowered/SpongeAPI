@@ -25,16 +25,11 @@
 package org.spongepowered.api.event.action;
 
 import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.Human;
-import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
+import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.world.World;
-
-import java.util.Optional;
 
 /**
  * Called when a {@link Humanoid} enters a bed to sleep in.
@@ -73,7 +68,7 @@ public interface SleepingEvent extends Event {
          *
          * @return The world
          */
-        World getFromWorld();
+        World<?> getFromWorld();
 
         /**
          * Gets the previous {@link Transform} the {@link Humanoid} will have at wake up.
@@ -87,7 +82,7 @@ public interface SleepingEvent extends Event {
          *
          * @return The world
          */
-        World getToWorld();
+        World<?> getToWorld();
 
         /**
          * Gets the {@link Transform} the {@link Humanoid} will have at wake up.
@@ -103,6 +98,6 @@ public interface SleepingEvent extends Event {
          * @param world The world
          * @param transform The transform
          */
-        void setWakeupPosition(World world, Transform transform);
+        void setWakeupPosition(World<?> world, Transform transform);
     }
 }

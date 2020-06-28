@@ -33,14 +33,14 @@ import org.spongepowered.api.event.entity.living.HandInteractEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.Tristate;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.ServerLocation;
 
 /**
  * Base event for all interactions involving a {@link BlockSnapshot} at a
- * {@link Location}.
+ * {@link ServerLocation}.
  *
  * <p>Note: Any interaction that occurs within {@link BlockTypes#AIR} where the
- * {@link Location} is not known, will contain a {@link BlockSnapshot#empty()}.</p>
+ * {@link ServerLocation} is not known, will contain a {@link BlockSnapshot#empty()}.</p>
  */
 public interface InteractBlockEvent extends InteractEvent {
 

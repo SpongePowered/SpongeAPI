@@ -295,12 +295,4 @@ public interface World<W extends World<W>> extends ProtoWorld<W>,
      */
     Iterable<Chunk> getLoadedChunks();
 
-    /**
-     * Gets the {@link Location} of the spawn point.
-     *
-     * @return The location
-     */
-    default Location getSpawnLocation() {
-        return Location.of(this, this.getProperties().getSpawnPosition());
-    }
 }

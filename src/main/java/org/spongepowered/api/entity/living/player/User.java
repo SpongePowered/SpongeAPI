@@ -32,7 +32,7 @@ import org.spongepowered.api.item.inventory.ArmorEquipable;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.math.vector.Vector3d;
 
 import java.util.Optional;
@@ -96,7 +96,7 @@ public interface User extends DataHolder.Mutable, ArmorEquipable, Tamer, Subject
      *
      * <p>The UUID must belong to an existing world.</p>
      *
-     * <p>When the User {@link #isOnline()} this redirects to {@link Entity#setLocation(Location)}</p>
+     * <p>When the User {@link #isOnline()} this redirects to {@link Entity#setLocation(ServerLocation)}</p>
      *
      * @param position The position to set
      * @param worldUniqueId The world UUID to set

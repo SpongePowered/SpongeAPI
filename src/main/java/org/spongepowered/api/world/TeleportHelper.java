@@ -31,7 +31,7 @@ import org.spongepowered.api.world.teleport.TeleportHelperFilters;
 import java.util.Optional;
 
 /**
- * Finds safe {@link Location}s for {@link Entity}s (typically ones that won't
+ * Finds safe {@link ServerLocation}s for {@link Entity}s (typically ones that won't
  * hurt them).
  *
  * <p>Typically, the teleport helper will first determine whether the requested
@@ -54,7 +54,7 @@ public interface TeleportHelper {
     int DEFAULT_FLOOR_CHECK_DISTANCE = 2;
 
     /**
-     * Gets the next safe {@link Location} around the given location.
+     * Gets the next safe {@link ServerLocation} around the given location.
      *
      * <p>Safe entails that the returned location will not be somewhere that
      * would harm an {@link Entity}. This method will use the default height and
@@ -69,12 +69,12 @@ public interface TeleportHelper {
      *         location if it is deemed safe. If no safe location can be found,
      *         {@link Optional#empty()} will be returned.
      */
-    default Optional<Location> getSafeLocation(Location location) {
+    default Optional<ServerLocation> getSafeLocation(ServerLocation location) {
         return getSafeLocation(location, DEFAULT_HEIGHT, DEFAULT_WIDTH, DEFAULT_FLOOR_CHECK_DISTANCE, TeleportHelperFilters.DEFAULT.get());
     }
 
     /**
-     * Gets the next safe {@link Location} around the given location with a
+     * Gets the next safe {@link ServerLocation} around the given location with a
      * given tolerance and search radius.
      *
      * <p>Safe entails that the returned location will not be somewhere that
@@ -95,12 +95,12 @@ public interface TeleportHelper {
      *         location if it is deemed safe. If no safe location can be found,
      *         {@link Optional#empty()} will be returned
      */
-    default Optional<Location> getSafeLocation(Location location, int height, int width) {
+    default Optional<ServerLocation> getSafeLocation(ServerLocation location, int height, int width) {
         return getSafeLocation(location, height, width, DEFAULT_FLOOR_CHECK_DISTANCE, TeleportHelperFilters.DEFAULT.get());
     }
 
     /**
-     * Gets the next safe {@link Location} around the given location with a
+     * Gets the next safe {@link ServerLocation} around the given location with a
      * given tolerance and search radius.
      *
      * <p>Safe entails that the returned location will not be somewhere that
@@ -124,12 +124,12 @@ public interface TeleportHelper {
      *         location if it is deemed safe. If no safe location can be found,
      *         {@link Optional#empty()} will be returned
      */
-    default Optional<Location> getSafeLocation(Location location, int height, int width, int floorDistance) {
+    default Optional<ServerLocation> getSafeLocation(ServerLocation location, int height, int width, int floorDistance) {
         return getSafeLocation(location, height, width, floorDistance, TeleportHelperFilters.DEFAULT.get(), TeleportHelperFilters.CONFIG.get());
     }
 
     /**
-     * Gets the next safe {@link Location} around the given location with a
+     * Gets the next safe {@link ServerLocation} around the given location with a
      * given tolerance and search radius.
      *
      * <p>Safe entails that the returned location will not be somewhere that
@@ -155,11 +155,11 @@ public interface TeleportHelper {
      *         location if it is deemed safe. If no safe location can be found,
      *         {@link Optional#empty()} will be returned
      */
-    Optional<Location> getSafeLocation(Location location, int height, int width, int floorDistance, TeleportHelperFilter filter,
+    Optional<ServerLocation> getSafeLocation(ServerLocation location, int height, int width, int floorDistance, TeleportHelperFilter filter,
         TeleportHelperFilter... additionalFilters);
 
     /**
-     * Gets the next safe {@link Location} around the given location with a
+     * Gets the next safe {@link ServerLocation} around the given location with a
      * given tolerance and search radius.
      *
      * <p>Safe entails that the returned location will not be somewhere that
@@ -186,7 +186,7 @@ public interface TeleportHelper {
      *         location if it is deemed safe. If no safe location can be found,
      *         {@link Optional#empty()} will be returned
      */
-    default Optional<Location> getSafeLocationWithBlacklist(Location location, int height, int width, int floorDistance,
+    default Optional<ServerLocation> getSafeLocationWithBlacklist(ServerLocation location, int height, int width, int floorDistance,
             TeleportHelperFilter... filters) {
         return getSafeLocation(location, height, width, floorDistance, TeleportHelperFilters.CONFIG.get(), filters);
     }

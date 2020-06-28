@@ -34,7 +34,7 @@ import org.spongepowered.api.event.cause.EventContext;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.ResettableBuilder;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.ServerLocation;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -103,7 +103,7 @@ public interface Command {
      * @return A list of suggestions
      * @throws CommandException Thrown if there was a parsing error
      */
-    List<String> getSuggestions(CommandCause cause, String arguments, @Nullable Location targetPosition) throws CommandException;
+    List<String> getSuggestions(CommandCause cause, String arguments, @Nullable ServerLocation targetPosition) throws CommandException;
 
     /**
      * Test whether this command can probably be executed given this

@@ -40,7 +40,7 @@ public interface ChangeWorldWeatherEvent extends Event, Cancellable {
      *
      * @return The world
      */
-    World getWorld();
+    World<?> getWorld();
 
     /**
      * Gets the original {@link Weather} that the event is creating.

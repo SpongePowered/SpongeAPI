@@ -26,8 +26,8 @@ package org.spongepowered.api.util.blockray;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.util.Direction;
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.GenericMath;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
@@ -40,7 +40,7 @@ import java.util.function.BiFunction;
  */
 public class BlockRayHit {
 
-    private final World world;
+    private final ServerWorld world;
     private final double x;
     private final double y;
     private final double z;
@@ -52,7 +52,7 @@ public class BlockRayHit {
     private final Vector3d direction;
     private final Vector3d normal;
     @Nullable private Direction[] faces = null;
-    @Nullable private Location location = null;
+    @Nullable private ServerLocation location = null;
 
     /**
      * Constructs a new block ray hit from the extent that contains it, the
@@ -65,7 +65,7 @@ public class BlockRayHit {
      * @param direction A normal vector of the ray direction
      * @param normal The normal of the entered face, edge or corner
      */
-    public BlockRayHit(World world, double x, double y, double z, Vector3d direction, Vector3d normal) {
+    public BlockRayHit(ServerWorld world, double x, double y, double z, Vector3d direction, Vector3d normal) {
         this.world = world;
         this.x = x;
         this.y = y;
@@ -97,7 +97,7 @@ public class BlockRayHit {
      *
      * @return The world
      */
-    public World getWorld() {
+    public ServerWorld getWorld() {
         return this.world;
     }
 
@@ -185,9 +185,9 @@ public class BlockRayHit {
      *
      * @return The location of the hit block
      */
-    public Location getLocation() {
+    public ServerLocation getLocation() {
         if (this.location == null) {
-            this.location = Location.of(this.world, this.xBlock, this.yBlock, this.zBlock);
+            this.location = ServerLocation.of(this.world, this.xBlock, this.yBlock, this.zBlock);
         }
         return this.location;
     }
@@ -242,7 +242,7 @@ public class BlockRayHit {
      * @param <T> The return type of the mapper
      * @return The results of the mapping
      */
-    public <T> T map(BiFunction<World, Vector3d, T> mapper) {
+    public <T> T map(BiFunction<ServerWorld, Vector3d, T> mapper) {
         return mapper.apply(this.world, getPosition());
     }
 
@@ -253,7 +253,7 @@ public class BlockRayHit {
      * @param <T> The return type of the mapper
      * @return The results of the mapping
      */
-    public <T> T mapBlock(BiFunction<World, Vector3i, T> mapper) {
+    public <T> T mapBlock(BiFunction<ServerWorld, Vector3i, T> mapper) {
         return mapper.apply(this.world, getBlockPosition());
     }
 

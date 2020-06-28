@@ -39,8 +39,8 @@ import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.EventContext;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3d;
 
 import java.util.Optional;
@@ -51,7 +51,8 @@ public class SpongeAbstractEventTest {
     public void testChangeBlockEvent_filter() {
         Transaction<BlockSnapshot> transaction = new Transaction<>(mockParam(BlockSnapshot.class), mockParam(BlockSnapshot.class));
 
-        when(transaction.getOriginal().getLocation()).thenReturn(Optional.of(Location.of(mockParam(World.class), Vector3d.ZERO)));
+        when(transaction.getOriginal().getLocation()).thenReturn(Optional.of(
+            ServerLocation.of(mockParam(ServerWorld.class), Vector3d.ZERO)));
 
         ChangeBlockEvent.Break event = SpongeEventFactory.createChangeBlockEventBreak(
             Cause.of(EventContext.empty(), "none"), Lists.newArrayList(transaction));

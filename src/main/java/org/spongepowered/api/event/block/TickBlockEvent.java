@@ -28,7 +28,7 @@ import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.ServerLocation;
 
 /**
  * Called when a {@link BlockState} receives a tick.
@@ -43,7 +43,7 @@ public interface TickBlockEvent extends Event, Cancellable {
     BlockSnapshot getBlock();
 
     /**
-     * An event when a block at a {@link Location} is scheduled to tick.
+     * An event when a block at a {@link ServerLocation} is scheduled to tick.
      */
     interface Scheduled extends TickBlockEvent { }
 

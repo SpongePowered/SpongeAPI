@@ -27,17 +27,17 @@ package org.spongepowered.api.block;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.data.DataManipulator;
-import org.spongepowered.api.data.SerializableDataHolderBuilder;
 import org.spongepowered.api.data.DirectionRelativeDataHolder;
+import org.spongepowered.api.data.SerializableDataHolderBuilder;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.fluid.FluidState;
 import org.spongepowered.api.state.State;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.ServerLocation;
 
 import java.util.function.Supplier;
 
 /**
- * Represents a particular "state" that can exist at a {@link Location} with
+ * Represents a particular "state" that can exist at a {@link ServerLocation} with
  * a particular {@link BlockType} and various {@link org.spongepowered.api.data.value.Value.Immutable}s defining
  * the information for the "block". Note that normally, there may exist only
  * a single instance of a particular {@link BlockState} as they are immutable,
@@ -95,7 +95,7 @@ public interface BlockState extends State<BlockState>, DirectionRelativeDataHold
 
     /**
      * Creates a new {@link BlockSnapshot} with this current {@link BlockState}
-     * at the desired {@link Location}. If the {@link Location} has the same
+     * at the desired {@link ServerLocation}. If the {@link ServerLocation} has the same
      * {@link BlockState}, and the {@link BlockType} can house a
      * {@link BlockEntity}, the data from the block entity may be included in the
      * returned  {@link BlockSnapshot}.
@@ -103,7 +103,7 @@ public interface BlockState extends State<BlockState>, DirectionRelativeDataHold
      * @param location The location for the snapshot
      * @return The newly created snapshot
      */
-    BlockSnapshot snapshotFor(Location location);
+    BlockSnapshot snapshotFor(ServerLocation location);
 
     /**
      * An {@link org.spongepowered.api.data.DataHolderBuilder.Immutable} for a {@link BlockState}. Just like the

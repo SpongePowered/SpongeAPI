@@ -52,7 +52,7 @@ import org.spongepowered.api.text.format.TextFormat;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.PEBKACException;
 import org.spongepowered.api.util.Transform;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3d;
@@ -250,12 +250,12 @@ public class SpongeEventFactoryTest {
             return OptionalInt.empty();
         } else if (Enum.class.isAssignableFrom(paramType)) {
             return paramType.getEnumConstants()[0];
-        } else if (Location.class.isAssignableFrom(paramType)) {
+        } else if (ServerLocation.class.isAssignableFrom(paramType)) {
             ServerWorld world = (ServerWorld) mockParam(ServerWorld.class);
             // Make sure we keep a reference to the World,
             // as Location stores a weak reference
             worlds.add(world);
-            final Location mock = mock(Location.class);
+            final ServerLocation mock = mock(ServerLocation.class);
             Mockito.when(mock.getWorld()).thenReturn(world);
             return mock;
         } else if (paramType == Transform.class) {
@@ -268,8 +268,8 @@ public class SpongeEventFactoryTest {
             return DataTransactionResult.successNoData();
         } else if (paramType == Cause.class) {
             return Cause.of(EventContext.empty(), "none");
-        } else if (paramType == Location.class) {
-            return Location.of(mock(World.class), Vector3d.ZERO);
+        } else if (paramType == ServerLocation.class) {
+            return ServerLocation.of(mock(ServerWorld.class), Vector3d.ZERO);
         } else if (paramType == Locale.class) {
             return Locale.ROOT;
         } else if (paramType == Text.class) {

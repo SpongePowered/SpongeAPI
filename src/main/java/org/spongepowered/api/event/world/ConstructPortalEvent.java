@@ -27,8 +27,7 @@ package org.spongepowered.api.event.world;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.ServerLocation;
 
 /**
  * An event where a portal is created. Usually, this happens after a
@@ -42,6 +41,6 @@ public interface ConstructPortalEvent extends Event, Cancellable {
      *
      * @return The location of a portal
      */
-    Location getPortalLocation();
+    ServerLocation getPortalLocation();
 
 }

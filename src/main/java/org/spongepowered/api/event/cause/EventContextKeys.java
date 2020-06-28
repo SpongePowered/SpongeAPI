@@ -45,9 +45,10 @@ import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.world.LocatableBlock;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
+import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.plugin.PluginContainer;
 
@@ -137,7 +138,7 @@ public final class EventContextKeys {
     /**
      * Used when fire spreads to other blocks.
      */
-    public static final Supplier<EventContextKey<World>> FIRE_SPREAD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "FIRE_SPREAD");
+    public static final Supplier<EventContextKey<ServerWorld>> FIRE_SPREAD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "FIRE_SPREAD");
 
     /**
      * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Grow} to provide
@@ -164,28 +165,28 @@ public final class EventContextKeys {
     /**
      * Used when leaves decay.
      */
-    public static final Supplier<EventContextKey<World>> LEAVES_DECAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "LEAVES_DECAY");
+    public static final Supplier<EventContextKey<ServerWorld>> LEAVES_DECAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "LEAVES_DECAY");
 
     /**
      * Used when flowing liquid causing another block to break.
      */
-    public static final Supplier<EventContextKey<World>> LIQUID_BREAK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "LIQUID_BREAK");
+    public static final Supplier<EventContextKey<ServerWorld>> LIQUID_BREAK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "LIQUID_BREAK");
 
     /**
      * Used when flowing liquid moves to another location.
      */
-    public static final Supplier<EventContextKey<World>> LIQUID_FLOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "LIQUID_FLOW");
+    public static final Supplier<EventContextKey<ServerWorld>> LIQUID_FLOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "LIQUID_FLOW");
 
     /**
      * Used when liquid changes state.
      */
-    public static final Supplier<EventContextKey<World>> LIQUID_MIX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "LIQUID_MIX");
+    public static final Supplier<EventContextKey<ServerWorld>> LIQUID_MIX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "LIQUID_MIX");
 
     /**
-     * Used during command execution, indicates the {@link Location} that the
+     * Used during command execution, indicates the {@link ServerLocation} that the
      * command is centered around.
      */
-    public static final Supplier<EventContextKey<Location>> LOCATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "LOCATION");
+    public static final Supplier<EventContextKey<ServerLocation>> LOCATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "LOCATION");
 
     /**
      * Used during command execution, indicates the {@link MessageReceiver} to
@@ -217,12 +218,12 @@ public final class EventContextKeys {
     /**
      * Used when a {@link BlockTypes#PISTON_HEAD} extends.
      */
-    public static final Supplier<EventContextKey<World>> PISTON_EXTEND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "PISTON_EXTEND");
+    public static final Supplier<EventContextKey<ServerWorld>> PISTON_EXTEND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "PISTON_EXTEND");
 
     /**
      * Used when a {@link BlockTypes#PISTON_HEAD} retracts.
      */
-    public static final Supplier<EventContextKey<World>> PISTON_RETRACT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "PISTON_RETRACT");
+    public static final Supplier<EventContextKey<ServerWorld>> PISTON_RETRACT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "PISTON_RETRACT");
 
     /**
      * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
@@ -238,12 +239,12 @@ public final class EventContextKeys {
     /**
      * Used when a {@link Player} breaks a block.
      */
-    public static final Supplier<EventContextKey<World>> PLAYER_BREAK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "PLAYER_BREAK");
+    public static final Supplier<EventContextKey<ServerWorld>> PLAYER_BREAK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "PLAYER_BREAK");
 
     /**
      * Used when a {@link Player} places a block.
      */
-    public static final Supplier<EventContextKey<World>> PLAYER_PLACE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "PLAYER_PLACE");
+    public static final Supplier<EventContextKey<ServerWorld>> PLAYER_PLACE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "PLAYER_PLACE");
 
     /**
      * Represents a simulated {@link Player}.

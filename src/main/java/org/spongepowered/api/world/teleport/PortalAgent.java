@@ -25,13 +25,13 @@
 package org.spongepowered.api.world.teleport;
 
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.World;
 
 import java.util.Optional;
 
 /**
- * An agent that handles teleportation between {@link Location}'s. This can be
+ * An agent that handles teleportation between {@link ServerLocation}'s. This can be
  * understood as an agent that handles the creation of "portals" between
  * {@link World}'s.
  *
@@ -78,7 +78,7 @@ public interface PortalAgent {
      * @param targetLocation The suggested location
      * @return The found location of the "portal", if available
      */
-    Optional<Location> findOrCreatePortal(Location targetLocation);
+    Optional<ServerLocation> findOrCreatePortal(ServerLocation targetLocation);
 
     /**
      * Attempts to find a "portal" location. Returns {@link Optional#empty()} if
@@ -87,15 +87,15 @@ public interface PortalAgent {
      * @param targetLocation The suggested location
      * @return The found location of the "portal", if available
      */
-    Optional<Location> findPortal(Location targetLocation);
+    Optional<ServerLocation> findPortal(ServerLocation targetLocation);
 
     /**
      * Tells this agent to create a new "portal" location at the suggested
-     * {@link Location}.
+     * {@link ServerLocation}.
      * If {@link org.spongepowered.api.event.block.ChangeBlockEvent.Place}
      * is cancelled, {@link Optional#empty()} is returned.
      *
-     * <p>Note: In order to adjust or prevent the {@link Location}'s of each
+     * <p>Note: In order to adjust or prevent the {@link ServerLocation}'s of each
      * {@link BlockState} set, listen to
      * {@link org.spongepowered.api.event.block.ChangeBlockEvent.Place} and
      * check for the root cause of this portal agent.</p>
@@ -103,7 +103,7 @@ public interface PortalAgent {
      * @param targetLocation The targeted location
      * @return The newly created "portal" location, if available
      */
-    Optional<Location> createPortal(Location targetLocation);
+    Optional<ServerLocation> createPortal(ServerLocation targetLocation);
 
     /**
      * Gets the type of {@link PortalAgent}.

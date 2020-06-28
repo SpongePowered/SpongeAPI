@@ -35,7 +35,7 @@ import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.world.Archetype;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.ServerLocation;
 
 import java.util.function.Supplier;
 
@@ -120,7 +120,7 @@ public interface BlockEntityArchetype extends Archetype<BlockSnapshot, BlockEnti
         @Override
         Builder from(BlockEntityArchetype value);
 
-        Builder from(Location location);
+        Builder from(ServerLocation location);
 
         /**
          * Sets the {@link BlockState} of the archetype.
@@ -145,7 +145,7 @@ public interface BlockEntityArchetype extends Archetype<BlockSnapshot, BlockEnti
          *
          * <p>Note that this overwrites data set from the following methods:</p>
          * <ul>
-         *     <li>{@link #from(Location)}</li>
+         *     <li>{@link #from(ServerLocation)}</li>
          *     <li>{@link #state(BlockState)}</li>
          *     <li>{@link #blockEntity(BlockEntityType)}</li>
          *     <li>{@link #blockEntityData(DataView)}</li>
@@ -161,7 +161,7 @@ public interface BlockEntityArchetype extends Archetype<BlockSnapshot, BlockEnti
 
         /**
          * Sets the {@link DataView} to be used to copy data onto the created
-         * {@link BlockEntity} when {@link BlockEntityArchetype#apply(Location)}
+         * {@link BlockEntity} when {@link BlockEntityArchetype#apply(ServerLocation)}
          * is called.
          *
          * <p>The format used for this container follows the

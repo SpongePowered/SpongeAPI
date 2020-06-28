@@ -35,8 +35,8 @@ import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.dimension.Dimension;
-import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.plugin.PluginContainer;
@@ -218,7 +218,7 @@ public final class CatalogedValueParameters {
             Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "IP");
 
     /**
-     * Expect an argument to represent a {@link Location}.
+     * Expect an argument to represent a {@link ServerLocation}.
      *
      * <p>Listens to:</p>
      *
@@ -227,9 +227,9 @@ public final class CatalogedValueParameters {
      *     <li>#me: Location of the current source</li>
      * </ul>
      *
-     * <p>Returns a {@link Location}.</p>
+     * <p>Returns a {@link ServerLocation}.</p>
      */
-    public static final Supplier<CatalogedValueParameter<Location>> LOCATION =
+    public static final Supplier<CatalogedValueParameter<ServerLocation>> LOCATION =
             Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "LOCATION");
 
     /**

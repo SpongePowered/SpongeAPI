@@ -215,7 +215,7 @@ import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.RespawnLocation;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.weather.Weather;
@@ -376,7 +376,7 @@ public final class Keys {
     public static final Supplier<Key<Value<Living>>> BEAM_TARGET_ENTITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BEAM_TARGET_ENTITY");
 
     /**
-     * The default temperature of a biome at a specific {@link Location}.
+     * The default temperature of a biome at a specific {@link ServerLocation}.
      * For the exact block temperature see {@link #BLOCK_TEMPERATURE}.
      * Readonly
      */
@@ -389,7 +389,7 @@ public final class Keys {
     public static final Supplier<Key<Value<Double>>> BLAST_RESISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BLAST_RESISTANCE");
 
     /**
-     * The amount of light that is emitted by the surrounding blocks at a block {@link Location}.
+     * The amount of light that is emitted by the surrounding blocks at a block {@link ServerLocation}.
      * The value scales normally from 0 to 1.
      * <p>In vanilla minecraft is this value in steps of 1/15 from 0 to 1.</p>
      * <p>For the skylight see {@link #SKY_LIGHT}.</p>
@@ -403,7 +403,7 @@ public final class Keys {
     public static final Supplier<Key<Value<BlockState>>> BLOCK_STATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BLOCK_STATE");
 
     /**
-     * The temperature at a specific {@link Location}.
+     * The temperature at a specific {@link ServerLocation}.
      * For the default biome temperature see {@link #BIOME_TEMPERATURE}.
      * Readonly
      */
@@ -1263,7 +1263,7 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> IS_FRIGHTENED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_FRIGHTENED");
 
     /**
-     * Whether the block at the {@link Location} is a full block.
+     * Whether the block at the {@link ServerLocation} is a full block.
      */
     public static final Supplier<Key<Value<Boolean>>> IS_FULL_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_FULL_BLOCK");
 
@@ -1296,7 +1296,7 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> IS_IMMOBILIZED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_IMMOBILIZED");
 
     /**
-     * Whether a {@link Location} is indirectly powered.
+     * Whether a {@link ServerLocation} is indirectly powered.
      * Readonly
      */
     public static final Supplier<Key<Value<Boolean>>> IS_INDIRECTLY_POWERED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_INDIRECTLY_POWERED");
@@ -2164,7 +2164,7 @@ public final class Keys {
     public static final Supplier<Key<Value<Integer>>> SKIN_MOISTURE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SKIN_MOISTURE");
 
     /**
-     * The skylight value at a {@link Location}.
+     * The skylight value at a {@link ServerLocation}.
      * For the blocklight see {@link #BLOCK_LIGHT}.
      * Readonly
      */

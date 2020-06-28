@@ -30,8 +30,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.action.CollideEvent;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.ServerLocation;
 
 /**
  * Fired when an {@link Entity} collides with a {@link BlockSnapshot}.
@@ -40,11 +39,11 @@ import org.spongepowered.api.world.World;
 public interface CollideBlockEvent extends CollideEvent {
 
     /**
-     * Gets the target {@link Location} being interacted with.
+     * Gets the target {@link ServerLocation} being interacted with.
      *
      * @return The location
      */
-    Location getTargetLocation();
+    ServerLocation getTargetLocation();
 
     /**
      * Gets the target {@link BlockState} being interacted with.

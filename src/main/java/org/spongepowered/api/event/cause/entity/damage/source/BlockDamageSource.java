@@ -26,7 +26,7 @@ package org.spongepowered.api.event.cause.entity.damage.source;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.ServerLocation;
 
 public interface BlockDamageSource extends DamageSource {
 
@@ -45,7 +45,7 @@ public interface BlockDamageSource extends DamageSource {
      *
      * @return The location of the block
      */
-    Location getLocation();
+    ServerLocation getLocation();
 
     /**
      * Gets the {@link BlockSnapshot} of the source.
@@ -57,12 +57,12 @@ public interface BlockDamageSource extends DamageSource {
     interface Builder extends DamageSource.DamageSourceBuilder<BlockDamageSource, Builder> {
 
         /**
-         * Sets the {@link Location} to use as a "source".
+         * Sets the {@link ServerLocation} to use as a "source".
          *
          * @param location The location of the block as the damage source
          * @return This builder, for chaining
          */
-        Builder block(Location location);
+        Builder block(ServerLocation location);
 
         /**
          * Sets the {@link BlockSnapshot} to act as the "damage source".

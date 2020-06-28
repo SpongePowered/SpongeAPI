@@ -26,8 +26,8 @@ package org.spongepowered.api.world.volume.game;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.world.Locatable;
-import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.ProtoWorld;
+import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.chunk.ProtoChunk;
 import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
 import org.spongepowered.math.vector.Vector3i;
@@ -86,7 +86,7 @@ public interface ChunkVolume extends ReadableBlockVolume {
      * Gets the loaded chunk at the given chunk coordinate position. The position
      * is the block position relative to the {@link ProtoChunk#getChunkPosition()},
      * and therefor is going to return a different chunk from {@link #getChunk(Vector3i)}.
-     * This is more usable from {@link Location}s or a {@link Locatable} that returns
+     * This is more usable from {@link ServerLocation}s or a {@link Locatable} that returns
      * a {@link Vector3i position} in relation to a {@link ProtoWorld}.
      *
      * @param bx The x coordinate

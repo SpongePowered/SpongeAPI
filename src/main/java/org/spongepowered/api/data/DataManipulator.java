@@ -468,6 +468,7 @@ public interface DataManipulator extends CopyableValueContainer {
          * @param value The actual value to set
          * @return This manipulator, for chaining
          */
+        @SuppressWarnings("unchecked")
         default Mutable set(Value<?> value) {
             return set((Key<? extends Value<Object>>) value.getKey(), value.get());
         }

@@ -26,6 +26,8 @@ package org.spongepowered.api.world;
 
 import org.spongepowered.math.vector.Vector3i;
 
+import java.util.Optional;
+
 /**
  * Represents anything with a location.
  */
@@ -37,14 +39,18 @@ public interface Locatable {
      *
      * @return The location
      */
-    Location getLocation();
+    Location<?> getLocation();
+
+    default Optional<? extends ServerLocation> getServerLocation() {
+        return Optional.ofNullable(getLocation() instanceof ServerLocation ? (ServerLocation) getLocation() : null);
+    }
 
     /**
      * Gets the world that this source resides in.
      *
      * @return The World
      */
-    default World getWorld() {
+    default World<?> getWorld() {
         return this.getLocation().getWorld();
     }
 

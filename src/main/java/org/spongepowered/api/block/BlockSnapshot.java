@@ -32,7 +32,7 @@ import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.LocatableSnapshot;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.schematic.Schematic;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.math.vector.Vector3i;
@@ -49,7 +49,7 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
 
     /**
      * Represents a {@link BlockSnapshot} with the default state of
-     * {@link BlockTypes#AIR} and a {@link Location} that cannot be determined.
+     * {@link BlockTypes#AIR} and a {@link ServerLocation} that cannot be determined.
      */
     Supplier<BlockSnapshot> NONE = BlockSnapshot::empty;
 
@@ -100,8 +100,8 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
     BlockSnapshot withContainer(DataContainer container);
 
     /**
-     * Restores the {@link BlockSnapshot} to the {@link Location} stored within
-     * the snapshot. If the {@link Location} is not available, the snapshot will
+     * Restores the {@link BlockSnapshot} to the {@link ServerLocation} stored within
+     * the snapshot. If the {@link ServerLocation} is not available, the snapshot will
      * not be restored.
      *
      * <p>If forced, the state of the block will change its {@link BlockType}
@@ -177,12 +177,12 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
         Builder position(Vector3i position);
 
         /**
-         * Copies over block data from a {@link Location}.
+         * Copies over block data from a {@link ServerLocation}.
          *
          * @param location The Location to copy from
          * @return This builder, for chaining
          */
-        Builder from(Location location);
+        Builder from(ServerLocation location);
 
         /**
          * Sets the {@link UUID} of the user who created this

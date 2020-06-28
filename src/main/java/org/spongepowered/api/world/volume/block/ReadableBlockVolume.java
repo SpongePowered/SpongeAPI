@@ -26,7 +26,7 @@ package org.spongepowered.api.world.volume.block;
 
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.fluid.FluidState;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.volume.Volume;
 import org.spongepowered.api.world.volume.game.LocationBaseDataHolder;
 import org.spongepowered.math.vector.Vector2i;
@@ -74,7 +74,7 @@ public interface ReadableBlockVolume extends Volume, LocationBaseDataHolder {
     }
 
     /**
-     * Get the {@link Location} of the highest block that sunlight can reach in
+     * Get the {@link ServerLocation} of the highest block that sunlight can reach in
      * the given column.
      *
      * <p>This method ignores all transparent blocks, providing the highest

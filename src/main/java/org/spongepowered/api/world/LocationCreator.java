@@ -37,7 +37,7 @@ public interface LocationCreator extends ReadableBlockVolume {
      * @param position The position
      * @return The location in this extent
      */
-    Location getLocation(Vector3i position);
+    ServerLocation getLocation(Vector3i position);
 
     /**
      * Gets a location in this extent at the given position. Essentially, this
@@ -48,7 +48,7 @@ public interface LocationCreator extends ReadableBlockVolume {
      * @param z The Z position
      * @return The location in this extent
      */
-    default Location getLocation(int x, int y, int z) {
+    default ServerLocation getLocation(int x, int y, int z) {
         return this.getLocation(new Vector3i(x, y, z));
     }
 
@@ -60,7 +60,7 @@ public interface LocationCreator extends ReadableBlockVolume {
      * @param position The position
      * @return The location in this extent
      */
-    Location getLocation(Vector3d position);
+    ServerLocation getLocation(Vector3d position);
 
     /**
      * Gets a location in this extent at the given position. Essentially, this
@@ -72,7 +72,7 @@ public interface LocationCreator extends ReadableBlockVolume {
      * @param z The Z position
      * @return The location in this extent
      */
-    default Location getLocation(double x, double y, double z) {
+    default ServerLocation getLocation(double x, double y, double z) {
         return this.getLocation(new Vector3i(x, y, z));
     }
 

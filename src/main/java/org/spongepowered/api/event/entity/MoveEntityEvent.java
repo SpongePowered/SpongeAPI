@@ -29,7 +29,7 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.teleport.PortalAgent;
 
 /**
@@ -80,25 +80,25 @@ public interface MoveEntityEvent extends Event, Cancellable {
     interface Teleport extends MoveEntityEvent {
 
         /**
-         * Gets the {@link World} the {@link Entity} is coming from.
+         * Gets the {@link ServerWorld} the {@link Entity} is coming from.
          *
          * @return The world
          */
-        World getFromWorld();
+        ServerWorld getFromWorld();
 
         /**
-         * Gets the {@link World} the {@link Entity} is going to.
+         * Gets the {@link ServerWorld} the {@link Entity} is going to.
          *
          * @return The new world
          */
-        World getToWorld();
+        ServerWorld getToWorld();
 
         /**
-         * Sets the {@link World} the {@link Entity} will go to.
+         * Sets the {@link ServerWorld} the {@link Entity} will go to.
          *
          * @param world The world
          */
-        void setToWorld(World world);
+        void setToWorld(ServerWorld world);
 
         /**
          * Gets whether the entity teleporting will maintain its velocity

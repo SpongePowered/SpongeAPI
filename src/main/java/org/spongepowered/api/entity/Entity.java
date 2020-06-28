@@ -41,10 +41,11 @@ import org.spongepowered.api.util.RandomProvider;
 import org.spongepowered.api.util.RelativePositions;
 import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.world.Locatable;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.TeleportHelper;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.schematic.Schematic;
+import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3d;
 
 import java.util.Collection;
@@ -102,17 +103,17 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
      * @param location The location to set
      * @return True if location was set successfully, false otherwise
      */
-    boolean setLocation(Location location);
+    boolean setLocation(ServerLocation location);
 
     /**
      * Sets the location of this entity using a safe one from
-     * {@link TeleportHelper#getSafeLocation(Location)}.
+     * {@link TeleportHelper#getSafeLocation(ServerLocation)}.
      *
      * @param location The location to set
      * @return True if location was set successfully, false if location couldn't
      *      be set as no safe location was found
      */
-    default boolean setLocationSafely(Location location) {
+    default boolean setLocationSafely(ServerLocation location) {
         return Sponge.getTeleportHelper()
                 .getSafeLocation(location)
                 .map(this::setLocation)
@@ -152,7 +153,7 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
      * @param rotation The rotation to set
      * @return True if location was set successfully, false otherwise
      */
-    boolean setLocationAndRotation(Location location, Vector3d rotation);
+    boolean setLocationAndRotation(ServerLocation location, Vector3d rotation);
 
     /**
      * Moves the entity to the specified location and sets the rotation.
@@ -168,11 +169,11 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
      * @param relativePositions The coordinates to set relatively
      * @return True if location was set successfully, false otherwise
      */
-    boolean setLocationAndRotation(Location location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
+    boolean setLocationAndRotation(ServerLocation location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
 
     /**
      * Sets the location using a safe one from
-     * {@link TeleportHelper#getSafeLocation(Location)} and the rotation of this
+     * {@link TeleportHelper#getSafeLocation(ServerLocation)} and the rotation of this
      * entity.
      *
      * <p>The format of the rotation is represented by:</p>
@@ -184,7 +185,7 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
      * @return True if location was set successfully, false if either location
      *      couldn't be set as no safe location was found
      */
-    default boolean setLocationAndRotationSafely(Location location, Vector3d rotation) {
+    default boolean setLocationAndRotationSafely(ServerLocation location, Vector3d rotation) {
         checkNotNull(location);
         checkNotNull(rotation);
         return Sponge.getTeleportHelper()
@@ -195,7 +196,7 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
 
     /**
      * Sets the location using a safe one from
-     * {@link TeleportHelper#getSafeLocation(Location)} and the rotation of this
+     * {@link TeleportHelper#getSafeLocation(ServerLocation)} and the rotation of this
      * entity. {@link RelativePositions} listed inside the EnumSet are
      * considered relative.
      *
@@ -209,7 +210,7 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
      * @return True if location was set successfully, false if either location
      *      couldn't be set as no safe location was found
      */
-    default boolean setLocationAndRotationSafely(Location location, Vector3d rotation, EnumSet<RelativePositions> relativePositions) {
+    default boolean setLocationAndRotationSafely(ServerLocation location, Vector3d rotation, EnumSet<RelativePositions> relativePositions) {
         checkNotNull(location);
         checkNotNull(rotation);
         return Sponge.getTeleportHelper()
@@ -249,7 +250,7 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
 
     /**
      * Sets the {@link Transform}using a safe location from
-     * {@link TeleportHelper#getSafeLocation(Location)}.
+     * {@link TeleportHelper#getSafeLocation(ServerLocation)}.
      *
      * @param transform The transform to set
      * @return True if the transform was set successfully, or false if either
@@ -257,11 +258,14 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
      */
     default boolean setTransformSafely(Transform transform) {
         checkNotNull(transform);
-        return this.setLocationAndRotationSafely(Location.of(this.getWorld(), transform.getPosition()), transform.getRotation());
+        if (!(this.getWorld() instanceof ServerWorld)) {
+            return false;
+        }
+        return this.setLocationAndRotationSafely(ServerLocation.of((ServerWorld) this.getWorld(), transform.getPosition()), transform.getRotation());
     }
 
     /**
-     * Sets the {@link Location} of this entity to the {@link World}'s spawn
+     * Sets the {@link ServerLocation} of this entity to the {@link ServerWorld}'s spawn
      * point.
      *
      * @param world The world to transfer to
@@ -269,13 +273,13 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
      *      is cancelled or not possible (eg. because the entity has been
      *      removed)
      */
-    default boolean transferToWorld(World world) {
+    default boolean transferToWorld(ServerWorld world) {
         checkNotNull(world);
         return this.transferToWorld(world, world.getSpawnLocation().getPosition());
     }
 
     /**
-     * Sets the {@link Location} of this entity to a new position in a world.
+     * Sets the {@link ServerLocation} of this entity to a new position in a world.
      *
      * @param world The world to transfer to
      * @param position The position in the target world
@@ -283,7 +287,7 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
      *      is cancelled or not possible (eg. because the entity has been
      *      removed)
      */
-    boolean transferToWorld(World world, Vector3d position);
+    boolean transferToWorld(ServerWorld world, Vector3d position);
 
     /**
      * Gets the entity's bounding box, usually for collisions and interaction.

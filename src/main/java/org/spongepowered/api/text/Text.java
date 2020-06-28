@@ -726,6 +726,7 @@ public interface Text extends Comparable<Text>, DataSerializable, TextRepresenta
          * @see Text#getStyle()
          */
         // TODO: Make sure this is the correct behaviour
+        @SuppressWarnings("unchecked")
         default Builder style(Supplier<? extends TextStyle>... styles) {
             Builder builder = this;
             for (Supplier<? extends TextStyle> style : styles) {

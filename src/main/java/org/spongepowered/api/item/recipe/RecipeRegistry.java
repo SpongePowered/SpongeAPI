@@ -30,7 +30,7 @@ import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.crafting.RecipeResult;
 import org.spongepowered.api.item.recipe.smelting.SmeltingRecipe;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.server.ServerWorld;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -107,7 +107,7 @@ public interface RecipeRegistry {
      * @return The found {@link Recipe}, or {@link Optional#empty()}
      *         if no recipe was found for this configuration
      */
-    Optional<Recipe> findMatchingRecipe(Inventory inventory, World world);
+    Optional<Recipe> findMatchingRecipe(Inventory inventory, ServerWorld world);
 
     /**
      * Finds a matching recipe for given type, inventory and world
@@ -118,7 +118,7 @@ public interface RecipeRegistry {
      *
      * @return The matching recipes.
      */
-    <T extends Recipe> Optional<T> findMatchingRecipe(RecipeType<T> type, Inventory inventory, World world);
+    <T extends Recipe> Optional<T> findMatchingRecipe(RecipeType<T> type, Inventory inventory, ServerWorld world);
 
     /**
      * Finds a matching recipe for given type, inventory and world
@@ -129,7 +129,7 @@ public interface RecipeRegistry {
      *
      * @return The matching recipes.
      */
-    default <T extends Recipe> Optional<T> findMatchingRecipe(Supplier<? extends RecipeType<T>> supplier, Inventory inventory, World world) {
+    default <T extends Recipe> Optional<T> findMatchingRecipe(Supplier<? extends RecipeType<T>> supplier, Inventory inventory, ServerWorld world) {
         return this.findMatchingRecipe(supplier.get(), inventory, world);
     }
 
@@ -164,7 +164,7 @@ public interface RecipeRegistry {
      * @return The {@link RecipeResult} if a recipe was found, or
      *         {@link Optional#empty()} if not
      */
-    default Optional<RecipeResult> getResult(Inventory inventory, World world) {
+    default Optional<RecipeResult> getResult(Inventory inventory, ServerWorld world) {
         return this.findMatchingRecipe(inventory, world)
                 .flatMap(recipe -> recipe.getResult(inventory, world));
     }

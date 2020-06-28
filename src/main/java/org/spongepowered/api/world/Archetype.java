@@ -41,7 +41,7 @@ public interface Archetype<S extends LocatableSnapshot<S>, E> extends Serializab
      * @param location The location to create the new instance at
      * @return The created type, if successful
      */
-    Optional<E> apply(Location location);
+    Optional<E> apply(ServerLocation location);
 
     /**
      * Creates a new immutable snapshot based on this archetype.
@@ -49,7 +49,7 @@ public interface Archetype<S extends LocatableSnapshot<S>, E> extends Serializab
      * @param location The location for the snapshot to be specified as at
      * @return The snapshot
      */
-    S toSnapshot(Location location);
+    S toSnapshot(ServerLocation location);
 
     @Override
     Archetype<S, E> copy();

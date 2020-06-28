@@ -28,14 +28,14 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.persistence.AbstractDataBuilder;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.DataView;
-import org.spongepowered.api.data.persistence.Queries;
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.persistence.AbstractDataBuilder;
 import org.spongepowered.api.data.persistence.InvalidDataException;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.data.persistence.Queries;
+import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3d;
@@ -100,14 +100,14 @@ public final class RespawnLocation implements DataSerializable {
     }
 
     /**
-     * Gets this spawn position as a {@link Location} object, if the world is
+     * Gets this spawn position as a {@link ServerLocation} object, if the world is
      * available.
      *
      * @return The position object, if available.
      */
-    public Optional<Location> asLocation() {
+    public Optional<ServerLocation> asLocation() {
         Optional<ServerWorld> optWorld = Sponge.getServer().getWorldManager().getWorld(getWorldUniqueId());
-        return optWorld.map(world -> Location.of(world, getPosition()));
+        return optWorld.map(world -> ServerLocation.of(world, getPosition()));
     }
 
     @Override
@@ -196,14 +196,14 @@ public final class RespawnLocation implements DataSerializable {
         }
 
         /**
-         * Sets the {@link UUID} of the {@link Location} provided {@link World},
+         * Sets the {@link UUID} of the {@link ServerLocation} provided {@link World},
          * and the {@link Vector3d} position to respawn at.
          *
          * @param location The location desired
          * @return This builder, for chaining
          * @throws IllegalStateException If the location's extent is null
          */
-        public Builder location(Location location) {
+        public Builder location(ServerLocation location) {
             checkNotNull(location, "Location cannot be null!");
             final World<?> world = location.getWorld();
             position(location.getPosition());

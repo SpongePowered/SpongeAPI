@@ -30,6 +30,7 @@ import org.spongepowered.api.util.Tristate;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.TeleportHelper;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3i;
 
 /**
@@ -78,7 +79,7 @@ public interface TeleportHelperFilter extends CatalogType {
      * @param position The {@link Vector3i} (block position) to check
      * @return A {@link Tristate}
      */
-    default Tristate isValidLocation(World world, Vector3i position) {
+    default Tristate isValidLocation(ServerWorld world, Vector3i position) {
         return Tristate.UNDEFINED;
     }
 

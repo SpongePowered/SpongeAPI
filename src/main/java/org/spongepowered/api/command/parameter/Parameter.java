@@ -47,8 +47,8 @@ import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.dimension.Dimension;
-import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.plugin.PluginContainer;
@@ -457,8 +457,8 @@ public interface Parameter {
      *
      * @return A {@link Parameter.Value.Builder}
      */
-    static Parameter.Value.Builder<Location> location() {
-        return Parameter.builder(Location.class, CatalogedValueParameters.LOCATION);
+    static Parameter.Value.Builder<ServerLocation> location() {
+        return Parameter.builder(ServerLocation.class, CatalogedValueParameters.LOCATION);
     }
 
     /**

@@ -28,16 +28,16 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableSet;
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.DataTransactionResult;
-import org.spongepowered.api.data.persistence.DataView;
-import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.DataManipulator;
-import org.spongepowered.api.data.value.MergeFunction;
+import org.spongepowered.api.data.DataTransactionResult;
+import org.spongepowered.api.data.Key;
+import org.spongepowered.api.data.persistence.DataContainer;
+import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.data.persistence.InvalidDataException;
+import org.spongepowered.api.data.value.MergeFunction;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.NoSuchElementException;
@@ -50,7 +50,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 /**
- * A type of {@link Location} based value store that can handle proxied data api
+ * A type of {@link ServerLocation} based value store that can handle proxied data api
  * related queries for specific positions.
  */
 public interface LocationBaseDataHolder {

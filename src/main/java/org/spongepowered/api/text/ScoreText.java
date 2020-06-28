@@ -137,6 +137,7 @@ public interface ScoreText extends Text {
         @Override
         Builder style(TextStyle... styles);
 
+        @SuppressWarnings("unchecked")
         @Override
         default Builder style(Supplier<? extends TextStyle>... styles) {
             Builder builder = this;

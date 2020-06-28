@@ -25,8 +25,7 @@
 package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.util.Direction;
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.ServerLocation;
 
 import java.util.List;
 import java.util.Optional;
@@ -42,7 +41,7 @@ public interface MultiBlockCarrier extends BlockCarrier {
      *
      * @return The Locations of the Blocks
      */
-    List<Location> getLocations();
+    List<ServerLocation> getLocations();
 
     /**
      * Returns the Inventory at given location if owned by this Carrier.
@@ -50,7 +49,7 @@ public interface MultiBlockCarrier extends BlockCarrier {
      * @param at The location
      * @return The inventory at given location
      */
-    Optional<Inventory> getInventory(Location at);
+    Optional<Inventory> getInventory(ServerLocation at);
 
     /**
      * Returns the Inventory at given location if owned by this Carrier and
@@ -63,6 +62,6 @@ public interface MultiBlockCarrier extends BlockCarrier {
      * @param from The Direction
      * @return The inventory at the location when accessed from given direction
      */
-    Optional<Inventory> getInventory(Location at, Direction from);
+    Optional<Inventory> getInventory(ServerLocation at, Direction from);
 
 }

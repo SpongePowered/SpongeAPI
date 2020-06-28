@@ -26,8 +26,7 @@ package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Locatable;
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.ServerLocation;
 
 /**
  * Represents a Block that is a carrier of an Inventory
@@ -40,7 +39,7 @@ public interface BlockCarrier extends Carrier, Locatable {
      *
      * @return The Location of the Block
      */
-    Location getLocation();
+    ServerLocation getLocation();
 
     /**
      * Returns the Inventory owned by this Carrier and accessible from

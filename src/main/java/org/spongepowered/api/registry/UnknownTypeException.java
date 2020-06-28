@@ -26,6 +26,8 @@ package org.spongepowered.api.registry;
 
 public final class UnknownTypeException extends RuntimeException {
 
+    private static final long serialVersionUID = 5985899461691485164L;
+
     public UnknownTypeException(String message) {
         super(message);
     }

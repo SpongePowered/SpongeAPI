@@ -34,7 +34,7 @@ import org.spongepowered.api.event.cause.EventContextKeys;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.world.Locatable;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.plugin.PluginContainer;
 
@@ -136,8 +136,8 @@ public interface CommandCause {
      */
     default Subject getSubject() {
         return getCause().getContext()
-                .get(EventContextKeys.SUBJECT)
-                .orElseGet(() -> getCause().first(Subject.class).orElseGet(Sponge::getSystemSubject));
+            .get(EventContextKeys.SUBJECT)
+            .orElseGet(() -> getCause().first(Subject.class).orElseGet(Sponge::getSystemSubject));
     }
 
     /**
@@ -163,12 +163,12 @@ public interface CommandCause {
      */
     default MessageReceiver getMessageReceiver() {
         return getCause().getContext()
-                .get(EventContextKeys.MESSAGE_TARGET)
-                .orElseGet(() -> getCause().first(MessageReceiver.class).orElseGet(Sponge::getSystemSubject));
+            .get(EventContextKeys.MESSAGE_TARGET)
+            .orElseGet(() -> getCause().first(MessageReceiver.class).orElseGet(Sponge::getSystemSubject));
     }
 
     /**
-     * Gets the {@link Location} that this command is associated with.
+     * Gets the {@link ServerLocation} that this command is associated with.
      *
      * <p>The following are checked in order:
      *
@@ -180,25 +180,24 @@ public interface CommandCause {
      *     <li>the location of the first locatable in the {@link Cause}</li>
      * </ul>
      *
-     * @return The {@link Location}, if it exists
+     * @return The {@link ServerLocation}, if it exists
      */
-    default Optional<Location> getLocation() {
+    @SuppressWarnings("unchecked")
+    default Optional<ServerLocation> getLocation() {
         Cause cause = getCause();
         EventContext eventContext = cause.getContext();
         if (eventContext.containsKey(EventContextKeys.LOCATION)) {
             return eventContext.get(EventContextKeys.LOCATION);
         }
 
-        Optional<Location> optionalLocation = getTargetBlock().flatMap(BlockSnapshot::getLocation);
+        Optional<ServerLocation> optionalLocation = getTargetBlock().flatMap(BlockSnapshot::getLocation);
         if (optionalLocation.isPresent()) {
             return optionalLocation;
         }
 
-        return Optional.ofNullable(
-                eventContext.get(EventContextKeys.MESSAGE_TARGET)
-                       .filter(x -> x instanceof Locatable)
-                        .map(x -> ((Locatable) x).getLocation())
-                        .orElseGet(() -> cause.first(Locatable.class).map(Locatable::getLocation).orElse(null)));
+        return eventContext.get(EventContextKeys.MESSAGE_TARGET)
+            .filter(x -> x instanceof Locatable)
+            .flatMap(x -> (Optional<ServerLocation>) ((Locatable) x).getServerLocation());
     }
 
     /**
@@ -223,14 +222,14 @@ public interface CommandCause {
         }
 
         return Optional.ofNullable(
-                eventContext.get(EventContextKeys.MESSAGE_TARGET)
-                        .filter(x -> x instanceof Entity)
-                        .map(x -> ((Entity) x).getRotation())
-                        .orElseGet(() -> cause.first(Entity.class).map(Entity::getRotation).orElse(null)));
+            eventContext.get(EventContextKeys.MESSAGE_TARGET)
+                .filter(x -> x instanceof Entity)
+                .map(x -> ((Entity) x).getRotation())
+                .orElseGet(() -> cause.first(Entity.class).map(Entity::getRotation).orElse(null)));
     }
 
     /**
-     * Returns the target block {@link Location}, if applicable.
+     * Returns the target block {@link ServerLocation}, if applicable.
      *
      * <p>The following are checked in order:
      *
@@ -243,7 +242,7 @@ public interface CommandCause {
      */
     default Optional<BlockSnapshot> getTargetBlock() {
         return Optional.ofNullable(getCause().getContext().get(EventContextKeys.BLOCK_TARGET)
-                .orElseGet(() -> getCause().first(BlockSnapshot.class).orElse(null)));
+            .orElseGet(() -> getCause().first(BlockSnapshot.class).orElse(null)));
     }
 
     /**

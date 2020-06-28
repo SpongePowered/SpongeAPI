@@ -40,7 +40,7 @@ import org.spongepowered.api.registry.GameRegistry;
 import org.spongepowered.api.scheduler.Scheduler;
 import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.util.metric.MetricsConfigManager;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.TeleportHelper;
 
 /**
@@ -169,7 +169,7 @@ public final class Sponge {
     }
 
     /**
-     * Gets the {@link TeleportHelper}, used to find safe {@link Location}s.
+     * Gets the {@link TeleportHelper}, used to find safe {@link ServerLocation}s.
      *
      * @return The teleport helper
      */

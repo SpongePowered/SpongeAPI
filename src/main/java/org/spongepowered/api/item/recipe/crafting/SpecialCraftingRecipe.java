@@ -30,7 +30,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.crafting.CraftingInventory;
 import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.ResettableBuilder;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.server.ServerWorld;
 
 import java.util.List;
 import java.util.function.BiPredicate;
@@ -65,7 +65,7 @@ public interface SpecialCraftingRecipe extends CraftingRecipe {
          *
          * @return This builder, for chaining
          */
-        SpecialCraftingRecipe.Builder.ResultStep matching(BiPredicate<CraftingInventory, World> biPredicate);
+        SpecialCraftingRecipe.Builder.ResultStep matching(BiPredicate<CraftingInventory, ServerWorld> biPredicate);
 
         /**
          * Sets the recipe matcher and an exemplary shape from another CraftingRecipe.
@@ -76,7 +76,7 @@ public interface SpecialCraftingRecipe extends CraftingRecipe {
          *
          * @return This builder, for chaining
          */
-        SpecialCraftingRecipe.Builder.ResultStep matching(BiPredicate<CraftingInventory, World> biPredicate, CraftingRecipe exemplaryShape);
+        SpecialCraftingRecipe.Builder.ResultStep matching(BiPredicate<CraftingInventory, ServerWorld> biPredicate, CraftingRecipe exemplaryShape);
 
         /**
          * Sets the recipe matcher from another CraftingRecipe

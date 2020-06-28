@@ -32,6 +32,7 @@ import org.spongepowered.api.world.ChunkRegenerateFlag;
 import org.spongepowered.api.world.ChunkRegenerateFlags;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.SerializationBehaviors;
+import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.dimension.DimensionType;
@@ -169,4 +170,12 @@ public interface ServerWorld extends World<ServerWorld>, Identifiable, Interacta
      */
     Optional<Raid> getRaidAt(Vector3i blockPosition);
 
+    /**
+     * Gets the {@link ServerLocation} of the spawn point.
+     *
+     * @return The location
+     */
+    default ServerLocation getSpawnLocation() {
+        return ServerLocation.of(this, this.getProperties().getSpawnPosition());
+    }
 }

@@ -38,7 +38,7 @@ public interface ChangeWorldGameRuleEvent extends Event, Cancellable {
      *
      * @return The world
      */
-    World getWorld();
+    World<?> getWorld();
 
     /**
      * Gets the original value of the GameRule.

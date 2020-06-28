@@ -25,11 +25,15 @@
 package org.spongepowered.api.entity.living.player.server;
 
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 
 public interface ServerPlayer extends Player {
 
     @Override
     ServerWorld getWorld();
+
+    @Override
+    ServerLocation getLocation();
 
 }

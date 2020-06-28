@@ -24,11 +24,10 @@
  */
 package org.spongepowered.api.event.cause.entity.damage.source;
 
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.entity.damage.DamageTypes;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.ServerLocation;
 
 import java.util.function.Supplier;
 
@@ -41,7 +40,7 @@ import java.util.function.Supplier;
  *
  * <p>{@link DamageSource}s that rely on live instances of various objects,
  * including other {@link Entity} instances, or a block at a specific
- * {@link Location} rely on the various other types of {@link DamageSource}s.
+ * {@link ServerLocation} rely on the various other types of {@link DamageSource}s.
  * </p>
  */
 public final class DamageSources {

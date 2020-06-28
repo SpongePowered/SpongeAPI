@@ -26,6 +26,8 @@ package org.spongepowered.api.registry;
 
 public final class DuplicateRegistrationException extends RuntimeException {
 
+    private static final long serialVersionUID = 4102944393632346757L;
+
     public DuplicateRegistrationException(String message) {
         super(message);
     }
