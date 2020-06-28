@@ -24,9 +24,7 @@
  */
 package org.spongepowered.api;
 
-import org.spongepowered.api.entity.living.player.client.RemotePlayer;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.profile.GameProfileManager;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
@@ -239,9 +237,7 @@ public interface Server extends Engine, MessageReceiver {
     /**
      * Gets whether this server is dedicated to being a global server, or
      * whether this server is local to a game client where a {@link Client}
-     * instance may be available. The primary difference will be the types
-     * of {@link Player players} there may exist in the server, whether
-     * they are {@link ServerPlayer server players} or {@link RemotePlayer remote players}.
+     * instance may be available.
      *
      * @return True if this is a dedicated server without a game client
      */

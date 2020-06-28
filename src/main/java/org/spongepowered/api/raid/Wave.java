@@ -33,7 +33,7 @@ import java.util.Optional;
 public interface Wave {
 
     /**
-     * Gets the {@link Raid} this wave is apart of.
+     * Gets the {@link Raid} this wave is a part of.
      *
      * @return The raid
      */
