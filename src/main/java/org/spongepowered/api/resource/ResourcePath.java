@@ -25,8 +25,8 @@
 package org.spongepowered.api.resource;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.plugin.PluginContainer;
 
 import java.util.Collection;
 import java.util.List;

@@ -25,12 +25,12 @@
 package org.spongepowered.api.resource.pack;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.resource.Resource;
 import org.spongepowered.api.resource.ResourcePath;
 import org.spongepowered.api.resource.meta.MetaParseException;
 import org.spongepowered.api.resource.meta.MetaSection;
 import org.spongepowered.api.util.Nameable;
+import org.spongepowered.plugin.PluginContainer;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -65,7 +65,7 @@ public interface Pack extends Nameable, Closeable {
      *
      * @param pluginContainer The plugin
      * @return The supplier to create a new pack
-     * @see PluginContainer#getSource()
+     * @see PluginContainer#getFile()
      */
     static Supplier<Pack> fromPlugin(PluginContainer pluginContainer) {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).fromPlugin(pluginContainer);
