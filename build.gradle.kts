@@ -179,7 +179,7 @@ val projectUrl: String by project
 val projectDescription: String by project
 license {
     (this as ExtensionAware).extra.apply {
-        this["name"] = name
+        this["name"] = "SpongeAPI"
         this["organization"] = organization
         this["url"] = projectUrl
     }
@@ -218,7 +218,7 @@ publishing {
         register("sponge", MavenPublication::class) {
             from(components["java"])
             pom {
-                this.name.set(project.name)
+                this.name.set(project.name.toLowerCase())
                 this.description.set(projectDescription)
                 this.url.set(projectUrl)
 
