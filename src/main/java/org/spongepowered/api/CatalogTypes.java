@@ -63,6 +63,7 @@ import org.spongepowered.api.item.inventory.query.QueryType;
 import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
 import org.spongepowered.api.registry.CatalogRegistry;
 import org.spongepowered.api.registry.GameRegistry;
+import org.spongepowered.api.resource.meta.MetaSection;
 import org.spongepowered.api.resource.pack.PackType;
 import org.spongepowered.api.scoreboard.CollisionRule;
 import org.spongepowered.api.scoreboard.Visibility;
@@ -203,6 +204,8 @@ public final class CatalogTypes {
     public static final Class<ItemType> ITEM_TYPE = ItemType.class;
 
     public static final Class<LlamaType> LLAMA_TYPE = LlamaType.class;
+
+    public static final Class<MetaSection> META_SECTION = MetaSection.class;
 
     public static final Class<MooshroomType> MOOSHROOM_TYPE = MooshroomType.class;
 

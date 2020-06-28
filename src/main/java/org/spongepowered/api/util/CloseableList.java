@@ -26,6 +26,7 @@ package org.spongepowered.api.util;
 
 import java.io.Closeable;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * A list, containing closeable elements. All elements can be closed by calling
@@ -40,4 +41,11 @@ public interface CloseableList<E extends Closeable> extends List<E>, Closeable {
      */
     @Override
     void close();
+
+    @Override
+    default void forEach(Consumer<? super E> action) {
+        try (CloseableList<E> c = this) {
+            List.super.forEach(action);
+        }
+    }
 }

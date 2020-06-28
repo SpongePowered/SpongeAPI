@@ -81,15 +81,16 @@ public interface Resource extends Closeable {
     boolean hasMetadata();
 
     /**
-     * Gets the metadata for this resource.
+     * Gets the specified metadata section for this resource.
      *
+     * @param section The section serializer
      * @return The metadata or {@link Optional#empty() empty} if it doesn't exist.
      * @see MetaSections
      */
-    <T> Optional<T> getMetadata(MetaSection<T> name);
+    <T> Optional<T> getMetadata(MetaSection<T> section);
 
     /**
-     * Creates a new {@link BufferedReader} from this resource's InputStream.
+     * Creates a new {@link BufferedReader} from this resource's {@link InputStream}.
      *
      * @param charset The charset to use, usually utf-8
      * @return The BufferedReader
@@ -126,7 +127,7 @@ public interface Resource extends Closeable {
     DataView readDataView(DataFormat format) throws IOException;
 
     /**
-     * Reads the resource as text and returns a stream of readLines.
+     * Reads the resource as text and returns a stream of lines.
      *
      * <p>Just like {@link BufferedReader#lines()}, the stream will wrap any
      * {@link IOException} thrown in an {@link java.io.UncheckedIOException}.

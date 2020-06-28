@@ -75,6 +75,15 @@ public interface ResourceManager {
      *     }
      * </pre>
      *
+     * <p>You can also use the forEach method, which will automatically close
+     * the list.</p>
+     *
+     * <pre>
+     *     resourceManager.loadAll(path).forEach(res -> {
+     *         InputStream in = res.getInputStream();
+     *     }
+     * </pre>
+     *
      * @param path The path to the resource
      * @return The list of all resources at the path
      * @throws IOException                   If a resource could not be read

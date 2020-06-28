@@ -24,17 +24,18 @@
  */
 package org.spongepowered.api.resource.pack;
 
+import org.spongepowered.api.resource.meta.PackMeta;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Nameable;
 
+/**
+ * Holds informational data about a {@link Pack}. It also functions as a
+ * factory to create a new instance.
+ */
 public interface PackInfo extends Nameable {
 
-    Text getDisplayName(boolean enabled);
-
-    PackVersion getVersion();
-
     /**
-     * Gets the pack associated with this pack info.
+     * Creates the pack associated with this pack info.
      *
      * <p>The returned pack may be a new instance or cached, depending on the
      * implementation.</p>
@@ -42,6 +43,35 @@ public interface PackInfo extends Nameable {
      * @return The pack
      */
     Pack getPack();
+
+    /**
+     * Gets the title of the pack.
+     *
+     * @return The title
+     */
+    Text getTitle();
+
+    /**
+     * Gets the description of the pack.
+     *
+     * @return The description
+     * @see PackMeta#getDescription()
+     */
+    Text getDescription();
+
+    /**
+     * Gets the version compatibility of the pack.
+     *
+     * @return The version compatibility
+     */
+    PackVersion getVersion();
+
+    /**
+     * Gets the priority of this pack, first or last.
+     *
+     * @return The priority
+     */
+    Priority getPriority();
 
     /**
      * Gets whether this pack is forced to be enabled at all times.
@@ -57,13 +87,6 @@ public interface PackInfo extends Nameable {
      * @see #getPriority()
      */
     boolean isLocked();
-
-    /**
-     * Gets the priority of this pack, first or last.
-     *
-     * @return The priority
-     */
-    Priority getPriority();
 
     enum Priority {
         FIRST, LAST
