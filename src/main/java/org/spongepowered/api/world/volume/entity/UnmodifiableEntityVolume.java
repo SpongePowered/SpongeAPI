@@ -26,23 +26,8 @@ package org.spongepowered.api.world.volume.entity;
 
 import org.spongepowered.api.world.volume.UnmodifiableVolume;
 import org.spongepowered.api.world.volume.block.UnmodifiableBlockVolume;
-import org.spongepowered.math.vector.Vector3i;
 
 public interface UnmodifiableEntityVolume<U extends UnmodifiableEntityVolume<U>> extends ReadableEntityVolume, StreamableEntityVolume<U>,
     UnmodifiableVolume, UnmodifiableBlockVolume<U> {
 
-    @SuppressWarnings("unchecked")
-    @Override
-    default U asUnmodifiableEntityVolume() {
-        return (U) this;
-    }
-
-    @SuppressWarnings("unchecked")
-    @Override
-    default U asUnmodifiableBlockVolume() {
-        return (U) this;
-    }
-
-    @Override
-    U getView(Vector3i newMin, Vector3i newMax);
 }

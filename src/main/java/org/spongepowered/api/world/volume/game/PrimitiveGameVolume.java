@@ -37,9 +37,6 @@ import org.spongepowered.math.vector.Vector3i;
  */
 public interface PrimitiveGameVolume extends ReadableBlockVolume, ReadableBlockEntityVolume {
 
-    @Override
-    PrimitiveGameVolume getView(Vector3i newMin, Vector3i newMax);
-
     default int getMaximumLight() {
         return 15;
     }

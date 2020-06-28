@@ -28,8 +28,4 @@ import org.spongepowered.api.world.volume.ImmutableVolume;
 
 public interface ImmutableBlockVolume extends UnmodifiableBlockVolume<ImmutableBlockVolume>, ImmutableVolume {
 
-    @Override
-    default ImmutableBlockVolume asImmutableBlockVolume() {
-        return this;
-    }
 }

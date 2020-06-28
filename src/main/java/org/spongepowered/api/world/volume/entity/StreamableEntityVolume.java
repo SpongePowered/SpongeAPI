@@ -24,10 +24,6 @@
  */
 package org.spongepowered.api.world.volume.entity;
 
-import org.spongepowered.math.vector.Vector3i;
-
 public interface StreamableEntityVolume<E extends StreamableEntityVolume<E>> extends ReadableEntityVolume {
 
-    @Override
-    E getView(Vector3i newMin, Vector3i newMax);
 }

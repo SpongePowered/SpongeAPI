@@ -28,8 +28,4 @@ import org.spongepowered.api.world.volume.ImmutableVolume;
 
 public interface ImmutableBiomeVolume extends UnmodifiableBiomeVolume<ImmutableBiomeVolume>, ImmutableVolume {
 
-    @Override
-    default ImmutableBiomeVolume asImmutableBiomeVolume() {
-        return this;
-    }
 }

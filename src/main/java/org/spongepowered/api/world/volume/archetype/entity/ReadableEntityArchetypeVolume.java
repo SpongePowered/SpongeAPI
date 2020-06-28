@@ -28,7 +28,6 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.world.volume.Volume;
 import org.spongepowered.api.world.volume.entity.MutableEntityVolume;
-import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Collection;
 import java.util.function.Predicate;
@@ -50,6 +49,4 @@ public interface ReadableEntityArchetypeVolume extends Volume {
 
     ImmutableEntityArchetypeVolume asImmutableEntityArchetypeVolume();
 
-    @Override
-    ReadableEntityArchetypeVolume getView(Vector3i newMin, Vector3i newMax);
 }

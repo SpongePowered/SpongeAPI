@@ -25,10 +25,6 @@
 package org.spongepowered.api.world.volume.archetype.entity;
 
 
-import org.spongepowered.math.vector.Vector3i;
-
 public interface StreamableEntityArchetypeVolume<B extends StreamableEntityArchetypeVolume<B>> extends ReadableEntityArchetypeVolume {
 
-    @Override
-    B getView(Vector3i newMin, Vector3i newMax);
 }

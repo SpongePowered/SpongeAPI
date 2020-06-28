@@ -43,7 +43,4 @@ public interface MutableBlockEntityVolume<M extends MutableBlockEntityVolume<M>>
 
     void removeBlockEntity(int x, int y, int z);
 
-    @Override
-    M getView(Vector3i newMin, Vector3i newMax);
-
 }

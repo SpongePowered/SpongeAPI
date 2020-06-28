@@ -33,9 +33,6 @@ import java.util.function.Supplier;
 
 public interface EnvironmentalVolume extends PrimitiveGameVolume, ReadableBiomeVolume {
 
-    @Override
-    EnvironmentalVolume getView(Vector3i newMin, Vector3i newMax);
-
     int getLight(LightType type, int x, int y, int z);
 
     int getLight(Supplier<? extends LightType> type, int x, int y, int z);

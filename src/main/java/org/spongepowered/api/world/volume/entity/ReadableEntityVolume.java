@@ -45,13 +45,6 @@ import javax.annotation.Nullable;
 
 public interface ReadableEntityVolume extends Volume {
 
-    @Override
-    ReadableEntityVolume getView(Vector3i newMin, Vector3i newMax);
-
-    UnmodifiableEntityVolume<?> asUnmodifiableEntityVolume();
-
-    ImmutableEntityVolume asImmutableEntityVolume();
-
     /**
      * Gets the entity whose {@link UUID} matches the provided id, possibly
      * returning no entity if the entity is not loaded or non-existent.

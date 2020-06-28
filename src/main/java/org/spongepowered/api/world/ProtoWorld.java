@@ -58,10 +58,6 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
 
     ProtoChunk<?> getChunk(int cx, int cy, int cz);
 
-    @Override
-    BoundedWorldView<P> getView(Vector3i newMin, Vector3i newMax);
-
-
     /**
      * Gets the seed of this world.
      *

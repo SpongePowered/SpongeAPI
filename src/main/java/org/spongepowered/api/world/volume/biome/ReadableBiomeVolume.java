@@ -55,10 +55,4 @@ public interface ReadableBiomeVolume extends Volume {
      */
     BiomeType getBiome(int x, int y, int z);
 
-    UnmodifiableBiomeVolume<?> asUnmodifiableBiomeVolume();
-
-    ImmutableBiomeVolume asImmutableBiomeVolume();
-
-    @Override
-    ReadableBiomeVolume getView(Vector3i newMin, Vector3i newMax);
 }

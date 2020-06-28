@@ -28,8 +28,4 @@ import org.spongepowered.api.world.volume.ImmutableVolume;
 
 public interface ImmutableEntityVolume extends UnmodifiableEntityVolume<ImmutableEntityVolume>, ImmutableVolume {
 
-    @Override
-    default ImmutableEntityVolume asImmutableEntityVolume() {
-        return this;
-    }
 }

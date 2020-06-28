@@ -65,16 +65,4 @@ public interface Volume {
 
     boolean isAreaAvailable(int x, int y, int z);
 
-    /**
-     * Returns a new volume that is the same or smaller than the current volume.
-     * This does not copy the biomes, it only provides a new view of the
-     * storage.
-     *
-     * @param newMin The new minimum coordinates in this volume
-     * @param newMax The new maximum coordinates in this volume
-     * @return The new volume with the new bounds
-     * @throws PositionOutOfBoundsException If the new minimum and maximum are
-     *         outside the current volume
-     */
-    Volume getView(Vector3i newMin, Vector3i newMax);
 }

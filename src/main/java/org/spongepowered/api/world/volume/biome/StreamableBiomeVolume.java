@@ -24,10 +24,6 @@
  */
 package org.spongepowered.api.world.volume.biome;
 
-import org.spongepowered.math.vector.Vector3i;
-
 public interface StreamableBiomeVolume<B extends StreamableBiomeVolume<B>> extends ReadableBiomeVolume {
 
-    @Override
-    B getView(Vector3i newMin, Vector3i newMax);
 }

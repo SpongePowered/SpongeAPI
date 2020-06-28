@@ -85,6 +85,4 @@ public interface ReadableBlockEntityVolume extends ReadableBlockVolume, Volume {
      */
     Optional<? extends BlockEntity> getBlockEntity(int x, int y, int z);
 
-    @Override
-    ReadableBlockEntityVolume getView(Vector3i newMin, Vector3i newMax);
 }

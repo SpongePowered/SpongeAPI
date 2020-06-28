@@ -57,6 +57,4 @@ public interface MutableBiomeVolume<M extends MutableBiomeVolume<M>> extends Str
      */
     boolean setBiome(int x, int y, int z, BiomeType biome);
 
-    @Override
-    M getView(Vector3i newMin, Vector3i newMax);
 }

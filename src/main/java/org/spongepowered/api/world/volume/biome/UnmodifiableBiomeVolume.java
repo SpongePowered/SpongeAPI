@@ -36,9 +36,4 @@ import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
  */
 public interface UnmodifiableBiomeVolume<U extends UnmodifiableBiomeVolume<U>> extends ReadableBiomeVolume, StreamableBiomeVolume<U>, UnmodifiableVolume {
 
-    @SuppressWarnings("unchecked")
-    @Override
-    default U asUnmodifiableBiomeVolume() {
-        return (U) this;
-    }
 }

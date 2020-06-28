@@ -24,11 +24,6 @@
  */
 package org.spongepowered.api.world.volume;
 
-import org.spongepowered.math.vector.Vector3i;
-
 public interface MutableVolume extends Volume {
-
-    @Override
-    MutableVolume getView(Vector3i newMin, Vector3i newMax);
 
 }

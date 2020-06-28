@@ -35,9 +35,4 @@ import org.spongepowered.api.world.volume.UnmodifiableVolume;
  */
 public interface UnmodifiableBlockVolume<U extends UnmodifiableBlockVolume<U>> extends ReadableBlockVolume, StreamableBlockVolume<U>, UnmodifiableVolume {
 
-    @SuppressWarnings("unchecked")
-    @Override
-    default U asUnmodifiableBlockVolume() {
-        return (U) this;
-    }
 }

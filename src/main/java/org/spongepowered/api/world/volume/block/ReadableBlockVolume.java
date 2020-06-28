@@ -46,10 +46,6 @@ public interface ReadableBlockVolume extends Volume, LocationBaseDataHolder {
         return getFluid(vector3i.getX(), vector3i.getY(), vector3i.getZ());
     }
 
-    UnmodifiableBlockVolume<?> asUnmodifiableBlockVolume();
-
-    ImmutableBlockVolume asImmutableBlockVolume();
-
     /**
      * Get the y value of the highest block that sunlight can reach in the given
      * column.

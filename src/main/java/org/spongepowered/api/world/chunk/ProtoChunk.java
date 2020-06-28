@@ -113,9 +113,6 @@ public interface ProtoChunk<P extends ProtoChunk<P>> extends
      */
     ProtoWorld<?> getWorld();
 
-    @Override
-    P getView(Vector3i newMin, Vector3i newMax);
-
     /**
      * Gets the regional difficulty factor for this chunk. In vanilla, it is
      * dependent on the playtime of the world, inhabited time of the chunk, the
