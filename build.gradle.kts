@@ -4,6 +4,7 @@ plugins {
     id("org.spongepowered.event-impl-gen") version "5.7.0"
     idea
     eclipse
+    id("net.minecrell.licenser") version "0.4.1"
 }
 
 repositories {
@@ -133,6 +134,11 @@ tasks {
         group = "build"
         from(javadoc)
     }
+
+    val sourceJar by registering(Jar::class) {
+        group = "build"
+        from(sourceSets["main"].allJava)
+    }
 //
 //    val shadowJar by registering(ShadowJar::class) {
 //        archiveClassifier.set("shaded")
@@ -161,6 +167,20 @@ tasks {
 //
 //        }
 //    }
+}
+
+val organization: String by project
+val url: String by project
+license {
+    (this as ExtensionAware).extra.apply {
+        this["name"] = name
+        this["organization"] = organization
+        this["url"] = url
+    }
+    header = file("HEADER.txt")
+
+    include("**/*.java")
+    newLine = false
 }
 
 publishing {
