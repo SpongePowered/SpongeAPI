@@ -4,7 +4,6 @@ import org.spongepowered.api.service.ban.BanService;
 import org.spongepowered.api.service.economy.EconomyService;
 import org.spongepowered.api.service.pagination.PaginationService;
 import org.spongepowered.api.service.permission.PermissionService;
-import org.spongepowered.api.service.rcon.RconService;
 import org.spongepowered.api.service.sql.SqlService;
 import org.spongepowered.api.service.user.UserStorageService;
 import org.spongepowered.api.service.whitelist.WhitelistService;
@@ -32,7 +31,7 @@ public interface ServiceProvider {
      * @param <T> The type of service
      * @return The registration, if one exists
      */
-    <T> Optional<ServiceRegistration<T>> registration(Class<T> serviceClass);
+    <T> Optional<ServiceRegistration<T>> getRegistration(Class<T> serviceClass);
 
     /**
      * Retrieves the {@link BanService}.

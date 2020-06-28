@@ -39,6 +39,7 @@ import org.spongepowered.api.network.ChannelRegistrar;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.registry.GameRegistry;
 import org.spongepowered.api.scheduler.Scheduler;
+import org.spongepowered.api.service.ServiceProvider;
 import org.spongepowered.api.util.metric.MetricsConfigManager;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.TeleportHelper;
@@ -47,7 +48,6 @@ import org.spongepowered.api.world.TeleportHelper;
  * A static all access class granting static access to various systems
  * for the API.
  */
-@SuppressWarnings("NullableProblems")
 public final class Sponge {
 
     @Inject private static Game game;
@@ -64,7 +64,7 @@ public final class Sponge {
     @Inject private static MetricsConfigManager metricsConfigManager;
     @Inject private static CommandManager commandManager;
 
-    private static <T> T check(@Nullable T instance) {
+    private static <T> T check(@Nullable final T instance) {
         checkState(instance != null, "Sponge has not been initialized!");
         return instance;
     }
@@ -237,4 +237,14 @@ public final class Sponge {
     public static CommandManager getCommandManager() {
         return check(commandManager);
     }
+
+    /**
+     * Gets the {@link ServiceProvider} for providing services.
+     *
+     * @return The service provider.
+     */
+    public static ServiceProvider getServiceProvider() {
+        return getGame().getServiceProvider();
+    }
+
 }

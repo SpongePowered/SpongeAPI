@@ -36,6 +36,7 @@ import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.registry.GameRegistry;
 import org.spongepowered.api.scheduler.Scheduler;
 import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.service.ServiceProvider;
 import org.spongepowered.api.world.TeleportHelper;
 
 import java.nio.file.Path;
@@ -206,4 +207,17 @@ public interface Game {
     default CauseStackManager getCauseStackManager() {
         return Sponge.getCauseStackManager();
     }
+
+    /**
+     * Gets the {@link ServiceProvider}, used to provide services that plugins
+     * may provide.
+     *
+     * <p>The provider will not be available during plugin construction and will
+     * throw an {@link IllegalStateException} if there is an attempt to access
+     * this before the provider is ready.</p>
+     *
+     * @return The service manager
+     */
+    ServiceProvider getServiceProvider();
+
 }
