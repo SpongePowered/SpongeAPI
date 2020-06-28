@@ -139,6 +139,11 @@ tasks {
         group = "build"
         from(sourceSets["main"].allJava)
     }
+
+    artifacts {
+        archives(sourceJar)
+        archives(javadocJar)
+    }
 //
 //    val shadowJar by registering(ShadowJar::class) {
 //        archiveClassifier.set("shaded")
@@ -170,12 +175,13 @@ tasks {
 }
 
 val organization: String by project
-val url: String by project
+val projectUrl: String by project
+val projectDescription: String by project
 license {
     (this as ExtensionAware).extra.apply {
         this["name"] = name
         this["organization"] = organization
-        this["url"] = url
+        this["url"] = projectUrl
     }
     header = file("HEADER.txt")
 
@@ -205,6 +211,28 @@ publishing {
             credentials {
                 username = spongeUsername ?: System.getenv("ORG_GRADLE_PROJECT_spongeUsername")
                 password = spongePassword ?: System.getenv("ORG_GRADLE_PROJECT_spongePassword")
+            }
+        }
+    }
+    publications {
+        register("sponge", MavenPublication::class) {
+            from(components["java"])
+            pom {
+                this.name.set(project.name)
+                this.description.set(projectDescription)
+                this.url.set(projectUrl)
+
+                licenses {
+                    license {
+                        this.name.set("MIT")
+                        this.url.set("https://opensource.org/licenses/MIT")
+                    }
+                }
+                scm {
+                    connection.set("scm:git:git://github.com/SpongePowered/SpongeAPI.git")
+                    developerConnection.set("scm:git:ssh://github.com/SpongePowered/SpongeAPI.git")
+                    this.url.set(projectUrl)
+                }
             }
         }
     }
