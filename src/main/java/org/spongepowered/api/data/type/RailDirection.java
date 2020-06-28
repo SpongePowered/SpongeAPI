@@ -49,20 +49,17 @@ public interface RailDirection extends CatalogType, Cycleable<RailDirection> {
         checkNotNull(firstDirection, "firstDirection");
         checkNotNull(secondDirection, "secondDirection");
 
-        Direction cardinalFirstDirection = Direction.getClosest(firstDirection.asOffset(), Direction.Division.CARDINAL);
-        Direction cardinalSecondDirection = Direction.getClosest(secondDirection.asOffset(), Direction.Division.CARDINAL);
-
-        if (cardinalFirstDirection.equals(cardinalSecondDirection)) {
-            throw new IllegalArgumentException("The directions should be different!");
+        if (!firstDirection.isCardinal() || !secondDirection.isCardinal()) {
+            throw new IllegalArgumentException("The given directions isn't cardinal!");
         }
 
         for (RailDirection currentRailDirection: Sponge.getRegistry().getAllForMinecraft(RailDirection.class)) {
-            if (currentRailDirection.isFacing(cardinalFirstDirection) && currentRailDirection.isFacing(cardinalSecondDirection)) {
+            if (currentRailDirection.isFacing(firstDirection) && currentRailDirection.isFacing(secondDirection)) {
                 return currentRailDirection;
             }
         }
 
-        throw new AssertionError();
+        throw new IllegalArgumentException();
     }
 
     /**
@@ -74,7 +71,9 @@ public interface RailDirection extends CatalogType, Cycleable<RailDirection> {
     static RailDirection fromAscendingDirection(final Direction ascendingDirection) {
         checkNotNull(ascendingDirection, "ascendingDirection");
 
-        Direction cardinalAscendingDirection = Direction.getClosest(ascendingDirection.asOffset(), Direction.Division.CARDINAL);
+        if (!ascendingDirection.isCardinal()) {
+            throw new IllegalArgumentException("The given ascending direction isn't cardinal!");
+        }
 
         for (RailDirection currentRailDirection: Sponge.getRegistry().getAllForMinecraft(RailDirection.class)) {
             Optional<Direction> currentAscendingDirectionBox = currentRailDirection.getAscendingDirection();
@@ -82,13 +81,13 @@ public interface RailDirection extends CatalogType, Cycleable<RailDirection> {
             if (currentAscendingDirectionBox.isPresent()) {
                 Direction currentAscendingDirection = currentAscendingDirectionBox.get();
 
-                if (currentAscendingDirection.equals(cardinalAscendingDirection)) {
+                if (currentAscendingDirection.equals(ascendingDirection)) {
                     return currentRailDirection;
                 }
             }
         }
 
-        throw new AssertionError();
+        throw new IllegalArgumentException();
     }
 
     /**
@@ -115,7 +114,7 @@ public interface RailDirection extends CatalogType, Cycleable<RailDirection> {
     Direction getSecondDirection();
 
     /**
-     * Checks if the rail direction is facing to the given direction.
+     * Checks if the rail direction is facing the given direction.
      *
      * <p>Any {@link RailDirection} always has two facing directions.</p>
      *
