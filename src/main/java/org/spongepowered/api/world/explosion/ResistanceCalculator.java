@@ -28,17 +28,23 @@ import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockState;
 
 /**
- * A Functional Interface for the fetching of a Block's explosion resistance during an explosion
+ * Calculates a Block's resistance to a {@link Explosion}.
  */
 @FunctionalInterface
 public interface ResistanceCalculator {
+
     /**
-     * A blueprint for a lambda that takes three variables; BlockState, Vector3i, and Explosion and returns a float.
+     * Sets the explosion resistance for a block at a given location during an {@link Explosion}.
      *
-     * @param blockState    The state of the block
-     * @param blockPosition The position of the block in the World
-     * @param explosion     The explosion affecting the block
+     * <p>For a list of default Minecraft values see https://minecraft.gamepedia.com/Explosion#Blast_resistance
+     * Returning a negative value is not advised as it will increase the range of the explosion.</p>
+     *
+     * @param blockState        The state of the block
+     * @param blockPosition     The position of the block in the World
+     * @param currentResistance The current resistance of the block
+     * @param explosion         The explosion affecting the block
      * @return The explosion resistance of the block
      */
-    float calculateResistance(final BlockState blockState, final Vector3i blockPosition, final Explosion explosion);
+    float calculateResistance(final BlockState blockState, final Vector3i blockPosition, final float currentResistance, final Explosion explosion);
+
 }

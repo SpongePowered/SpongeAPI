@@ -132,8 +132,9 @@ public interface Explosion extends Locatable {
 
     /**
      * Gets the {@link ResistanceCalculator} of the Explosion.
+     * Optional#empty() indicates default behaviour.
      *
-     * @return The ResistanceCalculator or null if not supported by the implementation
+     * @return The ResistanceCalculator
      */
     default Optional<ResistanceCalculator> getResistanceCalculator() {
         return Optional.empty();
@@ -244,9 +245,8 @@ public interface Explosion extends Locatable {
 
         /**
          * Sets the method by which the explosion resistance of an affected block can be obtained or calculated.
-         * Expects a lambda in the form of (BlockState, Vector3i, Explosion) that returns a float.
          *
-         * @param resistanceCalculator The lambda to use
+         * @param resistanceCalculator The calculator
          * @return This builder, for chaining
          */
         default Builder resistanceCalculator(ResistanceCalculator resistanceCalculator) {
