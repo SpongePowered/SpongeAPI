@@ -25,7 +25,6 @@
 package org.spongepowered.api.world.explosion;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.explosive.Explosive;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.Locatable;
@@ -133,6 +132,15 @@ public interface Explosion extends Locatable {
     }
 
     /**
+     * Gets the {@link ResistanceCalculator} of the Explosion.
+     *
+     * @return The ResistanceCalculator or null if not supported by the implementation
+     */
+    default Optional<ResistanceCalculator> getResistanceCalculator() {
+        return Optional.empty();
+    }
+
+    /**
      * A builder for {@link Explosion}.
      */
     interface Builder extends ResettableBuilder<Explosion, Builder> {
@@ -232,6 +240,17 @@ public interface Explosion extends Locatable {
          * @return This builder, for chaining
          */
         default Builder knockback(double knockback) {
+            return this;
+        }
+
+        /**
+         * Sets the method by which the explosion resistance of an affected block can be obtained or calculated.
+         * Expects a lambda in the form of (BlockState, Vector3i, Explosion) that returns a float.
+         *
+         * @param resistanceCalculator The lambda to use
+         * @return This builder, for chaining
+         */
+        default Builder resistanceCalculator(ResistanceCalculator resistanceCalculator) {
             return this;
         }
 
