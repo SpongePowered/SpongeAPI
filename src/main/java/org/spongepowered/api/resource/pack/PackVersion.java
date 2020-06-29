@@ -24,21 +24,20 @@
  */
 package org.spongepowered.api.resource.pack;
 
-import org.spongepowered.api.Sponge;
+import org.spongepowered.api.NamedCatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-public interface PackVersion {
+/**
+ * A minimal version identifier. The only indication of the version is whether
+ * it is current, newer or older.
+ */
+@CatalogedBy(PackVersions.class)
+public interface PackVersion extends NamedCatalogType {
 
-    boolean isOlder();
-
-    boolean isCurrent();
-
-    boolean isNewer();
-
-    static PackVersion of(int version) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).getCompatibility(version);
-    }
-
-    interface Factory {
-        PackVersion getCompatibility(int version);
-    }
+    /**
+     * Gets whether this version is {@link PackVersions#COMPATIBLE compatible}.
+     *
+     * @return True if is compatible, false if not
+     */
+    boolean isCompatible();
 }
