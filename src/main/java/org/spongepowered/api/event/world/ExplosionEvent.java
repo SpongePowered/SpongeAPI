@@ -24,14 +24,18 @@
  */
 package org.spongepowered.api.event.world;
 
+import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.entity.AffectEntityEvent;
+import org.spongepowered.api.util.Tuple;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -89,4 +93,19 @@ public interface ExplosionEvent extends Event {
      * updated and/or changed.
      */
     interface Post extends ExplosionEvent, ChangeBlockEvent.Post {}
+
+    /**
+     * An event that is fired when the Explosion fetches the explosion resistance of a block.
+     * Provides the world, block position, block state, and default and current explosion resistance.
+     */
+    interface BlockResistance extends ExplosionEvent, TargetWorldEvent {
+
+        /**
+         * Gets the block positions that will potentially be effected as Vector3i mapped to a Pair containing the BlockState and
+         * explosion resistance of the block located at that position.
+         *
+         * @return The blocks that the explosion may effect
+         */
+        HashMap<Vector3i, Tuple<BlockState, Float>> getBlocks();
+    }
 }
