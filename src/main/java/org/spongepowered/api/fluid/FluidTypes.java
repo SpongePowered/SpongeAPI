@@ -31,6 +31,11 @@ import java.util.function.Supplier;
 public final class FluidTypes {
 
     // SORTFIELDS:ON
+    /**
+     * Represents the absence of fluid.
+     */
+    public static final Supplier<FluidType> EMPTY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FluidType.class, "EMPTY");
+
     public static final Supplier<FluidType> WATER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FluidType.class, "WATER");
 
     public static final Supplier<FluidType> LAVA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FluidType.class, "LAVA");
