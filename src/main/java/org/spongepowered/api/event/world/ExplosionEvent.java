@@ -88,5 +88,6 @@ public interface ExplosionEvent extends Event {
      * affected blocks) will be included. This is where the block changes can be
      * updated and/or changed.
      */
-    interface Post extends ExplosionEvent, ChangeBlockEvent.Post {}
+    interface Post extends ExplosionEvent, ChangeBlockEvent.Post {
+    }
 }

@@ -27,19 +27,18 @@ package org.spongepowered.api.world.explosion;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockState;
 
-@FunctionalInterface
 /**
  * A Functional Interface for the fetching of a Block's explosion resistance during an explosion
  */
+@FunctionalInterface
 public interface ResistanceCalculator {
     /**
-     * A blueprint for a lambda that takes the
+     * A blueprint for a lambda that takes three variables; BlockState, Vector3i, and Explosion and returns a float.
      *
-     * @param blockState
-     * @param blockPosition
-     * @param explosion
-     *
-     * @return
+     * @param blockState    The state of the block
+     * @param blockPosition The position of the block in the World
+     * @param explosion     The explosion affecting the block
+     * @return The explosion resistance of the block
      */
     float calculateResistance(final BlockState blockState, final Vector3i blockPosition, final Explosion explosion);
 }
