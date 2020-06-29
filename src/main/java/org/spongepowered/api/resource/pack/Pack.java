@@ -44,9 +44,11 @@ import java.util.function.Supplier;
 
 /**
  * A resource pack or data pack can contain several {@link Resource resources}.
- * A pack con contain both assets and data.
+ * A pack can contain both assets and data.
  *
- * @see <a href=http://minecraft.gamepedia.com/Resource_pack#Contents>Minecraft Wiki/Resource Packs</a>
+ * @see <a href=http://minecraft.gamepedia.com/Resource_pack#Contents>
+ * Minecraft Wiki/Resource Packs
+ * </a>
  */
 public interface Pack extends Nameable, Closeable {
 
@@ -119,7 +121,8 @@ public interface Pack extends Nameable, Closeable {
     /**
      * Gets the metadata of this pack. The {@link MetaSection} deserializes a
      * section of the pack.mcmeta file in the pack root. If the pack.mcmeta
-     * does not contain the query defined in the section, {@link Optional#empty()} is returned.
+     * does not contain the query defined in the section,
+     * {@link Optional#empty()} is returned.
      *
      * @param section The name metadata section type
      * @return The metadata if it exists

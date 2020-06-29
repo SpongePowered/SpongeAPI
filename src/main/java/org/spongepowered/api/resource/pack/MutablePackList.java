@@ -24,7 +24,15 @@
  */
 package org.spongepowered.api.resource.pack;
 
+/**
+ * A {@link PackList} which can have {@link PackDiscoverer}s added to it.
+ */
 public interface MutablePackList extends PackList {
 
+    /**
+     * Adds a {@link PackDiscoverer} to the list.
+     *
+     * @param discoverer The discoverer
+     */
     void addPackDiscoverer(PackDiscoverer discoverer);
 }

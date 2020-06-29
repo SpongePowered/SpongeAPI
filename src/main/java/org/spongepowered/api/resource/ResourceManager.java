@@ -28,6 +28,7 @@ import org.spongepowered.api.resource.pack.Pack;
 import org.spongepowered.api.util.CloseableList;
 
 import java.io.Closeable;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.function.Predicate;
@@ -44,7 +45,9 @@ public interface ResourceManager {
      * Loads the {@link Resource resource} at the given path, or throws an
      * exception if it doesn't exist.
      *
-     * <p>Resource implements {@link Closeable}, so remember to close it. Example:</p>
+     * <p>Resource implements {@link Closeable}, so remember to close it.</p>
+     *
+     * <p>Example:</p>
      *
      * <pre>
      *     try (Resource res = resourceManager.load(path)) {
@@ -86,8 +89,8 @@ public interface ResourceManager {
      *
      * @param path The path to the resource
      * @return The list of all resources at the path
-     * @throws IOException                   If a resource could not be read
-     * @throws java.io.FileNotFoundException If there are no resources at the path
+     * @throws IOException           If a resource could not be read
+     * @throws FileNotFoundException If there are no resources at the path
      */
     CloseableList<Resource> loadAll(ResourcePath path) throws IOException;
 

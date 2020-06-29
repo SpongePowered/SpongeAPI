@@ -27,7 +27,7 @@ package org.spongepowered.api.resource.meta;
 import org.spongepowered.api.text.Text;
 
 /**
- * Metadata for a pack. It contains description and a pack format.
+ * Metadata for a pack. It contains the description and pack format.
  */
 public interface PackMeta {
 

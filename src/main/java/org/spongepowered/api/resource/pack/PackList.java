@@ -27,14 +27,41 @@ package org.spongepowered.api.resource.pack;
 import java.util.Collection;
 import java.util.Optional;
 
+/**
+ * The pack list keeps track of all the known {@link PackInfo}s and their
+ * status.
+ */
 public interface PackList {
 
+    /**
+     * Gets the collection of all the known {@link PackInfo}s. The result is
+     * immutable. To add more packs, register a {@link PackDiscoverer}.
+     *
+     * @return All the packs
+     */
     Collection<PackInfo> all();
 
+    /**
+     * Gets the collection of {@link PackInfo}s which are not enabled.
+     *
+     * @return The disabled packs
+     */
     Collection<PackInfo> disabled();
 
+    /**
+     * Gets the collection of {@link PackInfo}s which are enabled.
+     *
+     * @return The enabled packs
+     */
     Collection<PackInfo> enabled();
 
+    /**
+     * Gets a {@link PackInfo} with the given name. If none exists,
+     * {@link Optional#empty()} is returned.
+     *
+     * @param name The name of the pack
+     * @return The pack info
+     */
     Optional<PackInfo> get(String name);
 
 }

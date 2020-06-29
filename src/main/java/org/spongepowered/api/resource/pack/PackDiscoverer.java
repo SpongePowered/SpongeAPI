@@ -28,8 +28,17 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+/**
+ * A pack discoverer will populate the {@link PackList} with {@link PackInfo}s
+ * and provide it a supplier to create a new {@link Pack}.
+ */
 public interface PackDiscoverer {
 
+    /**
+     * Populates the {@link PackList} with discovered {@link Pack}s.
+     *
+     * @param packInfos A map containing all the packs
+     */
     void populate(Map<String, PackInfo> packInfos, PackInfoFactory factory);
 
     @FunctionalInterface

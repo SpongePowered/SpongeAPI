@@ -42,8 +42,9 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
- * A resource can represent any kind of loaded data. It can be a file on the filesystem, a network location, or
- * even generated at runtime. Use {@link #getInputStream()} to load the data held by a resource.
+ * A resource can represent any kind of loaded data. It can be a file on the
+ * filesystem, a network location, or even generated at runtime. Use
+ * {@link #getInputStream()} to load the data held by a resource.
  */
 public interface Resource extends Closeable {
 
@@ -81,16 +82,18 @@ public interface Resource extends Closeable {
     boolean hasMetadata();
 
     /**
-     * Gets the specified metadata section for this resource.
+     * Gets the specified metadata section for this resource or
+     * {@link Optional#empty()} if it has no metadata.
      *
      * @param section The section serializer
-     * @return The metadata or {@link Optional#empty() empty} if it doesn't exist.
+     * @return The metadata or empty if it doesn't exist
      * @see MetaSections
      */
     <T> Optional<T> getMetadata(MetaSection<T> section);
 
     /**
-     * Creates a new {@link BufferedReader} from this resource's {@link InputStream}.
+     * Creates a new {@link BufferedReader} from this resource's
+     * {@link InputStream}.
      *
      * @param charset The charset to use, usually utf-8
      * @return The BufferedReader

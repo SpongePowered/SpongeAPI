@@ -34,12 +34,14 @@ import java.util.concurrent.Executor;
 /**
  * A low level async reload listener.
  *
- * <p>There are two stages when reloading resources. The first is done asynchronously, so keep
- * that in mind when interacting with game objects. The second is done synchronously on the game thread. This stage will
- * not execute until all listeners have completed their first stage.</p>
+ * <p>There are two stages when reloading resources. The first is done
+ * asynchronously, so keep that in mind when interacting with game objects. The
+ * second is done synchronously on the game thread. This stage will not execute
+ * until all listeners have completed their first stage.</p>
  *
- * <p>In most circumstances, you should prefer to create a more specific use-case instance using the factory instead of
- * implementing this interface directly.</p>
+ * <p>In most circumstances, you should prefer to create a more specific
+ * use-case instance using the factory instead of implementing this interface
+ * directly.</p>
  *
  * <p>Example usage:</p>
  *
@@ -96,7 +98,8 @@ public interface ResourceReloadListener {
 
     interface Factory {
         /**
-         * Creates a simple reload listener that reloads resources on the main thread.
+         * Creates a simple reload listener that reloads resources on the game
+         * thread.
          *
          * @param listener The listener implementation
          * @return The listener
@@ -104,8 +107,8 @@ public interface ResourceReloadListener {
         ResourceReloadListener simple(SimpleReloadListener listener);
 
         /**
-         * Creates a prepared reload listener that loads resources in the work thread and apply them in the main
-         * thread.
+         * Creates a prepared reload listener that loads resources in the work
+         * thread and apply them in the game thread.
          *
          * @param listener The listener implementation
          * @param <T>      The type of resource to be prepared
@@ -114,7 +117,8 @@ public interface ResourceReloadListener {
         <T> ResourceReloadListener prepared(PreparedReloadListener<T> listener);
 
         /**
-         * Creates a data tree reload listener that loads every json file in a folder from each namespace.
+         * Creates a data tree reload listener that loads every json file in a
+         * folder from each namespace.
          *
          * @param path     The path of the folder to load
          * @param listener The listener implementation

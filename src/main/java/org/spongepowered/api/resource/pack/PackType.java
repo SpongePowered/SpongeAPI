@@ -24,10 +24,14 @@
  */
 package org.spongepowered.api.resource.pack;
 
-import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.NamedCatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
+/**
+ * A pack type specifies the kind of resource a pack should load. i.e. client
+ * resources or server data.
+ */
 @CatalogedBy(PackTypes.class)
-public interface PackType extends CatalogType {
+public interface PackType extends NamedCatalogType {
 
 }
