@@ -34,10 +34,13 @@ import org.spongepowered.api.block.BlockState;
 public interface ResistanceCalculator {
 
     /**
-     * Sets the explosion resistance for a block at a given location during an {@link Explosion}.
+     * Sets the explosion resistance for a block at a given location
+     * during an {@link Explosion}.
      *
-     * <p>For a list of default Minecraft values see https://minecraft.gamepedia.com/Explosion#Blast_resistance
-     * Returning a negative value is not advised as it will increase the range of the explosion.</p>
+     * <p>For a list of default Minecraft values see
+     * https://minecraft.gamepedia.com/Explosion#Blast_resistance
+     * Returning a negative value is not advised as it will increase
+     * the range of the explosion.</p>
      *
      * @param blockState        The state of the block
      * @param blockPosition     The position of the block in the World

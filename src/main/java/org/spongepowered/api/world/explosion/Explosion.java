@@ -31,8 +31,9 @@ import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
-import javax.annotation.Nullable;
 import java.util.Optional;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents an explosion in a {@link World}.
@@ -104,8 +105,8 @@ public interface Explosion extends Locatable {
      *
      * <p>This value indicates how close to being symmetrical the explosion is.
      * A value of zero indicates a completely symmetrical blast (in all three
-     * dimensions). A larger value indicates a lower likelihood of symmetry. A
-     * value of one indicates the platform default.</p>
+     * dimensions). A larger value indicates a lower likelihood of symmetry.
+     * A value of one indicates the platform default.</p>
      *
      * <p>Note, this is a hint to the implementation. Implementations may not
      * provide the means to produce semi-random form explosions.</p>
@@ -120,8 +121,8 @@ public interface Explosion extends Locatable {
      * Gets the relative strength of the knockback applied to nearby
      * objects that can be knocked back.
      *
-     * <p>Note that the default behavior and strength is not defined here. A
-     * return value of 1 simply indicates the default behavior which is
+     * <p>Note that the default behavior and strength is not defined here.
+     * A return value of 1 simply indicates the default behavior which is
      * implementation dependent.</p>
      *
      * @return The multiple by which the knockback of entities will be changed
@@ -216,11 +217,11 @@ public interface Explosion extends Locatable {
          *
          * <p>This value indicates how close to being symmetrical the explosion is.
          * A value of zero indicates a completely symmetrical blast (in all three
-         * dimensions). A larger value indicates a lower likelihood of symmetry. A
-         * value of one indicates the platform default.</p>
+         * dimensions). A larger value indicates a lower likelihood of symmetry.
+         * A value of one indicates the platform default.</p>
          *
-         * <p>Note, this is a hint to the implementation. Implementations may not
-         * provide the means to produce semi-random form explosions.</p>
+         * <p>Note, this is a hint to the implementation. Implementations might
+         * not provide the means to produce semi-random form explosions.</p>
          *
          * @return This builder, for chaining
          */
@@ -232,8 +233,8 @@ public interface Explosion extends Locatable {
          * Sets the relative strength of the knockback applied to nearby
          * objects that can be knocked back.
          *
-         * <p>Note that the default behavior and strength is not defined here. A
-         * return value of 1 simply indicates the default behavior which is
+         * <p>Note that the default behavior and strength is not defined here.
+         * A return value of 1 simply indicates the default behavior which is
          * implementation dependent.</p>
          *
          * @param knockback The knockback multiple
@@ -244,7 +245,8 @@ public interface Explosion extends Locatable {
         }
 
         /**
-         * Sets the method by which the explosion resistance of an affected block can be obtained or calculated.
+         * Sets the method by which the explosion resistance of an affected
+         * block can be obtained or calculated.
          *
          * @param resistanceCalculator The calculator
          * @return This builder, for chaining
