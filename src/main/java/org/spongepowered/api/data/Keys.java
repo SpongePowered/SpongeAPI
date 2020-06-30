@@ -218,6 +218,7 @@ import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
+import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.weather.Weather;
 import org.spongepowered.api.world.weather.Weathers;
 import org.spongepowered.math.vector.Vector2i;
@@ -1257,7 +1258,7 @@ public final class Keys {
      * Whether an entity is frightened.
      *
      * <p>In vanilla, {@link Panda}s that have a {@link Panda#knownGene()}
-     * of {@link PandaGenes#WORRIED} and are in a {@link World} whose {@link Weather} is currently a
+     * of {@link PandaGenes#WORRIED} and are in a {@link ServerWorld world} whose {@link Weather} is currently a
      * {@link Weathers#THUNDER_STORM} are considered "frightened".</p>
      */
     public static final Supplier<Key<Value<Boolean>>> IS_FRIGHTENED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_FRIGHTENED");

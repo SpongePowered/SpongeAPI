@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.sound;
 
+import org.spongepowered.api.Server;
 import org.spongepowered.api.block.entity.Jukebox;
 import org.spongepowered.api.data.type.InstrumentType;
 import org.spongepowered.api.data.type.NotePitch;
@@ -31,7 +32,7 @@ import org.spongepowered.api.effect.sound.SoundCategory;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.effect.sound.music.MusicDisc;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.world.ServerLocation;
@@ -81,7 +82,7 @@ public interface PlaySoundEvent extends Event, Cancellable {
     float getPitch();
 
     /**
-     * Fired when a sound is broadcasted to all {@link Player}s on the server.
+     * Fired when a sound is broadcasted to all {@link ServerPlayer player's} on the {@link Server}.
      * <p>Examples of when this might be fired include:</p>
      *
      * <ul>
@@ -130,12 +131,12 @@ public interface PlaySoundEvent extends Event, Cancellable {
     interface AtEntity extends PlaySoundEvent {
 
         /**
-         * Gets the {@link Player} that this sound was played at, if the sound
-         * was played at a {@link Player}.
+         * Gets the {@link ServerPlayer player} that this sound was played at, if the sound
+         * was played at a player.
          *
-         * @return The {@link Player}, if applicable.
+         * @return The player, if applicable.
          */
-        Optional<Player> getPlayer();
+        Optional<ServerPlayer> getPlayer();
 
     }
 

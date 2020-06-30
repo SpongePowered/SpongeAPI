@@ -22,25 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world;
-
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.event.block.ChangeBlockEvent;
-import org.spongepowered.api.world.ServerLocation;
-
-/**
- * An event where a portal is created. Usually, this happens after a
- * {@link ChangeBlockEvent} from any source.
- */
-// TODO: Special object for Portal instead of just the location
-public interface ConstructPortalEvent extends Event, Cancellable {
-
-    /**
-     * Gets the position location of a portal.
-     *
-     * @return The location of a portal
-     */
-    ServerLocation getPortalLocation();
-
-}
+@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
+package org.spongepowered.api.event.item.merchant;

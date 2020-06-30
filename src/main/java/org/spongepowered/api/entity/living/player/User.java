@@ -28,6 +28,7 @@ import org.spongepowered.api.block.entity.EnderChest;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.Tamer;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.item.inventory.ArmorEquipable;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.entity.UserInventory;
@@ -69,12 +70,12 @@ public interface User extends DataHolder.Mutable, ArmorEquipable, Tamer, Subject
     boolean isOnline();
 
     /**
-     * Gets the related online {@link Player} if the player is
+     * Gets the related online {@link ServerPlayer player} if the player is
      * in fact online.
      *
-     * @return The associated online Player, if available
+     * @return The associated online player, if available
      */
-    Optional<Player> getPlayer();
+    Optional<ServerPlayer> getPlayer();
 
     /**
      * Gets the position of this User

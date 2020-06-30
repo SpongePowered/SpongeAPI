@@ -26,6 +26,7 @@ package org.spongepowered.api.entity.living.player.tab;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.text.Text;
 
 import java.util.Collection;
@@ -38,11 +39,11 @@ import java.util.UUID;
 public interface TabList {
 
     /**
-     * Gets the associated {@link Player} with this {@link TabList}.
+     * Gets the associated {@link ServerPlayer player} with this {@link TabList}.
      *
      * @return The associated player
      */
-    Player getPlayer();
+    ServerPlayer getPlayer();
 
     /**
      * Gets this list's header.

@@ -53,7 +53,7 @@ public interface ExplosionEvent extends Event {
     interface Pre extends ExplosionEvent, Cancellable {
 
         /**
-         * Gets the {@link World}.
+         * Gets the {@link ServerWorld world}.
          *
          * @return The world
          */
@@ -80,7 +80,7 @@ public interface ExplosionEvent extends Event {
     interface Detonate extends ExplosionEvent, AffectEntityEvent {
 
         /**
-         * Gets the {@link World}.
+         * Gets the {@link ServerWorld world}.
          *
          * @return The world
          */

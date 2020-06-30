@@ -26,7 +26,7 @@ package org.spongepowered.api.event.world;
 
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.server.ServerWorld;
 
 /**
  * Called when a GameRule is changed.
@@ -34,11 +34,11 @@ import org.spongepowered.api.world.World;
 public interface ChangeWorldGameRuleEvent extends Event, Cancellable {
 
     /**
-     * Gets the {@link World}.
+     * Gets the {@link ServerWorld world}.
      *
      * @return The world
      */
-    World<?> getWorld();
+    ServerWorld getWorld();
 
     /**
      * Gets the original value of the GameRule.

@@ -26,6 +26,7 @@ package org.spongepowered.api.event.network;
 
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
@@ -164,10 +165,10 @@ public interface ClientConnectionEvent extends Event {
     }
 
     /**
-     * Called when a {@link Player} joins the game {@link ServerWorld} for the first
+     * Called when a {@link ServerPlayer player} joins the game within a {@link ServerWorld world} for the first
      * time after initial connection.
      *
-     * <p>The {@link SpawnEntityEvent} for the {@link Player} is fired after the
+     * <p>The {@link SpawnEntityEvent} for the {@link ServerPlayer player} is fired after the
      * #Login event. This event is fired after both.</p>
      */
     interface Join extends ClientConnectionEvent, MessageChannelEvent {
@@ -177,7 +178,7 @@ public interface ClientConnectionEvent extends Event {
          *
          * @return The player
          */
-        Player getPlayer();
+        ServerPlayer getPlayer();
     }
 
     /**
@@ -186,11 +187,11 @@ public interface ClientConnectionEvent extends Event {
     interface Disconnect extends ClientConnectionEvent, MessageChannelEvent {
 
         /**
-         * Gets the {@link Player}.
+         * Gets the {@link ServerPlayer}.
          *
          * @return The player
          */
-        Player getPlayer();
+        ServerPlayer getPlayer();
     }
 
 }

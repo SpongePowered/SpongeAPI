@@ -27,6 +27,7 @@ package org.spongepowered.api.event.advancement;
 import org.spongepowered.api.advancement.Advancement;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.message.MessageChannelEvent;
 
@@ -38,11 +39,11 @@ import java.time.Instant;
 public interface AdvancementEvent extends Event {
 
     /**
-     * Gets the {@link Player}.
+     * Gets the {@link ServerPlayer player}.
      *
      * @return The player
      */
-    Player getPlayer();
+    ServerPlayer getPlayer();
 
     /**
      * Gets the {@link Advancement} that is being targeted.

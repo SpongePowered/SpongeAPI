@@ -27,14 +27,14 @@ package org.spongepowered.api.event.entity.living.player;
 import org.spongepowered.api.block.entity.Bed;
 import org.spongepowered.api.block.entity.EndPortal;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.Transform;
-import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.dimension.DimensionTypes;
 import org.spongepowered.api.world.server.ServerWorld;
 
 /**
- * Called when a {@link Player} is undergoing a respawn.
+ * Called when a {@link ServerPlayer player} is undergoing a respawn.
  *
  * <p>Examples of respawn triggers include:</p>
  *
@@ -46,51 +46,51 @@ import org.spongepowered.api.world.server.ServerWorld;
 public interface RespawnPlayerEvent extends Event {
 
     /**
-     * The original {@link Player} that this new player is a clone of.
+     * The original {@link ServerPlayer player} that this new player is a clone of.
      *
-     * <p>When a player dies, or leaves The End, their {@link Player} is re-created.</p>
+     * <p>When a player dies, or leaves The End, their player is re-created.</p>
      *
      * @return The original player
      */
-    Player getOriginalPlayer();
+    ServerPlayer getOriginalPlayer();
 
     /**
-     * Gets the {@link Player}.
+     * Gets the {@link ServerPlayer player}.
      *
      * @return The player
      */
-    Player getPlayer();
+    ServerPlayer getPlayer();
 
     /**
-     * Gets the previous {@link World} the {@link Player} will respawn at.
+     * Gets the previous {@link ServerWorld world} the {@link ServerPlayer player} would respawn at.
      *
      * @return The world
      */
     ServerWorld getFromWorld();
 
     /**
-     * Gets the previous {@link Transform} the {@link Player} will have at respawn.
+     * Gets the previous {@link Transform} the {@link ServerPlayer player} would have at respawn.
      *
      * @return The transform
      */
     Transform getFromTransform();
 
     /**
-     * Gets the {@link World} the {@link Player} will respawn at.
+     * Gets the {@link ServerWorld world} the {@link ServerPlayer player} will respawn at.
      *
      * @return The world
      */
     ServerWorld getToWorld();
 
     /**
-     * Gets the {@link Transform} the {@link Player} will have at respawn.
+     * Gets the {@link Transform} the {@link ServerPlayer player} will have at respawn.
      *
      * @return The transform
      */
     Transform getToTransform();
 
     /**
-     * Sets the {@link ServerWorld} and {@link Transform} the {@link Player} will have
+     * Sets the {@link ServerWorld world} and {@link Transform} the {@link ServerPlayer player} will have
      * at respawn.
      *
      * @param world The world
@@ -106,7 +106,7 @@ public interface RespawnPlayerEvent extends Event {
     boolean isBedSpawn();
 
     /**
-     * Gets if this respawn is due to a {@link Player}'s death.
+     * Gets if this respawn is due to a {@link ServerPlayer player's} death.
      *
      * @return {@code true} if player died, {@code false} otherwise
      */

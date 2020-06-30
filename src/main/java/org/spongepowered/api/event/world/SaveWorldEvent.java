@@ -37,7 +37,7 @@ import org.spongepowered.api.world.server.ServerWorld;
 public interface SaveWorldEvent extends Event, Cancellable {
 
     /**
-     * Gets the {@link World}.
+     * Gets the {@link ServerWorld world}.
      *
      * @return The world
      */

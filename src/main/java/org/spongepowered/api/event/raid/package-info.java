@@ -22,20 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living.player;
-
-import org.spongepowered.api.entity.living.player.server.ServerPlayer;
-import org.spongepowered.api.event.message.MessageChannelEvent;
-
-/**
- * Fired when a {@link ServerPlayer player} is kicked.
- */
-public interface KickPlayerEvent extends MessageChannelEvent {
-
-    /**
-     * Gets the {@link ServerPlayer player}.
-     *
-     * @return The player
-     */
-    ServerPlayer getPlayer();
-}
+@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
+package org.spongepowered.api.event.raid;

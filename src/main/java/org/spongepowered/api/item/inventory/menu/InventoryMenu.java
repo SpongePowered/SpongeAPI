@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.item.inventory.menu;
 
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.menu.handler.ClickHandler;
 import org.spongepowered.api.item.inventory.menu.handler.CloseHandler;
@@ -143,12 +143,12 @@ public interface InventoryMenu {
     InventoryMenu setReadOnly(boolean readOnly);
 
     /**
-     * Opens this menu for given player.
+     * Opens this menu for given {@link ServerPlayer player}.
      *
      * @param player the player.
      *
      * @return the opened Container.
      */
-    Optional<Container> open(Player player);
+    Optional<Container> open(ServerPlayer player);
 
 }

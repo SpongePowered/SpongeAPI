@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.world;
 
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
@@ -79,11 +79,11 @@ public interface ChangeWorldBorderEvent extends Event, Cancellable {
     interface TargetPlayer extends ChangeWorldBorderEvent {
 
         /**
-         * Gets the {@link Player}.
+         * Gets the {@link ServerPlayer player}.
          *
          * @return The player
          */
-        Player getPlayer();
+        ServerPlayer getPlayer();
     }
 
 }

@@ -27,6 +27,7 @@ package org.spongepowered.api.network;
 import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.Platform;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.plugin.PluginContainer;
 
 import java.util.function.Consumer;
@@ -124,12 +125,12 @@ public interface ChannelBinding {
 
         /**
          * Sends the message to the player across this channel. The message may
-         * not be sent if the player doesn't have a registered handler.
+         * not be sent if the {@link ServerPlayer player} doesn't have a registered handler.
          *
          * @param player The player to send the message to
          * @param message The message to send
          */
-        void sendTo(Player player, Message message);
+        void sendTo(ServerPlayer player, Message message);
 
         /**
          * Sends the message to the server. The message may not be sent if there
@@ -178,13 +179,13 @@ public interface ChannelBinding {
         void removeListener(RawDataListener listener);
 
         /**
-         * Sends the raw payload to the player across this channel. The data may
+         * Sends the raw payload to the {@link ServerPlayer player} across this channel. The data may
          * not be sent if the player doesn't have a registered handler.
          *
          * @param player The player to send the message to
          * @param payload A consumer to write the data to
          */
-        void sendTo(Player player, Consumer<ChannelBuf> payload);
+        void sendTo(ServerPlayer player, Consumer<ChannelBuf> payload);
 
         /**
          * Sends the raw payload to the server. The data may not be sent if

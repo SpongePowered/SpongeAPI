@@ -43,7 +43,7 @@ import java.util.function.Supplier;
 /**
  * Represents a snapshot of an {@link Entity} and all of it's related data in
  * the form of {@link org.spongepowered.api.data.DataManipulator.Immutable}s and {@link org.spongepowered.api.data.value.Value.Immutable}s.
- * While an {@link Entity} is a live instance and therefor residing in a
+ * While an {@link Entity} is a live instance and resides in a
  * {@link World}, an {@link EntitySnapshot} may be snapshotted of a
  * {@link World} that is not currently loaded, or may not exist any longer.
  *

@@ -29,7 +29,7 @@ import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.Transform;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.server.ServerWorld;
 
 /**
  * Called when a {@link Humanoid} enters a bed to sleep in.
@@ -64,40 +64,40 @@ public interface SleepingEvent extends Event {
     interface Finish extends SleepingEvent {
 
         /**
-         * Gets the previous {@link World} the {@link Humanoid} will wake up in.
+         * Gets the previous {@link ServerWorld world} the {@link Humanoid} would wake up in.
          *
          * @return The world
          */
-        World<?> getFromWorld();
+        ServerWorld getFromWorld();
 
         /**
-         * Gets the previous {@link Transform} the {@link Humanoid} will have at wake up.
+         * Gets the previous {@link Transform} the {@link Humanoid} would have woke at.
          *
          * @return The transform
          */
         Transform getFromTransform();
 
         /**
-         * Gets the {@link World} the {@link Humanoid} will wake up in.
+         * Gets the {@link ServerWorld world} the {@link Humanoid} will wake up in.
          *
          * @return The world
          */
-        World<?> getToWorld();
+        ServerWorld getToWorld();
 
         /**
-         * Gets the {@link Transform} the {@link Humanoid} will have at wake up.
+         * Gets the {@link Transform} the {@link Humanoid} will wake up at.
          *
          * @return The transform
          */
         Transform getToTransform();
 
         /**
-         * Sets the {@link World} and {@link Transform} the {@link Humanoid} will have
-         * at wake up.
+         * Sets the {@link ServerWorld world} and {@link Transform} the {@link Humanoid} will have
+         * wake up at.
          *
          * @param world The world
          * @param transform The transform
          */
-        void setWakeupPosition(World<?> world, Transform transform);
+        void setWakeupPosition(ServerWorld world, Transform transform);
     }
 }

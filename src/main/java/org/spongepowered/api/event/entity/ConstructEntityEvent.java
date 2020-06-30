@@ -29,7 +29,6 @@ import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.Transform;
-import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.server.ServerWorld;
 
 /**
@@ -38,7 +37,7 @@ import org.spongepowered.api.world.server.ServerWorld;
 public interface ConstructEntityEvent extends Event {
 
     /**
-     * Gets the {@link World} this {@link Entity} will be constructed with.
+     * Gets the {@link ServerWorld world} this {@link Entity} will be constructed with.
      *
      * @return The world
      */
