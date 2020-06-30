@@ -33,7 +33,7 @@ public enum Tristate {
     TRUE(true) {
         @Override
         public Tristate and(Tristate other) {
-            return other == TRUE || other == UNDEFINED ? TRUE : FALSE;
+            return other == FALSE ? FALSE : TRUE;
         }
 
         @Override
