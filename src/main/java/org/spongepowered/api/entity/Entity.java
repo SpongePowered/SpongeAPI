@@ -27,13 +27,12 @@ package org.spongepowered.api.entity;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
+import net.kyori.adventure.text.Component;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.AABB;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.RandomProvider;
@@ -72,7 +71,7 @@ import java.util.function.Supplier;
  * <p>Blocks and items (when they are in inventories) are not entities.</p>
  */
 @DoNotStore
-public interface Entity extends Identifiable, Locatable, SerializableDataHolder.Mutable, Translatable, RandomProvider {
+public interface Entity extends Identifiable, Locatable, SerializableDataHolder.Mutable, RandomProvider {
 
     /**
      * Gets the {@link EntityType}.
@@ -326,7 +325,7 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
      * {@link Keys#DISPLAY_NAME}
      * @return The display name of this entity
      */
-    default Value.Mutable<Text> displayName() {
+    default Value.Mutable<Component> displayName() {
         return this.requireValue(Keys.DISPLAY_NAME).asMutable();
     }
 

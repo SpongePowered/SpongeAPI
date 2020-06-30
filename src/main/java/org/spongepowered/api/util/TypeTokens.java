@@ -25,12 +25,14 @@
 package org.spongepowered.api.util;
 
 import com.google.common.reflect.TypeToken;
+import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.bossbar.BossBar;
+import net.kyori.adventure.text.Component;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.block.entity.BlockEntityArchetype;
-import org.spongepowered.api.boss.ServerBossBar;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.meta.BannerPatternLayer;
 import org.spongepowered.api.data.type.ArmorMaterial;
@@ -116,8 +118,6 @@ import org.spongepowered.api.projectile.source.ProjectileSource;
 import org.spongepowered.api.raid.RaidWave;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.statistic.Statistic;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 import org.spongepowered.api.util.weighted.WeightedTable;
@@ -140,6 +140,8 @@ public final class TypeTokens {
 
     // SORTFIELDS:ON
     // @formatter:off
+
+    public static final TypeToken<Audience> AUDIENCE = new TypeToken<Audience>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<ArmorMaterial> ARMOR_MATERIAL_TOKEN = new TypeToken<ArmorMaterial>() {private static final long serialVersionUID = -1;};
 
@@ -179,6 +181,10 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<Boolean>> BOOLEAN_VALUE_TOKEN = new TypeToken<Value<Boolean>>() {private static final long serialVersionUID = -1;};
 
+    public static final TypeToken<BossBar> BOSS_BAR_TOKEN = new TypeToken<BossBar>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Value<BossBar>> BOSS_BAR_VALUE_TOKEN = new TypeToken<Value<BossBar>>() {private static final long serialVersionUID = -1;};
+
     public static final TypeToken<CatType> CAT_TYPE_TOKEN = new TypeToken<CatType>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<CatType>> CAT_TYPE_VALUE_TOKEN = new TypeToken<Value<CatType>>() {private static final long serialVersionUID = -1;};
@@ -194,6 +200,10 @@ public final class TypeTokens {
     public static final TypeToken<ComparatorMode> COMPARATOR_MODE_TOKEN = new TypeToken<ComparatorMode>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<ComparatorMode>> COMPARATOR_MODE_VALUE_TOKEN = new TypeToken<Value<ComparatorMode>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Component> COMPONENT_TOKEN = new TypeToken<Component>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Value<Component>> COMPONENT_VALUE_TOKEN = new TypeToken<Value<Component>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Direction> DIRECTION_TOKEN = new TypeToken<Direction>() {private static final long serialVersionUID = -1;};
 
@@ -297,6 +307,10 @@ public final class TypeTokens {
 
     public static final TypeToken<ListValue<BannerPatternLayer>> LIST_BANNER_PATTERN_LAYER_VALUE_TOKEN = new TypeToken<ListValue<BannerPatternLayer>>() {private static final long serialVersionUID = -1;};
 
+    public static final TypeToken<List<Component>> LIST_COMPONENT_TOKEN = new TypeToken<List<Component>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<ListValue<Component>> LIST_COMPONENT_VALUE_TOKEN = new TypeToken<ListValue<Component>>() {private static final long serialVersionUID = -1;};
+
     public static final TypeToken<List<? extends DataSerializable>> LIST_DATA_SERIALIZABLE_TOKEN = new TypeToken<List<? extends DataSerializable>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<List<DyeColor>> LIST_DYE_COLOR_TOKEN = new TypeToken<List<DyeColor>>() {private static final long serialVersionUID = -1;};
@@ -320,10 +334,6 @@ public final class TypeTokens {
     public static final TypeToken<ListValue<PotionEffect>> LIST_POTION_EFFECT_VALUE_TOKEN = new TypeToken<ListValue<PotionEffect>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<ListValue<String>> LIST_STRING_VALUE_TOKEN = new TypeToken<ListValue<String>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<List<Text>> LIST_TEXT_TOKEN = new TypeToken<List<Text>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<ListValue<Text>> LIST_TEXT_VALUE_TOKEN = new TypeToken<ListValue<Text>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<List<TradeOffer>> LIST_TRADE_OFFER_TOKEN = new TypeToken<List<TradeOffer>>() {private static final long serialVersionUID = -1;};
 
@@ -463,10 +473,6 @@ public final class TypeTokens {
 
     public static final TypeToken<SetValue<String>> SET_STRING_VALUE_TOKEN = new TypeToken<SetValue<String>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<ServerBossBar> SERVER_BOSS_BAR_TOKEN = new TypeToken<ServerBossBar>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Value<ServerBossBar>> SERVER_BOSS_BAR_VALUE_TOKEN = new TypeToken<Value<ServerBossBar>>() {private static final long serialVersionUID = -1;};
-
     public static final TypeToken<Sheep> SHEEP_TOKEN = new TypeToken<Sheep>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<Sheep>> SHEEP_VALUE_TOKEN = new TypeToken<Value<Sheep>>() {private static final long serialVersionUID = -1;};
@@ -496,10 +502,6 @@ public final class TypeTokens {
     public static final TypeToken<StructureMode> STRUCTURE_MODE_TOKEN = new TypeToken<StructureMode>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<StructureMode>> STRUCTURE_MODE_VALUE_TOKEN = new TypeToken<Value<StructureMode>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Text> TEXT_TOKEN = new TypeToken<Text>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Value<Text>> TEXT_VALUE_TOKEN = new TypeToken<Value<Text>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<ToolType> TOOL_TYPE_TOKEN = new TypeToken<ToolType>() {private static final long serialVersionUID = -1;};
 
@@ -572,8 +574,6 @@ public final class TypeTokens {
     public static final TypeToken<ServerLocation> SERVER_LOCATION_TOKEN = new TypeToken<ServerLocation>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<DamageSource> DAMAGE_SOURCE_TOKEN = new TypeToken<DamageSource>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<MessageChannel> MESSAGE_CHANNEL_TOKEN = new TypeToken<MessageChannel>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<ChangeBlockEvent.Modify> CHANGE_BLOCK_EVENT_MODIFY_TOKEN = new TypeToken<ChangeBlockEvent.Modify>() {private static final long serialVersionUID = -1;};
 

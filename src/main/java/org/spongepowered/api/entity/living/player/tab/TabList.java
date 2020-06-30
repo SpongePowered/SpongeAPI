@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.entity.living.player.tab;
 
+import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
-import org.spongepowered.api.text.Text;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -50,48 +50,48 @@ public interface TabList {
      *
      * @return The current header
      */
-    Optional<Text> getHeader();
+    Optional<Component> getHeader();
 
     /**
      * Sets this list's header.
      *
-     * <p>When {@code null} is passed, an empty {@link Text} will
+     * <p>When {@code null} is passed, an empty {@link Component} will
      * be sent.</p>
      *
      * @param header The new header
      * @return This tab list, for chaining
      */
-    TabList setHeader(@Nullable Text header);
+    TabList setHeader(@Nullable Component header);
 
     /**
      * Gets this list's footer.
      *
      * @return The current footer
      */
-    Optional<Text> getFooter();
+    Optional<Component> getFooter();
 
     /**
      * Sets this list's footer.
      *
-     * <p>When {@code null} is passed, an empty {@link Text} will
+     * <p>When {@code null} is passed, an empty {@link Component} will
      * be sent.</p>
      *
      * @param footer The new footer
      * @return This tab list, for chaining
      */
-    TabList setFooter(@Nullable Text footer);
+    TabList setFooter(@Nullable Component footer);
 
     /**
      * Sets this list's header and footer.
      *
-     * <p>When {@code null} is passed, an empty {@link Text} will
+     * <p>When {@code null} is passed, an empty {@link Component} will
      * be sent.</p>
      *
      * @param header The new header
      * @param footer The new footer
      * @return This tab list, for chaining
      */
-    default TabList setHeaderAndFooter(@Nullable Text header, @Nullable Text footer) {
+    default TabList setHeaderAndFooter(@Nullable Component header, @Nullable Component footer) {
         this.setHeader(header);
         this.setFooter(footer);
         return this;

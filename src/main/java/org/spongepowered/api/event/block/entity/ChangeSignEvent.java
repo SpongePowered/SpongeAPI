@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.event.block.entity;
 
+import net.kyori.adventure.text.Component;
 import org.spongepowered.api.block.entity.Sign;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.text.Text;
 
 public interface ChangeSignEvent extends Event, Cancellable {
 
@@ -43,12 +43,12 @@ public interface ChangeSignEvent extends Event, Cancellable {
      * Gets the original {@link ListValue} before event changes.
      * @return The immutable SignData
      */
-    ListValue.Immutable<Text> getOriginalText();
+    ListValue.Immutable<Component> getOriginalText();
 
     /**
      * Gets the {@link ListValue} to be applied to the {@link Sign} after event resolution.
      * @return The SignData
      */
-    ListValue.Mutable<Text> getText();
+    ListValue.Mutable<Component> getText();
 
 }

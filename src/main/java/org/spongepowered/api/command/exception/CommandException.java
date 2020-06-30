@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.command.exception;
 
-import org.spongepowered.api.text.Text;
+import net.kyori.adventure.text.Component;
 import org.spongepowered.api.util.TextMessageException;
 
 /**
@@ -42,7 +42,7 @@ public class CommandException extends TextMessageException {
      *
      * @param message The detail message
      */
-    public CommandException(Text message) {
+    public CommandException(Component message) {
         this(message, false);
     }
 
@@ -53,7 +53,7 @@ public class CommandException extends TextMessageException {
      * @param message The detail message
      * @param cause The cause
      */
-    public CommandException(Text message, Throwable cause) {
+    public CommandException(Component message, Throwable cause) {
         this(message, cause, false);
     }
 
@@ -63,7 +63,7 @@ public class CommandException extends TextMessageException {
      * @param message The detail message
      * @param includeUsage Whether to include usage in the exception
      */
-    public CommandException(Text message, boolean includeUsage) {
+    public CommandException(Component message, boolean includeUsage) {
         super(message);
         this.includeUsage = includeUsage;
     }
@@ -76,7 +76,7 @@ public class CommandException extends TextMessageException {
      * @param cause The cause
      * @param includeUsage Whether to include the usage in the exception
      */
-    public CommandException(Text message, Throwable cause, boolean includeUsage) {
+    public CommandException(Component message, Throwable cause, boolean includeUsage) {
         super(message, cause);
         this.includeUsage = includeUsage;
     }

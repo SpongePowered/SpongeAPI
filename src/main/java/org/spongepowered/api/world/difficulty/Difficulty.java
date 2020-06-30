@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.world.difficulty;
 
+import net.kyori.adventure.text.ComponentLike;
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -34,6 +34,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * @see Difficulties
  */
 @CatalogedBy(Difficulties.class)
-public interface Difficulty extends CatalogType, Translatable {
+public interface Difficulty extends CatalogType, ComponentLike {
 
 }

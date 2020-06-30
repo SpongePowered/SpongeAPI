@@ -25,8 +25,8 @@
 package org.spongepowered.api.command.parameter;
 
 import com.google.gson.JsonObject;
+import net.kyori.adventure.text.Component;
 import org.spongepowered.api.command.exception.ArgumentParseException;
-import org.spongepowered.api.text.Text;
 
 /**
  * An {@link ArgumentReader} allows for sequential reading of an input
@@ -106,7 +106,7 @@ public interface ArgumentReader {
      * @param errorMessage The error message to display
      * @return The exception
      */
-    ArgumentParseException createException(Text errorMessage);
+    ArgumentParseException createException(Component errorMessage);
 
     /**
      * Represents a {@link ArgumentReader} where the cursor position cannot be

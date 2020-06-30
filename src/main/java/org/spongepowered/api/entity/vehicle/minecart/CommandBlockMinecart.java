@@ -26,11 +26,11 @@ package org.spongepowered.api.entity.vehicle.minecart;
 
 import org.spongepowered.api.block.entity.CommandBlock;
 import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageReceiver;
+import org.spongepowered.api.util.locale.LocaleSource;
 
 /**
  * Represents a {@link Minecart} with a {@link CommandBlock} inside it.
  */
-public interface CommandBlockMinecart extends BlockOccupiedMinecart, MessageReceiver, Subject {
+public interface CommandBlockMinecart extends BlockOccupiedMinecart, LocaleSource, Subject {
 
 }

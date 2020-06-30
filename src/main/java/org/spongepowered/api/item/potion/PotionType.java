@@ -26,8 +26,6 @@ package org.spongepowered.api.item.potion;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.effect.potion.PotionEffect;
-import org.spongepowered.api.text.translation.Translatable;
-import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.List;

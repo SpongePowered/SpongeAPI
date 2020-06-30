@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.network;
 
+import net.kyori.adventure.audience.Audience;
 import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageReceiver;
 
 /**
  * Represents a connection by an RCON client.
  */
-public interface RconConnection extends RemoteConnection, MessageReceiver, Subject {
+public interface RconConnection extends Audience, RemoteConnection, Subject {
 
     /**
      * Gets whether this client is authorized.

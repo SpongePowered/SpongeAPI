@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.command.exception;
 
-import org.spongepowered.api.text.Text;
+import net.kyori.adventure.text.Component;
 
 /**
  * Thrown when invocation of a command fails, wrapping the exception that
@@ -39,7 +39,7 @@ public class InvocationCommandException extends CommandException {
      * @param message The detail message
      * @param cause The cause
      */
-    public InvocationCommandException(Text message, Throwable cause) {
+    public InvocationCommandException(Component message, Throwable cause) {
         super(message, cause);
     }
 

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.service.economy.account;
 
+import net.kyori.adventure.text.Component;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.event.cause.Cause;
@@ -34,7 +35,6 @@ import org.spongepowered.api.service.economy.Currency;
 import org.spongepowered.api.service.economy.EconomyService;
 import org.spongepowered.api.service.economy.transaction.TransactionResult;
 import org.spongepowered.api.service.economy.transaction.TransferResult;
-import org.spongepowered.api.text.Text;
 
 import java.math.BigDecimal;
 import java.util.Map;
@@ -70,7 +70,7 @@ public interface Account extends Contextual {
      *
      * @return The display name for this account
      */
-    Text getDisplayName();
+    Component getDisplayName();
 
     /**
      * Gets the default balance of this account for the specified

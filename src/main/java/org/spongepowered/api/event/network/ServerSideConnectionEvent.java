@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.network;
 
+import net.kyori.adventure.text.Component;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Cancellable;
@@ -36,8 +37,6 @@ import org.spongepowered.api.network.channel.Channel;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.ban.BanService;
 import org.spongepowered.api.service.whitelist.WhitelistService;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.TextRepresentable;
 import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
@@ -106,7 +105,7 @@ public interface ServerSideConnectionEvent extends Event {
      * it can assumed that the plugin handshake is finished.</p>
      *
      * <p>During the lifetime of the handshake phase, a {@link ServerSideConnection}
-     * can be terminated by calling {@link ServerSideConnection#close(Text)}.</p>
+     * can be terminated by calling {@link ServerSideConnection#close(Component)}.</p>
      */
     interface Handshake extends ServerSideConnectionEvent {
     }
@@ -124,7 +123,7 @@ public interface ServerSideConnectionEvent extends Event {
      * {@link GameProfile} or {@link InetAddress} has an ban, or is not on the
      * whitelist), then this event will automatically cancelled by the
      * implementation, with the proper message set through
-     * {@link MessageEvent#setMessage(TextRepresentable)}. No action on the part
+     * {@link MessageEvent#setMessage(Component)}. No action on the part
      * of the registered {@link BanService} or {@link WhitelistService} is
      * required for this to occur.
      *

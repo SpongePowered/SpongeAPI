@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.scoreboard;
 
+import net.kyori.adventure.text.ComponentLike;
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -34,6 +34,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * <p>Usages include nametags and death messages.</p>
  */
 @CatalogedBy(Visibilities.class)
-public interface Visibility extends CatalogType, Translatable {
+public interface Visibility extends CatalogType, ComponentLike {
 
 }

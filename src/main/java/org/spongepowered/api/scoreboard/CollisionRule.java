@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.scoreboard;
 
+import net.kyori.adventure.text.ComponentLike;
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -35,6 +35,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * a {@link Team} collide with other entities.</p>
  */
 @CatalogedBy(CollisionRules.class)
-public interface CollisionRule extends CatalogType, Translatable {
+public interface CollisionRule extends CatalogType, ComponentLike {
 
 }

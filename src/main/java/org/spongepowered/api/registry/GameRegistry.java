@@ -25,6 +25,7 @@
 package org.spongepowered.api.registry;
 
 import org.spongepowered.api.Game;
+import org.spongepowered.api.adventure.AdventureRegistry;
 import org.spongepowered.api.data.type.ProfessionType;
 import org.spongepowered.api.item.merchant.TradeOfferGenerator;
 import org.spongepowered.api.item.merchant.VillagerRegistry;
@@ -41,6 +42,13 @@ public interface GameRegistry {
      * @return The catalog registry
      */
     CatalogRegistry getCatalogRegistry();
+
+    /**
+     * Retrieves the {@link AdventureRegistry}.
+     *
+     * @return The catalog registry
+     */
+    AdventureRegistry getAdventureRegistry();
 
     /**
      * Retrieves the {@link BuilderRegistry}.

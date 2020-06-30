@@ -30,15 +30,12 @@ import org.spongepowered.api.advancement.AdvancementType;
 import org.spongepowered.api.advancement.criteria.trigger.Trigger;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.entity.BlockEntityType;
-import org.spongepowered.api.boss.BossBarColor;
-import org.spongepowered.api.boss.BossBarOverlay;
 import org.spongepowered.api.data.persistence.DataFormat;
 import org.spongepowered.api.data.persistence.DataTranslator;
 import org.spongepowered.api.data.type.*;
 import org.spongepowered.api.effect.particle.ParticleOption;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffectType;
-import org.spongepowered.api.effect.sound.SoundCategory;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.effect.sound.music.MusicDisc;
 import org.spongepowered.api.entity.EntityType;
@@ -73,12 +70,8 @@ import org.spongepowered.api.service.economy.Currency;
 import org.spongepowered.api.service.economy.transaction.TransactionType;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.StatisticCategory;
-import org.spongepowered.api.text.chat.ChatType;
-import org.spongepowered.api.text.chat.ChatVisibility;
-import org.spongepowered.api.text.format.TextColor;
-import org.spongepowered.api.text.format.TextStyle;
-import org.spongepowered.api.text.selector.SelectorType;
-import org.spongepowered.api.text.serializer.TextSerializer;
+import org.spongepowered.api.entity.living.player.chat.ChatVisibility;
+import org.spongepowered.api.entity.selector.SelectorType;
 import org.spongepowered.api.util.ban.BanType;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.dimension.DimensionType;
@@ -128,13 +121,7 @@ public final class CatalogTypes {
 
     public static final Class<BodyPart> BODY_PART = BodyPart.class;
 
-    public static final Class<BossBarColor> BOSS_BAR_COLOR = BossBarColor.class;
-
-    public static final Class<BossBarOverlay> BOSS_BAR_OVERLAY = BossBarOverlay.class;
-
     public static final Class<CatType> CAT_TYPE = CatType.class;
-
-    public static final Class<ChatType> CHAT_TYPE = ChatType.class;
 
     public static final Class<ChatVisibility> CHAT_VISIBILITY = ChatVisibility.class;
 
@@ -252,8 +239,6 @@ public final class CatalogTypes {
 
     public static final Class<SlabPortion> SLAB_PORTION = SlabPortion.class;
 
-    public static final Class<SoundCategory> SOUND_CATEGORY = SoundCategory.class;
-
     public static final Class<SoundType> SOUND_TYPE = SoundType.class;
 
     public static final Class<SpawnType> SPAWN_TYPE = SpawnType.class;
@@ -267,12 +252,6 @@ public final class CatalogTypes {
     public static final Class<TeleportHelperFilter> TELEPORT_HELPER_FILTER = TeleportHelperFilter.class;
 
     public static final Class<TeleportType> TELEPORT_TYPE = TeleportType.class;
-
-    public static final Class<TextColor> TEXT_COLOR = TextColor.class;
-
-    public static final Class<TextSerializer> TEXT_SERIALIZER = TextSerializer.class;
-
-    public static final Class<TextStyle> TEXT_STYLE = TextStyle.class;
 
     public static final Class<ToolType> TOOL_TYPE = ToolType.class;
 

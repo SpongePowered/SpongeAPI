@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.cause;
 
+import net.kyori.adventure.audience.Audience;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
@@ -43,8 +44,6 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.projectile.source.ProjectileSource;
 import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageChannel;
-import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.world.LocatableBlock;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.ServerLocation;
@@ -62,6 +61,12 @@ import java.util.function.Supplier;
 public final class EventContextKeys {
 
     // SORTFIELDS:ON
+
+    /**
+     * Used during command execution, indicates the {@link Audience} to
+     * send any messages to.
+     */
+    public static final Supplier<EventContextKey<Audience>> AUDIENCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "AUDIENCE");
 
     /**
      * Used when a {@link World} block event is being processed.
@@ -194,12 +199,6 @@ public final class EventContextKeys {
      * command is centered around.
      */
     public static final Supplier<EventContextKey<ServerLocation>> LOCATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "LOCATION");
-
-    /**
-     * Used during command execution, indicates the {@link MessageChannel} to
-     * send any messages to.
-     */
-    public static final Supplier<EventContextKey<MessageChannel>> MESSAGE_CHANNEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "MESSAGE_CHANNEL");
 
     /**
      * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide

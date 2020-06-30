@@ -26,8 +26,8 @@ package co.aikar.timings;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import net.kyori.adventure.audience.Audience;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.plugin.PluginContainer;
 
 /**
@@ -202,11 +202,11 @@ public final class Timings {
 
     /**
      * Generates a report and sends it to the specified
-     * {@link MessageChannel}.
+     * {@link Audience}.
      *
      * @param channel The channel to send report to
      */
-    public static void generateReport(MessageChannel channel) {
+    public static void generateReport(Audience channel) {
         Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).generateReport(channel);
     }
 

@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.scoreboard.displayslot;
 
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.scoreboard.Team;
-import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Optional;
@@ -45,12 +45,12 @@ public interface DisplaySlot extends CatalogType {
      * @param color The team color
      * @return The display slot with the given team color
      */
-    DisplaySlot withTeamColor(@Nullable TextColor color);
+    DisplaySlot withTeamColor(@Nullable NamedTextColor color);
 
     /**
      * Gets the {@link Team} color that this objective will display.
      *
      * @return The team color or {@link Optional#empty()} if not set
      */
-    Optional<TextColor> getTeamColor();
+    Optional<NamedTextColor> getTeamColor();
 }

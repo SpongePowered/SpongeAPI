@@ -24,65 +24,37 @@
  */
 package org.spongepowered.api.event.message;
 
+import net.kyori.adventure.audience.Audience;
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 import java.util.Optional;
 
 /**
- * Describes events when a involving a {@link Text} message and {@link MessageChannel}s.
+ * Describes events when a involving a {@link Text} message and {@link Audience}s.
  */
 @GenerateFactoryMethod
 public interface MessageChannelEvent extends MessageEvent {
 
     /**
-     * Gets the original channel that this message will be sent to.
+     * Gets the original audience that this message will be sent to.
      *
-     * @return The original message channel to send to
+     * @return The original audience to send to
      */
-    MessageChannel getOriginalChannel();
+    Audience getOriginalAudience();
 
     /**
-     * Gets the current channel that this message will be sent to.
-     *
-     * <p>Note that an {@link Optional#empty()} channel is different from a
-     * {@link MessageChannel#toNone()} channel.</p>
+     * Gets the current audience that this message will be sent to.
      *
      * @return The message channel the message in this event will be sent to
      */
-    Optional<MessageChannel> getChannel();
+    Optional<Audience> getAudience();
 
     /**
-     * Sets the channel for this message to go to.
+     * Sets the audience for this message to go to.
      *
-     * <p>Note that setting this to {@code null}, or no channel, is different
-     * from a {@link MessageChannel#toNone()} channel.</p>
-     *
-     * @param channel The channel to set
+     * @param audience The audience to set
      */
-    void setChannel(@Nullable MessageChannel channel);
+    void setAudience(@Nullable Audience audience);
 
-    /**
-     * Fired when the {@link Text} being sent to a {@link MessageChannel} was
-     * due to chatting.
-     */
-    interface Chat extends MessageChannelEvent, Cancellable {
-
-        /**
-         * Gets the 'raw' chat message.
-         *
-         * <p>This message is the original chat message, without any formatting
-         * whatsoever.</p>
-         *
-         * <p>In Vanilla, this is equivalent to what a player typed into the
-         * chat box (no name prefix or other elements).</p>
-         *
-         * @return The raw message
-         */
-        Text getRawMessage();
-
-    }
 }

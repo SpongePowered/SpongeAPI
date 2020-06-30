@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.persistence;
 
+import net.kyori.adventure.text.Component;
 import ninja.leaping.configurate.ConfigurationNode;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.world.schematic.Schematic;
@@ -59,6 +60,8 @@ public final class DataTranslators {
     public static final Supplier<DataTranslator<Complexd>> COMPLEXD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "COMPLEXD");
 
     public static final Supplier<DataTranslator<Complexf>> COMPLEXF = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "COMPLEXF");
+
+    public static final Supplier<DataTranslator<Component>> COMPONENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "COMPONENT");
 
     public static final Supplier<DataTranslator<ConfigurationNode>> CONFIGURATION_NODE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "CONFIGURATION_NODE");
 

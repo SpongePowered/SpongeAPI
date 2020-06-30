@@ -24,13 +24,14 @@
  */
 package org.spongepowered.api;
 
+import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.audience.ForwardingAudience;
+import net.kyori.adventure.text.Component;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.profile.GameProfileManager;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.channel.MessageChannel;
-import org.spongepowered.api.text.channel.MessageReceiver;
+import org.spongepowered.api.util.locale.LocaleSource;
 import org.spongepowered.api.user.UserManager;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.TeleportHelper;
@@ -45,7 +46,7 @@ import java.util.UUID;
 /**
  * Represents a typical Minecraft Server.
  */
-public interface Server extends Engine, MessageReceiver {
+public interface Server extends ForwardingAudience, Engine, LocaleSource {
 
     /**
      * Gets the {@link WorldManager}.
@@ -142,14 +143,14 @@ public interface Server extends Engine, MessageReceiver {
      *
      * @return The server-wide broadcast channel
      */
-    MessageChannel getBroadcastChannel();
+    Audience getBroadcastAudience();
 
     /**
      * Sets the channel that server-wide messages should be sent through.
      *
      * @param channel The broadcast channel
      */
-    void setBroadcastChannel(MessageChannel channel);
+    void setBroadcastAudience(Audience channel);
 
     /**
      * Gets the bound {@link InetSocketAddress} from where this server is
@@ -189,7 +190,7 @@ public interface Server extends Engine, MessageReceiver {
      *
      * @return The server's default description (MOTD)
      */
-    Text getMotd();
+    Component getMotd();
 
     /**
      * Shuts down the server, and kicks all players with the default kick
@@ -205,7 +206,7 @@ public interface Server extends Engine, MessageReceiver {
      *
      * @param kickMessage The message to kick players with
      */
-    void shutdown(Text kickMessage);
+    void shutdown(Component kickMessage);
 
     /**
      * Gets the {@link GameProfileManager} for resolving game profiles.

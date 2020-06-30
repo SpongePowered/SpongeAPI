@@ -44,7 +44,6 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.item.inventory.equipment.EquipmentTypes;
-import org.spongepowered.api.text.translation.Translatable;
 
 import java.util.Collection;
 import java.util.Map;
@@ -61,7 +60,7 @@ import java.util.function.Supplier;
  * use {@link ValueContainer#get(Key)} in order to retrieve information regarding
  * this item stack.</p>
  */
-public interface ItemStack extends SerializableDataHolder.Mutable, Translatable {
+public interface ItemStack extends SerializableDataHolder.Mutable {
 
     /**
      * Creates a new {@link Builder} to build an {@link ItemStack}.

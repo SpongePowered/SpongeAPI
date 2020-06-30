@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.data;
 
+import net.kyori.adventure.bossbar.BossBar;
+import net.kyori.adventure.text.Component;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
@@ -43,7 +45,6 @@ import org.spongepowered.api.block.entity.carrier.BrewingStand;
 import org.spongepowered.api.block.entity.carrier.CarrierBlockEntity;
 import org.spongepowered.api.block.entity.carrier.Hopper;
 import org.spongepowered.api.block.entity.carrier.furnace.FurnaceBlockEntity;
-import org.spongepowered.api.boss.ServerBossBar;
 import org.spongepowered.api.data.meta.BannerPatternLayer;
 import org.spongepowered.api.data.type.ArmorMaterial;
 import org.spongepowered.api.data.type.ArtType;
@@ -207,7 +208,6 @@ import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.projectile.source.ProjectileSource;
 import org.spongepowered.api.raid.RaidWave;
 import org.spongepowered.api.statistic.Statistic;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.Direction;
@@ -333,7 +333,7 @@ public final class Keys {
     /**
      * The author of a {@link ItemTypes#WRITTEN_BOOK} {@link ItemStack}.
      */
-    public static final Supplier<Key<Value<Text>>> AUTHOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AUTHOR");
+    public static final Supplier<Key<Value<Component>>> AUTHOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AUTHOR");
 
     /**
      * The {@link Axis} direction of a {@link BlockState}.
@@ -418,10 +418,10 @@ public final class Keys {
     public static final Supplier<Key<MapValue<BodyPart, Vector3d>>> BODY_ROTATIONS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BODY_ROTATIONS");
 
     /**
-     * The {@link ServerBossBar} displayed to the client by a {@link Boss}.
+     * The {@link BossBar} displayed to the client by a {@link Boss}.
      * Readonly but mutable?
      */
-    public static final Supplier<Key<Value<ServerBossBar>>> BOSS_BAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BOSS_BAR");
+    public static final Supplier<Key<Value<BossBar>>> BOSS_BAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BOSS_BAR");
 
     /**
      * The {@link BlockType}s able to be broken by an {@link ItemStack}.
@@ -627,7 +627,7 @@ public final class Keys {
      * <p>On a {@link ItemTypes#WRITTEN_BOOK} item this will also set the title
      * of the book.</p>
      */
-    public static final Supplier<Key<Value<Text>>> DISPLAY_NAME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DISPLAY_NAME");
+    public static final Supplier<Key<Value<Component>>> DISPLAY_NAME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DISPLAY_NAME");
 
     /**
      * The dominant {@link HandPreference} of an {@link Agent} entity.
@@ -1642,7 +1642,7 @@ public final class Keys {
     /**
      * The output yielded by the last command of a {@link CommandBlock} or {@link CommandBlockMinecart}.
      */
-    public static final Supplier<Key<Value<Text>>> LAST_COMMAND_OUTPUT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LAST_COMMAND_OUTPUT");
+    public static final Supplier<Key<Value<Component>>> LAST_COMMAND_OUTPUT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LAST_COMMAND_OUTPUT");
 
     /**
      * The last damage a {@link Living} received.
@@ -1719,7 +1719,7 @@ public final class Keys {
      * over the stack. For the contents of a book see {@link #PAGES}
      * instead.</p>
      */
-    public static final Supplier<Key<ListValue<Text>>> LORE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LORE");
+    public static final Supplier<Key<ListValue<Component>>> LORE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LORE");
 
     /**
      * The matter state of a {@link BlockState}
@@ -1852,7 +1852,7 @@ public final class Keys {
      * <p>Use {@link Keys#PLAIN_PAGES} if you wish to inspect the contents
      * of a {@link ItemTypes#WRITABLE_BOOK}.</p>
      */
-    public static final Supplier<Key<ListValue<Text>>> PAGES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PAGES");
+    public static final Supplier<Key<ListValue<Component>>> PAGES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PAGES");
 
     /**
      * The {@link ParrotType type} of a {@link Parrot}.
@@ -2148,7 +2148,7 @@ public final class Keys {
     /**
      * The lines displayed on a {@link Sign}.
      */
-    public static final Supplier<Key<ListValue<Text>>> SIGN_LINES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SIGN_LINES");
+    public static final Supplier<Key<ListValue<Component>>> SIGN_LINES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SIGN_LINES");
 
     /**
      * The size of a {@link Slime}.

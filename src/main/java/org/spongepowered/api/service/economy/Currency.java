@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.service.economy;
 
+import net.kyori.adventure.text.Component;
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.text.Text;
 
 import java.math.BigDecimal;
 
@@ -50,7 +50,7 @@ public interface Currency extends CatalogType {
      *
      * @return displayName of the currency singular
      */
-    Text getDisplayName();
+    Component getDisplayName();
 
     /**
      * The currency's display name in plural form. Ex: Dollars.
@@ -60,14 +60,14 @@ public interface Currency extends CatalogType {
      *
      * @return displayName of the currency plural
      */
-    Text getPluralDisplayName();
+    Component getPluralDisplayName();
 
     /**
      * The currency's symbol. Ex. $
      *
      * @return symbol of the currency
      */
-    Text getSymbol();
+    Component getSymbol();
 
     /**
      * Formats the given amount using the default number of fractional digits.
@@ -77,7 +77,7 @@ public interface Currency extends CatalogType {
      * @param amount The amount to format
      * @return String formatted amount
      */
-    default Text format(BigDecimal amount) {
+    default Component format(BigDecimal amount) {
         return this.format(amount, this.getDefaultFractionDigits());
     }
 
@@ -90,7 +90,7 @@ public interface Currency extends CatalogType {
      * @param numFractionDigits The numer of fractional digits to use
      * @return String formatted amount.
      */
-    Text format(BigDecimal amount, int numFractionDigits);
+    Component format(BigDecimal amount, int numFractionDigits);
 
     /**
      * This is the default number of fractional digits that is utilized for

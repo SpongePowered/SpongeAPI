@@ -25,6 +25,8 @@
 package org.spongepowered.api.world;
 
 import com.google.common.base.Preconditions;
+import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.audience.ForwardingAudience;
 import org.spongepowered.api.Engine;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
@@ -51,7 +53,8 @@ import java.util.function.Predicate;
  * A loaded Minecraft world.
  */
 @DoNotStore
-public interface World<W extends World<W>> extends ProtoWorld<W>,
+public interface World<W extends World<W>> extends ForwardingAudience,
+    ProtoWorld<W>,
     LocationCreator,
     PhysicsAwareMutableBlockVolume<BoundedWorldView<W>>,
     WeatherUniverse,
@@ -91,6 +94,11 @@ public interface World<W extends World<W>> extends ProtoWorld<W>,
      */
     @Override
     Collection<? extends Player> getPlayers();
+
+    @Override
+    default Iterable<? extends Audience> audiences() {
+        return this.getPlayers();
+    }
 
     default Optional<? extends Player> getClosestPlayer(Vector3i position, double distance) {
         return this.getClosestPlayer(position.getX(), position.getY(), position.getZ(), distance, player -> true);
