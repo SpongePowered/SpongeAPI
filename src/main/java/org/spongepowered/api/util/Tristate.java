@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.util;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
+
 /**
  * Represents a simple tristate.
  */
@@ -38,6 +40,11 @@ public enum Tristate {
         public Tristate or(Tristate other) {
             return TRUE;
         }
+
+        @Override
+        public Tristate not() {
+            return FALSE;
+        }
     },
     FALSE(false) {
         @Override
@@ -48,6 +55,11 @@ public enum Tristate {
         @Override
         public Tristate or(Tristate other) {
             return other == TRUE ? TRUE : FALSE;
+        }
+
+        @Override
+        public Tristate not() {
+            return TRUE;
         }
     },
     UNDEFINED(false) {
@@ -60,6 +72,11 @@ public enum Tristate {
         public Tristate or(Tristate other) {
             return other;
         }
+
+        @Override
+        public Tristate not() {
+            return UNDEFINED;
+        }
     };
 
     private final boolean val;
@@ -69,13 +86,28 @@ public enum Tristate {
     }
 
     /**
-     * Return the appropriate tristate for a given boolean value.
+     * Returns the appropriate tristate for a given boolean value.
      *
      * @param val The boolean value
      * @return The appropriate tristate
      */
     public static Tristate fromBoolean(boolean val) {
         return val ? TRUE : FALSE;
+    }
+
+    /**
+     * Returns the appropriate tristate for a given nullable boolean value,
+     * where null equates to {@link Tristate#UNDEFINED}.
+     *
+     * @param val The nullable boolean value
+     * @return The appropriate tristate
+     */
+    public static Tristate fromNullable(@Nullable Boolean val) {
+        if (val == null) {
+            return UNDEFINED;
+        } else {
+            return val ? TRUE : FALSE;
+        }
     }
 
     /**
@@ -93,6 +125,13 @@ public enum Tristate {
      * @return The result
      */
     public abstract Tristate or(Tristate other);
+
+    /**
+     * NOTs this tristate.
+     *
+     * @return The resultant negated tristate
+     */
+    public abstract Tristate not();
 
     /**
      * Returns the boolean representation of this tristate.
