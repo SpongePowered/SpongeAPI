@@ -98,6 +98,21 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
     EntityArchetype createArchetype();
 
     /**
+     * Gets the position of this entity
+     *
+     * @return The position of this entity
+     */
+    Vector3d getPosition();
+
+    /**
+     * Sets the position of this entity.
+     *
+     * @param position The position to set
+     * @return True if set, false if not
+     */
+    boolean setPosition(Vector3d position);
+
+    /**
      * Sets the location of this entity.
      *
      * @param location The location to set

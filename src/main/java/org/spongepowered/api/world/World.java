@@ -41,6 +41,7 @@ import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Collection;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.function.Predicate;
 
 /**
@@ -56,11 +57,11 @@ public interface World<W extends World<W>> extends ProtoWorld<W>,
 {
 
     /**
-     * Gets the {@link Server} that is managing this world.
+     * Gets the {@link UUID unique id} of this world.
      *
-     * @return The server
+     * @return The unique id
      */
-    Server getServer();
+    UUID getUniqueId();
 
     /**
      * Gets if this world is currently loaded.
@@ -225,10 +226,7 @@ public interface World<W extends World<W>> extends ProtoWorld<W>,
      * @return The available chunk at that position
      */
     @Override
-    default Chunk getChunkAtBlock(int bx, int by, int bz) {
-        final Vector3i chunkPos = this.getServer().getChunkLayout().forceToChunk(bx, by, bz);
-        return this.getChunk(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ());
-    }
+    Chunk getChunkAtBlock(int bx, int by, int bz);
 
     /**
      * {@inheritDoc}

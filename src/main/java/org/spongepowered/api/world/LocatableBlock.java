@@ -50,15 +50,6 @@ public interface LocatableBlock extends SerializableDataHolder.Immutable<Locatab
      */
     BlockState getBlockState();
 
-    /**
-     * Gets the {@link Vector3i position} for this locatable block.
-     *
-     * @return The position for the block
-     */
-    default Vector3i getBlockPosition() {
-        return getLocation().getBlockPosition();
-    }
-
     interface Builder extends CopyableBuilder<LocatableBlock, Builder>, DataBuilder<LocatableBlock> {
 
         /**

@@ -25,11 +25,6 @@
 package org.spongepowered.api.entity.living.player.client;
 
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.world.client.ClientWorld;
 
 public interface ClientPlayer extends Player {
-
-    @Override
-    ClientWorld getWorld();
-
 }

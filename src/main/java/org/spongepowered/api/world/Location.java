@@ -53,7 +53,7 @@ public interface Location<W extends World<W>> {
      * @return The underlying world, if available
      * @see #isAvailable()
      */
-    Optional<? extends W> getWorldIfAvailable();
+    Optional<W> getWorldIfAvailable();
 
     /**
      * Gets whether this location is available. A location is
@@ -141,6 +141,10 @@ public interface Location<W extends World<W>> {
      * @return The floored z component
      */
     int getBlockZ();
+
+    default Optional<ServerLocation> onServer() {
+        return Optional.ofNullable(this instanceof ServerLocation ? (ServerLocation) this : null);
+    }
 
     /**
      * Returns true if this location is in the given world. This is implemented
@@ -273,7 +277,7 @@ public interface Location<W extends World<W>> {
 
     /**
      * Returns true if this location has a block at its
-     * {@link #getBlockPosition()} ()}.
+     * {@link #getBlockPosition()}.
      *
      * @return Whether or not there is a block at this location.
      */

@@ -25,9 +25,12 @@
 package org.spongepowered.api.item.inventory.entity;
 
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.item.inventory.type.CarriedInventory;
 
 /**
- * Represents the inventory of a Humanoid or Player.
+ * Represents an actual {@link Player}'s inventory with {@link CarriedInventory}
+ * capabilities.
  */
-public interface PlayerInventory extends UserInventory<Player> {
+public interface PlayerInventory extends StandardInventory, CarriedInventory<Player> {
+
 }

@@ -197,7 +197,7 @@ public interface CommandCause {
 
         return eventContext.get(EventContextKeys.MESSAGE_TARGET)
             .filter(x -> x instanceof Locatable)
-            .flatMap(x -> (Optional<ServerLocation>) ((Locatable) x).getServerLocation());
+            .flatMap(x -> ((Locatable) x).getLocation().onServer());
     }
 
     /**

@@ -37,7 +37,6 @@ import org.spongepowered.api.projectile.ProjectileLauncher;
  * Represents a human-like entity in game, such as {@link Player} or {@link Human}s.
  */
 public interface Humanoid extends Living, ProjectileLauncher, ArmorEquipable, Tamer {
-
     /**
      * {@link Keys#FOOD_LEVEL}
      * @return The human's food level

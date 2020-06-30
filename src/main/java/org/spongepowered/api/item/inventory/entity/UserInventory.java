@@ -25,61 +25,13 @@
 package org.spongepowered.api.item.inventory.entity;
 
 import org.spongepowered.api.entity.living.player.User;
-import org.spongepowered.api.item.inventory.Slot;
-import org.spongepowered.api.item.inventory.equipment.EquipmentInventory;
 import org.spongepowered.api.item.inventory.type.CarriedInventory;
-import org.spongepowered.api.item.inventory.type.GridInventory;
 
 /**
- * Represents the inventory of a {@link User}.
- * It consists of a {@link PrimaryPlayerInventory} (containing the main {@link GridInventory}
- * and the {@link Hotbar}) and an {@link EquipmentInventory}
+ * Represents a {@link User}'s inventory with {@link CarriedInventory}
+ * capabilities.
+ *
+ * <p>This is thought of as the inventory data component of a player's data.</p>
  */
-public interface UserInventory<T extends User> extends CarriedInventory<T> {
-
-    /**
-     * Gets the main inventory including the Hotbar.
-     *
-     * @return The main inventory
-     */
-    PrimaryPlayerInventory getPrimary();
-
-    /**
-     * Gets the hotbar inventory.
-     *
-     * @return The hotbar
-     */
-    default Hotbar getHotbar() {
-        return this.getPrimary().getHotbar();
-    }
-
-    /**
-     * Gets the main inventory excluding the Hotbar.
-     *
-     * @return The main inventory grid
-     */
-    default GridInventory getStorage() {
-        return this.getPrimary().getStorage();
-    }
-
-    /**
-     * Get the armor equipment inventory
-     *
-     * @return The armor inventory
-     */
-    EquipmentInventory getArmor();
-
-    /**
-     * Gets the offhand inventory.
-     *
-     * @return The offhand slot
-     */
-    Slot getOffhand();
-
-    /**
-     * Gets the equipment inventory.
-     *
-     * @return The equipment inventory
-     */
-    EquipmentInventory getEquipment();
+public interface UserInventory extends StandardInventory, CarriedInventory<User> {
 }

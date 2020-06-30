@@ -162,8 +162,8 @@ public interface Selector {
      * @return The matched entities
      */
     default Set<Entity> resolve(Locatable locatable) {
-        Preconditions.checkArgument(locatable.getServerLocation().isPresent(), "Cannot use selectors on client side entities yet");
-        return this.resolve(locatable.getServerLocation().get());
+        Preconditions.checkArgument(locatable.getLocation().onServer().isPresent(), "Cannot use selectors on client side entities yet");
+        return this.resolve(locatable.getServerLocation());
     }
 
     /**

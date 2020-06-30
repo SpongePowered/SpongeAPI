@@ -76,21 +76,12 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
     TerrainGenerator<?> getTerrainGenerator();
 
     /**
-     * Gets the properties for this world.
-     *
-     * @return The properties
-     */
-    WorldProperties getProperties();
-
-    /**
      * Gets the current {@link Difficulty}.
      *
      * @see WorldProperties#getDifficulty()
      * @return The difficulty for this world
      */
-    default Difficulty getDifficulty() {
-        return getProperties().getDifficulty();
-    }
+    Difficulty getDifficulty();
 
     @Override
     default boolean setBlock(Vector3i position, BlockState state, BlockChangeFlag flag) {

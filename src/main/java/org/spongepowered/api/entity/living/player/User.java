@@ -30,6 +30,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.Tamer;
 import org.spongepowered.api.item.inventory.ArmorEquipable;
 import org.spongepowered.api.item.inventory.Inventory;
+import org.spongepowered.api.item.inventory.entity.UserInventory;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.world.ServerLocation;
@@ -126,6 +127,9 @@ public interface User extends DataHolder.Mutable, ArmorEquipable, Tamer, Subject
      * @return The rotation
      */
     Vector3d getRotation();
+
+    @Override
+    UserInventory getInventory();
 
     /**
      * Gets the {@link Inventory} available for this Player's shared {@link EnderChest}

@@ -22,53 +22,60 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world;
+package org.spongepowered.api.item.inventory.entity;
 
-import org.spongepowered.api.Server;
-import org.spongepowered.math.vector.Vector3i;
+import org.spongepowered.api.item.inventory.Slot;
+import org.spongepowered.api.item.inventory.equipment.EquipmentInventory;
+import org.spongepowered.api.item.inventory.type.GridInventory;
 
 /**
- * Represents anything with a location.
+ * Represents the standard inventory the player has when playing the game.
  */
-@FunctionalInterface
-public interface Locatable {
+public interface StandardInventory {
 
     /**
-     * Gets the location of the source.
+     * Gets the main inventory including the Hotbar.
      *
-     * @return The location
+     * @return The main inventory
      */
-    Location<?> getLocation();
+    PrimaryPlayerInventory getPrimary();
 
     /**
-     * Gets the location of the source as a {@link ServerLocation}.
+     * Gets the hotbar inventory.
      *
-     * <p>For ease of use, we provide this as a quick way to not have to map
-     * out the optional in {@link Location#}. Calling this when the source is
-     * not on the {@link Server} will result in a hard crash, do so at your
-     * own peril.</p>
-     *
-     * @return The location
+     * @return The hotbar
      */
-    default ServerLocation getServerLocation() {
-        final Location<?> location = this.getLocation();
-        if (!(location instanceof ServerLocation)) {
-            throw new RuntimeException("Attempt made to query for a server sided location on the client!");
-        }
-
-        return (ServerLocation) location;
+    default Hotbar getHotbar() {
+        return this.getPrimary().getHotbar();
     }
 
     /**
-     * Gets the world that this source resides in.
+     * Gets the main inventory excluding the Hotbar.
      *
-     * @return The World
+     * @return The main inventory grid
      */
-    default World<?> getWorld() {
-        return this.getLocation().getWorld();
+    default GridInventory getStorage() {
+        return this.getPrimary().getStorage();
     }
 
-    default Vector3i getBlockPosition() {
-        return this.getLocation().getBlockPosition();
-    }
+    /**
+     * Get the armor equipment inventory
+     *
+     * @return The armor inventory
+     */
+    EquipmentInventory getArmor();
+
+    /**
+     * Gets the offhand inventory.
+     *
+     * @return The offhand slot
+     */
+    Slot getOffhand();
+
+    /**
+     * Gets the equipment inventory.
+     *
+     * @return The equipment inventory
+     */
+    EquipmentInventory getEquipment();
 }

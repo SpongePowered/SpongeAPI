@@ -28,10 +28,4 @@ package org.spongepowered.api.entity.living.player.client;
  * Represents the client's player
  */
 public interface LocalPlayer extends ClientPlayer {
-
-    @Override
-    default boolean isLocal() {
-        return true;
-    }
-
 }

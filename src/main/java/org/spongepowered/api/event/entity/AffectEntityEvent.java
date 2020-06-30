@@ -91,7 +91,7 @@ public interface AffectEntityEvent extends Event, Cancellable {
         Iterator<Entity> i = this.getEntities().iterator();
         while (i.hasNext()) {
             Entity entity = i.next();
-            if (!entity.getServerLocation().map(predicate::test).orElse(false)) {
+            if (!entity.getLocation().onServer().map(predicate::test).orElse(false)) {
                 i.remove();
                 removedEntities.add(entity);
             }
