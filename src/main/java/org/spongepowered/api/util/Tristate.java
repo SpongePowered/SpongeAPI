@@ -127,9 +127,9 @@ public enum Tristate {
     public abstract Tristate or(Tristate other);
 
     /**
-     * NOTs this tristate.
+     * Negates this tristate.
      *
-     * @return The resultant negated tristate
+     * @return The result
      */
     public abstract Tristate not();
 
