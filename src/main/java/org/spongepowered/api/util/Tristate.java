@@ -102,7 +102,7 @@ public enum Tristate {
      * @param val The nullable boolean value
      * @return The appropriate tristate
      */
-    public static Tristate fromNullable(@Nullable Boolean val) {
+    public static Tristate fromNullableBoolean(@Nullable Boolean val) {
         if (val == null) {
             return UNDEFINED;
         } else {
@@ -140,5 +140,20 @@ public enum Tristate {
      */
     public boolean asBoolean() {
         return this.val;
+    }
+
+    /**
+     * Returns the nullable boolean representation of this tristate,
+     * where {@link Tristate#UNDEFINED} equates to null.
+     *
+     * @return The nullable boolean tristate representation
+     */
+    @Nullable
+    public Boolean asNullableBoolean() {
+        if (this == Tristate.UNDEFINED) {
+            return null;
+        } else {
+            return this.val;
+        }
     }
 }
