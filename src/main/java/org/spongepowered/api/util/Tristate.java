@@ -146,6 +146,10 @@ public enum Tristate {
      * Returns the nullable boolean representation of this tristate,
      * where {@link Tristate#UNDEFINED} equates to null.
      *
+     * <p>Note: To ensure that there is a one-to-one mapping of nullable
+     * booleans to and from {@link Tristate}, this method may return null
+     * rather than using an {@link java.util.Optional Optional}.</p>
+     *
      * @return The nullable boolean tristate representation
      */
     @Nullable
