@@ -165,7 +165,7 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
      * @return The direction
      */
     default Vector3d getDirection() {
-        Vector3d rotation = this.getRotation();
+        final Vector3d rotation = this.getRotation();
         return Quaterniond.fromAxesAnglesDeg(rotation.getX(), -rotation.getY(), rotation.getZ()).getDirection();
     }
 

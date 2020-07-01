@@ -99,7 +99,7 @@ public interface Living extends Entity, EntityProjectileSource, TeamMember {
      * @return The direction of the head
      */
     default Vector3d getHeadDirection() {
-        Vector3d headRotation = this.headRotation().get();
+        final Vector3d headRotation = this.headRotation().get();
         return Quaterniond.fromAxesAnglesDeg(headRotation.getX(), -headRotation.getY(), headRotation.getZ()).getDirection();
     }
 }
