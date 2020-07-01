@@ -256,7 +256,7 @@ public interface MessageChannel {
      *
      * @return A collection of all members of this channel
      */
-    Collection<MessageReceiver> getMembers();
+    Collection<? extends MessageReceiver> getMembers();
 
     /**
      * Creates a copy of this channel as a {@link MutableMessageChannel}.
