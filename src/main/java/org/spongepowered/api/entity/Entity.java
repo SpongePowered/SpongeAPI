@@ -46,7 +46,9 @@ import org.spongepowered.api.world.TeleportHelper;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.schematic.Schematic;
 import org.spongepowered.api.world.server.ServerWorld;
+import org.spongepowered.math.imaginary.Quaterniond;
 import org.spongepowered.math.vector.Vector3d;
+import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Collection;
 import java.util.EnumSet;
@@ -156,6 +158,16 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
      * @param rotation The rotation to set the entity to
      */
     void setRotation(Vector3d rotation);
+
+    /**
+     * Gets the unit vector representing the direction of this entity.
+     *
+     * @return The direction
+     */
+    default Vector3d getDirection() {
+        final Vector3d rotation = this.getRotation();
+        return Quaterniond.fromAxesAnglesDeg(rotation.getX(), -rotation.getY(), rotation.getZ()).getDirection();
+    }
 
     /**
      * Moves the entity to the specified location and sets the rotation.
