@@ -205,4 +205,10 @@ public interface ChatTypeMessageReceiver extends MessageReceiver {
         }
     }
 
+    /**
+     * Represents a {@link ChatTypeMessageReceiver} that can have their
+     * {@link MessageChannel} changed.
+     */
+    interface Mutable extends ChatTypeMessageReceiver, MessageReceiver.Mutable {
+    }
 }

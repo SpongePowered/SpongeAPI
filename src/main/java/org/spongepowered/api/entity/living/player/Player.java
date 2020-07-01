@@ -35,7 +35,7 @@ import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
 /**
  * A Player is the representation of an actual unit playing the game.
  */
-public interface Player extends Humanoid, Viewer, ChatTypeMessageReceiver {
+public interface Player extends Humanoid, Viewer, ChatTypeMessageReceiver.Mutable {
 
     /**
      * Gets the associated {@link GameProfile} of this player.

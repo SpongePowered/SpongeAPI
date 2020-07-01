@@ -116,14 +116,6 @@ public interface MessageReceiver {
     MessageChannel getMessageChannel();
 
     /**
-     * Sets the message channel that messages sent by this source should be sent
-     * to.
-     *
-     * @param channel The message channel to send messages to
-     */
-    void setMessageChannel(MessageChannel channel);
-
-    /**
      * Gets the locale of this {@link MessageReceiver}.
      *
      * <p>If this receiver does not support configurable
@@ -135,4 +127,18 @@ public interface MessageReceiver {
         return Locales.DEFAULT;
     }
 
+    /**
+     * Represents a {@link MessageReceiver} that can have their
+     * {@link MessageChannel} changed.
+     */
+    interface Mutable extends MessageReceiver {
+
+        /**
+         * Sets the message channel that messages sent by this source should be sent
+         * to.
+         *
+         * @param channel The message channel to send messages to
+         */
+        void setMessageChannel(MessageChannel channel);
+    }
 }
