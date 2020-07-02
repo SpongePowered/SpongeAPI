@@ -30,6 +30,7 @@ import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.text.Text;
@@ -49,6 +50,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.UUID;
 import java.util.function.Supplier;
 
@@ -182,7 +184,7 @@ public final class CatalogedValueParameters {
             Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "DURATION");
 
     /**
-     * Require an argument to select one or more {@link Entity} objects.
+     * Require an argument to select one {@link Entity}.
      *
      * <p>This parameter accepts selectors.</p>
      *
@@ -241,6 +243,30 @@ public final class CatalogedValueParameters {
             Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "LONG");
 
     /**
+     * Require an argument to select many {@link Entity entities}.
+     *
+     * <p>This parameter accepts selectors.</p>
+     *
+     * <p>Returns many {@link Entity} objects.</p>
+     *
+     * @see #ENTITY
+     */
+    public static final Supplier<CatalogedValueParameter<List<Entity>>> MANY_ENTITIES =
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "MANY_ENTITIES");
+
+    /**
+     * Require an argument to select many {@link ServerPlayer players}.
+     *
+     * <p>This parameter accepts selectors.</p>
+     *
+     * <p>Returns many {@link Player} objects.</p>
+     *
+     * @see #PLAYER
+     */
+    public static final Supplier<CatalogedValueParameter<List<ServerPlayer>>> MANY_PLAYERS =
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "MANY_PLAYERS");
+
+    /**
      * Does not parse any arguments, returning nothing.
      *
      * <p>Returns nothing - no entry will be placed into any provided key.</p>
@@ -253,9 +279,9 @@ public final class CatalogedValueParameters {
      *
      * <p>This parameter accepts selectors.</p>
      *
-     * <p>Returns a {@link Player}.</p>
+     * <p>Returns a {@link ServerPlayer}.</p>
      */
-    public static final Supplier<CatalogedValueParameter<Player>> PLAYER =
+    public static final Supplier<CatalogedValueParameter<ServerPlayer>> PLAYER =
             Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "PLAYER");
 
     /**
@@ -319,15 +345,15 @@ public final class CatalogedValueParameters {
             Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "TARGET_ENTITY");
 
     /**
-     * Does not parse any arguments, but instead returns a {@link Player} if the
-     * current root of the {@link Cause} is as such (which thus
-     * must be a {@link org.spongepowered.api.world.Locatable}).
+     * Does not parse any arguments, but instead returns a {@link ServerPlayer}
+     * if the current root of the {@link Cause} is as such (which thus must be
+     * a {@link org.spongepowered.api.world.Locatable}).
      *
      * <p>This will always fail for non-locatable sources</p>
      *
-     * <p>Returns a {@link Player}.</p>
+     * <p>Returns a {@link ServerPlayer}.</p>
      */
-    public static final Supplier<CatalogedValueParameter<Player>> TARGET_PLAYER =
+    public static final Supplier<CatalogedValueParameter<ServerPlayer>> TARGET_PLAYER =
             Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "TARGET_PLAYER");
 
     /**

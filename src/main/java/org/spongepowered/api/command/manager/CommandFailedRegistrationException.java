@@ -22,22 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command.parameter.managed;
-
-import org.spongepowered.api.text.Text;
+package org.spongepowered.api.command.manager;
 
 /**
- * Defines the usage string for the parameter.
+ * Indicates that a command could not be registered.
  */
-@FunctionalInterface
-public interface ValueUsage {
+public class CommandFailedRegistrationException extends RuntimeException {
 
-    /**
-     * Gets the usage string for the argument.
-     *
-     * @param key The {@link Text} that defines the parameter key
-     * @return The usage
-     */
-    Text getUsage(Text key);
+    private static final long serialVersionUID = -783923658025L;
+
+    public CommandFailedRegistrationException(String message) {
+        super(message);
+    }
+
+    public CommandFailedRegistrationException(String message, Throwable inner) {
+        super(message, inner);
+    }
 
 }

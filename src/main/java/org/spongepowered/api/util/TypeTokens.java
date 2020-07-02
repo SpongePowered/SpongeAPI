@@ -293,6 +293,8 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<NotePitch>> NOTE_VALUE_TOKEN = new TypeToken<Value<NotePitch>>() {private static final long serialVersionUID = -1;};
 
+    public static final TypeToken<Object> OBJECT = TypeToken.of(Object.class);
+
     public static final TypeToken<ParrotType> PARROT_TYPE_TOKEN = new TypeToken<ParrotType>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<ParrotType>> PARROT_TYPE_VALUE_TOKEN = new TypeToken<Value<ParrotType>>() {private static final long serialVersionUID = -1;};
