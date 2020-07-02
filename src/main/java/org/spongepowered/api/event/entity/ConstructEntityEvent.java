@@ -28,8 +28,8 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.util.Transform;
-import org.spongepowered.api.world.server.ServerWorld;
+import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.math.vector.Vector3d;
 
 /**
  * Base event during the construction of an {@link Entity}.
@@ -37,18 +37,18 @@ import org.spongepowered.api.world.server.ServerWorld;
 public interface ConstructEntityEvent extends Event {
 
     /**
-     * Gets the {@link ServerWorld world} this {@link Entity} will be constructed with.
+     * Gets the {@link ServerLocation location} the {@link Entity} will construct at.
      *
-     * @return The world
+     * @return The location
      */
-    ServerWorld getWorld();
+    ServerLocation getLocation();
 
     /**
-     * Gets the {@link Transform} that the {@link Entity} will be constructed with.
+     * Gets the {@link Vector3d rotation} the {@link Entity} will construct to.
      *
-     * @return The transform
+     * @return The rotation
      */
-    Transform getTransform();
+    Vector3d getRotation();
 
     /**
      * Gets the {@link EntityType} of the target {@link Entity} that is going to be
