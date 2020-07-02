@@ -82,24 +82,24 @@ public interface Living extends AttributeHolder, Entity, EntityProjectileSource,
      * {@link Keys#EYE_HEIGHT}
      * @return The height of the eyes
      */
-    default Value.Immutable<Double> eyeHeight() {
-        return this.requireValue(Keys.EYE_HEIGHT).asImmutable();
+    default Value<Double> eyeHeight() {
+        return this.requireValue(Keys.EYE_HEIGHT);
     }
 
     /**
      * {@link Keys#EYE_POSITION}
      * @return The position of the eyes
      */
-    default Value.Immutable<Vector3d> eyePosition() {
-        return this.requireValue(Keys.EYE_POSITION).asImmutable();
+    default Value<Vector3d> eyePosition() {
+        return this.requireValue(Keys.EYE_POSITION);
     }
 
     /**
      * {@link Keys#LAST_DAMAGE_RECEIVED}
      * @return The last damage received
      */
-    default Optional<Value.Immutable<Double>> lastDamageReceived() {
-        return this.getValue(Keys.LAST_DAMAGE_RECEIVED).map(Value::asImmutable);
+    default Optional<Value<Double>> lastDamageReceived() {
+        return this.getValue(Keys.LAST_DAMAGE_RECEIVED);
     }
 
     /**
