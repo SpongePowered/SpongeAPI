@@ -74,6 +74,6 @@ public interface CommandMapping {
      *
      * @return The {@link CommandRegistrar}
      */
-    CommandRegistrar getRegistrar();
+    CommandRegistrar<?> getRegistrar();
 
 }

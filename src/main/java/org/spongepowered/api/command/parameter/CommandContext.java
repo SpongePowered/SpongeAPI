@@ -71,7 +71,7 @@ public interface CommandContext extends CommandCause {
      * @throws IllegalArgumentException if more than one value for the key was
      *                                  found
      */
-    <T> Optional<T> getOne(Parameter.Key<T> key) throws IllegalArgumentException;
+    <T> Optional<T> getOne(Parameter.Key<? super T> key) throws IllegalArgumentException;
 
     /**
      * Gets the value for the given key if the key has only one value,
@@ -99,7 +99,7 @@ public interface CommandContext extends CommandCause {
      * @throws IllegalArgumentException if more than one value for the key was
      *                                  found
      */
-    <T> T requireOne(Parameter.Key<T> key) throws NoSuchElementException, IllegalArgumentException;
+    <T> T requireOne(Parameter.Key<? super T> key) throws NoSuchElementException, IllegalArgumentException;
 
     /**
      * Gets all values for the given argument. May return an empty list if no
@@ -121,7 +121,7 @@ public interface CommandContext extends CommandCause {
      * @param <T> the type of value to get
      * @return the collection of all values
      */
-    <T> Collection<? extends T> getAll(Parameter.Key<T> key);
+    <T> Collection<? extends T> getAll(Parameter.Key<? super T> key);
 
     /**
      * A builder for creating this context.

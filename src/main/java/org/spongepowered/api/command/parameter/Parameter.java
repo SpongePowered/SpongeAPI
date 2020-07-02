@@ -43,6 +43,7 @@ import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.network.RemoteConnection;
 import org.spongepowered.api.service.permission.Subject;
@@ -521,8 +522,8 @@ public interface Parameter {
      *
      * @return A {@link Parameter.Value.Builder}
      */
-    static Parameter.Value.Builder<Player> player() {
-        return Parameter.builder(Player.class, CatalogedValueParameters.PLAYER);
+    static Parameter.Value.Builder<ServerPlayer> player() {
+        return Parameter.builder(ServerPlayer.class, CatalogedValueParameters.PLAYER);
     }
 
     /**
@@ -532,8 +533,8 @@ public interface Parameter {
      *
      * @return A {@link Parameter.Value.Builder}
      */
-    static Parameter.Value.Builder<Player> playerOrSource() {
-        return player().orDefault(cause -> cause.getCause().root() instanceof Player ? (Player) cause.getCause().root() : null);
+    static Parameter.Value.Builder<ServerPlayer> playerOrSource() {
+        return player().orDefault(cause -> cause.getCause().root() instanceof ServerPlayer ? (ServerPlayer) cause.getCause().root() : null);
     }
 
     /**
@@ -542,7 +543,7 @@ public interface Parameter {
      *
      * @return A {@link Parameter.Value.Builder}
      */
-    static Parameter.Value.Builder<Player> playerOrTarget() {
+    static Parameter.Value.Builder<ServerPlayer> playerOrTarget() {
         return player().parser(CatalogedValueParameters.TARGET_PLAYER);
     }
 
