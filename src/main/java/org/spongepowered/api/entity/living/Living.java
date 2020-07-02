@@ -79,6 +79,22 @@ public interface Living extends AttributeHolder, Entity, EntityProjectileSource,
     }
 
     /**
+     * {@link Keys#EYE_HEIGHT}
+     * @return The height of the eyes
+     */
+    default Value.Immutable<Double> eyeHeight() {
+        return this.requireValue(Keys.EYE_HEIGHT).asImmutable();
+    }
+
+    /**
+     * {@link Keys#EYE_POSITION}
+     * @return The position of the eyes
+     */
+    default Value.Immutable<Vector3d> eyePosition() {
+        return this.requireValue(Keys.EYE_POSITION).asImmutable();
+    }
+
+    /**
      * {@link Keys#LAST_DAMAGE_RECEIVED}
      * @return The last damage received
      */
