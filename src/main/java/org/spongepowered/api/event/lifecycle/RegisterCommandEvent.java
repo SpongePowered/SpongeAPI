@@ -32,7 +32,7 @@ import org.spongepowered.api.event.GenericEvent;
  *
  * @param <T> The {@link CommandRegistrar} that is handling this event.
  */
-public interface RegisterCommandEvent<T extends CommandRegistrar<?>> extends GenericEvent<T> {
+public interface RegisterCommandEvent<T extends CommandRegistrar<?>> extends GenericEvent<T>, LifecycleEvent {
 
     /**
      * Gets the {@link CommandRegistrar} that handles the command registration
