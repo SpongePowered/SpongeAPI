@@ -942,6 +942,14 @@ public interface Parameter {
         Text getUsage(CommandCause cause);
 
         /**
+         * If set, this parameter will repeat until the argument string has
+         * been parsed.
+         *
+         * @return if true, consumes all arguments
+         */
+        boolean willConsumeAllRemaining();
+
+        /**
          * Builds a {@link Parameter} from constituent components.
          */
         interface Builder<T> extends ResettableBuilder<Value<T>, Builder<T>> {
@@ -1079,7 +1087,8 @@ public interface Parameter {
              * </ul>
              *
              * <p>Unless marked as optional, this element must be able to consume
-             * at least one argument.</p>
+             * at least one argument. This will automatically mark the element
+             * as {@link #terminal() terminal}.</p>
              *
              * @return This builder, for chaining
              */
