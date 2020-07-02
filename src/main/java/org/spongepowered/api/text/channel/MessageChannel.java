@@ -254,7 +254,10 @@ public interface MessageChannel {
     /**
      * Gets a collection of all members in this channel.
      *
-     * @return A collection of all members of this channel
+     * <p>Implementors of this interface should always return a copy or
+     * immutable view of the underlying container.</p>
+     *
+     * @return An immutable collection of all members
      */
     Collection<? extends MessageReceiver> getMembers();
 
