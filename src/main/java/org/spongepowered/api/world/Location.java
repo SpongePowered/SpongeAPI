@@ -291,6 +291,15 @@ public interface Location<W extends World<W>> {
     BlockState getBlock();
 
     /**
+     * Gets the {@link BlockType} for this position.
+     *
+     * @return The block type
+     */
+    default BlockType getBlockType() {
+        return getBlock().getType();
+    }
+
+    /**
      * Gets the {@link FluidState} for this position.
      *
      * @return The fluid state
