@@ -284,14 +284,14 @@ public interface Location<W extends World<W>> {
     boolean hasBlock();
 
     /**
-     * Gets the {@link BlockState} for this position.
+     * Gets the {@link BlockState} for this location.
      *
      * @return The block state
      */
     BlockState getBlock();
 
     /**
-     * Gets the {@link BlockType} for this position.
+     * Gets the {@link BlockType} for this location.
      *
      * @return The block type
      */
@@ -300,16 +300,16 @@ public interface Location<W extends World<W>> {
     }
 
     /**
-     * Gets the {@link FluidState} for this position.
+     * Gets the {@link FluidState} for this location.
      *
      * @return The fluid state
      */
     FluidState getFluid();
 
     /**
-     * Checks for whether the block at this position contains block entity data.
+     * Checks for whether the block at this location contains block entity data.
      *
-     * @return True if the block at this position has block entity data, false
+     * @return True if the block at this location has block entity data, false
      *      otherwise
      */
     boolean hasBlockEntity();
@@ -322,7 +322,7 @@ public interface Location<W extends World<W>> {
     Optional<BlockEntity> getBlockEntity();
 
     /**
-     * Replace the block at this position with a new state.
+     * Replace the block at this location with a new state.
      *
      * <p>This will remove any extended block data at the given position.</p>
      *
@@ -332,7 +332,7 @@ public interface Location<W extends World<W>> {
     boolean setBlock(BlockState state);
 
     /**
-     * Replace the block at this position with a new state.
+     * Replace the block at this location with a new state.
      *
      * <p>This will remove any extended block data at the given position.</p>
      *  @param state The new block state
@@ -342,7 +342,7 @@ public interface Location<W extends World<W>> {
     boolean setBlock(BlockState state, BlockChangeFlag flag);
 
     /**
-     * Replace the block type at this position by a new type.
+     * Replace the block type at this location by a new type.
      *
      * <p>This will remove any extended block data at the given position.</p>
      *
@@ -352,7 +352,7 @@ public interface Location<W extends World<W>> {
     boolean setBlockType(BlockType type);
 
     /**
-     * Replace the block type at this position by a new type.
+     * Replace the block type at this location by a new type.
      *
      * <p>This will remove any extended block data at the given position.</p>
      * @param type The new type
