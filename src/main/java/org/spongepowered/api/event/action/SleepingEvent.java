@@ -92,14 +92,14 @@ public interface SleepingEvent extends Event {
         Vector3d getFromRotation();
 
         /**
-         * Gets the {@link Vector3d rotation} the {@link Humanoid} will woke up to.
+         * Gets the {@link Vector3d rotation} the {@link Humanoid} will wake up to.
          *
          * @return The rotation
          */
         Vector3d getToRotation();
 
         /**
-         * Sets the {@link Vector3d rotation} the {@link Humanoid} will woke up to.
+         * Sets the {@link Vector3d rotation} the {@link Humanoid} will wake up to.
          *
          * @param rotation The rotation
          */
