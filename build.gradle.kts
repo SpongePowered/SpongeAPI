@@ -4,7 +4,7 @@ plugins {
     id("org.spongepowered.event-impl-gen") version "5.7.0"
     idea
     eclipse
-    id("net.minecrell.licenser") version "0.4.1"
+    id("net.minecrell.licenser")
 }
 
 repositories {
