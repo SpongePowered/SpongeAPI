@@ -22,17 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living;
+package org.spongepowered.api.command.manager;
 
-import org.spongepowered.api.data.type.HandType;
-import org.spongepowered.api.event.action.InteractEvent;
+/**
+ * Indicates that a command could not be registered.
+ */
+public class CommandFailedRegistrationException extends RuntimeException {
 
-public interface HandInteractEvent extends InteractEvent {
+    private static final long serialVersionUID = -783923658025L;
 
-    /**
-     * Gets the {@link HandType} used for interaction.
-     *
-     * @return The hand type
-     */
-    HandType getHandType();
+    public CommandFailedRegistrationException(String message) {
+        super(message);
+    }
+
+    public CommandFailedRegistrationException(String message, Throwable inner) {
+        super(message, inner);
+    }
+
 }

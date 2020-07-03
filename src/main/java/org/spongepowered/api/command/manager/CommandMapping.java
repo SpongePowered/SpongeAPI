@@ -25,6 +25,7 @@
 package org.spongepowered.api.command.manager;
 
 import org.spongepowered.api.command.Command;
+import org.spongepowered.api.command.registrar.CommandRegistrar;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.plugin.PluginContainer;
 
@@ -38,7 +39,10 @@ import java.util.function.Predicate;
 public interface CommandMapping {
 
     /**
-     * Gets the primary alias.
+     * Gets the primary alias that will be passed to the registered
+     * {@link CommandRegistrar}. Note that this alias may not correspond to
+     * an alias in {@link #getAllAliases()}, it is used as an identifier to
+     * the underlying {@link CommandRegistrar}.
      *
      * @return The primary alias
      */
@@ -66,24 +70,10 @@ public interface CommandMapping {
     PluginContainer getPlugin();
 
     /**
-     * Gets the {@link Command} associated with this mapping, if associated
-     * with the Sponge system.
+     * Gets the {@link CommandRegistrar} that registered this command.
      *
-     * <p>An {@link Optional#empty()} does not indicate no command, rather
-     * it infers that an object has registered a command via the underlying
-     * engine.</p>
-     *
-     * @return The {@link Command}, if applicable
+     * @return The {@link CommandRegistrar}
      */
-    Optional<Command> getCommand();
-
-    /**
-     * Gets a {@link Predicate} that checks whether a given {@link Cause}
-     * should be able to execute the command represented by this mapping.
-     *
-     * @return A {@link Predicate} that determines whether the command can be
-     *         run by the given {@link Cause}.
-     */
-    Predicate<Cause> getRequirements();
+    CommandRegistrar<?> getRegistrar();
 
 }

@@ -51,6 +51,7 @@ import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.chat.ChatVisibility;
 import org.spongepowered.api.world.WorldBorder;
+import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.plugin.PluginContainer;
 
 import java.time.Instant;
@@ -296,5 +297,10 @@ public interface ServerPlayer extends Player, Subject {
 
     default Optional<Value.Mutable<Entity>> spectatorTarget() {
         return this.getValue(Keys.SPECTATOR_TARGET).map(Value::asMutable);
+    }
+
+    @Override
+    default ServerWorld getWorld() {
+        return this.getServerLocation().getWorld();
     }
 }

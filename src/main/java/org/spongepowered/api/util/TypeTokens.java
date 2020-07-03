@@ -69,6 +69,9 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.entity.attribute.AttributeOperation;
+import org.spongepowered.api.entity.attribute.ModifierTemplate;
+import org.spongepowered.api.entity.attribute.type.AttributeType;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.fluid.FluidStack;
@@ -101,6 +104,14 @@ import java.util.UUID;
 public final class TypeTokens {
 
     // SORTFIELDS:ON
+
+    public static final TypeToken<AttributeOperation> ATTRIBUTE_OPERATION_TOKEN = new TypeToken<AttributeOperation>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Value<AttributeOperation>> ATTRIBUTE_OPERATION_VALUE_TOKEN = new TypeToken<Value<AttributeOperation>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<AttributeType> ATTRIBUTE_TYPE_TOKEN = new TypeToken<AttributeType>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Value<AttributeType>> ATTRIBUTE_TYPE_VALUE_TOKEN = new TypeToken<Value<AttributeType>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<ArtType> ART_TYPE_TOKEN = new TypeToken<ArtType>() {private static final long serialVersionUID = -1;};
 
@@ -274,9 +285,15 @@ public final class TypeTokens {
 
     public static final TypeToken<MapValue<UUID, Vector3d>> MAP_UUID_VECTOR3D_VALUE_TOKEN = new TypeToken<MapValue<UUID, Vector3d>>() {private static final long serialVersionUID = -1;};
 
+    public static final TypeToken<ModifierTemplate> MODIFIER_TEMPLATE_TOKEN = new TypeToken<ModifierTemplate>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Value<ModifierTemplate>> MODIFIER_TEMPLATE_VALUE_TOKEN = new TypeToken<Value<ModifierTemplate>>() {private static final long serialVersionUID = -1;};
+
     public static final TypeToken<NotePitch> NOTE_TOKEN = new TypeToken<NotePitch>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<NotePitch>> NOTE_VALUE_TOKEN = new TypeToken<Value<NotePitch>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Object> OBJECT = TypeToken.of(Object.class);
 
     public static final TypeToken<ParrotType> PARROT_TYPE_TOKEN = new TypeToken<ParrotType>() {private static final long serialVersionUID = -1;};
 

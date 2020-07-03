@@ -22,10 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen.feature.config;
+package org.spongepowered.api.event.lifecycle;
 
-import org.spongepowered.api.world.gen.FeatureConfig;
+import org.spongepowered.api.command.registrar.CommandRegistrar;
+import org.spongepowered.api.event.GenericEvent;
 
-public interface SwampHutConfig extends FeatureConfig {
+/**
+ * Lifecycle event to indicate when commands should be registered.
+ *
+ * @param <T> The {@link CommandRegistrar} that is handling this event.
+ */
+public interface RegisterCommandEvent<T extends CommandRegistrar<?>> extends GenericEvent<T>, LifecycleEvent {
+
+    /**
+     * Gets the {@link CommandRegistrar} that handles the command registration
+     * for this event. Commands should be registered via the appropriate method
+     * on the registrar.
+     *
+     * @return The {@link CommandRegistrar}
+     */
+    T getRegistrar();
 
 }

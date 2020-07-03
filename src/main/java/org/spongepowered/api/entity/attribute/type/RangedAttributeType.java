@@ -22,10 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen.feature.config;
+package org.spongepowered.api.entity.attribute.type;
 
-import org.spongepowered.api.world.gen.FeatureConfig;
+/**
+ * Represents an {@link AttributeType} with a ranged value.
+ */
+public interface RangedAttributeType extends AttributeType {
 
-public interface IglooConfig extends FeatureConfig {
+    /**
+     * Gets the minimum value an attribute of this type can hold.
+     *
+     * @return The minimum value an attribute could hold.
+     */
+    double getMinimumValue();
 
+    /**
+     * Gets the maximum value an attribute of this type can hold.
+     *
+     * @return The maximum value an attribute could hold.
+     */
+    double getMaximumValue();
 }

@@ -38,7 +38,5 @@ public interface NamedCatalogType extends CatalogType {
      *
      * @return The human-readable name of this dummy type
      */
-    default String getName() {
-        return this.getKey().getValue();
-    }
+    String getName();
 }

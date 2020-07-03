@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.util;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
+
 /**
  * Represents a simple tristate.
  */
@@ -31,12 +33,17 @@ public enum Tristate {
     TRUE(true) {
         @Override
         public Tristate and(Tristate other) {
-            return other == TRUE || other == UNDEFINED ? TRUE : FALSE;
+            return other == FALSE ? FALSE : TRUE;
         }
 
         @Override
         public Tristate or(Tristate other) {
             return TRUE;
+        }
+
+        @Override
+        public Tristate not() {
+            return FALSE;
         }
     },
     FALSE(false) {
@@ -49,6 +56,11 @@ public enum Tristate {
         public Tristate or(Tristate other) {
             return other == TRUE ? TRUE : FALSE;
         }
+
+        @Override
+        public Tristate not() {
+            return TRUE;
+        }
     },
     UNDEFINED(false) {
         @Override
@@ -60,6 +72,11 @@ public enum Tristate {
         public Tristate or(Tristate other) {
             return other;
         }
+
+        @Override
+        public Tristate not() {
+            return UNDEFINED;
+        }
     };
 
     private final boolean val;
@@ -69,13 +86,28 @@ public enum Tristate {
     }
 
     /**
-     * Return the appropriate tristate for a given boolean value.
+     * Returns the appropriate tristate for a given boolean value.
      *
      * @param val The boolean value
      * @return The appropriate tristate
      */
     public static Tristate fromBoolean(boolean val) {
         return val ? TRUE : FALSE;
+    }
+
+    /**
+     * Returns the appropriate tristate for a given nullable boolean value,
+     * where null equates to {@link Tristate#UNDEFINED}.
+     *
+     * @param val The nullable boolean value
+     * @return The appropriate tristate
+     */
+    public static Tristate fromNullableBoolean(@Nullable Boolean val) {
+        if (val == null) {
+            return UNDEFINED;
+        } else {
+            return val ? TRUE : FALSE;
+        }
     }
 
     /**
@@ -95,11 +127,37 @@ public enum Tristate {
     public abstract Tristate or(Tristate other);
 
     /**
+     * Negates this tristate.
+     *
+     * @return The result
+     */
+    public abstract Tristate not();
+
+    /**
      * Returns the boolean representation of this tristate.
      *
      * @return The boolean tristate representation
      */
     public boolean asBoolean() {
         return this.val;
+    }
+
+    /**
+     * Returns the nullable boolean representation of this tristate,
+     * where {@link Tristate#UNDEFINED} equates to null.
+     *
+     * <p>Note: To ensure that there is a one-to-one mapping of nullable
+     * booleans to and from {@link Tristate}, this method will return null
+     * rather than use an {@link java.util.Optional Optional}.</p>
+     *
+     * @return The nullable boolean tristate representation
+     */
+    @Nullable
+    public Boolean asNullableBoolean() {
+        if (this == Tristate.UNDEFINED) {
+            return null;
+        } else {
+            return this.val;
+        }
     }
 }

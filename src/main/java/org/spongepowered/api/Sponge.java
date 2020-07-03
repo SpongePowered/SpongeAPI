@@ -34,6 +34,7 @@ import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.EventManager;
+import org.spongepowered.api.event.lifecycle.LifecycleEvent;
 import org.spongepowered.api.network.ChannelRegistrar;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.registry.GameRegistry;
@@ -72,9 +73,7 @@ public final class Sponge {
 
     /**
      * Gets the {@link Game} instance. There is ever only going
-     * to be a single game instance at any given time, except during
-     * the various extraneous {@link GameState}s that the game instance
-     * is otherwise unavailable.
+     * to be a single game instance at any given time.
      *
      * @return The game instance
      */
@@ -189,13 +188,11 @@ public final class Sponge {
     }
 
     /**
-     * Gets the {@link Server} instance from the
-     * {@link Game} instance.
+     * Gets the {@link Server} instance from the {@link Game} instance.
      *
-     * <p>Note: During various {@link GameState}s, a {@link Server} instance
-     * may <strong>NOT</strong> be available. During these specific states,
-     * calling {@link Game#getServer()} will throw an exception. To double
-     * check, call {@link #isServerAvailable()}</p>
+     * <p>Note: During various {@link LifecycleEvent events}, a {@link Server} instance
+     * may <strong>NOT</strong> be available. Calling {@link Game#getServer()} during one
+     * will throw an exception. To double check, call {@link #isServerAvailable()}</p>
      *
      * @see Game#getServer()
      * @see Game#isServerAvailable()
