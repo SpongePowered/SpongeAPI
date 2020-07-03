@@ -14,9 +14,9 @@ pluginManagement {
                 val version = requested.version ?: "0.11.7-SNAPSHOT"
                 useModule("org.spongepowered:SpongeGradle:$version")
             }
-            if (requested.id.id.startsWith("net.minecrell.licenser")) {
-                val vresion = requested.version ?: "0.4.1"
-                useModule("net.minecrell.licenser:licenser:$version")
+            if (requested.id.id == "net.minecrell.licenser") {
+                val version = requested.version ?: "0.4.1"
+                useModule("gradle.plugin.net.minecrell:licenser:$version")
             }
         }
     }
