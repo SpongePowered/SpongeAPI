@@ -103,6 +103,14 @@ public interface Living extends AttributeHolder, Entity, EntityProjectileSource,
     }
 
     /**
+     * {@link Keys#FALL_DISTANCE}
+     * @return The fall distance
+     */
+    default Value.Mutable<Double> fallDistance() {
+        return this.requireValue(Keys.FALL_DISTANCE).asMutable();
+    }
+
+    /**
      * Makes the entity look at the specified target position.
      *
      * @param targetPos Position to target
