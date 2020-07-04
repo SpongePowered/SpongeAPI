@@ -36,6 +36,7 @@ import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.ban.BanService;
 import org.spongepowered.api.service.whitelist.WhitelistService;
 import org.spongepowered.api.text.TextRepresentable;
+import org.spongepowered.api.util.annotation.eventgen.AbsoluteSortPosition;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3d;
@@ -111,6 +112,7 @@ public interface ClientConnectionEvent extends Event {
          *
          * @return The user
          */
+        @AbsoluteSortPosition(1)
         User getUser();
 
         /**
@@ -118,6 +120,7 @@ public interface ClientConnectionEvent extends Event {
          *
          * @return The remote connection
          */
+        @AbsoluteSortPosition(2)
         RemoteConnection getConnection();
 
         /**
@@ -125,6 +128,7 @@ public interface ClientConnectionEvent extends Event {
          *
          * @return The client's profile
          */
+        @AbsoluteSortPosition(3)
         GameProfile getProfile();
 
         /**
@@ -132,6 +136,7 @@ public interface ClientConnectionEvent extends Event {
          *
          * @return The location
          */
+        @AbsoluteSortPosition(4)
         ServerLocation getFromLocation();
 
         /**
@@ -139,6 +144,7 @@ public interface ClientConnectionEvent extends Event {
          *
          * @return The location
          */
+        @AbsoluteSortPosition(5)
         ServerLocation getToLocation();
 
         /**
@@ -153,6 +159,7 @@ public interface ClientConnectionEvent extends Event {
          *
          * @return The rotation
          */
+        @AbsoluteSortPosition(6)
         Vector3d getFromRotation();
 
         /**
@@ -160,6 +167,7 @@ public interface ClientConnectionEvent extends Event {
          *
          * @return The rotation
          */
+        @AbsoluteSortPosition(7)
         Vector3d getToRotation();
 
         /**

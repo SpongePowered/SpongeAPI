@@ -28,6 +28,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
+import org.spongepowered.api.util.annotation.eventgen.AbsoluteSortPosition;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.math.vector.Vector3d;
 
@@ -37,10 +38,20 @@ import org.spongepowered.math.vector.Vector3d;
 public interface ConstructEntityEvent extends Event {
 
     /**
+     * Gets the {@link EntityType} of the target {@link Entity} that is going to be
+     * constructed.
+     *
+     * @return The target entity type
+     */
+    @AbsoluteSortPosition(1)
+    EntityType<?> getTargetType();
+
+    /**
      * Gets the {@link ServerLocation location} the {@link Entity} will construct at.
      *
      * @return The location
      */
+    @AbsoluteSortPosition(3)
     ServerLocation getLocation();
 
     /**
@@ -48,15 +59,8 @@ public interface ConstructEntityEvent extends Event {
      *
      * @return The rotation
      */
+    @AbsoluteSortPosition(4)
     Vector3d getRotation();
-
-    /**
-     * Gets the {@link EntityType} of the target {@link Entity} that is going to be
-     * constructed.
-     *
-     * @return The target entity type
-     */
-    EntityType<?> getTargetType();
 
     /**
      * Called before the construction of an {@link Entity}. Usually, this will
@@ -80,6 +84,7 @@ public interface ConstructEntityEvent extends Event {
          *
          * @return The entity
          */
+        @AbsoluteSortPosition(2)
         Entity getEntity();
     }
 

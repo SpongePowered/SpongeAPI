@@ -28,6 +28,7 @@ import org.spongepowered.api.block.entity.Bed;
 import org.spongepowered.api.block.entity.EndPortal;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Event;
+import org.spongepowered.api.util.annotation.eventgen.AbsoluteSortPosition;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.dimension.DimensionTypes;
 import org.spongepowered.math.vector.Vector3d;
@@ -51,6 +52,7 @@ public interface RespawnPlayerEvent extends Event {
      *
      * @return The original player
      */
+    @AbsoluteSortPosition(1)
     ServerPlayer getOriginalPlayer();
 
     /**
@@ -58,13 +60,31 @@ public interface RespawnPlayerEvent extends Event {
      *
      * @return The player
      */
+    @AbsoluteSortPosition(2)
     ServerPlayer getPlayer();
+
+    /**
+     * Gets whether the position of spawn was set by a {@link Bed}.
+     *
+     * @return True if the position of spawn was due to a bed, false otherwise
+     */
+    @AbsoluteSortPosition(3)
+    boolean isBedSpawn();
+
+    /**
+     * Gets if this respawn is due to a {@link ServerPlayer player's} death.
+     *
+     * @return {@code true} if player died, {@code false} otherwise
+     */
+    @AbsoluteSortPosition(4)
+    boolean isDeath();
 
     /**
      * Gets the previous {@link ServerLocation location} the {@link ServerPlayer player} would have spawned at.
      *
      * @return The location
      */
+    @AbsoluteSortPosition(5)
     ServerLocation getFromLocation();
 
     /**
@@ -72,6 +92,7 @@ public interface RespawnPlayerEvent extends Event {
      *
      * @return The location
      */
+    @AbsoluteSortPosition(6)
     ServerLocation getToLocation();
 
     /**
@@ -86,12 +107,14 @@ public interface RespawnPlayerEvent extends Event {
      *
      * @return The rotation
      */
+    @AbsoluteSortPosition(7)
     Vector3d getFromRotation();
 
     /**
      * Gets the {@link Vector3d rotation} the {@link ServerPlayer player} will spawn to.
      * @return The rotation
      */
+    @AbsoluteSortPosition(8)
     Vector3d getToRotation();
 
     /**
@@ -100,18 +123,4 @@ public interface RespawnPlayerEvent extends Event {
      * @param rotation The rotation
      */
     void setToRotation(Vector3d rotation);
-
-    /**
-     * Gets whether the position of spawn was set by a {@link Bed}.
-     *
-     * @return True if the position of spawn was due to a bed, false otherwise
-     */
-    boolean isBedSpawn();
-
-    /**
-     * Gets if this respawn is due to a {@link ServerPlayer player's} death.
-     *
-     * @return {@code true} if player died, {@code false} otherwise
-     */
-    boolean isDeath();
 }
