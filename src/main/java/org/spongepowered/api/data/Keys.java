@@ -788,7 +788,7 @@ public final class Keys {
     public static final Supplier<Key<BoundedValue<Integer>>> FIRE_TICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FIRE_TICKS");
 
     /**
-     * The time a {@link Player} first joined on the Server.
+     * The time a {@link User} first joined on the Server.
      */
     public static final Supplier<Key<Value<Instant>>> FIRST_DATE_JOINED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FIRST_DATE_JOINED");
 
