@@ -51,11 +51,11 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
     /**
      * Represents a {@link BlockSnapshot} with the default state of
      * {@link BlockTypes#AIR} and a {@link ServerLocation} that cannot be determined.
+     *
+     * @return An empty block snapshot
      */
-    Supplier<BlockSnapshot> NONE = BlockSnapshot::empty;
-
     static BlockSnapshot empty() {
-        return Sponge.game().builderProvider().provide(Builder.class).empty();
+        return Sponge.game().factoryProvider().provide(Factory.class).empty();
     }
 
     /**
@@ -147,6 +147,9 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
      */
     Optional<BlockEntityArchetype> createArchetype();
 
+    /**
+     * Represents a builder to create {@link BlockSnapshot}s.
+     */
     interface Builder extends SerializableDataHolderBuilder.Immutable<BlockSnapshot, Builder> {
 
         /**
@@ -205,7 +208,19 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
          * @return This builder, for chaining
          */
         Builder notifier(UUID uuid);
+    }
 
+    /**
+     * Represents a factory to create {@link BlockSnapshot}s.
+     */
+    interface Factory {
+
+        /**
+         * Represents a {@link BlockSnapshot} with the default state of
+         * {@link BlockTypes#AIR} and a {@link ServerLocation} that cannot be determined.
+         *
+         * @return An empty block snapshot
+         */
         BlockSnapshot empty();
     }
 }
