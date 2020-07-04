@@ -24,17 +24,27 @@
  */
 package org.spongepowered.api.util.annotation;
 
+import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;
 import java.lang.annotation.Target;
 
 /**
- * The instance of the class to which this annotation is applied cannot be stored.
+ * <p>In particular, you should not:</p>
  *
- * The annotation is applied to classes to indicate that their instances should not
- * be stored in a field or top-level variable.
- * The annotation is inherited.
+ * <ul>
+ *     <li>Store annotated objects on a field</li>
+ *     <li>Cache annotated objects in any collection</li>
+ * </ul>
+ *
+ * <p>Doing so may result in memory leaks and/or result in you operating on a stale object,
+ * meaning your operations will fail, often silently.</p>
+ *
+ * <p>Where objects have identifiers (usually a {@link java.util.UUID} or name),
+ * you should store the identifiers instead, and use these to get the required object
+ * from the API when needed.</p>
  */
+@Documented
 @Inherited
 @Target(ElementType.TYPE)
 public @interface DoNotStore {
