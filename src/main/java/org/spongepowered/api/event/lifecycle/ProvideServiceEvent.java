@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.service;
+package org.spongepowered.api.event.lifecycle;
 
 import org.spongepowered.api.event.GenericEvent;
 
@@ -46,7 +46,7 @@ import java.util.function.Supplier;
  *
  * @param <T> The service to provide.
  */
-public interface ProvideServiceEvent<T> extends GenericEvent<T> {
+public interface ProvideServiceEvent<T> extends GenericEvent<T>, LifecycleEvent {
 
     /**
      * Provides a suggestion for the given service. <strong>This may only be
