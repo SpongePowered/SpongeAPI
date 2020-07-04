@@ -34,6 +34,7 @@ import org.spongepowered.api.service.economy.account.VirtualAccount;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Stream;
 
 /**
  * Represents a service for managing a server economy.
@@ -107,6 +108,20 @@ public interface EconomyService extends ContextualService<Account> {
      * @return The {@link Account}, if available.
      */
     Optional<Account> getOrCreateAccount(String identifier);
+
+    /**
+     * Returns a {@link Stream} of all stored {@link UniqueAccount} objects.
+     *
+     * @return A {@link Stream} of all stored {@link UniqueAccount} objects.
+     */
+    Stream<UniqueAccount> uniqueAccounts();
+
+    /**
+     * Returns a {@link Stream} of all stored {@link VirtualAccount} objects.
+     *
+     * @return A {@link Stream} of all stored {@link VirtualAccount} objects.
+     */
+    Stream<VirtualAccount> virtualAccounts();
 
     /**
      * Deletes the account for the user with the specified {@link UUID}.
