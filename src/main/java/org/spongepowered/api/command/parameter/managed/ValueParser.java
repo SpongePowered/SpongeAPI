@@ -70,7 +70,7 @@ public interface ValueParser<T> {
      * @throws ArgumentParseException if a parameter could not be parsed
      */
     Optional<? extends T> getValue(
-            Parameter.Key<T> parameterKey,
+            Parameter.Key<? super T> parameterKey,
             ArgumentReader.Mutable reader,
             CommandContext.Builder context) throws ArgumentParseException;
 

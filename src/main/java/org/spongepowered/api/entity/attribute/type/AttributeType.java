@@ -22,10 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen.feature.config;
+package org.spongepowered.api.entity.attribute.type;
 
-import org.spongepowered.api.world.gen.FeatureConfig;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.entity.attribute.AttributeModifier;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-public interface JunglePyramidConfig extends FeatureConfig {
+import java.util.Optional;
 
+/**
+ * Represents an attribute type that can apply effects or modify traits related to an entity.
+ */
+@CatalogedBy(AttributeTypes.class)
+public interface AttributeType extends CatalogType {
+
+    /**
+     * Gets the parent attribute type of this attribute type.
+     *
+     * @return The parent type if present.
+     */
+    Optional<AttributeType> getParent();
+
+    /**
+     * Gets the default value of this attribute type before any {@link AttributeModifier}s are applied.
+     *
+     * @return The default value of this attribute type.
+     */
+    double getDefaultValue();
+
+    /**
+     * Clamps a value to be within the bounds of this attribute type.
+     *
+     * @param value The value to clamp
+     * @return A value within this attribute type's bounds.
+     */
+    double clampValue(double value);
 }

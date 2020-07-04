@@ -26,6 +26,5 @@ package org.spongepowered.api.world.gen.feature.config;
 
 import org.spongepowered.api.world.gen.FeatureConfig;
 
-public interface DesertPyramidConfig extends FeatureConfig {
-
+public interface BigMushroomFeatureConfig extends FeatureConfig {
 }

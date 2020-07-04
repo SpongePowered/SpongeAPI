@@ -27,21 +27,19 @@ package org.spongepowered.api.world.volume.entity;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityPredicates;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.util.AABB;
 import org.spongepowered.api.world.volume.Volume;
 import org.spongepowered.math.vector.Vector3d;
-import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Predicate;
-
-import javax.annotation.Nullable;
 
 public interface ReadableEntityVolume extends Volume {
 

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.network;
 
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Cancellable;
@@ -37,8 +36,9 @@ import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.ban.BanService;
 import org.spongepowered.api.service.whitelist.WhitelistService;
 import org.spongepowered.api.text.TextRepresentable;
-import org.spongepowered.api.util.Transform;
+import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
+import org.spongepowered.math.vector.Vector3d;
 
 import java.net.InetAddress;
 
@@ -46,7 +46,7 @@ import java.net.InetAddress;
  * Represents an event fired during the login process.
  *
  * <p>Together with {@link SpawnEntityEvent}, these events represent the
- * progression of a {@link Player} from first authenticating, to being fully
+ * progression of a {@link ServerPlayer player} from first authenticating, to being fully
  * loaded in the world.</p>
  *
  * <p>The events are fired in the following order:</p>
@@ -88,8 +88,9 @@ public interface ClientConnectionEvent extends Event {
      * server.
      *
      * <p>Note: This event is fired after #Auth and is NOT async. Any changes
-     * required for the {@link Player}s {@link Transform} should be done during
-     * this event and NOT during #Join. </p>
+     * required for the {@link ServerPlayer players} {@link ServerLocation location}
+     * or {@link Vector3d rotation} should be done during this event and NOT
+     * during #Join. </p>
      *
      * <p>If the registered {@link BanService} or {@link WhitelistService}
      * indicates that a player should not be allowed to join (
@@ -127,41 +128,46 @@ public interface ClientConnectionEvent extends Event {
         GameProfile getProfile();
 
         /**
-         * Gets the previous {@link ServerWorld} the {@link User} will login to.
+         * Gets the previous {@link ServerLocation location} the {@link ServerPlayer player} would have logged in at.
          *
-         * @return The world
+         * @return The location
          */
-        ServerWorld getFromWorld();
+        ServerLocation getFromLocation();
 
         /**
-         * Gets the {@link Transform} the {@link User} will have at login.
+         * Gets the {@link ServerLocation location} the {@link ServerPlayer player} will log in at.
          *
-         * @return The transform
+         * @return The location
          */
-        Transform getFromTransform();
+        ServerLocation getToLocation();
 
         /**
-         * Gets the {@link ServerWorld} the {@link User} will login to.
+         * Sets the {@link ServerLocation location} the {@link ServerPlayer player} will log in at.
          *
-         * @return The world
+         * @param location The location
          */
-        ServerWorld getToWorld();
+        void setToLocation(ServerLocation location);
 
         /**
-         * Gets the {@link Transform} the {@link User} will have at login.
+         * Gets the {@link Vector3d rotation} the {@link ServerPlayer player} would have logged in to.
          *
-         * @return The transform
+         * @return The rotation
          */
-        Transform getToTransform();
+        Vector3d getFromRotation();
 
         /**
-         * Sets the {@link ServerWorld} and {@link Transform} the {@link User} will have
-         * at login.
+         * Gets the {@link Vector3d rotation} the {@link ServerPlayer player} will log in to.
          *
-         * @param world The world
-         * @param transform The transform
+         * @return The rotation
          */
-        void setLoginPosition(ServerWorld world, Transform transform);
+        Vector3d getToRotation();
+
+        /**
+         * Sets the {@link Vector3d rotation} the {@link ServerPlayer player} will log in to.
+         *
+         * @param rotation The rotation
+         */
+        void setToRotation(Vector3d rotation);
     }
 
     /**
@@ -174,7 +180,7 @@ public interface ClientConnectionEvent extends Event {
     interface Join extends ClientConnectionEvent, MessageChannelEvent {
 
         /**
-         * Gets the {@link Player}.
+         * Gets the {@link ServerPlayer player}.
          *
          * @return The player
          */
@@ -182,7 +188,7 @@ public interface ClientConnectionEvent extends Event {
     }
 
     /**
-     * Called when a {@link Player} disconnects from the game.
+     * Called when a {@link ServerPlayer player} disconnects from the game.
      */
     interface Disconnect extends ClientConnectionEvent, MessageChannelEvent {
 

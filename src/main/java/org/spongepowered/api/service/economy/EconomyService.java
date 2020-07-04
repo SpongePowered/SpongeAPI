@@ -57,21 +57,6 @@ public interface EconomyService extends ContextualService<Account> {
     Currency getDefaultCurrency();
 
     /**
-     * Returns the {@link Set} of supported {@link Currency} objects that are
-     * implemented by this EconomyService.
-     *
-     * <p>The economy service provider may only support one currency, in which
-     * case {@link #getDefaultCurrency()} will be the only member of the set.
-     * </p>
-     *
-     * <p>The set returned is a read-only a view of all currencies available in
-     * the EconomyService.</p>
-     *
-     * @return The {@link Set} of all {@link Currency}s
-     */
-    Set<Currency> getCurrencies();
-
-    /**
      * Returns whether a {@link UniqueAccount} exists with the specified
      * {@link UUID}.
      *

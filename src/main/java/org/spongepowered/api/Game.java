@@ -49,13 +49,6 @@ import java.util.Locale;
 public interface Game {
 
     /**
-     * Gets the current {@link GameState} that this game is currently in.
-     *
-     * @return The game state
-     */
-    GameState getState();
-
-    /**
      * Gets the async {@link Scheduler}.
      *
      * @return The async scheduler
