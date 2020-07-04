@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.service.economy;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.service.context.ContextualService;
 import org.spongepowered.api.service.economy.account.Account;
 import org.spongepowered.api.service.economy.account.AccountDeletionResultType;
@@ -111,30 +112,30 @@ public interface EconomyService extends ContextualService<Account> {
     Optional<Account> getOrCreateAccount(String identifier);
 
     /**
-     * Returns a {@link Stream} of all stored {@link UniqueAccount} objects.
+     * Gets a {@link Stream} of all available {@link UniqueAccount}s.
      *
-     * @return A {@link Stream} of all stored {@link UniqueAccount} objects.
+     * @return A stream of all {@link UniqueAccount}s.
      */
     Stream<UniqueAccount> uniqueAccounts();
 
     /**
-     * Returns a {@link Collection} of all stored {@link UniqueAccount} objects.
+     * Gets a {@link Collection} of all available {@link UniqueAccount}s.
      *
-     * @return A {@link Collection} of all stored {@link UniqueAccount} objects.
+     * @return A Collection of all {@link UniqueAccount}s.
      */
     Collection<UniqueAccount> getUniqueAccounts();
 
     /**
-     * Returns a {@link Stream} of all stored {@link VirtualAccount} objects.
+     * Gets a {@link Stream} of all available {@link VirtualAccount}s.
      *
-     * @return A {@link Stream} of all stored {@link VirtualAccount} objects.
+     * @return A stream of all {@link VirtualAccount}s.
      */
     Stream<VirtualAccount> virtualAccounts();
 
     /**
-     * Returns a {@link Collection} of all stored {@link VirtualAccount} objects.
+     * Gets a {@link Collection} of all available {@link VirtualAccount}s.
      *
-     * @return A {@link Collection} of all stored {@link VirtualAccount} objects.
+     * @return A Collection of all {@link VirtualAccount}s.
      */
     Collection<VirtualAccount> getVirtualAccounts();
 
