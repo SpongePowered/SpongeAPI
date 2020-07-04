@@ -26,6 +26,7 @@ package org.spongepowered.api.world.chunk;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.api.world.World;
 import org.spongepowered.math.vector.Vector3i;
 
@@ -37,6 +38,7 @@ import java.util.Optional;
  * <p>In Minecraft, the chunk is 16 by 16 blocks on the X and Z axes. The height
  * of each chunk varies between worlds.</p>
  */
+@DoNotStore
 public interface Chunk extends ProtoChunk<Chunk> {
 
     /**

@@ -32,6 +32,7 @@ import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.service.context.ContextSource;
+import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.volume.archetype.ArchetypeVolumeCreator;
 import org.spongepowered.api.world.volume.block.PhysicsAwareMutableBlockVolume;
@@ -47,6 +48,7 @@ import java.util.function.Predicate;
 /**
  * A loaded Minecraft world.
  */
+@DoNotStore
 public interface World<W extends World<W>> extends ProtoWorld<W>,
     LocationCreator,
     PhysicsAwareMutableBlockVolume<BoundedWorldView<W>>,

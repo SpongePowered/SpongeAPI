@@ -40,6 +40,7 @@ import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.RandomProvider;
 import org.spongepowered.api.util.RelativePositions;
 import org.spongepowered.api.util.Transform;
+import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.TeleportHelper;
@@ -73,6 +74,7 @@ import java.util.function.Supplier;
  *
  * <p>Blocks and items (when they are in inventories) are not entities.</p>
  */
+@DoNotStore
 public interface Entity extends Identifiable, Locatable, SerializableDataHolder.Mutable, Translatable, RandomProvider {
 
     /**

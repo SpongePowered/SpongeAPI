@@ -24,12 +24,14 @@
  */
 package org.spongepowered.api.world.dimension;
 
+import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.gen.TerrainGenerator;
 
 /**
  * Represents the dimension of a {@link World}.
  */
+@DoNotStore
 public interface Dimension {
 
     /**
