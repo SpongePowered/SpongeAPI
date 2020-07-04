@@ -49,7 +49,7 @@ public interface PaginationList {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getServiceManager().provideUnchecked(PaginationService.class).builder();
+        return Sponge.getServiceProvider().paginationService().builder();
     }
 
     /**
@@ -109,8 +109,8 @@ public interface PaginationList {
      * @param receiver The receiver to send the first page to
      * @see PaginationList#sendTo(MessageReceiver, int) to send a specific page
      */
-    default void sendTo(MessageReceiver receiver) {
-        sendTo(receiver, 1);
+    default void sendTo(final MessageReceiver receiver) {
+        this.sendTo(receiver, 1);
     }
 
     /**
@@ -134,8 +134,8 @@ public interface PaginationList {
      * @param receivers The message receivers to send the first page to
      * @see PaginationList#sendTo(Iterable, int) to send a specific page
      */
-    default void sendTo(Iterable<MessageReceiver> receivers) {
-        sendTo(receivers, 1);
+    default void sendTo(final Iterable<MessageReceiver> receivers) {
+        this.sendTo(receivers, 1);
     }
 
     /**
@@ -145,10 +145,10 @@ public interface PaginationList {
      * @param receivers The message receivers to send the page to
      * @param page The page to send
      */
-    default void sendTo(Iterable<MessageReceiver> receivers, int page) {
+    default void sendTo(final Iterable<MessageReceiver> receivers, final int page) {
         checkNotNull(receivers, "The iterable of receivers cannot be null!");
-        for (MessageReceiver receiver : receivers) {
-            sendTo(receiver, page);
+        for (final MessageReceiver receiver : receivers) {
+            this.sendTo(receiver, page);
         }
     }
 
@@ -248,8 +248,8 @@ public interface PaginationList {
          * @param receiver The receiver to send the list to
          * @return The constructed pagination list
          */
-        default PaginationList sendTo(MessageReceiver receiver) {
-            final PaginationList list = build();
+        default PaginationList sendTo(final MessageReceiver receiver) {
+            final PaginationList list = this.build();
             list.sendTo(receiver);
             return list;
         }
@@ -261,10 +261,10 @@ public interface PaginationList {
          * @param receivers The message receivers to send the list to
          * @return The constructed pagination list
          */
-        default PaginationList sendTo(Iterable<MessageReceiver> receivers) {
+        default PaginationList sendTo(final Iterable<MessageReceiver> receivers) {
             checkNotNull(receivers, "The iterable of receivers cannot be null!");
-            final PaginationList list = build();
-            for (MessageReceiver r : receivers) {
+            final PaginationList list = this.build();
+            for (final MessageReceiver r : receivers) {
                 list.sendTo(r);
             }
             return list;
