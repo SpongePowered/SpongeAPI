@@ -788,9 +788,9 @@ public final class Keys {
     public static final Supplier<Key<BoundedValue<Integer>>> FIRE_TICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FIRE_TICKS");
 
     /**
-     * The time a {@link Player} first played on the Server.
+     * The time a {@link Player} first joined on the Server.
      */
-    public static final Supplier<Key<Value<Instant>>> FIRST_DATE_PLAYED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FIRST_DATE_PLAYED");
+    public static final Supplier<Key<Value<Instant>>> FIRST_DATE_JOINED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FIRST_DATE_JOINED");
 
     /**
      * A {@link Fox fox's} first trusted {@link UUID}, usually a {@link Player}.
@@ -1644,6 +1644,11 @@ public final class Keys {
      * The last damage a {@link Living} received.
      */
     public static final Supplier<Key<Value<Double>>> LAST_DAMAGE_RECEIVED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LAST_DAMAGE_RECEIVED");
+
+    /**
+     * The last time a {@link User} joined on the server.
+     */
+    public static final Supplier<Key<Value<Instant>>> LAST_DATE_JOINED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LAST_DATE_JOINED");
 
     /**
      * The last time a {@link User} has been playing on the server.
