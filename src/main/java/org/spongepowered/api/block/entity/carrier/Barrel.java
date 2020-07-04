@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.block.entity.carrier;
 
+/**
+ * Represents a Barrel.
+ */
 public interface Barrel extends NameableCarrierBlockEntity {
 
 }

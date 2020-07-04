@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.block.entity.carrier.furnace;
 
+/**
+ * Represents a BlastFurnace.
+ */
 public interface BlastFurnace extends FurnaceBlockEntity {
 
 }
