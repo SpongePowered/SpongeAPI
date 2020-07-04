@@ -661,8 +661,8 @@ public interface Parameter {
      */
     static <T extends CatalogType> Parameter.Value.Builder<T> catalogedElement(@NonNull final Class<T> type) {
         return Parameter.builder(type, VariableValueParameters.catalogedElementParameterBuilder(type)
-                .prefix("minecraft")
-                .prefix("sponge")
+                .defaultNamespace("minecraft")
+                .defaultNamespace("sponge")
                 .build());
     }
 

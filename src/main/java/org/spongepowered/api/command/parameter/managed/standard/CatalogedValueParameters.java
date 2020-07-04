@@ -39,6 +39,7 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.dimension.Dimension;
 import org.spongepowered.api.world.storage.WorldProperties;
+import org.spongepowered.math.vector.Vector2d;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.plugin.PluginContainer;
 
@@ -50,6 +51,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 import java.util.function.Supplier;
@@ -196,11 +198,12 @@ public final class CatalogedValueParameters {
     /**
      * Expect an argument to represent a {@link GameProfile} of a user.
      *
-     * <p>This parameter accepts selectors (to obtain the game profiles of online players).</p>
+     * <p>This parameter accepts selectors (to obtain the game profiles of
+     * online players). As a result, this may return multiple profiles.</p>
      *
      * <p>Returns a {@link GameProfile}.</p>
      */
-    public static final Supplier<CatalogedValueParameter<GameProfile>> GAME_PROFILE =
+    public static final Supplier<CatalogedValueParameter<Collection<GameProfile>>> GAME_PROFILE =
             Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "GAME_PROFILE");
 
     /**
@@ -300,15 +303,6 @@ public final class CatalogedValueParameters {
      */
     public static final Supplier<CatalogedValueParameter<String>> REMAINING_JOINED_STRINGS =
             Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "REMAINING_JOINED_STRINGS");
-
-    /**
-     * Require one or more strings, which are combined into a single,
-     * space-separated string.
-     *
-     * <p>Returns a {@link String}.</p>
-     */
-    public static final Supplier<CatalogedValueParameter<String>> REMAINING_RAW_JOINED_STRINGS =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "REMAINING_RAW_JOINED_STRINGS");
 
     /**
      * Require an argument to be a string.
@@ -424,6 +418,21 @@ public final class CatalogedValueParameters {
             Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "UUID");
 
     /**
+     * Expect an argument to represent a {@link Vector2d}.
+     *
+     * <p>The expected syntax is:</p>
+     *
+     * <blockquote><pre> x,y
+     * x y.</pre></blockquote>
+     *
+     * <p>Each element can be relative to a location -- relative is ~(num)</p>
+     *
+     * <p>Returns a {@link Vector3d}.</p>
+     */
+    public static final Supplier<CatalogedValueParameter<Vector2d>> VECTOR2D =
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "VECTOR2D");
+
+    /**
      * Expect an argument to represent a {@link Vector3d}.
      *
      * <p>The expected syntax is:</p>
@@ -435,8 +444,8 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link Vector3d}.</p>
      */
-    public static final CatalogedValueParameter<Vector3d> VECTOR3D =
-            DummyObjectProvider.createExtendedFor(CatalogedValueParameter.class, "VECTOR3D");
+    public static final Supplier<CatalogedValueParameter<Vector3d>> VECTOR3D =
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class,"VECTOR3D");
 
     /**
      * Expect an argument to represent a world.

@@ -31,6 +31,7 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.serializer.TextSerializer;
 import org.spongepowered.api.util.ResettableBuilder;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 import java.util.function.Function;
@@ -48,7 +49,7 @@ public class VariableValueParameters {
      * @param returnType The return type
      * @return The builder
      */
-    public static <T extends CatalogType> CatalogedTypeBuilder<T> catalogedElementParameterBuilder(Class<T> returnType) {
+    public static <T extends CatalogType> CatalogedTypeBuilder<T> catalogedElementParameterBuilder(final Class<T> returnType) {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createCatalogedTypesBuilder(returnType);
     }
 
@@ -64,7 +65,7 @@ public class VariableValueParameters {
      * @param <T> The type that will be returned
      * @return The builder
      */
-    public static <T> StaticChoicesBuilder<T> staticChoicesBuilder(Class<T> returnType) {
+    public static <T> StaticChoicesBuilder<T> staticChoicesBuilder(final Class<T> returnType) {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createStaticChoicesBuilder(returnType);
     }
 
@@ -80,7 +81,7 @@ public class VariableValueParameters {
      * @param <T> The type that will be returned
      * @return The builder
      */
-    public static <T> DynamicChoicesBuilder<T> dynamicChoicesBuilder(Class<T> returnType) {
+    public static <T> DynamicChoicesBuilder<T> dynamicChoicesBuilder(final Class<T> returnType) {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createDynamicChoicesBuilder(returnType);
     }
 
@@ -93,7 +94,7 @@ public class VariableValueParameters {
      * @param <T> The type that will be returned
      * @return The builder
      */
-    public static <T> LiteralBuilder<T> literalBuilder(Class<T> returnType) {
+    public static <T> LiteralBuilder<T> literalBuilder(final Class<T> returnType) {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createLiteralBuilder(returnType);
     }
 
@@ -114,7 +115,7 @@ public class VariableValueParameters {
      * @param <T> The {@link Enum} class type
      * @return The appropriate {@link ValueParameter}
      */
-    public static <T extends Enum<T>> ValueParameter<T> enumChoices(Class<T> enumClass) {
+    public static <T extends Enum<T>> ValueParameter<T> enumChoices(final Class<T> enumClass) {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createEnumParameter(enumClass);
     }
 
@@ -168,7 +169,7 @@ public class VariableValueParameters {
          *               without such a prefix
          * @return This builder, for chaining.
          */
-        CatalogedTypeBuilder<T> prefix(String prefix);
+        CatalogedTypeBuilder<T> defaultNamespace(String prefix);
 
         /**
          * Tests for validity and creates this {@link ValueParameter}
@@ -199,8 +200,8 @@ public class VariableValueParameters {
          * @param returnedObject The {@link Object to return}
          * @return This builder, for chaining
          */
-        default StaticChoicesBuilder<T> choice(String choice, T returnedObject) {
-            return choices(Collections.singleton(choice), () -> returnedObject);
+        default StaticChoicesBuilder<T> choice(final String choice, final T returnedObject) {
+            return this.choices(Collections.singleton(choice), () -> returnedObject);
         }
 
         /**
@@ -211,9 +212,9 @@ public class VariableValueParameters {
          *                objects.
          * @return This builder, for chaining
          */
-        default StaticChoicesBuilder<T> choices(Map<String, ? extends T> choices) {
-            for (Map.Entry<String, ? extends T> entry : choices.entrySet()) {
-                choice(entry.getKey(), entry.getValue());
+        default StaticChoicesBuilder<T> choices(final Map<String, ? extends T> choices) {
+            for (final Map.Entry<String, ? extends T> entry : choices.entrySet()) {
+                this.choice(entry.getKey(), entry.getValue());
             }
 
             return this;
@@ -270,12 +271,12 @@ public class VariableValueParameters {
 
         /**
          * Sets the parameter to get its choices from the supplied
-         * {@link Iterable}.
+         * {@link Collection}.
          *
          * @param choices A supplier that returns the appropriate choices.
          * @return This builder, for chaining
          */
-        DynamicChoicesBuilder<T> setChoices(Supplier<Iterable<String>> choices);
+        DynamicChoicesBuilder<T> setChoices(Supplier<Collection<String>> choices);
 
         /**
          * Sets the function which defines what result is returned for
@@ -324,7 +325,7 @@ public class VariableValueParameters {
          * @param literalSupplier The {@link Supplier}
          * @return This builder, for chaining
          */
-        LiteralBuilder<T> setLiteral(Supplier<Iterable<String>> literalSupplier);
+        LiteralBuilder<T> setLiteral(Supplier<Collection<String>> literalSupplier);
 
         /**
          * Sets the sequence of strings that need to be matched at runtime.
@@ -334,8 +335,8 @@ public class VariableValueParameters {
          * @param literal The sequence of elements
          * @return This builder, for chaining
          */
-        default LiteralBuilder<T> setLiteral(Iterable<String> literal) {
-            return setLiteral(() -> literal);
+        default LiteralBuilder<T> setLiteral(final Collection<String> literal) {
+            return this.setLiteral(() -> literal);
         }
 
         /**
@@ -353,8 +354,8 @@ public class VariableValueParameters {
          * @param returnValue The {@link Object}
          * @return This builder, for chaining
          */
-        default LiteralBuilder<T> setReturnValue(T returnValue) {
-            return setReturnValue(() -> returnValue);
+        default LiteralBuilder<T> setReturnValue(final T returnValue) {
+            return this.setReturnValue(() -> returnValue);
         }
 
         /**
