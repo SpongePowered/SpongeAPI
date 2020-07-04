@@ -31,6 +31,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.util.CopyableBuilder;
+import org.spongepowered.api.util.annotation.DoNotStore;
 
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -43,6 +44,7 @@ import java.util.function.Supplier;
  * Provides context for an event outside of the direct chain of causes present
  * in the event's {@link Cause}.
  */
+@DoNotStore
 public final class EventContext {
 
     private static final EventContext EMPTY_CONTEXT = new EventContext(ImmutableMap.of());

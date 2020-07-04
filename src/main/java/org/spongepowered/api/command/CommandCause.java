@@ -41,6 +41,7 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.util.Tristate;
+import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.math.vector.Vector3d;
@@ -110,6 +111,7 @@ import java.util.Set;
  * be taken a guarantee of what may be present, however, they indicate what
  * typically would be of interest to command API consumers.</p>
  */
+@DoNotStore
 public interface CommandCause extends Subject {
 
     /**

@@ -27,6 +27,7 @@ package org.spongepowered.api.event;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.EventContext;
 import org.spongepowered.api.event.impl.AbstractEvent;
+import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.api.util.annotation.eventgen.AbsoluteSortPosition;
 import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
 import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
@@ -37,6 +38,7 @@ import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
  * <p>This is a marker interface, which must be implemented by any event used
  * with the Sponge event bus.</p>
  */
+@DoNotStore
 @ImplementedBy(value = AbstractEvent.class, priority = Integer.MIN_VALUE)
 public interface Event {
 
