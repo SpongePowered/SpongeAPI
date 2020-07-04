@@ -22,21 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command.manager;
+package org.spongepowered.api.entity.attribute;
+
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.entity.attribute.type.AttributeTypes;
+import org.spongepowered.api.util.annotation.CatalogedBy;
+
+import java.util.UUID;
 
 /**
- * Indicates that a command could not be registered.
+ * Represents a template for {@link AttributeModifier} which contains the
+ * default {@link AttributeModifier#getUniqueId() id} and
+ * {@link AttributeModifier#getName() name} for a type of modifier.
+ *
+ * <p>For example, when the {@link AttributeTypes#LUCK} attribute type is applied as a modifier, a {@link UUID unique id} and name is required</p>
  */
-public class FailedRegistrationException extends RuntimeException {
+@CatalogedBy(ModifierTemplates.class)
+public interface ModifierTemplate extends CatalogType {
 
-    private static final long serialVersionUID = -783923658025L;
+    /**
+     * The default name of this modifier.
+     * @return The default name of this modifier.
+     */
+    String getName();
 
-    public FailedRegistrationException(String message) {
-        super(message);
-    }
-
-    public FailedRegistrationException(String message, Throwable inner) {
-        super(message, inner);
-    }
-
+    /**
+     * The default unique id of this modifier.
+     * @return The default unique id of this modifier.
+     */
+    UUID getUniqueId();
 }

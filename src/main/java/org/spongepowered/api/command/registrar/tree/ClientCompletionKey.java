@@ -22,10 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen.feature.config;
+package org.spongepowered.api.command.registrar.tree;
 
-import org.spongepowered.api.world.gen.FeatureConfig;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-public interface EndCityConfig extends FeatureConfig {
+/**
+ * Represents the client-side behaviour of a command parameter.
+ */
+@CatalogedBy(ClientCompletionKeys.class)
+public interface ClientCompletionKey<T extends CommandTreeBuilder<T>> extends CatalogType {
+
+    /**
+     * Creates a {@link CommandTreeBuilder} that represents this
+     * {@link ClientCompletionKey}
+     *
+     * @return The new {@link CommandTreeBuilder}
+     */
+    T createCommandTreeBuilder();
 
 }

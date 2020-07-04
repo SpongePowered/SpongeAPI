@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.command.parameter;
 
+import com.google.common.reflect.TypeToken;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
@@ -41,6 +43,7 @@ import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.network.RemoteConnection;
 import org.spongepowered.api.service.permission.Subject;
@@ -63,6 +66,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -85,7 +89,7 @@ import java.util.function.Supplier;
  *     <li>{@link Subcommand}s can be placed anywhere in a parameter
  *     chain where a {@link Parameter} can be added, if successfully parsed,
  *     any containing {@link Command} would take precedence and its
- *     {@link Command#process(org.spongepowered.api.command.CommandCause, String)} method will be called instead
+ *     {@link Command#process(CommandCause, String)} method will be called instead
  *     of any parent.</li>
  * </ul>
  *
@@ -98,23 +102,64 @@ public interface Parameter {
      * Creates a {@link Parameter.Key} for storing values against.
      *
      * @param key The string key
-     * @param valueClass The type of value that this key represents
+     * @param typeToken The type of value that this key represents
      * @param <T> The type
      * @return The {@link Key}
      */
-    static <T> Key<T> key(String key, Class<T> valueClass) {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Key.Builder.class).build(key, valueClass);
+    static <T> Key<T> key(@NonNull final String key, @NonNull final TypeToken<T> typeToken) {
+        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Key.Builder.class).build(key, typeToken);
+    }
+
+    /**
+     * Gets a builder that builds a {@link Parameter.Value}.
+     *
+     * <p>If your parameter type is generic, use
+     * {@link #builder(TypeToken)} instead.</p>
+     *
+     * @param <T> The type of parameter
+     * @param valueClass The type of value class
+     * @return The {@link Value.Builder}
+     */
+    static <T> Value.Builder<T> builder(@NonNull final Class<T> valueClass) {
+        return builder(TypeToken.of(valueClass));
     }
 
     /**
      * Gets a builder that builds a {@link Parameter.Value}.
      *
      * @param <T> The type of parameter
-     * @param valueClass The type of value class
+     * @param typeToken The type of value class as a {@link TypeToken}
      * @return The {@link Value.Builder}
      */
-    static <T> Value.Builder<T> builder(Class<T> valueClass) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createParameterBuilder(valueClass);
+    static <T> Value.Builder<T> builder(@NonNull final TypeToken<T> typeToken) {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createParameterBuilder(typeToken);
+    }
+
+    /**
+     * Gets a builder that builds a {@link Parameter.Value}.
+     *
+     * <p>If your parameter type is generic, use
+     * {@link #builder(TypeToken, ValueParameter)} instead.</p>
+     *
+     * @param <T> The type of parameter
+     * @param valueClass The type of value class as a {@link Class}
+     * @param parameter The value parameter
+     * @return The {@link Value.Builder}
+     */
+    static <T> Value.Builder<T> builder(@NonNull final Class<T> valueClass, @NonNull final ValueParameter<T> parameter) {
+        return builder(TypeToken.of(valueClass), parameter);
+    }
+
+    /**
+     * Gets a builder that builds a {@link Parameter.Value}.
+     *
+     * @param <T> The type of parameter
+     * @param typeToken The type of value class as a {@link TypeToken}
+     * @param parameter The value parameter
+     * @return The {@link Value.Builder}
+     */
+    static <T> Value.Builder<T> builder(@NonNull final TypeToken<T> typeToken, @NonNull final ValueParameter<T> parameter) {
+        return builder(typeToken).parser(parameter);
     }
 
     /**
@@ -125,20 +170,20 @@ public interface Parameter {
      * @param valueClass The type of value class
      * @return The {@link Value.Builder}
      */
-    static <T> Value.Builder<T> builder(Class<T> valueClass, ValueParameter<T> parameter) {
-        return builder(valueClass).parser(parameter);
-    }
-
-    /**
-     * Gets a builder that builds a {@link Parameter.Value}.
-     *
-     * @param <T> The type of parameter
-     * @param parameter The value parameter
-     * @param valueClass The type of value class
-     * @return The {@link Value.Builder}
-     */
-    static <T, V extends ValueParameter<T>> Value.Builder<T> builder(Class<T> valueClass, Supplier<V> parameter) {
+    static <T, V extends ValueParameter<T>> Value.Builder<T> builder(@NonNull final Class<T> valueClass, @NonNull final Supplier<V> parameter) {
         return builder(valueClass, parameter.get());
+    }
+
+    /**
+     * Gets a builder that builds a {@link Parameter.Value}.
+     *
+     * @param <T> The type of parameter
+     * @param parameter The value parameter
+     * @param typeToken The type of value class as a {@link TypeToken}
+     * @return The {@link Value.Builder}
+     */
+    static <T, V extends ValueParameter<T>> Value.Builder<T> builder(@NonNull final TypeToken<T> typeToken, @NonNull final Supplier<V> parameter) {
+        return builder(typeToken, parameter.get());
     }
 
     /**
@@ -155,12 +200,12 @@ public interface Parameter {
      * @param aliases Subsequent aliases, if any
      * @return The {@link Subcommand} for use in a {@link Parameter} chain
      */
-    static Subcommand subcommand(Command subcommand, String alias, String... aliases) {
-        Subcommand.Builder builder = Sponge.getRegistry()
+    static Subcommand subcommand(final Command.@NonNull Parameterized subcommand, @NonNull final String alias, final String @NonNull... aliases) {
+        final Subcommand.Builder builder = Sponge.getRegistry()
                 .getBuilderRegistry().provideBuilder(Subcommand.Builder.class)
                 .setSubcommand(subcommand)
                 .alias(alias);
-        for (String a : aliases) {
+        for (final String a : aliases) {
             builder.alias(a);
         }
 
@@ -176,7 +221,7 @@ public interface Parameter {
      * @param parameter The first {@link Parameter}
      * @return The {@link Parameter.FirstOfBuilder} to continue chaining
      */
-    static Parameter.FirstOfBuilder firstOf(Parameter parameter) {
+    static Parameter.FirstOfBuilder firstOf(@NonNull final Parameter parameter) {
         return Sponge.getRegistry().getBuilderRegistry().provideBuilder(FirstOfBuilder.class).or(parameter);
     }
 
@@ -191,7 +236,7 @@ public interface Parameter {
      * @param parameters The remaining {@link Parameter}s
      * @return The {@link Parameter}
      */
-    static Parameter firstOf(Parameter first, Parameter second, Parameter... parameters) {
+    static Parameter firstOf(@NonNull final Parameter first, @NonNull final Parameter second, final Parameter @NonNull... parameters) {
         return Sponge.getRegistry().getBuilderRegistry().provideBuilder(FirstOfBuilder.class).or(first).or(second).orFirstOf(parameters).build();
     }
 
@@ -203,7 +248,7 @@ public interface Parameter {
      * @param parameters The {@link Parameter}s
      * @return The {@link Parameter}
      */
-    static Parameter firstOf(Iterable<Parameter> parameters) {
+    static Parameter firstOf(@NonNull final Iterable<Parameter> parameters) {
         return Sponge.getRegistry().getBuilderRegistry().provideBuilder(FirstOfBuilder.class).orFirstOf(parameters).build();
     }
 
@@ -215,7 +260,7 @@ public interface Parameter {
      * @return The {@link Parameter.SequenceBuilder}, to continue building the
      *         chain
      */
-    static Parameter.SequenceBuilder seq(Parameter parameter) {
+    static Parameter.SequenceBuilder seq(@NonNull final Parameter parameter) {
         return Sponge.getRegistry().getBuilderRegistry().provideBuilder(SequenceBuilder.class).then(parameter);
     }
 
@@ -229,7 +274,7 @@ public interface Parameter {
      * @param parameters The subsequent {@link Parameter}s to parse
      * @return The {@link Parameter}
      */
-    static Parameter seq(Parameter first, Parameter second, Parameter... parameters) {
+    static Parameter seq(@NonNull final Parameter first, @NonNull final Parameter second, final Parameter @NonNull... parameters) {
         return Sponge.getRegistry().getBuilderRegistry().provideBuilder(SequenceBuilder.class).then(first).then(second).then(parameters).build();
     }
 
@@ -240,7 +285,7 @@ public interface Parameter {
      * @param parameters The {@link Parameter}s
      * @return The {@link Parameter}
      */
-    static Parameter seq(Iterable<Parameter> parameters) {
+    static Parameter seq(@NonNull final Iterable<Parameter> parameters) {
         return Sponge.getRegistry().getBuilderRegistry().provideBuilder(SequenceBuilder.class).then(parameters).build();
     }
 
@@ -477,8 +522,8 @@ public interface Parameter {
      *
      * @return A {@link Parameter.Value.Builder}
      */
-    static Parameter.Value.Builder<Player> player() {
-        return Parameter.builder(Player.class, CatalogedValueParameters.PLAYER);
+    static Parameter.Value.Builder<ServerPlayer> player() {
+        return Parameter.builder(ServerPlayer.class, CatalogedValueParameters.PLAYER);
     }
 
     /**
@@ -488,8 +533,8 @@ public interface Parameter {
      *
      * @return A {@link Parameter.Value.Builder}
      */
-    static Parameter.Value.Builder<Player> playerOrSource() {
-        return player().orDefault(cause -> cause.getCause().root() instanceof Player ? (Player) cause.getCause().root() : null);
+    static Parameter.Value.Builder<ServerPlayer> playerOrSource() {
+        return player().orDefault(cause -> cause.getCause().root() instanceof ServerPlayer ? (ServerPlayer) cause.getCause().root() : null);
     }
 
     /**
@@ -498,7 +543,7 @@ public interface Parameter {
      *
      * @return A {@link Parameter.Value.Builder}
      */
-    static Parameter.Value.Builder<Player> playerOrTarget() {
+    static Parameter.Value.Builder<ServerPlayer> playerOrTarget() {
         return player().parser(CatalogedValueParameters.TARGET_PLAYER);
     }
 
@@ -614,7 +659,7 @@ public interface Parameter {
      * @param <T> The type of {@link CatalogType}
      * @return A {@link Parameter.Value.Builder}
      */
-    static <T extends CatalogType> Parameter.Value.Builder<T> catalogedElement(Class<T> type) {
+    static <T extends CatalogType> Parameter.Value.Builder<T> catalogedElement(@NonNull final Class<T> type) {
         return Parameter.builder(type, VariableValueParameters.catalogedElementParameterBuilder(type)
                 .prefix("minecraft")
                 .prefix("sponge")
@@ -630,11 +675,11 @@ public interface Parameter {
      * @param choices The choices
      * @return A {@link Parameter.Value.Builder}
      */
-    static Parameter.Value.Builder<String> choices(String... choices) {
-        VariableValueParameters.StaticChoicesBuilder<String> builder = VariableValueParameters
+    static Parameter.Value.Builder<String> choices(final String @NonNull... choices) {
+        final VariableValueParameters.StaticChoicesBuilder<String> builder = VariableValueParameters
                 .staticChoicesBuilder(String.class)
                 .setShowInUsage(true);
-        for (String choice : choices) {
+        for (final String choice : choices) {
             builder.choice(choice, choice);
         }
 
@@ -653,7 +698,7 @@ public interface Parameter {
      * @param choices The choices
      * @return A {@link Parameter.Value.Builder}
      */
-    static <T> Parameter.Value.Builder<T> choices(Class<T> returnType, Map<String, ? extends T> choices) {
+    static <T> Parameter.Value.Builder<T> choices(@NonNull final Class<T> returnType, @NonNull final Map<String, ? extends T> choices) {
         return Parameter.builder(returnType, VariableValueParameters.staticChoicesBuilder(returnType)
                 .choices(choices)
                 .setShowInUsage(true).build());
@@ -674,9 +719,9 @@ public interface Parameter {
      * @return A {@link Parameter.Value.Builder}
      */
     static <T> Parameter.Value.Builder<T> choices(
-            Class<T> returnType,
-            Function<String, ? extends T> valueFunction,
-            Supplier<Iterable<String>> choices) {
+            @NonNull final Class<T> returnType,
+            @NonNull final Function<String, ? extends T> valueFunction,
+            @NonNull final Supplier<Iterable<String>> choices) {
 
         return Parameter.builder(returnType,
                 VariableValueParameters
@@ -695,7 +740,7 @@ public interface Parameter {
      * @param <T> The type of {@link Enum}
      * @return A {@link Parameter.Value.Builder}
      */
-    static <T extends Enum<T>> Parameter.Value.Builder<T> enumValue(Class<T> enumClass) {
+    static <T extends Enum<T>> Parameter.Value.Builder<T> enumValue(@NonNull final Class<T> enumClass) {
         return Parameter.builder(enumClass, VariableValueParameters.enumChoices(enumClass));
     }
 
@@ -711,8 +756,11 @@ public interface Parameter {
      * @param <T> The type of value
      * @return A {@link Parameter.Value.Builder}
      */
-    static <T> Parameter.Value.Builder<T> literal(Class<T> returnType, T returnedValue, String... literal) {
-        Iterable<String> iterable = Arrays.asList(literal);
+    static <T> Parameter.Value.Builder<T> literal(
+            @NonNull final Class<T> returnType,
+            @NonNull final T returnedValue,
+            final String @NonNull... literal) {
+        final Iterable<String> iterable = Arrays.asList(literal);
         return literal(returnType, returnedValue, () -> iterable);
     }
 
@@ -728,7 +776,10 @@ public interface Parameter {
      * @param returnType The type of return
      * @return A {@link Parameter.Value.Builder}
      */
-    static <T> Parameter.Value.Builder<T> literal(Class<T> returnType, T returnedValue, Supplier<Iterable<String>> literalSupplier) {
+    static <T> Parameter.Value.Builder<T> literal(
+            @NonNull final Class<T> returnType,
+            @NonNull final T returnedValue,
+            @NonNull final Supplier<Iterable<String>> literalSupplier) {
         return Parameter.builder(returnType,
                 VariableValueParameters.literalBuilder(returnType)
                         .setReturnValue(() -> returnedValue)
@@ -736,37 +787,14 @@ public interface Parameter {
     }
 
     /**
-     * Parses the next element(s) in the {@link CommandContext}
+     * Gets whether this parameter is optional.
      *
-     * @param reader The {@link ArgumentReader.Mutable} containing the strings
-     *               that need to be parsed
-     * @param context The {@link CommandContext.Builder} that contains the
-     *                current state of the execution
-     * @throws ArgumentParseException thrown if the parameter could not be
-     *      parsed
-     */
-    void parse(ArgumentReader.Mutable reader, CommandContext.Builder context) throws ArgumentParseException;
-
-    /**
-     * Returns potential completions of the current tokenized argument.
+     * <p>An optional parameter will not throw an exception if it cannot parse
+     * an input, instead passing control to another parameter.</p>
      *
-     * @param reader The {@link ArgumentReader} containing the strings that need
-     *               to be parsed
-     * @param context The {@link CommandContext} that contains the
-     *                current state of the execution.
-     * @return The potential completions.
-     * @throws ArgumentParseException thrown if the parameter could not be
-     *      parsed
+     * @return true if optional, else false.
      */
-    List<String> complete(ArgumentReader.Immutable reader, CommandContext context) throws ArgumentParseException;
-
-    /**
-     * Gets the usage of this parameter.
-     *
-     * @param cause The {@link CommandCause} that requested the usage
-     * @return The usage
-     */
-    Text getUsage(CommandCause cause);
+    boolean isOptional();
 
     /**
      * A {@link Key}
@@ -783,12 +811,12 @@ public interface Parameter {
         String key();
 
         /**
-         * Gets the {@link Class} of the type of object that this parameter
+         * Gets the {@link TypeToken} of the type of object that this parameter
          * should return from parsing.
          *
-         * @return The {@link Class}
+         * @return The {@link TypeToken}
          */
-        Class<T> getValueClass();
+        TypeToken<T> getTypeToken();
 
         /**
          * A "builder" that allows for keys to be built.
@@ -800,12 +828,12 @@ public interface Parameter {
              * represents.
              *
              * @param key The key
-             * @param valueClass The {@link Class} that represents the
+             * @param typeToken The {@link TypeToken} that represents the
              *                   type of value it stores
              * @param <T> The type of the value represented by the key
              * @return The built {@link Key}
              */
-            <T> Key<T> build(String key, Class<T> valueClass);
+            <T> Key<T> build(@NonNull String key, @NonNull TypeToken<T> typeToken);
         }
 
     }
@@ -830,7 +858,7 @@ public interface Parameter {
          *
          * @return The key.
          */
-        Key<T> getKey();
+        Key<? super T> getKey();
 
         /**
          * The {@link ValueParser}s to use when parsing an argument. They will be
@@ -860,11 +888,66 @@ public interface Parameter {
         Predicate<CommandCause> getRequirement();
 
         /**
-         * Gets whether this parameter is optional.
+         * Gets whether this parameter is known to be able to be explicitly
+         * considered a terminal parameter without regarding its place in a
+         * command.
          *
-         * @return true if optional, else false.
+         * <p>A terminal parameter will pass control to the command's associated
+         * {@link CommandExecutor} if the parameter consumes the end of an input
+         * string.</p>
+         *
+         * <p>Because this parameter may be reused across multiple commands, there
+         * may be some circumstances where this parameter will act as a terminal
+         * parameter but this is false, such as when this is at the end of a
+         * parameter chain or the following parameters are all optional. The return
+         * value from this method generally will return whether this element is
+         * terminal <strong>without</strong> regard to other parameters in a
+         * command.</p>
+         *
+         * @return true if known to be terminal.
          */
-        boolean isOptional();
+        boolean isTerminal();
+
+        /**
+         * Parses the next element(s) in the {@link CommandContext}
+         *
+         * @param reader The {@link ArgumentReader.Mutable} containing the strings
+         *               that need to be parsed
+         * @param context The {@link CommandContext.Builder} that contains the
+         *                current state of the execution
+         * @throws ArgumentParseException thrown if the parameter could not be
+         *      parsed
+         */
+        void parse(ArgumentReader.@NonNull Mutable reader, CommandContext.@NonNull Builder context) throws ArgumentParseException;
+
+        /**
+         * Returns potential completions of the current tokenized argument.
+         *
+         * @param reader The {@link ArgumentReader} containing the strings that need
+         *               to be parsed
+         * @param context The {@link CommandContext} that contains the
+         *                current state of the execution.
+         * @return The potential completions.
+         * @throws ArgumentParseException thrown if the parameter could not be
+         *      parsed
+         */
+        List<String> complete(ArgumentReader.@NonNull Immutable reader, @NonNull CommandContext context) throws ArgumentParseException;
+
+        /**
+         * Gets the usage of this parameter.
+         *
+         * @param cause The {@link CommandCause} that requested the usage
+         * @return The usage
+         */
+        Text getUsage(CommandCause cause);
+
+        /**
+         * If set, this parameter will repeat until the argument string has
+         * been parsed.
+         *
+         * @return if true, consumes all arguments
+         */
+        boolean willConsumeAllRemaining();
 
         /**
          * Builds a {@link Parameter} from constituent components.
@@ -913,7 +996,7 @@ public interface Parameter {
              * @param parser The {@link ValueParameter} to use
              * @return This builder, for chaining
              */
-            default <V extends ValueParser<? extends T>> Builder<T> parser(Supplier<V> parser) {
+            default <V extends ValueParser<? extends T>> Builder<T> parser(@NonNull final Supplier<V> parser) {
                 return this.parser(parser.get());
             }
 
@@ -1004,7 +1087,8 @@ public interface Parameter {
              * </ul>
              *
              * <p>Unless marked as optional, this element must be able to consume
-             * at least one argument.</p>
+             * at least one argument. This will automatically mark the element
+             * as {@link #terminal() terminal}.</p>
              *
              * @return This builder, for chaining
              */
@@ -1028,7 +1112,7 @@ public interface Parameter {
              *                     enter a value into the {@link CommandContext}
              * @return This builder, for chaining
              */
-            default Builder<T> orDefault(T defaultValue) {
+            default Builder<T> orDefault(@NonNull final T defaultValue) {
                 return orDefault(cause -> defaultValue);
             }
 
@@ -1060,15 +1144,30 @@ public interface Parameter {
              * parameter's key, otherwise, an {@link ArgumentParseException} is
              * thrown.
              *
-             * @param defaultValueFunction A {@link Function} that returns an object
-             *                             to insert into the context if this
-             *                             parameter cannot parse the argument. If
-             *                             the supplier returns a null,
-             *                             the parameter will throw an exception, as
-             *                             if the parameter is not optional.
+             * @param defaultValueFunction A {@link Function} that returns an
+             *      object to insert into the context if this parameter cannot
+             *      parse the argument. If the supplier returns a null, the
+             *      parameter will throw an exception, as if the parameter is
+             *      not optional.
              * @return This builder, for chaining
              */
             Builder<T> orDefault(Function<CommandCause, T> defaultValueFunction);
+
+            /**
+             * Marks this parameter as a <em>terminal</em> parameter. Any
+             * terminal parameter can be considered as a point where argument
+             * parsing can stop, allowing control to pass to the command's
+             * associated {@link CommandExecutor}.
+             *
+             * <p>Note that a parameter may be considered terminal even if this
+             * isn't set, including if the parameter will consume the rest of
+             * the argument string, or if all following arguments are
+             * {@link #optional()}. In these scenarios, the built parameter
+             * <strong>may</strong> not be aware of its terminal status.</p>
+             *
+             * @return This builder, for chaining.
+             */
+            Builder<T> terminal();
 
             /**
              * Creates a {@link Parameter} from the builder.
@@ -1095,7 +1194,14 @@ public interface Parameter {
          *
          * @return The command to run.
          */
-        Command getCommand();
+        Command.Parameterized getCommand();
+
+        /**
+         * The alias for the subcommand.
+         *
+         * @return The subcommand.
+         */
+        Set<String> getAliases();
 
         interface Builder extends ResettableBuilder<Subcommand, Builder> {
 
@@ -1109,12 +1215,12 @@ public interface Parameter {
             Builder alias(String alias);
 
             /**
-             * Sets the {@link Command} to execute for this subcommand.
+             * Sets the {@link Command.Parameterized} to execute for this subcommand.
              *
-             * @param command The {@link Command}
+             * @param command The {@link Command.Parameterized}
              * @return This builder, for chaining.
              */
-            Builder setSubcommand(Command command);
+            Builder setSubcommand(Command.Parameterized command);
 
             /**
              * Builds this subcommand parameter.
@@ -1144,7 +1250,7 @@ public interface Parameter {
          *
          * @return This builder, for chaining
          */
-        SequenceBuilder optional();
+        SequenceBuilder terminal();
 
         /**
          * Sets that this parameter is weak optional and will be ignored if it
@@ -1152,7 +1258,7 @@ public interface Parameter {
          *
          * @return This builder, for chaining
          */
-        SequenceBuilder optionalWeak();
+        SequenceBuilder optional();
 
         /**
          * Defines the next parameter in the parameter sequence.
@@ -1170,8 +1276,8 @@ public interface Parameter {
          * @param parameters The parameters to add
          * @return This builder, for chaining
          */
-        default SequenceBuilder then(Parameter... parameters) {
-            return then(Arrays.asList(parameters));
+        default SequenceBuilder then(final Parameter @NonNull... parameters) {
+            return this.then(Arrays.asList(parameters));
         }
 
         /**
@@ -1182,9 +1288,9 @@ public interface Parameter {
          * @param parameters The parameters to add
          * @return This builder, for chaining
          */
-        default SequenceBuilder then(Iterable<Parameter> parameters) {
-            for (Parameter parameter : parameters) {
-                then(parameter);
+        default SequenceBuilder then(@NonNull final Iterable<Parameter> parameters) {
+            for (final Parameter parameter : parameters) {
+                this.then(parameter);
             }
 
             return this;
@@ -1213,7 +1319,7 @@ public interface Parameter {
          *
          * @return This builder, for chaining
          */
-        FirstOfBuilder optional();
+        FirstOfBuilder terminal();
 
         /**
          * Sets that this parameter is weak optional and will be ignored if it
@@ -1221,7 +1327,7 @@ public interface Parameter {
          *
          * @return This builder, for chaining
          */
-        FirstOfBuilder optionalWeak();
+        FirstOfBuilder optional();
 
         /**
          * Adds a parameter that can be used to parse an argument. Parameters
@@ -1241,8 +1347,8 @@ public interface Parameter {
          * @param parameters The parameters to add
          * @return This builder, for chaining
          */
-        default FirstOfBuilder orFirstOf(Parameter... parameters) {
-            return orFirstOf(Arrays.asList(parameters));
+        default FirstOfBuilder orFirstOf(final Parameter @NonNull... parameters) {
+            return this.orFirstOf(Arrays.asList(parameters));
         }
 
         /**
@@ -1254,9 +1360,9 @@ public interface Parameter {
          * @param parameters The parameters to add
          * @return This builder, for chaining
          */
-        default FirstOfBuilder orFirstOf(Iterable<Parameter> parameters) {
-            for (Parameter parameter : parameters) {
-                or(parameter);
+        default FirstOfBuilder orFirstOf(@NonNull final Iterable<Parameter> parameters) {
+            for (final Parameter parameter : parameters) {
+                this.or(parameter);
             }
 
             return this;
@@ -1284,7 +1390,7 @@ public interface Parameter {
          *            {@link Parameter.Value}
          * @return The builder.
          */
-        <T> Value.Builder<T> createParameterBuilder(Class<T> parameterClass);
+        <T> Value.Builder<T> createParameterBuilder(TypeToken<T> parameterClass);
 
     }
 

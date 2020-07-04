@@ -22,10 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen.feature.config;
+package org.spongepowered.api.command.registrar;
 
-import org.spongepowered.api.world.gen.FeatureConfig;
+import org.spongepowered.api.command.Command;
+import org.spongepowered.api.event.lifecycle.RegisterCommandEvent;
 
-public interface OceanMonumentConfig extends FeatureConfig {
-
+/**
+ * A {@link CommandRegistrar} for registering Sponge commands. Plugins using the
+ * standard Sponge {@link Command} interface should register their commands using
+ * {@link RegisterCommandEvent} with this registrar.
+ */
+public interface StandardCommandRegistrar extends CommandRegistrar<Command> {
 }

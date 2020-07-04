@@ -28,8 +28,8 @@ import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.util.Transform;
-import org.spongepowered.api.world.server.ServerWorld;
+import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.math.vector.Vector3d;
 
 /**
  * Called when a {@link Humanoid} enters a bed to sleep in.
@@ -64,40 +64,45 @@ public interface SleepingEvent extends Event {
     interface Finish extends SleepingEvent {
 
         /**
-         * Gets the previous {@link ServerWorld world} the {@link Humanoid} would wake up in.
+         * Gets the previous {@link ServerLocation location} the {@link Humanoid} would have woke at.
          *
-         * @return The world
+         * @return The location
          */
-        ServerWorld getFromWorld();
+        ServerLocation getFromLocation();
 
         /**
-         * Gets the previous {@link Transform} the {@link Humanoid} would have woke at.
+         * Gets the {@link ServerLocation location} the {@link Humanoid} will wake up at.
          *
-         * @return The transform
+         * @return The location
          */
-        Transform getFromTransform();
+        ServerLocation getToLocation();
 
         /**
-         * Gets the {@link ServerWorld world} the {@link Humanoid} will wake up in.
+         * Sets the {@link ServerLocation location} the {@link Humanoid} will wake up at.
          *
-         * @return The world
+         * @param location The location
          */
-        ServerWorld getToWorld();
+        void setToLocation(ServerLocation location);
 
         /**
-         * Gets the {@link Transform} the {@link Humanoid} will wake up at.
+         * Gets the {@link Vector3d rotation} the {@link Humanoid} would woke up to.
          *
-         * @return The transform
+         * @return The rotation
          */
-        Transform getToTransform();
+        Vector3d getFromRotation();
 
         /**
-         * Sets the {@link ServerWorld world} and {@link Transform} the {@link Humanoid} will have
-         * wake up at.
+         * Gets the {@link Vector3d rotation} the {@link Humanoid} will wake up to.
          *
-         * @param world The world
-         * @param transform The transform
+         * @return The rotation
          */
-        void setWakeupPosition(ServerWorld world, Transform transform);
+        Vector3d getToRotation();
+
+        /**
+         * Sets the {@link Vector3d rotation} the {@link Humanoid} will wake up to.
+         *
+         * @param rotation The rotation
+         */
+        void setToRotation(Vector3d rotation);
     }
 }

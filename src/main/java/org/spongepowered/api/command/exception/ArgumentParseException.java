@@ -44,7 +44,7 @@ public class ArgumentParseException extends CommandException {
      * @param source The source string being parsed
      * @param position The current position in the source string
      */
-    public ArgumentParseException(Text message, String source, int position) {
+    public ArgumentParseException(final Text message, final String source, final int position) {
         super(message, true);
         this.source = source;
         this.position = position;
@@ -58,7 +58,7 @@ public class ArgumentParseException extends CommandException {
      * @param source The source string being parsed
      * @param position The current position in the source string
      */
-    public ArgumentParseException(Text message, Throwable cause, String source, int position) {
+    public ArgumentParseException(final Text message, final Throwable cause, final String source, final int position) {
         super(message, cause, true);
         this.source = source;
         this.position = position;
@@ -66,7 +66,7 @@ public class ArgumentParseException extends CommandException {
 
     @Override
     public Text getText() {
-        Text superText = super.getText();
+        final Text superText = super.getText();
         if (this.source == null || this.source.isEmpty()) {
             return super.getText();
         } else if (superText == null) {
@@ -91,8 +91,8 @@ public class ArgumentParseException extends CommandException {
         int position = this.position;
         if (source.length() > 80) {
             if (position >= 37) {
-                int startPos = position - 37;
-                int endPos = Math.min(source.length(), position + 37);
+                final int startPos = position - 37;
+                final int endPos = Math.min(source.length(), position + 37);
                 if (endPos < source.length()) {
                     source = "..." + source.substring(startPos, endPos) + "...";
                 } else {

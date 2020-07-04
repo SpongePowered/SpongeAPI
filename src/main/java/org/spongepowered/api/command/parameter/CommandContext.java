@@ -26,7 +26,6 @@ package org.spongepowered.api.command.parameter;
 
 import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Collection;
 import java.util.NoSuchElementException;
@@ -41,7 +40,6 @@ import java.util.Optional;
  * {@link Cause} of the command.</p>
  */
 public interface CommandContext extends CommandCause {
-
 
     /**
      * Returns whether this context has any value for the given argument key.
@@ -60,8 +58,8 @@ public interface CommandContext extends CommandCause {
      * @throws IllegalArgumentException if more than one value for the key was
      *                                  found
      */
-    default <T> Optional<T> getOne(Parameter.Value<T> parameter) throws IllegalArgumentException {
-        return getOne(parameter.getKey());
+    default <T> Optional<T> getOne(final Parameter.Value<T> parameter) throws IllegalArgumentException {
+        return this.getOne(parameter.getKey());
     }
 
     /**
@@ -73,7 +71,7 @@ public interface CommandContext extends CommandCause {
      * @throws IllegalArgumentException if more than one value for the key was
      *                                  found
      */
-    <T> Optional<T> getOne(Parameter.Key<T> key) throws IllegalArgumentException;
+    <T> Optional<T> getOne(Parameter.Key<? super T> key) throws IllegalArgumentException;
 
     /**
      * Gets the value for the given key if the key has only one value,
@@ -86,8 +84,8 @@ public interface CommandContext extends CommandCause {
      * @throws IllegalArgumentException if more than one value for the key was
      *                                  found
      */
-    default  <T> T requireOne(Parameter.Value<T> parameter) throws NoSuchElementException, IllegalArgumentException {
-        return requireOne(parameter.getKey());
+    default  <T> T requireOne(final Parameter.Value<T> parameter) throws NoSuchElementException, IllegalArgumentException {
+        return this.requireOne(parameter.getKey());
     }
 
     /**
@@ -101,7 +99,7 @@ public interface CommandContext extends CommandCause {
      * @throws IllegalArgumentException if more than one value for the key was
      *                                  found
      */
-    <T> T requireOne(Parameter.Key<T> key) throws NoSuchElementException, IllegalArgumentException;
+    <T> T requireOne(Parameter.Key<? super T> key) throws NoSuchElementException, IllegalArgumentException;
 
     /**
      * Gets all values for the given argument. May return an empty list if no
@@ -111,8 +109,8 @@ public interface CommandContext extends CommandCause {
      * @param <T> the expected type of the argument
      * @return the argument
      */
-    default <T> Collection<? extends T> getAll(Parameter.Value<T> parameter) {
-        return getAll(parameter.getKey());
+    default <T> Collection<? extends T> getAll(final Parameter.Value<T> parameter) {
+        return this.getAll(parameter.getKey());
     }
 
     /**
@@ -123,12 +121,12 @@ public interface CommandContext extends CommandCause {
      * @param <T> the type of value to get
      * @return the collection of all values
      */
-    <T> Collection<? extends T> getAll(Parameter.Key<T> key);
+    <T> Collection<? extends T> getAll(Parameter.Key<? super T> key);
 
     /**
      * A builder for creating this context.
      */
-    interface Builder extends ResettableBuilder<CommandContext, Builder>, CommandContext {
+    interface Builder extends CommandContext {
 
         /**
          * Adds a parsed object into the context, for use by commands.
@@ -137,8 +135,8 @@ public interface CommandContext extends CommandCause {
          * @param parameter The key to store the entry under.
          * @param value The collection of objects to store.
          */
-        default <T> void putEntry(Parameter.Value<T> parameter, T value) {
-            putEntry(parameter.getKey(), value);
+        default <T> void putEntry(final Parameter.Value<? super T> parameter, final T value) {
+            this.putEntry(parameter.getKey(), value);
         }
 
         /**
@@ -148,8 +146,8 @@ public interface CommandContext extends CommandCause {
          * @param parameter The key to store the entry under.
          * @param value The collection of objects to store.
          */
-        default <T> void putEntries(Parameter.Value<T> parameter, Collection<T> value) {
-            value.forEach(val -> putEntry(parameter, val));
+        default <T> void putEntries(final Parameter.Value<? super T> parameter, final Collection<T> value) {
+            value.forEach(val -> this.putEntry(parameter, val));
         }
 
         /**
@@ -159,8 +157,8 @@ public interface CommandContext extends CommandCause {
          * @param parameter The key to store the entry under.
          * @param value The collection of objects to store.
          */
-        default <T> void putEntries(Parameter.Key<T> parameter, Collection<T> value) {
-            value.forEach(val -> putEntry(parameter, val));
+        default <T> void putEntries(final Parameter.Key<? super T> parameter, final Collection<T> value) {
+            value.forEach(val -> this.putEntry(parameter, val));
         }
 
         /**
@@ -170,30 +168,60 @@ public interface CommandContext extends CommandCause {
          * @param key The key to store the entry under.
          * @param object The object to store.
          */
-        <T> void putEntry(Parameter.Key<T> key, T object);
+        <T> void putEntry(Parameter.Key<? super T> key, T object);
 
         /**
-         * Creates a snapshot of this context and returns a state object that can
-         * be used to restore the context to this state.
+         * Starts a {@link Transaction} which allows for this builder to be
+         * returned to a previous state if necessary.
+         *
+         * <p>Multiple transactions can be started on the same builder, however,
+         * they must be either {@link #commit(Transaction) committed} or
+         * {@link #rollback(Transaction) rolledback} in reverse order (that is,
+         * the last transaction must be committed first)</p>
+         *
+         * <p>Transactions must not be held on to for longer than necessary.</p>
          *
          * @return The state.
          */
-        State getState();
+        Transaction startTransaction();
 
         /**
-         * Uses a previous snapshot of the context and restores it to that state.
+         * Creates a {@link CommandContext}.
          *
-         * @param state The state obtained from {@link #getState()}
+         * <p>If {@link Transaction}s are still open at this point, they will all
+         * be {@link #commit(Transaction) committed}.</p>
+         *
+         * @param input The input argument string.
+         * @return The context
          */
-        void setState(State state);
+        CommandContext build(String input);
 
         /**
-         * An immutable snapshot of a {@link CommandContext.Builder}.
+         * Commits the specified {@link Transaction} if it was the most recently
+         * created transaction.
          *
-         * <p>No assumptions should be made about the form of this state object,
-         * it is not defined in the API and may change at any time.</p>
+         * @param transaction The transaction to commit.
+         * @throws IllegalArgumentException Thrown if there are newer
+         *  transactions to commit first, if this transaction is not active, or
+         *  if this transaction is not part of this builder.
          */
-        interface State {}
+        void commit(Transaction transaction) throws IllegalArgumentException;
+
+        /**
+         * Cancels the specified {@link Transaction} if it was the most recently
+         * created transaction.
+         *
+         * @param transaction The transaction to rollback.
+         * @throws IllegalArgumentException Thrown if there are newer
+         *  transactions to commit first, if this transaction is not active, or
+         *  if this transaction is not part of this builder.
+         */
+        void rollback(Transaction transaction) throws IllegalArgumentException;
+
+        /**
+         * A transaction on a context builder.
+         */
+        interface Transaction { }
     }
 
 }

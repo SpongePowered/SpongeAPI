@@ -4,7 +4,7 @@ plugins {
     id("org.spongepowered.event-impl-gen") version "5.7.0"
     idea
     eclipse
-    id("net.minecrell.licenser") version "0.4.1"
+    id("net.minecrell.licenser")
 }
 
 repositories {
@@ -27,15 +27,14 @@ val ap by sourceSets.registering {
 
 // Project dependencies
 dependencies {
-    api("org.slf4j:slf4j-api:1.7.25")
 
     // Directly tied to what's available from Minecraft
-    api("com.google.guava:guava:25.1-jre") {
+    api("org.apache.logging.log4j:log4j-api:2.8.1")
+    api("com.google.guava:guava:21.0") {
         exclude(group ="com.google.code.findbugs", module = "jsr305") // We don't want to use jsr305, use checkerframework
         exclude(group = "org.checkerframework", module = "checker-qual") // We use our own version
         exclude(group = "com.google.j2objc", module = "j2objc-annotations")
         exclude(group = "org.codehaus.mojo", module = "animal-sniffer-annotations")
-
     }
     api("com.google.errorprone:error_prone_annotations:2.1.3")
     api("com.google.code.gson:gson:2.8.0")

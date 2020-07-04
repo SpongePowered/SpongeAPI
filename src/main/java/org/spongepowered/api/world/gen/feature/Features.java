@@ -25,27 +25,22 @@
 package org.spongepowered.api.world.gen.feature;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.world.gen.feature.config.BigMushroomFeatureConfig;
 import org.spongepowered.api.world.gen.feature.config.BlockBlobConfig;
 import org.spongepowered.api.world.gen.feature.config.BlockWithContextConfig;
 import org.spongepowered.api.world.gen.feature.config.BuriedTreasureConfig;
 import org.spongepowered.api.world.gen.feature.config.BushConfig;
 import org.spongepowered.api.world.gen.feature.config.CountConfig;
-import org.spongepowered.api.world.gen.feature.config.DesertPyramidConfig;
 import org.spongepowered.api.world.gen.feature.config.DoublePlantConfig;
-import org.spongepowered.api.world.gen.feature.config.EndCityConfig;
 import org.spongepowered.api.world.gen.feature.config.EndGatewayConfig;
 import org.spongepowered.api.world.gen.feature.config.FeatureRadiusConfig;
-import org.spongepowered.api.world.gen.feature.config.FortressConfig;
 import org.spongepowered.api.world.gen.feature.config.HellLavaConfig;
 import org.spongepowered.api.world.gen.feature.config.IcebergConfig;
-import org.spongepowered.api.world.gen.feature.config.IglooConfig;
-import org.spongepowered.api.world.gen.feature.config.JunglePyramidConfig;
 import org.spongepowered.api.world.gen.feature.config.LakesConfig;
 import org.spongepowered.api.world.gen.feature.config.LiquidsConfig;
 import org.spongepowered.api.world.gen.feature.config.MinableConfig;
 import org.spongepowered.api.world.gen.feature.config.MineshaftConfig;
 import org.spongepowered.api.world.gen.feature.config.NoFeatureConfig;
-import org.spongepowered.api.world.gen.feature.config.OceanMonumentConfig;
 import org.spongepowered.api.world.gen.feature.config.OceanRuinConfig;
 import org.spongepowered.api.world.gen.feature.config.RandomDefaultFeatureListConfig;
 import org.spongepowered.api.world.gen.feature.config.RandomFeatureListConfig;
@@ -53,13 +48,9 @@ import org.spongepowered.api.world.gen.feature.config.RandomFeatureWithConfigCon
 import org.spongepowered.api.world.gen.feature.config.ReplaceBlockConfig;
 import org.spongepowered.api.world.gen.feature.config.SeaGrassConfig;
 import org.spongepowered.api.world.gen.feature.config.ShipwreckConfig;
-import org.spongepowered.api.world.gen.feature.config.SphereReplaceConfig;
-import org.spongepowered.api.world.gen.feature.config.StrongholdConfig;
-import org.spongepowered.api.world.gen.feature.config.SwampHutConfig;
 import org.spongepowered.api.world.gen.feature.config.TallGrassConfig;
 import org.spongepowered.api.world.gen.feature.config.TwoFeatureChoiceConfig;
 import org.spongepowered.api.world.gen.feature.config.VillageConfig;
-import org.spongepowered.api.world.gen.feature.config.WoodlandMansionConfig;
 
 import java.util.function.Supplier;
 
@@ -67,9 +58,9 @@ public final class Features {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<Feature<NoFeatureConfig>> BIG_BROWN_MUSHROOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "BIG_BROWN_MUSHROOM");
+    public static final Supplier<Feature<BigMushroomFeatureConfig>> BIG_BROWN_MUSHROOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "BIG_BROWN_MUSHROOM");
 
-    public static final Supplier<Feature<NoFeatureConfig>> BIG_RED_MUSHROOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "BIG_RED_MUSHROOM");
+    public static final Supplier<Feature<BigMushroomFeatureConfig>> BIG_RED_MUSHROOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "BIG_RED_MUSHROOM");
 
     public static final Supplier<Feature<NoFeatureConfig>> BIG_TREE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "BIG_TREE");
 
@@ -103,7 +94,7 @@ public final class Features {
 
     public static final Supplier<Feature<RandomFeatureListConfig>> DEFAULT_RANDOM_FEATURE_LIST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "DEFAULT_RANDOM_FEATURE_LIST");
 
-    public static final Supplier<Feature<DesertPyramidConfig>> DESERT_PYRAMID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "DESERT_PYRAMID");
+    public static final Supplier<Feature<NoFeatureConfig>> DESERT_PYRAMID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "DESERT_PYRAMID");
 
     public static final Supplier<Feature<NoFeatureConfig>> DESERT_WELLS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "DESERT_WELLS");
 
@@ -111,7 +102,7 @@ public final class Features {
 
     public static final Supplier<Feature<NoFeatureConfig>> DUNGEONS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "DUNGEONS");
 
-    public static final Supplier<Feature<EndCityConfig>> END_CITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "END_CITY");
+    public static final Supplier<Feature<NoFeatureConfig>> END_CITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "END_CITY");
 
     public static final Supplier<Feature<NoFeatureConfig>> END_CRYSTAL_TOWER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "END_CRYSTAL_TOWER");
 
@@ -123,7 +114,7 @@ public final class Features {
 
     public static final Supplier<Feature<NoFeatureConfig>> FOREST_FLOWERS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "FOREST_FLOWERS");
 
-    public static final Supplier<Feature<FortressConfig>> FORTRESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "FORTRESS");
+    public static final Supplier<Feature<NoFeatureConfig>> FORTRESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "FORTRESS");
 
     public static final Supplier<Feature<NoFeatureConfig>> FOSSILS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "FOSSILS");
 
@@ -139,11 +130,11 @@ public final class Features {
 
     public static final Supplier<Feature<NoFeatureConfig>> ICE_SPIKE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "ICE_SPIKE");
 
-    public static final Supplier<Feature<IglooConfig>> IGLOO = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "IGLOO");
+    public static final Supplier<Feature<NoFeatureConfig>> IGLOO = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "IGLOO");
 
     public static final Supplier<Feature<NoFeatureConfig>> JUNGLE_GRASS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "JUNGLE_GRASS");
 
-    public static final Supplier<Feature<JunglePyramidConfig>> JUNGLE_PYRAMID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "JUNGLE_PYRAMID");
+    public static final Supplier<Feature<NoFeatureConfig>> JUNGLE_PYRAMID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "JUNGLE_PYRAMID");
 
     public static final Supplier<Feature<NoFeatureConfig>> JUNGLE_TREE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "JUNGLE_TREE");
 
@@ -165,9 +156,11 @@ public final class Features {
 
     public static final Supplier<Feature<MineshaftConfig>> MINESHAFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "MINESHAFT");
 
-    public static final Supplier<Feature<OceanMonumentConfig>> OCEAN_MONUMENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "OCEAN_MONUMENT");
+    public static final Supplier<Feature<NoFeatureConfig>> OCEAN_MONUMENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "OCEAN_MONUMENT");
 
     public static final Supplier<Feature<OceanRuinConfig>> OCEAN_RUIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "OCEAN_RUIN");
+
+    public static final Supplier<Feature<NoFeatureConfig>> PILLAGER_OUTPOST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "PILLAGER_OUTPOST");
 
     public static final Supplier<Feature<NoFeatureConfig>> PLAINS_FLOWERS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "PLAINS_FLOWERS");
 
@@ -193,13 +186,13 @@ public final class Features {
 
     public static final Supplier<Feature<NoFeatureConfig>> SHRUB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "SHRUB");
 
-    public static final Supplier<Feature<SphereReplaceConfig>> SPHERE_REPLACE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "SPHERE_REPLACE");
+    public static final Supplier<Feature<NoFeatureConfig>> SPHERE_REPLACE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "SPHERE_REPLACE");
 
-    public static final Supplier<Feature<StrongholdConfig>> STRONGHOLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "STRONGHOLD");
+    public static final Supplier<Feature<NoFeatureConfig>> STRONGHOLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "STRONGHOLD");
 
     public static final Supplier<Feature<NoFeatureConfig>> SWAMP_FLOWERS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "SWAMP_FLOWERS");
 
-    public static final Supplier<Feature<SwampHutConfig>> SWAMP_HUT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "SWAMP_HUT");
+    public static final Supplier<Feature<NoFeatureConfig>> SWAMP_HUT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "SWAMP_HUT");
 
     public static final Supplier<Feature<NoFeatureConfig>> SWAMP_TREE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "SWAMP_TREE");
 
@@ -223,7 +216,7 @@ public final class Features {
 
     public static final Supplier<Feature<NoFeatureConfig>> WATERLILY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "WATERLILY");
 
-    public static final Supplier<Feature<WoodlandMansionConfig>> WOODLAND_MANSION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "WOODLAND_MANSION");
+    public static final Supplier<Feature<NoFeatureConfig>> WOODLAND_MANSION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Feature.class, "WOODLAND_MANSION");
 
     // SORTFIELDS:OFF
 

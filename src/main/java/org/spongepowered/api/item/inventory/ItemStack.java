@@ -38,10 +38,15 @@ import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
+import org.spongepowered.api.entity.attribute.AttributeModifier;
+import org.spongepowered.api.entity.attribute.type.AttributeType;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;
+import org.spongepowered.api.item.inventory.equipment.EquipmentType;
+import org.spongepowered.api.item.inventory.equipment.EquipmentTypes;
 import org.spongepowered.api.text.translation.Translatable;
 
+import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
@@ -186,6 +191,120 @@ public interface ItemStack extends SerializableDataHolder.Mutable, Translatable 
      */
     boolean isEmpty();
 
+    /**
+     * Gets all {@link AttributeModifier}s on this item stack.
+     *
+     * @param attributeType The {@link AttributeType} of the modifier.
+     * @param equipmentType The {@link EquipmentType} this modifier is applied
+     * to.
+     *
+     * @return A collection of {@link AttributeModifier}s.
+     */
+    default Collection<AttributeModifier> getAttributeModifiers(Supplier<? extends AttributeType> attributeType, Supplier<? extends EquipmentType> equipmentType) {
+        return this.getAttributeModifiers(attributeType.get(), equipmentType.get());
+    }
+
+    /**
+     * Gets all {@link AttributeModifier}s on this item stack.
+     *
+     * @param attributeType The {@link AttributeType} of the modifier.
+     * @param equipmentType The {@link EquipmentType} this modifier is applied
+     * to.
+     *
+     * @return A collection of {@link AttributeModifier}s.
+     */
+    default Collection<AttributeModifier> getAttributeModifiers(AttributeType attributeType, Supplier<? extends EquipmentType> equipmentType) {
+        return this.getAttributeModifiers(attributeType, equipmentType.get());
+    }
+
+    /**
+     * Gets all {@link AttributeModifier}s on this item stack.
+     *
+     * @param attributeType The {@link AttributeType} of the modifier.
+     * @param equipmentType The {@link EquipmentType} this modifier is applied
+     * to.
+     *
+     * @return A collection of {@link AttributeModifier}s.
+     */
+    default Collection<AttributeModifier> getAttributeModifiers(Supplier<? extends AttributeType> attributeType, EquipmentType equipmentType) {
+        return this.getAttributeModifiers(attributeType.get(), equipmentType);
+    }
+
+    /**
+     * Gets all {@link AttributeModifier}s on this item stack.
+     *
+     * @param attributeType The {@link AttributeType} of the modifier.
+     * @param equipmentType The {@link EquipmentType} this modifier is applied
+     * to.
+     *
+     * @return A collection of {@link AttributeModifier}s.
+     */
+    Collection<AttributeModifier> getAttributeModifiers(AttributeType attributeType, EquipmentType equipmentType);
+
+    /**
+     * Adds an {@link AttributeModifier} to this item stack.
+     *
+     * <p>This attribute modifier will apply to all
+     * {@link EquipmentTypes}.</p>
+     *
+     * @param attributeType The attribute type.
+     * @param modifier The attribute modifier.
+     */
+    default void addAttributeModifier(Supplier<? extends AttributeType> attributeType, AttributeModifier modifier) {
+        this.addAttributeModifier(attributeType.get(), modifier);
+    }
+
+    /**
+     * Adds an {@link AttributeModifier} to this item stack.
+     *
+     * <p>This attribute modifier will apply to all
+     * {@link EquipmentTypes}.</p>
+     *
+     * @param attributeType The attribute type.
+     * @param modifier The attribute modifier.
+     */
+    default void addAttributeModifier(AttributeType attributeType, AttributeModifier modifier) {
+        this.addAttributeModifier(attributeType, modifier, EquipmentTypes.ANY);
+    }
+
+    /**
+     * Adds an {@link AttributeModifier} to this item stack.
+     * @param attributeType The attribute type.
+     * @param modifier The attribute modifier.
+     * @param equipmentType The equipment type this modifier will apply under.
+     */
+    default void addAttributeModifier(Supplier<? extends AttributeType> attributeType, AttributeModifier modifier, EquipmentType equipmentType) {
+        this.addAttributeModifier(attributeType.get(), modifier, equipmentType);
+    }
+
+    /**
+     * Adds an {@link AttributeModifier} to this item stack.
+     * @param attributeType The attribute type.
+     * @param modifier The attribute modifier.
+     * @param equipmentType The equipment type this modifier will apply under.
+     */
+    default void addAttributeModifier(AttributeType attributeType, AttributeModifier modifier, Supplier<? extends EquipmentType> equipmentType) {
+        this.addAttributeModifier(attributeType, modifier, equipmentType.get());
+    }
+
+    /**
+     * Adds an {@link AttributeModifier} to this item stack.
+     * @param attributeType The attribute type.
+     * @param modifier The attribute modifier.
+     * @param equipmentType The equipment type this modifier will apply under.
+     */
+    default void addAttributeModifier(Supplier<? extends AttributeType> attributeType, AttributeModifier modifier, Supplier<? extends EquipmentType> equipmentType) {
+        this.addAttributeModifier(attributeType.get(), modifier, equipmentType.get());
+    }
+
+    /**
+     * Adds an {@link AttributeModifier} to this item stack.
+     * @param attributeType The attribute type.
+     * @param modifier The attribute modifier.
+     * @param equipmentType The equipment type this modifier will apply under.
+     */
+    void addAttributeModifier(AttributeType attributeType, AttributeModifier modifier, EquipmentType equipmentType);
+
     @Override
     ItemStack copy();
 
@@ -228,6 +347,58 @@ public interface ItemStack extends SerializableDataHolder.Mutable, Translatable 
          * @return This builder, for chaining
          */
         Builder fromItemStack(ItemStack itemStack);
+
+        /**
+         * Adds an {@link AttributeModifier} to this item stack.
+         *
+         * <p>This attribute modifier will apply to all
+         * {@link EquipmentTypes}.</p>
+         *
+         * @param attributeType The Attribute type.
+         * @param modifier The Attribute modifier.
+         * @return This builder, for chaining
+         */
+        default Builder attributeModifier(Supplier<? extends AttributeType> attributeType, AttributeModifier modifier) {
+            return this.attributeModifier(attributeType.get(), modifier, EquipmentTypes.ANY.get());
+        }
+
+        /**
+         * Adds an {@link AttributeModifier} to this item stack.
+         *
+         * <p>This attribute modifier will apply to all
+         * {@link EquipmentTypes}.</p>
+         *
+         * @param attributeType The Attribute type.
+         * @param modifier The Attribute modifier.
+         * @return This builder, for chaining
+         */
+        default Builder attributeModifier(AttributeType attributeType, AttributeModifier modifier) {
+            return this.attributeModifier(attributeType, modifier, EquipmentTypes.ANY.get());
+        }
+
+        /**
+         * Adds an {@link AttributeModifier} to this item stack.
+         *
+         * @param attributeType The Attribute type.
+         * @param modifier The Attribute modifier.
+         * @param equipmentType The equipment type this
+         * {@link AttributeModifier} will apply to.
+         * @return This builder, for chaining
+         */
+        default Builder attributeModifier(Supplier<? extends AttributeType> attributeType, AttributeModifier modifier, Supplier<? extends EquipmentType> equipmentType) {
+            return this.attributeModifier(attributeType.get(), modifier, equipmentType.get());
+        }
+
+        /**
+         * Adds an {@link AttributeModifier} to this item stack.
+         *
+         * @param attributeType The Attribute type.
+         * @param modifier The Attribute modifier.
+         * @param equipmentType The equipment type this
+         * {@link AttributeModifier} will apply to.
+         * @return This builder, for chaining
+         */
+        Builder attributeModifier(AttributeType attributeType, AttributeModifier modifier, EquipmentType equipmentType);
 
         /**
          * Sets the data to recreate a {@link BlockState} in a held {@link ItemStack}

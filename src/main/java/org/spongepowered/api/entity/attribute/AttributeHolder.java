@@ -22,10 +22,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen.feature.config;
+package org.spongepowered.api.entity.attribute;
 
-import org.spongepowered.api.world.gen.FeatureConfig;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.attribute.type.AttributeType;
 
-public interface WoodlandMansionConfig extends FeatureConfig {
+import java.util.Optional;
+import java.util.function.Supplier;
 
+/**
+ * Represents an {@link Entity} which can hold {@link Attribute}s.
+ */
+public interface AttributeHolder {
+
+    /**
+     * Gets an {@link Attribute} from this entity
+     * @param type The attribute type.
+     * @return An attribute, if present.
+     */
+    default Optional<Attribute> getAttribute(final Supplier<? extends AttributeType> type) {
+        return this.getAttribute(type.get());
+    }
+
+    /**
+     * Gets an {@link Attribute} from this entity
+     * @param type The attribute type.
+     * @return An attribute, if present.
+     */
+    Optional<Attribute> getAttribute(final AttributeType type);
 }

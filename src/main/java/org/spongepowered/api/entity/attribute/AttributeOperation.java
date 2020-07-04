@@ -22,10 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen.feature.config;
+package org.spongepowered.api.entity.attribute;
 
-import org.spongepowered.api.world.gen.FeatureConfig;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-public interface StrongholdConfig extends FeatureConfig {
+/**
+ * Represents an operation which can be applied to transform the value of an
+ * {@link Attribute}.
+ */
+@CatalogedBy(AttributeOperations.class)
+public interface AttributeOperation extends CatalogType {
 
 }
