@@ -63,4 +63,11 @@ public interface ScheduledTask extends Identifiable {
      * @return If the task is not running and was cancelled
      */
     boolean cancel();
+
+    /**
+     * Gets whether this scheduled task has been cancelled.
+     *
+     * @return True if cancelled, false otherwise
+     */
+    boolean isCancelled();
 }
