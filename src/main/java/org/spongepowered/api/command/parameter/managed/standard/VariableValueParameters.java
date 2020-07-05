@@ -26,6 +26,7 @@ package org.spongepowered.api.command.parameter.managed.standard;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.command.exception.ArgumentParseException;
 import org.spongepowered.api.command.parameter.managed.ValueParameter;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.serializer.TextSerializer;
@@ -34,8 +35,10 @@ import org.spongepowered.api.util.ResettableBuilder;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.regex.Pattern;
 
 /**
  * Builders and factory for parameters that require configuration.
@@ -160,6 +163,17 @@ public class VariableValueParameters {
      */
     public static NumberRangeBuilder<Long> longRange() {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createLongNumberRangeBuilder();
+    }
+
+    /**
+     * Creates a {@link ValueParameter} that validates the input.
+     *
+     * @param pattern The {@link Pattern} used to validate the string
+     * @return The {@link ValueParameter}
+     */
+    public static ValueParameter<String> validatedString(final Pattern pattern) {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class)
+                .createValidatedStringParameter(pattern);
     }
 
     /**
@@ -478,7 +492,7 @@ public class VariableValueParameters {
          * @param min The minimum value
          * @return This builder, for chaining
          */
-        NumberRangeBuilder<T> min(T min);
+        NumberRangeBuilder<T> setMin(T min);
 
         /**
          * Sets the maximum value that the parser will parse.
@@ -488,7 +502,7 @@ public class VariableValueParameters {
          * @param max The maximum value
          * @return This builder, for chaining
          */
-        NumberRangeBuilder<T> max(T max);
+        NumberRangeBuilder<T> setMax(T max);
 
         /**
          * Tests for validity and creates this {@link ValueParameter}.
@@ -582,6 +596,15 @@ public class VariableValueParameters {
          * @return The {@link NumberRangeBuilder}
          */
         NumberRangeBuilder<Long> createLongNumberRangeBuilder();
+
+        /**
+         * Creates a {@link ValueParameter} that validates its input against
+         * a {@link Pattern}.
+         *
+         * @param pattern The {@link Pattern}
+         * @return The {@link ValueParameter}
+         */
+        ValueParameter<String> createValidatedStringParameter(Pattern pattern);
 
     }
 
