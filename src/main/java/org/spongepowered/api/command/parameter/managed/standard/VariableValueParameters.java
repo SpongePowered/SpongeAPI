@@ -37,6 +37,9 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+/**
+ * Builders and factory for parameters that require configuration.
+ */
 public class VariableValueParameters {
 
     private VariableValueParameters() {}
@@ -117,6 +120,46 @@ public class VariableValueParameters {
      */
     public static <T extends Enum<T>> ValueParameter<T> enumChoices(final Class<T> enumClass) {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createEnumParameter(enumClass);
+    }
+
+    /**
+     * Creates a {@link NumberRangeBuilder} that creates a bounded double
+     * {@link ValueParameter}.
+     *
+     * @return The {@link NumberRangeBuilder}
+     */
+    public static NumberRangeBuilder<Double> doubleRange() {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createDoubleNumberRangeBuilder();
+    }
+
+    /**
+     * Creates a {@link NumberRangeBuilder} that creates a bounded float
+     * {@link ValueParameter}.
+     *
+     * @return The {@link NumberRangeBuilder}
+     */
+    public static NumberRangeBuilder<Float> floatRange() {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createFloatNumberRangeBuilder();
+    }
+
+    /**
+     * Creates a {@link NumberRangeBuilder} that creates a bounded integer
+     * {@link ValueParameter}.
+     *
+     * @return The {@link NumberRangeBuilder}
+     */
+    public static NumberRangeBuilder<Integer> integerRange() {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createIntegerNumberRangeBuilder();
+    }
+
+    /**
+     * Creates a {@link NumberRangeBuilder} that creates a bounded long
+     * {@link ValueParameter}.
+     *
+     * @return The {@link NumberRangeBuilder}
+     */
+    public static NumberRangeBuilder<Long> longRange() {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createLongNumberRangeBuilder();
     }
 
     /**
@@ -369,6 +412,10 @@ public class VariableValueParameters {
 
     }
 
+    /**
+     * A builder that creates a parameter that serializes strings into
+     * {@link Text}.
+     */
     public interface TextBuilder extends ResettableBuilder<ValueParameter<Text>, TextBuilder> {
 
         /**
@@ -412,6 +459,45 @@ public class VariableValueParameters {
          *             been specified
          */
         ValueParameter<Text> build() throws IllegalStateException;
+
+    }
+
+    /**
+     * A builder that creates a parameter that can parse a bounded
+     * {@link Number}.
+     *
+     * @param <T> The {@link Number} type
+     */
+    public interface NumberRangeBuilder<T extends Number> extends ResettableBuilder<ValueParameter<T>, NumberRangeBuilder<T>> {
+
+        /**
+         * Sets the minimum value that the parser will parse.
+         *
+         * <p>Defaults to the minimum allowable value for {@link T}</p>
+         *
+         * @param min The minimum value
+         * @return This builder, for chaining
+         */
+        NumberRangeBuilder<T> min(T min);
+
+        /**
+         * Sets the maximum value that the parser will parse.
+         *
+         * <p>Defaults to the maximum allowable value for {@link T}</p>
+         *
+         * @param max The maximum value
+         * @return This builder, for chaining
+         */
+        NumberRangeBuilder<T> max(T max);
+
+        /**
+         * Tests for validity and creates this {@link ValueParameter}.
+         *
+         * @return The {@link ValueParameter}
+         * @throws IllegalStateException if the minimum is greater than the
+         *              maximum
+         */
+        ValueParameter<T> build();
 
     }
 
@@ -468,6 +554,34 @@ public class VariableValueParameters {
          * @return The builder
          */
         <T> LiteralBuilder<T> createLiteralBuilder(Class<T> returnType);
+
+        /**
+         * Creates a {@link NumberRangeBuilder} for integer values.
+         *
+         * @return The {@link NumberRangeBuilder}
+         */
+        NumberRangeBuilder<Integer> createIntegerNumberRangeBuilder();
+
+        /**
+         * Creates a {@link NumberRangeBuilder} for float values.
+         *
+         * @return The {@link NumberRangeBuilder}
+         */
+        NumberRangeBuilder<Float> createFloatNumberRangeBuilder();
+
+        /**
+         * Creates a {@link NumberRangeBuilder} for double values.
+         *
+         * @return The {@link NumberRangeBuilder}
+         */
+        NumberRangeBuilder<Double> createDoubleNumberRangeBuilder();
+
+        /**
+         * Creates a {@link NumberRangeBuilder} for long values.
+         *
+         * @return The {@link NumberRangeBuilder}
+         */
+        NumberRangeBuilder<Long> createLongNumberRangeBuilder();
 
     }
 
