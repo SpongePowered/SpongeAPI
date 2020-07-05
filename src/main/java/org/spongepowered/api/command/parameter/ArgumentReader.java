@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.command.parameter;
 
+import com.google.gson.JsonObject;
 import org.spongepowered.api.command.exception.ArgumentParseException;
 import org.spongepowered.api.text.Text;
 
@@ -231,9 +232,26 @@ public interface ArgumentReader {
          * Parses "true" or "false", else throws an exception.
          *
          * @return A {@code boolean}
-         * @throws ArgumentParseException if a {@code boolean} could not br read
+         * @throws ArgumentParseException if a {@code boolean} could not be read
          */
         boolean parseBoolean() throws ArgumentParseException;
+
+        /**
+         * Parses a Json string, returning that string.
+         *
+         * @return The string
+         * @throws ArgumentParseException if a Json string could not be read
+         */
+        String parseJson() throws ArgumentParseException;
+
+        /**
+         * Parses a {@link JsonObject}, else throws an exception.
+         *
+         * @return A {@link JsonObject}
+         * @throws ArgumentParseException if a {@link JsonObject} could not be
+         *     read
+         */
+        JsonObject parseJsonObject() throws ArgumentParseException;
 
         /**
          * Returns a immutable copy of the {@link ArgumentReader}. This can be
