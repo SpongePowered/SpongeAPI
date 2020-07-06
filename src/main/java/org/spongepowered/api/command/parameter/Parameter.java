@@ -569,16 +569,6 @@ public interface Parameter {
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#REMAINING_RAW_JOINED_STRINGS}.
-     *
-     * @return A {@link Parameter.Value.Builder}
-     */
-    static Parameter.Value.Builder<String> remainingRawJoinedStrings() {
-        return Parameter.builder(String.class, CatalogedValueParameters.REMAINING_RAW_JOINED_STRINGS);
-    }
-
-    /**
-     * Creates a builder that has the {@link ValueParameter} set to
      * {@link CatalogedValueParameters#STRING}.
      *
      * @return A {@link Parameter.Value.Builder}
@@ -721,7 +711,7 @@ public interface Parameter {
     static <T> Parameter.Value.Builder<T> choices(
             @NonNull final Class<T> returnType,
             @NonNull final Function<String, ? extends T> valueFunction,
-            @NonNull final Supplier<Iterable<String>> choices) {
+            @NonNull final Supplier<? extends Collection<String>> choices) {
 
         return Parameter.builder(returnType,
                 VariableValueParameters
@@ -760,7 +750,7 @@ public interface Parameter {
             @NonNull final Class<T> returnType,
             @NonNull final T returnedValue,
             final String @NonNull... literal) {
-        final Iterable<String> iterable = Arrays.asList(literal);
+        final Collection<String> iterable = Arrays.asList(literal);
         return literal(returnType, returnedValue, () -> iterable);
     }
 
@@ -779,7 +769,7 @@ public interface Parameter {
     static <T> Parameter.Value.Builder<T> literal(
             @NonNull final Class<T> returnType,
             @NonNull final T returnedValue,
-            @NonNull final Supplier<Iterable<String>> literalSupplier) {
+            @NonNull final Supplier<? extends Collection<String>> literalSupplier) {
         return Parameter.builder(returnType,
                 VariableValueParameters.literalBuilder(returnType)
                         .setReturnValue(() -> returnedValue)

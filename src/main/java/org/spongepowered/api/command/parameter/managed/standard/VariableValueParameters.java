@@ -26,7 +26,6 @@ package org.spongepowered.api.command.parameter.managed.standard;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.command.exception.ArgumentParseException;
 import org.spongepowered.api.command.parameter.managed.ValueParameter;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.serializer.TextSerializer;
@@ -35,7 +34,6 @@ import org.spongepowered.api.util.ResettableBuilder;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.regex.Pattern;
@@ -333,7 +331,7 @@ public class VariableValueParameters {
          * @param choices A supplier that returns the appropriate choices.
          * @return This builder, for chaining
          */
-        DynamicChoicesBuilder<T> setChoices(Supplier<Collection<String>> choices);
+        DynamicChoicesBuilder<T> setChoices(Supplier<? extends Collection<String>> choices);
 
         /**
          * Sets the function which defines what result is returned for
@@ -382,7 +380,7 @@ public class VariableValueParameters {
          * @param literalSupplier The {@link Supplier}
          * @return This builder, for chaining
          */
-        LiteralBuilder<T> setLiteral(Supplier<Collection<String>> literalSupplier);
+        LiteralBuilder<T> setLiteral(Supplier<? extends Collection<String>> literalSupplier);
 
         /**
          * Sets the sequence of strings that need to be matched at runtime.
