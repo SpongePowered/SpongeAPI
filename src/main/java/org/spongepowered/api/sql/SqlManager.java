@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.sql;
+package org.spongepowered.api.sql;
 
 import org.spongepowered.plugin.PluginContainer;
 
@@ -32,11 +32,9 @@ import java.util.Optional;
 import javax.sql.DataSource;
 
 /**
- * This service provides the basics for an abstraction over SQL connections.
- *
- * <p>Implementations of this service are expected to be thread-safe.</p>
+ * This manager provides the basics for an abstraction over SQL connections.
  */
-public interface SqlService {
+public interface SqlManager {
 
     /**
      * Returns a data source for the provided JDBC connection string or

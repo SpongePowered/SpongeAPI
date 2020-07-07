@@ -28,7 +28,7 @@ import org.spongepowered.api.service.ban.BanService;
 import org.spongepowered.api.service.economy.EconomyService;
 import org.spongepowered.api.service.pagination.PaginationService;
 import org.spongepowered.api.service.permission.PermissionService;
-import org.spongepowered.api.service.sql.SqlService;
+import org.spongepowered.api.sql.SqlManager;
 import org.spongepowered.api.service.user.UserStorageService;
 import org.spongepowered.api.service.whitelist.WhitelistService;
 
@@ -84,13 +84,6 @@ public interface ServiceProvider {
      * @return The {@link PermissionService}
      */
     PermissionService permissionService();
-
-    /**
-     * Retrieves the {@link SqlService}.
-     *
-     * @return The {@link SqlService}
-     */
-    SqlService sqlService();
 
     /**
      * Retrieves the {@link UserStorageService}.
