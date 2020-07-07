@@ -35,8 +35,8 @@ import org.spongepowered.api.network.ChannelRegistrar;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.registry.GameRegistry;
 import org.spongepowered.api.scheduler.Scheduler;
-import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.service.ServiceProvider;
 import org.spongepowered.api.world.TeleportHelper;
 
 import java.nio.file.Path;
@@ -181,18 +181,6 @@ public interface Game {
     }
 
     /**
-     * Gets the game's instance of the service manager, which is the gateway
-     * to various services provided by Sponge (command registration and so on).
-     *
-     * <p>Services registered by other plugins may be available too.</p>
-     *
-     * @return The service manager
-     */
-    default ServiceManager getServiceManager() {
-        return Sponge.getServiceManager();
-    }
-
-    /**
      * Gets the {@link ChannelRegistrar} for creating network channels.
      *
      * @return The channel registrar
@@ -219,4 +207,17 @@ public interface Game {
     default CauseStackManager getCauseStackManager() {
         return Sponge.getCauseStackManager();
     }
+
+    /**
+     * Gets the {@link ServiceProvider}, used to provide services that plugins
+     * may provide.
+     *
+     * <p>The provider will not be available during plugin construction and will
+     * throw an {@link IllegalStateException} if there is an attempt to access
+     * this before the provider is ready.</p>
+     *
+     * @return The service manager
+     */
+    ServiceProvider getServiceProvider();
+
 }

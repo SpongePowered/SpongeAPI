@@ -39,7 +39,7 @@ import org.spongepowered.api.network.ChannelRegistrar;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.registry.GameRegistry;
 import org.spongepowered.api.scheduler.Scheduler;
-import org.spongepowered.api.service.ServiceManager;
+import org.spongepowered.api.service.ServiceProvider;
 import org.spongepowered.api.util.metric.MetricsConfigManager;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.TeleportHelper;
@@ -48,7 +48,6 @@ import org.spongepowered.api.world.TeleportHelper;
  * A static all access class granting static access to various systems
  * for the API.
  */
-@SuppressWarnings("NullableProblems")
 public final class Sponge {
 
     @Inject private static Game game;
@@ -59,14 +58,13 @@ public final class Sponge {
     @Inject private static EventManager eventManager;
     @Inject private static AssetManager assetManager;
     @Inject private static ConfigManager configManager;
-    @Inject private static ServiceManager serviceManager;
     @Inject private static ChannelRegistrar channelRegistrar;
     @Inject private static TeleportHelper teleportHelper;
     @Inject private static CauseStackManager causeStackManager;
     @Inject private static MetricsConfigManager metricsConfigManager;
     @Inject private static CommandManager commandManager;
 
-    private static <T> T check(@Nullable T instance) {
+    private static <T> T check(@Nullable final T instance) {
         checkState(instance != null, "Sponge has not been initialized!");
         return instance;
     }
@@ -144,18 +142,6 @@ public final class Sponge {
      */
     public static ConfigManager getConfigManager() {
         return check(configManager);
-    }
-
-    /**
-     * Gets the game's instance of the service manager, which is the gateway
-     * to various services provided by Sponge (command registration and so on).
-     *
-     * <p>Services registered by other plugins may be available too.</p>
-     *
-     * @return The service manager
-     */
-    public static ServiceManager getServiceManager() {
-        return check(serviceManager);
     }
 
     /**
@@ -251,4 +237,14 @@ public final class Sponge {
     public static CommandManager getCommandManager() {
         return check(commandManager);
     }
+
+    /**
+     * Gets the {@link ServiceProvider} for providing services.
+     *
+     * @return The service provider.
+     */
+    public static ServiceProvider getServiceProvider() {
+        return getGame().getServiceProvider();
+    }
+
 }
