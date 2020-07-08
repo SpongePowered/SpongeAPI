@@ -25,7 +25,7 @@
 package org.spongepowered.api.advancement;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.CatalogKey;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.NamedCatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
@@ -135,7 +135,7 @@ public interface Advancement extends NamedCatalogType, TextRepresentable {
          * Sets the name of the {@link Advancement}. Defaults to
          * the plain {@link DisplayInfo#getTitle()} if the
          * {@link DisplayInfo} is present. Otherwise will it default
-         * to the identifier ({@link #key(CatalogKey)}).
+         * to the identifier ({@link #key(ResourceKey)}).
          *
          * @param name The name
          * @return This builder, for chaining

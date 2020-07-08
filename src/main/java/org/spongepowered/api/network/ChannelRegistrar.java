@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.network;
 
-import org.spongepowered.api.CatalogKey;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Platform;
 import org.spongepowered.plugin.PluginContainer;
 
@@ -47,7 +47,7 @@ public interface ChannelRegistrar {
      * @throws ChannelRegistrationException The channel name is too long
      * @throws ChannelRegistrationException The channel name is reserved
      */
-    ChannelBinding.IndexedMessageChannel createChannel(PluginContainer plugin, CatalogKey channelKey) throws ChannelRegistrationException;
+    ChannelBinding.IndexedMessageChannel createChannel(PluginContainer plugin, ResourceKey channelKey) throws ChannelRegistrationException;
 
     /**
      * Creates a new raw channel binding. The channel can be used to send and
@@ -60,7 +60,7 @@ public interface ChannelRegistrar {
      * @throws ChannelRegistrationException The channel name is reserved
      * @see #createChannel
      */
-    ChannelBinding.RawDataChannel createRawChannel(PluginContainer plugin, CatalogKey channelKey) throws ChannelRegistrationException;
+    ChannelBinding.RawDataChannel createRawChannel(PluginContainer plugin, ResourceKey channelKey) throws ChannelRegistrationException;
 
     /**
      * Gets a channel binding if a channel registered by that name exists.
@@ -68,7 +68,7 @@ public interface ChannelRegistrar {
      * @param channelkey The channel id
      * @return The channel if it exists
      */
-    Optional<ChannelBinding> getChannel(CatalogKey channelkey);
+    Optional<ChannelBinding> getChannel(ResourceKey channelkey);
 
     /**
      * Gets or creates a {@link ChannelBinding.IndexedMessageChannel} by the
@@ -85,7 +85,7 @@ public interface ChannelRegistrar {
      * @throws ChannelRegistrationException for same reasons as
      *         {@link #createChannel}.
      */
-    default ChannelBinding.IndexedMessageChannel getOrCreate(PluginContainer plugin, CatalogKey channelKey) throws ChannelRegistrationException {
+    default ChannelBinding.IndexedMessageChannel getOrCreate(PluginContainer plugin, ResourceKey channelKey) throws ChannelRegistrationException {
         final Optional<ChannelBinding> existing = getChannel(channelKey);
         if (existing.isPresent()) {
             if (existing.get() instanceof ChannelBinding.IndexedMessageChannel) {
@@ -112,7 +112,7 @@ public interface ChannelRegistrar {
      * @throws ChannelRegistrationException for same reasons as
      *         {@link #createRawChannel}.
      */
-    default ChannelBinding.RawDataChannel getOrCreateRaw(PluginContainer plugin, CatalogKey channelKey) throws ChannelRegistrationException {
+    default ChannelBinding.RawDataChannel getOrCreateRaw(PluginContainer plugin, ResourceKey channelKey) throws ChannelRegistrationException {
         final Optional<ChannelBinding> existing = getChannel(channelKey);
         if (existing.isPresent()) {
             if (existing.get() instanceof ChannelBinding.RawDataChannel) {
@@ -139,7 +139,7 @@ public interface ChannelRegistrar {
      * @param side The side to get the registered channels from
      * @return A copy of the list of channels
      */
-    Set<CatalogKey> getRegisteredChannels(Platform.Type side);
+    Set<ResourceKey> getRegisteredChannels(Platform.Type side);
 
     /**
      * Returns whether the given channel name is available for creating with
@@ -148,6 +148,6 @@ public interface ChannelRegistrar {
      * @param channelKey The channel id to test
      * @return True if available
      */
-    boolean isChannelAvailable(CatalogKey channelKey);
+    boolean isChannelAvailable(ResourceKey channelKey);
 
 }

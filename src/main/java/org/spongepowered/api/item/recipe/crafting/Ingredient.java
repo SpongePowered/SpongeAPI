@@ -25,7 +25,7 @@
 package org.spongepowered.api.item.recipe.crafting;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.CatalogKey;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -93,7 +93,7 @@ public interface Ingredient extends Predicate<ItemStack> {
      *
      * @return The new ingredient
      */
-    static Ingredient of(CatalogKey itemTag) {
+    static Ingredient of(ResourceKey itemTag) {
         return builder().with(itemTag).build();
     }
 
@@ -116,7 +116,7 @@ public interface Ingredient extends Predicate<ItemStack> {
          * @param itemTag The item tag
          * @return This Builder, for chaining
          */
-        Builder with(CatalogKey itemTag);
+        Builder with(ResourceKey itemTag);
 
         /**
          * Builds the {@link Ingredient} with the specified items and or predicates.

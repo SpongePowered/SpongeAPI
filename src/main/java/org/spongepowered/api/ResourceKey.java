@@ -33,26 +33,25 @@ import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.plugin.PluginContainer;
 
 /**
- * An object representation of a location or pointer to a {@link CatalogType}
- * that can be used to retrieve said type from the {@link GameRegistry}. The
- * key can be represented as a {@link String} by {@link Object#toString()}. The key
- * is built with two parts:
+ * An object representation of a location or pointer to various resources, such
+ * as {@link CatalogType}, that can be used to retrieve from various places such as
+ * the {@link GameRegistry}. The key can be represented as a {@link String} by
+ * {@link Object#toString()}. The key is built with two parts:
  * <ol>
  *     <li>The Namespace</li>
  *     <li>The Value</li>
  * </ol>
  * Normally, the namespace is lowercased and likewise, so is the value. This
- * is have a uniform format for all uses of {@link CatalogKey}, including but
+ * is a uniform format for all uses of {@link ResourceKey}, including but
  * not restricted to {@link DataRegistration}s, {@link ConfigurationNode}s,
  * {@link DataTranslator}s, and {@link DataSerializable}s.
  *
  * <p>Note that the methods {@link #minecraft(String)} and
  * {@link #sponge(String)} should only be used by the implementations for
- * creating new keys for new {@link CatalogType}s. Plugins using these to create
- * their own {@link CatalogType}s and registering them is not recommended as it
- * prevents missing plugin detection by users from taking place.</p>
+ * creating new keys and usage by plugins <strong>may</strong> result in
+ * a crash condition by the implementation.
  */
-public interface CatalogKey extends Comparable<CatalogKey> {
+public interface ResourceKey extends Comparable<ResourceKey> {
 
     /**
      * The minecraft namespace.
@@ -69,7 +68,7 @@ public interface CatalogKey extends Comparable<CatalogKey> {
      * @param value The value
      * @return A new catalog key
      */
-    static CatalogKey minecraft(final String value) {
+    static ResourceKey minecraft(final String value) {
         return of(MINECRAFT_NAMESPACE, value);
     }
 
@@ -79,12 +78,12 @@ public interface CatalogKey extends Comparable<CatalogKey> {
      * @param value The value
      * @return A new catalog key
      */
-    static CatalogKey sponge(final String value) {
+    static ResourceKey sponge(final String value) {
         return of(SPONGE_NAMESPACE, value);
     }
 
     /**
-     * Creates a new {@link Builder} for creating {@link CatalogKey}s. The builder
+     * Creates a new {@link Builder} for creating {@link ResourceKey}s. The builder
      * can be used for creating keys based on {@link PluginContainer}s, {@link Object}s
      * of plugins, and {@link String} namespaces.
      *
@@ -101,7 +100,7 @@ public interface CatalogKey extends Comparable<CatalogKey> {
      * @param value The value
      * @return A new catalog key
      */
-    static CatalogKey of(final String namespace, final String value) {
+    static ResourceKey of(final String namespace, final String value) {
         return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class).namespace(namespace).value(value).build();
     }
 
@@ -112,7 +111,7 @@ public interface CatalogKey extends Comparable<CatalogKey> {
      * @param value The value
      * @return A new catalog key
      */
-    static CatalogKey of(final PluginContainer container, final String value) {
+    static ResourceKey of(final PluginContainer container, final String value) {
         return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class).namespace(container).value(value).build();
     }
 
@@ -125,7 +124,7 @@ public interface CatalogKey extends Comparable<CatalogKey> {
      * @param value The value
      * @return A new catalog key
      */
-    static CatalogKey resolve(final String value) {
+    static ResourceKey resolve(final String value) {
         return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class).value(value).build();
     }
 
@@ -155,9 +154,9 @@ public interface CatalogKey extends Comparable<CatalogKey> {
     String getFormatted();
 
     @Override
-    int compareTo(CatalogKey o);
+    int compareTo(ResourceKey o);
 
-    interface Builder extends ResettableBuilder<CatalogKey, Builder> {
+    interface Builder extends ResettableBuilder<ResourceKey, Builder> {
 
         Builder namespace(String namespace);
 
@@ -165,6 +164,6 @@ public interface CatalogKey extends Comparable<CatalogKey> {
 
         Builder value(String value);
 
-        CatalogKey build() throws IllegalStateException;
+        ResourceKey build() throws IllegalStateException;
     }
 }

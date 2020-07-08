@@ -98,7 +98,7 @@ import org.spongepowered.api.world.weather.Weather;
  * Enumeration of all known {@link CatalogType}s for autocompletion when using
  * the {@link GameRegistry} to retrieve specific types or all of a certain type.
  *
- * <p>These are generally useful for {@link CatalogRegistry#get(Class, CatalogKey)}
+ * <p>These are generally useful for {@link CatalogRegistry#get(Class, ResourceKey)}
  * and {@link CatalogRegistry#getAllOf(Class)}.</p>
  */
 @SuppressWarnings({"rawtypes", "unused"})

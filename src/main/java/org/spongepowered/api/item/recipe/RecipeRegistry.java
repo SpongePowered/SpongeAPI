@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.item.recipe;
 
-import org.spongepowered.api.CatalogKey;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.event.registry.RegistryEvent;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
@@ -50,7 +50,7 @@ public interface RecipeRegistry {
      *
      * @return The recipe if available
      */
-    Optional<Recipe> getById(CatalogKey id);
+    Optional<Recipe> getById(ResourceKey id);
 
     /**
      * Gets all registered recipes.

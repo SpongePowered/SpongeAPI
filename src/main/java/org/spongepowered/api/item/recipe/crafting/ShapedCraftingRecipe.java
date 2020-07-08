@@ -27,7 +27,7 @@ package org.spongepowered.api.item.recipe.crafting;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.CatalogKey;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
@@ -254,14 +254,14 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
             EndStep group(@Nullable String name);
 
             @Override
-            EndStep key(CatalogKey key);
+            EndStep key(ResourceKey key);
 
             /**
              * Builds the {@link ShapedCraftingRecipe}.
              *
              * @return The built shaped crafting recipe
              * @throws IllegalStateException If not all the recipe builder steps are completed
-             *                               or the {@link #key(CatalogKey)} isn't set.
+             *                               or the {@link #key(ResourceKey)} isn't set.
              */
             @Override
             ShapedCraftingRecipe build() throws IllegalStateException;

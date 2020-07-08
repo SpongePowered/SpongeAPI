@@ -24,9 +24,8 @@
  */
 package org.spongepowered.api.network;
 
-import org.spongepowered.api.CatalogKey;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Platform;
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.plugin.PluginContainer;
 
@@ -48,11 +47,11 @@ public interface ChannelBinding {
     ChannelRegistrar getRegistrar();
 
     /**
-     * Gets this channel's bound identifier as a {@link CatalogKey}.
+     * Gets this channel's bound identifier as a {@link ResourceKey}.
      *
      * @return The channel identifier
      */
-    CatalogKey getKey();
+    ResourceKey getKey();
 
     /**
      * Gets the plugin that created this binding.

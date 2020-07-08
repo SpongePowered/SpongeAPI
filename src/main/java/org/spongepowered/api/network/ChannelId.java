@@ -25,7 +25,7 @@
 package org.spongepowered.api.network;
 
 import com.google.inject.BindingAnnotation;
-import org.spongepowered.api.CatalogKey;
+import org.spongepowered.api.ResourceKey;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -36,8 +36,8 @@ import java.lang.annotation.Target;
  * An annotation used for naming {@link ChannelBinding} injections.
  *
  * <p>Due to the limitations of Java annotations,
- * the 'namespace' and 'value' components of the {@link CatalogKey}
- * must be specified separately, instead of using a {@link CatalogKey} directly.</p>
+ * the 'namespace' and 'value' components of the {@link ResourceKey}
+ * must be specified separately, instead of using a {@link ResourceKey} directly.</p>
  *
  * <pre>{@code @ChannelId(namespace="myplugin", value="SomeChannel") @Inject
  * ChannelBinding.RawDataChannel channel;}</pre>
@@ -50,7 +50,7 @@ public @interface ChannelId {
     /**
      * Gets the channel namespace.
      *
-     * <p>This corresponds to {@link CatalogKey#getNamespace()}</p>
+     * <p>This corresponds to {@link ResourceKey#getNamespace()}</p>
      *
      * @return The channel namespace
      */
@@ -59,7 +59,7 @@ public @interface ChannelId {
     /**
      * Get the channel name.
      *
-     * <p>This corresponds to {@link CatalogKey#getValue()}</p>
+     * <p>This corresponds to {@link ResourceKey#getValue()}</p>
      * @return The channel name
      */
     String value();

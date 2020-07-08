@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.util;
 
-import org.spongepowered.api.CatalogKey;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.plugin.PluginContainer;
 
@@ -37,12 +37,12 @@ import org.spongepowered.plugin.PluginContainer;
 public interface CatalogBuilder<C extends CatalogType, B extends ResettableBuilder<C, B>> extends ResettableBuilder<C, B> {
 
     /**
-     * Sets the {@link CatalogKey} of the {@link CatalogType}.
+     * Sets the {@link ResourceKey} of the {@link CatalogType}.
      *
      * @param key The key
      * @return This builder for chaining
      */
-    B key(CatalogKey key);
+    B key(ResourceKey key);
 
     /**
      * Builds the {@link CatalogType} of type {@code C}.
