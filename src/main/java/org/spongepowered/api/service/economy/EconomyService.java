@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.service.economy;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.service.context.ContextualService;
 import org.spongepowered.api.service.economy.account.Account;
 import org.spongepowered.api.service.economy.account.AccountDeletionResultType;
