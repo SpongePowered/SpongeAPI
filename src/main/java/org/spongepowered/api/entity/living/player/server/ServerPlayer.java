@@ -123,6 +123,14 @@ public interface ServerPlayer extends Player, Subject {
     int getViewDistance();
 
     /**
+     * Sets the view distance setting of the player. This value represents the
+     * radius (around the player) in unit chunks.
+     *
+     * @param distance The player's view distance
+     */
+    void setViewDistance(int distance);
+
+    /**
      * Gets the current player chat visibility setting.
      *
      * @return Chat visibility setting
