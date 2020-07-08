@@ -44,13 +44,13 @@ import java.util.function.Supplier;
 public interface RecipeRegistry {
 
     /**
-     * Gets a recipe by its id
+     * Gets a recipe by its {@link ResourceKey key}.
      *
-     * @param id the recipe id
+     * @param key the recipe key
      *
      * @return The recipe if available
      */
-    Optional<Recipe> getById(ResourceKey id);
+    Optional<Recipe> getByKey(ResourceKey key);
 
     /**
      * Gets all registered recipes.

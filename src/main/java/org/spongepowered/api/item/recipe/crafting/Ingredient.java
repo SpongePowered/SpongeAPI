@@ -87,14 +87,15 @@ public interface Ingredient extends Predicate<ItemStack> {
     }
 
     /**
-     * Creates a new {@link Ingredient} for the provided item tag.
+     * Creates a new {@link Ingredient} for the provided {@link ResourceKey key} which
+     * should match an {@link ItemType item}.
      *
-     * @param itemTag The item tag
+     * @param key The key
      *
      * @return The new ingredient
      */
-    static Ingredient of(ResourceKey itemTag) {
-        return builder().with(itemTag).build();
+    static Ingredient of(ResourceKey key) {
+        return builder().with(key).build();
     }
 
     /**

@@ -47,7 +47,7 @@ public interface ChannelBinding {
     ChannelRegistrar getRegistrar();
 
     /**
-     * Gets this channel's bound identifier as a {@link ResourceKey}.
+     * Gets this channel's bound identifier as a {@link ResourceKey key}.
      *
      * @return The channel identifier
      */
