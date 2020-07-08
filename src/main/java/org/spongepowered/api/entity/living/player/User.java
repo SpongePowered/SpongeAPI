@@ -34,6 +34,7 @@ import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.entity.UserInventory;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.permission.Subject;
+import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.math.vector.Vector3d;
 
@@ -45,6 +46,7 @@ import java.util.UUID;
  * across server restarts. This is in contrast to Player which represents
  * the in-game entity associated with an online User.
  */
+@DoNotStore
 public interface User extends DataHolder.Mutable, ArmorEquipable, Tamer, Subject {
 
     /**

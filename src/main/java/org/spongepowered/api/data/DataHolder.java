@@ -29,6 +29,7 @@ import org.spongepowered.api.data.value.MapValue;
 import org.spongepowered.api.data.value.MergeFunction;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
+import org.spongepowered.api.util.annotation.DoNotStore;
 
 import java.util.Collection;
 import java.util.Map;
@@ -40,6 +41,7 @@ import java.util.function.Supplier;
  * A data holder object allows the access of additional data on the object
  * that is not simply expressed by its basic type.
  */
+@DoNotStore
 public interface DataHolder extends ValueContainer {
 
     /**
