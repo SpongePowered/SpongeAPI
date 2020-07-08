@@ -278,6 +278,14 @@ public interface ServerPlayer extends Player, Subject {
     }
 
     /**
+     * {@link Keys#HAS_VIEWED_CREDITS}
+     * @return True if this player has viewed the credits
+     */
+    default Value.Mutable<Boolean> hasViewedCredits() {
+        return this.requireValue(Keys.HAS_VIEWED_CREDITS).asMutable();
+    }
+
+    /**
      * Gets if the {@link Player} has played on the {@link Server} before. Added
      * as a utility.
      *
