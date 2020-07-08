@@ -2407,6 +2407,12 @@ public final class Keys {
     public static final Supplier<Key<ListValue<TradeOffer>>> TRADE_OFFERS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TRADE_OFFERS");
 
     /**
+     * Whether an {@link Entity} is transient.
+     * This prevents the entity from being saved to disk.
+     */
+    public static final Supplier<Key<Value<Boolean>>> TRANSIENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TRANSIENT");
+
+    /**
      * A {@link TropicalFish}'s shape.
      */
     public static final Supplier<Key<Value<TropicalFishShape>>> TROPICAL_FISH_SHAPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TROPICAL_FISH_SHAPE");
