@@ -948,6 +948,13 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> HAS_PORES_WEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HAS_PORES_WEST");
 
     /**
+     * Whether a server player has viewed the credits.
+     *
+     * <p>The credits are displayed the first time a player returns to the overworld safely using an end portal.</p>
+     */
+    public static final Supplier<Key<Value<Boolean>>> HAS_VIEWED_CREDITS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HAS_VIEWED_CREDITS");
+
+    /**
      * The rotation of a {@link Living}'s or {@link ArmorStand}'s head.
      *
      * <p>The format of the rotation is represented by:</p>
