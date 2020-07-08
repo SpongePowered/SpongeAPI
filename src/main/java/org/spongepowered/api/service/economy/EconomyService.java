@@ -116,7 +116,7 @@ public interface EconomyService extends ContextualService<Account> {
      *
      * @return A stream of all {@link UniqueAccount}s.
      */
-    Stream<UniqueAccount> uniqueAccounts();
+    Stream<UniqueAccount> streamUniqueAccounts();
 
     /**
      * Gets a {@link Collection} of all available {@link UniqueAccount}s.
@@ -130,7 +130,7 @@ public interface EconomyService extends ContextualService<Account> {
      *
      * @return A stream of all {@link VirtualAccount}s.
      */
-    Stream<VirtualAccount> virtualAccounts();
+    Stream<VirtualAccount> streamVirtualAccounts();
 
     /**
      * Gets a {@link Collection} of all available {@link VirtualAccount}s.
