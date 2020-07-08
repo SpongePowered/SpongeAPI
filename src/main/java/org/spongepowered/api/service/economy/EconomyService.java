@@ -31,9 +31,11 @@ import org.spongepowered.api.service.economy.account.AccountDeletionResultTypes;
 import org.spongepowered.api.service.economy.account.UniqueAccount;
 import org.spongepowered.api.service.economy.account.VirtualAccount;
 
+import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Stream;
 
 /**
  * Represents a service for managing a server economy.
@@ -107,6 +109,34 @@ public interface EconomyService extends ContextualService<Account> {
      * @return The {@link Account}, if available.
      */
     Optional<Account> getOrCreateAccount(String identifier);
+
+    /**
+     * Gets a {@link Stream} of all available {@link UniqueAccount}s.
+     *
+     * @return A stream of all {@link UniqueAccount}s.
+     */
+    Stream<UniqueAccount> streamUniqueAccounts();
+
+    /**
+     * Gets a {@link Collection} of all available {@link UniqueAccount}s.
+     *
+     * @return A Collection of all {@link UniqueAccount}s.
+     */
+    Collection<UniqueAccount> getUniqueAccounts();
+
+    /**
+     * Gets a {@link Stream} of all available {@link VirtualAccount}s.
+     *
+     * @return A stream of all {@link VirtualAccount}s.
+     */
+    Stream<VirtualAccount> streamVirtualAccounts();
+
+    /**
+     * Gets a {@link Collection} of all available {@link VirtualAccount}s.
+     *
+     * @return A Collection of all {@link VirtualAccount}s.
+     */
+    Collection<VirtualAccount> getVirtualAccounts();
 
     /**
      * Deletes the account for the user with the specified {@link UUID}.
