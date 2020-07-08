@@ -22,32 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.event.network;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.impl.entity.AbstractSpawnEntityEvent;
-import org.spongepowered.api.event.network.ServerSideConnectionEvent;
-import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
-import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
+import org.spongepowered.api.entity.living.player.client.ClientPlayer;
+import org.spongepowered.api.event.Event;
+import org.spongepowered.api.network.RemoteConnection;
 
-/**
- * Raised when an {@link Entity} is spawned. This usually follows the chain of
- * the various entity creation events: {@link ConstructEntityEvent.Pre},
- * {@link ConstructEntityEvent.Post}, and finally {@link SpawnEntityEvent}.
- *
- * <p>Note: To determine the {@link Cause}, refer to package
- * org.spongepowered.api.event.cause.entity.spawn.</p>
- *
- * <p>For players, this event is fired before they have fully
- * joined the world. {@link ServerSideConnectionEvent} is the
- * recommended event to interact with connecting players.</p>
- */
-@GenerateFactoryMethod
-@ImplementedBy(AbstractSpawnEntityEvent.class)
-public interface SpawnEntityEvent extends AffectEntityEvent {
+public interface ClientSideConnectionEvent extends Event {
 
-    interface ChunkLoad extends SpawnEntityEvent {}
+    /**
+     * Gets the {@link RemoteConnection} representing the connection to the server.
+     *
+     * @return The connection
+     */
+    RemoteConnection getConnection();
 
-    interface Custom extends SpawnEntityEvent {}
+    interface Join extends ClientSideConnectionEvent {
+
+        /**
+         * Gets the {@link ClientPlayer player}.
+         *
+         * @return The player
+         */
+        ClientPlayer getPlayer();
+    }
+
+    interface Disconnect extends ClientSideConnectionEvent {
+
+        /**
+         * Gets the {@link ClientPlayer player}.
+         *
+         * @return The player
+         */
+        ClientPlayer getPlayer();
+    }
 }

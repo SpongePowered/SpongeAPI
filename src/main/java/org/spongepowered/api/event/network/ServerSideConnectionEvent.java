@@ -58,7 +58,14 @@ import java.net.InetAddress;
  * recommended to use the event's subinterfaces to interact with the player
  * at well-defined moments during the connection process.</p>
  */
-public interface ClientConnectionEvent extends Event {
+public interface ServerSideConnectionEvent extends Event {
+
+    /**
+     * Gets the {@link RemoteConnection} representing the client connection.
+     *
+     * @return The remote connection
+     */
+    RemoteConnection getConnection();
 
     /**
      * Called asynchronously when the client attempts to authenticate against
@@ -66,14 +73,7 @@ public interface ClientConnectionEvent extends Event {
      *
      * <p>Note: This event is fired before #Login.</p>
      */
-    interface Auth extends ClientConnectionEvent, MessageEvent, Cancellable {
-
-        /**
-         * Gets the {@link RemoteConnection} representing the client connection.
-         *
-         * @return The remote connection
-         */
-        RemoteConnection getConnection();
+    interface Auth extends ServerSideConnectionEvent, MessageEvent, Cancellable {
 
         /**
          * Gets the profile of the client attempting to connect.
@@ -104,7 +104,7 @@ public interface ClientConnectionEvent extends Event {
      * Plugins may uncancel the event to allow a client to join, regardless of
      * its ban/whitelist status.</p>
      */
-    interface Login extends ClientConnectionEvent, MessageEvent, Event, Cancellable {
+    interface Login extends ServerSideConnectionEvent, MessageEvent, Event, Cancellable {
 
         /**
          * Gets the {@link User}.
@@ -112,13 +112,6 @@ public interface ClientConnectionEvent extends Event {
          * @return The user
          */
         User getUser();
-
-        /**
-         * Gets the {@link RemoteConnection} representing the client connection.
-         *
-         * @return The remote connection
-         */
-        RemoteConnection getConnection();
 
         /**
          * Gets the profile of the client attempting to connect.
@@ -177,7 +170,7 @@ public interface ClientConnectionEvent extends Event {
      * <p>The {@link SpawnEntityEvent} for the {@link ServerPlayer player} is fired after the
      * #Login event. This event is fired after both.</p>
      */
-    interface Join extends ClientConnectionEvent, MessageChannelEvent {
+    interface Join extends ServerSideConnectionEvent, MessageChannelEvent {
 
         /**
          * Gets the {@link ServerPlayer player}.
@@ -190,10 +183,10 @@ public interface ClientConnectionEvent extends Event {
     /**
      * Called when a {@link ServerPlayer player} disconnects from the game.
      */
-    interface Disconnect extends ClientConnectionEvent, MessageChannelEvent {
+    interface Disconnect extends ServerSideConnectionEvent, MessageChannelEvent {
 
         /**
-         * Gets the {@link ServerPlayer}.
+         * Gets the {@link ServerPlayer player}.
          *
          * @return The player
          */
