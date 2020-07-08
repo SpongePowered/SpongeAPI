@@ -270,11 +270,19 @@ public interface ServerPlayer extends Player, Subject {
     Collection<AdvancementTree> getUnlockedAdvancementTrees();
 
     /**
-     * {@link Keys#FIRST_DATE_PLAYED}
-     * @return The timestamp value when this player first played
+     * {@link Keys#FIRST_DATE_JOINED}
+     * @return The timestamp value when this player first joined
      */
-    default Value.Mutable<Instant> firstPlayed() {
-        return this.requireValue(Keys.FIRST_DATE_PLAYED).asMutable();
+    default Value.Mutable<Instant> firstJoined() {
+        return this.requireValue(Keys.FIRST_DATE_JOINED).asMutable();
+    }
+
+    /**
+     * {@link Keys#LAST_DATE_JOINED}
+     * @return The last timestamp value when this player has joined
+     */
+    default Value.Mutable<Instant> lastJoined() {
+        return this.requireValue(Keys.LAST_DATE_JOINED).asMutable();
     }
 
     /**
@@ -300,7 +308,7 @@ public interface ServerPlayer extends Player, Subject {
      * @return True if played before, false otherwise
      */
     default boolean hasPlayedBefore() {
-        return !this.firstPlayed().equals(this.lastPlayed());
+        return !this.firstJoined().equals(this.lastPlayed());
     }
 
     /**
