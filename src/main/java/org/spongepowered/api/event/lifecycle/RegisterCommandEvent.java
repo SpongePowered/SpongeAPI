@@ -30,9 +30,9 @@ import org.spongepowered.api.event.GenericEvent;
 /**
  * Lifecycle event to indicate when commands should be registered.
  *
- * @param <T> The {@link CommandRegistrar} that is handling this event.
+ * @param <C> The {@link CommandRegistrar} that is handling this event.
  */
-public interface RegisterCommandEvent<T extends CommandRegistrar<?>> extends GenericEvent<T>, LifecycleEvent {
+public interface RegisterCommandEvent<C extends CommandRegistrar<?>> extends GenericEvent<C>, LifecycleEvent {
 
     /**
      * Gets the {@link CommandRegistrar} that handles the command registration
@@ -41,6 +41,6 @@ public interface RegisterCommandEvent<T extends CommandRegistrar<?>> extends Gen
      *
      * @return The {@link CommandRegistrar}
      */
-    T getRegistrar();
+    C getRegistrar();
 
 }

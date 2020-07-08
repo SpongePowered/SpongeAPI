@@ -62,7 +62,7 @@ public interface Event {
      */
     @PropertySettings(requiredParameter = false, generateMethods = false)
     default Object getSource() {
-        return getCause().root();
+        return this.getCause().root();
     }
 
     /**
@@ -72,6 +72,6 @@ public interface Event {
      */
     @PropertySettings(requiredParameter = false, generateMethods = false)
     default EventContext getContext() {
-        return getCause().getContext();
+        return this.getCause().getContext();
     }
 }
