@@ -53,12 +53,8 @@ import java.util.UUID;
 
 public interface ServerWorld extends World<ServerWorld>, Identifiable, InteractableVolume, LocationCreator {
 
-    /**
-     * Gets the {@link Server} that is managing this world.
-     *
-     * @return The server
-     */
-    Server getServer();
+    @Override
+    Server getEngine();
 
     /**
      * Gets the properties for this world.
@@ -74,7 +70,7 @@ public interface ServerWorld extends World<ServerWorld>, Identifiable, Interacta
 
     @Override
     default Chunk getChunkAtBlock(int bx, int by, int bz) {
-        final Vector3i chunkPos = this.getServer().getChunkLayout().forceToChunk(bx, by, bz);
+        final Vector3i chunkPos = this.getEngine().getChunkLayout().forceToChunk(bx, by, bz);
         return this.getChunk(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ());
     }
 

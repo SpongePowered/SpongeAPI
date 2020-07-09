@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world;
 
+import org.spongepowered.api.Engine;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
@@ -57,6 +58,12 @@ public interface World<W extends World<W>> extends ProtoWorld<W>,
     Viewer,
     ArchetypeVolumeCreator
 {
+
+    /**
+     * Gets the {@link Engine} that simulates this world.
+     * @return The engine
+     */
+    Engine getEngine();
 
     /**
      * Gets the {@link UUID unique id} of this world.

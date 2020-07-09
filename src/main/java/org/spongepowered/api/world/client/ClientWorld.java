@@ -36,5 +36,8 @@ import java.util.Collection;
 public interface ClientWorld extends World<ClientWorld> {
 
     @Override
+    Client getEngine();
+    
+    @Override
     Collection<? extends ClientPlayer> getPlayers();
 }
