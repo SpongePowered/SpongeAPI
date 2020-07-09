@@ -31,6 +31,9 @@ import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.text.channel.MessageReceiver;
+import org.spongepowered.api.user.UserManager;
+import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.world.TeleportHelper;
 import org.spongepowered.api.world.server.WorldManager;
 import org.spongepowered.api.world.storage.ChunkLayout;
 
@@ -50,6 +53,20 @@ public interface Server extends Engine, MessageReceiver {
      * @return The world manager
      */
     WorldManager getWorldManager();
+
+    /**
+     * Gets the {@link UserManager}.
+     *
+     * @return The user manager
+     */
+    UserManager getUserManager();
+
+    /**
+     * Gets the {@link TeleportHelper}, used to find safe {@link ServerLocation}s.
+     *
+     * @return The teleport helper
+     */
+    TeleportHelper getTeleportHelper();
 
     /**
      * Gets the {@link ServerPlayer}s currently online.

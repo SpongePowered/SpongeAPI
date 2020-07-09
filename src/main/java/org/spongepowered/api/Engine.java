@@ -33,6 +33,12 @@ import org.spongepowered.api.scheduler.Scheduler;
 public interface Engine {
 
     /**
+     * Gets the {@link Game} that launched this engine;
+     * @return The game
+     */
+    Game getGame();
+
+    /**
      * Gets the {@link CauseStackManager} for handling the current event cause
      * stack and context information.
      *

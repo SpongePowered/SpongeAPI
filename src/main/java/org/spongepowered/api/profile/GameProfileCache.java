@@ -26,7 +26,7 @@ package org.spongepowered.api.profile;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.entity.living.player.User;
-import org.spongepowered.api.service.user.UserStorageService;
+import org.spongepowered.api.user.UserManager;
 
 import java.time.Instant;
 import java.util.Collection;
@@ -243,7 +243,7 @@ public interface GameProfileCache {
      * <p>This collection may also contain profiles of players who never played
      * on the server!</p>
      *
-     * <p>Use {@link UserStorageService#match(String)} for a collection that
+     * <p>Use {@link UserManager#match(String)} for a collection that
      * only contains {@link GameProfile}s with attached {@link User} data.</p>
      *
      * <p>This method only searches the local cache, so the data may not be up

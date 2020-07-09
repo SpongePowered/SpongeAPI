@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.user;
+package org.spongepowered.api.user;
 
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
@@ -36,7 +36,7 @@ import java.util.UUID;
 /**
  * Stores the persistent {@link User} data of a {@link Player}.
  */
-public interface UserStorageService {
+public interface UserManager {
 
     /**
      * Gets the data of a {@link User} by their unique id.

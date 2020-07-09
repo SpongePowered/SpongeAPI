@@ -70,7 +70,7 @@ public final class Sponge {
      * @return The current implementation
      */
     public static Platform getPlatform() {
-        return getGame().getPlatform();
+        return Sponge.getGame().getPlatform();
     }
 
     /**
@@ -79,7 +79,7 @@ public final class Sponge {
      * @return The game registry instance
      */
     public static GameRegistry getRegistry() {
-        return getGame().getRegistry();
+        return Sponge.getGame().getRegistry();
     }
 
     /**
@@ -88,7 +88,7 @@ public final class Sponge {
      * @return The data manager instance
      */
     public static DataManager getDataManager() {
-        return getGame().getDataManager();
+        return Sponge.getGame().getDataManager();
     }
 
     /**
@@ -97,7 +97,7 @@ public final class Sponge {
      * @return The plugin manager instance
      */
     public static PluginManager getPluginManager() {
-        return getGame().getPluginManager();
+        return Sponge.getGame().getPluginManager();
     }
 
     /**
@@ -106,7 +106,7 @@ public final class Sponge {
      * @return The event manager instance
      */
     public static EventManager getEventManager() {
-        return getGame().getEventManager();
+        return Sponge.getGame().getEventManager();
     }
 
     /**
@@ -115,7 +115,7 @@ public final class Sponge {
      * @return The asset manager instance
      */
     public static AssetManager getAssetManager() {
-        return getGame().getAssetManager();
+        return Sponge.getGame().getAssetManager();
     }
 
     /**
@@ -125,7 +125,7 @@ public final class Sponge {
      * @return The configuration manager
      */
     public static ConfigManager getConfigManager() {
-        return getGame().getConfigManager();
+        return Sponge.getGame().getConfigManager();
     }
 
     /**
@@ -134,16 +134,7 @@ public final class Sponge {
      * @return The channel registrar
      */
     public static ChannelRegistrar getChannelRegistrar() {
-        return getGame().getChannelRegistrar();
-    }
-
-    /**
-     * Gets the {@link TeleportHelper}, used to find safe {@link ServerLocation}s.
-     *
-     * @return The teleport helper
-     */
-    public static TeleportHelper getTeleportHelper() {
-        return getGame().getTeleportHelper();
+        return Sponge.getGame().getChannelRegistrar();
     }
 
     /**
@@ -154,7 +145,7 @@ public final class Sponge {
      * @return True if the server instance is available
      */
     public static boolean isServerAvailable() {
-        return getGame().isServerAvailable();
+        return Sponge.getGame().isServerAvailable();
     }
 
     /**
@@ -169,7 +160,7 @@ public final class Sponge {
      * @return The server instance
      */
     public static Server getServer() {
-        return getGame().getServer();
+        return Sponge.getGame().getServer();
     }
 
     /**
@@ -180,7 +171,7 @@ public final class Sponge {
      * @return True if the client instance is available
      */
     public static boolean isClientAvailable() {
-        return getGame().isClientAvailable();
+        return Sponge.getGame().isClientAvailable();
     }
 
     /**
@@ -194,7 +185,7 @@ public final class Sponge {
      * @return The client instance
      */
     public static Client getClient() {
-        return getGame().getClient();
+        return Sponge.getGame().getClient();
     }
 
     /**
@@ -204,7 +195,7 @@ public final class Sponge {
      * @return The system subject
      */
     public static SystemSubject getSystemSubject() {
-        return getGame().getSystemSubject();
+        return Sponge.getGame().getSystemSubject();
     }
 
     /**
@@ -215,7 +206,7 @@ public final class Sponge {
      * @return The {@link MetricsConfigManager} instance
      */
     public static MetricsConfigManager getMetricsConfigManager() {
-        return getGame().getMetricsConfigManager();
+        return Sponge.getGame().getMetricsConfigManager();
     }
 
     /**
@@ -224,7 +215,7 @@ public final class Sponge {
      * @return The async scheduler
      */
     public static Scheduler getAsyncScheduler() {
-        return getGame().getAsyncScheduler();
+        return Sponge.getGame().getAsyncScheduler();
     }
 
     /**
@@ -233,7 +224,7 @@ public final class Sponge {
      * @return The {@link CommandManager} instance.
      */
     public static CommandManager getCommandManager() {
-        return getGame().getCommandManager();
+        return Sponge.getGame().getCommandManager();
     }
 
     /**
@@ -242,7 +233,7 @@ public final class Sponge {
      * @return The {@link SqlManager} instance.
      */
     public static SqlManager getSqlManager() {
-        return getGame().getSqlManager();
+        return Sponge.getGame().getSqlManager();
     }
 
     /**
@@ -251,6 +242,6 @@ public final class Sponge {
      * @return The service provider.
      */
     public static ServiceProvider getServiceProvider() {
-        return getGame().getServiceProvider();
+        return Sponge.getGame().getServiceProvider();
     }
 }

@@ -177,12 +177,6 @@ public interface Game {
      ChannelRegistrar getChannelRegistrar();
 
     /**
-     * Gets the {@link TeleportHelper}, used to find safe {@link ServerLocation}s.
-     * @return The teleport helper
-     */
-    TeleportHelper getTeleportHelper();
-
-    /**
      * Gets the {@link MetricsConfigManager} instance, allowing data/metric gathering
      * systems to determine whether they have permission to gather server
      * metrics.
