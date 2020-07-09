@@ -437,8 +437,7 @@ public final class CatalogedValueParameters {
      *
      * <p>The expected syntax is:</p>
      *
-     * <blockquote><pre> x,y,z
-     * x y z.</pre></blockquote>
+     * <blockquote><pre>x y z</pre></blockquote>
      *
      * <p>Each element can be relative to a location -- relative is ~(num)</p>
      *
@@ -448,16 +447,7 @@ public final class CatalogedValueParameters {
             Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class,"VECTOR3D");
 
     /**
-     * Expect an argument to represent a world.
-     *
-     * <p>Accepted formats:</p>
-     *
-     * <ul>
-     *     <li>#first</li>
-     *     <li>#&lt;dimension&gt;</li>
-     *     <li>&lt;name&gt;</li>
-     *     <li>#me</li>
-     * </ul>
+     * Expect an argument to represent the name of a {@link WorldProperties}.
      *
      * <p>Returns a {@link WorldProperties}.</p>
      */
