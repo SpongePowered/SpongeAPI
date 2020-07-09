@@ -183,14 +183,6 @@ public interface Game {
     TeleportHelper getTeleportHelper();
 
     /**
-     * Gets the {@link CauseStackManager} for handling the current event cause
-     * stack and context information.
-     *
-     * @return The cause stack manager
-     */
-    CauseStackManager getCauseStackManager();
-
-    /**
      * Gets the {@link MetricsConfigManager} instance, allowing data/metric gathering
      * systems to determine whether they have permission to gather server
      * metrics.

@@ -208,17 +208,6 @@ public final class Sponge {
     }
 
     /**
-     * Gets the {@link CauseStackManager} instance from the
-     * {@link Game} instance.
-     *
-     * @see Game#getCauseStackManager()
-     * @return The cause stack manager instance
-     */
-    public static CauseStackManager getCauseStackManager() {
-        return getGame().getCauseStackManager();
-    }
-
-    /**
      * Gets the {@link MetricsConfigManager} instance, allowing data/metric gathering
      * systems to determine whether they have permission to gather server
      * metrics.
