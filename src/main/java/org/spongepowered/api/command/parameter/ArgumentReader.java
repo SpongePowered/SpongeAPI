@@ -229,6 +229,19 @@ public interface ArgumentReader {
         String parseString() throws ArgumentParseException;
 
         /**
+         * Returns the next {@link String} but does not advance the reader.
+         *
+         * <p>This call will return the same result as {@link #parseString()}.
+         * Calling this multiple times in succession will return the same result
+         * each time until another <code>parse*</code> method or
+         * {@link #setState(ArgumentReader)} is called.</p>
+         *
+         * @return The next string to be read
+         * @throws ArgumentParseException if a {@link String} could not be read
+         */
+        String peekString() throws ArgumentParseException;
+
+        /**
          * Parses "true" or "false", else throws an exception.
          *
          * @return A {@code boolean}
