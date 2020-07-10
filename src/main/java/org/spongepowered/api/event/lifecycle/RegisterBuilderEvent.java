@@ -22,5 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
-package org.spongepowered.api.event.registry;
+package org.spongepowered.api.event.lifecycle;
+
+import org.spongepowered.api.registry.DuplicateRegistrationException;
+import org.spongepowered.api.util.ResettableBuilder;
+
+import java.util.function.Supplier;
+
+public interface RegisterBuilderEvent extends LifecycleEvent {
+
+    /**
+     * Registers a new {@link ResettableBuilder builder}.
+     *
+     * @param builderClass The builder type
+     * @param supplier The supplier of the builder instance
+     * @param <T> The type
+     * @throws DuplicateRegistrationException If the type is already registered
+     */
+    <T extends ResettableBuilder<?, ? super T>> void register(Class<T> builderClass, Supplier<? super T> supplier) throws DuplicateRegistrationException;
+}
