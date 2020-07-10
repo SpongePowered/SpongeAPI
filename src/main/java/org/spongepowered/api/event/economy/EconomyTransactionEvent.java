@@ -59,6 +59,13 @@ public interface EconomyTransactionEvent extends Event {
         Currency getCurrency();
 
         /**
+         * Gets the original amount of the {@link Currency} involved in the transaction.
+         *
+         * @return The amount
+         */
+        BigDecimal getOriginalAmount();
+
+        /**
          * Gets the amount of the {@link Currency} involved in the transaction.
          *
          * @return The amount
