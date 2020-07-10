@@ -28,15 +28,16 @@ import org.spongepowered.api.Game;
 import org.spongepowered.api.event.Event;
 
 /**
- * Fired when the {@link Game} triggers a reload.
+ * Fired when something within a {@link Game} triggers a refresh of
+ * that game.
  *
  * <p>
- *     The definition of a reload is purely left up to the implementation.
+ *     The definition of a refresh is purely left up to the implementation.
  *     For the default implementation from Sponge, this is fired when
  *     executing the plugins' reload command and acts as a simple callback for
  *     plugin use.
  * </p>
  */
-public interface ReloadGameEvent extends LifecycleEvent {
+public interface RefreshGameEvent extends LifecycleEvent {
 
 }
