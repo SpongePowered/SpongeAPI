@@ -27,6 +27,10 @@ package org.spongepowered.api.event.lifecycle;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.event.Event;
 
+/**
+ * An event called during the lifetime (start to stop) of a
+ * {@link Game}.
+ */
 public interface LifecycleEvent extends Event {
 
     Game getGame();
