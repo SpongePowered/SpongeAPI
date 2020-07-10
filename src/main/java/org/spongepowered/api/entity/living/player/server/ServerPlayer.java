@@ -240,9 +240,8 @@ public interface ServerPlayer extends Player, Subject {
      * border. If {@code null} is passed, the world border is unset.
      *
      * @param border The world border to be used, may be {@code null}
-     * @param cause The cause of the border's change
      */
-    void setWorldBorder(@Nullable WorldBorder border, Cause cause);
+    void setWorldBorder(@Nullable WorldBorder border);
 
     /**
      * Gets the {@link CooldownTracker} for this player, allowing control
@@ -319,6 +318,10 @@ public interface ServerPlayer extends Player, Subject {
         return this.requireValue(Keys.IS_SLEEPING_IGNORED).asMutable();
     }
 
+    /**
+     * {@link Keys#SPECTATOR_TARGET}
+     * @return The entity this player is "spectating"
+     */
     default Optional<Value.Mutable<Entity>> spectatorTarget() {
         return this.getValue(Keys.SPECTATOR_TARGET).map(Value::asMutable);
     }
