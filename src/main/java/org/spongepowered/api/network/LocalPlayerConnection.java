@@ -30,7 +30,7 @@ import org.spongepowered.api.entity.living.player.client.LocalPlayer;
  * Represents a connection of a client to the server where
  * the client {@link LocalPlayer player} has successfully joined.
  */
-public interface ClientPlayerConnection extends PlayerConnection, ClientSideConnection {
+public interface LocalPlayerConnection extends PlayerConnection, ClientSideConnection {
 
     /**
      * Gets the associated {@link LocalPlayer player} for this connection.

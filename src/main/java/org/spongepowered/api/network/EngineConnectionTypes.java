@@ -43,7 +43,7 @@ public final class EngineConnectionTypes {
      * The client side connection type where the player
      * has successfully joined a server.
      */
-    public static final Class<ClientPlayerConnection> CLIENT_PLAYER = ClientPlayerConnection.class;
+    public static final Class<LocalPlayerConnection> LOCAL_PLAYER = LocalPlayerConnection.class;
 
     /**
      * The server or client connection type where the player
