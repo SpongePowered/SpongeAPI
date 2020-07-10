@@ -49,7 +49,7 @@ public interface EconomyTransactionEvent extends Event {
          *
          * @return The {@link Account}
          */
-        Account getTargetAccount();
+        Account getAccount();
 
         /**
          * Gets the {@link Currency} involved in the transaction.
