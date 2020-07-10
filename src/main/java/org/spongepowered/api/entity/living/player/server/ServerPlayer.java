@@ -26,6 +26,7 @@ package org.spongepowered.api.entity.living.player.server;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Server;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.Advancement;
 import org.spongepowered.api.advancement.AdvancementProgress;
 import org.spongepowered.api.advancement.AdvancementTree;
@@ -44,6 +45,8 @@ import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.network.PlayerConnection;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
+import org.spongepowered.api.service.economy.account.Account;
+import org.spongepowered.api.service.economy.account.AccountHolder;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
@@ -59,7 +62,7 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 
-public interface ServerPlayer extends Player, Subject {
+public interface ServerPlayer extends Player, Subject, AccountHolder {
 
     User getUser();
 
@@ -329,5 +332,10 @@ public interface ServerPlayer extends Player, Subject {
     @Override
     default ServerWorld getWorld() {
         return this.getServerLocation().getWorld();
+    }
+
+    @Override
+    default Optional<? extends Account> getAccount() {
+        return Sponge.getServiceProvider().economyService().flatMap(es -> es.getOrCreateAccount(this.getUniqueId()));
     }
 }
