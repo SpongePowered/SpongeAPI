@@ -24,20 +24,71 @@
  */
 package org.spongepowered.api.event.economy;
 
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
+import org.spongepowered.api.service.economy.Currency;
 import org.spongepowered.api.service.economy.EconomyService;
+import org.spongepowered.api.service.economy.account.Account;
 import org.spongepowered.api.service.economy.transaction.TransactionResult;
+import org.spongepowered.api.service.economy.transaction.TransactionType;
+
+import java.math.BigDecimal;
 
 /**
- * Fired when the {@link EconomyService} has processed a transaction.
+ * Fired when the {@link EconomyService} is processing a transaction.
  */
 public interface EconomyTransactionEvent extends Event {
 
     /**
-     * Gets the {@link TransactionResult} for the transaction that occurred.
-     *
-     * @return The {@link TransactionResult}
+     * Called before processing a transaction
      */
-    TransactionResult transactionResult();
+    interface Pre extends EconomyTransactionEvent, Cancellable {
+
+        /**
+         * Gets the {@link Account} involved in the transaction.
+         *
+         * @return The {@link Account}
+         */
+        Account getTargetAccount();
+
+        /**
+         * Gets the {@link Currency} involved in the transaction.
+         *
+         * @return The {@link Currency}
+         */
+        Currency getCurrency();
+
+        /**
+         * Gets the amount of the {@link Currency} involved in the transaction.
+         *
+         * @return The amount
+         */
+        BigDecimal getAmount();
+
+        /**
+         * Sets the amount of the {@link Currency} involved in the transaction.
+         */
+        void setAmount(BigDecimal amount);
+
+        /**
+         * Returns the {@link TransactionType} of this transaction.
+         *
+         * @return type of Transaction
+         */
+        TransactionType getType();
+    }
+
+    /**
+     * Called after processing a transaction
+     */
+    interface Post extends EconomyTransactionEvent {
+
+        /**
+         * Gets the {@link TransactionResult} for the transaction that occurred.
+         *
+         * @return The {@link TransactionResult}
+         */
+        TransactionResult transactionResult();
+    }
 
 }
