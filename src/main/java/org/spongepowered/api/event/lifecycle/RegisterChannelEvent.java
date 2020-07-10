@@ -26,20 +26,12 @@ package org.spongepowered.api.event.lifecycle;
 
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.network.channel.Channel;
-import org.spongepowered.api.network.channel.ChannelRegistry;
 import org.spongepowered.api.registry.DuplicateRegistrationException;
 
 /**
  * Lifecycle event to indicate when network channels should be created and registered.
  */
 public interface RegisterChannelEvent extends LifecycleEvent {
-
-    /**
-     * Gets the {@link ChannelRegistry}.
-     *
-     * @return The channel registry
-     */
-    ChannelRegistry getRegistry();
 
     /**
      * Creates and registers a new {@link Channel} for the given channel key and type.
