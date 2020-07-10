@@ -91,6 +91,9 @@ tasks {
         exclude("org/spongepowered/api/event/impl/")
         exclude("org/spongepowered/api/event/lifecycle/ProvideServiceEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/RegisterCommandEvent.java")
+        exclude("org/spongepowered/api/event/lifecycle/StartingEngineEvent.java")
+        exclude("org/spongepowered/api/event/lifecycle/StartedEngineEvent.java")
+        exclude("org/spongepowered/api/event/lifecycle/StoppingEngineEvent.java")
         inclusiveAnnotations = setOf("org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod")
     }
 

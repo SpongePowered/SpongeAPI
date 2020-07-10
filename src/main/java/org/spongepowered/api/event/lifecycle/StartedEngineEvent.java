@@ -24,9 +24,14 @@
  */
 package org.spongepowered.api.event.lifecycle;
 
-import org.spongepowered.api.Client;
+import org.spongepowered.api.Engine;
+import org.spongepowered.api.event.GenericEvent;
 
-public interface StoppingClientEvent extends LifecycleEvent {
+public interface StartedEngineEvent<E> extends GenericEvent<E>, LifecycleEvent {
 
-    Client getClient();
+    /**
+     * Gets the {@link Engine} that was started.
+     * @return The engine
+     */
+    E getEngine();
 }

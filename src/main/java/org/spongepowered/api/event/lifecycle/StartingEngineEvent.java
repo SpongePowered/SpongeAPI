@@ -24,9 +24,14 @@
  */
 package org.spongepowered.api.event.lifecycle;
 
-import org.spongepowered.api.Server;
+import org.spongepowered.api.Engine;
+import org.spongepowered.api.event.GenericEvent;
 
-public interface StartingServerEvent extends LifecycleEvent {
+public interface StartingEngineEvent<E extends Engine> extends GenericEvent<E>, LifecycleEvent {
 
-    Server getServer();
+    /**
+     * Gets the {@link Engine} that is starting.
+     * @return The engine
+     */
+    E getEngine();
 }
