@@ -36,6 +36,7 @@ import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.dimension.Dimension;
 import org.spongepowered.api.world.storage.WorldProperties;
@@ -314,26 +315,24 @@ public final class CatalogedValueParameters {
 
     /**
      * Does not parse any arguments, but instead returns a
-     * {@link org.spongepowered.api.block.BlockSnapshot} if the
-     * current root of the {@link Cause} is targeting (looking at)
-     * a block.
+     * {@link ServerLocation} if the current root of the
+     * {@link Cause} is targeting (looking at) a non-air block.
      *
      * <p>This will always fail for non-locatable sources</p>
      *
-     * <p>Returns a {@link org.spongepowered.api.block.BlockSnapshot}.</p>
+     * <p>Returns a {@link ServerLocation}.</p>
      */
-    public static final Supplier<CatalogedValueParameter<BlockSnapshot>> TARGET_BLOCK =
+    public static final Supplier<CatalogedValueParameter<ServerLocation>> TARGET_BLOCK =
             Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "TARGET_BLOCK");
 
     /**
-     * Does not parse any arguments, but instead returns a
-     * {@link org.spongepowered.api.entity.Entity} if the
-     * current root of the {@link Cause} is such an entity (which thus
-     * must be a {@link org.spongepowered.api.world.Locatable}).
+     * Does not parse any arguments, but instead returns a {@link Entity} if the
+     * current root of the {@link Cause} is such an entity (which thus must be a
+     * {@link Locatable}).
      *
      * <p>This will always fail for non-locatable sources</p>
      *
-     * <p>Returns a {@link org.spongepowered.api.entity.Entity}.</p>
+     * <p>Returns a {@link Entity}.</p>
      */
     public static final Supplier<CatalogedValueParameter<Entity>> TARGET_ENTITY =
             Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "TARGET_ENTITY");
