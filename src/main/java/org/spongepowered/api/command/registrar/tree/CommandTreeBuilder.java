@@ -120,42 +120,6 @@ public interface CommandTreeBuilder<T extends CommandTreeBuilder<T>> {
     T customSuggestions();
 
     /**
-     * Sets an arbitrary property for this node with a string based value.
-     *
-     * @param key The property key.
-     * @param value The property value.
-     * @return This, for chaining.
-     */
-    T property(String key, String value);
-
-    /**
-     * Sets an arbitrary property for this node with a long based value.
-     *
-     * @param key The property key.
-     * @param value The property value.
-     * @return This, for chaining.
-     */
-    T property(String key, long value);
-
-    /**
-     * Sets an arbitrary property for this node with a double based value.
-     *
-     * @param key The property key.
-     * @param value The property value.
-     * @return This, for chaining.
-     */
-    T property(String key, double value);
-
-    /**
-     * Sets an arbitrary property for this node with a boolean based value.
-     *
-     * @param key The property key.
-     * @param value The property value.
-     * @return This, for chaining.
-     */
-    T property(String key, boolean value);
-
-    /**
      * A {@link CommandTreeBuilder} with no known properties to set.
      */
     interface Basic extends CommandTreeBuilder<Basic> { }
