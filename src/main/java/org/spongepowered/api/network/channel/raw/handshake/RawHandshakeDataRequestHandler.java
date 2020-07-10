@@ -27,6 +27,7 @@ package org.spongepowered.api.network.channel.raw.handshake;
 import org.spongepowered.api.network.channel.ChannelBuf;
 import org.spongepowered.api.network.EngineConnection;
 import org.spongepowered.api.network.channel.NoResponseException;
+import org.spongepowered.api.network.channel.packet.RequestPacketResponse;
 
 /**
  * Handles a raw handshake data request.
@@ -42,9 +43,14 @@ public interface RawHandshakeDataRequestHandler<C extends EngineConnection> {
      * a {@link NoResponseException} on the other side of
      * the connection.</p>
      *
+     * <p>Every handled request should apply the proper response to
+     * {@link RawHandshakeDataRequestResponse}. Responding doesn't have to be
+     * instantly and can be from a concurrent context, but it shouldn't
+     * take minutes.</p>
+     *
      * @param request The request channel buf
      * @param connection The connection that received the request data
-     * @return The response data
+     * @param response The response which should be completed
      */
-    ChannelBuf handleRequest(ChannelBuf request, C connection);
+    void handleRequest(ChannelBuf request, C connection, RawHandshakeDataRequestResponse response);
 }

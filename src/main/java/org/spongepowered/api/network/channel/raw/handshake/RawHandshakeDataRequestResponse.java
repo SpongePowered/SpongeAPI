@@ -22,38 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.network.channel.packet;
+package org.spongepowered.api.network.channel.raw.handshake;
 
-import org.spongepowered.api.network.EngineConnection;
+import org.spongepowered.api.network.channel.ChannelBuf;
 import org.spongepowered.api.network.channel.ChannelException;
-import org.spongepowered.api.network.RemoteConnection;
+import org.spongepowered.api.network.channel.NoResponseException;
+import org.spongepowered.api.network.channel.packet.Packet;
+
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 /**
- * Represents a packet handler for {@link RequestPacket}s.
- *
- * @param <P> The request packet type
- * @param <R> The response packet type
+ * Represents a callback for the response of a request payload.
  */
-@FunctionalInterface
-public interface RequestPacketHandler<P extends Packet, R extends Packet, C extends EngineConnection> {
+public interface RawHandshakeDataRequestResponse {
 
     /**
-     * Handles the {@link RequestPacket} which was send by a specific
-     * {@link RemoteConnection}. A proper response {@link Packet} should
-     * be answered with.
+     * Sets the response of the request payload as failed
+     * with the given {@link ChannelException}.
      *
-     * <p>Throwing a {@link ChannelException} during the execution of
-     * this handler will automatically be applied to the
-     * {@link RequestPacketResponse}.</p>
+     * <p>If this response fails, then will other side of the
+     * connection end up with a {@link NoResponseException}.</p>
      *
-     * <p>Every handled request should apply the proper response to
-     * {@link RequestPacketResponse}. Responding doesn't have to be
-     * instantly and can be from a concurrent context, but it shouldn't
-     * take minutes.</p>
-     *
-     * @param requestPacket The received request packet
-     * @param connection The connection that sent the packet
-     * @param response The response which should be completed
+     * @param exception The exception
      */
-    void handleRequest(P requestPacket, C connection, RequestPacketResponse<R> response);
+    void fail(ChannelException exception);
+
+    /**
+     * Sets the response of the request payload as success
+     * with the given response payload.
+     *
+     * @param response The response payload
+     */
+    void success(Consumer<ChannelBuf> response);
 }

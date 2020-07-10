@@ -105,7 +105,7 @@ public interface PacketDispatcher {
      * @param packet The packet to send
      * @throws IllegalStateException If the server connection isn't in the play phase
      */
-    default CompletableFuture<Void> sendToServer(Packet packet) {
+    default CompletableFuture<Void> sendToServer(final Packet packet) {
         final EngineConnection connection = Sponge.getClient().getConnection()
                 .orElseThrow(() -> new IllegalStateException("The client is currently not connected to a server."));
         return this.sendTo(connection, packet);
