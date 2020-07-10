@@ -25,7 +25,6 @@
 package org.spongepowered.api.command.registrar;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.command.Command;
 import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.exception.CommandException;
@@ -34,7 +33,7 @@ import org.spongepowered.api.command.manager.CommandManager;
 import org.spongepowered.api.command.manager.CommandMapping;
 import org.spongepowered.api.command.registrar.tree.CommandTreeBuilder;
 import org.spongepowered.api.event.cause.EventContextKeys;
-import org.spongepowered.api.event.registry.RegistryEvent;
+import org.spongepowered.api.event.lifecycle.RegisterCatalogEvent;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.plugin.PluginContainer;
 
@@ -68,7 +67,7 @@ import java.util.function.Predicate;
  *
  * <ul>
  *     <li>The registrar <strong>must</strong> be registered during the
- *     {@link RegistryEvent} for {@link CommandRegistrar}s; and</li>
+ *     {@link RegisterCatalogEvent} for {@link CommandRegistrar}s; and</li>
  *     <li>Commands registered through the registrar must be synced back
  *     to the {@link CommandManager}, otherwise such commands will not
  *     be passed back to this registrar.</li>
