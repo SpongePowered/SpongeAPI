@@ -335,7 +335,7 @@ public interface ServerPlayer extends Player, Subject, AccountHolder {
     }
 
     @Override
-    default Optional<? extends Account> getAccount() {
-        return Sponge.getServiceProvider().economyService().flatMap(es -> es.getOrCreateAccount(this.getUniqueId()));
+    default String getAccountIdentifier() {
+        return this.getUniqueId().toString();
     }
 }
