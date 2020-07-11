@@ -34,5 +34,5 @@ public interface AccountHolder {
      *
      * <p>There is no guarantee that the EconomyService uses this as the identifier</p>
      */
-    String getIdentifier();
+    String getAccountIdentifier();
 }
