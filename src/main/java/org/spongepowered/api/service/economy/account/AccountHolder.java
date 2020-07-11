@@ -24,18 +24,15 @@
  */
 package org.spongepowered.api.service.economy.account;
 
-import java.util.Optional;
-
 /**
  * An account holder is a holder of an {@link Account}.
  */
 public interface AccountHolder {
 
     /**
-     * Gets the {@link Account} for this account holder,
+     * Gets the identifier for the {@link Account} of this account holder,
      *
-     * <p>If an account does not already exist for this account holder,
-     * it will be created.</p>
+     * <p>There is no guarantee that the EconomyService uses this as the identifier</p>
      */
-    Optional<? extends Account> getAccount();
+    String getIdentifier();
 }
