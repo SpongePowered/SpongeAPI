@@ -26,6 +26,7 @@ package org.spongepowered.api.event.cause;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.type.HandType;
 import org.spongepowered.api.entity.Entity;
@@ -45,6 +46,7 @@ import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.world.LocatableBlock;
+import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
@@ -102,10 +104,10 @@ public final class EventContextKeys {
     /**
      * Represents the command string that was provided to the command processor.
      */
-    public static final Supplier<EventContextKey<String>> COMMAND_STRING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "COMMAND_STRING");
+    public static final Supplier<EventContextKey<String>> COMMAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "COMMAND");
 
     /**
-     * Represents the creator of an {@link Entity}.
+     * Represents the creator of an {@link Entity} or a {@link BlockState} at a {@link Location}
      */
     public static final Supplier<EventContextKey<User>> CREATOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "CREATOR");
 
@@ -158,7 +160,7 @@ public final class EventContextKeys {
     public static final Supplier<EventContextKey<ChangeBlockEvent.Grow>> GROW_EVENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "GROW_EVENT");
 
     /**
-     * Used when an {@link Entity} ignites causing an {@link Explosion}.
+     * Used when an {@link Living} ignites causing an {@link Explosion}.
      */
     public static final Supplier<EventContextKey<Living>> IGNITER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "IGNITER");
 
@@ -216,11 +218,6 @@ public final class EventContextKeys {
     public static final Supplier<EventContextKey<User>> NOTIFIER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "NOTIFIER");
 
     /**
-     * Represents the {@link User} that owns a block.
-     */
-    public static final Supplier<EventContextKey<User>> OWNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "OWNER");
-
-    /**
      * Used when a {@link BlockTypes#PISTON_HEAD} extends.
      */
     public static final Supplier<EventContextKey<ServerWorld>> PISTON_EXTEND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "PISTON_EXTEND");
@@ -252,11 +249,6 @@ public final class EventContextKeys {
     public static final Supplier<EventContextKey<ServerWorld>> PLAYER_PLACE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "PLAYER_PLACE");
 
     /**
-     * Represents a simulated {@link Player}.
-     */
-    public static final Supplier<EventContextKey<GameProfile>> PLAYER_SIMULATED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "PLAYER_SIMULATED");
-
-    /**
      * Represents a {@link PluginContainer}.
      */
     public static final Supplier<EventContextKey<PluginContainer>> PLUGIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "PLUGIN");
@@ -270,6 +262,11 @@ public final class EventContextKeys {
      * Represents a rotation as a {@link Vector3d}, for use with commands.
      */
     public static final Supplier<EventContextKey<Vector3d>> ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "ROTATION");
+
+    /**
+     * Represents a simulated {@link Player}.
+     */
+    public static final Supplier<EventContextKey<GameProfile>> SIMULATED_PLAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "SIMULATED_PLAYER");
 
     /**
      * Represents the {@link SpawnType} of an entity spawn.
