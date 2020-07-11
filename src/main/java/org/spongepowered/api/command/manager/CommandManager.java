@@ -37,6 +37,7 @@ import org.spongepowered.plugin.PluginContainer;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 /**
@@ -170,5 +171,14 @@ public interface CommandManager {
      * @return A {@link Collection} of {@link PluginContainer}s.
      */
     Collection<PluginContainer> getPlugins();
+
+    /**
+     * Gets the {@link CommandMapping} associated with the requested alias,
+     * if any.
+     *
+     * @param alias The alias to get the mapping for
+     * @return The {@link CommandMapping}, if any
+     */
+    Optional<CommandMapping> getCommandMapping(final String alias);
 
 }
