@@ -181,4 +181,16 @@ public interface CommandManager {
      */
     Optional<CommandMapping> getCommandMapping(final String alias);
 
+    /**
+     * Returns whether this command manager is currently in the process of
+     * resetting itself and, as such, all {@link CommandRegistrar}s should
+     * clear their mappings.
+     *
+     * <p>{@link CommandRegistrar}s should check this when
+     * {@link CommandRegistrar#reset()} has been called.</p>
+     *
+     * @return true if the registrars have been asked to reset.
+     */
+    boolean isResetting();
+
 }

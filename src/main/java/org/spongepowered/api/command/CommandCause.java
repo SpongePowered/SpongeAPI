@@ -115,13 +115,12 @@ import java.util.Set;
 public interface CommandCause extends Subject {
 
     /**
-     * Creates a {@link CommandCause} from the provided {@link Cause}
+     * Creates a {@link CommandCause} from the current {@link Cause}.
      *
-     * @param cause The {@link Cause}
      * @return The {@link CommandCause}
      */
-    static CommandCause of(final Cause cause) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(cause);
+    static CommandCause create() {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create();
     }
 
     /**
@@ -154,9 +153,9 @@ public interface CommandCause extends Subject {
      * @return The {@link Subject} responsible, if any.
      */
     default Subject getSubject() {
-        return getCause().getContext()
+        return this.getCause().getContext()
             .get(EventContextKeys.SUBJECT)
-            .orElseGet(() -> getCause().first(Subject.class).orElseGet(Sponge::getSystemSubject));
+            .orElseGet(() -> this.getCause().first(Subject.class).orElseGet(Sponge::getSystemSubject));
     }
 
     /**
@@ -255,57 +254,57 @@ public interface CommandCause extends Subject {
 
     @Override
     default SubjectCollection getContainingCollection() {
-        return getSubject().getContainingCollection();
+        return this.getSubject().getContainingCollection();
     }
 
     @Override
     default SubjectReference asSubjectReference() {
-        return getSubject().asSubjectReference();
+        return this.getSubject().asSubjectReference();
     }
 
     @Override
     default boolean isSubjectDataPersisted() {
-        return getSubject().isSubjectDataPersisted();
+        return this.getSubject().isSubjectDataPersisted();
     }
 
     @Override
     default SubjectData getSubjectData() {
-        return getSubject().getSubjectData();
+        return this.getSubject().getSubjectData();
     }
 
     @Override
     default SubjectData getTransientSubjectData() {
-        return getSubject().getTransientSubjectData();
+        return this.getSubject().getTransientSubjectData();
     }
 
     @Override
-    default Tristate getPermissionValue(Set<Context> contexts, String permission) {
-        return getSubject().getPermissionValue(contexts, permission);
+    default Tristate getPermissionValue(final Set<Context> contexts, final String permission) {
+        return this.getSubject().getPermissionValue(contexts, permission);
     }
 
     @Override
-    default boolean isChildOf(Set<Context> contexts, SubjectReference parent) {
-        return getSubject().isChildOf(contexts, parent);
+    default boolean isChildOf(final Set<Context> contexts, final SubjectReference parent) {
+        return this.getSubject().isChildOf(contexts, parent);
     }
 
     @Override
-    default List<SubjectReference> getParents(Set<Context> contexts) {
-        return getSubject().getParents();
+    default List<SubjectReference> getParents(final Set<Context> contexts) {
+        return this.getSubject().getParents();
     }
 
     @Override
-    default Optional<String> getOption(Set<Context> contexts, String key) {
-        return getSubject().getOption(contexts, key);
+    default Optional<String> getOption(final Set<Context> contexts, final String key) {
+        return this.getSubject().getOption(contexts, key);
     }
 
     @Override
     default String getIdentifier() {
-        return getSubject().getIdentifier();
+        return this.getSubject().getIdentifier();
     }
 
     @Override
     default Set<Context> getActiveContexts() {
-        return getSubject().getActiveContexts();
+        return this.getSubject().getActiveContexts();
     }
 
     /**
@@ -314,8 +313,8 @@ public interface CommandCause extends Subject {
      *
      * @param message The message to send.
      */
-    default void sendMessage(Text message) {
-        getMessageChannel().send(message);
+    default void sendMessage(final Text message) {
+        this.getMessageChannel().send(message);
     }
 
     /**
@@ -324,12 +323,11 @@ public interface CommandCause extends Subject {
     interface Factory {
 
         /**
-         * Creates the {@link CommandCause} from the {@link Cause}
+         * Creates the {@link CommandCause} from the current {@link Cause}
          *
-         * @param cause The {@link Cause}
          * @return The {@link CommandCause}
          */
-        CommandCause create(Cause cause);
+        CommandCause create();
     }
 
 }

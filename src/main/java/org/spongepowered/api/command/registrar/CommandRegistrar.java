@@ -59,7 +59,7 @@ import java.util.function.Predicate;
  * <p>For command that wishes to investigate the command string that was
  * executed, they may investigate the context in
  * {@link CommandCause#getCause()}, looking for the
- * {@link EventContextKeys#COMMAND_STRING} context key.</p>
+ * {@link EventContextKeys#COMMAND} context key.</p>
  *
  * <p>Command frameworks are free to choose how they parse commands. However,
  * a framework's {@link CommandRegistrar} <strong>must</strong> do the following
@@ -142,5 +142,18 @@ public interface CommandRegistrar<T> extends CatalogType {
      * @return The help, if any
      */
     Optional<Text> help(CommandCause cause, String command);
+
+    /**
+     * Called when the {@link CommandManager} is clearing all of the
+     * {@link CommandMapping}s it holds, and requires this registrar to remove
+     * all such mappings.
+     *
+     * <p>This will occur when the environment is capable of running multiple
+     * servers in succession, such as the vanilla client.</p>
+     *
+     * <p>You <strong>must</strong> act upon this signal when retrieved, but
+     * you also most ensure the call is legitimate. </p>
+     */
+    void reset();
 
 }
