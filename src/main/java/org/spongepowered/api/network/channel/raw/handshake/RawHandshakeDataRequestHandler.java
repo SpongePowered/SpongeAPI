@@ -22,20 +22,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.network;
+package org.spongepowered.api.network.channel.raw.handshake;
 
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.network.channel.ChannelBuf;
+import org.spongepowered.api.network.EngineConnection;
+import org.spongepowered.api.network.channel.NoResponseException;
+import org.spongepowered.api.network.channel.packet.RequestPacketResponse;
 
 /**
- * Represents a connection of a client to the server where
- * the {@link Player} has successfully joined.
+ * Handles a raw handshake data request.
  */
-public interface PlayerConnection extends EngineConnection {
+@FunctionalInterface
+public interface RawHandshakeDataRequestHandler<C extends EngineConnection> {
 
     /**
-     * Gets the associated {@link Player player} for this connection.
+     * Handles the request data {@link ChannelBuf} for the given
+     * {@link EngineConnection} and returns a response.
      *
-     * @return The associated player
+     * <p>Throwing a {@link NoResponseException} will result in
+     * a {@link NoResponseException} on the other side of
+     * the connection.</p>
+     *
+     * <p>Every handled request should apply the proper response to
+     * {@link RawHandshakeDataRequestResponse}. Responding doesn't have to be
+     * instantly and can be from a concurrent context, but it shouldn't
+     * take minutes.</p>
+     *
+     * @param request The request channel buf
+     * @param connection The connection that received the request data
+     * @param response The response which should be completed
      */
-    Player getPlayer();
+    void handleRequest(ChannelBuf request, C connection, RawHandshakeDataRequestResponse response);
 }

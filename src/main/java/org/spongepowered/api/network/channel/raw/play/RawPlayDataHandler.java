@@ -22,45 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.network;
+package org.spongepowered.api.network.channel.raw.play;
 
-import com.google.inject.BindingAnnotation;
-import org.spongepowered.api.ResourceKey;
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import org.spongepowered.api.network.channel.ChannelBuf;
+import org.spongepowered.api.network.EngineConnection;
 
 /**
- * An annotation used for naming {@link ChannelBinding} injections.
- *
- * <p>Due to the limitations of Java annotations,
- * the 'namespace' and 'value' components of the {@link ResourceKey}
- * must be specified separately, instead of using a {@link ResourceKey} directly.</p>
- *
- * <pre>{@code @ChannelId(namespace="myplugin", value="SomeChannel") @Inject
- * ChannelBinding.RawDataChannel channel;}</pre>
+ * Represents a listener for data being sent to a raw channel.
  */
-@BindingAnnotation
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.FIELD, ElementType.PARAMETER})
-public @interface ChannelId {
+@FunctionalInterface
+public interface RawPlayDataHandler<C extends EngineConnection> {
 
     /**
-     * Gets the channel namespace.
+     * Handles the given {@link ChannelBuf} data sent by a remote connection.
      *
-     * <p>This corresponds to {@link ResourceKey#getNamespace()}</p>
-     *
-     * @return The channel namespace
+     * @param data The raw data
+     * @param connection The remote connection
      */
-    String namespace();
-
-    /**
-     * Get the channel name.
-     *
-     * <p>This corresponds to {@link ResourceKey#getValue()}</p>
-     * @return The channel name
-     */
-    String value();
+    void handlePayload(ChannelBuf data, C connection);
 }

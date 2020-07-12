@@ -22,52 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.network;
+package org.spongepowered.api.network.channel.packet;
 
 /**
- * An exception that is thrown when a channel registration fails.
+ * Represents a binding of a {@link Packet} type
+ * in a {@link PacketChannel}.
  *
- * <p>Examples may include: Attempting to register an already registered
- * channel.</p>
+ * @param <P> The packet type
  */
-public class ChannelRegistrationException extends RuntimeException {
-
-    private static final long serialVersionUID = 7258019249864102811L;
+public interface PacketBinding<P extends Packet> {
 
     /**
-     * Constructs a new {@link ChannelRegistrationException}.
-     */
-    public ChannelRegistrationException() {
-        super();
-    }
-
-    /**
-     * Constructs a new {@link ChannelRegistrationException} with a message.
+     * Gets the opcode that is assigned to this binding.
      *
-     * @param message The message to include in the stacktrace
+     * @return The opcode
      */
-    public ChannelRegistrationException(String message) {
-        super(message);
-    }
+    int getOpcode();
 
     /**
-     * Constructs a new {@link ChannelRegistrationException} with the specified message and
-     * cause.
+     * Gets the type of the {@link Packet}.
      *
-     * @param message The exception message
-     * @param cause The cause of this exception
+     * @return The packet type
      */
-    public ChannelRegistrationException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    /**
-     * Constructs a new {@link ChannelRegistrationException} with the specified cause and a
-     * null message.
-     *
-     * @param cause The cause of this exception
-     */
-    public ChannelRegistrationException(Throwable cause) {
-        super(cause);
-    }
+    Class<P> getPacketType();
 }

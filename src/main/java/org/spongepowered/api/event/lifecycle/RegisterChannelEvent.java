@@ -22,20 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.network;
+package org.spongepowered.api.event.lifecycle;
 
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.network.channel.Channel;
+import org.spongepowered.api.registry.DuplicateRegistrationException;
 
 /**
- * Represents a connection of a client to the server where
- * the {@link Player} has successfully joined.
+ * Lifecycle event to indicate when network channels should be created and registered.
  */
-public interface PlayerConnection extends EngineConnection {
+public interface RegisterChannelEvent extends LifecycleEvent {
 
     /**
-     * Gets the associated {@link Player player} for this connection.
+     * Creates and registers a new {@link Channel} for the given channel key and type.
      *
-     * @return The associated player
+     * @param channelKey The channel key to register
+     * @return A new {@link Channel} instance bound to the channel key
+     * @throws DuplicateRegistrationException The channel key is already in use or reserved
      */
-    Player getPlayer();
+    <C extends Channel> C register(ResourceKey channelKey, Class<C> channelType) throws DuplicateRegistrationException;
 }

@@ -27,6 +27,7 @@ package org.spongepowered.api;
 import org.spongepowered.api.entity.living.player.client.ClientPlayer;
 import org.spongepowered.api.entity.living.player.client.LocalPlayer;
 import org.spongepowered.api.client.LocalServer;
+import org.spongepowered.api.network.ClientSideConnection;
 import org.spongepowered.api.world.client.ClientWorld;
 
 import java.util.Optional;
@@ -72,4 +73,12 @@ public interface Client extends Engine {
      * @return The client world or {@link Optional#empty()}} if it is not found
      */
     Optional<ClientWorld> getWorld();
+
+    /**
+     * Gets the {@link ClientSideConnection} that is currently active, this is only the case
+     * if the client is connected to a server.
+     *
+     * @return The client side connection, if present
+     */
+    Optional<ClientSideConnection> getConnection();
 }

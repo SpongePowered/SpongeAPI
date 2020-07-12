@@ -22,36 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.network;
+package org.spongepowered.api.network.channel.raw.handshake;
 
-import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.network.channel.ChannelBuf;
+import org.spongepowered.api.network.channel.ChannelException;
+import org.spongepowered.api.network.channel.NoResponseException;
+import org.spongepowered.api.network.channel.packet.Packet;
+
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 /**
- * Fired when a channel is registered or unregistered.
- *
- * <p>If the channel is being registered on the server, the {@link Cause} will
- * contain the {@link Player} who initiated the registration.</p>
+ * Represents a callback for the response of a request payload.
  */
-public interface ChannelRegistrationEvent extends Event {
+public interface RawHandshakeDataRequestResponse {
 
     /**
-     * Gets the name of the channel being registered or unregistered.
+     * Sets the response of the request payload as failed
+     * with the given {@link ChannelException}.
      *
-     * @return The channel name
+     * <p>If this response fails, then will other side of the
+     * connection end up with a {@link NoResponseException}.</p>
+     *
+     * @param exception The exception
      */
-    String getChannel();
+    void fail(ChannelException exception);
 
     /**
-     * Fired when a channel is registered.
+     * Sets the response of the request payload as success
+     * with the given response payload.
+     *
+     * @param response The response payload
      */
-    interface Register extends ChannelRegistrationEvent {
-    }
-
-    /**
-     * Fired when a channel is unregistered.
-     */
-    interface Unregister extends ChannelRegistrationEvent {
-    }
+    void success(Consumer<ChannelBuf> response);
 }

@@ -22,25 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.network;
+package org.spongepowered.api.network.channel.packet;
 
-import org.spongepowered.api.Platform;
+import org.spongepowered.api.network.channel.ChannelException;
+import org.spongepowered.api.network.channel.NoResponseException;
 
 /**
- * Represents a handler for a message that was received over the network.
+ * Represents a callback for the response of a request packet.
+ *
+ * @param <R> The response packet type
  */
-@FunctionalInterface
-public interface MessageHandler<M extends Message> {
+public interface RequestPacketResponse<R extends Packet> {
 
     /**
-     * Handles the message sent by a remote connection.
+     * Sets the response of the request packet as failed
+     * with the given {@link ChannelException}.
      *
-     * @param message The message received
-     * @param connection The connection that sent the message
-     * @param side The side the message was received on (
-     *        {@link org.spongepowered.api.Platform.Type#CLIENT}
-     *        or {@link org.spongepowered.api.Platform.Type#SERVER})
+     * <p>If this response fails, then will other side of the
+     * connection end up with a {@link NoResponseException}.</p>
+     *
+     * @param exception The exception
      */
-    void handleMessage(M message, RemoteConnection connection, Platform.Type side);
+    void fail(ChannelException exception);
 
+    /**
+     * Sets the response of the request packet as success
+     * with the given response packet.
+     *
+     * @param response The response packet
+     */
+    void success(R response);
 }

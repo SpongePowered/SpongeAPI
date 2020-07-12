@@ -25,25 +25,43 @@
 package org.spongepowered.api.network;
 
 /**
- * A message transmitted over the connection of a client and a server.
- *
- * <p>Note to plugin implementations: This must have a publicly accessible
- * no-args constructor.</p>
+ * An enumeration of all the possible engine connection types.
  */
-public interface Message {
+public final class EngineConnectionTypes {
 
     /**
-     * Read the data from the channel buffer into this message.
-     *
-     * @param buf The buffer to read from
+     * The supertype of all the known connection types.
      */
-    void readFrom(ChannelBuf buf);
+    public static final Class<EngineConnection> ALL = EngineConnection.class;
 
     /**
-     * Write the data from this message to the channel buffer.
-     *
-     * @param buf The buffer to write to
+     * The client side connection type.
      */
-    void writeTo(ChannelBuf buf);
+    public static final Class<ClientSideConnection> CLIENT_SIDE = ClientSideConnection.class;
 
+    /**
+     * The client side connection type where the player
+     * has successfully joined a server.
+     */
+    public static final Class<LocalPlayerConnection> LOCAL_PLAYER = LocalPlayerConnection.class;
+
+    /**
+     * The server or client connection type where the player
+     * has successfully joined a server.
+     */
+    public static final Class<PlayerConnection> PLAYER = PlayerConnection.class;
+
+    /**
+     * The server side connection type.
+     */
+    public static final Class<ServerSideConnection> SERVER_SIDE = ServerSideConnection.class;
+
+    /**
+     * The server side connection type where the player
+     * has successfully joined a server.
+     */
+    public static final Class<ServerPlayerConnection> SERVER_PLAYER = ServerPlayerConnection.class;
+
+    private EngineConnectionTypes() {
+    }
 }

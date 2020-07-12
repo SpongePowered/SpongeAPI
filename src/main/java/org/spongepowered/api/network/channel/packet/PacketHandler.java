@@ -22,20 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.network;
+package org.spongepowered.api.network.channel.packet;
 
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.network.EngineConnection;
 
 /**
- * Represents a connection of a client to the server where
- * the {@link Player} has successfully joined.
+ * Represents a handler for a packet that was received over the network.
  */
-public interface PlayerConnection extends EngineConnection {
+@FunctionalInterface
+public interface PacketHandler<P extends Packet, C extends EngineConnection> {
 
     /**
-     * Gets the associated {@link Player player} for this connection.
+     * Handles the {@link Packet} sent by a remote connection.
      *
-     * @return The associated player
+     * @param packet The packet received
+     * @param connection The connection that sent the packet
      */
-    Player getPlayer();
+    void handle(P packet, C connection);
 }

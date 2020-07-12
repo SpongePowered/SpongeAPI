@@ -26,16 +26,16 @@ package org.spongepowered.api.event.network;
 
 import org.spongepowered.api.entity.living.player.client.ClientPlayer;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.network.RemoteConnection;
+import org.spongepowered.api.network.ClientSideConnection;
 
 public interface ClientSideConnectionEvent extends Event {
 
     /**
-     * Gets the {@link RemoteConnection} representing the connection to the server.
+     * Gets the {@link ClientSideConnection}.
      *
-     * @return The connection
+     * @return The client side connection
      */
-    RemoteConnection getConnection();
+    ClientSideConnection getConnection();
 
     interface Join extends ClientSideConnectionEvent {
 

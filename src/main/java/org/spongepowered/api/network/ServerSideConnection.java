@@ -24,18 +24,22 @@
  */
 package org.spongepowered.api.network;
 
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.profile.GameProfile;
 
 /**
- * Represents a connection of a client to the server where
- * the {@link Player} has successfully joined.
+ * Represents a connection between a minecraft client and server.
  */
-public interface PlayerConnection extends EngineConnection {
+public interface ServerSideConnection extends EngineConnection {
+
+    @Override
+    default EngineConnectionSide<? extends ServerSideConnection> getSide() {
+        return EngineConnectionSide.SERVER;
+    }
 
     /**
-     * Gets the associated {@link Player player} for this connection.
+     * Gets the profile of the client.
      *
-     * @return The associated player
+     * @return The client's profile
      */
-    Player getPlayer();
+    GameProfile getProfile();
 }

@@ -24,18 +24,31 @@
  */
 package org.spongepowered.api.network;
 
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.text.Text;
 
 /**
- * Represents a connection of a client to the server where
- * the {@link Player} has successfully joined.
+ * Represents a connection on the server or client engine.
  */
-public interface PlayerConnection extends EngineConnection {
+public interface EngineConnection extends RemoteConnection {
 
     /**
-     * Gets the associated {@link Player player} for this connection.
+     * Gets the side this connection is on.
      *
-     * @return The associated player
+     * @return The side
      */
-    Player getPlayer();
+    EngineConnectionSide<? extends EngineConnection> getSide();
+
+    /**
+     * Closes the connection, showing the default disconnect reason.
+     * (the translation key {@code disconnect.disconnected})
+     */
+    @Override
+    void close();
+
+    /**
+     * Closes the connection with the given reason.
+     *
+     * @param reason The reason for the disconnection
+     */
+    void close(Text reason);
 }
