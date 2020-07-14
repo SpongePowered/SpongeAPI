@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world;
 
+import com.google.common.base.Preconditions;
 import org.spongepowered.api.Engine;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
@@ -61,6 +62,7 @@ public interface World<W extends World<W>> extends ProtoWorld<W>,
 
     /**
      * Gets the {@link Engine} that simulates this world.
+     *
      * @return The engine
      */
     Engine getEngine();
@@ -91,25 +93,25 @@ public interface World<W extends World<W>> extends ProtoWorld<W>,
     Collection<? extends Player> getPlayers();
 
     default Optional<? extends Player> getClosestPlayer(Vector3i position, double distance) {
-        return getClosestPlayer(position.getX(), position.getY(), position.getZ(), distance, player -> true);
+        return this.getClosestPlayer(position.getX(), position.getY(), position.getZ(), distance, player -> true);
     }
 
     default Optional<? extends Player> getClosestPlayer(Vector3i position, double distance, Predicate<? super Player> predicate) {
-        return getClosestPlayer(position.getX(), position.getY(), position.getZ(), distance, predicate);
+        return this.getClosestPlayer(position.getX(), position.getY(), position.getZ(), distance, predicate);
     }
 
     default Optional<? extends Player> getClosestPlayer(Entity entity, double distance) {
         final Vector3d position = entity.getLocation().getPosition();
-        return getClosestPlayer(position.getFloorX(), position.getFloorY(), position.getFloorZ(), distance, player -> true);
+        return this.getClosestPlayer(position.getFloorX(), position.getFloorY(), position.getFloorZ(), distance, player -> true);
     }
 
     default Optional<? extends Player> getClosestPlayer(Entity entity, double distance, Predicate<? super Player> predicate) {
         final Vector3d position = entity.getLocation().getPosition();
-        return getClosestPlayer(position.getFloorX(), position.getFloorY(), position.getFloorZ(), distance, predicate);
+        return this.getClosestPlayer(position.getFloorX(), position.getFloorY(), position.getFloorZ(), distance, predicate);
     }
 
     default Optional<? extends Player> getClosestPlayer(int x, int y, int z, double distance) {
-        return getClosestPlayer(x, y, z, distance, player -> true);
+        return this.getClosestPlayer(x, y, z, distance, player -> true);
     }
 
     Optional<? extends Player> getClosestPlayer(int x, int y, int z, double distance, Predicate<? super Player> predicate);
@@ -124,6 +126,7 @@ public interface World<W extends World<W>> extends ProtoWorld<W>,
      * @return A snapshot
      */
     default BlockSnapshot createSnapshot(Vector3i position) {
+        Preconditions.checkNotNull(position);
         return this.createSnapshot(position.getX(), position.getY(), position.getZ());
     }
 
@@ -249,6 +252,7 @@ public interface World<W extends World<W>> extends ProtoWorld<W>,
      */
     @Override
     default Chunk getChunk(Vector3i chunkPos) {
+        Preconditions.checkNotNull(chunkPos);
         return this.getChunk(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ());
     }
 
@@ -276,6 +280,7 @@ public interface World<W extends World<W>> extends ProtoWorld<W>,
      * @return The loaded or generated chunk, if already generated
      */
     default Optional<Chunk> loadChunk(Vector3i chunkPosition, boolean shouldGenerate) {
+        Preconditions.checkNotNull(chunkPosition);
         return this.loadChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), shouldGenerate);
     }
 

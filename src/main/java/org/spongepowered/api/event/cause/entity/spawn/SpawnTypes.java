@@ -36,8 +36,8 @@ import org.spongepowered.api.entity.living.trader.Trader;
 import org.spongepowered.api.entity.vehicle.minecart.SpawnerMinecart;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.chunk.Chunk;
-import org.spongepowered.api.world.gen.feature.Feature;
 import org.spongepowered.api.world.weather.Weather;
+import org.spongepowered.plugin.PluginContainer;
 
 import java.util.function.Supplier;
 
@@ -112,7 +112,7 @@ public final class SpawnTypes {
     public static final Supplier<SpawnType> PLACEMENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpawnType.class, "PLACEMENT");
 
     /**
-     * An entity spawned from a {@link Plugin}, this can be for any reason
+     * An entity spawned from a {@link PluginContainer plugin}, this can be for any reason
      * as dictated by the plugin.
      */
     public static final Supplier<SpawnType> PLUGIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpawnType.class, "PLUGIN");
@@ -129,8 +129,7 @@ public final class SpawnTypes {
     public static final Supplier<SpawnType> SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpawnType.class, "SPAWN_EGG");
 
     /**
-     * When an entity is spawned from a structure or {@link Feature}, usually
-     * during world/chunk generation.
+     * When an entity is spawned from a structure, usually during world/chunk generation.
      */
     public static final Supplier<SpawnType> STRUCTURE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpawnType.class, "STRUCTURE");
 

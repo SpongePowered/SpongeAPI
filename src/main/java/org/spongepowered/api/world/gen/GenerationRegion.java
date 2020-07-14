@@ -34,7 +34,6 @@ import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.chunk.Chunk;
-import org.spongepowered.api.world.gen.feature.Feature;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3i;
 
@@ -45,7 +44,7 @@ import org.spongepowered.math.vector.Vector3i;
  * in that there are {@link PrimitiveChunk}s available, {@link BlockState}s
  * are used in this region, and likewise, the region can contain and store
  * {@link BlockEntity} instances being generated, {@link Entity} instances
- * being generated or spawned by {@link Feature}s, etc. The major difference
+ * being generated or spawned by generation, etc. The major difference
  * is that a generation region cannot be utilized for {@link ServerLocation}s,
  * nor is it considered to be viewable by {@link Player}s or accessible
  * by the {@link Server} or {@link World}(s).

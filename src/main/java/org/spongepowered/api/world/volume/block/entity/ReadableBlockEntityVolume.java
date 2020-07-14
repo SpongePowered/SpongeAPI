@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world.volume.block.entity;
 
+import com.google.common.base.Preconditions;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.world.volume.Volume;
 import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
@@ -62,7 +63,9 @@ public interface ReadableBlockEntityVolume extends ReadableBlockVolume, Volume {
      * @return A collection of filtered entities
      */
     default Collection<? extends BlockEntity> getBlockEntities(Predicate<? super BlockEntity> filter) {
-        return getBlockEntities().stream().filter(filter).collect(Collectors.toList());
+        Preconditions.checkNotNull(filter);
+
+        return this.getBlockEntities().stream().filter(filter).collect(Collectors.toList());
     }
 
     /**
@@ -72,7 +75,9 @@ public interface ReadableBlockEntityVolume extends ReadableBlockVolume, Volume {
      * @return The block entity, or {@link Optional#empty()}
      */
     default Optional<? extends BlockEntity> getBlockEntity(Vector3i position) {
-        return getBlockEntity(position.getX(), position.getY(), position.getZ());
+        Preconditions.checkNotNull(position);
+
+        return this.getBlockEntity(position.getX(), position.getY(), position.getZ());
     }
 
     /**

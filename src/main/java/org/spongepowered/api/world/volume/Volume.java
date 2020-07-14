@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.world.volume;
 
-import org.spongepowered.api.util.PositionOutOfBoundsException;
+import com.google.common.base.Preconditions;
 import org.spongepowered.math.vector.Vector3i;
 
 public interface Volume {
@@ -44,7 +44,9 @@ public interface Volume {
      * @return Whether or not the position has a block in this volume
      */
     default boolean containsBlock(Vector3i position) {
-        return containsBlock(position.getX(), position.getY(), position.getZ());
+        Preconditions.checkNotNull(position);
+
+        return this.containsBlock(position.getX(), position.getY(), position.getZ());
     }
 
     /**
@@ -60,9 +62,10 @@ public interface Volume {
     boolean containsBlock(int x, int y, int z);
 
     default boolean isAreaAvailable(Vector3i vector3i) {
-        return isAreaAvailable(vector3i.getX(), vector3i.getY(), vector3i.getZ());
+        Preconditions.checkNotNull(vector3i);
+
+        return this.isAreaAvailable(vector3i.getX(), vector3i.getY(), vector3i.getZ());
     }
 
     boolean isAreaAvailable(int x, int y, int z);
-
 }

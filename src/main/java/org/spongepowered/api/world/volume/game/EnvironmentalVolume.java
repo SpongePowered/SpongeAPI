@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world.volume.game;
 
+import com.google.common.base.Preconditions;
 import org.spongepowered.api.world.LightType;
 import org.spongepowered.api.world.LightTypes;
 import org.spongepowered.api.world.volume.biome.ReadableBiomeVolume;
@@ -36,27 +37,39 @@ public interface EnvironmentalVolume extends PrimitiveGameVolume, ReadableBiomeV
     int getLight(LightType type, int x, int y, int z);
 
     default int getLight(final Supplier<? extends LightType> type, final int x, final int y, final int z) {
+        Preconditions.checkNotNull(type);
+
         return this.getLight(type.get(), x, y, z);
     }
 
-    default int getLight(final LightType type, final Vector3i pos) {
-        return this.getLight(type, pos.getX(), pos.getY(), pos.getZ());
+    default int getLight(final LightType type, final Vector3i position) {
+        Preconditions.checkNotNull(type);
+        Preconditions.checkNotNull(position);
+
+        return this.getLight(type, position.getX(), position.getY(), position.getZ());
     }
 
-    default int getLight(final Supplier<? extends LightType> type, final Vector3i pos) {
-        return this.getLight(type, pos.getX(), pos.getY(), pos.getZ());
+    default int getLight(final Supplier<? extends LightType> type, final Vector3i position) {
+        Preconditions.checkNotNull(type);
+        Preconditions.checkNotNull(position);
+
+        return this.getLight(type, position.getX(), position.getY(), position.getZ());
     }
 
     default int getLight(final int x, final int y, final int z) {
         return this.getLight(LightTypes.BLOCK, x, y, z);
     }
 
-    default int getLight(final Vector3i pos) {
-        return this.getLight(pos.getX(), pos.getY(), pos.getZ());
+    default int getLight(final Vector3i position) {
+        Preconditions.checkNotNull(position);
+
+        return this.getLight(position.getX(), position.getY(), position.getZ());
     }
 
-    default boolean isSkylightMax(final Vector3i pos) {
-        return this.getLight(LightTypes.SKY, pos) >= this.getMaximumLight();
+    default boolean isSkylightMax(final Vector3i position) {
+        Preconditions.checkNotNull(position);
+
+        return this.getLight(LightTypes.SKY, position) >= this.getMaximumLight();
     }
 
 }

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world.volume.game;
 
+import com.google.common.base.Preconditions;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
@@ -41,8 +42,10 @@ public interface PrimitiveGameVolume extends ReadableBlockVolume, ReadableBlockE
         return 15;
     }
 
-    default int getEmittedLight(Vector3i pos) {
-        return this.getInt(pos, Keys.LIGHT_EMISSION).orElse(0);
+    default int getEmittedLight(Vector3i position) {
+        Preconditions.checkNotNull(position);
+
+        return this.getInt(position, Keys.LIGHT_EMISSION).orElse(0);
     }
 
     default int getEmittedLight(int x, int y, int z) {

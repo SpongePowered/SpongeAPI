@@ -70,7 +70,9 @@ public interface ReadableEntityVolume extends Volume {
      * @return All the intersecting entities
      */
     default Collection<? extends Entity> getEntities(AABB box) {
-        return getEntities(box, entity -> true);
+        Preconditions.checkNotNull(box);
+
+        return this.getEntities(box, entity -> true);
     }
 
     <T extends Entity> Collection<? extends T> getEntities(Class<? extends T> entityClass, AABB box, @Nullable Predicate<? super T> predicate);
@@ -117,7 +119,7 @@ public interface ReadableEntityVolume extends Volume {
      * @return A collection of nearby entities
      */
     default Collection<? extends Entity> getNearbyEntities(Vector3d location, double distance) {
-        Preconditions.checkNotNull(location, "location");
+        Preconditions.checkNotNull(location);
         Preconditions.checkArgument(distance > 0, "distance must be > 0");
 
         return this.getEntities(new AABB(location.getX() - distance, location.getY() - distance, location.getZ() - distance,
