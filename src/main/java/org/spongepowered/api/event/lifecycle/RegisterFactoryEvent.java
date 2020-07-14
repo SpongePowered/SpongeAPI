@@ -26,7 +26,7 @@ package org.spongepowered.api.event.lifecycle;
 
 import org.spongepowered.api.registry.DuplicateRegistrationException;
 
-public interface RegisterFactoryEvent {
+public interface RegisterFactoryEvent extends LifecycleEvent {
 
     /**
      * Registers an object meant to be used to churn object references
