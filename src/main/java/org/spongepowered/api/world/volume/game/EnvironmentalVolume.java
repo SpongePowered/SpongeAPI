@@ -35,25 +35,27 @@ public interface EnvironmentalVolume extends PrimitiveGameVolume, ReadableBiomeV
 
     int getLight(LightType type, int x, int y, int z);
 
-    int getLight(Supplier<? extends LightType> type, int x, int y, int z);
-
-    default int getLight(LightType type, Vector3i pos) {
-        return getLight(type, pos.getX(), pos.getY(), pos.getZ());
+    default int getLight(final Supplier<? extends LightType> type, final int x, final int y, final int z) {
+        return this.getLight(type.get(), x, y, z);
     }
 
-    default int getLight(Supplier<? extends LightType> type, Vector3i pos) {
-        return getLight(type, pos.getX(), pos.getY(), pos.getZ());
+    default int getLight(final LightType type, final Vector3i pos) {
+        return this.getLight(type, pos.getX(), pos.getY(), pos.getZ());
     }
 
-    default int getLight(int x, int y, int z) {
-        return getLight(LightTypes.BLOCK, x, y, z);
+    default int getLight(final Supplier<? extends LightType> type, final Vector3i pos) {
+        return this.getLight(type, pos.getX(), pos.getY(), pos.getZ());
     }
 
-    default int getLight(Vector3i pos) {
-        return getLight(pos.getX(), pos.getY(), pos.getZ());
+    default int getLight(final int x, final int y, final int z) {
+        return this.getLight(LightTypes.BLOCK, x, y, z);
     }
 
-    default boolean isSkylightMax(Vector3i pos) {
+    default int getLight(final Vector3i pos) {
+        return this.getLight(pos.getX(), pos.getY(), pos.getZ());
+    }
+
+    default boolean isSkylightMax(final Vector3i pos) {
         return this.getLight(LightTypes.SKY, pos) >= this.getMaximumLight();
     }
 
