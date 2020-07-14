@@ -70,7 +70,6 @@ import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.attribute.AttributeOperation;
-import org.spongepowered.api.entity.attribute.ModifierTemplate;
 import org.spongepowered.api.entity.attribute.type.AttributeType;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
@@ -284,10 +283,6 @@ public final class TypeTokens {
     public static final TypeToken<Map<UUID, Vector3d>> MAP_UUID_VECTOR3D_TOKEN = new TypeToken<Map<UUID, Vector3d>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<MapValue<UUID, Vector3d>> MAP_UUID_VECTOR3D_VALUE_TOKEN = new TypeToken<MapValue<UUID, Vector3d>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<ModifierTemplate> MODIFIER_TEMPLATE_TOKEN = new TypeToken<ModifierTemplate>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Value<ModifierTemplate>> MODIFIER_TEMPLATE_VALUE_TOKEN = new TypeToken<Value<ModifierTemplate>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<NotePitch> NOTE_TOKEN = new TypeToken<NotePitch>() {private static final long serialVersionUID = -1;};
 
