@@ -32,6 +32,7 @@ import org.spongepowered.api.profile.GameProfileManager;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Stream;
 
 /**
  * Stores the persistent {@link User} data of a {@link Player}.
@@ -91,6 +92,17 @@ public interface UserManager {
      * @return A {@link Collection} of {@link GameProfile}s
      */
     Collection<GameProfile> getAll();
+
+    /**
+     * Gets a stream of all {@link GameProfile}s with stored {@link User}
+     * data.
+     *
+     * <p>Use {@link #get(GameProfile)} to get the {@link User} data
+     * corresponding to a {@link GameProfile}.</p>
+     *
+     * @return A {@link Stream} of {@link GameProfile}s
+     */
+    Stream<GameProfile> streamAll();
 
     /**
      * Deletes the data associated with a {@link User}.
