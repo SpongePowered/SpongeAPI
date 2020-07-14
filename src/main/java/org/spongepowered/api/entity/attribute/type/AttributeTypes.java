@@ -57,8 +57,6 @@ public final class AttributeTypes {
 
     public static final Supplier<RangedAttributeType> MOVEMENT_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "MOVEMENT_SPEED");
 
-    public static final Supplier<RangedAttributeType> PARROT_FLYING_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "PARROT_FLYING_SPEED");
-
     public static final Supplier<RangedAttributeType> ZOMBIE_SPAWN_REINFORCEMENTS_CHANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "ZOMBIE_SPAWN_REINFORCEMENTS_CHANCE");
 
     // SORTFIELDS:OFF
