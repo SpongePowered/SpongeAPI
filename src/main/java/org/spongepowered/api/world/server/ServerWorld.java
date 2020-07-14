@@ -25,6 +25,7 @@
 package org.spongepowered.api.world.server;
 
 import org.spongepowered.api.Server;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.raid.Raid;
 import org.spongepowered.api.util.Identifiable;
@@ -171,6 +172,13 @@ public interface ServerWorld extends World<ServerWorld>, Identifiable, Interacta
 
     @Override
     Collection<ServerPlayer> getPlayers();
+
+    /**
+     * Gets all the {@link Entity entities} currently loaded in this world.
+     *
+     * @return The entities
+     */
+    Collection<? extends Entity> getEntities();
 
     /**
      * Gets all {@link Raid}s occuring in this {@link ServerWorld}.
