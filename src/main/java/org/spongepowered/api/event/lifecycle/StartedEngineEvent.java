@@ -25,13 +25,6 @@
 package org.spongepowered.api.event.lifecycle;
 
 import org.spongepowered.api.Engine;
-import org.spongepowered.api.event.GenericEvent;
 
-public interface StartedEngineEvent<E> extends GenericEvent<E>, LifecycleEvent {
-
-    /**
-     * Gets the {@link Engine} that was started.
-     * @return The engine
-     */
-    E getEngine();
+public interface StartedEngineEvent<E extends Engine> extends EngineLifecycleEvent<E> {
 }

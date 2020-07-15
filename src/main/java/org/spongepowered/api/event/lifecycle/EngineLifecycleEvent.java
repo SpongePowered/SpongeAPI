@@ -27,5 +27,12 @@ package org.spongepowered.api.event.lifecycle;
 import org.spongepowered.api.Engine;
 import org.spongepowered.api.event.GenericEvent;
 
-public interface StoppingEngineEvent<E extends Engine> extends EngineLifecycleEvent<E> {
+public interface EngineLifecycleEvent<E extends Engine> extends GenericEvent<E>, LifecycleEvent {
+
+    /**
+     * The {@link Engine} undergoing the lifecycle change.
+     *
+     * @return The engine
+     */
+    Engine getEngine();
 }

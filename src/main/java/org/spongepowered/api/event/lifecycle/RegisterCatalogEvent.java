@@ -33,9 +33,9 @@ public interface RegisterCatalogEvent<T extends CatalogType> extends GenericEven
     /**
      * Registers a new {@link CatalogType}.
      *
-     * @param catalogType The catalog type
+     * @param catalog The catalog type
      * @return The provided catalog type
      * @throws DuplicateRegistrationException If the type is already registered
      */
-    T register(T catalogType) throws DuplicateRegistrationException;
+    T register(T catalog) throws DuplicateRegistrationException;
 }

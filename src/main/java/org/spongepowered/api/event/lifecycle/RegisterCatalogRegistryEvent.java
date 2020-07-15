@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.lifecycle;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.registry.DuplicateRegistrationException;
 
 import java.util.Set;
@@ -33,21 +34,23 @@ import java.util.function.Supplier;
 public interface RegisterCatalogRegistryEvent extends LifecycleEvent {
 
     /**
-     * Registers a new {@link CatalogType catalog type} registry.
+     * Registers a new {@link CatalogType} registry.
      *
      * @param catalogClass The catalog type
+     * @param key The key for the registry
      * @param <T> The type
      * @throws DuplicateRegistrationException If the type is already registered
      */
-    <T extends CatalogType> void register(Class<T> catalogClass) throws DuplicateRegistrationException;
+    <T extends CatalogType> void register(Class<T> catalogClass, ResourceKey key) throws DuplicateRegistrationException;
 
     /**
-     * Registers a new {@link CatalogType catalog type} registry.
+     * Registers a new {@link CatalogType} registry.
      *
      * @param catalogClass The catalog type
+     * @param key The key for the registry
      * @param defaultsSupplier The default added types, added for convenience
      * @param <T> The type
      * @throws DuplicateRegistrationException If the type is already registered
      */
-    <T extends CatalogType> void register(Class<T> catalogClass, Supplier<Set<T>> defaultsSupplier) throws DuplicateRegistrationException;
+    <T extends CatalogType> void register(Class<T> catalogClass, ResourceKey key, Supplier<Set<T>> defaultsSupplier) throws DuplicateRegistrationException;
 }
