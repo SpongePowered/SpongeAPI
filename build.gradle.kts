@@ -89,6 +89,8 @@ tasks {
         exclude("org/spongepowered/api/event/cause/")
         exclude("org/spongepowered/api/event/filter/")
         exclude("org/spongepowered/api/event/impl/")
+        exclude("org/spongepowered/api/event/lifecycle/EngineLifecycleEvent.java")
+        exclude("org/spongepowered/api/event/lifecycle/LifecycleEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/ProvideServiceEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/RegisterBuilderEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/RegisterCatalogEvent.java")
