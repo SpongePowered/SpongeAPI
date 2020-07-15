@@ -45,7 +45,6 @@ import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.ai.goal.GoalExecutorType;
 import org.spongepowered.api.entity.ai.goal.GoalType;
 import org.spongepowered.api.entity.attribute.AttributeOperation;
-import org.spongepowered.api.entity.attribute.ModifierTemplate;
 import org.spongepowered.api.entity.attribute.type.AttributeType;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.event.cause.EventContextKey;
@@ -209,8 +208,6 @@ public final class CatalogTypes {
     public static final Class<ItemType> ITEM_TYPE = ItemType.class;
 
     public static final Class<LlamaType> LLAMA_TYPE = LlamaType.class;
-
-    public static final Class<ModifierTemplate> MODIFIER_TEMPLATE = ModifierTemplate.class;
 
     public static final Class<MooshroomType> MOOSHROOM_TYPE = MooshroomType.class;
 

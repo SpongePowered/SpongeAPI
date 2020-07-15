@@ -127,30 +127,6 @@ public interface AttributeModifier extends Identifiable {
         Builder operation(final AttributeOperation operation);
 
         /**
-         * Sets the {@link Builder#name(String) name} and
-         * {@link Builder#id(UUID) id} of this attribute modifier to the
-         * vanilla defaults.
-         *
-         * @param template The template to use.
-         * @return This builder.
-         */
-        default Builder fromTemplate(Supplier<? extends ModifierTemplate> template) {
-            return this.fromTemplate(template.get());
-        }
-
-        /**
-         * Sets the {@link Builder#name(String) name} and
-         * {@link Builder#id(UUID) id} of this attribute modifier to the
-         * vanilla defaults.
-         *
-         * @param template The template to use.
-         * @return This builder.
-         */
-        default Builder fromTemplate(ModifierTemplate template) {
-            return this.name(template.getName()).id(template.getUniqueId());
-        }
-
-        /**
          * Sets the amount of the attribute modifier.
          *
          * @param amount The amount
