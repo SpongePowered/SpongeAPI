@@ -41,7 +41,7 @@ import java.util.function.Predicate;
 /**
  * Called when an {@link Explosion} occurs in a {@link World}.
  */
-public interface ExplosionEvent extends Event {
+public interface ExplosionEvent extends Event, Cancellable {
 
     /**
      * Gets the {@link Explosion}.
@@ -53,7 +53,7 @@ public interface ExplosionEvent extends Event {
     /**
      * An event that is fired before the explosion occurs.
      */
-    interface Pre extends ExplosionEvent, Cancellable {
+    interface Pre extends ExplosionEvent {
 
         /**
          * Gets the {@link ServerWorld world}.
