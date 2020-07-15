@@ -47,24 +47,24 @@ public final class EquipmentTypes {
     /**
      * Any held types like MAINHAND and OFFHAND.
      */
-    public static final Supplier<HeldEquipmentType> HELD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HeldEquipmentType.class, "HELD");
+    public static final Supplier<HeldEquipmentType> HELD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "HELD");
 
-    public static final Supplier<HeldEquipmentType> MAIN_HAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HeldEquipmentType.class, "MAIN_HAND");
+    public static final Supplier<HeldEquipmentType> MAIN_HAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "MAIN_HAND");
 
-    public static final Supplier<HeldEquipmentType> OFF_HAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HeldEquipmentType.class, "OFF_HAND");
+    public static final Supplier<HeldEquipmentType> OFF_HAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "OFF_HAND");
 
     /**
      * Any worn types like HEADWEAR, CHESTPLATE, LEGGINGS and BOOTS.
      */
-    public static final Supplier<WornEquipmentType> WORN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WornEquipmentType.class, "WORN");
+    public static final Supplier<WornEquipmentType> WORN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "WORN");
 
-    public static final Supplier<WornEquipmentType> BOOTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WornEquipmentType.class, "BOOTS");
+    public static final Supplier<WornEquipmentType> BOOTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "BOOTS");
 
-    public static final Supplier<WornEquipmentType> CHESTPLATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WornEquipmentType.class, "CHESTPLATE");
+    public static final Supplier<WornEquipmentType> CHESTPLATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "CHESTPLATE");
 
-    public static final Supplier<WornEquipmentType> HEADWEAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WornEquipmentType.class, "HEADWEAR");
+    public static final Supplier<WornEquipmentType> HEADWEAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "HEADWEAR");
 
-    public static final Supplier<WornEquipmentType> LEGGINGS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WornEquipmentType.class, "LEGGINGS");
+    public static final Supplier<WornEquipmentType> LEGGINGS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "LEGGINGS");
 
     // Suppress default constructor to ensure non-instantiability.
     private EquipmentTypes() {
