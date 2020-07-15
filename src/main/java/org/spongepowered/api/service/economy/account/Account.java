@@ -203,12 +203,11 @@ public interface Account extends Contextual {
      *
      * @param currency The {@link Currency} to set the balance for
      * @param amount The amount to set for the specified {@link Currency}
-     * @param cause The {@link Cause} for the transaction
      * @param contexts The set of {@link Context}s to use with the
      *     specified {@link Currency}
      * @return The result of the transaction
      */
-    TransactionResult setBalance(Currency currency, BigDecimal amount, Cause cause, Set<Context> contexts);
+    TransactionResult setBalance(Currency currency, BigDecimal amount, Set<Context> contexts);
 
     /**
      * Sets the balance for this account to the specified amount for the
@@ -219,11 +218,10 @@ public interface Account extends Contextual {
      *
      * @param currency The {@link Currency} to set the balance for
      * @param amount The amount to set for the specified {@link Currency}
-     * @param cause The {@link Cause} for the transaction
      * @return The result of the transaction
      */
-    default TransactionResult setBalance(Currency currency, BigDecimal amount, Cause cause) {
-        return this.setBalance(currency, amount, cause, this.getActiveContexts());
+    default TransactionResult setBalance(Currency currency, BigDecimal amount) {
+        return this.setBalance(currency, amount, this.getActiveContexts());
     }
 
     /**
@@ -231,25 +229,22 @@ public interface Account extends Contextual {
      * to their default values ({@link #getDefaultBalance(Currency)}),
      * using the specified {@link Context}s.
      *
-     * @param cause The {@link Cause} for the transaction
      * @param contexts the {@link Context}s to use when resetting the balances.
      * @return A map of {@link Currency} to {@link TransactionResult}. Each
      *     entry represents the result of resetting a particular currency.
      */
-    Map<Currency, TransactionResult> resetBalances(Cause cause, Set<Context> contexts);
+    Map<Currency, TransactionResult> resetBalances(Set<Context> contexts);
 
     /**
      * Resets the balances for all {@link Currency}s used on this account to
      * their default values ({@link #getDefaultBalance(Currency)}), using
      * the current active {@link Context}.
      *
-     * @param cause The {@link Cause} for the transaction
-     *
      * @return A map of {@link Currency} to {@link TransactionResult}. Each
      *     entry represents the result of resetting a particular currency
      */
-    default Map<Currency, TransactionResult> resetBalances(Cause cause) {
-        return this.resetBalances(cause, this.getActiveContexts());
+    default Map<Currency, TransactionResult> resetBalances() {
+        return this.resetBalances(this.getActiveContexts());
     }
 
     /**
@@ -258,12 +253,11 @@ public interface Account extends Contextual {
      * the specified {@link Context}s.
      *
      * @param currency The {@link Currency} to reset the balance for
-     * @param cause The {@link Cause} for the transaction
      * @param contexts The {@link Context}s to use when resetting the balance
      *
      * @return The result of the transaction
      */
-    TransactionResult resetBalance(Currency currency, Cause cause, Set<Context> contexts);
+    TransactionResult resetBalance(Currency currency, Set<Context> contexts);
 
     /**
      * Resets the balance for the specified {@link Currency} to its default
@@ -271,11 +265,10 @@ public interface Account extends Contextual {
      * using the current active {@link Context}s.
      *
      * @param currency The {@link Currency} to reset the balance for
-     * @param cause The {@link Cause} for the transaction
      * @return The result of the transaction
      */
-    default TransactionResult resetBalance(Currency currency, Cause cause) {
-        return this.resetBalance(currency, cause, this.getActiveContexts());
+    default TransactionResult resetBalance(Currency currency) {
+        return this.resetBalance(currency, this.getActiveContexts());
     }
 
     /**
@@ -284,12 +277,11 @@ public interface Account extends Contextual {
      *
      * @param currency The {@link Currency} to deposit the specified amount for
      * @param amount The amount to deposit for the specified {@link Currency}
-     * @param cause The {@link Cause} for the transaction
      * @param contexts the {@link Context}s to use with the
      *     specified {@link Currency}
      * @return The result of the transaction
      */
-    TransactionResult deposit(Currency currency, BigDecimal amount, Cause cause, Set<Context> contexts);
+    TransactionResult deposit(Currency currency, BigDecimal amount, Set<Context> contexts);
 
     /**
      * Deposits the given amount of the specified {@link Currency} to
@@ -297,11 +289,10 @@ public interface Account extends Contextual {
      *
      * @param currency The {@link Currency} to deposit the specified amount for
      * @param amount The amount to deposit for the specified {@link Currency}
-     * @param cause The {@link Cause} for the transaction
      * @return The result of the transaction
      */
-    default TransactionResult deposit(Currency currency, BigDecimal amount, Cause cause) {
-        return this.deposit(currency, amount, cause, this.getActiveContexts());
+    default TransactionResult deposit(Currency currency, BigDecimal amount) {
+        return this.deposit(currency, amount, this.getActiveContexts());
     }
 
     /**
@@ -310,12 +301,11 @@ public interface Account extends Contextual {
      *
      * @param currency The {@link Currency} to deposit the specified amount for
      * @param amount The amount to deposit for the specified {@link Currency}
-     * @param cause The {@link Cause} for the transaction
      * @param contexts The {@link Context}s to use with the
      *     specified {@link Currency}
      * @return The result of the transaction
      */
-    TransactionResult withdraw(Currency currency, BigDecimal amount, Cause cause, Set<Context> contexts);
+    TransactionResult withdraw(Currency currency, BigDecimal amount, Set<Context> contexts);
 
     /**
      * Withdraws the specified amount of the specified {@link Currency} from
@@ -323,11 +313,10 @@ public interface Account extends Contextual {
      *
      * @param currency The {@link Currency} to deposit the specified amount for
      * @param amount The amount to deposit for the specified {@link Currency}
-     * @param cause The {@link Cause} for the transaction
      * @return The result of the transaction
      */
-    default TransactionResult withdraw(Currency currency, BigDecimal amount, Cause cause) {
-        return this.withdraw(currency, amount, cause, this.getActiveContexts());
+    default TransactionResult withdraw(Currency currency, BigDecimal amount) {
+        return this.withdraw(currency, amount, this.getActiveContexts());
     }
 
     /**
@@ -335,38 +324,36 @@ public interface Account extends Contextual {
      * from this account the destination account,
      * using the specified {@link Context}s.
      *
-     * <p>This operation is a merged {@link #withdraw(Currency, BigDecimal, Cause, Set)}
-     * from this account with a {@link #deposit(Currency, BigDecimal, Cause, Set)}
+     * <p>This operation is a merged {@link #withdraw(Currency, BigDecimal, Set)}
+     * from this account with a {@link #deposit(Currency, BigDecimal, Set)}
      * into the specified account.</p>
      *
      * @param to the Account to transfer the amounts to.
      * @param currency The {@link Currency} to transfer the specified amount for
      * @param amount The amount to transfer for the specified {@link Currency}
-     * @param cause The {@link Cause} for the transaction
      * @param contexts The {@link Context}s to use with the
      *     specified {@link Currency} and account
      * @return A {@link TransferResult} representative of the effects of
      *     the operation
      */
-    TransferResult transfer(Account to, Currency currency, BigDecimal amount, Cause cause, Set<Context> contexts);
+    TransferResult transfer(Account to, Currency currency, BigDecimal amount, Set<Context> contexts);
 
     /**
      * Transfers the specified amount of the specified {@link Currency}
      * from this account the destination account,
      * using the current active {@link Context}s.
      *
-     * <p>This operation is a merged {@link #withdraw(Currency, BigDecimal, Cause, Set)}
-     * from this account with a {@link #deposit(Currency, BigDecimal, Cause, Set)}
+     * <p>This operation is a merged {@link #withdraw(Currency, BigDecimal, Set)}
+     * from this account with a {@link #deposit(Currency, BigDecimal, Set)}
      * into the specified account.</p>
      *
      * @param to the Account to transfer the amounts to.
      * @param currency The {@link Currency} to transfer the specified amount for
      * @param amount The amount to transfer for the specified {@link Currency}
-     * @param cause The {@link Cause} for the transaction
      * @return A {@link TransferResult} representative of the effects of the
      *     operation
      */
-    default TransferResult transfer(Account to, Currency currency, BigDecimal amount, Cause cause) {
-        return this.transfer(to, currency, amount, cause, this.getActiveContexts());
+    default TransferResult transfer(Account to, Currency currency, BigDecimal amount) {
+        return this.transfer(to, currency, amount, this.getActiveContexts());
     }
 }
