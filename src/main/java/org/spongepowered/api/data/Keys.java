@@ -585,7 +585,7 @@ public final class Keys {
      * The damage absorbed by an armor {@link ItemStack}.
      * Readonly
      */
-    public static final Supplier<Key<Value<Integer>>> DAMAGE_ABSORPTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DAMAGE_ABSORPTION");
+    public static final Supplier<Key<Value<Double>>> DAMAGE_ABSORPTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DAMAGE_ABSORPTION");
 
     /**
      * How much damage a {@link FallingBlock} deals to {@link Living} entities
@@ -1756,7 +1756,7 @@ public final class Keys {
     /**
      * The maximum damage a {@link FallingBlock} can deal.
      */
-    public static final Supplier<Key<Value<Integer>>> MAX_FALL_DAMAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_FALL_DAMAGE");
+    public static final Supplier<Key<Value<Double>>> MAX_FALL_DAMAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_FALL_DAMAGE");
 
     /**
      * The maximum health of a {@link Living}.
