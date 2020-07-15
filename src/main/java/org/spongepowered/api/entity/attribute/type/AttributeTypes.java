@@ -35,29 +35,29 @@ public final class AttributeTypes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<RangedAttributeType> ARMOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "GENERIC.ARMOR");
+    public static final Supplier<RangedAttributeType> GENERIC_ARMOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "GENERIC.ARMOR");
 
-    public static final Supplier<RangedAttributeType> ARMOR_TOUGHNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "GENERIC.ARMOR_TOUGHNESS");
+    public static final Supplier<RangedAttributeType> GENERIC_ARMOR_TOUGHNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "GENERIC.ARMOR_TOUGHNESS");
 
-    public static final Supplier<RangedAttributeType> ATTACK_DAMAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "GENERIC.ATTACK_DAMAGE");
+    public static final Supplier<RangedAttributeType> GENERIC_ATTACK_DAMAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "GENERIC.ATTACK_DAMAGE");
 
-    public static final Supplier<RangedAttributeType> ATTACK_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "GENERIC.ATTACK_SPEED");
+    public static final Supplier<RangedAttributeType> GENERIC_ATTACK_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "GENERIC.ATTACK_SPEED");
 
-    public static final Supplier<RangedAttributeType> ATTACK_KNOCKBACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "GENERIC.ATTACK_KNOCKBACK");
+    public static final Supplier<RangedAttributeType> GENERIC_ATTACK_KNOCKBACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "GENERIC.ATTACK_KNOCKBACK");
 
-    public static final Supplier<RangedAttributeType> FOLLOW_RANGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "GENERIC.FOLLOW_RANGE");
+    public static final Supplier<RangedAttributeType> GENERIC_FOLLOW_RANGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "GENERIC.FOLLOW_RANGE");
 
-    public static final Supplier<RangedAttributeType> HORSE_JUMP_STRENGTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "GENERIC.HORSE_JUMP_STRENGTH");
+    public static final Supplier<RangedAttributeType> GENERIC_KNOCKBACK_RESISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "GENERIC.KNOCKBACK_RESISTANCE");
 
-    public static final Supplier<RangedAttributeType> KNOCKBACK_RESISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "GENERIC.KNOCKBACK_RESISTANCE");
+    public static final Supplier<RangedAttributeType> GENERIC_LUCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "GENERIC.LUCK");
 
-    public static final Supplier<RangedAttributeType> LUCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "GENERIC.LUCK");
+    public static final Supplier<RangedAttributeType> GENERIC_MAX_HEALTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "GENERIC.MAX_HEALTH");
 
-    public static final Supplier<RangedAttributeType> MAX_HEALTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "GENERIC.MAX_HEALTH");
+    public static final Supplier<RangedAttributeType> GENERIC_MOVEMENT_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "GENERIC.MOVEMENT_SPEED");
 
-    public static final Supplier<RangedAttributeType> MOVEMENT_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "GENERIC.MOVEMENT_SPEED");
+    public static final Supplier<RangedAttributeType> HORSE_JUMP_STRENGTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "HORSE.JUMP_STRENGTH");
 
-    public static final Supplier<RangedAttributeType> ZOMBIE_SPAWN_REINFORCEMENTS_CHANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "GENERIC.ZOMBIE_SPAWN_REINFORCEMENTS");
+    public static final Supplier<RangedAttributeType> ZOMBIE_SPAWN_REINFORCEMENTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "ZOMBIE.SPAWN_REINFORCEMENTS");
 
     // SORTFIELDS:OFF
 
