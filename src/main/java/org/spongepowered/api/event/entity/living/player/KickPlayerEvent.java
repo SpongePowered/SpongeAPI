@@ -24,18 +24,18 @@
  */
 package org.spongepowered.api.event.entity.living.player;
 
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.message.MessageChannelEvent;
 
 /**
- * Fired when a {@link Player} is kicked.
+ * Fired when a {@link ServerPlayer player} is kicked.
  */
 public interface KickPlayerEvent extends MessageChannelEvent {
 
     /**
-     * Gets the {@link Player}.
+     * Gets the {@link ServerPlayer player}.
      *
      * @return The player
      */
-    Player getPlayer();
+    ServerPlayer getPlayer();
 }

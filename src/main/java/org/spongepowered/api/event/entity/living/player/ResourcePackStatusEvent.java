@@ -25,7 +25,9 @@
 package org.spongepowered.api.event.entity.living.player;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
+import org.spongepowered.api.Server;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
@@ -33,18 +35,18 @@ import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 import java.util.Optional;
 
 /**
- * Called when a {@link Player} notifies the server of the status of a resource pack
- * change request.
+ * Called when a {@link ServerPlayer player} notifies the {@link Server} of the
+ * status of a resource pack change request.
  */
 @GenerateFactoryMethod
 public interface ResourcePackStatusEvent extends Event {
 
     /**
-     * Get the player for this event.
+     * Get the {@link ServerPlayer player}.
      *
      * @return The player
      */
-    Player getPlayer();
+    ServerPlayer getPlayer();
 
     /**
      * Gets the pack that this status corresponds to.

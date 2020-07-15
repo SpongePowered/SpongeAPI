@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.item.recipe;
 
-import org.spongepowered.api.CatalogKey;
-import org.spongepowered.api.event.registry.RegistryEvent;
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.event.lifecycle.RegisterCatalogEvent;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.crafting.RecipeResult;
@@ -38,19 +38,19 @@ import java.util.function.Supplier;
 
 /**
  * A registry holds all registered recipes for a given game.
- * Register new Recipes during {@link RegistryEvent.Catalog<Recipe>}.
+ * Register new Recipes during {@link RegisterCatalogEvent<Recipe>}.
  * To disable a recipe override it with an empty result.
  */
 public interface RecipeRegistry {
 
     /**
-     * Gets a recipe by its id
+     * Gets a recipe by its {@link ResourceKey key}.
      *
-     * @param id the recipe id
+     * @param key the recipe key
      *
      * @return The recipe if available
      */
-    Optional<Recipe> getById(CatalogKey id);
+    Optional<Recipe> getByKey(ResourceKey key);
 
     /**
      * Gets all registered recipes.

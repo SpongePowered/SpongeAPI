@@ -25,7 +25,7 @@
 package org.spongepowered.api.event.entity.living.player;
 
 import org.spongepowered.api.data.type.SkinPart;
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.text.chat.ChatVisibility;
 
@@ -33,7 +33,7 @@ import java.util.Locale;
 import java.util.Set;
 
 /**
- * Fired when a {@link Player} changes one or more of the following settings.
+ * Fired when a {@link ServerPlayer player} changes one or more of the following settings.
  *
  * <ul>
  *   <li>Locale</li>
@@ -49,11 +49,11 @@ import java.util.Set;
 public interface PlayerChangeClientSettingsEvent extends Event {
 
     /**
-     * Gets the {@link Player}.
+     * Gets the {@link ServerPlayer player}.
      *
      * @return The player
      */
-    Player getPlayer();
+    ServerPlayer getPlayer();
 
     /**
      * Gets the new locale of the player.

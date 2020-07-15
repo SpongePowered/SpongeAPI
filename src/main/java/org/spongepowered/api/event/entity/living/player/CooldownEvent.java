@@ -25,7 +25,7 @@
 package org.spongepowered.api.event.entity.living.player;
 
 import org.spongepowered.api.entity.living.player.CooldownTracker;
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.item.ItemType;
@@ -33,17 +33,17 @@ import org.spongepowered.api.item.ItemType;
 import java.util.OptionalInt;
 
 /**
- * An event which handles items in a {@link Player}'s {@link CooldownTracker}
+ * An event which handles items in a {@link ServerPlayer player's} {@link CooldownTracker}
  * being given a cooldown or going off cooldown.
  */
 public interface CooldownEvent extends Event {
 
     /**
-     * Gets the {@link Player}.
+     * Gets the {@link ServerPlayer player}.
      *
      * @return The player
      */
-    Player getPlayer();
+    ServerPlayer getPlayer();
 
     /**
      * Gets the associated item type whose cooldown is being set or removed.
@@ -53,7 +53,7 @@ public interface CooldownEvent extends Event {
     ItemType getItemType();
 
     /**
-     * Handles an {@link ItemType} being given a cooldown for a {@link Player}.
+     * Handles an {@link ItemType} being given a cooldown for a {@link ServerPlayer player}.
      *
      * <p>The cooldowns are all in ticks.</p>
      */
@@ -90,7 +90,7 @@ public interface CooldownEvent extends Event {
     }
 
     /**
-     * Handles an {@link ItemType} going off cooldown for a {@link Player}.
+     * Handles an {@link ItemType} going off cooldown for a {@link ServerPlayer player}.
      */
     interface End extends CooldownEvent {
 

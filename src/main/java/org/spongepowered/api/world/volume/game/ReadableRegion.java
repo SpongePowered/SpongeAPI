@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world.volume.game;
 
+import com.google.common.base.Preconditions;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
@@ -35,7 +36,6 @@ import org.spongepowered.api.world.volume.biome.StreamableBiomeVolume;
 import org.spongepowered.api.world.volume.block.StreamableBlockVolume;
 import org.spongepowered.api.world.volume.block.entity.StreamableBlockEntityVolume;
 import org.spongepowered.api.world.volume.entity.StreamableEntityVolume;
-import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
 public interface ReadableRegion<R extends ReadableRegion<R>> extends
@@ -54,14 +54,14 @@ public interface ReadableRegion<R extends ReadableRegion<R>> extends
 
     boolean isInBorder(Entity entity);
 
-    default boolean canSeeSky(Vector3i pos) {
-        return this.canSeeSky(pos.getX(), pos.getY(), pos.getZ());
+    default boolean canSeeSky(Vector3i position) {
+        return this.canSeeSky(position.getX(), position.getY(), position.getZ());
     }
 
     boolean canSeeSky(int x, int y, int z);
 
-    default boolean hasLiquid(Vector3i pos) {
-        return this.hasLiquid(pos.getX(), pos.getY(), pos.getZ());
+    default boolean hasLiquid(Vector3i position) {
+        return this.hasLiquid(position.getX(), position.getY(), position.getZ());
     }
 
     boolean hasLiquid(int x, int y, int z);
@@ -81,29 +81,36 @@ public interface ReadableRegion<R extends ReadableRegion<R>> extends
 
     // TODO - Collision Boxes and VoxelShapes
 
-
     default boolean isBlockLoaded(int x, int y, int z) {
-        return isBlockLoaded(x, y, z, true);
+        return this.isBlockLoaded(x, y, z, true);
     }
 
     default boolean isBlockLoaded(int x, int y, int z, boolean allowEmpty) {
         final Vector3i chunkPos = Sponge.getServer().getChunkLayout().forceToChunk(x, y, z);
-        return isChunkLoaded(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ(), allowEmpty);
+        return this.isChunkLoaded(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ(), allowEmpty);
     }
 
-    default boolean isBlockLoaded(Vector3i pos) {
-        return this.isBlockLoaded(pos.getX(), pos.getY(), pos.getZ(), true);
+    default boolean isBlockLoaded(Vector3i position) {
+        Preconditions.checkNotNull(position);
+
+        return this.isBlockLoaded(position.getX(), position.getY(), position.getZ(), true);
     }
 
-    default boolean isBlockLoaded(Vector3i pos, boolean allowEmpty) {
-        return this.isBlockLoaded(pos.getX(), pos.getY(), pos.getZ(), allowEmpty);
+    default boolean isBlockLoaded(Vector3i position, boolean allowEmpty) {
+        Preconditions.checkNotNull(position);
+
+        return this.isBlockLoaded(position.getX(), position.getY(), position.getZ(), allowEmpty);
     }
 
-    default boolean isAreaLoaded(Vector3i pos, int radius) {
-        return this.isAreaLoaded(pos, radius, true);
+    default boolean isAreaLoaded(Vector3i position, int radius) {
+        Preconditions.checkNotNull(position);
+
+        return this.isAreaLoaded(position, radius, true);
     }
 
     default boolean isAreaLoaded(Vector3i center, int radius, boolean allowEmpty) {
+        Preconditions.checkNotNull(center);
+
         return this.isAreaLoaded(
             center.getX() - radius,
             center.getY() - radius,

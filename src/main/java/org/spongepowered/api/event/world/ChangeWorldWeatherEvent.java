@@ -26,7 +26,7 @@ package org.spongepowered.api.event.world;
 
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.weather.Weather;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 
@@ -36,11 +36,11 @@ import org.spongepowered.api.world.weather.WeatherUniverse;
 public interface ChangeWorldWeatherEvent extends Event, Cancellable {
 
     /**
-     * Gets the {@link World}.
+     * Gets the {@link ServerWorld world}.
      *
      * @return The world
      */
-    World<?> getWorld();
+    ServerWorld getWorld();
 
     /**
      * Gets the original {@link Weather} that the event is creating.

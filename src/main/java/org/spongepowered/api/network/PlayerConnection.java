@@ -27,22 +27,15 @@ package org.spongepowered.api.network;
 import org.spongepowered.api.entity.living.player.Player;
 
 /**
- * Represents a connection of a client to the server.
+ * Represents a connection of a client to the server where
+ * the {@link Player} has successfully joined.
  */
-public interface PlayerConnection extends RemoteConnection {
+public interface PlayerConnection extends EngineConnection {
 
     /**
-     * Gets the associated {@link Player} for this connection.
+     * Gets the associated {@link Player player} for this connection.
      *
      * @return The associated player
      */
     Player getPlayer();
-
-    /**
-     * Gets the connection latency. This is constantly calculated by the server.
-     *
-     * @return The latency
-     */
-    int getLatency();
-
 }

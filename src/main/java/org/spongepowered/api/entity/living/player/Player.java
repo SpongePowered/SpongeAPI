@@ -24,297 +24,34 @@
  */
 package org.spongepowered.api.entity.living.player;
 
-import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.entity.living.player.client.ClientPlayer;
-import org.spongepowered.api.world.client.ClientWorld;
-import org.spongepowered.api.entity.living.player.client.RemotePlayer;
-import org.spongepowered.api.entity.living.player.client.LocalPlayer;
-import org.spongepowered.api.Server;
-import org.spongepowered.api.advancement.Advancement;
-import org.spongepowered.api.advancement.AdvancementProgress;
-import org.spongepowered.api.advancement.AdvancementTree;
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.type.SkinPart;
-import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.block.entity.EnderChest;
 import org.spongepowered.api.effect.Viewer;
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Humanoid;
-import org.spongepowered.api.entity.living.player.tab.TabList;
-import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.message.MessageChannelEvent;
-import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.Inventory;
-import org.spongepowered.api.network.PlayerConnection;
-import org.spongepowered.api.resourcepack.ResourcePack;
-import org.spongepowered.api.scoreboard.Scoreboard;
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.Text;
+import org.spongepowered.api.item.inventory.entity.PlayerInventory;
+import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
-import org.spongepowered.api.text.channel.MessageReceiver;
-import org.spongepowered.api.text.chat.ChatType;
-import org.spongepowered.api.text.chat.ChatVisibility;
-import org.spongepowered.api.world.WorldBorder;
-import org.spongepowered.plugin.PluginContainer;
-
-import java.time.Instant;
-import java.util.Collection;
-import java.util.Optional;
-import java.util.Set;
 
 /**
- * A Player represents the in-game entity of a human playing on a server.
- * This is in contrast to User which represents the storage and data
- * associated with a Player.
- *
- * <p>Any methods called on Player that are not on User do not store any data
- * that persists across server restarts.</p>
+ * A Player is the representation of an actual unit playing the game.
  */
-public interface Player extends Humanoid, User, Viewer, ChatTypeMessageReceiver, Subject {
+public interface Player extends Humanoid, Viewer, ChatTypeMessageReceiver {
 
     /**
-     * Gets whether this {@link Player player} is local to the game or not. Because there
-     * is the possibility of having a game with running on the game client, there
-     * exists the possibility of having {@link ClientPlayer}s as instances, with a
-     * {@link ClientWorld} is potentially populated by {@link RemotePlayer remote players}
-     * and {@link LocalPlayer the client's player representation}.
+     * Gets the associated {@link GameProfile} of this player.
      *
-     * @return True if this player is local to the game instance
+     * @return The user's profile
      */
-    boolean isLocal();
+    GameProfile getProfile();
+    
+    @Override
+    PlayerInventory getInventory();
 
     /**
-     * Returns whether this player has an open inventory at the moment
-     * or not.
+     * Gets the {@link Inventory} available for this Player's shared {@link EnderChest}
+     * contents.
      *
-     * @return Whether this player is viewing an inventory or not
+     * @return The ender chest inventory
      */
-    default boolean isViewingInventory() {
-        return this.getOpenInventory().isPresent();
-    }
-
-    /**
-     * Gets the currently viewed inventory of this player, if it is
-     * currently viewing one.
-     *
-     * @return An inventory if this player is viewing one, otherwise
-     * {@link Optional#empty()}
-     */
-    Optional<Container> getOpenInventory();
-
-    /**
-     * Opens the given Inventory for the player to view.
-     *
-     * @param inventory The inventory to view
-     * @return The opened Container if the inventory was opened, otherwise
-     *      {@link Optional#empty()}
-     * @throws IllegalArgumentException if a {@link PluginContainer} is not the
-     *      root of the cause
-     */
-    Optional<Container> openInventory(Inventory inventory) throws IllegalArgumentException;
-
-    /**
-     * Opens a given Inventory for the player to view with a custom displayName.
-     *
-     * <p>Note that not all inventories support a custom display name.</p>
-     *
-     * @param inventory The inventory to view
-     * @param displayName The display name to set
-     * @return The opened Container if the inventory was opened, otherwise {@link Optional#empty()}
-     */
-    Optional<Container> openInventory(Inventory inventory, Text displayName);
-
-    /**
-     * Closes the currently viewed entity of this player, if it is currently
-     * viewing one.
-     *
-     * @return whether or not closing the inventory succeeded
-     * @throws IllegalArgumentException if a {@link PluginContainer} is not the
-     *         root of the cause
-     */
-    boolean closeInventory() throws IllegalArgumentException;
-
-    /**
-     * Gets the view distance setting of the player. This value represents the
-     * radius (around the player) in unit chunks.
-     *
-     * @return The player's view distance
-     */
-    int getViewDistance();
-
-    /**
-     * Gets the current player chat visibility setting.
-     *
-     * @return Chat visibility setting
-     */
-    ChatVisibility getChatVisibility();
-
-    /**
-     * Gets whether the player has colors enabled in chat.
-     *
-     * @return True if colors are enabled in chat
-     */
-    boolean isChatColorsEnabled();
-
-    /**
-     * Simulates a chat message from a player.
-     *
-     * <p>This method sends a message as if it came from this player.
-     * To send a message to this player instead, see
-     * {@link MessageReceiver#sendMessage(Text)} or
-     * {@link ChatTypeMessageReceiver#sendMessage(ChatType, Text)}.</p>
-     *
-     * <p>If text formatting is not supported in the implementation
-     * it will be displayed as plain text.</p>
-     *
-     * @param message The message to send
-     * @param cause The cause for the message
-     * @return The event that was thrown from sending the message
-     */
-    MessageChannelEvent.Chat simulateChat(Text message, Cause cause);
-
-    /**
-     * Gets the skin parts that this player has allowed to render.
-     *
-     * @return A set of skin parts displayed
-     */
-    Set<SkinPart> getDisplayedSkinParts();
-
-    /**
-     * Gets the appropriate {@link PlayerConnection} linking this Player to a
-     * client.
-     *
-     * @return The connection
-     */
-    PlayerConnection getConnection();
-
-    /**
-     * Sends a given {@link ResourcePack} to this player.
-     *
-     * @param pack The ResourcePack to send
-     */
-    void sendResourcePack(ResourcePack pack);
-
-    /**
-     * Gets this player's {@link TabList}.
-     *
-     * @return This player's TabList
-     */
-    TabList getTabList();
-
-    /**
-     * Kicks the player, showing the default kick reason (the translation key
-     * {@code disconnect.disconnected}).
-     */
-    void kick();
-
-    /**
-     * Kicks the player given a reason.
-     *
-     * @param reason The reason for the kick
-     */
-    void kick(Text reason);
-
-    /**
-     * Gets the {@link Scoreboard} displayed to the player.
-     *
-     * @return The scoreboard displayed to the player
-     */
-    Scoreboard getScoreboard();
-
-    /**
-     * Sets the {@link Scoreboard} displayed to the player.
-     *
-     * @param scoreboard The scoreboard to display
-     */
-    void setScoreboard(Scoreboard scoreboard);
-
-    /**
-     * {@link Keys#FIRST_DATE_PLAYED}
-     * @return The timestamp value when this player first played
-     */
-    default Value.Mutable<Instant> firstPlayed() {
-        return this.requireValue(Keys.FIRST_DATE_PLAYED).asMutable();
-    }
-
-    /**
-     * {@link Keys#LAST_DATE_PLAYED}
-     * @return The last timestamp value when this player has played
-     */
-    default Value.Mutable<Instant> lastPlayed() {
-        return this.requireValue(Keys.LAST_DATE_PLAYED).asMutable();
-    }
-
-    /**
-     * Gets if the {@link Player} has played on the {@link Server} before. Added
-     * as a utility.
-     *
-     * @return True if played before, false otherwise
-     */
-    default boolean hasPlayedBefore() {
-        return !this.firstPlayed().equals(this.lastPlayed());
-    }
-
-    /**
-     * {@link Keys#IS_SLEEPING_IGNORED}
-     * @return Whether this player is going to be ignored for sleeping to "reset" the day
-     */
-    default Value.Mutable<Boolean> sleepingIgnored() {
-        return this.requireValue(Keys.IS_SLEEPING_IGNORED).asMutable();
-    }
-
-    /**
-     * Manually respawns the player.
-     *
-     * <p>If the player is not dead, this method will return <tt>false</tt></p>
-     *
-     * @return Whether the respawn was successful
-     */
-    boolean respawnPlayer();
-
-    default Optional<Value.Mutable<Entity>> spectatorTarget() {
-        return this.getValue(Keys.SPECTATOR_TARGET).map(Value::asMutable);
-    }
-
-    /**
-     * Gets the {@link WorldBorder} for this player, if present. If no border is
-     * set, an empty {@code Optional} is returned.
-     *
-     * @return The {@code WorldBorder} of this player as an {@code Optional}, if
-     *     present
-     */
-    Optional<WorldBorder> getWorldBorder();
-
-    /**
-     * Sets the {@link WorldBorder} instance for this player to the given world
-     * border. If {@code null} is passed, the world border is unset.
-     *
-     * @param border The world border to be used, may be {@code null}
-     * @param cause The cause of the border's change
-     */
-    void setWorldBorder(@Nullable WorldBorder border, Cause cause);
-
-    /**
-     * Gets the {@link CooldownTracker} for this player, allowing control
-     * over the player's item cooldowns.
-     *
-     * @return This player's cooldown tracker
-     */
-    CooldownTracker getCooldownTracker();
-
-    /**
-     * Gets the {@link AdvancementProgress} for the
-     * specified {@link Advancement}.
-     *
-     * @param advancement The advancement
-     * @return The advancement progress
-     */
-    AdvancementProgress getProgress(Advancement advancement);
-
-    /**
-     * Gets all the {@link AdvancementTree}s that this
-     * {@link Player} already unlocked.
-     *
-     * @return The advancement trees
-     */
-    Collection<AdvancementTree> getUnlockedAdvancementTrees();
+    Inventory getEnderChestInventory();
 }

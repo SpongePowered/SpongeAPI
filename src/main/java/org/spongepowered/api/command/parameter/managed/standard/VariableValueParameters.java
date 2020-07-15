@@ -31,11 +31,16 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.serializer.TextSerializer;
 import org.spongepowered.api.util.ResettableBuilder;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.regex.Pattern;
 
+/**
+ * Builders and factory for parameters that require configuration.
+ */
 public class VariableValueParameters {
 
     private VariableValueParameters() {}
@@ -48,7 +53,7 @@ public class VariableValueParameters {
      * @param returnType The return type
      * @return The builder
      */
-    public static <T extends CatalogType> CatalogedTypeBuilder<T> catalogedElementParameterBuilder(Class<T> returnType) {
+    public static <T extends CatalogType> CatalogedTypeBuilder<T> catalogedElementParameterBuilder(final Class<T> returnType) {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createCatalogedTypesBuilder(returnType);
     }
 
@@ -64,7 +69,7 @@ public class VariableValueParameters {
      * @param <T> The type that will be returned
      * @return The builder
      */
-    public static <T> StaticChoicesBuilder<T> staticChoicesBuilder(Class<T> returnType) {
+    public static <T> StaticChoicesBuilder<T> staticChoicesBuilder(final Class<T> returnType) {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createStaticChoicesBuilder(returnType);
     }
 
@@ -80,7 +85,7 @@ public class VariableValueParameters {
      * @param <T> The type that will be returned
      * @return The builder
      */
-    public static <T> DynamicChoicesBuilder<T> dynamicChoicesBuilder(Class<T> returnType) {
+    public static <T> DynamicChoicesBuilder<T> dynamicChoicesBuilder(final Class<T> returnType) {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createDynamicChoicesBuilder(returnType);
     }
 
@@ -93,7 +98,7 @@ public class VariableValueParameters {
      * @param <T> The type that will be returned
      * @return The builder
      */
-    public static <T> LiteralBuilder<T> literalBuilder(Class<T> returnType) {
+    public static <T> LiteralBuilder<T> literalBuilder(final Class<T> returnType) {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createLiteralBuilder(returnType);
     }
 
@@ -114,8 +119,59 @@ public class VariableValueParameters {
      * @param <T> The {@link Enum} class type
      * @return The appropriate {@link ValueParameter}
      */
-    public static <T extends Enum<T>> ValueParameter<T> enumChoices(Class<T> enumClass) {
+    public static <T extends Enum<T>> ValueParameter<T> enumChoices(final Class<T> enumClass) {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createEnumParameter(enumClass);
+    }
+
+    /**
+     * Creates a {@link NumberRangeBuilder} that creates a bounded double
+     * {@link ValueParameter}.
+     *
+     * @return The {@link NumberRangeBuilder}
+     */
+    public static NumberRangeBuilder<Double> doubleRange() {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createDoubleNumberRangeBuilder();
+    }
+
+    /**
+     * Creates a {@link NumberRangeBuilder} that creates a bounded float
+     * {@link ValueParameter}.
+     *
+     * @return The {@link NumberRangeBuilder}
+     */
+    public static NumberRangeBuilder<Float> floatRange() {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createFloatNumberRangeBuilder();
+    }
+
+    /**
+     * Creates a {@link NumberRangeBuilder} that creates a bounded integer
+     * {@link ValueParameter}.
+     *
+     * @return The {@link NumberRangeBuilder}
+     */
+    public static NumberRangeBuilder<Integer> integerRange() {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createIntegerNumberRangeBuilder();
+    }
+
+    /**
+     * Creates a {@link NumberRangeBuilder} that creates a bounded long
+     * {@link ValueParameter}.
+     *
+     * @return The {@link NumberRangeBuilder}
+     */
+    public static NumberRangeBuilder<Long> longRange() {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createLongNumberRangeBuilder();
+    }
+
+    /**
+     * Creates a {@link ValueParameter} that validates the input.
+     *
+     * @param pattern The {@link Pattern} used to validate the string
+     * @return The {@link ValueParameter}
+     */
+    public static ValueParameter<String> validatedString(final Pattern pattern) {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class)
+                .createValidatedStringParameter(pattern);
     }
 
     /**
@@ -168,7 +224,7 @@ public class VariableValueParameters {
          *               without such a prefix
          * @return This builder, for chaining.
          */
-        CatalogedTypeBuilder<T> prefix(String prefix);
+        CatalogedTypeBuilder<T> defaultNamespace(String prefix);
 
         /**
          * Tests for validity and creates this {@link ValueParameter}
@@ -199,8 +255,8 @@ public class VariableValueParameters {
          * @param returnedObject The {@link Object to return}
          * @return This builder, for chaining
          */
-        default StaticChoicesBuilder<T> choice(String choice, T returnedObject) {
-            return choices(Collections.singleton(choice), () -> returnedObject);
+        default StaticChoicesBuilder<T> choice(final String choice, final T returnedObject) {
+            return this.choices(Collections.singleton(choice), () -> returnedObject);
         }
 
         /**
@@ -211,9 +267,9 @@ public class VariableValueParameters {
          *                objects.
          * @return This builder, for chaining
          */
-        default StaticChoicesBuilder<T> choices(Map<String, ? extends T> choices) {
-            for (Map.Entry<String, ? extends T> entry : choices.entrySet()) {
-                choice(entry.getKey(), entry.getValue());
+        default StaticChoicesBuilder<T> choices(final Map<String, ? extends T> choices) {
+            for (final Map.Entry<String, ? extends T> entry : choices.entrySet()) {
+                this.choice(entry.getKey(), entry.getValue());
             }
 
             return this;
@@ -270,12 +326,12 @@ public class VariableValueParameters {
 
         /**
          * Sets the parameter to get its choices from the supplied
-         * {@link Iterable}.
+         * {@link Collection}.
          *
          * @param choices A supplier that returns the appropriate choices.
          * @return This builder, for chaining
          */
-        DynamicChoicesBuilder<T> setChoices(Supplier<Iterable<String>> choices);
+        DynamicChoicesBuilder<T> setChoices(Supplier<? extends Collection<String>> choices);
 
         /**
          * Sets the function which defines what result is returned for
@@ -324,7 +380,7 @@ public class VariableValueParameters {
          * @param literalSupplier The {@link Supplier}
          * @return This builder, for chaining
          */
-        LiteralBuilder<T> setLiteral(Supplier<Iterable<String>> literalSupplier);
+        LiteralBuilder<T> setLiteral(Supplier<? extends Collection<String>> literalSupplier);
 
         /**
          * Sets the sequence of strings that need to be matched at runtime.
@@ -334,8 +390,8 @@ public class VariableValueParameters {
          * @param literal The sequence of elements
          * @return This builder, for chaining
          */
-        default LiteralBuilder<T> setLiteral(Iterable<String> literal) {
-            return setLiteral(() -> literal);
+        default LiteralBuilder<T> setLiteral(final Collection<String> literal) {
+            return this.setLiteral(() -> literal);
         }
 
         /**
@@ -353,8 +409,8 @@ public class VariableValueParameters {
          * @param returnValue The {@link Object}
          * @return This builder, for chaining
          */
-        default LiteralBuilder<T> setReturnValue(T returnValue) {
-            return setReturnValue(() -> returnValue);
+        default LiteralBuilder<T> setReturnValue(final T returnValue) {
+            return this.setReturnValue(() -> returnValue);
         }
 
         /**
@@ -368,6 +424,10 @@ public class VariableValueParameters {
 
     }
 
+    /**
+     * A builder that creates a parameter that serializes strings into
+     * {@link Text}.
+     */
     public interface TextBuilder extends ResettableBuilder<ValueParameter<Text>, TextBuilder> {
 
         /**
@@ -411,6 +471,45 @@ public class VariableValueParameters {
          *             been specified
          */
         ValueParameter<Text> build() throws IllegalStateException;
+
+    }
+
+    /**
+     * A builder that creates a parameter that can parse a bounded
+     * {@link Number}.
+     *
+     * @param <T> The {@link Number} type
+     */
+    public interface NumberRangeBuilder<T extends Number> extends ResettableBuilder<ValueParameter<T>, NumberRangeBuilder<T>> {
+
+        /**
+         * Sets the minimum value that the parser will parse.
+         *
+         * <p>Defaults to the minimum allowable value for {@link T}</p>
+         *
+         * @param min The minimum value
+         * @return This builder, for chaining
+         */
+        NumberRangeBuilder<T> setMin(T min);
+
+        /**
+         * Sets the maximum value that the parser will parse.
+         *
+         * <p>Defaults to the maximum allowable value for {@link T}</p>
+         *
+         * @param max The maximum value
+         * @return This builder, for chaining
+         */
+        NumberRangeBuilder<T> setMax(T max);
+
+        /**
+         * Tests for validity and creates this {@link ValueParameter}.
+         *
+         * @return The {@link ValueParameter}
+         * @throws IllegalStateException if the minimum is greater than the
+         *              maximum
+         */
+        ValueParameter<T> build();
 
     }
 
@@ -467,6 +566,43 @@ public class VariableValueParameters {
          * @return The builder
          */
         <T> LiteralBuilder<T> createLiteralBuilder(Class<T> returnType);
+
+        /**
+         * Creates a {@link NumberRangeBuilder} for integer values.
+         *
+         * @return The {@link NumberRangeBuilder}
+         */
+        NumberRangeBuilder<Integer> createIntegerNumberRangeBuilder();
+
+        /**
+         * Creates a {@link NumberRangeBuilder} for float values.
+         *
+         * @return The {@link NumberRangeBuilder}
+         */
+        NumberRangeBuilder<Float> createFloatNumberRangeBuilder();
+
+        /**
+         * Creates a {@link NumberRangeBuilder} for double values.
+         *
+         * @return The {@link NumberRangeBuilder}
+         */
+        NumberRangeBuilder<Double> createDoubleNumberRangeBuilder();
+
+        /**
+         * Creates a {@link NumberRangeBuilder} for long values.
+         *
+         * @return The {@link NumberRangeBuilder}
+         */
+        NumberRangeBuilder<Long> createLongNumberRangeBuilder();
+
+        /**
+         * Creates a {@link ValueParameter} that validates its input against
+         * a {@link Pattern}.
+         *
+         * @param pattern The {@link Pattern}
+         * @return The {@link ValueParameter}
+         */
+        ValueParameter<String> createValidatedStringParameter(Pattern pattern);
 
     }
 

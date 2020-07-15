@@ -27,10 +27,10 @@ package org.spongepowered.api.event.entity;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.teleport.PortalAgent;
+import org.spongepowered.math.vector.Vector3d;
 
 /**
  * Called when an {@link Entity} performs movement.
@@ -46,25 +46,25 @@ public interface MoveEntityEvent extends Event, Cancellable {
     Entity getEntity();
 
     /**
-     * Gets the transform that the {@link Entity} came from.
+     * Gets the {@link Vector3d position} {@link Entity} came from.
      *
-     * @return the previous transform
+     * @return the previous position
      */
-    Transform getFromTransform();
+    Vector3d getFromPosition();
 
     /**
-     * Gets the new transform that the {@link Entity} will change to.
+     * Gets the new {@link Vector3d position} that the {@link Entity} will move to.
      *
-     * @return the new transform
+     * @return the new position
      */
-    Transform getToTransform();
+    Vector3d getToPosition();
 
     /**
-     * Sets the new transform that the {@link Entity} will change to.
+     * Sets the new {@link Vector3d position} that the {@link Entity} will change to.
      *
-     * @param transform The new transform
+     * @param position The new position
      */
-    void setToTransform(Transform transform);
+    void setToPosition(Vector3d position);
 
     /**
      * Fired when an {@link Entity}'s position changes.
@@ -80,21 +80,21 @@ public interface MoveEntityEvent extends Event, Cancellable {
     interface Teleport extends MoveEntityEvent {
 
         /**
-         * Gets the {@link ServerWorld} the {@link Entity} is coming from.
+         * Gets the {@link ServerWorld world} the {@link Entity} is coming from.
          *
          * @return The world
          */
         ServerWorld getFromWorld();
 
         /**
-         * Gets the {@link ServerWorld} the {@link Entity} is going to.
+         * Gets the {@link ServerWorld world} the {@link Entity} is going to.
          *
          * @return The new world
          */
         ServerWorld getToWorld();
 
         /**
-         * Sets the {@link ServerWorld} the {@link Entity} will go to.
+         * Sets the {@link ServerWorld world} the {@link Entity} will go to.
          *
          * @param world The world
          */
@@ -123,12 +123,12 @@ public interface MoveEntityEvent extends Event, Cancellable {
              * Sets whether the {@link PortalAgent} will be used.
              * <p>
              * If this is set to true, the {@link PortalAgent} will search for a
-             * portal at the {@link #getToTransform()} location and will attempt to
+             * portal at the {@link #getToPosition()} location and will attempt to
              * create one if not found.
              * </p>
              * <p>
              * If this is set to false, the {@link #getEntity()} will only be
-             * teleported to the {@link #getToTransform()} location.
+             * teleported to the {@link #getToPosition()} location.
              * </p>
              *
              * @param usePortalAgent whether to use the portal agent
@@ -139,12 +139,12 @@ public interface MoveEntityEvent extends Event, Cancellable {
              * Gets whether the {@link PortalAgent} will be used.
              * <p>
              * If this is set to true, the {@link PortalAgent} will search for a
-             * Portal at the {@link #getToTransform()} location, and will attempt to
+             * Portal at the {@link #getToPosition()} location, and will attempt to
              * create one if not found.
              * </p>
              * <p>
              * If this is set to false, the {@link #getEntity()} will only be
-             * teleported to the {@link #getToTransform()} location.
+             * teleported to the {@link #getToPosition()} location.
              * </p>
              *
              * @return whether to use the portal agent

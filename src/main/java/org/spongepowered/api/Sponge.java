@@ -27,17 +27,18 @@ package org.spongepowered.api;
 import static com.google.common.base.Preconditions.checkState;
 
 import com.google.inject.Inject;
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.command.manager.CommandManager;
 import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.EventManager;
-import org.spongepowered.api.network.ChannelRegistrar;
+import org.spongepowered.api.event.lifecycle.LifecycleEvent;
+import org.spongepowered.api.network.channel.ChannelRegistry;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.registry.GameRegistry;
 import org.spongepowered.api.scheduler.Scheduler;
-import org.spongepowered.api.service.ServiceManager;
+import org.spongepowered.api.service.ServiceProvider;
+import org.spongepowered.api.sql.SqlManager;
 import org.spongepowered.api.util.metric.MetricsConfigManager;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.TeleportHelper;
@@ -46,38 +47,19 @@ import org.spongepowered.api.world.TeleportHelper;
  * A static all access class granting static access to various systems
  * for the API.
  */
-@SuppressWarnings("NullableProblems")
 public final class Sponge {
 
     @Inject private static Game game;
-    @Inject private static Platform platform;
-    @Inject private static GameRegistry registry;
-    @Inject private static DataManager dataManager;
-    @Inject private static PluginManager pluginManager;
-    @Inject private static EventManager eventManager;
-    @Inject private static ConfigManager configManager;
-    @Inject private static ServiceManager serviceManager;
-    @Inject private static ChannelRegistrar channelRegistrar;
-    @Inject private static TeleportHelper teleportHelper;
-    @Inject private static CauseStackManager causeStackManager;
-    @Inject private static MetricsConfigManager metricsConfigManager;
-    @Inject private static CommandManager commandManager;
-
-    private static <T> T check(@Nullable T instance) {
-        checkState(instance != null, "Sponge has not been initialized!");
-        return instance;
-    }
 
     /**
      * Gets the {@link Game} instance. There is ever only going
-     * to be a single game instance at any given time, except during
-     * the various extraneous {@link GameState}s that the game instance
-     * is otherwise unavailable.
+     * to be a single game instance at any given time.
      *
      * @return The game instance
      */
     public static Game getGame() {
-        return check(game);
+        checkState(game != null, "Sponge has not been initialized!");
+        return Sponge.game;
     }
 
     /**
@@ -87,7 +69,7 @@ public final class Sponge {
      * @return The current implementation
      */
     public static Platform getPlatform() {
-        return check(platform);
+        return Sponge.getGame().getPlatform();
     }
 
     /**
@@ -96,7 +78,7 @@ public final class Sponge {
      * @return The game registry instance
      */
     public static GameRegistry getRegistry() {
-        return check(registry);
+        return Sponge.getGame().getRegistry();
     }
 
     /**
@@ -105,7 +87,7 @@ public final class Sponge {
      * @return The data manager instance
      */
     public static DataManager getDataManager() {
-        return check(dataManager);
+        return Sponge.getGame().getDataManager();
     }
 
     /**
@@ -114,7 +96,7 @@ public final class Sponge {
      * @return The plugin manager instance
      */
     public static PluginManager getPluginManager() {
-        return check(pluginManager);
+        return Sponge.getGame().getPluginManager();
     }
 
     /**
@@ -123,7 +105,7 @@ public final class Sponge {
      * @return The event manager instance
      */
     public static EventManager getEventManager() {
-        return check(eventManager);
+        return Sponge.getGame().getEventManager();
     }
 
     /**
@@ -133,37 +115,16 @@ public final class Sponge {
      * @return The configuration manager
      */
     public static ConfigManager getConfigManager() {
-        return check(configManager);
+        return Sponge.getGame().getConfigManager();
     }
 
     /**
-     * Gets the game's instance of the service manager, which is the gateway
-     * to various services provided by Sponge (command registration and so on).
+     * Gets the {@link ChannelRegistry} for creating network channels.
      *
-     * <p>Services registered by other plugins may be available too.</p>
-     *
-     * @return The service manager
+     * @return The channel registry
      */
-    public static ServiceManager getServiceManager() {
-        return check(serviceManager);
-    }
-
-    /**
-     * Gets the {@link ChannelRegistrar} for creating network channels.
-     *
-     * @return The channel registrar
-     */
-    public static ChannelRegistrar getChannelRegistrar() {
-        return check(channelRegistrar);
-    }
-
-    /**
-     * Gets the {@link TeleportHelper}, used to find safe {@link ServerLocation}s.
-     *
-     * @return The teleport helper
-     */
-    public static TeleportHelper getTeleportHelper() {
-        return check(teleportHelper);
+    public static ChannelRegistry getChannelRegistry() {
+        return Sponge.getGame().getChannelRegistry();
     }
 
     /**
@@ -174,24 +135,47 @@ public final class Sponge {
      * @return True if the server instance is available
      */
     public static boolean isServerAvailable() {
-        return getGame().isServerAvailable();
+        return Sponge.getGame().isServerAvailable();
     }
 
     /**
-     * Gets the {@link Server} instance from the
-     * {@link Game} instance.
+     * Gets the {@link Server} instance from the {@link Game} instance.
      *
-     * <p>Note: During various {@link GameState}s, a {@link Server} instance
-     * may <strong>NOT</strong> be available. During these specific states,
-     * calling {@link Game#getServer()} will throw an exception. To double
-     * check, call {@link #isServerAvailable()}</p>
+     * <p>Note: During various {@link LifecycleEvent events}, a {@link Server} instance
+     * may <strong>NOT</strong> be available. Calling {@link Game#getServer()} during one
+     * will throw an exception. To double check, call {@link #isServerAvailable()}</p>
      *
      * @see Game#getServer()
      * @see Game#isServerAvailable()
      * @return The server instance
      */
     public static Server getServer() {
-        return getGame().getServer();
+        return Sponge.getGame().getServer();
+    }
+
+    /**
+     * Gets whether a {@link Client} instance is available without throwing an
+     * exception from calling {@link #getClient()}.
+     *
+     * @see Game#isClientAvailable()
+     * @return True if the client instance is available
+     */
+    public static boolean isClientAvailable() {
+        return Sponge.getGame().isClientAvailable();
+    }
+
+    /**
+     * Gets the {@link Client} instance from the {@link Game} instance.
+     *
+     * <p>Note: Not all implementations support a client, consult your
+     * vendor for further information.</p>
+     *
+     * @see Game#getClient()
+     * @see Game#isClientAvailable()
+     * @return The client instance
+     */
+    public static Client getClient() {
+        return Sponge.getGame().getClient();
     }
 
     /**
@@ -201,18 +185,7 @@ public final class Sponge {
      * @return The system subject
      */
     public static SystemSubject getSystemSubject() {
-        return getGame().getSystemSubject();
-    }
-
-    /**
-     * Gets the {@link CauseStackManager} instance from the
-     * {@link Game} instance.
-     *
-     * @see Game#getCauseStackManager()
-     * @return The cause stack manager instance
-     */
-    public static CauseStackManager getCauseStackManager() {
-        return check(causeStackManager);
+        return Sponge.getGame().getSystemSubject();
     }
 
     /**
@@ -223,7 +196,7 @@ public final class Sponge {
      * @return The {@link MetricsConfigManager} instance
      */
     public static MetricsConfigManager getMetricsConfigManager() {
-        return check(metricsConfigManager);
+        return Sponge.getGame().getMetricsConfigManager();
     }
 
     /**
@@ -232,7 +205,7 @@ public final class Sponge {
      * @return The async scheduler
      */
     public static Scheduler getAsyncScheduler() {
-        return getGame().getAsyncScheduler();
+        return Sponge.getGame().getAsyncScheduler();
     }
 
     /**
@@ -241,6 +214,24 @@ public final class Sponge {
      * @return The {@link CommandManager} instance.
      */
     public static CommandManager getCommandManager() {
-        return check(commandManager);
+        return Sponge.getGame().getCommandManager();
+    }
+
+    /**
+     * Gets the {@link SqlManager} for grabbing sql data sources.
+     *
+     * @return The {@link SqlManager} instance.
+     */
+    public static SqlManager getSqlManager() {
+        return Sponge.getGame().getSqlManager();
+    }
+
+    /**
+     * Gets the {@link ServiceProvider} for providing services.
+     *
+     * @return The service provider.
+     */
+    public static ServiceProvider getServiceProvider() {
+        return Sponge.getGame().getServiceProvider();
     }
 }

@@ -29,7 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.CopyableBuilder;
 
@@ -42,7 +42,7 @@ import java.util.function.Supplier;
 public interface ServerBossBar extends BossBar {
 
     /**
-     * Creates a new {@link Builder} to create {@link ServerBossBar}s.
+     * Creates a new {@link Builder} to create {@link ServerBossBar boss bars}.
      *
      * @return The new builder
      */
@@ -97,19 +97,19 @@ public interface ServerBossBar extends BossBar {
     ServerBossBar setVisible(boolean visible);
 
     /**
-     * Gets a collection of all players on this boss bar.
+     * Gets a collection of all {@link ServerPlayer players} on this boss bar.
      *
      * @return A collection of all players on this boss bar
      */
-    Collection<Player> getPlayers();
+    Collection<ServerPlayer> getPlayers();
 
     /**
-     * Adds a player to this boss bar.
+     * Adds a {@link ServerPlayer player} to this boss bar.
      *
      * @param player The player to add
      * @return This boss bar
      */
-    ServerBossBar addPlayer(Player player);
+    ServerBossBar addPlayer(ServerPlayer player);
 
     /**
      * Adds a collection of players to this boss bar.
@@ -117,27 +117,27 @@ public interface ServerBossBar extends BossBar {
      * @param players The players to add
      * @return This boss bar
      */
-    default ServerBossBar addPlayers(Collection<Player> players) {
+    default ServerBossBar addPlayers(Collection<ServerPlayer> players) {
         checkNotNull(players, "players");
         ImmutableSet.copyOf(players).forEach(this::addPlayer);
         return this;
     }
 
     /**
-     * Removes a player from this boss bar.
+     * Removes a {@link ServerPlayer player} from this boss bar.
      *
      * @param player The player to remove
      * @return This boss bar
      */
-    ServerBossBar removePlayer(Player player);
+    ServerBossBar removePlayer(ServerPlayer player);
 
     /**
-     * Removes a collection of players from this boss bar.
+     * Removes a collection of {@link ServerPlayer players} from this boss bar.
      *
      * @param players The players to remove
      * @return This boss bar
      */
-    default ServerBossBar removePlayers(Collection<Player> players) {
+    default ServerBossBar removePlayers(Collection<ServerPlayer> players) {
         checkNotNull(players, "players");
         ImmutableSet.copyOf(players).forEach(this::removePlayer);
         return this;

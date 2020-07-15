@@ -27,7 +27,6 @@ package org.spongepowered.api.entity;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.api.data.value.ListValue;
@@ -40,12 +39,13 @@ import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.RandomProvider;
 import org.spongepowered.api.util.RelativePositions;
 import org.spongepowered.api.util.Transform;
+import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.ServerLocation;
-import org.spongepowered.api.world.TeleportHelper;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.schematic.Schematic;
 import org.spongepowered.api.world.server.ServerWorld;
+import org.spongepowered.math.imaginary.Quaterniond;
 import org.spongepowered.math.vector.Vector3d;
 
 import java.util.Collection;
@@ -71,6 +71,7 @@ import java.util.function.Supplier;
  *
  * <p>Blocks and items (when they are in inventories) are not entities.</p>
  */
+@DoNotStore
 public interface Entity extends Identifiable, Locatable, SerializableDataHolder.Mutable, Translatable, RandomProvider {
 
     /**
@@ -98,27 +99,27 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
     EntityArchetype createArchetype();
 
     /**
+     * Gets the position of this entity
+     *
+     * @return The position of this entity
+     */
+    Vector3d getPosition();
+
+    /**
+     * Sets the position of this entity.
+     *
+     * @param position The position to set
+     * @return True if set, false if not
+     */
+    boolean setPosition(Vector3d position);
+
+    /**
      * Sets the location of this entity.
      *
      * @param location The location to set
      * @return True if location was set successfully, false otherwise
      */
     boolean setLocation(ServerLocation location);
-
-    /**
-     * Sets the location of this entity using a safe one from
-     * {@link TeleportHelper#getSafeLocation(ServerLocation)}.
-     *
-     * @param location The location to set
-     * @return True if location was set successfully, false if location couldn't
-     *      be set as no safe location was found
-     */
-    default boolean setLocationSafely(ServerLocation location) {
-        return Sponge.getTeleportHelper()
-                .getSafeLocation(location)
-                .map(this::setLocation)
-                .orElse(false);
-    }
 
     /**
      * Gets the rotation.
@@ -141,6 +142,16 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
      * @param rotation The rotation to set the entity to
      */
     void setRotation(Vector3d rotation);
+
+    /**
+     * Gets the unit vector representing the direction of this entity.
+     *
+     * @return The direction
+     */
+    default Vector3d getDirection() {
+        final Vector3d rotation = this.getRotation();
+        return Quaterniond.fromAxesAnglesDeg(rotation.getX(), -rotation.getY(), rotation.getZ()).getDirection();
+    }
 
     /**
      * Moves the entity to the specified location and sets the rotation.
@@ -172,54 +183,6 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
     boolean setLocationAndRotation(ServerLocation location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
 
     /**
-     * Sets the location using a safe one from
-     * {@link TeleportHelper#getSafeLocation(ServerLocation)} and the rotation of this
-     * entity.
-     *
-     * <p>The format of the rotation is represented by:</p>
-     *
-     * <p>{@code x -> pitch}, {@code y -> yaw}, {@code z -> roll}</p>
-     *
-     * @param location The location to set
-     * @param rotation The rotation to set
-     * @return True if location was set successfully, false if either location
-     *      couldn't be set as no safe location was found
-     */
-    default boolean setLocationAndRotationSafely(ServerLocation location, Vector3d rotation) {
-        checkNotNull(location);
-        checkNotNull(rotation);
-        return Sponge.getTeleportHelper()
-                .getSafeLocation(location)
-                .map(safe -> this.setLocationAndRotation(safe, rotation))
-                .orElse(false);
-    }
-
-    /**
-     * Sets the location using a safe one from
-     * {@link TeleportHelper#getSafeLocation(ServerLocation)} and the rotation of this
-     * entity. {@link RelativePositions} listed inside the EnumSet are
-     * considered relative.
-     *
-     * <p>The format of the rotation is represented by:</p>
-     *
-     * <p>{@code x -> pitch}, {@code y -> yaw}, {@code z -> roll}</p>
-     *
-     * @param location The location to set
-     * @param rotation The rotation to set
-     * @param relativePositions The coordinates to set relatively
-     * @return True if location was set successfully, false if either location
-     *      couldn't be set as no safe location was found
-     */
-    default boolean setLocationAndRotationSafely(ServerLocation location, Vector3d rotation, EnumSet<RelativePositions> relativePositions) {
-        checkNotNull(location);
-        checkNotNull(rotation);
-        return Sponge.getTeleportHelper()
-                .getSafeLocation(location)
-                .map(safe -> this.setLocationAndRotation(safe, rotation, relativePositions))
-                .orElse(false);
-    }
-
-    /**
      * Gets the scale.
      *
      * @return The entity scale
@@ -247,22 +210,6 @@ public interface Entity extends Identifiable, Locatable, SerializableDataHolder.
      * @return True if the transform was set successfully, false if the transform couldn't be set
      */
     boolean setTransform(Transform transform);
-
-    /**
-     * Sets the {@link Transform}using a safe location from
-     * {@link TeleportHelper#getSafeLocation(ServerLocation)}.
-     *
-     * @param transform The transform to set
-     * @return True if the transform was set successfully, or false if either
-     *     the transform couldn't be set as no safe location was found
-     */
-    default boolean setTransformSafely(Transform transform) {
-        checkNotNull(transform);
-        if (!(this.getWorld() instanceof ServerWorld)) {
-            return false;
-        }
-        return this.setLocationAndRotationSafely(ServerLocation.of((ServerWorld) this.getWorld(), transform.getPosition()), transform.getRotation());
-    }
 
     /**
      * Sets the {@link ServerLocation} of this entity to the {@link ServerWorld}'s spawn

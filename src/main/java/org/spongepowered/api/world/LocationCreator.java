@@ -24,11 +24,10 @@
  */
 package org.spongepowered.api.world;
 
-import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
-public interface LocationCreator extends ReadableBlockVolume {
+public interface LocationCreator {
 
     /**
      * Gets a location in this extent at the given position. Essentially, this
@@ -75,7 +74,6 @@ public interface LocationCreator extends ReadableBlockVolume {
     default ServerLocation getLocation(double x, double y, double z) {
         return this.getLocation(new Vector3i(x, y, z));
     }
-
 
     /**
      * Gets a {@link LocatableBlock} for the desired {@link Vector3i} position.

@@ -27,8 +27,8 @@ package org.spongepowered.api.event;
 import com.google.common.reflect.TypeToken;
 
 /**
- * All {@link Event}s that want to one generic
- * type should implement this interface.
+ * All {@link Event}s that require a generic type should implement this
+ * interface.
  *
  * @param <T> The generic type
  */

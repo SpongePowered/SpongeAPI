@@ -29,6 +29,8 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.ResettableBuilder;
 
+import java.util.Optional;
+
 /**
  * Represents the result of a command in Sponge.
  */
@@ -68,7 +70,7 @@ public interface CommandResult {
      * @param errorMessage The error message to send
      * @return The {@link CommandResult}
      */
-    static CommandResult error(Text errorMessage) {
+    static CommandResult error(final Text errorMessage) {
         return builder().error(errorMessage).build();
     }
 
@@ -85,6 +87,13 @@ public interface CommandResult {
      * @return The result.
      */
     int getResult();
+
+    /**
+     * If present, returns the error message associated with this result.
+     *
+     * @return The error {@link Text}
+     */
+    Optional<Text> getErrorMessage();
 
     /**
      * Builds {@link CommandResult}s.

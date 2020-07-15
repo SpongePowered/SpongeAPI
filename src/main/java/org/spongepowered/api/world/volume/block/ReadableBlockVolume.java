@@ -37,13 +37,13 @@ public interface ReadableBlockVolume extends Volume, LocationBaseDataHolder {
     BlockState getBlock(int x, int y, int z);
 
     default BlockState getBlock(Vector3i vector3i) {
-        return getBlock(vector3i.getX(), vector3i.getY(), vector3i.getZ());
+        return this.getBlock(vector3i.getX(), vector3i.getY(), vector3i.getZ());
     }
 
     FluidState getFluid(int x, int y, int z);
 
     default FluidState getFluid(Vector3i vector3i) {
-        return getFluid(vector3i.getX(), vector3i.getY(), vector3i.getZ());
+        return this.getFluid(vector3i.getX(), vector3i.getY(), vector3i.getZ());
     }
 
     /**
@@ -84,6 +84,6 @@ public interface ReadableBlockVolume extends Volume, LocationBaseDataHolder {
      * @return The highest opaque position
      */
     default Vector3i getHighestPositionAt(Vector3i position) {
-        return new Vector3i(position.getX(), getHighestYAt(position.getX(), position.getZ()), position.getZ());
+        return new Vector3i(position.getX(), this.getHighestYAt(position.getX(), position.getZ()), position.getZ());
     }
 }

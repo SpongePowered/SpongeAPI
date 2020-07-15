@@ -24,18 +24,21 @@
  */
 package org.spongepowered.api;
 
+import org.spongepowered.api.command.manager.CommandManager;
 import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.EventManager;
-import org.spongepowered.api.network.ChannelRegistrar;
+import org.spongepowered.api.network.channel.ChannelRegistry;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.registry.GameRegistry;
 import org.spongepowered.api.scheduler.Scheduler;
-import org.spongepowered.api.service.ServiceManager;
+import org.spongepowered.api.sql.SqlManager;
+import org.spongepowered.api.util.metric.MetricsConfigManager;
 import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.service.ServiceProvider;
 import org.spongepowered.api.world.TeleportHelper;
 
 import java.nio.file.Path;
@@ -46,13 +49,6 @@ import java.util.Locale;
  * constructed objects.
  */
 public interface Game {
-
-    /**
-     * Gets the current {@link GameState} that this game is currently in.
-     *
-     * @return The game state
-     */
-    GameState getState();
 
     /**
      * Gets the async {@link Scheduler}.
@@ -126,18 +122,14 @@ public interface Game {
      *
      * @return The current implementation
      */
-    default Platform getPlatform() {
-        return Sponge.getPlatform();
-    }
+    Platform getPlatform();
 
     /**
      * Gets the {@link GameRegistry}.
      *
      * @return The game registry
      */
-    default GameRegistry getRegistry() {
-        return Sponge.getRegistry();
-    }
+    GameRegistry getRegistry();
 
     /**
      * Gets the {@link DataManager} instance to register
@@ -145,27 +137,21 @@ public interface Game {
      *
      * @return The serialization service
      */
-    default DataManager getDataManager() {
-        return Sponge.getDataManager();
-    }
+    DataManager getDataManager();
 
     /**
      * Gets the {@link PluginManager}.
      *
      * @return The plugin manager
      */
-    default PluginManager getPluginManager() {
-        return Sponge.getPluginManager();
-    }
+    PluginManager getPluginManager();
 
     /**
      * Gets the {@link EventManager}.
      *
      * @return The event manager
      */
-    default EventManager getEventManager() {
-        return Sponge.getEventManager();
-    }
+    EventManager getEventManager();
 
     /**
      * Gets the {@link ConfigManager} used to load and manage configuration files
@@ -173,47 +159,47 @@ public interface Game {
      *
      * @return The configuration manager
      */
-    default ConfigManager getConfigManager() {
-        return Sponge.getConfigManager();
-    }
+    ConfigManager getConfigManager();
 
     /**
-     * Gets the game's instance of the service manager, which is the gateway
-     * to various services provided by Sponge (command registration and so on).
+     * Gets the {@link ChannelRegistry} for creating network channels.
      *
-     * <p>Services registered by other plugins may be available too.</p>
+     * @return The channel registry
+     */
+    ChannelRegistry getChannelRegistry();
+
+    /**
+     * Gets the {@link MetricsConfigManager} instance, allowing data/metric gathering
+     * systems to determine whether they have permission to gather server
+     * metrics.
+     *
+     * @return The {@link MetricsConfigManager} instance
+     */
+    MetricsConfigManager getMetricsConfigManager();
+
+    /**
+     * Gets the {@link CommandManager} for registering and executing commands.
+     *
+     * @return The {@link CommandManager} instance.
+     */
+    CommandManager getCommandManager();
+
+    /**
+     * Gets the {@link SqlManager} for grabbing sql data sources.
+     *
+     * @return The {@link SqlManager} instance.
+     */
+    SqlManager getSqlManager();
+
+    /**
+     * Gets the {@link ServiceProvider}, used to provide services that plugins
+     * may provide.
+     *
+     * <p>The provider will not be available during plugin construction and will
+     * throw an {@link IllegalStateException} if there is an attempt to access
+     * this before the provider is ready.</p>
      *
      * @return The service manager
      */
-    default ServiceManager getServiceManager() {
-        return Sponge.getServiceManager();
-    }
-
-    /**
-     * Gets the {@link ChannelRegistrar} for creating network channels.
-     *
-     * @return The channel registrar
-     */
-    default ChannelRegistrar getChannelRegistrar() {
-        return Sponge.getChannelRegistrar();
-    }
-
-
-    /**
-     * Gets the {@link TeleportHelper}, used to find safe {@link ServerLocation}s.
-     * @return The teleport helper
-     */
-    default TeleportHelper getTeleportHelper() {
-        return Sponge.getTeleportHelper();
-    }
-
-    /**
-     * Gets the {@link CauseStackManager} for handling the current event cause
-     * stack and context information.
-     *
-     * @return The cause stack manager
-     */
-    default CauseStackManager getCauseStackManager() {
-        return Sponge.getCauseStackManager();
-    }
+    ServiceProvider getServiceProvider();
 }

@@ -35,13 +35,6 @@ import org.spongepowered.api.world.ServerLocation;
 public interface BlockCarrier extends Carrier, Locatable {
 
     /**
-     * Returns the Location of the Block.
-     *
-     * @return The Location of the Block
-     */
-    ServerLocation getLocation();
-
-    /**
      * Returns the Inventory owned by this Carrier and accessible from
      * the given direction.
      *

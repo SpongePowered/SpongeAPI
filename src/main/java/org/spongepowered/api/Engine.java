@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api;
 
+import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.resource.ResourceManager;
 import org.spongepowered.api.resource.pack.PackList;
 import org.spongepowered.api.scheduler.Scheduler;
@@ -32,6 +33,20 @@ import org.spongepowered.api.scheduler.Scheduler;
  * Shared functionality between {@link Client} and {@link Server} engines.
  */
 public interface Engine {
+
+    /**
+     * Gets the {@link Game} that launched this engine;
+     * @return The game
+     */
+    Game getGame();
+
+    /**
+     * Gets the {@link CauseStackManager} for handling the current event cause
+     * stack and context information.
+     *
+     * @return The cause stack manager
+     */
+    CauseStackManager getCauseStackManager();
 
     /**
      * Gets the {@link PackList} instance of this engine.

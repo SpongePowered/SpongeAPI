@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.item.recipe.single;
 
-import org.spongepowered.api.CatalogKey;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -99,14 +99,14 @@ public interface StoneCutterRecipe extends Recipe {
         interface EndStep extends StoneCutterRecipe.Builder, CatalogBuilder<StoneCutterRecipe, Builder> {
 
             @Override
-            EndStep key(CatalogKey key);
+            EndStep key(ResourceKey key);
 
             /**
              * Builds the {@link StoneCutterRecipe}.
              *
              * @return The built stone cutter recipe
              * @throws IllegalStateException If not all the recipe builder steps are completed
-             *                               or the {@link #key(CatalogKey)} isn't set.
+             *                               or the {@link #key(ResourceKey)} isn't set.
              */
             @Override
             StoneCutterRecipe build() throws IllegalStateException;

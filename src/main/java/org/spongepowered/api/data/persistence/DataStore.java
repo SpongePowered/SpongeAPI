@@ -25,12 +25,26 @@
 package org.spongepowered.api.data.persistence;
 
 import com.google.common.reflect.TypeToken;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.util.ResettableBuilder;
+
+import java.util.Collection;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 public interface DataStore {
 
+    /**
+     * Gets the supported {@link DataHolder} type.
+     *
+     * @return The supported dataHolder type.
+     */
     TypeToken<? extends DataHolder> getSupportedToken();
 
     /**
@@ -95,6 +109,85 @@ public interface DataStore {
         final DataManipulator.Mutable dataManipulator = DataManipulator.mutableOf();
         deserialize(dataManipulator, view);
         return dataManipulator;
+    }
+
+    /**
+     * Provides a {@link DataStore} for a single {@link Key}.
+     * <p>
+     *     Note that default deserializers do not support {@link Collection}, {@link Map} or Array types!
+     *     Use {@link Builder#key(Key, BiConsumer, Function)} for these.
+     * </p>
+     *
+     * @param key The data key
+     * @param dataQuery The dataQuery to serialize this key under
+     * @param typeToken The dataHolder type
+
+     * @return The new data store
+     */
+    static <T> DataStore of(Key<Value<T>> key, DataQuery dataQuery, TypeToken<? extends DataHolder> typeToken) {
+        return builder().key(key, dataQuery).build(typeToken);
+    }
+
+    /**
+     * Returns the {@link DataStore} builder.
+     *
+     * @return The dataStore builder.
+     */
+    static DataStore.Builder builder() {
+        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+    }
+
+    interface Builder extends ResettableBuilder<DataStore, Builder> {
+
+        /**
+         * Adds the default implemented serializers for the given key.
+         * <p>
+         *     Note that default deserializers do not support {@link Collection}, {@link Map} or Array types!
+         *     Use {@link #key(Key, BiConsumer, Function)} for these.
+         * </p>
+         *
+         * @param key The data key
+         * @param dataQueries The dataQuery to serialize this key under
+         *
+         * @return this builder for chaining
+         */
+        default <T> Builder key(Key<? extends Value<T>> key, String... dataQueries) {
+            return this.key(key, DataQuery.of(dataQueries));
+        }
+
+        /**
+         * Adds the default implemented serializers for the given key.
+         * <p>
+         *     Note that default deserializers do not support {@link Collection}, {@link Map} or Array types!
+         *     Use {@link #key(Key, BiConsumer, Function)} for these.
+         * </p>
+         *
+         * @param key The data key
+         * @param dataQuery The dataQuery to serialize this key under
+         *
+         * @return this builder for chaining
+         */
+        <T> Builder key(Key<? extends Value<T>> key, DataQuery dataQuery);
+
+        /**
+         * Adds the serializers for the given key.
+         *
+         * @param key The data key
+         * @param serializer the data serializer
+         * @param deserializer the data serserializer
+         *
+         * @return this builder for chaining
+         */
+        <T> Builder key(Key<? extends Value<T>> key, BiConsumer<DataView, T> serializer, Function<DataView, Optional<T>> deserializer);
+
+        /**
+         * Builds a dataStore for given dataHolder type.
+         *
+         * @param typeToken The dataHolder type
+         *
+         * @return The new data store
+         */
+        DataStore build(TypeToken<? extends DataHolder> typeToken);
     }
 
 }

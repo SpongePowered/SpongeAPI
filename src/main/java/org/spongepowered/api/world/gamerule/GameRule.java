@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.gamerule;
 
 import com.google.common.reflect.TypeToken;
-import org.spongepowered.api.CatalogKey;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.NamedCatalogType;
 import org.spongepowered.api.text.translation.Translation;
@@ -62,11 +62,11 @@ public interface GameRule<V> extends NamedCatalogType {
 
         /**
          * Sets the name of the {@link CatalogType}. Defaults to the
-         * {@link CatalogKey#getValue() catalog key value}.
+         * {@link ResourceKey#getValue() catalog key value}.
          *
          * <p>This name will be used when setting game rules through
          * a command. If duplicate names are found between namespaces,
-         * the plain {@link #key(CatalogKey)} will need to be used
+         * the plain {@link #key(ResourceKey)} will need to be used
          * instead.</p>
          *
          * @param name The name
@@ -77,11 +77,11 @@ public interface GameRule<V> extends NamedCatalogType {
 
         /**
          * Sets the name of the {@link CatalogType} as a {@link Translation}. Defaults
-         * to the {@link CatalogKey#getValue() catalog key value}.
+         * to the {@link ResourceKey#getValue() catalog key value}.
          *
          * <p>This name will be used when setting game rules through
          * a command. If duplicate names are found between namespaces,
-         * the plain {@link #key(CatalogKey)} will need to be used
+         * the plain {@link #key(ResourceKey)} will need to be used
          * instead.</p>
          *
          * @param translation The name translation
@@ -124,7 +124,7 @@ public interface GameRule<V> extends NamedCatalogType {
          * Builds the {@link GameRule}.
          *
          * @return The built game rule
-         * @throws IllegalStateException If not all required options were specified; {@link #key(CatalogKey)},
+         * @throws IllegalStateException If not all required options were specified; {@link #key(ResourceKey)},
          *                               {@link #valueType(TypeToken)}, {@link #defaultValue(Object)}.
          */
         @Override

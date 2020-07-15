@@ -25,7 +25,6 @@
 package org.spongepowered.api.event.item.inventory;
 
 import org.spongepowered.api.event.action.InteractEvent;
-import org.spongepowered.api.event.entity.living.HandInteractEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
@@ -44,29 +43,7 @@ public interface InteractItemEvent extends InteractEvent {
      */
     ItemStackSnapshot getItemStack();
 
-    interface Primary extends InteractItemEvent, HandInteractEvent { 
+    interface Primary extends InteractItemEvent {}
 
-        /**
-         * A {@link Primary} event where the interaction is from the client's main hand.
-         */
-        interface MainHand extends Primary {}
-
-        /**
-         * A {@link Primary} event where the interaction is from the client's off hand.
-         */
-        interface OffHand extends Primary {}
-    }
-
-    interface Secondary extends InteractItemEvent, HandInteractEvent {
-
-        /**
-         * A {@link Secondary} event where the interaction is from the client's main hand.
-         */
-        interface MainHand extends Secondary {}
-
-        /**
-         * A {@link Secondary} event where the interaction is from the client's off hand.
-         */
-        interface OffHand extends Secondary {}
-    }
+    interface Secondary extends InteractItemEvent {}
 }

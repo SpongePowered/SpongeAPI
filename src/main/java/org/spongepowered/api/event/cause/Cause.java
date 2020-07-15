@@ -32,6 +32,7 @@ import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.util.CopyableBuilder;
+import org.spongepowered.api.util.annotation.DoNotStore;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -56,6 +57,7 @@ import java.util.StringJoiner;
  * would then launch TNT and cause the destruction of some blocks, but tracing
  * this event would be too complicated and thus may not be attempted.</p>
  */
+@DoNotStore
 @SuppressWarnings("unchecked")
 public final class Cause implements Iterable<Object> {
 

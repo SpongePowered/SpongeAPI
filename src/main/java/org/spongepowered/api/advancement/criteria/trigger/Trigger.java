@@ -32,7 +32,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.DataBuilder;
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.advancement.CriterionEvent;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.scoreboard.criteria.Criterion;
@@ -68,26 +68,26 @@ public interface Trigger<C extends FilteredTriggerConfiguration> extends Catalog
     Class<C> getConfigurationType();
 
     /**
-     * Triggers the {@link Trigger} for all
-     * the online {@link Player}s.
+     * Triggers the {@link Trigger} for all the online
+     * {@link ServerPlayer players}.
      */
     void trigger();
 
     /**
-     * Triggers the {@link Trigger} for the
-     * specified {@link Player}s.
+     * Triggers the {@link Trigger} for the specified
+     * {@link ServerPlayer players}.
      *
      * @param players The players to trigger for
      */
-    void trigger(Iterable<Player> players);
+    void trigger(Iterable<ServerPlayer> players);
 
     /**
      * Triggers the {@link Trigger} for the
-     * specified {@link Player}.
+     * specified {@link ServerPlayer player}.
      *
      * @param player The player to trigger for
      */
-    void trigger(Player player);
+    void trigger(ServerPlayer player);
 
     /**
      * A builder to create {@link Trigger}s.

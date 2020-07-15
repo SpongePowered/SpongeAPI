@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.advancement;
 
-import org.spongepowered.api.CatalogKey;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.NamedCatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
@@ -92,13 +92,13 @@ public interface AdvancementTree extends NamedCatalogType {
         // Builder background(ResourcePath background);
 
         @Override
-        Builder key(CatalogKey key);
+        Builder key(ResourceKey key);
 
         /**
          * Sets the name of the {@link AdvancementTree}. Defaults to
          * the plain {@link DisplayInfo#getTitle()} of the root
          * {@link Advancement} if {@link DisplayInfo} is present.
-         * Otherwise will it default to the identifier ({@link #key(CatalogKey)}).
+         * Otherwise will it default to the identifier ({@link #key(ResourceKey)}).
          *
          * @param name The name
          * @return This builder, for chaining

@@ -27,7 +27,7 @@ package org.spongepowered.api.item.inventory.type;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.item.inventory.ContainerType;
 import org.spongepowered.api.item.inventory.Inventory;
@@ -40,6 +40,7 @@ import org.spongepowered.math.vector.Vector2i;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import java.util.function.Supplier;
 
 /**
  * Interface for inventories which may be interacted with by Players.
@@ -47,11 +48,11 @@ import java.util.UUID;
 public interface ViewableInventory extends Inventory {
 
     /**
-     * Gets the current viewers looking at this Inventory.
+     * Gets the current {@link ServerPlayer viewers} looking at this Inventory.
      *
      * @return The current viewers of this inventory
      */
-    Set<Player> getViewers();
+    Set<ServerPlayer> getViewers();
 
     /**
      * Checks for whether this Inventory currently has viewers.
@@ -61,16 +62,16 @@ public interface ViewableInventory extends Inventory {
     boolean hasViewers();
 
     /**
-     * Gets whether the specified player can interact with this object.
+     * Gets whether the specified {@link ServerPlayer player} can interact with this object.
      *
      * @param player the Player wishing to interact with this Inventory
      * @return true if the Entity is able to interact with this Inventory
      */
-    boolean canInteractWith(Player player);
+    boolean canInteractWith(ServerPlayer player);
 
     /**
      * Create a new {@link InventoryMenu} based on this ViewableInventory which allows for lightweight callbacks on inventory clicks and changes.
-     * To receive callbacks the inventory must be opened from {@link InventoryMenu#open(Player)}
+     * To receive callbacks the inventory must be opened from {@link InventoryMenu#open(ServerPlayer)}
      *
      * @return The new InventoryMenu
      */
@@ -98,6 +99,17 @@ public interface ViewableInventory extends Inventory {
          * @return The building step.
          */
         BuildingStep type(ContainerType type);
+
+        /**
+         * Specifies the type of inventory you want to build.
+         * <p>You must define all slots of the given type.</p>
+         *
+         * @param supplier The ContainerType supplier
+         * @return The building step.
+         */
+        default BuildingStep type(Supplier<ContainerType> supplier) {
+            return this.type(supplier.get());
+        }
 
         /**
          * The building step. Define all slots needed for the chosen {@link ContainerType}.

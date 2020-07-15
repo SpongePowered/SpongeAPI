@@ -24,16 +24,14 @@
  */
 package org.spongepowered.api.world.volume.entity;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-
+import com.google.common.base.Preconditions;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityPredicates;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.util.AABB;
 import org.spongepowered.api.world.volume.Volume;
 import org.spongepowered.math.vector.Vector3d;
-import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Collection;
 import java.util.List;
@@ -41,9 +39,15 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Predicate;
 
-import javax.annotation.Nullable;
-
 public interface ReadableEntityVolume extends Volume {
+
+    /**
+     * Gets a {@link List} of available {@link Player players} within this volume.
+     * The provided list may be a copy or an unmodifiable collection.
+     *
+     * @return An unmodifiable or copied collection of available players
+     */
+    Collection<? extends Player> getPlayers();
 
     /**
      * Gets the entity whose {@link UUID} matches the provided id, possibly
@@ -66,17 +70,12 @@ public interface ReadableEntityVolume extends Volume {
      * @return All the intersecting entities
      */
     default Collection<? extends Entity> getEntities(AABB box) {
-        return getEntities(box, entity -> true);
+        Preconditions.checkNotNull(box);
+
+        return this.getEntities(box, entity -> true);
     }
 
-
-    /**
-     * Gets a {@link List} of available {@link Player players} within this volume.
-     * The provided list may be a copy or an unmodifiable collection.
-     *
-     * @return An unmodifiable or copied collection of available players
-     */
-    Collection<? extends Player> getPlayers();
+    <T extends Entity> Collection<? extends T> getEntities(Class<? extends T> entityClass, AABB box, @Nullable Predicate<? super T> predicate);
 
     /**
      * Gets all the entities that intersect the bounding box, in no particular
@@ -89,17 +88,7 @@ public interface ReadableEntityVolume extends Volume {
     Collection<? extends Entity> getEntities(AABB box, Predicate<? super Entity> filter);
 
     default <T extends Entity> Collection<? extends T> getEntities(Class<? extends T> entityClass, AABB box) {
-        return getEntities(entityClass, box, EntityPredicates.NO_SPECTATOR);
-    }
-
-    <T extends Entity> Collection<? extends T> getEntities(Class<? extends T> entityClass, AABB box, @Nullable Predicate<? super T> predicate);
-
-    default <T extends Entity> Collection<? extends T> getLoadedEntities(Class<? extends T> entityClass, AABB box) {
-        return getLoadedEntities(entityClass, box,  EntityPredicates.NO_SPECTATOR);
-    }
-
-    default <T extends Entity> Collection<? extends T> getLoadedEntities(Class<? extends T> entityClass, AABB box, @Nullable Predicate<? super T> predicate) {
-        return getEntities(entityClass, box, predicate);
+        return this.getEntities(entityClass, box, EntityPredicates.NO_SPECTATOR);
     }
 
     default Optional<? extends Player> getNearestPlayer(double x, double y, double z, double distance, @Nullable Predicate<? super Entity> predicate) {
@@ -130,8 +119,9 @@ public interface ReadableEntityVolume extends Volume {
      * @return A collection of nearby entities
      */
     default Collection<? extends Entity> getNearbyEntities(Vector3d location, double distance) {
-        checkNotNull(location, "location");
-        checkArgument(distance > 0, "distance must be > 0");
+        Preconditions.checkNotNull(location);
+        Preconditions.checkArgument(distance > 0, "distance must be > 0");
+
         return this.getEntities(new AABB(location.getX() - distance, location.getY() - distance, location.getZ() - distance,
                 location.getX() + distance, location.getY() + distance, location.getZ() + distance),
             entity -> entity.getLocation().getPosition().distanceSquared(location) <= distance * distance);

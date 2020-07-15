@@ -25,8 +25,7 @@
 package org.spongepowered.api.world.server;
 
 import org.spongepowered.api.Game;
-import org.spongepowered.api.GameState;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.event.lifecycle.LifecycleEvent;
 import org.spongepowered.api.world.WorldArchetype;
 import org.spongepowered.api.world.storage.WorldProperties;
 
@@ -106,7 +105,7 @@ public interface WorldManager {
      * <p>
      *     Creating a {@link WorldProperties} or loading a {@link ServerWorld} will do this on the plugin developer's behalf but
      *     if the desire is present for the server to handle the loading in a more natural way during a server lifecycle, assuming the implementation
-     *     behaves in that manner, then this is recommended to be used in the appropriate {@link GameState state}.
+     *     behaves in that manner, then this is recommended to be used in the appropriate {@link LifecycleEvent event}.
      * </p>
      *
      * <p>
@@ -175,7 +174,7 @@ public interface WorldManager {
 
     /**
      * Gets the {@link WorldProperties} of a world. If a world with the given
-     * name is loaded then this is equivalent to calling {@link World#getProperties()}.
+     * name is loaded then this is equivalent to calling {@link ServerWorld#getProperties()}.
      *
      * However, if no loaded world is found then an attempt will be made to match to a known unloaded world.
      *

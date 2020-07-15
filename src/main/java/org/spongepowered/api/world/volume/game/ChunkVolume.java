@@ -69,7 +69,7 @@ public interface ChunkVolume extends ReadableBlockVolume {
      * @return The chunk, if available
      */
     default ProtoChunk<?> getChunk(Vector3i chunkPosition) {
-        return getChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ());
+        return this.getChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ());
     }
 
     /**
@@ -79,7 +79,7 @@ public interface ChunkVolume extends ReadableBlockVolume {
      * @return The chunk, if available
      */
     default ProtoChunk<?> getChunkAtBlock(Vector3i blockPosition) {
-        return getChunkAtBlock(blockPosition.getX(), blockPosition.getY(), blockPosition.getZ());
+        return this.getChunkAtBlock(blockPosition.getX(), blockPosition.getY(), blockPosition.getZ());
     }
 
     /**
@@ -95,13 +95,13 @@ public interface ChunkVolume extends ReadableBlockVolume {
      * @return The chunk, if available
      */
     default ProtoChunk<?> getChunkAtBlock(int bx, int by, int bz) {
-        return getChunk(Sponge.getServer().getChunkLayout().forceToChunk(bx, by, bz));
+        return this.getChunk(Sponge.getServer().getChunkLayout().forceToChunk(bx, by, bz));
     }
 
     boolean isChunkLoaded(int x, int y, int z, boolean allowEmpty);
 
     default boolean isChunkLoaded(Vector3i position, boolean allowEmpty) {
-        return isChunkLoaded(position.getX(), position.getY(), position.getZ(), allowEmpty);
+        return this.isChunkLoaded(position.getX(), position.getY(), position.getZ(), allowEmpty);
     }
 
     boolean hasChunk(int x, int y, int z);

@@ -54,7 +54,7 @@ import java.util.UUID;
 import java.util.function.BiFunction;
 
 /**
- * A position within a particular {@link World}.
+ * A position within a particular {@link ServerWorld}.
  *
  * <p>Locations are immutable. Methods that change the properties of the
  * location create a new instance.</p>

@@ -44,9 +44,9 @@ public interface CollideEvent extends Event, Cancellable {
     interface Impact extends CollideEvent {
 
         /**
-         * Gets the {@link ServerLocation} where the impact took place.
+         * Gets the {@link ServerLocation location} where the impact took place.
          *
-         * @return The impact {@link ServerLocation}
+         * @return The impact location
          */
         ServerLocation getImpactPoint();
     }

@@ -28,17 +28,28 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.SystemSubject;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.EventContext;
 import org.spongepowered.api.event.cause.EventContextKeys;
+import org.spongepowered.api.service.context.Context;
 import org.spongepowered.api.service.permission.Subject;
+import org.spongepowered.api.service.permission.SubjectCollection;
+import org.spongepowered.api.service.permission.SubjectData;
+import org.spongepowered.api.service.permission.SubjectReference;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.text.channel.MessageReceiver;
+import org.spongepowered.api.util.Tristate;
+import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.plugin.PluginContainer;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * The {@link CommandCause} represents the {@link Cause} of a command, and
@@ -61,6 +72,9 @@ import java.util.Optional;
  * plate, the direct cause will be the command block. However, the player
  * in question will also be present in the cause stack, allowing command
  * providers to obtain richer information about the invocation of their command.
+ * This is inline with how {@link Cause}s work in Sponge and its events, for
+ * more information about how Causes work, see the {@link Cause} and
+ * {@link CauseStackManager} javadocs and associated documentation.
  * </p>
  *
  * <p>The {@link EventContext} that is attached to {@link Cause#getContext()}
@@ -68,7 +82,7 @@ import java.util.Optional;
  * be handled, in addition to using the provided cause stack:</p>
  *
  * <ul>
- *     <li>{@link EventContextKeys#MESSAGE_TARGET}, which indicates the
+ *     <li>{@link EventContextKeys#MESSAGE_CHANNEL}, which indicates the
  *     where messages that should be sent back to the invoker should be sent
  *     to (typically messages indicating the status of the command execution);
  *     </li>
@@ -82,6 +96,10 @@ import java.util.Optional;
  *     the command should take into account when executing.</li>
  * </ul>
  *
+ * <p>This object acts as a {@link Subject}, and simply redirects all calls
+ * inherited by this interface to the subject returned by {@link #getSubject()}.
+ * </p>
+ *
  * <p>There are utility methods on this interface that provide hints as to what
  * the implementation will select for different tasks, for example, the
  * implementation will use the result of {@link #getSubject()} for permission
@@ -93,16 +111,16 @@ import java.util.Optional;
  * be taken a guarantee of what may be present, however, they indicate what
  * typically would be of interest to command API consumers.</p>
  */
-public interface CommandCause {
+@DoNotStore
+public interface CommandCause extends Subject {
 
     /**
-     * Creates a {@link CommandCause} from the provided {@link Cause}
+     * Creates a {@link CommandCause} from the current {@link Cause}.
      *
-     * @param cause The {@link Cause}
      * @return The {@link CommandCause}
      */
-    static CommandCause of(Cause cause) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(cause);
+    static CommandCause create() {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create();
     }
 
     /**
@@ -135,20 +153,20 @@ public interface CommandCause {
      * @return The {@link Subject} responsible, if any.
      */
     default Subject getSubject() {
-        return getCause().getContext()
+        return this.getCause().getContext()
             .get(EventContextKeys.SUBJECT)
-            .orElseGet(() -> getCause().first(Subject.class).orElseGet(Sponge::getSystemSubject));
+            .orElseGet(() -> this.getCause().first(Subject.class).orElseGet(Sponge::getSystemSubject));
     }
 
     /**
-     * Gets the {@link MessageReceiver} that should be the target for any
+     * Gets the {@link MessageChannel} that should be the target for any
      * messages sent by the command (by default).
      *
-     * <p>The {@link MessageReceiver} will be selected in the following way
+     * <p>The {@link MessageChannel} will be selected in the following way
      * from the {@link Cause} in {@link #getCause()}:</p>
      *
      * <ul>
-     *    <li>The {@link EventContextKeys#MESSAGE_TARGET}, if any</li>
+     *    <li>The {@link EventContextKeys#MESSAGE_CHANNEL}, if any</li>
      *    <li>A message channel containing the <strong>first</strong>
      *    {@link MessageReceiver} in the {@link Cause}</li>
      *    <li>The SystemSubject {@link MessageReceiver}</li>
@@ -161,10 +179,10 @@ public interface CommandCause {
      *
      * @return The {@link MessageReceiver} to send any messages to.
      */
-    default MessageReceiver getMessageReceiver() {
-        return getCause().getContext()
-            .get(EventContextKeys.MESSAGE_TARGET)
-            .orElseGet(() -> getCause().first(MessageReceiver.class).orElseGet(Sponge::getSystemSubject));
+    default MessageChannel getMessageChannel() {
+        return this.getCause().getContext()
+            .get(EventContextKeys.MESSAGE_CHANNEL)
+            .orElseGet(() -> MessageChannel.to(this.getCause().first(MessageReceiver.class).orElseGet(Sponge::getSystemSubject)));
     }
 
     /**
@@ -175,29 +193,24 @@ public interface CommandCause {
      * <ul>
      *     <li>The {@link EventContextKeys#LOCATION}, if any</li>
      *     <li>{@link #getTargetBlock()}</li>
-     *     <li>The {@link EventContextKeys#MESSAGE_TARGET}, if it is
-     *     {@link Locatable}</li>
      *     <li>the location of the first locatable in the {@link Cause}</li>
      * </ul>
      *
      * @return The {@link ServerLocation}, if it exists
      */
-    @SuppressWarnings("unchecked")
     default Optional<ServerLocation> getLocation() {
-        Cause cause = getCause();
-        EventContext eventContext = cause.getContext();
+        final Cause cause = this.getCause();
+        final EventContext eventContext = cause.getContext();
         if (eventContext.containsKey(EventContextKeys.LOCATION)) {
             return eventContext.get(EventContextKeys.LOCATION);
         }
 
-        Optional<ServerLocation> optionalLocation = getTargetBlock().flatMap(BlockSnapshot::getLocation);
+        final Optional<ServerLocation> optionalLocation = this.getTargetBlock().flatMap(BlockSnapshot::getLocation);
         if (optionalLocation.isPresent()) {
             return optionalLocation;
         }
 
-        return eventContext.get(EventContextKeys.MESSAGE_TARGET)
-            .filter(x -> x instanceof Locatable)
-            .flatMap(x -> (Optional<ServerLocation>) ((Locatable) x).getServerLocation());
+        return cause.first(Locatable.class).map(Locatable::getServerLocation);
     }
 
     /**
@@ -207,25 +220,19 @@ public interface CommandCause {
      *
      * <ul>
      *     <li>The {@link EventContextKeys#ROTATION}, if any</li>
-     *     <li>The {@link EventContextKeys#MESSAGE_TARGET}, if it has a
-     *     rotation</li>
      *     <li>the rotation of the first {@link Entity} in the {@link Cause}</li>
      * </ul>
      *
      * @return The {@link Vector3d} rotation, if it exists
      */
     default Optional<Vector3d> getRotation() {
-        Cause cause = getCause();
-        EventContext eventContext = cause.getContext();
+        final Cause cause = this.getCause();
+        final EventContext eventContext = cause.getContext();
         if (eventContext.containsKey(EventContextKeys.ROTATION)) {
             return eventContext.get(EventContextKeys.ROTATION);
         }
 
-        return Optional.ofNullable(
-            eventContext.get(EventContextKeys.MESSAGE_TARGET)
-                .filter(x -> x instanceof Entity)
-                .map(x -> ((Entity) x).getRotation())
-                .orElseGet(() -> cause.first(Entity.class).map(Entity::getRotation).orElse(null)));
+        return cause.first(Entity.class).map(Entity::getRotation);
     }
 
     /**
@@ -241,8 +248,73 @@ public interface CommandCause {
      * @return The {@link BlockSnapshot} if applicable, or an empty optional.
      */
     default Optional<BlockSnapshot> getTargetBlock() {
-        return Optional.ofNullable(getCause().getContext().get(EventContextKeys.BLOCK_TARGET)
-            .orElseGet(() -> getCause().first(BlockSnapshot.class).orElse(null)));
+        return Optional.ofNullable(this.getCause().getContext().get(EventContextKeys.BLOCK_TARGET)
+            .orElseGet(() -> this.getCause().first(BlockSnapshot.class).orElse(null)));
+    }
+
+    @Override
+    default SubjectCollection getContainingCollection() {
+        return this.getSubject().getContainingCollection();
+    }
+
+    @Override
+    default SubjectReference asSubjectReference() {
+        return this.getSubject().asSubjectReference();
+    }
+
+    @Override
+    default boolean isSubjectDataPersisted() {
+        return this.getSubject().isSubjectDataPersisted();
+    }
+
+    @Override
+    default SubjectData getSubjectData() {
+        return this.getSubject().getSubjectData();
+    }
+
+    @Override
+    default SubjectData getTransientSubjectData() {
+        return this.getSubject().getTransientSubjectData();
+    }
+
+    @Override
+    default Tristate getPermissionValue(final Set<Context> contexts, final String permission) {
+        return this.getSubject().getPermissionValue(contexts, permission);
+    }
+
+    @Override
+    default boolean isChildOf(final Set<Context> contexts, final SubjectReference parent) {
+        return this.getSubject().isChildOf(contexts, parent);
+    }
+
+    @Override
+    default List<SubjectReference> getParents(final Set<Context> contexts) {
+        return this.getSubject().getParents();
+    }
+
+    @Override
+    default Optional<String> getOption(final Set<Context> contexts, final String key) {
+        return this.getSubject().getOption(contexts, key);
+    }
+
+    @Override
+    default String getIdentifier() {
+        return this.getSubject().getIdentifier();
+    }
+
+    @Override
+    default Set<Context> getActiveContexts() {
+        return this.getSubject().getActiveContexts();
+    }
+
+    /**
+     * Sends a message to the {@link MessageChannel} as given by
+     * {@link #getMessageChannel()}.
+     *
+     * @param message The message to send.
+     */
+    default void sendMessage(final Text message) {
+        this.getMessageChannel().send(message);
     }
 
     /**
@@ -251,12 +323,11 @@ public interface CommandCause {
     interface Factory {
 
         /**
-         * Creates the {@link CommandCause} from the {@link Cause}
+         * Creates the {@link CommandCause} from the current {@link Cause}
          *
-         * @param cause The {@link Cause}
          * @return The {@link CommandCause}
          */
-        CommandCause create(Cause cause);
+        CommandCause create();
     }
 
 }

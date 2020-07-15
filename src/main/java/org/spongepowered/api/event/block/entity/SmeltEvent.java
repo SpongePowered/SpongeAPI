@@ -36,7 +36,7 @@ import java.util.Optional;
 public interface SmeltEvent extends Event {
 
     /**
-     * Gets the {@link FurnaceBlockEntity}.
+     * Gets the {@link FurnaceBlockEntity furnace}.
      *
      * @return The furnace
      */

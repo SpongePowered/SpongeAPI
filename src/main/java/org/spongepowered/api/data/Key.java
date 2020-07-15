@@ -25,7 +25,7 @@
 package org.spongepowered.api.data;
 
 import com.google.common.reflect.TypeToken;
-import org.spongepowered.api.CatalogKey;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.value.BoundedValue;
@@ -208,14 +208,14 @@ public interface Key<V extends Value<?>> extends CatalogType {
         Builder<E, V> includesTester(BiPredicate<? super E, ? super E> predicate);
 
         @Override
-        Builder<E, V> key(CatalogKey key);
+        Builder<E, V> key(ResourceKey key);
 
         /**
          * Builds the {@link Key}.
          *
          * @return The built key
          * @throws IllegalStateException If not all required options were specified;
-         *                               {@link #key(CatalogKey)} and {@link #type(TypeToken)}.
+         *                               {@link #key(ResourceKey)} and {@link #type(TypeToken)}.
          */
         @Override
         Key<V> build();
@@ -275,14 +275,14 @@ public interface Key<V extends Value<?>> extends CatalogType {
             BoundedBuilder<E, V> includesTester(BiPredicate<? super E, ? super E> predicate);
 
             @Override
-            BoundedBuilder<E, V> key(CatalogKey key);
+            BoundedBuilder<E, V> key(ResourceKey key);
 
             /**
              * Builds the {@link Key}.
              *
              * @return The built key
              * @throws IllegalStateException If not all required options were specified;
-             *                               {@link #key(CatalogKey)}, {@link #boundedType(TypeToken)},
+             *                               {@link #key(ResourceKey)}, {@link #boundedType(TypeToken)},
              *                               {@link #minValue(Object)}, {@link #maxValue(Object)} and
              *                               {@link #comparator(Comparator)} if needed.
              */

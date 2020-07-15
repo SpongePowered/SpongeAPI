@@ -25,6 +25,7 @@
 package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 
 import java.util.List;
 import java.util.Optional;
@@ -77,11 +78,11 @@ public interface Container extends Inventory {
     Optional<ItemStack> getCursor();
 
     /**
-     * Gets the viewing player.
+     * Gets the viewing {@link ServerPlayer player}.
      *
      * @return The viewing player
      */
-    Player getViewer();
+    ServerPlayer getViewer();
 
     /**
      * Returns whether this Container is open.

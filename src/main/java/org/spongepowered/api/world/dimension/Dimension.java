@@ -24,12 +24,13 @@
  */
 package org.spongepowered.api.world.dimension;
 
+import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.gen.TerrainGenerator;
 
 /**
  * Represents the dimension of a {@link World}.
  */
+@DoNotStore
 public interface Dimension {
 
     /**
@@ -38,13 +39,6 @@ public interface Dimension {
      * @return The type of dimension
      */
     DimensionType getType();
-
-    /**
-     * Creates a new {@link TerrainGenerator} based on the properties of this dimension.
-     *
-     * @return The generator
-     */
-    TerrainGenerator<?> createGenerator();
 
     /**
      * Returns whether players can respawn within {@link Dimension} after death.

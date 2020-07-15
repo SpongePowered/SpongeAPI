@@ -31,5 +31,7 @@ public interface NamedCatalogBuilder<C extends NamedCatalogType, B extends Reset
 
     B name(String name);
 
-    B name(Translation translation);
+    default B name(Translation translation) {
+        return this.name(translation.get());
+    }
 }

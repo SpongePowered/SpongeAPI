@@ -26,15 +26,14 @@ package org.spongepowered.api.event.entity.living.player;
 
 import org.spongepowered.api.block.entity.Bed;
 import org.spongepowered.api.block.entity.EndPortal;
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.util.Transform;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.dimension.DimensionTypes;
-import org.spongepowered.api.world.server.ServerWorld;
+import org.spongepowered.math.vector.Vector3d;
 
 /**
- * Called when a {@link Player} is undergoing a respawn.
+ * Called when a {@link ServerPlayer player} is undergoing a respawn.
  *
  * <p>Examples of respawn triggers include:</p>
  *
@@ -46,57 +45,61 @@ import org.spongepowered.api.world.server.ServerWorld;
 public interface RespawnPlayerEvent extends Event {
 
     /**
-     * The original {@link Player} that this new player is a clone of.
+     * The original {@link ServerPlayer player} that this new player is a clone of.
      *
-     * <p>When a player dies, or leaves The End, their {@link Player} is re-created.</p>
+     * <p>When a player dies, or leaves The End, their player is re-created.</p>
      *
      * @return The original player
      */
-    Player getOriginalPlayer();
+    ServerPlayer getOriginalPlayer();
 
     /**
-     * Gets the {@link Player}.
+     * Gets the {@link ServerPlayer player}.
      *
      * @return The player
      */
-    Player getPlayer();
+    ServerPlayer getPlayer();
 
     /**
-     * Gets the previous {@link World} the {@link Player} will respawn at.
+     * Gets the previous {@link ServerLocation location} the {@link ServerPlayer player} would have spawned at.
      *
-     * @return The world
+     * @return The location
      */
-    ServerWorld getFromWorld();
+    ServerLocation getFromLocation();
 
     /**
-     * Gets the previous {@link Transform} the {@link Player} will have at respawn.
+     * Gets the {@link ServerLocation location} the {@link ServerPlayer player} will spawn at.
      *
-     * @return The transform
+     * @return The location
      */
-    Transform getFromTransform();
+    ServerLocation getToLocation();
 
     /**
-     * Gets the {@link World} the {@link Player} will respawn at.
+     * Sets the {@link ServerLocation location} the {@link ServerPlayer player} will spawn at.
      *
-     * @return The world
+     * @param location The location
      */
-    ServerWorld getToWorld();
+    void setToLocation(ServerLocation location);
 
     /**
-     * Gets the {@link Transform} the {@link Player} will have at respawn.
+     * Gets the {@link Vector3d rotation} the {@link ServerPlayer player} would have spawned to.
      *
-     * @return The transform
+     * @return The rotation
      */
-    Transform getToTransform();
+    Vector3d getFromRotation();
 
     /**
-     * Sets the {@link ServerWorld} and {@link Transform} the {@link Player} will have
-     * at respawn.
-     *
-     * @param world The world
-     * @param transform The transform
+     * Gets the {@link Vector3d rotation} the {@link ServerPlayer player} will spawn to.
+     * @return The rotation
      */
-    void setSpawnPosition(ServerWorld world, Transform transform);
+    Vector3d getToRotation();
+
+    /**
+     * Sets the {@link Vector3d rotation} the {@link ServerPlayer player} will spawn to.
+     *
+     * @param rotation The rotation
+     */
+    void setToRotation(Vector3d rotation);
 
     /**
      * Gets whether the position of spawn was set by a {@link Bed}.
@@ -106,7 +109,7 @@ public interface RespawnPlayerEvent extends Event {
     boolean isBedSpawn();
 
     /**
-     * Gets if this respawn is due to a {@link Player}'s death.
+     * Gets if this respawn is due to a {@link ServerPlayer player's} death.
      *
      * @return {@code true} if player died, {@code false} otherwise
      */

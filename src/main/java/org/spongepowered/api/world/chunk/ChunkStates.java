@@ -30,15 +30,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.biome.BiomeType;
-import org.spongepowered.api.world.gen.FeatureConfig;
-import org.spongepowered.api.world.gen.TerrainGenerator;
-import org.spongepowered.api.world.gen.feature.Feature;
-import org.spongepowered.api.world.gen.feature.FeaturePlacer;
-import org.spongepowered.api.world.gen.feature.PlacementConfig;
-import org.spongepowered.api.world.gen.surface.Surface;
-import org.spongepowered.math.vector.Vector3i;
 
-import java.util.Random;
 import java.util.function.Supplier;
 
 public final class ChunkStates {
@@ -47,7 +39,7 @@ public final class ChunkStates {
 
     /**
      * A {@link ProtoChunk} that is at this state means that it is being generated
-     * with a "base" layer of terrain, usually by a {@link Surface}(s).
+     * with a "base" layer of terrain.
      * The chunk should not have any {@link Entity} instances or {@link BlockEntity}
      * instances and may have a valid {@link ProtoWorld} used for world generation.
      */
@@ -55,18 +47,13 @@ public final class ChunkStates {
 
     /**
      * A {@link ProtoChunk} that is being "carved out" for general terrain features
-     * that require things like "caves" or "canyons". Refer to {@link FeaturePlacer}
-     * and {@link FeaturePlacer#place(ProtoWorld, TerrainGenerator, Random, Vector3i, PlacementConfig, Feature, FeatureConfig)}
+     * that require things like "caves" or "canyons".
      */
     public static final Supplier<ChunkState> CARVED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkState.class, "CARVED");
 
     /**
-     * A {@link ProtoChunk} state that is being populated by {@link Feature}s,
-     * usually provided by {@link BiomeType}s and other aspects of a
-     * {@link TerrainGenerator}. {@link Feature}s at this point
-     * should have their {@link FeatureConfig} objects already finalized, but
-     * they can be modified on a global state of that Feature, depending on
-     * the origin of said Feature.
+     * A {@link ProtoChunk} state that is being populated by world generation,
+     * usually provided by {@link BiomeType}s.
      */
     public static final Supplier<ChunkState> DECORATED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkState.class, "DECORATED");
 
@@ -79,8 +66,7 @@ public final class ChunkStates {
     public static final Supplier<ChunkState> EMPTY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkState.class, "EMPTY");
 
     /**
-     * A {@link ProtoChunk} state that is being used for entity spawning,
-     * usually by a {@link Feature} that specializes in entity placement.
+     * A {@link ProtoChunk} state that is being used for entity spawning.
      * Generally requires that the neighboring chunks are adequately populated,
      * and requires that this chunk has proper lighting, for mob placement logic.
      */

@@ -42,11 +42,11 @@ public interface CatalogType {
     /**
      * Gets the catalog key for this catalog type. Useful for storing a searchable
      * id reference within the {@link GameRegistry}. Since the {@link GameRegistry}
-     * can effectively search for the {@link CatalogKey#getNamespace()}, a fail
+     * can effectively search for the {@link ResourceKey#getNamespace()}, a fail
      * fast scenario can be achieved if the namespace provider (usually a plugin or
      * mod) is unavailable.
      *
      * @return The catalog key
      */
-    CatalogKey getKey();
+    ResourceKey getKey();
 }

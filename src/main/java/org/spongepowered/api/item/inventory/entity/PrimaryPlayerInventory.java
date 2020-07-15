@@ -41,17 +41,16 @@ public interface PrimaryPlayerInventory extends Inventory {
     Hotbar getHotbar();
 
     /**
-     * Gets the (4x9) grid of the players main inventory.
-     *
-     * @return The grid of the players main inventory
-     */
-    GridInventory asGrid();
-
-    /**
      * Gets the (3x9) grid of the players main inventory.
      *
      * @return The grid of the players main inventory
      */
     GridInventory getStorage();
 
+    /**
+     * Gets the (4x9) grid of the players main inventory.
+     *
+     * @return The grid of the players main inventory
+     */
+    GridInventory asGrid();
 }

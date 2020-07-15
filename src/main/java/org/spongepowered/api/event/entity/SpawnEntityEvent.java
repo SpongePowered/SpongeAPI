@@ -27,7 +27,7 @@ package org.spongepowered.api.event.entity;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.impl.entity.AbstractSpawnEntityEvent;
-import org.spongepowered.api.event.network.ClientConnectionEvent;
+import org.spongepowered.api.event.network.ServerSideConnectionEvent;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
 
@@ -40,7 +40,7 @@ import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
  * org.spongepowered.api.event.cause.entity.spawn.</p>
  *
  * <p>For players, this event is fired before they have fully
- * joined the world. {@link ClientConnectionEvent} is the
+ * joined the world. {@link ServerSideConnectionEvent} is the
  * recommended event to interact with connecting players.</p>
  */
 @GenerateFactoryMethod

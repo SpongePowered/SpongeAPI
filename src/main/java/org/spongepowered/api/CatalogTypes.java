@@ -44,6 +44,8 @@ import org.spongepowered.api.effect.sound.music.MusicDisc;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.ai.goal.GoalExecutorType;
 import org.spongepowered.api.entity.ai.goal.GoalType;
+import org.spongepowered.api.entity.attribute.AttributeOperation;
+import org.spongepowered.api.entity.attribute.type.AttributeType;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.event.cause.EventContextKey;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifierType;
@@ -98,7 +100,7 @@ import org.spongepowered.api.world.weather.Weather;
  * Enumeration of all known {@link CatalogType}s for autocompletion when using
  * the {@link GameRegistry} to retrieve specific types or all of a certain type.
  *
- * <p>These are generally useful for {@link CatalogRegistry#get(Class, CatalogKey)}
+ * <p>These are generally useful for {@link CatalogRegistry#get(Class, ResourceKey)}
  * and {@link CatalogRegistry#getAllOf(Class)}.</p>
  */
 @SuppressWarnings({"rawtypes", "unused"})
@@ -113,6 +115,10 @@ public final class CatalogTypes {
     public static final Class<AdvancementType> ADVANCEMENT_TYPE = AdvancementType.class;
 
     public static final Class<ArtType> ART_TYPE = ArtType.class;
+
+    public static final Class<AttributeOperation> ATTRIBUTE_OPERATION = AttributeOperation.class;
+
+    public static final Class<AttributeType> ATTRIBUTE_TYPE = AttributeType.class;
 
     public static final Class<BannerPatternShape> BANNER_PATTERN_SHAPE = BannerPatternShape.class;
 

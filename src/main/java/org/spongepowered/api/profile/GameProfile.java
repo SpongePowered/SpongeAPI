@@ -31,7 +31,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.profile.property.ProfileProperty;
-import org.spongepowered.api.service.user.UserStorageService;
+import org.spongepowered.api.user.UserManager;
 import org.spongepowered.api.util.Identifiable;
 
 import java.util.Optional;
@@ -40,7 +40,7 @@ import java.util.UUID;
 /**
  * Represents a profile of a user.
  *
- * <p>Use the {@link UserStorageService} service to
+ * <p>Use the {@link UserManager} service to
  * obtain the stored data associated with a profile.</p>
  */
 public interface GameProfile extends Identifiable, DataSerializable {

@@ -26,6 +26,7 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 /**
@@ -43,7 +44,7 @@ public interface HarvestEntityEvent extends ChangeEntityExperienceEvent {
     interface TargetPlayer extends HarvestEntityEvent {
 
         @Override
-        Player getEntity();
+        ServerPlayer getEntity();
 
         /**
          * Gets whether the player keeps their inventory on death.

@@ -25,16 +25,19 @@
 package org.spongepowered.api.world.server;
 
 import org.spongepowered.api.Server;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.raid.Raid;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.world.ChunkRegenerateFlag;
 import org.spongepowered.api.world.ChunkRegenerateFlags;
+import org.spongepowered.api.world.LocationCreator;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.SerializationBehaviors;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.chunk.Chunk;
+import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.dimension.DimensionType;
 import org.spongepowered.api.world.dimension.DimensionTypes;
 import org.spongepowered.api.world.explosion.Explosion;
@@ -49,10 +52,28 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface ServerWorld extends World<ServerWorld>, Identifiable, InteractableVolume {
+public interface ServerWorld extends World<ServerWorld>, Identifiable, InteractableVolume, LocationCreator {
 
     @Override
-    Server getServer();
+    Server getEngine();
+
+    /**
+     * Gets the properties for this world.
+     *
+     * @return The properties
+     */
+    WorldProperties getProperties();
+
+    @Override
+    default Difficulty getDifficulty() {
+        return this.getProperties().getDifficulty();
+    }
+
+    @Override
+    default Chunk getChunkAtBlock(int bx, int by, int bz) {
+        final Vector3i chunkPos = this.getEngine().getChunkLayout().forceToChunk(bx, by, bz);
+        return this.getChunk(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ());
+    }
 
     /**
      * Regenerates a chunk at the given chunk coordinate position.
@@ -151,6 +172,13 @@ public interface ServerWorld extends World<ServerWorld>, Identifiable, Interacta
 
     @Override
     Collection<ServerPlayer> getPlayers();
+
+    /**
+     * Gets all the {@link Entity entities} currently loaded in this world.
+     *
+     * @return The entities
+     */
+    Collection<? extends Entity> getEntities();
 
     /**
      * Gets all {@link Raid}s occuring in this {@link ServerWorld}.

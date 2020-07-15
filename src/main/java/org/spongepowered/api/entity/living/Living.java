@@ -29,21 +29,23 @@ import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.attribute.Attribute;
+import org.spongepowered.api.entity.attribute.AttributeHolder;
 import org.spongepowered.api.projectile.source.EntityProjectileSource;
 import org.spongepowered.api.scoreboard.TeamMember;
+import org.spongepowered.math.imaginary.Quaterniond;
 import org.spongepowered.math.vector.Vector3d;
 
 import java.util.Optional;
-import java.util.OptionalDouble;
 
 /**
  * Represents an entity that is living, and therefor can be damaged.
  *
  * <p>Living entities can have {@link PotionEffect}s, breathing air
- * under water, custom names, be meaningfully added to teams, and become
+ * under water, custom names, be meaningfully added to teams, hold {@link Attribute}s, and become
  * invisible.</p>
  */
-public interface Living extends Entity, EntityProjectileSource, TeamMember {
+public interface Living extends AttributeHolder, Entity, EntityProjectileSource, TeamMember {
 
     /**
      * {@link Keys#HEALTH}
@@ -91,4 +93,14 @@ public interface Living extends Entity, EntityProjectileSource, TeamMember {
      * @param targetPos Position to target
      */
     void lookAt(Vector3d targetPos);
+
+    /**
+     * Converts the {@link Living}'s head rotation into a quaternion direction unit vector.
+     *
+     * @return The direction of the head
+     */
+    default Vector3d getHeadDirection() {
+        final Vector3d headRotation = this.headRotation().get();
+        return Quaterniond.fromAxesAnglesDeg(headRotation.getX(), -headRotation.getY(), headRotation.getZ()).getDirection();
+    }
 }

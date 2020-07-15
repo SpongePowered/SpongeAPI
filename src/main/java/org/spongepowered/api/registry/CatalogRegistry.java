@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.registry;
 
-import org.spongepowered.api.CatalogKey;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.plugin.PluginManager;
 
@@ -40,7 +40,7 @@ public interface CatalogRegistry {
      *
      * <p>
      *     The suggested id parameter may or may not be used and is left up to the implementation
-     *     to determine the composition of the supplied {@link CatalogType reference's} {@link CatalogKey}
+     *     to determine the composition of the supplied {@link CatalogType reference's} {@link ResourceKey}
      * </p>
      * @param catalogClass The catalog class
      * @param suggestedId The suggested id to use
@@ -65,7 +65,7 @@ public interface CatalogRegistry {
      * @return The found dummy type, if available
      * @see CatalogType
      */
-    <T extends CatalogType> Optional<T> get(Class<T> typeClass, CatalogKey key);
+    <T extends CatalogType> Optional<T> get(Class<T> typeClass, ResourceKey key);
 
     /**
      * Gets a collection of all available found specific types of

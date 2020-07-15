@@ -28,10 +28,13 @@ import org.spongepowered.api.block.entity.EnderChest;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.Tamer;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.item.inventory.ArmorEquipable;
 import org.spongepowered.api.item.inventory.Inventory;
+import org.spongepowered.api.item.inventory.entity.UserInventory;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.permission.Subject;
+import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.math.vector.Vector3d;
 
@@ -43,6 +46,7 @@ import java.util.UUID;
  * across server restarts. This is in contrast to Player which represents
  * the in-game entity associated with an online User.
  */
+@DoNotStore
 public interface User extends DataHolder.Mutable, ArmorEquipable, Tamer, Subject {
 
     /**
@@ -68,12 +72,12 @@ public interface User extends DataHolder.Mutable, ArmorEquipable, Tamer, Subject
     boolean isOnline();
 
     /**
-     * Gets the related online {@link Player} if the player is
+     * Gets the related online {@link ServerPlayer player} if the player is
      * in fact online.
      *
-     * @return The associated online Player, if available
+     * @return The associated online player, if available
      */
-    Optional<Player> getPlayer();
+    Optional<ServerPlayer> getPlayer();
 
     /**
      * Gets the position of this User
@@ -126,6 +130,9 @@ public interface User extends DataHolder.Mutable, ArmorEquipable, Tamer, Subject
      * @return The rotation
      */
     Vector3d getRotation();
+
+    @Override
+    UserInventory getInventory();
 
     /**
      * Gets the {@link Inventory} available for this Player's shared {@link EnderChest}

@@ -24,9 +24,8 @@
  */
 package org.spongepowered.api.world;
 
+import org.spongepowered.api.Server;
 import org.spongepowered.math.vector.Vector3i;
-
-import java.util.Optional;
 
 /**
  * Represents anything with a location.
@@ -41,8 +40,23 @@ public interface Locatable {
      */
     Location<?> getLocation();
 
-    default Optional<? extends ServerLocation> getServerLocation() {
-        return Optional.ofNullable(getLocation() instanceof ServerLocation ? (ServerLocation) getLocation() : null);
+    /**
+     * Gets the location of the source as a {@link ServerLocation}.
+     *
+     * <p>For ease of use, we provide this as a quick way to not have to map
+     * out the optional in {@link Location#}. Calling this when the source is
+     * not on the {@link Server} will result in a hard crash, do so at your
+     * own peril.</p>
+     *
+     * @return The location
+     */
+    default ServerLocation getServerLocation() {
+        final Location<?> location = this.getLocation();
+        if (!(location instanceof ServerLocation)) {
+            throw new RuntimeException("Attempt made to query for a server sided location on the client!");
+        }
+
+        return (ServerLocation) location;
     }
 
     /**

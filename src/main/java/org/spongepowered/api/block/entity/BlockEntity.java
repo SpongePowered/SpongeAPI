@@ -28,6 +28,7 @@ import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.LocatableBlock;
 import org.spongepowered.api.world.ServerLocation;
@@ -47,6 +48,7 @@ import org.spongepowered.api.world.schematic.Schematic;
  * customizable data associated with a {@link BlockEntity} is represented by
  * {@link Value Values}.</p>
  */
+@DoNotStore
 public interface BlockEntity extends SerializableDataHolder.Mutable, Locatable {
 
     /**

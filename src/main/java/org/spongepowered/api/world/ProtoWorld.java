@@ -24,12 +24,11 @@
  */
 package org.spongepowered.api.world;
 
+import com.google.common.base.Preconditions;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.util.RandomProvider;
 import org.spongepowered.api.world.chunk.ProtoChunk;
 import org.spongepowered.api.world.difficulty.Difficulty;
-import org.spongepowered.api.world.gen.TerrainGenerator;
-import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.volume.biome.MutableBiomeVolume;
 import org.spongepowered.api.world.volume.block.MutableBlockVolume;
 import org.spongepowered.api.world.volume.block.PhysicsAwareMutableBlockVolume;
@@ -66,35 +65,19 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
     long getSeed();
 
     /**
-     * Gets the {@link TerrainGenerator} for this world.
-     *
-     * <p>Any changes made to the world generator will only affect newly
-     * generated chunks.</p>
-     *
-     * @return The world generator
-     */
-    TerrainGenerator<?> getTerrainGenerator();
-
-    /**
-     * Gets the properties for this world.
-     *
-     * @return The properties
-     */
-    WorldProperties getProperties();
-
-    /**
      * Gets the current {@link Difficulty}.
      *
-     * @see WorldProperties#getDifficulty()
      * @return The difficulty for this world
      */
-    default Difficulty getDifficulty() {
-        return getProperties().getDifficulty();
-    }
+    Difficulty getDifficulty();
 
     @Override
     default boolean setBlock(Vector3i position, BlockState state, BlockChangeFlag flag) {
-        return setBlock(position.getX(), position.getY(), position.getZ(), state, flag);
+        Preconditions.checkNotNull(position);
+        Preconditions.checkNotNull(state);
+        Preconditions.checkNotNull(flag);
+
+        return this.setBlock(position.getX(), position.getY(), position.getZ(), state, flag);
     }
 
     @Override
@@ -102,7 +85,8 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
 
     @Override
     default boolean removeBlock(Vector3i position) {
-        return removeBlock(position.getX(), position.getY(), position.getZ());
+        Preconditions.checkNotNull(position);
+        return this.removeBlock(position.getX(), position.getY(), position.getZ());
     }
 
     @Override

@@ -24,9 +24,6 @@
  */
 package org.spongepowered.api.entity.living.player.client;
 
-import org.spongepowered.api.entity.living.player.client.ClientPlayer;
-import org.spongepowered.api.entity.living.player.client.LocalPlayer;
-
 /**
  * Represents a player on a client that is not the client's {@link LocalPlayer player}.
  */

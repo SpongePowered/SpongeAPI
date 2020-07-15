@@ -218,6 +218,7 @@ import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
+import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.weather.Weather;
 import org.spongepowered.api.world.weather.Weathers;
 import org.spongepowered.math.vector.Vector2i;
@@ -787,9 +788,9 @@ public final class Keys {
     public static final Supplier<Key<BoundedValue<Integer>>> FIRE_TICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FIRE_TICKS");
 
     /**
-     * The time a {@link Player} first played on the Server.
+     * The time a {@link User} first joined on the Server.
      */
-    public static final Supplier<Key<Value<Instant>>> FIRST_DATE_PLAYED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FIRST_DATE_PLAYED");
+    public static final Supplier<Key<Value<Instant>>> FIRST_DATE_JOINED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FIRST_DATE_JOINED");
 
     /**
      * A {@link Fox fox's} first trusted {@link UUID}, usually a {@link Player}.
@@ -945,6 +946,13 @@ public final class Keys {
      * Whether a giant mushroom {@link BlockState} has pores on the {@link Direction#WEST} direction. See {@link #PORES}.
      */
     public static final Supplier<Key<Value<Boolean>>> HAS_PORES_WEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HAS_PORES_WEST");
+
+    /**
+     * Whether a server player has viewed the credits.
+     *
+     * <p>The credits are displayed the first time a player returns to the overworld safely using an end portal.</p>
+     */
+    public static final Supplier<Key<Value<Boolean>>> HAS_VIEWED_CREDITS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HAS_VIEWED_CREDITS");
 
     /**
      * The rotation of a {@link Living}'s or {@link ArmorStand}'s head.
@@ -1257,7 +1265,7 @@ public final class Keys {
      * Whether an entity is frightened.
      *
      * <p>In vanilla, {@link Panda}s that have a {@link Panda#knownGene()}
-     * of {@link PandaGenes#WORRIED} and are in a {@link World} whose {@link Weather} is currently a
+     * of {@link PandaGenes#WORRIED} and are in a {@link ServerWorld world} whose {@link Weather} is currently a
      * {@link Weathers#THUNDER_STORM} are considered "frightened".</p>
      */
     public static final Supplier<Key<Value<Boolean>>> IS_FRIGHTENED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_FRIGHTENED");
@@ -1643,6 +1651,11 @@ public final class Keys {
      * The last damage a {@link Living} received.
      */
     public static final Supplier<Key<Value<Double>>> LAST_DAMAGE_RECEIVED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LAST_DAMAGE_RECEIVED");
+
+    /**
+     * The last time a {@link User} joined on the server.
+     */
+    public static final Supplier<Key<Value<Instant>>> LAST_DATE_JOINED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LAST_DATE_JOINED");
 
     /**
      * The last time a {@link User} has been playing on the server.
@@ -2392,6 +2405,12 @@ public final class Keys {
      * Tge {@link TradeOffer}s offered by a {@link Trader}.
      */
     public static final Supplier<Key<ListValue<TradeOffer>>> TRADE_OFFERS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TRADE_OFFERS");
+
+    /**
+     * Whether an {@link Entity} is transient.
+     * This prevents the entity from being saved to disk.
+     */
+    public static final Supplier<Key<Value<Boolean>>> TRANSIENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TRANSIENT");
 
     /**
      * A {@link TropicalFish}'s shape.

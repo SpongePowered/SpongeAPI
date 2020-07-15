@@ -26,7 +26,6 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.action.InteractEvent;
-import org.spongepowered.api.event.entity.living.HandInteractEvent;
 
 /**
  * Base event for all interactions targeting an {@link Entity}.
@@ -46,20 +45,7 @@ public interface InteractEntityEvent extends InteractEvent {
      *
      * <p>This is usually left-click.</p>
      */
-    interface Primary extends InteractEntityEvent, HandInteractEvent {
-
-        /**
-         * A {@link Primary} event where the interaction is from the client's
-         * main hand.
-         */
-        interface MainHand extends Primary {}
-
-        /**
-         * A {@link Primary} event where the interaction is from the client's
-         * off hand.
-         */
-        interface OffHand extends Primary {}
-    }
+    interface Primary extends InteractEntityEvent {}
 
     /**
      * An event where the targeted entity is being interacted with the client's
@@ -67,19 +53,6 @@ public interface InteractEntityEvent extends InteractEvent {
      *
      * <p>This is usually right-click.</p>
      */
-    interface Secondary extends InteractEntityEvent, HandInteractEvent {
-
-        /**
-         * A {@link Secondary} event where the interaction is from the client's
-         * main hand.
-         */
-        interface MainHand extends Secondary {}
-
-        /**
-         * A {@link Secondary} event where the interaction is from the client's
-         * off hand.
-         */
-        interface OffHand extends Secondary {}
-    }
+    interface Secondary extends InteractEntityEvent {}
 
 }
