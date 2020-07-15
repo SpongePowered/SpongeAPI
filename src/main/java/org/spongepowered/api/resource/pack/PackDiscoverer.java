@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.resource.pack;
 
+import org.spongepowered.api.event.resource.RegisterPackDiscovererEvent;
+
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -31,6 +33,8 @@ import java.util.function.Supplier;
 /**
  * A pack discoverer will populate the {@link PackList} with {@link PackInfo}s
  * and provide it a supplier to create a new {@link Pack}.
+ *
+ * @see RegisterPackDiscovererEvent
  */
 public interface PackDiscoverer {
 

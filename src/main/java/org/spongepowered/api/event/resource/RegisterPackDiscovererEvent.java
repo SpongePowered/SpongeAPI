@@ -24,51 +24,20 @@
  */
 package org.spongepowered.api.event.resource;
 
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.resource.ReloadableResourceManager;
-import org.spongepowered.api.resource.ResourceReloadListener;
-import org.spongepowered.api.resource.Resource;
-import org.spongepowered.api.resource.ResourceManager;
+import org.spongepowered.api.Engine;
+import org.spongepowered.api.event.GenericEvent;
+import org.spongepowered.api.resource.pack.PackDiscoverer;
+import org.spongepowered.api.resource.pack.PackList;
 
 /**
- * Base event for {@link Resource}s.
+ * Event for registering {@link PackDiscoverer}s.
  */
-public interface ResourceEvent extends Event {
+public interface RegisterPackDiscovererEvent<T extends Engine> extends GenericEvent<T> {
 
     /**
-     * Gets the relevant {@link ResourceManager} for this event.
+     * Adds a {@link PackDiscoverer} to the {@link PackList}.
      *
-     * @return The resource manager
+     * @param discoverer The discoverer
      */
-    ResourceManager getResourceManager();
-
-    /**
-     * Event for registering {@link ResourceReloadListener reload listeners} to the
-     * {@link ResourceManager}. It is fired sometime during init.
-     */
-    interface RegisterReloadListener extends ResourceEvent {
-
-        /**
-         * {@inheritDoc}
-         *
-         * <p>The type is a {@link ReloadableResourceManager} to expose methods
-         * to add reload listeners</p>
-         *
-         * @return The reloadable resource manager
-         */
-        @Override
-        ReloadableResourceManager getResourceManager();
-
-        /**
-         * Register event for client resources.
-         */
-        interface Client extends RegisterReloadListener {
-        }
-
-        /**
-         * Register event for server data.
-         */
-        interface Server extends RegisterReloadListener {
-        }
-    }
+    void registerPackDiscoverer(PackDiscoverer discoverer);
 }

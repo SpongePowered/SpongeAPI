@@ -26,6 +26,7 @@ package org.spongepowered.api.resource;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataView;
+import org.spongepowered.api.event.resource.RegisterResourceReloadListenerEvent;
 
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
@@ -63,6 +64,8 @@ import java.util.concurrent.Executor;
  *         }
  *     }
  * </pre>
+ *
+ * @see RegisterResourceReloadListenerEvent
  */
 public interface ResourceReloadListener {
 
