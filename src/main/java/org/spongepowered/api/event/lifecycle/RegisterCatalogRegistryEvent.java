@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.lifecycle;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.registry.DuplicateRegistrationException;
@@ -52,5 +53,5 @@ public interface RegisterCatalogRegistryEvent extends LifecycleEvent {
      * @param <T> The type
      * @throws DuplicateRegistrationException If the type is already registered
      */
-    <T extends CatalogType> void register(Class<T> catalogClass, ResourceKey key, Supplier<Set<T>> defaultsSupplier) throws DuplicateRegistrationException;
+    <T extends CatalogType> void register(Class<T> catalogClass, ResourceKey key, @Nullable Supplier<Set<T>> defaultsSupplier) throws DuplicateRegistrationException;
 }
