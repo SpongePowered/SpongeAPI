@@ -44,6 +44,7 @@ import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.type.FoxType;
 import org.spongepowered.api.data.type.HandPreference;
 import org.spongepowered.api.data.type.DoorHinge;
+import org.spongepowered.api.data.type.HandType;
 import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.type.InstrumentType;
@@ -57,7 +58,7 @@ import org.spongepowered.api.data.type.PhantomPhase;
 import org.spongepowered.api.data.type.PickupRule;
 import org.spongepowered.api.data.type.PistonType;
 import org.spongepowered.api.data.type.PortionType;
-import org.spongepowered.api.data.type.Profession;
+import org.spongepowered.api.data.type.ProfessionType;
 import org.spongepowered.api.data.type.RabbitType;
 import org.spongepowered.api.data.type.RailDirection;
 import org.spongepowered.api.data.type.SlabPortion;
@@ -89,8 +90,16 @@ import org.spongepowered.api.entity.attribute.type.AttributeType;
 import org.spongepowered.api.entity.explosive.EnderCrystal;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.animal.Sheep;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
+import org.spongepowered.api.event.block.ChangeBlockEvent;
+import org.spongepowered.api.event.cause.entity.damage.DamageType;
+import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
+import org.spongepowered.api.event.cause.entity.dismount.DismountType;
+import org.spongepowered.api.event.cause.entity.spawn.SpawnType;
+import org.spongepowered.api.event.cause.entity.teleport.TeleportType;
 import org.spongepowered.api.fluid.FluidStack;
 import org.spongepowered.api.fluid.FluidStackSnapshot;
 import org.spongepowered.api.fluid.FluidState;
@@ -106,11 +115,16 @@ import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.projectile.source.ProjectileSource;
 import org.spongepowered.api.raid.RaidWave;
+import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 import org.spongepowered.api.util.weighted.WeightedTable;
+import org.spongepowered.api.world.LocatableBlock;
+import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector2i;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
@@ -418,9 +432,9 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<PotionType>> POTION_TYPE_VALUE_TOKEN = new TypeToken<Value<PotionType>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<Profession> PROFESSION_TOKEN = new TypeToken<Profession>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<ProfessionType> PROFESSION_TOKEN = new TypeToken<ProfessionType>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<Value<Profession>> PROFESSION_VALUE_TOKEN = new TypeToken<Value<Profession>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<Value<ProfessionType>> PROFESSION_VALUE_TOKEN = new TypeToken<Value<ProfessionType>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<ProfileProperty> PROFILE_PROPERTY_TOKEN = new TypeToken<ProfileProperty>() {private static final long serialVersionUID = -1;};
 
@@ -545,6 +559,42 @@ public final class TypeTokens {
     public static final TypeToken<WoodType> WOOD_TYPE_TOKEN = new TypeToken<WoodType>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<WoodType>> WOOD_TYPE_VALUE_TOKEN = new TypeToken<Value<WoodType>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<LocatableBlock> LOCATABLE_BLOCK_TOKEN = new TypeToken<LocatableBlock>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<ChangeBlockEvent.Break> CHANGE_BLOCK_EVENT_BREAK_TOKEN = new TypeToken<ChangeBlockEvent.Break>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<DamageType> DAMAGE_TYPE_TOKEN = new TypeToken<DamageType>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<ChangeBlockEvent.Decay> CHANGE_BLOCK_EVENT_DECAY_TOKEN = new TypeToken<ChangeBlockEvent.Decay>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<DismountType> DISMOUNT_TYPE_TOKEN = new TypeToken<DismountType>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Player> PLAYER_TOKEN = new TypeToken<Player>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<ServerPlayer> SERVER_PLAYER_TOKEN = new TypeToken<ServerPlayer>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<ServerWorld> SERVER_WORLD_TOKEN = new TypeToken<ServerWorld>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<ChangeBlockEvent.Grow> CHANGE_BLOCK_EVENT_GROW_TOKEN = new TypeToken<ChangeBlockEvent.Grow>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<ServerLocation> SERVER_LOCATION_TOKEN = new TypeToken<ServerLocation>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<DamageSource> DAMAGE_SOURCE_TOKEN = new TypeToken<DamageSource>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<MessageChannel> MESSAGE_CHANNEL_TOKEN = new TypeToken<MessageChannel>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<ChangeBlockEvent.Modify> CHANGE_BLOCK_EVENT_MODIFY_TOKEN = new TypeToken<ChangeBlockEvent.Modify>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<ChangeBlockEvent.Place> CHANGE_BLOCK_EVENT_PLACE_TOKEN = new TypeToken<ChangeBlockEvent.Place>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<SpawnType> SPAWN_TYPE_TOKEN = new TypeToken<SpawnType>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Subject> SUBJECT_TOKEN = new TypeToken<Subject>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<TeleportType> TELEPORT_TYPE_TOKEN = new TypeToken<TeleportType>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<HandType> HAND_TYPE_TOKEN = new TypeToken<HandType>() {private static final long serialVersionUID = -1;};
 
     // @formatter:on
     // SORTFIELDS:OFF

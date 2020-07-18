@@ -25,6 +25,7 @@
 package org.spongepowered.api.entity.living;
 
 import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.MapValue;
 import org.spongepowered.api.data.value.SetValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.inventory.ArmorEquipable;
@@ -71,7 +72,7 @@ public interface ArmorStand extends Living, ArmorEquipable {
      * {@link Keys#IS_PLACING_DISABLED}
      * @return The equipment types where placing armor is disabled
      */
-    default SetValue.Mutable<EquipmentType> placingDisabled() {
+    default MapValue.Mutable<EquipmentType, Boolean> placingDisabled() {
         return this.requireValue(Keys.IS_PLACING_DISABLED).asMutable();
     }
 
@@ -79,7 +80,7 @@ public interface ArmorStand extends Living, ArmorEquipable {
      * {@link Keys#IS_TAKING_DISABLED}
      * @return The set of equipment types that are preventing "taking"
      */
-    default SetValue.Mutable<EquipmentType> takingDisabled() {
+    default MapValue.Mutable<EquipmentType, Boolean> takingDisabled() {
         return this.requireValue(Keys.IS_TAKING_DISABLED).asMutable();
     }
 }

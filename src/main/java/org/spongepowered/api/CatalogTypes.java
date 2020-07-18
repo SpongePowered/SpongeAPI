@@ -59,8 +59,7 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.enchantment.EnchantmentType;
 import org.spongepowered.api.item.inventory.ContainerType;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
-import org.spongepowered.api.item.inventory.equipment.HeldEquipmentType;
-import org.spongepowered.api.item.inventory.equipment.WornEquipmentType;
+import org.spongepowered.api.item.inventory.equipment.EquipmentGroup;
 import org.spongepowered.api.item.inventory.query.QueryType;
 import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
 import org.spongepowered.api.registry.CatalogRegistry;
@@ -195,8 +194,6 @@ public final class CatalogTypes {
 
     public static final Class<HandType> HAND_TYPE = HandType.class;
 
-    public static final Class<HeldEquipmentType> HELD_EQUIPMENT_TYPE = HeldEquipmentType.class;
-
     public static final Class<DoorHinge> HINGE = DoorHinge.class;
 
     public static final Class<HorseColor> HORSE_COLOR = HorseColor.class;
@@ -235,7 +232,7 @@ public final class CatalogTypes {
 
     public static final Class<PotionEffectType> POTION_EFFECT_TYPE = PotionEffectType.class;
 
-    public static final Class<Profession> PROFESSION = Profession.class;
+    public static final Class<ProfessionType> PROFESSION = ProfessionType.class;
 
     public static final Class<QueryType> QUERY_TYPE = QueryType.class;
 
@@ -295,7 +292,7 @@ public final class CatalogTypes {
 
     public static final Class<WorldArchetype> WORLD_ARCHETYPE = WorldArchetype.class;
 
-    public static final Class<WornEquipmentType> WORN_EQUIPMENT_TYPE = WornEquipmentType.class;
+    public static final Class<EquipmentGroup> WORN_EQUIPMENT_TYPE = EquipmentGroup.class;
 
     // SORTFIELDS:OFF
 

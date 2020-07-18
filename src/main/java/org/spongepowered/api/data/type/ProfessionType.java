@@ -32,7 +32,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a {@link Villager} profession. A profession defines the genre of
  * trade offers a trader may offer to a player.
  */
-@CatalogedBy(Professions.class)
-public interface Profession extends CatalogType {
+@CatalogedBy(ProfessionTypes.class)
+public interface ProfessionType extends CatalogType {
 
 }

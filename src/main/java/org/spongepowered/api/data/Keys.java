@@ -70,7 +70,7 @@ import org.spongepowered.api.data.type.PhantomPhase;
 import org.spongepowered.api.data.type.PickupRule;
 import org.spongepowered.api.data.type.PistonType;
 import org.spongepowered.api.data.type.PortionType;
-import org.spongepowered.api.data.type.Profession;
+import org.spongepowered.api.data.type.ProfessionType;
 import org.spongepowered.api.data.type.RabbitType;
 import org.spongepowered.api.data.type.RailDirection;
 import org.spongepowered.api.data.type.SlabPortion;
@@ -1976,12 +1976,12 @@ public final class Keys {
     public static final Supplier<Key<Value<PotionEffectType>>> PRIMARY_POTION_EFFECT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PRIMARY_POTION_EFFECT_TYPE");
 
     /**
-     * The {@link Villager} or {@link ZombieVillager}'s {@link Profession}.
+     * The {@link Villager} or {@link ZombieVillager}'s {@link ProfessionType}.
      */
-    public static final Supplier<Key<Value<Profession>>> PROFESSION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PROFESSION");
+    public static final Supplier<Key<Value<ProfessionType>>> PROFESSION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PROFESSION");
 
     /**
-     * The {@link Villager} or {@link ZombieVillager}'s {@link Profession} level.
+     * The {@link Villager} or {@link ZombieVillager}'s {@link ProfessionType} level.
      */
     public static final Supplier<Key<Value<Integer>>> PROFESSION_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PROFESSION_LEVEL");
 

@@ -24,9 +24,18 @@
  */
 package org.spongepowered.api.item.inventory.equipment;
 
-/**
- * An equipment item which can be worn, eg. armor or headwear
- */
-public interface WornEquipmentType extends EquipmentType {
+import org.spongepowered.api.Sponge;
 
+import java.util.function.Supplier;
+
+public final class EquipmentGroups {
+
+    public static final Supplier<EquipmentGroup> HELD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentGroup.class, "HELD");
+
+    public static final Supplier<EquipmentGroup> WORN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentGroup.class, "WORN");
+
+    // Suppress default constructor to ensure non-instantiability.
+    private EquipmentGroups() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 }

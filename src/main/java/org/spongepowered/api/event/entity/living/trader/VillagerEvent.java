@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.entity.living.trader;
 
-import org.spongepowered.api.data.type.Profession;
+import org.spongepowered.api.data.type.ProfessionType;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Hostile;
 import org.spongepowered.api.entity.living.golem.IronGolem;
@@ -51,51 +51,51 @@ public interface VillagerEvent extends Event {
     /**
      * Fired when a {@link Villager}'s profession changes.
      *
-     * <p>This can include both gaining or losing a {@link Profession}.</p>
+     * <p>This can include both gaining or losing a {@link ProfessionType}.</p>
      */
     @GenerateFactoryMethod
     interface ChangeProfession extends VillagerEvent, Cancellable {
 
         /**
-         * Gets the villager's original {@link Profession}.
+         * Gets the villager's original {@link ProfessionType}.
          *
          * @return The original profession the villager will take
          */
-        Profession getOriginalProfession();
+        ProfessionType getOriginalProfession();
 
         /**
-         * Gets the {@link Profession} the villager will change to.
+         * Gets the {@link ProfessionType} the villager will change to.
          *
          * @return The villager's next profession
          */
-        Profession getProfession();
+        ProfessionType getProfession();
 
         /**
-         * Sets the {@link Villager}'s next {@link Profession}.
+         * Sets the {@link Villager}'s next {@link ProfessionType}.
          *
          * @param profession The desired new profession of the villager
          */
-        void setProfession(Profession profession);
+        void setProfession(ProfessionType profession);
     }
 
     /**
-     * Fired when a {@link Villager} levels up it's {@link Profession}.
+     * Fired when a {@link Villager} levels up it's {@link ProfessionType}.
      */
     @GenerateFactoryMethod
     interface LevelUpProfession extends VillagerEvent, Cancellable {
 
         /**
-         * Gets the {@link Villager}'s original {@link Profession} level.
+         * Gets the {@link Villager}'s original {@link ProfessionType} level.
          *
          * @return The original profession level
          */
         int getOriginalProfessionLevel();
 
         /**
-         * Gets the {@link Profession} level this {@link Villager}'s
+         * Gets the {@link ProfessionType} level this {@link Villager}'s
          * will level up to.
          *
-         * @return The current set {@link Profession} level
+         * @return The current set {@link ProfessionType} level
          */
         int getProfessionLevel();
 

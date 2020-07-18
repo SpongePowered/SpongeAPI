@@ -24,9 +24,13 @@
  */
 package org.spongepowered.api.item.inventory.equipment;
 
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
+
 /**
- * An equipment item which can be held. E.g. main or offhand
+ * Represents a grouping of {@link EquipmentType equipment}.
  */
-public interface HeldEquipmentType extends EquipmentType {
+@CatalogedBy(EquipmentGroups.class)
+public interface EquipmentGroup extends CatalogType {
 
 }
