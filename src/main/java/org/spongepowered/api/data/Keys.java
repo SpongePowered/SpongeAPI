@@ -1978,7 +1978,7 @@ public final class Keys {
     /**
      * The {@link Villager} or {@link ZombieVillager}'s {@link ProfessionType}.
      */
-    public static final Supplier<Key<Value<ProfessionType>>> PROFESSION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PROFESSION");
+    public static final Supplier<Key<Value<ProfessionType>>> PROFESSION_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PROFESSION");
 
     /**
      * The {@link Villager} or {@link ZombieVillager}'s {@link ProfessionType} level.

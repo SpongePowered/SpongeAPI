@@ -42,11 +42,11 @@ public interface ZombieVillager extends ZombieEntity {
     }
 
     /**
-     * {@link Keys#PROFESSION}
+     * {@link Keys#PROFESSION_TYPE}
      * @return The profession of this zombie villager
      * @see ProfessionTypes
      */
     default Value.Mutable<ProfessionType> profession() {
-        return this.requireValue(Keys.PROFESSION).asMutable();
+        return this.requireValue(Keys.PROFESSION_TYPE).asMutable();
     }
 }

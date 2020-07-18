@@ -144,7 +144,7 @@ public final class CatalogTypes {
 
     public static final Class<ContainerType> CONTAINER_TYPE = ContainerType.class;
 
-    public static final Class<CraftingRecipe> CRAFTING_RECIPES = CraftingRecipe.class;
+    public static final Class<CraftingRecipe> CRAFTING_RECIPE = CraftingRecipe.class;
 
     public static final Class<Criterion> CRITERION = Criterion.class;
 
@@ -172,6 +172,8 @@ public final class CatalogTypes {
 
     public static final Class<EntityType> ENTITY_TYPE = EntityType.class;
 
+    public static final Class<EquipmentGroup> EQUIPMENT_GROUP = EquipmentGroup.class;
+
     public static final Class<EquipmentType> EQUIPMENT_TYPE = EquipmentType.class;
 
     public static final Class<EventContextKey> EVENT_CONTEXT_KEY = EventContextKey.class;
@@ -194,7 +196,7 @@ public final class CatalogTypes {
 
     public static final Class<HandType> HAND_TYPE = HandType.class;
 
-    public static final Class<DoorHinge> HINGE = DoorHinge.class;
+    public static final Class<DoorHinge> DOOR_HINGE = DoorHinge.class;
 
     public static final Class<HorseColor> HORSE_COLOR = HorseColor.class;
 
@@ -232,7 +234,7 @@ public final class CatalogTypes {
 
     public static final Class<PotionEffectType> POTION_EFFECT_TYPE = PotionEffectType.class;
 
-    public static final Class<ProfessionType> PROFESSION = ProfessionType.class;
+    public static final Class<ProfessionType> PROFESSION_TYPE = ProfessionType.class;
 
     public static final Class<QueryType> QUERY_TYPE = QueryType.class;
 
@@ -291,8 +293,6 @@ public final class CatalogTypes {
     public static final Class<WoodType> WOOD_TYPE = WoodType.class;
 
     public static final Class<WorldArchetype> WORLD_ARCHETYPE = WorldArchetype.class;
-
-    public static final Class<EquipmentGroup> WORN_EQUIPMENT_TYPE = EquipmentGroup.class;
 
     // SORTFIELDS:OFF
 
