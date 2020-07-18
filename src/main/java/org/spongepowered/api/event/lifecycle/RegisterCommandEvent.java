@@ -24,23 +24,42 @@
  */
 package org.spongepowered.api.event.lifecycle;
 
+import org.spongepowered.api.command.Command;
+import org.spongepowered.api.command.manager.CommandFailedRegistrationException;
+import org.spongepowered.api.command.manager.CommandMapping;
 import org.spongepowered.api.command.registrar.CommandRegistrar;
 import org.spongepowered.api.event.GenericEvent;
+import org.spongepowered.plugin.PluginContainer;
 
 /**
  * Lifecycle event to indicate when commands should be registered.
  *
- * @param <C> The {@link CommandRegistrar} that is handling this event.
+ * <p>There are two types command that Sponge will always call an event for:</p>
+ *
+ * <ul>
+ *     <li>Where {@link C} is {@link Command.Raw}; and</li>
+ *     <li>Where {@link C} is {@link Command.Parameterized}.</li>
+ * </ul>
+ *
+ * <p>Other plugins may provide a {@link CommandRegistrar} that allows for other
+ * types to be registered as commands. These types will be provided by these
+ * other plugins.</p>
+ *
+ * @param <C> The type of command that is being registered.
  */
-public interface RegisterCommandEvent<C extends CommandRegistrar<?>> extends GenericEvent<C>, LifecycleEvent {
+public interface RegisterCommandEvent<C> extends GenericEvent<C>, LifecycleEvent {
 
     /**
-     * Gets the {@link CommandRegistrar} that handles the command registration
-     * for this event. Commands should be registered via the appropriate method
-     * on the registrar.
+     * Registers a command with the appropriate {@link CommandRegistrar}.
      *
-     * @return The {@link CommandRegistrar}
+     * @param container The {@link PluginContainer}
+     * @param command The command to register
+     * @param alias The first alias to register for this command
+     * @param aliases Any other aliases to register
+     * @return The {@link CommandMapping}, indicating which aliases have been
+     *         registered for this command
+     * @throws CommandFailedRegistrationException if registration failed
      */
-    C getRegistrar();
+    CommandMapping register(PluginContainer container, C command, String alias, String... aliases) throws CommandFailedRegistrationException;
 
 }

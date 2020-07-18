@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.command.registrar;
 
+import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.command.CommandResult;
@@ -76,6 +77,13 @@ import java.util.function.Predicate;
  * @param <T> The type of command interface this handles.
  */
 public interface CommandRegistrar<T> extends CatalogType {
+
+    /**
+     * Gets the type of command that this registrar handles.
+     *
+     * @return The type of command this registrar handles.
+     */
+    TypeToken<T> handledType();
 
     /**
      * Registers a command.

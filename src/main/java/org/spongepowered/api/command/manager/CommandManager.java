@@ -158,13 +158,6 @@ public interface CommandManager {
             throws CommandFailedRegistrationException;
 
     /**
-     * Gets the standard Sponge {@link CommandRegistrar}.
-     *
-     * @return The {@link CommandRegistrar}
-     */
-    CommandRegistrar<Command> getStandardRegistrar();
-
-    /**
      * Gets a {@link Collection} of {@link PluginContainer}s with commands
      * registered.
      *

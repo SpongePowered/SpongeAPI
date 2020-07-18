@@ -34,6 +34,7 @@ import org.spongepowered.api.command.parameter.Parameter;
 import org.spongepowered.api.command.registrar.tree.CommandTreeBuilder;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.EventContext;
+import org.spongepowered.api.event.lifecycle.RegisterCommandEvent;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.ResettableBuilder;
@@ -53,12 +54,18 @@ import java.util.function.Predicate;
  * to use {@link Command#builder()} to create commands. The
  * {@link Command.Builder} allows plugins to take advantage of a higher level
  * of abstraction, such as argument parsers and simple child command handling,
- * removing the need for boilerplate code.</p>
+ * removing the need for boilerplate code. Such {@link Parameterized} commands
+ * should register themselves during the {@link RegisterCommandEvent
+ * RegisterCommandEvent<Command.Parameterized>} event.</p>
  *
- * <p>Plugins are free to implement this interface should they prefer to do so.
- * It is preferred that plugins implement {@link Command.Raw} should they wish
- * to support client base completion. However, plugins <strong>cannot</strong>
- * implement the {@link Command.Parameterized} sub-interface.</p>
+ * <p>Plugins that do not want to use the {@link Builder} or any third-party
+ * command system should implement the {@link Raw} sub-interface instead. Such
+ * {@link Raw} commands should  register themselves during the
+ * {@link RegisterCommandEvent RegisterCommandEvent<Command.Parameterized>}
+ * event.</p>
+ *
+ * <p>Plugins <strong>must not</strong> implement the {@link Parameterized}
+ * sub-interface themselves.</p>
  *
  * <p>Upon execution, commands are provided with a {@link CommandCause},
  * providing the {@link Cause} and {@link EventContext} that invoked the
