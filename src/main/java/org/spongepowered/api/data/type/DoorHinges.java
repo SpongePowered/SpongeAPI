@@ -29,21 +29,19 @@ import org.spongepowered.api.Sponge;
 import java.util.function.Supplier;
 
 /**
- * An enumeration of vanilla {@link Surface}s.
+ * An enumeration of vanilla {@link DoorHinge}s.
  */
-public final class Surfaces {
+public final class DoorHinges {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<Surface> CEILING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Surface.class, "CEILING");
+    public static final Supplier<DoorHinge> LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DoorHinge.class, "LEFT");
 
-    public static final Supplier<Surface> FLOOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Surface.class, "FLOOR");
-
-    public static final Supplier<Surface> WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Surface.class, "WALL");
+    public static final Supplier<DoorHinge> RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DoorHinge.class, "RIGHT");
 
     // SORTFIELDS:OFF
 
-    private Surfaces() {
+    private DoorHinges() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 }

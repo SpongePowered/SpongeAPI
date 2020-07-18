@@ -24,14 +24,26 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.util.Cycleable;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 /**
- * Represents a side of a hinge.
+ * An enumeration of vanilla {@link AttachmentSurface}s.
  */
-@CatalogedBy(Hinges.class)
-public interface Hinge extends CatalogType, Cycleable<Hinge> {
+public final class AttachmentSurfaces {
 
+    // SORTFIELDS:ON
+
+    public static final Supplier<AttachmentSurface> CEILING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AttachmentSurface.class, "CEILING");
+
+    public static final Supplier<AttachmentSurface> FLOOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AttachmentSurface.class, "FLOOR");
+
+    public static final Supplier<AttachmentSurface> WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AttachmentSurface.class, "WALL");
+
+    // SORTFIELDS:OFF
+
+    private AttachmentSurfaces() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 }

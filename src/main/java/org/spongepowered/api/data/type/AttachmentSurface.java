@@ -24,24 +24,13 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * An enumeration of vanilla {@link Hinge}s.
+ * Represents a block surface.
  */
-public final class Hinges {
+@CatalogedBy(AttachmentSurfaces.class)
+public interface AttachmentSurface extends CatalogType {
 
-    // SORTFIELDS:ON
-
-    public static final Supplier<Hinge> LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Hinge.class, "LEFT");
-
-    public static final Supplier<Hinge> RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Hinge.class, "RIGHT");
-
-    // SORTFIELDS:OFF
-
-    private Hinges() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
-    }
 }

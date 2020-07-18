@@ -25,12 +25,13 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.Cycleable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents a block surface.
+ * Represents a side of a hinge.
  */
-@CatalogedBy(Surfaces.class)
-public interface Surface extends CatalogType {
+@CatalogedBy(DoorHinges.class)
+public interface DoorHinge extends CatalogType, Cycleable<DoorHinge> {
 
 }

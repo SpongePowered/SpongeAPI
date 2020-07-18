@@ -30,7 +30,7 @@ import org.spongepowered.api.world.difficulty.Difficulty;
 
 import java.util.Optional;
 
-public interface Wave {
+public interface RaidWave {
 
     /**
      * Gets the {@link Raid} this wave is a part of.

@@ -59,11 +59,11 @@ public interface Chest extends NameableCarrierBlockEntity {
     Optional<Chest> getConnectedChest();
 
     /**
-     * {@link Keys#CHEST_ATTACHMENT}
+     * {@link Keys#CHEST_ATTACHMENT_TYPE}
      * @return The attachment type of this chest.
      */
     default Value.Mutable<ChestAttachmentType> attachmentType() {
-        return this.requireValue(Keys.CHEST_ATTACHMENT).asMutable();
+        return this.requireValue(Keys.CHEST_ATTACHMENT_TYPE).asMutable();
     }
 
 }

@@ -28,7 +28,7 @@ import org.spongepowered.api.data.type.RaidStatuses;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.raid.Raid;
-import org.spongepowered.api.raid.Wave;
+import org.spongepowered.api.raid.RaidWave;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 /**
@@ -47,24 +47,24 @@ public interface RaidEvent extends Event {
     /**
      * An event where the {@link Raid} is started.
      *
-     * <p>This is fired before any {@link Wave}s have started.</p>
+     * <p>This is fired before any {@link RaidWave}s have started.</p>
      */
     @GenerateFactoryMethod
     interface Start extends RaidEvent, Cancellable {
     }
 
     /**
-     * An event where a {@link Wave} in a {@link Raid} has started.
+     * An event where a {@link RaidWave} in a {@link Raid} has started.
      */
     @GenerateFactoryMethod
     interface StartWave extends RaidEvent, Cancellable {
 
         /**
-         * The {@link Wave} which is starting.
+         * The {@link RaidWave} which is starting.
          *
          * @return The current wave
          */
-        Wave getWave();
+        RaidWave getWave();
 
     }
 

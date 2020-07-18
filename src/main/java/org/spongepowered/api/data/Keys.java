@@ -55,7 +55,7 @@ import org.spongepowered.api.data.type.ComparatorMode;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.type.FoxType;
 import org.spongepowered.api.data.type.HandPreference;
-import org.spongepowered.api.data.type.Hinge;
+import org.spongepowered.api.data.type.DoorHinge;
 import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.type.InstrumentType;
@@ -78,7 +78,7 @@ import org.spongepowered.api.data.type.SpellType;
 import org.spongepowered.api.data.type.SpellTypes;
 import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StructureMode;
-import org.spongepowered.api.data.type.Surface;
+import org.spongepowered.api.data.type.AttachmentSurface;
 import org.spongepowered.api.data.type.ToolType;
 import org.spongepowered.api.data.type.TropicalFishShape;
 import org.spongepowered.api.data.type.VillagerType;
@@ -206,7 +206,7 @@ import org.spongepowered.api.item.potion.PotionType;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.projectile.source.ProjectileSource;
-import org.spongepowered.api.raid.Wave;
+import org.spongepowered.api.raid.RaidWave;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Axis;
@@ -216,7 +216,6 @@ import org.spongepowered.api.util.RespawnLocation;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 import org.spongepowered.api.world.ServerLocation;
-import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.weather.Weather;
@@ -228,7 +227,6 @@ import org.spongepowered.plugin.PluginContainer;
 
 import java.time.Instant;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 import java.util.function.Supplier;
 
@@ -316,12 +314,12 @@ public final class Keys {
     /**
      * The type of {@link ArtType} shown by {@link Painting}s.
      */
-    public static final Supplier<Key<Value<ArtType>>> ART = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ART");
+    public static final Supplier<Key<Value<ArtType>>> ART_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ART_TYPE");
 
     /**
-     * The attachment {@link Surface} of a button or lever {@link BlockState}
+     * The attachment {@link AttachmentSurface} of a button or lever {@link BlockState}
      */
-    public static final Supplier<Key<Value<Surface>>> ATTACHMENT_SURFACE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ATTACHMENT_SURFACE");
+    public static final Supplier<Key<Value<AttachmentSurface>>> ATTACHMENT_SURFACE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ATTACHMENT_SURFACE");
 
     /**
      * The damage dealt by an {@link ArrowEntity} on impact.
@@ -513,7 +511,7 @@ public final class Keys {
     /**
      * The attachment of a {@link BlockTypes#CHEST} or {@link BlockTypes#TRAPPED_CHEST} {@link BlockState}.
      */
-    public static final Supplier<Key<Value<ChestAttachmentType>>> CHEST_ATTACHMENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CHEST_ATTACHMENT");
+    public static final Supplier<Key<Value<ChestAttachmentType>>> CHEST_ATTACHMENT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CHEST_ATTACHMENT_TYPE");
 
     /**
      * The rotation of the {@link BodyParts#CHEST}.
@@ -639,6 +637,11 @@ public final class Keys {
      * {@link HandPreference} of a player can not be changed server-side.</p>
      */
     public static final Supplier<Key<Value<HandPreference>>> DOMINANT_HAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DOMINANT_HAND");
+
+    /**
+     * The {@link DoorHinge} of a door {@link BlockState}.
+     */
+    public static final Supplier<Key<Value<DoorHinge>>> DOOR_HINGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DOOR_HINGE");
 
     /**
      * Whether exact teleport location should be used with a {@link EndGateway}.
@@ -1043,11 +1046,6 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> HIDE_UNBREAKABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HIDE_UNBREAKABLE");
 
     /**
-     * The {@link Hinge} of a door {@link BlockState}.
-     */
-    public static final Supplier<Key<Value<Hinge>>> HINGE_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HINGE_POSITION");
-
-    /**
      * The {@link Vector3i position} where a {@link Turtle} lays {@link BlockTypes#TURTLE_EGG eggs}.
      */
     public static final Supplier<Key<Value<Vector3i>>> HOME_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HOME_POSITION");
@@ -1075,7 +1073,7 @@ public final class Keys {
     /**
      * The {@link InstrumentType} of a {@link BlockTypes#NOTE_BLOCK} {@link BlockState}.
      */
-    public static final Supplier<Key<Value<InstrumentType>>> INSTRUMENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "INSTRUMENT");
+    public static final Supplier<Key<Value<InstrumentType>>> INSTRUMENT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "INSTRUMENT_TYPE");
 
     /**
      * Whether a {@link BlockTypes#DAYLIGHT_DETECTOR} {@link BlockState} is inverted.
@@ -1405,7 +1403,7 @@ public final class Keys {
      * Whether players are prevented from placing
      * items from an equipment slot on an {@link ArmorStand}
      */
-    public static final Supplier<Key<SetValue<EquipmentType>>> IS_PLACING_DISABLED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_PLACING_DISABLED");
+    public static final Supplier<Key<MapValue<EquipmentType, Boolean>>> IS_PLACING_DISABLED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_PLACING_DISABLED");
 
     /**
      * Whether a {@link IronGolem} has been created by a {@link Player}.
@@ -1563,7 +1561,7 @@ public final class Keys {
      * Whether players are prevented from taking
      * items from an equipment slot on an {@link ArmorStand}
      */
-    public static final Supplier<Key<SetValue<EquipmentType>>> IS_TAKING_DISABLED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TAKING_DISABLED");
+    public static final Supplier<Key<MapValue<EquipmentType, Boolean>>> IS_TAKING_DISABLED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_TAKING_DISABLED");
 
     /**
      * Whether a {@link TameableAnimal} is currently tamed
@@ -1816,9 +1814,8 @@ public final class Keys {
 
     /**
      * The type of {@link MusicDisc} an {@link ItemStack} holds.
-     * Readonly
      */
-    public static final Supplier<Key<Value<MusicDisc>>> MUSIC_DISK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MUSIC_DISK");
+    public static final Supplier<Key<Value<MusicDisc>>> MUSIC_DISC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MUSIC_DISC");
 
     /**
      * The next entity that will be spawned by a {@link MobSpawner}.
@@ -1930,7 +1927,7 @@ public final class Keys {
     /**
      * The plugin that created an {@link Inventory}
      */
-    public static final Supplier<Key<Value<PluginContainer>>> PLUGIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PLUGIN");
+    public static final Supplier<Key<Value<PluginContainer>>> PLUGIN_CONTAINER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PLUGIN_CONTAINER");
 
     /**
      * The pore sides of a {@link BlockTypes#BROWN_MUSHROOM_BLOCK} or
@@ -1976,7 +1973,7 @@ public final class Keys {
     /**
      * A {@link Beacon}'s primary effect.
      */
-    public static final Supplier<Key<Value<PotionEffectType>>> PRIMARY_EFFECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PRIMARY_EFFECT");
+    public static final Supplier<Key<Value<PotionEffectType>>> PRIMARY_POTION_EFFECT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PRIMARY_POTION_EFFECT_TYPE");
 
     /**
      * The {@link Villager} or {@link ZombieVillager}'s {@link Profession}.
@@ -2015,7 +2012,7 @@ public final class Keys {
      * The wave number of a raid a {@link Raider} is in.
      * Readonly but mutable
      */
-    public static final Supplier<Key<Value<Wave>>> RAID_WAVE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "RAID_WAVE");
+    public static final Supplier<Key<Value<RaidWave>>> RAID_WAVE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "RAID_WAVE");
 
     /**
      * The {@link RailDirection} of a {@link BlockState}.
@@ -2122,9 +2119,17 @@ public final class Keys {
     public static final Supplier<Key<BoundedValue<Double>>> SCALE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SCALE");
 
     /**
+     * The scoreboard tags applied to an {@link Entity}.
+     *
+     * @see <a href="https://minecraft.gamepedia.com/Scoreboard#Tags">
+     * https://minecraft.gamepedia.com/Scoreboard#Tags</a>
+     */
+    public static final Supplier<Key<SetValue<String>>> SCOREBOARD_TAGS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SCOREBOARD_TAGS");
+
+    /**
      * A {@link Beacon}'s secondary effect.
      */
-    public static final Supplier<Key<Value<PotionEffectType>>> SECONDARY_EFFECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SECONDARY_EFFECT");
+    public static final Supplier<Key<Value<PotionEffectType>>> SECONDARY_POTION_EFFECT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SECONDARY_POTION_EFFECT_TYPE");
 
     /**
      * A {@link Fox fox's} second trusted {@link UUID}, usually a {@link Player}.
@@ -2161,7 +2166,7 @@ public final class Keys {
      * customized skins are not possible.</p>
      * Readonly(Player.class)
      */
-    public static final Supplier<Key<Value<ProfileProperty>>> SKIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SKIN");
+    public static final Supplier<Key<Value<ProfileProperty>>> SKIN_PROFILE_PROPERTY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SKIN_PROFILE_PROPERTY");
 
     /**
      * The "moisture" state of a {@link Dolphin}.
@@ -2342,22 +2347,9 @@ public final class Keys {
     public static final Supplier<Key<BoundedValue<Double>>> SWIFTNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SWIFTNESS");
 
     /**
-     * The scoreboard tags applied to an {@link Entity}.
-     *
-     * @see <a href="https://minecraft.gamepedia.com/Scoreboard#Tags">
-     * https://minecraft.gamepedia.com/Scoreboard#Tags</a>
-     */
-    public static final Supplier<Key<SetValue<String>>> TAGS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TAGS");
-
-    /**
      * The tamer of a {@link TameableAnimal} or {@link HorseEntity}.
      */
     public static final Supplier<Key<Value<UUID>>> TAMER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TAMER");
-
-    /**
-     * The entities targeted by the three {@link Wither} heads. In vanilla the wither only targets {@link Living}. {@code null} for no target entity.
-     */
-    public static final Supplier<Key<ListValue<Entity>>> TARGET_ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "TARGET_ENTITIES");
 
     /**
      * The targeted entity either by an {@link Agent} and it's
@@ -2438,7 +2430,7 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> UNSTABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "UNSTABLE");
 
     /**
-     * Whether changes to {@link Keys#SKIN} should
+     * Whether changes to {@link Keys#SKIN_PROFILE_PROPERTY} should
      * be reflected in an entitie's {@link GameProfile}.
      */
     public static final Supplier<Key<Value<Boolean>>> UPDATE_GAME_PROFILE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "UPDATE_GAME_PROFILE");
@@ -2537,6 +2529,11 @@ public final class Keys {
      * for its neighboring block to the {@link Direction#WEST}.
      */
     public static final Supplier<Key<Value<WireAttachmentType>>> WIRE_ATTACHMENT_WEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "WIRE_ATTACHMENT_WEST");
+
+    /**
+     * The entities targeted by the three {@link Wither} heads. In vanilla the wither only targets {@link Living}. {@code null} for no target entity.
+     */
+    public static final Supplier<Key<ListValue<Entity>>> WITHER_TARGETS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "WITHER_TARGETS");
 
     /**
      * The {@link Sheep} who is being targeted by the {@link SpellTypes#WOLOLO}

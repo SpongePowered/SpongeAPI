@@ -197,7 +197,7 @@ public final class CatalogTypes {
 
     public static final Class<HeldEquipmentType> HELD_EQUIPMENT_TYPE = HeldEquipmentType.class;
 
-    public static final Class<Hinge> HINGE = Hinge.class;
+    public static final Class<DoorHinge> HINGE = DoorHinge.class;
 
     public static final Class<HorseColor> HORSE_COLOR = HorseColor.class;
 
