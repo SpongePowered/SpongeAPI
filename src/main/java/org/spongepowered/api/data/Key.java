@@ -36,6 +36,7 @@ import org.spongepowered.api.event.data.ChangeDataHolderEvent;
 import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.TypeTokens;
 import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.plugin.PluginContainer;
 
 import java.lang.reflect.Type;
 import java.util.Collection;
@@ -76,8 +77,7 @@ public interface Key<V extends Value<?>> extends CatalogType {
      * persisted, a {@link DataRegistration} is required.
      *
      * <p>Registration of a custom created {@link Key} is required through
-     * {@link org.spongepowered.api.event.registry.RegistryEvent.Catalog},
-     * though the creation is not restricted to any particular event. The
+     * {@link org.spongepowered.api.event.lifecycle.RegisterCatalogEvent}. The
      * registration of a {@link DataRegistration} is done separately.
      * </p>
      *
@@ -137,7 +137,7 @@ public interface Key<V extends Value<?>> extends CatalogType {
      * @param listener The event listener
      * @param <E> The class type of the data holder
      */
-    <E extends DataHolder> void registerEvent(Class<E> holderFilter, EventListener<ChangeDataHolderEvent.ValueChange> listener);
+    <E extends DataHolder> void registerEvent(PluginContainer plugin, Class<E> holderFilter, EventListener<ChangeDataHolderEvent.ValueChange> listener);
 
     interface Builder<E, V extends Value<E>> extends CatalogBuilder<Key<V>, Builder<E, V>> {
 

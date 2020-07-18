@@ -294,7 +294,7 @@ public final class Keys {
      * The set of {@link PotionEffect}s applied on use of an {@link ItemStack}.
      * Readonly
      */
-    public static final Supplier<Key<Value<Set<PotionEffect>>>> APPLICABLE_POTION_EFFECTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "APPLICABLE_POTION_EFFECTS");
+    public static final Supplier<Key<SetValue<PotionEffect>>> APPLICABLE_POTION_EFFECTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "APPLICABLE_POTION_EFFECTS");
 
     /**
      * The enchantments applied to an {@link ItemStack}.
@@ -478,7 +478,7 @@ public final class Keys {
      * The set of harvestable {@link BlockType}s with an {@link ItemStack}. {@link #EFFICIENCY}
      * Readonly
      */
-    public static final Supplier<Key<Value<Set<BlockType>>>> CAN_HARVEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CAN_HARVEST");
+    public static final Supplier<Key<SetValue<BlockType>>> CAN_HARVEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CAN_HARVEST");
 
     /**
      * Whether a {@link FallingBlock} will damage an {@link Entity} it lands on.
