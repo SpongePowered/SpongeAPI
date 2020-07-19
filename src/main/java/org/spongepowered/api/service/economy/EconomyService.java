@@ -28,8 +28,7 @@ import org.spongepowered.api.service.context.ContextualService;
 import org.spongepowered.api.service.economy.account.Account;
 import org.spongepowered.api.service.economy.account.AccountDeletionResultType;
 import org.spongepowered.api.service.economy.account.AccountDeletionResultTypes;
-import org.spongepowered.api.service.economy.account.UniqueAccount;
-import org.spongepowered.api.service.economy.account.VirtualAccount;
+import org.spongepowered.api.service.economy.account.AccountHolder;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -59,20 +58,16 @@ public interface EconomyService extends ContextualService<Account> {
     Currency getDefaultCurrency();
 
     /**
-     * Returns whether a {@link UniqueAccount} exists with the specified
-     * {@link UUID}.
+     * Returns whether a {@link Account} exists for the specified
+     * {@link AccountHolder}.
      *
-     * @param uuid The {@link UUID} of the account to check for
-     * @return Whether a {@link UniqueAccount} exists with the specified
-     *         {@link UUID}
+     * @param holder The {@link AccountHolder} of the account to check for
+     * @return Whether a {@link Account} exists for the specified {@link AccountHolder}
      */
-    boolean hasAccount(UUID uuid);
+    boolean hasAccount(AccountHolder holder);
 
     /**
      * Returns whether an {@link Account} with the specified identifier exists.
-     *
-     * <p>Depending on the implementation, the {@link Account} may be a
-     * {@link UniqueAccount} or a {@link VirtualAccount}.
      *
      * @param identifier The identifier of the account to check for
      * @return Whether an {@link Account} with the specified identifier exists
@@ -80,25 +75,18 @@ public interface EconomyService extends ContextualService<Account> {
     boolean hasAccount(String identifier);
 
     /**
-     * Gets the {@link UniqueAccount} for the user with the specified
-     * {@link UUID}.
+     * Gets the {@link Account} for the specified {@link AccountHolder}.
      *
-     * <p>If an account does not already exist with the specified {@link UUID},
+     * <p>If an account does not already exist for the specified {@link AccountHolder},
      * it will be created.</p>
      *
-     * <p>Creation might fail if the provided {@link UUID} does not correspond
-     * to an actual player, or for an implementation-defined reason.</p>
-     *
-     * @param uuid The {@link UUID} of the account to get.
-     * @return The {@link UniqueAccount}, if available.
+     * @param holder The {@link AccountHolder} of the account to get.
+     * @return The {@link Account}, if available.
      */
-    Optional<UniqueAccount> getOrCreateAccount(UUID uuid);
+    Optional<Account> getOrCreateAccount(AccountHolder holder);
 
     /**
-     * Gets the {@link VirtualAccount} with the specified identifier.
-     *
-     * <p>Depending on the implementation, the {@link Account} may be a
-     * {@link UniqueAccount} or a {@link VirtualAccount}.</p>
+     * Gets the {@link Account} with the specified identifier.
      *
      * <p>If an account does not already exist with the specified identifier,
      * it will be created.</p>
@@ -111,43 +99,26 @@ public interface EconomyService extends ContextualService<Account> {
     Optional<Account> getOrCreateAccount(String identifier);
 
     /**
-     * Gets a {@link Stream} of all available {@link UniqueAccount}s.
+     * Gets a {@link Stream} of all available {@link Account}s.
      *
-     * @return A stream of all {@link UniqueAccount}s.
+     * @return A stream of all {@link Account}s.
      */
-    Stream<UniqueAccount> streamUniqueAccounts();
+    Stream<Account> streamAccounts();
 
     /**
-     * Gets a {@link Collection} of all available {@link UniqueAccount}s.
+     * Gets a {@link Collection} of all available {@link Account}s.
      *
-     * @return A Collection of all {@link UniqueAccount}s.
+     * @return A Collection of all {@link Account}s.
      */
-    Collection<UniqueAccount> getUniqueAccounts();
+    Collection<Account> getUniqueAccounts();
 
     /**
-     * Gets a {@link Stream} of all available {@link VirtualAccount}s.
+     * Deletes the account for the specified {@link AccountHolder}.
      *
-     * @return A stream of all {@link VirtualAccount}s.
-     */
-    Stream<VirtualAccount> streamVirtualAccounts();
-
-    /**
-     * Gets a {@link Collection} of all available {@link VirtualAccount}s.
-     *
-     * @return A Collection of all {@link VirtualAccount}s.
-     */
-    Collection<VirtualAccount> getVirtualAccounts();
-
-    /**
-     * Deletes the account for the user with the specified {@link UUID}.
-     *
-     * <p>Deletion might fail if the provided {@link UUID} does not correspond
-     * to an actual player, or for some other implementation-defined reason.</p>
-     *
-     * @param uuid The {@link UUID} of the account to delete.
+     * @param holder The {@link AccountHolder} of the account to delete.
      * @return The result of the deletion.
      */
-    default AccountDeletionResultType deleteAccount(UUID uuid) {
+    default AccountDeletionResultType deleteAccount(AccountHolder holder) {
         return AccountDeletionResultTypes.UNSUPPORTED;
     }
 

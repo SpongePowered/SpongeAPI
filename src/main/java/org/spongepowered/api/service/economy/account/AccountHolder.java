@@ -24,18 +24,15 @@
  */
 package org.spongepowered.api.service.economy.account;
 
-import org.spongepowered.api.entity.living.player.User;
-import org.spongepowered.api.profile.GameProfile;
-import org.spongepowered.api.util.Identifiable;
-
-import java.util.UUID;
-
 /**
- * Represents an {@link Account} identified by a {@link UUID}.
- *
- * <p>This is usually linked to a particular {@link User}'s {@link GameProfile},
- * through {@link #getUniqueId()}.</p>.
+ * An account holder is a holder of an {@link Account}.
  */
-public interface UniqueAccount extends Account, Identifiable {
+public interface AccountHolder {
 
+    /**
+     * Gets the identifier for the {@link Account} of this account holder,
+     *
+     * <p>There is no guarantee that the EconomyService uses this as the identifier</p>
+     */
+    String getAccountIdentifier();
 }
