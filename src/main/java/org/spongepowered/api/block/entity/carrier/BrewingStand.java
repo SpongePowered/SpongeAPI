@@ -25,7 +25,7 @@
 package org.spongepowered.api.block.entity.carrier;
 
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.ItemTypes;
 
 /**
@@ -40,7 +40,7 @@ public interface BrewingStand extends NameableCarrierBlockEntity {
      *
      * @return The amount of fuel left in the brewing stand.
      */
-    default BoundedValue.Mutable<Integer> fuel() {
+    default Value.Mutable<Integer> fuel() {
         return this.requireValue(Keys.FUEL).asMutable();
     }
 
@@ -48,7 +48,7 @@ public interface BrewingStand extends NameableCarrierBlockEntity {
      * {@link Keys#REMAINING_BREW_TIME}
      * @return The remaining brewing time in ticks.
      */
-    default BoundedValue.Mutable<Integer> remainingBrewTime() {
+    default Value.Mutable<Integer> remainingBrewTime() {
         return this.requireValue(Keys.REMAINING_BREW_TIME).asMutable();
     }
 

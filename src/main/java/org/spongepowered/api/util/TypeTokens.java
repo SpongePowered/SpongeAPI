@@ -70,7 +70,6 @@ import org.spongepowered.api.data.type.TropicalFishShape;
 import org.spongepowered.api.data.type.VillagerType;
 import org.spongepowered.api.data.type.WireAttachmentType;
 import org.spongepowered.api.data.type.WoodType;
-import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.MapValue;
 import org.spongepowered.api.data.value.SetValue;
@@ -180,12 +179,6 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<Boolean>> BOOLEAN_VALUE_TOKEN = new TypeToken<Value<Boolean>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<BoundedValue<Double>> BOUNDED_DOUBLE_VALUE_TOKEN = new TypeToken<BoundedValue<Double>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<BoundedValue<Integer>> BOUNDED_INTEGER_VALUE_TOKEN = new TypeToken<BoundedValue<Integer>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<BoundedValue<Short>> BOUNDED_SHORT_VALUE_TOKEN = new TypeToken<BoundedValue<Short>>() {private static final long serialVersionUID = -1;};
-
     public static final TypeToken<CatType> CAT_TYPE_TOKEN = new TypeToken<CatType>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<CatType>> CAT_TYPE_VALUE_TOKEN = new TypeToken<Value<CatType>>() {private static final long serialVersionUID = -1;};
@@ -245,8 +238,6 @@ public final class TypeTokens {
     public static final TypeToken<Value<EquipmentType>> EQUIPMENT_TYPE_VALUE_TOKEN = new TypeToken<Value<EquipmentType>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Float> FLOAT_TOKEN = new TypeToken<Float>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<BoundedValue<Float>> FLOAT_VALUE_TOKEN = new TypeToken<BoundedValue<Float>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<FluidStack> FLUID_STACK_TOKEN = new TypeToken<FluidStack>() {private static final long serialVersionUID = -1;};
 

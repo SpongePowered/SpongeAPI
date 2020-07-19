@@ -84,7 +84,6 @@ import org.spongepowered.api.data.type.TropicalFishShape;
 import org.spongepowered.api.data.type.VillagerType;
 import org.spongepowered.api.data.type.WireAttachmentType;
 import org.spongepowered.api.data.type.WoodType;
-import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.MapValue;
 import org.spongepowered.api.data.value.SetValue;
@@ -241,7 +240,7 @@ public final class Keys {
     /**
      * The {@link PotionEffectTypes#ABSORPTION} amount of a {@link Living} entity.
      */
-    public static final Supplier<Key<BoundedValue<Double>>> ABSORPTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ABSORPTION");
+    public static final Supplier<Key<Value<Double>>> ABSORPTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ABSORPTION");
 
     /**
      * The acceleration of a {@link DamagingProjectile}.
@@ -272,7 +271,7 @@ public final class Keys {
      * e.g. The age of an {@link AreaEffectCloud}.
      * <p>Note that in vanilla this value is not persisted for most entities.</p>
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AGE");
+    public static final Supplier<Key<Value<Integer>>> AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "AGE");
 
     /**
      * The modifier to {@link Keys#VELOCITY} of a {@link Minecart} while airborne.
@@ -286,7 +285,7 @@ public final class Keys {
      * fade over time and the entity will become peaceful again once its anger
      * reaches its minimum.</p>
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> ANGER_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ANGER_LEVEL");
+    public static final Supplier<Key<Value<Integer>>> ANGER_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ANGER_LEVEL");
 
     /**
      * The set of {@link PotionEffect}s applied on use of an {@link ItemStack}.
@@ -324,7 +323,7 @@ public final class Keys {
     /**
      * The damage dealt by an {@link ArrowEntity} on impact.
      */
-    public static final Supplier<Key<BoundedValue<Double>>> ATTACK_DAMAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ATTACK_DAMAGE");
+    public static final Supplier<Key<Value<Double>>> ATTACK_DAMAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ATTACK_DAMAGE");
 
     /**
      * The time of a {@link Ravager} is considered attacking.
@@ -344,7 +343,7 @@ public final class Keys {
     /**
      * The ticks until a {@link Ageable} turns into an adult.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> BABY_TICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BABY_TICKS");
+    public static final Supplier<Key<Value<Integer>>> BABY_TICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BABY_TICKS");
 
     /**
      * The {@link BannerPatternLayer}s of a {@link Banner}.
@@ -358,7 +357,7 @@ public final class Keys {
      * the size of an {@link Entity}.</p>
      * Readonly
      */
-    public static final Supplier<Key<BoundedValue<Double>>> BASE_SIZE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BASE_SIZE");
+    public static final Supplier<Key<Value<Double>>> BASE_SIZE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "BASE_SIZE");
 
     /**
      * The base vehicle a passenger is riding at the moment.
@@ -557,7 +556,7 @@ public final class Keys {
      * or
      * The amount of ticks a {@link EndGateway} has to wait for the next teleportation.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> COOLDOWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "COOLDOWN");
+    public static final Supplier<Key<Value<Integer>>> COOLDOWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "COOLDOWN");
 
     /**
      * The creator, usually of an {@link Entity}. It is up to the implementation to define.
@@ -593,13 +592,13 @@ public final class Keys {
      *
      * <p>This damage is capped by {@link #MAX_FALL_DAMAGE}.</p>
      */
-    public static final Supplier<Key<BoundedValue<Double>>> DAMAGE_PER_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DAMAGE_PER_BLOCK");
+    public static final Supplier<Key<Value<Double>>> DAMAGE_PER_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DAMAGE_PER_BLOCK");
 
     /**
      * The distance at which a {@link BlockState} will decay.
      * This usually applies to leaves, for example {@link BlockTypes#OAK_LEAVES}.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> DECAY_DISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DECAY_DISTANCE");
+    public static final Supplier<Key<Value<Integer>>> DECAY_DISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DECAY_DISTANCE");
 
     /**
      * The modifier to {@link Keys#VELOCITY} of a {@link Minecart} while derailed.
@@ -609,7 +608,7 @@ public final class Keys {
     /**
      * The despawn delay (in ticks) of a {@link Item}, {@link Endermite}, {@link Weather} {@link TraderLlama} or.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> DESPAWN_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DESPAWN_DELAY");
+    public static final Supplier<Key<Value<Integer>>> DESPAWN_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DESPAWN_DELAY");
 
     /**
      * The detonator of a {@link PrimedTNT}.
@@ -651,13 +650,13 @@ public final class Keys {
     /**
      * The remaining duration (in ticks) of an {@link AreaEffectCloud}.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> DURATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DURATION");
+    public static final Supplier<Key<Value<Integer>>> DURATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DURATION");
 
     /**
      * The amount of ticks the duration of an {@link AreaEffectCloud}
      * is increased or reduced when it applies its effect.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> DURATION_ON_USE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DURATION_ON_USE");
+    public static final Supplier<Key<Value<Integer>>> DURATION_ON_USE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DURATION_ON_USE");
 
     /**
      * The color of a dyeable {@link BlockState}, {@link ItemStack} or entity like {@link Cat}s.
@@ -710,28 +709,28 @@ public final class Keys {
      * maximum. This type of effect occurs over time and can be modified by
      * movements and actions performed by the {@link Humanoid}.</p>
      */
-    public static final Supplier<Key<BoundedValue<Double>>> EXHAUSTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXHAUSTION");
+    public static final Supplier<Key<Value<Double>>> EXHAUSTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXHAUSTION");
 
     /**
      * The amount of experience a {@link Player} has or an {@link ExperienceOrb} contains.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> EXPERIENCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXPERIENCE");
+    public static final Supplier<Key<Value<Integer>>> EXPERIENCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXPERIENCE");
 
     /**
      * The total experience a {@link Player} requires to advance from his current level to the next one.
      * Readonly
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> EXPERIENCE_FROM_START_OF_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXPERIENCE_FROM_START_OF_LEVEL");
+    public static final Supplier<Key<Value<Integer>>> EXPERIENCE_FROM_START_OF_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXPERIENCE_FROM_START_OF_LEVEL");
 
     /**
      * The current level a {@link Player} has.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> EXPERIENCE_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXPERIENCE_LEVEL");
+    public static final Supplier<Key<Value<Integer>>> EXPERIENCE_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXPERIENCE_LEVEL");
 
     /**
      * The amount of experience a {@link Player} has collected towards the next level.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> EXPERIENCE_SINCE_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXPERIENCE_SINCE_LEVEL");
+    public static final Supplier<Key<Value<Integer>>> EXPERIENCE_SINCE_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXPERIENCE_SINCE_LEVEL");
 
     /**
      * The radius of the {@link Explosion} to be created by detonating an {@link Explosive}.
@@ -740,7 +739,7 @@ public final class Keys {
      * determined randomly at the time of the explosion or computed from the
      * context in which the {@link Explosive} explodes.</p>
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> EXPLOSION_RADIUS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXPLOSION_RADIUS");
+    public static final Supplier<Key<Value<Integer>>> EXPLOSION_RADIUS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "EXPLOSION_RADIUS");
 
     /**
      * The eye height of an {@link Entity}.
@@ -757,7 +756,7 @@ public final class Keys {
     /**
      * The distance an {@link Living} has fallen.
      */
-    public static final Supplier<Key<BoundedValue<Double>>> FALL_DISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FALL_DISTANCE");
+    public static final Supplier<Key<Value<Double>>> FALL_DISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FALL_DISTANCE");
 
     /**
      * The amount of ticks a {@link FallingBlock} has been falling for.
@@ -778,17 +777,17 @@ public final class Keys {
      * fly for roughly {@code modifier * 10 + (random number from 0 to 13)}
      * ticks in Vanilla Minecraft.</p>
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> FIREWORK_FLIGHT_MODIFIER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FIREWORK_FLIGHT_MODIFIER");
+    public static final Supplier<Key<Value<Integer>>> FIREWORK_FLIGHT_MODIFIER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FIREWORK_FLIGHT_MODIFIER");
 
     /**
      * The delay in ticks until the {@link Entity} will be damaged by the fire.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> FIRE_DAMAGE_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FIRE_DAMAGE_DELAY");
+    public static final Supplier<Key<Value<Integer>>> FIRE_DAMAGE_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FIRE_DAMAGE_DELAY");
 
     /**
      * The amount of ticks an {@link Entity} is still burning.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> FIRE_TICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FIRE_TICKS");
+    public static final Supplier<Key<Value<Integer>>> FIRE_TICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FIRE_TICKS");
 
     /**
      * The time a {@link User} first joined on the Server.
@@ -810,7 +809,7 @@ public final class Keys {
     /**
      * The fluid level of a liquid {@link BlockState}.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> FLUID_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FLUID_LEVEL");
+    public static final Supplier<Key<Value<Integer>>> FLUID_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FLUID_LEVEL");
 
     /**
      * The directional tank information.
@@ -830,7 +829,7 @@ public final class Keys {
      * hunger levels. If the food level is high enough, the humanoid may heal. If the food level is at 0,
      * the humanoid may starve.</p>
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> FOOD_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FOOD_LEVEL");
+    public static final Supplier<Key<Value<Integer>>> FOOD_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FOOD_LEVEL");
 
     /**
      * The type of a {@link Fox}.
@@ -845,7 +844,7 @@ public final class Keys {
      *
      * <p>See {@link #BURN_TIME} for the burn time added by a fuel {@link ItemStack} to a furnace</p>
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> FUEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FUEL");
+    public static final Supplier<Key<Value<Integer>>> FUEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "FUEL");
 
     /**
      * The time (in ticks) a {@link FusedExplosive}'s fuse will burn before the explosion.
@@ -868,19 +867,19 @@ public final class Keys {
      * The generation of a {@link ItemTypes#WRITTEN_BOOK} {@link ItemStack}.
      * Depending on the book's generation it may be impossible to copy it.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> GENERATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "GENERATION");
+    public static final Supplier<Key<Value<Integer>>> GENERATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "GENERATION");
 
     /**
      * The "growth stage" state of a {@link BlockState}.
      * e.g. {@link BlockTypes#CACTUS} or {@link BlockTypes#WHEAT} etc.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> GROWTH_STAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "GROWTH_STAGE");
+    public static final Supplier<Key<Value<Integer>>> GROWTH_STAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "GROWTH_STAGE");
 
     /**
      * The hardness of a {@link BlockState}s {@link BlockType}.
      * Readonly
      */
-    public static final Supplier<Key<BoundedValue<Double>>> HARDNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HARDNESS");
+    public static final Supplier<Key<Value<Double>>> HARDNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HARDNESS");
 
     /**
      * Whether an {@link ArmorStand}'s arms are visible.
@@ -986,13 +985,13 @@ public final class Keys {
      * <p>Convention dictates that health does not fall below 0 but this
      * convention may be broken.</p>
      */
-    public static final Supplier<Key<BoundedValue<Double>>> HEALTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HEALTH");
+    public static final Supplier<Key<Value<Double>>> HEALTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HEALTH");
 
     /**
      * How much health a half-heart on a {@link Player}'s GUI will stand for.
      * TODO wrong javadocs @gabizou?
      */
-    public static final Supplier<Key<BoundedValue<Double>>> HEALTH_SCALE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HEALTH_SCALE");
+    public static final Supplier<Key<Value<Double>>> HEALTH_SCALE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HEALTH_SCALE");
 
     /**
      * The height of the physical form of an {@link Entity}.
@@ -1001,7 +1000,7 @@ public final class Keys {
      * {@link Entity}.</p>
      * Readonly
      */
-    public static final Supplier<Key<BoundedValue<Double>>> HEIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HEIGHT");
+    public static final Supplier<Key<Value<Double>>> HEIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "HEIGHT");
 
     /**
      * The {@link ItemType} a {@link BlockState} represents.
@@ -1083,7 +1082,7 @@ public final class Keys {
     /**
      * The amount of ticks an {@link Entity} will remain invulnerable for.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> INVULNERABILITY_TICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "INVULNERABILITY_TICKS");
+    public static final Supplier<Key<Value<Integer>>> INVULNERABILITY_TICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "INVULNERABILITY_TICKS");
 
     /**
      * Whether an {@link Entity} is invulnerable.
@@ -1613,7 +1612,7 @@ public final class Keys {
     /**
      * The durability of an {@link ItemStack}. {@link #MAX_DURABILITY}
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> ITEM_DURABILITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ITEM_DURABILITY");
+    public static final Supplier<Key<Value<Integer>>> ITEM_DURABILITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ITEM_DURABILITY");
 
     /**
      * The {@link ItemStackSnapshot item} in an
@@ -1628,7 +1627,7 @@ public final class Keys {
      * <p>For the knockback provided by hits with a weapon according to the
      * enchantment of the same name, see {@link #APPLIED_ENCHANTMENTS}.</p>
      */
-    public static final Supplier<Key<BoundedValue<Double>>> KNOCKBACK_STRENGTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "KNOCKBACK_STRENGTH");
+    public static final Supplier<Key<Value<Double>>> KNOCKBACK_STRENGTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "KNOCKBACK_STRENGTH");
 
     /**
      * The known {@link PandaGene gene} of a {@link Panda}.
@@ -1664,7 +1663,7 @@ public final class Keys {
      * The amount of layers a {@link BlockState} has.
      * e.g. {@link BlockTypes#SNOW}, {@link BlockTypes#CAKE}
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> LAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LAYER");
+    public static final Supplier<Key<Value<Integer>>> LAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LAYER");
 
     /**
      * The holder of a leashed {@link Agent}
@@ -1733,19 +1732,19 @@ public final class Keys {
      *
      * <p>For the current amount of air, check {@link #REMAINING_AIR}.</p>
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> MAX_AIR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_AIR");
+    public static final Supplier<Key<Value<Integer>>> MAX_AIR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_AIR");
 
     /**
      * The maximum amount of ticks a {@link FurnaceBlockEntity}
      * can burn with the currently used fuel item.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> MAX_BURN_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_BURN_TIME");
+    public static final Supplier<Key<Value<Integer>>> MAX_BURN_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_BURN_TIME");
 
     /**
      * The total time the current {@link ItemStack} in a
      * {@link FurnaceBlockEntity} has to be cooked.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> MAX_COOK_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_COOK_TIME");
+    public static final Supplier<Key<Value<Integer>>> MAX_COOK_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_COOK_TIME");
 
     /**
      * The maximum durability of an {@link ItemStack}. {@link #ITEM_DURABILITY}
@@ -1756,7 +1755,7 @@ public final class Keys {
     /**
      * The maximum damage a {@link FallingBlock} can deal.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> MAX_FALL_DAMAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_FALL_DAMAGE");
+    public static final Supplier<Key<Value<Integer>>> MAX_FALL_DAMAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_FALL_DAMAGE");
 
     /**
      * The maximum health of a {@link Living}.
@@ -1765,31 +1764,31 @@ public final class Keys {
      * health points. The base health should be minded that it may be lower
      * than the total maximum health of the entity.</p>
      */
-    public static final Supplier<Key<BoundedValue<Double>>> MAX_HEALTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_HEALTH");
+    public static final Supplier<Key<Value<Double>>> MAX_HEALTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_HEALTH");
 
     /**
      * The maximum number of entities around a {@link MobSpawner}.
      * A spawner will not spawn entities if there are more
      * entities around than this value permits.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> MAX_NEARBY_ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_NEARBY_ENTITIES");
+    public static final Supplier<Key<Value<Integer>>> MAX_NEARBY_ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_NEARBY_ENTITIES");
 
     /**
      * The maximum amount of ticks between two
      * batches of entities spawned by a {@link MobSpawner}.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> MAX_SPAWN_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_SPAWN_DELAY");
+    public static final Supplier<Key<Value<Integer>>> MAX_SPAWN_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_SPAWN_DELAY");
 
     /**
      * The max speed of a {@link Boat}. In vanilla, this is 0.4
      */
-    public static final Supplier<Key<BoundedValue<Double>>> MAX_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_SPEED");
+    public static final Supplier<Key<Value<Double>>> MAX_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_SPEED");
 
     /**
      * The maximum stack size of slots in an inventory. For most vanilla inventories this is 64.
      * Readonly
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> MAX_STACK_SIZE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_STACK_SIZE");
+    public static final Supplier<Key<Value<Integer>>> MAX_STACK_SIZE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAX_STACK_SIZE");
 
     /**
      * The represented block's offset of a {@link MinecartEntity}.
@@ -1800,12 +1799,12 @@ public final class Keys {
      * The minimum amount of ticks between two
      * batches of entities spawned by a {@link MobSpawner}.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> MIN_SPAWN_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MIN_SPAWN_DELAY");
+    public static final Supplier<Key<Value<Integer>>> MIN_SPAWN_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MIN_SPAWN_DELAY");
 
     /**
      * The moisture value of a {@link BlockTypes#FARMLAND} {@link BlockState}.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> MOISTURE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MOISTURE");
+    public static final Supplier<Key<Value<Integer>>> MOISTURE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MOISTURE");
 
     /**
      * The type of a {@link Mooshroom}.
@@ -1839,7 +1838,7 @@ public final class Keys {
     /**
      * The deceleration a {@link Boat} while it has {@link Keys#PASSENGERS}.
      */
-    public static final Supplier<Key<BoundedValue<Double>>> OCCUPIED_DECELERATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "OCCUPIED_DECELERATION");
+    public static final Supplier<Key<Value<Double>>> OCCUPIED_DECELERATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "OCCUPIED_DECELERATION");
 
     /**
      * Whether an {@link Entity} is currently considered to be on the ground.
@@ -1876,7 +1875,7 @@ public final class Keys {
      * <p>Once this value reaches the {@link #MAX_COOK_TIME}, the
      * item will be finished cooking.</p>
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> PASSED_COOK_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PASSED_COOK_TIME");
+    public static final Supplier<Key<Value<Integer>>> PASSED_COOK_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PASSED_COOK_TIME");
 
     /**
      * The entities that act as passengers for an {@link Entity}.
@@ -1899,7 +1898,7 @@ public final class Keys {
     /**
      * The pickup delay (in ticks) of an {@link Item}.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> PICKUP_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PICKUP_DELAY");
+    public static final Supplier<Key<Value<Integer>>> PICKUP_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PICKUP_DELAY");
 
     /**
      * The {@link PickupRule} of an {@link ArrowEntity}.
@@ -1946,7 +1945,7 @@ public final class Keys {
     /**
      * The potential max speed of a {@link Minecart}.
      */
-    public static final Supplier<Key<BoundedValue<Double>>> POTENTIAL_MAX_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "POTENTIAL_MAX_SPEED");
+    public static final Supplier<Key<Value<Double>>> POTENTIAL_MAX_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "POTENTIAL_MAX_SPEED");
 
     /**
      * The potion effects that are present on an {@link Entity}
@@ -1968,7 +1967,7 @@ public final class Keys {
      * {@link BlockTypes#DAYLIGHT_DETECTOR},
      * {@link BlockTypes#LIGHT_WEIGHTED_PRESSURE_PLATE} etc.</p>
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> POWER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "POWER");
+    public static final Supplier<Key<Value<Integer>>> POWER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "POWER");
 
     /**
      * A {@link Beacon}'s primary effect.
@@ -1993,20 +1992,20 @@ public final class Keys {
     /**
      * The radius of an {@link AreaEffectCloud}.
      */
-    public static final Supplier<Key<BoundedValue<Double>>> RADIUS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "RADIUS");
+    public static final Supplier<Key<Value<Double>>> RADIUS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "RADIUS");
 
     /**
      * The amount the radius of an
      * {@link AreaEffectCloud} grows or shrinks each time it applies its
      * effect.
      */
-    public static final Supplier<Key<BoundedValue<Double>>> RADIUS_ON_USE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "RADIUS_ON_USE");
+    public static final Supplier<Key<Value<Double>>> RADIUS_ON_USE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "RADIUS_ON_USE");
 
     /**
      * The amount the radius of an
      * {@link AreaEffectCloud} grows or shrinks per tick.
      */
-    public static final Supplier<Key<BoundedValue<Double>>> RADIUS_PER_TICK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "RADIUS_PER_TICK");
+    public static final Supplier<Key<Value<Double>>> RADIUS_PER_TICK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "RADIUS_PER_TICK");
 
     /**
      * The wave number of a raid a {@link Raider} is in.
@@ -2024,17 +2023,17 @@ public final class Keys {
      * {@link AreaEffectCloud} will reapply its effect on a previously
      * affected {@link Entity}.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> REAPPLICATION_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REAPPLICATION_DELAY");
+    public static final Supplier<Key<Value<Integer>>> REAPPLICATION_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REAPPLICATION_DELAY");
 
     /**
      * The redstone delay on a {@link BlockTypes#REPEATER} {@link BlockState}.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> REDSTONE_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REDSTONE_DELAY");
+    public static final Supplier<Key<Value<Integer>>> REDSTONE_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REDSTONE_DELAY");
 
     /**
      * The amount of air a {@link Living} has left.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> REMAINING_AIR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REMAINING_AIR");
+    public static final Supplier<Key<Value<Integer>>> REMAINING_AIR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REMAINING_AIR");
 
     /**
      * The remaining amount of ticks the current brewing
@@ -2042,13 +2041,13 @@ public final class Keys {
      *
      * <p>If nothing is being brewed, the remaining brew time will be 0.</p>
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> REMAINING_BREW_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REMAINING_BREW_TIME");
+    public static final Supplier<Key<Value<Integer>>> REMAINING_BREW_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REMAINING_BREW_TIME");
 
     /**
      * Represents the {@link Key} for the remaining number of ticks to pass
      * before another attempt to spawn entities is made by a {@link MobSpawner}.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> REMAINING_SPAWN_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REMAINING_SPAWN_DELAY");
+    public static final Supplier<Key<Value<Integer>>> REMAINING_SPAWN_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REMAINING_SPAWN_DELAY");
 
     /**
      * The amount of food a food {@link ItemStack} restores when eaten.
@@ -2072,7 +2071,7 @@ public final class Keys {
      * How close a {@link Player} has to be around the {@link MobSpawner}
      * in order for it to attempt to spawn entities.
      */
-    public static final Supplier<Key<BoundedValue<Double>>> REQUIRED_PLAYER_RANGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REQUIRED_PLAYER_RANGE");
+    public static final Supplier<Key<Value<Double>>> REQUIRED_PLAYER_RANGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "REQUIRED_PLAYER_RANGE");
 
     /**
      * The spawn locations a {@link Player}
@@ -2109,14 +2108,14 @@ public final class Keys {
      * over time and can be modified by movements and actions performed by the
      * {@link Player}.</p>
      */
-    public static final Supplier<Key<BoundedValue<Double>>> SATURATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SATURATION");
+    public static final Supplier<Key<Value<Double>>> SATURATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SATURATION");
 
     /**
      * The "scale" for the size of an {@link Entity}.
      *
      * <p>Together with {@link #BASE_SIZE} and {@link #HEIGHT} this defines the size of an {@link Entity}.</p>
      */
-    public static final Supplier<Key<BoundedValue<Double>>> SCALE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SCALE");
+    public static final Supplier<Key<Value<Double>>> SCALE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SCALE");
 
     /**
      * The scoreboard tags applied to an {@link Entity}.
@@ -2156,7 +2155,7 @@ public final class Keys {
      * or
      * The size of a {@link Phantom}. In vanilla, this ranges between 0 and 64.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> SIZE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SIZE");
+    public static final Supplier<Key<Value<Integer>>> SIZE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SIZE");
 
     /**
      * The skin of a {@link Humanoid}.
@@ -2197,7 +2196,7 @@ public final class Keys {
      * The index of a {@link Slot} in an {@link Inventory}
      * Readonly
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> SLOT_INDEX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SLOT_INDEX");
+    public static final Supplier<Key<Value<Integer>>> SLOT_INDEX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SLOT_INDEX");
 
     /**
      * The position of a {@link Slot} within a {@link GridInventory}.
@@ -2229,12 +2228,12 @@ public final class Keys {
     /**
      * How many entities a {@link MobSpawner} has spawned so far.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> SPAWN_COUNT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWN_COUNT");
+    public static final Supplier<Key<Value<Integer>>> SPAWN_COUNT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWN_COUNT");
 
     /**
      * How far away from the {@link MobSpawner} the entities spawned by it may appear.
      */
-    public static final Supplier<Key<BoundedValue<Double>>> SPAWN_RANGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWN_RANGE");
+    public static final Supplier<Key<Value<Double>>> SPAWN_RANGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SPAWN_RANGE");
 
     /**
      * The {@link Entity target} of the spectator camera of a {@link Player}.
@@ -2265,7 +2264,7 @@ public final class Keys {
      * A {@link Llama}s carrying strength. The higher the strength,
      * the more items it can carry (effectively the size of inventory).
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> STRENGTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STRENGTH");
+    public static final Supplier<Key<Value<Integer>>> STRENGTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STRENGTH");
 
     /**
      * The author of a structure from a {@link StructureBlock}.
@@ -2323,7 +2322,7 @@ public final class Keys {
     /**
      * The amount of "stuck arrows" in a {@link Living}.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> STUCK_ARROWS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STUCK_ARROWS");
+    public static final Supplier<Key<Value<Integer>>> STUCK_ARROWS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "STUCK_ARROWS");
 
     /**
      * The time (in ticks) a {@link Ravager} is stunned.
@@ -2334,7 +2333,7 @@ public final class Keys {
      * The amount of successful executions of a command
      * stored in a {@link CommandBlock} or {@link CommandBlockMinecart}.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> SUCCESS_COUNT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SUCCESS_COUNT");
+    public static final Supplier<Key<Value<Integer>>> SUCCESS_COUNT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SUCCESS_COUNT");
 
     /**
      * Whether a {@link BlockState} is suspended.
@@ -2344,7 +2343,7 @@ public final class Keys {
     /**
      * The swiftness of a {@link Minecart}.
      */
-    public static final Supplier<Key<BoundedValue<Double>>> SWIFTNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SWIFTNESS");
+    public static final Supplier<Key<Value<Double>>> SWIFTNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "SWIFTNESS");
 
     /**
      * The tamer of a {@link TameableAnimal} or {@link HorseEntity}.
@@ -2422,7 +2421,7 @@ public final class Keys {
     /**
      * The deceleration a {@link Boat} while it does not have {@link Keys#PASSENGERS}.
      */
-    public static final Supplier<Key<BoundedValue<Double>>> UNOCCUPIED_DECELERATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "UNOCCUPIED_DECELERATION");
+    public static final Supplier<Key<Value<Double>>> UNOCCUPIED_DECELERATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "UNOCCUPIED_DECELERATION");
 
     /**
      * Whether a {@link BlockTypes#TNT} {@link BlockState} is unstable.
@@ -2489,7 +2488,7 @@ public final class Keys {
      * The duration in ticks after which an
      * {@link AreaEffectCloud} will begin to apply its effect to entities.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> WAIT_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "WAIT_TIME");
+    public static final Supplier<Key<Value<Integer>>> WAIT_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "WAIT_TIME");
 
     /**
      * The base speed at which a {@link Player} or {@link Living} walks.

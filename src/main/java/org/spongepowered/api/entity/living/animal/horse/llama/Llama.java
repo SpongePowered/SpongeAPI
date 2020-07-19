@@ -26,7 +26,6 @@ package org.spongepowered.api.entity.living.animal.horse.llama;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.LlamaType;
-import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.animal.horse.PackHorse;
 import org.spongepowered.api.entity.living.animal.horse.TameableHorse;
@@ -51,7 +50,7 @@ public interface Llama extends LlamaEntity, TameableHorse, PackHorse {
      * {@link Keys#STRENGTH}
      * @return The strength of this llama, determines how big of an inventory they can carry
      */
-    default BoundedValue.Mutable<Integer> strength() {
+    default Value.Mutable<Integer> strength() {
         return this.requireValue(Keys.STRENGTH).asMutable();
     }
 }

@@ -25,7 +25,6 @@
 package org.spongepowered.api.entity.living;
 
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.item.inventory.ArmorEquipable;
@@ -41,7 +40,7 @@ public interface Humanoid extends Living, ProjectileLauncher, ArmorEquipable, Ta
      * {@link Keys#FOOD_LEVEL}
      * @return The human's food level
      */
-    default BoundedValue.Mutable<Integer> foodLevel() {
+    default Value.Mutable<Integer> foodLevel() {
         return this.requireValue(Keys.FOOD_LEVEL).asMutable();
     }
 
@@ -49,7 +48,7 @@ public interface Humanoid extends Living, ProjectileLauncher, ArmorEquipable, Ta
      * {@link Keys#EXHAUSTION}
      * @return The human's exhaustion
      */
-    default BoundedValue.Mutable<Double> exhaustion() {
+    default Value.Mutable<Double> exhaustion() {
         return this.requireValue(Keys.EXHAUSTION).asMutable();
     }
 
@@ -57,7 +56,7 @@ public interface Humanoid extends Living, ProjectileLauncher, ArmorEquipable, Ta
      * {@link Keys#SATURATION}
      * @return The human's saturation
      */
-    default BoundedValue.Mutable<Double> saturation() {
+    default Value.Mutable<Double> saturation() {
         return this.requireValue(Keys.SATURATION).asMutable();
     }
 

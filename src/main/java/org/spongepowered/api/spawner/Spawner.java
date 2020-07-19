@@ -27,7 +27,6 @@ package org.spongepowered.api.spawner;
 import org.spongepowered.api.block.entity.MobSpawner;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.SerializableDataHolder;
-import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.WeightedCollectionValue;
 import org.spongepowered.api.entity.Entity;
@@ -46,79 +45,79 @@ import java.util.Random;
 public interface Spawner extends SerializableDataHolder.Mutable {
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.BoundedValue.Mutable} for the remaining delay before
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the remaining delay before
      * a new attempt at spawning an {@link Entity} is made.
      *
      * @return The immutable bounded value for the remaining delay
      */
-    default BoundedValue.Mutable<Integer> remainingDelay() {
+    default Value.Mutable<Integer> remainingDelay() {
         return this.requireValue(Keys.REMAINING_SPAWN_DELAY).asMutable();
     }
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.BoundedValue.Mutable} for the minimum spawn delay
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the minimum spawn delay
      * required between attempts to spawn an {@link Entity}.
      *
      * @return The bounded value of the minimum spawn delay
      */
-    default BoundedValue.Mutable<Integer> minimumSpawnDelay() {
+    default Value.Mutable<Integer> minimumSpawnDelay() {
         return this.requireValue(Keys.MIN_SPAWN_DELAY).asMutable();
     }
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.BoundedValue.Mutable} for the maximum spawn delay
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the maximum spawn delay
      * required between attempts to spawn an {@link Entity}.
      *
      * @return The bounded value of the maximum spawn delay
      */
-    default BoundedValue.Mutable<Integer> maximumSpawnDelay() {
+    default Value.Mutable<Integer> maximumSpawnDelay() {
         return this.requireValue(Keys.MAX_SPAWN_DELAY).asMutable();
     }
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.BoundedValue.Mutable} for the count of successful
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the count of successful
      * spawns of all {@link Entity} instances from the owning spawner. This
      * count is simply a total count, there is no limitation on how many
      * attempts are made to spawn an {@link Entity}.
      *
      * @return The immutable bounded value
      */
-    default BoundedValue.Mutable<Integer> spawnCount() {
+    default Value.Mutable<Integer> spawnCount() {
         return this.requireValue(Keys.SPAWN_COUNT).asMutable();
     }
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.BoundedValue.Mutable} for the limitation on the number
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the limitation on the number
      * of nearby {@link Entity} instances can exist near the owning spawner. The
      * limitation is that if there are more {@link Entity} instances than the
      * provided value, no attempts to spawn a new {@link Entity} will be made.
      *
      * @return The bounded value of the maximum supported nearby entities
      */
-    default BoundedValue.Mutable<Integer> maximumNearbyEntities() {
+    default Value.Mutable<Integer> maximumNearbyEntities() {
         return this.requireValue(Keys.MAX_NEARBY_ENTITIES).asMutable();
     }
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.BoundedValue.Mutable} for the minimum range a
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the minimum range a
      * {@link Player} must remain in proximity of the spawner, such that if a
      * {@link Player} is NOT within the provided range, no attempts to spawn an
      * {@link Entity} is made.
      *
      * @return The value of the required player range to spawn entities
      */
-    default BoundedValue.Mutable<Double> requiredPlayerRange() {
+    default Value.Mutable<Double> requiredPlayerRange() {
         return this.requireValue(Keys.REQUIRED_PLAYER_RANGE).asMutable();
     }
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.BoundedValue.Mutable} for the maximum range that an
+     * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the maximum range that an
      * {@link Entity} can be spawned from the spawner.
      *
      * @return The immutable value of the maximum spawn range an entity can be
      *     spawned
      */
-    default BoundedValue.Mutable<Double> spawnRange() {
+    default Value.Mutable<Double> spawnRange() {
         return this.requireValue(Keys.SPAWN_RANGE).asMutable();
     }
 

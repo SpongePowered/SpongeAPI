@@ -25,7 +25,6 @@
 package org.spongepowered.api.entity.living;
 
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.Entity;
@@ -51,7 +50,7 @@ public interface Living extends AttributeHolder, Entity, EntityProjectileSource,
      * {@link Keys#HEALTH}
      * @return The health value
      */
-    default BoundedValue.Mutable<Double> health() {
+    default Value.Mutable<Double> health() {
         return this.requireValue(Keys.HEALTH).asMutable();
     }
 
@@ -59,7 +58,7 @@ public interface Living extends AttributeHolder, Entity, EntityProjectileSource,
      * {@link Keys#MAX_HEALTH}
      * @return The maximum health value
      */
-    default BoundedValue.Mutable<Double> maxHealth() {
+    default Value.Mutable<Double> maxHealth() {
         return this.requireValue(Keys.MAX_HEALTH).asMutable();
     }
 

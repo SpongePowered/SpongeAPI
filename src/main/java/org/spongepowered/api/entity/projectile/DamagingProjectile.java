@@ -25,8 +25,8 @@
 package org.spongepowered.api.entity.projectile;
 
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.MapValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.EntityType;
 
 /**
@@ -38,7 +38,7 @@ public interface DamagingProjectile extends Projectile {
      * {@link Keys#ATTACK_DAMAGE}
      * @return The attack damage
      */
-    default BoundedValue.Mutable<Double> attackDamage() {
+    default Value.Mutable<Double> attackDamage() {
         return this.requireValue(Keys.ATTACK_DAMAGE).asMutable();
     }
 

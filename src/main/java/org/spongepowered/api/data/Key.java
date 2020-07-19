@@ -28,7 +28,6 @@ import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.event.EventListener;
@@ -44,7 +43,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiPredicate;
-import java.util.function.Supplier;
 
 /**
  * Represents a key to an underlying {@link Value} such that the underlying
@@ -153,34 +151,12 @@ public interface Key<V extends Value<?>> extends CatalogType {
          * <a href="https://github.com/google/guava/wiki/ReflectionExplained#introduction">here</a>.
          * </p>
          *
-         * <p>If the value type is a {@link BoundedValue} the
-         * {@link #boundedType(TypeToken)} method should be used instead.</p>
-         *
          * @param token The type token, preferably an anonymous
          * @param <T> The element type of the Key
          * @param <B> The base value type of the key
          * @return This builder, generified
          */
         <T, B extends Value<T>> Builder<T, B> type(TypeToken<B> token);
-
-        /**
-         * Starter method for the bounded builder, to be used immediately after
-         * {@link Key#builder()} is called. This defines the generics for the
-         * builder itself to provide the properly generified {@link Key}.
-         *
-         * <p>Common {@link TypeToken TypeTokens} can be found in
-         * {@link TypeTokens}. If a new TypeToken is to be created, it is
-         * recommended to create an anonymous class instance of a token,
-         * as recommended by Guava's wiki found
-         * <a href="https://github.com/google/guava/wiki/ReflectionExplained#introduction">here</a>.
-         * </p>
-         *
-         * @param token The type token, preferably an anonymous
-         * @param <T> The element type of the Key
-         * @param <B> The base value type of the key
-         * @return This builder, generified
-         */
-        <T, B extends BoundedValue<T>> BoundedBuilder<T, B> boundedType(TypeToken<B> token);
 
         /**
          * Sets the {@link Comparator} that can be used to compare
@@ -219,75 +195,5 @@ public interface Key<V extends Value<?>> extends CatalogType {
          */
         @Override
         Key<V> build();
-
-        interface BoundedBuilder<E, V extends Value<E>> extends Builder<E, V> {
-
-            /**
-             * Sets the default minimum element.
-             *
-             * <p>Setting the minimum value is required.</p>
-             *
-             * @param minValue The minimum value
-             * @return This builder, for chaining
-             */
-            BoundedBuilder<E, V> minValue(E minValue);
-
-            /**
-             * Sets the default minimum element supplier.
-             *
-             * <p>Use this method instead of {@link #minValue(Object)} if
-             * the element type {@code E} isn't immutable.</p>
-             *
-             * <p>Setting the minimum value is required.</p>
-             *
-             * @param supplier The minimum value supplier
-             * @return This builder, for chaining
-             */
-            BoundedBuilder<E, V> minValueSupplier(Supplier<? extends E> supplier);
-
-            /**
-             * Sets the default maximum element.
-             *
-             * <p>Setting the maximum value is required.</p>
-             *
-             * @param maxValue The maximum value
-             * @return This builder, for chaining
-             */
-            BoundedBuilder<E, V> maxValue(E maxValue);
-
-            /**
-             * Sets the default maximum element supplier.
-             *
-             * <p>Use this method instead of {@link #maxValue(Object)} if
-             * the element type {@code E} isn't immutable.</p>
-             *
-             * <p>Setting the maximum value is required.</p>
-             *
-             * @param supplier The maximum value supplier
-             * @return This builder, for chaining
-             */
-            BoundedBuilder<E, V> maxValueSupplier(Supplier<? extends E> supplier);
-
-            @Override
-            BoundedBuilder<E, V> comparator(Comparator<? super E> comparator);
-
-            @Override
-            BoundedBuilder<E, V> includesTester(BiPredicate<? super E, ? super E> predicate);
-
-            @Override
-            BoundedBuilder<E, V> key(ResourceKey key);
-
-            /**
-             * Builds the {@link Key}.
-             *
-             * @return The built key
-             * @throws IllegalStateException If not all required options were specified;
-             *                               {@link #key(ResourceKey)}, {@link #boundedType(TypeToken)},
-             *                               {@link #minValue(Object)}, {@link #maxValue(Object)} and
-             *                               {@link #comparator(Comparator)} if needed.
-             */
-            @Override
-            Key<V> build();
-        }
     }
 }
