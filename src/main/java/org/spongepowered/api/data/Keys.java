@@ -286,7 +286,7 @@ public final class Keys {
      * fade over time and the entity will become peaceful again once its anger
      * reaches its minimum.</p>
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> ANGER_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ANGER");
+    public static final Supplier<Key<BoundedValue<Integer>>> ANGER_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ANGER_LEVEL");
 
     /**
      * The set of {@link PotionEffect}s applied on use of an {@link ItemStack}.
@@ -303,13 +303,13 @@ public final class Keys {
      * {@link ItemTypes#ENCHANTED_BOOK}s) use the {@link #STORED_ENCHANTMENTS}
      * key instead.)</p>
      */
-    public static final Supplier<Key<ListValue<Enchantment>>> APPLIED_ENCHANTMENTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ITEM_ENCHANTMENTS");
+    public static final Supplier<Key<ListValue<Enchantment>>> APPLIED_ENCHANTMENTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "APPLIED_ENCHANTMENTS");
 
     /**
      * The {@link ArmorMaterial} of an armor {@link ItemStack}.
      * Readonly
      */
-    public static final Supplier<Key<Value<ArmorMaterial>>> ARMOR_MATERIAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ARMOR");
+    public static final Supplier<Key<Value<ArmorMaterial>>> ARMOR_MATERIAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ARMOR_MATERIAL");
 
     /**
      * The type of {@link ArtType} shown by {@link Painting}s.
@@ -579,7 +579,7 @@ public final class Keys {
      * <p>Types not present in this mapping will be
      * dealt damage to according to {@link #ATTACK_DAMAGE}.</p>
      */
-    public static final Supplier<Key<MapValue<EntityType<?>, Double>>> CUSTOM_ATTACK_DAMAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CUSTOM_ATTACK_DAMAGE_MAPPING");
+    public static final Supplier<Key<MapValue<EntityType<?>, Double>>> CUSTOM_ATTACK_DAMAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CUSTOM_ATTACK_DAMAGE");
 
     /**
      * The damage absorbed by an armor {@link ItemStack}.
@@ -1125,7 +1125,7 @@ public final class Keys {
     /**
      * Whether a {@link BlockState} is "attached" to another block.
      */
-    public static final Supplier<Key<Value<Boolean>>> IS_ATTACHED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ATTACHED");
+    public static final Supplier<Key<Value<Boolean>>> IS_ATTACHED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_ATTACHED");
 
     /**
      * Whether an entity is begging for food.
@@ -1141,12 +1141,12 @@ public final class Keys {
     /**
      * Whether a {@link Creeper} is charged.
      */
-    public static final Supplier<Key<Value<Boolean>>> IS_CHARGED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CREEPER_CHARGED");
+    public static final Supplier<Key<Value<Boolean>>> IS_CHARGED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_CHARGED");
 
     /**
      * Whether a {@link Pillager} is charging it's crossbow.
      */
-    public static final Supplier<Key<Value<Boolean>>> IS_CHARGING_CROSSBOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "CHARGING_CROSSBOW");
+    public static final Supplier<Key<Value<Boolean>>> IS_CHARGING_CROSSBOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "IS_CHARGING_CROSSBOW");
 
     /**
      * Whether a {@link Spider} is currently climbing.
@@ -1673,7 +1673,7 @@ public final class Keys {
      * a leashed {@link Entity} attached. If the leash is broken, the leash
      * hitch is removed.</p>
      */
-    public static final Supplier<Key<Value<Entity>>> LEASH_HOLDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LEASHED_ENTITY");
+    public static final Supplier<Key<Value<Entity>>> LEASH_HOLDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "LEASH_HOLDER");
 
     /**
      * The rotation of an {@link ArmorStand}'s left arm.
@@ -1800,7 +1800,7 @@ public final class Keys {
      * The minimum amount of ticks between two
      * batches of entities spawned by a {@link MobSpawner}.
      */
-    public static final Supplier<Key<BoundedValue<Integer>>> MIN_SPAWN_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MINIMUM_DELAY");
+    public static final Supplier<Key<BoundedValue<Integer>>> MIN_SPAWN_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MIN_SPAWN_DELAY");
 
     /**
      * The moisture value of a {@link BlockTypes#FARMLAND} {@link BlockState}.
@@ -1978,7 +1978,7 @@ public final class Keys {
     /**
      * The {@link Villager} or {@link ZombieVillager}'s {@link ProfessionType}.
      */
-    public static final Supplier<Key<Value<ProfessionType>>> PROFESSION_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PROFESSION");
+    public static final Supplier<Key<Value<ProfessionType>>> PROFESSION_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "PROFESSION_TYPE");
 
     /**
      * The {@link Villager} or {@link ZombieVillager}'s {@link ProfessionType} level.
