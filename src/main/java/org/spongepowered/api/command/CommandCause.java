@@ -307,6 +307,36 @@ public interface CommandCause extends Subject {
         return this.getSubject().getActiveContexts();
     }
 
+    @Override
+    default boolean hasPermission(final Set<Context> contexts, final String permission) {
+        return this.getSubject().hasPermission(contexts, permission);
+    }
+
+    @Override
+    default boolean hasPermission(final String permission) {
+        return this.getSubject().hasPermission(permission);
+    }
+
+    @Override
+    default boolean isChildOf(final SubjectReference parent) {
+        return this.getSubject().isChildOf(parent);
+    }
+
+    @Override
+    default List<SubjectReference> getParents() {
+        return this.getSubject().getParents();
+    }
+
+    @Override
+    default Optional<String> getOption(final String key) {
+        return this.getSubject().getOption(key);
+    }
+
+    @Override
+    default Optional<String> getFriendlyIdentifier() {
+        return this.getSubject().getFriendlyIdentifier();
+    }
+
     /**
      * Sends a message to the {@link MessageChannel} as given by
      * {@link #getMessageChannel()}.
