@@ -40,60 +40,60 @@ import java.util.function.Supplier;
 public interface ArmorEquipable extends Equipable {
 
     /**
-     * Gets the helmet.
+     * Gets the head.
      *
-     * @return The helmet, if available
+     * @return The head, if available
      */
-    ItemStack getHelmet();
+    ItemStack getHead();
 
     /**
-     * Sets the helmet.
+     * Sets the head.
      *
-     * @param helmet The helmet
+     * @param head The head
      */
-    void setHelmet(ItemStack helmet);
+    void setHead(ItemStack head);
 
     /**
-     * Gets the chestplate.
+     * Gets the chest.
      *
-     * @return The chestplate, if available
+     * @return The chest, if available
      */
-    ItemStack getChestplate();
+    ItemStack getChest();
 
     /**
-     * Sets the chestplate.
+     * Sets the chest.
      *
-     * @param chestplate The chestplate
+     * @param chest The chest
      */
-    void setChestplate(ItemStack chestplate);
+    void setChest(ItemStack chest);
 
     /**
-     * Gets the leggings.
+     * Gets the legs.
      *
-     * @return The leggings, if available
+     * @return The legs, if available
      */
-    ItemStack getLeggings();
+    ItemStack getLegs();
 
     /**
-     * Sets the leggings.
+     * Sets the legs.
      *
-     * @param leggings The leggings
+     * @param legs The legs
      */
-    void setLeggings(ItemStack leggings);
+    void setLegs(ItemStack legs);
 
     /**
-     * Gets the boots.
+     * Gets the feet.
      *
-     * @return The boots, if available
+     * @return The feet, if available
      */
-    ItemStack getBoots();
+    ItemStack getFeet();
 
     /**
-     * Sets the boots.
+     * Sets the feet.
      *
-     * @param boots The boots
+     * @param feet The feet
      */
-    void setBoots(ItemStack boots);
+    void setFeet(ItemStack feet);
 
     /**
      * Gets the equipped item in hand.

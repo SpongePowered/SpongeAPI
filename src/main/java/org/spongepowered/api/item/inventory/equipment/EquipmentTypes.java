@@ -33,17 +33,17 @@ import java.util.function.Supplier;
  */
 public final class EquipmentTypes {
 
-    public static final Supplier<EquipmentType> BOOTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "feet");
+    public static final Supplier<EquipmentType> FEET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "FEET");
 
-    public static final Supplier<EquipmentType> CHESTPLATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "chest");
+    public static final Supplier<EquipmentType> CHEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "CHEST");
 
-    public static final Supplier<EquipmentType> HEADWEAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "head");
+    public static final Supplier<EquipmentType> HEAD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "HEAD");
 
-    public static final Supplier<EquipmentType> LEGGINGS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "legs");
+    public static final Supplier<EquipmentType> LEGS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "LEGS");
 
-    public static final Supplier<EquipmentType> MAIN_HAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "mainhand");
+    public static final Supplier<EquipmentType> MAINHAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "MAINHAND");
 
-    public static final Supplier<EquipmentType> OFF_HAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "offhand");
+    public static final Supplier<EquipmentType> OFFHAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "OFFHAND");
 
     // Suppress default constructor to ensure non-instantiability.
     private EquipmentTypes() {
