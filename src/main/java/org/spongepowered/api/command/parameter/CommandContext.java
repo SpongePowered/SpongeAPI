@@ -25,6 +25,7 @@
 package org.spongepowered.api.command.parameter;
 
 import org.spongepowered.api.command.CommandCause;
+import org.spongepowered.api.command.parameter.managed.Flag;
 import org.spongepowered.api.event.cause.Cause;
 
 import java.util.Collection;
@@ -40,6 +41,48 @@ import java.util.Optional;
  * {@link Cause} of the command.</p>
  */
 public interface CommandContext extends CommandCause {
+
+    /**
+     * Gets if a flag with given alias was specified at least once.
+     *
+     * <p>If the flag has multiple aliases, (for example, {@code -f} and
+     * {@code --flag}, passing {@code f} or {@code flag} to this method will
+     * return the same result, regardless of the alias specified by the user.
+     * </p>
+     *
+     * @param flagAlias The flag's alias (without a prefixed dash)
+     * @return If the flag was specified
+     */
+    boolean hasFlag(String flagAlias);
+
+    /**
+     * Gets if the given flag was specified once.
+     *
+     * @param flag The {@link Flag}
+     * @return If the flag was specified
+     */
+    boolean hasFlag(Flag flag);
+
+    /**
+     * Returns how many times a given flag was invoked for this command.
+     *
+     * <p>If the flag has multiple aliases, (for example, {@code -f} and
+     * {@code --flag}, passing {@code f} or {@code flag} to this method will
+     * return the same result, regardless of the alias specified by the user.
+     * </p>
+     *
+     * @param flagKey The flag's alias (without a prefixed dash)
+     * @return The number of times the flag was specified
+     */
+    int getFlagInvocationCount(String flagKey);
+
+    /**
+     * Returns how many times a given {@link Flag} was invoked for this command.
+     *
+     * @param flag The {@link Flag}
+     * @return The number of times the flag was specified
+     */
+    int getFlagInvocationCount(Flag flag);
 
     /**
      * Returns whether this context has any value for the given argument key.
@@ -127,6 +170,13 @@ public interface CommandContext extends CommandCause {
      * A builder for creating this context.
      */
     interface Builder extends CommandContext {
+
+        /**
+         * Adds a flag invocation to the context.
+         *
+         * @param flag The flag to add the invocation for.
+         */
+        void addFlagInvocation(Flag flag);
 
         /**
          * Adds a parsed object into the context, for use by commands.

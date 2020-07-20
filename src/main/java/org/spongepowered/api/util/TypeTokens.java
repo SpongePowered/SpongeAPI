@@ -125,6 +125,7 @@ import org.spongepowered.api.util.weighted.WeightedTable;
 import org.spongepowered.api.world.LocatableBlock;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
+import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.math.vector.Vector2i;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
@@ -555,6 +556,8 @@ public final class TypeTokens {
     public static final TypeToken<WoodType> WOOD_TYPE_TOKEN = new TypeToken<WoodType>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<WoodType>> WOOD_TYPE_VALUE_TOKEN = new TypeToken<Value<WoodType>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<WorldProperties> WORLD_PROPERTIES_TOKEN = new TypeToken<WorldProperties>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<LocatableBlock> LOCATABLE_BLOCK_TOKEN = new TypeToken<LocatableBlock>() {private static final long serialVersionUID = -1;};
 

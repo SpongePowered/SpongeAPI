@@ -33,6 +33,7 @@ import org.spongepowered.api.command.exception.ArgumentParseException;
 import org.spongepowered.api.command.exception.CommandException;
 import org.spongepowered.api.command.parameter.CommandContext;
 import org.spongepowered.api.command.parameter.Parameter;
+import org.spongepowered.api.command.parameter.managed.Flag;
 import org.spongepowered.api.command.registrar.tree.CommandTreeBuilder;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.EventContext;
@@ -210,6 +211,13 @@ public interface Command {
     interface Parameterized extends Command, CommandExecutor {
 
         /**
+         * The {@link List} of {@link Flag}s that this {@link Command} contains.
+         *
+         * @return A copy of the collection of {@link Flag}s.
+         */
+        List<Flag> flags();
+
+        /**
          * The {@link List} of {@link Parameter}s that this {@link Command}
          * contains.
          *
@@ -309,9 +317,8 @@ public interface Command {
          * <p>Children added here will be added to the beginning of the
          * {@link Parameter}s. Note that if you wish to add a subcommand
          * in the middle of the parameters, you can do so by creating a
-         * {@link org.spongepowered.api.command.parameter.Parameter.Subcommand}
-         * and adding that as a {@link #parameter(Parameter)} at the
-         * appropriate time.</p>
+         * {@link Parameter.Subcommand} and adding that as a
+         * {@link #parameter(Parameter)} at the appropriate time.</p>
          *
          * @param children The {@link Map} that contains a mapping of keys to
          *                 their respective {@link Command} children.
@@ -326,6 +333,19 @@ public interface Command {
 
             return this;
         }
+
+        /**
+         * Adds a flag to this command. Flags are always the first arguments of
+         * a command. There are no set rules for the order of execution of
+         * flags (unlike {@link #parameter(Parameter)}), and all flags are
+         * considered optional.
+         *
+         * <p>Duplicate keys and/or duplicate aliases may not be provided.</p>
+         *
+         * @param flag The {@link Flag} to support
+         * @return Ths builder, for chaining
+         */
+        Builder flag(Flag flag);
 
         /**
          * Adds a parameter for use when parsing arguments. When executing a

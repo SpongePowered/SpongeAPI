@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.command.parameter.managed.clientcompletion;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.parameter.managed.ValueParser;
 
@@ -55,6 +56,13 @@ public final class ClientCompletionTypes {
      */
     public static final Supplier<ClientCompletionType> NONE =
             Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionType.class, "NONE");
+
+    /**
+     * Indicates to the client that the {@link ValueParser} is a
+     * {@link ResourceKey}.
+     */
+    public static final Supplier<ClientCompletionType> RESOURCE_KEY =
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionType.class, "RESOURCE_KEY");
 
     /**
      * Indicates to the client that the {@link ValueParser} is a standard
