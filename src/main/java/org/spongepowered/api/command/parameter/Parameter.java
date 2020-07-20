@@ -848,7 +848,7 @@ public interface Parameter {
          *
          * @return The key.
          */
-        Key<? super T> getKey();
+        Key<T> getKey();
 
         /**
          * The {@link ValueParser}s to use when parsing an argument. They will be

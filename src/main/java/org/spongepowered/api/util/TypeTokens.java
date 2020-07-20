@@ -33,6 +33,7 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.block.entity.BlockEntityArchetype;
+import org.spongepowered.api.command.manager.CommandMapping;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.meta.BannerPatternLayer;
 import org.spongepowered.api.data.type.ArmorMaterial;
@@ -196,6 +197,8 @@ public final class TypeTokens {
     public static final TypeToken<Color> COLOR_TOKEN = new TypeToken<Color>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<Color>> COLOR_VALUE_TOKEN = new TypeToken<Value<Color>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<CommandMapping> COMMAND_MAPPING = new TypeToken<CommandMapping>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<ComparatorMode> COMPARATOR_MODE_TOKEN = new TypeToken<ComparatorMode>() {private static final long serialVersionUID = -1;};
 

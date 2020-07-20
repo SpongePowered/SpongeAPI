@@ -37,6 +37,7 @@ import org.spongepowered.plugin.PluginContainer;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 
 /**
@@ -113,6 +114,13 @@ public interface CommandManager {
      * @return The completions
      */
     List<String> suggest(Subject subject, Audience receiver, String arguments);
+
+    /**
+     * Gets all the command aliases known to this command manager.
+     *
+     * @return The known aliases
+     */
+    Set<String> getKnownAliases();
 
     /**
      * Registers a set of command aliases with this manager.
