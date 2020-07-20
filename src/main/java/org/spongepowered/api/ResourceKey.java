@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api;
 
+import net.kyori.adventure.key.Key;
 import ninja.leaping.configurate.ConfigurationNode;
 import org.spongepowered.api.data.DataRegistration;
 import org.spongepowered.api.data.persistence.DataSerializable;
@@ -51,7 +52,7 @@ import org.spongepowered.plugin.PluginContainer;
  * creating new keys and usage by plugins <strong>may</strong> result in
  * a crash condition by the implementation.
  */
-public interface ResourceKey extends Comparable<ResourceKey> {
+public interface ResourceKey extends Key {
 
     /**
      * The minecraft namespace.
@@ -133,14 +134,18 @@ public interface ResourceKey extends Comparable<ResourceKey> {
      *
      * @return The namespace
      */
-    String getNamespace();
+    default String getNamespace() {
+        return this.namespace();
+    }
 
     /**
      * Gets the value.
      *
      * @return The value
      */
-    String getValue();
+    default String getValue() {
+        return this.value();
+    }
 
     /**
      * Gets this key as a formatted value.
@@ -151,10 +156,19 @@ public interface ResourceKey extends Comparable<ResourceKey> {
      * </p>
      * @return The key, formatted
      */
-    String getFormatted();
+    default String getFormatted() {
+        return this.asString();
+    }
 
     @Override
-    int compareTo(ResourceKey o);
+    default String asString() {
+        return this.namespace() + ':' + this.value();
+    }
+
+    @Override
+    default int compareTo(Key o) {
+        return Key.super.compareTo(o);
+    }
 
     interface Builder extends ResettableBuilder<ResourceKey, Builder> {
 

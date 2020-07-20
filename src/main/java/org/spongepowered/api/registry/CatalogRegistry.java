@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.registry;
 
+import net.kyori.adventure.key.Key;
+import net.kyori.adventure.key.Keyed;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.plugin.PluginManager;
@@ -65,7 +67,7 @@ public interface CatalogRegistry {
      * @return The found dummy type, if available
      * @see CatalogType
      */
-    <T extends CatalogType> Optional<T> get(Class<T> typeClass, ResourceKey key);
+    <T extends CatalogType> Optional<T> get(Class<T> typeClass, Key key);
 
     /**
      * Gets a collection of all available found specific types of

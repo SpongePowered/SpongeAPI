@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.data.type;
 
+import net.kyori.adventure.text.ComponentLike;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -36,6 +36,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * <p>For players, this is controlled by the left hand/right hand setting</p>
  */
 @CatalogedBy(HandPreferences.class)
-public interface HandPreference extends CatalogType, Translatable {
+public interface HandPreference extends CatalogType, ComponentLike {
 
 }

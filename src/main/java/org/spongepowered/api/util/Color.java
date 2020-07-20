@@ -26,7 +26,9 @@ package org.spongepowered.api.util;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
+import net.kyori.adventure.util.RGBLike;
 import org.apache.commons.lang3.Validate;
+import org.checkerframework.common.value.qual.IntRange;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.DataView;
@@ -41,7 +43,7 @@ import org.spongepowered.math.vector.Vector3i;
 import java.util.Objects;
 import java.util.Optional;
 
-public final class Color implements DataSerializable {
+public final class Color implements DataSerializable, RGBLike {
 
     private static final int MASK = 0xFF;
 
@@ -266,6 +268,21 @@ public final class Color implements DataSerializable {
      */
     public Color withBlue(int blue) {
         return ofRgb(getRed(), getGreen(), blue);
+    }
+
+    @Override
+    public @IntRange(from = 0x0, to = 0xff) int red() {
+        return this.getRed();
+    }
+
+    @Override
+    public @IntRange(from = 0x0, to = 0xff) int green() {
+        return this.getGreen();
+    }
+
+    @Override
+    public @IntRange(from = 0x0, to = 0xff) int blue() {
+        return this.getBlue();
     }
 
     /**

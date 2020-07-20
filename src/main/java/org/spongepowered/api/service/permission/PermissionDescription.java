@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.service.permission;
 
+import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.plugin.PluginContainer;
 
 import java.util.Map;
@@ -130,7 +130,7 @@ public interface PermissionDescription {
      *
      * @return A short description of the linked permission
      */
-    Optional<Text> getDescription();
+    Optional<Component> getDescription();
 
     /**
      * Gets the owning plugin the permission belongs to.
@@ -206,7 +206,7 @@ public interface PermissionDescription {
          * @param description The short description to use
          * @return This builder for chaining
          */
-        Builder description(@Nullable Text description);
+        Builder description(@Nullable Component description);
 
         /**
          * Assigns this permission to the given role-template {@link Subject}.

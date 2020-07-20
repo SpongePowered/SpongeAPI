@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.effect.sound;
 
+import net.kyori.adventure.sound.Sound;
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -33,7 +35,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a sound that can be heard on clients.
  */
 @CatalogedBy(SoundTypes.class)
-public interface SoundType extends CatalogType {
+public interface SoundType extends CatalogType, Sound.Type {
 
     /**
      * Creates a new {@link Builder} for building SoundTypes.
@@ -42,6 +44,11 @@ public interface SoundType extends CatalogType {
      */
     static Builder builder() {
         return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+    }
+
+    @Override
+    default ResourceKey key() {
+        return CatalogType.super.key();
     }
 
     /**

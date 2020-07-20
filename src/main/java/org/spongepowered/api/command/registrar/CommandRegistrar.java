@@ -25,6 +25,7 @@
 package org.spongepowered.api.command.registrar;
 
 import com.google.common.reflect.TypeToken;
+import net.kyori.adventure.text.Component;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.command.CommandResult;
@@ -35,7 +36,6 @@ import org.spongepowered.api.command.manager.CommandMapping;
 import org.spongepowered.api.command.registrar.tree.CommandTreeBuilder;
 import org.spongepowered.api.event.cause.EventContextKeys;
 import org.spongepowered.api.event.lifecycle.RegisterCatalogEvent;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.plugin.PluginContainer;
 
 import java.util.List;
@@ -149,7 +149,7 @@ public interface CommandRegistrar<T> extends CatalogType {
      *                be executed
      * @return The help, if any
      */
-    Optional<Text> help(CommandCause cause, String command);
+    Optional<Component> help(CommandCause cause, String command);
 
     /**
      * Called when the {@link CommandManager} is clearing all of the

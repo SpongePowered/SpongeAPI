@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.command;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
@@ -36,7 +38,6 @@ import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.EventContext;
 import org.spongepowered.api.event.lifecycle.RegisterCommandEvent;
 import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Arrays;
@@ -131,7 +132,7 @@ public interface Command {
      * @param cause The {@link CommandCause} of the help request
      * @return A description
      */
-    Optional<Text> getShortDescription(CommandCause cause);
+    Optional<Component> getShortDescription(CommandCause cause);
 
     /**
      * Gets a longer formatted help message about this command.
@@ -143,7 +144,7 @@ public interface Command {
      * @param cause The {@link Cause} of the help request
      * @return A description
      */
-    Optional<Text> getExtendedDescription(CommandCause cause);
+    Optional<Component> getExtendedDescription(CommandCause cause);
 
     /**
      * Gets a longer formatted help message about this command. This will
@@ -156,12 +157,12 @@ public interface Command {
      * @param cause The {@link Cause} of the help request
      * @return A help text
      */
-    default Optional<Text> getHelp(@NonNull final CommandCause cause) {
-        final Optional<Text> shortDesc = this.getShortDescription(cause);
-        final Optional<Text> extended = this.getExtendedDescription(cause);
+    default Optional<Component> getHelp(@NonNull final CommandCause cause) {
+        final Optional<Component> shortDesc = this.getShortDescription(cause);
+        final Optional<Component> extended = this.getExtendedDescription(cause);
         if (extended.isPresent()) {
             if (shortDesc.isPresent()) {
-                return Optional.of(Text.of(shortDesc, Text.newLine(), Text.newLine(), extended.get()));
+                return Optional.of(TextComponent.builder().append(shortDesc.get(), TextComponent.newline(), TextComponent.newline(), extended.get()).build());
             } else {
                 return extended;
             }
@@ -180,7 +181,7 @@ public interface Command {
      * @param cause The {@link Cause} of the help request
      * @return A usage string
      */
-    Text getUsage(CommandCause cause);
+    Component getUsage(CommandCause cause);
 
     /**
      * A raw command that also contains a {@link CommandTreeBuilder} to provide
@@ -378,7 +379,7 @@ public interface Command {
          * {@link Cause} that requests it.
          *
          * <p>A one line summary should be provided to
-         * {@link #setShortDescription(Text)}</p>
+         * {@link #setShortDescription(Component)}</p>
          *
          * <p>It is recommended to use the default text color and style. Sections
          * with text actions (e.g. hyperlinks) should be underlined.</p>
@@ -387,21 +388,21 @@ public interface Command {
          *      relevant description based on the supplied {@link Cause}
          * @return This builder, for chaining
          */
-        Builder setExtendedDescription(Function<CommandCause, Optional<Text>> extendedDescriptionFunction);
+        Builder setExtendedDescription(Function<CommandCause, Optional<Component>> extendedDescriptionFunction);
 
         /**
          * Provides the description for this command.
          *
          * <p>A one line summary should be provided to
-         * {@link #setShortDescription(Text)}</p>
+         * {@link #setShortDescription(Component)}</p>
          *
          * @param extendedDescription The description to use, or {@code null}
          *                            for no description.
          * @return This builder, for chaining
          */
-        default Builder setExtendedDescription(@Nullable final Text extendedDescription) {
+        default Builder setExtendedDescription(@Nullable final Component extendedDescription) {
             // Done outside the lambda so that we don't have to recreate the object each time.
-            final Optional<Text> text = Optional.ofNullable(extendedDescription);
+            final Optional<Component> text = Optional.ofNullable(extendedDescription);
             return this.setExtendedDescription((cause) -> text);
         }
 
@@ -417,14 +418,14 @@ public interface Command {
          *      description based on the supplied {@link Cause}
          * @return This builder, for chaining
          */
-        Builder setShortDescription(Function<CommandCause, Optional<Text>> descriptionFunction);
+        Builder setShortDescription(Function<CommandCause, Optional<Component>> descriptionFunction);
 
         /**
          * Provides a simple description for this command, typically no more
          * than one line.
          *
          * <p>Fuller descriptions should be provided through
-         * {@link #setExtendedDescription(Text)}</p>
+         * {@link #setExtendedDescription(Component)}</p>
          *
          * <p>It is recommended to use the default text color and style. Sections
          * with text actions (e.g. hyperlinks) should be underlined.</p>
@@ -433,9 +434,9 @@ public interface Command {
          *                    description
          * @return This builder, for chaining
          */
-        default Builder setShortDescription(@Nullable final Text description) {
+        default Builder setShortDescription(@Nullable final Component description) {
             // Done outside the lambda so that we don't have to recreate the object each time.
-            final Optional<Text> text = Optional.ofNullable(description);
+            final Optional<Component> text = Optional.ofNullable(description);
             return this.setShortDescription((cause) -> text);
         }
 

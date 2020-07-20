@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.command.exception;
 
-import org.spongepowered.api.text.Text;
+import net.kyori.adventure.text.Component;
 
 /**
  * This exception is thrown when a subject does not have permission to execute
@@ -38,7 +38,7 @@ public class CommandPermissionException extends CommandException {
      *
      * @param message The message
      */
-    public CommandPermissionException(Text message) {
+    public CommandPermissionException(Component message) {
         super(message);
     }
 
@@ -48,7 +48,7 @@ public class CommandPermissionException extends CommandException {
      * @param message the message
      * @param cause the cause
      */
-    public CommandPermissionException(Text message, Throwable cause) {
+    public CommandPermissionException(Component message, Throwable cause) {
         super(message, cause);
     }
 }

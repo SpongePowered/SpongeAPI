@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.scoreboard;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.Optional;
@@ -38,8 +38,8 @@ import java.util.function.Supplier;
  * A team on a scoreboard that has a common display theme and other
  * properties.
  *
- * <p>A team is comprised of different members, represented by {@link Text} objects.
- * While any {@link Text} can be added to a team, certain {@link Text}s convey a special
+ * <p>A team is comprised of different members, represented by {@link Component} objects.
+ * While any {@link Component} can be added to a team, certain {@link Component}s convey a special
  * meaning.</p>
  *
  * <p>Examples of this include players, whose names gain the prefix and suffix
@@ -80,16 +80,16 @@ public interface Team {
      *
      * @return The display name for this team
      */
-    Text getDisplayName();
+    Component getDisplayName();
 
     /**
      * Sets the name displayed to users for this team.
      *
-     * @param displayName The {@link Text} to use
+     * @param displayName The {@link Component} to use
      * @throws IllegalArgumentException If displayName is longer than 32
      *     characters (in its legacy representation)
      */
-    void setDisplayName(Text displayName) throws IllegalArgumentException;
+    void setDisplayName(Component displayName) throws IllegalArgumentException;
 
     /**
      * Gets the color of this team.
@@ -100,7 +100,7 @@ public interface Team {
      *
      * @return The team color
      */
-    TextColor getColor();
+    NamedTextColor getColor();
 
     /**
      * Sets the color of this team.
@@ -111,27 +111,14 @@ public interface Team {
      *
      * @param color The team color
      */
-    default void setColor(Supplier<? extends TextColor> color) {
-        this.setColor(color.get());
-    }
-
-    /**
-     * Sets the color of this team.
-     *
-     * <p>The team's color is a distinct concept from its prefix or suffix.
-     * It is only used for colored sidebar display slots, and certain statistic
-     * criteria.</p>
-     *
-     * @param color The team color
-     */
-    void setColor(TextColor color);
+    void setColor(NamedTextColor color);
 
     /**
      * Gets the prefix prepended to the display name of users on this team.
      *
      * @return The prefix for this team
      */
-    Text getPrefix();
+    Component getPrefix();
 
     /**
      * Sets the prefix prepended to the display name of users on this team.
@@ -140,14 +127,14 @@ public interface Team {
      * @throws IllegalArgumentException If prefix is longer than 16
      *     characters
      */
-    void setPrefix(Text prefix) throws IllegalArgumentException;
+    void setPrefix(Component prefix) throws IllegalArgumentException;
 
     /**
      * Gets the suffix appended to the display name of users on this team.
      *
      * @return The team's current suffix
      */
-    Text getSuffix();
+    Component getSuffix();
 
     /**
      * Sets the suffix appended to the display name of users on this team.
@@ -156,7 +143,7 @@ public interface Team {
      * @throws IllegalArgumentException If suffix is longer than 16
      *     characters (in its legacy representation)
      */
-    void setSuffix(Text suffix) throws IllegalArgumentException;
+    void setSuffix(Component suffix) throws IllegalArgumentException;
 
     /**
      * Gets whether friendly fire is enabled.
@@ -266,35 +253,35 @@ public interface Team {
     void setCollisionRule(CollisionRule rule);
 
     /**
-     * Gets the {@link Text}s representing the members of this team.
+     * Gets the {@link Component}s representing the members of this team.
      *
-     * @return the {@link Text}s for this team's members
+     * @return the {@link Component}s for this team's members
      */
-    Set<Text> getMembers();
+    Set<Component> getMembers();
 
     /**
-     * Adds the specified {@link Text} to this team.
+     * Adds the specified {@link Component} to this team.
      *
-     * <p>While any {@link Text} may be added, the {@link Text} to use should
+     * <p>While any {@link Component} may be added, the {@link Component} to use should
      * normally be obtained by calling
      * {@link TeamMember#getTeamRepresentation()} on a {@link TeamMember}, such
      * as a {@link Player}.</p>
      *
-     * @param member the {@link Text} to add
+     * @param member the {@link Component} to add
      */
-    void addMember(Text member);
+    void addMember(Component member);
 
     /**
-     * Removes the specified {@link Text} from this team.
+     * Removes the specified {@link Component} from this team.
      *
-     * <p>While any {@link Text} may be removed, the {@link Text}
+     * <p>While any {@link Component} may be removed, the {@link Component}
      * to use should normally be obtained by calling {@link TeamMember#getTeamRepresentation()}
      * on a {@link TeamMember}, such as a {@link Player}.</p>
      *
-     * @param member The {@link Text} to remove
-     * @return Whether the {@link Text} was on this team
+     * @param member The {@link Component} to remove
+     * @return Whether the {@link Component} was on this team
      */
-    boolean removeMember(Text member);
+    boolean removeMember(Component member);
 
     /**
      * Returns the scoreboard this team is registered on, if available.
@@ -342,21 +329,7 @@ public interface Team {
          * @param color The color to set
          * @return This builder
          */
-        default Builder color(Supplier<? extends TextColor> color) {
-            return this.color(color.get());
-        }
-
-        /**
-         * Sets the color of the {@link Team}.
-         *
-         * <p>The team's color is a distinct concept from its prefix or suffix.
-         * It is only used for colored sidebar display slots, and certain
-         * statistic criteria.</p>
-         *
-         * @param color The color to set
-         * @return This builder
-         */
-        Builder color(TextColor color);
+        Builder color(NamedTextColor color);
 
         /**
          * Sets the name displayed to users for the {@link Team}.
@@ -372,7 +345,7 @@ public interface Team {
          * @throws IllegalArgumentException If the name is longer than 16
          *     characters
          */
-        Builder displayName(Text displayName) throws IllegalArgumentException;
+        Builder displayName(Component displayName) throws IllegalArgumentException;
 
         /**
          * Sets the prefix prepended to the display name of users on the
@@ -385,7 +358,7 @@ public interface Team {
          * @param prefix The new prefix for the {@link Team}
          * @return This builder
          */
-        Builder prefix(Text prefix);
+        Builder prefix(Component prefix);
 
         /**
          * Sets the suffix appended to the display name of users on the
@@ -398,7 +371,7 @@ public interface Team {
          * @param suffix The new suffix for the {@link Team}.
          * @return This builder
          */
-        Builder suffix(Text suffix);
+        Builder suffix(Component suffix);
 
         /**
          * Sets whether friendly fire is enabled for the {@link Team}.
@@ -480,14 +453,14 @@ public interface Team {
         Builder collisionRule(CollisionRule rule);
 
         /**
-         * Sets the set of {@link Text} members on the {@link Team}.
+         * Sets the set of {@link Component} members on the {@link Team}.
          *
          * <p>By default, this is the empty set.</p>
          *
-         * @param users The set of {@link Text} members on the {@link Team}
+         * @param users The set of {@link Component} members on the {@link Team}
          * @return This builder
          */
-        Builder members(Set<Text> users);
+        Builder members(Set<Component> users);
 
         /**
          * Builds an instance of a {@link Team}.

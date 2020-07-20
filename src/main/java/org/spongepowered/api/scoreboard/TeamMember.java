@@ -24,16 +24,16 @@
  */
 package org.spongepowered.api.scoreboard;
 
+import net.kyori.adventure.text.Component;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.text.Text;
 
 import java.util.UUID;
 
 /**
- * A team member represents something which has a meaningful {@link Text}
+ * A team member represents something which has a meaningful {@link Component}
  * representation on a {@link Team}. The client may be able to link the team
- * {@link Text} entry to a particular object, and perform extra functionality.
+ * {@link Component} entry to a particular object, and perform extra functionality.
  *
  * <p>Examples include:</p>
  *
@@ -46,11 +46,11 @@ import java.util.UUID;
 public interface TeamMember {
 
     /**
-     * Gets a {@link Text} representing this team member, suitable for adding
-     * to an {@link Team} with {@link Team#addMember(Text)}.
+     * Gets a {@link Component} representing this team member, suitable for adding
+     * to an {@link Team} with {@link Team#addMember(Component)}.
      *
-     * @return an {@link Text} representing this team member
+     * @return an {@link Component} representing this team member
      */
-    Text getTeamRepresentation();
+    Component getTeamRepresentation();
 
 }

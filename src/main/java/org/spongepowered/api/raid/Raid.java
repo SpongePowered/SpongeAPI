@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.raid;
 
-import org.spongepowered.api.boss.ServerBossBar;
+import net.kyori.adventure.bossbar.BossBar;
 import org.spongepowered.api.data.type.RaidStatus;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.monster.raider.Raider;
@@ -44,18 +44,18 @@ public interface Raid {
     ServerWorld getWorld();
 
     /**
-     * Gets the {@link ServerBossBar} being displayed to clients of this raid.
+     * Gets the {@link BossBar} being displayed to clients of this raid.
      *
      * @return The boss bar
      */
-    ServerBossBar getBossBar();
+    BossBar getBossBar();
 
     /**
-     * Sets the {@link ServerBossBar} being displayed to clients of this raid.
+     * Sets the {@link BossBar} being displayed to clients of this raid.
      *
      * @param bossBar The boss bar
      */
-    void setBossBar(ServerBossBar bossBar);
+    void setBossBar(BossBar bossBar);
 
     /**
      * Gets the {@link RaidStatus} of this raid.

@@ -26,18 +26,18 @@ package org.spongepowered.api.service.pagination;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.List;
 import java.util.Optional;
 
 /**
- * Represents an immutable iterable of {@link Text}s, which can be sent to
- * a {@link MessageReceiver}.
+ * Represents an immutable iterable of {@link Component}s, which can be sent to
+ * a {@link Audience}.
  *
  * <p>An instance of this class may be obtained using {@link Builder}.</p>
  */
@@ -57,14 +57,14 @@ public interface PaginationList {
      *
      * @return The contents of this pagination list
      */
-    Iterable<Text> getContents();
+    Iterable<Component> getContents();
 
     /**
      * Gets the title text to be used in the title bar of this pagination.
      *
      * @return The title text
      */
-    Optional<Text> getTitle();
+    Optional<Component> getTitle();
 
     /**
      * Gets the header to be displayed for this output on all pages after the
@@ -75,7 +75,7 @@ public interface PaginationList {
      *
      * @return The header to be displayed
      */
-    Optional<Text> getHeader();
+    Optional<Component> getHeader();
 
     /**
      * Gets the footer to be displayed for this output on all pages after the
@@ -83,14 +83,14 @@ public interface PaginationList {
      *
      * @return The footer
      */
-    Optional<Text> getFooter();
+    Optional<Component> getFooter();
 
     /**
      * Gets the padding character to be used when centering headers and footers.
      *
      * @return The padding character
      */
-    Text getPadding();
+    Component getPadding();
 
     /**
      * Gets the maximum amount of lines that will be sent per page.
@@ -107,9 +107,9 @@ public interface PaginationList {
      * to the specified message receiver.
      *
      * @param receiver The receiver to send the first page to
-     * @see PaginationList#sendTo(MessageReceiver, int) to send a specific page
+     * @see PaginationList#sendTo(Audience, int) to send a specific page
      */
-    default void sendTo(final MessageReceiver receiver) {
+    default void sendTo(final Audience receiver) {
         this.sendTo(receiver, 1);
     }
 
@@ -125,35 +125,35 @@ public interface PaginationList {
      * @param receiver The receiver to send the page to
      * @param page The page to send, starting at an index of 1
      */
-    void sendTo(MessageReceiver receiver, int page);
+    void sendTo(Audience receiver, int page);
 
     /**
      * Sends the first page of the constructed pagination list to
-     * all {@link MessageReceiver}s within an {@link Iterable}.
+     * all {@link Audience}s within an {@link Iterable}.
      *
      * @param receivers The message receivers to send the first page to
      * @see PaginationList#sendTo(Iterable, int) to send a specific page
      */
-    default void sendTo(final Iterable<MessageReceiver> receivers) {
+    default void sendTo(final Iterable<Audience> receivers) {
         this.sendTo(receivers, 1);
     }
 
     /**
      * Sends the specified page of the constructed pagination list
-     * all {@link MessageReceiver}s within an {@link Iterable}.
+     * all {@link Audience}s within an {@link Iterable}.
      *
      * @param receivers The message receivers to send the page to
      * @param page The page to send
      */
-    default void sendTo(final Iterable<MessageReceiver> receivers, final int page) {
+    default void sendTo(final Iterable<Audience> receivers, final int page) {
         checkNotNull(receivers, "The iterable of receivers cannot be null!");
-        for (final MessageReceiver receiver : receivers) {
+        for (final Audience receiver : receivers) {
             this.sendTo(receiver, page);
         }
     }
 
     /**
-     * Builds a paginated output for an iterable of {@link Text}s.
+     * Builds a paginated output for an iterable of {@link Component}s.
      */
     interface Builder extends CopyableBuilder<PaginationList, Builder> {
 
@@ -167,7 +167,7 @@ public interface PaginationList {
          * @param contents The contents to output
          * @return This builder
          */
-        Builder contents(Iterable<Text> contents);
+        Builder contents(Iterable<Component> contents);
 
         /**
          * Sets the contents of this output to be the given array of contents.
@@ -175,7 +175,7 @@ public interface PaginationList {
          * @param contents The contents to output
          * @return This builder
          */
-        Builder contents(Text... contents);
+        Builder contents(Component... contents);
 
         /**
          * Sets the title text to be used in the title bar of this pagination.
@@ -185,7 +185,7 @@ public interface PaginationList {
          * @param title The title to use
          * @return This builder
          */
-        Builder title(@Nullable Text title);
+        Builder title(@Nullable Component title);
 
         /**
          * Sets the header to be displayed for this output on all pages after
@@ -200,7 +200,7 @@ public interface PaginationList {
          * @param header The header to set
          * @return This builder
          */
-        Builder header(@Nullable Text header);
+        Builder header(@Nullable Component header);
 
         /**
          * Sets the footer to be displayed for this output on all pages after
@@ -212,7 +212,7 @@ public interface PaginationList {
          * @param footer The footer to set
          * @return This builder
          */
-        Builder footer(@Nullable Text footer);
+        Builder footer(@Nullable Component footer);
 
         /**
          * Sets the padding character to be used when centering headers and
@@ -221,7 +221,7 @@ public interface PaginationList {
          * @param padding The padding to use
          * @return This builder
          */
-        Builder padding(Text padding);
+        Builder padding(Component padding);
 
         /**
          * Sets the maximum number of lines that can be displayed per page.
@@ -248,7 +248,7 @@ public interface PaginationList {
          * @param receiver The receiver to send the list to
          * @return The constructed pagination list
          */
-        default PaginationList sendTo(final MessageReceiver receiver) {
+        default PaginationList sendTo(final Audience receiver) {
             final PaginationList list = this.build();
             list.sendTo(receiver);
             return list;
@@ -256,15 +256,15 @@ public interface PaginationList {
 
         /**
          * Sends the constructed pagination list to all
-         * {@link MessageReceiver}s within an {@link Iterable}.
+         * {@link Audience}s within an {@link Iterable}.
          *
          * @param receivers The message receivers to send the list to
          * @return The constructed pagination list
          */
-        default PaginationList sendTo(final Iterable<MessageReceiver> receivers) {
+        default PaginationList sendTo(final Iterable<Audience> receivers) {
             checkNotNull(receivers, "The iterable of receivers cannot be null!");
             final PaginationList list = this.build();
-            for (final MessageReceiver r : receivers) {
+            for (final Audience r : receivers) {
                 list.sendTo(r);
             }
             return list;

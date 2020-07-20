@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.command;
 
+import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.text.Component;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.SystemSubject;
 import org.spongepowered.api.block.BlockSnapshot;
@@ -37,9 +39,6 @@ import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.service.permission.SubjectCollection;
 import org.spongepowered.api.service.permission.SubjectData;
 import org.spongepowered.api.service.permission.SubjectReference;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.channel.MessageChannel;
-import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.util.Tristate;
 import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.api.world.Locatable;
@@ -82,7 +81,7 @@ import java.util.Set;
  * be handled, in addition to using the provided cause stack:</p>
  *
  * <ul>
- *     <li>{@link EventContextKeys#MESSAGE_CHANNEL}, which indicates the
+ *     <li>{@link EventContextKeys#AUDIENCE}, which indicates the
  *     where messages that should be sent back to the invoker should be sent
  *     to (typically messages indicating the status of the command execution);
  *     </li>
@@ -159,30 +158,30 @@ public interface CommandCause extends Subject {
     }
 
     /**
-     * Gets the {@link MessageChannel} that should be the target for any
+     * Gets the {@link Audience} that should be the target for any
      * messages sent by the command (by default).
      *
-     * <p>The {@link MessageChannel} will be selected in the following way
+     * <p>The {@link Audience} will be selected in the following way
      * from the {@link Cause} in {@link #getCause()}:</p>
      *
      * <ul>
-     *    <li>The {@link EventContextKeys#MESSAGE_CHANNEL}, if any</li>
-     *    <li>A message channel containing the <strong>first</strong>
-     *    {@link MessageReceiver} in the {@link Cause}</li>
-     *    <li>The SystemSubject {@link MessageReceiver}</li>
+     *    <li>The {@link EventContextKeys#AUDIENCE}, if any</li>
+     *    <li>An audience containing the <strong>first</strong>
+     *    {@link Audience} in the {@link Cause}</li>
+     *    <li>The SystemSubject {@link Audience}</li>
      * </ul>
      *
-     * <p>Note that this returns a {@link MessageReceiver} and it may not what
+     * <p>Note that this returns a {@link Audience} and it may not what
      * may be thought of as a traditional entity executing the command.
      * For the object that invoked the command, check the
      * {@link Cause#root()} of the {@link #getCause()}.</p>
      *
-     * @return The {@link MessageReceiver} to send any messages to.
+     * @return The {@link Audience} to send any messages to.
      */
-    default MessageChannel getMessageChannel() {
+    default Audience getAudience() {
         return this.getCause().getContext()
-            .get(EventContextKeys.MESSAGE_CHANNEL)
-            .orElseGet(() -> MessageChannel.to(this.getCause().first(MessageReceiver.class).orElseGet(Sponge::getSystemSubject)));
+            .get(EventContextKeys.AUDIENCE)
+            .orElseGet(() -> this.getCause().first(Audience.class).orElseGet(Sponge::getSystemSubject));
     }
 
     /**
@@ -338,13 +337,13 @@ public interface CommandCause extends Subject {
     }
 
     /**
-     * Sends a message to the {@link MessageChannel} as given by
-     * {@link #getMessageChannel()}.
+     * Sends a message to the {@link Audience} as given by
+     * {@link #getAudience()}.
      *
      * @param message The message to send.
      */
-    default void sendMessage(final Text message) {
-        this.getMessageChannel().send(message);
+    default void sendMessage(final Component message) {
+        this.getAudience().sendMessage(message);
     }
 
     /**

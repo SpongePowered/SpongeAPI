@@ -27,7 +27,6 @@ package org.spongepowered.api.item.inventory;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.text.translation.Translatable;
 
 /**
  * Represents a snapshot of an {@link ItemStack} as an
@@ -36,7 +35,7 @@ import org.spongepowered.api.text.translation.Translatable;
  * it is a snapshot, a snapshot cannot be modified, but modifications will
  * result in a new instance of the {@link ItemStackSnapshot}.
  */
-public interface ItemStackSnapshot extends SerializableDataHolder.Immutable<ItemStackSnapshot>, Translatable {
+public interface ItemStackSnapshot extends SerializableDataHolder.Immutable<ItemStackSnapshot> {
 
     /**
      * Gets a empty {@link ItemStackSnapshot}.

@@ -25,7 +25,7 @@
 package org.spongepowered.api.command.exception;
 
 import com.google.common.base.Preconditions;
-import org.spongepowered.api.text.Text;
+import net.kyori.adventure.text.Component;
 
 /**
  * This exception is thrown when a sender tries to execute a command that does
@@ -43,7 +43,7 @@ public class CommandNotFoundException extends CommandException {
      * @param message The message
      * @param command The command that was queried for
      */
-    public CommandNotFoundException(Text message, String command) {
+    public CommandNotFoundException(Component message, String command) {
         super(message);
         this.command = Preconditions.checkNotNull(command, "command");
     }

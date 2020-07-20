@@ -24,8 +24,8 @@
  */
 package co.aikar.timings;
 
+import net.kyori.adventure.audience.Audience;
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.plugin.PluginContainer;
 
 /**
@@ -109,5 +109,5 @@ public interface TimingsFactory {
      *
      * @param channel Channel to send to
      */
-    void generateReport(MessageChannel channel);
+    void generateReport(Audience channel);
 }

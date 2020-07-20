@@ -43,12 +43,6 @@ import org.spongepowered.api.event.entity.AttackEntityEvent;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.event.entity.ai.goal.GoalEvent;
 import org.spongepowered.api.event.impl.AbstractEvent;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.action.ClickAction;
-import org.spongepowered.api.text.action.HoverAction;
-import org.spongepowered.api.text.action.ShiftClickAction;
-import org.spongepowered.api.text.action.TextActions;
-import org.spongepowered.api.text.format.TextFormat;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.PEBKACException;
 import org.spongepowered.api.util.Transform;
@@ -272,16 +266,6 @@ public class SpongeEventFactoryTest {
             return ServerLocation.of(mock(ServerWorld.class), Vector3d.ZERO);
         } else if (paramType == Locale.class) {
             return Locale.ROOT;
-        } else if (paramType == Text.class) {
-            return Text.of();
-        } else if (paramType == TextFormat.class) {
-            return TextFormat.of();
-        } else if (paramType == ShiftClickAction.class) {
-            return TextActions.insertText("MOCK_SPONGE_SHIFT_CLICK_INSERT");
-        } else if (paramType == HoverAction.class) {
-            return TextActions.showText(Text.of("MOCK_SPONGE_HOVER_ACTION_SHOW_TEXT"));
-        } else if (paramType == ClickAction.class) {
-            return TextActions.runCommand("MOCK_SPONGE_EVENT_FACTORY_RUN_COMMAND");
         } else if (paramType == Duration.class) {
             return Duration.ZERO;
         } else if (paramType == Instant.class) {

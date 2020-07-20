@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.scoreboard.objective;
 
+import net.kyori.adventure.text.Component;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.scoreboard.Score;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.scoreboard.criteria.Criterion;
 import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMode;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.Map;
@@ -66,7 +66,7 @@ public interface Objective {
      *
      * @return The objective's display name
      */
-    Text getDisplayName();
+    Component getDisplayName();
 
     /**
      * Sets the name displayed to players.
@@ -75,7 +75,7 @@ public interface Objective {
      * @throws IllegalArgumentException if displayName is longer than 32
      *     characters (in its legacy representation)
      */
-    void setDisplayName(Text displayName) throws IllegalArgumentException;
+    void setDisplayName(Component displayName) throws IllegalArgumentException;
 
     /**
      * Gets the criterion for this objective.
@@ -103,7 +103,7 @@ public interface Objective {
      *
      * @return The set of {@link Score}s for this objective
      */
-    Map<Text, Score> getScores();
+    Map<Component, Score> getScores();
 
     /**
      * Returns whether this objective has a {@link Score} with the given name.
@@ -111,7 +111,7 @@ public interface Objective {
      * @param name The name of the {@link Score} to check for.
      * @return Whether this objective has a {@link Score} with the given name.
      */
-    boolean hasScore(Text name);
+    boolean hasScore(Component name);
 
     /**
      * Adds the specified {@link Score} to this objective.
@@ -125,9 +125,9 @@ public interface Objective {
      * Gets an entry's {@link Score} for this objective, if it exists.
      *
      * @param name The name of the {@link Score} to get.
-     * @return The {@link Score} for te specified {@link Text}, if it exists.
+     * @return The {@link Score} for te specified {@link Component}, if it exists.
      */
-    default Optional<Score> getScore(Text name) {
+    default Optional<Score> getScore(Component name) {
         if (!this.hasScore(name)) {
             return Optional.empty();
         }
@@ -140,9 +140,9 @@ public interface Objective {
      * <p>If the {@link Score} does not exist, it will be created.</p>
      *
      * @param name The name of the {@link Score} to get
-     * @return The {@link Score} for the specified {@link Text}
+     * @return The {@link Score} for the specified {@link Component}
      */
-    Score getOrCreateScore(Text name);
+    Score getOrCreateScore(Component name);
 
     /**
      * Removes the specified {@link Score} from this objective, if present.
@@ -158,7 +158,7 @@ public interface Objective {
      * @param name The name of the {@link Score} to remove.
      * @return Whether the score existed on this objective
      */
-    boolean removeScore(Text name);
+    boolean removeScore(Component name);
 
     /**
      * Returns a {@link Set} of parent {@link Scoreboard}s this
@@ -188,7 +188,7 @@ public interface Objective {
          * @param displayName The display name to set
          * @return This builder
          */
-        Builder displayName(Text displayName);
+        Builder displayName(Component displayName);
 
         /**
          * Sets the {@link Criterion} of the {@link Objective}.

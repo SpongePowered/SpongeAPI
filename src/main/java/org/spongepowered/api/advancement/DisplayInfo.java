@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.advancement;
 
+import net.kyori.adventure.text.Component;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.function.Supplier;
@@ -56,7 +56,7 @@ public interface DisplayInfo {
      *
      * @return The description
      */
-    Text getDescription();
+    Component getDescription();
 
     /**
      * Gets the icon.
@@ -70,7 +70,7 @@ public interface DisplayInfo {
      *
      * @return The title
      */
-    Text getTitle();
+    Component getTitle();
 
     /**
      * Gets whether a toast should be shown.
@@ -126,12 +126,12 @@ public interface DisplayInfo {
         Builder type(AdvancementType advancementType);
 
         /**
-         * Sets the description. Defaults to {@link Text#empty()}.
+         * Sets the description. Defaults to {@link net.kyori.adventure.text.TextComponent#empty()}.
          *
          * @param description The description
          * @return This builder, for chaining
          */
-        Builder description(Text description);
+        Builder description(Component description);
 
         /**
          * Sets the title.
@@ -139,7 +139,7 @@ public interface DisplayInfo {
          * @param title The title
          * @return This builder, for chaining
          */
-        Builder title(Text title);
+        Builder title(Component title);
 
         /**
          * Sets the icon of the advancement with the

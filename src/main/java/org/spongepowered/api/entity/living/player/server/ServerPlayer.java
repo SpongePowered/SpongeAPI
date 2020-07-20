@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.living.player.server;
 
+import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.advancement.Advancement;
@@ -35,21 +36,18 @@ import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.CooldownTracker;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.PlayerChatRouter;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.tab.TabList;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.message.MessageChannelEvent;
+import org.spongepowered.api.event.message.PlayerChatEvent;
 import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.network.ServerPlayerConnection;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
-import org.spongepowered.api.text.channel.MessageReceiver;
-import org.spongepowered.api.text.chat.ChatType;
-import org.spongepowered.api.text.chat.ChatVisibility;
+import org.spongepowered.api.entity.living.player.chat.ChatVisibility;
 import org.spongepowered.api.world.WorldBorder;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.plugin.PluginContainer;
@@ -102,7 +100,7 @@ public interface ServerPlayer extends Player, Subject {
      * @param displayName The display name to set
      * @return The opened Container if the inventory was opened, otherwise {@link Optional#empty()}
      */
-    Optional<Container> openInventory(Inventory inventory, Text displayName);
+    Optional<Container> openInventory(Inventory inventory, Component displayName);
 
     /**
      * Closes the currently viewed entity of this player, if it is currently
@@ -149,8 +147,7 @@ public interface ServerPlayer extends Player, Subject {
      *
      * <p>This method sends a message as if it came from this player.
      * To send a message to this player instead, see
-     * {@link MessageReceiver#sendMessage(Text)} or
-     * {@link ChatTypeMessageReceiver#sendMessage(ChatType, Text)}.</p>
+     * {@link #sendMessage(Component)}.</p>
      *
      * <p>If text formatting is not supported in the implementation
      * it will be displayed as plain text.</p>
@@ -159,7 +156,7 @@ public interface ServerPlayer extends Player, Subject {
      * @param cause The cause for the message
      * @return The event that was thrown from sending the message
      */
-    MessageChannelEvent.Chat simulateChat(Text message, Cause cause);
+    PlayerChatEvent simulateChat(Component message, Cause cause);
 
     /**
      * Gets the skin parts that this player has allowed to render.
@@ -201,7 +198,7 @@ public interface ServerPlayer extends Player, Subject {
      *
      * @param reason The reason for the kick
      */
-    void kick(Text reason);
+    void kick(Component reason);
 
     /**
      * Gets the {@link Scoreboard} displayed to the player.
@@ -330,4 +327,18 @@ public interface ServerPlayer extends Player, Subject {
     default ServerWorld getWorld() {
         return this.getServerLocation().getWorld();
     }
+
+    /**
+     * Gets the chat router.
+     *
+     * @return The chat router
+     */
+    PlayerChatRouter getChatRouter();
+
+    /**
+     * Sets the chat router.
+     *
+     * @param router the chat router
+     */
+    void setChatRouter(final PlayerChatRouter router);
 }

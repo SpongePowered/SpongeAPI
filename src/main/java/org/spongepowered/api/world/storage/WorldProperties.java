@@ -24,9 +24,10 @@
  */
 package org.spongepowered.api.world.storage;
 
+import net.kyori.adventure.bossbar.BossBar;
+import net.kyori.adventure.key.KeyedValue;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.boss.BossBar;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.trader.WanderingTrader;
@@ -453,14 +454,14 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
      *
      * @return The boss bars
      */
-    List<BossBar> getCustomBossBars();
+    List<KeyedValue<BossBar>> getCustomBossBars();
 
     /**
      * Sets the custom {@link BossBar bars}.
      *
      * @param bars The boss bars
      */
-    void setCustomBossBars(@Nullable List<BossBar> bars);
+    void setCustomBossBars(@Nullable List<KeyedValue<BossBar>> bars);
 
     /**
      * Gets the view distance (in chunks).

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.item.inventory.menu;
 
+import net.kyori.adventure.text.Component;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.menu.handler.ClickHandler;
@@ -33,7 +34,6 @@ import org.spongepowered.api.item.inventory.menu.handler.KeySwapHandler;
 import org.spongepowered.api.item.inventory.menu.handler.SlotChangeHandler;
 import org.spongepowered.api.item.inventory.menu.handler.SlotClickHandler;
 import org.spongepowered.api.item.inventory.type.ViewableInventory;
-import org.spongepowered.api.text.Text;
 
 import java.util.Optional;
 
@@ -76,7 +76,7 @@ public interface InventoryMenu {
      *
      * @param title the new title.
      */
-    void setTitle(Text title);
+    void setTitle(Component title);
 
     /**
      * Registers click callbacks. Unregisters previously registered handler of the same type.

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.server;
 
+import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
@@ -31,7 +32,6 @@ import org.spongepowered.api.network.status.Favicon;
 import org.spongepowered.api.network.status.StatusClient;
 import org.spongepowered.api.network.status.StatusResponse;
 import org.spongepowered.api.profile.GameProfile;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 import java.util.List;
@@ -71,7 +71,7 @@ public interface ClientPingServerEvent extends Event, Cancellable {
          *
          * @param description The description to display
          */
-        void setDescription(Text description);
+        void setDescription(Component description);
 
         @Override
         Optional<Players> getPlayers();

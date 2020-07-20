@@ -24,19 +24,20 @@
  */
 package org.spongepowered.api.util;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.serializer.plain.PlainComponentSerializer;
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.text.Text;
 
 /**
  * A subclass of Exception that contains a rich message that is an instance of
- * {@link Text} rather than a String. This allows formatted and localized
+ * {@link Component} rather than a String. This allows formatted and localized
  * exception messages.
  */
 public class TextMessageException extends Exception {
 
     private static final long serialVersionUID = -5281221645176698853L;
 
-    @Nullable private final Text message;
+    @Nullable private final Component message;
 
     /**
      * Constructs a new {@link TextMessageException}.
@@ -50,7 +51,7 @@ public class TextMessageException extends Exception {
      *
      * @param message The detail message
      */
-    public TextMessageException(Text message) {
+    public TextMessageException(Component message) {
         this.message = message;
     }
 
@@ -61,7 +62,7 @@ public class TextMessageException extends Exception {
      * @param message The detail message
      * @param throwable The cause
      */
-    public TextMessageException(Text message, Throwable throwable) {
+    public TextMessageException(Component message, Throwable throwable) {
         super(throwable);
         this.message = message;
     }
@@ -79,8 +80,8 @@ public class TextMessageException extends Exception {
     @Override
     @Nullable
     public String getMessage() {
-        Text message = getText();
-        return message == null ? null : message.toPlain();
+        Component message = getText();
+        return message == null ? null : PlainComponentSerializer.plain().serialize(message);
     }
 
     /**
@@ -90,7 +91,7 @@ public class TextMessageException extends Exception {
      * @return The text for this message
      */
     @Nullable
-    public Text getText() {
+    public Component getText() {
         return this.message;
     }
 
