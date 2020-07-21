@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world.server;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
@@ -63,6 +64,23 @@ public interface ServerWorld extends World<ServerWorld>, Identifiable, Interacta
      * @return The properties
      */
     WorldProperties getProperties();
+
+    /**
+     * @see WorldProperties#getKey()
+     * @return The key
+     */
+    default ResourceKey getKey() {
+        return this.getProperties().getKey();
+    }
+
+    /**
+     * @see WorldProperties#getUniqueId()
+     * @return The unique id
+     */
+    @Override
+    default UUID getUniqueId() {
+        return this.getProperties().getUniqueId();
+    }
 
     @Override
     default Difficulty getDifficulty() {
@@ -151,17 +169,6 @@ public interface ServerWorld extends World<ServerWorld>, Identifiable, Interacta
      * @return Whether the operation was successful
      */
     boolean unloadChunk(Chunk chunk);
-
-    /**
-     * Gets this {@link World}'s {@link UUID}.
-     *
-     * @see WorldProperties#getUniqueId()
-     * @return The uuid for this world
-     */
-    @Override
-    default UUID getUniqueId() {
-        return this.getProperties().getUniqueId();
-    }
 
     /**
      * Causes an {@link Explosion} in a world.

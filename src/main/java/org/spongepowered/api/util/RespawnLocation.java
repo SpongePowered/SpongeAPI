@@ -26,6 +26,7 @@ package org.spongepowered.api.util;
 
 import com.google.common.base.Preconditions;
 import org.checkerframework.checker.nullness.qual.Nullable;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.persistence.AbstractDataBuilder;
@@ -35,13 +36,11 @@ import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.persistence.Queries;
 import org.spongepowered.api.world.ServerLocation;
-import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3d;
 
 import java.util.Objects;
 import java.util.Optional;
-import java.util.UUID;
 
 /**
  * Represents a position for a player to respawn in in a particular world.
@@ -59,22 +58,22 @@ public final class RespawnLocation implements DataSerializable {
         return new Builder();
     }
 
-    private final UUID world;
+    private final ResourceKey world;
     private final Vector3d position;
     private final boolean forced;
 
-    RespawnLocation(final Builder builder) {
-        this.world = Preconditions.checkNotNull(builder.world, "World UUID");
-        this.position = Preconditions.checkNotNull(builder.position, "Position");
+    RespawnLocation(Builder builder) {
+        this.world = Preconditions.checkNotNull(builder.world);
+        this.position = Preconditions.checkNotNull(builder.position);
         this.forced = builder.forced;
     }
 
     /**
-     * Gets the {@link UUID} of the world this position refers to.
+     * Gets the {@link ResourceKey key} of the world.
      *
-     * @return The world UUID
+     * @return The key
      */
-    public UUID getWorldUniqueId() {
+    public ResourceKey getWorldKey() {
         return this.world;
     }
 
@@ -105,13 +104,13 @@ public final class RespawnLocation implements DataSerializable {
      * @return The position object, if available.
      */
     public Optional<ServerLocation> asLocation() {
-        Optional<ServerWorld> optWorld = Sponge.getServer().getWorldManager().getWorld(getWorldUniqueId());
+        Optional<ServerWorld> optWorld = Sponge.getServer().getWorldManager().getWorld(this.getWorldKey());
         return optWorld.map(world -> ServerLocation.of(world, getPosition()));
     }
 
     @Override
     public int getContentVersion() {
-        return 1;
+        return 2;
     }
 
     @Override
@@ -122,7 +121,7 @@ public final class RespawnLocation implements DataSerializable {
                 .set(Queries.POSITION_Y, getPosition().getY())
                 .set(Queries.POSITION_Z, getPosition().getZ())
                 .set(Queries.FORCED_SPAWN, isForced())
-                .set(Queries.WORLD_ID, getWorldUniqueId().toString());
+                .set(Queries.WORLD_KEY, this.getWorldKey().getFormatted());
     }
 
     @Override
@@ -158,7 +157,7 @@ public final class RespawnLocation implements DataSerializable {
      */
     public static final class Builder extends AbstractDataBuilder<RespawnLocation> implements CopyableBuilder<RespawnLocation, Builder> {
 
-        @Nullable UUID world;
+        @Nullable ResourceKey world;
         @Nullable Vector3d position;
         boolean forced = false;
 
@@ -170,42 +169,39 @@ public final class RespawnLocation implements DataSerializable {
         }
 
         /**
-         * Sets the {@link UUID} of the provided {@link World} into this
+         * Sets the {@link ResourceKey key} of the provided {@link ServerWorld} onto this
          * builder.
          *
-         * @param world The world to get the uuid from
+         * @param world The world
          * @return This builder, for chaining
          */
         public Builder world(final ServerWorld world) {
-            return world(Preconditions.checkNotNull(world, "World cannot be null!").getUniqueId());
+            return world(Preconditions.checkNotNull(world).getKey());
         }
 
         /**
-         * Sets the {@link UUID} of the desired {@link World}. There are no
-         * validation checks to whether a world exists with the provided uuid,
-         * mainly for reasons when multiple worlds are loaded and unloaded.
+         * Sets the {@link ResourceKey key} tied to the desired {@link ServerWorld}.
          *
-         * @param uniqueId The world unique id
+         * @param key The key
          * @return This builder, for chaining
          */
-        public Builder world(final UUID uniqueId) {
-            this.world = Preconditions.checkNotNull(uniqueId, "World UUID cannot be null!");
+        public Builder world(final ResourceKey key) {
+            this.world = Preconditions.checkNotNull(key);
             return this;
         }
 
         /**
-         * Sets the {@link UUID} of the {@link ServerLocation} provided {@link World},
-         * and the {@link Vector3d} position to respawn at.
+         * Sets the {@link ResourceKey key} of the {@link ServerLocation location's} provided {@link ServerWorld world},
+         * and the {@link Vector3d position} to respawn at.
          *
          * @param location The location desired
          * @return This builder, for chaining
-         * @throws IllegalStateException If the location's extent is null
          */
         public Builder location(final ServerLocation location) {
-            Preconditions.checkNotNull(location, "Location cannot be null!");
+            Preconditions.checkNotNull(location);
             final ServerWorld world = location.getWorld();
             this.position(location.getPosition());
-            this.world(world.getUniqueId());
+            this.world(world);
             return this;
         }
 
@@ -216,7 +212,7 @@ public final class RespawnLocation implements DataSerializable {
          * @return This builder, for chaining
          */
         public Builder position(final Vector3d position) {
-            this.position = Preconditions.checkNotNull(position, "Position cannot be null!");
+            this.position = Preconditions.checkNotNull(position);
             return this;
         }
 
@@ -234,17 +230,17 @@ public final class RespawnLocation implements DataSerializable {
 
         @Override
         protected Optional<RespawnLocation> buildContent(DataView container) throws InvalidDataException {
-            final String worldString = container.getString(Queries.WORLD_ID).get();
-            final UUID worldId = UUID.fromString(worldString);
-            final double xPos = container.getDouble(Queries.POSITION_X).get();
-            final double yPos = container.getDouble(Queries.POSITION_Y).get();
-            final double zPos = container.getDouble(Queries.POSITION_Z).get();
-            final Vector3d position = new Vector3d(xPos, yPos, zPos);
+            final ResourceKey worldKey = container.getKey(Queries.WORLD_KEY).get();
+            final double x = container.getDouble(Queries.POSITION_X).get();
+            final double y = container.getDouble(Queries.POSITION_Y).get();
+            final double z = container.getDouble(Queries.POSITION_Z).get();
+            final Vector3d position = new Vector3d(x, y, z);
             final boolean forcedSpawn = container.getBoolean(Queries.FORCED_SPAWN).orElse(false);
-            final Builder builder = new Builder();
-            builder.world = worldId;
-            builder.position = position;
-            builder.forced = forcedSpawn;
+
+            final Builder builder = new Builder()
+                .world(worldKey)
+                .position(position)
+                .forceSpawn(forcedSpawn);
             return Optional.of(new RespawnLocation(builder));
         }
 
@@ -258,8 +254,9 @@ public final class RespawnLocation implements DataSerializable {
 
         @Override
         public Builder from(final RespawnLocation value) {
-            Preconditions.checkNotNull(value, "RespawnLocation cannot be null!");
-            this.world = value.getWorldUniqueId();
+            Preconditions.checkNotNull(value);
+
+            this.world = value.world;
             this.position = value.getPosition();
             this.forced = value.isForced();
             return this;
@@ -271,8 +268,9 @@ public final class RespawnLocation implements DataSerializable {
          * @return The new respawn location
          */
         public RespawnLocation build() {
-            Preconditions.checkNotNull(this.world, "World id cannot be null!");
-            Preconditions.checkNotNull(this.position, "Position cannot be null!");
+            Preconditions.checkNotNull(this.world);
+            Preconditions.checkNotNull(this.position);
+
             return new RespawnLocation(this);
         }
     }

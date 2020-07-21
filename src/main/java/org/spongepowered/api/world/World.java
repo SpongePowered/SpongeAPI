@@ -71,13 +71,6 @@ public interface World<W extends World<W>> extends ForwardingAudience,
     Engine getEngine();
 
     /**
-     * Gets the {@link UUID unique id} of this world.
-     *
-     * @return The unique id
-     */
-    UUID getUniqueId();
-
-    /**
      * Gets if this world is currently loaded.
      *
      * <p>

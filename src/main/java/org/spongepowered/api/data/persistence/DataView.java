@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.persistence;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.data.DataManager;
 
 import java.util.List;
@@ -303,6 +304,28 @@ public interface DataView {
      * @return The string, if available
      */
     Optional<String> getString(DataQuery path);
+
+    /**
+     * Gets the {@link ResourceKey} by path, if available.
+     *
+     * <p>If a {@link ResourceKey} does not exist, or the data residing at
+     * the path is not considered a valid key, an absent is returned.</p>
+     *
+     * @param path The path of the value to get
+     * @return The key, if available
+     */
+    default Optional<ResourceKey> getKey(DataQuery path) {
+        final Optional<String> value = this.getString(path);
+        if (!value.isPresent()) {
+            return Optional.empty();
+        }
+
+        try {
+            return Optional.of(ResourceKey.resolve(value.get()));
+        } catch (final Exception ignore) {
+            return Optional.empty();
+        }
+    }
 
     /**
      * Gets the {@link List} of something by path, if available.

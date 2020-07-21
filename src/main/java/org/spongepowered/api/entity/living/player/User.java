@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.living.player;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.block.entity.EnderChest;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.entity.Entity;
@@ -87,27 +88,24 @@ public interface User extends DataHolder.Mutable, ArmorEquipable, Tamer, Subject
     Vector3d getPosition();
 
     /**
-     * Gets the world {@link UUID} of this User.
+     * Gets the world {@link ResourceKey key} of this User.
      *
-     * <p>May return empty when the world the player is in does not exist anymore</p>
-     *
-     * @return The World UUID of this User if found
+     * @return The key, if found
      */
-    Optional<UUID> getWorldUniqueId();
+    ResourceKey getWorldKey();
 
     /**
-     * Sets the position and world of this User.
+     * Sets the world and position of this User.
      *
-     * <p>The UUID must belong to an existing world.</p>
+     * <p>The {@link ResourceKey key} must belong to an existing world.</p>
      *
      * <p>When the User {@link #isOnline()} this redirects to {@link Entity#setLocation(ServerLocation)}</p>
      *
      * @param position The position to set
-     * @param worldUniqueId The world UUID to set
+     * @param world The world key
      * @return True if the location was accepted
-     * @throws IllegalArgumentException When the UUID does not belong to an existing world.
      */
-    boolean setLocation(Vector3d position, UUID worldUniqueId);
+    boolean setLocation(ResourceKey world, Vector3d position);
 
     /**
      * Sets the rotation of this entity.

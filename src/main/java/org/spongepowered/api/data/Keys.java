@@ -26,6 +26,7 @@ package org.spongepowered.api.data;
 
 import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.text.Component;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
@@ -2077,7 +2078,7 @@ public final class Keys {
      * The spawn locations a {@link Player}
      * may have for various worlds based on {@link UUID} of the world.
      */
-    public static final Supplier<Key<MapValue<UUID, RespawnLocation>>> RESPAWN_LOCATIONS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "RESPAWN_LOCATIONS");
+    public static final Supplier<Key<MapValue<ResourceKey, RespawnLocation>>> RESPAWN_LOCATIONS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "RESPAWN_LOCATIONS");
 
     /**
      * The rotation of an {@link ArmorStand}'s right arm.

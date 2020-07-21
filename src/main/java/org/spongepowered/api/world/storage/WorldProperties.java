@@ -27,6 +27,7 @@ package org.spongepowered.api.world.storage;
 import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.key.KeyedValue;
 import org.checkerframework.checker.nullness.qual.Nullable;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
@@ -65,7 +66,7 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
      * @return The world or {@link Optional#empty()} otherwise
      */
     default Optional<ServerWorld> getWorld() {
-        final Optional<ServerWorld> potentialWorld = Sponge.getServer().getWorldManager().getWorld(this.getUniqueId());
+        final Optional<ServerWorld> potentialWorld = Sponge.getServer().getWorldManager().getWorld(this.getKey());
         if (!potentialWorld.isPresent()) {
             return Optional.empty();
         }
@@ -79,18 +80,17 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
     }
 
     /**
+     * Gets the {@link ResourceKey key}.
+     * @return The key
+     */
+    ResourceKey getKey();
+
+    /**
      * Gets if this has been initialized.
      *
      * @return Is initialized
      */
     boolean isInitialized();
-
-    /**
-     * Gets the directory name.
-     *
-     * @return The directory name
-     */
-    String getDirectoryName();
 
     /**
      * Gets whether this is enabled.

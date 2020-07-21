@@ -50,12 +50,7 @@ public final class Queries {
     public static final DataQuery WEIGHTED_ITEM_QUANTITY = of("Quantity");
 
     // Location
-    public static final DataQuery WORLD_NAME = of("WorldName");
-    public static final DataQuery WORLD_ID = of("WorldUuid");
-    public static final DataQuery CHUNK_X = of("ChunkX");
-    public static final DataQuery CHUNK_Y = of("ChunkY");
-    public static final DataQuery CHUNK_Z = of("ChunkZ");
-    public static final DataQuery BLOCK_TYPE = of("BlockType");
+    public static final DataQuery WORLD_KEY = of("WorldKey");
     public static final DataQuery POSITION_X = of("X");
     public static final DataQuery POSITION_Y = of("Y");
     public static final DataQuery POSITION_Z = of("Z");
