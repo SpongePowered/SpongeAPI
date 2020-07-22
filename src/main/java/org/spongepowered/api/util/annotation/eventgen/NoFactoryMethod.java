@@ -22,29 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.item.inventory;
+package org.spongepowered.api.util.annotation.eventgen;
 
-import com.google.common.collect.Lists;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.transaction.SlotTransaction;
-import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
-
-import java.util.List;
-import java.util.function.Predicate;
-
-@NoFactoryMethod
-public interface AffectSlotEvent extends AffectItemStackEvent {
-    @Override
-    List<SlotTransaction> getTransactions();
-
-    @Override
-    default List<SlotTransaction> filter(Predicate<ItemStack> predicate) {
-        List<SlotTransaction> invalidatedTransactions = Lists.newArrayList();
-        this.getTransactions().stream().filter(transaction -> !predicate.test(transaction.getFinal().createStack())).forEach(transaction -> {
-            transaction.setValid(false);
-            invalidatedTransactions.add(transaction);
-        });
-        return invalidatedTransactions;
-    }
-
+/**
+ * Explicitly disables generation of an event factory method for an event class.
+ *
+ * <p>By default, an event which contains subinterfaces will not have
+ * an event factory method generated.</p>
+ */
+public @interface NoFactoryMethod {
 }
