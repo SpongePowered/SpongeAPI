@@ -31,6 +31,7 @@ import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
+import java.util.stream.Stream;
 
 /**
  * Represents the storage manager of a particular {@link World}.
@@ -42,14 +43,21 @@ import java.util.concurrent.CompletableFuture;
 public interface WorldStorage {
 
     /**
-     * Gets a {@link ChunkDataStream}.
+     * Gets a stream of {@link StorageChunkEntry entries} of generated chunks in
+     * the world storage. Using a stream allows the chunks to be processed
+     * individually in sequence to avoid them being loaded all at once.
      *
-     * <p>Usage of a {@link ChunkDataStream} should be limited to asynchronous
-     * tasks to avoid hanging the main thread.</p>
+     * <p>Loading {@link DataContainer}s from {@link StorageChunkEntry}s is done lazily.
+     * Strong references to these {@link DataContainer}s should be avoided
+     * <strong>AT ALL COSTS</strong>. The data represented is a copy and therefore
+     * shouldn't be considered synchronized to live data.</p>
+     *
+     * <p>Usage of this stream should be limited to asynchronous tasks to
+     * avoid hanging the main thread.</p>
      *
      * @return An iterator of generated chunks
      */
-    ChunkDataStream getGeneratedChunks();
+    Stream<StorageChunkEntry> getGeneratedChunks();
 
     /**
      * Checks if the given chunk coordinates represented by {@link Vector3i}
