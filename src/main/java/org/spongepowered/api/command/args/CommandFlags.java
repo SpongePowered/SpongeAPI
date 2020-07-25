@@ -340,8 +340,6 @@ public final class CommandFlags extends CommandElement {
 
         Builder() {}
 
-        private static final Function<String, CommandElement> MARK_TRUE_FUNC = input -> new FlagElement(Text.of(input), null);
-
         private Builder flag(Function<String, CommandElement> func, String... specs) {
             final List<String> availableFlags = new ArrayList<>(specs.length);
             CommandElement el = null;
@@ -388,7 +386,7 @@ public final class CommandFlags extends CommandElement {
          * @return this
          */
         public Builder flag(String... specs) {
-            return flag(MARK_TRUE_FUNC, specs);
+            return flag(input -> new FlagElement(Text.of(input), null), specs);
         }
 
         /**
