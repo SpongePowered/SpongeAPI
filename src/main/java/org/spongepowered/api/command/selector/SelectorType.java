@@ -22,17 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.selector;
+package org.spongepowered.api.command.selector;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents a selector type.
- *
- * @see Selector
+ * Represents a type of selector that Minecraft supplies.
  */
 @CatalogedBy(SelectorTypes.class)
 public interface SelectorType extends CatalogType {
+
+    /**
+     * Gets the selector string used to select this selector type. The string
+     * will start with @.
+     *
+     * @return The selector key.
+     */
+    String selectorKey();
+
+    /**
+     * Creates a {@link Selector} based on the defaults for this
+     * {@link SelectorType}.
+     *
+     * @return The {@link Selector}
+     */
+    Selector toSelector();
+
+    /**
+     * Creates a {@link Selector.Builder} based on the defaults for this
+     * {@link SelectorType}.
+     *
+     * @return The {@link Selector.Builder}
+     */
+    Selector.Builder toBuilder();
 
 }

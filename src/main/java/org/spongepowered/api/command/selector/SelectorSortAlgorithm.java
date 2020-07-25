@@ -22,53 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.selector;
+package org.spongepowered.api.command.selector;
 
-import java.util.Set;
+import org.spongepowered.api.CatalogType;
 
 /**
- * Represents the type of an {@link Argument}. This represents a single argument
- * key in a {@link Selector}.
- *
- * @param <T> The type for the value of this argument type
- * @see Selector
- * @see Argument
- * @see ArgumentTypes
+ * Defines an algorithm used when a selector sorts the selected entities, which
+ * will have a significant effect when limits are imposed on the selector.
  */
-public interface ArgumentType<T> extends ArgumentHolder<ArgumentType<T>> {
-
-    /**
-     * Returns the key associated with this {@link ArgumentType}.
-     *
-     * @return The key of this argument type
-     */
-    String getKey();
-
-    /**
-     * Returns 1.
-     *
-     * @return 1
-     */
-    @Override
-    int getCount();
-
-    /**
-     * Returns a set containing this {@link ArgumentType}.
-     *
-     * @return A set containing this {@link ArgumentType}
-     */
-    @Override
-    Set<ArgumentType<T>> getTypes();
-
-    /**
-     * Represents an {@link ArgumentType} that can be inverted.
-     *
-     * @param <T> The type for the value of this argument type
-     * @see ArgumentType
-     * @see Argument.Invertible
-     */
-    interface Invertible<T> extends ArgumentType<T> {
-
-    }
+public interface SelectorSortAlgorithm extends CatalogType {
 
 }
