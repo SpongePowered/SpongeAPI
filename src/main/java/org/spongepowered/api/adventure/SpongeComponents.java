@@ -52,7 +52,7 @@ public final class SpongeComponents {
      * @return The created hover event instance
      */
     public static HoverEvent<HoverEvent.ShowItem> showItem(final ItemStackSnapshot item) {
-        return factory().showItem(item);
+        return SpongeComponents.factory().showItem(item);
     }
 
     /**
@@ -63,7 +63,7 @@ public final class SpongeComponents {
      * @return The created hover event instance
      */
     public static HoverEvent<HoverEvent.ShowEntity> showEntity(final Entity entity) {
-        return showEntity(entity, entity.displayName().get());
+        return SpongeComponents.showEntity(entity, entity.displayName().get());
     }
 
     /**
@@ -75,7 +75,7 @@ public final class SpongeComponents {
      * @return The created hover event instance
      */
     public static HoverEvent<HoverEvent.ShowEntity> showEntity(final Entity entity, final @Nullable Component name) {
-        return showEntity(entity.getType(), entity.getUniqueId(), name);
+        return SpongeComponents.showEntity(entity.getType(), entity.getUniqueId(), name);
     }
 
     /**
@@ -87,7 +87,7 @@ public final class SpongeComponents {
      * @return The created hover event instance
      */
     public static HoverEvent<HoverEvent.ShowEntity> showEntity(final EntityType<?> type, final UUID uuid) {
-        return showEntity(type, uuid, null);
+        return SpongeComponents.showEntity(type, uuid, null);
     }
 
     /**
@@ -112,7 +112,7 @@ public final class SpongeComponents {
      * @return The created click event instance
      */
     public static ClickEvent executeCallback(final Consumer<CommandCause> callback) {
-        return factory().callbackClickEvent(callback);
+        return SpongeComponents.factory().callbackClickEvent(callback);
     }
 
     private static Factory factory() {

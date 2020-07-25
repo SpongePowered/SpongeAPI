@@ -33,6 +33,8 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.block.entity.BlockEntityArchetype;
+import org.spongepowered.api.command.CommandCause;
+import org.spongepowered.api.command.CommandExecutor;
 import org.spongepowered.api.command.manager.CommandMapping;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.meta.BannerPatternLayer;
@@ -136,6 +138,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.function.Consumer;
 
 @SuppressWarnings({"unused", "UnstableApiUsage"})
 public final class TypeTokens {
@@ -198,6 +201,10 @@ public final class TypeTokens {
     public static final TypeToken<Color> COLOR_TOKEN = new TypeToken<Color>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<Color>> COLOR_VALUE_TOKEN = new TypeToken<Value<Color>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Consumer<CommandCause>> COMMAND_CAUSE_CONSUMER = new TypeToken<Consumer<CommandCause>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<CommandExecutor> COMMAND_EXECUTOR = new TypeToken<CommandExecutor>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<CommandMapping> COMMAND_MAPPING = new TypeToken<CommandMapping>() {private static final long serialVersionUID = -1;};
 
