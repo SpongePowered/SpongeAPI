@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.command.args;
 
-import static org.spongepowered.api.command.args.GenericArguments.markTrue;
 import static org.spongepowered.api.command.args.GenericArguments.requiringPermission;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
@@ -34,6 +33,7 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.StartsWithPredicate;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -103,9 +103,11 @@ public final class CommandFlags extends CommandElement {
                 case ERROR:
                     throw args.createError(t("Unknown long flag %s specified", flagSplit[0]));
                 case ACCEPT_NONVALUE:
+                    context.addFlag(flag);
                     context.putArg(flag, flagSplit.length == 2 ? flagSplit[1] : true);
                     return true;
                 case ACCEPT_VALUE:
+                    context.addFlag(flag);
                     context.putArg(flag, flagSplit.length == 2 ? flagSplit[1] : args.next());
                     return true;
                 case IGNORE:
@@ -134,9 +136,11 @@ public final class CommandFlags extends CommandElement {
                     case ERROR:
                         throw args.createError(t("Unknown short flag %s specified", shortFlag));
                     case ACCEPT_NONVALUE:
+                        context.addFlag(shortFlag);
                         context.putArg(shortFlag, true);
                         break;
                     case ACCEPT_VALUE:
+                        context.addFlag(shortFlag);
                         context.putArg(shortFlag, args.next());
                         break;
                     default:
@@ -336,8 +340,6 @@ public final class CommandFlags extends CommandElement {
 
         Builder() {}
 
-        private static final Function<String, CommandElement> MARK_TRUE_FUNC = input -> markTrue(Text.of(input));
-
         private Builder flag(Function<String, CommandElement> func, String... specs) {
             final List<String> availableFlags = new ArrayList<>(specs.length);
             CommandElement el = null;
@@ -384,7 +386,7 @@ public final class CommandFlags extends CommandElement {
          * @return this
          */
         public Builder flag(String... specs) {
-            return flag(MARK_TRUE_FUNC, specs);
+            return flag(input -> new FlagElement(Text.of(input), null), specs);
         }
 
         /**
@@ -398,7 +400,7 @@ public final class CommandFlags extends CommandElement {
          * @return this
          */
         public Builder permissionFlag(final String flagPermission, String... specs) {
-            return flag(input -> requiringPermission(markTrue(Text.of(input)), flagPermission), specs);
+            return flag(input -> requiringPermission(new FlagElement(Text.of(input), null), flagPermission), specs);
         }
 
         /**
@@ -413,7 +415,7 @@ public final class CommandFlags extends CommandElement {
          * @return this
          */
         public Builder valueFlag(CommandElement value, String... specs) {
-            return flag(ignore -> value, specs);
+            return flag(input -> new FlagElement(Text.of(input), value), specs);
         }
 
         /**
@@ -490,4 +492,39 @@ public final class CommandFlags extends CommandElement {
                     this.unknownLongFlagBehavior, this.anchorFlags);
         }
     }
+
+    private static class FlagElement extends CommandElement {
+
+        @Nullable
+        private final CommandElement valueElement;
+
+        private FlagElement(Text key, @Nullable CommandElement valueElement) {
+            super(key);
+            this.valueElement = valueElement;
+        }
+
+        @Override
+        public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
+            String key = getUntranslatedKey();
+            if (valueElement != null) {
+                valueElement.parse(source, args, context);
+            } else {
+                context.putArg(key, true);
+            }
+            context.addFlag(key);
+        }
+
+        @Nullable
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            return null; //unused
+        }
+
+        @Override
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+            return valueElement != null ? valueElement.complete(src, args, context) : Collections.emptyList();
+        }
+
+    }
+
 }

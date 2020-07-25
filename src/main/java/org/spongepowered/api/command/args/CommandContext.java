@@ -29,6 +29,7 @@ import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
+import com.google.common.collect.Sets;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.text.Text;
@@ -38,6 +39,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * Context that a command is executed in.
@@ -57,12 +59,14 @@ public final class CommandContext {
     public static final String TAB_COMPLETION = "tab-complete-50456"; // Random junk afterwards so we don't accidentally conflict with other args
 
     private final Multimap<String, Object> parsedArgs;
+    private final Set<String> definedFlags;
 
     /**
      * Create a new empty CommandContext.
      */
     public CommandContext() {
         this.parsedArgs = ArrayListMultimap.create();
+        this.definedFlags = Sets.newHashSet();
     }
 
     /**
@@ -194,6 +198,24 @@ public final class CommandContext {
     }
 
     /**
+     * Defines the flag as being present when parsing this context.
+     *
+     * @param key the key for the flag defined
+     */
+    public void addFlag(String key) {
+        definedFlags.add(key);
+    }
+
+    /**
+     * Defines the flag as being present when parsing this context.
+     *
+     * @param key the key for the flag defined
+     */
+    public void addFlag(Text key) {
+        addFlag(ArgUtils.textToArgKey(key));
+    }
+
+    /**
      * Perform a permissions check, throwing an exception if the required
      * permissions are not present.
      *
@@ -228,6 +250,26 @@ public final class CommandContext {
     }
 
     /**
+     * Returns whether the given flag has been defined in this context.
+     *
+     * @param key The key to look up
+     * @return whether the flag is defined
+     */
+    public boolean hasFlag(String key) {
+        return definedFlags.contains(key);
+    }
+
+    /**
+     * Returns whether the given flag has been defined in this context.
+     *
+     * @param key The key to look up
+     * @return whether the flag is defined
+     */
+    public boolean hasFlag(Text key) {
+        return hasFlag(ArgUtils.textToArgKey(key));
+    }
+
+    /**
      * Gets a snapshot of the data inside this context to allow it to be
      * restored later.
      *
@@ -240,7 +282,7 @@ public final class CommandContext {
      *      {@link CommandContext}
      */
     public Snapshot createSnapshot() {
-        return new Snapshot(this.parsedArgs);
+        return new Snapshot(this.parsedArgs, this.definedFlags);
     }
 
     /**
@@ -252,6 +294,8 @@ public final class CommandContext {
     public void applySnapshot(Snapshot snapshot) {
         this.parsedArgs.clear();
         this.parsedArgs.putAll(snapshot.args);
+        this.definedFlags.clear();
+        this.definedFlags.addAll(snapshot.flags);
     }
 
     /**
@@ -261,9 +305,11 @@ public final class CommandContext {
     public final class Snapshot {
 
         final Multimap<String, Object> args;
+        final Set<String> flags;
 
-        Snapshot(Multimap<String, Object> args) {
+        Snapshot(Multimap<String, Object> args, Set<String> flags) {
             this.args = ArrayListMultimap.create(args);
+            this.flags = Sets.newHashSet(flags);
         }
 
     }
