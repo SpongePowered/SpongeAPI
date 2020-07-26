@@ -24,23 +24,45 @@
  */
 package org.spongepowered.api.command.parameter;
 
+import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.text.Component;
 import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.command.parameter.managed.Flag;
 import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.service.permission.SubjectProxy;
 
 import java.util.Collection;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 /**
- * The {@link CommandContext} contains the parsed arguments for a
- * command, and any other information that might be important when
- * executing a command.
+ * The {@link CommandContext} contains the parsed arguments for a command, and
+ * any other information that might be important when executing a command.
  *
- * <p>This context also contain methods that determine the
- * {@link Cause} of the command.</p>
+ * <p>For information about the cause of the command, the {@link CommandCause}
+ * is available (see {@link #getCommandCause()}. Some popular tasks that operate
+ * on the {@link CommandCause} are also directly available on this context,
+ * namely permission checks (via {@link SubjectProxy}) and sending a message to
+ * the {@link CommandCause}'s {@link Audience} (via
+ * {@link #sendMessage(Component)}).</p>
  */
-public interface CommandContext extends CommandCause {
+public interface CommandContext extends SubjectProxy {
+
+    /**
+     * Gets the {@link CommandCause} associated with this context.
+     *
+     * @return The {@link CommandCause}
+     */
+    CommandCause getCommandCause();
+
+    /**
+     * Gets the {@link Cause} of the command.
+     *
+     * @return The {@link Cause}
+     */
+    default Cause getCause() {
+        return this.getCommandCause().getCause();
+    }
 
     /**
      * Gets if a flag with given alias was specified at least once.
@@ -165,6 +187,13 @@ public interface CommandContext extends CommandCause {
      * @return the collection of all values
      */
     <T> Collection<? extends T> getAll(Parameter.Key<T> key);
+
+    /**
+     * Sends a message via {@link CommandCause#getAudience()}
+     *
+     * @param message The message to send.
+     */
+    void sendMessage(final Component message);
 
     /**
      * A builder for creating this context.

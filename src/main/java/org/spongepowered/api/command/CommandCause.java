@@ -34,21 +34,14 @@ import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.EventContext;
 import org.spongepowered.api.event.cause.EventContextKeys;
-import org.spongepowered.api.service.context.Context;
 import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.service.permission.SubjectCollection;
-import org.spongepowered.api.service.permission.SubjectData;
-import org.spongepowered.api.service.permission.SubjectReference;
-import org.spongepowered.api.util.Tristate;
+import org.spongepowered.api.service.permission.SubjectProxy;
 import org.spongepowered.api.util.annotation.DoNotStore;
-import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.plugin.PluginContainer;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 /**
  * The {@link CommandCause} represents the {@link Cause} of a command, and
@@ -111,7 +104,7 @@ import java.util.Set;
  * typically would be of interest to command API consumers.</p>
  */
 @DoNotStore
-public interface CommandCause extends Subject {
+public interface CommandCause extends SubjectProxy {
 
     /**
      * Creates a {@link CommandCause} from the current {@link Cause}.
@@ -151,11 +144,7 @@ public interface CommandCause extends Subject {
      *
      * @return The {@link Subject} responsible, if any.
      */
-    default Subject getSubject() {
-        return this.getCause().getContext()
-            .get(EventContextKeys.SUBJECT)
-            .orElseGet(() -> this.getCause().first(Subject.class).orElseGet(Sponge::getSystemSubject));
-    }
+    Subject getSubject();
 
     /**
      * Gets the {@link Audience} that should be the target for any
@@ -178,11 +167,7 @@ public interface CommandCause extends Subject {
      *
      * @return The {@link Audience} to send any messages to.
      */
-    default Audience getAudience() {
-        return this.getCause().getContext()
-            .get(EventContextKeys.AUDIENCE)
-            .orElseGet(() -> this.getCause().first(Audience.class).orElseGet(Sponge::getSystemSubject));
-    }
+    Audience getAudience();
 
     /**
      * Gets the {@link ServerLocation} that this command is associated with.
@@ -197,20 +182,7 @@ public interface CommandCause extends Subject {
      *
      * @return The {@link ServerLocation}, if it exists
      */
-    default Optional<ServerLocation> getLocation() {
-        final Cause cause = this.getCause();
-        final EventContext eventContext = cause.getContext();
-        if (eventContext.containsKey(EventContextKeys.LOCATION)) {
-            return eventContext.get(EventContextKeys.LOCATION);
-        }
-
-        final Optional<ServerLocation> optionalLocation = this.getTargetBlock().flatMap(BlockSnapshot::getLocation);
-        if (optionalLocation.isPresent()) {
-            return optionalLocation;
-        }
-
-        return cause.first(Locatable.class).map(Locatable::getServerLocation);
-    }
+    Optional<ServerLocation> getLocation();
 
     /**
      * Gets the {@link Vector3d} rotation that this command is associated with.
@@ -224,15 +196,7 @@ public interface CommandCause extends Subject {
      *
      * @return The {@link Vector3d} rotation, if it exists
      */
-    default Optional<Vector3d> getRotation() {
-        final Cause cause = this.getCause();
-        final EventContext eventContext = cause.getContext();
-        if (eventContext.containsKey(EventContextKeys.ROTATION)) {
-            return eventContext.get(EventContextKeys.ROTATION);
-        }
-
-        return cause.first(Entity.class).map(Entity::getRotation);
-    }
+    Optional<Vector3d> getRotation();
 
     /**
      * Returns the target block {@link ServerLocation}, if applicable.
@@ -246,95 +210,7 @@ public interface CommandCause extends Subject {
      *
      * @return The {@link BlockSnapshot} if applicable, or an empty optional.
      */
-    default Optional<BlockSnapshot> getTargetBlock() {
-        return Optional.ofNullable(this.getCause().getContext().get(EventContextKeys.BLOCK_TARGET)
-            .orElseGet(() -> this.getCause().first(BlockSnapshot.class).orElse(null)));
-    }
-
-    @Override
-    default SubjectCollection getContainingCollection() {
-        return this.getSubject().getContainingCollection();
-    }
-
-    @Override
-    default SubjectReference asSubjectReference() {
-        return this.getSubject().asSubjectReference();
-    }
-
-    @Override
-    default boolean isSubjectDataPersisted() {
-        return this.getSubject().isSubjectDataPersisted();
-    }
-
-    @Override
-    default SubjectData getSubjectData() {
-        return this.getSubject().getSubjectData();
-    }
-
-    @Override
-    default SubjectData getTransientSubjectData() {
-        return this.getSubject().getTransientSubjectData();
-    }
-
-    @Override
-    default Tristate getPermissionValue(final Set<Context> contexts, final String permission) {
-        return this.getSubject().getPermissionValue(contexts, permission);
-    }
-
-    @Override
-    default boolean isChildOf(final Set<Context> contexts, final SubjectReference parent) {
-        return this.getSubject().isChildOf(contexts, parent);
-    }
-
-    @Override
-    default List<SubjectReference> getParents(final Set<Context> contexts) {
-        return this.getSubject().getParents();
-    }
-
-    @Override
-    default Optional<String> getOption(final Set<Context> contexts, final String key) {
-        return this.getSubject().getOption(contexts, key);
-    }
-
-    @Override
-    default String getIdentifier() {
-        return this.getSubject().getIdentifier();
-    }
-
-    @Override
-    default Set<Context> getActiveContexts() {
-        return this.getSubject().getActiveContexts();
-    }
-
-    @Override
-    default boolean hasPermission(final Set<Context> contexts, final String permission) {
-        return this.getSubject().hasPermission(contexts, permission);
-    }
-
-    @Override
-    default boolean hasPermission(final String permission) {
-        return this.getSubject().hasPermission(permission);
-    }
-
-    @Override
-    default boolean isChildOf(final SubjectReference parent) {
-        return this.getSubject().isChildOf(parent);
-    }
-
-    @Override
-    default List<SubjectReference> getParents() {
-        return this.getSubject().getParents();
-    }
-
-    @Override
-    default Optional<String> getOption(final String key) {
-        return this.getSubject().getOption(key);
-    }
-
-    @Override
-    default Optional<String> getFriendlyIdentifier() {
-        return this.getSubject().getFriendlyIdentifier();
-    }
+    Optional<BlockSnapshot> getTargetBlock();
 
     /**
      * Sends a message to the {@link Audience} as given by
@@ -342,9 +218,7 @@ public interface CommandCause extends Subject {
      *
      * @param message The message to send.
      */
-    default void sendMessage(final Component message) {
-        this.getAudience().sendMessage(message);
-    }
+    void sendMessage(final Component message);
 
     /**
      * Creates instances of the {@link CommandCause}.
