@@ -43,21 +43,54 @@ import java.util.stream.Stream;
 public interface WorldStorage {
 
     /**
-     * Gets a stream of {@link StorageChunkEntry entries} of generated chunks in
+     * Represents an entry that points to the data of a chunk at a specific position.
+     */
+    interface ChunkEntry {
+
+        /**
+         * Gets the position of the chunk entry.
+         *
+         * @return The chunk position
+         */
+        Vector3i getChunkPosition();
+
+        /**
+         * Reads the {@link Chunk} data represented by a read only {@link DataContainer}.
+         *
+         * <p>The container is a read only instance of the data, and therefor should
+         * not be considered as mutable data. Changes are NOT saved, and the data
+         * may not be in sync with the server if the chunk is currently loaded.</p>
+         *
+         * <p>The data of the returned {@link DataContainer} is raw like you would see
+         * when opening the region files. This is implementation and version dependent,
+         * so there is no guarantee that the structure will stay the same.</p>
+         *
+         * <p>This method BLOCKS the thread until the data has been read.</p>
+         *
+         * <p>This may not return a {@link DataContainer} in the event there is no
+         * longer chunk data available to read. For example when a chunk got deleted.</p>
+         *
+         * @return The chunk data represented by a data container
+         */
+        Optional<DataContainer> load();
+    }
+
+    /**
+     * Gets a stream of {@link ChunkEntry entries} of generated chunks in
      * the world storage. Using a stream allows the chunks to be processed
      * individually in sequence to avoid them being loaded all at once.
      *
-     * <p>Loading {@link DataContainer}s from {@link StorageChunkEntry}s is done lazily.
-     * Strong references to these {@link DataContainer}s should be avoided
-     * <strong>AT ALL COSTS</strong>. The data represented is a copy and therefore
-     * shouldn't be considered synchronized to live data.</p>
+     * <p>Loading {@link DataContainer}s from {@link ChunkEntry chunk entries} is
+     * done lazily. Strong references to these {@link DataContainer}s should be
+     * avoided <strong>AT ALL COSTS</strong>. The data represented is a copy and
+     * therefore shouldn't be considered synchronized to live data.</p>
      *
      * <p>Usage of this stream should be limited to asynchronous tasks to
      * avoid hanging the main thread.</p>
      *
      * @return An iterator of generated chunks
      */
-    Stream<StorageChunkEntry> getGeneratedChunks();
+    Stream<ChunkEntry> getGeneratedChunks();
 
     /**
      * Checks if the given chunk coordinates represented by {@link Vector3i}
@@ -83,6 +116,10 @@ public interface WorldStorage {
      * <p>The container is a read only instance of the data, and therefor should
      * not be considered as mutable data. Changes are NOT saved, and the data
      * may not be in sync with the server if the chunk is currently loaded.</p>
+     *
+     * <p>The data of the returned {@link DataContainer} is raw like you would see
+     * when opening the region files. This is implementation and version dependent,
+     * so there is no guarantee that the structure will stay the same.</p>
      *
      * <p>This may not return a {@link DataContainer} in the event there is no
      * chunk data generated at the desired coordinates.</p>
