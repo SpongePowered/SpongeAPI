@@ -58,6 +58,6 @@ public @interface DefaultConfig {
      * @see ConfigRoot#getConfigPath() For information on what the
      *     shared root is
      */
-    boolean sharedRoot();
+    boolean sharedRoot() default false;
 
 }
