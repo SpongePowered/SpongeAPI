@@ -30,33 +30,33 @@ package org.spongepowered.api.event;
  * <p>Event handlers are called the order given in the following table.</p>
  *
  * <table summary="Order Recommendations">
- *     <tr><td>Order</td>       <td>Cancellation Allowed</td>
+ *     <tr><td>Order</td>
  *         <td>Recommendation</td></tr>
- *     <tr><td>PRE</td>         <td>NO</td>
+ *     <tr><td>PRE</td>
  *         <td>Initialisation and registration actions</td></tr>
- *     <tr><td>AFTER_PRE</td>   <td>NO</td>
+ *     <tr><td>AFTER_PRE</td>
  *         <td>Immediate responses to actions in PRE</td></tr>
- *     <tr><td>FIRST</td>       <td>YES</td>
+ *     <tr><td>FIRST</td>
  *         <td>
  *             Cancellation by protection plugins for informational purposes
  *         </td>
  *     </tr>
- *     <tr><td>EARLY</td>       <td>YES</td>
+ *     <tr><td>EARLY</td>
  *         <td>Standard actions that should happen before other plugins react to
  *         the event</td>
  *     </tr>
- *     <tr><td>DEFAULT</td>     <td>YES</td>
+ *     <tr><td>DEFAULT</td>
  *         <td>The default action order</td></tr>
- *     <tr><td>LATE</td>        <td>YES</td>
+ *     <tr><td>LATE</td>
  *         <td>Standard actions that should happen after other plugins react to
  *         the event</td>
  *     </tr>
- *     <tr><td>LAST</td>        <td>YES</td>
+ *     <tr><td>LAST</td>
  *         <td>Final cancellation by protection plugins</td></tr>
- *     <tr><td>BEFORE_POST</td> <td>NO</td>
+ *     <tr><td>BEFORE_POST</td>
  *         <td>Actions that need to respond to cancelled events before POST</td>
  *     </tr>
- *     <tr><td>POST</td>        <td>NO</td>
+ *     <tr><td>POST</td>
  *         <td>Actions that need to react to the final and stable effects of
  *         event</td>
  *     </tr>
