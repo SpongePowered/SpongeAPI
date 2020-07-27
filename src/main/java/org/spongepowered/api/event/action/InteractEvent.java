@@ -26,7 +26,6 @@ package org.spongepowered.api.event.action;
 
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
 import org.spongepowered.math.vector.Vector3d;
 
 import java.util.Optional;
@@ -34,7 +33,6 @@ import java.util.Optional;
 /**
  * Base event for all interactions.
  */
-@NoFactoryMethod
 public interface InteractEvent extends Event, Cancellable {
 
     /**

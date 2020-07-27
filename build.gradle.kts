@@ -95,9 +95,13 @@ tasks {
     genEventImpl {
         outputFactory = "org.spongepowered.api.event.SpongeEventFactory"
         include("org/spongepowered/api/event/*/**/*")
+        exclude("org/spongepowered/api/event/action/InteractEvent.java")
         exclude("org/spongepowered/api/event/cause/")
+        exclude("org/spongepowered/api/event/entity/AffectEntityEvent.java")
         exclude("org/spongepowered/api/event/filter/")
         exclude("org/spongepowered/api/event/impl/")
+        exclude("org/spongepowered/api/event/item/inventory/AffectItemStackEvent.java")
+        exclude("org/spongepowered/api/event/item/inventory/AffectSlotEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/EngineLifecycleEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/LifecycleEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/ProvideServiceEvent.java")

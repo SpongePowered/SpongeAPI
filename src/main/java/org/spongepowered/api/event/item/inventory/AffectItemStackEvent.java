@@ -31,7 +31,6 @@ import org.spongepowered.api.event.Event;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -39,7 +38,6 @@ import java.util.function.Predicate;
 /**
  * Fired when {@link ItemStack}s are generated into a {@link Inventory}.
  */
-@NoFactoryMethod
 public interface AffectItemStackEvent extends Event, Cancellable {
 
     /**

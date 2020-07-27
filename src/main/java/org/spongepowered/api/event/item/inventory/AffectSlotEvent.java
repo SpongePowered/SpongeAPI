@@ -27,12 +27,10 @@ package org.spongepowered.api.event.item.inventory;
 import com.google.common.collect.Lists;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.transaction.SlotTransaction;
-import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
 
 import java.util.List;
 import java.util.function.Predicate;
 
-@NoFactoryMethod
 public interface AffectSlotEvent extends AffectItemStackEvent {
     @Override
     List<SlotTransaction> getTransactions();
