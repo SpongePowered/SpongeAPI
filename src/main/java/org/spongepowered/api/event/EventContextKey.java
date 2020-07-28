@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event;
 
-import com.google.common.reflect.TypeToken;
+import io.leangen.geantyref.TypeToken;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.CatalogBuilder;
@@ -58,7 +58,7 @@ public interface EventContextKey<T> extends CatalogType {
     interface Builder<T> extends CatalogBuilder<EventContextKey<T>, Builder<T>> {
 
         default <N> Builder<N> type(Class<N> allowedType) {
-            return type(TypeToken.of(allowedType));
+            return type(TypeToken.get(allowedType));
         }
 
         <N> Builder<N> type(TypeToken<N> allowedType);

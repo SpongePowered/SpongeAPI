@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.config;
 
-import ninja.leaping.configurate.commented.CommentedConfigurationNode;
-import ninja.leaping.configurate.loader.ConfigurationLoader;
+import org.spongepowered.configurate.CommentedConfigurationNode;
+import org.spongepowered.configurate.loader.ConfigurationLoader;
 
 import java.nio.file.Path;
 

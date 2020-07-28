@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event;
 
-import com.google.common.reflect.TypeToken;
+import io.leangen.geantyref.TypeToken;
 import org.spongepowered.plugin.PluginContainer;
 
 /**

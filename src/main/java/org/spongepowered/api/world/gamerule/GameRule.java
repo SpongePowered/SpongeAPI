@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.world.gamerule;
 
-import com.google.common.reflect.TypeToken;
+import io.leangen.geantyref.TypeToken;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.NamedCatalogType;
@@ -82,7 +82,7 @@ public interface GameRule<V> extends NamedCatalogType {
          * @return This builder, for chaining
          */
         default <NV> Builder<NV> valueType(Class<NV> valueType) {
-            return valueType(TypeToken.of(valueType));
+            return valueType(TypeToken.get(valueType));
         }
 
         /**

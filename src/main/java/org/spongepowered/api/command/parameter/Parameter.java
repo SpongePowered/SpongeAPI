@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.command.parameter;
 
-import com.google.common.reflect.TypeToken;
+import io.leangen.geantyref.TypeToken;
 import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
@@ -125,7 +125,7 @@ public interface Parameter {
      * @return The {@link Value.Builder}
      */
     static <T> Value.Builder<T> builder(@NonNull final Class<T> valueClass) {
-        return builder(TypeToken.of(valueClass));
+        return builder(TypeToken.get(valueClass));
     }
 
     /**
@@ -151,7 +151,7 @@ public interface Parameter {
      * @return The {@link Value.Builder}
      */
     static <T> Value.Builder<T> builder(@NonNull final Class<T> valueClass, @NonNull final ValueParameter<T> parameter) {
-        return builder(TypeToken.of(valueClass), parameter);
+        return builder(TypeToken.get(valueClass), parameter);
     }
 
     /**

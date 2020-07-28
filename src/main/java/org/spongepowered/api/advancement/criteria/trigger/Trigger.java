@@ -25,8 +25,8 @@
 package org.spongepowered.api.advancement.criteria.trigger;
 
 import com.google.gson.Gson;
-import ninja.leaping.configurate.objectmapping.serialize.TypeSerializer;
-import ninja.leaping.configurate.objectmapping.serialize.TypeSerializerCollection;
+import org.spongepowered.configurate.serialize.TypeSerializer;
+import org.spongepowered.configurate.serialize.TypeSerializerCollection;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;

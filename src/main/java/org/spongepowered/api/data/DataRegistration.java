@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.data;
 
-import com.google.common.reflect.TypeToken;
+import io.leangen.geantyref.TypeToken;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataQuery;
