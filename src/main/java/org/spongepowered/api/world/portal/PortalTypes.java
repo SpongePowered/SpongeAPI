@@ -22,30 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.teleport;
+package org.spongepowered.api.world.portal;
 
 import org.spongepowered.api.Sponge;
 
 import java.util.function.Supplier;
 
-public final class TeleportTypes {
+public final class PortalTypes {
 
-    // SORTFIELDS:ON
+    public static final Supplier<PortalType> NETHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PortalType.class, "NETHER");
 
-    public static final Supplier<TeleportType> COMMAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TeleportType.class, "COMMAND");
-
-    public static final Supplier<TeleportType> ENTITY_TELEPORT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TeleportType.class, "ENTITY_TELEPORT");
-
-    public static final Supplier<TeleportType> PLUGIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TeleportType.class, "PLUGIN");
-
-    public static final Supplier<TeleportType> PORTAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TeleportType.class, "PORTAL");
-
-    public static final Supplier<TeleportType> UNKNOWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TeleportType.class, "UNKNOWN");
-
-    // SORTFIELDS:OFF
+    public static final Supplier<PortalType> END = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PortalType.class, "END");
 
     // Suppress default constructor to ensure non-instantiability.
-    private TeleportTypes() {
+    private PortalTypes() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 

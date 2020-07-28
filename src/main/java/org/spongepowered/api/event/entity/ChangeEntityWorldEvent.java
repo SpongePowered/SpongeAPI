@@ -28,14 +28,12 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.annotation.eventgen.AbsoluteSortPosition;
-import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 import org.spongepowered.api.world.server.ServerWorld;
-import org.spongepowered.math.vector.Vector3d;
 
 /**
- * Called when an {@link Entity} performs movement.
+ * Called when an {@link Entity} is changing {@link ServerWorld worlds}.
  */
-public interface MoveEntityEvent extends Event, Cancellable {
+public interface ChangeEntityWorldEvent extends Event {
 
     /**
      * Gets the {@link Entity}.
@@ -46,40 +44,38 @@ public interface MoveEntityEvent extends Event, Cancellable {
     Entity getEntity();
 
     /**
-     * Gets the {@link Vector3d position} {@link Entity} came from.
+     * Gets the {@link ServerWorld world} the {@link Entity} is coming from.
      *
-     * @return the previous position
+     * @return The world
      */
-    @AbsoluteSortPosition(5)
-    Vector3d getFromPosition();
+    @AbsoluteSortPosition(2)
+    ServerWorld getOriginalWorld();
 
     /**
-     * Gets the new {@link Vector3d position} that the {@link Entity} will move to.
+     * Gets the {@link ServerWorld world} the {@link Entity} originally was going to.
      *
-     * @return the new position
+     * @return The world
      */
-    @AbsoluteSortPosition(6)
-    Vector3d getToPosition();
+    @AbsoluteSortPosition(3)
+    ServerWorld getOriginalDestinationWorld();
 
     /**
-     * Sets the new {@link Vector3d position} that the {@link Entity} will change to.
+     * Gets the {@link ServerWorld world} the {@link Entity} will be going to.
      *
-     * @param position The new position
+     * @return The world
      */
-    void setToPosition(Vector3d position);
+    @AbsoluteSortPosition(4)
+    ServerWorld getDestinationWorld();
 
-    /**
-     * Fired when an {@link Entity}'s position changes.
-     */
-    @GenerateFactoryMethod
-    interface Position extends MoveEntityEvent {
+    interface Pre extends ChangeEntityWorldEvent, Cancellable {
 
+        /**
+         * Sets the {@link ServerWorld world} this {@link Entity} will go to.
+         *
+         * @param world The world
+         */
+        void setDestinationWorld(ServerWorld world);
     }
 
-    /**
-     * Fired when an {@link Entity entity's} position goes across {@link ServerWorld worlds}.
-     */
-    @GenerateFactoryMethod
-    interface Teleport extends MoveEntityEvent, ChangeEntityWorldEvent {
-    }
+    interface Post extends ChangeEntityWorldEvent {}
 }

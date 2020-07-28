@@ -27,7 +27,7 @@ package org.spongepowered.api.event.cause.entity.teleport;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
-@CatalogedBy(TeleportTypes.class)
-public interface TeleportType extends CatalogType {
+@CatalogedBy(MovementTypes.class)
+public interface MovementType extends CatalogType {
 
 }

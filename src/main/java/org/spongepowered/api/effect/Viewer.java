@@ -34,6 +34,8 @@ import org.spongepowered.api.effect.particle.ParticleEffect;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.effect.sound.music.MusicDisc;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.dimension.DimensionType;
+import org.spongepowered.api.world.dimension.DimensionTypes;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
@@ -45,6 +47,17 @@ import java.util.function.Supplier;
  * effects.
  */
 public interface Viewer extends Audience {
+
+    /**
+     * Sends the effect of being in a particular Vanilla world environment, such as the Nether,
+     * as an effect to the viewer.
+     *
+     * <p>For example, specifying {@link DimensionTypes#THE_NETHER}</p> will create a red skybox and
+     * red hazy fog on the vanilla minecraft client</p>
+     *
+     * @param dimensionType The dimension type
+     */
+    void sendEnvironment(DimensionType dimensionType);
 
     /**
      * Spawn a {@link ParticleEffect} at a given position.

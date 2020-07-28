@@ -22,9 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world;
+package org.spongepowered.api.world.teleport;
 
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.teleport.TeleportHelperFilter;
 import org.spongepowered.api.world.teleport.TeleportHelperFilters;
 

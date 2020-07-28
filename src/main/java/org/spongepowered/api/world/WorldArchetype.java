@@ -38,9 +38,7 @@ import org.spongepowered.api.world.dimension.DimensionType;
 import org.spongepowered.api.world.dimension.DimensionTypes;
 import org.spongepowered.api.world.gen.GeneratorType;
 import org.spongepowered.api.world.gen.GeneratorTypes;
-import org.spongepowered.api.world.server.WorldManager;
 import org.spongepowered.api.world.storage.WorldProperties;
-import org.spongepowered.api.world.teleport.PortalAgentType;
 
 import java.util.function.Supplier;
 
@@ -154,13 +152,6 @@ public interface WorldArchetype extends CatalogType {
      * @return True if bonus chest will generate, false if not.
      */
     boolean doesGenerateBonusChest();
-
-    /**
-     * Gets the {@link PortalAgentType} for the world.
-     *
-     * @return The portal agent type
-     */
-    PortalAgentType getPortalAgentType();
 
     /**
      * Gets the difficulty.
@@ -343,24 +334,6 @@ public interface WorldArchetype extends CatalogType {
         Builder hardcore(boolean state);
 
         /**
-         * Sets the desired {@link PortalAgentType} for the world.
-         *
-         * @param type The type
-         * @return This builder, for chaining
-         */
-        default Builder portalAgent(Supplier<? extends PortalAgentType> type) {
-            return this.portalAgent(type.get());
-        }
-
-        /**
-         * Sets the desired {@link PortalAgentType} for the world.
-         *
-         * @param type The type
-         * @return This builder, for chaining
-         */
-        Builder portalAgent(PortalAgentType type);
-
-        /**
          * Sets whether PVP combat is enabled in this world.
          *
          * @param state Whether PVP is enabled
@@ -422,9 +395,7 @@ public interface WorldArchetype extends CatalogType {
         Builder from(WorldProperties properties);
 
         /**
-         * Builds the {@link WorldArchetype} which can be used to create a {@link WorldProperties} in
-         * {@link WorldManager#createProperties(WorldRegistration, WorldArchetype)} or a {@link WorldRegistration} in
-         * {@link WorldManager#submitRegistration(WorldRegistration, WorldArchetype)}.
+         * Builds the {@link WorldArchetype archetype}.
          *
          * @return The archetype
          */
