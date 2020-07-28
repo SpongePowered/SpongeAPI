@@ -22,23 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.dimension;
+package org.spongepowered.api.event.cause.entity.teleport;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.service.context.ContextSource;
-import org.spongepowered.api.util.annotation.CatalogedBy;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.Sponge;
 
-/**
- * Represents a type of {@link World}.
- */
-@CatalogedBy(DimensionTypes.class)
-public interface DimensionType extends CatalogType, ContextSource {
+import java.util.function.Supplier;
 
-    /**
-     * Returns if this {@link DimensionType} has skylight.
-     *
-     * @return Whether it has skylight
-     */
-    boolean hasSkylight();
+public final class MovementTypes {
+
+    // SORTFIELDS:ON
+
+    public static final Supplier<MovementType> COMMAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "COMMAND");
+
+    public static final Supplier<MovementType> ENDER_PEARL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "ENDER_PEARL");
+
+    public static final Supplier<MovementType> NATURAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "NATURAL");
+
+    public static final Supplier<MovementType> PLUGIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "PLUGIN");
+
+    public static final Supplier<MovementType> PORTAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "PORTAL");
+
+    // SORTFIELDS:OFF
+
+    // Suppress default constructor to ensure non-instantiability.
+    private MovementTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
 }

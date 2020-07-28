@@ -39,7 +39,7 @@ import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.event.cause.entity.dismount.DismountType;
 import org.spongepowered.api.event.cause.entity.spawn.SpawnType;
-import org.spongepowered.api.event.cause.entity.teleport.TeleportType;
+import org.spongepowered.api.event.cause.entity.teleport.MovementType;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.projectile.source.ProjectileSource;
@@ -207,6 +207,11 @@ public final class EventContextKeys {
     public static final Supplier<EventContextKey<ChangeBlockEvent.Modify>> MODIFY_EVENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "MODIFY_EVENT");
 
     /**
+     * Represents the {@link MovementType} when an entity moves.
+     */
+    public static final Supplier<EventContextKey<MovementType>> MOVEMENT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "MOVEMENT_TYPE");
+
+    /**
      * Represents the source {@link BlockSnapshot} of a block notification.
      */
     public static final Supplier<EventContextKey<BlockSnapshot>> NEIGHBOR_NOTIFY_SOURCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "NEIGHBOR_NOTIFY_SOURCE");
@@ -277,11 +282,6 @@ public final class EventContextKeys {
      * permission checks should be performed against.
      */
     public static final Supplier<EventContextKey<Subject>> SUBJECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "SUBJECT");
-
-    /**
-     * Represents the {@link TeleportType} when an entity teleports.
-     */
-    public static final Supplier<EventContextKey<TeleportType>> TELEPORT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "TELEPORT_TYPE");
 
     /**
      * Represents a {@link HandType}.

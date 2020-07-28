@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api;
 
+import net.kyori.adventure.key.Key;
 import org.spongepowered.api.advancement.Advancement;
 import org.spongepowered.api.advancement.AdvancementTree;
 import org.spongepowered.api.advancement.AdvancementType;
@@ -50,7 +51,7 @@ import org.spongepowered.api.event.cause.entity.damage.DamageModifierType;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.dismount.DismountType;
 import org.spongepowered.api.event.cause.entity.spawn.SpawnType;
-import org.spongepowered.api.event.cause.entity.teleport.TeleportType;
+import org.spongepowered.api.event.cause.entity.teleport.MovementType;
 import org.spongepowered.api.fluid.FluidType;
 import org.spongepowered.api.item.FireworkShape;
 import org.spongepowered.api.item.ItemType;
@@ -76,7 +77,7 @@ import org.spongepowered.api.util.ban.BanType;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.dimension.DimensionType;
 import org.spongepowered.api.world.gen.GeneratorType;
-import org.spongepowered.api.world.teleport.PortalAgentType;
+import org.spongepowered.api.world.portal.PortalType;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.WorldArchetype;
 import org.spongepowered.api.world.biome.BiomeType;
@@ -89,7 +90,7 @@ import org.spongepowered.api.world.weather.Weather;
  * Enumeration of all known {@link CatalogType}s for autocompletion when using
  * the {@link GameRegistry} to retrieve specific types or all of a certain type.
  *
- * <p>These are generally useful for {@link CatalogRegistry#get(Class, ResourceKey)}
+ * <p>These are generally useful for {@link CatalogRegistry#get(Class, Key)}
  * and {@link CatalogRegistry#getAllOf(Class)}.</p>
  */
 @SuppressWarnings({"rawtypes", "unused"})
@@ -197,6 +198,8 @@ public final class CatalogTypes {
 
     public static final Class<MooshroomType> MOOSHROOM_TYPE = MooshroomType.class;
 
+    public static final Class<MovementType> MOVEMENT_TYPE = MovementType.class;
+
     public static final Class<MusicDisc> MUSIC_DISC = MusicDisc.class;
 
     public static final Class<NotePitch> NOTE_PITCH = NotePitch.class;
@@ -215,7 +218,7 @@ public final class CatalogTypes {
 
     public static final Class<PistonType> PISTON_TYPE = PistonType.class;
 
-    public static final Class<PortalAgentType> PORTAL_AGENT_TYPE = PortalAgentType.class;
+    public static final Class<PortalType> PORTAL_TYPE = PortalType.class;
 
     public static final Class<PortionType> PORTION_TYPE = PortionType.class;
 
@@ -250,8 +253,6 @@ public final class CatalogTypes {
     public static final Class<StatisticCategory> STATISTIC_CATEGORY = StatisticCategory.class;
 
     public static final Class<TeleportHelperFilter> TELEPORT_HELPER_FILTER = TeleportHelperFilter.class;
-
-    public static final Class<TeleportType> TELEPORT_TYPE = TeleportType.class;
 
     public static final Class<ToolType> TOOL_TYPE = ToolType.class;
 

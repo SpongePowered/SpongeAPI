@@ -22,20 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.teleport;
-
-import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
-
-public final class PortalAgentTypes {
-
-    // The default agent used to handle traveling to nether and the end
-    public static final Supplier<PortalAgentType> DEFAULT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PortalAgentType.class, "DEFAULT");
-
-    // Suppress default constructor to ensure non-instantiability.
-    private PortalAgentTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
-    }
-
-}
+@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
+package org.spongepowered.api.world.portal;

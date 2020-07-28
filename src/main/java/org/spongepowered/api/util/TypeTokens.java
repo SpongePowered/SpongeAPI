@@ -103,7 +103,7 @@ import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.event.cause.entity.dismount.DismountType;
 import org.spongepowered.api.event.cause.entity.spawn.SpawnType;
-import org.spongepowered.api.event.cause.entity.teleport.TeleportType;
+import org.spongepowered.api.event.cause.entity.teleport.MovementType;
 import org.spongepowered.api.fluid.FluidStack;
 import org.spongepowered.api.fluid.FluidStackSnapshot;
 import org.spongepowered.api.fluid.FluidState;
@@ -596,7 +596,7 @@ public final class TypeTokens {
 
     public static final TypeToken<Subject> SUBJECT_TOKEN = new TypeToken<Subject>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<TeleportType> TELEPORT_TYPE_TOKEN = new TypeToken<TeleportType>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<MovementType> MOVEMENT_TYPE_TOKEN = new TypeToken<MovementType>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<HandType> HAND_TYPE_TOKEN = new TypeToken<HandType>() {private static final long serialVersionUID = -1;};
 

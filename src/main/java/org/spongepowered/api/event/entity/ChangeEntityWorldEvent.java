@@ -28,12 +28,12 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.annotation.eventgen.AbsoluteSortPosition;
-import org.spongepowered.math.vector.Vector3d;
+import org.spongepowered.api.world.server.ServerWorld;
 
 /**
- * Called when an {@link Entity} performs movement.
+ * Called when an {@link Entity} is changing {@link ServerWorld worlds}.
  */
-public interface MoveEntityEvent extends Event, Cancellable {
+public interface ChangeEntityWorldEvent extends Event {
 
     /**
      * Gets the {@link Entity}.
@@ -44,33 +44,40 @@ public interface MoveEntityEvent extends Event, Cancellable {
     Entity getEntity();
 
     /**
-     * Gets the {@link Vector3d position} the {@link Entity} came from.
+     * Gets the {@link ServerWorld world} the {@link Entity} is coming from.
      *
-     * @return The original position
+     * @return The world
      */
     @AbsoluteSortPosition(2)
-    Vector3d getOriginalPosition();
+    ServerWorld getOriginalWorld();
 
     /**
-     * Gets the {@link Vector3d position} the {@link Entity} would have been going to.
+     * Gets the {@link ServerWorld world} the {@link Entity} originally was going to.
      *
-     * @return The original destination
+     * @return The world
      */
     @AbsoluteSortPosition(3)
-    Vector3d getOriginalDestinationPosition();
+    ServerWorld getOriginalDestinationWorld();
 
     /**
-     * Gets the {@link Vector3d position} the {@link Entity} will go to.
+     * Gets the {@link ServerWorld world} the {@link Entity} will be going to.
      *
-     * @return The new position
+     * @return The world
      */
     @AbsoluteSortPosition(4)
-    Vector3d getDestinationPosition();
+    ServerWorld getDestinationWorld();
 
-    /**
-     * Sets the new {@link Vector3d position} the {@link Entity} will go to.
-     *
-     * @param position The new position
-     */
-    void setDestinationPosition(Vector3d position);
+    interface Pre extends ChangeEntityWorldEvent, Cancellable {
+
+        /**
+         * Sets the {@link ServerWorld world} this {@link Entity} will go to.
+         *
+         * @param world The world
+         */
+        void setDestinationWorld(ServerWorld world);
+    }
+
+    interface Reposition extends ChangeEntityWorldEvent, MoveEntityEvent {}
+
+    interface Post extends ChangeEntityWorldEvent {}
 }

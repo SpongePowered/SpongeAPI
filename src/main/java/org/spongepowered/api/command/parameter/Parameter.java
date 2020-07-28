@@ -51,7 +51,7 @@ import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.ServerLocation;
-import org.spongepowered.api.world.dimension.Dimension;
+import org.spongepowered.api.world.dimension.DimensionType;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.plugin.PluginContainer;
@@ -361,16 +361,6 @@ public interface Parameter {
      */
     static Parameter.Value.Builder<LocalDateTime> dateTimeOrNow() {
         return dateTime().orDefault(cause -> LocalDateTime.now());
-    }
-
-    /**
-     * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#DIMENSION}.
-     *
-     * @return A {@link Parameter.Value.Builder}
-     */
-    static Parameter.Value.Builder<Dimension> dimension() {
-        return Parameter.builder(Dimension.class, CatalogedValueParameters.DIMENSION);
     }
 
     /**

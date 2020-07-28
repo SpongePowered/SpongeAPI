@@ -36,7 +36,7 @@ import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.ServerLocation;
-import org.spongepowered.api.world.dimension.Dimension;
+import org.spongepowered.api.world.dimension.DimensionType;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.math.vector.Vector2d;
 import org.spongepowered.math.vector.Vector3d;
@@ -56,7 +56,7 @@ import java.util.UUID;
 import java.util.function.Supplier;
 
 /**
- * Class containing common {@link CatalogedValueParameters}s.
+ * Class containing common {@link CatalogedValueParameter parameters}.
  */
 public final class CatalogedValueParameters {
 
@@ -148,14 +148,6 @@ public final class CatalogedValueParameters {
      */
     public static final Supplier<CatalogedValueParameter<LocalDateTime>> DATE_TIME =
             Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "DATE_TIME");
-
-    /**
-     * Expect an argument to represent a dimension.
-     *
-     * <p>Returns a {@link Dimension}</p>
-     */
-    public static final Supplier<CatalogedValueParameter<Dimension>> DIMENSION =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "DIMENSION");
 
     /**
      * Require an argument to be an double-precision floating point number.

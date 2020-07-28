@@ -22,18 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.teleport;
+package org.spongepowered.api.world.portal;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.util.annotation.DoNotStore;
+import org.spongepowered.api.world.ServerLocation;
 
-@CatalogedBy(PortalAgentTypes.class)
-public interface PortalAgentType extends CatalogType {
+import java.util.Optional;
+
+/**
+ * Represents a portal, such as a {@link PortalTypes#NETHER nether portal}.
+ */
+@DoNotStore
+public interface Portal {
 
     /**
-     * Returns the {@link PortalAgent} class for this type.
+     * The {@link PortalType}.
      *
-     * @return The portal agent class for this type
+     * @return The type
      */
-    Class<? extends PortalAgent> getPortalAgentClass();
+    PortalType getType();
+
+    /**
+     * The {@link ServerLocation location} this portal is at.
+     *
+     * @return The origin
+     */
+    ServerLocation getOrigin();
+
+    /**
+     * The {@link ServerLocation location} this portal goes to.
+     *
+     * @return The destination or {@link Optional#empty()} if unknown
+     */
+    Optional<ServerLocation> getDestination();
 }
