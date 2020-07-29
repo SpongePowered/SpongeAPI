@@ -26,15 +26,9 @@ package org.spongepowered.api.adventure;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
-import net.kyori.adventure.text.event.HoverEvent;
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandCause;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
-import java.util.UUID;
 import java.util.function.Consumer;
 
 /**
@@ -42,65 +36,6 @@ import java.util.function.Consumer;
  */
 public final class SpongeComponents {
     private SpongeComponents() {
-    }
-
-    /**
-     * Creates a new {@link HoverEvent} that will show information about an
-     * item when it is hovered.
-     *
-     * @param item The item to display
-     * @return The created hover event instance
-     */
-    public static HoverEvent<HoverEvent.ShowItem> showItem(final ItemStackSnapshot item) {
-        return SpongeComponents.factory().showItem(item);
-    }
-
-    /**
-     * Creates a new {@link HoverEvent} that will show information about an
-     * entity when it is hovered.
-     *
-     * @param entity The entity
-     * @return The created hover event instance
-     */
-    public static HoverEvent<HoverEvent.ShowEntity> showEntity(final Entity entity) {
-        return SpongeComponents.showEntity(entity, entity.displayName().get());
-    }
-
-    /**
-     * Creates a new {@link HoverEvent} that will show information about an
-     * entity when it is hovered.
-     *
-     * @param entity The entity
-     * @param name The name of the entity
-     * @return The created hover event instance
-     */
-    public static HoverEvent<HoverEvent.ShowEntity> showEntity(final Entity entity, final @Nullable Component name) {
-        return SpongeComponents.showEntity(entity.getType(), entity.getUniqueId(), name);
-    }
-
-    /**
-     * Creates a new {@link HoverEvent} that will show information about an
-     * entity when it is hovered.
-     *
-     * @param type The type of the entity
-     * @param uuid The UUID of the entity
-     * @return The created hover event instance
-     */
-    public static HoverEvent<HoverEvent.ShowEntity> showEntity(final EntityType<?> type, final UUID uuid) {
-        return SpongeComponents.showEntity(type, uuid, null);
-    }
-
-    /**
-     * Creates a new {@link HoverEvent} that will show information about an
-     * entity when it is hovered.
-     *
-     * @param type The type of the entity
-     * @param uuid The UUID of the entity
-     * @param name The name of the entity
-     * @return The created hover event instance
-     */
-    public static HoverEvent<HoverEvent.ShowEntity> showEntity(final EntityType<?> type, final UUID uuid, final @Nullable Component name) {
-        return HoverEvent.showEntity(new HoverEvent.ShowEntity(type.getKey(), uuid, name));
     }
 
     /**
@@ -112,16 +47,10 @@ public final class SpongeComponents {
      * @return The created click event instance
      */
     public static ClickEvent executeCallback(final Consumer<CommandCause> callback) {
-        return SpongeComponents.factory().callbackClickEvent(callback);
-    }
-
-    private static Factory factory() {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class);
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).callbackClickEvent(callback);
     }
 
     public interface Factory {
-        HoverEvent<HoverEvent.ShowItem> showItem(final ItemStackSnapshot item);
-
         ClickEvent callbackClickEvent(final Consumer<CommandCause> callback);
     }
 }
