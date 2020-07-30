@@ -33,10 +33,6 @@ import java.util.function.Supplier;
  */
 public final class SelectorTypes {
 
-    private SelectorTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class");
-    }
-
     // SORTFIELDS:ON
 
     /**
@@ -44,40 +40,40 @@ public final class SelectorTypes {
      *
      * <p>Equivalent to {@code @e}.</p>
      */
-    public static final Supplier<SelectorType> ALL_ENTITIES =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorType.class, "ALL_ENTITIES");
+    public static final Supplier<SelectorType> ALL_ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorType.class, "ALL_ENTITIES");
 
     /**
      * Selects all players.
      *
      * <p>Equivalent to {@code @a}.</p>
      */
-    public static final Supplier<SelectorType> ALL_PLAYERS =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorType.class, "ALL_PLAYERS");
+    public static final Supplier<SelectorType> ALL_PLAYERS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorType.class, "ALL_PLAYERS");
 
     /**
      * Selects the nearest player.
      *
      * <p>Equivalent to {@code @p}.</p>
      */
-    public static final Supplier<SelectorType> NEAREST_PLAYER =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorType.class, "NEAREST_PLAYER");
+    public static final Supplier<SelectorType> NEAREST_PLAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorType.class, "NEAREST_PLAYER");
 
     /**
      * Selects the nearest player.
      *
      * <p>Equivalent to {@code @r}.</p>
      */
-    public static final Supplier<SelectorType> RANDOM_PLAYER =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorType.class, "RANDOM_PLAYER");
+    public static final Supplier<SelectorType> RANDOM_PLAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorType.class, "RANDOM_PLAYER");
 
     /**
      * Selects the context of the selector, if the context is an entity.
      *
      * <p>Equivalent to {@code @s}.</p>
      */
-    public static final Supplier<SelectorType> SOURCE =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorType.class, "SOURCE");
+    public static final Supplier<SelectorType> SOURCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorType.class, "SOURCE");
 
     // SORTFIELDS:OFF
+
+    private SelectorTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class");
+    }
+
 }

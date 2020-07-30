@@ -34,12 +34,12 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 public interface SelectorType extends CatalogType {
 
     /**
-     * Gets the selector string used to select this selector type. The string
-     * will start with @.
+     * Gets the token that represents this selector type when used in commands.
+     * The string will start with @.
      *
-     * @return The selector key.
+     * @return The selector token.
      */
-    String selectorKey();
+    String selectorToken();
 
     /**
      * Creates a {@link Selector} based on the defaults for this
