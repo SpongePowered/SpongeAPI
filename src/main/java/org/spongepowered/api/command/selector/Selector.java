@@ -40,6 +40,7 @@ import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.math.vector.Vector3d;
 
 import java.util.Collection;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 /**
@@ -442,6 +443,16 @@ public interface Selector {
          * @return This builder, for chaining
          */
         Builder setYaw(Range<Double> range);
+
+        /**
+         * Applies a custom filter to the selector that must also be met by any
+         * {@link Entity entities} that may otherwise be selected by this
+         * selector.
+         *
+         * @param filter A {@link Predicate} used for filtering
+         * @return This builder, for chaining
+         */
+        Builder filter(Predicate<Entity> filter);
 
         /**
          * Creates a {@link Selector} based on this builder.
