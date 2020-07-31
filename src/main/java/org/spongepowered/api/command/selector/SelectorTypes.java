@@ -22,54 +22,58 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.selector;
+package org.spongepowered.api.command.selector;
 
 import org.spongepowered.api.Sponge;
 
 import java.util.function.Supplier;
 
 /**
- * SelectorTypes is a list of the default selector types that are available in
- * Vanilla Minecraft.
+ * All {@link SelectorType}s available in Minecraft.
  */
 public final class SelectorTypes {
 
     // SORTFIELDS:ON
 
     /**
-     * The all entities selector type.
+     * Selects all entities.
+     *
+     * <p>Equivalent to {@code @e}.</p>
      */
     public static final Supplier<SelectorType> ALL_ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorType.class, "ALL_ENTITIES");
 
     /**
-     * The all players selector type.
+     * Selects all players.
+     *
+     * <p>Equivalent to {@code @a}.</p>
      */
     public static final Supplier<SelectorType> ALL_PLAYERS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorType.class, "ALL_PLAYERS");
 
     /**
-     * The nearest player selector type.
+     * Selects the nearest player.
+     *
+     * <p>Equivalent to {@code @p}.</p>
      */
     public static final Supplier<SelectorType> NEAREST_PLAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorType.class, "NEAREST_PLAYER");
 
     /**
-     * The random selector type. This targets only players by default, but may
-     * be used with entities if {@link ArgumentTypes#ENTITY_TYPE} is present in
-     * a selector.
+     * Selects the nearest player.
+     *
+     * <p>Equivalent to {@code @r}.</p>
      */
-    public static final Supplier<SelectorType> RANDOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorType.class, "RANDOM");
+    public static final Supplier<SelectorType> RANDOM_PLAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorType.class, "RANDOM_PLAYER");
 
-    
     /**
-     * The self selector type. This only targets players, if the command sender
-     * is a command block or the console, this selector will return nothing.
+     * Selects the context of the selector, if the context is an entity.
+     *
+     * <p>Equivalent to {@code @s}.</p>
      */
     public static final Supplier<SelectorType> SOURCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorType.class, "SOURCE");
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
     private SelectorTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+        throw new AssertionError("You should not be attempting to instantiate this class");
     }
 
 }

@@ -22,53 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.selector;
+package org.spongepowered.api.command.selector;
 
-import java.util.Set;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents the type of an {@link Argument}. This represents a single argument
- * key in a {@link Selector}.
- *
- * @param <T> The type for the value of this argument type
- * @see Selector
- * @see Argument
- * @see ArgumentTypes
+ * Represents a type of selector that Minecraft supplies.
  */
-public interface ArgumentType<T> extends ArgumentHolder<ArgumentType<T>> {
+@CatalogedBy(SelectorTypes.class)
+public interface SelectorType extends CatalogType {
 
     /**
-     * Returns the key associated with this {@link ArgumentType}.
+     * Gets the token that represents this selector type when used in commands.
+     * The string will start with @.
      *
-     * @return The key of this argument type
+     * @return The selector token.
      */
-    String getKey();
+    String selectorToken();
 
     /**
-     * Returns 1.
+     * Creates a {@link Selector} based on the defaults for this
+     * {@link SelectorType}.
      *
-     * @return 1
+     * @return The {@link Selector}
      */
-    @Override
-    int getCount();
+    Selector toSelector();
 
     /**
-     * Returns a set containing this {@link ArgumentType}.
+     * Creates a {@link Selector.Builder} based on the defaults for this
+     * {@link SelectorType}.
      *
-     * @return A set containing this {@link ArgumentType}
+     * @return The {@link Selector.Builder}
      */
-    @Override
-    Set<ArgumentType<T>> getTypes();
-
-    /**
-     * Represents an {@link ArgumentType} that can be inverted.
-     *
-     * @param <T> The type for the value of this argument type
-     * @see ArgumentType
-     * @see Argument.Invertible
-     */
-    interface Invertible<T> extends ArgumentType<T> {
-
-    }
+    Selector.Builder toBuilder();
 
 }
