@@ -148,7 +148,7 @@ public interface EconomyService extends ContextualService<Account> {
      * @return The result of the deletion.
      */
     default AccountDeletionResultType deleteAccount(UUID uuid) {
-        return AccountDeletionResultTypes.UNSUPPORTED;
+        return AccountDeletionResultTypes.UNSUPPORTED.get();
     }
 
     /**
@@ -163,6 +163,6 @@ public interface EconomyService extends ContextualService<Account> {
      * @return The result of the deletion.
      */
     default AccountDeletionResultType deleteAccount(String identifier) {
-        return AccountDeletionResultTypes.UNSUPPORTED;
+        return AccountDeletionResultTypes.UNSUPPORTED.get();
     }
 }

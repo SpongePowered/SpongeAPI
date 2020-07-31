@@ -30,7 +30,6 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.util.Color;
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 import java.util.function.Supplier;
 
