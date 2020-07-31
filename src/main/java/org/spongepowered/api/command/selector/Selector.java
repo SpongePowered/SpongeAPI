@@ -287,45 +287,45 @@ public interface Selector {
          * Adds a {@link GameMode} constraint to the selector, requiring players
          * be in the given game mode.
          *
-         * <p>Cannot be used with {@link #notGamemode(GameMode)}.</p>
+         * <p>Cannot be used with {@link #notGameMode(GameMode)}.</p>
          *
          * @param mode The gamemode
          * @return This builder, for chaining
          */
-        Builder gamemode(Supplier<GameMode> mode);
+        Builder gameMode(Supplier<GameMode> mode);
 
         /**
          * Adds a {@link GameMode} constraint to the selector, requiring players
          * be in the given game mode
          *
-         * <p>Cannot be used with {@link #notGamemode(GameMode)}.</p>
+         * <p>Cannot be used with {@link #notGameMode(GameMode)}.</p>
          *
          * @param mode The gamemode
          * @return This builder, for chaining
          */
-        Builder gamemode(GameMode mode);
+        Builder gameMode(GameMode mode);
 
         /**
          * Adds a {@link GameMode} constraint to the selector, requiring that
          * players are not in the given game mode
          *
-         * <p>Cannot be used with {@link #gamemode(GameMode)}.</p>
+         * <p>Cannot be used with {@link #gameMode(GameMode)}.</p>
          *
          * @param mode The gamemode
          * @return This builder, for chaining
          */
-        Builder notGamemode(Supplier<GameMode> mode);
+        Builder notGameMode(Supplier<GameMode> mode);
 
         /**
          * Adds a {@link GameMode} constraint to the selector, requiring that
          * players are not in the given game mode
          *
-         * <p>Cannot be used with {@link #gamemode(GameMode)}.</p>
+         * <p>Cannot be used with {@link #gameMode(GameMode)}.</p>
          *
          * @param mode The gamemode
          * @return This builder, for chaining
          */
-        Builder notGamemode(GameMode mode);
+        Builder notGameMode(GameMode mode);
 
         /**
          * Adds a {@link Team} constraint to the selector, requiring that
