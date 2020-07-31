@@ -41,9 +41,9 @@ public final class EquipmentTypes {
 
     public static final Supplier<EquipmentType> LEGS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "LEGS");
 
-    public static final Supplier<EquipmentType> MAINHAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "MAINHAND");
+    public static final Supplier<EquipmentType> MAIN_HAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "MAIN_HAND");
 
-    public static final Supplier<EquipmentType> OFFHAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "OFFHAND");
+    public static final Supplier<EquipmentType> OFF_HAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "OFF_HAND");
 
     // Suppress default constructor to ensure non-instantiability.
     private EquipmentTypes() {
