@@ -31,14 +31,14 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents the client-side behaviour of a command parameter.
  */
 @CatalogedBy(ClientCompletionKeys.class)
-public interface ClientCompletionKey<T extends CommandTreeBuilder<T>> extends CatalogType {
+public interface ClientCompletionKey<T extends CommandTreeNode<T>> extends CatalogType {
 
     /**
-     * Creates a {@link CommandTreeBuilder} that represents this
+     * Creates a {@link CommandTreeNode} that represents this
      * {@link ClientCompletionKey}
      *
-     * @return The new {@link CommandTreeBuilder}
+     * @return The new {@link CommandTreeNode}
      */
-    T createCommandTreeBuilder();
+    T createNode();
 
 }

@@ -34,7 +34,8 @@ import org.spongepowered.api.command.exception.CommandException;
 import org.spongepowered.api.command.parameter.CommandContext;
 import org.spongepowered.api.command.parameter.Parameter;
 import org.spongepowered.api.command.parameter.managed.Flag;
-import org.spongepowered.api.command.registrar.tree.CommandTreeBuilder;
+import org.spongepowered.api.command.registrar.tree.ClientCompletionKeys;
+import org.spongepowered.api.command.registrar.tree.CommandTreeNode;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.EventContext;
 import org.spongepowered.api.event.lifecycle.RegisterCommandEvent;
@@ -185,18 +186,24 @@ public interface Command {
     Component getUsage(CommandCause cause);
 
     /**
-     * A raw command that also contains a {@link CommandTreeBuilder} to provide
+     * A raw command that also contains a {@link CommandTreeNode} to provide
      * hints to the client for command completion.
      */
     interface Raw extends Command {
 
         /**
-         * Gets the {@link CommandTreeBuilder} that represents the argument
+         * Gets the {@link CommandTreeNode} that represents the argument
          * pattern for this command.
+         *
+         * <p>Defaults to a command with an optional string argument string that
+         * is greedy.</p>
          *
          * @return The tree.
          */
-        CommandTreeBuilder<CommandTreeBuilder.Basic> commandTree();
+        default CommandTreeNode.Root commandTree() {
+            return CommandTreeNode.root().executable().child("arguments",
+                    ClientCompletionKeys.STRING.get().createNode().greedy().executable().customSuggestions());
+        }
 
     }
 

@@ -25,12 +25,11 @@
 package org.spongepowered.api.command.manager;
 
 import net.kyori.adventure.audience.Audience;
-import org.spongepowered.api.command.Command;
 import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.exception.CommandException;
 import org.spongepowered.api.command.registrar.CommandRegistrar;
-import org.spongepowered.api.command.registrar.tree.CommandTreeBuilder;
+import org.spongepowered.api.command.registrar.tree.CommandTreeNode;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.plugin.PluginContainer;
 
@@ -144,7 +143,7 @@ public interface CommandManager {
      * @param registrar The {@link CommandRegistrar} that is requesting the
      *                  aliases
      * @param container The {@link PluginContainer} to register the command for
-     * @param commandTree The {@link CommandTreeBuilder} that represents this command
+     * @param commandTree The {@link CommandTreeNode} that represents this command
      *                    structure.
      * @param requirement What a {@link CommandCause} needs to fulfil in order for this
      *                    command to be executed.
@@ -158,7 +157,7 @@ public interface CommandManager {
     CommandMapping registerAlias(
             CommandRegistrar<?> registrar,
             PluginContainer container,
-            CommandTreeBuilder.Basic commandTree,
+            CommandTreeNode.Root commandTree,
             Predicate<CommandCause> requirement,
             String primaryAlias,
             String... secondaryAliases)

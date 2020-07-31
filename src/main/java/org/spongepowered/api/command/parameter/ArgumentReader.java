@@ -100,6 +100,14 @@ public interface ArgumentReader {
     boolean canRead();
 
     /**
+     * Gets the character after the cursor if {@link #canRead()} is true.
+     *
+     * @return The next character
+     * @throws IllegalStateException if {@link #canRead()} is false
+     */
+    char peekCharacter();
+
+    /**
      * Creates an {@link ArgumentParseException} with the provided message,
      * based on the current state of this object.
      *
