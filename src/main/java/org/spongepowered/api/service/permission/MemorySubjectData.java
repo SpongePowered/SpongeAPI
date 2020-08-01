@@ -27,13 +27,14 @@ package org.spongepowered.api.service.permission;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Maps;
+import java.util.concurrent.ConcurrentHashMap;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.event.permission.SubjectDataUpdateEvent;
 import org.spongepowered.api.service.context.Context;
 import org.spongepowered.api.util.Tristate;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,9 +55,9 @@ import java.util.concurrent.ConcurrentMap;
 public class MemorySubjectData implements SubjectData {
 
     protected final Subject subject;
-    protected final ConcurrentMap<Set<Context>, Map<String, String>> options = Maps.newConcurrentMap();
-    protected final ConcurrentMap<Set<Context>, NodeTree> permissions = Maps.newConcurrentMap();
-    protected final ConcurrentMap<Set<Context>, List<SubjectReference>> parents = Maps.newConcurrentMap();
+    protected final ConcurrentMap<Set<Context>, Map<String, String>> options = new ConcurrentHashMap<>();
+    protected final ConcurrentMap<Set<Context>, NodeTree> permissions = new ConcurrentHashMap<>();
+    protected final ConcurrentMap<Set<Context>, List<SubjectReference>> parents = new ConcurrentHashMap<>();
 
     /**
      * Creates a new subject data instance, using the provided service to
@@ -64,7 +65,7 @@ public class MemorySubjectData implements SubjectData {
      *
      * @param subject The subject this data belongs to
      */
-    public MemorySubjectData(Subject subject) {
+    public MemorySubjectData(final Subject subject) {
         this.subject = Objects.requireNonNull(subject, "subject");
     }
 
@@ -89,7 +90,11 @@ public class MemorySubjectData implements SubjectData {
     @Override
     public Map<Set<Context>, Map<String, Boolean>> allPermissions() {
         final ImmutableMap.Builder<Set<Context>, Map<String, Boolean>> ret = ImmutableMap.builder();
+<<<<<<< HEAD
         for (Map.Entry<Set<Context>, NodeTree> ent : this.permissions.entrySet()) {
+=======
+        for (final Map.Entry<Set<Context>, NodeTree> ent : this.permissions.entrySet()) {
+>>>>>>> 823e6c7c6 (A variety of codestyle tweaks)
             ret.put(ent.getKey(), ent.getValue().asMap());
         }
         return ret.build();
@@ -103,6 +108,7 @@ public class MemorySubjectData implements SubjectData {
      * @param contexts The contexts to get a node tree for
      * @return The node tree
      */
+<<<<<<< HEAD
     public NodeTree nodeTree(Set<Context> contexts) {
         final NodeTree perms = this.permissions.get(Objects.requireNonNull(contexts, "contexts"));
         return perms == null ? NodeTree.of(ImmutableMap.of()) : perms;
@@ -110,12 +116,21 @@ public class MemorySubjectData implements SubjectData {
 
     @Override
     public Map<String, Boolean> permissions(Set<Context> contexts) {
+=======
+    public NodeTree nodeTree(final Set<Context> contexts) {
+        final NodeTree perms = this.permissions.get(Objects.requireNonNull(contexts, "contexts"));
+        return perms == null ? NodeTree.of(Collections.emptyMap()) : perms;
+    }
+
+    @Override
+    public Map<String, Boolean> permissions(final Set<Context> contexts) {
+>>>>>>> 823e6c7c6 (A variety of codestyle tweaks)
         final NodeTree perms = this.permissions.get(Objects.requireNonNull(contexts, "contexts"));
         return perms == null ? ImmutableMap.of() : perms.asMap();
     }
 
     @Override
-    public CompletableFuture<Boolean> setPermission(Set<Context> contexts, String permission, Tristate value) {
+    public CompletableFuture<Boolean> setPermission(Set<Context> contexts, final String permission, final Tristate value) {
         Objects.requireNonNull(contexts, "contexts");
         Objects.requireNonNull(permission, "permission");
         Objects.requireNonNull(value, "value");
@@ -127,7 +142,7 @@ public class MemorySubjectData implements SubjectData {
             }
 
             if (oldTree == null && value != Tristate.UNDEFINED) {
-                if (this.permissions.putIfAbsent(contexts, NodeTree.of(ImmutableMap.of(permission, value.asBoolean()))) == null) {
+                if (this.permissions.putIfAbsent(contexts, NodeTree.of(Collections.singletonMap(permission, value.asBoolean()))) == null) {
                     break;
                 }
             } else {
@@ -141,30 +156,30 @@ public class MemorySubjectData implements SubjectData {
     }
 
     @Override
-    public CompletableFuture<Boolean> setPermissions(Set<Context> contexts, @Nullable Map<String, Boolean> permissions, TransferMethod method) {
+    public CompletableFuture<Boolean> setPermissions(Set<Context> contexts, final @Nullable Map<String, Boolean> permissions, final TransferMethod method) {
         contexts = ImmutableSet.copyOf(Objects.requireNonNull(contexts, "contexts"));
         Objects.requireNonNull(method, "method");
 
         outer: while (true) {
-            NodeTree oldTree = this.permissions.get(contexts);
+            final NodeTree oldTree = this.permissions.get(contexts);
             switch (method) {
                 case MERGE:
                     if (permissions == null) {
                         break outer;
                     }
 
-                    NodeTree newTree;
+                    final NodeTree newTree;
                     if (oldTree != null) {
                         newTree = oldTree.withAll(permissions);
                     } else {
                         newTree = NodeTree.of(permissions);
                     }
-                    if (updateCollection(this.permissions, contexts, oldTree, newTree)) {
+                    if (this.updateCollection(this.permissions, contexts, oldTree, newTree)) {
                         break outer;
                     }
                     break;
                 case OVERWRITE:
-                    if (updateCollection(this.permissions, contexts, oldTree, NodeTree.of(permissions == null ? ImmutableMap.of() : permissions))) {
+                    if (this.updateCollection(this.permissions, contexts, oldTree, NodeTree.of(permissions == null ? ImmutableMap.of() : permissions))) {
                         break outer;
                     }
 
@@ -173,33 +188,33 @@ public class MemorySubjectData implements SubjectData {
                     throw new IllegalStateException("Unhandled enum state " + method);
             }
         }
-        onUpdate();
+        this.onUpdate();
         return CompletableFuture.completedFuture(true);
     }
 
     @Override
-    public Tristate getFallbackPermissionValue(Set<Context> contexts) {
-        NodeTree tree = this.permissions.get(checkNotNull(contexts, "contexts"));
+    public Tristate getFallbackPermissionValue(final Set<Context> contexts) {
+        final NodeTree tree = this.permissions.get(Objects.requireNonNull(contexts, "contexts"));
         return tree == null ? Tristate.UNDEFINED : tree.getRootValue();
     }
 
     @Override
     public Map<Set<Context>, Tristate> getAllFallbackPermissionValues() {
-        ImmutableMap.Builder<Set<Context>, Tristate> builder = ImmutableMap.builder();
+        final ImmutableMap.Builder<Set<Context>, Tristate> builder = ImmutableMap.builder();
 
-        for (Map.Entry<Set<Context>, NodeTree> entry : this.permissions.entrySet()) {
+        for (final Map.Entry<Set<Context>, NodeTree> entry : this.permissions.entrySet()) {
             builder.put(entry.getKey(), entry.getValue().getRootValue());
         }
         return builder.build();
     }
 
     @Override
-    public CompletableFuture<Boolean> setFallbackPermissionValue(Set<Context> contexts, Tristate fallback) {
-        contexts = ImmutableSet.copyOf(checkNotNull(contexts, "contexts"));
-        checkNotNull(fallback, "fallback");
+    public CompletableFuture<Boolean> setFallbackPermissionValue(Set<Context> contexts, final Tristate fallback) {
+        contexts = ImmutableSet.copyOf(Objects.requireNonNull(contexts, "contexts"));
+        Objects.requireNonNull(fallback, "fallback");
 
         while (true) {
-            NodeTree oldTree = this.permissions.get(contexts);
+            final NodeTree oldTree = this.permissions.get(contexts);
             if (oldTree != null && oldTree.getRootValue() == fallback) {
                 return CompletableFuture.completedFuture(false);
             }
@@ -214,27 +229,27 @@ public class MemorySubjectData implements SubjectData {
                 }
             }
         }
-        onUpdate();
+        this.onUpdate();
         return CompletableFuture.completedFuture(true);
     }
 
     @Override
     public CompletableFuture<Boolean> clearFallbackPermissionValues() {
         boolean anyUpdated = false;
-        for (Set<Context> key : this.permissions.keySet()) {
+        for (final Set<Context> key : this.permissions.keySet()) {
             while (true) {
-                NodeTree oldTree = this.permissions.get(key);
+                final NodeTree oldTree = this.permissions.get(key);
                 if (oldTree == null || oldTree.getRootValue() == Tristate.UNDEFINED) {
                     continue;
                 }
 
-                if (updateCollection(this.permissions, key, oldTree, oldTree.withRootValue(Tristate.UNDEFINED))) {
+                if (this.updateCollection(this.permissions, key, oldTree, oldTree.withRootValue(Tristate.UNDEFINED))) {
                     anyUpdated = true;
                     break;
                 }
             }
         }
-        onUpdate();
+        this.onUpdate();
         return CompletableFuture.completedFuture(anyUpdated);
     }
 
@@ -249,12 +264,18 @@ public class MemorySubjectData implements SubjectData {
     }
 
     @Override
+<<<<<<< HEAD
     public CompletableFuture<Boolean> clearPermissions(Set<Context> context) {
         final boolean ret = this.permissions.remove(Objects.requireNonNull(context, "context")) != null;
         if (ret) {
+=======
+    public CompletableFuture<Boolean> clearPermissions(final Set<Context> context) {
+        final boolean changed = this.permissions.remove(Objects.requireNonNull(context, "context")) != null;
+        if (changed) {
+>>>>>>> 823e6c7c6 (A variety of codestyle tweaks)
             this.onUpdate();
         }
-        return CompletableFuture.completedFuture(ret);
+        return CompletableFuture.completedFuture(changed);
     }
 
     @Override
@@ -263,21 +284,21 @@ public class MemorySubjectData implements SubjectData {
     }
 
     @Override
-    public List<SubjectReference> parents(Set<Context> contexts) {
+    public List<SubjectReference> parents(final Set<Context> contexts) {
         return this.parents.getOrDefault(Objects.requireNonNull(contexts, "contexts"), ImmutableList.of());
     }
 
     @Override
-    public CompletableFuture<Boolean> setParents(Set<Context> contexts, List<? extends SubjectReference> parents, TransferMethod method) {
+    public CompletableFuture<Boolean> setParents(Set<Context> contexts, final List<? extends SubjectReference> parents, final TransferMethod method) {
         contexts = ImmutableSet.copyOf(Objects.requireNonNull(contexts, "contexts"));
         Objects.requireNonNull(method, "method");
 
         outer: while (true) {
-            List<SubjectReference> oldParents = this.parents.get(contexts);
+            final List<SubjectReference> oldParents = this.parents.get(contexts);
             switch (method) {
                 case MERGE:
                     if (oldParents != null) {
-                        List<SubjectReference> newParents = new ArrayList<>(oldParents);
+                        final List<SubjectReference> newParents = new ArrayList<>(oldParents);
                         newParents.removeAll(parents);
                         newParents.addAll(parents);
                         if (this.parents.replace(contexts, oldParents, newParents)) {
@@ -298,12 +319,12 @@ public class MemorySubjectData implements SubjectData {
                     throw new IllegalStateException("Unhandled enum state " + method);
             }
         }
-        onUpdate();
+        this.onUpdate();
         return CompletableFuture.completedFuture(true);
     }
 
     @Override
-    public CompletableFuture<Boolean> addParent(Set<Context> contexts, SubjectReference parent) {
+    public CompletableFuture<Boolean> addParent(Set<Context> contexts, final SubjectReference parent) {
         Objects.requireNonNull(contexts, "contexts");
         Objects.requireNonNull(parent, "parent");
         contexts = ImmutableSet.copyOf(contexts);
@@ -325,7 +346,7 @@ public class MemorySubjectData implements SubjectData {
         }
     }
 
-    private <K, V> boolean updateCollection(ConcurrentMap<K, V> collection, K key, @Nullable V oldValue, @Nullable V newValue) {
+    private <K, V> boolean updateCollection(final ConcurrentMap<K, V> collection, final K key, final @Nullable V oldValue, final @Nullable V newValue) {
         if (newValue == null) {
             return oldValue == null ? !collection.containsKey(key) : collection.remove(key, oldValue);
         } else if (oldValue == null) {
@@ -336,7 +357,7 @@ public class MemorySubjectData implements SubjectData {
     }
 
     @Override
-    public CompletableFuture<Boolean> removeParent(Set<Context> contexts, SubjectReference parent) {
+    public CompletableFuture<Boolean> removeParent(Set<Context> contexts, final SubjectReference parent) {
         Objects.requireNonNull(contexts, "contexts");
         Objects.requireNonNull(parent, "parent");
         contexts = ImmutableSet.copyOf(contexts);
@@ -367,12 +388,18 @@ public class MemorySubjectData implements SubjectData {
     }
 
     @Override
+<<<<<<< HEAD
     public CompletableFuture<Boolean> clearParents(Set<Context> contexts) {
         final boolean ret = this.parents.remove(Objects.requireNonNull(contexts, "contexts")) != null;
         if (ret) {
+=======
+    public CompletableFuture<Boolean> clearParents(final Set<Context> contexts) {
+        final boolean changed = this.parents.remove(Objects.requireNonNull(contexts, "contexts")) != null;
+        if (changed) {
+>>>>>>> 823e6c7c6 (A variety of codestyle tweaks)
             this.onUpdate();
         }
-        return CompletableFuture.completedFuture(ret);
+        return CompletableFuture.completedFuture(changed);
     }
 
     @Override
@@ -381,13 +408,13 @@ public class MemorySubjectData implements SubjectData {
     }
 
     @Override
-    public Map<String, String> options(Set<Context> contexts) {
-        return this.options.getOrDefault(Objects.requireNonNull(contexts, "contexts"), ImmutableMap.of());
+    public Map<String, String> options(final Set<Context> contexts) {
+        return this.options.getOrDefault(Objects.requireNonNull(contexts, "contexts"), Collections.emptyMap());
     }
 
     @Override
-    public CompletableFuture<Boolean> setOption(Set<Context> contexts, String key, @Nullable String value) {
-        Objects.requireNonNull(contexts, "contexts");
+    public CompletableFuture<Boolean> setOption(Set<Context> contexts, final String key, final @Nullable String value) {
+        contexts = ImmutableSet.copyOf(Objects.requireNonNull(contexts, "contexts"));
         Objects.requireNonNull(key, "key");
         @Nullable Map<String, String> origMap = this.options.get(contexts);
         Map<String, String> newMap;
@@ -397,7 +424,7 @@ public class MemorySubjectData implements SubjectData {
                 return CompletableFuture.completedFuture(false);
             }
 
-            if ((origMap = this.options.putIfAbsent(ImmutableSet.copyOf(contexts), ImmutableMap.of(key.toLowerCase(), value))) == null) {
+            if ((origMap = this.options.putIfAbsent(contexts, Collections.singletonMap(key.toLowerCase(), value))) == null) {
                 this.onUpdate();
                 return CompletableFuture.completedFuture(true);
             }
@@ -420,26 +447,26 @@ public class MemorySubjectData implements SubjectData {
     }
 
     @Override
-    public CompletableFuture<Boolean> setOptions(Set<Context> contexts, @Nullable Map<String, String> options, TransferMethod method) {
+    public CompletableFuture<Boolean> setOptions(Set<Context> contexts, final @Nullable Map<String, String> options, final TransferMethod method) {
         contexts = ImmutableSet.copyOf(Objects.requireNonNull(contexts, "contexts"));
         Objects.requireNonNull(method, "method");
 
         outer: while (true) {
-            Map<String, String> oldOptions = this.options.get(contexts);
+            final Map<String, String> oldOptions = this.options.get(contexts);
             switch (method) {
                 case MERGE:
                     if (options == null) {
                         break outer;
                     }
 
-                    Map<String, String> newOptions = oldOptions == null ? new HashMap<>() : new HashMap<>(oldOptions);
+                    final Map<String, String> newOptions = oldOptions == null ? new HashMap<>() : new HashMap<>(oldOptions);
                     newOptions.putAll(options);
-                    if (updateCollection(this.options, contexts, oldOptions, newOptions)) {
+                    if (this.updateCollection(this.options, contexts, oldOptions, newOptions)) {
                         break outer;
                     }
                     break;
                 case OVERWRITE:
-                    if (updateCollection(this.options, contexts, oldOptions, options == null ? null : ImmutableMap.copyOf(options))) {
+                    if (this.updateCollection(this.options, contexts, oldOptions, options == null ? null : ImmutableMap.copyOf(options))) {
                         break outer;
                     }
 
@@ -448,7 +475,7 @@ public class MemorySubjectData implements SubjectData {
                     throw new IllegalStateException("Unhandled enum state " + method);
             }
         }
-        onUpdate();
+        this.onUpdate();
         return CompletableFuture.completedFuture(true);
     }
 
@@ -463,7 +490,11 @@ public class MemorySubjectData implements SubjectData {
     }
 
     @Override
+<<<<<<< HEAD
     public CompletableFuture<Boolean> clearOptions(Set<Context> contexts) {
+=======
+    public CompletableFuture<Boolean> clearOptions(final Set<Context> contexts) {
+>>>>>>> 823e6c7c6 (A variety of codestyle tweaks)
         final boolean ret = this.options.remove(Objects.requireNonNull(contexts, "contexts")) != null;
         if (ret) {
             this.onUpdate();
@@ -472,12 +503,12 @@ public class MemorySubjectData implements SubjectData {
     }
 
     @Override
-    public CompletableFuture<Boolean> copyFrom(SubjectData other, TransferMethod method) {
+    public CompletableFuture<Boolean> copyFrom(final SubjectData other, final TransferMethod method) {
         Objects.requireNonNull(other, "other");
         Objects.requireNonNull(method, "method");
-        Map<Set<Context>, Map<String, Boolean>> otherPerms = other.getAllPermissions();
-        Map<Set<Context>, Map<String, String>> otherOptions = other.getAllOptions();
-        Map<Set<Context>, List<? extends SubjectReference>> otherParents = other.getAllParents();
+        final Map<Set<Context>, Map<String, Boolean>> otherPerms = other.getAllPermissions();
+        final Map<Set<Context>, Map<String, String>> otherOptions = other.getAllOptions();
+        final Map<Set<Context>, List<? extends SubjectReference>> otherParents = other.getAllParents();
 
         if (method == TransferMethod.OVERWRITE) {
             this.permissions.clear();
@@ -485,16 +516,16 @@ public class MemorySubjectData implements SubjectData {
             this.options.clear();
         }
 
-        otherPerms.forEach((ctx, permissions) -> setPermissions(ctx, permissions, method));
-        otherOptions.forEach((ctx, options) -> setOptions(ctx, options, method));
-        otherParents.forEach((ctx, parents) -> setParents(ctx, parents, method));
+        otherPerms.forEach((ctx, permissions) -> this.setPermissions(ctx, permissions, method));
+        otherOptions.forEach((ctx, options) -> this.setOptions(ctx, options, method));
+        otherParents.forEach((ctx, parents) -> this.setParents(ctx, parents, method));
 
         return CompletableFuture.completedFuture(true);
     }
 
     @Override
-    public CompletableFuture<Boolean> moveFrom(SubjectData other, TransferMethod method) {
-        return copyFrom(other, method).thenCompose(res ->
+    public CompletableFuture<Boolean> moveFrom(final SubjectData other, final TransferMethod method) {
+        return this.copyFrom(other, method).thenCompose(res ->
                 CompletableFuture.allOf(other.clearOptions(), other.clearParents(), other.clearPermissions()).thenApply(x -> res));
     }
 }

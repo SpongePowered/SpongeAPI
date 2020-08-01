@@ -195,7 +195,7 @@ public interface SubjectCollection {
      * @param action The action to perform on each subject
      * @return A future which will complete when the operation has finished
      */
-    default CompletableFuture<Void> applyToAll(Consumer<Subject> action) {
+    default CompletableFuture<Void> applyToAll(final Consumer<Subject> action) {
         Objects.requireNonNull(action, "action");
         return CompletableFuture.runAsync(() -> {
             final Set<String> identifiers = this.allIdentifiers().join();
@@ -221,11 +221,11 @@ public interface SubjectCollection {
      * @param identifiers a set of identifiers to apply the action to
      * @return A future which will complete when the operation has finished
      */
-    default CompletableFuture<Void> applyToAll(Consumer<Subject> action, Set<String> identifiers) {
+    default CompletableFuture<Void> applyToAll(final Consumer<Subject> action, final Set<String> identifiers) {
         Objects.requireNonNull(action, "action");
         Objects.requireNonNull(identifiers, "identifiers");
         return CompletableFuture.runAsync(() -> {
-            for (String id : identifiers) {
+            for (final String id : identifiers) {
                 final Subject subject = this.loadSubject(id).join();
                 action.accept(subject);
                 this.suggestUnload(subject.identifier());
