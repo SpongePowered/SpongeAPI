@@ -37,10 +37,12 @@ import java.util.concurrent.CompletableFuture;
 /**
  * A description object for permissions.
  *
- * <p>The description is meant to provide human readable descriptions and meta
- * data for a permission.</p>
+ * <p>The description is meant to provide human readable descriptions and
+ * metadata for a permission, and a central point for the plugin registering
+ * each permission.</p>
  *
- * Descriptions are primarily informational, but some default value information may be provided here.
+ * <p>Descriptions are primarily informational, but some default value
+ * information may be provided here.</p>
  *
  * <p>Instances can be built using
  * {@link PermissionService#newDescriptionBuilder(PluginContainer)}.</p>
@@ -112,8 +114,9 @@ public interface PermissionDescription {
      * </ul>
      *
      * <p><b>Note:</b> Permission ids are case insensitive!
-     * If permission ids do not start with the plugin ID, implementations will prepend
-     * the plugin ID (so {@code command.give} will turn into {@code myplugin.command.give}<)/p>
+     * If permission ids do not start with the plugin ID, implementations will
+     * prepend the plugin ID (so {@code command.give} will turn into
+     * {@code myplugin.command.give}<)/p>
      *
      * @return The permission id
      */
@@ -189,8 +192,11 @@ public interface PermissionDescription {
     Map<? extends Subject, Boolean> assignedSubjects(String collectionIdentifier);
 
     /**
-     * Check if the given subject has the permission described, without any template parameters.
-     * If {@link #getId()} contains any template parameters, they will be stripped out. See overloads if parameters are desired
+     * Check if the given subject has the permission described.
+     *
+     * <p>If {@link #getId()} contains any template
+     * parameters, they will be stripped out. See overloads if parameters
+     * are desired.</p>
      *
      * @param subj The subject to query
      * @return Whether the given subject has this permission.
@@ -198,8 +204,11 @@ public interface PermissionDescription {
     boolean query(Subject subj);
 
     /**
-     * Check if the given subject has the permission described. Template parameters will be trimmed,
-     * and the catalog key will be appended in the format {@link ResourceKey#getNamespace()}.{@link ResourceKey#getValue()}.
+     * Check if the given subject has the permission described.
+     *
+     * <p>Template parameters will be trimmed, and the catalog key will be
+     * appended in the format
+     * {@link ResourceKey#getNamespace()}.{@link ResourceKey#getValue()}.</p>
      *
      * @param subj The subject to query
      * @param key The catalog key to relativize this permission for
@@ -208,8 +217,10 @@ public interface PermissionDescription {
     boolean query(Subject subj, ResourceKey key);
 
     /**
-     * Check if the given subject has the permission described. Template parameters will be trimmed from the permission,
-     * and the given parameters will be appended joined by {@code .}.
+     * Check if the given subject has the permission described.
+     *
+     * <p>Template parameters will be trimmed from the permission,
+     * and the given parameters will be appended joined by {@code .}.</p>
      *
      * @param subj The subject to query
      * @param parameters The parameters to append to the permission being checked
@@ -218,8 +229,10 @@ public interface PermissionDescription {
     boolean query(Subject subj, String... parameters);
 
     /**
-     * Check if the given subject has the permission described. Template parameters will be trimmed from the permission,
-     * and the given parameter will be appended
+     * Check if the given subject has the permission described.
+     *
+     * <p>Template parameters will be trimmed from the permission, and the given
+     * parameter will be appended</p>
      *
      * @param subj The subject to query
      * @param parameter The parameter to append to the permission when checking
@@ -259,10 +272,11 @@ public interface PermissionDescription {
         /**
          * Assigns this permission to the given role-template {@link Subject}.
          *
-         * <p>Role templates will be namespaced by the plugin that owns each registered permission.
-         * The expected format of the namespaced subject identifier is
-         * {@code  <plugin id>:<role>}. Implementations must provide an un-namespaced role template
-         * that inherits its permissions from every plugin-namespaced role template.</p>
+         * <p>Role templates will be namespaced by the plugin that owns each
+         * registered permission. The expected format of the namespaced subject
+         * identifier is {@code  <plugin id>:<role>}. Implementations must
+         * provide an un-namespaced role template that inherits its permissions
+         * from every plugin-namespaced role template.</p>
          *
          * <p>If the given subject does not exist it will be created.</p>
          *
@@ -289,15 +303,16 @@ public interface PermissionDescription {
          * This can be used to exclude permissions from node tree inheritance,
          * or to provide a permission to users by default.
          *
-         * <p>This is shorthand for giving {@link #getId()} (with templates stripped) a value on the default
-         * subject, except that the default value will only be applied once
-         * {@link #register()} is called.</p>
+         * <p>This is shorthand for giving {@link #getId()} (with templates
+         * stripped) a value on the default subject, except that the default
+         * value will only be applied once {@link #register()} is called.</p>
          *
          * <p>Assigning default permissions should be used sparingly, and by
          * convention, only in situations where "default" game behaviour is restored
          * by granting a certain permission.</p>
          *
-         * @param defaultValue The value this permission should have for subjects where none has been assigned.
+         * @param defaultValue The value this permission should have for
+         *                      subjects where none has been assigned.
          * @return The builder for chaining.
          */
         Builder defaultValue(Tristate defaultValue);
