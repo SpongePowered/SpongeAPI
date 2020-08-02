@@ -150,8 +150,8 @@ public interface Subject extends Contextual {
      * @param permission The permission string
      * @return True if permission is granted
      */
-    default boolean hasPermission(Set<Context> contexts, String permission) {
-        return getPermissionValue(contexts, permission).asBoolean();
+    default boolean hasPermission(final Set<Context> contexts, final String permission) {
+        return this.getPermissionValue(contexts, permission).asBoolean();
     }
 
     /**
@@ -164,8 +164,8 @@ public interface Subject extends Contextual {
      * @param permission The permission string
      * @return True if permission is granted
      */
-    default boolean hasPermission(String permission) {
-        return hasPermission(getActiveContexts(), permission);
+    default boolean hasPermission(final String permission) {
+        return this.hasPermission(this.getActiveContexts(), permission);
     }
 
     /**
@@ -200,8 +200,8 @@ public interface Subject extends Contextual {
      * @param parent The parent to check for inheritance
      * @return Whether this is a child of the given parent
      */
-    default boolean isChildOf(SubjectReference parent) {
-        return isChildOf(getActiveContexts(), parent);
+    default boolean isChildOf(final SubjectReference parent) {
+        return this.isChildOf(this.getActiveContexts(), parent);
     }
 
     /**
@@ -235,7 +235,7 @@ public interface Subject extends Contextual {
      * @return An immutable list of parents
      */
     default List<SubjectReference> getParents() {
-        return getParents(getActiveContexts());
+        return this.getParents(this.getActiveContexts());
     }
 
     /**
@@ -275,7 +275,7 @@ public interface Subject extends Contextual {
      * @param key The key to get an option by. Case-insensitive.
      * @return The value of the option, if any is present
      */
-    default Optional<String> getOption(String key) {
-        return getOption(getActiveContexts(), key);
+    default Optional<String> getOption(final String key) {
+        return this.getOption(this.getActiveContexts(), key);
     }
 }

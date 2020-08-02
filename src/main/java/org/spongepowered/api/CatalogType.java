@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api;
 
+import net.kyori.adventure.key.Keyed;
 import org.spongepowered.api.registry.GameRegistry;
 
 /**
@@ -37,7 +38,7 @@ import org.spongepowered.api.registry.GameRegistry;
  * <code>`a.getKey().equals(b.getKey())`</code> are true then all must
  * be true.</p>
  */
-public interface CatalogType {
+public interface CatalogType extends Keyed {
 
     /**
      * Gets the catalog key for this catalog type. Useful for storing a searchable
@@ -49,4 +50,9 @@ public interface CatalogType {
      * @return The catalog key
      */
     ResourceKey getKey();
+
+    @Override
+    default ResourceKey key() {
+        return this.getKey();
+    }
 }

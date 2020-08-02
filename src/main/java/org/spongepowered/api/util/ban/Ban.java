@@ -26,11 +26,11 @@ package org.spongepowered.api.util.ban;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.ban.BanService;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.net.InetAddress;
@@ -69,7 +69,7 @@ public interface Ban {
      * @param reason The reason
      * @return The created ban
      */
-    static Ban of(GameProfile profile, Text reason) {
+    static Ban of(GameProfile profile, Component reason) {
         return builder().type(BanTypes.PROFILE).profile(profile).reason(reason).build();
     }
 
@@ -85,7 +85,7 @@ public interface Ban {
      *
      * @return The reason specified for the ban, if available
      */
-    Optional<Text> getReason();
+    Optional<Component> getReason();
 
     /**
      * Gets the creation date of the ban.
@@ -104,7 +104,7 @@ public interface Ban {
      *
      * @return the source of this ban, if available
      */
-    Optional<Text> getBanSource();
+    Optional<Component> getBanSource();
 
     /**
      * Gets the expiration date of this ban, if available.
@@ -202,7 +202,7 @@ public interface Ban {
          * @param reason The reason
          * @return This builder
          */
-        Builder reason(@Nullable Text reason);
+        Builder reason(@Nullable Component reason);
 
         /**
          * Sets the date that the ban starts.
@@ -221,13 +221,13 @@ public interface Ban {
         Builder expirationDate(@Nullable Instant instant);
 
         /**
-         * Sets the source of the ban as a {@link Text}, or removes it if
+         * Sets the source of the ban as a {@link Component}, or removes it if
          * {@code null} is passed in.
          *
          * @param source The source of the ban, or {@code null}
          * @return This builder
          */
-        Builder source(@Nullable Text source);
+        Builder source(@Nullable Component source);
 
         /**
          * Creates a new Ban from this builder.

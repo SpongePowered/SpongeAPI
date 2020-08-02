@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.scoreboard;
 
+import net.kyori.adventure.text.Component;
 import org.spongepowered.api.scoreboard.objective.Objective;
-import org.spongepowered.api.text.Text;
 
 import java.util.Set;
 
@@ -39,7 +39,7 @@ public interface Score {
      *
      * @return The name of this score
      */
-    Text getName();
+    Component getName();
 
     /**
      * Gets the current score value.

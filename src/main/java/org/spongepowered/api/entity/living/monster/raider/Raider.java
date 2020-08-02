@@ -27,8 +27,7 @@ package org.spongepowered.api.entity.living.monster.raider;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.monster.Patroller;
-import org.spongepowered.api.raid.Raid;
-import org.spongepowered.api.raid.Wave;
+import org.spongepowered.api.raid.RaidWave;
 
 import java.util.Optional;
 
@@ -46,7 +45,7 @@ public interface Raider extends Patroller {
      * {@link Keys#RAID_WAVE}
      * @return The raid wave of this raider
      */
-    default Optional<Value.Immutable<Wave>> raidWave() {
+    default Optional<Value.Immutable<RaidWave>> raidWave() {
         return this.getValue(Keys.RAID_WAVE).map(Value::asImmutable);
     }
 

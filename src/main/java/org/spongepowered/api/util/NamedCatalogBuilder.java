@@ -25,13 +25,8 @@
 package org.spongepowered.api.util;
 
 import org.spongepowered.api.NamedCatalogType;
-import org.spongepowered.api.text.translation.Translation;
 
 public interface NamedCatalogBuilder<C extends NamedCatalogType, B extends ResettableBuilder<C, B>> extends CatalogBuilder<C, B> {
 
     B name(String name);
-
-    default B name(Translation translation) {
-        return this.name(translation.get());
-    }
 }

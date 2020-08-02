@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.network;
 
-import org.spongepowered.api.text.Text;
+import net.kyori.adventure.text.Component;
 
 /**
  * Represents a connection on the server or client engine.
@@ -50,5 +50,5 @@ public interface EngineConnection extends RemoteConnection {
      *
      * @param reason The reason for the disconnection
      */
-    void close(Text reason);
+    void close(Component reason);
 }

@@ -25,7 +25,8 @@
 package org.spongepowered.api.registry;
 
 import org.spongepowered.api.Game;
-import org.spongepowered.api.data.type.Profession;
+import org.spongepowered.api.adventure.AdventureRegistry;
+import org.spongepowered.api.data.type.ProfessionType;
 import org.spongepowered.api.item.merchant.TradeOfferGenerator;
 import org.spongepowered.api.item.merchant.VillagerRegistry;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
@@ -41,6 +42,13 @@ public interface GameRegistry {
      * @return The catalog registry
      */
     CatalogRegistry getCatalogRegistry();
+
+    /**
+     * Retrieves the {@link AdventureRegistry}.
+     *
+     * @return The catalog registry
+     */
+    AdventureRegistry getAdventureRegistry();
 
     /**
      * Retrieves the {@link BuilderRegistry}.
@@ -65,7 +73,7 @@ public interface GameRegistry {
 
     /**
      * Gets the {@link VillagerRegistry} for the register mappings of
-     * {@link Profession}s to {@link TradeOfferGenerator}s based on a level.
+     * {@link ProfessionType}s to {@link TradeOfferGenerator}s based on a level.
      *
      * @return The villager registry instance
      */

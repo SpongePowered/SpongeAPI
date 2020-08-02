@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.raid;
 
-import org.spongepowered.api.boss.ServerBossBar;
+import net.kyori.adventure.bossbar.BossBar;
 import org.spongepowered.api.data.type.RaidStatus;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.monster.raider.Raider;
@@ -44,18 +44,18 @@ public interface Raid {
     ServerWorld getWorld();
 
     /**
-     * Gets the {@link ServerBossBar} being displayed to clients of this raid.
+     * Gets the {@link BossBar} being displayed to clients of this raid.
      *
      * @return The boss bar
      */
-    ServerBossBar getBossBar();
+    BossBar getBossBar();
 
     /**
-     * Sets the {@link ServerBossBar} being displayed to clients of this raid.
+     * Sets the {@link BossBar} being displayed to clients of this raid.
      *
      * @param bossBar The boss bar
      */
-    void setBossBar(ServerBossBar bossBar);
+    void setBossBar(BossBar bossBar);
 
     /**
      * Gets the {@link RaidStatus} of this raid.
@@ -65,21 +65,21 @@ public interface Raid {
     RaidStatus getStatus();
 
     /**
-     * Gets the current {@link Wave} of this raid.
+     * Gets the current {@link RaidWave} of this raid.
      *
      * @return The current wave or {@link Optional#empty()} if no waves are currently running
      */
-    Optional<Wave> getCurrentWave();
+    Optional<RaidWave> getCurrentWave();
 
     /**
-     * Gets all of the {@link Wave waves} that have occurred or are occurring in this raid.
+     * Gets all of the {@link RaidWave waves} that have occurred or are occurring in this raid.
      *
      * @return The waves
      */
-    List<Wave> getWaves();
+    List<RaidWave> getWaves();
 
     /**
-     * Gets the amount of {@link Wave waves} this raid plans to execute.
+     * Gets the amount of {@link RaidWave waves} this raid plans to execute.
      *
      * <p>
      *     In vanilla, a raid determines wave amounts based on difficulty:
@@ -95,7 +95,7 @@ public interface Raid {
 
     /**
      * Gets the health of this raid. Health is calculated by the sum of all of the {@link Raider Raider's}
-     * {@link Living#health()}. As long as the raider was added to a {@link Wave} as part of the health.
+     * {@link Living#health()}. As long as the raider was added to a {@link RaidWave} as part of the health.
      *
      * @return The health
      */

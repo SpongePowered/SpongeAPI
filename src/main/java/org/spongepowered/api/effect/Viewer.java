@@ -26,14 +26,13 @@ package org.spongepowered.api.effect;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.sound.Sound;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.effect.particle.ParticleEffect;
-import org.spongepowered.api.effect.sound.SoundCategories;
-import org.spongepowered.api.effect.sound.SoundCategory;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.effect.sound.music.MusicDisc;
-import org.spongepowered.api.text.BookView;
-import org.spongepowered.api.text.title.Title;
 import org.spongepowered.api.world.World;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
@@ -45,7 +44,7 @@ import java.util.function.Supplier;
  * The Viewer class contains methods for spawning particles and playing sound
  * effects.
  */
-public interface Viewer {
+public interface Viewer extends Audience {
 
     /**
      * Spawn a {@link ParticleEffect} at a given position.
@@ -72,236 +71,14 @@ public interface Viewer {
     void spawnParticles(ParticleEffect particleEffect, Vector3d position, int radius);
 
     /**
-     * Plays the given {@link SoundType} at the given position, with the
-     * category {@link SoundCategories#MASTER}. All players within range
-     * will hear the sound with the given volume.
+     * Plays a sound.
      *
-     * @param sound The sound to play
-     * @param position The position to play the sound
-     * @param volume The volume to play the sound at, usually between 0 and 2
+     * @param sound the sound
+     * @param pos the position to play the sound at
      */
-    default void playSound(SoundType sound, Vector3d position, double volume) {
-        this.playSound(sound, SoundCategories.MASTER.get(), position, volume, 1, 0);
+    default void playSound(final @NonNull Sound sound, final Vector3d pos) {
+        this.playSound(sound, pos.getX(), pos.getY(), pos.getZ());
     }
-
-    /**
-     * Plays the given {@link SoundType} at the given position, with the
-     * category {@link SoundCategories#MASTER}. All players within range
-     * will hear the sound with the given volume.
-     *
-     * @param sound The sound to play
-     * @param position The position to play the sound
-     * @param volume The volume to play the sound at, usually between 0 and 2
-     */
-    default void playSound(Supplier<? extends SoundType> sound, Vector3d position, double volume) {
-        this.playSound(sound, SoundCategories.MASTER, position, volume, 1, 0);
-    }
-
-    /**
-     * Plays the given {@link SoundType} at the given position. All
-     * players within range will hear the sound with the given volume.
-     *
-     * @param sound The sound to play
-     * @param category The category to play the sound with
-     * @param position The position to play the sound
-     * @param volume The volume to play the sound at, usually between 0 and 2
-     */
-    default void playSound(SoundType sound, SoundCategory category, Vector3d position, double volume) {
-        this.playSound(sound, category, position, volume, 1, 0);
-    }
-
-    /**
-     * Plays the given {@link SoundType} at the given position. All
-     * players within range will hear the sound with the given volume.
-     *
-     * @param sound The sound to play
-     * @param category The category to play the sound with
-     * @param position The position to play the sound
-     * @param volume The volume to play the sound at, usually between 0 and 2
-     */
-    default void playSound(Supplier<? extends SoundType> sound, Supplier<? extends SoundCategory> category, Vector3d position, double volume) {
-        this.playSound(sound, category, position, volume, 1, 0);
-    }
-
-    /**
-     * Plays the given {@link SoundType} at the given position, with the
-     * category {@link SoundCategories#MASTER}. All players within range
-     * will hear the sound with the given volume.
-     *
-     * @param sound The sound to play
-     * @param position The position to play the sound
-     * @param volume The volume to play the sound at, usually between 0 and 2
-     * @param pitch The modulation of the sound to play at, usually between 0
-     *        and 2
-     */
-    default void playSound(SoundType sound, Vector3d position, double volume, double pitch) {
-        this.playSound(sound, SoundCategories.MASTER.get(), position, volume, pitch, 0);
-    }
-
-    /**
-     * Plays the given {@link SoundType} at the given position, with the
-     * category {@link SoundCategories#MASTER}. All players within range
-     * will hear the sound with the given volume.
-     *
-     * @param sound The sound to play
-     * @param position The position to play the sound
-     * @param volume The volume to play the sound at, usually between 0 and 2
-     * @param pitch The modulation of the sound to play at, usually between 0
-     *        and 2
-     */
-    default void playSound(Supplier<? extends SoundType> sound, Vector3d position, double volume, double pitch) {
-        this.playSound(sound, SoundCategories.MASTER, position, volume, pitch, 0);
-    }
-
-    /**
-     * Plays the given {@link SoundType} at the given position, with the
-     * category {@link SoundCategories#MASTER}. All players within range
-     * will hear the sound with the given volume.
-     *
-     * @param sound The sound to play
-     * @param category The category to play the sound with
-     * @param position The position to play the sound
-     * @param volume The volume to play the sound at, usually between 0 and 2
-     * @param pitch The modulation of the sound to play at, usually between 0
-     *        and 2
-     */
-    default void playSound(SoundType sound, SoundCategory category, Vector3d position, double volume, double pitch) {
-        this.playSound(sound, category, position, volume, pitch, 0);
-    }
-    /**
-     * Plays the given {@link SoundType} at the given position, with the
-     * category {@link SoundCategories#MASTER}. All players within range
-     * will hear the sound with the given volume.
-     *
-     * @param sound The sound to play
-     * @param category The category to play the sound with
-     * @param position The position to play the sound
-     * @param volume The volume to play the sound at, usually between 0 and 2
-     * @param pitch The modulation of the sound to play at, usually between 0
-     *        and 2
-     */
-    default void playSound(Supplier<? extends SoundType> sound, Supplier<? extends SoundCategory> category, Vector3d position, double volume, double pitch) {
-        this.playSound(sound, category, position, volume, pitch, 0);
-    }
-
-    /**
-     * Plays the given {@link SoundType} at the given position, with the
-     * category {@link SoundCategories#MASTER}. All players within range
-     * will hear the sound with the given volume.
-     *
-     * @param sound The sound to play
-     * @param position The position to play the sound
-     * @param volume The volume to play the sound at, usually between 0 and 2
-     * @param pitch The modulation of the sound to play at, usually between 0
-     *        and 2
-     * @param minVolume The minimum volume to play the sound at, usually between
-     *        0 and 2
-     */
-    default void playSound(SoundType sound, Vector3d position, double volume, double pitch, double minVolume) {
-        this.playSound(sound, SoundCategories.MASTER.get(), position, volume, pitch, minVolume);
-    }
-
-    /**
-     * Plays the given {@link SoundType} at the given position, with the
-     * category {@link SoundCategories#MASTER}. All players within range
-     * will hear the sound with the given volume.
-     *
-     * @param sound The sound to play
-     * @param position The position to play the sound
-     * @param volume The volume to play the sound at, usually between 0 and 2
-     * @param pitch The modulation of the sound to play at, usually between 0
-     *        and 2
-     * @param minVolume The minimum volume to play the sound at, usually between
-     *        0 and 2
-     */
-    default void playSound(Supplier<? extends SoundType> sound, Vector3d position, double volume, double pitch, double minVolume) {
-        this.playSound(sound, SoundCategories.MASTER, position, volume, pitch, minVolume);
-    }
-
-    /**
-     * Plays the given {@link SoundType} at the given position. All
-     * players within range will hear the sound with the given volume.
-     *
-     * @param sound The sound to play
-     * @param category The category to play the sound with
-     * @param position The position to play the sound
-     * @param volume The volume to play the sound at, usually between 0 and 2
-     * @param pitch The modulation of the sound to play at, usually between 0
-     *        and 2
-     * @param minVolume The minimum volume to play the sound at, usually between
-     *        0 and 2
-     */
-    void playSound(SoundType sound, SoundCategory category, Vector3d position, double volume, double pitch, double minVolume);
-
-    /**
-     * Plays the given {@link SoundType} at the given position. All
-     * players within range will hear the sound with the given volume.
-     *
-     * @param sound The sound to play
-     * @param category The category to play the sound with
-     * @param position The position to play the sound
-     * @param volume The volume to play the sound at, usually between 0 and 2
-     * @param pitch The modulation of the sound to play at, usually between 0
-     *        and 2
-     * @param minVolume The minimum volume to play the sound at, usually between
-     *        0 and 2
-     */
-    default void playSound(Supplier<? extends SoundType> sound, Supplier<? extends SoundCategory> category, Vector3d position, double volume, double pitch, double minVolume) {
-        playSound(sound.get(), category.get(), position, volume, pitch, minVolume);
-    }
-
-    /**
-     * Stops all the sounds.
-     */
-    void stopSounds();
-
-    /**
-     * Stops all the sounds of the given {@link SoundType}.
-     *
-     * @param sound The sound type
-     */
-    void stopSounds(SoundType sound);
-
-    /**
-     * Stops all the sounds of the given {@link SoundType}.
-     *
-     * @param sound The sound type
-     */
-    void stopSoundTypes(Supplier<? extends SoundType> sound);
-
-    /**
-     * Stops all the sounds that are played in the
-     * given {@link SoundCategory}.
-     *
-     * @param category The sound category
-     */
-    void stopSounds(SoundCategory category);
-
-    /**
-     * Stops all the sounds that are played in the
-     * given {@link SoundCategory}.
-     *
-     * @param category The sound category
-     */
-    void stopSoundCategoriess(Supplier<? extends SoundCategory> category);
-
-    /**
-     * Stops all the sounds of the given {@link SoundType} that
-     * are played in the given {@link SoundCategory}.
-     *
-     * @param sound The sound type
-     * @param category The sound category
-     */
-    void stopSounds(SoundType sound, SoundCategory category);
-
-    /**
-     * Stops all the sounds of the given {@link SoundType} that
-     * are played in the given {@link SoundCategory}.
-     *
-     * @param sound The sound type
-     * @param category The sound category
-     */
-    void stopSounds(Supplier<? extends SoundType> sound, Supplier<? extends SoundCategory> category);
 
     /**
      * Plays the given {@link MusicDisc} at the given position. The benefit of playing
@@ -331,35 +108,6 @@ public interface Viewer {
      * @param position The position
      */
     void stopMusicDisc(Vector3i position);
-
-    /**
-     * Sends a {@link Title} to this player.
-     *
-     * @param title The {@link Title} to send to the player
-     */
-    void sendTitle(Title title);
-
-    /**
-     * Removes the currently displayed {@link Title} from the player and resets
-     * all settings back to default values.
-     */
-    default void resetTitle() {
-        sendTitle(Title.reset());
-    }
-
-    /**
-     * Removes the currently displayed {@link Title} from the player's screen.
-     */
-    default void clearTitle() {
-        sendTitle(Title.clear());
-    }
-
-    /**
-     * Sends a {@link BookView} to this viewer.
-     *
-     * @param bookView BookView to send
-     */
-    void sendBookView(BookView bookView);
 
     /**
      * Sends a client-only block change.

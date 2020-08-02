@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.advancement;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.ComponentLike;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.NamedCatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.TextRepresentable;
 import org.spongepowered.api.util.NamedCatalogBuilder;
 
 import java.util.Collection;
@@ -40,7 +40,7 @@ import java.util.Optional;
 /**
  * An advancement.
  */
-public interface Advancement extends NamedCatalogType, TextRepresentable {
+public interface Advancement extends ComponentLike, NamedCatalogType {
 
     /**
      * Creates a new {@link Builder} to create {@link Advancement}s.
@@ -94,12 +94,12 @@ public interface Advancement extends NamedCatalogType, TextRepresentable {
     Optional<DisplayInfo> getDisplayInfo();
 
     /**
-     * Gets the {@link Text} lines that would be used to
+     * Gets the {@link Component} lines that would be used to
      * display a toast notification.
      *
      * @return The text lines
      */
-    List<Text> toToastText();
+    List<Component> toToastText();
 
     /**
      * A builder to create {@link Advancement}s.

@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.command;
 
+import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Optional;
@@ -70,7 +70,7 @@ public interface CommandResult {
      * @param errorMessage The error message to send
      * @return The {@link CommandResult}
      */
-    static CommandResult error(final Text errorMessage) {
+    static CommandResult error(final Component errorMessage) {
         return builder().error(errorMessage).build();
     }
 
@@ -91,9 +91,9 @@ public interface CommandResult {
     /**
      * If present, returns the error message associated with this result.
      *
-     * @return The error {@link Text}
+     * @return The error {@link Component}
      */
-    Optional<Text> getErrorMessage();
+    Optional<Component> getErrorMessage();
 
     /**
      * Builds {@link CommandResult}s.
@@ -126,7 +126,7 @@ public interface CommandResult {
          * @param errorMessage The message to send to the user.
          * @return This builder, for chaining
          */
-        Builder error(@Nullable Text errorMessage);
+        Builder error(@Nullable Component errorMessage);
 
         /**
          * Builds the {@link CommandResult}.

@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.event.sound;
 
+import net.kyori.adventure.sound.Sound;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.block.entity.Jukebox;
 import org.spongepowered.api.data.type.InstrumentType;
 import org.spongepowered.api.data.type.NotePitch;
-import org.spongepowered.api.effect.sound.SoundCategory;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.effect.sound.music.MusicDisc;
 import org.spongepowered.api.entity.Entity;
@@ -53,18 +53,18 @@ public interface PlaySoundEvent extends Event, Cancellable {
     ServerLocation getLocation();
 
     /**
-     * Gets the {@link SoundCategory} for the sound being played.
-     *
-     *  @return The {@link SoundCategory}
-     */
-    SoundCategory getSoundCategory();
-
-    /**
      * Gets the {@link SoundType} for the sound being played.
      *
-     * @return {@link SoundType}
+     * @return The {@link SoundType}
      */
     SoundType getSoundType();
+
+    /**
+     * Gets the {@link Sound.Source} for the sound being played.
+     *
+     *  @return The {@link Sound.Source}
+     */
+    Sound.Source getSoundSource();
 
     /**
      * Gets the volume of the sound being played.

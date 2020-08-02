@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.command.parameter.managed.standard;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.serializer.ComponentSerializer;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.parameter.managed.ValueParameter;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.serializer.TextSerializer;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Collection;
@@ -104,7 +104,7 @@ public class VariableValueParameters {
 
     /**
      * Creates a builder that builds a {@link ValueParameter} that tries to
-     * construct a {@link Text} from an argument.
+     * construct a {@link Component} from an argument.
      * @return The new builder
      */
     public static TextBuilder textBuilder() {
@@ -426,33 +426,33 @@ public class VariableValueParameters {
 
     /**
      * A builder that creates a parameter that serializes strings into
-     * {@link Text}.
+     * {@link Component}.
      */
-    public interface TextBuilder extends ResettableBuilder<ValueParameter<Text>, TextBuilder> {
+    public interface TextBuilder extends ResettableBuilder<ValueParameter<Component>, TextBuilder> {
 
         /**
-         * Sets the {@link TextSerializer} for use by the element.
+         * Sets the {@link ComponentSerializer} for use by the element.
          *
-         * <p>Setting this will replace any {@link TextSerializer}s or
+         * <p>Setting this will replace any {@link ComponentSerializer}s or
          * {@link Supplier}s that has already been set on this builder.</p>
          *
-         * @param serializer A {@link TextSerializer}
+         * @param serializer A {@link ComponentSerializer}
          * @return This builder, for chaining
          */
-        TextBuilder setSerializer(TextSerializer serializer);
+        TextBuilder setSerializer(ComponentSerializer<Component, ? extends Component, String> serializer);
 
         /**
-         * Sets the {@link TextSerializer} for use by the element, though the
+         * Sets the {@link ComponentSerializer} for use by the element, though the
          * use of a {@link Supplier}.
          *
-         * <p>Setting this will replace any {@link TextSerializer}s or
+         * <p>Setting this will replace any {@link ComponentSerializer}s or
          * {@link Supplier}s that has already been set on this builder.</p>
          *
          * @param serializerSupplier A {@link Supplier} that will supply a
-         *      {@link TextSerializer}
+         *      {@link ComponentSerializer}
          * @return This builder, for chaining
          */
-        TextBuilder setSerializerSupplier(Supplier<TextSerializer> serializerSupplier);
+        TextBuilder setSerializerSupplier(Supplier<ComponentSerializer<Component, ? extends Component, String>> serializerSupplier);
 
         /**
          * Sets whether the parameter will use all the arguments left in the
@@ -467,10 +467,10 @@ public class VariableValueParameters {
          * Tests for validity and creates this {@link ValueParameter}.
          *
          * @return The {@link ValueParameter}
-         * @throws IllegalStateException if the {@link TextSerializer} has not
+         * @throws IllegalStateException if the {@link ComponentSerializer} has not
          *             been specified
          */
-        ValueParameter<Text> build() throws IllegalStateException;
+        ValueParameter<Component> build() throws IllegalStateException;
 
     }
 

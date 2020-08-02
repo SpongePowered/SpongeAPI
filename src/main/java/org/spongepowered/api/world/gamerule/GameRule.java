@@ -28,7 +28,6 @@ import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.NamedCatalogType;
-import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.NamedCatalogBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -74,21 +73,6 @@ public interface GameRule<V> extends NamedCatalogType {
          */
         @Override
         Builder<V> name(String name);
-
-        /**
-         * Sets the name of the {@link CatalogType} as a {@link Translation}. Defaults
-         * to the {@link ResourceKey#getValue() catalog key value}.
-         *
-         * <p>This name will be used when setting game rules through
-         * a command. If duplicate names are found between namespaces,
-         * the plain {@link #key(ResourceKey)} will need to be used
-         * instead.</p>
-         *
-         * @param translation The name translation
-         * @return This builder for chaining
-         */
-        @Override
-        Builder<V> name(Translation translation);
 
         /**
          * Sets the value type.

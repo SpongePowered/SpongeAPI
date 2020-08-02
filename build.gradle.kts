@@ -16,6 +16,10 @@ repositories {
         name = "Old Sponge Maven Repo"
         setUrl("https://repo.spongepowered.org/maven")
     }
+    maven {
+        name = "Sonatype Snapshots"
+        setUrl("https://oss.sonatype.org/content/repositories/snapshots/")
+    }
 }
 
 base {
@@ -39,6 +43,11 @@ dependencies {
     api("com.google.errorprone:error_prone_annotations:2.1.3")
     api("com.google.code.gson:gson:2.8.0")
     api("org.apache.commons:commons-lang3:3.5")
+
+    api("net.kyori:adventure-api:4.0.0-SNAPSHOT")
+    api("net.kyori:adventure-text-serializer-gson:4.0.0-SNAPSHOT")
+    api("net.kyori:adventure-text-serializer-legacy:4.0.0-SNAPSHOT")
+    api("net.kyori:adventure-text-serializer-plain:4.0.0-SNAPSHOT")
 
     // Dependency injection
     api("com.google.inject:guice:4.1.0") {
@@ -89,12 +98,15 @@ tasks {
         exclude("org/spongepowered/api/event/cause/")
         exclude("org/spongepowered/api/event/filter/")
         exclude("org/spongepowered/api/event/impl/")
+        exclude("org/spongepowered/api/event/lifecycle/EngineLifecycleEvent.java")
+        exclude("org/spongepowered/api/event/lifecycle/LifecycleEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/ProvideServiceEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/RegisterBuilderEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/RegisterCatalogEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/RegisterCatalogRegistryEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/RegisterCommandEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/RegisterFactoryEvent.java")
+        exclude("org/spongepowered/api/event/lifecycle/RegisterWorldEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/StartingEngineEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/StartedEngineEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/StoppingEngineEvent.java")
@@ -137,8 +149,6 @@ tasks {
             }
         }
     }
-
-
 
 //
 //    val shadowJar by registering(ShadowJar::class) {
@@ -312,7 +322,9 @@ val sortClasses = listOf(
         "org.spongepowered.api.entity.ai.goal.GoalExecutorTypes",
         "org.spongepowered.api.entity.ai.goal.GoalTypes",
         "org.spongepowered.api.entity.living.monster.boss.dragon.phase.DragonPhaseTypes",
+        "org.spongepowered.api.entity.living.player.chat.ChatVisibilities",
         "org.spongepowered.api.entity.living.player.gamemode.GameModes",
+        "org.spongepowered.api.entity.selector.SelectorTypes",
         "org.spongepowered.api.event.cause.EventContextKeys",
         "org.spongepowered.api.event.cause.entity.damage.DamageModifierTypes",
         "org.spongepowered.api.event.cause.entity.damage.DamageTypes",
@@ -337,10 +349,6 @@ val sortClasses = listOf(
         "org.spongepowered.api.state.IntegerStateProperties",
         "org.spongepowered.api.statistic.StatisticCategories",
         "org.spongepowered.api.statistic.Statistics",
-        "org.spongepowered.api.text.chat.ChatTypes",
-        "org.spongepowered.api.text.chat.ChatVisibilities",
-        "org.spongepowered.api.text.format.TextColors",
-        "org.spongepowered.api.text.selector.SelectorTypes",
         "org.spongepowered.api.util.TypeTokens",
         "org.spongepowered.api.util.ban.BanTypes",
         "org.spongepowered.api.util.rotation.Rotations",

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockType;
@@ -61,36 +62,36 @@ import java.util.function.BiFunction;
  */
 public interface ServerLocation extends DataHolder.Mutable, DirectionRelativeDataHolder.Mutable, Location<ServerWorld> {
 
-    static ServerLocation of(ServerWorld world, double x, double y, double z) {
+    static ServerLocation of(final ServerWorld world, final double x, final double y, final double z) {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(world, new Vector3d(x, y, z));
     }
 
-    static ServerLocation of(UUID worldUniqueId, double x, double y, double z) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(worldUniqueId, new Vector3d(x, y, z));
+    static ServerLocation of(final ResourceKey worldKey, final double x, final double y, final double z) {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(worldKey, new Vector3d(x, y, z));
     }
 
-    static ServerLocation of(ServerWorld world, Vector3d position) {
+    static ServerLocation of(final ServerWorld world, final Vector3d position) {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(world, position);
     }
 
-    static ServerLocation of(UUID worldUniqueId, Vector3d position) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(worldUniqueId, position);
+    static ServerLocation of(final ResourceKey worldKey, final Vector3d position) {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(worldKey, position);
     }
 
-    static ServerLocation of(ServerWorld world, int x, int y, int z) {
+    static ServerLocation of(final ServerWorld world, final int x, final int y, final int z) {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(world, new Vector3i(x, y, z));
     }
 
-    static ServerLocation of(UUID worldUniqueId, int x, int y, int z) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(worldUniqueId, new Vector3i(x, y, z));
+    static ServerLocation of(final ResourceKey worldKey, final int x, final int y, final int z) {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(worldKey, new Vector3i(x, y, z));
     }
 
-    static ServerLocation of(ServerWorld world, Vector3i position) {
+    static ServerLocation of(final ServerWorld world, final Vector3i position) {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(world, position);
     }
 
-    static ServerLocation of(UUID worldUniqueId, Vector3i position) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(worldUniqueId, position);
+    static ServerLocation of(final ResourceKey worldKey, final Vector3i position) {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(worldKey, position);
     }
 
     /**
@@ -98,7 +99,14 @@ public interface ServerLocation extends DataHolder.Mutable, DirectionRelativeDat
      *
      * @return The world unique id
      */
-    UUID getWorldUniqueId();
+    ResourceKey getWorldKey();
+
+    /**
+     * Gets a {@link LocatableBlock}.
+     *
+     * @return The locatable block of this location.
+     */
+    LocatableBlock asLocatableBlock();
 
     /**
      * Calls the mapper function on the world and position.
@@ -237,7 +245,7 @@ public interface ServerLocation extends DataHolder.Mutable, DirectionRelativeDat
      *
      * @return A list of scheduled block updates on this location
      */
-    Collection<ScheduledUpdate<BlockType>> getScheduledBlockUpdates();
+    Collection<? extends ScheduledUpdate<BlockType>> getScheduledBlockUpdates();
 
     /**
      * Adds a new {@link ScheduledUpdate} for the block at this location.
@@ -280,7 +288,7 @@ public interface ServerLocation extends DataHolder.Mutable, DirectionRelativeDat
      *
      * @return A list of scheduled fluid updates on this location
      */
-    Collection<ScheduledUpdate<FluidType>> getScheduledFluidUpdates();
+    Collection<? extends ScheduledUpdate<FluidType>> getScheduledFluidUpdates();
 
     /**
      * Adds a new {@link ScheduledUpdate} for the fluid at this location.
@@ -356,8 +364,8 @@ public interface ServerLocation extends DataHolder.Mutable, DirectionRelativeDat
 
         ServerLocation create(ServerWorld world, Vector3i blockPosition);
 
-        ServerLocation create(UUID worldUniqueId, Vector3d position);
+        ServerLocation create(ResourceKey worldKey, Vector3d position);
 
-        ServerLocation create(UUID worldUniqueId, Vector3i blockPosition);
+        ServerLocation create(ResourceKey worldKey, Vector3i blockPosition);
     }
 }

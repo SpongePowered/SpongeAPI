@@ -26,7 +26,6 @@ package org.spongepowered.api.entity.projectile.arrow;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.PickupRule;
-import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.projectile.DamagingProjectile;
 
@@ -48,7 +47,7 @@ public interface ArrowEntity extends DamagingProjectile {
      * {@link Keys#KNOCKBACK_STRENGTH}
      * @return The knockback strength
      */
-    default BoundedValue.Mutable<Double> knockbackStrength() {
+    default Value.Mutable<Double> knockbackStrength() {
         return this.requireValue(Keys.KNOCKBACK_STRENGTH).asMutable();
     }
 }

@@ -24,22 +24,87 @@
  */
 package org.spongepowered.api.command.parameter;
 
+import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.text.Component;
 import org.spongepowered.api.command.CommandCause;
+import org.spongepowered.api.command.parameter.managed.Flag;
 import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.service.permission.SubjectProxy;
 
 import java.util.Collection;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 /**
- * The {@link CommandContext} contains the parsed arguments for a
- * command, and any other information that might be important when
- * executing a command.
+ * The {@link CommandContext} contains the parsed arguments for a command, and
+ * any other information that might be important when executing a command.
  *
- * <p>This context also contain methods that determine the
- * {@link Cause} of the command.</p>
+ * <p>For information about the cause of the command, the {@link CommandCause}
+ * is available (see {@link #getCommandCause()}. Some popular tasks that operate
+ * on the {@link CommandCause} are also directly available on this context,
+ * namely permission checks (via {@link SubjectProxy}) and sending a message to
+ * the {@link CommandCause}'s {@link Audience} (via
+ * {@link #sendMessage(Component)}).</p>
  */
-public interface CommandContext extends CommandCause {
+public interface CommandContext extends SubjectProxy {
+
+    /**
+     * Gets the {@link CommandCause} associated with this context.
+     *
+     * @return The {@link CommandCause}
+     */
+    CommandCause getCommandCause();
+
+    /**
+     * Gets the {@link Cause} of the command.
+     *
+     * @return The {@link Cause}
+     */
+    default Cause getCause() {
+        return this.getCommandCause().getCause();
+    }
+
+    /**
+     * Gets if a flag with given alias was specified at least once.
+     *
+     * <p>If the flag has multiple aliases, (for example, {@code -f} and
+     * {@code --flag}, passing {@code f} or {@code flag} to this method will
+     * return the same result, regardless of the alias specified by the user.
+     * </p>
+     *
+     * @param flagAlias The flag's alias (without a prefixed dash)
+     * @return If the flag was specified
+     */
+    boolean hasFlag(String flagAlias);
+
+    /**
+     * Gets if the given flag was specified once.
+     *
+     * @param flag The {@link Flag}
+     * @return If the flag was specified
+     */
+    boolean hasFlag(Flag flag);
+
+    /**
+     * Returns how many times a given flag was invoked for this command.
+     *
+     * <p>If the flag has multiple aliases, (for example, {@code -f} and
+     * {@code --flag}, passing {@code f} or {@code flag} to this method will
+     * return the same result, regardless of the alias specified by the user.
+     * </p>
+     *
+     * @param flagKey The flag's alias (without a prefixed dash)
+     * @return The number of times the flag was specified
+     */
+    int getFlagInvocationCount(String flagKey);
+
+    /**
+     * Returns how many times a given {@link Flag} was invoked for this command.
+     *
+     * @param flag The {@link Flag}
+     * @return The number of times the flag was specified
+     */
+    int getFlagInvocationCount(Flag flag);
 
     /**
      * Returns whether this context has any value for the given argument key.
@@ -71,7 +136,7 @@ public interface CommandContext extends CommandCause {
      * @throws IllegalArgumentException if more than one value for the key was
      *                                  found
      */
-    <T> Optional<T> getOne(Parameter.Key<? super T> key) throws IllegalArgumentException;
+    <T> Optional<T> getOne(Parameter.Key<T> key) throws IllegalArgumentException;
 
     /**
      * Gets the value for the given key if the key has only one value,
@@ -99,7 +164,7 @@ public interface CommandContext extends CommandCause {
      * @throws IllegalArgumentException if more than one value for the key was
      *                                  found
      */
-    <T> T requireOne(Parameter.Key<? super T> key) throws NoSuchElementException, IllegalArgumentException;
+    <T> T requireOne(Parameter.Key<T> key) throws NoSuchElementException, IllegalArgumentException;
 
     /**
      * Gets all values for the given argument. May return an empty list if no
@@ -121,12 +186,26 @@ public interface CommandContext extends CommandCause {
      * @param <T> the type of value to get
      * @return the collection of all values
      */
-    <T> Collection<? extends T> getAll(Parameter.Key<? super T> key);
+    <T> Collection<? extends T> getAll(Parameter.Key<T> key);
+
+    /**
+     * Sends a message via {@link CommandCause#getAudience()}
+     *
+     * @param message The message to send.
+     */
+    void sendMessage(final Component message);
 
     /**
      * A builder for creating this context.
      */
     interface Builder extends CommandContext {
+
+        /**
+         * Adds a flag invocation to the context.
+         *
+         * @param flag The flag to add the invocation for.
+         */
+        void addFlagInvocation(Flag flag);
 
         /**
          * Adds a parsed object into the context, for use by commands.
@@ -168,7 +247,7 @@ public interface CommandContext extends CommandCause {
          * @param key The key to store the entry under.
          * @param object The object to store.
          */
-        <T> void putEntry(Parameter.Key<? super T> key, T object);
+        <T> void putEntry(Parameter.Key<T> key, T object);
 
         /**
          * Starts a {@link Transaction} which allows for this builder to be

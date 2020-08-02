@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.block.entity;
 
+import net.kyori.adventure.text.Component;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.channel.MessageReceiver;
+import org.spongepowered.api.util.locale.LocaleSource;
 import org.spongepowered.api.util.Nameable;
 
 import java.util.Optional;
@@ -36,7 +36,7 @@ import java.util.Optional;
 /**
  * Represents a Command Block.
  */
-public interface CommandBlock extends BlockEntity, Subject, MessageReceiver, Nameable {
+public interface CommandBlock extends BlockEntity, Subject, LocaleSource, Nameable {
 
     /**
      * Executes the currently stored command.
@@ -86,7 +86,7 @@ public interface CommandBlock extends BlockEntity, Subject, MessageReceiver, Nam
      *
      * @return The last command output, if available
      */
-    default Optional<Value.Mutable<Text>> lastOutput() {
+    default Optional<Value.Mutable<Component>> lastOutput() {
         return this.getValue(Keys.LAST_COMMAND_OUTPUT).map(Value::asMutable);
     }
 }

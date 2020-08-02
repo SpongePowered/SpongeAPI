@@ -34,5 +34,5 @@ public interface EngineLifecycleEvent<E extends Engine> extends GenericEvent<E>,
      *
      * @return The engine
      */
-    Engine getEngine();
+    E getEngine();
 }

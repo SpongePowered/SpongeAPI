@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living.monster.boss;
 
-import org.spongepowered.api.boss.ServerBossBar;
+import net.kyori.adventure.bossbar.BossBar;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Hostile;
@@ -39,7 +39,7 @@ public interface Boss extends Hostile {
      * {@link Keys#BOSS_BAR}
      * @return The boss bar
      */
-    default Value.Mutable<ServerBossBar> bossBar() {
+    default Value.Mutable<BossBar> bossBar() {
         return this.requireValue(Keys.BOSS_BAR).asMutable();
     }
 }

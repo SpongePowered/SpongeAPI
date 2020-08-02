@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.block.entity;
 
+import net.kyori.adventure.text.Component;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Nameable;
 
 /**
@@ -41,7 +41,7 @@ public interface Sign extends BlockEntity, Nameable {
      *
      * @return The list of text lines
      */
-    default ListValue.Mutable<Text> lines() {
+    default ListValue.Mutable<Component> lines() {
         return this.requireValue(Keys.SIGN_LINES).asMutable();
     }
 

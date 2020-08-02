@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.command.parameter.managed.standard;
 
+import net.kyori.adventure.text.Component;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.entity.Entity;
@@ -32,7 +33,6 @@ import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.profile.GameProfile;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.ServerLocation;
@@ -348,43 +348,43 @@ public final class CatalogedValueParameters {
             Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "TARGET_PLAYER");
 
     /**
-     * Expects an argument to represent some {@link Text} serialised using formatting codes.
+     * Expects an argument to represent some {@link Component} serialised using formatting codes.
      *
      * <p>This will only consume one argument</p>
      *
-     * <p>Returns a {@link Text}</p>
+     * <p>Returns a {@link Component}</p>
      */
-    public static final Supplier<CatalogedValueParameter<Text>> TEXT_FORMATTING_CODE =
+    public static final Supplier<CatalogedValueParameter<Component>> TEXT_FORMATTING_CODE =
             Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "TEXT_FORMATTING_CODE");
 
     /**
-     * Expects an argument to represent some {@link Text} serialised using formatting codes.
+     * Expects an argument to represent some {@link Component} serialised using formatting codes.
      *
      * <p>This will consume all remaining arguments</p>
      *
-     * <p>Returns a {@link Text}</p>
+     * <p>Returns a {@link Component}</p>
      */
-    public static final Supplier<CatalogedValueParameter<Text>> TEXT_FORMATTING_CODE_ALL =
+    public static final Supplier<CatalogedValueParameter<Component>> TEXT_FORMATTING_CODE_ALL =
             Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "TEXT_FORMATTING_CODE_ALL");
 
     /**
-     * Expects an argument to represent some {@link Text} serialised using Json.
+     * Expects an argument to represent some {@link Component} serialised using Json.
      *
      * <p>This will only consume one argument</p>
      *
-     * <p>Returns a {@link Text}</p>
+     * <p>Returns a {@link Component}</p>
      */
-    public static final Supplier<CatalogedValueParameter<Text>> TEXT_JSON =
+    public static final Supplier<CatalogedValueParameter<Component>> TEXT_JSON =
             Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "TEXT_JSON");
 
     /**
-     * Expects an argument to represent some {@link Text} serialised using Json.
+     * Expects an argument to represent some {@link Component} serialised using Json.
      *
      * <p>This will consume all remaining arguments</p>
      *
-     * <p>Returns a {@link Text}</p>
+     * <p>Returns a {@link Component}</p>
      */
-    public static final Supplier<CatalogedValueParameter<Text>> TEXT_JSON_ALL =
+    public static final Supplier<CatalogedValueParameter<Component>> TEXT_JSON_ALL =
             Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "TEXT_JSON_ALL");
 
     /**

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.math.vector.Vector3i;
 
@@ -42,11 +43,11 @@ import java.util.UUID;
 public interface LocatableSnapshot<T extends LocatableSnapshot<T>> extends SerializableDataHolder.Immutable<T> {
 
     /**
-     * Gets the {@link UUID} of the world.
+     * Gets the {@link ResourceKey key} of the world.
      *
-     * @return The world unique Id
+     * @return The key
      */
-    UUID getWorldUniqueId();
+    ResourceKey getWorld();
 
     /**
      * Gets the saved block position.

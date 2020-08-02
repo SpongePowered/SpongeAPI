@@ -25,6 +25,7 @@
 package org.spongepowered.api.network.channel;
 
 import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.network.EngineConnection;
 
 /**
  * Represents a network channel bound to a {@link ChannelRegistry}. The channel
@@ -45,4 +46,14 @@ public interface Channel {
      * @return The channel key
      */
     ResourceKey getKey();
+
+    /**
+     * Sets the {@link ChannelExceptionHandler} that should be used for the channel.
+     *
+     * <p>By default every {@link ChannelException} except for
+     * {@link ChannelNotSupportedException} will be logged.</p>
+     *
+     * @param handler The channel exception handler
+     */
+    void setExceptionHandler(ChannelExceptionHandler<EngineConnection> handler);
 }

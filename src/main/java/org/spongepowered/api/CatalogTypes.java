@@ -30,15 +30,13 @@ import org.spongepowered.api.advancement.AdvancementType;
 import org.spongepowered.api.advancement.criteria.trigger.Trigger;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.entity.BlockEntityType;
-import org.spongepowered.api.boss.BossBarColor;
-import org.spongepowered.api.boss.BossBarOverlay;
+import org.spongepowered.api.command.selector.SelectorType;
 import org.spongepowered.api.data.persistence.DataFormat;
 import org.spongepowered.api.data.persistence.DataTranslator;
 import org.spongepowered.api.data.type.*;
 import org.spongepowered.api.effect.particle.ParticleOption;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffectType;
-import org.spongepowered.api.effect.sound.SoundCategory;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.effect.sound.music.MusicDisc;
 import org.spongepowered.api.entity.EntityType;
@@ -59,8 +57,7 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.enchantment.EnchantmentType;
 import org.spongepowered.api.item.inventory.ContainerType;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
-import org.spongepowered.api.item.inventory.equipment.HeldEquipmentType;
-import org.spongepowered.api.item.inventory.equipment.WornEquipmentType;
+import org.spongepowered.api.item.inventory.equipment.EquipmentGroup;
 import org.spongepowered.api.item.inventory.query.QueryType;
 import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
 import org.spongepowered.api.registry.CatalogRegistry;
@@ -77,12 +74,7 @@ import org.spongepowered.api.service.economy.Currency;
 import org.spongepowered.api.service.economy.transaction.TransactionType;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.StatisticCategory;
-import org.spongepowered.api.text.chat.ChatType;
-import org.spongepowered.api.text.chat.ChatVisibility;
-import org.spongepowered.api.text.format.TextColor;
-import org.spongepowered.api.text.format.TextStyle;
-import org.spongepowered.api.text.selector.SelectorType;
-import org.spongepowered.api.text.serializer.TextSerializer;
+import org.spongepowered.api.entity.living.player.chat.ChatVisibility;
 import org.spongepowered.api.util.ban.BanType;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.dimension.DimensionType;
@@ -132,13 +124,7 @@ public final class CatalogTypes {
 
     public static final Class<BodyPart> BODY_PART = BodyPart.class;
 
-    public static final Class<BossBarColor> BOSS_BAR_COLOR = BossBarColor.class;
-
-    public static final Class<BossBarOverlay> BOSS_BAR_OVERLAY = BossBarOverlay.class;
-
     public static final Class<CatType> CAT_TYPE = CatType.class;
-
-    public static final Class<ChatType> CHAT_TYPE = ChatType.class;
 
     public static final Class<ChatVisibility> CHAT_VISIBILITY = ChatVisibility.class;
 
@@ -148,7 +134,7 @@ public final class CatalogTypes {
 
     public static final Class<ContainerType> CONTAINER_TYPE = ContainerType.class;
 
-    public static final Class<CraftingRecipe> CRAFTING_RECIPES = CraftingRecipe.class;
+    public static final Class<CraftingRecipe> CRAFTING_RECIPE = CraftingRecipe.class;
 
     public static final Class<Criterion> CRITERION = Criterion.class;
 
@@ -176,6 +162,8 @@ public final class CatalogTypes {
 
     public static final Class<EntityType> ENTITY_TYPE = EntityType.class;
 
+    public static final Class<EquipmentGroup> EQUIPMENT_GROUP = EquipmentGroup.class;
+
     public static final Class<EquipmentType> EQUIPMENT_TYPE = EquipmentType.class;
 
     public static final Class<EventContextKey> EVENT_CONTEXT_KEY = EventContextKey.class;
@@ -198,9 +186,7 @@ public final class CatalogTypes {
 
     public static final Class<HandType> HAND_TYPE = HandType.class;
 
-    public static final Class<HeldEquipmentType> HELD_EQUIPMENT_TYPE = HeldEquipmentType.class;
-
-    public static final Class<Hinge> HINGE = Hinge.class;
+    public static final Class<DoorHinge> DOOR_HINGE = DoorHinge.class;
 
     public static final Class<HorseColor> HORSE_COLOR = HorseColor.class;
 
@@ -244,7 +230,7 @@ public final class CatalogTypes {
 
     public static final Class<PotionEffectType> POTION_EFFECT_TYPE = PotionEffectType.class;
 
-    public static final Class<Profession> PROFESSION = Profession.class;
+    public static final Class<ProfessionType> PROFESSION_TYPE = ProfessionType.class;
 
     public static final Class<QueryType> QUERY_TYPE = QueryType.class;
 
@@ -262,8 +248,6 @@ public final class CatalogTypes {
 
     public static final Class<SlabPortion> SLAB_PORTION = SlabPortion.class;
 
-    public static final Class<SoundCategory> SOUND_CATEGORY = SoundCategory.class;
-
     public static final Class<SoundType> SOUND_TYPE = SoundType.class;
 
     public static final Class<SpawnType> SPAWN_TYPE = SpawnType.class;
@@ -277,12 +261,6 @@ public final class CatalogTypes {
     public static final Class<TeleportHelperFilter> TELEPORT_HELPER_FILTER = TeleportHelperFilter.class;
 
     public static final Class<TeleportType> TELEPORT_TYPE = TeleportType.class;
-
-    public static final Class<TextColor> TEXT_COLOR = TextColor.class;
-
-    public static final Class<TextSerializer> TEXT_SERIALIZER = TextSerializer.class;
-
-    public static final Class<TextStyle> TEXT_STYLE = TextStyle.class;
 
     public static final Class<ToolType> TOOL_TYPE = ToolType.class;
 
@@ -303,8 +281,6 @@ public final class CatalogTypes {
     public static final Class<WoodType> WOOD_TYPE = WoodType.class;
 
     public static final Class<WorldArchetype> WORLD_ARCHETYPE = WorldArchetype.class;
-
-    public static final Class<WornEquipmentType> WORN_EQUIPMENT_TYPE = WornEquipmentType.class;
 
     // SORTFIELDS:OFF
 

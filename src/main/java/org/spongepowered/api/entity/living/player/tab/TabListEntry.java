@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.entity.living.player.tab;
 
+import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.profile.GameProfile;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.Optional;
@@ -68,7 +68,7 @@ public interface TabListEntry {
      *
      * @return This entry's display name
      */
-    Optional<Text> getDisplayName();
+    Optional<Component> getDisplayName();
 
     /**
      * Sets this entry's display name.
@@ -76,7 +76,7 @@ public interface TabListEntry {
      * @param displayName The new display name
      * @return This entry, for chaining
      */
-    TabListEntry setDisplayName(@Nullable Text displayName);
+    TabListEntry setDisplayName(@Nullable Component displayName);
 
     /**
      * Gets the latency for this entry.
@@ -180,9 +180,9 @@ public interface TabListEntry {
          *
          * @param displayName The display name
          * @return The builder
-         * @see TabListEntry#setDisplayName(Text)
+         * @see TabListEntry#setDisplayName(Component)
          */
-        Builder displayName(@Nullable Text displayName);
+        Builder displayName(@Nullable Component displayName);
 
         /**
          * Sets the latency for entries created by this builder.

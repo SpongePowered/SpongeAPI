@@ -27,6 +27,7 @@ package org.spongepowered.api.user;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.profile.GameProfile;
+import org.spongepowered.api.profile.GameProfileCache;
 import org.spongepowered.api.profile.GameProfileManager;
 
 import java.util.Collection;
@@ -83,22 +84,53 @@ public interface UserManager {
      * Gets the collection of all {@link GameProfile}s with stored {@link User}
      * data.
      *
-     * <p>Note that this method is resource-intensive depending on the amount of
-     * stored data.</p>
+     * <p>This method may be resource intensive, particularly for servers that
+     * have a large number of {@link User}s. If you require a subset of this
+     * {@link Collection}, use {@link #streamOfMatches(String)} or
+     * {@link #streamAll()} and use {@link Stream} operations for your queries
+     * instead.</p>
      *
-     * <p>Use {@link #get(GameProfile)} to get the {@link User} data
-     * corresponding to a {@link GameProfile}.</p>
+     * <p>This {@link Stream} may contain profiles that only hold a result for
+     * {@link GameProfile#getUniqueId()}, that is, do not return a user's name.
+     * Such profiles should thus be treated as incomplete and are no more than
+     * an indicator that a {@link User} associated with the given {@link UUID}
+     * exists.</p>
      *
-     * @return A {@link Collection} of {@link GameProfile}s
+     * <p>Similarly, for {@link GameProfile}s that are filled and thus contain
+     * name data, the profile information is based on the latest information
+     * the server holds and no attempt is made to update this information.</p>
+     *
+     * <p>If you require up to date {@link GameProfile}s, use the appropriate
+     * methods on the {@link GameProfileManager} and/or its associated
+     * {@link GameProfileCache}.</p>
+     *
+     * <p>Use {@link #get(GameProfile)} to load the {@link User} data associated
+     * with the associated {@link GameProfile}.</p>
+     *
+     * @return A {@link Stream} of {@link GameProfile}s
      */
     Collection<GameProfile> getAll();
 
     /**
-     * Gets a stream of all {@link GameProfile}s with stored {@link User}
-     * data.
+     * Gets a {@link Stream} that returns a {@link GameProfile} for each stored
+     * {@link User}s.
      *
-     * <p>Use {@link #get(GameProfile)} to get the {@link User} data
-     * corresponding to a {@link GameProfile}.</p>
+     * <p>This {@link Stream} may contain profiles that only hold a result for
+     * {@link GameProfile#getUniqueId()}, that is, do not return a user's name.
+     * Such profiles should thus be treated as incomplete and are no more than
+     * an indicator that a {@link User} associated with the given {@link UUID}
+     * exists.</p>
+     *
+     * <p>Similarly, for {@link GameProfile}s that are filled and thus contain
+     * name data, the profile information is based on the latest information
+     * the server holds and no attempt is made to update this information.</p>
+     *
+     * <p>If you require up to date {@link GameProfile}s, use the appropriate
+     * methods on the {@link GameProfileManager} and/or its associated
+     * {@link GameProfileCache}.</p>
+     *
+     * <p>Use {@link #get(GameProfile)} to load the {@link User} data associated
+     * with the associated {@link GameProfile}.</p>
      *
      * @return A {@link Stream} of {@link GameProfile}s
      */
@@ -125,15 +157,23 @@ public interface UserManager {
     boolean delete(User user);
 
     /**
-     * Returns a collection of matching {@link GameProfile}s with stored
-     * {@link User} data whose last known user names start with the given string
+     * Gets a {@link Stream} that returns a {@link GameProfile} for each stored
+     * {@link User} whose last known user names start with the given string
      * (case-insensitive).
      *
-     * <p>Use {@link #get(GameProfile)} to get the {@link User} data
-     * corresponding to a {@link GameProfile}.</p>
+     * <p>It is important to note that the names this method uses to perform the
+     * matching is based on the latest information the server holds and no
+     * attempt is made to update this information.</p>
      *
-     * @param lastKnownName The user name
-     * @return The result of the request
+     * <p>If you require up to date {@link GameProfile}s, use the appropriate
+     * methods on the {@link GameProfileManager} and/or its associated
+     * {@link GameProfileCache}.</p>
+     *
+     * <p>Use {@link #get(GameProfile)} to load associated {@link User} data.
+     * </p>
+     *
+     * @param lastKnownName The name to check for
+     * @return A {@link Stream} of {@link GameProfile}s
      */
-    Collection<GameProfile> match(String lastKnownName);
+    Stream<GameProfile> streamOfMatches(String lastKnownName);
 }

@@ -24,9 +24,6 @@
  */
 package org.spongepowered.api.util;
 
-import org.spongepowered.api.text.translation.Translation;
-import org.spongepowered.api.text.translation.locale.Locales;
-
 /**
  * An identifiable object that uses a {@link String} as an identifier.
  */
@@ -38,30 +35,5 @@ public interface Nameable {
      * @return The name.
      */
     String getName();
-
-    /**
-     * An object which has a name that is translatable.
-     */
-    interface Translatable extends Nameable {
-
-        /**
-         * Gets the human-readable name of this object.
-         *
-         * @return The name of this object
-         */
-        Translation getNameTranslation();
-
-        /**
-         * Gets the name in the {@link Locales#DEFAULT} locale of the
-         * {@link Translation}.
-         *
-         * @return The default translation of the name.
-         */
-        @Override
-        default String getName() {
-            return getNameTranslation().get();
-        }
-
-    }
 
 }

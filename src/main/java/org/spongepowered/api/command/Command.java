@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.command;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
@@ -31,11 +33,12 @@ import org.spongepowered.api.command.exception.ArgumentParseException;
 import org.spongepowered.api.command.exception.CommandException;
 import org.spongepowered.api.command.parameter.CommandContext;
 import org.spongepowered.api.command.parameter.Parameter;
+import org.spongepowered.api.command.parameter.managed.Flag;
 import org.spongepowered.api.command.registrar.tree.CommandTreeBuilder;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.EventContext;
+import org.spongepowered.api.event.lifecycle.RegisterCommandEvent;
 import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Arrays;
@@ -53,12 +56,18 @@ import java.util.function.Predicate;
  * to use {@link Command#builder()} to create commands. The
  * {@link Command.Builder} allows plugins to take advantage of a higher level
  * of abstraction, such as argument parsers and simple child command handling,
- * removing the need for boilerplate code.</p>
+ * removing the need for boilerplate code. Such {@link Parameterized} commands
+ * should register themselves during the {@link RegisterCommandEvent
+ * RegisterCommandEvent<Command.Parameterized>} event.</p>
  *
- * <p>Plugins are free to implement this interface should they prefer to do so.
- * It is preferred that plugins implement {@link Command.Raw} should they wish
- * to support client base completion. However, plugins <strong>cannot</strong>
- * implement the {@link Command.Parameterized} sub-interface.</p>
+ * <p>Plugins that do not want to use the {@link Builder} or any third-party
+ * command system should implement the {@link Raw} sub-interface instead. Such
+ * {@link Raw} commands should  register themselves during the
+ * {@link RegisterCommandEvent RegisterCommandEvent<Command.Parameterized>}
+ * event.</p>
+ *
+ * <p>Plugins <strong>must not</strong> implement the {@link Parameterized}
+ * sub-interface themselves.</p>
  *
  * <p>Upon execution, commands are provided with a {@link CommandCause},
  * providing the {@link Cause} and {@link EventContext} that invoked the
@@ -124,7 +133,7 @@ public interface Command {
      * @param cause The {@link CommandCause} of the help request
      * @return A description
      */
-    Optional<Text> getShortDescription(CommandCause cause);
+    Optional<Component> getShortDescription(CommandCause cause);
 
     /**
      * Gets a longer formatted help message about this command.
@@ -136,7 +145,7 @@ public interface Command {
      * @param cause The {@link Cause} of the help request
      * @return A description
      */
-    Optional<Text> getExtendedDescription(CommandCause cause);
+    Optional<Component> getExtendedDescription(CommandCause cause);
 
     /**
      * Gets a longer formatted help message about this command. This will
@@ -149,12 +158,12 @@ public interface Command {
      * @param cause The {@link Cause} of the help request
      * @return A help text
      */
-    default Optional<Text> getHelp(@NonNull final CommandCause cause) {
-        final Optional<Text> shortDesc = this.getShortDescription(cause);
-        final Optional<Text> extended = this.getExtendedDescription(cause);
+    default Optional<Component> getHelp(@NonNull final CommandCause cause) {
+        final Optional<Component> shortDesc = this.getShortDescription(cause);
+        final Optional<Component> extended = this.getExtendedDescription(cause);
         if (extended.isPresent()) {
             if (shortDesc.isPresent()) {
-                return Optional.of(Text.of(shortDesc, Text.newLine(), Text.newLine(), extended.get()));
+                return Optional.of(TextComponent.builder().append(shortDesc.get(), TextComponent.newline(), TextComponent.newline(), extended.get()).build());
             } else {
                 return extended;
             }
@@ -173,7 +182,7 @@ public interface Command {
      * @param cause The {@link Cause} of the help request
      * @return A usage string
      */
-    Text getUsage(CommandCause cause);
+    Component getUsage(CommandCause cause);
 
     /**
      * A raw command that also contains a {@link CommandTreeBuilder} to provide
@@ -200,6 +209,13 @@ public interface Command {
      * so.</p>
      */
     interface Parameterized extends Command, CommandExecutor {
+
+        /**
+         * The {@link List} of {@link Flag}s that this {@link Command} contains.
+         *
+         * @return A copy of the collection of {@link Flag}s.
+         */
+        List<Flag> flags();
 
         /**
          * The {@link List} of {@link Parameter}s that this {@link Command}
@@ -301,9 +317,8 @@ public interface Command {
          * <p>Children added here will be added to the beginning of the
          * {@link Parameter}s. Note that if you wish to add a subcommand
          * in the middle of the parameters, you can do so by creating a
-         * {@link org.spongepowered.api.command.parameter.Parameter.Subcommand}
-         * and adding that as a {@link #parameter(Parameter)} at the
-         * appropriate time.</p>
+         * {@link Parameter.Subcommand} and adding that as a
+         * {@link #parameter(Parameter)} at the appropriate time.</p>
          *
          * @param children The {@link Map} that contains a mapping of keys to
          *                 their respective {@link Command} children.
@@ -318,6 +333,19 @@ public interface Command {
 
             return this;
         }
+
+        /**
+         * Adds a flag to this command. Flags are always the first arguments of
+         * a command. There are no set rules for the order of execution of
+         * flags (unlike {@link #parameter(Parameter)}), and all flags are
+         * considered optional.
+         *
+         * <p>Duplicate keys and/or duplicate aliases may not be provided.</p>
+         *
+         * @param flag The {@link Flag} to support
+         * @return Ths builder, for chaining
+         */
+        Builder flag(Flag flag);
 
         /**
          * Adds a parameter for use when parsing arguments. When executing a
@@ -371,7 +399,7 @@ public interface Command {
          * {@link Cause} that requests it.
          *
          * <p>A one line summary should be provided to
-         * {@link #setShortDescription(Text)}</p>
+         * {@link #setShortDescription(Component)}</p>
          *
          * <p>It is recommended to use the default text color and style. Sections
          * with text actions (e.g. hyperlinks) should be underlined.</p>
@@ -380,21 +408,21 @@ public interface Command {
          *      relevant description based on the supplied {@link Cause}
          * @return This builder, for chaining
          */
-        Builder setExtendedDescription(Function<CommandCause, Optional<Text>> extendedDescriptionFunction);
+        Builder setExtendedDescription(Function<CommandCause, Optional<Component>> extendedDescriptionFunction);
 
         /**
          * Provides the description for this command.
          *
          * <p>A one line summary should be provided to
-         * {@link #setShortDescription(Text)}</p>
+         * {@link #setShortDescription(Component)}</p>
          *
          * @param extendedDescription The description to use, or {@code null}
          *                            for no description.
          * @return This builder, for chaining
          */
-        default Builder setExtendedDescription(@Nullable final Text extendedDescription) {
+        default Builder setExtendedDescription(@Nullable final Component extendedDescription) {
             // Done outside the lambda so that we don't have to recreate the object each time.
-            final Optional<Text> text = Optional.ofNullable(extendedDescription);
+            final Optional<Component> text = Optional.ofNullable(extendedDescription);
             return this.setExtendedDescription((cause) -> text);
         }
 
@@ -410,14 +438,14 @@ public interface Command {
          *      description based on the supplied {@link Cause}
          * @return This builder, for chaining
          */
-        Builder setShortDescription(Function<CommandCause, Optional<Text>> descriptionFunction);
+        Builder setShortDescription(Function<CommandCause, Optional<Component>> descriptionFunction);
 
         /**
          * Provides a simple description for this command, typically no more
          * than one line.
          *
          * <p>Fuller descriptions should be provided through
-         * {@link #setExtendedDescription(Text)}</p>
+         * {@link #setExtendedDescription(Component)}</p>
          *
          * <p>It is recommended to use the default text color and style. Sections
          * with text actions (e.g. hyperlinks) should be underlined.</p>
@@ -426,9 +454,9 @@ public interface Command {
          *                    description
          * @return This builder, for chaining
          */
-        default Builder setShortDescription(@Nullable final Text description) {
+        default Builder setShortDescription(@Nullable final Component description) {
             // Done outside the lambda so that we don't have to recreate the object each time.
-            final Optional<Text> text = Optional.ofNullable(description);
+            final Optional<Component> text = Optional.ofNullable(description);
             return this.setShortDescription((cause) -> text);
         }
 

@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.service.economy.account;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 /**
  * Common {@link AccountDeletionResultType}s.
@@ -35,32 +37,32 @@ public class AccountDeletionResultTypes {
     /**
      * Represents an account deletion where the account does not exist.
      */
-    public static final AccountDeletionResultType ABSENT =
-            DummyObjectProvider.createFor(AccountDeletionResultType.class, "ABSENT");
+    public static final Supplier<AccountDeletionResultType> ABSENT =
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(AccountDeletionResultType.class, "ABSENT");
 
     /**
      * Represents an account deletion where the deletion failed.
      */
-    public static final AccountDeletionResultType FAILED =
-            DummyObjectProvider.createFor(AccountDeletionResultType.class, "FAILED");
+    public static final Supplier<AccountDeletionResultType> FAILED =
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(AccountDeletionResultType.class, "FAILED");
 
     /**
      * Represents an account deletion where the deletion was successful.
      */
-    public static final AccountDeletionResultType SUCCESS =
-            DummyObjectProvider.createFor(AccountDeletionResultType.class, "SUCCESS");
+    public static final Supplier<AccountDeletionResultType> SUCCESS =
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(AccountDeletionResultType.class, "SUCCESS");
 
     /**
      * Represents an account deletion where the deletion feature is unsupported.
      */
-    public static final AccountDeletionResultType UNSUPPORTED =
-            DummyObjectProvider.createFor(AccountDeletionResultType.class, "UNSUPPORTED");
+    public static final Supplier<AccountDeletionResultType> UNSUPPORTED =
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(AccountDeletionResultType.class, "UNSUPPORTED");
 
     /**
      * Represents an account deletion where the account could not be deleted.
      */
-    public static final AccountDeletionResultType UNDELETABLE =
-            DummyObjectProvider.createFor(AccountDeletionResultType.class, "UNDELETABLE");
+    public static final Supplier<AccountDeletionResultType> UNDELETABLE =
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(AccountDeletionResultType.class, "UNDELETABLE");
 
     // SORTFIELDS:OFF
 

@@ -25,7 +25,6 @@
 package org.spongepowered.api.entity;
 
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.effect.particle.ParticleEffect;
@@ -50,7 +49,7 @@ public interface AreaEffectCloud extends Entity {
      * {@link Keys#RADIUS}
      * @return The initial radius of this cloud
      */
-    default BoundedValue.Mutable<Double> radius() {
+    default Value.Mutable<Double> radius() {
         return this.requireValue(Keys.RADIUS).asMutable();
     }
 
@@ -67,7 +66,7 @@ public interface AreaEffectCloud extends Entity {
      * {@link Keys#DURATION}
      * @return The duration of which this cloud will linger
      */
-    default BoundedValue.Mutable<Integer> duration() {
+    default Value.Mutable<Integer> duration() {
         return this.requireValue(Keys.DURATION).asMutable();
     }
 
@@ -75,7 +74,7 @@ public interface AreaEffectCloud extends Entity {
      * {@link Keys#WAIT_TIME}
      * @return The wait time before applying to an entity
      */
-    default BoundedValue.Mutable<Integer> waitTime() {
+    default Value.Mutable<Integer> waitTime() {
         return this.requireValue(Keys.WAIT_TIME).asMutable();
     }
 
@@ -83,7 +82,7 @@ public interface AreaEffectCloud extends Entity {
      * {@link Keys#RADIUS_ON_USE}
      * @return The radius decrease per use
      */
-    default BoundedValue.Mutable<Double> radiusOnUse() {
+    default Value.Mutable<Double> radiusOnUse() {
         return this.requireValue(Keys.RADIUS_ON_USE).asMutable();
     }
 
@@ -91,7 +90,7 @@ public interface AreaEffectCloud extends Entity {
      * {@link Keys#RADIUS_PER_TICK}
      * @return The radius decrease per tick
      */
-    default BoundedValue.Mutable<Double> radiusPerTick() {
+    default Value.Mutable<Double> radiusPerTick() {
         return this.requireValue(Keys.RADIUS_PER_TICK).asMutable();
     }
 
@@ -99,7 +98,7 @@ public interface AreaEffectCloud extends Entity {
      * {@link Keys#DURATION_ON_USE}
      * @return The duration of the potion effects when an entity gets a potion applied
      */
-    default BoundedValue.Mutable<Integer> durationOnUse() {
+    default Value.Mutable<Integer> durationOnUse() {
         return this.requireValue(Keys.DURATION_ON_USE).asMutable();
     }
 
@@ -107,7 +106,7 @@ public interface AreaEffectCloud extends Entity {
      * {@link Keys#REAPPLICATION_DELAY}
      * @return The delay for an entity to have a potion effect applied while standing in this cloud
      */
-    default BoundedValue.Mutable<Integer> applicationDelay() {
+    default Value.Mutable<Integer> applicationDelay() {
         return this.requireValue(Keys.REAPPLICATION_DELAY).asMutable();
     }
 
@@ -123,7 +122,7 @@ public interface AreaEffectCloud extends Entity {
      * {@link Keys#AGE}
      * @return The age of this cloud
      */
-    default BoundedValue.Mutable<Integer> age() {
+    default Value.Mutable<Integer> age() {
         return this.requireValue(Keys.AGE).asMutable();
     }
 

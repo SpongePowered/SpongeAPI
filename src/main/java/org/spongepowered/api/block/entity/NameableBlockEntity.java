@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.block.entity;
 
+import net.kyori.adventure.text.Component;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.text.Text;
 
 /**
  * Represents a {@link BlockEntity} which may have a display name.
@@ -38,7 +38,7 @@ public interface NameableBlockEntity extends BlockEntity {
      * {@link Keys#DISPLAY_NAME}
      * @return The display name of this {@link BlockEntity}.
      */
-    default Value.Mutable<Text> displayName() {
+    default Value.Mutable<Component> displayName() {
         return this.requireValue(Keys.DISPLAY_NAME).asMutable();
     }
 }

@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.scoreboard;
 
+import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.scoreboard.criteria.Criterion;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.Objective;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.List;
@@ -192,7 +192,7 @@ public interface Scoreboard {
      * @param name The name whose scores are being retrieved
      * @return A set of all scores for the name
      */
-    Set<Score> getScores(Text name);
+    Set<Score> getScores(Component name);
 
     /**
      * Removes all scores with the specified name on this scoreboard,
@@ -200,7 +200,7 @@ public interface Scoreboard {
      *
      * @param name The name to remove all scores for
      */
-    void removeScores(Text name);
+    void removeScores(Component name);
 
     /**
      * Gets a {@link Team} by name on this scoreboard.
@@ -229,13 +229,13 @@ public interface Scoreboard {
     Set<Team> getTeams();
 
     /**
-     * Gets a {@link Text} member's {@link Team} on this scoreboard.
+     * Gets a {@link Component} member's {@link Team} on this scoreboard.
      *
-     * @param member The {@link Text} to search for
-     * @return The {@link Text} member's {@link Team}, or Optional.empty()
+     * @param member The {@link Component} to search for
+     * @return The {@link Component} member's {@link Team}, or Optional.empty()
      *     if the member has no team
      */
-    Optional<Team> getMemberTeam(Text member);
+    Optional<Team> getMemberTeam(Component member);
 
     /**
      * Represents a builder to create {@link Scoreboard} instances.

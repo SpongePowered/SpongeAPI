@@ -28,7 +28,6 @@ import org.spongepowered.api.service.ban.BanService;
 import org.spongepowered.api.service.economy.EconomyService;
 import org.spongepowered.api.service.pagination.PaginationService;
 import org.spongepowered.api.service.permission.PermissionService;
-import org.spongepowered.api.user.UserManager;
 import org.spongepowered.api.service.whitelist.WhitelistService;
 
 import java.util.Optional;

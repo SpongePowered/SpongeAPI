@@ -24,13 +24,12 @@
  */
 package org.spongepowered.api.command.registrar.tree;
 
+import net.kyori.adventure.text.Component;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.profile.GameProfile;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Color;
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 import java.util.function.Supplier;
 
@@ -175,7 +174,7 @@ public class ClientCompletionKeys {
 
     /**
      * Completions will attempt to return arguments that represent
-     * {@link Text}s
+     * {@link Component}s
      */
     public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> TEXT =
             Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "TEXT");

@@ -44,7 +44,6 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.item.inventory.equipment.EquipmentTypes;
-import org.spongepowered.api.text.translation.Translatable;
 
 import java.util.Collection;
 import java.util.Map;
@@ -61,7 +60,7 @@ import java.util.function.Supplier;
  * use {@link ValueContainer#get(Key)} in order to retrieve information regarding
  * this item stack.</p>
  */
-public interface ItemStack extends SerializableDataHolder.Mutable, Translatable {
+public interface ItemStack extends SerializableDataHolder.Mutable {
 
     /**
      * Creates a new {@link Builder} to build an {@link ItemStack}.
@@ -243,32 +242,6 @@ public interface ItemStack extends SerializableDataHolder.Mutable, Translatable 
 
     /**
      * Adds an {@link AttributeModifier} to this item stack.
-     *
-     * <p>This attribute modifier will apply to all
-     * {@link EquipmentTypes}.</p>
-     *
-     * @param attributeType The attribute type.
-     * @param modifier The attribute modifier.
-     */
-    default void addAttributeModifier(Supplier<? extends AttributeType> attributeType, AttributeModifier modifier) {
-        this.addAttributeModifier(attributeType.get(), modifier);
-    }
-
-    /**
-     * Adds an {@link AttributeModifier} to this item stack.
-     *
-     * <p>This attribute modifier will apply to all
-     * {@link EquipmentTypes}.</p>
-     *
-     * @param attributeType The attribute type.
-     * @param modifier The attribute modifier.
-     */
-    default void addAttributeModifier(AttributeType attributeType, AttributeModifier modifier) {
-        this.addAttributeModifier(attributeType, modifier, EquipmentTypes.ANY);
-    }
-
-    /**
-     * Adds an {@link AttributeModifier} to this item stack.
      * @param attributeType The attribute type.
      * @param modifier The attribute modifier.
      * @param equipmentType The equipment type this modifier will apply under.
@@ -347,34 +320,6 @@ public interface ItemStack extends SerializableDataHolder.Mutable, Translatable 
          * @return This builder, for chaining
          */
         Builder fromItemStack(ItemStack itemStack);
-
-        /**
-         * Adds an {@link AttributeModifier} to this item stack.
-         *
-         * <p>This attribute modifier will apply to all
-         * {@link EquipmentTypes}.</p>
-         *
-         * @param attributeType The Attribute type.
-         * @param modifier The Attribute modifier.
-         * @return This builder, for chaining
-         */
-        default Builder attributeModifier(Supplier<? extends AttributeType> attributeType, AttributeModifier modifier) {
-            return this.attributeModifier(attributeType.get(), modifier, EquipmentTypes.ANY.get());
-        }
-
-        /**
-         * Adds an {@link AttributeModifier} to this item stack.
-         *
-         * <p>This attribute modifier will apply to all
-         * {@link EquipmentTypes}.</p>
-         *
-         * @param attributeType The Attribute type.
-         * @param modifier The Attribute modifier.
-         * @return This builder, for chaining
-         */
-        default Builder attributeModifier(AttributeType attributeType, AttributeModifier modifier) {
-            return this.attributeModifier(attributeType, modifier, EquipmentTypes.ANY.get());
-        }
 
         /**
          * Adds an {@link AttributeModifier} to this item stack.

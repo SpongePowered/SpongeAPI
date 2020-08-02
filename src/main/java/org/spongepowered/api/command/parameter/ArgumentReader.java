@@ -25,8 +25,11 @@
 package org.spongepowered.api.command.parameter;
 
 import com.google.gson.JsonObject;
+import net.kyori.adventure.text.Component;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.command.exception.ArgumentParseException;
-import org.spongepowered.api.text.Text;
+import org.spongepowered.api.command.parameter.managed.ValueParser;
+import org.spongepowered.api.command.parameter.managed.clientcompletion.ClientCompletionTypes;
 
 /**
  * An {@link ArgumentReader} allows for sequential reading of an input
@@ -106,7 +109,7 @@ public interface ArgumentReader {
      * @param errorMessage The error message to display
      * @return The exception
      */
-    ArgumentParseException createException(Text errorMessage);
+    ArgumentParseException createException(Component errorMessage);
 
     /**
      * Represents a {@link ArgumentReader} where the cursor position cannot be
@@ -147,6 +150,11 @@ public interface ArgumentReader {
          *
          * <p>Numbers may begin with "-" to indicate a negative number</p>
          *
+         * <p>When using this in your parser, you should set
+         * {@link ValueParser#getClientCompletionType()} to
+         * {@link ClientCompletionTypes#WHOLE_NUMBER} to tell the client that
+         * the client completion should be an integer.</p>
+         *
          * @return The integer
          * @throws ArgumentParseException if the cursor is not at a number
          *                                character
@@ -160,6 +168,11 @@ public interface ArgumentReader {
          *
          * <p>Numbers may begin with "-" to indicate a negative number, and one
          * period (".") may be present in the string.</p>
+         *
+         * <p>When using this in your parser, you should set
+         * {@link ValueParser#getClientCompletionType()} to
+         * {@link ClientCompletionTypes#DECIMAL_NUMBER} to tell the client that
+         * the client completion should be a floating point number.</p>
          *
          * @return The double
          * @throws ArgumentParseException if the cursor is not at a number
@@ -175,11 +188,55 @@ public interface ArgumentReader {
          * <p>Numbers may begin with "-" to indicate a negative number, and one
          * period (".") may be present in the string.</p>
          *
+         * <p>When using this in your parser, you should set
+         * {@link ValueParser#getClientCompletionType()} to
+         * {@link ClientCompletionTypes#DECIMAL_NUMBER} to tell the client that
+         * the client completion should be a floating point number.</p>
+         *
          * @return The double
          * @throws ArgumentParseException if the cursor is not at a number
          *                                character
          */
         float parseFloat() throws ArgumentParseException;
+
+        /**
+         * Attempts to read a string that is in a {@link ResourceKey} format,
+         * which is {@code namespace:identifier}.
+         *
+         * <p>This parser is a <strong>strict parser</strong>. If the input is
+         * not of the format specified above, this will fail. If you are
+         * potentially expecting a non-namespaced key, but would like to accept
+         * such strings with a default namespace, use
+         * {@link #parseResourceKey(String)}</p>
+         *
+         * <p>When using this in your parser, you should set
+         * {@link ValueParser#getClientCompletionType()} to
+         * {@link ClientCompletionTypes#RESOURCE_KEY} to tell the client that
+         * the client completion should be a {@link ResourceKey}, so that your
+         * users will not be told to put their argument in quotation marks.</p>
+         *
+         * @return The {@link ResourceKey}
+         * @throws ArgumentParseException if a key could not be parsed
+         */
+        ResourceKey parseResourceKey() throws ArgumentParseException;
+
+        /**
+         * Attempts to read a string that is in a {@link ResourceKey} format,
+         * which is {@code namespace:identifier}.
+         *
+         * <p>If no colon is encountered, the default namespace defined below
+         * will be used as the namespace.</p>
+         *
+         * <p>When using this in your parser, you should set
+         * {@link ValueParser#getClientCompletionType()} to
+         * {@link ClientCompletionTypes#RESOURCE_KEY} to tell the client that
+         * the client completion should be a {@link ResourceKey}, so that your
+         * users will not be told to put their argument in quotation marks.</p>
+         *
+         * @return The {@link ResourceKey}
+         * @throws ArgumentParseException if a key could not be parsed
+         */
+        ResourceKey parseResourceKey(String defaultNamespace) throws ArgumentParseException;
 
         /**
          * Gets the next word in the input from the position of the cursor. This
@@ -196,6 +253,23 @@ public interface ArgumentReader {
          * instead <strong>unless</strong> you are expecting a double quote
          * mark at the beginning of your string and this is part of the
          * argument you wish to return.</p>
+         *
+         * <p>The following characters will be parsed as part of a valid string
+         * without the need for quotation marks.</p>
+         *
+         * <ul>
+         * <li>Alphanumeric symbols</li>
+         * <li>Underscores (_)</li>
+         * <li>Hyphens (-)</li>
+         * <li>Periods (.)</li>
+         * <li>Plus signs (+)</li>
+         * </ul>
+         *
+         * <p>If you require other symbols, use {@link #parseString()} and ensure
+         * that users are aware they need to surround their inputs with double
+         * quotation marks. Alternatively, consider whether other parse types are
+         * suitable (for example, if you are expecting a {@link ResourceKey}, use
+         * {@link #parseResourceKey()} or {@link #parseResourceKey(String)}.</p>
          *
          * @return The parsed {@link String}
          * @throws ArgumentParseException if a {@link String} could not be read
@@ -252,6 +326,11 @@ public interface ArgumentReader {
         /**
          * Parses a Json string, returning that string.
          *
+         * <p>When using this in your parser, you should set
+         * {@link ValueParser#getClientCompletionType()} to
+         * {@link ClientCompletionTypes#JSON} to tell the client that
+         * the client completion should be a JSON string.</p>
+         *
          * @return The string
          * @throws ArgumentParseException if a Json string could not be read
          */
@@ -259,6 +338,11 @@ public interface ArgumentReader {
 
         /**
          * Parses a {@link JsonObject}, else throws an exception.
+         *
+         * <p>When using this in your parser, you should set
+         * {@link ValueParser#getClientCompletionType()} to
+         * {@link ClientCompletionTypes#JSON} to tell the client that
+         * the client completion should be a JSON string.</p>
          *
          * @return A {@link JsonObject}
          * @throws ArgumentParseException if a {@link JsonObject} could not be

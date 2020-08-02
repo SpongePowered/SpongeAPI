@@ -25,6 +25,7 @@
 package org.spongepowered.api.command.parameter;
 
 import com.google.common.reflect.TypeToken;
+import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.CatalogType;
@@ -47,7 +48,6 @@ import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.network.RemoteConnection;
 import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.ServerLocation;
@@ -430,8 +430,8 @@ public interface Parameter {
      *
      * @return A {@link Parameter.Value.Builder}
      */
-    static Parameter.Value.Builder<Text> formattingCodeText() {
-        return Parameter.builder(Text.class, CatalogedValueParameters.TEXT_FORMATTING_CODE);
+    static Parameter.Value.Builder<Component> formattingCodeText() {
+        return Parameter.builder(Component.class, CatalogedValueParameters.TEXT_FORMATTING_CODE);
     }
 
     /**
@@ -440,8 +440,8 @@ public interface Parameter {
      *
      * @return A {@link Parameter.Value.Builder}
      */
-    static Parameter.Value.Builder<Text> formattingCodeTextOfRemainingElements() {
-        return Parameter.builder(Text.class, CatalogedValueParameters.TEXT_FORMATTING_CODE_ALL);
+    static Parameter.Value.Builder<Component> formattingCodeTextOfRemainingElements() {
+        return Parameter.builder(Component.class, CatalogedValueParameters.TEXT_FORMATTING_CODE_ALL);
     }
 
     /**
@@ -482,8 +482,8 @@ public interface Parameter {
      *
      * @return A {@link Parameter.Value.Builder}
      */
-    static Parameter.Value.Builder<Text> jsonText() {
-        return Parameter.builder(Text.class, CatalogedValueParameters.TEXT_JSON);
+    static Parameter.Value.Builder<Component> jsonText() {
+        return Parameter.builder(Component.class, CatalogedValueParameters.TEXT_JSON);
     }
 
     /**
@@ -492,8 +492,8 @@ public interface Parameter {
      *
      * @return A {@link Parameter.Value.Builder}
      */
-    static Parameter.Value.Builder<Text> jsonTextOfRemainingElements() {
-        return Parameter.builder(Text.class, CatalogedValueParameters.TEXT_JSON_ALL);
+    static Parameter.Value.Builder<Component> jsonTextOfRemainingElements() {
+        return Parameter.builder(Component.class, CatalogedValueParameters.TEXT_JSON_ALL);
     }
 
     /**
@@ -848,7 +848,7 @@ public interface Parameter {
          *
          * @return The key.
          */
-        Key<? super T> getKey();
+        Key<T> getKey();
 
         /**
          * The {@link ValueParser}s to use when parsing an argument. They will be
@@ -929,7 +929,7 @@ public interface Parameter {
          * @param cause The {@link CommandCause} that requested the usage
          * @return The usage
          */
-        Text getUsage(CommandCause cause);
+        Component getUsage(CommandCause cause);
 
         /**
          * If set, this parameter will repeat until the argument string has

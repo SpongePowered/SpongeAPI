@@ -33,6 +33,7 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Stream;
 
 /**
  * Represents a cache of {@link GameProfile}s.
@@ -230,6 +231,13 @@ public interface GameProfileCache {
     Optional<GameProfile> fillProfile(GameProfile profile, boolean signed);
 
     /**
+     * Gets a {@link Stream} of all cached {@link GameProfile}s.
+     *
+     * @return A {@link Stream} of cached {@link GameProfile}s
+     */
+    Stream<GameProfile> streamProfiles();
+
+    /**
      * Gets a collection of all cached {@link GameProfile}s.
      *
      * @return A {@link Collection} of cached {@link GameProfile}s
@@ -237,14 +245,30 @@ public interface GameProfileCache {
     Collection<GameProfile> getProfiles();
 
     /**
+     * Returns a stream of matching cached {@link GameProfile}s whose last
+     * known names start with the given string (case-insensitive).
+     *
+     * <p>This stream may also return profiles of players who never played
+     * on the server. If you would prefer only known profiles that also have
+     * {@link User} data, {@link UserManager#streamOfMatches(String)} should
+     * be used instead.</p>
+     *
+     * <p>This method only searches the local cache, so the data may not be up
+     * to date.</p>
+     *
+     * @param name The name
+     * @return A {@link Stream} of matching {@link GameProfile}s
+     */
+    Stream<GameProfile> streamOfMatches(String name);
+
+    /**
      * Returns a collection of matching cached {@link GameProfile}s whose last
      * known names start with the given string (case-insensitive).
      *
      * <p>This collection may also contain profiles of players who never played
-     * on the server!</p>
-     *
-     * <p>Use {@link UserManager#match(String)} for a collection that
-     * only contains {@link GameProfile}s with attached {@link User} data.</p>
+     * on the server. If you would prefer a collection or stream of known
+     * profiles that also have {@link User} data,
+     * {@link UserManager#streamOfMatches(String)} should be used instead.</p>
      *
      * <p>This method only searches the local cache, so the data may not be up
      * to date.</p>

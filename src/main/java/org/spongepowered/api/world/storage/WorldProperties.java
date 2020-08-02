@@ -24,8 +24,11 @@
  */
 package org.spongepowered.api.world.storage;
 
+import net.kyori.adventure.bossbar.BossBar;
+import net.kyori.adventure.key.KeyedValue;
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.boss.BossBar;
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.trader.WanderingTrader;
@@ -38,6 +41,7 @@ import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.dimension.DimensionType;
 import org.spongepowered.api.world.gamerule.GameRuleHolder;
 import org.spongepowered.api.world.gen.GeneratorType;
+import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.teleport.PortalAgentType;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 import org.spongepowered.math.vector.Vector3i;
@@ -54,18 +58,39 @@ import java.util.function.Supplier;
 public interface WorldProperties extends WeatherUniverse, Identifiable, GameRuleHolder {
 
     /**
+     * Gets the {@link ServerWorld} that correlates to this properties, if available.
+     *
+     * <p>The rules are that the world must be loaded and it's {@link World#getUniqueId()} matches
+     * this properties' {@link #getUniqueId()}. Lastly, the properties of that world and this properties
+     * must be reference equal.</p>
+     * @return The world or {@link Optional#empty()} otherwise
+     */
+    default Optional<ServerWorld> getWorld() {
+        final Optional<ServerWorld> potentialWorld = Sponge.getServer().getWorldManager().getWorld(this.getKey());
+        if (!potentialWorld.isPresent()) {
+            return Optional.empty();
+        }
+
+        final ServerWorld serverWorld = potentialWorld.get();
+        if (serverWorld.getProperties() == this) {
+            return Optional.of(serverWorld);
+        }
+
+        return Optional.empty();
+    }
+
+    /**
+     * Gets the {@link ResourceKey key}.
+     * @return The key
+     */
+    ResourceKey getKey();
+
+    /**
      * Gets if this has been initialized.
      *
      * @return Is initialized
      */
     boolean isInitialized();
-
-    /**
-     * Gets the directory name.
-     *
-     * @return The directory name
-     */
-    String getDirectoryName();
 
     /**
      * Gets whether this is enabled.
@@ -429,14 +454,14 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
      *
      * @return The boss bars
      */
-    List<BossBar> getCustomBossBars();
+    List<KeyedValue<BossBar>> getCustomBossBars();
 
     /**
      * Sets the custom {@link BossBar bars}.
      *
      * @param bars The boss bars
      */
-    void setCustomBossBars(@Nullable List<BossBar> bars);
+    void setCustomBossBars(@Nullable List<KeyedValue<BossBar>> bars);
 
     /**
      * Gets the view distance (in chunks).

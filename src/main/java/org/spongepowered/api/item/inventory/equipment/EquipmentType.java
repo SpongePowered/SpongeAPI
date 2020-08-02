@@ -34,14 +34,9 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 public interface EquipmentType extends CatalogType {
 
     /**
-     * Gets whether the given {@link EquipmentType}
-     * is included in this one.
+     * Gets the {@link EquipmentGroup group} this equipment falls under.
      *
-     * <p>E.g. a {@link EquipmentTypes#BOOTS} is included
-     * in {@link EquipmentTypes#WORN} and {@link EquipmentTypes#ANY}.</p>
-     *
-     * @param other The other equipment type
-     * @return Whether the other equipment type is included in this one
+     * @return The group
      */
-    boolean includes(EquipmentType other);
+    EquipmentGroup getGroup();
 }

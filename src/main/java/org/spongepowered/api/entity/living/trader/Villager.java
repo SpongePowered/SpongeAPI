@@ -25,7 +25,8 @@
 package org.spongepowered.api.entity.living.trader;
 
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.type.Profession;
+import org.spongepowered.api.data.type.ProfessionType;
+import org.spongepowered.api.data.type.ProfessionTypes;
 import org.spongepowered.api.data.type.VillagerType;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Ageable;
@@ -45,12 +46,12 @@ public interface Villager extends Trader, Ageable {
     }
 
     /**
-     * {@link Keys#PROFESSION}
+     * {@link Keys#PROFESSION_TYPE}
      * @return The profession of this villager
-     * @see org.spongepowered.api.data.type.Professions
+     * @see ProfessionTypes
      */
-    default Value.Mutable<Profession> profession() {
-        return this.requireValue(Keys.PROFESSION).asMutable();
+    default Value.Mutable<ProfessionType> profession() {
+        return this.requireValue(Keys.PROFESSION_TYPE).asMutable();
     }
 
     /**

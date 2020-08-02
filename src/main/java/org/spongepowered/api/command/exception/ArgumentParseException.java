@@ -25,8 +25,9 @@
 package org.spongepowered.api.command.exception;
 
 import com.google.common.base.Strings;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
 import org.spongepowered.api.command.parameter.Parameter;
-import org.spongepowered.api.text.Text;
 
 /**
  * Exception thrown when a {@link Parameter} cannot parse an argument.
@@ -44,7 +45,7 @@ public class ArgumentParseException extends CommandException {
      * @param source The source string being parsed
      * @param position The current position in the source string
      */
-    public ArgumentParseException(final Text message, final String source, final int position) {
+    public ArgumentParseException(final Component message, final String source, final int position) {
         super(message, true);
         this.source = source;
         this.position = position;
@@ -58,25 +59,29 @@ public class ArgumentParseException extends CommandException {
      * @param source The source string being parsed
      * @param position The current position in the source string
      */
-    public ArgumentParseException(final Text message, final Throwable cause, final String source, final int position) {
+    public ArgumentParseException(final Component message, final Throwable cause, final String source, final int position) {
         super(message, cause, true);
         this.source = source;
         this.position = position;
     }
 
     @Override
-    public Text getText() {
-        final Text superText = super.getText();
+    public Component getText() {
+        final Component superText = super.getText();
         if (this.source == null || this.source.isEmpty()) {
             return super.getText();
         } else if (superText == null) {
-            return Text.of(getAnnotatedPosition());
+            return TextComponent.of(this.getAnnotatedPosition());
         } else {
-            return Text.of(superText, Text.newLine(), getAnnotatedPosition());
+            return TextComponent.builder()
+              .append(superText)
+              .append(TextComponent.newline())
+              .append(this.getAnnotatedPosition())
+              .build();
         }
     }
 
-    public Text getSuperText() {
+    public Component getSuperText() {
         return super.getText();
     }
 

@@ -28,7 +28,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Multimap;
-import org.spongepowered.api.data.type.Profession;
+import org.spongepowered.api.data.type.ProfessionType;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -38,24 +38,24 @@ import java.util.Random;
 public interface VillagerRegistry {
 
     /**
-     * Gets an immutable {@link Multimap} of the {@link Profession}'s registered
+     * Gets an immutable {@link Multimap} of the {@link ProfessionType}'s registered
      * {code level} to {@link TradeOfferListMutator}s. Note that the map is
      * immutable and cannot be modified directly.
      *
      * @param profession The profession
      * @return The immutable multimap
      */
-    Multimap<Integer, TradeOfferListMutator> getTradeOfferLevelMap(Profession profession);
+    Multimap<Integer, TradeOfferListMutator> getTradeOfferLevelMap(ProfessionType profession);
 
     /**
      * Gets the available {@link TradeOfferListMutator}s for the desired
-     * {@link Profession} and {@code level}.
+     * {@link ProfessionType} and {@code level}.
      *
      * @param profession The profession
      * @param level The level
      * @return The collection of trade offer mutators, if available
      */
-    default Collection<TradeOfferListMutator> getMutatorsForProfession(Profession profession, int level) {
+    default Collection<TradeOfferListMutator> getMutatorsForProfession(ProfessionType profession, int level) {
         final Multimap<Integer, TradeOfferListMutator> map = getTradeOfferLevelMap(checkNotNull(profession, "Profession cannot be null!"));
         final Collection<TradeOfferListMutator> mutators = map.get(level);
         return ImmutableList.copyOf(mutators);
@@ -63,7 +63,7 @@ public interface VillagerRegistry {
 
     /**
      * Adds the provided {@link TradeOfferListMutator} for the given
-     * {@link Profession} and {@code level}. Note that the level
+     * {@link ProfessionType} and {@code level}. Note that the level
      * must be at least 1. There can be multiple {@link TradeOfferListMutator}s
      * per level.
      *
@@ -72,11 +72,11 @@ public interface VillagerRegistry {
      * @param mutator The mutator to register
      * @return This registry, for chaining
      */
-    VillagerRegistry addMutator(Profession profession, int level, TradeOfferListMutator mutator);
+    VillagerRegistry addMutator(ProfessionType profession, int level, TradeOfferListMutator mutator);
 
     /**
      * Adds the provided {@link TradeOfferListMutator}s for the given
-     * {@link Profession} and {@code level}. Note that the level
+     * {@link ProfessionType} and {@code level}. Note that the level
      * must be at least 1. There can be multiple {@link TradeOfferListMutator}s
      * per level.
      *
@@ -86,11 +86,11 @@ public interface VillagerRegistry {
      * @param mutators The additional mutators
      * @return This registry, for chaining
      */
-    VillagerRegistry addMutators(Profession profession, int level, TradeOfferListMutator mutator, TradeOfferListMutator... mutators);
+    VillagerRegistry addMutators(ProfessionType profession, int level, TradeOfferListMutator mutator, TradeOfferListMutator... mutators);
 
     /**
      * Sets the provided {@link TradeOfferListMutator} for the given
-     * {@link Profession} and {@code level}. Note that the level
+     * {@link ProfessionType} and {@code level}. Note that the level
      * must be at least 1. There can be multiple {@link TradeOfferListMutator}s
      * per level. Any previously provided {@link TradeOfferListMutator}s will
      * be erased.
@@ -100,11 +100,11 @@ public interface VillagerRegistry {
      * @param mutators The mutators to register
      * @return This registry, for chaining
      */
-    VillagerRegistry setMutators(Profession profession, int level, List<TradeOfferListMutator> mutators);
+    VillagerRegistry setMutators(ProfessionType profession, int level, List<TradeOfferListMutator> mutators);
 
     /**
      * Sets the provided {@link TradeOfferListMutator} for the given
-     * {@link Profession} and {@code level}. Note that the level
+     * {@link ProfessionType} and {@code level}. Note that the level
      * must be at least 1. There can be multiple {@link TradeOfferListMutator}s
      * per level. Any previously provided {@link TradeOfferListMutator}s will
      * be erased.
@@ -113,11 +113,11 @@ public interface VillagerRegistry {
      * @param mutatorMap The mutator map
      * @return This registry, for chaining
      */
-    VillagerRegistry setMutators(Profession profession, Multimap<Integer, TradeOfferListMutator> mutatorMap);
+    VillagerRegistry setMutators(ProfessionType profession, Multimap<Integer, TradeOfferListMutator> mutatorMap);
 
     /**
      * Generates a new {@link List} of {@link TradeOffer}s based on the
-     * provided {@link Profession}, {@code level}, and {@link Random}.
+     * provided {@link ProfessionType}, {@code level}, and {@link Random}.
      *
      * @param merchant The merchant
      * @param profession The profession
@@ -125,7 +125,7 @@ public interface VillagerRegistry {
      * @param random The random
      * @return The generated list of trade offers
      */
-    default Collection<TradeOffer> generateTradeOffers(Merchant merchant, Profession profession, int level, Random random) {
+    default Collection<TradeOffer> generateTradeOffers(Merchant merchant, ProfessionType profession, int level, Random random) {
         checkNotNull(random, "Random cannot be null!");
         List<TradeOffer> generatedList = new ArrayList<>();
         this.getMutatorsForProfession(profession, level)
@@ -138,7 +138,7 @@ public interface VillagerRegistry {
      * potentially new {@link TradeOffer}s based on the
      * {@link TradeOfferListMutator}s and {@code level}. If there are no
      * {@link TradeOfferListMutator}s registered for the desired level
-     * and {@link Profession}, the list remains unmodified.
+     * and {@link ProfessionType}, the list remains unmodified.
      *
      * @param merchant The merchant
      * @param currentOffers The current offers
@@ -147,7 +147,7 @@ public interface VillagerRegistry {
      * @param random The random to use
      * @return The list of offers modified
      */
-    default List<TradeOffer> populateOffers(Merchant merchant, List<TradeOffer> currentOffers, Profession profession, int level, Random random) {
+    default List<TradeOffer> populateOffers(Merchant merchant, List<TradeOffer> currentOffers, ProfessionType profession, int level, Random random) {
         this.getMutatorsForProfession(profession, level)
                 .forEach(mutator -> mutator.accept(merchant, currentOffers, random));
         return currentOffers;

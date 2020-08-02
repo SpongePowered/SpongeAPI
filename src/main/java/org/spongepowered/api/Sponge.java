@@ -58,7 +58,7 @@ public final class Sponge {
      * @return The game instance
      */
     public static Game getGame() {
-        checkState(game != null, "Sponge has not been initialized!");
+        checkState(Sponge.game != null, "Sponge has not been initialized!");
         return Sponge.game;
     }
 

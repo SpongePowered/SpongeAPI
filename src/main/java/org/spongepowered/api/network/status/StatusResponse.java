@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.network.status;
 
+import net.kyori.adventure.text.Component;
 import org.spongepowered.api.MinecraftVersion;
 import org.spongepowered.api.event.server.ClientPingServerEvent;
 import org.spongepowered.api.profile.GameProfile;
-import org.spongepowered.api.text.Text;
 
 import java.util.List;
 import java.util.Optional;
@@ -49,7 +49,7 @@ public interface StatusResponse {
      *
      * @return The description to display
      */
-    Text getDescription();
+    Component getDescription();
 
     /**
      * Gets player count and the list of players currently playing on the

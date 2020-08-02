@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.command.registrar;
 
+import com.google.common.reflect.TypeToken;
+import net.kyori.adventure.text.Component;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.command.CommandResult;
@@ -34,7 +36,6 @@ import org.spongepowered.api.command.manager.CommandMapping;
 import org.spongepowered.api.command.registrar.tree.CommandTreeBuilder;
 import org.spongepowered.api.event.cause.EventContextKeys;
 import org.spongepowered.api.event.lifecycle.RegisterCatalogEvent;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.plugin.PluginContainer;
 
 import java.util.List;
@@ -51,10 +52,10 @@ import java.util.function.Predicate;
  * CommandRegistrar, PluginContainer, CommandTreeBuilder.Basic, Predicate,
  * String, String...)} to indicate that they wish to take control of certain
  * aliases. Beyond this call, the {@link CommandRegistrar} will only need to
- * retain the link between the primary alias and the command to execute, as the
- * {@link CommandManager} will always supply the primary alias of the command to
- * invoke at runtime, regardless of the aliases that were registered and/or
- * invoked by the invoker of the command.</p>
+ * retain the link between the primary alias and its {@link CommandMapping} to
+ * execute, as the {@link CommandManager} will always supply the mapping of the
+ * command being invoked at runtime. The alias that was matched will also be
+ * supplied.</p>
  *
  * <p>For command that wishes to investigate the command string that was
  * executed, they may investigate the context in
@@ -76,6 +77,13 @@ import java.util.function.Predicate;
  * @param <T> The type of command interface this handles.
  */
 public interface CommandRegistrar<T> extends CatalogType {
+
+    /**
+     * Gets the type of command that this registrar handles.
+     *
+     * @return The type of command this registrar handles.
+     */
+    TypeToken<T> handledType();
 
     /**
      * Registers a command.
@@ -102,8 +110,8 @@ public interface CommandRegistrar<T> extends CatalogType {
      *
      * @param cause The {@link CommandCause} that caused the command to be
      *              executed
-     * @param command The primary alias that is associated with the command to
-     *                be executed
+     * @param mapping The {@link CommandMapping} for the command being invoked
+     * @param command The alias that was used to invoke the command
      * @param arguments The arguments of the command (that is, the raw string
      *                  with the command alias removed, so if
      *                  {@code /sponge test test2} is invoked, arguments will
@@ -111,37 +119,37 @@ public interface CommandRegistrar<T> extends CatalogType {
      * @return The {@link CommandResult}
      * @throws CommandException if there is an error executing the command
      */
-    CommandResult process(CommandCause cause, String command, String arguments) throws CommandException;
+    CommandResult process(CommandCause cause, CommandMapping mapping, String command, String arguments) throws CommandException;
 
     /**
      * Provides a list of suggestions associated with the provided argument
      * string.
      *
-     * <p>See {@link #process(CommandCause, String, String)} for any
+     * <p>See {@link #process(CommandCause, CommandMapping, String, String)} for any
      * implementation notes.</p>
      *
      * @param cause The {@link CommandCause} that caused the command to be
      *              executed
-     * @param command The primary alias that is associated with the command to
-     *                be executed
+     * @param mapping The {@link CommandMapping} for the command being invoked
+     * @param command The alias that was used to invoke the command
      * @param arguments The arguments of the command (that is, the raw string
      *                  with the command alias removed, so if
      *                  {@code /sponge test test2} is invoked, arguments will
      *                  contain {@code test test2}.)
      * @return The suggestions
      */
-    List<String> suggestions(CommandCause cause, String command, String arguments) throws CommandException;
+    List<String> suggestions(CommandCause cause, CommandMapping mapping, String command, String arguments) throws CommandException;
 
     /**
      * Returns help text for the invoked command.
      *
      * @param cause The {@link CommandCause} that caused the command to be
      *              executed
-     * @param command The primary alias that is associated with the command to
-     *                be executed
+     * @param mapping The {@link CommandMapping} that is associated with the
+     *                command
      * @return The help, if any
      */
-    Optional<Text> help(CommandCause cause, String command);
+    Optional<Component> help(CommandCause cause, CommandMapping mapping);
 
     /**
      * Called when the {@link CommandManager} is clearing all of the

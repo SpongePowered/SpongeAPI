@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.command.manager;
 
+import net.kyori.adventure.audience.Audience;
 import org.spongepowered.api.command.Command;
 import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.command.CommandResult;
@@ -31,13 +32,12 @@ import org.spongepowered.api.command.exception.CommandException;
 import org.spongepowered.api.command.registrar.CommandRegistrar;
 import org.spongepowered.api.command.registrar.tree.CommandTreeBuilder;
 import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageChannel;
-import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.plugin.PluginContainer;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 
 /**
@@ -58,30 +58,30 @@ public interface CommandManager {
     /**
      * Executes a command based on the provided arguments, with a provided
      * object that is both a {@link Subject} for permission checks and a
-     * {@link MessageReceiver} to return command messages to.
+     * {@link Audience} to return command messages to.
      *
-     * @param subjectReceiver The {@link Subject} &amp; {@link MessageReceiver}
+     * @param subjectReceiver The {@link Subject} &amp; {@link Audience}
      * @param arguments The arguments to parse and execute
      * @param <T> The type of receiver
      * @return The {@link CommandResult}
      * @throws CommandException if something goes wrong during parsing or
      *                          execution
      */
-    <T extends Subject & MessageReceiver> CommandResult process(T subjectReceiver, String arguments) throws CommandException;
+    <T extends Subject & Audience> CommandResult process(T subjectReceiver, String arguments) throws CommandException;
 
     /**
      * Executes a command based on the provided arguments, with a provided
      * {@link Subject} for permission checks and a provided
-     * {@link MessageChannel} to return command messages to.
+     * {@link Audience} to return command messages to.
      *
      * @param subject The {@link Subject} for permission checks
-     * @param channel The {@link MessageChannel} to return messages to
+     * @param channel The {@link Audience} to return messages to
      * @param arguments The arguments of the command
      * @return The {@link CommandResult}
      * @throws CommandException if something goes wrong during parsing or
      *                          execution
      */
-    CommandResult process(Subject subject, MessageChannel channel, String arguments) throws CommandException;
+    CommandResult process(Subject subject, Audience channel, String arguments) throws CommandException;
 
     /**
      * Suggests possible completions based on the input argument string.
@@ -94,26 +94,33 @@ public interface CommandManager {
     /**
      * Suggests possible completions based on the input argument string,
      * with a provided object that is both a {@link Subject} for permission
-     * checks and a {@link MessageReceiver} to return command messages to.
+     * checks and a {@link Audience} to return command messages to.
      *
-     * @param subjectReceiver The {@link Subject} &amp; {@link MessageReceiver}
+     * @param subjectReceiver The {@link Subject} &amp; {@link Audience}
      * @param arguments The arguments
      * @param <T> The type of receiver
      * @return The completions
      */
-    <T extends Subject & MessageReceiver> List<String> suggest(T subjectReceiver, String arguments);
+    <T extends Subject & Audience> List<String> suggest(T subjectReceiver, String arguments);
 
     /**
      * Suggests possible completions based on the input argument string,
      * with a provided a {@link Subject} for permission checks and a
-     * {@link MessageChannel} to return command messages to.
+     * {@link Audience} to return command messages to.
      *
      * @param subject The {@link Subject}
-     * @param receiver The {@link MessageChannel}
+     * @param receiver The {@link Audience}
      * @param arguments The arguments
      * @return The completions
      */
-    List<String> suggest(Subject subject, MessageChannel receiver, String arguments);
+    List<String> suggest(Subject subject, Audience receiver, String arguments);
+
+    /**
+     * Gets all the command aliases known to this command manager.
+     *
+     * @return The known aliases
+     */
+    Set<String> getKnownAliases();
 
     /**
      * Registers a set of command aliases with this manager.
@@ -156,13 +163,6 @@ public interface CommandManager {
             String primaryAlias,
             String... secondaryAliases)
             throws CommandFailedRegistrationException;
-
-    /**
-     * Gets the standard Sponge {@link CommandRegistrar}.
-     *
-     * @return The {@link CommandRegistrar}
-     */
-    CommandRegistrar<Command> getStandardRegistrar();
 
     /**
      * Gets a {@link Collection} of {@link PluginContainer}s with commands

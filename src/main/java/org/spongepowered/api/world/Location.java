@@ -156,13 +156,6 @@ public interface Location<W extends World<W>> {
     boolean inWorld(W world);
 
     /**
-     * Gets a {@link LocatableBlock}.
-     *
-     * @return The locatable block of this location.
-     */
-    LocatableBlock asLocatableBlock();
-
-    /**
      * Create a new instance with a new World.
      *
      * @param world The new world
@@ -319,7 +312,7 @@ public interface Location<W extends World<W>> {
      *
      * @return The associated block entity, if available
      */
-    Optional<BlockEntity> getBlockEntity();
+    Optional<? extends BlockEntity> getBlockEntity();
 
     /**
      * Replace the block at this location with a new state.

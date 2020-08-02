@@ -24,56 +24,24 @@
  */
 package org.spongepowered.api.world.server;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.event.lifecycle.LifecycleEvent;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.world.WorldArchetype;
 import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 public interface WorldManager {
 
     /**
-     * Gets the directory where the game will store save files.
+     * Gets a loaded {@link ServerWorld} by it's {@link ResourceKey key}.
      *
-     * <p>This location differs based on the implementation and is therefore implementation-specific.</p>
-     *
-     * <p>To elaborate, this is how it is handled in Minecraft based on side:</p>
-     *
-     * <ul>
-     *     <li>Client
-     *      <ul><li>This directory will point to {@link Game#getGameDirectory()}.resolve("saves").resolve(currentSaveName)</li></ul>
-     *     <li>Server
-     *      <ul><li>This directory will be equivalent to {@link Game#getGameDirectory()}.resolve(level-name).</li></ul>
-     * </ul>
-     *
-     * <p>Consult your specific implementation if they support placing this elsewhere.</p>
-     *
-     * @return The saves directory
-     */
-    Path getSavesDirectory();
-
-    /**
-     * Gets a loaded {@link ServerWorld} by its unique id ({@link UUID}), if it
-     * exists.
-     *
-     * @param uniqueId UUID to lookup
+     * @param key The key
      * @return The world, if found
      */
-    Optional<ServerWorld> getWorld(UUID uniqueId);
-
-    /**
-     * Gets a loaded {@link ServerWorld} by it's directory name, if it exists.
-     *
-     * @param directoryName Name to lookup
-     * @return The world, if found
-     */
-    Optional<ServerWorld> getWorld(String directoryName);
+    Optional<ServerWorld> getWorld(ResourceKey key);
 
     /**
      * Gets all currently loaded {@link ServerWorld}s.
@@ -83,11 +51,12 @@ public interface WorldManager {
     Collection<ServerWorld> getWorlds();
 
     /**
-     * Gets the default {@link WorldProperties} name that the {@link WorldManager} creates and loads.
+     * Gets the default {@link WorldProperties} {@link ResourceKey key} the {@link WorldManager} creates and loads
+     * during the lifecycle
      *
-     * @return The name
+     * @return The key
      */
-    String getDefaultPropertiesName();
+    ResourceKey getDefaultPropertiesKey();
 
     /**
      * Gets the default loaded {@link WorldProperties} or {@link Optional#empty()} if none has been loaded.
@@ -97,27 +66,6 @@ public interface WorldManager {
      * @return The world properties
      */
     Optional<WorldProperties> getDefaultProperties();
-
-    /**
-     * Submits a registration, by directory name, for a world to be known to this {@link WorldManager} and an {@link WorldArchetype}
-     * that will be used to load it.
-     *
-     * <p>
-     *     Creating a {@link WorldProperties} or loading a {@link ServerWorld} will do this on the plugin developer's behalf but
-     *     if the desire is present for the server to handle the loading in a more natural way during a server lifecycle, assuming the implementation
-     *     behaves in that manner, then this is recommended to be used in the appropriate {@link LifecycleEvent event}.
-     * </p>
-     *
-     * <p>
-     *     The result of this method is left up to the implementation to define. In the vanilla implementation of this API, a false
-     *     result means the registration already existed.
-     * </p>
-     * 
-     * @param directoryName The directory name
-     * @param archetype The archetype
-     * @return True if successful, false otherwise
-     */
-    boolean submitRegistration(String directoryName, WorldArchetype archetype);
 
     /**
      * Creates a new {@link WorldProperties} from the given
@@ -132,20 +80,20 @@ public interface WorldManager {
      * <ul> <li>{@link #loadWorld(WorldProperties)}</li> <li>{@link #saveProperties(WorldProperties)}</li> </ul>
      * </p>
      *
-     * @param directoryName The directory name
+     * @param key The key
      * @param archetype The archetype for creation
      * @return The new world properties, if the creation was successful
      */
-    CompletableFuture<Optional<WorldProperties>> createProperties(String directoryName, WorldArchetype archetype);
+    CompletableFuture<Optional<WorldProperties>> createProperties(ResourceKey key, WorldArchetype archetype);
 
     /**
-     * Loads a {@link ServerWorld} from the default storage container. If a world with
+     * Loads a {@link ServerWorld} specified by a {@link ResourceKey key}. If a world with
      * the given name is already loaded then it is returned instead.
      *
-     * @param directoryName The name to lookup
+     * @param key The key
      * @return The world, if found
      */
-    CompletableFuture<Optional<ServerWorld>> loadWorld(String directoryName);
+    CompletableFuture<Optional<ServerWorld>> loadWorld(ResourceKey key);
 
     /**
      * Loads a {@link ServerWorld} from the default storage container.
@@ -173,26 +121,15 @@ public interface WorldManager {
     CompletableFuture<Boolean> unloadWorld(ServerWorld world);
 
     /**
-     * Gets the {@link WorldProperties} of a world. If a world with the given
+     * Gets the {@link WorldProperties} by it's {@link ResourceKey key}. If a world with the given
      * name is loaded then this is equivalent to calling {@link ServerWorld#getProperties()}.
      *
      * However, if no loaded world is found then an attempt will be made to match to a known unloaded world.
      *
-     * @param directoryName The name to lookup
+     * @param key The key
      * @return The world properties, if found
      */
-    Optional<WorldProperties> getProperties(String directoryName);
-
-    /**
-     * Gets the {@link WorldProperties} of a world. If a world with the given
-     * UUID is loaded then this is equivalent to calling
-     * {@link ServerWorld#getProperties()}. However, if no loaded world is found then
-     * an attempt will be made to match to a known unloaded world.
-     *
-     * @param uniqueId The UUID to lookup
-     * @return The world properties, if found
-     */
-    Optional<WorldProperties> getProperties(UUID uniqueId);
+    Optional<WorldProperties> getProperties(ResourceKey key);
 
     /**
      * Gets the properties of all unloaded worlds.
@@ -236,12 +173,12 @@ public interface WorldManager {
      * <li>World saving is enabled.</li>
      * </ul>
      *
-     * @param directoryName The directory name
-     * @param copyName The copies' name
+     * @param key The key
+     * @param copyValue The copied value for the new properties
      * @return An {@link Optional} containing the properties of the new world
      *         instance, if the copy was successful
      */
-    CompletableFuture<Optional<WorldProperties>> copyWorld(String directoryName, String copyName);
+    CompletableFuture<Optional<WorldProperties>> copyWorld(ResourceKey key, String copyValue);
 
     /**
      * Renames a {@link WorldProperties}.
@@ -250,18 +187,18 @@ public interface WorldManager {
      * the attempt is successful, an attempt will be made to load it. It is left up to the implementation to determine
      * the conditions for a rename to be successful.</p>
      *
-     * @param oldDirectoryName The old directory name
-     * @param newDirectoryName The new directory name
+     * @param key The key
+     * @param newValue The new value
      * @return An {@link Optional} containing the new {@link WorldProperties}
      *         if the rename was successful
      */
-    CompletableFuture<Optional<WorldProperties>> renameWorld(String oldDirectoryName, String newDirectoryName);
+    CompletableFuture<Optional<WorldProperties>> renameWorld(ResourceKey key, String newValue);
 
     /**
-     * Deletes the provided world's files asynchronously from the disk.
+     * Deletes the {@link WorldProperties} by it's {@link ResourceKey key}.
      *
-     * @param directoryName The directory name to delete
+     * @param key The key
      * @return True if the deletion was successful.
      */
-    CompletableFuture<Boolean> deleteWorld(String directoryName);
+    CompletableFuture<Boolean> deleteWorld(ResourceKey key);
 }

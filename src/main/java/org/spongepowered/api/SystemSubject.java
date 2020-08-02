@@ -24,8 +24,9 @@
  */
 package org.spongepowered.api;
 
+import net.kyori.adventure.audience.Audience;
 import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageReceiver;
+import org.spongepowered.api.util.locale.LocaleSource;
 
 /**
  * Represents the "super user" of the game.
@@ -34,10 +35,10 @@ import org.spongepowered.api.text.channel.MessageReceiver;
  * represents server actions. This subject may represent an interaction
  * through a console.</p>
  *
- * <p>This object is also a {@link MessageReceiver}. Any message sent here
+ * <p>This object is also a {@link LocaleSource}. Any message sent here
  * should be directed to a system visible location, such as a log or a
  * console.</p>
  */
-public interface SystemSubject extends Subject, MessageReceiver {
+public interface SystemSubject extends Subject, Audience {
 
 }
