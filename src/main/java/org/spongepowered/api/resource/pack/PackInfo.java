@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.resource.pack;
 
+import net.kyori.adventure.text.Component;
 import org.spongepowered.api.resource.meta.PackMeta;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Nameable;
 
 /**
@@ -49,7 +49,7 @@ public interface PackInfo extends Nameable {
      *
      * @return The title
      */
-    Text getTitle();
+    Component getTitle();
 
     /**
      * Gets the description of the pack.
@@ -57,7 +57,7 @@ public interface PackInfo extends Nameable {
      * @return The description
      * @see PackMeta#getDescription()
      */
-    Text getDescription();
+    Component getDescription();
 
     /**
      * Gets the version compatibility of the pack.
