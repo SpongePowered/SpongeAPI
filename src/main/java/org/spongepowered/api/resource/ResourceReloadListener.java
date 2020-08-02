@@ -25,6 +25,7 @@
 package org.spongepowered.api.resource;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.persistence.DataFormat;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.event.resource.RegisterResourceReloadListenerEvent;
 
@@ -123,11 +124,12 @@ public interface ResourceReloadListener {
          * Creates a data tree reload listener that loads every json file in a
          * folder from each namespace.
          *
-         * @param path     The path of the folder to load
-         * @param listener The listener implementation
+         * @param pathPrefix The path of the folder to load
+         * @param format     The data format of the files
+         * @param listener   The listener implementation
          * @return The listener
          */
-        ResourceReloadListener dataTree(String path, DataTreeReloadListener listener);
+        ResourceReloadListener dataTree(String pathPrefix, DataFormat format, DataTreeReloadListener listener);
     }
 
     /**

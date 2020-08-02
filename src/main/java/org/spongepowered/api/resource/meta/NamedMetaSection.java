@@ -24,31 +24,9 @@
  */
 package org.spongepowered.api.resource.meta;
 
-import org.spongepowered.api.data.persistence.DataQuery;
-import org.spongepowered.api.data.persistence.DataView;
+import org.spongepowered.api.NamedCatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-/**
- * A meta section is a well-known resource meta object. Meta is typically
- * stored in a file with the resource and {@code .mcmeta} appended to the name.
- * The file contains a json object with each key associated with a section.
- *
- * @param <T> The object type
- */
-public interface MetaSection<T> {
-
-    /**
-     * Gets the query of the key containing the meta section.
-     *
-     * @return The query of the key
-     */
-    DataQuery getQuery();
-
-    /**
-     * Deserializes the metadata section to an object representing its data.
-     *
-     * @param data The data result of the query
-     * @return The object representation
-     * @throws MetaParseException If the metadata could not be parsed
-     */
-    T deserialize(DataView data) throws MetaParseException;
+@CatalogedBy(NamedMetaSections.class)
+public interface NamedMetaSection<T> extends MetaSection<T>, NamedCatalogType {
 }

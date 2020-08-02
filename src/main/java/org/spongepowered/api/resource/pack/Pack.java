@@ -126,9 +126,10 @@ public interface Pack extends Nameable, Closeable {
      *
      * @param section The name metadata section type
      * @return The metadata if it exists
+     * @throws IOException        If the data could not be read
      * @throws MetaParseException If the metadata could not be parsed
      */
-    <T> Optional<T> getMetadata(MetaSection<T> section) throws MetaParseException;
+    <T> Optional<T> getMetadata(MetaSection<T> section) throws IOException;
 
     interface Factory {
 

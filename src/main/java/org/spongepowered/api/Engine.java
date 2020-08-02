@@ -86,6 +86,8 @@ public interface Engine {
      * Rediscovers {@link Pack}s using all registered {@link PackDiscoverer}s and
      * reloads all {@link Resource}s by running all registered {@link ResourceReloadListener}s.
      *
+     * <p>On the server, the future will always be completed.</p>
+     *
      * @return A future that completes when reloading is complete
      */
     CompletableFuture<Void> reloadResources();

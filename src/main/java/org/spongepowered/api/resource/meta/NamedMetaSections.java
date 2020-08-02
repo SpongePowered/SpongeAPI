@@ -28,13 +28,13 @@ import org.spongepowered.api.Sponge;
 
 import java.util.function.Supplier;
 
-public class MetaSections {
+public class NamedMetaSections {
 
     // SORTFIELDS:ON
 
-    private static final Supplier<MetaSection<PackMeta>> PACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MetaSection.class, "pack/pack");
+    private static final Supplier<NamedMetaSection<PackMeta>> PACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(NamedMetaSection.class, "pack/pack");
 
     // SORTFIELDS:OFF
 
-    private MetaSections() {}
+    private NamedMetaSections() {}
 }

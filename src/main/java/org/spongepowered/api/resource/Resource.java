@@ -28,7 +28,7 @@ import org.spongepowered.api.data.persistence.DataFormat;
 import org.spongepowered.api.data.persistence.DataFormats;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.resource.meta.MetaSection;
-import org.spongepowered.api.resource.meta.MetaSections;
+import org.spongepowered.api.resource.meta.NamedMetaSections;
 import org.spongepowered.api.resource.pack.PackInfo;
 import org.spongepowered.api.resource.pack.PackList;
 
@@ -87,7 +87,7 @@ public interface Resource extends Closeable {
      *
      * @param section The section serializer
      * @return The metadata or empty if it doesn't exist
-     * @see MetaSections
+     * @see NamedMetaSections
      */
     <T> Optional<T> getMetadata(MetaSection<T> section);
 
