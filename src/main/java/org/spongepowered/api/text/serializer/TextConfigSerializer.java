@@ -68,6 +68,18 @@ public class TextConfigSerializer extends AbstractDataBuilder<Text> implements T
     public Text deserialize(TypeToken<?> type, ConfigurationNode value) throws ObjectMappingException {
         StringWriter writer = new StringWriter();
 
+        // We incorrectly serialized text as its JSON contents for a bit.
+        // Let's make sure we can still read that for anyone who got their
+        // format changed.
+        final ConfigurationNode possibleJson = value.getNode("JSON");
+        if (!possibleJson.isVirtual()) {
+            try {
+                return TextSerializers.JSON.deserialize(possibleJson.getString());
+            } catch (final TextParseException ex) {
+                throw new ObjectMappingException(ex);
+            }
+        }
+
         GsonConfigurationLoader gsonLoader = GsonConfigurationLoader.builder()
                 .setIndent(0)
                 .setSink(() -> new BufferedWriter(writer))
