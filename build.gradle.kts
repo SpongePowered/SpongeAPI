@@ -270,6 +270,7 @@ val sortClasses = listOf(
         "org.spongepowered.api.block.entity.BlockEntityTypes",
         "org.spongepowered.api.boss.BossBarColors",
         "org.spongepowered.api.boss.BossBarOverlays",
+        "org.spongepowered.api.command.parameter.CommonParameters",
         "org.spongepowered.api.command.parameter.managed.standard.CatalogedValueParameters",
         "org.spongepowered.api.data.Keys",
         "org.spongepowered.api.data.persistence.DataFormats",
