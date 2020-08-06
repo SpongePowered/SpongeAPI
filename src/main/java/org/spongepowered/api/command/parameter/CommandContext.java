@@ -28,7 +28,6 @@ import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
 import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.command.parameter.managed.Flag;
-import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.service.permission.SubjectProxy;
 
 import java.util.Collection;
@@ -40,7 +39,7 @@ import java.util.Optional;
  * any other information that might be important when executing a command.
  *
  * <p>For information about the cause of the command, the {@link CommandCause}
- * is available (see {@link #getCommandCause()}. Some popular tasks that operate
+ * is available (see {@link #getCause()}. Some popular tasks that operate
  * on the {@link CommandCause} are also directly available on this context,
  * namely permission checks (via {@link SubjectProxy}) and sending a message to
  * the {@link CommandCause}'s {@link Audience} (via
@@ -53,16 +52,7 @@ public interface CommandContext extends SubjectProxy {
      *
      * @return The {@link CommandCause}
      */
-    CommandCause getCommandCause();
-
-    /**
-     * Gets the {@link Cause} of the command.
-     *
-     * @return The {@link Cause}
-     */
-    default Cause getCause() {
-        return this.getCommandCause().getCause();
-    }
+    CommandCause getCause();
 
     /**
      * Gets if a flag with given alias was specified at least once.
