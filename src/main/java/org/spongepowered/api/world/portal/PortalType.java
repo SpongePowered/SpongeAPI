@@ -31,12 +31,53 @@ import org.spongepowered.api.world.ServerLocation;
 
 import java.util.Optional;
 
+/**
+ * A type of portal, used to move {@link Entity entities} one place to another.
+ */
 @CatalogedBy(PortalTypes.class)
 public interface PortalType extends CatalogType {
 
+    /**
+     * Generates the portal at the {@link ServerLocation location}.
+     *
+     * <p>It is left up to the discretion of the plugin developer on how this is implemented.
+     * Portals come in all shapes and sizes or none at all.</p>
+     *
+     * <p>The location is meant to be a hint and should not be considered to be the exact
+     * final location of the resulting portal.</p>
+     *
+     * @param location The location
+     */
     void generatePortal(ServerLocation location);
 
+    /**
+     * Finds a {@link Portal} from a {@link ServerLocation location}.
+     *
+     * <p>It is left up to the discretion of the plugin developer on how this is implemented.
+     * In vanilla minecraft, portals are calculated on-demand and therefore this may never
+     * return an actual value.</p>
+     *
+     * <p>The location is meant to be a hint and no expectation should be made that the {@link Portal}
+     * will be exactly at the location.</p>
+     *
+     * @param location The location
+     * @return The portal or {@link Optional#empty()} if not found
+     */
     Optional<Portal> findPortal(ServerLocation location);
 
+    /**
+     * Teleports an {@link Entity} through this {@link PortalType portal}.
+     *
+     * <p>The location is meant to be a hint and no expectation should be made that the portal
+     * will be exactly at the location.</p>
+     *
+     * <p>No assumption should be made that the generation of the destination portal will match
+     * the original portal, this is left up to the plugin dev to decide.</p>
+     *
+     * @param entity The entity
+     * @param destination The destination
+     * @param generateDestinationPortal True if the portal should generate a destination one
+     * @return True if teleport successful, false if not
+     */
     boolean teleport(Entity entity, ServerLocation destination, boolean generateDestinationPortal);
 }

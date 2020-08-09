@@ -62,6 +62,7 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
      * <p>The rules are that the world must be loaded and it's {@link ServerWorld#getKey()} matches
      * this properties' {@link #getKey()}. Lastly, the properties of that world and this properties
      * must be reference equal.</p>
+     * 
      * @return The world or {@link Optional#empty()} otherwise
      */
     Optional<ServerWorld> getWorld();
