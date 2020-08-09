@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.world;
 
-import com.google.common.base.Preconditions;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.audience.ForwardingAudience;
 import org.spongepowered.api.Engine;
@@ -35,18 +34,20 @@ import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.fluid.FluidTypes;
 import org.spongepowered.api.service.context.ContextSource;
 import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.volume.archetype.ArchetypeVolumeCreator;
 import org.spongepowered.api.world.volume.block.PhysicsAwareMutableBlockVolume;
 import org.spongepowered.api.world.weather.WeatherUniverse;
+import org.spongepowered.api.world.weather.Weathers;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.function.Predicate;
 
 /**
@@ -73,15 +74,14 @@ public interface World<W extends World<W>> extends ForwardingAudience,
     /**
      * Gets if this world is currently loaded.
      *
-     * <p>
-     *     An assumption can be made that if this returns false, this is considered a stale object.
-     * </p>
+     * <p>An assumption can be made that if this returns false, this is considered a stale object.</p>
+     *
      * @return True if loaded, false if not
      */
     boolean isLoaded();
 
     /**
-     * Gets an unmodifiable collection of {@link Player}s currently in this world.
+     * Gets an unmodifiable collection of {@link Player players} currently in this world.
      *
      * @return The players
      */
@@ -93,25 +93,25 @@ public interface World<W extends World<W>> extends ForwardingAudience,
         return this.getPlayers();
     }
 
-    default Optional<? extends Player> getClosestPlayer(Vector3i position, double distance) {
+    default Optional<? extends Player> getClosestPlayer(final Vector3i position, final double distance) {
         return this.getClosestPlayer(position.getX(), position.getY(), position.getZ(), distance, player -> true);
     }
 
-    default Optional<? extends Player> getClosestPlayer(Vector3i position, double distance, Predicate<? super Player> predicate) {
+    default Optional<? extends Player> getClosestPlayer(final Vector3i position, final double distance, final Predicate<? super Player> predicate) {
         return this.getClosestPlayer(position.getX(), position.getY(), position.getZ(), distance, predicate);
     }
 
-    default Optional<? extends Player> getClosestPlayer(Entity entity, double distance) {
+    default Optional<? extends Player> getClosestPlayer(final Entity entity, final double distance) {
         final Vector3d position = entity.getLocation().getPosition();
         return this.getClosestPlayer(position.getFloorX(), position.getFloorY(), position.getFloorZ(), distance, player -> true);
     }
 
-    default Optional<? extends Player> getClosestPlayer(Entity entity, double distance, Predicate<? super Player> predicate) {
+    default Optional<? extends Player> getClosestPlayer(final Entity entity, final double distance, final Predicate<? super Player> predicate) {
         final Vector3d position = entity.getLocation().getPosition();
         return this.getClosestPlayer(position.getFloorX(), position.getFloorY(), position.getFloorZ(), distance, predicate);
     }
 
-    default Optional<? extends Player> getClosestPlayer(int x, int y, int z, double distance) {
+    default Optional<? extends Player> getClosestPlayer(final int x, final int y, final int z, final double distance) {
         return this.getClosestPlayer(x, y, z, distance, player -> true);
     }
 
@@ -126,8 +126,8 @@ public interface World<W extends World<W>> extends ForwardingAudience,
      * @param position The position of the block
      * @return A snapshot
      */
-    default BlockSnapshot createSnapshot(Vector3i position) {
-        Preconditions.checkNotNull(position);
+    default BlockSnapshot createSnapshot(final Vector3i position) {
+        Objects.requireNonNull(position);
         return this.createSnapshot(position.getX(), position.getY(), position.getZ());
     }
 
@@ -137,9 +137,9 @@ public interface World<W extends World<W>> extends ForwardingAudience,
      * <p>A snapshot is disconnected from the {@link World} that it was taken
      * from so changes to the original block do not affect the snapshot.</p>
      *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
+     * @param x The x position
+     * @param y The y position
+     * @param z The z position
      * @return A snapshot
      */
     BlockSnapshot createSnapshot(int x, int y, int z);
@@ -158,7 +158,7 @@ public interface World<W extends World<W>> extends ForwardingAudience,
      * @param force If true, forces block state to be set even if the
      *        {@link BlockType} does not match the snapshot one.
      * @param flag The various change flags controlling some interactions
-     * @return true if the restore was successful, false otherwise
+     * @return True if the restore was successful, false otherwise
      */
     boolean restoreSnapshot(BlockSnapshot snapshot, boolean force, BlockChangeFlag flag);
 
@@ -167,18 +167,18 @@ public interface World<W extends World<W>> extends ForwardingAudience,
      *
      * <p>If forced, the state of the block will change its {@link BlockType} to
      * match that of the snapshot then set the state. However, if force is set
-     * to false and the {@link BlockType}s does not match, false will be
-     * returned. If notifyNeighbors is true, neighboring blocks will be notified
-     * of changes at the restored block location triggering physic updates.</p>
+     * to false and the {@link BlockType block types} do not match, false will be
+     * returned. If notifyNeighbors is {@code true}, neighboring blocks will be notified
+     * of changes at the restored block location triggering physics updates.</p>
      *
      * @param position The position of the block
      * @param snapshot The snapshot
-     * @param force If true, forces block state to be set even if the
-     *        {@link BlockType} does not match the snapshot one.
+     * @param force If true, forces block state to be set even if the the block type does
+     *             not match the snapshot one.
      * @param flag The various change flags controlling some interactions
-     * @return true if the restore was successful, false otherwise
+     * @return True if the restore was successful, false otherwise
      */
-    default boolean restoreSnapshot(Vector3i position, BlockSnapshot snapshot, boolean force, BlockChangeFlag flag) {
+    default boolean restoreSnapshot(final Vector3i position, final BlockSnapshot snapshot, final boolean force, final BlockChangeFlag flag) {
         return this.restoreSnapshot(position.getX(), position.getY(), position.getZ(), snapshot, force, flag);
     }
 
@@ -217,7 +217,8 @@ public interface World<W extends World<W>> extends ForwardingAudience,
      * @return The available chunk at that position
      */
     @Override
-    default Chunk getChunkAtBlock(Vector3i blockPosition) {
+    default Chunk getChunkAtBlock(final Vector3i blockPosition) {
+        Objects.requireNonNull(blockPosition);
         final Vector3i chunkPos = Sponge.getServer().getChunkLayout().forceToChunk(blockPosition);
         return this.getChunk(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ());
     }
@@ -253,7 +254,7 @@ public interface World<W extends World<W>> extends ForwardingAudience,
      */
     @Override
     default Chunk getChunk(Vector3i chunkPos) {
-        Preconditions.checkNotNull(chunkPos);
+        Objects.requireNonNull(chunkPos);
         return this.getChunk(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ());
     }
 
@@ -281,7 +282,7 @@ public interface World<W extends World<W>> extends ForwardingAudience,
      * @return The loaded or generated chunk, if already generated
      */
     default Optional<Chunk> loadChunk(Vector3i chunkPosition, boolean shouldGenerate) {
-        Preconditions.checkNotNull(chunkPosition);
+        Objects.requireNonNull(chunkPosition);
         return this.loadChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), shouldGenerate);
     }
 
@@ -308,4 +309,57 @@ public interface World<W extends World<W>> extends ForwardingAudience,
      */
     Iterable<Chunk> getLoadedChunks();
 
+    /**
+     * Gets whether players can respawn.
+     *
+     * @return True if players can respawn, false if not
+     */
+    boolean allowsPlayerRespawns();
+
+    /**
+     * Gets whether water evaporates
+     *
+     * @return True if water evaporates, false if not
+     */
+    boolean doesWaterEvaporate();
+
+    /**
+     * Returns whether this world has light provided by the sky.
+     *
+     * @return True if light is provided by the sky, false if not
+     */
+    boolean hasSkylight();
+
+    /**
+     * Gets if the logic for cave worlds will run for this world.
+     *
+     * <p>
+     *     In vanilla minecraft, a {@code true} value means:
+     *     <ul>
+     *         <li>{@link FluidTypes#LAVA} update 3 times slower</li>
+     *         <li>Maps are half the size</li>
+     *         <l1>{@link Weathers#THUNDER_STORM} will not occur</l1>
+     *         <l1>The height of the world is 128 instead of the default 256</l1>
+     *     </ul>
+     * </p>
+     *
+     * @return True if surface like, false if not
+     */
+    boolean isCaveWorld();
+
+    /**
+     * Gets if the logic for surface worlds will run for this world.
+     *
+     * <p>
+     *     In vanilla minecraft, a {@code true} value means:
+     *     <ul>
+     *         <li>Players can sleep here</li>
+     *         <li>Zombie Pigmen will not spawn around a nether portal</li>
+     *         <l1>Client will render clouds</l1>
+     *     </ul>
+     * </p>
+     *
+     * @return True if surface like, false if not
+     */
+    boolean isSurfaceWorld();
 }

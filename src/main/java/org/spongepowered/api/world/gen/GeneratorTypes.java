@@ -28,9 +28,6 @@ import org.spongepowered.api.Sponge;
 
 import java.util.function.Supplier;
 
-/**
- * An enumeration of default {@link GeneratorType}s.
- */
 public final class GeneratorTypes {
 
     // SORTFIELDS:ON
@@ -53,9 +50,7 @@ public final class GeneratorTypes {
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
     private GeneratorTypes() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }
-
 }

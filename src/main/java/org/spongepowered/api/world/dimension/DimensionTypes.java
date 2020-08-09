@@ -28,9 +28,6 @@ import org.spongepowered.api.Sponge;
 
 import java.util.function.Supplier;
 
-/**
- * Holds all possible {@link DimensionType}s.
- */
 public final class DimensionTypes {
 
     // SORTFIELDS:ON
@@ -46,5 +43,4 @@ public final class DimensionTypes {
     private DimensionTypes() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }
-
 }
