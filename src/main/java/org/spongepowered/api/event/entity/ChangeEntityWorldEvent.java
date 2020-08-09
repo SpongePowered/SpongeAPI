@@ -77,5 +77,7 @@ public interface ChangeEntityWorldEvent extends Event {
         void setDestinationWorld(ServerWorld world);
     }
 
+    interface Reposition extends ChangeEntityWorldEvent, MoveEntityEvent {}
+
     interface Post extends ChangeEntityWorldEvent {}
 }

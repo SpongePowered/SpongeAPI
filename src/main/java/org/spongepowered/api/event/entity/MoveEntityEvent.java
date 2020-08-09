@@ -28,8 +28,6 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.annotation.eventgen.AbsoluteSortPosition;
-import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
-import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3d;
 
 /**
@@ -46,40 +44,33 @@ public interface MoveEntityEvent extends Event, Cancellable {
     Entity getEntity();
 
     /**
-     * Gets the {@link Vector3d position} {@link Entity} came from.
+     * Gets the {@link Vector3d position} the {@link Entity} came from.
      *
-     * @return the previous position
+     * @return The original position
      */
-    @AbsoluteSortPosition(5)
-    Vector3d getFromPosition();
+    @AbsoluteSortPosition(2)
+    Vector3d getOriginalPosition();
 
     /**
-     * Gets the new {@link Vector3d position} that the {@link Entity} will move to.
+     * Gets the {@link Vector3d position} the {@link Entity} would have been going to.
      *
-     * @return the new position
+     * @return The original destination
      */
-    @AbsoluteSortPosition(6)
-    Vector3d getToPosition();
+    @AbsoluteSortPosition(3)
+    Vector3d getOriginalDestinationPosition();
 
     /**
-     * Sets the new {@link Vector3d position} that the {@link Entity} will change to.
+     * Gets the {@link Vector3d position} the {@link Entity} will go to.
+     *
+     * @return The new position
+     */
+    @AbsoluteSortPosition(4)
+    Vector3d getDestinationPosition();
+
+    /**
+     * Sets the new {@link Vector3d position} the {@link Entity} will go to.
      *
      * @param position The new position
      */
-    void setToPosition(Vector3d position);
-
-    /**
-     * Fired when an {@link Entity}'s position changes.
-     */
-    @GenerateFactoryMethod
-    interface Position extends MoveEntityEvent {
-
-    }
-
-    /**
-     * Fired when an {@link Entity entity's} position goes across {@link ServerWorld worlds}.
-     */
-    @GenerateFactoryMethod
-    interface Teleport extends MoveEntityEvent, ChangeEntityWorldEvent {
-    }
+    void setDestinationPosition(Vector3d position);
 }
