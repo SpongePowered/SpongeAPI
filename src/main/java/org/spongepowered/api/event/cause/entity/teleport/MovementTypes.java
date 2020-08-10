@@ -34,7 +34,11 @@ public final class MovementTypes {
 
     public static final Supplier<MovementType> COMMAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "COMMAND");
 
+    public static final Supplier<MovementType> END_GATEWAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "END_GATEWAY");
+
     public static final Supplier<MovementType> ENDER_PEARL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "ENDER_PEARL");
+
+    public static final Supplier<MovementType> ENTITY_TELEPORT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "ENTITY_TELEPORT");
 
     public static final Supplier<MovementType> NATURAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "NATURAL");
 
