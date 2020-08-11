@@ -22,12 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.teleport;
+package org.spongepowered.api.event.cause.entity;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.Sponge;
 
-@CatalogedBy(MovementTypes.class)
-public interface MovementType extends CatalogType {
+import java.util.function.Supplier;
+
+public final class DismountTypes {
+
+    // SORTFIELDS:ON
+
+    public static final Supplier<DismountType> DEATH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DismountType.class, "DEATH");
+
+    public static final Supplier<DismountType> DERAIL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DismountType.class, "DERAIL");
+
+    public static final Supplier<DismountType> PLAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DismountType.class, "PLAYER");
+
+    // SORTFIELDS:OFF
+
+    // Suppress default constructor to ensure non-instantiability.
+    private DismountTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 
 }

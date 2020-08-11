@@ -24,14 +24,10 @@
  */
 package org.spongepowered.api.command.manager;
 
-import org.spongepowered.api.command.Command;
 import org.spongepowered.api.command.registrar.CommandRegistrar;
-import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.plugin.PluginContainer;
 
-import java.util.Optional;
 import java.util.Set;
-import java.util.function.Predicate;
 
 /**
  * Provides information about a mapping between a command and its aliases.

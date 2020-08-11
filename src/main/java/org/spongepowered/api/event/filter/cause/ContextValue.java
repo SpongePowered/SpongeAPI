@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.event.filter.cause;
 
-import org.spongepowered.api.event.cause.EventContext;
-import org.spongepowered.api.event.cause.EventContextKey;
+import org.spongepowered.api.event.EventContext;
+import org.spongepowered.api.event.EventContextKey;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

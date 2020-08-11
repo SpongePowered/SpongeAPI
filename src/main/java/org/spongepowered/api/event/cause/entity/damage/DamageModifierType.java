@@ -25,7 +25,7 @@
 package org.spongepowered.api.event.cause.entity.damage;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
