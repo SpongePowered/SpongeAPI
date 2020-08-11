@@ -22,16 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.spawn;
+package org.spongepowered.api.event.cause.entity;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.event.entity.SpawnEntityEvent;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
-/**
- * Represents a type of "spawning" for a {@link SpawnEntityEvent}.
- */
-@CatalogedBy(SpawnTypes.class)
-public interface SpawnType extends CatalogType {
+@CatalogedBy(DismountTypes.class)
+public interface DismountType extends CatalogType {
 
 }

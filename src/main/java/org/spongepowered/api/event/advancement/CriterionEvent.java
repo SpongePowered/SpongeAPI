@@ -30,7 +30,7 @@ import org.spongepowered.api.advancement.criteria.trigger.FilteredTrigger;
 import org.spongepowered.api.advancement.criteria.trigger.FilteredTriggerConfiguration;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GenericEvent;
-import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.scoreboard.criteria.Criterion;
 
 import java.time.Instant;

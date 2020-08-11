@@ -25,13 +25,9 @@
 package org.spongepowered.api.event.impl.entity;
 
 import com.google.common.base.Preconditions;
-import org.spongepowered.api.event.cause.EventContext;
-import org.spongepowered.api.event.cause.EventContextKey;
-import org.spongepowered.api.event.cause.EventContextKeys;
+import org.spongepowered.api.event.EventContextKeys;
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
 import org.spongepowered.api.event.impl.AbstractEvent;
-
-import java.util.function.Supplier;
 
 public abstract class AbstractSpawnEntityEvent extends AbstractEvent implements SpawnEntityEvent {
 

@@ -22,45 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause;
+package org.spongepowered.api.event.cause.entity;
 
-import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
-/**
- * A key for values in the {@link EventContext}.
- *
- * @param <T> The type of the value stored with this key
- */
-@CatalogedBy(EventContextKeys.class)
-public interface EventContextKey<T> extends CatalogType {
+@CatalogedBy(MovementTypes.class)
+public interface MovementType extends CatalogType {
 
-    /**
-     * Creates a builder to be used for creating a new {@link EventContextKey}.
-     *
-     * @return The constructed builder
-     */
-    @SuppressWarnings("unchecked")
-    static Builder<?> builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
-    }
-
-    /**
-     * Gets the allowed type for the value of this key.
-     *
-     * @return The allowed type
-     */
-    TypeToken<T> getAllowedType();
-
-    interface Builder<T> extends CatalogBuilder<EventContextKey<T>, Builder<T>> {
-
-        default <N> Builder<N> type(Class<N> allowedType) {
-            return type(TypeToken.of(allowedType));
-        }
-
-        <N> Builder<N> type(TypeToken<N> allowedType);
-    }
 }

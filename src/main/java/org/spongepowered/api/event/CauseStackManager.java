@@ -24,11 +24,6 @@
  */
 package org.spongepowered.api.event;
 
-import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.cause.EventContext;
-import org.spongepowered.api.event.cause.EventContextKey;
-import org.spongepowered.api.event.cause.EventContextKeys;
-
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.function.Supplier;
