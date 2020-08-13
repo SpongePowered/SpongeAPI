@@ -25,6 +25,7 @@
 package org.spongepowered.api.command.parameter.managed.standard;
 
 import net.kyori.adventure.text.Component;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.entity.Entity;
@@ -293,6 +294,14 @@ public final class CatalogedValueParameters {
      */
     public static final Supplier<CatalogedValueParameter<String>> REMAINING_JOINED_STRINGS =
             Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "REMAINING_JOINED_STRINGS");
+
+    /**
+     * Require an argument to be a namespaced {@link ResourceKey}.
+     *
+     * <p>Returns a {@link ResourceKey}</p>
+     */
+    public static final Supplier<CatalogedValueParameter<ResourceKey>> RESOURCE_KEY =
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "RESOURCE_KEY");
 
     /**
      * Require an argument to be a string.

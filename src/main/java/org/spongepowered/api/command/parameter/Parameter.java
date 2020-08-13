@@ -29,6 +29,7 @@ import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.Command;
 import org.spongepowered.api.command.CommandCause;
@@ -554,6 +555,16 @@ public interface Parameter {
      */
     static Parameter.Value.Builder<String> remainingJoinedStrings() {
         return Parameter.builder(String.class, CatalogedValueParameters.REMAINING_JOINED_STRINGS);
+    }
+
+    /**
+     * Creates a builder that has the {@link ValueParameter} set to
+     * {@link CatalogedValueParameters#RESOURCE_KEY}.
+     *
+     * @return A {@link Parameter.Value.Builder}
+     */
+    static Parameter.Value.Builder<ResourceKey> resourceKey() {
+        return Parameter.builder(ResourceKey.class, CatalogedValueParameters.RESOURCE_KEY);
     }
 
     /**
