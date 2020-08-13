@@ -31,6 +31,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.command.Command;
 import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.command.CommandExecutor;
@@ -310,6 +311,16 @@ public interface Parameter {
      */
     static Parameter.Value.Builder<BigInteger> bigInteger() {
         return Parameter.builder(BigInteger.class, CatalogedValueParameters.BIG_INTEGER);
+    }
+
+    /**
+     * Creates a builder that has the {@link ValueParameter} set to
+     * {@link CatalogedValueParameters#BLOCK_STATE}.
+     *
+     * @return A {@link Parameter.Value.Builder}
+     */
+    static Parameter.Value.Builder<BlockState> blockState() {
+        return Parameter.builder(BlockState.class, CatalogedValueParameters.BLOCK_STATE);
     }
 
     /**

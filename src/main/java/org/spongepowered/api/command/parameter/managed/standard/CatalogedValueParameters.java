@@ -27,6 +27,7 @@ package org.spongepowered.api.command.parameter.managed.standard;
 import net.kyori.adventure.text.Component;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
@@ -79,6 +80,14 @@ public final class CatalogedValueParameters {
      */
     public static final Supplier<CatalogedValueParameter<BigInteger>> BIG_INTEGER =
             Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "BIG_INTEGER");
+
+    /**
+     * Requires an argument to represent a {@link BlockState}
+     *
+     * <p>Returns a {@link BlockState}</p>
+     */
+    public static final Supplier<CatalogedValueParameter<BlockState>> BLOCK_STATE =
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "BLOCK_STATE");
 
     /**
      * Require an argument to be a boolean.
