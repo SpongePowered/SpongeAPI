@@ -45,7 +45,7 @@ public interface DataStore {
      *
      * @return The supported dataHolder type.
      */
-    TypeToken<? extends DataHolder> getSupportedToken();
+    Collection<TypeToken<? extends DataHolder>> getSupportedTokens();
 
     /**
      * Serializes the values of the {@link DataManipulator}
@@ -124,8 +124,8 @@ public interface DataStore {
 
      * @return The new data store
      */
-    static <T> DataStore of(Key<Value<T>> key, DataQuery dataQuery, TypeToken<? extends DataHolder> typeToken) {
-        return builder().key(key, dataQuery).build(typeToken);
+    static <T> DataStore of(Key<Value<T>> key, DataQuery dataQuery, TypeToken<? extends DataHolder>... typeToken) {
+        return builder().key(key, dataQuery).holder(typeToken).build();
     }
 
     /**
@@ -181,13 +181,20 @@ public interface DataStore {
         <T> Builder key(Key<? extends Value<T>> key, BiConsumer<DataView, T> serializer, Function<DataView, Optional<T>> deserializer);
 
         /**
-         * Builds a dataStore for given dataHolder type.
+         * Adds one or more allowed dataHolder types
          *
-         * @param typeToken The dataHolder type
+         * @param typeTokens the dataHolder types
+         *
+         * @return this builder for chaining
+         */
+        Builder holder(TypeToken<? extends DataHolder>... typeTokens);
+
+        /**
+         * Builds a dataStore for given dataHolder type.
          *
          * @return The new data store
          */
-        DataStore build(TypeToken<? extends DataHolder> typeToken);
+        DataStore build();
     }
 
 }
