@@ -26,10 +26,54 @@ package org.spongepowered.api.event.entity.living.humanoid.player;
 
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.message.MessageChannelEvent;
+import org.spongepowered.api.text.channel.MessageChannel;
+
+import java.util.Optional;
+
+import javax.annotation.Nullable;
 
 /**
  * Fired when a {@link Player} is kicked.
  */
 public interface KickPlayerEvent extends TargetPlayerEvent, MessageChannelEvent {
+
+    /**
+     * Ignored.
+     *
+     * @return A {@link MessageChannel}
+     * @deprecated Not used in this event.
+     */
+    @Override
+    @Deprecated
+    MessageChannel getOriginalChannel();
+
+    /**
+     * Ignored.
+     *
+     * @return A {@link MessageChannel}
+     * @deprecated Not used in this event.
+     */
+    @Override
+    @Deprecated
+    Optional<MessageChannel> getChannel();
+
+    /**
+     * Ignored.
+     *
+     * @param channel A {@link MessageChannel} that is not used in this event.
+     * @deprecated Not used in this event.
+     */
+    @Override
+    @Deprecated
+    void setChannel(@Nullable MessageChannel channel);
+
+    /**
+     * Ignored.
+     *
+     * @param cancelled True if should not be sent
+     */
+    @Override
+    @Deprecated
+    void setMessageCancelled(boolean cancelled);
 
 }
