@@ -147,6 +147,16 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
+     * Gets if the {@link Extent} this location refers to is still loaded and
+     * available.
+     *
+     * @return {@code true} if this extent is available.
+     */
+    public boolean isAvailable() {
+        return this.extent.get() != null;
+    }
+
+    /**
      * Gets the underlying extent.
      *
      * <p>If the referenced {@link Extent} has been unloaded, this will throw
