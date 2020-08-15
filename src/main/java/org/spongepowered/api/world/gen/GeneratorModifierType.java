@@ -22,21 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world;
+package org.spongepowered.api.world.gen;
 
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.server.ServerWorld;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.data.persistence.DataContainer;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Base event for when a {@link World} is unloaded.
+ * Represents a generator modifier that may be used to customize how a generator
+ * generates a world.
  */
-public interface UnloadWorldEvent extends Event {
+@CatalogedBy(GeneratorModifierTypes.class)
+public interface GeneratorModifierType extends CatalogType {
 
     /**
-     * Gets the {@link ServerWorld world}.
+     * Gets the default settings of this modifier.
      *
-     * @return The world
+     * @return The settings
      */
-    ServerWorld getWorld();
+    DataContainer getDefaultGeneratorSettings();
 }

@@ -24,20 +24,27 @@
  */
 package org.spongepowered.api.world.gen;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.data.persistence.DataContainer;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.Sponge;
 
-/**
- * Represents a generator used to generate a world.
- */
-@CatalogedBy(GeneratorTypes.class)
-public interface GeneratorType extends CatalogType {
+import java.util.function.Supplier;
 
-    /**
-     * Gets the default settings of this generator.
-     *
-     * @return The settings
-     */
-    DataContainer getDefaultGeneratorSettings();
+public final class GeneratorModifierTypes {
+
+    // SORTFIELDS:ON
+
+    public static final Supplier<GeneratorModifierType> AMPLIFIED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorModifierType.class, "AMPLIFIED");
+
+    public static final Supplier<GeneratorModifierType> DEBUG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorModifierType.class, "DEBUG");
+
+    public static final Supplier<GeneratorModifierType> NONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorModifierType.class, "NONE");
+
+    public static final Supplier<GeneratorModifierType> FLAT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorModifierType.class, "FLAT");
+
+    public static final Supplier<GeneratorModifierType> LARGE_BIOMES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorModifierType.class, "LARGE_BIOMES");
+
+    // SORTFIELDS:OFF
+
+    private GeneratorModifierTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 }

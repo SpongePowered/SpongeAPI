@@ -45,6 +45,7 @@ import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.storage.WorldStorage;
 import org.spongepowered.api.world.volume.game.InteractableVolume;
+import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.io.IOException;
@@ -204,13 +205,4 @@ public interface ServerWorld extends World<ServerWorld>, Identifiable, Interacta
      * @return The raid at that location, if present
      */
     Optional<Raid> getRaidAt(Vector3i blockPosition);
-
-    /**
-     * Gets the {@link ServerLocation} of the spawn point.
-     *
-     * @return The location
-     */
-    default ServerLocation getSpawnLocation() {
-        return ServerLocation.of(this, this.getProperties().getSpawnPosition());
-    }
 }

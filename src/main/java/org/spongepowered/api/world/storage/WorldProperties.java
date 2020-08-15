@@ -28,7 +28,6 @@ import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.key.KeyedValue;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.trader.WanderingTrader;
@@ -40,7 +39,7 @@ import org.spongepowered.api.world.WorldBorder;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.dimension.DimensionType;
 import org.spongepowered.api.world.gamerule.GameRuleHolder;
-import org.spongepowered.api.world.gen.GeneratorType;
+import org.spongepowered.api.world.gen.GeneratorModifierType;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 import org.spongepowered.math.vector.Vector3i;
@@ -154,27 +153,27 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
     void setSpawnPosition(Vector3i position);
 
     /**
-     * Gets the {@link GeneratorType}.
+     * Gets the {@link GeneratorModifierType}.
      *
-     * @return The type
+     * @return The modifier
      */
-    GeneratorType getGeneratorType();
+    GeneratorModifierType getGeneratorModifierType();
 
     /**
-     * Sets the {@link GeneratorType}.
+     * Sets the {@link GeneratorModifierType}.
      *
-     * @param type The generator type
+     * @param modifier The generator modifier
      */
-    default void setGeneratorType(Supplier<? extends GeneratorType> type) {
-        this.setGeneratorType(type.get());
+    default void setGeneratorModifierType(Supplier<? extends GeneratorModifierType> modifier) {
+        this.setGeneratorModifierType(modifier.get());
     }
 
     /**
-     * Sets the {@link GeneratorType}.
+     * Sets the {@link GeneratorModifierType}.
      *
-     * @param type The generator type
+     * @param modifier The generator modifier
      */
-    void setGeneratorType(GeneratorType type);
+    void setGeneratorModifierType(GeneratorModifierType modifier);
 
     /**
      * Gets the seed.

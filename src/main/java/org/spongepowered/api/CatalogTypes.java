@@ -76,7 +76,7 @@ import org.spongepowered.api.entity.living.player.chat.ChatVisibility;
 import org.spongepowered.api.util.ban.BanType;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.dimension.DimensionType;
-import org.spongepowered.api.world.gen.GeneratorType;
+import org.spongepowered.api.world.gen.GeneratorModifierType;
 import org.spongepowered.api.world.portal.PortalType;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.WorldArchetype;
@@ -174,7 +174,7 @@ public final class CatalogTypes {
 
     public static final Class<GameMode> GAME_MODE = GameMode.class;
 
-    public static final Class<GeneratorType> GENERATOR_TYPE = GeneratorType.class;
+    public static final Class<GeneratorModifierType> GENERATOR_MODIFIER_TYPE = GeneratorModifierType.class;
 
     public static final Class<GoalExecutorType> GOAL_EXECUTOR_TYPE = GoalExecutorType.class;
 

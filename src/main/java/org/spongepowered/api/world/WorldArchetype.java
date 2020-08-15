@@ -36,8 +36,8 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.dimension.DimensionType;
 import org.spongepowered.api.world.dimension.DimensionTypes;
-import org.spongepowered.api.world.gen.GeneratorType;
-import org.spongepowered.api.world.gen.GeneratorTypes;
+import org.spongepowered.api.world.gen.GeneratorModifierType;
+import org.spongepowered.api.world.gen.GeneratorModifierTypes;
 import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.util.function.Supplier;
@@ -116,11 +116,11 @@ public interface WorldArchetype extends CatalogType {
     DimensionType getDimensionType();
 
     /**
-     * Gets the generator type.
+     * Gets the {@link GeneratorModifierType}.
      * 
-     * @return The generator type
+     * @return The generator modifier
      */
-    GeneratorType getGeneratorType();
+    GeneratorModifierType getGeneratorModifier();
 
     /**
      * Gets whether structures are enabled and will generate.
@@ -277,24 +277,24 @@ public interface WorldArchetype extends CatalogType {
         Builder dimensionType(DimensionType type);
 
         /**
-         * Sets the generator type. If not specified this will default
-         * to {@link GeneratorTypes#DEFAULT}
+         * Sets the generator modifier. If not specified this will default
+         * to {@link GeneratorModifierTypes#NONE}
          *
-         * @param type The type
+         * @param modifier The modifier
          * @return The builder, for chaining
          */
-        default Builder generatorType(Supplier<? extends GeneratorType> type) {
-            return this.generatorType(type.get());
+        default Builder generatorModifierType(Supplier<? extends GeneratorModifierType> modifier) {
+            return this.generatorModifierType(modifier.get());
         }
 
         /**
          * Sets the generator type. If not specified this will default
-         * to {@link GeneratorTypes#DEFAULT}
+         * to {@link GeneratorModifierTypes#NONE}
          *
-         * @param type The type
+         * @param modifier The modifier
          * @return The builder, for chaining
          */
-        Builder generatorType(GeneratorType type);
+        Builder generatorModifierType(GeneratorModifierType modifier);
 
         /**
          * Sets the difficulty.

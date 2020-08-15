@@ -51,6 +51,7 @@ import org.spongepowered.math.vector.Vector3d;
 
 import java.util.Collection;
 import java.util.EnumSet;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Predicate;
@@ -222,9 +223,9 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      *      is cancelled or not possible (eg. because the entity has been
      *      removed)
      */
-    default boolean transferToWorld(ServerWorld world) {
-        checkNotNull(world);
-        return this.transferToWorld(world, world.getSpawnLocation().getPosition());
+    default boolean transferToWorld(final ServerWorld world) {
+        Objects.requireNonNull(world);
+        return this.transferToWorld(world, world.getProperties().getSpawnPosition().toDouble());
     }
 
     /**
