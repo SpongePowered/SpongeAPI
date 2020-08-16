@@ -39,7 +39,7 @@ public final class ArtTypes {
 
     public static final Supplier<ArtType> AZTEC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "aztec");
 
-    public static final Supplier<ArtType> AZTEC_2 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "AZTEC_2");
+    public static final Supplier<ArtType> AZTEC2 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "aztec2");
 
     public static final Supplier<ArtType> BOMB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "bomb");
 
