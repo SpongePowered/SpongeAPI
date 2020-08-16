@@ -499,12 +499,27 @@ public interface Parameter {
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#LOCATION}.
+     * {@link CatalogedValueParameters#LOCATION_ONLINE_ONLY}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<ServerLocation> location() {
-        return Parameter.builder(ServerLocation.class, CatalogedValueParameters.LOCATION);
+        return Parameter.location(true);
+    }
+
+    /**
+     * Creates a builder that has the {@link ValueParameter} set to
+     * {@link CatalogedValueParameters#LOCATION_ONLINE_ONLY} or
+     * {@link CatalogedValueParameters#LOCATION_ALL}.
+     *
+     * @param onlineOnly If the location must point to a currently loaded world.
+     * @return A {@link Parameter.Value.Builder}
+     */
+    static Parameter.Value.Builder<ServerLocation> location(final boolean onlineOnly) {
+        if (onlineOnly) {
+            return Parameter.builder(ServerLocation.class, CatalogedValueParameters.LOCATION_ONLINE_ONLY);
+        }
+        return Parameter.builder(ServerLocation.class, CatalogedValueParameters.LOCATION_ALL);
     }
 
     /**
@@ -641,12 +656,28 @@ public interface Parameter {
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#WORLD_PROPERTIES}.
+     * {@link CatalogedValueParameters#WORLD_PROPERTIES_ONLINE_ONLY}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<WorldProperties> worldProperties() {
-        return Parameter.builder(WorldProperties.class, CatalogedValueParameters.WORLD_PROPERTIES);
+        return Parameter.worldProperties(true);
+    }
+
+    /**
+     * Creates a builder that has the {@link ValueParameter} set to
+     * {@link CatalogedValueParameters#WORLD_PROPERTIES_ALL} or
+     * {@link CatalogedValueParameters#WORLD_PROPERTIES_ONLINE_ONLY}.
+     *
+     * @param onlineOnly If the parameter should only select
+     *      {@link WorldProperties} that represent online worlds.
+     * @return A {@link Parameter.Value.Builder}
+     */
+    static Parameter.Value.Builder<WorldProperties> worldProperties(final boolean onlineOnly) {
+        if (onlineOnly) {
+            return Parameter.builder(WorldProperties.class, CatalogedValueParameters.WORLD_PROPERTIES_ONLINE_ONLY);
+        }
+        return Parameter.builder(WorldProperties.class, CatalogedValueParameters.WORLD_PROPERTIES_ALL);
     }
 
     /**
