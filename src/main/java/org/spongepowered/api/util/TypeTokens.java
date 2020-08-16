@@ -544,6 +544,8 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<VillagerType>> VILLAGER_TYPE_VALUE_TOKEN = new TypeToken<Value<VillagerType>>() {private static final long serialVersionUID = -1;};
 
+    public static final TypeToken<WeightedCollectionValue<PotionEffect>> WEIGHTED_POTION_EFFECT_COLLECTION_VALUE_TOKEN = new TypeToken<WeightedCollectionValue<PotionEffect>>() {private static final long serialVersionUID = -1;};
+
     public static final TypeToken<WeightedCollectionValue<EntityArchetype>> WEIGHTED_ENTITY_ARCHETYPE_COLLECTION_VALUE_TOKEN = new TypeToken<WeightedCollectionValue<EntityArchetype>> () {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<WeightedTable<EntityArchetype>> WEIGHTED_ENTITY_ARCHETYPE_TABLE_TOKEN = new TypeToken<WeightedTable<EntityArchetype>>() {private static final long serialVersionUID = -1;};

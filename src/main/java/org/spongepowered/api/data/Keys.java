@@ -49,15 +49,16 @@ import org.spongepowered.api.block.entity.carrier.furnace.FurnaceBlockEntity;
 import org.spongepowered.api.data.meta.BannerPatternLayer;
 import org.spongepowered.api.data.type.ArmorMaterial;
 import org.spongepowered.api.data.type.ArtType;
+import org.spongepowered.api.data.type.AttachmentSurface;
 import org.spongepowered.api.data.type.BodyPart;
 import org.spongepowered.api.data.type.BodyParts;
 import org.spongepowered.api.data.type.CatType;
 import org.spongepowered.api.data.type.ChestAttachmentType;
 import org.spongepowered.api.data.type.ComparatorMode;
+import org.spongepowered.api.data.type.DoorHinge;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.type.FoxType;
 import org.spongepowered.api.data.type.HandPreference;
-import org.spongepowered.api.data.type.DoorHinge;
 import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.type.InstrumentType;
@@ -80,7 +81,6 @@ import org.spongepowered.api.data.type.SpellType;
 import org.spongepowered.api.data.type.SpellTypes;
 import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StructureMode;
-import org.spongepowered.api.data.type.AttachmentSurface;
 import org.spongepowered.api.data.type.ToolType;
 import org.spongepowered.api.data.type.TropicalFishShape;
 import org.spongepowered.api.data.type.VillagerType;
@@ -292,7 +292,7 @@ public final class Keys {
      * The set of {@link PotionEffect}s applied on use of an {@link ItemStack}.
      * Readonly
      */
-    public static final Supplier<Key<SetValue<PotionEffect>>> APPLICABLE_POTION_EFFECTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "applicable_potion_effects");
+    public static final Supplier<Key<WeightedCollectionValue<PotionEffect>>> APPLICABLE_POTION_EFFECTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "applicable_potion_effects");
 
     /**
      * The enchantments applied to an {@link ItemStack}.
