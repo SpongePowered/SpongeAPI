@@ -35,9 +35,9 @@ public final class MooshroomTypes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<MooshroomType> BROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MooshroomType.class, "BROWN");
+    public static final Supplier<MooshroomType> BROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MooshroomType.class, "brown");
 
-    public static final Supplier<MooshroomType> RED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MooshroomType.class, "RED");
+    public static final Supplier<MooshroomType> RED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MooshroomType.class, "red");
 
     // SORTFIELDS:OFF
 

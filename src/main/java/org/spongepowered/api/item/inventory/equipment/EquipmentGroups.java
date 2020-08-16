@@ -30,9 +30,9 @@ import java.util.function.Supplier;
 
 public final class EquipmentGroups {
 
-    public static final Supplier<EquipmentGroup> HELD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentGroup.class, "HELD");
+    public static final Supplier<EquipmentGroup> HELD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentGroup.class, "held");
 
-    public static final Supplier<EquipmentGroup> WORN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentGroup.class, "WORN");
+    public static final Supplier<EquipmentGroup> WORN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentGroup.class, "worn");
 
     // Suppress default constructor to ensure non-instantiability.
     private EquipmentGroups() {

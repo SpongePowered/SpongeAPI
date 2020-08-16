@@ -32,21 +32,21 @@ public final class MovementTypes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<MovementType> CHORUS_FRUIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "CHORUS_FRUIT");
+    public static final Supplier<MovementType> CHORUS_FRUIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "chorus_fruit");
 
-    public static final Supplier<MovementType> COMMAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "COMMAND");
+    public static final Supplier<MovementType> COMMAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "command");
 
-    public static final Supplier<MovementType> END_GATEWAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "END_GATEWAY");
+    public static final Supplier<MovementType> END_GATEWAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "end_gateway");
 
-    public static final Supplier<MovementType> ENDER_PEARL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "ENDER_PEARL");
+    public static final Supplier<MovementType> ENDER_PEARL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "ender_pearl");
 
-    public static final Supplier<MovementType> ENTITY_TELEPORT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "ENTITY_TELEPORT");
+    public static final Supplier<MovementType> ENTITY_TELEPORT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "entity_teleport");
 
-    public static final Supplier<MovementType> NATURAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "NATURAL");
+    public static final Supplier<MovementType> NATURAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "natural");
 
-    public static final Supplier<MovementType> PLUGIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "PLUGIN");
+    public static final Supplier<MovementType> PLUGIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "plugin");
 
-    public static final Supplier<MovementType> PORTAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "PORTAL");
+    public static final Supplier<MovementType> PORTAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "portal");
 
     // SORTFIELDS:OFF
 

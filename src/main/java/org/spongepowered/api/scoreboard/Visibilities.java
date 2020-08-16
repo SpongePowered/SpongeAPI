@@ -41,26 +41,26 @@ public final class Visibilities {
      *
      * <p>This is the default value.</p>
      */
-    public static final Supplier<Visibility> ALWAYS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Visibility.class, "ALWAYS");
+    public static final Supplier<Visibility> ALWAYS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Visibility.class, "always");
 
     /**
      * Death messages or nametags for members of other teams will not be
      * visible, but death messages or nametags for members of the same team
      * will be visible.
      */
-    public static final Supplier<Visibility> HIDE_FOR_OTHER_TEAMS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Visibility.class, "HIDE_FOR_OTHER_TEAMS");
+    public static final Supplier<Visibility> HIDE_FOR_OTHER_TEAMS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Visibility.class, "hide_for_other_teams");
 
     /**
      * Death messages or nametags for members of other teams will be
      * visible, but death messages or nametags for members of the same team
      * will not be visible.
      */
-    public static final Supplier<Visibility> HIDE_FOR_OWN_TEAM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Visibility.class, "HIDE_FOR_OWN_TEAM");
+    public static final Supplier<Visibility> HIDE_FOR_OWN_TEAM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Visibility.class, "hide_for_own_team");
 
     /**
      * Death messages or nametags are never visible.
      */
-    public static final Supplier<Visibility> NEVER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Visibility.class, "NEVER");
+    public static final Supplier<Visibility> NEVER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Visibility.class, "never");
 
     // SORTFIELDS:OFF
 

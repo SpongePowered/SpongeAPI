@@ -35,9 +35,9 @@ public final class DoorHinges {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<DoorHinge> LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DoorHinge.class, "LEFT");
+    public static final Supplier<DoorHinge> LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DoorHinge.class, "left");
 
-    public static final Supplier<DoorHinge> RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DoorHinge.class, "RIGHT");
+    public static final Supplier<DoorHinge> RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DoorHinge.class, "right");
 
     // SORTFIELDS:OFF
 

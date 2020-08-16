@@ -32,11 +32,11 @@ public final class DimensionTypes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<DimensionType> OVERWORLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DimensionType.class, "OVERWORLD");
+    public static final Supplier<DimensionType> OVERWORLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DimensionType.class, "overworld");
 
-    public static final Supplier<DimensionType> THE_END = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DimensionType.class, "THE_END");
+    public static final Supplier<DimensionType> THE_END = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DimensionType.class, "the_end");
 
-    public static final Supplier<DimensionType> THE_NETHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DimensionType.class, "THE_NETHER");
+    public static final Supplier<DimensionType> THE_NETHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DimensionType.class, "the_nether");
 
     // SORTFIELDS:OFF
 

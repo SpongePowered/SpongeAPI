@@ -35,13 +35,13 @@ public final class Difficulties {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<Difficulty> EASY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Difficulty.class, "EASY");
+    public static final Supplier<Difficulty> EASY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Difficulty.class, "easy");
 
-    public static final Supplier<Difficulty> HARD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Difficulty.class, "HARD");
+    public static final Supplier<Difficulty> HARD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Difficulty.class, "hard");
 
-    public static final Supplier<Difficulty> NORMAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Difficulty.class, "NORMAL");
+    public static final Supplier<Difficulty> NORMAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Difficulty.class, "normal");
 
-    public static final Supplier<Difficulty> PEACEFUL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Difficulty.class, "PEACEFUL");
+    public static final Supplier<Difficulty> PEACEFUL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Difficulty.class, "peaceful");
 
     // SORTFIELDS:OFF
 

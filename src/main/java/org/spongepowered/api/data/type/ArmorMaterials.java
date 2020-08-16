@@ -32,17 +32,17 @@ public final class ArmorMaterials {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<ArmorMaterial> CHAINMAIL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorMaterial.class, "CHAINMAIL");
+    public static final Supplier<ArmorMaterial> CHAINMAIL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorMaterial.class, "chainmail");
 
-    public static final Supplier<ArmorMaterial> DIAMOND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorMaterial.class, "DIAMOND");
+    public static final Supplier<ArmorMaterial> DIAMOND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorMaterial.class, "diamond");
 
-    public static final Supplier<ArmorMaterial> GOLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorMaterial.class, "GOLD");
+    public static final Supplier<ArmorMaterial> GOLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorMaterial.class, "gold");
 
-    public static final Supplier<ArmorMaterial> IRON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorMaterial.class, "IRON");
+    public static final Supplier<ArmorMaterial> IRON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorMaterial.class, "iron");
 
-    public static final Supplier<ArmorMaterial> LEATHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorMaterial.class, "LEATHER");
+    public static final Supplier<ArmorMaterial> LEATHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorMaterial.class, "leather");
 
-    public static final Supplier<ArmorMaterial> TURTLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorMaterial.class, "TURTLE");
+    public static final Supplier<ArmorMaterial> TURTLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorMaterial.class, "turtle");
 
     // SORTFIELDS:OFF
 

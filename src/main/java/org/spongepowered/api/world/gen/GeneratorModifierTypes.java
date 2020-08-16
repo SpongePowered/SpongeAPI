@@ -32,15 +32,15 @@ public final class GeneratorModifierTypes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<GeneratorModifierType> AMPLIFIED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorModifierType.class, "AMPLIFIED");
+    public static final Supplier<GeneratorModifierType> AMPLIFIED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorModifierType.class, "amplified");
 
-    public static final Supplier<GeneratorModifierType> DEBUG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorModifierType.class, "DEBUG");
+    public static final Supplier<GeneratorModifierType> DEBUG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorModifierType.class, "debug");
 
-    public static final Supplier<GeneratorModifierType> NONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorModifierType.class, "NONE");
+    public static final Supplier<GeneratorModifierType> NONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorModifierType.class, "none");
 
-    public static final Supplier<GeneratorModifierType> FLAT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorModifierType.class, "FLAT");
+    public static final Supplier<GeneratorModifierType> FLAT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorModifierType.class, "flat");
 
-    public static final Supplier<GeneratorModifierType> LARGE_BIOMES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorModifierType.class, "LARGE_BIOMES");
+    public static final Supplier<GeneratorModifierType> LARGE_BIOMES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorModifierType.class, "large_biomes");
 
     // SORTFIELDS:OFF
 

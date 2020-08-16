@@ -32,19 +32,19 @@ public final class VillagerTypes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<VillagerType> DESERT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "DESERT");
+    public static final Supplier<VillagerType> DESERT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "desert");
 
-    public static final Supplier<VillagerType> JUNGLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "JUNGLE");
+    public static final Supplier<VillagerType> JUNGLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "jungle");
 
-    public static final Supplier<VillagerType> PLAINS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "PLAINS");
+    public static final Supplier<VillagerType> PLAINS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "plains");
 
-    public static final Supplier<VillagerType> SAVANA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "SAVANA");
+    public static final Supplier<VillagerType> SAVANA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "savana");
 
-    public static final Supplier<VillagerType> SNOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "SNOW");
+    public static final Supplier<VillagerType> SNOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "snow");
 
-    public static final Supplier<VillagerType> SWAMP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "SWAMP");
+    public static final Supplier<VillagerType> SWAMP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "swamp");
 
-    public static final Supplier<VillagerType> TAIGA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "TAIGA");
+    public static final Supplier<VillagerType> TAIGA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "taiga");
 
     // SORTFIELDS:OFF
 

@@ -41,13 +41,13 @@ public final class Criteria {
      * Represents a {@link Criteria} which causes an {@link Objective}
      * to have a score for a player incremented when they die.
      */
-    public static final Supplier<Criterion> DEATHS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "DEATHS");
+    public static final Supplier<Criterion> DEATHS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "deaths");
 
     /**
      * Represents a {@link Criterion} which causes an {@link Objective}
      * is only updated manually, through commands or plugins.
      */
-    public static final Supplier<Criterion> DUMMY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "DUMMY");
+    public static final Supplier<Criterion> DUMMY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "dummy");
 
     /**
      * Represents a {@link Criteria} which causes an {@link Objective} to have
@@ -55,26 +55,26 @@ public final class Criteria {
      * (can be greater than 20 due to effects such as
      * {@link PotionEffectTypes#HEALTH_BOOST}).
      */
-    public static final Supplier<Criterion> HEALTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "HEALTH");
+    public static final Supplier<Criterion> HEALTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "health");
 
     /**
      * Represents a {@link Criteria} which causes an {@link Objective}
      * to have a score for a player incremented when they kill a player.
      */
-    public static final Supplier<Criterion> PLAYER_KILLS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "PLAYER_KILLS");
+    public static final Supplier<Criterion> PLAYER_KILLS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "player_kills");
 
     /**
      * Represents a {@link Criteria} which causes an {@link Objective}
      * to have a score for a player incremented when they kill an entity.
      */
-    public static final Supplier<Criterion> TOTAL_KILLS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "TOTAL_KILLS");
+    public static final Supplier<Criterion> TOTAL_KILLS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "total_kills");
 
     /**
      * Represents a {@link Criterion} which causes an {@link Objective}
      * to have a score for a player updated by the <code>/trigger</code>
      * command.
      */
-    public static final Supplier<Criterion> TRIGGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "TRIGGER");
+    public static final Supplier<Criterion> TRIGGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "trigger");
 
     // SORTFIELDS:OFF
 

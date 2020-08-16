@@ -35,19 +35,19 @@ public final class PandaGenes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<PandaGene> AGGRESSIVE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PandaGene.class, "AGGRESSIVE");
+    public static final Supplier<PandaGene> AGGRESSIVE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PandaGene.class, "aggressive");
 
-    public static final Supplier<PandaGene> BROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PandaGene.class, "BROWN");
+    public static final Supplier<PandaGene> BROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PandaGene.class, "brown");
 
-    public static final Supplier<PandaGene> LAZY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PandaGene.class, "LAZY");
+    public static final Supplier<PandaGene> LAZY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PandaGene.class, "lazy");
 
-    public static final Supplier<PandaGene> NORMAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PandaGene.class, "NORMAL");
+    public static final Supplier<PandaGene> NORMAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PandaGene.class, "normal");
 
-    public static final Supplier<PandaGene> PLAYFUL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PandaGene.class, "PLAYFUL");
+    public static final Supplier<PandaGene> PLAYFUL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PandaGene.class, "playful");
 
-    public static final Supplier<PandaGene> WEAK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PandaGene.class, "WEAK");
+    public static final Supplier<PandaGene> WEAK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PandaGene.class, "weak");
 
-    public static final Supplier<PandaGene> WORRIED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PandaGene.class, "WORRIED");
+    public static final Supplier<PandaGene> WORRIED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PandaGene.class, "worried");
 
     // SORTFIELDS:OFF
 

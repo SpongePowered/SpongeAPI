@@ -32,15 +32,15 @@ public final class SpellTypes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<SpellType> BLINDNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpellType.class, "BLINDNESS");
+    public static final Supplier<SpellType> BLINDNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpellType.class, "blindness");
 
-    public static final Supplier<SpellType> DISAPPEAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpellType.class, "DISAPPEAR");
+    public static final Supplier<SpellType> DISAPPEAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpellType.class, "disappear");
 
-    public static final Supplier<SpellType> FANGS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpellType.class, "FANGS");
+    public static final Supplier<SpellType> FANGS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpellType.class, "fangs");
 
-    public static final Supplier<SpellType> SUMMON_VEX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpellType.class, "SUMMON_VEX");
+    public static final Supplier<SpellType> SUMMON_VEX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpellType.class, "summon_vex");
 
-    public static final Supplier<SpellType> WOLOLO = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpellType.class, "WOLOLO");
+    public static final Supplier<SpellType> WOLOLO = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpellType.class, "wololo");
 
     // SORTFIELDS:OFF
 

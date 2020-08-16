@@ -35,9 +35,9 @@ public final class ComparatorModes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<ComparatorMode> COMPARE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ComparatorMode.class, "COMPARE");
+    public static final Supplier<ComparatorMode> COMPARE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ComparatorMode.class, "compare");
 
-    public static final Supplier<ComparatorMode> SUBTRACT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ComparatorMode.class, "SUBTRACT");
+    public static final Supplier<ComparatorMode> SUBTRACT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ComparatorMode.class, "subtract");
 
     // SORTFIELDS:OFF
 

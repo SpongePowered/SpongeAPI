@@ -32,9 +32,9 @@ public final class PhantomPhases {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<PhantomPhase> CIRCLING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PhantomPhase.class, "CIRCLING");
+    public static final Supplier<PhantomPhase> CIRCLING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PhantomPhase.class, "circling");
 
-    public static final Supplier<PhantomPhase> SWOOPING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PhantomPhase.class, "SWOOPING");
+    public static final Supplier<PhantomPhase> SWOOPING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PhantomPhase.class, "swooping");
 
     // SORTFIELDS:OFF
 

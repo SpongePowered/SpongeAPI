@@ -32,9 +32,9 @@ public final class PortionTypes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<PortionType> BOTTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PortionType.class, "BOTTOM");
+    public static final Supplier<PortionType> BOTTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PortionType.class, "bottom");
 
-    public static final Supplier<PortionType> TOP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PortionType.class, "TOP");
+    public static final Supplier<PortionType> TOP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PortionType.class, "top");
 
     // SORTFIELDS:OFF
 

@@ -35,19 +35,19 @@ public final class RabbitTypes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<RabbitType> BLACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RabbitType.class, "BLACK");
+    public static final Supplier<RabbitType> BLACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RabbitType.class, "black");
 
-    public static final Supplier<RabbitType> BLACK_AND_WHITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RabbitType.class, "BLACK_AND_WHITE");
+    public static final Supplier<RabbitType> BLACK_AND_WHITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RabbitType.class, "black_and_white");
 
-    public static final Supplier<RabbitType> BROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RabbitType.class, "BROWN");
+    public static final Supplier<RabbitType> BROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RabbitType.class, "brown");
 
-    public static final Supplier<RabbitType> GOLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RabbitType.class, "GOLD");
+    public static final Supplier<RabbitType> GOLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RabbitType.class, "gold");
 
-    public static final Supplier<RabbitType> KILLER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RabbitType.class, "KILLER");
+    public static final Supplier<RabbitType> KILLER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RabbitType.class, "killer");
 
-    public static final Supplier<RabbitType> SALT_AND_PEPPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RabbitType.class, "SALT_AND_PEPPER");
+    public static final Supplier<RabbitType> SALT_AND_PEPPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RabbitType.class, "salt_and_pepper");
 
-    public static final Supplier<RabbitType> WHITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RabbitType.class, "WHITE");
+    public static final Supplier<RabbitType> WHITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RabbitType.class, "white");
 
     // SORTFIELDS:OFF
 

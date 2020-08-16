@@ -35,12 +35,12 @@ public class BanTypes {
     /**
      * Represents a {@link Ban.Ip}.
      */
-    public static final Supplier<BanType> IP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BanType.class, "IP");
+    public static final Supplier<BanType> IP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BanType.class, "ip");
 
     /**
      * Represents a {@link Ban.Profile}.
      */
-    public static final Supplier<BanType> PROFILE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BanType.class, "PROFILE");
+    public static final Supplier<BanType> PROFILE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BanType.class, "profile");
 
     // SORTFIELDS:OFF
 

@@ -71,7 +71,7 @@ public final class CatalogedValueParameters {
      * <p>Returns a {@link BigDecimal}.</p>
      */
     public static final Supplier<CatalogedValueParameter<BigDecimal>> BIG_DECIMAL =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "BIG_DECIMAL");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "big_decimal");
 
     /**
      * Require an argument to be a {@link BigInteger}.
@@ -79,7 +79,7 @@ public final class CatalogedValueParameters {
      * <p>Returns a {@link BigInteger}.</p>
      */
     public static final Supplier<CatalogedValueParameter<BigInteger>> BIG_INTEGER =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "BIG_INTEGER");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "big_integer");
 
     /**
      * Requires an argument to represent a {@link BlockState}
@@ -87,7 +87,7 @@ public final class CatalogedValueParameters {
      * <p>Returns a {@link BlockState}</p>
      */
     public static final Supplier<CatalogedValueParameter<BlockState>> BLOCK_STATE =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "BLOCK_STATE");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "block_state");
 
     /**
      * Require an argument to be a boolean.
@@ -115,7 +115,7 @@ public final class CatalogedValueParameters {
      * <p>Returns a {@link Boolean}.</p>
      */
     public static final Supplier<CatalogedValueParameter<Boolean>> BOOLEAN =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "BOOLEAN");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "boolean");
 
     /**
      * Require an argument to be a {@link Color}
@@ -133,7 +133,7 @@ public final class CatalogedValueParameters {
      * <p>Returns a {@link Color}</p>
      */
     public static final Supplier<CatalogedValueParameter<Color>> COLOR =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "COLOR");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "color");
 
     /**
      * Requires an argument to be a HOCON or JSON representation of a {@link DataContainer}.
@@ -144,7 +144,7 @@ public final class CatalogedValueParameters {
      * <p>Returns a {@link DataContainer}</p>
      */
     public static final Supplier<CatalogedValueParameter<DataContainer>> DATA_CONTAINER =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "DATA_CONTAINER");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "data_container");
 
     /**
      * Expect an argument to be a date-time, in the form of a
@@ -156,7 +156,7 @@ public final class CatalogedValueParameters {
      * <p>Returns a {@link LocalDateTime}</p>
      */
     public static final Supplier<CatalogedValueParameter<LocalDateTime>> DATE_TIME =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "DATE_TIME");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "date_time");
 
     /**
      * Require an argument to be an double-precision floating point number.
@@ -164,7 +164,7 @@ public final class CatalogedValueParameters {
      * <p>Returns a {@link Double}.</p>
      */
     public static final Supplier<CatalogedValueParameter<Double>> DOUBLE =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "DOUBLE");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "double");
 
     /**
      * Require an argument to be a duration.
@@ -183,7 +183,7 @@ public final class CatalogedValueParameters {
      * <p>Returns a {@link Duration}.</p>
      */
     public static final Supplier<CatalogedValueParameter<Duration>> DURATION =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "DURATION");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "duration");
 
     /**
      * Require an argument to select one {@link Entity}.
@@ -193,7 +193,7 @@ public final class CatalogedValueParameters {
      * <p>Returns an {@link Entity}.</p>
      */
     public static final Supplier<CatalogedValueParameter<Entity>> ENTITY =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "ENTITY");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "entity");
 
     /**
      * Expect an argument to represent a {@link GameProfile} of a user.
@@ -204,7 +204,7 @@ public final class CatalogedValueParameters {
      * <p>Returns a {@link GameProfile}.</p>
      */
     public static final Supplier<CatalogedValueParameter<Collection<GameProfile>>> GAME_PROFILE =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "GAME_PROFILE");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "game_profile");
 
     /**
      * Require an argument to be an integer (base 10) number.
@@ -212,7 +212,7 @@ public final class CatalogedValueParameters {
      * <p>Returns an {@link Integer}.</p>
      */
     public static final Supplier<CatalogedValueParameter<Integer>> INTEGER =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "INTEGER");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "integer");
 
     /**
      * Require an argument to be an IP address.
@@ -220,7 +220,7 @@ public final class CatalogedValueParameters {
      * <p>Returns an {@link InetAddress}</p>
      */
     public static final Supplier<CatalogedValueParameter<InetAddress>> IP =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "IP");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "ip");
 
     /**
      * Expect an argument to represent a {@link ServerLocation}.
@@ -235,7 +235,7 @@ public final class CatalogedValueParameters {
      * <p>Returns a {@link ServerLocation}.</p>
      */
     public static final Supplier<CatalogedValueParameter<ServerLocation>> LOCATION =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "LOCATION");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "location");
 
     /**
      * Require an argument to be a long (base 10).
@@ -243,7 +243,7 @@ public final class CatalogedValueParameters {
      * <p>Returns a {@link Long}.</p>
      */
     public static final Supplier<CatalogedValueParameter<Long>> LONG =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "LONG");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "long");
 
     /**
      * Require an argument to select many {@link Entity entities}.
@@ -255,7 +255,7 @@ public final class CatalogedValueParameters {
      * @see #ENTITY
      */
     public static final Supplier<CatalogedValueParameter<List<Entity>>> MANY_ENTITIES =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "MANY_ENTITIES");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "many_entities");
 
     /**
      * Require an argument to select many {@link ServerPlayer players}.
@@ -267,7 +267,7 @@ public final class CatalogedValueParameters {
      * @see #PLAYER
      */
     public static final Supplier<CatalogedValueParameter<List<ServerPlayer>>> MANY_PLAYERS =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "MANY_PLAYERS");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "many_players");
 
     /**
      * Does not parse any arguments, returning nothing.
@@ -275,7 +275,7 @@ public final class CatalogedValueParameters {
      * <p>Returns nothing - no entry will be placed into any provided key.</p>
      */
     public static final Supplier<CatalogedValueParameter<Void>> NONE =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "NONE");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "none");
 
     /**
      * Expect an argument to represent an online player.
@@ -285,7 +285,7 @@ public final class CatalogedValueParameters {
      * <p>Returns a {@link ServerPlayer}.</p>
      */
     public static final Supplier<CatalogedValueParameter<ServerPlayer>> PLAYER =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "PLAYER");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "player");
 
     /**
      * Expect an argument to represent a {@link PluginContainer}'s id.
@@ -293,7 +293,7 @@ public final class CatalogedValueParameters {
      * <p>Returns a {@link PluginContainer}</p>
      */
     public static final Supplier<CatalogedValueParameter<PluginContainer>> PLUGIN =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "PLUGIN");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "plugin");
 
     /**
      * Require one or more strings, without any processing, which are combined
@@ -302,7 +302,7 @@ public final class CatalogedValueParameters {
      * <p>Returns a {@link String}.</p>
      */
     public static final Supplier<CatalogedValueParameter<String>> REMAINING_JOINED_STRINGS =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "REMAINING_JOINED_STRINGS");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "remaining_joined_strings");
 
     /**
      * Require an argument to be a namespaced {@link ResourceKey}.
@@ -310,7 +310,7 @@ public final class CatalogedValueParameters {
      * <p>Returns a {@link ResourceKey}</p>
      */
     public static final Supplier<CatalogedValueParameter<ResourceKey>> RESOURCE_KEY =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "RESOURCE_KEY");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "resource_key");
 
     /**
      * Require an argument to be a string.
@@ -318,7 +318,7 @@ public final class CatalogedValueParameters {
      * <p>Returns a {@link String}.</p>
      */
     public static final Supplier<CatalogedValueParameter<String>> STRING =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "STRING");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "string");
 
     /**
      * Does not parse any arguments, but instead returns a
@@ -330,7 +330,7 @@ public final class CatalogedValueParameters {
      * <p>Returns a {@link ServerLocation}.</p>
      */
     public static final Supplier<CatalogedValueParameter<ServerLocation>> TARGET_BLOCK =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "TARGET_BLOCK");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "target_block");
 
     /**
      * Does not parse any arguments, but instead returns a {@link Entity} if the
@@ -342,7 +342,7 @@ public final class CatalogedValueParameters {
      * <p>Returns a {@link Entity}.</p>
      */
     public static final Supplier<CatalogedValueParameter<Entity>> TARGET_ENTITY =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "TARGET_ENTITY");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "target_entity");
 
     /**
      * Does not parse any arguments, but instead returns a {@link ServerPlayer}
@@ -354,7 +354,7 @@ public final class CatalogedValueParameters {
      * <p>Returns a {@link ServerPlayer}.</p>
      */
     public static final Supplier<CatalogedValueParameter<ServerPlayer>> TARGET_PLAYER =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "TARGET_PLAYER");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "target_player");
 
     /**
      * Expects an argument to represent some {@link Component} serialised using formatting codes.
@@ -364,7 +364,7 @@ public final class CatalogedValueParameters {
      * <p>Returns a {@link Component}</p>
      */
     public static final Supplier<CatalogedValueParameter<Component>> TEXT_FORMATTING_CODE =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "TEXT_FORMATTING_CODE");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "text_formatting_code");
 
     /**
      * Expects an argument to represent some {@link Component} serialised using formatting codes.
@@ -374,7 +374,7 @@ public final class CatalogedValueParameters {
      * <p>Returns a {@link Component}</p>
      */
     public static final Supplier<CatalogedValueParameter<Component>> TEXT_FORMATTING_CODE_ALL =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "TEXT_FORMATTING_CODE_ALL");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "text_formatting_code_all");
 
     /**
      * Expects an argument to represent some {@link Component} serialised using Json.
@@ -384,7 +384,7 @@ public final class CatalogedValueParameters {
      * <p>Returns a {@link Component}</p>
      */
     public static final Supplier<CatalogedValueParameter<Component>> TEXT_JSON =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "TEXT_JSON");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "text_json");
 
     /**
      * Expects an argument to represent some {@link Component} serialised using Json.
@@ -394,7 +394,7 @@ public final class CatalogedValueParameters {
      * <p>Returns a {@link Component}</p>
      */
     public static final Supplier<CatalogedValueParameter<Component>> TEXT_JSON_ALL =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "TEXT_JSON_ALL");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "text_json_all");
 
     /**
      * Require an argument to be a URL.
@@ -402,7 +402,7 @@ public final class CatalogedValueParameters {
      * <p>Returns a {@link URL}</p>
      */
     public static final Supplier<CatalogedValueParameter<URL>> URL =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "URL");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "url");
 
     /**
      * Expect an argument to represent a player who has been online at some
@@ -413,7 +413,7 @@ public final class CatalogedValueParameters {
      * <p>Returns a {@link User}.</p>
      */
     public static final Supplier<CatalogedValueParameter<User>> USER =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "USER");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "user");
 
     /**
      * Expect an argument to represent a {@link UUID}
@@ -421,7 +421,7 @@ public final class CatalogedValueParameters {
      * <p>Returns a {@link UUID}.</p>
      */
     public static final Supplier<CatalogedValueParameter<UUID>> UUID =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "UUID");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "uuid");
 
     /**
      * Expect an argument to represent a {@link Vector2d}.
@@ -458,7 +458,7 @@ public final class CatalogedValueParameters {
      * <p>Returns a {@link WorldProperties}.</p>
      */
     public static final Supplier<CatalogedValueParameter<WorldProperties>> WORLD_PROPERTIES =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "WORLD_PROPERTIES");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "world_properties");
 
     // SORTFIELDS:OFF
 

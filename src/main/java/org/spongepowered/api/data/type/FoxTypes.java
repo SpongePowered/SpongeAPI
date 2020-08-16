@@ -35,9 +35,9 @@ public final class FoxTypes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<FoxType> RED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FoxType.class, "RED");
+    public static final Supplier<FoxType> RED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FoxType.class, "red");
 
-    public static final Supplier<FoxType> SNOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FoxType.class, "SNOW");
+    public static final Supplier<FoxType> SNOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FoxType.class, "snow");
 
     // SORTFIELDS:OFF
 

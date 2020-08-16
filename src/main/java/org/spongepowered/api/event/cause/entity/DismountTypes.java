@@ -32,11 +32,11 @@ public final class DismountTypes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<DismountType> DEATH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DismountType.class, "DEATH");
+    public static final Supplier<DismountType> DEATH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DismountType.class, "death");
 
-    public static final Supplier<DismountType> DERAIL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DismountType.class, "DERAIL");
+    public static final Supplier<DismountType> DERAIL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DismountType.class, "derail");
 
-    public static final Supplier<DismountType> PLAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DismountType.class, "PLAYER");
+    public static final Supplier<DismountType> PLAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DismountType.class, "player");
 
     // SORTFIELDS:OFF
 

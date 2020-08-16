@@ -38,12 +38,12 @@ public class RecipeTypes {
     // SORTFIELDS:ON
 
     // CRAFTING_SHAPED - CRAFTING_SHAPELESS
-    public static final Supplier<RecipeType<CraftingRecipe>> CRAFTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RecipeType.class, "CRAFTING");
-    public static final Supplier<RecipeType<SmeltingRecipe>> SMELTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RecipeType.class, "SMELTING");
-    public static final Supplier<RecipeType<SmeltingRecipe>> BLASTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RecipeType.class, "BLASTING");
-    public static final Supplier<RecipeType<SmeltingRecipe>> SMOKING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RecipeType.class, "SMOKING");
-    public static final Supplier<RecipeType<SmeltingRecipe>> CAMPFIRE_COOKING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RecipeType.class, "CAMPFIRE_COOKING");
-    public static final Supplier<RecipeType<StoneCutterRecipe>> STONECUTTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RecipeType.class, "STONECUTTING");
+    public static final Supplier<RecipeType<CraftingRecipe>> CRAFTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RecipeType.class, "crafting");
+    public static final Supplier<RecipeType<SmeltingRecipe>> SMELTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RecipeType.class, "smelting");
+    public static final Supplier<RecipeType<SmeltingRecipe>> BLASTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RecipeType.class, "blasting");
+    public static final Supplier<RecipeType<SmeltingRecipe>> SMOKING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RecipeType.class, "smoking");
+    public static final Supplier<RecipeType<SmeltingRecipe>> CAMPFIRE_COOKING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RecipeType.class, "campfire_cooking");
+    public static final Supplier<RecipeType<StoneCutterRecipe>> STONECUTTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RecipeType.class, "stonecutting");
 
     // SORTFIELDS:OFF
 

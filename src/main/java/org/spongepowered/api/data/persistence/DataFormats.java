@@ -35,11 +35,11 @@ public final class DataFormats {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<StringDataFormat> HOCON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StringDataFormat.class, "HOCON");
+    public static final Supplier<StringDataFormat> HOCON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StringDataFormat.class, "hocon");
 
-    public static final Supplier<StringDataFormat> JSON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StringDataFormat.class, "JSON");
+    public static final Supplier<StringDataFormat> JSON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StringDataFormat.class, "json");
 
-    public static final Supplier<DataFormat> NBT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataFormat.class, "NBT");
+    public static final Supplier<DataFormat> NBT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataFormat.class, "nbt");
 
     // SORTFIELDS:OFF
 

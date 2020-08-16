@@ -44,26 +44,26 @@ public final class SelectorSortAlgorithms {
      * An undefined sorting algorithm
      */
     public static final Supplier<SelectorSortAlgorithm> ARBITRARY =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorSortAlgorithm.class, "ARBITRARY");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorSortAlgorithm.class, "arbitrary");
 
     /**
      * Selects the {@link Entity entities} furthest away from the target
      * location first.
      */
     public static final Supplier<SelectorSortAlgorithm> FURTHEST =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorSortAlgorithm.class, "FURTHEST");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorSortAlgorithm.class, "furthest");
 
     /**
      * Selects the {@link Entity entities} nearest to the target location first.
      */
     public static final Supplier<SelectorSortAlgorithm> NEAREST =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorSortAlgorithm.class, "NEAREST");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorSortAlgorithm.class, "nearest");
 
     /**
      * Returns {@link Entity entities} in a random order
      */
     public static final Supplier<SelectorSortAlgorithm> RANDOM =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorSortAlgorithm.class, "RANDOM");
+            Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorSortAlgorithm.class, "random");
 
     // SORTFIELDS:OFF
 

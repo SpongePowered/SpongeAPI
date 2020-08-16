@@ -35,11 +35,11 @@ public final class AttributeOperations {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<AttributeOperation> ADD_NUMBER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AttributeOperation.class, "ADD_NUMBER");
+    public static final Supplier<AttributeOperation> ADD_NUMBER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AttributeOperation.class, "add_number");
 
-    public static final Supplier<AttributeOperation> ADD_PERCENTAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AttributeOperation.class, "ADD_PERCENTAGE");
+    public static final Supplier<AttributeOperation> ADD_PERCENTAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AttributeOperation.class, "add_percentage");
 
-    public static final Supplier<AttributeOperation> MULTIPLY_PERCENTAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AttributeOperation.class, "MULTIPLY_PERCENTAGE");
+    public static final Supplier<AttributeOperation> MULTIPLY_PERCENTAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AttributeOperation.class, "multiply_percentage");
 
     // SORTFIELDS:OFF
 
