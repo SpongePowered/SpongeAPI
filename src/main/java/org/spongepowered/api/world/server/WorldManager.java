@@ -83,16 +83,16 @@ public interface WorldManager {
      * @param archetype The archetype for creation
      * @return The new world properties, if the creation was successful
      */
-    CompletableFuture<Optional<WorldProperties>> createProperties(ResourceKey key, WorldArchetype archetype);
+    CompletableFuture<WorldProperties> createProperties(ResourceKey key, WorldArchetype archetype);
 
     /**
      * Loads a {@link ServerWorld} specified by a {@link ResourceKey key}. If a world with
      * the given name is already loaded then it is returned instead.
      *
      * @param key The key
-     * @return The world, if found
+     * @return The world
      */
-    CompletableFuture<Optional<ServerWorld>> loadWorld(ResourceKey key);
+    CompletableFuture<ServerWorld> loadWorld(ResourceKey key);
 
     /**
      * Loads a {@link ServerWorld} from the default storage container.
@@ -104,9 +104,9 @@ public interface WorldManager {
      * <p>If none of the above, the properties will be wrote to the default storage container as a result of the load</p>
      *
      * @param properties The properties of the world to load
-     * @return The world, if found
+     * @return The world
      */
-    CompletableFuture<Optional<ServerWorld>> loadWorld(WorldProperties properties) throws IOException;
+    CompletableFuture<ServerWorld> loadWorld(WorldProperties properties);
 
     /**
      * Unloads the {@link ServerWorld} registered to the {@link ResourceKey key}.
@@ -185,10 +185,9 @@ public interface WorldManager {
      *
      * @param key The key
      * @param copyValue The copied value for the new properties
-     * @return An {@link Optional} containing the properties of the new world
-     *         instance, if the copy was successful
+     * @return The world properties
      */
-    CompletableFuture<Optional<WorldProperties>> copyWorld(ResourceKey key, String copyValue);
+    CompletableFuture<WorldProperties> copyWorld(ResourceKey key, String copyValue);
 
     /**
      * Renames a {@link WorldProperties}.
@@ -199,10 +198,9 @@ public interface WorldManager {
      *
      * @param key The key
      * @param newValue The new value
-     * @return An {@link Optional} containing the new {@link WorldProperties}
-     *         if the rename was successful
+     * @return The world properties
      */
-    CompletableFuture<Optional<WorldProperties>> renameWorld(ResourceKey key, String newValue);
+    CompletableFuture<WorldProperties> renameWorld(ResourceKey key, String newValue);
 
     /**
      * Deletes the {@link WorldProperties} by it's {@link ResourceKey key}.
