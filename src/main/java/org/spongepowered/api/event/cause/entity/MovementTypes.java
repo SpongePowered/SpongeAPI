@@ -32,6 +32,8 @@ public final class MovementTypes {
 
     // SORTFIELDS:ON
 
+    public static final Supplier<MovementType> CHORUS_FRUIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "CHORUS_FRUIT");
+
     public static final Supplier<MovementType> COMMAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "COMMAND");
 
     public static final Supplier<MovementType> END_GATEWAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "END_GATEWAY");
