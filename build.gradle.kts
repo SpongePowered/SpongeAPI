@@ -41,7 +41,6 @@ dependencies {
         exclude(group = "org.codehaus.mojo", module = "animal-sniffer-annotations")
     }
     api("com.google.code.gson:gson:2.8.0")
-    api("org.apache.commons:commons-lang3:3.5")
 
     api("net.kyori:adventure-api:4.0.0-SNAPSHOT")
     api("net.kyori:adventure-text-serializer-gson:4.0.0-SNAPSHOT")
