@@ -27,7 +27,6 @@ package org.spongepowered.api.util;
 import static com.google.common.base.Preconditions.checkArgument;
 
 import net.kyori.adventure.util.RGBLike;
-import org.apache.commons.lang3.Validate;
 import org.checkerframework.common.value.qual.IntRange;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.persistence.DataSerializable;
@@ -156,7 +155,7 @@ public final class Color implements DataSerializable, RGBLike {
      * @return The final output mixed color
      */
     public static Color mixDyeColors(DyeColor... colors) {
-        Validate.noNullElements(colors, "No nulls allowed!");
+        Objects.requireNonNull(colors, "No nulls allowed!");
         final Color[] actualColors = new Color[colors.length];
         for (int i = 0; i < colors.length; i++) {
             actualColors[i] = colors[i].getColor();
@@ -174,7 +173,7 @@ public final class Color implements DataSerializable, RGBLike {
      * @return The final output mixed color
      */
     public static Color mixColors(Color... colors) {
-        Validate.noNullElements(colors, "No null colors allowed!");
+        Objects.requireNonNull(colors, "No null colors allowed!");
         checkArgument(colors.length > 0, "Cannot have an empty color array!");
         if (colors.length == 1) {
             return colors[0];
@@ -183,6 +182,7 @@ public final class Color implements DataSerializable, RGBLike {
         int green = colors[0].getGreen();
         int blue = colors[0].getBlue();
         for (int i = 1; i < colors.length; i++) {
+            Objects.requireNonNull(colors[i], "No null colors allowed!");
             red += colors[i].getRed();
             green += colors[i].getGreen();
             blue += colors[i].getBlue();

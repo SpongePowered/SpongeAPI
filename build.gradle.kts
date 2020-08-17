@@ -41,7 +41,6 @@ dependencies {
         exclude(group = "org.codehaus.mojo", module = "animal-sniffer-annotations")
     }
     api("com.google.code.gson:gson:2.8.0")
-    api("org.apache.commons:commons-lang3:3.5")
 
     api("net.kyori:adventure-api:4.0.0-SNAPSHOT")
     api("net.kyori:adventure-text-serializer-gson:4.0.0-SNAPSHOT")
@@ -60,7 +59,6 @@ dependencies {
     implementation("com.github.ben-manes.caffeine:guava:2.8.4") {
         exclude(group = "com.google.guava", module = "guava")
     }
-    implementation("com.github.ben-manes.caffeine:jcache:2.8.4")
 
     // Plugin spi, includes plugin-meta
     api("org.spongepowered:plugin-spi:0.1.1-SNAPSHOT")
@@ -82,8 +80,6 @@ dependencies {
     api("org.spongepowered:math:2.0.0-SNAPSHOT")
     api("org.spongepowered:noise:2.0.0-SNAPSHOT")
 
-    // Asm for dummy object generation
-    implementation("org.ow2.asm:asm:6.2")
     testImplementation("junit:junit:4.12")
     testImplementation("org.hamcrest:hamcrest-library:1.3")
     testImplementation("org.mockito:mockito-core:2.8.47")
@@ -140,7 +136,6 @@ tasks {
                                 "https://google.github.io/guice/api-docs/4.1/javadoc/",
                                 "https://zml2008.github.io/configurate/configurate-core/apidocs/",
                                 "https://zml2008.github.io/configurate/configurate-hocon/apidocs/",
-                                "http://asm.ow2.org/asm50/javadoc/user/",
                                 "https://docs.oracle.com/javase/8/docs/api/"
                         )
                 )
