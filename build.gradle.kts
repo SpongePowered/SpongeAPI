@@ -80,7 +80,6 @@ dependencies {
     api("org.spongepowered:math:2.0.0-SNAPSHOT")
     api("org.spongepowered:noise:2.0.0-SNAPSHOT")
 
-    // Asm for dummy object generation
     testImplementation("junit:junit:4.12")
     testImplementation("org.hamcrest:hamcrest-library:1.3")
     testImplementation("org.mockito:mockito-core:2.8.47")
