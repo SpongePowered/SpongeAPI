@@ -40,7 +40,6 @@ dependencies {
         exclude(group = "com.google.j2objc", module = "j2objc-annotations")
         exclude(group = "org.codehaus.mojo", module = "animal-sniffer-annotations")
     }
-    api("com.google.errorprone:error_prone_annotations:2.1.3")
     api("com.google.code.gson:gson:2.8.0")
     api("org.apache.commons:commons-lang3:3.5")
 
