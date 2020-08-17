@@ -136,7 +136,6 @@ tasks {
                                 "https://google.github.io/guice/api-docs/4.1/javadoc/",
                                 "https://zml2008.github.io/configurate/configurate-core/apidocs/",
                                 "https://zml2008.github.io/configurate/configurate-hocon/apidocs/",
-                                "http://asm.ow2.org/asm50/javadoc/user/",
                                 "https://docs.oracle.com/javase/8/docs/api/"
                         )
                 )
