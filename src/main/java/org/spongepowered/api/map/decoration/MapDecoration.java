@@ -29,7 +29,6 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.util.Direction;
-import java.lang.Byte;
 
 /**
  * A MapDecoration that represents a Decoration on a map,
@@ -39,6 +38,9 @@ import java.lang.Byte;
 public interface MapDecoration extends DataSerializable {
 
     static Builder builder() {return Sponge.getRegistry().createBuilder(Builder.class);}
+
+    static MapDecoration of(MapDecorationType type, int x, int y, Direction rotation) {return builder().type(type).x(x).y(y).rotation(rotation).build();}
+
     /**
      * Gets the {@link MapDecorationType} of this MapDecoration
      * @return MapDecorationType The type of the MapDecoration
@@ -49,21 +51,21 @@ public interface MapDecoration extends DataSerializable {
      * Gets the position of this MapDecoration, where it is right
      * now, or where it would be if applied to a {@link org.spongepowered.api.map.MapInfo}.
      * 0,0 is the centre of a map.
-     * Ranges from {@value Byte#MIN_VALUE}-{@value Byte#MAX_VALUE}. AKA any valid byte value
+     * Ranges from {@value java.lang.Byte#MIN_VALUE}-{@value java.lang.Byte#MAX_VALUE}. AKA any valid byte value
      * @return Vector2i Co-ordinate position in world
      */
     Vector2i getPosition();
 
     /**
      * Gets the X position on a map, or where it will be when applied
-     * Ranges from {@value Byte#MIN_VALUE}-{@value Byte#MAX_VALUE}. AKA any valid byte value
+     * Ranges from {@value java.lang.Byte#MIN_VALUE}-{@value java.lang.Byte#MAX_VALUE}. AKA any valid byte value
      * @return int Y world coordinate
      */
     int getX();
 
     /**
      * Gets the Y position on a map. 0 is the center of the map.
-     * Ranges from {@value Byte#MIN_VALUE}-{@value Byte#MAX_VALUE}. AKA any valid byte value
+     * Ranges from {@value java.lang.Byte#MIN_VALUE}-{@value java.lang.Byte#MAX_VALUE}. AKA any valid byte value
      * @return int Y world coordinate
      */
     int getY();
@@ -72,7 +74,7 @@ public interface MapDecoration extends DataSerializable {
      * Sets the position of where the MapDecoration is on Maps,
      * or where it would be if applied to a {@link org.spongepowered.api.map.MapInfo}
      * 0,0 is the center of the map
-     * Ranges from {@value Byte#MIN_VALUE}-{@value Byte#MAX_VALUE}. AKA any valid byte value
+     * Ranges from {@value java.lang.Byte#MIN_VALUE}-{@value java.lang.Byte#MAX_VALUE}. AKA any valid byte value
      * @param position Vector2i world x and y cords
      */
     void setPosition(Vector2i position);
@@ -80,7 +82,7 @@ public interface MapDecoration extends DataSerializable {
     /**
      * Sets the X position of where this MapDecoration is on a map
      * or where it will be when applied
-     * Ranges from {@value Byte#MIN_VALUE}-{@value Byte#MAX_VALUE}. AKA any valid byte value
+     * Ranges from {@value java.lang.Byte#MIN_VALUE}-{@value java.lang.Byte#MAX_VALUE}. AKA any valid byte value
      * @param x world cordinate
      */
     void setX(int x);
@@ -88,7 +90,7 @@ public interface MapDecoration extends DataSerializable {
     /**
      * Sets the X position of where this MapDecoration is on a map.
      * 0 is the center of the map.
-     * Ranges from {@value Byte#MIN_VALUE}-{@value Byte#MAX_VALUE}. AKA any valid byte value
+     * Ranges from {@value java.lang.Byte#MIN_VALUE}-{@value java.lang.Byte#MAX_VALUE}. AKA any valid byte value
      * @param y pos
      */
     void setY(int y);
@@ -117,7 +119,7 @@ public interface MapDecoration extends DataSerializable {
          * Sets the X position of the MapDecoration
          * (for when it is applied to a {@link org.spongepowered.api.map.MapInfo})
          * @param x map coordinate where 0 is the centre of the map.
-         * Ranges from {@value Byte#MIN_VALUE}-{@value Byte#MAX_VALUE}. AKA any valid byte value
+         * Ranges from {@value java.lang.Byte#MIN_VALUE}-{@value java.lang.Byte#MAX_VALUE}. AKA any valid byte value
          * @return this Builder, for chaining
          */
         Builder x(int x) throws IllegalStateException;
@@ -127,7 +129,7 @@ public interface MapDecoration extends DataSerializable {
          *
          * (for when it is applied to a {@link org.spongepowered.api.map.MapInfo})
          * @param y map coordinate where 0 is the centre of the map.
-         * Ranges from {@value Byte#MIN_VALUE}-{@value Byte#MAX_VALUE}. AKA any valid byte value
+         * Ranges from {@value java.lang.Byte#MIN_VALUE}-{@value java.lang.Byte#MAX_VALUE}. AKA any valid byte value
          * @return this Builder, for chaining
          */
         Builder y(int y) throws IllegalStateException;
@@ -145,7 +147,7 @@ public interface MapDecoration extends DataSerializable {
          * (for when it is applied to a {@link org.spongepowered.api.map.MapInfo})
          * @param position Vector2i, X and Y position, where 0,0 is
          *                 the center of the map.
-         * Map coordinates range from {@value Byte#MIN_VALUE}-{@value Byte#MAX_VALUE}. AKA any valid byte value
+         * Map coordinates range from {@value java.lang.Byte#MIN_VALUE}-{@value java.lang.Byte#MAX_VALUE}. AKA any valid byte value
          * @return this Builder, for chaining
          */
         Builder position(Vector2i position);
