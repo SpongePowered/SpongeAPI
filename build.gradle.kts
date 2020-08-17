@@ -60,7 +60,6 @@ dependencies {
     implementation("com.github.ben-manes.caffeine:guava:2.8.4") {
         exclude(group = "com.google.guava", module = "guava")
     }
-    implementation("com.github.ben-manes.caffeine:jcache:2.8.4")
 
     // Plugin spi, includes plugin-meta
     api("org.spongepowered:plugin-spi:0.1.1-SNAPSHOT")
