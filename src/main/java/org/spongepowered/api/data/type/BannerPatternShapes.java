@@ -41,7 +41,7 @@ public final class BannerPatternShapes {
 
     public static final Supplier<BannerPatternShape> BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "bricks");
 
-    public static final Supplier<BannerPatternShape> CIRCLE_MIDDLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "circle_middle");
+    public static final Supplier<BannerPatternShape> CIRCLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "circle");
 
     public static final Supplier<BannerPatternShape> CREEPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "creeper");
 
@@ -51,11 +51,11 @@ public final class BannerPatternShapes {
 
     public static final Supplier<BannerPatternShape> DIAGONAL_LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "diagonal_left");
 
-    public static final Supplier<BannerPatternShape> DIAGONAL_LEFT_MIRROR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "diagonal_left_mirror");
+    public static final Supplier<BannerPatternShape> DIAGONAL_UP_LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "diagonal_up_left");
 
     public static final Supplier<BannerPatternShape> DIAGONAL_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "diagonal_right");
 
-    public static final Supplier<BannerPatternShape> DIAGONAL_RIGHT_MIRROR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "diagonal_right_mirror");
+    public static final Supplier<BannerPatternShape> DIAGONAL_UP_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "diagonal_up_right");
 
     public static final Supplier<BannerPatternShape> FLOWER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "flower");
 
@@ -65,15 +65,15 @@ public final class BannerPatternShapes {
 
     public static final Supplier<BannerPatternShape> HALF_HORIZONTAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "half_horizontal");
 
-    public static final Supplier<BannerPatternShape> HALF_HORIZONTAL_MIRROR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "half_horizontal_mirror");
+    public static final Supplier<BannerPatternShape> HALF_HORIZONTAL_BOTTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "half_horizontal_bottom");
 
     public static final Supplier<BannerPatternShape> HALF_VERTICAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "half_vertical");
 
-    public static final Supplier<BannerPatternShape> HALF_VERTICAL_MIRROR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "half_vertical_mirror");
+    public static final Supplier<BannerPatternShape> HALF_VERTICAL_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "half_vertical_right");
 
     public static final Supplier<BannerPatternShape> MOJANG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "mojang");
 
-    public static final Supplier<BannerPatternShape> RHOMBUS_MIDDLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "rhombus_middle");
+    public static final Supplier<BannerPatternShape> RHOMBUS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "rhombus");
 
     public static final Supplier<BannerPatternShape> SKULL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "skull");
 
@@ -101,7 +101,7 @@ public final class BannerPatternShapes {
 
     public static final Supplier<BannerPatternShape> STRIPE_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "stripe_right");
 
-    public static final Supplier<BannerPatternShape> STRIPE_SMALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "stripe_small");
+    public static final Supplier<BannerPatternShape> SMALL_STRIPES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "small_stripes");
 
     public static final Supplier<BannerPatternShape> STRIPE_TOP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "stripe_top");
 
