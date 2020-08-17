@@ -37,23 +37,23 @@ import org.spongepowered.api.world.World;
 
 /**
  * Represents an {@link DataManipulator} hosting the specific map
- * information of an {@link org.spongepowered.api.map.MapInfo}
+ * information of an {@link org.spongepowered.api.map.MapInfo}.
  */
 public interface MapInfoData extends DataManipulator<MapInfoData, ImmutableMapInfoData> {
     /**
-     * Gets the center of where the map refers to
-     * @return Vector2d centre
+     * Gets the center of where the map refers to.
+     * @return The Vector2i centre point
      */
     Value<Vector2i> location();
 
     /**
-     * Gets the World that this map refers to
-     * @return World
+     * Gets the {@link World} that the map refers to.
+     * @return The world
      */
     Value<World> world();
 
     /**
-     * Gets whether this map tracks player position
+     * Gets whether this map tracks player position.
      * @return boolean If this map tracks players
      */
     Value<Boolean> trackPosition();
@@ -72,15 +72,15 @@ public interface MapInfoData extends DataManipulator<MapInfoData, ImmutableMapIn
     MutableBoundedValue<Integer> scale();
 
     /**
-     * Gets the canvas from this map
-     * This contains the colors in the map
+     * Gets the canvas from this map.
+     * This contains the colors in the map.
      * @return MapCanvas canvas for this map
      */
     Value<MapCanvas> canvas();
 
     /**
-     * Gets the MapDecorations from this map
-     * This is a list of MapDecorations
+     * Gets the MapDecorations from this map.
+     * This is a list of MapDecorations.
      * @return List of MapDecorations
      */
     SetValue<MapDecoration> decorations();

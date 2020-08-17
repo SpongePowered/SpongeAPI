@@ -38,8 +38,7 @@ import java.util.Optional;
 
 /**
  * Represents the canvas of a {@link org.spongepowered.api.item.inventory.ItemStack}
- * with {@link org.spongepowered.api.item.ItemType} {@link org.spongepowered.api.item.ItemTypes#FILLED_MAP}
- * Changes to maps will not apply until the client relogs
+ * with {@link org.spongepowered.api.item.ItemType} {@link org.spongepowered.api.item.ItemTypes#FILLED_MAP}.
  */
 public interface MapCanvas extends DataSerializable {
 
@@ -64,7 +63,9 @@ public interface MapCanvas extends DataSerializable {
     }
 
     /**
-     * Creates an image from this MapCanvas
+     * Creates an image from this MapCanvas.
+     * It creates a copy of held data, therefore changing this image will have
+     * no effect on the MapCanvas.
      * @return Image from the canvas
      */
     Image toImage();
@@ -72,6 +73,8 @@ public interface MapCanvas extends DataSerializable {
     /**
      * Creates an image and replaces all {@link MapColorTypes#AIR}
      * with the specified color.
+     * It creates a copy of held data, therefore changing this image will have
+     * no effect on the MapCanvas.
      * @param color to replace the air MapColorType
      * @return Image from the canvas
      */
@@ -90,11 +93,11 @@ public interface MapCanvas extends DataSerializable {
         /**
          * Paint a specified region a specified {@link MapColor}
          * All values are inclusive
-         * @param startX int X start pos
-         * @param startY int Y start pos
-         * @param endX int X end pos
-         * @param endY int Y end pos
-         * @param mapColor MapColor to paint this region
+         * @param startX bottom left corner of region to paint
+         * @param startY bottom left corner of region to paint
+         * @param endX top right corner of region to paint
+         * @param endY top right corner of region to paint
+         * @param mapColor Color to paint the given region
          * @return This Builder, for chaining
          */
         Builder paint(int startX, int startY, int endX, int endY, MapColor mapColor);
@@ -119,6 +122,8 @@ public interface MapCanvas extends DataSerializable {
 
         /**
          * Fills a canvas from an image
+         * This given image will be copied and thus changes to the
+         * image after this is called will not be reflected.
          * @param image to take from
          * @return This Builder, for chaining
          * @throws IllegalStateException if width/height is wrong or not known yet

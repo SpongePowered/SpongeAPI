@@ -1508,7 +1508,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for whether a {@link MapInfo}
-     * tracks player position
+     * tracks player positions
      *
      * @see MapInfoData#trackPosition()
      */

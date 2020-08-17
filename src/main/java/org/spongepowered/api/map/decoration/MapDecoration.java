@@ -25,10 +25,11 @@
 package org.spongepowered.api.map.decoration;
 
 import com.flowpowered.math.vector.Vector2i;
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.persistence.DataBuilder;
+import org.spongepowered.api.util.Direction;
+import java.lang.Byte;
 
 /**
  * A MapDecoration that represents a Decoration on a map,
@@ -46,19 +47,23 @@ public interface MapDecoration extends DataSerializable {
 
     /**
      * Gets the position of this MapDecoration, where it is right
-     * now, or where it would be if applied to a {@link org.spongepowered.api.map.MapInfo}
+     * now, or where it would be if applied to a {@link org.spongepowered.api.map.MapInfo}.
+     * 0,0 is the centre of a map.
+     * Ranges from {@value Byte#MIN_VALUE}-{@value Byte#MAX_VALUE}. AKA any valid byte value
      * @return Vector2i Co-ordinate position in world
      */
     Vector2i getPosition();
 
     /**
      * Gets the X position on a map, or where it will be when applied
+     * Ranges from {@value Byte#MIN_VALUE}-{@value Byte#MAX_VALUE}. AKA any valid byte value
      * @return int Y world coordinate
      */
     int getX();
 
     /**
-     * Gets the Y position on a map, or where it will be when applied
+     * Gets the Y position on a map. 0 is the center of the map.
+     * Ranges from {@value Byte#MIN_VALUE}-{@value Byte#MAX_VALUE}. AKA any valid byte value
      * @return int Y world coordinate
      */
     int getY();
@@ -66,42 +71,39 @@ public interface MapDecoration extends DataSerializable {
     /**
      * Sets the position of where the MapDecoration is on Maps,
      * or where it would be if applied to a {@link org.spongepowered.api.map.MapInfo}
+     * 0,0 is the center of the map
+     * Ranges from {@value Byte#MIN_VALUE}-{@value Byte#MAX_VALUE}. AKA any valid byte value
      * @param position Vector2i world x and y cords
      */
     void setPosition(Vector2i position);
 
     /**
-     * Sets the position from a Vector3i position in the world
-     * (Scraps Y value)
-     * @param position in world
-     */
-    void setPosition(Vector3i position);
-
-    /**
      * Sets the X position of where this MapDecoration is on a map
      * or where it will be when applied
+     * Ranges from {@value Byte#MIN_VALUE}-{@value Byte#MAX_VALUE}. AKA any valid byte value
      * @param x world cordinate
      */
     void setX(int x);
 
     /**
-     * Sets the X position of where this MapDecoration is on a map
-     * or where it will be when applied
+     * Sets the X position of where this MapDecoration is on a map.
+     * 0 is the center of the map.
+     * Ranges from {@value Byte#MIN_VALUE}-{@value Byte#MAX_VALUE}. AKA any valid byte value
      * @param y pos
      */
     void setY(int y);
 
     /**
-     * Sets rotation in degrees (0-360)
-     * @param rot Rotation in degrees
+     * Sets rotation with a Direction. Must be a cardinal/ordinal/secondary ordinal
+     * @param rot Direction, a, secondary ordinal
      */
-    void setRotation(int rot);
+    void setRotation(Direction rot);
 
     /**
-     * Gets rotation in degrees (0-360)
-     * @return Rotation in degrees
+     * Gets the direction the Map Decoration is pointing
+     * @return Direction, a cardinal/ordinal/secondary
      */
-    int getRotation();
+    Direction getRotation();
 
     interface Builder extends DataBuilder<MapDecoration> {
         /**
@@ -114,15 +116,18 @@ public interface MapDecoration extends DataSerializable {
         /**
          * Sets the X position of the MapDecoration
          * (for when it is applied to a {@link org.spongepowered.api.map.MapInfo})
-         * @param x world coordinate of where the icon would be in the world
+         * @param x map coordinate where 0 is the centre of the map.
+         * Ranges from {@value Byte#MIN_VALUE}-{@value Byte#MAX_VALUE}. AKA any valid byte value
          * @return this Builder, for chaining
          */
         Builder x(int x) throws IllegalStateException;
 
         /**
          * Sets the Y position of the MapDecoration
+         *
          * (for when it is applied to a {@link org.spongepowered.api.map.MapInfo})
-         * @param y world coordinate of where the icon would be in the world
+         * @param y map coordinate where 0 is the centre of the map.
+         * Ranges from {@value Byte#MIN_VALUE}-{@value Byte#MAX_VALUE}. AKA any valid byte value
          * @return this Builder, for chaining
          */
         Builder y(int y) throws IllegalStateException;
@@ -130,28 +135,20 @@ public interface MapDecoration extends DataSerializable {
         /**
          * Sets the rotation in degrees for this builder
          * (for when it is applied to a {@link org.spongepowered.api.map.MapInfo})
-         * @param rot Rotation in degrees
+         * @param rot Direction, any cardinal/ordinal/secondary ordinal direction. (Not up/down)
          * @return this Builder, for chaining
          */
-        Builder rotation(int rot);
+        Builder rotation(Direction rot);
 
         /**
          * Sets the X and Y position of the MapDecoration
          * (for when it is applied to a {@link org.spongepowered.api.map.MapInfo})
-         * @param position Vector2i, X and Y position,
-         * world coordinates of where the icon would be in the world
+         * @param position Vector2i, X and Y position, where 0,0 is
+         *                 the center of the map.
+         * Map coordinates range from {@value Byte#MIN_VALUE}-{@value Byte#MAX_VALUE}. AKA any valid byte value
          * @return this Builder, for chaining
          */
         Builder position(Vector2i position);
-
-        /**
-         * Sets position from a world co-ordinate position
-         * Useful for creating an icon at a entity's position
-         * (Scraps Y position)
-         * @param position Vector3i Position in world
-         * @return this Builder, for chaining
-         */
-        Builder position(Vector3i position);
 
         /**
          * Builds an instance of MapDecoration.
