@@ -1464,8 +1464,8 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the {@link MapCanvas} of a map
-     * for a {@link MapInfo}
-     * This contains the colors displayed on a map
+     * for a {@link MapInfo}.
+     * This contains the colors displayed on a map.
      *
      * @see MapInfoData#canvas()
      */
@@ -1473,7 +1473,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the Set of {@link MapDecoration}s
-     * for a {@link MapInfo}
+     * for a {@link MapInfo}.
      *
      * @see MapInfoData#decorations()
      */
@@ -1481,7 +1481,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the world for a
-     * {@link ItemTypes#FILLED_MAP}
+     * {@link MapInfo}
      *
      * @see MapInfoData#world()
      */
@@ -1489,14 +1489,15 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the centre x and z of where a
-     * {@link MapInfo} represents
-     * This will be automatically centralised correctly
+     * {@link MapInfo} represents.
+     * This will be automatically centralised correctly.
      * @see MapInfoData#location()
      */
     public static final Key<Value<Vector2i>> MAP_LOCATION = DummyObjectProvider.createExtendedFor(Key.class, "MAP_LOCATION");
 
     /**
      * Represents the {@link Key} for whether a map updates from players
+     * for a {@link MapInfo}.
      * By default this is false.
      * Can be used in combination with {@link Keys#MAP_CANVAS} to create
      * custom static map.
@@ -1508,7 +1509,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for whether a {@link MapInfo}
-     * tracks player positions
+     * tracks player positions.
      *
      * @see MapInfoData#trackPosition()
      */
@@ -1516,7 +1517,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for whether a {@link MapInfo} can track
-     * a player from anywhere in the world
+     * a player from anywhere in the world.
      *
      * @see MapInfoData#unlimitedTracking()
      */
@@ -1524,6 +1525,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the scale of a map
+     * for a {@link MapInfo}.
      * @see <a href="https://minecraft.gamepedia.com/Map#Zoom_details">Minecraft Wiki - Zoom Details</a>
      * @see MapInfoData#scale()
      */
@@ -1531,7 +1533,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the {@link MapInfo}
-     * of an {@link ItemStack} of type {@link ItemTypes#FILLED_MAP}
+     * of an {@link ItemStack} of type {@link ItemTypes#FILLED_MAP}.
      * @see MapInfoItemData#mapInfo()
      */
     public static final Key<Value<MapInfo>> MAP_INFO = DummyObjectProvider.createExtendedFor(Key.class, "MAP_INFO");
