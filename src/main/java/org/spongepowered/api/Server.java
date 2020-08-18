@@ -444,7 +444,7 @@ public interface Server {
     /**
      * Gets the map storage for this server
      *
-     * <p>The server scoreboard may not be available if dimension 0
+     * <p>The server map storage may not be available if dimension 0
      * is not yet loaded. In Vanilla, this will only occur when the
      * server is first starting, as dimension 0 is normally always loaded.</p>
      *
