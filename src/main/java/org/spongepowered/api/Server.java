@@ -443,7 +443,12 @@ public interface Server {
 
     /**
      * Gets the map storage for this server
-     * @return MapStorage map storage
+     *
+     * <p>The server scoreboard may not be available if dimension 0
+     * is not yet loaded. In Vanilla, this will only occur when the
+     * server is first starting, as dimension 0 is normally always loaded.</p>
+     *
+     * @return MapStorage if available
      */
     Optional<MapStorage> getMapStorage();
 }
