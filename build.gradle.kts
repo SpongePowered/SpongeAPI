@@ -50,7 +50,6 @@ dependencies {
     // Dependency injection
     api("com.google.inject:guice:4.1.0") {
         exclude(group = "javax.inject", module = "javax.inject")
-        exclude(group = "aopalliance", module = "aopalliance")
         exclude(group = "com.google.guava", module = "guava") // We bump the version compared to guice
     }
 
