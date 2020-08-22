@@ -26,11 +26,12 @@ package org.spongepowered.api.event.entity.living.player;
 
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.message.MessageEvent;
 
 /**
  * Fired when a {@link ServerPlayer player} is kicked.
  */
-public interface KickPlayerEvent extends Cancellable {
+public interface KickPlayerEvent extends MessageEvent, Cancellable {
 
     /**
      * Gets the {@link ServerPlayer player}.
