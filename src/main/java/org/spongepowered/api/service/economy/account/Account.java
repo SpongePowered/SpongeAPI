@@ -124,7 +124,7 @@ public interface Account extends Contextual {
      * {@link Account} for the {@link Currency} given and the set of {@link Context}s.
      *
      * <p>The default result when the account does not have a balance of the
-     * given {@link Currency} should be {@link BigDecimal#ZERO}.</p>
+     * given {@link Currency} will be {@link #getDefaultBalance(Currency)}.</p>
      *
      * <p>The balance may be unavailable depending on the set of
      * {@link Context}s used.</p>

@@ -22,40 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world;
+package org.spongepowered.api.text.placeholder;
 
 import org.spongepowered.api.Sponge;
 
 import java.util.function.Supplier;
 
-public final class SerializationBehaviors {
+/**
+ * Contains Sponge provided {@link PlaceholderParser}s.
+ */
+public class PlaceholderParsers {
 
-    // SORTFIELDS:ON
-
-    /**
-     * A {@link SerializationBehavior} where data is saved automatically. This is considered the default across the game.
-     */
-    public static final Supplier<SerializationBehavior> AUTOMATIC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SerializationBehavior.class, "automatic");
+    // SORTFIELDS: ON
 
     /**
-     * A {@link SerializationBehavior} where data is only saved when requested.
+     * A parser that returns the associated source's current world, if
+     * applicable, else the default world.
      */
-    public static final Supplier<SerializationBehavior> MANUAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SerializationBehavior.class, "manual");
+    static Supplier<PlaceholderParser> CURRENT_WORLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PlaceholderParser.class, "current_world");
 
     /**
-     * A {@link SerializationBehavior} where metadata is saved, but chunks are not saved.
+     * A parser that returns the associated source's name.
      */
-    public static final Supplier<SerializationBehavior> METADATA_ONLY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SerializationBehavior.class, "metadata_only");
+    static Supplier<PlaceholderParser> NAME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PlaceholderParser.class, "name");
 
-    /**
-     * A {@link SerializationBehavior} where data is not saved to disk.
-     */
-    public static final Supplier<SerializationBehavior> NONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SerializationBehavior.class, "none");
+    // SORTFIELDS: OFF
 
-    // SORTFIELDS:OFF
-
-    private SerializationBehaviors() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    private PlaceholderParsers() {
+        throw new AssertionError("This should not be instantiated.");
     }
 
 }

@@ -70,6 +70,7 @@ import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMode;
 import org.spongepowered.api.service.economy.Currency;
 import org.spongepowered.api.service.economy.transaction.TransactionType;
+import org.spongepowered.api.text.placeholder.PlaceholderParser;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.StatisticCategory;
 import org.spongepowered.api.entity.living.player.chat.ChatVisibility;
@@ -219,6 +220,9 @@ public final class CatalogTypes {
     public static final Class<PistonType> PISTON_TYPE = PistonType.class;
 
     public static final Class<PortalType> PORTAL_TYPE = PortalType.class;
+
+    public static final Class<PlaceholderParser> PLACEHOLDER_PARSER = PlaceholderParser.class;
+
 
     public static final Class<PortionType> PORTION_TYPE = PortionType.class;
 
