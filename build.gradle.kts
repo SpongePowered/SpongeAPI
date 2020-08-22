@@ -81,21 +81,21 @@ dependencies {
     api("org.spongepowered:plugin-spi:0.1.1-SNAPSHOT")
 
     // Configurate
-    api("org.spongepowered:configurate-core:3.6.1") {
+    api("org.spongepowered:configurate-core:3.7.1") {
         exclude(group = "com.google.guava", module = "guava")
         exclude(group = "org.checkerframework", module = "checker-qual") // We use our own version
     }
-    api("org.spongepowered:configurate-hocon:3.6.1") {
+    api("org.spongepowered:configurate-hocon:3.7.1") {
         exclude(group = "org.spongepowered", module = "configurate-core")
         exclude(group= "org.checkerframework", module = "checker-qual")
 
     }
-    api("org.spongepowered:configurate-gson:3.6.1") {
+    api("org.spongepowered:configurate-gson:3.7.1") {
         exclude(group = "org.spongepowered", module = "configurate-core")
         exclude(group = "com.google.code.gson", module = "gson") // We have the same version technically, but use the gson we provide.
         exclude(group= "org.checkerframework", module = "checker-qual")
     }
-    api("org.spongepowered:configurate-yaml:3.6.1") {
+    api("org.spongepowered:configurate-yaml:3.7.1") {
         exclude(group = "org.spongepowered", module = "configurate-core")
         exclude(group= "org.checkerframework", module = "checker-qual")
     }
