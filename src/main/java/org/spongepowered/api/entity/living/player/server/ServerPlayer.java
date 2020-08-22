@@ -191,14 +191,14 @@ public interface ServerPlayer extends Player, Subject {
      * Kicks the player, showing the default kick reason (the translation key
      * {@code disconnect.disconnected}).
      */
-    void kick();
+    boolean kick();
 
     /**
      * Kicks the player given a reason.
      *
      * @param reason The reason for the kick
      */
-    void kick(Component reason);
+    boolean kick(Component reason);
 
     /**
      * Gets the {@link Scoreboard} displayed to the player.
