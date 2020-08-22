@@ -42,10 +42,23 @@ dependencies {
     }
     api("com.google.code.gson:gson:2.8.0")
 
-    api("net.kyori:adventure-api:4.0.0-SNAPSHOT")
-    api("net.kyori:adventure-text-serializer-gson:4.0.0-SNAPSHOT")
-    api("net.kyori:adventure-text-serializer-legacy:4.0.0-SNAPSHOT")
-    api("net.kyori:adventure-text-serializer-plain:4.0.0-SNAPSHOT")
+    // Adventure
+    api("net.kyori:adventure-api:4.0.0-SNAPSHOT") {
+        exclude(group = "org.checkerframework", module = "checker-qual")
+    }
+    api("net.kyori:adventure-text-serializer-gson:4.0.0-SNAPSHOT") {
+        exclude(group = "org.checkerframework", module = "checker-qual")
+        exclude(group = "com.google.code.gson", module = "gson")
+        exclude(group = "net.kyori", module = "adventure-api")
+    }
+    api("net.kyori:adventure-text-serializer-legacy:4.0.0-SNAPSHOT") {
+        exclude(group = "org.checkerframework", module = "checker-qual")
+        exclude(group = "net.kyori", module = "adventure-api")
+    }
+    api("net.kyori:adventure-text-serializer-plain:4.0.0-SNAPSHOT") {
+        exclude(group = "org.checkerframework", module = "checker-qual")
+        exclude(group = "net.kyori", module = "adventure-api")
+    }
 
     // Dependency injection
     api("com.google.inject:guice:4.1.0") {
@@ -54,9 +67,14 @@ dependencies {
     }
 
     // High performance cache + guava - shaded guava
-    api("com.github.ben-manes.caffeine:caffeine:2.8.4")
+    api("com.github.ben-manes.caffeine:caffeine:2.8.4") {
+        exclude(group= "org.checkerframework", module = "checker-qual")
+        exclude(group = "com.google.errorprone", module = "error_prone_annotations")
+    }
     implementation("com.github.ben-manes.caffeine:guava:2.8.4") {
         exclude(group = "com.google.guava", module = "guava")
+        exclude(group= "org.checkerframework", module = "checker-qual")
+        exclude(group = "com.google.errorprone", module = "error_prone_annotations")
     }
 
     // Plugin spi, includes plugin-meta
@@ -68,12 +86,19 @@ dependencies {
         exclude(group = "org.checkerframework", module = "checker-qual") // We use our own version
     }
     api("org.spongepowered:configurate-hocon:3.6.1") {
+        exclude(group = "org.spongepowered", module = "configurate-core")
+        exclude(group= "org.checkerframework", module = "checker-qual")
 
     }
     api("org.spongepowered:configurate-gson:3.6.1") {
+        exclude(group = "org.spongepowered", module = "configurate-core")
         exclude(group = "com.google.code.gson", module = "gson") // We have the same version technically, but use the gson we provide.
+        exclude(group= "org.checkerframework", module = "checker-qual")
     }
-    api("org.spongepowered:configurate-yaml:3.6.1")
+    api("org.spongepowered:configurate-yaml:3.6.1") {
+        exclude(group = "org.spongepowered", module = "configurate-core")
+        exclude(group= "org.checkerframework", module = "checker-qual")
+    }
 
     // Math and noise for world gen
     api("org.spongepowered:math:2.0.0-SNAPSHOT")
