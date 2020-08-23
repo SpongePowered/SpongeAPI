@@ -73,7 +73,7 @@ import org.spongepowered.api.service.economy.transaction.TransactionType;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.StatisticCategory;
 import org.spongepowered.api.entity.living.player.chat.ChatVisibility;
-import org.spongepowered.api.util.ban.BanType;
+import org.spongepowered.api.service.ban.BanType;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.dimension.DimensionType;
 import org.spongepowered.api.world.gen.GeneratorModifierType;
