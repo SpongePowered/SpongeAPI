@@ -114,9 +114,13 @@ tasks {
     genEventImpl {
         outputFactory = "org.spongepowered.api.event.SpongeEventFactory"
         include("org/spongepowered/api/event/*/**/*")
+        exclude("org/spongepowered/api/event/action/InteractEvent.java")
         exclude("org/spongepowered/api/event/cause/")
+        exclude("org/spongepowered/api/event/entity/AffectEntityEvent.java")
         exclude("org/spongepowered/api/event/filter/")
         exclude("org/spongepowered/api/event/impl/")
+        exclude("org/spongepowered/api/event/item/inventory/AffectItemStackEvent.java")
+        exclude("org/spongepowered/api/event/item/inventory/AffectSlotEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/EngineLifecycleEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/LifecycleEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/ProvideServiceEvent.java")
@@ -130,6 +134,7 @@ tasks {
         exclude("org/spongepowered/api/event/lifecycle/StartedEngineEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/StoppingEngineEvent.java")
         inclusiveAnnotations = setOf("org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod")
+        exclusiveAnnotations = setOf("org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod")
     }
 
     jar {

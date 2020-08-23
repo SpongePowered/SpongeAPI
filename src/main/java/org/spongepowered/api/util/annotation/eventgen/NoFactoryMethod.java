@@ -22,34 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.action;
-
-import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
-import org.spongepowered.api.world.ServerLocation;
+package org.spongepowered.api.util.annotation.eventgen;
 
 /**
- * Fired when an {@link Entity} or {@link BlockSnapshot} collide with each other.
+ * Explicitly disables generation of an event factory method for an event class.
+ *
+ * <p>By default, an event which contains subinterfaces will not have
+ * an event factory method generated.</p>
  */
-public interface CollideEvent extends Event, Cancellable {
-
-    /**
-     * Fired after an {@link Entity} or {@link BlockSnapshot} impact with each
-     * other.
-     *
-     * <p>Note: this should only fire once after the first impact.</p>
-     */
-    @NoFactoryMethod
-    interface Impact extends CollideEvent {
-
-        /**
-         * Gets the {@link ServerLocation location} where the impact took place.
-         *
-         * @return The impact location
-         */
-        ServerLocation getImpactPoint();
-    }
+public @interface NoFactoryMethod {
 }
