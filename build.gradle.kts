@@ -78,7 +78,7 @@ dependencies {
     }
 
     // Plugin spi, includes plugin-meta
-    api("org.spongepowered:plugin-spi:0.1.1-SNAPSHOT")
+    api("org.spongepowered:plugin-spi:0.1.2-SNAPSHOT")
 
     // Configurate
     api("org.spongepowered:configurate-core:3.7.1") {
