@@ -140,6 +140,15 @@ public final class CommonParameters {
     public final static Parameter.Value<WorldProperties> ONLINE_WORLD_PROPERTIES_ONLY = Parameter.worldProperties().setKey("world").build();
 
     /**
+     * A {@link Parameter.Value} that parses a world id and stores it as a
+     * {@link WorldProperties} under the key "world". The world in question
+     * must be online. The parameter is optional.
+     *
+     * @see CatalogedValueParameters#WORLD_PROPERTIES_ONLINE_ONLY
+     */
+    public final static Parameter.Value<WorldProperties> ONLINE_WORLD_PROPERTIES_ONLY_OPTIONAL = Parameter.worldProperties().setKey("world").optional().build();
+
+    /**
      * A {@link Parameter.Value} that parses a player name or selector and
      * stores the results under the key "player".
      *
