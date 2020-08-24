@@ -95,38 +95,64 @@ public interface ResourceKey extends Key {
     }
 
     /**
-     * Creates a catalog key.
+     * Creates a catalog key from the provided namespace and value.
      *
      * @param namespace The namespace
      * @param value The value
      * @return A new catalog key
      */
     static ResourceKey of(final String namespace, final String value) {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class).namespace(namespace).value(value).build();
+        return builder().namespace(namespace).value(value).build();
     }
 
     /**
-     * Creates a catalog key
+     * Creates a catalog key from the provided {@link PluginContainer}'s
+     * identifier and the provided value.
      *
      * @param container The container
      * @param value The value
      * @return A new catalog key
      */
     static ResourceKey of(final PluginContainer container, final String value) {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class).namespace(container).value(value).build();
+        return builder().namespace(container).value(value).build();
     }
 
     /**
      * Resolves a catalog key from a string.
      *
-     * <p>If no namespace is found in {@code string} then
+     * <p>If no namespace is found in {@code value} then
      * {@link #MINECRAFT_NAMESPACE} will be the namespace.</p>
      *
      * @param value The value
      * @return A new catalog key
      */
     static ResourceKey resolve(final String value) {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class).value(value).build();
+        return resolve(value, MINECRAFT_NAMESPACE);
+    }
+
+    /**
+     * Resolves a catalog key from a string, using the provided default
+     * namespace if no namespace was found in {@code value}.
+     *
+     * @param value The value
+     * @param defaultNamespace The default namespace
+     * @return A new catalog key
+     */
+    static ResourceKey resolve(final String value, final String defaultNamespace) {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).resolve(value, defaultNamespace);
+    }
+
+    /**
+     * Resolves a catalog key from a string, using the provided
+     * {@link PluginContainer}'s identifier as the default namespace if no
+     * namespace was found in {@code value}.
+     *
+     * @param value The value
+     * @param defaultNamespace The default namespace
+     * @return A new catalog key
+     */
+    static ResourceKey resolve(final String value, final PluginContainer defaultNamespace) {
+        return resolve(value, defaultNamespace.getMetadata().getId());
     }
 
     /**
@@ -172,12 +198,53 @@ public interface ResourceKey extends Key {
 
     interface Builder extends ResettableBuilder<ResourceKey, Builder> {
 
+        /**
+         * Sets the key's namespace. Defaults to {@link ResourceKey#MINECRAFT_NAMESPACE}.
+         *
+         * @param namespace The namespace
+         * @return This builder, for chaining
+         */
         Builder namespace(String namespace);
 
+        /**
+         * Sets the key's namespace based on the provided {@link PluginContainer}'s
+         * identifier. Defaults to {@link ResourceKey#MINECRAFT_NAMESPACE}.
+         *
+         * @param container The namespace
+         * @return This builder, for chaining
+         */
         Builder namespace(PluginContainer container);
 
+        /**
+         * Sets the key's value.
+         *
+         * @param value The value
+         * @return This builder, for chaining
+         */
         Builder value(String value);
 
+        /**
+         * Builds the {@link ResourceKey}.
+         *
+         * @return The built catalog key
+         * @throws IllegalStateException If {@link Builder#value(String)} is not set.
+         */
         ResourceKey build() throws IllegalStateException;
+    }
+
+    /**
+     * A factory to generate {@link ResourceKey}s.
+     */
+    interface Factory {
+
+        /**
+         * Resolves a catalog key from a string, using the provided default
+         * namespace if no namespace was found in {@code value}.
+         *
+         * @param value The value
+         * @param defaultNamespace The default namespace
+         * @return A new catalog key
+         */
+        ResourceKey resolve(final String value, final String defaultNamespace);
     }
 }
