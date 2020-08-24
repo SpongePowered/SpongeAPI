@@ -140,7 +140,7 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
      * Creates a new {@link BlockEntityArchetype} for use with {@link Schematic}s
      * and placing the archetype in multiple locations.
      *
-     * <p>If this blocksnapshot does not contain a block entity then this will
+     * <p>If this block snapshot does not contain a block entity then this will
      * return {@link Optional#empty()}.</p>
      *
      * @return The created archetype for re-creating this block entity
