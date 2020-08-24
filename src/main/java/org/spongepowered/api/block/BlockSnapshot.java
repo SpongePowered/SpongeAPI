@@ -217,7 +217,8 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
 
         /**
          * Represents a {@link BlockSnapshot} with the default state of
-         * {@link BlockTypes#AIR} and a {@link ServerLocation} that cannot be determined.
+         * {@link BlockTypes#AIR}, and a default {@link ServerLocation}
+         * that is decided by the implementation.
          *
          * @return An empty block snapshot
          */
