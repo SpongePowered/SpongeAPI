@@ -2194,6 +2194,11 @@ public final class Keys {
     public static final Supplier<Key<Value<SlabPortion>>> SLAB_PORTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "slab_portion");
 
     /**
+     * The sleep timer of a {@link Player}.
+     */
+    public static final Supplier<Key<Value<Integer>>> SLEEP_TIMER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "sleep_timer");
+
+    /**
      * The index of a {@link Slot} in an {@link Inventory}
      * Readonly
      */
