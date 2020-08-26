@@ -36,7 +36,7 @@ public final class EntityPredicates {
     // TODO - decide whether we want this in the implementation or not.
 
     public static final Predicate<? super Entity> NO_SPECTATOR = entity -> entity.get(Keys.GAME_MODE)
-        .map(gamemode -> gamemode == GameModes.SPECTATOR)
+        .map(gamemode -> gamemode == GameModes.SPECTATOR.get())
         .orElse(false);
 
     public static final Predicate<? super Entity> STILL_ALIVE = entity -> !entity.isRemoved() && entity.get(Keys.HEALTH).map(hp -> hp > 0).orElse(false);
