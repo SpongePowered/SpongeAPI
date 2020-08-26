@@ -25,32 +25,26 @@
 package org.spongepowered.api.event.message;
 
 import net.kyori.adventure.text.Component;
-import org.spongepowered.api.event.Event;
 
 /**
- * Describes events when a involving a {@link Component} message.
+ * Represents an event whose message can be cancelled.
  */
-public interface MessageEvent extends Event {
+public interface MessageCancellable {
 
     /**
-     * Gets the original {@link Component} message.
+     * Returns true if the {@link Component}
+     * should not be sent.
      *
-     * @return The message
+     * @return True if message should not be sent
      */
-    Component getOriginalMessage();
+    boolean isMessageCancelled();
 
     /**
-     * Gets the message.
+     * Sets whether the {@link Component}
+     * should be sent.
      *
-     * @return Message
+     * @param cancelled True if should not be sent
      */
-    Component getMessage();
-
-    /**
-     * Sets the message.
-     *
-     * @param message The message
-     */
-    void setMessage(Component message);
+    void setMessageCancelled(boolean cancelled);
 
 }
