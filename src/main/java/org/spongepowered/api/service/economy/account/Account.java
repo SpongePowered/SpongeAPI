@@ -163,7 +163,7 @@ public interface Account extends Contextual {
      *
      * <p>Changes to the returned {@link Map} will not be reflected in
      * the underlying {@link Account}. See
-     * {@link #setBalance(Currency, BigDecimal, Cause, Set)}  to set values.</p>
+     * {@link #setBalance(Currency, BigDecimal, Set)}  to set values.</p>
      *
      * @param contexts the set of {@link Context}s to use with the
      *     specified amounts
@@ -185,7 +185,7 @@ public interface Account extends Contextual {
      * <p>Changes to the returned {@link Map} will not be reflected in
      * the underlying {@link Account} and may result in runtime exceptions
      * depending on implementation. See
-     * {@link #setBalance(Currency, BigDecimal, Cause, Set)}  to set values.</p>
+     * {@link #setBalance(Currency, BigDecimal, Set)}  to set values.</p>
      *
      * @return A {@link Map} of {@link Currency} to {@link BigDecimal} amounts
      *     that this account holds

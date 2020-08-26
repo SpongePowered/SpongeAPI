@@ -24,12 +24,13 @@
  */
 package org.spongepowered.api.effect.sound;
 
+import net.kyori.adventure.sound.Sound;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.math.vector.Vector3d;
 
 /**
  * Represents a value to supply to
- * {@link Viewer#playSound(SoundType, Vector3d, double)} to modulate the pitch
+ * {@link Viewer#playSound(Sound, Vector3d)} to modulate the pitch
  * to a specified note.
  */
 public final class PitchModulation {
