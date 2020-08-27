@@ -33,6 +33,7 @@ import org.spongepowered.api.entity.hanging.Painting;
 import org.spongepowered.api.entity.living.ArmorStand;
 import org.spongepowered.api.entity.living.Bat;
 import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.animal.Bee;
 import org.spongepowered.api.entity.living.animal.Cat;
 import org.spongepowered.api.entity.living.animal.Chicken;
 import org.spongepowered.api.entity.living.animal.Fox;
@@ -141,6 +142,8 @@ public final class EntityTypes {
     public static final Supplier<EntityType<Arrow>> ARROW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "arrow");
 
     public static final Supplier<EntityType<Bat>> BAT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "bat");
+
+    public static final Supplier<EntityType<Bee>> BEE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "bee");
 
     public static final Supplier<EntityType<Blaze>> BLAZE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "blaze");
 

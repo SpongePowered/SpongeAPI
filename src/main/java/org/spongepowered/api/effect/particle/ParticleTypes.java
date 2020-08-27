@@ -79,6 +79,8 @@ public final class ParticleTypes {
 
     public static final Supplier<ParticleType> DRAGON_BREATH_ATTACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "dragon_breath_attack");
 
+    public static final Supplier<ParticleType> DRIPPING_HONEY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "dripping_honey");
+
     public static final Supplier<ParticleType> DRIPPING_LAVA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "dripping_lava");
 
     public static final Supplier<ParticleType> DRIPPING_WATER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "dripping_water");
@@ -110,6 +112,10 @@ public final class ParticleTypes {
     public static final Supplier<ParticleType> EXPLOSION_EMITTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "explosion_emitter");
 
     public static final Supplier<ParticleType> FALLING_DUST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "falling_dust");
+
+    public static final Supplier<ParticleType> FALLING_HONEY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "falling_honey");
+
+    public static final Supplier<ParticleType> FALLING_NECTAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "falling_nectar");
 
     /**
      * This particle type will play the effect that will occur when
@@ -159,6 +165,8 @@ public final class ParticleTypes {
     public static final Supplier<ParticleType> ITEM_SLIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "item_slime");
 
     public static final Supplier<ParticleType> ITEM_SNOWBALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "item_snowball");
+
+    public static final Supplier<ParticleType> LANDING_HONEY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "landing_honey");
 
     public static final Supplier<ParticleType> LARGE_SMOKE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "large_smoke");
 

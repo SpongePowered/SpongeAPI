@@ -103,6 +103,12 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> BEDROCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "bedrock");
 
+    public static final Supplier<ItemType> BEE_NEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "bee_nest");
+
+    public static final Supplier<ItemType> BEE_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "bee_spawn_egg");
+
+    public static final Supplier<ItemType> BEEHIVE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "beehive");
+
     public static final Supplier<ItemType> BEEF = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "beef");
 
     public static final Supplier<ItemType> BEETROOT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "beetroot");
@@ -784,6 +790,14 @@ public final class ItemTypes {
     public static final Supplier<ItemType> HEART_OF_THE_SEA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "heart_of_the_sea");
 
     public static final Supplier<ItemType> HEAVY_WEIGHTED_PRESSURE_PLATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "heavy_weighted_pressure_plate");
+
+    public static final Supplier<ItemType> HONEY_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "honey_block");
+
+    public static final Supplier<ItemType> HONEY_BOTTLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "honey_bottle");
+
+    public static final Supplier<ItemType> HONEYCOMB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "honeycomb");
+
+    public static final Supplier<ItemType> HONEYCOMB_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "honeycomb_block");
 
     public static final Supplier<ItemType> HOPPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "hopper");
 
