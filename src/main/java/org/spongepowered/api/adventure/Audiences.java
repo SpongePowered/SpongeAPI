@@ -47,7 +47,18 @@ public final class Audiences {
      * @return An audience
      */
     public static Audience onlinePlayers() {
-        return factory().onlinePlayers();
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).onlinePlayers();
+    }
+
+    /**
+     * Gets an {@link Audience} that targets all online players
+     * with the specified permission.
+     *
+     * @param permission The permission
+     * @return An audience
+     */
+    public static Audience withPermission(String permission) {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).withPermission(permission);
     }
 
     /**
@@ -59,13 +70,14 @@ public final class Audiences {
         return Sponge.getGame().getSystemSubject();
     }
 
-    // TODO: withPermission
-
     private static Factory factory() {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class);
     }
 
     public interface Factory {
+
         Audience onlinePlayers();
+
+        Audience withPermission(String permission);
     }
 }
