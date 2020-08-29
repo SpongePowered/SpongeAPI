@@ -114,7 +114,7 @@ public final class ParticleTypes {
 
     public static final Supplier<ParticleType> FALLING_WATER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "falling_water");
 
-    /** TODO
+    /**
      * This particle type will play the effect that will occur when
      * a {@link Player} uses bone meal on a plant to boost the growth,
      * this can only be played at a block location that isn't {@link BlockTypes#AIR}.
