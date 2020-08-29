@@ -27,6 +27,8 @@ package org.spongepowered.api.adventure;
 import net.kyori.adventure.audience.Audience;
 import org.spongepowered.api.Sponge;
 
+import java.util.Objects;
+
 /**
  * {@link Audience}s.
  */
@@ -57,7 +59,8 @@ public final class Audiences {
      * @param permission The permission
      * @return An audience
      */
-    public static Audience withPermission(String permission) {
+    public static Audience withPermission(final String permission) {
+        Objects.requireNonNull(permission);
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).withPermission(permission);
     }
 
