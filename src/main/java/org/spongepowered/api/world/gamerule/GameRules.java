@@ -36,6 +36,7 @@ import org.spongepowered.api.entity.living.golem.SnowGolem;
 import org.spongepowered.api.entity.living.monster.Creeper;
 import org.spongepowered.api.entity.living.monster.Enderman;
 import org.spongepowered.api.entity.living.monster.Ghast;
+import org.spongepowered.api.entity.living.monster.Patroller;
 import org.spongepowered.api.entity.living.monster.Phantom;
 import org.spongepowered.api.entity.living.monster.Silverfish;
 import org.spongepowered.api.entity.living.monster.boss.Wither;
@@ -47,6 +48,7 @@ import org.spongepowered.api.entity.living.monster.zombie.ZombiePigman;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.entity.living.trader.Villager;
+import org.spongepowered.api.entity.living.trader.WanderingTrader;
 import org.spongepowered.api.entity.vehicle.Boat;
 import org.spongepowered.api.entity.vehicle.minecart.MinecartEntity;
 import org.spongepowered.api.raid.Raid;
@@ -56,7 +58,6 @@ import java.util.function.Supplier;
 /**
  * An enumeration of all the possible game rules in vanilla minecraft.
  */
-@SuppressWarnings("unchecked")
 public final class GameRules {
 
     // SORTFIELDS:ON
@@ -158,11 +159,25 @@ public final class GameRules {
     public static final Supplier<GameRule<Boolean>> DO_MOB_SPAWNING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "do_mob_spawning");
 
     /**
+     * Whether {@link Patroller patrollers} will go out on patrol (typically in a {@link Raid}.
+     *
+     * <p>This is a boolean game rule, with a default value of {@code true}.</p>
+     */
+    public static final Supplier<GameRule<Boolean>> DO_PATROL_SPAWNING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "do_patrol_spawning");
+
+    /**
      * Whether blocks should have drops.
      *
      * <p>This is a boolean game rule, with a default value of {@code true}.</p>
      */
     public static final Supplier<GameRule<Boolean>> DO_TILE_DROPS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "do_tile_drops");
+
+    /**
+     * Whether {@link WanderingTrader traders} will naturally spawn.
+     *
+     * <p>This is a boolean game rule, with a default value of {@code true}.</p>
+     */
+    public static final Supplier<GameRule<Boolean>> DO_TRADER_SPAWNING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "do_trader_spawning");
 
     /**
      * Whether the weather will change.
