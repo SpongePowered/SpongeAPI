@@ -52,6 +52,8 @@ public final class ParticleTypes {
      */
     public static final Supplier<ParticleType> BREAK_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "break_block");
 
+    public static final Supplier<ParticleType> BREAK_EYE_OF_ENDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "break_eye_of_ender");
+
     public static final Supplier<ParticleType> BUBBLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "bubble");
 
     public static final Supplier<ParticleType> BUBBLE_COLUMN_UP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "bubble_column_up");
@@ -75,6 +77,8 @@ public final class ParticleTypes {
     public static final Supplier<ParticleType> DOLPHIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "dolphin");
 
     public static final Supplier<ParticleType> DRAGON_BREATH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "dragon_breath");
+
+    public static final Supplier<ParticleType> DRAGON_BREATH_ATTACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "dragon_breath_attack");
 
     public static final Supplier<ParticleType> DRIPPING_HONEY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "dripping_honey");
 
@@ -110,17 +114,17 @@ public final class ParticleTypes {
 
     public static final Supplier<ParticleType> FALLING_WATER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "falling_water");
 
-//    /** TODO
-//     * This particle type will play the effect that will occur when
-//     * a {@link Player} uses bone meal on a plant to boost the growth,
-//     * this can only be played at a block location that isn't {@link BlockTypes#AIR}.
-//     * <p>This type has limited {@link ParticleOption}s, only
-//     * {@link ParticleOptions#QUANTITY} is supported.</p>
-//     *
-//     * <p>This type can no longer be spawned on air blocks. It will only
-//     * show up if spawned at the location of solid blocks.</p>
-//     */
-//    public static final Supplier<ParticleType> FERTILIZER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "fertilizer");
+    /** TODO
+     * This particle type will play the effect that will occur when
+     * a {@link Player} uses bone meal on a plant to boost the growth,
+     * this can only be played at a block location that isn't {@link BlockTypes#AIR}.
+     * <p>This type has limited {@link ParticleOption}s, only
+     * {@link ParticleOptions#QUANTITY} is supported.</p>
+     *
+     * <p>This type can no longer be spawned on air blocks. It will only
+     * show up if spawned at the location of solid blocks.</p>
+     */
+    public static final Supplier<ParticleType> FERTILIZER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "fertilizer");
 
 //    /** TODO
 //     * This particle type will play a fireworks effect.
@@ -165,6 +169,8 @@ public final class ParticleTypes {
 
     public static final Supplier<ParticleType> LAVA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "lava");
 
+    public static final Supplier<ParticleType> MOBSPAWNER_FLAMES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "mobspawner_flames");
+
     public static final Supplier<ParticleType> MYCELIUM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "mycelium");
 
     public static final Supplier<ParticleType> NAUTILUS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "nautilus");
@@ -184,6 +190,8 @@ public final class ParticleTypes {
     public static final Supplier<ParticleType> SPIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "spit");
 
     public static final Supplier<ParticleType> SPLASH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "splash");
+
+    public static final Supplier<ParticleType> SPLASH_POTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "splash_potion");
 
     public static final Supplier<ParticleType> SQUID_INK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "squid_ink");
 
