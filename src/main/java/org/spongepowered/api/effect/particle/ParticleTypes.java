@@ -45,6 +45,13 @@ public final class ParticleTypes {
 
     public static final Supplier<ParticleType> BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "block");
 
+    /**
+     * This particle type plays the effects of when a block is broken.
+     *
+     * <p>This type only supports the {@link ParticleOptions#BLOCK_STATE} option.</p>
+     */
+    public static final Supplier<ParticleType> BREAK_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "break_block");
+
     public static final Supplier<ParticleType> BUBBLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "bubble");
 
     public static final Supplier<ParticleType> BUBBLE_COLUMN_UP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "bubble_column_up");
