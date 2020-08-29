@@ -223,7 +223,6 @@ public final class CatalogTypes {
 
     public static final Class<PlaceholderParser> PLACEHOLDER_PARSER = PlaceholderParser.class;
 
-
     public static final Class<PortionType> PORTION_TYPE = PortionType.class;
 
     public static final Class<PotionEffectType> POTION_EFFECT_TYPE = PotionEffectType.class;
