@@ -27,6 +27,8 @@ package org.spongepowered.api.data.persistence;
 import net.kyori.adventure.text.Component;
 import org.spongepowered.configurate.ConfigurationNode;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.fluid.FluidState;
 import org.spongepowered.api.world.schematic.Schematic;
 import org.spongepowered.math.imaginary.Complexd;
 import org.spongepowered.math.imaginary.Complexf;
@@ -57,6 +59,8 @@ public final class DataTranslators {
 
     // SORTFIELDS:ON
 
+    public static final Supplier<DataTranslator<BlockState>> BLOCK_STATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "block_state");
+
     public static final Supplier<DataTranslator<Complexd>> COMPLEXD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "complexd");
 
     public static final Supplier<DataTranslator<Complexf>> COMPLEXF = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "complexf");
@@ -64,6 +68,8 @@ public final class DataTranslators {
     public static final Supplier<DataTranslator<Component>> COMPONENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "component");
 
     public static final Supplier<DataTranslator<ConfigurationNode>> CONFIGURATION_NODE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "configuration_node");
+
+    public static final Supplier<DataTranslator<FluidState>> FLUID_STATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "fluid_state");
 
     public static final Supplier<DataTranslator<Instant>> INSTANT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "instant");
 

@@ -24,9 +24,10 @@
  */
 package org.spongepowered.api.state;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.SerializableDataHolder;
+import org.spongepowered.api.data.SerializableDataHolderBuilder;
+import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.util.Cycleable;
 
@@ -176,4 +177,24 @@ public interface State<S extends State<S>> extends SerializableDataHolder.Immuta
      * @return The immutable map of state properties to their values representing this state
      */
     Map<StateProperty<?>, ?> getStatePropertyMap();
+
+    /**
+     * The {@link String} representation of this {@link State} can be considered to be equal to
+     * the representation of this state as a serialized form.
+     *
+     * @return The serialized string
+     */
+    @Override
+    String toString();
+
+    interface Builder<S extends State<S>, B extends Builder<S, B>> extends SerializableDataHolderBuilder.Immutable<S, B> {
+
+        /**
+         * Populates this builder with the representation of a {@link State state} serialized in the {@link String}.
+         *
+         * @param id The serialized string
+         * @return This builder, for chaining
+         */
+        B fromString(String id);
+    }
 }

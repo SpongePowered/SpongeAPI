@@ -24,26 +24,43 @@
  */
 package org.spongepowered.api.state;
 
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.KeyValueMatcher;
-import org.spongepowered.api.data.persistence.DataSerializable;
+import org.spongepowered.api.fluid.FluidState;
+import org.spongepowered.api.fluid.FluidType;
 import org.spongepowered.api.util.CopyableBuilder;
 
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 /**
- * Can be used to match {@link State}s.
+ * A {@link StateMatcher} that will match various {@link State}s
+ * according to a pre-built list of {@link StateProperty}s and their
+ * values, such that not all {@link StateProperty}s contained in a
+ * {@link State} must be matched.
  */
-public interface StateMatcher extends DataSerializable, Predicate<State<?>> {
+public interface StateMatcher<S extends State<S>> extends Predicate<S> {
 
     /**
-     * Creates a new {@link Builder}.
+     * Creates a new {@link Builder} for matching {@link BlockState}s.
      *
      * @return The builder
      */
-    static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+    static Builder<BlockState, BlockType> blockStateMatcherBuilder() {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(StateMatcher.Factory.class).blockStateMatcherBuilder();
+    }
+
+    /**
+     * Creates a new {@link Builder} for matching {@link FluidState}s.
+     *
+     * @return The builder
+     */
+    static Builder<FluidState, FluidType> fluidStateMatcherBuilder() {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(StateMatcher.Factory.class).fluidStateMatcherBuilder();
     }
 
     /**
@@ -54,35 +71,89 @@ public interface StateMatcher extends DataSerializable, Predicate<State<?>> {
      * @param state The state in question
      * @return True if the state sufficiently matches
      */
-    boolean matches(State<?> state);
+    boolean matches(S state);
+
+    /**
+     * Gets a {@link List} of compatible {@link State}s.
+     *
+     * @return The list of compatible states
+     */
+    List<S> getCompatibleStates();
 
     @Override
-    default boolean test(State<?> state) {
+    default boolean test(final S state) {
         return this.matches(state);
+    }
+
+    /**
+     * Factories for generating builders.
+     */
+    interface Factory {
+
+        /**
+         * Gets a {@link Builder} for {@link BlockState} matching.
+         *
+         * @return The builder
+         */
+        Builder<BlockState, BlockType> blockStateMatcherBuilder();
+
+        /**
+         * Gets a {@link Builder} for {@link FluidState} matching.
+         *
+         * @return The builder
+         */
+        Builder<FluidState, FluidType> fluidStateMatcherBuilder();
+
     }
 
     /**
      * A builder for {@link StateMatcher}s.
      */
-    interface Builder extends CopyableBuilder<StateMatcher, Builder> {
+    interface Builder<S extends State<S>, T extends StateContainer<S>> extends CopyableBuilder<StateMatcher<S>, Builder<S, T>> {
+
+        /**
+         * Sets the root {@link StateContainer} for the {@link StateMatcher}.
+         *
+         * @param type The {@link StateContainer} to use
+         * @return This builder, for chaining
+         */
+        default Builder<S, T> type(final Supplier<? extends T> type) {
+            return this.type(type.get());
+        }
+
+        /**
+         * Sets the root {@link StateContainer} for the {@link StateMatcher}.
+         *
+         * @param type The {@link StateContainer} to use
+         * @return This builder, for chaining
+         */
+        Builder<S, T> type(T type);
 
         /**
          * Adds a {@link StateProperty} that needs to be present
          * on a {@link State} to match.
          *
+         * <p>{@link #type(StateContainer)} or {@link #type(Supplier)}
+         * <strong>must</strong> be called before this is called as supported
+         * {@link StateProperty state properties} are specific to the type</p>
+         *
          * @param stateProperty The state property
          * @return This builder, for chaining
          */
-        Builder supportsStateProperty(StateProperty<?> stateProperty);
+        Builder<S, T> supportsStateProperty(StateProperty<@NonNull ?> stateProperty);
 
         /**
          * Adds a {@link StateProperty} that needs to be present
          * on a {@link State} to match.
          *
+         * <p>{@link #type(StateContainer)} or {@link #type(Supplier)}
+         * <strong>must</strong> be called before this is called as supported
+         * {@link StateProperty state properties} are specific to the type</p>
+         *
          * @param stateProperty The state property
          * @return This builder, for chaining
          */
-        default Builder supportsStateProperty(Supplier<? extends StateProperty<?>> stateProperty) {
+        default Builder<S, T> supportsStateProperty(final Supplier<? extends StateProperty<@NonNull ?>> stateProperty) {
             return this.supportsStateProperty(stateProperty.get());
         }
 
@@ -90,12 +161,16 @@ public interface StateMatcher extends DataSerializable, Predicate<State<?>> {
          * Adds a {@link StateProperty} and value that needs to
          * match on a {@link State} to match.
          *
+         * <p>{@link #type(StateContainer)} or {@link #type(Supplier)}
+         * <strong>must</strong> be called before this is called as supported
+         * {@link StateProperty state properties} are specific to the type</p>
+         *
          * @param stateProperty The state property
          * @param value The value to match
-         * @param <T> The value type
+         * @param <V> The value type
          * @return This builder, for chaining
          */
-        <T extends Comparable<T>> Builder stateProperty(StateProperty<T> stateProperty, T value);
+        <V extends Comparable<V>> Builder<S, T> stateProperty(StateProperty<V> stateProperty, V value);
 
         /**
          * Adds a {@link StateProperty} and value that needs to
@@ -103,10 +178,10 @@ public interface StateMatcher extends DataSerializable, Predicate<State<?>> {
          *
          * @param stateProperty The state property
          * @param value The value to match
-         * @param <T> The value type
+         * @param <V> The value type
          * @return This builder, for chaining
          */
-        default <T extends Comparable<T>> Builder stateProperty(Supplier<? extends StateProperty<T>> stateProperty, T value) {
+        default <V extends Comparable<V>> Builder<S, T> stateProperty(final Supplier<? extends StateProperty<V>> stateProperty, final V value) {
             return this.stateProperty(stateProperty.get(), value);
         }
 
@@ -117,13 +192,15 @@ public interface StateMatcher extends DataSerializable, Predicate<State<?>> {
          * @param matcher The matcher
          * @return This builder, for chaining
          */
-        Builder matcher(KeyValueMatcher<?> matcher);
+        Builder<S, T> matcher(KeyValueMatcher<?> matcher);
 
         /**
          * Builds a {@link StateMatcher}.
          *
          * @return The built state matcher
          */
-        StateMatcher build();
+        StateMatcher<S> build();
+
     }
+
 }
