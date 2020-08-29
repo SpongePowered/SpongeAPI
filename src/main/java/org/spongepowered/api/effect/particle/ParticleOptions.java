@@ -166,10 +166,10 @@ public final class ParticleOptions {
 //     */
 //    public static final Supplier<ParticleOption<Boolean>> SLOW_HORIZONTAL_VELOCITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "slow_horizontal_velocity");
 
-//    /** TODO
-//     * This option will affect how all the particles are moving.
-//     */
-//    public static final Supplier<ParticleOption<Vector3d>> VELOCITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "velocity");
+    /**
+     * This option will affect how all the particles are moving.
+     */
+    public static final Supplier<ParticleOption<Vector3d>> VELOCITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "velocity");
 
     // SORTFIELDS:OFF
 
