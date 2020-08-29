@@ -125,12 +125,12 @@ public final class ParticleTypes {
 
     public static final Supplier<ParticleType> FIREWORK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "firework");
 
-//    /** TODO
-//     * This particle type will play the smoke particles of a fire.
-//     * <p>This type has limited {@link ParticleOption}s, only
-//     * {@link ParticleOptions#DIRECTION} is supported.</p>
-//     */
-//    public static final Supplier<ParticleType> FIRE_SMOKE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "fire_smoke");
+    /**
+     * This particle type will play the smoke particles of a fire.
+     * <p>This type has limited {@link ParticleOption}s, only
+     * {@link ParticleOptions#DIRECTION} is supported.</p>
+     */
+    public static final Supplier<ParticleType> FIRE_SMOKE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "fire_smoke");
 
     public static final Supplier<ParticleType> FISHING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "fishing");
 
