@@ -93,13 +93,13 @@ public interface PlaceholderContext {
     Optional<String> getArgumentString();
 
     /**
-     * A builder for {@link PlaceholderText} objects.
+     * A builder for {@link PlaceholderComponent} objects.
      */
     interface Builder extends ResettableBuilder<PlaceholderContext, Builder> {
 
         /**
          * Sets the {@link Object} to use as a source of information
-         * for this {@link PlaceholderText} to the supplied {@link Player}.
+         * for this {@link PlaceholderComponent} to the supplied {@link Player}.
          *
          * @param player The player to associate this text with.
          * @return This, for chaining
@@ -113,11 +113,11 @@ public interface PlaceholderContext {
 
         /**
          * Sets the {@link Object} to use as a source of information
-         * for this {@link PlaceholderText}. If {@code null}, removes this
+         * for this {@link PlaceholderComponent}. If {@code null}, removes this
          * source.
          *
          * <p>If you are intending to keep the associated
-         * {@link PlaceholderText} for any period of time and that you wish to
+         * {@link PlaceholderComponent} for any period of time and that you wish to
          * associate a game object with the placeholder, use
          * {@link #setAssociatedObject(Supplier)} instead, supplying a function
          * that can recreate the object if necessary.</p>
@@ -135,7 +135,7 @@ public interface PlaceholderContext {
 
         /**
          * Sets the {@link Object} to use as a source of information
-         * for this {@link PlaceholderText}. If {@code null}, removes this source.
+         * for this {@link PlaceholderComponent}. If {@code null}, removes this source.
          *
          * @param supplier A {@link Supplier} that provides the {@link Object}
          * @return This, for chaining
@@ -160,10 +160,10 @@ public interface PlaceholderContext {
         /**
          * Builds and returns the placeholder.
          *
-         * @return The appropriate {@link PlaceholderText}
+         * @return The appropriate {@link PlaceholderComponent}
          * @throws IllegalStateException if the builder has not been completed,
          *  or the associated {@link PlaceholderParser} could not validate the
-         *  built {@link PlaceholderText}, if applicable.
+         *  built {@link PlaceholderComponent}, if applicable.
          */
         PlaceholderContext build() throws IllegalStateException;
 

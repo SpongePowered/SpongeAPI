@@ -35,7 +35,7 @@ import org.spongepowered.api.util.ResettableBuilder;
  * A {@link ComponentLike} that can be used in {@link Component} building methods
  * that represents a placeholder in text.
  *
- * <p>A {@link PlaceholderText} is the collection of a {@link PlaceholderParser}
+ * <p>A {@link PlaceholderComponent} is the collection of a {@link PlaceholderParser}
  * along with contextual data in the supplied {@link PlaceholderContext},
  * enabling its use in a {@link TextComponent} object.</p>
  *
@@ -52,14 +52,14 @@ import org.spongepowered.api.util.ResettableBuilder;
  * not cache the result of {@link #asComponent()} unless it is known that the supplied
  * parser is <strong>not</strong> sensitive to the time of invocation.</p>
  */
-public interface PlaceholderText extends ComponentLike {
+public interface PlaceholderComponent extends ComponentLike {
 
     /**
-     * Gets a builder for creating {@link PlaceholderText}.
+     * Gets a builder for creating {@link PlaceholderComponent}.
      *
      * @return A {@link Builder}
      */
-    static PlaceholderText.Builder builder() {
+    static PlaceholderComponent.Builder builder() {
         return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
     }
 
@@ -94,13 +94,13 @@ public interface PlaceholderText extends ComponentLike {
     }
 
     /**
-     * A builder for {@link PlaceholderText} objects.
+     * A builder for {@link PlaceholderComponent} objects.
      */
-    interface Builder extends ResettableBuilder<PlaceholderText, Builder> {
+    interface Builder extends ResettableBuilder<PlaceholderComponent, Builder> {
 
         /**
          * Sets the token that represents a {@link PlaceholderParser} for use
-         * in this {@link PlaceholderText}.
+         * in this {@link PlaceholderComponent}.
          *
          * @param parser The {@link PlaceholderParser} to use
          * @return This, for chaining
@@ -120,12 +120,12 @@ public interface PlaceholderText extends ComponentLike {
         /**
          * Builds and returns the placeholder.
          *
-         * @return The appropriate {@link PlaceholderText}
+         * @return The appropriate {@link PlaceholderComponent}
          * @throws IllegalStateException if the builder has not been completed,
          *  or the associated {@link PlaceholderParser} could not validate the
-         *  built {@link PlaceholderText}, if applicable.
+         *  built {@link PlaceholderComponent}, if applicable.
          */
-        PlaceholderText build() throws IllegalStateException;
+        PlaceholderComponent build() throws IllegalStateException;
 
     }
 
