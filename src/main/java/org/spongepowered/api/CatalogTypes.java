@@ -70,7 +70,7 @@ import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMode;
 import org.spongepowered.api.service.economy.Currency;
 import org.spongepowered.api.service.economy.transaction.TransactionType;
-import org.spongepowered.api.text.placeholder.PlaceholderParser;
+import org.spongepowered.api.placeholder.PlaceholderParser;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.StatisticCategory;
 import org.spongepowered.api.entity.living.player.chat.ChatVisibility;
