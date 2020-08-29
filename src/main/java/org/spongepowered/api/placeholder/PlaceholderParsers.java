@@ -31,7 +31,7 @@ import java.util.function.Supplier;
 /**
  * Contains Sponge provided {@link PlaceholderParser}s.
  */
-public class PlaceholderParsers {
+public final class PlaceholderParsers {
 
     // SORTFIELDS: ON
 
