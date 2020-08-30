@@ -38,7 +38,7 @@ public final class VillagerTypes {
 
     public static final Supplier<VillagerType> PLAINS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "plains");
 
-    public static final Supplier<VillagerType> SAVANA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "savana");
+    public static final Supplier<VillagerType> SAVANNA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "savanna");
 
     public static final Supplier<VillagerType> SNOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "snow");
 
