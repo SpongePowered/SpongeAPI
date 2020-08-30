@@ -47,6 +47,17 @@ import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
 @ImplementedBy(AbstractSpawnEntityEvent.class)
 public interface SpawnEntityEvent extends AffectEntityEvent {
 
+    /**
+     * An event that is thrown prior to an {@link Entity} being
+     * potentially added to a {@link org.spongepowered.api.world.World} such that
+     * any relational recording or transacting/association of the spawn to another
+     * action, such as a {@link org.spongepowered.api.event.block.ChangeBlockEvent block change}
+     * will be omitted. This does have the advantage that the cancellation of this event
+     * will result in no awareness to the client that the entity was being
+     * spawned and later cancelled.
+     */
+    interface Pre extends SpawnEntityEvent {}
+
     interface ChunkLoad extends SpawnEntityEvent {}
 
     interface Custom extends SpawnEntityEvent {}
