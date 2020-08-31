@@ -45,7 +45,16 @@ public interface SaveChunkEvent extends Event {
      * Called before the {@link Chunk} is saved. Cancelling this will prevent any of
      * the chunk's data being written to it's storage container.
      */
-    interface Pre extends SaveChunkEvent, TargetChunkEvent, Cancellable {}
+    interface Pre extends SaveChunkEvent, Cancellable {
+
+        /**
+         * Gets the {@link Chunk} being changed.
+         *
+         * @return The Chunk
+         */
+        Chunk getTargetChunk();
+
+    }
 
     /**
      * Called after the {@link Chunk} is saved. Guaranteed to exist in the chunk's
