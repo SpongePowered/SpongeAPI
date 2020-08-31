@@ -25,7 +25,6 @@
 package org.spongepowered.api.command.manager;
 
 import net.kyori.adventure.audience.Audience;
-import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.exception.CommandException;
 import org.spongepowered.api.command.registrar.CommandRegistrar;
@@ -37,7 +36,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.function.Predicate;
 
 /**
  * Registers and dispatches commands
@@ -145,8 +143,6 @@ public interface CommandManager {
      * @param container The {@link PluginContainer} to register the command for
      * @param commandTree The {@link CommandTreeNode} that represents this command
      *                    structure.
-     * @param requirement What a {@link CommandCause} needs to fulfil in order for this
-     *                    command to be executed.
      * @param primaryAlias The first command alias to register
      * @param secondaryAliases Secondary aliases to register, if any
      * @return The {@link CommandMapping} containing the command mapping
@@ -158,7 +154,6 @@ public interface CommandManager {
             CommandRegistrar<?> registrar,
             PluginContainer container,
             CommandTreeNode.Root commandTree,
-            Predicate<CommandCause> requirement,
             String primaryAlias,
             String... secondaryAliases)
             throws CommandFailedRegistrationException;
