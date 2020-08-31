@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.ban;
+package org.spongepowered.api.service.ban;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -30,7 +30,6 @@ import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.profile.GameProfile;
-import org.spongepowered.api.service.ban.BanService;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.net.InetAddress;

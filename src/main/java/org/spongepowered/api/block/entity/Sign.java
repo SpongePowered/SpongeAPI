@@ -36,7 +36,7 @@ import org.spongepowered.api.util.Nameable;
 public interface Sign extends BlockEntity, Nameable {
 
     /**
-     * Gets the {@link org.spongepowered.api.data.value.ListValue.Mutable} of {@link Text} for the {@link Sign}
+     * Gets the {@link org.spongepowered.api.data.value.ListValue.Mutable} of {@link Component} for the {@link Sign}
      * to show.
      *
      * @return The list of text lines

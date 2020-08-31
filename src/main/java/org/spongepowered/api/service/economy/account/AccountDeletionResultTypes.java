@@ -53,12 +53,6 @@ public class AccountDeletionResultTypes {
             Sponge.getRegistry().getCatalogRegistry().provideSupplier(AccountDeletionResultType.class, "success");
 
     /**
-     * Represents an account deletion where the deletion feature is unsupported.
-     */
-    public static final Supplier<AccountDeletionResultType> UNSUPPORTED =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(AccountDeletionResultType.class, "unsupported");
-
-    /**
      * Represents an account deletion where the account could not be deleted.
      */
     public static final Supplier<AccountDeletionResultType> UNDELETABLE =

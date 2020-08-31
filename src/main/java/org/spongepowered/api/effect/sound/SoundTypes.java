@@ -93,6 +93,16 @@ public final class SoundTypes {
 
     public static final Supplier<SoundType> BLOCK_BEACON_POWER_SELECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "block_beacon_power_select");
 
+    public static final Supplier<SoundType> BLOCK_BEEHIVE_DROP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "block_beehive_drop");
+
+    public static final Supplier<SoundType> BLOCK_BEEHIVE_ENTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "block_beehive_enter");
+
+    public static final Supplier<SoundType> BLOCK_BEEHIVE_EXIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "block_beehive_exit");
+
+    public static final Supplier<SoundType> BLOCK_BEEHIVE_SHEAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "block_beehive_shear");
+
+    public static final Supplier<SoundType> BLOCK_BEEHIVE_WORK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "block_beehive_work");
+
     public static final Supplier<SoundType> BLOCK_BELL_RESONATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "block_bell_resonate");
 
     public static final Supplier<SoundType> BLOCK_BELL_USE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "block_bell_use");
@@ -464,6 +474,18 @@ public final class SoundTypes {
     public static final Supplier<SoundType> ENTITY_BAT_LOOP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "entity_bat_loop");
 
     public static final Supplier<SoundType> ENTITY_BAT_TAKEOFF = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "entity_bat_takeoff");
+
+    public static final Supplier<SoundType> ENTITY_BEE_DEATH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "entity_bee_death");
+
+    public static final Supplier<SoundType> ENTITY_BEE_HURT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "entity_bee_hurt");
+
+    public static final Supplier<SoundType> ENTITY_BEE_LOOP_AGGRESSIVE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "entity_bee_loop_aggressive");
+
+    public static final Supplier<SoundType> ENTITY_BEE_LOOP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "entity_bee_loop");
+
+    public static final Supplier<SoundType> ENTITY_BEE_STING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "entity_bee_string");
+
+    public static final Supplier<SoundType> ENTITY_BEE_POLLINATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "entity_bee_pollinate");
 
     public static final Supplier<SoundType> ENTITY_BLAZE_AMBIENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "entity_blaze_ambient");
 

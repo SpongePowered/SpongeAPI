@@ -22,22 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.network;
-
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.service.ban.Ban;
+package org.spongepowered.api.entity.living.animal;
 
 /**
- * Called when a ban is made on an IP address.
+ * Represents a Bee.
  */
-public interface BanIpEvent extends Event, Cancellable {
-
-    /**
-     * Gets the ban made in this event.
-     *
-     * @return The ban
-     */
-    Ban.Ip getBan();
-
+public interface Bee extends Animal {
 }

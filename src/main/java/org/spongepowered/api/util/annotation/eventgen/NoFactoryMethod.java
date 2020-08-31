@@ -22,5 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
-package org.spongepowered.api.util.ban;
+package org.spongepowered.api.util.annotation.eventgen;
+
+/**
+ * Explicitly disables generation of an event factory method for an event class.
+ *
+ * <p>By default, an event which contains subinterfaces will not have
+ * an event factory method generated.</p>
+ */
+public @interface NoFactoryMethod {
+}

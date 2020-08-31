@@ -70,7 +70,7 @@ public interface Recipe extends CatalogType {
     boolean isValid(Inventory inventory, ServerWorld world);
 
     /**
-     * This method should only be called if {@link #isValid(Inventory, World)} returns {@code true}.
+     * This method should only be called if {@link #isValid(Inventory, ServerWorld)} returns {@code true}.
      *
      * <p>This method is preferred over the
      * {@link CraftingRecipe#getExemplaryResult()} method, as it customizes
@@ -95,7 +95,7 @@ public interface Recipe extends CatalogType {
     ItemStackSnapshot getExemplaryResult();
 
     /**
-     * This method should only be called if {@link #isValid(Inventory, World)} returns {@code true}.
+     * This method should only be called if {@link #isValid(Inventory, ServerWorld)} returns {@code true}.
      *
      * <p>A list of items to be added to the inventory of the player when they
      * craft the result. For example, if a player crafts a
@@ -113,13 +113,13 @@ public interface Recipe extends CatalogType {
      *
      * <p>Returns
      * {@link Optional#empty()} if the arguments do not satisfy
-     * {@link #isValid(Inventory, World)}.</p>
+     * {@link #isValid(Inventory, ServerWorld)}.</p>
      *
      * @param inventory The input inventory
      * @param world The world this recipe would be used in
      *
      * @return A {@link RecipeResult} if the arguments satisfy
-     *     {@link #isValid(Inventory, World)}, or
+     *     {@link #isValid(Inventory, ServerWorld)}, or
      *     {@link Optional#empty()} if not
      */
     default Optional<RecipeResult> getResult(Inventory inventory, ServerWorld world) {

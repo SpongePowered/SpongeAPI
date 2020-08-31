@@ -22,22 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.network;
+package org.spongepowered.api.service.ban;
 
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.service.ban.Ban;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Called when a ban is made on an IP address.
+ * Represents the possible types of bans.
  */
-public interface BanIpEvent extends Event, Cancellable {
+@CatalogedBy(BanTypes.class)
+public interface BanType extends CatalogType {
 
     /**
-     * Gets the ban made in this event.
+     * Gets the {@link Ban} class that this type represents.
      *
-     * @return The ban
+     * @return The ban class
      */
-    Ban.Ip getBan();
+    Class<? extends Ban> getBanClass();
 
 }

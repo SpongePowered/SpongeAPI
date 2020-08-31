@@ -25,13 +25,14 @@
 package org.spongepowered.api.event.message;
 
 import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 import java.util.Optional;
 
 /**
- * Describes events when a involving a {@link Text} message and {@link Audience}s.
+ * Describes events when a involving a {@link Component} message and {@link Audience}s.
  */
 @GenerateFactoryMethod
 public interface MessageChannelEvent extends MessageEvent {

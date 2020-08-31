@@ -25,7 +25,6 @@
 package org.spongepowered.api.service.ban;
 
 import org.spongepowered.api.profile.GameProfile;
-import org.spongepowered.api.util.ban.Ban;
 
 import java.net.InetAddress;
 import java.util.Collection;

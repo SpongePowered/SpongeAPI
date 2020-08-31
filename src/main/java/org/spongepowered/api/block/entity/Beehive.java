@@ -22,31 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.ban;
+package org.spongepowered.api.block.entity;
 
-import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
-
-public class BanTypes {
-
-    // SORTFIELDS:ON
-
-    /**
-     * Represents a {@link Ban.Ip}.
-     */
-    public static final Supplier<BanType> IP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BanType.class, "ip");
-
-    /**
-     * Represents a {@link Ban.Profile}.
-     */
-    public static final Supplier<BanType> PROFILE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BanType.class, "profile");
-
-    // SORTFIELDS:OFF
-
-    // Suppress default constructor to ensure non-instantiability.
-    private BanTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
-    }
-
+public interface Beehive extends BlockEntity {
 }

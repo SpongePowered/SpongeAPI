@@ -340,7 +340,7 @@ public interface Team {
          *
          * <p>By default, this is set to {@link #name(String)}</p>
          *
-         * @param displayName The {@link Text} to set
+         * @param displayName The {@link Component} to set
          * @return This builder
          * @throws IllegalArgumentException If the name is longer than 16
          *     characters

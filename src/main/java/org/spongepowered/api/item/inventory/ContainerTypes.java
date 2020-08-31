@@ -108,7 +108,7 @@ public final class ContainerTypes {
      */
     public static final Supplier<ContainerType> BEACON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "beacon");
 
-    public static final Supplier<ContainerType> CARTOGRAPHY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "cartography");
+    public static final Supplier<ContainerType> CARTOGRAPHY_TABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "cartography_table");
 
     /**
      * Size 0. All slots present in the container only: 10 (3x3+1).

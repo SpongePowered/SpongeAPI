@@ -28,6 +28,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.io.Resources;
 import org.spongepowered.plugin.PluginContainer;
+import org.spongepowered.plugin.jvm.Plugin;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -99,6 +99,16 @@ public interface CommandContext extends SubjectProxy {
     /**
      * Returns whether this context has any value for the given argument key.
      *
+     * @param parameter the {@link Parameter} associated with the argument
+     * @return whether there are any values present
+     */
+    default boolean hasAny(final Parameter.Value<?> parameter) {
+        return this.hasAny(parameter.getKey());
+    }
+
+    /**
+     * Returns whether this context has any value for the given argument key.
+     *
      * @param key The key to look up
      * @return whether there are any values present
      */
