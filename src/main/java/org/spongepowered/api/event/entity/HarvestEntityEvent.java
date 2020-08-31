@@ -27,6 +27,8 @@ package org.spongepowered.api.event.entity;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 /**
@@ -34,14 +36,21 @@ import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
  * after {@link DestructEntityEvent}.
  */
 @GenerateFactoryMethod
-public interface HarvestEntityEvent extends ChangeEntityExperienceEvent {
+public interface HarvestEntityEvent extends Event, Cancellable {
+
+    /**
+     * Gets the {@link Entity} being harvested
+     *
+     * @return The entity
+     */
+    Entity getEntity();
 
     /**
      * An event where the target is a {@link Player}. Usually this will
      * have additional information regarding whether the player
      * {@link #keepsInventory()} and their current experience.
      */
-    interface TargetPlayer extends HarvestEntityEvent {
+    interface TargetPlayer extends HarvestEntityEvent, ChangeEntityExperienceEvent {
 
         @Override
         ServerPlayer getEntity();
