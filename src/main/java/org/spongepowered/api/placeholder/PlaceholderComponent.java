@@ -35,9 +35,10 @@ import org.spongepowered.api.util.ResettableBuilder;
  * A {@link ComponentLike} that can be used in {@link Component} building methods
  * that represents a placeholder in text.
  *
- * <p>A {@link PlaceholderComponent} is the collection of a {@link PlaceholderParser}
- * along with contextual data in the supplied {@link PlaceholderContext},
- * enabling its use in a {@link TextComponent} object.</p>
+ * <p>A {@link PlaceholderComponent} is the collection of a
+ * {@link PlaceholderParser} along with contextual data in the supplied
+ * {@link PlaceholderContext}, enabling its use in a {@link Component} object.
+ * </p>
  *
  * <p>Such placeholders will generally be built from tokenized strings, however
  * these objects make no assumption about the format of text templating. Such a
@@ -46,11 +47,12 @@ import org.spongepowered.api.util.ResettableBuilder;
  *
  * <p>The {@link PlaceholderContext} is fixed when this object is created, but
  * {@link PlaceholderParser#parse(PlaceholderContext)} is not called until
- * {@link #asComponent()} is called. Thus, any {@link TextComponent} object that is created
- * will reflect the time that the {@link TextComponent} object was requested, and not when
- * this object itself was created. It therefore follows that implementations must
- * not cache the result of {@link #asComponent()} unless it is known that the supplied
- * parser is <strong>not</strong> sensitive to the time of invocation.</p>
+ * {@link #asComponent()} is called. Thus, any {@link Component} object that is
+ * created will reflect the time that the {@link Component} object was
+ * requested, and not when this object itself was created. It therefore follows
+ * that implementations must not cache the result of {@link #asComponent()}
+ * unless it is known that the supplied parser is <strong>not</strong> sensitive
+ * to the time of invocation.</p>
  */
 public interface PlaceholderComponent extends ComponentLike {
 
@@ -65,7 +67,7 @@ public interface PlaceholderComponent extends ComponentLike {
 
     /**
      * Gets the {@link PlaceholderContext} that is to be supplied to the
-     * {@link PlaceholderParser} to create the {@link TextComponent}.
+     * {@link PlaceholderParser} to create the {@link Component}.
      *
      * @return The {@link PlaceholderContext}
      */
@@ -79,18 +81,18 @@ public interface PlaceholderComponent extends ComponentLike {
     PlaceholderParser getParser();
 
     /**
-     * Creates a {@link TextComponent} from the supplied {@link PlaceholderParser} in the
-     * context of the supplied {@link PlaceholderContext}.
+     * Creates a {@link Component} from the supplied {@link PlaceholderParser}
+     * in the context of the supplied {@link PlaceholderContext}.
      *
-     * <p>This will always return a {@link TextComponent} object, however, if the parser
-     * could not handle the provided context, this will be {@link TextComponent#empty()}.
-     * </p>
+     * <p>This will always return a {@link Component} object, however, if the
+     * parser could not handle the provided context, this will be
+     * {@link TextComponent#empty()}.</p>
      *
-     * @return The parsed {@link TextComponent}
+     * @return The parsed {@link Component}
      */
     @Override
-    default @NonNull TextComponent asComponent() {
-        return getParser().parse(getContext());
+    default @NonNull Component asComponent() {
+        return this.getParser().parse(this.getContext());
     }
 
     /**

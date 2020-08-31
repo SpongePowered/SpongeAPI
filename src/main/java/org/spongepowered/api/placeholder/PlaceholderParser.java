@@ -24,8 +24,10 @@
  */
 package org.spongepowered.api.placeholder;
 
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -50,7 +52,7 @@ public interface PlaceholderParser extends CatalogType {
     }
 
     /**
-     * Creates a {@link TextComponent} based on the provided {@link PlaceholderContext}.
+     * Creates a {@link Component} based on the provided {@link PlaceholderContext}.
      *
      * <p>This method should not throw an error, instead returning
      * {@link TextComponent#empty()} if the supplied {@link PlaceholderContext} is not
@@ -59,7 +61,7 @@ public interface PlaceholderParser extends CatalogType {
      * @param placeholderContext The {@link PlaceholderContext}
      * @return The {@link TextComponent}
      */
-    TextComponent parse(PlaceholderContext placeholderContext);
+    Component parse(PlaceholderContext placeholderContext);
 
     /**
      * A builder that creates {@link PlaceholderParser}
@@ -67,39 +69,20 @@ public interface PlaceholderParser extends CatalogType {
     interface Builder extends ResettableBuilder<PlaceholderParser, Builder> {
 
         /**
-         * The plugin instance or {@link PluginContainer} that this parser is
-         * being provided by.
+         * The {@link ResourceKey} that represents this parser.
          *
-         * @param plugin The plugin or {@link PluginContainer}
+         * @param resourceKey The {@link ResourceKey}
          * @return This builder, for chaining
          */
-        PlaceholderParser.Builder plugin(PluginContainer plugin);
+        PlaceholderParser.Builder key(ResourceKey resourceKey);
 
         /**
-         * The un-namespaced ID of the parser.
-         *
-         * <p>This will reject any ID that contains a colon.</p>
-         *
-         * @param id The un-namespaced ID
-         * @return This builder, for chaining
-         */
-        PlaceholderParser.Builder id(String id);
-
-        /**
-         * The human friendly name of this parser
-         *
-         * @param name The name
-         * @return This builder, for chaining
-         */
-        PlaceholderParser.Builder name(String name);
-
-        /**
-         * The function that converts a {@link PlaceholderContext} to {@link TextComponent}
+         * The function that converts a {@link PlaceholderContext} to {@link Component}
          *
          * @param parser The function
          * @return This builder, for chaining
          */
-        PlaceholderParser.Builder parser(Function<PlaceholderContext, TextComponent> parser);
+        PlaceholderParser.Builder parser(Function<PlaceholderContext, Component> parser);
 
         /**
          * Builds a {@link PlaceholderParser}
