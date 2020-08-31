@@ -28,10 +28,13 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.item.ImmutableMapInfoItemData;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.item.ItemTypes;
+import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.map.MapInfo;
 
 /**
- * A {@link DataManipulator}
+ * A {@link DataManipulator} representing the {@link org.spongepowered.api.map.MapInfo}
+ * of a {@link ItemStack} of type {@link ItemTypes#FILLED_MAP}
  */
 public interface MapInfoItemData extends DataManipulator<MapInfoItemData, ImmutableMapInfoItemData> {
     /**

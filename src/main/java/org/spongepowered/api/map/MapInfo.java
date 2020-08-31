@@ -28,15 +28,13 @@ import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.manipulator.mutable.MapInfoData;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.map.decoration.MapDecoration;
-
-import java.util.Map;
+import org.spongepowered.api.util.Identifiable;
 
 /**
  * Represents data of any number of linked {@link ItemStack} of type {@link ItemTypes#FILLED_MAP}
  * @see MapInfoData
  */
-public interface MapInfo extends DataHolder {
+public interface MapInfo extends DataHolder, Identifiable {
     /**
      * Checks if a different MapInfo refers the the
      * same map

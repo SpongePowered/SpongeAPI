@@ -24,12 +24,11 @@
  */
 package org.spongepowered.api.world.map;
 
-import org.spongepowered.api.data.DataTransactionResult;
-import org.spongepowered.api.item.ItemTypes;
-import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.map.MapInfo;
 
-import java.util.Set;
+import java.util.Collection;
+import java.util.Optional;
+import java.util.UUID;
 
 public interface MapStorage {
 
@@ -38,11 +37,25 @@ public interface MapStorage {
      * on this server.
      * @return Set of MapInfos
      */
-    Set<MapInfo> getAllMapInfos();
+    Collection<MapInfo> getAllMapInfos();
 
     /**
-     * Creates a new, MapInfo
-     * @return {@link MapInfo} the new MapInfo
+     * Gets a MapInfo by its UUID.
+     * @param uuid UUID of map to get
+     * @return The map with given uuid, or empty if it doesn't exist.
      */
-    MapInfo createNewMapInfo();
+    Optional<MapInfo> getMapInfo(UUID uuid);
+
+    /**
+     * Creates a new MapInfo
+     *
+     * <p>The MapInfo will not be successfully created if
+     * the fired {@link org.spongepowered.api.event.action.CreateMapEvent} is cancelled.
+     * This can happen due to either a plugin cancelling it, or
+     * running out of room for maps.
+     * (Max amount of maps is {@value Short#MAX_VALUE})</p>
+     *
+     * @return {@link MapInfo} the new MapInfo if available
+     */
+    Optional<MapInfo> createNewMapInfo();
 }
