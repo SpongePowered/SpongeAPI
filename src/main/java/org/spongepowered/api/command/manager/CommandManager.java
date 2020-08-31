@@ -29,6 +29,7 @@ import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.exception.CommandException;
 import org.spongepowered.api.command.registrar.CommandRegistrar;
 import org.spongepowered.api.command.registrar.tree.CommandTreeNode;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.plugin.PluginContainer;
 
@@ -186,5 +187,19 @@ public interface CommandManager {
      * @return true if the registrars have been asked to reset.
      */
     boolean isResetting();
+
+    /**
+     * Asks the server to send an updated client completion command tree to
+     * the specified {@link ServerPlayer}.
+     *
+     * <p>This should be used sparingly as repeated calls may cause performance
+     * issues. Implementations may choose to ignore this call if it deems it
+     * unnecessary to send an update.</p>
+     *
+     * <p>This method may return before the updates have been sent.</p>
+     *
+     * @param player The {@link ServerPlayer} to send the command tree to.
+     */
+    void updateCommandTreeForPlayer(final ServerPlayer player);
 
 }
