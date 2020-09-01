@@ -59,6 +59,8 @@ public final class BannerPatternShapes {
 
     public static final Supplier<BannerPatternShape> FLOWER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "flower");
 
+    public static final Supplier<BannerPatternShape> GLOBE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "globe");
+
     public static final Supplier<BannerPatternShape> GRADIENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "gradient");
 
     public static final Supplier<BannerPatternShape> GRADIENT_UP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "gradient_up");
