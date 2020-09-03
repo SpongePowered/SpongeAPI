@@ -24,63 +24,26 @@
  */
 package org.spongepowered.api.profile;
 
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.user.UserManager;
 
-import java.time.Instant;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 /**
- * Represents a cache of {@link GameProfile}s.
+ * Represents a cache of profile data.
  */
 public interface GameProfileCache {
 
     /**
-     * Add an entry to this cache.
-     *
-     * @param profile The profile to cache
-     * @return {@code true} if the profile was successfully cached,
-     *     otherwise {@code false}
-     */
-    default boolean add(GameProfile profile) {
-        return this.add(profile, (Instant) null);
-    }
-
-    /**
-     * Add an entry to this cache, with an optional expiration date.
-     *
-     * @param profile The profile to cache
-     * @param expiry The expiration date
-     * @return {@code true} if the profile was successfully cached,
-     *     otherwise {@code false}
-     */
-    default boolean add(GameProfile profile, @Nullable Instant expiry) {
-        return this.add(profile, false, expiry);
-    }
-
-    /**
-     * Add an entry to this cache, with an optional expiration date.
-     *
-     * @param profile The profile to cache
-     * @param overwrite If we should overwrite the cache entry for
-     *      the provided profile
-     * @param expiry The expiration date
-     * @return {@code true} if the profile was successfully cached,
-     *     otherwise {@code false}
-     */
-    boolean add(GameProfile profile, boolean overwrite, @Nullable Instant expiry);
-
-    /**
-     * Remove an entry from this cache.
+     * Remove entries from this cache in bulk.
      *
      * @param profile The profile to remove from the cache
-     * @return {@code true} if the profile was successfully removed,
-     *     otherwise {@code false}
+     * @return Whether the profile was successfully removed
      */
     boolean remove(GameProfile profile);
 
@@ -93,7 +56,15 @@ public interface GameProfileCache {
     Collection<GameProfile> remove(Iterable<GameProfile> profiles);
 
     /**
-     * Clear all entries from this cache.
+     * Remove entries from this cache in bulk.
+     *
+     * @param filter The filter which will be used to selected profiles to be removed
+     * @return A collection of profiles successfully removed
+     */
+    Collection<GameProfile> removeIf(Predicate<GameProfile> filter);
+
+    /**
+     * Clears all the entries from this cache.
      */
     void clear();
 
@@ -115,45 +86,6 @@ public interface GameProfileCache {
     Map<UUID, Optional<GameProfile>> getByIds(Iterable<UUID> uniqueIds);
 
     /**
-     * Looks a {@link GameProfile} up by its unique id and
-     * loads it into this cache.
-     *
-     * @param uniqueId The unique id of the profile
-     * @return The profile, if present, or {@link Optional#empty()} if
-     *     we couldn't find a profile with the provided id
-     */
-    Optional<GameProfile> lookupById(UUID uniqueId);
-
-    /**
-     * Looks up {@link GameProfile}s in bulk by their unique id and
-     * loads them into this cache.
-     *
-     * @param uniqueIds The unique ids
-     * @return A collection of successfully looked up profiles
-     */
-    Map<UUID, Optional<GameProfile>> lookupByIds(Iterable<UUID> uniqueIds);
-
-    /**
-     * Gets a {@link GameProfile} from this cache by its id if available,
-     * or lookups the profile by its unique id.
-     *
-     * @param uniqueId The unique id of the profile
-     * @return The profile, if present, or {@link Optional#empty()} if
-     *     the cache did not contain a profile with the provided id and
-     *     we couldn't lookup a profile with the provided id
-     */
-    Optional<GameProfile> getOrLookupById(UUID uniqueId);
-
-    /**
-     * Gets {@link GameProfile}s in bulk from this cache by when available,
-     * and lookups the profiles by their unique id when not cached.
-     *
-     * @param uniqueIds The unique ids of the profiles
-     * @return A collection of successfully found profiles
-     */
-    Map<UUID, Optional<GameProfile>> getOrLookupByIds(Iterable<UUID> uniqueIds);
-
-    /**
      * Gets a {@link GameProfile} from this cache by its name.
      *
      * @param name The name of the profile
@@ -171,95 +103,18 @@ public interface GameProfileCache {
     Map<String, Optional<GameProfile>> getByNames(Iterable<String> names);
 
     /**
-     * Looks a {@link GameProfile} up by its name and
-     * loads it into this cache.
+     * Gets a collection of all cached {@link GameProfile}s.
      *
-     * @param name The name of the profile
-     * @return The profile, if present, or {@link Optional#empty()} if
-     *     we couldn't find a profile with the provided name
+     * @return A {@link Collection} of cached {@link GameProfile}s
      */
-    Optional<GameProfile> lookupByName(String name);
-
-    /**
-     * Looks up {@link GameProfile}s in bulk by their name  and
-     * loads them into this cache.
-     *
-     * @param names The names
-     * @return A collection of successfully looked up profiles
-     */
-    Map<String, Optional<GameProfile>> lookupByNames(Iterable<String> names);
-
-    /**
-     * Gets a {@link GameProfile} from this cache by its if available,
-     * or lookups the profile by its name.
-     *
-     * @param name The name of the profile
-     * @return The profile, if present, or {@link Optional#empty()} if
-     *     the cache did not contain a profile with the provided name and
-     *     we couldn't lookup a profile with the provided name
-     */
-    Optional<GameProfile> getOrLookupByName(String name);
-
-    /**
-     * Gets {@link GameProfile}s in bulk from this cache by when available,
-     * and lookups the profiles by their unique id when not cached.
-     *
-     * @param names The names of the profiles
-     * @return A collection of successfully found profiles
-     */
-    Map<String, Optional<GameProfile>> getOrLookupByNames(Iterable<String> names);
-
-    /**
-     * Fills a {@link GameProfile} from cached values.
-     *
-     * @param profile The profile to fill
-     * @return The filled profile, if present, or {@link Optional#empty()} if
-     *     we were unable to fill the profile
-     */
-    default Optional<GameProfile> fillProfile(GameProfile profile) {
-        return this.fillProfile(profile, false);
-    }
-
-    /**
-     * Fills a {@link GameProfile} from cached values.
-     *
-     * @param profile The profile to fill
-     * @param signed true if we should request that the profile data be signed
-     * @return The filled profile, if present, or {@link Optional#empty()} if
-     *     we were unable to fill the profile
-     */
-    Optional<GameProfile> fillProfile(GameProfile profile, boolean signed);
+    Collection<GameProfile> all();
 
     /**
      * Gets a {@link Stream} of all cached {@link GameProfile}s.
      *
      * @return A {@link Stream} of cached {@link GameProfile}s
      */
-    Stream<GameProfile> streamProfiles();
-
-    /**
-     * Gets a collection of all cached {@link GameProfile}s.
-     *
-     * @return A {@link Collection} of cached {@link GameProfile}s
-     */
-    Collection<GameProfile> getProfiles();
-
-    /**
-     * Returns a stream of matching cached {@link GameProfile}s whose last
-     * known names start with the given string (case-insensitive).
-     *
-     * <p>This stream may also return profiles of players who never played
-     * on the server. If you would prefer only known profiles that also have
-     * {@link User} data, {@link UserManager#streamOfMatches(String)} should
-     * be used instead.</p>
-     *
-     * <p>This method only searches the local cache, so the data may not be up
-     * to date.</p>
-     *
-     * @param name The name
-     * @return A {@link Stream} of matching {@link GameProfile}s
-     */
-    Stream<GameProfile> streamOfMatches(String name);
+    Stream<GameProfile> stream();
 
     /**
      * Returns a collection of matching cached {@link GameProfile}s whose last
@@ -270,12 +125,22 @@ public interface GameProfileCache {
      * profiles that also have {@link User} data,
      * {@link UserManager#streamOfMatches(String)} should be used instead.</p>
      *
-     * <p>This method only searches the local cache, so the data may not be up
-     * to date.</p>
-     *
      * @param name The name
      * @return A {@link Collection} of matching {@link GameProfile}s
      */
-    Collection<GameProfile> match(String name);
+    Collection<GameProfile> allMatches(final String name);
 
+    /**
+     * Returns a stream of matching cached {@link GameProfile}s whose last
+     * known names start with the given string (case-insensitive).
+     *
+     * <p>This stream may also return profiles of players who never played
+     * on the server. If you would prefer only known profiles that also have
+     * {@link User} data, {@link UserManager#streamOfMatches(String)} should
+     * be used instead.</p>
+     *
+     * @param name The name
+     * @return A {@link Stream} of matching {@link GameProfile}s
+     */
+    Stream<GameProfile> streamOfMatches(String name);
 }
