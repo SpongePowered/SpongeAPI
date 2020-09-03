@@ -24,201 +24,30 @@
  */
 package org.spongepowered.api.profile;
 
-import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.profile.property.ProfileProperty;
-
-import java.io.IOException;
-import java.util.Collection;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-
 /**
  * Manages {@link GameProfile} creation and data population.
  *
  * <p>The manager may cache the data of a request for faster lookups. Note that
  * the cached data may not always be up to date.</p>
  */
-public interface GameProfileManager {
+public interface GameProfileManager extends GameProfileProvider {
 
     /**
-     * Creates a {@link GameProfile} from the provided ID and name.
+     * Gets the {@link GameProfileCache} of this provider which will be
+     * used to cache game profiles.
      *
-     * @param uniqueId The unique ID
-     * @param name The name
-     * @return The created profile
-     * @see GameProfile#of(UUID, String)
-     */
-    GameProfile createProfile(UUID uniqueId, @Nullable String name);
-
-    /**
-     * Creates a {@link ProfileProperty} from the provided name, value,
-     * and optional signature.
+     * <p>In vanilla, properties do not persist between restarts and profiles
+     * will expire after a month.</p>
      *
-     * @param name The name for the property
-     * @param value The value of the property
-     * @param signature The signature of the property
-     * @return The created profile property
-     * @see ProfileProperty#of(String, String)
-     * @see ProfileProperty#of(String, String, String)
-     */
-    ProfileProperty createProfileProperty(String name, String value, @Nullable String signature);
-
-    /**
-     * Looks up a {@link GameProfile} by its unique ID.
-     *
-     * <p>This method checks the local profile cache before contacting the
-     * profile servers. Use {@link #get(UUID, boolean)} to disable the cache
-     * lookup.</p>
-     *
-     * <p>The returned {@link CompletableFuture} throws an {@link ExecutionException}
-     * caused by a {@link ProfileNotFoundException} if the profile does not exist or
-     * an {@link IOException} if a network error occurred.</p>
-     *
-     * @param uniqueId The unique ID
-     * @return The result of the request
-     */
-    default CompletableFuture<GameProfile> get(UUID uniqueId) {
-        return this.get(uniqueId, true);
-    }
-
-    /**
-     * Looks up a {@link GameProfile} by its user name (case-insensitive).
-     *
-     * <p>This method checks the local profile cache before contacting the
-     * profile servers. Use {@link #get(String, boolean)} to disable the cache
-     * lookup.</p>
-     *
-     * <p>The returned {@link CompletableFuture} throws an {@link ExecutionException}
-     * caused by a {@link ProfileNotFoundException} if the profile does not exist or
-     * an {@link IOException} if a network error occurred.</p>
-     *
-     * @param name The username
-     * @return The result of the request
-     */
-    default CompletableFuture<GameProfile> get(String name) {
-        return this.get(name, true);
-    }
-
-    /**
-     * Looks up a {@link GameProfile} by its unique ID.
-     *
-     * <p>The returned {@link CompletableFuture} throws an {@link ExecutionException}
-     * caused by a {@link ProfileNotFoundException} if the profile does not exist or
-     * an {@link IOException} if a network error occurred.</p>
-     *
-     * @param uniqueId The unique ID
-     * @param useCache true to perform a cache lookup first
-     * @return The result of the request
-     */
-    CompletableFuture<GameProfile> get(UUID uniqueId, boolean useCache);
-
-    /**
-     * Looks up a {@link GameProfile} by its user name (case-insensitive).
-     *
-     * <p>The returned {@link CompletableFuture} throws an {@link ExecutionException}
-     * caused by a {@link ProfileNotFoundException} if the profile does not exist or
-     * an {@link IOException} if a network error occurred.</p>
-     *
-     * @param name The username
-     * @param useCache true to perform a cache lookup first
-     * @return The result of the request
-     */
-    CompletableFuture<GameProfile> get(String name, boolean useCache);
-
-    /**
-     * Gets a collection of {@link GameProfile}s by their unique IDs.
-     *
-     * <p>The returned {@link CompletableFuture} throws an {@link ExecutionException}
-     * caused by a {@link ProfileNotFoundException} if the profile does not exist or
-     * an {@link IOException} if a network error occurred.</p>
-     *
-     * @param uniqueIds The UUIDs
-     * @param useCache true to perform a cache lookup first
-     * @return The result of the request
-     */
-    CompletableFuture<Map<UUID, Optional<GameProfile>>> getAllById(Iterable<UUID> uniqueIds, boolean useCache);
-
-    /**
-     * Gets a collection of {@link GameProfile}s by their user names
-     * (case-insensitive).
-     *
-     * <p>The returned {@link CompletableFuture} throws an {@link ExecutionException}
-     * caused by a {@link ProfileNotFoundException} if the profile does not exist or
-     * an {@link IOException} if a network error occurred.</p>
-     *
-     * @param names The user names
-     * @param useCache true to perform a cache lookup first
-     * @return The result of the request
-     */
-    CompletableFuture<Map<String, Optional<GameProfile>>> getAllByName(Iterable<String> names, boolean useCache);
-
-    /**
-     * Fills a {@link GameProfile}.
-     *
-     * <p>The returned {@link CompletableFuture} throws an {@link ExecutionException}
-     * caused by a {@link ProfileNotFoundException} if the profile does not exist or
-     * an {@link IOException} if a network error occurred.</p>
-     *
-     * @param profile The profile to fill
-     * @return The result of the request
-     */
-    default CompletableFuture<GameProfile> fill(GameProfile profile) {
-        return this.fill(profile, false);
-    }
-
-    /**
-     * Fills a {@link GameProfile}.
-     *
-     * <p>The returned {@link CompletableFuture} throws an {@link ExecutionException}
-     * caused by a {@link ProfileNotFoundException} if the profile does not exist or
-     * an {@link IOException} if a network error occurred.</p>
-     *
-     * @param profile The profile to fill
-     * @param signed true if we should request that the profile data be signed
-     * @return The result of the request
-     */
-    default CompletableFuture<GameProfile> fill(GameProfile profile, boolean signed) {
-        return this.fill(profile, signed, true);
-    }
-
-    /**
-     * Fills a {@link GameProfile}.
-     *
-     * <p>The returned {@link CompletableFuture} throws an {@link ExecutionException}
-     * caused by a {@link ProfileNotFoundException} if the profile does not exist or
-     * an {@link IOException} if a network error occurred.</p>
-     *
-     * @param profile The profile to fill
-     * @param signed true if we should request that the profile data be signed
-     * @param useCache true to perform a cache lookup first
-     * @return The result of the request
-     */
-    CompletableFuture<GameProfile> fill(GameProfile profile, boolean signed, boolean useCache);
-
-    /**
-     * Gets the active {@link GameProfile} cache.
-     *
-     * @return The active cache
+     * @return The cache
      */
     GameProfileCache getCache();
 
     /**
-     * Sets the {@link GameProfile} cache.
+     * Gets a {@link GameProfileProvider} which bypasses the
+     * {@link GameProfileCache}.
      *
-     * <p>To restore the original cache, pass the result of {@link #getDefaultCache()}.</p>
-     *
-     * @param cache The new cache
+     * @return The uncached game profile provider
      */
-    void setCache(GameProfileCache cache);
-
-    /**
-     * Gets the default cache.
-     *
-     * @return The default cache.
-     */
-    GameProfileCache getDefaultCache();
-
+    GameProfileProvider uncached();
 }

@@ -866,9 +866,12 @@ public final class Keys {
     public static final Supplier<Key<Value<GameMode>>> GAME_MODE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "game_mode");
 
     /**
-     * The player represented by a
-     * {@link BlockTypes#PLAYER_HEAD} (and {@link BlockTypes#PLAYER_WALL_HEAD}) {@link BlockState}
-     * or a {@link ItemTypes#PLAYER_HEAD} {@link ItemStack}.
+     * The player represented by a {@link BlockTypes#PLAYER_HEAD} (and {@link BlockTypes#PLAYER_WALL_HEAD})
+     * {@link BlockState} or a {@link ItemTypes#PLAYER_HEAD} {@link ItemStack}.
+     *
+     * <p>The offered game profile will be set exactly, unlike in vanilla where the game profile will
+     * be resolved automatically for properties (including textures). You can obtain a game profile with
+     * properties using {@link org.spongepowered.api.profile.GameProfileManager#getProfile}.</p>
      */
     public static final Supplier<Key<Value<GameProfile>>> GAME_PROFILE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "game_profile");
 

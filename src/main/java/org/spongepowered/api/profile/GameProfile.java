@@ -24,9 +24,6 @@
  */
 package org.spongepowered.api.profile;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import com.google.common.collect.Multimap;
 import net.kyori.adventure.identity.Identity;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
@@ -35,8 +32,10 @@ import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.user.UserManager;
 import org.spongepowered.api.util.Identifiable;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.function.Predicate;
 
 /**
  * Represents a profile of a user.
@@ -54,7 +53,7 @@ public interface GameProfile extends Identifiable, Identity, DataSerializable {
      * @param uniqueId The unique id
      * @return The created profile
      */
-    static GameProfile of(UUID uniqueId) {
+    static GameProfile of(final UUID uniqueId) {
         return of(uniqueId, null);
     }
 
@@ -65,8 +64,8 @@ public interface GameProfile extends Identifiable, Identity, DataSerializable {
      * @param name The name
      * @return The created profile
      */
-    static GameProfile of(UUID uniqueId, @Nullable String name) {
-        return Sponge.getServer().getGameProfileManager().createProfile(uniqueId, name);
+    static GameProfile of(final UUID uniqueId, final @Nullable String name) {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).of(uniqueId, name);
     }
 
     @Override
@@ -82,79 +81,94 @@ public interface GameProfile extends Identifiable, Identity, DataSerializable {
     Optional<String> getName();
 
     /**
-     * Gets the property map for this profile.
+     * Gets whether this game profile has a known name.
      *
-     * <p>This is a mutable map.</p>
-     *
-     * @return The property map
+     * @return Whether the name is known
      */
-    Multimap<String, ProfileProperty> getPropertyMap();
-
-    /**
-     * Adds a profile property to this game profile.
-     *
-     * <p>The {@link ProfileProperty#getName() name} of the property is used when
-     * adding the profile property to the {@link #getPropertyMap() property map}.</p>
-     *
-     * @param property The profile property
-     * @return The game profile
-     */
-    default GameProfile addProperty(ProfileProperty property) {
-        checkNotNull(property, "property");
-        return this.addProperty(property.getName(), property);
+    default boolean hasName() {
+        return this.getName().isPresent();
     }
 
     /**
-     * Adds a profile property to this game profile.
+     * Gets a new {@link GameProfile} with the given name.
      *
-     * @param name The name of the property
-     * @param property The profile property
-     * @return The game profile
+     * @param name The name
+     * @return The new game profile
      */
-    default GameProfile addProperty(String name, ProfileProperty property) {
-        checkNotNull(name, "name");
-        checkNotNull(property, "property");
-        this.getPropertyMap().put(name, property);
-        return this;
+    GameProfile withName(@Nullable String name);
+
+    /**
+     * Gets an immutable list of all the properties in this game profile.
+     *
+     * @return The properties
+     */
+    List<ProfileProperty> getProperties();
+
+    /**
+     * Gets a new {@link GameProfile} with the same name and unique id of this profile, but
+     * without any of the properties.
+     *
+     * @return The new game profile
+     */
+    GameProfile withoutProperties();
+
+    /**
+     * Gets a new {@link GameProfile} with the given properties added to its properties.
+     *
+     * @param properties The profile properties to add
+     * @return The new game profile
+     */
+    GameProfile withProperties(Iterable<ProfileProperty> properties);
+
+    /**
+     * Gets a new {@link GameProfile} with the given property added to its properties.
+     *
+     * @param property The profile property to add
+     * @return The new game profile
+     */
+    GameProfile withProperty(ProfileProperty property);
+
+    /**
+     * Gets a new {@link GameProfile} with the given property removed from to its properties.
+     *
+     * @param properties The profile properties to remove
+     * @return The new game profile
+     */
+    GameProfile withoutProperties(Iterable<ProfileProperty> properties);
+
+    /**
+     * Gets a new {@link GameProfile} where the properties which have the given name
+     * are removed from its properties.
+     *
+     * @param name The profile property name to remove
+     * @return The new game profile
+     */
+    default GameProfile withoutProperties(final String name) {
+        return this.withoutProperties(property -> property.getName().equals(name));
     }
 
     /**
-     * Removes a profile property to this game profile.
+     * Gets a new {@link GameProfile} with the given property removed from its properties.
      *
-     * <p>The {@link ProfileProperty#getName() name} of the property is used when
-     * removing the profile property from the {@link #getPropertyMap() property map}.</p>
-     *
-     * @param property The profile property
-     * @return {@code true} if the property map changed
+     * @param property The profile property to remove
+     * @return The new game profile
      */
-    default boolean removeProperty(ProfileProperty property) {
-        checkNotNull(property, "property");
-        return this.getPropertyMap().remove(property.getName(), property);
-    }
+    GameProfile withoutProperty(ProfileProperty property);
 
     /**
-     * Removes a profile property to this game profile.
+     * Gets a new {@link GameProfile} with where the properties that match the given
+     * filter are removed.
      *
-     * @param name The name of the property
-     * @param property The profile property
-     * @return {@code true} if the property map changed
+     * @param filter The profile property filter
+     * @return The new game profile
      */
-    default boolean removeProperty(String name, ProfileProperty property) {
-        checkNotNull(name, "name");
-        checkNotNull(property, "property");
-        return this.getPropertyMap().remove(name, property);
-    }
+    GameProfile withoutProperties(Predicate<ProfileProperty> filter);
 
     /**
-     * Checks if this profile is filled.
-     *
-     * <p>A filled profile contains both a unique id and name.</p>
-     *
-     * @return {@code true} if this profile is filled
-     * @see GameProfileManager#fill(GameProfile)
-     * @see GameProfileManager#fill(GameProfile, boolean)
-     * @see GameProfileManager#fill(GameProfile, boolean, boolean)
+     * A factory for {@link GameProfile}s.
      */
-    boolean isFilled();
+    interface Factory {
 
+        GameProfile of(UUID uniqueId, @Nullable String name);
+    }
 }
