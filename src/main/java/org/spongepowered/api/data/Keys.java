@@ -2347,7 +2347,8 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> SUSPENDED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "suspended");
 
     /**
-     * The swiftness of a {@link Minecart}.
+     * The swiftness of an {@link Entity} e.g. {@link Minecart}s.
+     * <p>This is equivalent to the magnitude of the {@link #VELOCITY} vector</p>
      */
     public static final Supplier<Key<Value<Double>>> SWIFTNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "swiftness");
 
