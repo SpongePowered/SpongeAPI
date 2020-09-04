@@ -30,6 +30,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.ai.goal.GoalExecutor;
 import org.spongepowered.api.entity.ai.goal.GoalExecutorType;
 import org.spongepowered.api.entity.ai.goal.builtin.creature.target.TargetGoal;
+import org.spongepowered.api.item.inventory.ArmorEquipable;
 
 import java.util.Optional;
 
@@ -37,7 +38,7 @@ import java.util.Optional;
  * An Agent represents a {@link Living} that has AI. In the future Sponge will
  * allow for custom AIs, but for now vanilla behavior can only be disabled.
  */
-public interface Agent extends Living {
+public interface Agent extends Living, ArmorEquipable {
 
     /**
      * {@link Keys#TARGET_ENTITY}

@@ -31,6 +31,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.Tamer;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.item.inventory.ArmorEquipable;
+import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.entity.UserInventory;
 import org.spongepowered.api.profile.GameProfile;
@@ -48,7 +49,7 @@ import java.util.UUID;
  * the in-game entity associated with an online User.
  */
 @DoNotStore
-public interface User extends DataHolder.Mutable, ArmorEquipable, Tamer, Subject {
+public interface User extends DataHolder.Mutable, ArmorEquipable, Tamer, Subject, Carrier {
 
     /**
      * Gets the associated {@link GameProfile} of this player.

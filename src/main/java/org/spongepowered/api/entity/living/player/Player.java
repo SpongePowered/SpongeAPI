@@ -27,6 +27,7 @@ package org.spongepowered.api.entity.living.player;
 import org.spongepowered.api.block.entity.EnderChest;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.living.Humanoid;
+import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.entity.PlayerInventory;
 import org.spongepowered.api.profile.GameProfile;
@@ -35,7 +36,7 @@ import org.spongepowered.api.util.locale.LocaleSource;
 /**
  * A Player is the representation of an actual unit playing the game.
  */
-public interface Player extends Humanoid, LocaleSource, Viewer {
+public interface Player extends Humanoid, LocaleSource, Viewer, Carrier {
 
     /**
      * Gets the associated {@link GameProfile} of this player.

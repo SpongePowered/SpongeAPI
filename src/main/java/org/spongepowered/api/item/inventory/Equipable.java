@@ -31,9 +31,16 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 /**
- * Represents a {@link Carrier} that has an {@link EquipmentInventory}.
+ * Represents the holder of a {@link EquipmentInventory}.
  */
-public interface Equipable extends Carrier {
+public interface Equipable {
+
+    /**
+     * Returns the EquipmentInventory this is holding.
+     *
+     * @return The EquipmentInventory this is holding
+     */
+    EquipmentInventory getEquipment();
 
     /**
      * Gets whether this {@link Equipable} can equip equipment of the specified type (eg.

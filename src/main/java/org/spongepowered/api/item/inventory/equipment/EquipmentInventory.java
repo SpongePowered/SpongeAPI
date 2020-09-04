@@ -25,21 +25,25 @@
 package org.spongepowered.api.item.inventory.equipment;
 
 import org.spongepowered.api.item.inventory.Equipable;
-import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult;
-import org.spongepowered.api.item.inventory.type.CarriedInventory;
 
 import java.util.Optional;
 import java.util.function.Supplier;
 
 /**
- * Equipment inventory for {@link Carrier}s
- * that can carry equipment.
+ * Equipment inventory for {@link Equipable}s that can carry equipment.
  */
-public interface EquipmentInventory extends Inventory, CarriedInventory<Equipable> {
+public interface EquipmentInventory extends Inventory {
+
+    /**
+     * Returns the holder of this Inventory. It can be an entity, block, or other object.
+     *
+     * @return This inventory's carrier
+     */
+    Optional<Equipable> getCarrier();
 
     /**
      * Gets and remove the stack for the specified equipment type in this
