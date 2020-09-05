@@ -184,7 +184,7 @@ public interface GameProfileProvider {
      * @param signed Whether property values should be signed
      * @return The profile found for the given name
      */
-    CompletableFuture<GameProfile> getProfile(final String name, boolean signed);
+    CompletableFuture<GameProfile> getProfile(String name, boolean signed);
 
     /**
      * Attempts to get a full {@link GameProfile} for the given unique id.

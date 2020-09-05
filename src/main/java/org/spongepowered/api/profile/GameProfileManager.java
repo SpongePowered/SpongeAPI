@@ -36,7 +36,8 @@ public interface GameProfileManager extends GameProfileProvider {
      * Gets the {@link GameProfileCache} of this provider which will be
      * used to cache game profiles.
      *
-     * <p>In vanilla, properties do not persist between restarts.</p>
+     * <p>In vanilla, properties do not persist between restarts and profiles
+     * will expire after a month.</p>
      *
      * @return The cache
      */
