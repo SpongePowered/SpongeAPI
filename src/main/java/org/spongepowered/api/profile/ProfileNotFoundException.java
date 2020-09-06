@@ -27,7 +27,7 @@ package org.spongepowered.api.profile;
 /**
  * Thrown by a profile lookup service if a profile does not exist.
  */
-public class ProfileNotFoundException extends Exception {
+public class ProfileNotFoundException extends RuntimeException {
 
     private static final long serialVersionUID = -6165011303382043479L;
 
