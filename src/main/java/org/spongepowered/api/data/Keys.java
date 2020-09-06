@@ -1428,6 +1428,7 @@ public final class Keys {
 
     /**
      * Whether a {@link FusedExplosive} is currently primed.
+     * Readonly
      */
     public static final Supplier<Key<Value<Boolean>>> IS_PRIMED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "is_primed");
 
