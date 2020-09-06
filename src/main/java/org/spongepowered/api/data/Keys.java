@@ -1604,8 +1604,7 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> IS_WATERLOGGED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "is_waterlogged");
 
     /**
-     * Whether an {@link Entity} like {@link Wolf} or a
-     * {@link BlockState} of {@link BlockTypes#SPONGE} is wet.
+     * Whether an {@link Entity} like {@link Wolf} is wet.
      * Readonly(Entity.class) except Wolf
      */
     public static final Supplier<Key<Value<Boolean>>> IS_WET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "is_wet");
