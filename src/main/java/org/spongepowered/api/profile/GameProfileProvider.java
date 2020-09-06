@@ -32,7 +32,7 @@ import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * A service which handles how game profile data is requested.
+ * A provider which can be used to lookup {@link GameProfile}s.
  */
 public interface GameProfileProvider {
 
