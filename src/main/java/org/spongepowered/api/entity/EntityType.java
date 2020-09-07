@@ -26,6 +26,7 @@ package org.spongepowered.api.entity;
 
 import net.kyori.adventure.text.ComponentLike;
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -35,8 +36,26 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 public interface EntityType<A extends Entity> extends CatalogType, ComponentLike {
 
     /**
-     * If true entities that share this type will not be saved to disk.
+     * If true {@link Entity entities} of this type will not be saved to disk.
      * @return If the type is transient
      */
     boolean isTransient();
+
+    /**
+     * If true {@link Entity entities} of this type may be summoned naturally or via command.
+     * @return If the type is summonable
+     */
+    boolean isSummonable();
+
+    /**
+     * If true {@link Entity entities} of this type may be caught on fire.
+     * @return If the type is flammable
+     */
+    boolean isFlammable();
+
+    /**
+     * If true {@link Entity entities} of this type may spawn out of range from {@link ServerPlayer players}.
+     * @return If the type can spawn far away from a player
+     */
+    boolean canSpawnAwayFromPlayer();
 }
