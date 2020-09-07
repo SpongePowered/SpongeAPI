@@ -25,7 +25,7 @@
 package org.spongepowered.api.entity.vehicle;
 
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.type.WoodType;
+import org.spongepowered.api.data.type.BoatType;
 import org.spongepowered.api.data.value.Value;
 
 /**
@@ -34,11 +34,11 @@ import org.spongepowered.api.data.value.Value;
 public interface Boat extends Vehicle {
 
     /**
-     * {@link Keys#WOOD_TYPE}
-     * @return The wood type of the boat
+     * {@link Keys#BOAT_TYPE}
+     * @return The type of the boat
      */
-    default Value.Mutable<WoodType> woodType() {
-        return this.requireValue(Keys.WOOD_TYPE).asMutable();
+    default Value.Mutable<BoatType> type() {
+        return this.requireValue(Keys.BOAT_TYPE).asMutable();
     }
 
     /**

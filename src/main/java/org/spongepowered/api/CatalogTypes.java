@@ -121,6 +121,8 @@ public final class CatalogTypes {
 
     public static final Class<BlockType> BLOCK_TYPE = BlockType.class;
 
+    public static final Class<BoatType> BOAT_TYPE = BoatType.class;
+
     public static final Class<BodyPart> BODY_PART = BodyPart.class;
 
     public static final Class<CatType> CAT_TYPE = CatType.class;

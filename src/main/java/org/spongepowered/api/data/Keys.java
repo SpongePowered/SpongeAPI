@@ -50,6 +50,7 @@ import org.spongepowered.api.data.meta.BannerPatternLayer;
 import org.spongepowered.api.data.type.ArmorMaterial;
 import org.spongepowered.api.data.type.ArtType;
 import org.spongepowered.api.data.type.AttachmentSurface;
+import org.spongepowered.api.data.type.BoatType;
 import org.spongepowered.api.data.type.BodyPart;
 import org.spongepowered.api.data.type.BodyParts;
 import org.spongepowered.api.data.type.CatType;
@@ -407,6 +408,11 @@ public final class Keys {
      * Readonly
      */
     public static final Supplier<Key<Value<Double>>> BLOCK_TEMPERATURE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "block_temperature");
+
+    /**
+     * The type of the boat
+     */
+    public static Supplier<Key<Value<BoatType>>> BOAT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "boat_type");
 
     /**
      * The rotation of specific body parts of a {@link ArmorStand} or {@link Living}.
