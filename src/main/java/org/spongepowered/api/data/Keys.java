@@ -761,7 +761,7 @@ public final class Keys {
     public static final Supplier<Key<Value<Vector3d>>> EYE_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "eye_position");
 
     /**
-     * The distance an {@link Living} has fallen.
+     * The distance an {@link Entity} has fallen.
      */
     public static final Supplier<Key<Value<Double>>> FALL_DISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "fall_distance");
 

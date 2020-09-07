@@ -334,6 +334,14 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
     }
 
     /**
+     * {@link Keys#FALL_DISTANCE}
+     * @return The fall distance
+     */
+    default Value.Mutable<Double> fallDistance() {
+        return this.requireValue(Keys.FALL_DISTANCE).asMutable();
+    }
+
+    /**
      * {@link Keys#PASSENGERS}
      * @return The list of passengers that may be riding this entity
      */
