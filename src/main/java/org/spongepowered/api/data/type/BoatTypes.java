@@ -29,7 +29,7 @@ import org.spongepowered.api.Sponge;
 import java.util.function.Supplier;
 
 /**
- * An enumeration of vanilla {@link WoodType}s.
+ * An enumeration of vanilla {@link BoatType}s.
  */
 public final class BoatTypes {
 
