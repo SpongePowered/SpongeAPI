@@ -1270,7 +1270,7 @@ public final class Keys {
      *
      * <p>In vanilla, {@link Panda}s that have a {@link Panda#knownGene()}
      * of {@link PandaGenes#WORRIED} and are in a {@link ServerWorld world} whose {@link Weather} is currently a
-     * {@link Weathers#THUNDER_STORM} are considered "frightened".</p>
+     * {@link Weathers#THUNDER} are considered "frightened".</p>
      */
     public static final Supplier<Key<Value<Boolean>>> IS_FRIGHTENED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "is_frightened");
 

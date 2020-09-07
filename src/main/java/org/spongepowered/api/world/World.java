@@ -58,7 +58,6 @@ public interface World<W extends World<W>> extends ForwardingAudience,
     ProtoWorld<W>,
     LocationCreator,
     PhysicsAwareMutableBlockVolume<BoundedWorldView<W>>,
-    WeatherUniverse,
     ContextSource,
     Viewer,
     ArchetypeVolumeCreator
@@ -338,7 +337,7 @@ public interface World<W extends World<W>> extends ForwardingAudience,
      *     <ul>
      *         <li>{@link FluidTypes#LAVA} update 3 times slower</li>
      *         <li>Maps are half the size</li>
-     *         <l1>{@link Weathers#THUNDER_STORM} will not occur</l1>
+     *         <l1>{@link Weathers#THUNDER} will not occur</l1>
      *         <l1>The height of the world is 128 instead of the default 256</l1>
      *     </ul>
      * </p>
