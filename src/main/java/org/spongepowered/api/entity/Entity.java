@@ -422,6 +422,14 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
     }
 
     /**
+     * {@link Keys#FIRE_DAMAGE_DELAY}
+     * @return The amount of time to delay in ticks before an Entity will be burned by fire.
+     */
+    default Optional<Value.Mutable<Integer>> fireImmuneTicks() {
+        return this.getValue(Keys.FIRE_DAMAGE_DELAY).map(Value::asMutable);
+    }
+
+    /**
      * {@link Keys#TRANSIENT}
      * @return The transient state
      */
