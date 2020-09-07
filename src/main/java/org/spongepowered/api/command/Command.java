@@ -233,6 +233,23 @@ public interface Command {
         List<Parameter> parameters();
 
         /**
+         * A {@link List} of direct {@link Parameter.Subcommand subcommands}
+         * that this command contains.
+         *
+         * <p>A direct subcommand is one that is specified directly after the
+         * literal the invokes this command, e.g. on the command {@code /foo},
+         * {@code bar} is a direct subcommand if it was specified in
+         * {@link Command.Parameterized.Builder#child(Parameterized, String...)}
+         * or {@link Command.Parameterized.Builder#children(Map)} with the alias
+         * {@code bar}. This will not contain any subcommands that were
+         * registered via
+         * {@link Command.Parameterized.Builder#parameter(Parameter)}</p>
+         *
+         * @return A copy of the collection of subcommands.
+         */
+        List<Parameter.Subcommand> subcommands();
+
+        /**
          * Gets a {@link Predicate} that backs {@link #canExecute(CommandCause)}.
          *
          * @return The predicate.
