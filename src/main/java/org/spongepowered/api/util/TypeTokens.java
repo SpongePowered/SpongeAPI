@@ -41,6 +41,7 @@ import org.spongepowered.api.data.meta.BannerPatternLayer;
 import org.spongepowered.api.data.type.ArmorMaterial;
 import org.spongepowered.api.data.type.ArtType;
 import org.spongepowered.api.data.type.AttachmentSurface;
+import org.spongepowered.api.data.type.BoatType;
 import org.spongepowered.api.data.type.BodyPart;
 import org.spongepowered.api.data.type.CatType;
 import org.spongepowered.api.data.type.ChestAttachmentType;
@@ -181,6 +182,10 @@ public final class TypeTokens {
     public static final TypeToken<BlockState> BLOCK_STATE_TOKEN = new TypeToken<BlockState>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<BlockState>> BLOCK_STATE_VALUE_TOKEN = new TypeToken<Value<BlockState>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<BoatType> BOAT_TYPE_TOKEN = new TypeToken<BoatType>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Value<BoatType>> BOAT_TYPE_VALUE_TOKEN = new TypeToken<Value<BoatType>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Boolean> BOOLEAN_TOKEN = new TypeToken<Boolean>() {private static final long serialVersionUID = -1;};
 

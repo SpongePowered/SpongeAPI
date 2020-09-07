@@ -39,7 +39,7 @@ public final class Weathers {
 
     public static final Supplier<Weather> RAIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Weather.class, "rain");
 
-    public static final Supplier<Weather> THUNDER_STORM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Weather.class, "thunder_storm");
+    public static final Supplier<Weather> THUNDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Weather.class, "thunder");
 
     // SORTFIELDS:OFF
 

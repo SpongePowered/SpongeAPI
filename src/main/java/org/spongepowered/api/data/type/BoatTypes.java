@@ -22,40 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity;
+package org.spongepowered.api.data.type;
 
-import net.kyori.adventure.text.ComponentLike;
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.entity.living.player.server.ServerPlayer;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
 
 /**
- * Describes a type of entity.
+ * An enumeration of vanilla {@link BoatType}s.
  */
-@CatalogedBy(EntityTypes.class)
-public interface EntityType<A extends Entity> extends CatalogType, ComponentLike {
+public final class BoatTypes {
 
-    /**
-     * If true {@link Entity entities} of this type will not be saved to disk.
-     * @return If the type is transient
-     */
-    boolean isTransient();
+    // SORTFIELDS:ON
 
-    /**
-     * If true {@link Entity entities} of this type may be summoned naturally or via command.
-     * @return If the type is summonable
-     */
-    boolean isSummonable();
+    public static final Supplier<BoatType> ACACIA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BoatType.class, "acacia");
 
-    /**
-     * If true {@link Entity entities} of this type may be caught on fire.
-     * @return If the type is flammable
-     */
-    boolean isFlammable();
+    public static final Supplier<BoatType> BIRCH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BoatType.class, "birch");
 
-    /**
-     * If true {@link Entity entities} of this type may spawn out of range from {@link ServerPlayer players}.
-     * @return If the type can spawn far away from a player
-     */
-    boolean canSpawnAwayFromPlayer();
+    public static final Supplier<BoatType> DARK_OAK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BoatType.class, "dark_oak");
+
+    public static final Supplier<BoatType> JUNGLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BoatType.class, "jungle");
+
+    public static final Supplier<BoatType> OAK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BoatType.class, "oak");
+
+    public static final Supplier<BoatType> SPRUCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BoatType.class, "spruce");
+
+    // SORTFIELDS:OFF
+
+    private BoatTypes() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 }

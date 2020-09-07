@@ -37,7 +37,7 @@ public final class SlabPortions {
 
     public static final Supplier<SlabPortion> BOTTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SlabPortion.class, "bottom");
 
-    public static final Supplier<SlabPortion> FULL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SlabPortion.class, "full");
+    public static final Supplier<SlabPortion> DOUBLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SlabPortion.class, "double");
 
     public static final Supplier<SlabPortion> TOP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SlabPortion.class, "top");
 

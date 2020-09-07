@@ -50,6 +50,7 @@ import org.spongepowered.api.data.meta.BannerPatternLayer;
 import org.spongepowered.api.data.type.ArmorMaterial;
 import org.spongepowered.api.data.type.ArtType;
 import org.spongepowered.api.data.type.AttachmentSurface;
+import org.spongepowered.api.data.type.BoatType;
 import org.spongepowered.api.data.type.BodyPart;
 import org.spongepowered.api.data.type.BodyParts;
 import org.spongepowered.api.data.type.CatType;
@@ -409,6 +410,11 @@ public final class Keys {
     public static final Supplier<Key<Value<Double>>> BLOCK_TEMPERATURE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "block_temperature");
 
     /**
+     * The type of the boat
+     */
+    public static Supplier<Key<Value<BoatType>>> BOAT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "boat_type");
+
+    /**
      * The rotation of specific body parts of a {@link ArmorStand} or {@link Living}.
      *
      * <p>This value provides a mapping, effectively combining the data
@@ -755,7 +761,7 @@ public final class Keys {
     public static final Supplier<Key<Value<Vector3d>>> EYE_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "eye_position");
 
     /**
-     * The distance an {@link Living} has fallen.
+     * The distance an {@link Entity} has fallen.
      */
     public static final Supplier<Key<Value<Double>>> FALL_DISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "fall_distance");
 
@@ -1264,7 +1270,7 @@ public final class Keys {
      *
      * <p>In vanilla, {@link Panda}s that have a {@link Panda#knownGene()}
      * of {@link PandaGenes#WORRIED} and are in a {@link ServerWorld world} whose {@link Weather} is currently a
-     * {@link Weathers#THUNDER_STORM} are considered "frightened".</p>
+     * {@link Weathers#THUNDER} are considered "frightened".</p>
      */
     public static final Supplier<Key<Value<Boolean>>> IS_FRIGHTENED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "is_frightened");
 
@@ -1428,6 +1434,7 @@ public final class Keys {
 
     /**
      * Whether a {@link FusedExplosive} is currently primed.
+     * Readonly
      */
     public static final Supplier<Key<Value<Boolean>>> IS_PRIMED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "is_primed");
 
@@ -1604,8 +1611,7 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> IS_WATERLOGGED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "is_waterlogged");
 
     /**
-     * Whether an {@link Entity} like {@link Wolf} or a
-     * {@link BlockState} of {@link BlockTypes#SPONGE} is wet.
+     * Whether an {@link Entity} like {@link Wolf} is wet.
      * Readonly(Entity.class) except Wolf
      */
     public static final Supplier<Key<Value<Boolean>>> IS_WET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "is_wet");
@@ -2407,6 +2413,9 @@ public final class Keys {
     /**
      * Whether an {@link Entity} is transient.
      * This prevents the entity from being saved to disk.
+     * The rules for this are as follows...
+     *   If the entity type says that it isn't transient then this key is readonly.
+     *   If the entity type says that it is transient, then this key dictates the current state.
      */
     public static final Supplier<Key<Value<Boolean>>> TRANSIENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "transient");
 
