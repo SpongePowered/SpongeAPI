@@ -2413,6 +2413,9 @@ public final class Keys {
     /**
      * Whether an {@link Entity} is transient.
      * This prevents the entity from being saved to disk.
+     * The rules for this are as follows...
+     *   If the entity type says that it isn't transient then this key is readonly.
+     *   If the entity type says that it is transient, then this key dictates the current state.
      */
     public static final Supplier<Key<Value<Boolean>>> TRANSIENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "transient");
 

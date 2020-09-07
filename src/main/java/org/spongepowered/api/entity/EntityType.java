@@ -33,4 +33,10 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  */
 @CatalogedBy(EntityTypes.class)
 public interface EntityType<A extends Entity> extends CatalogType, ComponentLike {
+
+    /**
+     * If true entities that share this type will not be saved to disk.
+     * @return If the type is transient
+     */
+    boolean isTransient();
 }

@@ -413,6 +413,14 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
         return this.getValue(Keys.FIRE_TICKS).map(Value::asMutable);
     }
 
+    /**
+     * {@link Keys#TRANSIENT}
+     * @return The transient state
+     */
+    default Optional<Value.Mutable<Boolean>> isTransient() {
+        return this.getValue(Keys.TRANSIENT).map(Value::asMutable);
+    }
+
     @Override
     default HoverEvent<HoverEvent.ShowEntity> asHoverEvent(final UnaryOperator<HoverEvent.ShowEntity> op) {
         return HoverEvent.showEntity(op.apply(new HoverEvent.ShowEntity(this.getType().getKey(), this.getUniqueId(), this.displayName().get())));
