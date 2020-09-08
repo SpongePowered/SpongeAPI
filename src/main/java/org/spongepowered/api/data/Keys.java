@@ -614,7 +614,7 @@ public final class Keys {
     public static final Supplier<Key<Value<Vector3d>>> DERAILED_VELOCITY_MODIFIER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "derailed_velocity_modifier");
 
     /**
-     * The despawn delay (in ticks) of a {@link Item}, {@link Endermite}, {@link Weather} {@link TraderLlama} or.
+     * The despawn delay (in ticks) of a {@link Item}, {@link Endermite}, {@link Weather} {@link TraderLlama} or {@link EyeOfEnder}.
      */
     public static final Supplier<Key<Value<Integer>>> DESPAWN_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "despawn_delay");
 
