@@ -119,6 +119,7 @@ import org.spongepowered.api.entity.living.Ageable;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.ArmorStand;
 import org.spongepowered.api.entity.living.Bat;
+import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.animal.Animal;
@@ -2170,7 +2171,7 @@ public final class Keys {
      * <p>Skins can only be manipulated by supplying the UUID of a player
      * having that skin. The binary skin data is signed by Mojang so fully
      * customized skins are not possible.</p>
-     * Readonly(Player.class)
+     * Readonly (Player)
      */
     public static final Supplier<Key<Value<ProfileProperty>>> SKIN_PROFILE_PROPERTY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "skin_profile_property");
 
