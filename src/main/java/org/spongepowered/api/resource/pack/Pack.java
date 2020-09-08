@@ -67,7 +67,7 @@ public interface Pack extends Nameable, Closeable {
      *
      * @param pluginContainer The plugin
      * @return The supplier to create a new pack
-     * @see PluginContainer#getFile()
+     * @see PluginContainer#getPath()
      */
     static Supplier<Pack> fromPlugin(PluginContainer pluginContainer) {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).fromPlugin(pluginContainer);
@@ -88,14 +88,15 @@ public interface Pack extends Nameable, Closeable {
      * Finds all the {@link ResourcePath}s in this pack matching the
      * prefix and filter, and within the given depth.
      *
-     * @param type   The type of pack resource to find
-     * @param prefix The prefix of the path
-     * @param depth  The depth to search
-     * @param filter The filter every path must match
+     * @param type      The type of pack resource to find
+     * @param namespace The namespace to search
+     * @param prefix    The prefix of the path
+     * @param depth     The depth to search
+     * @param filter    The filter every path must match
      * @return A collection of matching paths
      * @see PackTypes
      */
-    Collection<ResourcePath> find(PackType type, String prefix, int depth, Predicate<String> filter);
+    Collection<ResourcePath> find(PackType type, String namespace, String prefix, int depth, Predicate<String> filter);
 
     /**
      * Tests if this pack contains an entry at the given {@link ResourcePath}.
@@ -109,8 +110,6 @@ public interface Pack extends Nameable, Closeable {
 
     /**
      * Gets the namespaces known by this pack.
-     * <p>
-     * TODO: Does this need to be exposed?
      *
      * @param type The pack type to query
      * @return The set of namespaces
