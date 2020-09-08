@@ -42,7 +42,7 @@ public final class AdvancementTypes {
      * @see <a href="https://minecraft.gamepedia.com/File:ChallengeComplete.png">
      *     the Minecraft Wiki for an example of this advancement type</a>
      */
-    public static final Supplier<AdvancementType> CHALLENGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AdvancementType.class, "CHALLENGE");
+    public static final Supplier<AdvancementType> CHALLENGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AdvancementType.class, "challenge");
 
     /**
      * Represents the goal reached advancement type.
@@ -50,7 +50,7 @@ public final class AdvancementTypes {
      * @see <a href="https://minecraft.gamepedia.com/File:GoalReached.png">
      *     the Minecraft Wiki for an example of this advancement type</a>
      */
-    public static final Supplier<AdvancementType> GOAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AdvancementType.class, "GOAL");
+    public static final Supplier<AdvancementType> GOAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AdvancementType.class, "goal");
 
     /**
      * Represents the advancement made advancement type.
@@ -58,7 +58,7 @@ public final class AdvancementTypes {
      * @see <a href="https://minecraft.gamepedia.com/File:AdvancementMade.png">
      *     the Minecraft Wiki for an example of this advancement type</a>
      */
-    public static final Supplier<AdvancementType> TASK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AdvancementType.class, "TASK");
+    public static final Supplier<AdvancementType> TASK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AdvancementType.class, "task");
 
     // SORTFIELDS:OFF
 

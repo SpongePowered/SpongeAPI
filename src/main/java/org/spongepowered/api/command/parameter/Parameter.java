@@ -29,7 +29,9 @@ import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.command.Command;
 import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.command.CommandExecutor;
@@ -45,13 +47,12 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
-import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.network.RemoteConnection;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.ServerLocation;
-import org.spongepowered.api.world.dimension.Dimension;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.plugin.PluginContainer;
@@ -314,6 +315,16 @@ public interface Parameter {
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
+     * {@link CatalogedValueParameters#BLOCK_STATE}.
+     *
+     * @return A {@link Parameter.Value.Builder}
+     */
+    static Parameter.Value.Builder<BlockState> blockState() {
+        return Parameter.builder(BlockState.class, CatalogedValueParameters.BLOCK_STATE);
+    }
+
+    /**
+     * Creates a builder that has the {@link ValueParameter} set to
      * {@link CatalogedValueParameters#BOOLEAN}.
      *
      * @return A {@link Parameter.Value.Builder}
@@ -361,16 +372,6 @@ public interface Parameter {
      */
     static Parameter.Value.Builder<LocalDateTime> dateTimeOrNow() {
         return dateTime().orDefault(cause -> LocalDateTime.now());
-    }
-
-    /**
-     * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#DIMENSION}.
-     *
-     * @return A {@link Parameter.Value.Builder}
-     */
-    static Parameter.Value.Builder<Dimension> dimension() {
-        return Parameter.builder(Dimension.class, CatalogedValueParameters.DIMENSION);
     }
 
     /**
@@ -498,12 +499,27 @@ public interface Parameter {
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#LOCATION}.
+     * {@link CatalogedValueParameters#LOCATION_ONLINE_ONLY}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<ServerLocation> location() {
-        return Parameter.builder(ServerLocation.class, CatalogedValueParameters.LOCATION);
+        return Parameter.location(true);
+    }
+
+    /**
+     * Creates a builder that has the {@link ValueParameter} set to
+     * {@link CatalogedValueParameters#LOCATION_ONLINE_ONLY} or
+     * {@link CatalogedValueParameters#LOCATION_ALL}.
+     *
+     * @param onlineOnly If the location must point to a currently loaded world.
+     * @return A {@link Parameter.Value.Builder}
+     */
+    static Parameter.Value.Builder<ServerLocation> location(final boolean onlineOnly) {
+        if (onlineOnly) {
+            return Parameter.builder(ServerLocation.class, CatalogedValueParameters.LOCATION_ONLINE_ONLY);
+        }
+        return Parameter.builder(ServerLocation.class, CatalogedValueParameters.LOCATION_ALL);
     }
 
     /**
@@ -569,6 +585,16 @@ public interface Parameter {
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
+     * {@link CatalogedValueParameters#RESOURCE_KEY}.
+     *
+     * @return A {@link Parameter.Value.Builder}
+     */
+    static Parameter.Value.Builder<ResourceKey> resourceKey() {
+        return Parameter.builder(ResourceKey.class, CatalogedValueParameters.RESOURCE_KEY);
+    }
+
+    /**
+     * Creates a builder that has the {@link ValueParameter} set to
      * {@link CatalogedValueParameters#STRING}.
      *
      * @return A {@link Parameter.Value.Builder}
@@ -630,12 +656,28 @@ public interface Parameter {
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#WORLD_PROPERTIES}.
+     * {@link CatalogedValueParameters#WORLD_PROPERTIES_ONLINE_ONLY}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<WorldProperties> worldProperties() {
-        return Parameter.builder(WorldProperties.class, CatalogedValueParameters.WORLD_PROPERTIES);
+        return Parameter.worldProperties(true);
+    }
+
+    /**
+     * Creates a builder that has the {@link ValueParameter} set to
+     * {@link CatalogedValueParameters#WORLD_PROPERTIES_ALL} or
+     * {@link CatalogedValueParameters#WORLD_PROPERTIES_ONLINE_ONLY}.
+     *
+     * @param onlineOnly If the parameter should only select
+     *      {@link WorldProperties} that represent online worlds.
+     * @return A {@link Parameter.Value.Builder}
+     */
+    static Parameter.Value.Builder<WorldProperties> worldProperties(final boolean onlineOnly) {
+        if (onlineOnly) {
+            return Parameter.builder(WorldProperties.class, CatalogedValueParameters.WORLD_PROPERTIES_ONLINE_ONLY);
+        }
+        return Parameter.builder(WorldProperties.class, CatalogedValueParameters.WORLD_PROPERTIES_ALL);
     }
 
     /**

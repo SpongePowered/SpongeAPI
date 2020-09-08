@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api;
 
+import net.kyori.adventure.key.Key;
 import org.spongepowered.api.advancement.Advancement;
 import org.spongepowered.api.advancement.AdvancementTree;
 import org.spongepowered.api.advancement.AdvancementType;
@@ -45,12 +46,12 @@ import org.spongepowered.api.entity.ai.goal.GoalType;
 import org.spongepowered.api.entity.attribute.AttributeOperation;
 import org.spongepowered.api.entity.attribute.type.AttributeType;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
-import org.spongepowered.api.event.cause.EventContextKey;
+import org.spongepowered.api.event.EventContextKey;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifierType;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
-import org.spongepowered.api.event.cause.entity.dismount.DismountType;
-import org.spongepowered.api.event.cause.entity.spawn.SpawnType;
-import org.spongepowered.api.event.cause.entity.teleport.TeleportType;
+import org.spongepowered.api.event.cause.entity.DismountType;
+import org.spongepowered.api.event.cause.entity.SpawnType;
+import org.spongepowered.api.event.cause.entity.MovementType;
 import org.spongepowered.api.fluid.FluidType;
 import org.spongepowered.api.item.FireworkShape;
 import org.spongepowered.api.item.ItemType;
@@ -72,14 +73,15 @@ import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMode;
 import org.spongepowered.api.service.economy.Currency;
 import org.spongepowered.api.service.economy.transaction.TransactionType;
+import org.spongepowered.api.placeholder.PlaceholderParser;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.StatisticCategory;
 import org.spongepowered.api.entity.living.player.chat.ChatVisibility;
-import org.spongepowered.api.util.ban.BanType;
+import org.spongepowered.api.service.ban.BanType;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.dimension.DimensionType;
-import org.spongepowered.api.world.gen.GeneratorType;
-import org.spongepowered.api.world.teleport.PortalAgentType;
+import org.spongepowered.api.world.gen.GeneratorModifierType;
+import org.spongepowered.api.world.portal.PortalType;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.WorldArchetype;
 import org.spongepowered.api.world.biome.BiomeType;
@@ -92,7 +94,7 @@ import org.spongepowered.api.world.weather.Weather;
  * Enumeration of all known {@link CatalogType}s for autocompletion when using
  * the {@link GameRegistry} to retrieve specific types or all of a certain type.
  *
- * <p>These are generally useful for {@link CatalogRegistry#get(Class, ResourceKey)}
+ * <p>These are generally useful for {@link CatalogRegistry#get(Class, Key)}
  * and {@link CatalogRegistry#getAllOf(Class)}.</p>
  */
 @SuppressWarnings({"rawtypes", "unused"})
@@ -121,6 +123,8 @@ public final class CatalogTypes {
     public static final Class<BlockEntityType> BLOCK_ENTITY_TYPE = BlockEntityType.class;
 
     public static final Class<BlockType> BLOCK_TYPE = BlockType.class;
+
+    public static final Class<BoatType> BOAT_TYPE = BoatType.class;
 
     public static final Class<BodyPart> BODY_PART = BodyPart.class;
 
@@ -176,7 +180,7 @@ public final class CatalogTypes {
 
     public static final Class<GameMode> GAME_MODE = GameMode.class;
 
-    public static final Class<GeneratorType> GENERATOR_TYPE = GeneratorType.class;
+    public static final Class<GeneratorModifierType> GENERATOR_MODIFIER_TYPE = GeneratorModifierType.class;
 
     public static final Class<GoalExecutorType> GOAL_EXECUTOR_TYPE = GoalExecutorType.class;
 
@@ -202,6 +206,8 @@ public final class CatalogTypes {
 
     public static final Class<MooshroomType> MOOSHROOM_TYPE = MooshroomType.class;
 
+    public static final Class<MovementType> MOVEMENT_TYPE = MovementType.class;
+
     public static final Class<MusicDisc> MUSIC_DISC = MusicDisc.class;
 
     public static final Class<NotePitch> NOTE_PITCH = NotePitch.class;
@@ -224,7 +230,9 @@ public final class CatalogTypes {
 
     public static final Class<PistonType> PISTON_TYPE = PistonType.class;
 
-    public static final Class<PortalAgentType> PORTAL_AGENT_TYPE = PortalAgentType.class;
+    public static final Class<PortalType> PORTAL_TYPE = PortalType.class;
+
+    public static final Class<PlaceholderParser> PLACEHOLDER_PARSER = PlaceholderParser.class;
 
     public static final Class<PortionType> PORTION_TYPE = PortionType.class;
 
@@ -259,8 +267,6 @@ public final class CatalogTypes {
     public static final Class<StatisticCategory> STATISTIC_CATEGORY = StatisticCategory.class;
 
     public static final Class<TeleportHelperFilter> TELEPORT_HELPER_FILTER = TeleportHelperFilter.class;
-
-    public static final Class<TeleportType> TELEPORT_TYPE = TeleportType.class;
 
     public static final Class<ToolType> TOOL_TYPE = ToolType.class;
 

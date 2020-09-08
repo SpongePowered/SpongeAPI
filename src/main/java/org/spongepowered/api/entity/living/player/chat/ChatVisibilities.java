@@ -42,17 +42,17 @@ public final class ChatVisibilities {
     /**
      * All chat is visible.
      */
-    public static final Supplier<ChatVisibility> FULL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChatVisibility.class, "FULL");
+    public static final Supplier<ChatVisibility> FULL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChatVisibility.class, "full");
 
     /**
      * No chat is visible.
      */
-    public static final Supplier<ChatVisibility> HIDDEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChatVisibility.class, "HIDDEN");
+    public static final Supplier<ChatVisibility> HIDDEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChatVisibility.class, "hidden");
 
     /**
      * Only {@link MessageType#SYSTEM} is visible.
      */
-    public static final Supplier<ChatVisibility> SYSTEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChatVisibility.class, "SYSTEM");
+    public static final Supplier<ChatVisibility> SYSTEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChatVisibility.class, "system");
 
     // SORTFIELDS:OFF
 }

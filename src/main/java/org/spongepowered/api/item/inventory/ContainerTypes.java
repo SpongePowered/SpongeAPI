@@ -25,7 +25,6 @@
 package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.living.animal.horse.Horse;
 import org.spongepowered.api.entity.living.trader.Villager;
 
 import java.util.function.Supplier;
@@ -109,7 +108,7 @@ public final class ContainerTypes {
      */
     public static final Supplier<ContainerType> BEACON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "beacon");
 
-    public static final Supplier<ContainerType> CARTOGRAPHY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "cartography");
+    public static final Supplier<ContainerType> CARTOGRAPHY_TABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "cartography_table");
 
     /**
      * Size 0. All slots present in the container only: 10 (3x3+1).
@@ -132,11 +131,6 @@ public final class ContainerTypes {
     // Containers that cannot be opened on their own. Create an Entity to open the container instead.
 
     // SORTFIELDS:ON
-
-    /**
-     * Create a subtype of a {@link Horse} Entity instead of using this ContainerType.
-     */
-    public static final Supplier<ContainerType> HORSE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ContainerType.class, "horse");
 
     /**
      * Create a {@link Villager} Entity instead of using this ContainerType.

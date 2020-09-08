@@ -35,11 +35,11 @@ public final class WireAttachmentTypes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<WireAttachmentType> NONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WireAttachmentType.class, "NONE");
+    public static final Supplier<WireAttachmentType> NONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WireAttachmentType.class, "none");
 
-    public static final Supplier<WireAttachmentType> SIDE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WireAttachmentType.class, "SIDE");
+    public static final Supplier<WireAttachmentType> SIDE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WireAttachmentType.class, "side");
 
-    public static final Supplier<WireAttachmentType> UP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WireAttachmentType.class, "UP");
+    public static final Supplier<WireAttachmentType> UP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WireAttachmentType.class, "up");
 
     // SORTFIELDS:OFF
 

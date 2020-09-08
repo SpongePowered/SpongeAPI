@@ -55,7 +55,7 @@ public final class ParticleOptions {
      *   <li>{@link ParticleTypes#ITEM}</li>
      * </ul>
      */
-    public static final Supplier<ParticleOption<BlockState>> BLOCK_STATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "BLOCK_STATE");
+    public static final Supplier<ParticleOption<BlockState>> BLOCK_STATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "block_state");
 
     /**
      * This option will modify the color of a particle. The only vanilla
@@ -67,12 +67,12 @@ public final class ParticleOptions {
      *   <li>{@link ParticleTypes#DUST}</li>
      * </ul>
      */
-    public static final Supplier<ParticleOption<Color>> COLOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "COLOR");
+    public static final Supplier<ParticleOption<Color>> COLOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "color");
 
     /**
      * This option will change the direction of a particle.
      */
-    public static final Supplier<ParticleOption<Direction>> DIRECTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "DIRECTION");
+    public static final Supplier<ParticleOption<Direction>> DIRECTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "direction");
 
     /**
      * This option will modify the color of a particle. The only vanilla
@@ -82,7 +82,7 @@ public final class ParticleOptions {
      * <p>The {@link List} may never be empty. Or a {@link IllegalArgumentException}
      * will be thrown when applying.</p>
      */
-    public static final Supplier<ParticleOption<List<FireworkEffect>>> FIREWORK_EFFECTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "FIREWORK_EFFECTS");
+    public static final Supplier<ParticleOption<List<FireworkEffect>>> FIREWORK_EFFECTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "firework_effects");
 
     /**
      * This option will affect the appearance of a particle. The only vanilla
@@ -95,26 +95,26 @@ public final class ParticleOptions {
      *   <li>{@link ParticleTypes#ITEM}</li>
      * </ul>
      */
-    public static final Supplier<ParticleOption<ItemStackSnapshot>> ITEM_STACK_SNAPSHOT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "ITEM_STACK_SNAPSHOT");
+    public static final Supplier<ParticleOption<ItemStackSnapshot>> ITEM_STACK_SNAPSHOT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "item_stack_snapshot");
 
     /**
      * This option will affect the appearance of a particle. The only vanilla
      * {@link ParticleType} this option is applicable to is
      * {@link ParticleTypes#NOTE}.
      */
-    public static final Supplier<ParticleOption<NotePitch>> NOTE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "NOTE");
+    public static final Supplier<ParticleOption<NotePitch>> NOTE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "note");
 
     /**
      * This option will affect how all the particles are spread.
      */
-    public static final Supplier<ParticleOption<Vector3d>> OFFSET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "OFFSET");
+    public static final Supplier<ParticleOption<Vector3d>> OFFSET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "offset");
 
     /**
      * This option will change the potion type of a particle. The only vanilla
      * {@link ParticleType}s this option is applicable to is
      * {@link ParticleTypes#BREAK_SPLASH_POTION}.
      */
-    public static final Supplier<ParticleOption<PotionEffectType>> POTION_EFFECT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "POTION_EFFECT_TYPE");
+    public static final Supplier<ParticleOption<PotionEffectType>> POTION_EFFECT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "potion_effect_type");
 
     /**
      * This option will affect the amount of particles that are spawned. The
@@ -133,7 +133,7 @@ public final class ParticleOptions {
      * <p>The quantity must be at least 1, or a {@link IllegalArgumentException}
      * will be thrown when applying.</p>
      */
-    public static final Supplier<ParticleOption<Integer>> QUANTITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "QUANTITY");
+    public static final Supplier<ParticleOption<Integer>> QUANTITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "quantity");
 
     /**
      * This option will change the scale of a particle. The only
@@ -148,7 +148,7 @@ public final class ParticleOptions {
      * <p>The scale may never be negative, or a {@link IllegalArgumentException}
      * will be thrown when applying.</p>
      */
-    public static final Supplier<ParticleOption<Double>> SCALE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "SCALE");
+    public static final Supplier<ParticleOption<Double>> SCALE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "scale");
 
     /**
      * This option will affect whether a particle type will have a lower
@@ -164,12 +164,12 @@ public final class ParticleOptions {
      * <p>These particle types don't have a configurable velocity (through
      * {@link #VELOCITY}) in the horizontal plane.</p>
      */
-    public static final Supplier<ParticleOption<Boolean>> SLOW_HORIZONTAL_VELOCITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "SLOW_HORIZONTAL_VELOCITY");
+    public static final Supplier<ParticleOption<Boolean>> SLOW_HORIZONTAL_VELOCITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "slow_horizontal_velocity");
 
     /**
      * This option will affect how all the particles are moving.
      */
-    public static final Supplier<ParticleOption<Vector3d>> VELOCITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "VELOCITY");
+    public static final Supplier<ParticleOption<Vector3d>> VELOCITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "velocity");
 
     // SORTFIELDS:OFF
 

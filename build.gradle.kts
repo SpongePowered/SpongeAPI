@@ -40,51 +40,70 @@ dependencies {
         exclude(group = "com.google.j2objc", module = "j2objc-annotations")
         exclude(group = "org.codehaus.mojo", module = "animal-sniffer-annotations")
     }
-    api("com.google.errorprone:error_prone_annotations:2.1.3")
     api("com.google.code.gson:gson:2.8.0")
-    api("org.apache.commons:commons-lang3:3.5")
 
-    api("net.kyori:adventure-api:4.0.0-SNAPSHOT")
-    api("net.kyori:adventure-text-serializer-gson:4.0.0-SNAPSHOT")
-    api("net.kyori:adventure-text-serializer-legacy:4.0.0-SNAPSHOT")
-    api("net.kyori:adventure-text-serializer-plain:4.0.0-SNAPSHOT")
+    // Adventure
+    api("net.kyori:adventure-api:4.0.0-SNAPSHOT") {
+        exclude(group = "org.checkerframework", module = "checker-qual")
+    }
+    api("net.kyori:adventure-text-serializer-gson:4.0.0-SNAPSHOT") {
+        exclude(group = "org.checkerframework", module = "checker-qual")
+        exclude(group = "com.google.code.gson", module = "gson")
+        exclude(group = "net.kyori", module = "adventure-api")
+    }
+    api("net.kyori:adventure-text-serializer-legacy:4.0.0-SNAPSHOT") {
+        exclude(group = "org.checkerframework", module = "checker-qual")
+        exclude(group = "net.kyori", module = "adventure-api")
+    }
+    api("net.kyori:adventure-text-serializer-plain:4.0.0-SNAPSHOT") {
+        exclude(group = "org.checkerframework", module = "checker-qual")
+        exclude(group = "net.kyori", module = "adventure-api")
+    }
 
     // Dependency injection
     api("com.google.inject:guice:4.1.0") {
         exclude(group = "javax.inject", module = "javax.inject")
-        exclude(group = "aopalliance", module = "aopalliance")
         exclude(group = "com.google.guava", module = "guava") // We bump the version compared to guice
     }
 
     // High performance cache + guava - shaded guava
-    api("com.github.ben-manes.caffeine:caffeine:2.8.4")
+    api("com.github.ben-manes.caffeine:caffeine:2.8.4") {
+        exclude(group= "org.checkerframework", module = "checker-qual")
+        exclude(group = "com.google.errorprone", module = "error_prone_annotations")
+    }
     implementation("com.github.ben-manes.caffeine:guava:2.8.4") {
         exclude(group = "com.google.guava", module = "guava")
+        exclude(group= "org.checkerframework", module = "checker-qual")
+        exclude(group = "com.google.errorprone", module = "error_prone_annotations")
     }
-    implementation("com.github.ben-manes.caffeine:jcache:2.8.4")
 
     // Plugin spi, includes plugin-meta
-    api("org.spongepowered:plugin-spi:0.1.1-SNAPSHOT")
+    api("org.spongepowered:plugin-spi:0.1.3-SNAPSHOT")
 
     // Configurate
-    api("org.spongepowered:configurate-core:3.6.1") {
+    api("org.spongepowered:configurate-core:3.7.1") {
         exclude(group = "com.google.guava", module = "guava")
         exclude(group = "org.checkerframework", module = "checker-qual") // We use our own version
     }
-    api("org.spongepowered:configurate-hocon:3.6.1") {
+    api("org.spongepowered:configurate-hocon:3.7.1") {
+        exclude(group = "org.spongepowered", module = "configurate-core")
+        exclude(group= "org.checkerframework", module = "checker-qual")
 
     }
-    api("org.spongepowered:configurate-gson:3.6.1") {
+    api("org.spongepowered:configurate-gson:3.7.1") {
+        exclude(group = "org.spongepowered", module = "configurate-core")
         exclude(group = "com.google.code.gson", module = "gson") // We have the same version technically, but use the gson we provide.
+        exclude(group= "org.checkerframework", module = "checker-qual")
     }
-    api("org.spongepowered:configurate-yaml:3.6.1")
+    api("org.spongepowered:configurate-yaml:3.7.1") {
+        exclude(group = "org.spongepowered", module = "configurate-core")
+        exclude(group= "org.checkerframework", module = "checker-qual")
+    }
 
     // Math and noise for world gen
     api("org.spongepowered:math:2.0.0-SNAPSHOT")
     api("org.spongepowered:noise:2.0.0-SNAPSHOT")
 
-    // Asm for dummy object generation
-    implementation("org.ow2.asm:asm:6.2")
     testImplementation("junit:junit:4.12")
     testImplementation("org.hamcrest:hamcrest-library:1.3")
     testImplementation("org.mockito:mockito-core:2.8.47")
@@ -95,9 +114,13 @@ tasks {
     genEventImpl {
         outputFactory = "org.spongepowered.api.event.SpongeEventFactory"
         include("org/spongepowered/api/event/*/**/*")
+        exclude("org/spongepowered/api/event/action/InteractEvent.java")
         exclude("org/spongepowered/api/event/cause/")
+        exclude("org/spongepowered/api/event/entity/AffectEntityEvent.java")
         exclude("org/spongepowered/api/event/filter/")
         exclude("org/spongepowered/api/event/impl/")
+        exclude("org/spongepowered/api/event/item/inventory/AffectItemStackEvent.java")
+        exclude("org/spongepowered/api/event/item/inventory/AffectSlotEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/EngineLifecycleEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/LifecycleEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/ProvideServiceEvent.java")
@@ -111,6 +134,7 @@ tasks {
         exclude("org/spongepowered/api/event/lifecycle/StartedEngineEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/StoppingEngineEvent.java")
         inclusiveAnnotations = setOf("org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod")
+        exclusiveAnnotations = setOf("org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod")
     }
 
     jar {
@@ -141,7 +165,6 @@ tasks {
                                 "https://google.github.io/guice/api-docs/4.1/javadoc/",
                                 "https://zml2008.github.io/configurate/configurate-core/apidocs/",
                                 "https://zml2008.github.io/configurate/configurate-hocon/apidocs/",
-                                "http://asm.ow2.org/asm50/javadoc/user/",
                                 "https://docs.oracle.com/javase/8/docs/api/"
                         )
                 )
@@ -271,6 +294,7 @@ val sortClasses = listOf(
         "org.spongepowered.api.block.entity.BlockEntityTypes",
         "org.spongepowered.api.boss.BossBarColors",
         "org.spongepowered.api.boss.BossBarOverlays",
+        "org.spongepowered.api.command.parameter.CommonParameters",
         "org.spongepowered.api.command.parameter.managed.standard.CatalogedValueParameters",
         "org.spongepowered.api.data.Keys",
         "org.spongepowered.api.data.persistence.DataFormats",

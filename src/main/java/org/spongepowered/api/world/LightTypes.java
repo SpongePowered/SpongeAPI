@@ -32,9 +32,9 @@ public final class LightTypes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<LightType> BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(LightType.class, "BLOCK");
+    public static final Supplier<LightType> BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(LightType.class, "block");
 
-    public static final Supplier<LightType> SKY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(LightType.class, "SKY");
+    public static final Supplier<LightType> SKY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(LightType.class, "sky");
 
     // SORTFIELDS:OFF
 

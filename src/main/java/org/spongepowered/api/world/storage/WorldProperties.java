@@ -28,7 +28,6 @@ import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.key.KeyedValue;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.trader.WanderingTrader;
@@ -40,9 +39,8 @@ import org.spongepowered.api.world.WorldBorder;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.dimension.DimensionType;
 import org.spongepowered.api.world.gamerule.GameRuleHolder;
-import org.spongepowered.api.world.gen.GeneratorType;
+import org.spongepowered.api.world.gen.GeneratorModifierType;
 import org.spongepowered.api.world.server.ServerWorld;
-import org.spongepowered.api.world.teleport.PortalAgentType;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 import org.spongepowered.math.vector.Vector3i;
 
@@ -60,24 +58,13 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
     /**
      * Gets the {@link ServerWorld} that correlates to this properties, if available.
      *
-     * <p>The rules are that the world must be loaded and it's {@link World#getUniqueId()} matches
-     * this properties' {@link #getUniqueId()}. Lastly, the properties of that world and this properties
+     * <p>The rules are that the world must be loaded and it's {@link ServerWorld#getKey()} matches
+     * this properties' {@link #getKey()}. Lastly, the properties of that world and this properties
      * must be reference equal.</p>
+     * 
      * @return The world or {@link Optional#empty()} otherwise
      */
-    default Optional<ServerWorld> getWorld() {
-        final Optional<ServerWorld> potentialWorld = Sponge.getServer().getWorldManager().getWorld(this.getKey());
-        if (!potentialWorld.isPresent()) {
-            return Optional.empty();
-        }
-
-        final ServerWorld serverWorld = potentialWorld.get();
-        if (serverWorld.getProperties() == this) {
-            return Optional.of(serverWorld);
-        }
-
-        return Optional.empty();
-    }
+    Optional<ServerWorld> getWorld();
 
     /**
      * Gets the {@link ResourceKey key}.
@@ -166,27 +153,27 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
     void setSpawnPosition(Vector3i position);
 
     /**
-     * Gets the {@link GeneratorType}.
+     * Gets the {@link GeneratorModifierType}.
      *
-     * @return The type
+     * @return The modifier
      */
-    GeneratorType getGeneratorType();
+    GeneratorModifierType getGeneratorModifierType();
 
     /**
-     * Sets the {@link GeneratorType}.
+     * Sets the {@link GeneratorModifierType}.
      *
-     * @param type The generator type
+     * @param modifier The generator modifier
      */
-    default void setGeneratorType(Supplier<? extends GeneratorType> type) {
-        this.setGeneratorType(type.get());
+    default void setGeneratorModifierType(Supplier<? extends GeneratorModifierType> modifier) {
+        this.setGeneratorModifierType(modifier.get());
     }
 
     /**
-     * Sets the {@link GeneratorType}.
+     * Sets the {@link GeneratorModifierType}.
      *
-     * @param type The generator type
+     * @param modifier The generator modifier
      */
-    void setGeneratorType(GeneratorType type);
+    void setGeneratorModifierType(GeneratorModifierType modifier);
 
     /**
      * Gets the seed.
@@ -236,11 +223,11 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
     DimensionType getDimensionType();
 
     /**
-     * Gets the {@link PortalAgentType}.
+     * Sets the {@link DimensionType}.
      *
-     * @return The portal agent type
+     * @param dimensionType The dimension type
      */
-    PortalAgentType getPortalAgentType();
+    void setDimensionType(DimensionType dimensionType);
 
     /**
      * Gets whether PVP combat is enabled.

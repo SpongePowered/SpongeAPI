@@ -29,7 +29,6 @@ import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.DataSerializable;
-import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.network.channel.ChannelRegistry;
 import org.spongepowered.api.plugin.PluginManager;
@@ -37,9 +36,7 @@ import org.spongepowered.api.registry.GameRegistry;
 import org.spongepowered.api.scheduler.Scheduler;
 import org.spongepowered.api.sql.SqlManager;
 import org.spongepowered.api.util.metric.MetricsConfigManager;
-import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.service.ServiceProvider;
-import org.spongepowered.api.world.TeleportHelper;
 
 import java.nio.file.Path;
 import java.util.Locale;

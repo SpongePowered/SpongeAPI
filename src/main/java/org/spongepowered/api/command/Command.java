@@ -34,9 +34,10 @@ import org.spongepowered.api.command.exception.CommandException;
 import org.spongepowered.api.command.parameter.CommandContext;
 import org.spongepowered.api.command.parameter.Parameter;
 import org.spongepowered.api.command.parameter.managed.Flag;
-import org.spongepowered.api.command.registrar.tree.CommandTreeBuilder;
-import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.cause.EventContext;
+import org.spongepowered.api.command.registrar.tree.ClientCompletionKeys;
+import org.spongepowered.api.command.registrar.tree.CommandTreeNode;
+import org.spongepowered.api.event.Cause;
+import org.spongepowered.api.event.EventContext;
 import org.spongepowered.api.event.lifecycle.RegisterCommandEvent;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.util.ResettableBuilder;
@@ -185,18 +186,24 @@ public interface Command {
     Component getUsage(CommandCause cause);
 
     /**
-     * A raw command that also contains a {@link CommandTreeBuilder} to provide
+     * A raw command that also contains a {@link CommandTreeNode} to provide
      * hints to the client for command completion.
      */
     interface Raw extends Command {
 
         /**
-         * Gets the {@link CommandTreeBuilder} that represents the argument
+         * Gets the {@link CommandTreeNode} that represents the argument
          * pattern for this command.
+         *
+         * <p>Defaults to a command with an optional string argument string that
+         * is greedy.</p>
          *
          * @return The tree.
          */
-        CommandTreeBuilder<CommandTreeBuilder.Basic> commandTree();
+        default CommandTreeNode.Root commandTree() {
+            return CommandTreeNode.root().executable().child("arguments",
+                    ClientCompletionKeys.STRING.get().createNode().greedy().executable().customSuggestions());
+        }
 
     }
 
@@ -224,6 +231,23 @@ public interface Command {
          * @return A copy of the collection of {@link Parameter}s.
          */
         List<Parameter> parameters();
+
+        /**
+         * A {@link List} of direct {@link Parameter.Subcommand subcommands}
+         * that this command contains.
+         *
+         * <p>A direct subcommand is one that is specified directly after the
+         * literal the invokes this command, e.g. on the command {@code /foo},
+         * {@code bar} is a direct subcommand if it was specified in
+         * {@link Command.Parameterized.Builder#child(Parameterized, String...)}
+         * or {@link Command.Parameterized.Builder#children(Map)} with the alias
+         * {@code bar}. This will not contain any subcommands that were
+         * registered via
+         * {@link Command.Parameterized.Builder#parameter(Parameter)}</p>
+         *
+         * @return A copy of the collection of subcommands.
+         */
+        List<Parameter.Subcommand> subcommands();
 
         /**
          * Gets a {@link Predicate} that backs {@link #canExecute(CommandCause)}.

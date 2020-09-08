@@ -27,15 +27,12 @@ package org.spongepowered.api.event.entity;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
-import org.spongepowered.api.world.server.ServerWorld;
-import org.spongepowered.api.world.teleport.PortalAgent;
+import org.spongepowered.api.util.annotation.eventgen.AbsoluteSortPosition;
 import org.spongepowered.math.vector.Vector3d;
 
 /**
  * Called when an {@link Entity} performs movement.
  */
-@GenerateFactoryMethod
 public interface MoveEntityEvent extends Event, Cancellable {
 
     /**
@@ -43,129 +40,37 @@ public interface MoveEntityEvent extends Event, Cancellable {
      *
      * @return The entity
      */
+    @AbsoluteSortPosition(1)
     Entity getEntity();
 
     /**
-     * Gets the {@link Vector3d position} {@link Entity} came from.
+     * Gets the {@link Vector3d position} the {@link Entity} came from.
      *
-     * @return the previous position
+     * @return The original position
      */
-    Vector3d getFromPosition();
+    @AbsoluteSortPosition(2)
+    Vector3d getOriginalPosition();
 
     /**
-     * Gets the new {@link Vector3d position} that the {@link Entity} will move to.
+     * Gets the {@link Vector3d position} the {@link Entity} would have been going to.
      *
-     * @return the new position
+     * @return The original destination
      */
-    Vector3d getToPosition();
+    @AbsoluteSortPosition(3)
+    Vector3d getOriginalDestinationPosition();
 
     /**
-     * Sets the new {@link Vector3d position} that the {@link Entity} will change to.
+     * Gets the {@link Vector3d position} the {@link Entity} will go to.
+     *
+     * @return The new position
+     */
+    @AbsoluteSortPosition(4)
+    Vector3d getDestinationPosition();
+
+    /**
+     * Sets the new {@link Vector3d position} the {@link Entity} will go to.
      *
      * @param position The new position
      */
-    void setToPosition(Vector3d position);
-
-    /**
-     * Fired when an {@link Entity}'s position changes.
-     */
-    @GenerateFactoryMethod
-    interface Position extends MoveEntityEvent {}
-
-    /**
-     * Fired when an {@link Entity}'s position changes for reasons other than
-     * normal movement.
-     */
-    @GenerateFactoryMethod
-    interface Teleport extends MoveEntityEvent {
-
-        /**
-         * Gets the {@link ServerWorld world} the {@link Entity} is coming from.
-         *
-         * @return The world
-         */
-        ServerWorld getFromWorld();
-
-        /**
-         * Gets the {@link ServerWorld world} the {@link Entity} is going to.
-         *
-         * @return The new world
-         */
-        ServerWorld getToWorld();
-
-        /**
-         * Sets the {@link ServerWorld world} the {@link Entity} will go to.
-         *
-         * @param world The world
-         */
-        void setToWorld(ServerWorld world);
-
-        /**
-         * Gets whether the entity teleporting will maintain its velocity
-         * after teleport.
-         *
-         * @return Whether the entity will maintain momentum after teleport
-         */
-        boolean getKeepsVelocity();
-
-        /**
-         * Sets whether the entity teleporting will maintain its velocity
-         * after teleport.
-         *
-         * @param keepsVelocity Whether the entity will maintain velocity
-         */
-        void setKeepsVelocity(boolean keepsVelocity);
-
-        @GenerateFactoryMethod
-        interface Portal extends Teleport {
-
-            /**
-             * Sets whether the {@link PortalAgent} will be used.
-             * <p>
-             * If this is set to true, the {@link PortalAgent} will search for a
-             * portal at the {@link #getToPosition()} location and will attempt to
-             * create one if not found.
-             * </p>
-             * <p>
-             * If this is set to false, the {@link #getEntity()} will only be
-             * teleported to the {@link #getToPosition()} location.
-             * </p>
-             *
-             * @param usePortalAgent whether to use the portal agent
-             */
-            void setUsePortalAgent(boolean usePortalAgent);
-
-            /**
-             * Gets whether the {@link PortalAgent} will be used.
-             * <p>
-             * If this is set to true, the {@link PortalAgent} will search for a
-             * Portal at the {@link #getToPosition()} location, and will attempt to
-             * create one if not found.
-             * </p>
-             * <p>
-             * If this is set to false, the {@link #getEntity()} will only be
-             * teleported to the {@link #getToPosition()} location.
-             * </p>
-             *
-             * @return whether to use the portal agent
-             */
-            boolean getUsePortalAgent();
-
-            /**
-             * Gets the {@link PortalAgent} that will be responsible for teleporting
-             * the {@link #getEntity()} through a Portal.
-             *
-             * @return The portal agent
-             */
-            PortalAgent getPortalAgent();
-
-            /**
-             * Sets the {@link PortalAgent} that will be responsible for teleporting
-             * the {@link #getEntity()} through a Portal.
-             *
-             * @param portalAgent The portal agent
-             */
-            void setPortalAgent(PortalAgent portalAgent);
-        }
-    }
+    void setDestinationPosition(Vector3d position);
 }

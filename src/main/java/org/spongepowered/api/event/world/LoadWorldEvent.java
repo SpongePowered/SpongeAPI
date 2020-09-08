@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.world;
 
-import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.server.ServerWorld;
@@ -32,7 +31,7 @@ import org.spongepowered.api.world.server.ServerWorld;
 /**
  * Base event for when a {@link World} is loaded.
  */
-public interface LoadWorldEvent extends Event, Cancellable {
+public interface LoadWorldEvent extends Event {
 
     /**
      * Gets the {@link ServerWorld world}.

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.item.inventory.menu.handler;
 
-import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.menu.ClickType;

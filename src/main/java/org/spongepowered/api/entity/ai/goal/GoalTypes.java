@@ -41,27 +41,27 @@ public final class GoalTypes {
     /**
      * {@link Goal} where {@link Creature}s avoid other {@link Agent}s based on a {@link Predicate}.
      */
-    public static final Supplier<GoalType> AVOID_ENTITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GoalType.class, "AVOID_ENTITY");
+    public static final Supplier<GoalType> AVOID_ENTITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GoalType.class, "avoid_entity");
 
     /**
      * {@link Goal} where {@link Horse}s run around while {@link Humanoid}s attempt to tame them.
      */
-    public static final Supplier<GoalType> RUN_AROUND_LIKE_CRAZY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GoalType.class, "RUN_AROUND_LIKE_CRAZY");
+    public static final Supplier<GoalType> RUN_AROUND_LIKE_CRAZY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GoalType.class, "run_around_like_crazy");
 
     /**
      * {@link Goal} where {@link Agent}s swim in liquids.
      */
-    public static final Supplier<GoalType> SWIMMING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GoalType.class, "SWIMMING");
+    public static final Supplier<GoalType> SWIMMING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GoalType.class, "swimming");
 
     /**
      * {@link Goal} where {@link Creature}s walk around.
      */
-    public static final Supplier<GoalType> WANDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GoalType.class, "WANDER");
+    public static final Supplier<GoalType> WANDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GoalType.class, "wander");
 
     /**
      * {@link Goal} where {@link Agent}s will "watch" other {@link Entity}s.
      */
-    public static final Supplier<GoalType> WATCH_CLOSEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GoalType.class, "WATCH_CLOSEST");
+    public static final Supplier<GoalType> WATCH_CLOSEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GoalType.class, "watch_closest");
 
     // SORTFIELDS:OFF
 

@@ -28,23 +28,19 @@ import org.spongepowered.api.Sponge;
 
 import java.util.function.Supplier;
 
-/**
- * Holds all possible {@link DimensionType}s.
- */
 public final class DimensionTypes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<DimensionType> OVERWORLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DimensionType.class, "OVERWORLD");
+    public static final Supplier<DimensionType> OVERWORLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DimensionType.class, "overworld");
 
-    public static final Supplier<DimensionType> THE_END = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DimensionType.class, "THE_END");
+    public static final Supplier<DimensionType> THE_END = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DimensionType.class, "the_end");
 
-    public static final Supplier<DimensionType> THE_NETHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DimensionType.class, "THE_NETHER");
+    public static final Supplier<DimensionType> THE_NETHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DimensionType.class, "the_nether");
 
     // SORTFIELDS:OFF
 
     private DimensionTypes() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }
-
 }

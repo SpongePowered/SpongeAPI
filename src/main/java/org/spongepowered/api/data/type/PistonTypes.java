@@ -35,9 +35,9 @@ public final class PistonTypes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<PistonType> NORMAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PistonType.class, "NORMAL");
+    public static final Supplier<PistonType> NORMAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PistonType.class, "normal");
 
-    public static final Supplier<PistonType> STICKY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PistonType.class, "STICKY");
+    public static final Supplier<PistonType> STICKY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PistonType.class, "sticky");
 
     // SORTFIELDS:OFF
 

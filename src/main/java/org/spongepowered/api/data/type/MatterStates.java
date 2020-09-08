@@ -32,11 +32,11 @@ public final class MatterStates {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<MatterState> GAS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MatterState.class, "GAS");
+    public static final Supplier<MatterState> GAS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MatterState.class, "gas");
 
-    public static final Supplier<MatterState> LIQUID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MatterState.class, "LIQUID");
+    public static final Supplier<MatterState> LIQUID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MatterState.class, "liquid");
 
-    public static final Supplier<MatterState> SOLID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MatterState.class, "SOLID");
+    public static final Supplier<MatterState> SOLID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MatterState.class, "solid");
 
     // SORTFIELDS:OFF
 

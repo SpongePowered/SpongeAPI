@@ -33,6 +33,7 @@ import org.spongepowered.api.entity.hanging.Painting;
 import org.spongepowered.api.entity.living.ArmorStand;
 import org.spongepowered.api.entity.living.Bat;
 import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.animal.Bee;
 import org.spongepowered.api.entity.living.animal.Cat;
 import org.spongepowered.api.entity.living.animal.Chicken;
 import org.spongepowered.api.entity.living.animal.Fox;
@@ -134,213 +135,215 @@ public final class EntityTypes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<EntityType<AreaEffectCloud>> AREA_EFFECT_CLOUD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "AREA_EFFECT_CLOUD");
+    public static final Supplier<EntityType<AreaEffectCloud>> AREA_EFFECT_CLOUD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "area_effect_cloud");
 
-    public static final Supplier<EntityType<ArmorStand>> ARMOR_STAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "ARMOR_STAND");
+    public static final Supplier<EntityType<ArmorStand>> ARMOR_STAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "armor_stand");
 
-    public static final Supplier<EntityType<Arrow>> ARROW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "ARROW");
+    public static final Supplier<EntityType<Arrow>> ARROW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "arrow");
 
-    public static final Supplier<EntityType<Bat>> BAT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "BAT");
+    public static final Supplier<EntityType<Bat>> BAT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "bat");
 
-    public static final Supplier<EntityType<Blaze>> BLAZE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "BLAZE");
+    public static final Supplier<EntityType<Bee>> BEE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "bee");
 
-    public static final Supplier<EntityType<Boat>> BOAT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "BOAT");
+    public static final Supplier<EntityType<Blaze>> BLAZE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "blaze");
 
-    public static final Supplier<EntityType<Cat>> CAT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "CAT");
+    public static final Supplier<EntityType<Boat>> BOAT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "boat");
 
-    public static final Supplier<EntityType<CaveSpider>> CAVE_SPIDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "CAVE_SPIDER");
+    public static final Supplier<EntityType<Cat>> CAT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "cat");
 
-    public static final Supplier<EntityType<ChestMinecart>> CHEST_MINECART = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "CHEST_MINECART");
+    public static final Supplier<EntityType<CaveSpider>> CAVE_SPIDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "cave_spider");
 
-    public static final Supplier<EntityType<Chicken>> CHICKEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "CHICKEN");
+    public static final Supplier<EntityType<ChestMinecart>> CHEST_MINECART = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "chest_minecart");
 
-    public static final Supplier<EntityType<Cod>> COD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "COD");
+    public static final Supplier<EntityType<Chicken>> CHICKEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "chicken");
 
-    public static final Supplier<EntityType<CommandBlockMinecart>> COMMAND_BLOCK_MINECART = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "COMMAND_BLOCK_MINECART");
+    public static final Supplier<EntityType<Cod>> COD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "cod");
 
-    public static final Supplier<EntityType<Cow>> COW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "COW");
+    public static final Supplier<EntityType<CommandBlockMinecart>> COMMAND_BLOCK_MINECART = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "command_block_minecart");
 
-    public static final Supplier<EntityType<Creeper>> CREEPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "CREEPER");
+    public static final Supplier<EntityType<Cow>> COW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "cow");
 
-    public static final Supplier<EntityType<Dolphin>> DOLPHIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "DOLPHIN");
+    public static final Supplier<EntityType<Creeper>> CREEPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "creeper");
 
-    public static final Supplier<EntityType<Donkey>> DONKEY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "DONKEY");
+    public static final Supplier<EntityType<Dolphin>> DOLPHIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "dolphin");
 
-    public static final Supplier<EntityType<DragonFireball>> DRAGON_FIREBALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "DRAGON_FIREBALL");
+    public static final Supplier<EntityType<Donkey>> DONKEY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "donkey");
 
-    public static final Supplier<EntityType<Drowned>> DROWNED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "DROWNED");
+    public static final Supplier<EntityType<DragonFireball>> DRAGON_FIREBALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "dragon_fireball");
 
-    public static final Supplier<EntityType<Egg>> EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "EGG");
+    public static final Supplier<EntityType<Drowned>> DROWNED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "drowned");
 
-    public static final Supplier<EntityType<ElderGuardian>> ELDER_GUARDIAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "ELDER_GUARDIAN");
+    public static final Supplier<EntityType<Egg>> EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "egg");
 
-    public static final Supplier<EntityType<Enderman>> ENDERMAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "ENDERMAN");
+    public static final Supplier<EntityType<ElderGuardian>> ELDER_GUARDIAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "elder_guardian");
 
-    public static final Supplier<EntityType<Endermite>> ENDERMITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "ENDERMITE");
+    public static final Supplier<EntityType<Enderman>> ENDERMAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "enderman");
 
-    public static final Supplier<EntityType<EnderDragon>> ENDER_DRAGON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "ENDER_DRAGON");
+    public static final Supplier<EntityType<Endermite>> ENDERMITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "endermite");
 
-    public static final Supplier<EntityType<EnderPearl>> ENDER_PEARL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "ENDER_PEARL");
+    public static final Supplier<EntityType<EnderDragon>> ENDER_DRAGON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "ender_dragon");
 
-    public static final Supplier<EntityType<EnderCrystal>> END_CRYSTAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "END_CRYSTAL");
+    public static final Supplier<EntityType<EnderPearl>> ENDER_PEARL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "ender_pearl");
 
-    public static final Supplier<EntityType<Evoker>> EVOKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "EVOKER");
+    public static final Supplier<EntityType<EnderCrystal>> END_CRYSTAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "end_crystal");
 
-    public static final Supplier<EntityType<EvokerFangs>> EVOKER_FANGS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "EVOKER_FANGS");
+    public static final Supplier<EntityType<Evoker>> EVOKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "evoker");
 
-    public static final Supplier<EntityType<ExperienceBottle>> EXPERIENCE_BOTTLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "EXPERIENCE_BOTTLE");
+    public static final Supplier<EntityType<EvokerFangs>> EVOKER_FANGS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "evoker_fangs");
 
-    public static final Supplier<EntityType<ExperienceOrb>> EXPERIENCE_ORB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "EXPERIENCE_ORB");
+    public static final Supplier<EntityType<ExperienceBottle>> EXPERIENCE_BOTTLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "experience_bottle");
 
-    public static final Supplier<EntityType<EyeOfEnder>> EYE_OF_ENDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "EYE_OF_ENDER");
+    public static final Supplier<EntityType<ExperienceOrb>> EXPERIENCE_ORB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "experience_orb");
 
-    public static final Supplier<EntityType<FallingBlock>> FALLING_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "FALLING_BLOCK");
+    public static final Supplier<EntityType<EyeOfEnder>> EYE_OF_ENDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "eye_of_ender");
 
-    public static final Supplier<EntityType<ExplosiveFireball>> FIREBALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "FIREBALL");
+    public static final Supplier<EntityType<FallingBlock>> FALLING_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "falling_block");
 
-    public static final Supplier<EntityType<FireworkRocket>> FIREWORK_ROCKET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "FIREWORK_ROCKET");
+    public static final Supplier<EntityType<ExplosiveFireball>> FIREBALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "fireball");
 
-    public static final Supplier<EntityType<FishingBobber>> FISHING_BOBBER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "FISHING_BOBBER");
+    public static final Supplier<EntityType<FireworkRocket>> FIREWORK_ROCKET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "firework_rocket");
 
-    public static final Supplier<EntityType<Fox>> FOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "FOX");
+    public static final Supplier<EntityType<FishingBobber>> FISHING_BOBBER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "fishing_bobber");
 
-    public static final Supplier<EntityType<FurnaceMinecart>> FURNACE_MINECART = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "FURNACE_MINECART");
+    public static final Supplier<EntityType<Fox>> FOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "fox");
 
-    public static final Supplier<EntityType<Ghast>> GHAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "GHAST");
+    public static final Supplier<EntityType<FurnaceMinecart>> FURNACE_MINECART = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "furnace_minecart");
 
-    public static final Supplier<EntityType<Giant>> GIANT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "GIANT");
+    public static final Supplier<EntityType<Ghast>> GHAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "ghast");
 
-    public static final Supplier<EntityType<Guardian>> GUARDIAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "GUARDIAN");
+    public static final Supplier<EntityType<Giant>> GIANT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "giant");
 
-    public static final Supplier<EntityType<HopperMinecart>> HOPPER_MINECART = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "HOPPER_MINECART");
+    public static final Supplier<EntityType<Guardian>> GUARDIAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "guardian");
 
-    public static final Supplier<EntityType<Horse>> HORSE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "HORSE");
+    public static final Supplier<EntityType<HopperMinecart>> HOPPER_MINECART = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "hopper_minecart");
 
-    public static final Supplier<EntityType<Husk>> HUSK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "HUSK");
+    public static final Supplier<EntityType<Horse>> HORSE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "horse");
 
-    public static final Supplier<EntityType<Illusioner>> ILLUSIONER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "ILLUSIONER");
+    public static final Supplier<EntityType<Husk>> HUSK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "husk");
 
-    public static final Supplier<EntityType<IronGolem>> IRON_GOLEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "IRON_GOLEM");
+    public static final Supplier<EntityType<Illusioner>> ILLUSIONER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "illusioner");
 
-    public static final Supplier<EntityType<Item>> ITEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "ITEM");
+    public static final Supplier<EntityType<IronGolem>> IRON_GOLEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "iron_golem");
 
-    public static final Supplier<EntityType<ItemFrame>> ITEM_FRAME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "ITEM_FRAME");
+    public static final Supplier<EntityType<Item>> ITEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "item");
 
-    public static final Supplier<EntityType<LeashKnot>> LEASH_KNOT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "LEASH_KNOT");
+    public static final Supplier<EntityType<ItemFrame>> ITEM_FRAME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "item_frame");
 
-    public static final Supplier<EntityType<LightningBolt>> LIGHTNING_BOLT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "LIGHTNING_BOLT");
+    public static final Supplier<EntityType<LeashKnot>> LEASH_KNOT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "leash_knot");
 
-    public static final Supplier<EntityType<Llama>> LLAMA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "LLAMA");
+    public static final Supplier<EntityType<LightningBolt>> LIGHTNING_BOLT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "lightning_bolt");
 
-    public static final Supplier<EntityType<LlamaSpit>> LLAMA_SPIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "LLAMA_SPIT");
+    public static final Supplier<EntityType<Llama>> LLAMA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "llama");
 
-    public static final Supplier<EntityType<MagmaCube>> MAGMA_CUBE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "MAGMA_CUBE");
+    public static final Supplier<EntityType<LlamaSpit>> LLAMA_SPIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "llama_spit");
 
-    public static final Supplier<EntityType<Minecart>> MINECART = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "MINECART");
+    public static final Supplier<EntityType<MagmaCube>> MAGMA_CUBE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "magma_cube");
 
-    public static final Supplier<EntityType<Mooshroom>> MOOSHROOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "MOOSHROOM");
+    public static final Supplier<EntityType<Minecart>> MINECART = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "minecart");
 
-    public static final Supplier<EntityType<Mule>> MULE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "MULE");
+    public static final Supplier<EntityType<Mooshroom>> MOOSHROOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "mooshroom");
 
-    public static final Supplier<EntityType<Ocelot>> OCELOT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "OCELOT");
+    public static final Supplier<EntityType<Mule>> MULE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "mule");
 
-    public static final Supplier<EntityType<Painting>> PAINTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "PAINTING");
+    public static final Supplier<EntityType<Ocelot>> OCELOT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "ocelot");
 
-    public static final Supplier<EntityType<Panda>> PANDA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "PANDA");
+    public static final Supplier<EntityType<Painting>> PAINTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "painting");
 
-    public static final Supplier<EntityType<Parrot>> PARROT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "PARROT");
+    public static final Supplier<EntityType<Panda>> PANDA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "panda");
 
-    public static final Supplier<EntityType<Phantom>> PHANTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "PHANTOM");
+    public static final Supplier<EntityType<Parrot>> PARROT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "parrot");
 
-    public static final Supplier<EntityType<Pig>> PIG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "PIG");
+    public static final Supplier<EntityType<Phantom>> PHANTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "phantom");
 
-    public static final Supplier<EntityType<Pillager>> PILLAGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "PILLAGER");
+    public static final Supplier<EntityType<Pig>> PIG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "pig");
 
-    public static final Supplier<EntityType<Player>> PLAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "PLAYER");
+    public static final Supplier<EntityType<Pillager>> PILLAGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "pillager");
 
-    public static final Supplier<EntityType<PolarBear>> POLAR_BEAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "POLAR_BEAR");
+    public static final Supplier<EntityType<Player>> PLAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "player");
 
-    public static final Supplier<EntityType<Potion>> POTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "POTION");
+    public static final Supplier<EntityType<PolarBear>> POLAR_BEAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "polar_bear");
 
-    public static final Supplier<EntityType<Pufferfish>> PUFFERFISH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "PUFFERFISH");
+    public static final Supplier<EntityType<Potion>> POTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "potion");
 
-    public static final Supplier<EntityType<Rabbit>> RABBIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "RABBIT");
+    public static final Supplier<EntityType<Pufferfish>> PUFFERFISH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "pufferfish");
 
-    public static final Supplier<EntityType<Ravager>> RAVAGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "RAVAGER");
+    public static final Supplier<EntityType<Rabbit>> RABBIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "rabbit");
 
-    public static final Supplier<EntityType<Salmon>> SALMON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "SALMON");
+    public static final Supplier<EntityType<Ravager>> RAVAGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "ravager");
 
-    public static final Supplier<EntityType<Sheep>> SHEEP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "SHEEP");
+    public static final Supplier<EntityType<Salmon>> SALMON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "salmon");
 
-    public static final Supplier<EntityType<Shulker>> SHULKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "SHULKER");
+    public static final Supplier<EntityType<Sheep>> SHEEP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "sheep");
 
-    public static final Supplier<EntityType<ShulkerBullet>> SHULKER_BULLET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "SHULKER_BULLET");
+    public static final Supplier<EntityType<Shulker>> SHULKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "shulker");
 
-    public static final Supplier<EntityType<Silverfish>> SILVERFISH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "SILVERFISH");
+    public static final Supplier<EntityType<ShulkerBullet>> SHULKER_BULLET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "shulker_bullet");
 
-    public static final Supplier<EntityType<Skeleton>> SKELETON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "SKELETON");
+    public static final Supplier<EntityType<Silverfish>> SILVERFISH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "silverfish");
 
-    public static final Supplier<EntityType<SkeletonHorse>> SKELETON_HORSE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "SKELETON_HORSE");
+    public static final Supplier<EntityType<Skeleton>> SKELETON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "skeleton");
 
-    public static final Supplier<EntityType<Slime>> SLIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "SLIME");
+    public static final Supplier<EntityType<SkeletonHorse>> SKELETON_HORSE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "skeleton_horse");
 
-    public static final Supplier<EntityType<SmallFireball>> SMALL_FIREBALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "SMALL_FIREBALL");
+    public static final Supplier<EntityType<Slime>> SLIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "slime");
 
-    public static final Supplier<EntityType<Snowball>> SNOWBALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "SNOWBALL");
+    public static final Supplier<EntityType<SmallFireball>> SMALL_FIREBALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "small_fireball");
 
-    public static final Supplier<EntityType<SnowGolem>> SNOW_GOLEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "SNOW_GOLEM");
+    public static final Supplier<EntityType<Snowball>> SNOWBALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "snowball");
 
-    public static final Supplier<EntityType<SpawnerMinecart>> SPAWNER_MINECART = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "SPAWNER_MINECART");
+    public static final Supplier<EntityType<SnowGolem>> SNOW_GOLEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "snow_golem");
 
-    public static final Supplier<EntityType<SpectralArrow>> SPECTRAL_ARROW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "SPECTRAL_ARROW");
+    public static final Supplier<EntityType<SpawnerMinecart>> SPAWNER_MINECART = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "spawner_minecart");
 
-    public static final Supplier<EntityType<Spider>> SPIDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "SPIDER");
+    public static final Supplier<EntityType<SpectralArrow>> SPECTRAL_ARROW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "spectral_arrow");
 
-    public static final Supplier<EntityType<Squid>> SQUID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "SQUID");
+    public static final Supplier<EntityType<Spider>> SPIDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "spider");
 
-    public static final Supplier<EntityType<Stray>> STRAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "STRAY");
+    public static final Supplier<EntityType<Squid>> SQUID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "squid");
 
-    public static final Supplier<EntityType<PrimedTNT>> TNT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "TNT");
+    public static final Supplier<EntityType<Stray>> STRAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "stray");
 
-    public static final Supplier<EntityType<TNTMinecart>> TNT_MINECART = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "TNT_MINECART");
+    public static final Supplier<EntityType<PrimedTNT>> TNT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "tnt");
 
-    public static final Supplier<EntityType<TraderLlama>> TRADER_LLAMA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "TRADER_LLAMA");
+    public static final Supplier<EntityType<TNTMinecart>> TNT_MINECART = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "tnt_minecart");
 
-    public static final Supplier<EntityType<Trident>> TRIDENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "TRIDENT");
+    public static final Supplier<EntityType<TraderLlama>> TRADER_LLAMA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "trader_llama");
 
-    public static final Supplier<EntityType<TropicalFish>> TROPICAL_FISH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "TROPICAL_FISH");
+    public static final Supplier<EntityType<Trident>> TRIDENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "trident");
 
-    public static final Supplier<EntityType<Turtle>> TURTLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "TURTLE");
+    public static final Supplier<EntityType<TropicalFish>> TROPICAL_FISH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "tropical_fish");
 
-    public static final Supplier<EntityType<Vex>> VEX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "VEX");
+    public static final Supplier<EntityType<Turtle>> TURTLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "turtle");
 
-    public static final Supplier<EntityType<Villager>> VILLAGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "VILLAGER");
+    public static final Supplier<EntityType<Vex>> VEX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "vex");
 
-    public static final Supplier<EntityType<Vindicator>> VINDICATOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "VINDICATOR");
+    public static final Supplier<EntityType<Villager>> VILLAGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "villager");
 
-    public static final Supplier<EntityType<WanderingTrader>> WANDERING_TRADER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "WANDERING_TRADER");
+    public static final Supplier<EntityType<Vindicator>> VINDICATOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "vindicator");
 
-    public static final Supplier<EntityType<Witch>> WITCH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "WITCH");
+    public static final Supplier<EntityType<WanderingTrader>> WANDERING_TRADER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "wandering_trader");
 
-    public static final Supplier<EntityType<Wither>> WITHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "WITHER");
+    public static final Supplier<EntityType<Witch>> WITCH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "witch");
 
-    public static final Supplier<EntityType<WitherSkeleton>> WITHER_SKELETON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "WITHER_SKELETON");
+    public static final Supplier<EntityType<Wither>> WITHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "wither");
 
-    public static final Supplier<EntityType<WitherSkull>> WITHER_SKULL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "WITHER_SKULL");
+    public static final Supplier<EntityType<WitherSkeleton>> WITHER_SKELETON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "wither_skeleton");
 
-    public static final Supplier<EntityType<Wolf>> WOLF = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "WOLF");
+    public static final Supplier<EntityType<WitherSkull>> WITHER_SKULL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "wither_skull");
 
-    public static final Supplier<EntityType<Zombie>> ZOMBIE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "ZOMBIE");
+    public static final Supplier<EntityType<Wolf>> WOLF = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "wolf");
 
-    public static final Supplier<EntityType<ZombieHorse>> ZOMBIE_HORSE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "ZOMBIE_HORSE");
+    public static final Supplier<EntityType<Zombie>> ZOMBIE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "zombie");
 
-    public static final Supplier<EntityType<ZombiePigman>> ZOMBIE_PIGMAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "ZOMBIE_PIGMAN");
+    public static final Supplier<EntityType<ZombieHorse>> ZOMBIE_HORSE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "zombie_horse");
 
-    public static final Supplier<EntityType<ZombieVillager>> ZOMBIE_VILLAGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "ZOMBIE_VILLAGER");
+    public static final Supplier<EntityType<ZombiePigman>> ZOMBIE_PIGMAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "zombie_pigman");
+
+    public static final Supplier<EntityType<ZombieVillager>> ZOMBIE_VILLAGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "zombie_villager");
 
     // SORTFIELDS:OFF
 
-    public static final Supplier<EntityType<Human>> HUMAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "HUMAN");
+    public static final Supplier<EntityType<Human>> HUMAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "human");
 
     // Suppress default constructor to ensure non-instantiability.
     private EntityTypes() {

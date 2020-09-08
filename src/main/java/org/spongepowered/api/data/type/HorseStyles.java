@@ -35,15 +35,15 @@ public final class HorseStyles {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<HorseStyle> BLACK_DOTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseStyle.class, "BLACK_DOTS");
+    public static final Supplier<HorseStyle> BLACK_DOTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseStyle.class, "black_dots");
 
-    public static final Supplier<HorseStyle> NONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseStyle.class, "NONE");
+    public static final Supplier<HorseStyle> NONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseStyle.class, "none");
 
-    public static final Supplier<HorseStyle> WHITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseStyle.class, "WHITE");
+    public static final Supplier<HorseStyle> WHITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseStyle.class, "white");
 
-    public static final Supplier<HorseStyle> WHITEFIELD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseStyle.class, "WHITEFIELD");
+    public static final Supplier<HorseStyle> WHITEFIELD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseStyle.class, "whitefield");
 
-    public static final Supplier<HorseStyle> WHITE_DOTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseStyle.class, "WHITE_DOTS");
+    public static final Supplier<HorseStyle> WHITE_DOTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseStyle.class, "white_dots");
 
     // SORTFIELDS:OFF
 

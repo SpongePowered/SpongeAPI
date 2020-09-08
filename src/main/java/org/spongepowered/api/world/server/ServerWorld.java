@@ -45,6 +45,8 @@ import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.storage.WorldStorage;
 import org.spongepowered.api.world.volume.game.InteractableVolume;
+import org.spongepowered.api.world.weather.WeatherUniverse;
+import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.io.IOException;
@@ -53,7 +55,7 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface ServerWorld extends World<ServerWorld>, Identifiable, InteractableVolume, LocationCreator {
+public interface ServerWorld extends World<ServerWorld>, Identifiable, InteractableVolume, LocationCreator, WeatherUniverse {
 
     @Override
     Server getEngine();
@@ -204,13 +206,4 @@ public interface ServerWorld extends World<ServerWorld>, Identifiable, Interacta
      * @return The raid at that location, if present
      */
     Optional<Raid> getRaidAt(Vector3i blockPosition);
-
-    /**
-     * Gets the {@link ServerLocation} of the spawn point.
-     *
-     * @return The location
-     */
-    default ServerLocation getSpawnLocation() {
-        return ServerLocation.of(this, this.getProperties().getSpawnPosition());
-    }
 }

@@ -24,9 +24,8 @@
  */
 package org.spongepowered.api.entity.living.monster.zombie;
 
-import org.spongepowered.api.item.inventory.ArmorEquipable;
 import org.spongepowered.api.entity.living.Monster;
 
-public interface ZombieEntity extends Monster, ArmorEquipable {
+public interface ZombieEntity extends Monster {
 
 }

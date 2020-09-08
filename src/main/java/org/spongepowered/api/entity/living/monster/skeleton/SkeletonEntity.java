@@ -24,10 +24,9 @@
  */
 package org.spongepowered.api.entity.living.monster.skeleton;
 
-import org.spongepowered.api.item.inventory.ArmorEquipable;
 import org.spongepowered.api.entity.living.Ranger;
 import org.spongepowered.api.entity.living.Monster;
 
-public interface SkeletonEntity extends Monster, ArmorEquipable, Ranger {
+public interface SkeletonEntity extends Monster, Ranger {
 
 }

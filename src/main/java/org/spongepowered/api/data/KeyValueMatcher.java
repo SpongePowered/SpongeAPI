@@ -24,17 +24,15 @@
  */
 package org.spongepowered.api.data;
 
-import static java.util.Objects.requireNonNull;
-
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
-import org.spongepowered.api.item.inventory.equipment.EquipmentTypes;
 import org.spongepowered.api.util.CopyableBuilder;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -85,15 +83,14 @@ public interface KeyValueMatcher<V> extends DataSerializable {
          */
         LESS_OR_EQUAL,
         /**
-         * Matches when the key value is included in the
-         * matcher value. For example, the {@link EquipmentTypes#CHESTPLATE}
-         * is included in the {@link EquipmentTypes#WORN} and
-         * {@link EquipmentTypes#ANY} types.
+         * Matches when the key value is included in the matcher value. For
+         * example, when a collection has a subset of elements of another
+         * collection.
          */
         INCLUDES,
         /**
-         * Matches when the key is excluded from the
-         * matcher value. This is the inverted operator of {@link #INCLUDES}.
+         * Matches when the key is excluded from the matcher value. This
+         * is the inverted operator of {@link #INCLUDES}.
          */
         EXCLUDES,
         ;
@@ -108,7 +105,7 @@ public interface KeyValueMatcher<V> extends DataSerializable {
      * @param <V> The value type
      * @return The key value matcher
      */
-    static <V> KeyValueMatcher<V> of(Key<? extends Value<V>> key, V value) {
+    static <V> KeyValueMatcher<V> of(final Key<? extends Value<V>> key, final V value) {
         return of(key, value, Operator.EQUAL);
     }
 
@@ -121,7 +118,7 @@ public interface KeyValueMatcher<V> extends DataSerializable {
      * @param <V> The value type
      * @return The key value matcher
      */
-    static <V> KeyValueMatcher<V> of(Supplier<? extends Key<? extends Value<V>>> key, V value) {
+    static <V> KeyValueMatcher<V> of(final Supplier<? extends Key<? extends Value<V>>> key, final V value) {
         return of(key, value, Operator.EQUAL);
     }
 
@@ -135,7 +132,7 @@ public interface KeyValueMatcher<V> extends DataSerializable {
      * @param <V> The value type
      * @return The key value matcher
      */
-    static <V> KeyValueMatcher<V> of(Key<? extends Value<V>> key, V value, Operator operator) {
+    static <V> KeyValueMatcher<V> of(final Key<? extends Value<V>> key, final V value, final Operator operator) {
         return builder().key(key).value(value).operator(operator).build();
     }
 
@@ -149,7 +146,7 @@ public interface KeyValueMatcher<V> extends DataSerializable {
      * @param <V> The value type
      * @return The key value matcher
      */
-    static <V> KeyValueMatcher<V> of(Supplier<? extends Key<? extends Value<V>>> key, V value, Operator operator) {
+    static <V> KeyValueMatcher<V> of(final Supplier<? extends Key<? extends Value<V>>> key, final V value, final Operator operator) {
         return builder().key(key).value(value).operator(operator).build();
     }
 
@@ -191,8 +188,8 @@ public interface KeyValueMatcher<V> extends DataSerializable {
      * @param valueContainer The value container to get the key value from
      * @return Whether this matcher matches the key value
      */
-    default boolean matcherContainer(ValueContainer valueContainer) {
-        requireNonNull(valueContainer, "valueContainer");
+    default boolean matchesContainer(final ValueContainer valueContainer) {
+        Objects.requireNonNull(valueContainer, "valueContainer");
         return this.matches(valueContainer.get(this.getKey()).orElse(null));
     }
 
@@ -228,7 +225,7 @@ public interface KeyValueMatcher<V> extends DataSerializable {
          * @return This builder, for chaining
          */
         default <NV> Builder<NV> key(Supplier<? extends Key<? extends Value<NV>>> key) {
-            return key(key.get());
+            return this.key(key.get());
         }
 
         /**

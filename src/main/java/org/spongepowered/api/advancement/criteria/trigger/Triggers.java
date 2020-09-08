@@ -36,59 +36,59 @@ public final class Triggers {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<Trigger<?>> BRED_ANIMALS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "BRED_ANIMALS");
+    public static final Supplier<Trigger<?>> BRED_ANIMALS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "bred_animals");
 
-    public static final Supplier<Trigger<?>> BREWED_POTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "BREWED_POTION");
+    public static final Supplier<Trigger<?>> BREWED_POTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "brewed_potion");
 
-    public static final Supplier<Trigger<?>> CHANGED_DIMENSION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "CHANGED_DIMENSION");
+    public static final Supplier<Trigger<?>> CHANGED_DIMENSION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "changed_dimension");
 
-    public static final Supplier<Trigger<?>> CONSTRUCT_BEACON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "CONSTRUCT_BEACON");
+    public static final Supplier<Trigger<?>> CONSTRUCT_BEACON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "construct_beacon");
 
-    public static final Supplier<Trigger<?>> CONSUME_ITEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "CONSUME_ITEM");
+    public static final Supplier<Trigger<?>> CONSUME_ITEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "consume_item");
 
-    public static final Supplier<Trigger<?>> CURED_ZOMBIE_VILLAGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "CURED_ZOMBIE_VILLAGER");
+    public static final Supplier<Trigger<?>> CURED_ZOMBIE_VILLAGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "cured_zombie_villager");
 
-    public static final Supplier<Trigger<?>> ENCHANTED_ITEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "ENCHANTED_ITEM");
+    public static final Supplier<Trigger<?>> ENCHANTED_ITEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "enchanted_item");
 
-    public static final Supplier<Trigger<?>> ENTER_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "ENTER_BLOCK");
+    public static final Supplier<Trigger<?>> ENTER_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "enter_block");
 
-    public static final Supplier<Trigger<?>> ENTITY_HURT_PLAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "ENTITY_HURT_PLAYER");
+    public static final Supplier<Trigger<?>> ENTITY_HURT_PLAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "entity_hurt_player");
 
-    public static final Supplier<Trigger<?>> ENTITY_KILLED_PLAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "ENTITY_KILLED_PLAYER");
+    public static final Supplier<Trigger<?>> ENTITY_KILLED_PLAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "entity_killed_player");
 
-    public static final Supplier<Trigger<?>> IMPOSSIBLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "IMPOSSIBLE");
+    public static final Supplier<Trigger<?>> IMPOSSIBLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "impossible");
 
-    public static final Supplier<Trigger<?>> INVENTORY_CHANGED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "INVENTORY_CHANGED");
+    public static final Supplier<Trigger<?>> INVENTORY_CHANGED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "inventory_changed");
 
-    public static final Supplier<Trigger<?>> ITEM_DURABILITY_CHANGED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "ITEM_DURABILITY_CHANGED");
+    public static final Supplier<Trigger<?>> ITEM_DURABILITY_CHANGED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "item_durability_changed");
 
-    public static final Supplier<Trigger<?>> LEVITATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "LEVITATION");
+    public static final Supplier<Trigger<?>> LEVITATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "levitation");
 
-    public static final Supplier<Trigger<?>> LOCATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "LOCATION");
+    public static final Supplier<Trigger<?>> LOCATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "location");
 
-    public static final Supplier<Trigger<?>> NETHER_TRAVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "NETHER_TRAVEL");
+    public static final Supplier<Trigger<?>> NETHER_TRAVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "nether_travel");
 
-    public static final Supplier<Trigger<?>> PLACED_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "PLACED_BLOCK");
+    public static final Supplier<Trigger<?>> PLACED_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "placed_block");
 
-    public static final Supplier<Trigger<?>> PLAYER_HURT_ENTITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "PLAYER_HURT_ENTITY");
+    public static final Supplier<Trigger<?>> PLAYER_HURT_ENTITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "player_hurt_entity");
 
-    public static final Supplier<Trigger<?>> PLAYER_KILLED_ENTITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "PLAYER_KILLED_ENTITY");
+    public static final Supplier<Trigger<?>> PLAYER_KILLED_ENTITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "player_killed_entity");
 
-    public static final Supplier<Trigger<?>> RECIPE_UNLOCKED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "RECIPE_UNLOCKED");
+    public static final Supplier<Trigger<?>> RECIPE_UNLOCKED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "recipe_unlocked");
 
-    public static final Supplier<Trigger<?>> SLEPT_IN_BED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "SLEPT_IN_BED");
+    public static final Supplier<Trigger<?>> SLEPT_IN_BED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "slept_in_bed");
 
-    public static final Supplier<Trigger<?>> SUMMONED_ENTITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "SUMMONED_ENTITY");
+    public static final Supplier<Trigger<?>> SUMMONED_ENTITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "summoned_entity");
 
-    public static final Supplier<Trigger<?>> TAME_ANIMAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "TAME_ANIMAL");
+    public static final Supplier<Trigger<?>> TAME_ANIMAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "tame_animal");
 
-    public static final Supplier<Trigger<?>> TICK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "TICK");
+    public static final Supplier<Trigger<?>> TICK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "tick");
 
-    public static final Supplier<Trigger<?>> USED_ENDER_EYE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "USED_ENDER_EYE");
+    public static final Supplier<Trigger<?>> USED_ENDER_EYE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "used_ender_eye");
 
-    public static final Supplier<Trigger<?>> USED_TOTEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "USED_TOTEM");
+    public static final Supplier<Trigger<?>> USED_TOTEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "used_totem");
 
-    public static final Supplier<Trigger<?>> VILLAGER_TRADE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "VILLAGER_TRADE");
+    public static final Supplier<Trigger<?>> VILLAGER_TRADE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "villager_trade");
 
     // SORTFIELDS:OFF
 

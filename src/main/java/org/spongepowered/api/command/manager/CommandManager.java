@@ -25,12 +25,11 @@
 package org.spongepowered.api.command.manager;
 
 import net.kyori.adventure.audience.Audience;
-import org.spongepowered.api.command.Command;
-import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.exception.CommandException;
 import org.spongepowered.api.command.registrar.CommandRegistrar;
-import org.spongepowered.api.command.registrar.tree.CommandTreeBuilder;
+import org.spongepowered.api.command.registrar.tree.CommandTreeNode;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.plugin.PluginContainer;
 
@@ -38,7 +37,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.function.Predicate;
 
 /**
  * Registers and dispatches commands
@@ -144,10 +142,8 @@ public interface CommandManager {
      * @param registrar The {@link CommandRegistrar} that is requesting the
      *                  aliases
      * @param container The {@link PluginContainer} to register the command for
-     * @param commandTree The {@link CommandTreeBuilder} that represents this command
+     * @param commandTree The {@link CommandTreeNode} that represents this command
      *                    structure.
-     * @param requirement What a {@link CommandCause} needs to fulfil in order for this
-     *                    command to be executed.
      * @param primaryAlias The first command alias to register
      * @param secondaryAliases Secondary aliases to register, if any
      * @return The {@link CommandMapping} containing the command mapping
@@ -158,8 +154,7 @@ public interface CommandManager {
     CommandMapping registerAlias(
             CommandRegistrar<?> registrar,
             PluginContainer container,
-            CommandTreeBuilder.Basic commandTree,
-            Predicate<CommandCause> requirement,
+            CommandTreeNode.Root commandTree,
             String primaryAlias,
             String... secondaryAliases)
             throws CommandFailedRegistrationException;
@@ -192,5 +187,19 @@ public interface CommandManager {
      * @return true if the registrars have been asked to reset.
      */
     boolean isResetting();
+
+    /**
+     * Asks the server to send an updated client completion command tree to
+     * the specified {@link ServerPlayer}.
+     *
+     * <p>This should be used sparingly as repeated calls may cause performance
+     * issues. Implementations may choose to ignore this call if it deems it
+     * unnecessary to send an update.</p>
+     *
+     * <p>This method may return before the updates have been sent.</p>
+     *
+     * @param player The {@link ServerPlayer} to send the command tree to.
+     */
+    void updateCommandTreeForPlayer(final ServerPlayer player);
 
 }

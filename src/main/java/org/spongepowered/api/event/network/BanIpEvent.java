@@ -26,7 +26,7 @@ package org.spongepowered.api.event.network;
 
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.util.ban.Ban;
+import org.spongepowered.api.service.ban.Ban;
 
 /**
  * Called when a ban is made on an IP address.

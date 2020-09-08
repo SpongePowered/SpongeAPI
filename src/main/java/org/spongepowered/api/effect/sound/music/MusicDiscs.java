@@ -32,29 +32,29 @@ public final class MusicDiscs {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<MusicDisc> BLOCKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "BLOCKS");
+    public static final Supplier<MusicDisc> BLOCKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "blocks");
 
-    public static final Supplier<MusicDisc> CAT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "CAT");
+    public static final Supplier<MusicDisc> CAT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "cat");
 
-    public static final Supplier<MusicDisc> CHIRP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "CHIRP");
+    public static final Supplier<MusicDisc> CHIRP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "chirp");
 
-    public static final Supplier<MusicDisc> ELEVEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "ELEVEN");
+    public static final Supplier<MusicDisc> ELEVEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "eleven");
 
-    public static final Supplier<MusicDisc> FAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "FAR");
+    public static final Supplier<MusicDisc> FAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "far");
 
-    public static final Supplier<MusicDisc> MALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "MALL");
+    public static final Supplier<MusicDisc> MALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "mall");
 
-    public static final Supplier<MusicDisc> MELLOHI = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "MELLOHI");
+    public static final Supplier<MusicDisc> MELLOHI = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "mellohi");
 
-    public static final Supplier<MusicDisc> STAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "STAL");
+    public static final Supplier<MusicDisc> STAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "stal");
 
-    public static final Supplier<MusicDisc> STRAD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "STRAD");
+    public static final Supplier<MusicDisc> STRAD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "strad");
 
-    public static final Supplier<MusicDisc> THIRTEEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "THIRTEEN");
+    public static final Supplier<MusicDisc> THIRTEEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "thirteen");
 
-    public static final Supplier<MusicDisc> WAIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "WAIT");
+    public static final Supplier<MusicDisc> WAIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "wait");
 
-    public static final Supplier<MusicDisc> WARD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "WARD");
+    public static final Supplier<MusicDisc> WARD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "ward");
 
     // SORTFIELDS:OFF
 

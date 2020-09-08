@@ -32,13 +32,13 @@ public final class RaidStatuses {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<RaidStatus> LOSS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RaidStatus.class, "LOSS");
+    public static final Supplier<RaidStatus> LOSS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RaidStatus.class, "loss");
 
-    public static final Supplier<RaidStatus> ONGOING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RaidStatus.class, "ONGOING");
+    public static final Supplier<RaidStatus> ONGOING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RaidStatus.class, "ongoing");
 
-    public static final Supplier<RaidStatus> STOPPED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RaidStatus.class, "STOPPED");
+    public static final Supplier<RaidStatus> STOPPED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RaidStatus.class, "stopped");
 
-    public static final Supplier<RaidStatus> VICTORY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RaidStatus.class, "VICTORY");
+    public static final Supplier<RaidStatus> VICTORY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RaidStatus.class, "victory");
 
     // SORTFIELDS:OFF
 

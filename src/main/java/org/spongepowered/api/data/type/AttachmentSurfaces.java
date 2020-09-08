@@ -35,11 +35,11 @@ public final class AttachmentSurfaces {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<AttachmentSurface> CEILING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AttachmentSurface.class, "CEILING");
+    public static final Supplier<AttachmentSurface> CEILING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AttachmentSurface.class, "ceiling");
 
-    public static final Supplier<AttachmentSurface> FLOOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AttachmentSurface.class, "FLOOR");
+    public static final Supplier<AttachmentSurface> FLOOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AttachmentSurface.class, "floor");
 
-    public static final Supplier<AttachmentSurface> WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AttachmentSurface.class, "WALL");
+    public static final Supplier<AttachmentSurface> WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AttachmentSurface.class, "wall");
 
     // SORTFIELDS:OFF
 

@@ -35,57 +35,57 @@ public final class ArtTypes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<ArtType> ALBAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "ALBAN");
+    public static final Supplier<ArtType> ALBAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "alban");
 
-    public static final Supplier<ArtType> AZTEC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "AZTEC");
+    public static final Supplier<ArtType> AZTEC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "aztec");
 
-    public static final Supplier<ArtType> AZTEC_2 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "AZTEC_2");
+    public static final Supplier<ArtType> AZTEC2 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "aztec2");
 
-    public static final Supplier<ArtType> BOMB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "BOMB");
+    public static final Supplier<ArtType> BOMB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "bomb");
 
-    public static final Supplier<ArtType> BURNING_SKULL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "BURNING_SKULL");
+    public static final Supplier<ArtType> BURNING_SKULL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "burning_skull");
 
-    public static final Supplier<ArtType> BUST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "BUST");
+    public static final Supplier<ArtType> BUST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "bust");
 
-    public static final Supplier<ArtType> COURBET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "COURBET");
+    public static final Supplier<ArtType> COURBET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "courbet");
 
-    public static final Supplier<ArtType> CREEBET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "CREEBET");
+    public static final Supplier<ArtType> CREEBET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "creebet");
 
-    public static final Supplier<ArtType> DONKEY_KONG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "DONKEY_KONG");
+    public static final Supplier<ArtType> DONKEY_KONG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "donkey_kong");
 
-    public static final Supplier<ArtType> FIGHTERS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "FIGHTERS");
+    public static final Supplier<ArtType> FIGHTERS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "fighters");
 
-    public static final Supplier<ArtType> GRAHAM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "GRAHAM");
+    public static final Supplier<ArtType> GRAHAM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "graham");
 
-    public static final Supplier<ArtType> KEBAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "KEBAB");
+    public static final Supplier<ArtType> KEBAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "kebab");
 
-    public static final Supplier<ArtType> MATCH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "MATCH");
+    public static final Supplier<ArtType> MATCH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "match");
 
-    public static final Supplier<ArtType> PIGSCENE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "PIGSCENE");
+    public static final Supplier<ArtType> PIGSCENE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "pigscene");
 
-    public static final Supplier<ArtType> PLANT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "PLANT");
+    public static final Supplier<ArtType> PLANT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "plant");
 
-    public static final Supplier<ArtType> POINTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "POINTER");
+    public static final Supplier<ArtType> POINTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "pointer");
 
-    public static final Supplier<ArtType> POOL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "POOL");
+    public static final Supplier<ArtType> POOL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "pool");
 
-    public static final Supplier<ArtType> SEA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "SEA");
+    public static final Supplier<ArtType> SEA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "sea");
 
-    public static final Supplier<ArtType> SKELETON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "SKELETON");
+    public static final Supplier<ArtType> SKELETON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "skeleton");
 
-    public static final Supplier<ArtType> SKULL_AND_ROSES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "SKULL_AND_ROSES");
+    public static final Supplier<ArtType> SKULL_AND_ROSES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "skull_and_roses");
 
-    public static final Supplier<ArtType> STAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "STAGE");
+    public static final Supplier<ArtType> STAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "stage");
 
-    public static final Supplier<ArtType> SUNSET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "SUNSET");
+    public static final Supplier<ArtType> SUNSET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "sunset");
 
-    public static final Supplier<ArtType> VOID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "VOID");
+    public static final Supplier<ArtType> VOID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "void");
 
-    public static final Supplier<ArtType> WANDERER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "WANDERER");
+    public static final Supplier<ArtType> WANDERER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "wanderer");
 
-    public static final Supplier<ArtType> WASTELAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "WASTELAND");
+    public static final Supplier<ArtType> WASTELAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "wasteland");
 
-    public static final Supplier<ArtType> WITHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "WITHER");
+    public static final Supplier<ArtType> WITHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArtType.class, "wither");
 
     // SORTFIELDS:OFF
 

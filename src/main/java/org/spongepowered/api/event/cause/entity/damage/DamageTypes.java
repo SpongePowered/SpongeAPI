@@ -32,37 +32,37 @@ public final class DamageTypes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<DamageType> ATTACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "ATTACK");
+    public static final Supplier<DamageType> ATTACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "attack");
 
-    public static final Supplier<DamageType> CONTACT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "CONTACT");
+    public static final Supplier<DamageType> CONTACT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "contact");
 
-    public static final Supplier<DamageType> CUSTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "CUSTOM");
+    public static final Supplier<DamageType> CUSTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "custom");
 
-    public static final Supplier<DamageType> DROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "DROWN");
+    public static final Supplier<DamageType> DROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "drown");
 
-    public static final Supplier<DamageType> DRYOUT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "DRYOUT");
+    public static final Supplier<DamageType> DRYOUT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "dryout");
 
-    public static final Supplier<DamageType> EXPLOSIVE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "EXPLOSIVE");
+    public static final Supplier<DamageType> EXPLOSIVE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "explosive");
 
-    public static final Supplier<DamageType> FALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "FALL");
+    public static final Supplier<DamageType> FALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "fall");
 
-    public static final Supplier<DamageType> FIRE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "FIRE");
+    public static final Supplier<DamageType> FIRE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "fire");
 
-    public static final Supplier<DamageType> GENERIC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "GENERIC");
+    public static final Supplier<DamageType> GENERIC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "generic");
 
-    public static final Supplier<DamageType> HUNGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "HUNGER");
+    public static final Supplier<DamageType> HUNGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "hunger");
 
-    public static final Supplier<DamageType> MAGIC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "MAGIC");
+    public static final Supplier<DamageType> MAGIC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "magic");
 
-    public static final Supplier<DamageType> MAGMA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "MAGMA");
+    public static final Supplier<DamageType> MAGMA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "magma");
 
-    public static final Supplier<DamageType> PROJECTILE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "PROJECTILE");
+    public static final Supplier<DamageType> PROJECTILE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "projectile");
 
-    public static final Supplier<DamageType> SUFFOCATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "SUFFOCATE");
+    public static final Supplier<DamageType> SUFFOCATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "suffocate");
 
-    public static final Supplier<DamageType> SWEEPING_ATTACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "SWEEPING_ATTACK");
+    public static final Supplier<DamageType> SWEEPING_ATTACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "sweeping_attack");
 
-    public static final Supplier<DamageType> VOID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "VOID");
+    public static final Supplier<DamageType> VOID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageType.class, "void");
 
     // SORTFIELDS:OFF
 

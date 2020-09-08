@@ -41,6 +41,7 @@ import org.spongepowered.api.data.meta.BannerPatternLayer;
 import org.spongepowered.api.data.type.ArmorMaterial;
 import org.spongepowered.api.data.type.ArtType;
 import org.spongepowered.api.data.type.AttachmentSurface;
+import org.spongepowered.api.data.type.BoatType;
 import org.spongepowered.api.data.type.BodyPart;
 import org.spongepowered.api.data.type.CatType;
 import org.spongepowered.api.data.type.ChestAttachmentType;
@@ -101,9 +102,9 @@ import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
-import org.spongepowered.api.event.cause.entity.dismount.DismountType;
-import org.spongepowered.api.event.cause.entity.spawn.SpawnType;
-import org.spongepowered.api.event.cause.entity.teleport.TeleportType;
+import org.spongepowered.api.event.cause.entity.DismountType;
+import org.spongepowered.api.event.cause.entity.SpawnType;
+import org.spongepowered.api.event.cause.entity.MovementType;
 import org.spongepowered.api.fluid.FluidStack;
 import org.spongepowered.api.fluid.FluidStackSnapshot;
 import org.spongepowered.api.fluid.FluidState;
@@ -181,6 +182,10 @@ public final class TypeTokens {
     public static final TypeToken<BlockState> BLOCK_STATE_TOKEN = new TypeToken<BlockState>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<BlockState>> BLOCK_STATE_VALUE_TOKEN = new TypeToken<Value<BlockState>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<BoatType> BOAT_TYPE_TOKEN = new TypeToken<BoatType>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Value<BoatType>> BOAT_TYPE_VALUE_TOKEN = new TypeToken<Value<BoatType>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Boolean> BOOLEAN_TOKEN = new TypeToken<Boolean>() {private static final long serialVersionUID = -1;};
 
@@ -544,6 +549,8 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<VillagerType>> VILLAGER_TYPE_VALUE_TOKEN = new TypeToken<Value<VillagerType>>() {private static final long serialVersionUID = -1;};
 
+    public static final TypeToken<WeightedCollectionValue<PotionEffect>> WEIGHTED_POTION_EFFECT_COLLECTION_VALUE_TOKEN = new TypeToken<WeightedCollectionValue<PotionEffect>>() {private static final long serialVersionUID = -1;};
+
     public static final TypeToken<WeightedCollectionValue<EntityArchetype>> WEIGHTED_ENTITY_ARCHETYPE_COLLECTION_VALUE_TOKEN = new TypeToken<WeightedCollectionValue<EntityArchetype>> () {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<WeightedTable<EntityArchetype>> WEIGHTED_ENTITY_ARCHETYPE_TABLE_TOKEN = new TypeToken<WeightedTable<EntityArchetype>>() {private static final long serialVersionUID = -1;};
@@ -596,7 +603,7 @@ public final class TypeTokens {
 
     public static final TypeToken<Subject> SUBJECT_TOKEN = new TypeToken<Subject>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<TeleportType> TELEPORT_TYPE_TOKEN = new TypeToken<TeleportType>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<MovementType> MOVEMENT_TYPE_TOKEN = new TypeToken<MovementType>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<HandType> HAND_TYPE_TOKEN = new TypeToken<HandType>() {private static final long serialVersionUID = -1;};
 

@@ -27,9 +27,10 @@ package org.spongepowered.api.world.dimension;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.service.context.ContextSource;
 import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.world.World;
 
 /**
- * Represents a type of {@link Dimension}.
+ * Represents a type of {@link World}.
  */
 @CatalogedBy(DimensionTypes.class)
 public interface DimensionType extends CatalogType, ContextSource {

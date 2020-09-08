@@ -35,15 +35,15 @@ public final class FireworkShapes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<FireworkShape> BALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "BALL");
+    public static final Supplier<FireworkShape> BALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "ball");
 
-    public static final Supplier<FireworkShape> BURST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "BURST");
+    public static final Supplier<FireworkShape> BURST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "burst");
 
-    public static final Supplier<FireworkShape> CREEPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "CREEPER");
+    public static final Supplier<FireworkShape> CREEPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "creeper");
 
-    public static final Supplier<FireworkShape> LARGE_BALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "LARGE_BALL");
+    public static final Supplier<FireworkShape> LARGE_BALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "large_ball");
 
-    public static final Supplier<FireworkShape> STAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "STAR");
+    public static final Supplier<FireworkShape> STAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "star");
 
     // SORTFIELDS:OFF
 

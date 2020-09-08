@@ -43,6 +43,11 @@ public final class SerializationBehaviors {
     public static final Supplier<SerializationBehavior> MANUAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SerializationBehavior.class, "manual");
 
     /**
+     * A {@link SerializationBehavior} where metadata is saved, but chunks are not saved.
+     */
+    public static final Supplier<SerializationBehavior> METADATA_ONLY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SerializationBehavior.class, "metadata_only");
+
+    /**
      * A {@link SerializationBehavior} where data is not saved to disk.
      */
     public static final Supplier<SerializationBehavior> NONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SerializationBehavior.class, "none");

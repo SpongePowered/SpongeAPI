@@ -34,11 +34,11 @@ public final class FluidTypes {
     /**
      * Represents the absence of fluid.
      */
-    public static final Supplier<FluidType> EMPTY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FluidType.class, "EMPTY");
+    public static final Supplier<FluidType> EMPTY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FluidType.class, "empty");
 
-    public static final Supplier<FluidType> WATER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FluidType.class, "WATER");
+    public static final Supplier<FluidType> WATER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FluidType.class, "water");
 
-    public static final Supplier<FluidType> LAVA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FluidType.class, "LAVA");
+    public static final Supplier<FluidType> LAVA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FluidType.class, "lava");
     // SORTFIELDS:OFF
 
     // Suppress default constructor to ensure non-instantiability.

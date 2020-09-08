@@ -24,6 +24,46 @@
  */
 package org.spongepowered.api.entity.living;
 
+import java.util.UUID;
+
 public interface Human extends Humanoid, Creature, Ranger {
 
+    /**
+     * Sets the appearance "skin" of this human to the appearance used by a real
+     * Mojang account holder's current skin based on their {@link UUID unique id}
+     * assigned to them at account creation in Mojang's auth services.
+     *
+     * <p>This can also have additional rendering effects on an official Minecraft
+     * client based on the Mojang account holder (if they are considered a special
+     * "individual")</p>
+     *
+     * <p>Providing a unique id that isn't a real account has no defined handling
+     * by this API. Consult your implementation vendor to determine what will
+     * happen. Additionally the result is also left up to the vendor to define.</p>
+     *
+     * @param minecraftAccount The unique id to use
+     * @return True if successful, false if not
+     */
+    boolean useSkinFor(UUID minecraftAccount);
+
+    /**
+     * Sets the appearance "skin" of this human to the appearance used by a real
+     * Mojang account holder's current skin based on their {@link String username}.
+     *
+     * <p>This will trigger a request to Mojang's authentication servers to determine
+     * their account's {@link UUID unique id} should the server not have that
+     * already cached.</p>
+     *
+     * <p>This can also have additional rendering effects on an official Minecraft
+     * client based on the Mojang account holder (if they are considered a special
+     * "individual")</p>
+     *
+     * <p>Providing a username that isn't a real account has no defined handling
+     * by this API. Consult your implementation vendor to determine what will
+     * happen. Additionally the result is also left up to the vendor to define.</p>
+     *
+     * @param minecraftUsername The username to use
+     * @return True if successful, false if not
+     */
+    boolean useSkinFor(String minecraftUsername);
 }

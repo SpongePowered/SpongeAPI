@@ -34,7 +34,7 @@ import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.util.locale.LocaleSource;
 import org.spongepowered.api.user.UserManager;
 import org.spongepowered.api.world.ServerLocation;
-import org.spongepowered.api.world.TeleportHelper;
+import org.spongepowered.api.world.teleport.TeleportHelper;
 import org.spongepowered.api.world.server.WorldManager;
 import org.spongepowered.api.world.storage.ChunkLayout;
 

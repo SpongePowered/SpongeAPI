@@ -27,7 +27,7 @@ package org.spongepowered.api.service.economy.account;
 import net.kyori.adventure.text.Component;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.User;
-import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.context.Context;
 import org.spongepowered.api.service.context.Contextual;
@@ -124,7 +124,7 @@ public interface Account extends Contextual {
      * {@link Account} for the {@link Currency} given and the set of {@link Context}s.
      *
      * <p>The default result when the account does not have a balance of the
-     * given {@link Currency} should be {@link BigDecimal#ZERO}.</p>
+     * given {@link Currency} will be {@link #getDefaultBalance(Currency)}.</p>
      *
      * <p>The balance may be unavailable depending on the set of
      * {@link Context}s used.</p>
@@ -163,7 +163,7 @@ public interface Account extends Contextual {
      *
      * <p>Changes to the returned {@link Map} will not be reflected in
      * the underlying {@link Account}. See
-     * {@link #setBalance(Currency, BigDecimal, Cause, Set)}  to set values.</p>
+     * {@link #setBalance(Currency, BigDecimal, Set)}  to set values.</p>
      *
      * @param contexts the set of {@link Context}s to use with the
      *     specified amounts
@@ -185,7 +185,7 @@ public interface Account extends Contextual {
      * <p>Changes to the returned {@link Map} will not be reflected in
      * the underlying {@link Account} and may result in runtime exceptions
      * depending on implementation. See
-     * {@link #setBalance(Currency, BigDecimal, Cause, Set)}  to set values.</p>
+     * {@link #setBalance(Currency, BigDecimal, Set)}  to set values.</p>
      *
      * @return A {@link Map} of {@link Currency} to {@link BigDecimal} amounts
      *     that this account holds

@@ -49,13 +49,13 @@ public final class DamageModifierTypes {
      * the {@link PotionEffectTypes#ABSORPTION} level on the
      * {@link Entity}.
      */
-    public static final Supplier<DamageModifierType> ABSORPTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "ABSORPTION");
+    public static final Supplier<DamageModifierType> ABSORPTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "absorption");
 
     /**
      * Represents a {@link DamageModifier} that will reduce damage based on
      * the armor {@link ItemStack}s.
      */
-    public static final Supplier<DamageModifierType> ARMOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "ARMOR");
+    public static final Supplier<DamageModifierType> ARMOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "armor");
 
     /**
      * Represents a {@link DamageModifier} that will reduce damage based on
@@ -69,20 +69,20 @@ public final class DamageModifierTypes {
      * of this type in a single event due to the variety of possibilities in
      * customization of armor handling.</p>
      */
-    public static final Supplier<DamageModifierType> ARMOR_ENCHANTMENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "ARMOR_ENCHANTMENT");
+    public static final Supplier<DamageModifierType> ARMOR_ENCHANTMENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "armor_enchantment");
 
     /**
      * Represents the {@link DamageModifier} that will reduce damage from a
      * {@link Player} if their attack cooldown has not been completed yet.
      */
-    public static final Supplier<DamageModifierType> ATTACK_COOLDOWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "ATTACK_COOLDOWN");
+    public static final Supplier<DamageModifierType> ATTACK_COOLDOWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "attack_cooldown");
 
     /**
      * Represents the {@link DamageModifier} that will modify damage output
      * based on the fact that the attacking source is critically hitting the
      * target.
      */
-    public static final Supplier<DamageModifierType> CRITICAL_HIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "CRITICAL_HIT");
+    public static final Supplier<DamageModifierType> CRITICAL_HIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "critical_hit");
 
     /**
      * Represents a {@link DamageModifier} that will reduce damage based on
@@ -93,13 +93,13 @@ public final class DamageModifierTypes {
      * a {@link PotionEffect} including the amplifier and duration, signifying
      * that the {@link PotionEffectType} is modifying the incoming damage.</p>
      */
-    public static final Supplier<DamageModifierType> DEFENSIVE_POTION_EFFECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "DEFENSIVE_POTION_EFFECT");
+    public static final Supplier<DamageModifierType> DEFENSIVE_POTION_EFFECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "defensive_potion_effect");
 
     /**
      * Represents a {@link DamageModifier} that enhances damage based on the
      * current {@link Difficulty} of the {@link World}.
      */
-    public static final Supplier<DamageModifierType> DIFFICULTY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "DIFFICULTY");
+    public static final Supplier<DamageModifierType> DIFFICULTY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "difficulty");
 
     /**
      * Represents the {@link DamageModifier} that will modify damage from
@@ -110,13 +110,13 @@ public final class DamageModifierTypes {
      * that the {@link EnchantmentType} of the {@link ItemStack} is modifying the
      * incoming/outgoing damage.</p>
      */
-    public static final Supplier<DamageModifierType> HARD_HAT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "HARD_HAT");
+    public static final Supplier<DamageModifierType> HARD_HAT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "hard_hat");
 
     /**
      * Represents a {@link DamageModifier} that will modify damage based on
      * magic.
      */
-    public static final Supplier<DamageModifierType> MAGIC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "MAGIC");
+    public static final Supplier<DamageModifierType> MAGIC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "magic");
 
     /**
      * Represents a {@link DamageModifier} that will reduce outgoing damage
@@ -126,25 +126,25 @@ public final class DamageModifierTypes {
      * a {@link PotionEffect} including the amplifier and duration, signifying
      * that the {@link PotionEffectType} is reducing the outgoing damage.</p>
      */
-    public static final Supplier<DamageModifierType> NEGATIVE_POTION_EFFECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "NEGATIVE_POTION_EFFECT");
+    public static final Supplier<DamageModifierType> NEGATIVE_POTION_EFFECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "negative_potion_effect");
 
     /**
      * Represents the {@link DamageModifier} that will increase damage from
      * a {@link PotionEffect} affecting the attacker.
      */
-    public static final Supplier<DamageModifierType> OFFENSIVE_POTION_EFFECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "OFFENSIVE_POTION_EFFECT");
+    public static final Supplier<DamageModifierType> OFFENSIVE_POTION_EFFECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "offensive_potion_effect");
 
     /**
      * Represents a {@link DamageModifier} that will reduce damage due to
      * using a shield.
      */
-    public static final Supplier<DamageModifierType> SHIELD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "SHIELD");
+    public static final Supplier<DamageModifierType> SHIELD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "shield");
 
     /**
      * Represents a {@link DamageModifier} that is applied for a sweeping
      * attack.
      */
-    public static final Supplier<DamageModifierType> SWEEPING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "SWEEPING");
+    public static final Supplier<DamageModifierType> SWEEPING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "sweeping");
 
     /**
      * Represents the {@link DamageModifier} that will modify damage from
@@ -155,7 +155,7 @@ public final class DamageModifierTypes {
      * that the {@link EnchantmentType} of the {@link ItemStack} is modifying the
      * incoming/outgoing damage.</p>
      */
-    public static final Supplier<DamageModifierType> WEAPON_ENCHANTMENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "WEAPON_ENCHANTMENT");
+    public static final Supplier<DamageModifierType> WEAPON_ENCHANTMENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "weapon_enchantment");
 
     // SORTFIELDS:OFF
 

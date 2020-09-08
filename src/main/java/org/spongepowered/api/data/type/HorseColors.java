@@ -35,19 +35,19 @@ public final class HorseColors {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<HorseColor> BLACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "BLACK");
+    public static final Supplier<HorseColor> BLACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "black");
 
-    public static final Supplier<HorseColor> BROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "BROWN");
+    public static final Supplier<HorseColor> BROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "brown");
 
-    public static final Supplier<HorseColor> CHESTNUT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "CHESTNUT");
+    public static final Supplier<HorseColor> CHESTNUT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "chestnut");
 
-    public static final Supplier<HorseColor> CREAMY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "CREAMY");
+    public static final Supplier<HorseColor> CREAMY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "creamy");
 
-    public static final Supplier<HorseColor> DARK_BROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "DARK_BROWN");
+    public static final Supplier<HorseColor> DARK_BROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "dark_brown");
 
-    public static final Supplier<HorseColor> GRAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "GRAY");
+    public static final Supplier<HorseColor> GRAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "gray");
 
-    public static final Supplier<HorseColor> WHITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "WHITE");
+    public static final Supplier<HorseColor> WHITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "white");
 
     // SORTFIELDS:OFF
 

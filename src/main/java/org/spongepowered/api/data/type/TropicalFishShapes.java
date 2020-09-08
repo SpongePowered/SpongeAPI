@@ -36,29 +36,29 @@ public class TropicalFishShapes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<TropicalFishShape> BETTY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "BETTY");
+    public static final Supplier<TropicalFishShape> BETTY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "betty");
 
-    public static final Supplier<TropicalFishShape> BLOCKFISH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "BLOCKFISH");
+    public static final Supplier<TropicalFishShape> BLOCKFISH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "blockfish");
 
-    public static final Supplier<TropicalFishShape> BRINELY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "BRINELY");
+    public static final Supplier<TropicalFishShape> BRINELY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "brinely");
 
-    public static final Supplier<TropicalFishShape> CLAYFISH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "CLAYFISH");
+    public static final Supplier<TropicalFishShape> CLAYFISH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "clayfish");
 
-    public static final Supplier<TropicalFishShape> DASHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "DASHER");
+    public static final Supplier<TropicalFishShape> DASHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "dasher");
 
-    public static final Supplier<TropicalFishShape> FLOPPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "FLOPPER");
+    public static final Supplier<TropicalFishShape> FLOPPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "flopper");
 
-    public static final Supplier<TropicalFishShape> GLITTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "GLITTER");
+    public static final Supplier<TropicalFishShape> GLITTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "glitter");
 
-    public static final Supplier<TropicalFishShape> KOB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "KOB");
+    public static final Supplier<TropicalFishShape> KOB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "kob");
 
-    public static final Supplier<TropicalFishShape> SNOOPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "SNOOPER");
+    public static final Supplier<TropicalFishShape> SNOOPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "snooper");
 
-    public static final Supplier<TropicalFishShape> SPOTTY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "SPOTTY");
+    public static final Supplier<TropicalFishShape> SPOTTY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "spotty");
 
-    public static final Supplier<TropicalFishShape> STRIPEY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "STRIPEY");
+    public static final Supplier<TropicalFishShape> STRIPEY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "stripey");
 
-    public static final Supplier<TropicalFishShape> SUNSTREAK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "SUNSTREAK");
+    public static final Supplier<TropicalFishShape> SUNSTREAK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "sunstreak");
 
     // SORTFIELDS:OFF
 

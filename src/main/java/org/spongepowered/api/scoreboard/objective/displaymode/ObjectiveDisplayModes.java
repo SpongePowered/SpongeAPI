@@ -46,13 +46,13 @@ public final class ObjectiveDisplayModes {
      * <p>This only has an effect for an {@link Objective}
      * with the display slot {@link DisplaySlots#LIST}.</p>
      */
-    public static final Supplier<ObjectiveDisplayMode> HEARTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ObjectiveDisplayMode.class, "HEARTS");
+    public static final Supplier<ObjectiveDisplayMode> HEARTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ObjectiveDisplayMode.class, "hearts");
 
     /**
      * Causes the scores for an {@link Objective}
      * to be displayed as integers.
      */
-    public static final Supplier<ObjectiveDisplayMode> INTEGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ObjectiveDisplayMode.class, "INTEGER");
+    public static final Supplier<ObjectiveDisplayMode> INTEGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ObjectiveDisplayMode.class, "integer");
 
     // SORTFIELDS:OFF
 

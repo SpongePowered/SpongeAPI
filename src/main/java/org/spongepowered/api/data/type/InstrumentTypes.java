@@ -35,25 +35,25 @@ public final class InstrumentTypes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<InstrumentType> BASS_ATTACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "BASS_ATTACK");
+    public static final Supplier<InstrumentType> BASS_ATTACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "bass_attack");
 
-    public static final Supplier<InstrumentType> BASS_DRUM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "BASS_DRUM");
+    public static final Supplier<InstrumentType> BASS_DRUM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "bass_drum");
 
-    public static final Supplier<InstrumentType> BELL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "BELL");
+    public static final Supplier<InstrumentType> BELL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "bell");
 
-    public static final Supplier<InstrumentType> CHIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "CHIME");
+    public static final Supplier<InstrumentType> CHIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "chime");
 
-    public static final Supplier<InstrumentType> FLUTE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "FLUTE");
+    public static final Supplier<InstrumentType> FLUTE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "flute");
 
-    public static final Supplier<InstrumentType> GUITAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "GUITAR");
+    public static final Supplier<InstrumentType> GUITAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "guitar");
 
-    public static final Supplier<InstrumentType> HARP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "HARP");
+    public static final Supplier<InstrumentType> HARP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "harp");
 
-    public static final Supplier<InstrumentType> HIGH_HAT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "HIGH_HAT");
+    public static final Supplier<InstrumentType> HIGH_HAT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "high_hat");
 
-    public static final Supplier<InstrumentType> SNARE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "SNARE");
+    public static final Supplier<InstrumentType> SNARE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "snare");
 
-    public static final Supplier<InstrumentType> XYLOPHONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "XYLOPHONE");
+    public static final Supplier<InstrumentType> XYLOPHONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "xylophone");
 
     // SORTFIELDS:OFF
 

@@ -30,7 +30,6 @@ import com.google.inject.Inject;
 import org.spongepowered.api.command.manager.CommandManager;
 import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataManager;
-import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.event.lifecycle.LifecycleEvent;
 import org.spongepowered.api.network.channel.ChannelRegistry;
@@ -40,8 +39,6 @@ import org.spongepowered.api.scheduler.Scheduler;
 import org.spongepowered.api.service.ServiceProvider;
 import org.spongepowered.api.sql.SqlManager;
 import org.spongepowered.api.util.metric.MetricsConfigManager;
-import org.spongepowered.api.world.ServerLocation;
-import org.spongepowered.api.world.TeleportHelper;
 
 /**
  * A static all access class granting static access to various systems

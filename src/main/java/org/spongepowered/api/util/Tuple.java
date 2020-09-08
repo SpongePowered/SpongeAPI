@@ -28,10 +28,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
-import org.apache.commons.lang3.tuple.Pair;
 
 /**
- * A tuple of objects. This can be considered a {@link Pair}.
+ * A tuple of objects.
  *
  * @param <K> The key
  * @param <V> The value

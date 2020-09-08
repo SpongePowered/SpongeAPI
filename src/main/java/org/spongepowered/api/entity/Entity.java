@@ -51,6 +51,7 @@ import org.spongepowered.math.vector.Vector3d;
 
 import java.util.Collection;
 import java.util.EnumSet;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Predicate;
@@ -222,9 +223,9 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      *      is cancelled or not possible (eg. because the entity has been
      *      removed)
      */
-    default boolean transferToWorld(ServerWorld world) {
-        checkNotNull(world);
-        return this.transferToWorld(world, world.getSpawnLocation().getPosition());
+    default boolean transferToWorld(final ServerWorld world) {
+        Objects.requireNonNull(world);
+        return this.transferToWorld(world, world.getProperties().getSpawnPosition().toDouble());
     }
 
     /**
@@ -333,6 +334,14 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
     }
 
     /**
+     * {@link Keys#FALL_DISTANCE}
+     * @return The fall distance
+     */
+    default Value.Mutable<Double> fallDistance() {
+        return this.requireValue(Keys.FALL_DISTANCE).asMutable();
+    }
+
+    /**
      * {@link Keys#PASSENGERS}
      * @return The list of passengers that may be riding this entity
      */
@@ -410,6 +419,22 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      */
     default Optional<Value.Mutable<Integer>> fireTicks() {
         return this.getValue(Keys.FIRE_TICKS).map(Value::asMutable);
+    }
+
+    /**
+     * {@link Keys#FIRE_DAMAGE_DELAY}
+     * @return The amount of time to delay in ticks before an Entity will be burned by fire.
+     */
+    default Optional<Value.Mutable<Integer>> fireImmuneTicks() {
+        return this.getValue(Keys.FIRE_DAMAGE_DELAY).map(Value::asMutable);
+    }
+
+    /**
+     * {@link Keys#TRANSIENT}
+     * @return The transient state
+     */
+    default Optional<Value.Mutable<Boolean>> isTransient() {
+        return this.getValue(Keys.TRANSIENT).map(Value::asMutable);
     }
 
     @Override

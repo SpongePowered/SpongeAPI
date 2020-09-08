@@ -33,14 +33,13 @@ import org.spongepowered.api.command.exception.CommandException;
 import org.spongepowered.api.command.manager.CommandFailedRegistrationException;
 import org.spongepowered.api.command.manager.CommandManager;
 import org.spongepowered.api.command.manager.CommandMapping;
-import org.spongepowered.api.command.registrar.tree.CommandTreeBuilder;
-import org.spongepowered.api.event.cause.EventContextKeys;
+import org.spongepowered.api.command.registrar.tree.CommandTreeNode;
+import org.spongepowered.api.event.EventContextKeys;
 import org.spongepowered.api.event.lifecycle.RegisterCatalogEvent;
 import org.spongepowered.plugin.PluginContainer;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Predicate;
 
 /**
  * {@link CommandRegistrar}s are the entry point for plugins wishing to provide
@@ -48,14 +47,14 @@ import java.util.function.Predicate;
  * the correct registrar amd will handle the final {@link CommandResult}.
  *
  * <p>This interface defines a way to register commands. This registration
- * method <strong>must</strong> call {@link CommandManager#registerAlias(
- * CommandRegistrar, PluginContainer, CommandTreeBuilder.Basic, Predicate,
- * String, String...)} to indicate that they wish to take control of certain
- * aliases. Beyond this call, the {@link CommandRegistrar} will only need to
- * retain the link between the primary alias and its {@link CommandMapping} to
- * execute, as the {@link CommandManager} will always supply the mapping of the
- * command being invoked at runtime. The alias that was matched will also be
- * supplied.</p>
+ * method <strong>must</strong> call
+ * {@link CommandManager#registerAlias(CommandRegistrar, PluginContainer,
+ * CommandTreeNode.Root, String, String...)} to indicate that they wish to take
+ * control of certain aliases. Beyond this call, the {@link CommandRegistrar}
+ * will only need to retain the link between the {@link CommandMapping} and its
+ * command (of type) {@code T} to execute, as the {@link CommandManager} will
+ * always supply the mapping of the command being invoked at runtime. The alias
+ * that was matched will also be supplied.</p>
  *
  * <p>For command that wishes to investigate the command string that was
  * executed, they may investigate the context in
@@ -150,6 +149,16 @@ public interface CommandRegistrar<T> extends CatalogType {
      * @return The help, if any
      */
     Optional<Component> help(CommandCause cause, CommandMapping mapping);
+
+    /**
+     * Gets whether the given {@link CommandCause} can execute the command
+     * associated with the given {@link CommandMapping}.
+     *
+     * @param cause The {@link CommandCause}
+     * @param mapping The {@link CommandMapping}
+     * @return true of the command can execute the command
+     */
+    boolean canExecute(CommandCause cause, CommandMapping mapping);
 
     /**
      * Called when the {@link CommandManager} is clearing all of the

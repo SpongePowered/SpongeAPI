@@ -29,7 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
-import org.spongepowered.api.event.cause.entity.ModifierFunction;
+import org.spongepowered.api.event.cause.entity.damage.ModifierFunction;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.event.impl.AbstractEvent;
 import org.spongepowered.api.util.Tuple;

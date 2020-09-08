@@ -29,6 +29,8 @@ import org.spongepowered.api.profile.property.ProfileProperty;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -137,7 +139,7 @@ public interface GameProfileManager {
      * @param useCache true to perform a cache lookup first
      * @return The result of the request
      */
-    CompletableFuture<Collection<GameProfile>> getAllById(Iterable<UUID> uniqueIds, boolean useCache);
+    CompletableFuture<Map<UUID, Optional<GameProfile>>> getAllById(Iterable<UUID> uniqueIds, boolean useCache);
 
     /**
      * Gets a collection of {@link GameProfile}s by their user names
@@ -151,7 +153,7 @@ public interface GameProfileManager {
      * @param useCache true to perform a cache lookup first
      * @return The result of the request
      */
-    CompletableFuture<Collection<GameProfile>> getAllByName(Iterable<String> names, boolean useCache);
+    CompletableFuture<Map<String, Optional<GameProfile>>> getAllByName(Iterable<String> names, boolean useCache);
 
     /**
      * Fills a {@link GameProfile}.

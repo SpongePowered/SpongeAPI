@@ -36,7 +36,7 @@ public final class GoalExecutorTypes {
     /**
      * {@link GoalExecutor} that is the default set of goals for most {@link Agent}s.
      */
-    public static final Supplier<GoalExecutorType> NORMAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GoalExecutorType.class, "NORMAL");
+    public static final Supplier<GoalExecutorType> NORMAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GoalExecutorType.class, "normal");
 
     /**
      * {@link GoalExecutor} that is the "target" set of goals.
@@ -46,7 +46,7 @@ public final class GoalExecutorTypes {
      * and skeleton attack enemies: they seek out a target and if any of their non-target
      * goals see that they have a target, they act accordingly.</p>
      */
-    public static final Supplier<GoalExecutorType> TARGET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GoalExecutorType.class, "TARGET");
+    public static final Supplier<GoalExecutorType> TARGET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GoalExecutorType.class, "target");
 
     // SORTFIELDS:OFF
 

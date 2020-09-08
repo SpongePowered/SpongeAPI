@@ -35,11 +35,11 @@ public final class SlabPortions {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<SlabPortion> BOTTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SlabPortion.class, "BOTTOM");
+    public static final Supplier<SlabPortion> BOTTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SlabPortion.class, "bottom");
 
-    public static final Supplier<SlabPortion> FULL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SlabPortion.class, "FULL");
+    public static final Supplier<SlabPortion> DOUBLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SlabPortion.class, "double");
 
-    public static final Supplier<SlabPortion> TOP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SlabPortion.class, "TOP");
+    public static final Supplier<SlabPortion> TOP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SlabPortion.class, "top");
 
     // SORTFIELDS:OFF
 

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.filter.cause;
 
-import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.Cause;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

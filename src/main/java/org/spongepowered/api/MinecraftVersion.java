@@ -27,6 +27,8 @@ package org.spongepowered.api;
 import org.spongepowered.api.event.server.ClientPingServerEvent;
 import org.spongepowered.api.network.status.StatusResponse;
 
+import java.util.OptionalInt;
+
 /**
  * Represents a specific Minecraft version of a client or a server.
  */
@@ -58,4 +60,14 @@ public interface MinecraftVersion extends Comparable<MinecraftVersion> {
      */
     boolean isLegacy();
 
+    /**
+     * Gets the data version of this Minecraft version.
+     *
+     * <p>
+ *     <strong>Note:</strong> The data version will not be available in a status response.
+     * </p>
+     *
+     * @return The data version
+     */
+    OptionalInt getDataVersion();
 }

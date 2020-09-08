@@ -24,12 +24,7 @@
  */
 package org.spongepowered.api.command.registrar.tree;
 
-import net.kyori.adventure.text.Component;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.profile.GameProfile;
-import org.spongepowered.api.util.Color;
 
 import java.util.function.Supplier;
 
@@ -37,178 +32,77 @@ public class ClientCompletionKeys {
 
     // SORTFIELDS: ON
 
-    /**
-     * Indicates that tab completing this element should query the server for
-     * potential completions.
-     *
-     * <p><strong>Important note:</strong> if you wish to have any control
-     * over the completion process, you should use this key.</p>
-     */
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.StringParser>> ASK_SERVER =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "ASK_SERVER");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> BLOCK_STATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "block_state");
 
-    /**
-     * Completions will attempt to return arguments that represent
-     * {@link BlockState}s
-     */
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> BLOCK_STATE =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "BLOCK_STATE");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> BLOCK_PREDICATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "block_predicate");
 
-    /**
-     * Completions will attempt to return arguments that represent
-     * {@link BlockState}s - // TODO: Predicate
-     */
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> BLOCK_PREDICATE =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "BLOCK_PREDICATE");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> BOOL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "bool");
 
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> BOOLEAN =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "BOOLEAN");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> COLOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "color");
 
-    /**
-     * Completions will attempt to return arguments that represent
-     * {@link Color}s
-     */
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> COLOR =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "COLOR");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> COMPONENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "component");
 
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> DIMENSION =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "DIMENSION");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> DIMENSION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "dimension");
 
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> DOUBLE =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "DOUBLE");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> DOUBLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "double");
 
-    /**
-     * Completions will attempt to return arguments that represent
-     * {@link Entity}s
-     */
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.EntitySelection>> ENTITY =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "ENTITY");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.EntitySelection>> ENTITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "entity");
 
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> ENTITY_ANCHOR =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "ENTITY_ANCHOR");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> ENTITY_ANCHOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "entity_anchor");
 
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> ENTITY_SUMMON =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "ENTITY_SUMMON");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> ENTITY_SUMMON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "entity_summon");
 
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> FLOAT =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "FLOAT");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> FLOAT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "float");
 
-    public static Supplier<ClientCompletionKey<CommandTreeBuilder.Range<Float>>> FLOAT_RANGE =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "FLOAT_RANGE");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> FUNCTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "function");
 
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> FUNCTION =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "FUNCTION");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> GAME_PROFILE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "game_profile");
 
-    /**
-     * Completions will attempt to return arguments that represent
-     * {@link GameProfile}s
-     */
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> GAME_PROFILE =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "GAME_PROFILE");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> INTEGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "integer");
 
-    public static Supplier<ClientCompletionKey<CommandTreeBuilder.Range<Integer>>> INT_RANGE =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "INT_RANGE");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> ITEM_ENCHANTMENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "item_enchantment");
 
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> INTEGER =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "INTEGER");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> ITEM_SLOT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "item_slot");
 
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> ITEM_ENCHANTMENT =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "ITEM_ENCHANTMENT");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> LONG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "long");
 
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> ITEM_SLOT =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "ITEM_SLOT");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> MESSAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "message");
 
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> LONG =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "LONG");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> MOB_EFFECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "mob_effect");
 
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> MESSAGE =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "MESSAGE");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> NBT_COMPOUND_TAG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "nbt_compound_tag");
 
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> MOB_EFFECT =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "MOB_EFFECT");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> NBT_PATH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "nbt_path");
 
-    // TODO -> dataview?
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> NBT_COMPOUND =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "NBT_COMPOUND");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> NBT_TAG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "nbt_tag");
 
-    // TODO -> datapath?
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> NBT_PATH =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "NBT_PATH");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> OBJECTIVE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "objective");
 
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> NBT_TAG =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "NBT_TAG");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> OBJECTIVE_CRITERIA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "objective_criteria");
 
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> OBJECTIVE =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "OBJECTIVE");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> OPERATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "operation");
 
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> OBJECTIVE_CRITERIA =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "OBJECTIVE_CRITERIA");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> PARTICLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "particle");
 
-    // TODO -> check
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> OPERATION =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "OPERATION");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> RESOURCE_LOCATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "resource_location");
 
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> PARTICLE =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "PARTICLE");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "rotation");
 
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> RESOURCE_LOCATION =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "RESOURCE_LOCATION");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Amount>> SCORE_HOLDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "score_holder");
 
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> ROTATION =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "ROTATION");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> SCOREBOARD_SLOT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "scoreboard_slot");
 
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Amount>> SCORE_HOLDER =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "SCORE_HOLDER");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.StringParser>> STRING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "string");
 
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> SCOREBOARD_SLOT =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "SCOREBOARD_SLOT");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> SWIZZLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "swizzle");
 
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.StringParser>> STRING =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "STRING");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> TEAM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "team");
 
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> SWIZZLE =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "SWIZZLE");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "time");
 
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> TEAM =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "TEAM");
+    public static Supplier<ClientCompletionKey<CommandTreeNode.Basic>> VEC2 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "VEC2");
 
-    /**
-     * Completions will attempt to return arguments that represent
-     * {@link Component}s
-     */
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> TEXT =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "TEXT");
-
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> TIME =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "TIME");
-
-    /**
-     * Completions will attempt to return arguments that represent a
-     * real-space position (that is, two-dimensional decimal co-ordinates).
-     */
-    public static final Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> VECTOR_2D =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "VECTOR_2D");
-
-    /**
-     * Completions will attempt to return arguments that represent a
-     * block position (that is, two-dimensional integer co-ordinates).
-     */
-    public static Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> VECTOR_2I =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "VECTOR_2I");
-
-    /**
-     * Completions will attempt to return arguments that represent a
-     * real-space position (that is, three-dimensional decimal co-ordinates).
-     */
-    public static Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> VECTOR_3D =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "VECTOR_3D");
-
-    /**
-     * Completions will attempt to return arguments that represent a
-     * block position (that is, three-dimensional integer co-ordinates).
-     */
-    public static Supplier<ClientCompletionKey<CommandTreeBuilder.Basic>> VECTOR_3I =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "VECTOR_3I");
+    public static Supplier<ClientCompletionKey<CommandTreeNode.Basic>> VEC3 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "VEC3");
 
     // SORTFIELDS: OFF
 
