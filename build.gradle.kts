@@ -83,6 +83,7 @@ dependencies {
     // Configurate
     api("org.spongepowered:configurate-core:3.7.1") {
         exclude(group = "com.google.guava", module = "guava")
+        exclude(group = "com.google.inject", module = "guice")
         exclude(group = "org.checkerframework", module = "checker-qual") // We use our own version
     }
     api("org.spongepowered:configurate-hocon:3.7.1") {
