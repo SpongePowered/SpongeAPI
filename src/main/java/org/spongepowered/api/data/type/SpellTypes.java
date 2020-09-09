@@ -38,6 +38,8 @@ public final class SpellTypes {
 
     public static final Supplier<SpellType> FANGS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpellType.class, "fangs");
 
+    public static final Supplier<SpellType> NONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpellType.class, "none");
+
     public static final Supplier<SpellType> SUMMON_VEX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpellType.class, "summon_vex");
 
     public static final Supplier<SpellType> WOLOLO = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpellType.class, "wololo");
