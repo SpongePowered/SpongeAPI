@@ -31,6 +31,7 @@ import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.profile.GameProfileManager;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
+import org.spongepowered.api.service.ServiceProvider;
 import org.spongepowered.api.util.locale.LocaleSource;
 import org.spongepowered.api.user.UserManager;
 import org.spongepowered.api.world.ServerLocation;
@@ -262,4 +263,18 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      * @return True if this is a dedicated server without a game client
      */
     boolean isDedicatedServer();
+
+    /**
+     * Gets the {@link ServiceProvider.ServerScoped}, used to provide Sponge
+     * services that plugins may provide. Services provided here are
+     * scoped to the lifetime of this Server.
+     *
+     * <p>The provider will not be available during plugin construction and will
+     * throw an {@link IllegalStateException} if there is an attempt to access
+     * this before the provider is ready.</p>
+     *
+     * @return The service manager
+     */
+    ServiceProvider.ServerScoped getServiceProvider();
+
 }

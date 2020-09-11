@@ -197,8 +197,9 @@ public interface Game {
     SqlManager getSqlManager();
 
     /**
-     * Gets the {@link ServiceProvider}, used to provide services that plugins
-     * may provide.
+     * Gets the {@link ServiceProvider.GameScoped}, used to provide Sponge
+     * services that plugins may provide. Services provided here are
+     * scoped to the lifetime of the Game.
      *
      * <p>The provider will not be available during plugin construction and will
      * throw an {@link IllegalStateException} if there is an attempt to access
@@ -206,5 +207,5 @@ public interface Game {
      *
      * @return The service manager
      */
-    ServiceProvider getServiceProvider();
+    ServiceProvider.GameScoped getServiceProvider();
 }
