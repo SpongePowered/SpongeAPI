@@ -41,5 +41,5 @@ public interface RegisterResourceReloadListenerEvent<T extends Engine> extends G
      * @param listener The listener
      * @see ResourceReloadListener
      */
-    void registerReloadListener(ResourceReloadListener listener);
+    void register(ResourceReloadListener listener);
 }

@@ -39,5 +39,5 @@ public interface RegisterPackDiscovererEvent<T extends Engine> extends GenericEv
      *
      * @param discoverer The discoverer
      */
-    void registerPackDiscoverer(PackDiscoverer discoverer);
+    void register(PackDiscoverer discoverer);
 }
