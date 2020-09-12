@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.rotation;
+package org.spongepowered.api.util.orientation;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
@@ -31,19 +31,19 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 import java.util.Optional;
 
 /**
- * Represents an angle of rotation.
+ * Represents an orientation in relative for an ItemFrame as an example.
  */
-@CatalogedBy(Rotations.class)
-public interface Rotation extends CatalogType {
+@CatalogedBy(Orientations.class)
+public interface Orientation extends CatalogType {
 
     /**
-     * Gets the {@link Rotation} with the provided degrees.
+     * Gets the {@link Orientation} with the provided degrees.
      *
      * @param degrees The degrees of the rotation
-     * @return The {@link Rotation} with the given degrees or
+     * @return The {@link Orientation} with the given degrees or
      *      <tt>Optional.empty()</tt> if not found
      */
-    static Optional<Rotation> fromDegrees(int degrees) {
+    static Optional<Orientation> fromDegrees(int degrees) {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).fromDegrees(degrees);
     }
 
@@ -57,6 +57,6 @@ public interface Rotation extends CatalogType {
 
     interface Factory {
 
-        Optional<Rotation> fromDegrees(int degrees);
+        Optional<Orientation> fromDegrees(int degrees);
     }
 }

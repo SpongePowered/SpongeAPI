@@ -23,4 +23,4 @@
  * THE SOFTWARE.
  */
 @org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
-package org.spongepowered.api.util.rotation;
+package org.spongepowered.api.util.orientation;
