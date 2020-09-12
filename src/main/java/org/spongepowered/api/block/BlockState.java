@@ -32,6 +32,7 @@ import org.spongepowered.api.data.SerializableDataHolderBuilder;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.fluid.FluidState;
 import org.spongepowered.api.state.State;
+import org.spongepowered.api.util.mirror.Mirror;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.ServerLocation;
 
@@ -126,6 +127,28 @@ public interface BlockState extends State<BlockState>, DirectionRelativeDataHold
      */
     default BlockState rotate(final Supplier<Rotation> rotation) {
         return this.rotate(rotation.get());
+    }
+
+    /**
+     * Gets the appropriate {@link BlockState} for the desired {@link Mirror}. It may
+     * return the same state, but some states may have extra logic associated with mirroring
+     * on its axis, much like rotation.
+     *
+     * @param mirror The mirror
+     * @return The mirrored state if not this state
+     */
+    BlockState mirror(Mirror mirror);
+
+    /**
+     * Gets the appropriate {@link BlockState} for the desired {@link Mirror}. It may
+     * return the same state, but some states may have extra logic associated with mirroring
+     * on its axis, much like rotation.
+     *
+     * @param mirror The mirror
+     * @return The mirrored state if not this state
+     */
+    default BlockState mirror(final Supplier<Mirror> mirror) {
+        return this.mirror(mirror.get());
     }
 
     /**
