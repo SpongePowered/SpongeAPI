@@ -439,6 +439,6 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
 
     @Override
     default HoverEvent<HoverEvent.ShowEntity> asHoverEvent(final UnaryOperator<HoverEvent.ShowEntity> op) {
-        return HoverEvent.showEntity(op.apply(new HoverEvent.ShowEntity(this.getType().getKey(), this.getUniqueId(), this.displayName().get())));
+        return HoverEvent.showEntity(op.apply(HoverEvent.ShowEntity.of(this.getType().getKey(), this.getUniqueId(), this.displayName().get())));
     }
 }

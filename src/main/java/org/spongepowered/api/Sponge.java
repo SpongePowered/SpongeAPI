@@ -224,11 +224,15 @@ public final class Sponge {
     }
 
     /**
-     * Gets the {@link ServiceProvider} for providing services.
+     * Gets the {@link Game} scoped {@link ServiceProvider} for providing
+     * services.
+     *
+     * <p>{@link Engine} scoped services, if they exist, can be found on the
+     * respective engine.</p>
      *
      * @return The service provider.
      */
-    public static ServiceProvider getServiceProvider() {
+    public static ServiceProvider.GameScoped getServiceProvider() {
         return Sponge.getGame().getServiceProvider();
     }
 }

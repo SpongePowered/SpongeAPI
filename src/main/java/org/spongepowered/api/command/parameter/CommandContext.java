@@ -26,6 +26,7 @@ package org.spongepowered.api.command.parameter;
 
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
+import org.spongepowered.api.command.Command;
 import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.command.parameter.managed.Flag;
 import org.spongepowered.api.service.permission.SubjectProxy;
@@ -46,6 +47,14 @@ import java.util.Optional;
  * {@link #sendMessage(Component)}).</p>
  */
 public interface CommandContext extends SubjectProxy {
+
+    /**
+     * Gets the {@link Command.Parameterized} that is being executed, if it
+     * exists.
+     *
+     * @return The {@link Command.Parameterized}.
+     */
+    Optional<Command.Parameterized> getExecutedCommand();
 
     /**
      * Gets the {@link CommandCause} associated with this context.

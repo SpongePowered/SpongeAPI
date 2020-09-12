@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.lifecycle;
 
+import org.spongepowered.api.Engine;
 import org.spongepowered.api.event.GenericEvent;
 
 import java.util.function.Supplier;
@@ -50,11 +51,36 @@ public interface ProvideServiceEvent<T> extends GenericEvent<T>, LifecycleEvent 
 
     /**
      * Provides a suggestion for the given service. <strong>This may only be
-     * called once by any given plugin for a given service.</strong>
+     * called once by any given plugin for a given service and event.</strong>
      *
      * @param serviceFactory A {@link Supplier} that can construct the service
      *      if this service is selected
      */
     void suggest(Supplier<T> serviceFactory);
+
+    /**
+     * Supplies a service that is scoped to the given {@link Engine}.
+     *
+     * <p>Engine scoped services have a lifetime of the attached Engine. If the
+     * engine is restarted, plugins will be asked to provide a new service.</p>
+     *
+     * <p>It is up to the provider to determine which engine a service is to be
+     * supplied for. Services that are engine scoped may not support all
+     * engines. Plugins can check to see what {@link Engine} the service will
+     * be provided for via the {@link #getEngine()} method, and can choose to
+     * forgo providing a service based on this information.</p>
+     *
+     * @param <T> The service to provide.
+     */
+    interface EngineScoped<T> extends ProvideServiceEvent<T> {
+
+        /**
+         * Gets the {@link Engine} that is associated with this event.
+         *
+         * @return The engine.
+         */
+        Engine getEngine();
+
+    }
 
 }

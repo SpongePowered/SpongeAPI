@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.service;
 
+import org.spongepowered.api.Engine;
 import org.spongepowered.api.service.ban.BanService;
 import org.spongepowered.api.service.economy.EconomyService;
 import org.spongepowered.api.service.pagination.PaginationService;
@@ -56,38 +57,54 @@ public interface ServiceProvider {
     <T> Optional<ServiceRegistration<T>> getRegistration(Class<T> serviceClass);
 
     /**
-     * Retrieves the {@link BanService}.
-     *
-     * @return The {@link BanService}
+     * Provides services that are scoped to a {@link GameScoped} instance.
      */
-    BanService banService();
+    interface GameScoped extends ServiceProvider {
+
+        /**
+         * Retrieves the {@link PaginationService}.
+         *
+         * @return The {@link PaginationService}
+         */
+        PaginationService paginationService();
+
+    }
 
     /**
-     * Retrieves the {@link EconomyService}, if it exists.
-     *
-     * @return The {@link EconomyService}.
+     * Provides serivces that are scoped to the {@link ServerScoped} {@link Engine}
+     * only.
      */
-    Optional<EconomyService> economyService();
+    interface ServerScoped extends ServiceProvider {
 
-    /**
-     * Retrieves the {@link PaginationService}.
-     *
-     * @return The {@link PaginationService}
-     */
-    PaginationService paginationService();
+        /**
+         * Retrieves the {@link BanService}.
+         *
+         * @return The {@link BanService}
+         */
+        BanService banService();
 
-    /**
-     * Retrieves the {@link PermissionService}.
-     *
-     * @return The {@link PermissionService}
-     */
-    PermissionService permissionService();
+        /**
+         * Retrieves the {@link EconomyService}, if it exists.
+         *
+         * @return The {@link EconomyService}.
+         */
+        Optional<EconomyService> economyService();
 
-    /**
-     * Retrieves the {@link WhitelistService}.
-     *
-     * @return The {@link WhitelistService}
-     */
-    WhitelistService whitelistService();
+        /**
+         * Retrieves the {@link PermissionService}.
+         *
+         * @return The {@link PermissionService}
+         */
+        PermissionService permissionService();
+
+        /**
+         * Retrieves the {@link WhitelistService}.
+         *
+         * @return The {@link WhitelistService}
+         */
+        WhitelistService whitelistService();
+
+    }
+
 
 }
