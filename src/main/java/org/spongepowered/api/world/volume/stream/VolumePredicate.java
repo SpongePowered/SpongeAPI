@@ -22,25 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.volume.entity;
+package org.spongepowered.api.world.volume.stream;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.world.volume.stream.StreamOptions;
-import org.spongepowered.api.world.volume.stream.VolumeStream;
-import org.spongepowered.math.vector.Vector3i;
+import org.spongepowered.api.world.volume.Volume;
 
-public interface StreamableEntityVolume<E extends StreamableEntityVolume<E>> extends ReadableEntityVolume {
+import java.util.function.Supplier;
 
-    /**
-     * Gets a {@link VolumeStream}&lt;{@code B, }{@link Entity}&gt;
-     * from this volume such that the {@code min} and {@code max} are contained
-     * within this volume.
-     *
-     * @param min The minimum coordinate set
-     * @param max The maximum coordinate set
-     * @param options The options to construct the stream
-     * @return The volume stream
-     */
-    VolumeStream<E, Entity> getEntityStream(Vector3i min, Vector3i max, StreamOptions options);
+@FunctionalInterface
+public interface VolumePredicate<V extends Volume, T> {
 
+    boolean test(V volume, Supplier<T> element, int x, int y, int z);
+
+    default VolumePredicate<V, T> and(final VolumePredicate<V, T> other) {
+        return (volume, element, x, y, z) -> this.test(volume, element, x, y, z) && other.test(volume, element, x, y, z);
+    }
+
+    default VolumePredicate<V, T> negate() {
+        return (v, i, x, y, z) -> !this.test(v, i, x, y, z);
+    }
+
+    default VolumePredicate<V, T> or(final VolumePredicate<V, T> other) {
+        return (v, i, x, y, z) -> this.test(v, i, x, y, z) || other.test(v, i, x, y, z);
+    }
 }

@@ -32,6 +32,7 @@ import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.volume.biome.MutableBiomeVolume;
 import org.spongepowered.api.world.volume.block.MutableBlockVolume;
 import org.spongepowered.api.world.volume.block.PhysicsAwareMutableBlockVolume;
+import org.spongepowered.api.world.volume.block.entity.MutableBlockEntityVolume;
 import org.spongepowered.api.world.volume.block.entity.StreamableBlockEntityVolume;
 import org.spongepowered.api.world.volume.entity.MutableEntityVolume;
 import org.spongepowered.api.world.volume.game.GenerationVolume;
@@ -42,16 +43,16 @@ import org.spongepowered.api.world.volume.game.UpdatableVolume;
 import org.spongepowered.math.vector.Vector3i;
 
 public interface ProtoWorld<P extends ProtoWorld<P>> extends
-        ReadableRegion<BoundedWorldView<P>>,
-        MutableBiomeVolume<BoundedWorldView<P>>, // Because this is mutable
-        MutableBlockVolume<BoundedWorldView<P>>, // Because this is mutable
-        MutableEntityVolume<BoundedWorldView<P>>, // Because this is mutable
-        StreamableBlockEntityVolume<BoundedWorldView<P>>, // Because this is mutable
+        ReadableRegion<P>,
+        MutableBiomeVolume<P>, // Because this is mutable
+        MutableBlockVolume<P>, // Because this is mutable
+        MutableEntityVolume<P>, // Because this is mutable
+        MutableBlockEntityVolume<P>, // Because this is mutable
         GenerationVolume,
         LocationBaseDataHolder.Mutable,
         UpdatableVolume,
         RandomProvider,
-        PhysicsAwareMutableBlockVolume<BoundedWorldView<P>>,
+        PhysicsAwareMutableBlockVolume<P>,
         MutableGameVolume
 {
 

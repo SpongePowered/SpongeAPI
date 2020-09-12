@@ -22,25 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.volume.entity;
+package org.spongepowered.api.world.volume.stream;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.world.volume.stream.StreamOptions;
-import org.spongepowered.api.world.volume.stream.VolumeStream;
-import org.spongepowered.math.vector.Vector3i;
+import org.spongepowered.api.world.volume.Volume;
 
-public interface StreamableEntityVolume<E extends StreamableEntityVolume<E>> extends ReadableEntityVolume {
+/**
+ * A "final step" to a {@link VolumeStream VolumeStream's} collection into a
+ * {@link VolumeCollector} to where the desired {@code T} element is potentially
+ * translated
+ * @param <V>
+ * @param <T>
+ */
+public interface VolumePositionTranslator<V extends Volume, T> {
 
-    /**
-     * Gets a {@link VolumeStream}&lt;{@code B, }{@link Entity}&gt;
-     * from this volume such that the {@code min} and {@code max} are contained
-     * within this volume.
-     *
-     * @param min The minimum coordinate set
-     * @param max The maximum coordinate set
-     * @param options The options to construct the stream
-     * @return The volume stream
-     */
-    VolumeStream<E, Entity> getEntityStream(Vector3i min, Vector3i max, StreamOptions options);
+    VolumeElement<V, T> apply(VolumeElement<V, T> element);
 
 }
