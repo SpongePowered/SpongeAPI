@@ -32,6 +32,7 @@ import org.spongepowered.api.data.SerializableDataHolderBuilder;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.fluid.FluidState;
 import org.spongepowered.api.state.State;
+import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.ServerLocation;
 
 import java.util.function.Supplier;
@@ -104,6 +105,28 @@ public interface BlockState extends State<BlockState>, DirectionRelativeDataHold
      * @return The newly created snapshot
      */
     BlockSnapshot snapshotFor(ServerLocation location);
+
+    /**
+     * Gets the appropriate {@link BlockState} for the desired {@link Rotation}. It may
+     * return the same state, but some states may have extra logic associated with rotating
+     * on its axis, much like mirroring.
+     *
+     * @param rotation The rotation
+     * @return The rotated state if not this state
+     */
+    BlockState rotate(Rotation rotation);
+
+    /**
+     * Gets the appropriate {@link BlockState} for the desired {@link Rotation}. It may
+     * return the same state, but some states may have extra logic associated with rotating
+     * on its axis, much like mirroring.
+     *
+     * @param rotation The rotation
+     * @return The rotated state if not this state
+     */
+    default BlockState rotate(final Supplier<Rotation> rotation) {
+        return this.rotate(rotation.get());
+    }
 
     /**
      * An {@link org.spongepowered.api.data.DataHolderBuilder.Immutable} for a {@link BlockState}. Just like the
