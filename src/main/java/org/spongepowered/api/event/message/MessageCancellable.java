@@ -22,21 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living.player;
+package org.spongepowered.api.event.message;
 
-import org.spongepowered.api.entity.living.player.server.ServerPlayer;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.message.MessageEvent;
+import net.kyori.adventure.text.Component;
 
 /**
- * Fired when a {@link ServerPlayer player} is kicked.
+ * Represents an event whose message can be cancelled.
  */
-public interface KickPlayerEvent extends MessageEvent, Cancellable {
+public interface MessageCancellable {
 
     /**
-     * Gets the {@link ServerPlayer player}.
+     * Returns true if the {@link Component}
+     * should not be sent.
      *
-     * @return The player
+     * @return True if message should not be sent
      */
-    ServerPlayer getPlayer();
+    boolean isMessageCancelled();
+
+    /**
+     * Sets whether the {@link Component}
+     * should be sent.
+     *
+     * @param cancelled True if should not be sent
+     */
+    void setMessageCancelled(boolean cancelled);
+
 }
