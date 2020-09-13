@@ -36,12 +36,21 @@ import java.util.Optional;
 public interface DataProvider<V extends Value<E>, E> {
 
     /**
-     * Constructs a new {@link DataProviderBuilder}.
+     * Constructs a new {@link MutableDataProviderBuilder}.
      *
      * @return The builder
      */
-    static DataProviderBuilder.BaseBuilder<?, ?> builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(DataProviderBuilder.BaseBuilder.class);
+    static <H extends DataHolder.Mutable, V extends Value<E>, E> MutableDataProviderBuilder<H, V, E> mutableBuilder() {
+        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(MutableDataProviderBuilder.class);
+    }
+
+    /**
+     * Constructs a new {@link ImmutableDataProviderBuilder}.
+     *
+     * @return The builder
+     */
+    static <H extends DataHolder, V extends Value<E>, E> ImmutableDataProviderBuilder<H, V, E> immutableBuilder() {
+        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(ImmutableDataProviderBuilder.class);
     }
 
     /**
