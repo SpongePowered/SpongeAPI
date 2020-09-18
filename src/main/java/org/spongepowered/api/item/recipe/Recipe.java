@@ -41,8 +41,7 @@ import org.spongepowered.api.item.recipe.crafting.ShapedCraftingRecipe;
 import org.spongepowered.api.item.recipe.crafting.ShapelessCraftingRecipe;
 import org.spongepowered.api.item.recipe.crafting.SpecialCraftingRecipe;
 import org.spongepowered.api.item.recipe.single.StoneCutterRecipe;
-import org.spongepowered.api.item.recipe.smelting.SmeltingRecipe;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.item.recipe.cooking.CookingRecipe;
 import org.spongepowered.api.world.server.ServerWorld;
 
 import java.util.List;
@@ -54,7 +53,7 @@ import java.util.Optional;
  * <p>{@link ShapelessCraftingRecipe} for recipes with simple ingredients/result without pattern in a {@link CraftingInventory}</p>
  * <p>{@link ShapedCraftingRecipe} for recipes with simple ingredients/result in a pattern in a {@link CraftingInventory}</p>
  * <p>{@link SpecialCraftingRecipe} for recipes with complex ingredients and result in a {@link CraftingInventory}</p>
- * <p>{@link SmeltingRecipe} for recipes in {@link Furnace}, {@link BlastFurnace}, {@link Smoker} and {@link Campfire}</p>
+ * <p>{@link CookingRecipe} for recipes in {@link Furnace}, {@link BlastFurnace}, {@link Smoker} and {@link Campfire}</p>
  * <p>{@link StoneCutterRecipe} for recipes in a {@link BlockTypes#STONECUTTER} block</p>
  */
 public interface Recipe extends CatalogType {
@@ -70,37 +69,33 @@ public interface Recipe extends CatalogType {
     boolean isValid(Inventory inventory, ServerWorld world);
 
     /**
-     * This method should only be called if {@link #isValid(Inventory, ServerWorld)} returns {@code true}.
+     * The result of this recipe. This method should only be called if
+     * {@link #isValid(Inventory, ServerWorld)} returns {@code true}.
      *
-     * <p>This method is preferred over the
-     * {@link CraftingRecipe#getExemplaryResult()} method, as it customizes
-     * the result further depending on the context.</p>
-     *
-     * <p>Implementing classes are advised to use the output of
-     * {@link CraftingRecipe#getExemplaryResult()}, modify it accordingly,
-     * and {@code return} it.</p>
+     * <p>This method is preferred over the {@link CraftingRecipe#getExemplaryResult()} method,
+     * as it may customize the result further depending on the context.</p>
      *
      * @param inventory The input inventory
      *
-     * @return An {@link ItemStackSnapshot}
+     * @return The result of this recipe
      */
     ItemStackSnapshot getResult(Inventory inventory);
 
     /**
-     * A general result of this recipe. This result may be customized depending
-     * on the context.
+     * A general result of this recipe. This result may be customized depending on the context.
+     * See {@link #getResult(Inventory)}
      *
      * @return The exemplary result of this recipe
      */
     ItemStackSnapshot getExemplaryResult();
 
     /**
+     * The remaining items result of this recipe.
      * This method should only be called if {@link #isValid(Inventory, ServerWorld)} returns {@code true}.
      *
-     * <p>A list of items to be added to the inventory of the player when they
-     * craft the result. For example, if a player crafts a
-     * {@link ItemTypes#CAKE}, the empty buckets are returned to their
-     * inventory.</p>
+     * <p>A list of items to be added to the inventory of the player when they craft the result.
+     * For example, if a player crafts a {@link ItemTypes#CAKE}, the empty buckets are returned to
+     * their inventory.</p>
      *
      * @param inventory The input inventory
      * @return The list of items to be added to the inventory of the player
@@ -111,8 +106,7 @@ public interface Recipe extends CatalogType {
     /**
      * Returns the {@link RecipeResult} for the given inventory and world.
      *
-     * <p>Returns
-     * {@link Optional#empty()} if the arguments do not satisfy
+     * <p>Returns {@link Optional#empty()} if the arguments do not satisfy
      * {@link #isValid(Inventory, ServerWorld)}.</p>
      *
      * @param inventory The input inventory
@@ -145,7 +139,7 @@ public interface Recipe extends CatalogType {
     boolean isDynamic();
 
     /**
-     * Gets the type of recipe
+     * Gets the {@link RecipeType} of this recipe.
      *
      * @return The recipe type.
      */

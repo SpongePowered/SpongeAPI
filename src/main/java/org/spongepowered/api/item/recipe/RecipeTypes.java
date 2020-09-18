@@ -27,7 +27,7 @@ package org.spongepowered.api.item.recipe;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
 import org.spongepowered.api.item.recipe.single.StoneCutterRecipe;
-import org.spongepowered.api.item.recipe.smelting.SmeltingRecipe;
+import org.spongepowered.api.item.recipe.cooking.CookingRecipe;
 
 import java.util.function.Supplier;
 
@@ -39,10 +39,10 @@ public class RecipeTypes {
 
     // CRAFTING_SHAPED - CRAFTING_SHAPELESS
     public static final Supplier<RecipeType<CraftingRecipe>> CRAFTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RecipeType.class, "crafting");
-    public static final Supplier<RecipeType<SmeltingRecipe>> SMELTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RecipeType.class, "smelting");
-    public static final Supplier<RecipeType<SmeltingRecipe>> BLASTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RecipeType.class, "blasting");
-    public static final Supplier<RecipeType<SmeltingRecipe>> SMOKING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RecipeType.class, "smoking");
-    public static final Supplier<RecipeType<SmeltingRecipe>> CAMPFIRE_COOKING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RecipeType.class, "campfire_cooking");
+    public static final Supplier<RecipeType<CookingRecipe>> SMELTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RecipeType.class, "smelting");
+    public static final Supplier<RecipeType<CookingRecipe>> BLASTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RecipeType.class, "blasting");
+    public static final Supplier<RecipeType<CookingRecipe>> SMOKING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RecipeType.class, "smoking");
+    public static final Supplier<RecipeType<CookingRecipe>> CAMPFIRE_COOKING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RecipeType.class, "campfire_cooking");
     public static final Supplier<RecipeType<StoneCutterRecipe>> STONECUTTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RecipeType.class, "stonecutting");
 
     // SORTFIELDS:OFF

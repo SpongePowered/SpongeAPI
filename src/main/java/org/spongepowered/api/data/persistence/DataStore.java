@@ -121,9 +121,10 @@ public interface DataStore {
      * @param key The data key
      * @param dataQuery The dataQuery to serialize this key under
      * @param typeToken The dataHolder type
-
+     *
      * @return The new data store
      */
+    @SafeVarargs
     static <T> DataStore of(Key<Value<T>> key, DataQuery dataQuery, TypeToken<? extends DataHolder>... typeToken) {
         return builder().key(key, dataQuery).holder(typeToken).build();
     }
@@ -187,6 +188,7 @@ public interface DataStore {
          *
          * @return this builder for chaining
          */
+        @SuppressWarnings("unchecked")
         Builder holder(TypeToken<? extends DataHolder>... typeTokens);
 
         /**

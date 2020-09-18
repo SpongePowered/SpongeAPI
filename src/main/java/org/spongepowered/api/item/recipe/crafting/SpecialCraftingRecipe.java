@@ -27,7 +27,8 @@ package org.spongepowered.api.item.recipe.crafting;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.crafting.CraftingInventory;
+import org.spongepowered.api.item.inventory.crafting.CraftingGridInventory;
+import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.server.ServerWorld;
@@ -38,12 +39,7 @@ import java.util.function.Function;
 
 /**
  * Recipes with custom matching/result logic.
- * <p>By default special recipes cannot be displayed in a recipe book.</p>
- * <p>But providing both a fixed/exemplary shaped or shapeless recipe shape
- * ({@link Builder#matching(CraftingRecipe)}/{@link Builder#matching(BiPredicate, CraftingRecipe)})
- * and a fixed/exemplary result
- * ({@link Builder.ResultStep#result(ItemStack)}/{@link Builder.ResultStep#result(Function, ItemStack)})
- * Sponge can provide a recipe book entry anyways.</p>
+ * <p>Special recipes cannot be displayed in a recipe book.</p>
  */
 public interface SpecialCraftingRecipe extends CraftingRecipe {
 
@@ -56,7 +52,7 @@ public interface SpecialCraftingRecipe extends CraftingRecipe {
         return Sponge.getRegistry().getBuilderRegistry().provideBuilder(SpecialCraftingRecipe.Builder.class);
     }
 
-    interface Builder extends ResettableBuilder<SpecialCraftingRecipe, SpecialCraftingRecipe.Builder> {
+    interface Builder extends ResettableBuilder<RecipeRegistration, SpecialCraftingRecipe.Builder> {
 
         /**
          * Sets the recipe matcher.
@@ -65,27 +61,7 @@ public interface SpecialCraftingRecipe extends CraftingRecipe {
          *
          * @return This builder, for chaining
          */
-        SpecialCraftingRecipe.Builder.ResultStep matching(BiPredicate<CraftingInventory, ServerWorld> biPredicate);
-
-        /**
-         * Sets the recipe matcher and an exemplary shape from another CraftingRecipe.
-         * <p>The example should match one of the allowed shapes, as it will be used for the recipe book.</p>
-         *
-         * @param biPredicate The matching predicate.
-         * @param exemplaryShape The recipe used for the exemplary shape.
-         *
-         * @return This builder, for chaining
-         */
-        SpecialCraftingRecipe.Builder.ResultStep matching(BiPredicate<CraftingInventory, ServerWorld> biPredicate, CraftingRecipe exemplaryShape);
-
-        /**
-         * Sets the recipe matcher from another CraftingRecipe
-         *
-         * @param shape The recipe used for the shape.
-         *
-         * @return This builder, for chaining
-         */
-        SpecialCraftingRecipe.Builder.ResultStep matching(CraftingRecipe shape);
+        SpecialCraftingRecipe.Builder.ResultStep matching(BiPredicate<CraftingGridInventory, ServerWorld> biPredicate);
 
         /**
          * In this Step set the result of the Recipe.
@@ -94,13 +70,13 @@ public interface SpecialCraftingRecipe extends CraftingRecipe {
         interface ResultStep extends SpecialCraftingRecipe.Builder {
 
             /**
-             * Sets the remainingItems function. The function must return a list of the same size as the input CraftingInventory.
+             * Sets the remainingItems function. The function must return a list of the same size as the input CraftingGridInventory.
              *
              * @param remainingItemsFunction the remaining items function
              *
              * @return This builder, for chaining
              */
-            ResultStep remainingItems(Function<CraftingInventory, List<ItemStack>> remainingItemsFunction);
+            ResultStep remainingItems(Function<CraftingGridInventory, List<ItemStack>> remainingItemsFunction);
 
             /**
              * Sets the result function.
@@ -109,18 +85,7 @@ public interface SpecialCraftingRecipe extends CraftingRecipe {
              *
              * @return This builder, for chaining
              */
-            EndStep result(Function<CraftingInventory, ItemStack> resultFunction);
-
-            /**
-             * Sets the result function and an exemplary result.
-             * <p>The example should match one of the possible crafting results, as it will be used for the recipe book.</p>
-             *
-             * @param resultFunction The result function
-             * @param exemplaryResult The exemplary result
-             *
-             * @return This builder, for chaining
-             */
-            EndStep result(Function<CraftingInventory, ItemStack> resultFunction, ItemStack exemplaryResult);
+            EndStep result(Function<CraftingGridInventory, ItemStack> resultFunction);
 
             /**
              * Sets the result
@@ -132,7 +97,7 @@ public interface SpecialCraftingRecipe extends CraftingRecipe {
             EndStep result(ItemStack result);
         }
 
-        interface EndStep extends SpecialCraftingRecipe.Builder, CatalogBuilder<SpecialCraftingRecipe, SpecialCraftingRecipe.Builder> {
+        interface EndStep extends SpecialCraftingRecipe.Builder, CatalogBuilder<RecipeRegistration, SpecialCraftingRecipe.Builder> {
 
             @Override
             EndStep key(ResourceKey key);
@@ -145,7 +110,7 @@ public interface SpecialCraftingRecipe extends CraftingRecipe {
              *                               or the {@link #key(ResourceKey)} isn't set.
              */
             @Override
-            SpecialCraftingRecipe build() throws IllegalStateException;
+            RecipeRegistration build() throws IllegalStateException;
         }
 
     }

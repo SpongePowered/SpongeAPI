@@ -343,6 +343,19 @@ public interface Inventory extends ValueContainer {
     }
 
     /**
+     * Query this inventory with given {@link QueryType.OneParam} and one parameter.
+     *
+     * @param queryType The queryType
+     * @param param The parameter
+     * @param <P> The parameter type
+     *
+     * @return The queried inventory
+     */
+    default <P> Inventory query(Supplier<QueryType.OneParam<P>> queryType, Supplier<P> param) {
+        return this.query(queryType.get().of(param.get()));
+    }
+
+    /**
      * Query this inventory with given {@link QueryType.TwoParam} and two parameters.
      *
      * @param queryType The queryType

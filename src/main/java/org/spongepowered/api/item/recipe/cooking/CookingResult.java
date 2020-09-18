@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.recipe.smelting;
+package org.spongepowered.api.item.recipe.cooking;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -33,25 +33,23 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import java.util.Objects;
 
 /**
- * The result of fulfilling a {@link SmeltingRecipe}.
+ * The result of fulfilling a {@link CookingRecipe}.
  */
-public final class SmeltingResult {
+public final class CookingResult {
 
     private final ItemStackSnapshot result;
     private final double experience;
 
     /**
-     * Creates a new {@link SmeltingResult}.
+     * Creates a new {@link CookingResult}.
      *
-     * <p>Note that this may be replaced with a static of method in the
-     * future.</p>
+     * <p>Note that this may be replaced with a static of method in the future.</p>
      *
-     * @param result The result of the smelting recipe
-     * @param experience The experience that should be created from this
-     *     smelting result
+     * @param result The result of the cooking recipe
+     * @param experience The experience that should be created from this result
      */
     @SuppressWarnings("ConstantConditions")
-    public SmeltingResult(ItemStackSnapshot result, double experience) {
+    public CookingResult(ItemStackSnapshot result, double experience) {
         checkNotNull(result, "result");
         checkArgument(!result.isEmpty(), "The result must not be empty.");
         checkArgument(experience >= 0, "The experience must be non-negative.");
@@ -62,14 +60,14 @@ public final class SmeltingResult {
 
     /**
      * This method should be used instead of the
-     * {@link SmeltingRecipe#getExemplaryResult()} method, as it customizes the
+     * {@link CookingRecipe#getExemplaryResult()} method, as it customizes the
      * result further depending on the specified ingredient
      * {@link ItemStackSnapshot}. It is advised to use the output of
-     * {@link SmeltingRecipe#getExemplaryResult()}, modify it accordingly, and
+     * {@link CookingRecipe#getExemplaryResult()}, modify it accordingly, and
      * {@code return} it.
      *
      * @return The result of fulfilling the requirements of a
-     *         {@link SmeltingRecipe}
+     *         {@link CookingRecipe}
      */
     public ItemStackSnapshot getResult() {
         return this.result;
@@ -79,7 +77,7 @@ public final class SmeltingResult {
      * Returns the amount of experience released after completing a recipe.
      *
      * @return The amount of experience released after fulfilling the
-     *         requirements of a {@link SmeltingRecipe}
+     *         requirements of a {@link CookingRecipe}
      */
     public double getExperience() {
         return this.experience;
@@ -90,10 +88,10 @@ public final class SmeltingResult {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof SmeltingResult)) {
+        if (!(o instanceof CookingResult)) {
             return false;
         }
-        SmeltingResult that = (SmeltingResult) o;
+        CookingResult that = (CookingResult) o;
         return Double.compare(that.experience, this.experience) == 0 && Objects.equals(this.result, that.result);
     }
 
