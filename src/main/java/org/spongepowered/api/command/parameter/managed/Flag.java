@@ -32,6 +32,7 @@ import org.spongepowered.api.command.parameter.CommandContext;
 import org.spongepowered.api.command.parameter.Parameter;
 import org.spongepowered.api.util.ResettableBuilder;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -68,6 +69,27 @@ public interface Flag {
      */
     static Flag.Builder builder() {
         return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Flag.Builder.class);
+    }
+
+    /**
+     * Create a new, parameter-less {@link Flag} with the supplied aliases.
+     *
+     * @param aliases Flag aliases
+     * @return A new {@link Flag}
+     */
+    static Flag of(final String... aliases) {
+        return Flag.builder().aliases(aliases).build();
+    }
+
+    /**
+     * Create a new {@link Flag} with the supplied parameter and aliases.
+     *
+     * @param parameter The parameter to parse after this flag
+     * @param aliases Flag aliases
+     * @return A new {@link Flag}
+     */
+    static Flag of(final Parameter parameter, final String... aliases) {
+        return Flag.builder().aliases(aliases).setParameter(parameter).build();
     }
 
     /**
@@ -124,6 +146,30 @@ public interface Flag {
          * @return This builder, for chaining
          */
         Builder alias(String alias);
+
+        /**
+         * Specify multiple aliases at once for this flag.
+         *
+         * <p>The requirements for each alias are described
+         * in {@link #alias(String)}</p>
+         *
+         * @param aliases The aliases to add
+         * @return This builder, for chaining
+         */
+        default Builder aliases(final String... aliases) {
+            return this.aliases(Arrays.asList(aliases));
+        }
+
+        /**
+         * Specify multiple aliases at once for this flag.
+         *
+         * <p>The requirements for each alias are described
+         * in {@link #alias(String)}</p>
+         *
+         * @param aliases The aliases to add
+         * @return This builder, for chaining
+         */
+        Builder aliases(Iterable<String> aliases);
 
         /**
          * Specifies the permission required to use this flag. A null permission
