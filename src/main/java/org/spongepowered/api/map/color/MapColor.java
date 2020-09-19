@@ -31,38 +31,49 @@ import org.spongepowered.api.map.MapCanvas;
 import org.spongepowered.api.util.Color;
 
 /**
- * A MapColor that represents a color that can be used to
- * paint on a {@link MapCanvas}
+ * Represents a color that may be used when drawing a {@link MapCanvas}.
  */
 public interface MapColor extends DataSerializable {
 
     /**
-     * Creates a new {@link Builder} to build an {@link MapColor}.
+     * Creates a {@link Builder} for generating a new {@link MapColor}.
      *
-     * @return The new builder
+     * @return The builder
      */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
-    static MapColor of(MapColorType mapColorType) {
-        return builder().baseColor(mapColorType).build();
+    /**
+     * Creates a {@link MapColor} that represents the provided
+     * {@link MapColorType} without any shading adjustments.
+     *
+     * @param mapColorType The {@link MapColorType}
+     * @return The {@link MapColor} that represents the provided type
+     */
+    static MapColor of(final MapColorType mapColorType) {
+        return MapColor.builder().baseColor(mapColorType).build();
     }
 
     /**
-     * Gets the underlying {@link MapColorType} of this Color
-     * @return MapColorType type of this color
+     * Gets the {@link MapColorType} that this {@link MapColor} was built from.
+     *
+     * @return The {@link MapColorType}
      */
     MapColorType getType();
 
     /**
-     * Gets an Sponge {@link Color}.
-     * Can be converted to RGB
-     * @return Color color
+     * Gets the {@link Color} that this {@code MapColor} represents.
+     *
+     * @return The {@link Color}
      */
     Color getColor();
 
+    /**
+     * Builds a {@link MapColor}
+     */
     interface Builder extends DataBuilder<MapColor> {
+
         /**
          * Sets the shade to the default shade
          * @return Builder, for chaining

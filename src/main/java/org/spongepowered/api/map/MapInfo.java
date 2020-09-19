@@ -31,10 +31,13 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.Identifiable;
 
 /**
- * Represents data of any number of linked {@link ItemStack} of type {@link ItemTypes#FILLED_MAP}
+ * Represents data that may be viewed on a {@link ItemTypes#FILLED_MAP map}.
+ * A MapInfo may be attached to multiple maps.
+ *
  * @see MapInfoData
  */
 public interface MapInfo extends DataHolder, Identifiable {
+
     /**
      * Checks if a different MapInfo refers the the
      * same map
@@ -44,11 +47,15 @@ public interface MapInfo extends DataHolder, Identifiable {
     boolean isLinked(MapInfo other);
 
     /**
-     * If this MapInfo relates to this Map
-     * Always returns false for {@link ItemStack}s
-     * not of type {@link ItemTypes#FILLED_MAP}
-     * @param itemStack ItemStack of type
-     * @return true if changing this MapInfo will change this ItemStack
+     * Gets whether the supplied {@link ItemStack} is backed by this MapInfo,
+     * such that modifications to this MapInfo would affect the supplied
+     * stack.
+     *
+     * <p>This will always return {@code false} if the supplied
+     * {@link ItemStack} is not of type {@link ItemTypes#FILLED_MAP}.</p>
+     *
+     * @param itemStack The {@link ItemStack} to check
+     * @return {@code true} if this MapInfo backs the supplied {@link ItemStack}
      */
     boolean isLinked(ItemStack itemStack);
 }

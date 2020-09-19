@@ -30,6 +30,7 @@ import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.InvalidDataException;
+import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.map.color.MapColor;
 import org.spongepowered.api.map.color.MapColorTypes;
 
@@ -37,22 +38,32 @@ import java.awt.Image;
 import java.util.Optional;
 
 /**
- * Represents the canvas of a {@link org.spongepowered.api.item.inventory.ItemStack}
- * with {@link org.spongepowered.api.item.ItemType} {@link org.spongepowered.api.item.ItemTypes#FILLED_MAP}.
+ * A {@code MapCanvas} represents the image that is drawn on a
+ * {@link ItemTypes#FILLED_MAP}.
+ *
+ * <p>A canvas in vanilla Minecraft is 128x128 pixels.</p>
  */
 public interface MapCanvas extends DataSerializable {
 
+    /**
+     * Creates a builder that creates a new canvas.
+     *
+     * @return A {@link Builder} to generate a new canvas.
+     */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
     /**
-     * Gets the map color at a location on the canvas
-     * @param x int x location
-     * @param y int y location
+     * Gets the {@link MapColor} at the requested location.
+     *
+     * @param x The x location
+     * @param y The y location
      * @return MapColor color at this location
+     * @throws IllegalArgumentException if either of the requested
+     *      co-ordinates are out of bounds.
      */
-    MapColor getColor(int x, int y);
+    MapColor getColor(int x, int y) throws IllegalArgumentException;
 
     /**
      * Gets an blank canvas (Populated with {@link MapColorTypes#AIR})

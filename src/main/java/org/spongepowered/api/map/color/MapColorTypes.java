@@ -24,11 +24,15 @@
  */
 package org.spongepowered.api.map.color;
 
+import org.spongepowered.api.map.MapCanvas;
+import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-/*
-* Contains all the colors minecraft supports
-* All of these have no shading/darkness attached.
+/**
+ * A pseudo-enum of supported elements on a {@link MapCanvas}.
+ *
+ * <p>The {@link Color colors} that these represent can be retrieved via the
+ * {@link MapColorType#getColor()} method.</p>
  */
 public final class MapColorTypes {
 

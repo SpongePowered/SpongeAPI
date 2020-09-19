@@ -25,17 +25,19 @@
 package org.spongepowered.api.map.color;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.map.MapCanvas;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * A type of color used to create a {@link MapColor}
+ * Represents a color that can be used when drawing on a {@link MapCanvas}.
  */
 @CatalogedBy(MapColorTypes.class)
 public interface MapColorType extends CatalogType {
     /**
-     * Gets the base color of this MapColorType (No shading)
-     * @return Color base color of this type
+     * Gets the {@link Color} that this type represents.
+     *
+     * @return The {@link Color}
      */
     Color getColor();
 }
