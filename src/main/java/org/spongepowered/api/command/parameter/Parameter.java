@@ -962,7 +962,8 @@ public interface Parameter {
         void parse(ArgumentReader.@NonNull Mutable reader, CommandContext.@NonNull Builder context) throws ArgumentParseException;
 
         /**
-         * Returns potential completions of the current tokenized argument.
+         * Returns potential completions of the current tokenized argument. The
+         * completion will be based on {@link ArgumentReader#getRemaining()}.
          *
          * @param reader The {@link ArgumentReader} containing the strings that need
          *               to be parsed

@@ -27,6 +27,7 @@ package org.spongepowered.api.command.parameter.managed;
 import org.spongepowered.api.command.parameter.CommandContext;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Defines the completions for a parameter.
@@ -35,11 +36,14 @@ import java.util.List;
 public interface ValueCompleter {
 
     /**
-     * Gets valid completions for this element.
+     * Gets valid completions for this element, given the supplied
+     * {@link CommandContext} and current input for this element.
      *
-     * @param context The {@link CommandContext} that contains the parsed arguments
+     * @param context The {@link CommandContext} that contains the parsed
+     *  arguments
+     * @param currentInput The current input for this argument
      * @return The list of values
      */
-    List<String> complete(CommandContext context);
+    List<String> complete(CommandContext context, String currentInput);
 
 }
