@@ -28,11 +28,23 @@ import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.world.Chunk;
+import org.spongepowered.api.world.World;
+
+import java.util.Optional;
+import java.util.UUID;
 
 /**
  * Called when a {@link Chunk} is performing a save.
  */
 public interface SaveChunkEvent extends Event {
+
+    /**
+     * Gets the {@link UUID} of the {@link World} that the {@link Chunk} resides
+     * in, if known.
+     */
+    default Optional<UUID> getChunkWorldUUID() {
+        return Optional.empty();
+    }
 
     /**
      * Gets the position of the {@link Chunk}.
