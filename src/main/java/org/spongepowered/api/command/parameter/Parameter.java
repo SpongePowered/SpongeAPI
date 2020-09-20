@@ -67,6 +67,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 import java.util.function.Function;
@@ -912,6 +913,14 @@ public interface Parameter {
         ValueCompleter getCompleter();
 
         /**
+         * Gets the {@link ValueUsage} associated with this {@link Value}, if
+         * any was set.
+         *
+         * @return The {@link ValueUsage}, if set.
+         */
+        Optional<ValueUsage> getValueUsage();
+
+        /**
          * Gets a {@link Predicate} that indicates whether a given {@link Cause}
          * should parse this {@link Parameter}.
          *
@@ -971,7 +980,7 @@ public interface Parameter {
          * @param cause The {@link CommandCause} that requested the usage
          * @return The usage
          */
-        Component getUsage(CommandCause cause);
+        String getUsage(CommandCause cause);
 
         /**
          * If set, this parameter will repeat until the argument string has

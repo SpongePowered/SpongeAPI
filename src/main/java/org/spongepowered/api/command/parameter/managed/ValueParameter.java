@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.command.parameter.managed;
 
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextComponent;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
 /**
@@ -42,8 +40,8 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 public interface ValueParameter<T> extends ValueCompleter, ValueParser<T>, ValueUsage {
 
     @Override
-    default Component getUsage(@NonNull final String key) {
-        return TextComponent.of(key);
+    default String getUsage(@NonNull final String key) {
+        return key;
     }
 
 }
