@@ -962,7 +962,8 @@ public interface Parameter {
         void parse(ArgumentReader.@NonNull Mutable reader, CommandContext.@NonNull Builder context) throws ArgumentParseException;
 
         /**
-         * Returns potential completions of the current tokenized argument.
+         * Returns potential completions of the current tokenized argument. The
+         * completion will be based on {@link ArgumentReader#getRemaining()}.
          *
          * @param reader The {@link ArgumentReader} containing the strings that need
          *               to be parsed
@@ -1039,6 +1040,27 @@ public interface Parameter {
              */
             default <V extends ValueParser<? extends T>> Builder<T> parser(@NonNull final Supplier<V> parser) {
                 return this.parser(parser.get());
+            }
+
+            /**
+             * Provides a function that provides tab completions.
+             *
+             * <p>Optional. If this is <code>null</code> (or never set),
+             * completions will either be done via the supplied
+             * {@link Builder#parser(ValueParser)} or will just return an empty
+             * list. If this is supplied, no modifiers will run on completion.</p>
+             *
+             * <p>This method only exists to allow developers to provide a one
+             * argument lambda should they wish to use the default filtering
+             * provided in {@link ValueCompleter.All}. Developers wishing to
+             * control the completions that appear for a given string should use
+             * {@link #setSuggestions(ValueCompleter)} instead.</p>
+             *
+             * @param completer The {@link ValueCompleter.All}
+             * @return This builder, for chaining
+             */
+            default Builder<T> setSuggestions(final ValueCompleter.@Nullable All completer) {
+                return this.setSuggestions((ValueCompleter) completer);
             }
 
             /**
