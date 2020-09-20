@@ -66,7 +66,7 @@ import java.util.stream.Collectors;
  * {@link CompletableFuture#join()} can be used, but care should be taken to
  * avoid blocking the server thread.</p>
  */
-public interface PermissionService extends ContextualService<Subject> {
+public interface PermissionService extends ContextualService {
 
     /**
      * The standard identifier for the collection which stores users.

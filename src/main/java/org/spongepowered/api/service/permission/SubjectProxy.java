@@ -24,12 +24,11 @@
  */
 package org.spongepowered.api.service.permission;
 
-import org.spongepowered.api.service.context.Context;
+import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.util.Tristate;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 /**
  * Enables an object to act as a proxy to a Subject, delegating all calls through
@@ -70,43 +69,13 @@ public interface SubjectProxy extends Subject {
     }
 
     @Override
-    default Tristate permissionValue(final Set<Context> contexts, final String permission) {
-        return this.subject().permissionValue(contexts, permission);
+    default Tristate permissionValue(final String permission, final Cause causes) {
+        return this.subject().permissionValue(permission, causes);
     }
 
     @Override
-    default boolean isChildOf(final Set<Context> contexts, final SubjectReference parent) {
-        return this.subject().isChildOf(contexts, parent);
-    }
-
-    @Override
-    default List<? extends SubjectReference> parents(final Set<Context> contexts) {
-        return this.subject().parents();
-    }
-
-    @Override
-    default Optional<String> option(final Set<Context> contexts, final String key) {
-        return this.subject().option(contexts, key);
-    }
-
-    @Override
-    default String identifier() {
-        return this.subject().identifier();
-    }
-
-    @Override
-    default Set<Context> activeContexts() {
-        return this.subject().activeContexts();
-    }
-
-    @Override
-    default boolean hasPermission(final Set<Context> contexts, final String permission) {
-        return this.subject().hasPermission(contexts, permission);
-    }
-
-    @Override
-    default boolean hasPermission(final String permission) {
-        return this.subject().hasPermission(permission);
+    default boolean isChildOf(final SubjectReference parent, final Cause causes) {
+        return this.subject().isChildOf(parent, causes);
     }
 
     @Override
@@ -115,13 +84,39 @@ public interface SubjectProxy extends Subject {
     }
 
     @Override
+    default List<? extends SubjectReference> parents(final Cause causes) {
+        return this.subject().parents(causes);
+    }
+
+    @Override
     default List<? extends SubjectReference> parents() {
         return this.subject().parents();
+    }
+
+
+    @Override
+    default Optional<String> option(final String key, final Cause cause) {
+        return this.subject().option(key, cause);
     }
 
     @Override
     default Optional<String> option(final String key) {
         return this.subject().option(key);
+    }
+
+    @Override
+    default String identifier() {
+        return this.subject().identifier();
+    }
+
+    @Override
+    default boolean hasPermission(final String permission, final Cause cause) {
+        return this.subject().hasPermission(permission, cause);
+    }
+
+    @Override
+    default boolean hasPermission(final String permission) {
+        return this.subject().hasPermission(permission);
     }
 
     @Override

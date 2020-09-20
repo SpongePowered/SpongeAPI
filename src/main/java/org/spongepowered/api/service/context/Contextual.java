@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.service.context;
 
+import org.spongepowered.api.entity.living.player.User;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
+
 import java.util.Optional;
 import java.util.Set;
 
@@ -57,8 +60,8 @@ public interface Contextual {
      * <p>If the friendly identifier is equal to the normal identifier,
      * this method should return {@link Optional#empty()}.</p>
      *
-     * <p>Contextuals which represent a Player or a User should return the
-     * username here, if available.</p>
+     * <p>Contextuals which represent a {@link ServerPlayer} or a {@link User}
+     * should return the username here, if available.</p>
      *
      * @return The friendly identifier for this contextual
      */
@@ -66,16 +69,4 @@ public interface Contextual {
         return Optional.empty();
     }
 
-    /**
-     * Calculates the objects active contexts at the given moment, using the
-     * {@link ContextCalculator}s held by the {@link ContextualService}.
-     *
-     * <p>"Active" contexts refers to the contexts currently applicable to the
-     * contextual.</p>
-     *
-     * <p>The result of these calculations may be cached.</p>
-     *
-     * @return An immutable set of active contexts
-     */
-    Set<Context> activeContexts();
 }

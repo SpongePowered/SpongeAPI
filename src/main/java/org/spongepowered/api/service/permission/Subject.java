@@ -24,13 +24,15 @@
  */
 package org.spongepowered.api.service.permission;
 
-import org.spongepowered.api.service.context.Context;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.event.Cause;
+import org.spongepowered.api.event.CauseStackManager;
+import org.spongepowered.api.event.EventContextKeys;
 import org.spongepowered.api.service.context.Contextual;
 import org.spongepowered.api.util.Tristate;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 /**
  * An object which can hold permission data.
@@ -139,33 +141,54 @@ public interface Subject extends Contextual {
     SubjectData transientSubjectData();
 
     /**
-     * Test whether the subject is permitted to perform an action corresponding
-     * to the given permission string.
-     *
-     * <p>This must return the same boolean equivalent as
-     * {@link #permissionValue(Set, String)}.</p>
-     *
-     * @param contexts The set of contexts that represents the subject's current
-     *     environment
-     * @param permission The permission string
-     * @return True if permission is granted
-     */
-    default boolean hasPermission(final Set<Context> contexts, final String permission) {
-        return this.permissionValue(contexts, permission).asBoolean();
-    }
-
-    /**
      * Test whether the subject is permitted to perform an action given as the
      * given permission string.
      *
-     * <p>This must return the same value as {@link #hasPermission(Set, String)}
-     * using {@link #activeContexts()}.</p>
+     * <p>This must return the same value as {@link #hasPermission(String, Cause)}
+     * called with the phase tracker's current cause.
      *
      * @param permission The permission string
      * @return True if permission is granted
      */
     default boolean hasPermission(final String permission) {
-        return this.hasPermission(this.activeContexts(), permission);
+        return this.hasPermission(permission, Sponge.getServer().getCauseStackManager().getCurrentCause());
+    }
+
+    /**
+     * Test whether the subject is permitted to perform an action corresponding
+     * to the given permission string.
+     *
+     * <p>This must return the same boolean equivalent as
+     * {@link #permissionValue(String, Cause)}.</p>
+     *
+     * @param permission The permission string
+     * @param cause The cause stack to extract context information from
+     * @return True if permission is granted
+     */
+    default boolean hasPermission(final String permission, final Cause cause) {
+        return this.permissionValue(permission, cause).asBoolean();
+    }
+
+    /**
+     * Returns the calculated value set for a given permission.
+     *
+     * <p>It is expected that this method will also account for values
+     * inherited from parent subjects, as well as permission nodes inherited
+     * implicitly from a more generic level.</p>
+     *
+     * <p>Additionally, the defaults defined the {@link SubjectCollection}
+     * that holds this subject, as well as defaults defined in
+     * {@link PermissionService#getDefaults()} should be considered for this
+     * lookup.</p>
+     *
+     * <p>This method is likely to be called frequently, so it is desirable
+     * that implementations cache the results to method calls.</p>
+     *
+     * @param permission The permission to check
+     * @return The tristate result of the check
+     */
+    default Tristate permissionValue(final String permission) {
+        return this.permissionValue(permission, Sponge.server().causeStackManager().currentCause());
     }
 
     /**
@@ -183,25 +206,25 @@ public interface Subject extends Contextual {
      * <p>This method is likely to be called frequently, so it is desirable
      * that implementations cache the results to method calls.</p>
      *
-     * @param contexts The contexts to check for permissions in
      * @param permission The permission to check
+     * @param cause The cause to gather context from.
      * @return The tristate result of the check
      */
-    Tristate permissionValue(Set<Context> contexts, String permission);
+    Tristate permissionValue(String permission, Cause cause);
 
     /**
      * Check if this subject is a child of the given parent in the subject's
      * current context, traversing inheritance.
      *
      * <p>This must return the same value as
-     * {@link #isChildOf(Set, SubjectReference)} using
-     * {@link #activeContexts()}.</p>
+     * {@link #isChildOf(SubjectReference, Cause)} called with the phase
+     * tracker's current cause.
      *
      * @param parent The parent to check for inheritance
      * @return Whether this is a child of the given parent
      */
     default boolean isChildOf(final SubjectReference parent) {
-        return this.isChildOf(this.activeContexts(), parent);
+        return this.isChildOf(parent, Sponge.server().causeStackManager().currentCause());
     }
 
     /**
@@ -216,11 +239,11 @@ public interface Subject extends Contextual {
      * {@link PermissionService#defaults()} should be considered for this
      * lookup.</p>
      *
-     * @param contexts The context combination to check in
      * @param parent The parent to check for inheritance
+     * @param cause The cause to gather context from.
      * @return Whether this is a child of the given parent
      */
-    boolean isChildOf(Set<Context> contexts, SubjectReference parent);
+    boolean isChildOf(SubjectReference parent, Cause cause);
 
     /**
      * Return all parents that this group has in its current context
@@ -229,13 +252,12 @@ public interface Subject extends Contextual {
      * <p>This must include inherited values if the permissions
      * service supports inheritance.</p>
      *
-     * <p>It must also must return the same value as {@link #parents(Set)}
-     * using {@link #activeContexts()}.</p>
+     * <p>It must also must return the same value as {@link #parents(Cause)}
      *
      * @return An immutable list of parents
      */
     default List<? extends SubjectReference> parents() {
-        return this.parents(this.activeContexts());
+        return this.parents(Sponge.server().causeStackManager().currentCause());
     }
 
     /**
@@ -244,10 +266,23 @@ public interface Subject extends Contextual {
      * <p>This must include inherited values if the permissions
      * service supports inheritance.</p>
      *
-     * @param contexts The context combination to check in
+     * @param cause The cause to gather context from.
      * @return An immutable list of parents
      */
-    List<? extends SubjectReference> parents(Set<Context> contexts);
+    List<? extends SubjectReference> parents(Cause cause);
+
+    /**
+     * Gets the value of a given option in the subject's current context.
+     *
+     * <p>This must return the same value as {@link #getOption(String, Cause)}
+     * called with the phase tracker's current cause.
+     *
+     * @param key The key to get an option by. Case-insensitive.
+     * @return The value of the option, if any is present
+     */
+    default Optional<String> option(final String key) {
+        return this.option(key, Sponge.server().causeStackManager().currentCause());
+    }
 
     /**
      * Gets the value of a given option in the given context.
@@ -260,22 +295,9 @@ public interface Subject extends Contextual {
      * defined in {@link PermissionService#defaults()} should be considered
      * for this lookup.
      *
-     * @param contexts The contexts to get the options from
      * @param key The key to get an option by. Case-insensitive.
+     * @param cause The cause to gather context from.
      * @return The value of the option, if any is present
      */
-    Optional<String> option(Set<Context> contexts, String key);
-
-    /**
-     * Gets the value of a given option in the subject's current context.
-     *
-     * <p>This must return the same value as {@link #option(Set, String)}
-     * using {@link #activeContexts()}.</p>
-     *
-     * @param key The key to get an option by. Case-insensitive.
-     * @return The value of the option, if any is present
-     */
-    default Optional<String> option(final String key) {
-        return this.option(this.activeContexts(), key);
-    }
+    Optional<String> option(String key, Cause cause);
 }

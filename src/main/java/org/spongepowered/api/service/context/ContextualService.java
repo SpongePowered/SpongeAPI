@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.service.context;
 
+import org.spongepowered.api.event.Cause;
+
 import java.util.Collection;
 import java.util.Set;
 
@@ -43,9 +45,16 @@ import java.util.Set;
  * query], or programmatically if [the context provided in the query]
  * {@link Set#containsAll(Collection)} of [the context of the entry].</p>
  *
- * @param <T> the contextual type
  */
-public interface ContextualService<T extends Contextual> {
+public interface ContextualService {
+
+    /**
+     * Get the active contexts from the current cause
+     * @return
+     */
+    Set<Context> getContexts();
+
+    Set<Context> getContextsFor(Cause cause);
 
     /**
      * Registers a {@link ContextCalculator} for use by this service.
@@ -55,5 +64,5 @@ public interface ContextualService<T extends Contextual> {
      *
      * @param calculator The context calculator to register
      */
-    void registerContextCalculator(ContextCalculator<T> calculator);
+    void registerContextCalculator(ContextCalculator calculator);
 }

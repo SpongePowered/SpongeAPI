@@ -24,8 +24,7 @@
  */
 package org.spongepowered.api.service.context;
 
-import com.google.common.collect.Maps;
-
+import java.util.AbstractMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -57,7 +56,7 @@ public final class Context implements Map.Entry<String, String> {
     public static final String REMOTE_IP_KEY = "remoteip";
     public static final String LOCAL_HOST_KEY = "localhost";
     public static final String LOCAL_IP_KEY = "localip";
-    public static final String LOCAL_PORT_KEY = "localport"; // This portkey is an old boot
+    public static final String LOCAL_PORT_KEY = "localport";
 
     private final Map.Entry<String, String> wrapped;
 
@@ -67,10 +66,10 @@ public final class Context implements Map.Entry<String, String> {
      * @param key Context key. Must not be null.
      * @param value Context value. Must not be null.
      */
-    public Context(String key, String value) {
+    public Context(final String key, final String value) {
         Objects.requireNonNull(key, "key");
         Objects.requireNonNull(value, "value");
-        this.wrapped = Maps.immutableEntry(key, value);
+        this.wrapped = new AbstractMap.SimpleImmutableEntry<>(key, value);
     }
 
     /**
@@ -101,12 +100,12 @@ public final class Context implements Map.Entry<String, String> {
      */
     @Deprecated
     @Override
-    public String setValue(String value) {
+    public String setValue(final String value) {
         throw new UnsupportedOperationException("Contexts are immutable");
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }

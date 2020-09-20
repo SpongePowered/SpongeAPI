@@ -25,6 +25,7 @@
 package org.spongepowered.api.service.economy.account;
 
 import net.kyori.adventure.text.Component;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.profile.GameProfile;
@@ -37,7 +38,6 @@ import org.spongepowered.api.service.economy.transaction.TransferResult;
 
 import java.math.BigDecimal;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -95,27 +95,27 @@ public interface Account extends Contextual {
      * the specified {@link Context}s.</p>
      *
      * @param currency The {@link Currency} to determine if a balance is set for
-     * @param contexts The {@link Context}s to use with the {@link Currency}
+     * @param cause The {@link Context}s to use with the {@link Currency}
      * @return Whether this account has a set balance for the specified
      *     {@link Currency} and {@link Context}s
      */
-    boolean hasBalance(Currency currency, Set<Context> contexts);
+    boolean hasBalance(Currency currency, Cause cause);
 
     /**
      * Returns whether this account has a set balance for the specified
-     * {@link Currency}, with the current active contexts.
+     * {@link Currency}, with the current active cause.
      *
      * <p>If this method returns <code>false</code>, then
      * {@link #defaultBalance(Currency)} will be used when retrieving
      * a balance for the specifid {@link Currency} with
-     * the current active contexts</p>.
+     * the current active cause</p>.
      *
      * @param currency The {@link Currency} to determine if a balance is set for.
      * @return Whether this account has a set balance for the specified
-     *     {@link Currency} and current active contexts.
+     *     {@link Currency} and current active cause.
      */
     default boolean hasBalance(Currency currency) {
-        return this.hasBalance(currency, this.activeContexts());
+        return this.hasBalance(currency, Sponge.game().server().causeStackManager().currentCause());
     }
 
     /**
@@ -129,16 +129,16 @@ public interface Account extends Contextual {
      * {@link Context}s used.</p>
      *
      * @param currency a {@link Currency} to check the balance of
-     * @param contexts a set of contexts to check the balance against
+     * @param cause a set of cause to check the balance against
      * @return The value for the specified {@link Currency} with
      *     the specified {@link Context}s.
      */
-    BigDecimal balance(Currency currency, Set<Context> contexts);
+    BigDecimal balance(Currency currency, Cause cause);
 
     /**
      * Returns a {@link BigDecimal} representative of the balance stored
      * within this {@link Account} for the {@link Currency} given, with
-     * the current active contexts.
+     * the current active cause.
      *
      * <p>The default result when the account does not have a balance of the
      * given {@link Currency} will be {@link #defaultBalance(Currency)}.</p>
@@ -146,8 +146,8 @@ public interface Account extends Contextual {
      * @param currency a {@link Currency} to check the balance of
      * @return the value for the specified {@link Currency}.
      */
-    default BigDecimal balance(Currency currency) {
-        return this.balance(currency, this.activeContexts());
+    default BigDecimal balance(final Currency currency) {
+        return this.getBalance(currency, Sponge.game().server().causeStackManager().currentCause());
     }
 
     /**
@@ -162,14 +162,14 @@ public interface Account extends Contextual {
      *
      * <p>Changes to the returned {@link Map} will not be reflected in
      * the underlying {@link Account}. See
-     * {@link #setBalance(Currency, BigDecimal, Set)}  to set values.</p>
+     * {@link #setBalance(Currency, BigDecimal, Cause)}  to set values.</p>
      *
-     * @param contexts the set of {@link Context}s to use with the
+     * @param cause the set of {@link Context}s to use with the
      *     specified amounts
      * @return A {@link Map} of {@link Currency} to {@link BigDecimal} amounts
      *     that this account holds
      */
-    Map<Currency, BigDecimal> balances(Set<Context> contexts);
+    Map<Currency, BigDecimal> balances(Cause cause);
 
     /**
      * Returns a {@link Map} of all currently set balances the account holds
@@ -184,13 +184,13 @@ public interface Account extends Contextual {
      * <p>Changes to the returned {@link Map} will not be reflected in
      * the underlying {@link Account} and may result in runtime exceptions
      * depending on implementation. See
-     * {@link #setBalance(Currency, BigDecimal, Set)}  to set values.</p>
+     * {@link #setBalance(Currency, BigDecimal, Cause)}  to set values.</p>
      *
      * @return A {@link Map} of {@link Currency} to {@link BigDecimal} amounts
      *     that this account holds
      */
     default Map<Currency, BigDecimal> balances() {
-        return this.balances(this.activeContexts());
+        return this.balances(Sponge.game().server().causeStackManager().currentCause());
     }
 
     /**
@@ -202,11 +202,11 @@ public interface Account extends Contextual {
      *
      * @param currency The {@link Currency} to set the balance for
      * @param amount The amount to set for the specified {@link Currency}
-     * @param contexts The set of {@link Context}s to use with the
+     * @param cause The set of {@link Context}s to use with the
      *     specified {@link Currency}
      * @return The result of the transaction
      */
-    TransactionResult setBalance(Currency currency, BigDecimal amount, Set<Context> contexts);
+    TransactionResult setBalance(Currency currency, BigDecimal amount, Cause cause);
 
     /**
      * Sets the balance for this account to the specified amount for the
@@ -220,7 +220,7 @@ public interface Account extends Contextual {
      * @return The result of the transaction
      */
     default TransactionResult setBalance(Currency currency, BigDecimal amount) {
-        return this.setBalance(currency, amount, this.activeContexts());
+        return this.setBalance(currency, amount, tSponge.game().server().causeStackManager().currentCause());
     }
 
     /**
@@ -228,11 +228,11 @@ public interface Account extends Contextual {
      * to their default values ({@link #defaultBalance(Currency)}),
      * using the specified {@link Context}s.
      *
-     * @param contexts the {@link Context}s to use when resetting the balances.
+     * @param cause the {@link Context}s to use when resetting the balances.
      * @return A map of {@link Currency} to {@link TransactionResult}. Each
      *     entry represents the result of resetting a particular currency.
      */
-    Map<Currency, TransactionResult> resetBalances(Set<Context> contexts);
+    Map<Currency, TransactionResult> resetBalances(Cause cause);
 
     /**
      * Resets the balances for all {@link Currency}s used on this account to
@@ -243,7 +243,7 @@ public interface Account extends Contextual {
      *     entry represents the result of resetting a particular currency
      */
     default Map<Currency, TransactionResult> resetBalances() {
-        return this.resetBalances(this.activeContexts());
+        return this.resetBalances(Sponge.game().server().causeStackManager().currentCause());
     }
 
     /**
@@ -252,11 +252,11 @@ public interface Account extends Contextual {
      * the specified {@link Context}s.
      *
      * @param currency The {@link Currency} to reset the balance for
-     * @param contexts The {@link Context}s to use when resetting the balance
+     * @param cause The {@link Context}s to use when resetting the balance
      *
      * @return The result of the transaction
      */
-    TransactionResult resetBalance(Currency currency, Set<Context> contexts);
+    TransactionResult resetBalance(Currency currency, Cause cause);
 
     /**
      * Resets the balance for the specified {@link Currency} to its default
@@ -267,7 +267,7 @@ public interface Account extends Contextual {
      * @return The result of the transaction
      */
     default TransactionResult resetBalance(Currency currency) {
-        return this.resetBalance(currency, this.activeContexts());
+        return this.resetBalance(currency, Sponge.game().server().causeStackManager().currentCause());
     }
 
     /**
@@ -276,11 +276,11 @@ public interface Account extends Contextual {
      *
      * @param currency The {@link Currency} to deposit the specified amount for
      * @param amount The amount to deposit for the specified {@link Currency}
-     * @param contexts the {@link Context}s to use with the
+     * @param cause the {@link Context}s to use with the
      *     specified {@link Currency}
      * @return The result of the transaction
      */
-    TransactionResult deposit(Currency currency, BigDecimal amount, Set<Context> contexts);
+    TransactionResult deposit(Currency currency, BigDecimal amount, Cause cause);
 
     /**
      * Deposits the given amount of the specified {@link Currency} to
@@ -291,7 +291,7 @@ public interface Account extends Contextual {
      * @return The result of the transaction
      */
     default TransactionResult deposit(Currency currency, BigDecimal amount) {
-        return this.deposit(currency, amount, this.activeContexts());
+        return this.deposit(currency, amount, Sponge.game().server().causeStackManager().currentCause());
     }
 
     /**
@@ -300,11 +300,11 @@ public interface Account extends Contextual {
      *
      * @param currency The {@link Currency} to deposit the specified amount for
      * @param amount The amount to deposit for the specified {@link Currency}
-     * @param contexts The {@link Context}s to use with the
+     * @param cause The {@link Context}s to use with the
      *     specified {@link Currency}
      * @return The result of the transaction
      */
-    TransactionResult withdraw(Currency currency, BigDecimal amount, Set<Context> contexts);
+    TransactionResult withdraw(Currency currency, BigDecimal amount, Cause cause);
 
     /**
      * Withdraws the specified amount of the specified {@link Currency} from
@@ -315,7 +315,7 @@ public interface Account extends Contextual {
      * @return The result of the transaction
      */
     default TransactionResult withdraw(Currency currency, BigDecimal amount) {
-        return this.withdraw(currency, amount, this.activeContexts());
+        return this.withdraw(currency, amount, Sponge.game().server().causeStackManager().currentCause());
     }
 
     /**
@@ -323,27 +323,27 @@ public interface Account extends Contextual {
      * from this account the destination account,
      * using the specified {@link Context}s.
      *
-     * <p>This operation is a merged {@link #withdraw(Currency, BigDecimal, Set)}
-     * from this account with a {@link #deposit(Currency, BigDecimal, Set)}
+     * <p>This operation is a merged {@link #withdraw(Currency, BigDecimal, Cause)}
+     * from this account with a {@link #deposit(Currency, BigDecimal, Cause)}
      * into the specified account.</p>
      *
      * @param to the Account to transfer the amounts to.
      * @param currency The {@link Currency} to transfer the specified amount for
      * @param amount The amount to transfer for the specified {@link Currency}
-     * @param contexts The {@link Context}s to use with the
+     * @param cause The {@link Context}s to use with the
      *     specified {@link Currency} and account
      * @return A {@link TransferResult} representative of the effects of
      *     the operation
      */
-    TransferResult transfer(Account to, Currency currency, BigDecimal amount, Set<Context> contexts);
+    TransferResult transfer(Account to, Currency currency, BigDecimal amount, Cause cause);
 
     /**
      * Transfers the specified amount of the specified {@link Currency}
      * from this account the destination account,
      * using the current active {@link Context}s.
      *
-     * <p>This operation is a merged {@link #withdraw(Currency, BigDecimal, Set)}
-     * from this account with a {@link #deposit(Currency, BigDecimal, Set)}
+     * <p>This operation is a merged {@link #withdraw(Currency, BigDecimal, Cause)}
+     * from this account with a {@link #deposit(Currency, BigDecimal, Cause)}
      * into the specified account.</p>
      *
      * @param to the Account to transfer the amounts to.
@@ -353,6 +353,6 @@ public interface Account extends Contextual {
      *     operation
      */
     default TransferResult transfer(Account to, Currency currency, BigDecimal amount) {
-        return this.transfer(to, currency, amount, this.activeContexts());
+        return this.transfer(to, currency, amount, Sponge.game().server().causeStackManager().currentCause());
     }
 }

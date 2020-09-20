@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.service.permission;
 
+import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.service.context.Context;
 
 import java.util.Collection;
@@ -130,7 +131,7 @@ public interface SubjectCollection {
      * @param identifiers A set of identifiers to get subjects for
      * @return a map of subjects corresponding to the identifiers passed
      */
-    CompletableFuture<Map<String, ? extends Subject>> loadSubjects(Set<String> identifiers);
+    CompletableFuture<Map<String, ? extends Subject>> loadSubjects(Iterable<String> identifiers);
 
     /**
      * Returns an immutable copy of all subjects currently loaded in this
@@ -147,7 +148,7 @@ public interface SubjectCollection {
      * currently loaded.
      *
      * <p>The results of this method should not be passed directly to
-     * {@link #loadSubjects(Set)}. Instead, each individual subject should be
+     * {@link #loadSubjects(Iterable)}. Instead, each individual subject should be
      * loaded, processed, and then allowed to be unloaded using
      * {@link #suggestUnload(String)}.</p>
      *
@@ -199,7 +200,7 @@ public interface SubjectCollection {
         Objects.requireNonNull(action, "action");
         return CompletableFuture.runAsync(() -> {
             final Set<String> identifiers = this.allIdentifiers().join();
-            this.applyToAll(action, identifiers).join();
+            this.applyToAll(identifiers, action).join();
         });
     }
 
@@ -217,11 +218,11 @@ public interface SubjectCollection {
      * <p>Implementations may choose to load and process subjects in
      * parallel.</p>
      *
-     * @param action The action to perform on each subject
      * @param identifiers a set of identifiers to apply the action to
+     * @param action The action to perform on each subject
      * @return A future which will complete when the operation has finished
      */
-    default CompletableFuture<Void> applyToAll(final Consumer<Subject> action, final Set<String> identifiers) {
+    default CompletableFuture<Void> applyToAll(final Iterable<String> identifiers, final Consumer<Subject> action) {
         Objects.requireNonNull(action, "action");
         Objects.requireNonNull(identifiers, "identifiers");
         return CompletableFuture.runAsync(() -> {
@@ -243,7 +244,7 @@ public interface SubjectCollection {
      *
      * <p>As no context is passed, it is up to the implementation to decide
      * which contexts to use. When available,
-     * {@link Subject#activeContexts()} is used for the lookup. Otherwise, it
+     * <p>Contexts will be extracted from the current cause for each lookup.</p>
      * is likely that {@link SubjectData#GLOBAL_CONTEXT} will be
      * used.</p>
      *
@@ -261,12 +262,12 @@ public interface SubjectCollection {
      * the data set to the subjects {@link Subject#subjectData()}. Transient
      * data is not considered.</p>
      *
-     * @param contexts The context combination to check for permissions in
      * @param permission The permission to check
+     * @param cause The cause to extract context information from
      * @return A reference to any subject known to have this permission
      *         set, and the value this permission is set to
      */
-    CompletableFuture<Map<? extends SubjectReference, Boolean>> allWithPermission(Set<Context> contexts, String permission);
+    CompletableFuture<Map<? extends SubjectReference, Boolean>> allWithPermission(String permission, Cause cause);
 
     /**
      * Return all loaded subjects with the given permission set.
@@ -275,11 +276,7 @@ public interface SubjectCollection {
      * the data set to the subjects {@link Subject#subjectData()}. Transient
      * data is not considered.</p>
      *
-     * <p>As no context is passed, it is up to the implementation to decide
-     * which contexts to use. When available,
-     * {@link Subject#activeContexts()} is used for the lookup. Otherwise, it
-     * is likely that {@link SubjectData#GLOBAL_CONTEXT} will be
-     * used.</p>
+     * <p>Contexts will be extracted from the current cause for each lookup.</p>
      *
      * @param permission The permission to check
      * @return A map containing any subject known to have this permission set,
@@ -294,12 +291,12 @@ public interface SubjectCollection {
      * the data set to the subjects {@link Subject#subjectData()}. Transient
      * data is not considered.</p>
      *
-     * @param contexts The context combination to check for permissions in
      * @param permission The permission to check
+     * @param cause The cause to extract context information from
      * @return A map containing any subject known to have this permission set,
      *         and the value this permission is set to
      */
-    Map<? extends Subject, Boolean> loadedWithPermission(Set<Context> contexts, String permission);
+    Map<? extends Subject, Boolean> loadedWithPermission(String permission, Cause cause);
 
     /**
      * Gets the subject holding data that is applied by default to all
