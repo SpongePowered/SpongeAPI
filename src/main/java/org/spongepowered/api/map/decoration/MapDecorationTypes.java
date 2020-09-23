@@ -24,35 +24,36 @@
  */
 package org.spongepowered.api.map.decoration;
 
+import org.spongepowered.api.map.MapCanvas;
 import org.spongepowered.api.map.color.MapColorType;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- *
+ * A pseudo-enum of supported types of MapDecoration on a {@link MapCanvas}.
  */
 public final class MapDecorationTypes {
 
     // SORTFIELDS:ON
 
-    public static final MapDecorationType PLAYER_MARKER = DummyObjectProvider.createExtendedFor(MapDecorationType.class, "PLAYER_MARKER");
-
-    public static final MapDecorationType GREEN_MARKER = DummyObjectProvider.createExtendedFor(MapDecorationType.class, "GREEN_MARKER");
-
-    public static final MapDecorationType RED_MARKER = DummyObjectProvider.createExtendedFor(MapDecorationType.class, "RED_MARKER");
-
     public static final MapDecorationType BLUE_MARKER = DummyObjectProvider.createExtendedFor(MapDecorationType.class, "BLUE_MARKER");
 
-    public static final MapDecorationType TARGET_X = DummyObjectProvider.createExtendedFor(MapDecorationType.class, "TARGET_X");
-
-    public static final MapDecorationType TARGET_POINT = DummyObjectProvider.createExtendedFor(MapDecorationType.class, "TARGET_POINT");
-
-    public static final MapDecorationType PLAYER_OFF_MAP = DummyObjectProvider.createExtendedFor(MapDecorationType.class, "PLAYER_OFF_MAP");
-
-    public static final MapDecorationType PLAYER_OFF_LIMITS = DummyObjectProvider.createExtendedFor(MapDecorationType.class, "PLAYER_OFF_LIMITS");
+    public static final MapDecorationType GREEN_MARKER = DummyObjectProvider.createExtendedFor(MapDecorationType.class, "GREEN_MARKER");
 
     public static final MapDecorationType MANSION = DummyObjectProvider.createExtendedFor(MapDecorationType.class, "MANSION");
 
     public static final MapDecorationType MONUMENT = DummyObjectProvider.createExtendedFor(MapDecorationType.class, "MONUMENT");
+
+    public static final MapDecorationType PLAYER_MARKER = DummyObjectProvider.createExtendedFor(MapDecorationType.class, "PLAYER_MARKER");
+
+    public static final MapDecorationType PLAYER_OFF_LIMITS = DummyObjectProvider.createExtendedFor(MapDecorationType.class, "PLAYER_OFF_LIMITS");
+
+    public static final MapDecorationType PLAYER_OFF_MAP = DummyObjectProvider.createExtendedFor(MapDecorationType.class, "PLAYER_OFF_MAP");
+
+    public static final MapDecorationType RED_MARKER = DummyObjectProvider.createExtendedFor(MapDecorationType.class, "RED_MARKER");
+
+    public static final MapDecorationType TARGET_POINT = DummyObjectProvider.createExtendedFor(MapDecorationType.class, "TARGET_POINT");
+
+    public static final MapDecorationType TARGET_X = DummyObjectProvider.createExtendedFor(MapDecorationType.class, "TARGET_X");
 
     // SORTFIELDS:OFF
 }

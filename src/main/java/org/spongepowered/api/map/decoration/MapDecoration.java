@@ -33,7 +33,8 @@ import org.spongepowered.api.util.Direction;
 /**
  * A MapDecoration that represents a Decoration on a map,
  * e.g player marker, monument marker etc.
- * All coordinates are world coordinates, not relative to the map
+ * All coordinates are relative to the map, and centred at 0,0
+ * Valid coordination range from {@value java.lang.Byte#MIN_VALUE}-{@value java.lang.Byte#MAX_VALUE}. AKA any valid byte value
  */
 public interface MapDecoration extends DataSerializable {
 
@@ -122,7 +123,7 @@ public interface MapDecoration extends DataSerializable {
          * Ranges from {@value java.lang.Byte#MIN_VALUE}-{@value java.lang.Byte#MAX_VALUE}. AKA any valid byte value
          * @return this Builder, for chaining
          */
-        Builder x(int x) throws IllegalStateException;
+        Builder x(int x) throws IllegalArgumentException;
 
         /**
          * Sets the Y position of the MapDecoration
@@ -132,7 +133,7 @@ public interface MapDecoration extends DataSerializable {
          * Ranges from {@value java.lang.Byte#MIN_VALUE}-{@value java.lang.Byte#MAX_VALUE}. AKA any valid byte value
          * @return this Builder, for chaining
          */
-        Builder y(int y) throws IllegalStateException;
+        Builder y(int y) throws IllegalArgumentException;
 
         /**
          * Sets the rotation in degrees for this builder
@@ -140,7 +141,7 @@ public interface MapDecoration extends DataSerializable {
          * @param rot Direction, any cardinal/ordinal/secondary ordinal direction. (Not up/down)
          * @return this Builder, for chaining
          */
-        Builder rotation(Direction rot);
+        Builder rotation(Direction rot) throws IllegalArgumentException;
 
         /**
          * Sets the X and Y position of the MapDecoration
@@ -150,7 +151,7 @@ public interface MapDecoration extends DataSerializable {
          * Map coordinates range from {@value java.lang.Byte#MIN_VALUE}-{@value java.lang.Byte#MAX_VALUE}. AKA any valid byte value
          * @return this Builder, for chaining
          */
-        Builder position(Vector2i position);
+        Builder position(Vector2i position) throws IllegalArgumentException;
 
         /**
          * Builds an instance of MapDecoration.

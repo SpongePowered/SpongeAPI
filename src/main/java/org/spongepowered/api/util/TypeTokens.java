@@ -264,8 +264,6 @@ public final class TypeTokens {
 
     public static final TypeToken<List<? extends DataSerializable>> LIST_DATA_SERIALIZEABLE_TOKEN = new TypeToken<List<? extends DataSerializable>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<ListValue<MapDecoration>> LIST_MAP_DECORATION_VALUE_TOKEN = new TypeToken<ListValue<MapDecoration>>() {private static final long serialVersionUID = -1;};
-
     public static final TypeToken<List<DyeColor>> LIST_DYE_COLOR_TOKEN = new TypeToken<List<DyeColor>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<ListValue<DyeColor>> LIST_DYE_COLOR_VALUE_TOKEN = new TypeToken<ListValue<DyeColor>>() {private static final long serialVersionUID = -1;};
@@ -275,6 +273,8 @@ public final class TypeTokens {
     public static final TypeToken<ListValue<Enchantment>> LIST_ENCHANTMENT_VALUE_TOKEN = new TypeToken<ListValue<Enchantment>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<List<FireworkEffect>> LIST_FIREWORK_TOKEN = new TypeToken<List<FireworkEffect>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<ListValue<MapDecoration>> LIST_MAP_DECORATION_VALUE_TOKEN = new TypeToken<ListValue<MapDecoration>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<List<PatternLayer>> LIST_PATTERN_TOKEN = new TypeToken<List<PatternLayer>>() {private static final long serialVersionUID = -1;};
 
@@ -312,9 +312,13 @@ public final class TypeTokens {
 
     public static final TypeToken<MapValue<BodyPart, Vector3d>> MAP_BODY_VECTOR3D_VALUE_TOKEN = new TypeToken<MapValue<BodyPart, Vector3d>>() {private static final long serialVersionUID = -1;};
 
+    public static final TypeToken<Value<MapCanvas>> MAP_CANVAS_VALUE_TOKEN = new TypeToken<Value<MapCanvas>>() {private static final long serialVersionUID = -1;};
+
     public static final TypeToken<Map<Direction, List<FluidStackSnapshot>>> MAP_DIRECTION_FLUID_TOKEN = new TypeToken<Map<Direction, List<FluidStackSnapshot>>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<MapValue<Direction, List<FluidStackSnapshot>>> MAP_DIRECTION_FLUID_VALUE_TOKEN = new TypeToken<MapValue<Direction, List<FluidStackSnapshot>>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Value<MapInfo>> MAP_INFO_VALUE_TOKEN = new TypeToken<Value<MapInfo>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Map<UUID, Vector3d>> MAP_UUID_VECTOR3D_TOKEN = new TypeToken<Map<UUID, Vector3d>>() {private static final long serialVersionUID = -1;};
 
@@ -503,10 +507,6 @@ public final class TypeTokens {
     public static final TypeToken<Value<WireAttachmentType>> WIRE_ATTACHMENT_TYPE_VALUE_TOKEN = new TypeToken<Value<WireAttachmentType>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<World>> WORLD_VALUE_TOKEN = new TypeToken<Value<World>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Value<MapCanvas>> MAP_CANVAS_VALUE_TOKEN = new TypeToken<Value<MapCanvas>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<Value<MapInfo>> MAP_INFO_VALUE_TOKEN = new TypeToken<Value<MapInfo>>() {private static final long serialVersionUID = -1;};
 
     // SORTFIELDS:OFF
 

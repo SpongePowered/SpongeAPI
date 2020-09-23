@@ -137,10 +137,10 @@ public interface MapCanvas extends DataSerializable {
          * image after this is called will not be reflected.
          * @param image to take from
          * @return This Builder, for chaining
-         * @throws IllegalStateException if width/height is wrong or not known yet
-         * @throws IllegalStateException if color found is not in the palette {@link MapColorTypes}
+         * @throws IllegalArgumentException if width/height is wrong or not known yet
+         * @throws IllegalArgumentException if color found is not in the palette {@link MapColorTypes}
          */
-        Builder fromImage(Image image) throws IllegalStateException;
+        Builder fromImage(Image image) throws IllegalArgumentException;
 
         @Override
         Optional<MapCanvas> build(DataView container) throws InvalidDataException;

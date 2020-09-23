@@ -75,7 +75,20 @@ public interface MapColor extends DataSerializable {
     interface Builder extends DataBuilder<MapColor> {
 
         /**
-         * Sets the shade to the default shade
+         * Sets the shade to the lightest shade
+         * @return Builder, for chaining
+         */
+        Builder lightest();
+
+        /**
+         * Sets the shade to the light shade
+         * @return Builder, for chaining
+         */
+        Builder light();
+
+        /**
+         * Sets the shade to the base shade
+         * The color given is the same as {@link MapColorType#getColor()}
          * @return Builder, for chaining
          */
         Builder base();
@@ -85,18 +98,6 @@ public interface MapColor extends DataSerializable {
          * @return Builder, for chaining
          */
         Builder dark();
-
-        /**
-         * Sets the shade to the darker shade
-         * @return Builder, for chaining
-         */
-        Builder darker();
-
-        /**
-         * Sets the shade to the darkest shade
-         * @return Builder, for chaining
-         */
-        Builder darkest();
 
         /**
          * Sets the base color to the color given
