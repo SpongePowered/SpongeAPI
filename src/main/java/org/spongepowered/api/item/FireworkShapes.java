@@ -35,7 +35,7 @@ public final class FireworkShapes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<FireworkShape> BALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "ball");
+    public static final Supplier<FireworkShape> SMALL_BALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "small_ball");
 
     public static final Supplier<FireworkShape> BURST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "burst");
 

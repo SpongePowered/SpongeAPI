@@ -109,6 +109,7 @@ import org.spongepowered.api.fluid.FluidStack;
 import org.spongepowered.api.fluid.FluidStackSnapshot;
 import org.spongepowered.api.fluid.FluidState;
 import org.spongepowered.api.item.FireworkEffect;
+import org.spongepowered.api.item.FireworkShape;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -262,6 +263,8 @@ public final class TypeTokens {
     public static final TypeToken<EquipmentType> EQUIPMENT_TYPE_TOKEN = new TypeToken<EquipmentType>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<EquipmentType>> EQUIPMENT_TYPE_VALUE_TOKEN = new TypeToken<Value<EquipmentType>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Value<FireworkShape>> FIREWORK_SHAPE_VALUE_TOKEN = new TypeToken<Value<FireworkShape>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Float> FLOAT_TOKEN = new TypeToken<Float>() {private static final long serialVersionUID = -1;};
 
