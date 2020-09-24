@@ -46,27 +46,4 @@ public interface ValueCompleter {
      */
     List<String> complete(CommandContext context, String currentInput);
 
-    /**
-     * Define all completions for a parameter, with a default implementation for
-     * {@link ValueCompleter#complete(CommandContext, String)} to filter entries
-     * upon completion based on whether an option starts with the input string.
-     */
-    @FunctionalInterface
-    interface All extends ValueCompleter {
-
-        /**
-         * Gets all valid completions for this element, regardless of input.
-         *
-         * @param context The {@link CommandContext} that contains the parsed
-         *  arguments
-         * @return The list of values
-         */
-        List<String> complete(CommandContext context);
-
-        default List<String> complete(final CommandContext context, final String currentInput) {
-            return this.complete(context).stream().filter(x -> x.startsWith(currentInput)).collect(Collectors.toList());
-        }
-
-    }
-
 }
