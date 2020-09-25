@@ -83,10 +83,10 @@ import java.util.function.Supplier;
  * ways that parameters can be used:</p>
  *
  * <ul>
- *     <li>{@link #firstOf(Parameter)} allows for multiple parameters that
+ *     <li>{@link #firstOfBuilder(Parameter)} allows for multiple parameters that
  *     do not have the same return type to attempt to parse an input
  *     successfully.</li>
- *     <li>{@link #seq(Parameter)} allows for the grouping of multiple
+ *     <li>{@link #seqBuilder(Parameter)} allows for the grouping of multiple
  *     parameters that will be executed one after another.</li>
  *     <li>{@link Subcommand}s can be placed anywhere in a parameter
  *     chain where a {@link Parameter} can be added, if successfully parsed,
@@ -223,7 +223,7 @@ public interface Parameter {
      * @param parameter The first {@link Parameter}
      * @return The {@link Parameter.FirstOfBuilder} to continue chaining
      */
-    static Parameter.FirstOfBuilder firstOf(@NonNull final Parameter parameter) {
+    static Parameter.FirstOfBuilder firstOfBuilder(@NonNull final Parameter parameter) {
         return Sponge.getRegistry().getBuilderRegistry().provideBuilder(FirstOfBuilder.class).or(parameter);
     }
 
@@ -262,7 +262,7 @@ public interface Parameter {
      * @return The {@link Parameter.SequenceBuilder}, to continue building the
      *         chain
      */
-    static Parameter.SequenceBuilder seq(@NonNull final Parameter parameter) {
+    static Parameter.SequenceBuilder seqBuilder(@NonNull final Parameter parameter) {
         return Sponge.getRegistry().getBuilderRegistry().provideBuilder(SequenceBuilder.class).then(parameter);
     }
 
