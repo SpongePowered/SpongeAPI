@@ -830,6 +830,27 @@ public interface Parameter {
     boolean isOptional();
 
     /**
+     * Gets whether this parameter is known to be able to be explicitly
+     * considered a terminal parameter without regarding its place in a
+     * command.
+     *
+     * <p>A terminal parameter will pass control to the command's associated
+     * {@link CommandExecutor} if the parameter consumes the end of an input
+     * string.</p>
+     *
+     * <p>Because this parameter may be reused across multiple commands, there
+     * may be some circumstances where this parameter will act as a terminal
+     * parameter but this is false, such as when this is at the end of a
+     * parameter chain or the following parameters are all optional. The return
+     * value from this method generally will return whether this element is
+     * terminal <strong>without</strong> regard to other parameters in a
+     * command.</p>
+     *
+     * @return true if known to be terminal.
+     */
+    boolean isTerminal();
+
+    /**
      * A {@link Key}
      *
      * @param <T> The type.
@@ -927,27 +948,6 @@ public interface Parameter {
          * @return the predicate
          */
         Predicate<CommandCause> getRequirement();
-
-        /**
-         * Gets whether this parameter is known to be able to be explicitly
-         * considered a terminal parameter without regarding its place in a
-         * command.
-         *
-         * <p>A terminal parameter will pass control to the command's associated
-         * {@link CommandExecutor} if the parameter consumes the end of an input
-         * string.</p>
-         *
-         * <p>Because this parameter may be reused across multiple commands, there
-         * may be some circumstances where this parameter will act as a terminal
-         * parameter but this is false, such as when this is at the end of a
-         * parameter chain or the following parameters are all optional. The return
-         * value from this method generally will return whether this element is
-         * terminal <strong>without</strong> regard to other parameters in a
-         * command.</p>
-         *
-         * @return true if known to be terminal.
-         */
-        boolean isTerminal();
 
         /**
          * Parses the next element(s) in the {@link CommandContext}
@@ -1286,9 +1286,9 @@ public interface Parameter {
     interface SequenceBuilder extends ResettableBuilder<Parameter, SequenceBuilder> {
 
         /**
-         * Sets that this parameter is optional, and will be ignored if it isn't
-         * specified - but will throw an error if this is passed something to
-         * parse that it cannot parse.
+         * Sets that this sequence of parameters is optional, and will be
+         * ignored if it isn't specified - but will throw an error if this
+         * is passed something to parse that it cannot parse.
          *
          * @return This builder, for chaining
          */

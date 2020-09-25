@@ -250,6 +250,18 @@ public interface Command {
         List<Parameter.Subcommand> subcommands();
 
         /**
+         * Gets whether
+         * {@link Command.Parameterized.Builder#setTerminal(boolean)} was
+         * explicitly set to {@code true}, such that this command will
+         * execute without any arguments, regardless of the command's
+         * {@link #parameters() parameters} or
+         * {@link #subcommands() subcommands}.
+         *
+         * @return if this {@link Command.Parameterized} is terminal.
+         */
+        boolean isTerminal();
+
+        /**
          * Gets a {@link Predicate} that backs {@link #canExecute(CommandCause)}.
          *
          * @return The predicate.
@@ -526,6 +538,20 @@ public interface Command {
          * @return This builder, for chaining
          */
         Builder setExecutionRequirements(@Nullable Predicate<CommandCause> executionRequirements);
+
+        /**
+         * Sets whether this command is considered "terminal" in its own right,
+         * that is, can be executed on its own if no arguments are supplied when
+         * invoked, regardless of whether any supplied {@link Parameter}s are
+         * mandatory.
+         *
+         * @see Parameter#isTerminal()
+         * @see Parameter.Value.Builder#terminal()
+         *
+         * @param terminal Whether to mark this command as terminal
+         * @return This builder, for chaining
+         */
+        Builder setTerminal(boolean terminal);
 
         /**
          * Builds this command, creating a {@link Command.Parameterized}
