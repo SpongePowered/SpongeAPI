@@ -22,45 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.map;
+package org.spongepowered.api.map.color;
 
-import org.spongepowered.api.map.MapInfo;
-
-import java.util.Collection;
-import java.util.Optional;
-import java.util.UUID;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * Represents the storage manager for the maps of the {@link org.spongepowered.api.Server}
- *
- * This allows you to get {@link MapInfo}s and create them.
+ * A pseudo-enum of supported shades for a {@link MapColor}
  */
-public interface MapStorage {
+public final class MapShades {
 
-    /**
-     * Get all {@link MapInfo}s that exist
-     * on this server.
-     * @return Set of MapInfos
-     */
-    Collection<MapInfo> getAllMapInfos();
+	// SORTFIELDS:ON
 
-    /**
-     * Gets a MapInfo by its UUID.
-     * @param uuid UUID of map to get
-     * @return The map with given uuid, or empty if it doesn't exist.
-     */
-    Optional<MapInfo> getMapInfo(UUID uuid);
+	public static final MapShade DARKER = DummyObjectProvider.createFor(MapShade.class, "DARKER");
 
-    /**
-     * Creates a new MapInfo.
-     *
-     * <p>The MapInfo will not be successfully created if
-     * the fired {@link org.spongepowered.api.event.action.CreateMapEvent} is cancelled.
-     * This can happen due to either a plugin cancelling it, or
-     * running out of room for maps.
-     * (Max amount of maps is {@value Short#MAX_VALUE})</p>
-     *
-     * @return {@link MapInfo} the new MapInfo if available
-     */
-    Optional<MapInfo> createNewMapInfo();
+	public static final MapShade DARK = DummyObjectProvider.createFor(MapShade.class, "DARK");
+
+	public static final MapShade BASE = DummyObjectProvider.createFor(MapShade.class, "BASE");
+
+	public static final MapShade DARKEST = DummyObjectProvider.createFor(MapShade.class, "DARKEST");
+
+	// SORTFIELDS:OFF
+
+	private MapShades() {
+		throw new AssertionError("You should not be attempting to instantiate this class.");
+	}
 }

@@ -56,11 +56,30 @@ public interface MapColor extends DataSerializable {
     }
 
     /**
+     * Creates a {@link MapColor} that represents the provided
+     * {@link MapColorType} with the given shade.
+     *
+     * @param mapColorType The {@link MapColorType}
+     * @param mapShade The {@link MapShade}
+     * @return The {@link MapColor} that represents the provided type
+     */
+    static MapColor of(final MapColorType mapColorType, final MapShade mapShade) {
+        return MapColor.builder().baseColor(mapColorType).shade(mapShade).build();
+    }
+
+    /**
      * Gets the {@link MapColorType} that this {@link MapColor} was built from.
      *
      * @return The {@link MapColorType}
      */
     MapColorType getType();
+
+    /**
+     * Gets the {@link MapShade} that this {@link MapColor} was built from.
+     *
+     * @return The {@link MapShade}
+     */
+    MapShade getShade();
 
     /**
      * Gets the {@link Color} that this {@code MapColor} represents.
@@ -75,29 +94,41 @@ public interface MapColor extends DataSerializable {
     interface Builder extends DataBuilder<MapColor> {
 
         /**
-         * Sets the shade to the lightest shade
+         * Sets the shade to the given shade
+         * @param shade The shade to set this builder to
          * @return Builder, for chaining
          */
-        Builder lightest();
+        Builder shade(MapShade shade);
+
+        /**
+         * Sets the shade to the lightest shade
+         * Shorthand for calling {@link #shade(MapShade)} with {@link MapShades#DARKER}
+         * @return Builder, for chaining
+         */
+        Builder darker();
 
         /**
          * Sets the shade to the light shade
+         * Shorthand for calling {@link #shade(MapShade)} with {@link MapShades#DARK}
          * @return Builder, for chaining
          */
-        Builder light();
+        Builder dark();
 
         /**
          * Sets the shade to the base shade
+         * Shorthand for calling {@link #shade(MapShade)} with {@link MapShades#BASE}
          * The color given is the same as {@link MapColorType#getColor()}
+         * This is the default shade.
          * @return Builder, for chaining
          */
         Builder base();
 
         /**
          * Sets the shade to the dark shade
+         * Shorthand for calling {@link #shade(MapShade)} with {@link MapShades#DARKEST}
          * @return Builder, for chaining
          */
-        Builder dark();
+        Builder darkest();
 
         /**
          * Sets the base color to the color given

@@ -22,45 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.map;
+package org.spongepowered.api.map.color;
 
-import org.spongepowered.api.map.MapInfo;
-
-import java.util.Collection;
-import java.util.Optional;
-import java.util.UUID;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents the storage manager for the maps of the {@link org.spongepowered.api.Server}
- *
- * This allows you to get {@link MapInfo}s and create them.
+ * Represents a shade that can be combined with a {@link MapColorType}
+ * to form a {@link MapColor}
  */
-public interface MapStorage {
-
-    /**
-     * Get all {@link MapInfo}s that exist
-     * on this server.
-     * @return Set of MapInfos
-     */
-    Collection<MapInfo> getAllMapInfos();
-
-    /**
-     * Gets a MapInfo by its UUID.
-     * @param uuid UUID of map to get
-     * @return The map with given uuid, or empty if it doesn't exist.
-     */
-    Optional<MapInfo> getMapInfo(UUID uuid);
-
-    /**
-     * Creates a new MapInfo.
-     *
-     * <p>The MapInfo will not be successfully created if
-     * the fired {@link org.spongepowered.api.event.action.CreateMapEvent} is cancelled.
-     * This can happen due to either a plugin cancelling it, or
-     * running out of room for maps.
-     * (Max amount of maps is {@value Short#MAX_VALUE})</p>
-     *
-     * @return {@link MapInfo} the new MapInfo if available
-     */
-    Optional<MapInfo> createNewMapInfo();
+@CatalogedBy(MapShades.class)
+public interface MapShade extends CatalogType {
 }

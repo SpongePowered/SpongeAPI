@@ -34,7 +34,7 @@ import org.spongepowered.api.util.Direction;
  * A MapDecoration that represents a Decoration on a map,
  * e.g player marker, monument marker etc.
  * All coordinates are relative to the map, and centred at 0,0
- * Valid coordination range from {@value java.lang.Byte#MIN_VALUE}-{@value java.lang.Byte#MAX_VALUE}. AKA any valid byte value
+ * Valid coordinates range from {@value java.lang.Byte#MIN_VALUE}-{@value java.lang.Byte#MAX_VALUE}. AKA any valid byte value
  */
 public interface MapDecoration extends DataSerializable {
 

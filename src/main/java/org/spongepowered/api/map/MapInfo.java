@@ -39,14 +39,6 @@ import org.spongepowered.api.util.Identifiable;
 public interface MapInfo extends DataHolder, Identifiable {
 
     /**
-     * Checks if a different MapInfo refers the the
-     * same map
-     * @param other MapInfo
-     * @return true if they refer to the same map
-     */
-    boolean isLinked(MapInfo other);
-
-    /**
      * Gets whether the supplied {@link ItemStack} is backed by this MapInfo,
      * such that modifications to this MapInfo would affect the supplied
      * stack.
