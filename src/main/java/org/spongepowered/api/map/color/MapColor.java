@@ -31,7 +31,8 @@ import org.spongepowered.api.map.MapCanvas;
 import org.spongepowered.api.util.Color;
 
 /**
- * Represents a color that may be used when drawing a {@link MapCanvas}.
+ * Represents a {@link MapColorType} in a given {@link MapShade} that may be
+ * used when drawing a {@link MapCanvas}.
  */
 public interface MapColor extends DataSerializable {
 
@@ -46,7 +47,7 @@ public interface MapColor extends DataSerializable {
 
     /**
      * Creates a {@link MapColor} that represents the provided
-     * {@link MapColorType} without any shading adjustments.
+     * {@link MapColorType} with the {@link MapShades#BASE the default shading}.
      *
      * @param mapColorType The {@link MapColorType}
      * @return The {@link MapColor} that represents the provided type
@@ -57,7 +58,7 @@ public interface MapColor extends DataSerializable {
 
     /**
      * Creates a {@link MapColor} that represents the provided
-     * {@link MapColorType} with the given shade.
+     * {@link MapColorType} with the given {@link MapShade}.
      *
      * @param mapColorType The {@link MapColorType}
      * @param mapShade The {@link MapShade}
@@ -82,7 +83,7 @@ public interface MapColor extends DataSerializable {
     MapShade getShade();
 
     /**
-     * Gets the {@link Color} that this {@code MapColor} represents.
+     * Gets the {@link Color} that this {@link MapColor} represents.
      *
      * @return The {@link Color}
      */
@@ -94,53 +95,57 @@ public interface MapColor extends DataSerializable {
     interface Builder extends DataBuilder<MapColor> {
 
         /**
-         * Sets the shade to the given shade
-         * @param shade The shade to set this builder to
-         * @return Builder, for chaining
+         * Sets the {@link MapShade} of the supplied {@link #getColor()}.
+         *
+         * <p>If this method is not called, {@link MapShades#BASE} is used.</p>
+         *
+         * @param shade The {@link MapShade} to use
+         * @return This builder, for chaining
          */
         Builder shade(MapShade shade);
 
         /**
-         * Sets the shade to the lightest shade
-         * Shorthand for calling {@link #shade(MapShade)} with {@link MapShades#DARKER}
-         * @return Builder, for chaining
-         */
-        Builder darker();
-
-        /**
-         * Sets the shade to the light shade
-         * Shorthand for calling {@link #shade(MapShade)} with {@link MapShades#DARK}
-         * @return Builder, for chaining
-         */
-        Builder dark();
-
-        /**
-         * Sets the shade to the base shade
-         * Shorthand for calling {@link #shade(MapShade)} with {@link MapShades#BASE}
-         * The color given is the same as {@link MapColorType#getColor()}
-         * This is the default shade.
-         * @return Builder, for chaining
+         * Sets the {@link MapShade} to {@link MapShades#BASE}.
+         *
+         * @return This builder, for chaining
          */
         Builder base();
 
         /**
-         * Sets the shade to the dark shade
-         * Shorthand for calling {@link #shade(MapShade)} with {@link MapShades#DARKEST}
-         * @return Builder, for chaining
+         * Sets the {@link MapShade} to {@link MapShades#DARK}.
+         *
+         * @return This builder, for chaining
+         */
+        Builder dark();
+
+        /**
+         * Sets the {@link MapShade} to {@link MapShades#DARKER}.
+         *
+         * @return This builder, for chaining
+         */
+        Builder darker();
+
+        /**
+         * Sets the {@link MapShade} to {@link MapShades#DARKEST}.
+         *
+         * @return This builder, for chaining
          */
         Builder darkest();
 
         /**
-         * Sets the base color to the color given
-         * @return Builder, for chaining
+         * Sets the {@link MapColorType} that will form the basis of the built
+         * {@link MapColor}.
+         *
+         * @return This builder, for chaining
          */
         Builder baseColor(MapColorType mapColor);
 
         /**
-         * Builds an instance of an MapColor.
+         * Creates a {@link MapColor} that represents the combination of this
+         * {@link MapColorType} and {@link MapShade}.
          *
-         * @return A new instance of an MapColor
-         * @throws IllegalStateException If the MapColor is not complete
+         * @return The {@link MapColor}
+         * @throws IllegalStateException if no {@link MapColorType} was provided
          */
         MapColor build() throws IllegalStateException;
     }

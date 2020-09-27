@@ -25,8 +25,13 @@
 package org.spongepowered.api.map.decoration;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.map.MapCanvas;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
+/**
+ * Represents a symbol that may be used on a {@link MapCanvas} as part of a
+ * {@link MapDecoration}.
+ */
 @CatalogedBy(MapDecorationTypes.class)
 public interface MapDecorationType extends CatalogType {
 

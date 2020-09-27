@@ -28,46 +28,78 @@ import com.flowpowered.math.vector.Vector2i;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.persistence.DataBuilder;
+import org.spongepowered.api.map.MapCanvas;
+import org.spongepowered.api.map.MapInfo;
 import org.spongepowered.api.util.Direction;
 
 /**
- * A MapDecoration that represents a Decoration on a map,
- * e.g player marker, monument marker etc.
- * All coordinates are relative to the map, and centred at 0,0
- * Valid coordinates range from {@value java.lang.Byte#MIN_VALUE}-{@value java.lang.Byte#MAX_VALUE}. AKA any valid byte value
+ * A {@code MapDecoration} represents a symbol that may be placed at a specific
+ * point on a {@link MapInfo map}, which exists as a separate layer on top of a
+ * {@link MapCanvas}. A common example of a Decoration is the player marker.
+ *
+ * <p>Unlike a {@link MapCanvas} which is a relatively static feature of a
+ * {@link MapInfo}, the position and rotation of decorations can be updated
+ * more easily.</p>
+ *
+ * <p>The co-ordinate system used when getting or setting a decoration's
+ * location on a map is independent of any world a map may be based on.
+ * Instead, valid co-ordinates range from {@link Byte#MIN_VALUE -128} to
+ * {@link Byte#MAX_VALUE 127}. The bottom left corner of the map is given by the
+ * co-ordinates (-128, -128).</p>
  */
 public interface MapDecoration extends DataSerializable {
 
-    static Builder builder() {return Sponge.getRegistry().createBuilder(Builder.class);}
-
-    static MapDecoration of(MapDecorationType type, int x, int y, Direction rotation) {return builder().type(type).x(x).y(y).rotation(rotation).build();}
+    /**
+     * Creates a {@link Builder} for generating {@link MapDecoration}s.
+     *
+     * @return A {@link Builder}
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
-     * Gets the {@link MapDecorationType} of this MapDecoration
-     * @return MapDecorationType The type of the MapDecoration
+     * Creates a new {@link MapDecoration} given a
+     * {@link MapDecorationType}, position and {@link Direction} which
+     * represents the rotation of the decoration on the map.
+     *
+     * @param type The {@link MapDecorationType} symbol
+     * @param x The x co-ordinate of this decoration
+     * @param y The y co-ordinate of this decoration
+     * @param rotation The {@link Direction} that represents the rotation of the
+     *                 decoration
+     * @return The {@link MapDecoration}
+     */
+    static MapDecoration of(final MapDecorationType type, final int x, final int y, final Direction rotation) {
+        return builder().type(type).x(x).y(y).rotation(rotation).build();
+    }
+
+    /**
+     * Gets the {@link MapDecorationType} this decoration is displaying
+     *
+     * @return The {@link MapDecorationType}
      */
     MapDecorationType getType();
 
     /**
-     * Gets the position of this MapDecoration, where it is right
-     * now, or where it would be if applied to a {@link org.spongepowered.api.map.MapInfo}.
-     * 0,0 is the centre of a map.
-     * Ranges from {@value java.lang.Byte#MIN_VALUE}-{@value java.lang.Byte#MAX_VALUE}. AKA any valid byte value
+     * Gets the position on a {@link MapInfo} that this decoration will be
+     * placed.
+     *
      * @return Vector2i Co-ordinate position in world
      */
     Vector2i getPosition();
 
     /**
-     * Gets the X position on a map, or where it will be when applied
-     * Ranges from {@value java.lang.Byte#MIN_VALUE}-{@value java.lang.Byte#MAX_VALUE}. AKA any valid byte value
-     * @return int Y world coordinate
+     * Gets the x co-ordinate of this decoration
+     *
+     * @return The x co-ordinate
      */
     int getX();
 
     /**
-     * Gets the Y position on a map. 0 is the center of the map.
-     * Ranges from {@value java.lang.Byte#MIN_VALUE}-{@value java.lang.Byte#MAX_VALUE}. AKA any valid byte value
-     * @return int Y world coordinate
+     * Gets the y co-ordinate of this decoration
+     *
+     * @return The y co-ordinate
      */
     int getY();
 
@@ -108,11 +140,17 @@ public interface MapDecoration extends DataSerializable {
      */
     Direction getRotation();
 
+    /**
+     * A builder that creates {@link MapDecoration}
+     */
     interface Builder extends DataBuilder<MapDecoration> {
+
         /**
-         * Sets the MapDecorationType
-         * @param type MapDecoration to set
-         * @return this Builder, for chaining
+         * Sets the {@link MapDecorationType} that the built
+         * {@link MapDecoration} will display.
+         *
+         * @param type The {@link MapDecorationType}
+         * @return This builder, for chaining
          */
         Builder type(MapDecorationType type);
 
@@ -121,7 +159,7 @@ public interface MapDecoration extends DataSerializable {
          * (for when it is applied to a {@link org.spongepowered.api.map.MapInfo})
          * @param x map coordinate where 0 is the centre of the map.
          * Ranges from {@value java.lang.Byte#MIN_VALUE}-{@value java.lang.Byte#MAX_VALUE}. AKA any valid byte value
-         * @return this Builder, for chaining
+         * @return This builder, for chaining
          */
         Builder x(int x) throws IllegalArgumentException;
 
@@ -131,34 +169,46 @@ public interface MapDecoration extends DataSerializable {
          * (for when it is applied to a {@link org.spongepowered.api.map.MapInfo})
          * @param y map coordinate where 0 is the centre of the map.
          * Ranges from {@value java.lang.Byte#MIN_VALUE}-{@value java.lang.Byte#MAX_VALUE}. AKA any valid byte value
-         * @return this Builder, for chaining
+         * @return This builder, for chaining
          */
         Builder y(int y) throws IllegalArgumentException;
 
         /**
-         * Sets the rotation in degrees for this builder
-         * (for when it is applied to a {@link org.spongepowered.api.map.MapInfo})
-         * @param rot Direction, any cardinal/ordinal/secondary ordinal direction. (Not up/down)
-         * @return this Builder, for chaining
+         * Sets the orientation of the symbol when displayed on a {@link MapInfo}.
+         *
+         * <p>The supplied {@link Direction} can only be any of the cardinal or
+         * sub-cardinal directions.</p>
+         *
+         * @param direction The {@link Direction} the
+         * @return This builder, for chaining
+         * @throws IllegalArgumentException if an invalid {@link Direction} is
+         *      provided
          */
-        Builder rotation(Direction rot) throws IllegalArgumentException;
+        Builder rotation(Direction direction) throws IllegalArgumentException;
 
         /**
-         * Sets the X and Y position of the MapDecoration
-         * (for when it is applied to a {@link org.spongepowered.api.map.MapInfo})
-         * @param position Vector2i, X and Y position, where 0,0 is
-         *                 the center of the map.
-         * Map coordinates range from {@value java.lang.Byte#MIN_VALUE}-{@value java.lang.Byte#MAX_VALUE}. AKA any valid byte value
-         * @return this Builder, for chaining
+         * Sets the position of the decoration. Valid co-ordinates are between
+         * {@link Byte#MIN_VALUE -128} and {@link Byte#MAX_VALUE 127}, with
+         * (-128, -128) being the bottom left corner of a map.
+         *
+         * @see MapDecoration for further descrption of the co-ordinate system
+         *
+         * @return This builder, for chaining
+         * @throws IllegalArgumentException if a position outside of the map
+         *      is specified.
          */
         Builder position(Vector2i position) throws IllegalArgumentException;
 
         /**
-         * Builds an instance of MapDecoration.
+         * Creates a new {@link MapDecoration} based on the current builder
+         * state.
          *
-         * @return A new instance of an MapDecoration
-         * @throws IllegalStateException If the MapDecoration is not complete
+         * @return A {@link MapDecoration}
+         * @throws IllegalStateException if a {@link MapDecorationType} has not
+         *      been supplied
          */
         MapDecoration build() throws IllegalStateException;
+
     }
+
 }
