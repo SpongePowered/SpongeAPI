@@ -25,7 +25,6 @@
 package org.spongepowered.api.placeholder;
 
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextComponent;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
@@ -55,11 +54,11 @@ public interface PlaceholderParser extends CatalogType {
      * Creates a {@link Component} based on the provided {@link PlaceholderContext}.
      *
      * <p>This method should not throw an error, instead returning
-     * {@link TextComponent#empty()} if the supplied {@link PlaceholderContext} is not
+     * {@link Component#empty()} if the supplied {@link PlaceholderContext} is not
      * valid.</p>
      *
      * @param placeholderContext The {@link PlaceholderContext}
-     * @return The {@link TextComponent}
+     * @return The {@link Component}
      */
     Component parse(PlaceholderContext placeholderContext);
 

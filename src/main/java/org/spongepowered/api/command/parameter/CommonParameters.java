@@ -48,7 +48,7 @@ import org.spongepowered.math.vector.Vector3d;
  * final Command.Parameterized builder = Command.builder()
  *      .parameter(parameter)
  *      .executor(context -> {
- *          context.sendMessage(TextComponent.of(context.requireOne(parameter).getName()));
+ *          context.sendMessage(Component.text(context.requireOne(parameter).getName()));
  *          return CommandResult.success();
  *      }).build();
  * // registration happens here.
@@ -84,7 +84,7 @@ import org.spongepowered.math.vector.Vector3d;
  * final Command.Parameterized builder = Command.builder()
  *      .parameter(CommonParameters.PLAYER)
  *      .executor(context -> {
- *          context.sendMessage(TextComponent.of(context.requireOne(CommonParameters.PLAYER).getName()));
+ *          context.sendMessage(Component.text(context.requireOne(CommonParameters.PLAYER).getName()));
  *          return CommandResult.success();
  *      }).build();
  * // registration happens here.

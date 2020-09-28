@@ -26,7 +26,6 @@ package org.spongepowered.api.command.exception;
 
 import com.google.common.base.Strings;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextComponent;
 import org.spongepowered.api.command.parameter.Parameter;
 
 /**
@@ -71,12 +70,12 @@ public class ArgumentParseException extends CommandException {
         if (this.source == null || this.source.isEmpty()) {
             return super.getText();
         } else if (superText == null) {
-            return TextComponent.of(this.getAnnotatedPosition());
+            return Component.text(this.getAnnotatedPosition());
         } else {
-            return TextComponent.builder()
+            return Component.text()
               .append(superText)
-              .append(TextComponent.newline())
-              .append(this.getAnnotatedPosition())
+              .append(Component.newline())
+              .append(Component.text(this.getAnnotatedPosition()))
               .build();
         }
     }

@@ -26,7 +26,6 @@ package org.spongepowered.api.placeholder;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.ComponentLike;
-import net.kyori.adventure.text.TextComponent;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.ResettableBuilder;
@@ -86,7 +85,7 @@ public interface PlaceholderComponent extends ComponentLike {
      *
      * <p>This will always return a {@link Component} object, however, if the
      * parser could not handle the provided context, this will be
-     * {@link TextComponent#empty()}.</p>
+     * {@link Component#empty()}.</p>
      *
      * @return The parsed {@link Component}
      */
@@ -111,7 +110,7 @@ public interface PlaceholderComponent extends ComponentLike {
 
         /**
          * Sets the {@link PlaceholderContext} that will be provided to the
-         * {@link PlaceholderParser} to create the {@link TextComponent} when
+         * {@link PlaceholderParser} to create the {@link Component} when
          * {@link ComponentLike#asComponent()} ()} is called.
          *
          * @param context The {@link PlaceholderContext} to use.

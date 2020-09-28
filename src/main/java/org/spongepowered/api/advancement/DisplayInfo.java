@@ -126,7 +126,7 @@ public interface DisplayInfo {
         Builder type(AdvancementType advancementType);
 
         /**
-         * Sets the description. Defaults to {@link net.kyori.adventure.text.TextComponent#empty()}.
+         * Sets the description. Defaults to {@link Component#empty()}.
          *
          * @param description The description
          * @return This builder, for chaining

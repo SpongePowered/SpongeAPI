@@ -25,7 +25,6 @@
 package org.spongepowered.api.command;
 
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextComponent;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
@@ -164,7 +163,7 @@ public interface Command {
         final Optional<Component> extended = this.getExtendedDescription(cause);
         if (extended.isPresent()) {
             if (shortDesc.isPresent()) {
-                return Optional.of(TextComponent.builder().append(shortDesc.get(), TextComponent.newline(), TextComponent.newline(), extended.get()).build());
+                return Optional.of(Component.text().append(shortDesc.get(), Component.newline(), Component.newline(), extended.get()).build());
             } else {
                 return extended;
             }
@@ -290,6 +289,7 @@ public interface Command {
          * @return The result of a command being processed
          * @throws CommandException Thrown on a command error
          */
+        @Override
         default CommandResult process(final CommandCause cause, final String arguments) throws CommandException {
             return this.execute(this.parseArguments(cause, arguments));
         }
