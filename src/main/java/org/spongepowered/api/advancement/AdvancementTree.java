@@ -24,26 +24,13 @@
  */
 package org.spongepowered.api.advancement;
 
-import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.NamedCatalogType;
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.util.NamedCatalogBuilder;
 
 /**
  * Represents a {@link Advancement} tree or tab menu. The tree will become
  * visible to a {@link Player} once the root {@link Advancement} gets achieved.
  */
-public interface AdvancementTree extends NamedCatalogType {
-
-    /**
-     * Creates a new {@link Builder} to create {@link AdvancementTree}s.
-     *
-     * @return The new builder
-     */
-    static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
-    }
+public interface AdvancementTree  {
 
     /**
      * Gets the root {@link Advancement}.
@@ -62,48 +49,4 @@ public interface AdvancementTree extends NamedCatalogType {
 
     // ResourcePath getBackground();
 
-    /**
-     * A builder to create {@link AdvancementTree}s.
-     */
-    interface Builder extends NamedCatalogBuilder<AdvancementTree, Builder> {
-
-        /**
-         * Sets the root {@link Advancement}. The root advancement MUST have
-         * {@link DisplayInfo} present.
-         *
-         * @param rootAdvancement The root advancement
-         * @return This builder, for chaining
-         * @throws IllegalArgumentException If the display info is missing
-         */
-        Builder rootAdvancement(Advancement rootAdvancement);
-
-        /**
-         * Sets the background of {@link AdvancementTree}.
-         *
-         * <p>Defaults to the stone background:
-         * {@code minecraft:textures/gui/advancements/backgrounds/stone.png}</p>
-         *
-         * @param background The background
-         * @return This builder, for chaining
-         */
-        // TODO: Deprecate when ResourcePath is available
-        Builder background(String background);
-
-        // Builder background(ResourcePath background);
-
-        @Override
-        Builder key(ResourceKey key);
-
-        /**
-         * Sets the name of the {@link AdvancementTree}. Defaults to
-         * the plain {@link DisplayInfo#getTitle()} of the root
-         * {@link Advancement} if {@link DisplayInfo} is present.
-         * Otherwise will it default to the identifier ({@link #key(ResourceKey)}).
-         *
-         * @param name The name
-         * @return This builder, for chaining
-         */
-        @Override
-        Builder name(String name);
-    }
 }
