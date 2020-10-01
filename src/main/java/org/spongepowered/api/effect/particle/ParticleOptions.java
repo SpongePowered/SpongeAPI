@@ -112,7 +112,7 @@ public final class ParticleOptions {
     /**
      * This option will change the potion type of a particle. The only vanilla
      * {@link ParticleType}s this option is applicable to is
-     * {@link ParticleTypes#BREAK_SPLASH_POTION}.
+     * {@link ParticleTypes#SPLASH_POTION}.
      */
     public static final Supplier<ParticleOption<PotionEffectType>> POTION_EFFECT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "potion_effect_type");
 
@@ -125,9 +125,9 @@ public final class ParticleOptions {
      *   <li>{@link ParticleTypes#BLOCK}</li>
      *   <li>{@link ParticleTypes#BREAK_EYE_OF_ENDER}</li>
      *   <li>{@link ParticleTypes#FIRE_SMOKE}</li>
-     *   <li>{@link ParticleTypes#FIREWORKS_SPARK}</li>
+     *   <li>{@link ParticleTypes#FIREWORK}</li>
      *   <li>{@link ParticleTypes#MOBSPAWNER_FLAMES}</li>
-     *   <li>{@link ParticleTypes#BREAK_SPLASH_POTION}</li>
+     *   <li>{@link ParticleTypes#SPLASH_POTION}</li>
      * </ul>
      *
      * <p>The quantity must be at least 1, or a {@link IllegalArgumentException}
@@ -167,7 +167,7 @@ public final class ParticleOptions {
 //    public static final Supplier<ParticleOption<Boolean>> SLOW_HORIZONTAL_VELOCITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "slow_horizontal_velocity");
 
     /**
-     * This option will affect how all the particles are moving.
+     * This option will affect how most particles are moving.
      */
     public static final Supplier<ParticleOption<Vector3d>> VELOCITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "velocity");
 
